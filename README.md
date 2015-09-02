@@ -9,6 +9,8 @@ npm install
 npm start
 ```
 
+Once running, open `http://localhost:8888` in your browser. Any update you make to files in either `./static` or `./src` should trigger a rebuild of the project and cause your browser to refresh to reflect those changes.
+
 ### To Test
 ```bash
 npm test

@@ -35,14 +35,12 @@ lint:
 # ------------------------------------
 
 start:
-	$(LIVE) ./build &
-	make watch &
-	wait
+	@make watch
+	$(LIVE) ./build --port=8888 --wait=200 --no-browser
 
 watch:
 	$(WEBPACK) -d --watch &
 	$(WATCH) "make static" ./static &
-	$(WATCH) "make lint" ./src &
 	wait
 
 # ------------------------------------
