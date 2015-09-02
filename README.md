@@ -5,6 +5,7 @@
 
 ### To Build
 ```bash
+npm install
 npm start
 ```
 

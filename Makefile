@@ -27,7 +27,7 @@ test:
 
 lint:
 	$(ESLINT) ./*.js
-	$(ESLINT) ./src/{components/**,mixins,views/**}/*.jsx
+	$(ESLINT) ./src/{.,components/**,mixins,views/**}/*.jsx
 
 # ------------------------------------
 
