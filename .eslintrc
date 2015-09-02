@@ -1,0 +1,22 @@
+{
+    "rules": {
+        "curly": [2, "multi-line"],
+        "indent": [2, 4],
+        "quotes": [2, "single"],
+        "linebreak-style": [2, "unix"],
+        "max-len": [2, 120, 4],
+        "semi": [2, "always"],
+        "strict": [2, "never"]
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "ecmaFeatures": {
+        "jsx": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "extends": "eslint:recommended"
+}
