@@ -4,7 +4,7 @@ require('./box.scss');
 
 module.exports = React.createClass({
     propTypes: {
-        title: React.PropTypes.string.isRequired
+        title: React.PropTypes.string.isRequired,
         more: React.React.PropTypes.string
     },
     render: function () {
@@ -15,7 +15,7 @@ module.exports = React.createClass({
                 </div>
 
                 <div className="content">
-                    {children}
+                    {this.children}
                 </div>
             </div>
         );

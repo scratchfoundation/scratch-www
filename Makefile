@@ -26,13 +26,14 @@ test:
 	@make lint
 
 lint:
-	@$(ESLINT) ./src/{components/**,views/**}/*.jsx
+	$(ESLINT) ./*.js
+	$(ESLINT) ./src/{components/**,mixins,views/**}/*.jsx
 
 # ------------------------------------
 
 start:
 	$(LIVE) ./build &
-	@make watch &
+	make watch &
 	wait
 
 watch:
@@ -43,4 +44,4 @@ watch:
 
 # ------------------------------------
 
-.PHONY: build clean static webpack watch test lint
+.PHONY: build clean static webpack test lint start watch
