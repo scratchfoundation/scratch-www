@@ -29,7 +29,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: 'style!css!sass'
+                loader: 'style!css!sass!autoprefixer-loader?browsers=last 3 versions'
             }
         ]
     },

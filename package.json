@@ -19,6 +19,7 @@
   "homepage": "https://github.com/llk/scratch-www#readme",
   "dependencies": {},
   "devDependencies": {
+    "autoprefixer-loader": "2.1.0",
     "css-loader": "0.17.0",
     "eslint": "1.3.1",
     "eslint-plugin-react": "3.3.1",
