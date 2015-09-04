@@ -1,0 +1,50 @@
+/* Tags */
+html, body {
+    display: block;
+    margin: 0;
+    padding: 0;
+
+    color: #322f31;
+    background-color: #fdfdfd;
+
+    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    color: #554747;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 1.0rem;
+    line-height: 1.1rem;
+}
+
+/* Links */
+a:link, a:visited, a:active {
+    color: #1aa0d8;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Classes */
+.inner {
+    width: 942px;
+    margin: 0 auto;
+}
+
+#view {
+    min-height: 768px;
+    padding: 10px 0;
+
+    /* Compensate for fixed navigation */
+    margin-top: 35px;
+}

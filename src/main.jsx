@@ -1,5 +1,7 @@
 var React = require('react');
 
+require('./main.scss');
+
 var Navigation = require('./components/navigation/navigation.jsx');
 var Footer = require('./components/footer/footer.jsx');
 
