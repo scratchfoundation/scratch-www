@@ -1,5 +1,5 @@
 ESLINT=./node_modules/.bin/eslint
-LIVE=./node_modules/.bin/live-server
+NODE=node
 WATCH=./node_modules/.bin/watch
 WEBPACK=./node_modules/.bin/webpack
 
@@ -11,7 +11,7 @@ build:
 	@make webpack
 
 clean:
-	rm -rf ./build/*.*
+	rm -rf ./build
 	mkdir -p build
 
 static:
@@ -27,6 +27,7 @@ test:
 
 lint:
 	$(ESLINT) ./*.js
+	$(ESLINT) ./server/*.js
 	$(ESLINT) ./src/*.jsx
 	$(ESLINT) ./src/mixins/*.jsx
 	$(ESLINT) ./src/views/**/*.jsx
@@ -34,15 +35,14 @@ lint:
 
 # ------------------------------------
 
-start:
-	@make watch
-	$(LIVE) ./build --port=8888 --wait=200 --no-browser
-
 watch:
+	$(WATCH) "make clean && make static" ./static &
 	$(WEBPACK) -d --watch &
-	$(WATCH) "make static" ./static &
 	wait
+
+start:
+	node ./server/index.js
 
 # ------------------------------------
 
-.PHONY: build clean static webpack test lint start watch
+.PHONY: build clean static webpack test lint watch start

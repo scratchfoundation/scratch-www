@@ -1,0 +1,11 @@
+[
+    {
+        "pattern": "/",
+        "view": "splash"
+    },
+    {
+        "pattern": "/about",
+        "view": "about",
+        "title": "About"
+    }
+]

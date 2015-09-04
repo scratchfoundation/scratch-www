@@ -1,11 +1,18 @@
 var path = require('path');
 var webpack = require('webpack');
+var routes = require('./server/routes.json');
 
+// Prepare all entry points
+var entry = {
+    main: './src/main.jsx'
+};
+routes.forEach(function (route) {
+    entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
+});
+
+// Config
 module.exports = {
-    entry: {
-        main: './src/main.jsx',
-        splash: './src/views/splash/splash.jsx'
-    },
+    entry: entry,
     devtool: 'source-map',
     externals: {
         'react': 'React',
