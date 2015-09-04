@@ -1,7 +1,7 @@
 module.exports = {
     getInitialState: function () {
         return {
-            session: null
+            session: {}
         };
     },
     componentWillMount: function () {
