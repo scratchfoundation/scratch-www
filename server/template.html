@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 9 ]> <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html> <!--<![endif]-->
     <head>
         <meta charset="UTF-8" />
 
@@ -9,7 +11,18 @@
         <title>Scratch - {{title}}</title>
         <meta name="description" content="{{description}}" />
 
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://scratch.mit.edu/" />
+        <meta property="og:title" content="Scratch - Imagine, Program, Share" />
+        <meta property="og:description" content="Make games, stories and interactive art with Scratch. (scratch.mit.edu)" />    
+
+        <!-- Favicon & CSS normalize -->
+        <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/lib/normalize.min.css" />
+
+        <!-- Shim/Sham ES5 polyfill for older browsers -->
+        <script src="/js/lib/polyfill.min.js"></script>
     </head>
 
     <body>
@@ -21,5 +34,9 @@
         <script src="/js/lib/react.js"></script>
         <script src="/js/main.bundle.js"></script>
         <script src="/js/{{view}}.bundle.js"></script>
+
+        <!-- @todo Analytics (GA) -->
+        <!-- @todo Monitoring (Raven) -->
+        <!-- @todo New Relic -->
     </body>
 </html>

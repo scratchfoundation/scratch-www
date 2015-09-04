@@ -41,7 +41,7 @@ watch:
 	wait
 
 start:
-	node ./server/index.js
+	$(NODE) ./server/index.js
 
 # ------------------------------------
 
