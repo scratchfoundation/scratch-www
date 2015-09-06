@@ -1,5 +1,7 @@
 var React = require('react');
 
+var Box = require('../box/box.jsx');
+
 require('./news.scss');
 
 module.exports = React.createClass({
@@ -8,30 +10,26 @@ module.exports = React.createClass({
     },
     getDefaultProps: function () {
         return {
-            items: [
-                {
-                    id: 1,
-                    headline: 'Woo! Pizza party!',
-                    copy: 'Lorem ipsum dolor sit amet.'
-                }
-            ]
+            items: require('./news.json')
         };
     },
     render: function () {
         return (
-            <div className="news">
-                <h1>News</h1>
-                <ul>
+            <Box title="Scratch News" more="View All" moreUrl="/news">
+                <ul className="news">
                     {this.props.items.map(function (item) {
                         return (
                             <li key={item.id}>
-                                <h4>{item.headline}</h4>
-                                <p>{item.copy}</p>
+                                <a href={item.url}>
+                                    <img src={item.image} width="53" height="53" />
+                                    <h4>{item.headline}</h4>
+                                    <p>{item.copy}</p>
+                                </a>
                             </li>
                         );
                     })}
                 </ul>
-            </div>
+            </Box>
         );
     }
 });
