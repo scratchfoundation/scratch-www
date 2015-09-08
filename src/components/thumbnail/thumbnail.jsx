@@ -15,7 +15,7 @@ module.exports = React.createClass({
         };
     },
     render: function () {
-        var className = this.props.className + " thumbnail";
+        var className = this.props.className + ' thumbnail';
         return (
             <div className={className}>
                 <a className="thumbnailImage" href={this.props.href}>

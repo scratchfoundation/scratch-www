@@ -31,9 +31,10 @@ module.exports = React.createClass({
                 {this.props.items.map(function(item) {
                     return (
                         <Thumbnail key={item.id}
-                                   href={'/projects/' + item.projectId + '/'}
+                                   href={item.href}
                                    title={item.title}
-                                   extra={'by ' + item.creator} />
+                                   src={item.thumbnailUrl}
+                                   extra={item.creator ? 'by ' + item.creator:null} />
                     );
                 })}
             </Slider>

@@ -1,0 +1,314 @@
+[
+    {
+        "title": "Featured Projects",
+        "items": [
+            {
+                "id": 1,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 2,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 3,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 4,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 5,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 6,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            }
+        ]
+    },
+    {
+        "title": "Featured Studios",
+        "items": [
+            {
+                "id": 1,
+                "type": "studio",
+                "title": "Example Studio",
+                "thumbnailUrl": "http://www.lorempixel.com/170/100/",
+                "href": "/studios/1000/"
+            },
+            {
+                "id": 2,
+                "type": "studio",
+                "title": "Example Studio",
+                "thumbnailUrl": "http://www.lorempixel.com/170/100/",
+                "href": "/studios/1000/"
+            },
+            {
+                "id": 3,
+                "type": "studio",
+                "title": "Example Studio",
+                "thumbnailUrl": "http://www.lorempixel.com/170/100/",
+                "href": "/studios/1000/"
+            },
+            {
+                "id": 4,
+                "type": "studio",
+                "title": "Example Studio",
+                "thumbnailUrl": "http://www.lorempixel.com/170/100/",
+                "href": "/studios/1000/"
+            },
+            {
+                "id": 5,
+                "type": "studio",
+                "title": "Example Studio",
+                "thumbnailUrl": "http://www.lorempixel.com/170/100/",
+                "href": "/studios/1000/"
+            },
+            {
+                "id": 6,
+                "type": "studio",
+                "title": "Example Studio",
+                "thumbnailUrl": "http://www.lorempixel.com/170/100/",
+                "href": "/studios/1000/"
+            }
+        ]
+    },
+    {
+        "title": "Projects Curated by raimondious",
+        "items": [
+            {
+                "id": 1,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 2,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 3,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 4,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 5,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 6,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            }
+        ]
+    },
+    {
+        "title": "Scratch Design Studio - \"Custom Block Madness!\"",
+        "items": [
+            {
+                "id": 1,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 2,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 3,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 4,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 5,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 6,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            }
+        ]
+    },
+    {
+        "title": "What the Community is Remixing",
+        "items": [
+            {
+                "id": 1,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 2,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 3,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 4,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 5,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 6,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            }
+        ]
+    },
+    {
+        "title": "What the Community is Loving",
+        "items": [
+            {
+                "id": 1,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 2,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 3,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 4,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 5,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            },
+            {
+                "id": 6,
+                "type": "project",
+                "title": "Example Project",
+                "thumbnailUrl": "http://www.lorempixel.com/144/108/",
+                "creator": "raimondious",
+                "href": "/projects/1000/"
+            }
+        ]
+    }
+]

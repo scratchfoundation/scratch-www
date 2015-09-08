@@ -3,6 +3,8 @@ var React = require('react');
 var Api = require('../../mixins/api.jsx');
 var Session = require('../../mixins/session.jsx');
 
+var Box = require('../../components/box/box.jsx');
+var Carousel = require('../../components/carousel/carousel.jsx');
 var News = require('../../components/news/news.jsx');
 
 require('./splash.scss');
@@ -16,7 +18,7 @@ var View = React.createClass({
         return {
             activity: [],
             news: [],
-            featured: []
+            featured: require('./featured.json')
         };
     },
     componentDidMount: function () {
@@ -30,7 +32,15 @@ var View = React.createClass({
                 <div className="intro"></div>
                 <div className="activity"></div>
                 <News />
-                <div className="featured"></div>
+                {this.state.featured.map(function(set){
+                    return (
+                        <Box
+                            className="featured"
+                            title={set.title}>
+                            <Carousel items={set.items} />
+                        </Box>
+                    );
+                })}
             </div>
         );
     }
