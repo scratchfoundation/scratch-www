@@ -5,8 +5,8 @@ require('./box.scss');
 module.exports = React.createClass({
     propTypes: {
         title: React.PropTypes.string.isRequired,
-        more: React.PropTypes.string,
-        moreUrl: React.PropTypes.string
+        moreTitle: React.PropTypes.string,
+        moreHref: React.PropTypes.string
     },
     render: function () {
         return (
@@ -14,8 +14,8 @@ module.exports = React.createClass({
                 <div className="box-header">
                     <h4>{this.props.title}</h4>
                     <p>
-                        <a href={this.props.moreUrl}>
-                            {this.props.more}
+                        <a href={this.props.moreHref}>
+                            {this.props.moreTitle}
                         </a>
                     </p>
                 </div>

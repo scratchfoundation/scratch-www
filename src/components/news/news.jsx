@@ -18,9 +18,9 @@ module.exports = React.createClass({
             <Box 
                 className="news" 
                 title="Scratch News" 
-                more="View All" 
-                moreUrl="/news">
-                
+                moreTitle="View All"
+                moreHref="/news">
+
                 <ul>
                     {this.props.items.map(function (item) {
                         return (
