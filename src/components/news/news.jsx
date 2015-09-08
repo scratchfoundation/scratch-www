@@ -15,8 +15,13 @@ module.exports = React.createClass({
     },
     render: function () {
         return (
-            <Box title="Scratch News" more="View All" moreUrl="/news">
-                <ul className="news">
+            <Box 
+                className="news" 
+                title="Scratch News" 
+                more="View All" 
+                moreUrl="/news">
+                
+                <ul>
                     {this.props.items.map(function (item) {
                         return (
                             <li key={item.id}>

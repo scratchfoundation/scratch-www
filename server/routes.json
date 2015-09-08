@@ -4,12 +4,12 @@
         "view": "splash"
     },
     {
-        "pattern": "/styleguide",
-        "view": "styleguide"
-    },
-    {
         "pattern": "/about",
         "view": "about",
         "title": "About"
+    },
+    {
+        "pattern": "/components",
+        "view": "components"
     }
 ]

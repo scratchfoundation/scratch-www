@@ -2,7 +2,7 @@ var React = require('react');
 
 var Box = require('../../components/box/box.jsx');
 
-require('./styleguide.scss');
+require('./components.scss');
 
 var View = React.createClass({
     render: function () {

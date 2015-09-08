@@ -10,8 +10,8 @@ module.exports = React.createClass({
     },
     render: function () {
         return (
-            <div className="box">
-                <div className="header">
+            <div className={"box " + this.props.className}>
+                <div className="box-header">
                     <h4>{this.props.title}</h4>
                     <p>
                         <a href={this.props.moreUrl}>
@@ -20,7 +20,7 @@ module.exports = React.createClass({
                     </p>
                 </div>
 
-                <div className="content">
+                <div className="box-content">
                     {this.props.children}
                 </div>
             </div>
