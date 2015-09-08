@@ -45,6 +45,6 @@ a:hover {
     min-height: 768px;
     padding: 10px 0;
 
-    /* Compensate for fixed navigation */
+    /* NOTE: Margin should match height in navigation.scss */
     margin-top: 35px;
 }

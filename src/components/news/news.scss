@@ -1,3 +1,53 @@
 .news {
+    ul {
+        display: block;
+        margin: 0;
+        padding: 0;
 
+        list-style: none;
+    }
+
+    li {
+        display: block;
+        min-height: 53px;
+        margin: 0;
+        padding: 12px 0;
+        clear: both;
+
+        a {
+            display: block;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        img {
+            display: block;
+            float: left;
+            margin-right: 12px;
+        }
+
+        h4 {
+            display: block;
+            
+            color: #1aa0d8;
+            font-size: 0.85rem;
+        }
+
+        p {
+            display: block;
+            margin: 0;
+            padding: 0;
+
+            color: #322f31;
+            font-size: 0.85rem;
+        }
+    }
+
+    li:nth-child(even) {
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
 }
