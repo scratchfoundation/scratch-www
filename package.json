@@ -25,13 +25,15 @@
     "compression": "1.5.2",
     "express": "4.13.3",
     "lodash.defaults": "3.1.2",
-    "mustache": "2.1.3"
+    "mustache": "2.1.3",
+    "slick-carousel": "^1.5.8"
   },
   "devDependencies": {
     "autoprefixer-loader": "2.1.0",
     "css-loader": "0.17.0",
     "eslint": "1.3.1",
     "eslint-plugin-react": "3.3.1",
+    "file-loader": "^0.8.4",
     "json-loader": "0.5.2",
     "jsx-loader": "0.13.2",
     "node-sass": "3.3.2",
@@ -39,6 +41,7 @@
     "sass-loader": "2.0.1",
     "style-loader": "0.12.3",
     "tape": "4.2.0",
+    "url-loader": "^0.5.6",
     "watch": "0.16.0",
     "webpack": "1.12.0",
     "xhr": "2.0.4"

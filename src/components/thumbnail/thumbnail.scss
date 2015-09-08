@@ -1,0 +1,33 @@
+.thumbnail {
+    .thumbnailImage,
+    .thumbnailTitle,
+    .thumbnailExtra {
+        display: block;
+    }
+
+    .thumbnailImage img {
+        margin-bottom: 2px;
+        border: 1px solid #ddd;
+    }
+
+    .thumbnailTitle,
+    .thumbnailExtra {
+        line-height: normal;
+        word-wrap: break-word;
+    }
+
+    .thumbnailTitle {
+        margin-bottom: 1px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        font-weight: 800;
+        font-size: .9230em;
+    }
+
+    .thumbnailExtra {
+        font-size: .8462em;
+        color: #666;
+    }
+
+}
