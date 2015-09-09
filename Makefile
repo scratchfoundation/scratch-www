@@ -40,6 +40,10 @@ watch:
 	$(WEBPACK) -d --watch &
 	wait
 
+stop-watch:
+	pkill -f "node $(WATCH) make clean && make static ./static"
+	pkill -f "node $(WEBPACK) -d --watch"
+
 start:
 	$(NODE) ./server/index.js
 
