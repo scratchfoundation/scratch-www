@@ -1,0 +1,42 @@
+.activity {
+    ul {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        display: block;
+        clear: both;
+
+        margin: 12px 0;
+        padding: 0;
+
+        a {
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        img {
+            display: block;
+            float: left;
+            padding-right: 10px;
+        }
+
+        p {
+            display: block;
+            margin: 0;
+            padding: 0;
+
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
+
+        .stamp {
+            color: #999;
+            font-size: 0.65rem;
+        }
+    }
+}
