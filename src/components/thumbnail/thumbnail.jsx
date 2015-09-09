@@ -15,14 +15,13 @@ module.exports = React.createClass({
         };
     },
     render: function () {
-        var className = this.props.className + ' thumbnail';
         return (
-            <div className={className}>
-                <a className="thumbnailImage" href={this.props.href}>
+            <div className={'thumbnail ' + this.props.className}>
+                <a className='thumbnail-image' href={this.props.href}>
                     <img src={this.props.src} />
                 </a>
-                <span className="thumbnailTitle"><a href={this.props.href}>{this.props.title}</a></span>
-                <span className="thumbnailExtra">{this.props.extra}</span>
+                <span className='thumbnail-title'><a href={this.props.href}>{this.props.title}</a></span>
+                <span className='thumbnail-extra'>{this.props.extra}</span>
             </div>
         );
     }

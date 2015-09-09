@@ -1,22 +1,22 @@
 .thumbnail {
-    .thumbnailImage,
-    .thumbnailTitle,
-    .thumbnailExtra {
+    .thumbnail-image,
+    .thumbnail-title,
+    .thumbnail-extra {
         display: block;
     }
 
-    .thumbnailImage img {
+    .thumbnail-image img {
         margin-bottom: 2px;
         border: 1px solid #ddd;
     }
 
-    .thumbnailTitle,
-    .thumbnailExtra {
+    .thumbnail-title,
+    .thumbnail-extra {
         line-height: normal;
         word-wrap: break-word;
     }
 
-    .thumbnailTitle {
+    .thumbnail-title {
         margin-bottom: 1px;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -25,7 +25,7 @@
         font-size: .9230em;
     }
 
-    .thumbnailExtra {
+    .thumbnail-extra {
         font-size: .8462em;
         color: #666;
     }

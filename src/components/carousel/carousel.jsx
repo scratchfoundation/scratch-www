@@ -24,10 +24,9 @@ module.exports = React.createClass({
             }
         };
     },
-
     render: function () {
         return (
-            <Slider className="carousel" {... this.props.settings}>
+            <Slider className={'carousel ' + this.props.className} {... this.props.settings}>
                 {this.props.items.map(function(item) {
                     return (
                         <Thumbnail key={item.id}
