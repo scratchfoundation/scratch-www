@@ -37,6 +37,7 @@
     "jsx-loader": "0.13.2",
     "node-sass": "3.3.2",
     "react": "0.13.3",
+    "react-modal": "0.3.0",
     "react-slick": "0.7.0",
     "sass-loader": "2.0.1",
     "slick-carousel": "1.5.8",
