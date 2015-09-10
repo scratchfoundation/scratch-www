@@ -68,7 +68,7 @@ module.exports = React.createClass({
                     </div>
                     <div className='description'>
                         A creative learning community with
-                        <span className='project-count'> {this.props.projectCount} </span>
+                        <span className='project-count'> {this.props.projectCount.toLocaleString()} </span>
                         projects shared
                     </div>
                     <div className='links'>
