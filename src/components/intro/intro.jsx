@@ -9,7 +9,7 @@ module.exports = React.createClass({
     propTypes: {
         projectCount: React.PropTypes.number
     },
-    getDefaultProps: function() {
+    getDefaultProps: function () {
         return {
             projectCount: 10569070
         };

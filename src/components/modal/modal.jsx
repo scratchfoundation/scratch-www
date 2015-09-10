@@ -8,10 +8,10 @@ module.exports = React.createClass({
     statics: {
         setAppElement: Modal.setAppElement
     },
-    requestClose: function() {
+    requestClose: function () {
         return this.refs.modal.portal.requestClose();
     },
-    render: function() {
+    render: function () {
         return (
             <Modal ref='modal' {... this.props}>
                 <div className='modal-close' onClick={this.requestClose}></div>
