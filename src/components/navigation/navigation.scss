@@ -1,3 +1,6 @@
+$base-background-color: #0f8bc0;
+$border-color: rgb(20, 154, 203);
+
 #navigation {
     position: fixed;
     z-index: 10;
@@ -5,7 +8,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #0f8bc0;
+    background-color: $base-background-color;
     
     /* NOTE: Height should match offset settings in main.scss file */
     height: 35px;
@@ -26,7 +29,8 @@
             align-self: flex-start;
             float: left;
             height: 100%;
-            border-left: 1px solid rgb(20, 154, 203);
+            border-left: 1px solid $border-color;
+            position: relative;
         }
 
         .logo {
@@ -86,7 +90,7 @@
                 height: 22px;
 
                 background-color: white;
-                background-image: url(/images/nav-search-glass.png);
+                background-image: url('/images/nav-search-glass.png');
                 background-repeat: no-repeat;
                 background-position: center center;
                 border-right: 1px solid #efefef;
@@ -117,6 +121,40 @@
 
             &:last-child {
                 border-right: 1px solid rgb(20, 154, 203);
+            }
+        }
+
+        .dropdown {
+            position: absolute;
+            right: 0;
+            width: 200px;
+            padding: 9px 14px;
+            background-color: $base-background-color;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            color: white;
+            font-weight: normal;
+            font-size: 0.8125rem;
+
+
+            display: none;
+            &.open {
+                display: block;
+            }
+
+            $arrow-border-width: 11px;
+            margin-top: $arrow-border-width;
+            &:before {
+                position: absolute;
+                display: block;
+                right: 10%;
+                top: -$arrow-border-width;
+                left: auto;
+                border-color: transparent;
+                border-bottom-color: $base-background-color;
+                border-style: solid;
+                border-width: 0 $arrow-border-width $arrow-border-width $arrow-border-width;
+                content: " ";
             }
         }
     }

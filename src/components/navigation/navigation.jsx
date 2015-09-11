@@ -2,7 +2,51 @@ var React = require('react');
 
 require('./navigation.scss');
 
+var Dropdown = React.createClass({
+    mixins: [
+        require('react-onclickoutside')
+    ],
+    propTypes: {
+        onRequestClose: React.PropTypes.func,
+        isOpen: React.PropTypes.bool
+    },
+    getDefaultProps: function () {
+        return {
+            isOpen: false
+        };
+    },
+    handleClickOutside: function () {
+        if (this.props.isOpen) {
+            this.props.onRequestClose();
+        }
+    },
+    render: function () {
+        var className = [
+            'dropdown',
+            this.props.className,
+            this.props.isOpen ? 'open' : ''
+        ].join(' ');
+        return (
+            <div className={className}>
+                {this.props.children}
+            </div>
+        );
+    }
+});
+
 module.exports = React.createClass({
+    getInitialState: function () {
+        return {
+            'loginOpen': false
+        };
+    },
+    handleLoginClick: function (e) {
+        e.preventDefault();
+        this.setState({'loginOpen': true});
+    },
+    closeLogin: function () {
+        this.setState({'loginOpen': false});
+    },
     render: function () {
         return (
             <div className="inner">
@@ -25,7 +69,15 @@ module.exports = React.createClass({
                     </li>
 
                     <li className="link right"><a href="/join">Join Scratch</a></li>
-                    <li className="link right"><a href="">Sign In</a></li>
+                    <li className="link right">
+                        <a href="" onClick={this.handleLoginClick}>Sign In</a>
+                        <Dropdown
+                            className="login"
+                            isOpen={this.state.loginOpen}
+                            onRequestClose={this.closeLogin}>
+                            I'm a dropdown
+                        </Dropdown>
+                    </li>
                 </ul>
             </div>
         );
