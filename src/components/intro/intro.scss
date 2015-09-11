@@ -1,0 +1,203 @@
+.intro {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .content {
+        display: inline-block;
+        width: calc(66% - 20px);
+
+        h1 {
+            color: #F9A739;
+            font-weight: 400;
+        }
+    }
+
+    .sprites {
+        position: relative;
+        clear: both;
+        overflow: hidden;
+        &:after {
+            display: block;
+            visibility: hidden;
+            content: " ";
+            clear: both;
+            height: 0;
+        }
+    }
+
+    .sprite {
+        position: relative;
+        float: left;
+        width: 193px;
+        height: 136px;
+        overflow: hidden;
+
+        .costume, .circle, .text {
+            position: absolute;
+        }
+
+        .costume {
+            z-index: 2;
+            left: 0;
+        }
+
+        .costume-2 {
+            display: none;
+        }
+
+        &:hover .costume-1 {
+            display: none;
+        }
+
+        &:hover .costume-2 {
+            display: block;
+        }
+
+        .circle {
+            z-index: 0;
+            border-radius: 50%;
+            display: block;
+            width: 112px;
+            height: 112px;
+            box-shadow: 0px 0px 5px #fff;
+            top: 15px;
+            left: 43px;
+        }
+
+        $text-bg-color: #F1F3F4;
+        .text {
+            z-index: 1;
+            font-size: 12px;
+            font-weight: 700;
+            left: 35px;
+            padding-left: 40px;
+            padding-right: 10px;
+            white-space: nowrap;
+            background-color: $text-bg-color;
+            border: 2px solid $text-bg-color;
+        }
+
+        .subtext {
+            background-color: transparent;
+            font-weight: 400;
+            font-size: 12px;
+            text-shadow: none;
+            border: none;
+        }
+
+        $sprite-1-bgcolor: #9C0;
+        $sprite-2-bgcolor: #C2479D;
+        $sprite-3-bgcolor: #199ED7;
+        &.sprite-1 .circle { background-color: $sprite-1-bgcolor; }
+        &.sprite-2 .circle { background-color: $sprite-2-bgcolor; }
+        &.sprite-3 .circle { background-color: $sprite-3-bgcolor; }
+        &:hover.sprite-1 .circle { box-shadow: 0 0 10px 2px $sprite-1-bgcolor; }
+        &:hover.sprite-2 .circle { box-shadow: 0 0 10px 2px $sprite-2-bgcolor; }
+        &:hover.sprite-3 .circle { box-shadow: 0 0 10px 2px $sprite-3-bgcolor; }
+        &.sprite-1 .text { color: $sprite-1-bgcolor; top: 60px; left: 50px; }
+        &.sprite-2 .text { color: $sprite-2-bgcolor; top: 77px; left: 50px; }
+        &.sprite-3 .text { color: $sprite-3-bgcolor; top: 37px; left: 45px; }
+        &.sprite-3 .subtext {
+            top: 63px;
+            left: 60px;
+            color: #fff;
+        }
+    }
+
+    .description {
+        font-size: 17px;
+        margin-top: 10px;
+    }
+
+    .project-count {
+        color: hsl(318, 50%, 52%);
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .links {
+        font-size: 12px;
+        margin-top: 20px;
+
+        a {
+            border-right: 1px solid #000;
+            padding: 0 5px;
+
+            &:last-child {
+                border-right: 0;
+            }
+        }
+    }
+
+    .video {
+        display: inline-block;
+        height: 208px;
+        width: 34%;
+        position: relative;
+        padding: 10px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        background-color: #f7f7f7;
+        text-align: center;
+        box-shadow: 0 2px 3px;
+    }
+
+    .play-button {
+        border-radius: 20px;
+        display: block;
+        width: 70px;
+        height: 50px;
+        left: calc(50% - 35px);
+        top: calc(50% - 25px);
+        background-color: #666;
+        border: 5px solid #ccc;
+        opacity: 0.8;
+
+        &, &:after {
+            position: absolute;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+        }
+
+        &:after {
+            left: 28px;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            pointer-events: none;
+            border-color: rgba(255, 255, 255, 0);
+            border-left-color: #fff;
+            border-width: 18px;
+            top: 37px;
+            margin-top: -30px;
+        }
+    }
+
+}
+.video-modal {
+    $video-width: 570px;
+    $video-height: 357px;
+    $padding: 15px;
+    width: $video-width;
+    height: $video-height;
+    padding: $padding;
+    top: 50%;
+    bottom: auto;
+    left: 50%;
+    right: auto;
+    margin-left: -($video-width + $padding * 2)/2;
+    margin-top: -($video-height + $padding * 2)/2;
+
+    iframe {
+        width: $video-width;
+        height: $video-height;
+        border: 0;
+    }
+}
