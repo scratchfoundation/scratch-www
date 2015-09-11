@@ -13,8 +13,8 @@ module.exports = React.createClass({
     },
     render: function () {
         return (
-            <Modal ref='modal' {... this.props}>
-                <div className='modal-close' onClick={this.requestClose}></div>
+            <Modal ref="modal" {... this.props}>
+                <div className="modal-close" onClick={this.requestClose}></div>
                 {this.props.children}
             </Modal>
         );
