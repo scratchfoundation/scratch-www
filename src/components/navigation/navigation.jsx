@@ -1,4 +1,5 @@
 var React = require('react');
+var Login = require('../login/login.jsx');
 
 require('./navigation.scss');
 
@@ -75,7 +76,7 @@ module.exports = React.createClass({
                             className="login"
                             isOpen={this.state.loginOpen}
                             onRequestClose={this.closeLogin}>
-                            I'm a dropdown
+                            <Login />
                         </Dropdown>
                     </li>
                 </ul>

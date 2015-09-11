@@ -53,7 +53,7 @@ $border-color: rgb(20, 154, 203);
         }
 
         .link {
-            a {
+            > a {
                 display: block;
                 height: 28px;
                 padding: 7px 15px 0 15px;
@@ -64,7 +64,7 @@ $border-color: rgb(20, 154, 203);
                 white-space: nowrap;
             }
 
-            a:hover {
+            > a:hover {
                 background-color: rgb(1, 96, 135);
             }
         }
@@ -79,7 +79,7 @@ $border-color: rgb(20, 154, 203);
 
             input {
                 display: inline-block;
-                height: 20px;
+                height: 14px;
                 outline: none;
                 border: none;
             }
@@ -115,7 +115,7 @@ $border-color: rgb(20, 154, 203);
             margin-left: auto;
             font-weight: bold;
 
-            a:hover {
+            > a:hover {
                 background-color: #f79231;
             }
 
@@ -125,17 +125,18 @@ $border-color: rgb(20, 154, 203);
         }
 
         .dropdown {
+            $dropdown-padding-h: 14px;
+            $dropdown-padding-v: 9px;
             position: absolute;
             right: 0;
             width: 200px;
-            padding: 9px 14px;
+            padding: $dropdown-padding-v $dropdown-padding-h;
             background-color: $base-background-color;
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             color: white;
             font-weight: normal;
             font-size: 0.8125rem;
-
 
             display: none;
             &.open {
@@ -156,6 +157,22 @@ $border-color: rgb(20, 154, 203);
                 border-width: 0 $arrow-border-width $arrow-border-width $arrow-border-width;
                 content: " ";
             }
+
+            a {
+                color: white;
+            }
+    
+            input {
+                // 100% minus border and padding
+                width: calc(100% - 2px - 8px);
+                margin-bottom: 9px;
+            }
+    
+            label {
+                display: block;
+                margin-bottom: 5px;        
+            }
+
         }
     }
 }
