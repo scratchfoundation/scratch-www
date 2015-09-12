@@ -3,8 +3,12 @@ var React = require('react');
 require('./login.scss');
 
 module.exports = React.createClass({
+    propTypes: {
+        onLogIn: React.PropTypes.func
+    },
     handleSubmit: function (event) {
         event.preventDefault();
+        this.props.onLogIn();
     },
     render: function () {
         return (

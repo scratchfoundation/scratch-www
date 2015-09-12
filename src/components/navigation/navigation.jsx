@@ -1,44 +1,19 @@
 var React = require('react');
 var Login = require('../login/login.jsx');
+var Dropdown = require('./dropdown.jsx');
 
 require('./navigation.scss');
-
-var Dropdown = React.createClass({
-    mixins: [
-        require('react-onclickoutside')
-    ],
-    propTypes: {
-        onRequestClose: React.PropTypes.func,
-        isOpen: React.PropTypes.bool
-    },
-    getDefaultProps: function () {
-        return {
-            isOpen: false
-        };
-    },
-    handleClickOutside: function () {
-        if (this.props.isOpen) {
-            this.props.onRequestClose();
-        }
-    },
-    render: function () {
-        var className = [
-            'dropdown',
-            this.props.className,
-            this.props.isOpen ? 'open' : ''
-        ].join(' ');
-        return (
-            <div className={className}>
-                {this.props.children}
-            </div>
-        );
-    }
-});
 
 module.exports = React.createClass({
     getInitialState: function () {
         return {
-            'loginOpen': false
+            'loginOpen': false,
+            'loggedIn': false,
+            'loggedInUser': {
+                'username': 'raimondious',
+                'thumbnail': '//cdn2.scratch.mit.edu/get_image/user/2584924_32x32.png'
+            },
+            'accountNavOpen': false
         };
     },
     handleLoginClick: function (e) {
@@ -48,9 +23,25 @@ module.exports = React.createClass({
     closeLogin: function () {
         this.setState({'loginOpen': false});
     },
+    handleLogIn: function () {
+        this.setState({'loggedIn': true});
+    },
+    handleLogOut: function () {
+        this.setState({'loggedIn': false});
+    },
+    handleClickAccountNav: function () {
+        this.setState({'accountNavOpen': true});
+    },
+    closeAccountNav: function () {
+        this.setState({'accountNavOpen': false});
+    },
     render: function () {
+        var className = [
+            'inner',
+            this.state.loggedIn ? 'logged-in' : 'logged-out'
+        ].join(' ');
         return (
-            <div className="inner">
+            <div className={className}>
                 <ul>
                     <li className="logo"><a href="/"></a></li>
                     
@@ -68,17 +59,38 @@ module.exports = React.createClass({
                             <input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
-
-                    <li className="link right"><a href="/join">Join Scratch</a></li>
-                    <li className="link right">
-                        <a href="" onClick={this.handleLoginClick}>Sign In</a>
-                        <Dropdown
-                            className="login"
-                            isOpen={this.state.loginOpen}
-                            onRequestClose={this.closeLogin}>
-                            <Login />
-                        </Dropdown>
-                    </li>
+                    {this.state.loggedIn ? [
+                        <li className="link right messages"><a href="/messages/" title="Messages">Messages</a></li>,
+                        <li className="link right mystuff"><a href="/mystuff/" title="My Stuff">My Stuff</a></li>,
+                        <li className="link right account-nav">
+                            <a href="#" onClick={this.handleClickAccountNav}>
+                                <img src={this.state.loggedInUser.thumbnail} />
+                                {this.state.loggedInUser.username}
+                            </a>
+                            <Dropdown
+                                    as="ul"
+                                    isOpen={this.state.accountNavOpen}
+                                    onRequestClose={this.closeAccountNav}>
+                                <li><a href="/users/raimondious/">Profile</a></li>
+                                <li><a href="/mystuff/">My Stuff</a></li>
+                                <li><a href="/accounts/settings/">Account settings</a></li>
+                                <li className="divider">
+                                    <a href="#" onClick={this.handleLogOut}>Sign out</a>
+                                </li>
+                            </Dropdown>
+                        </li>
+                    ] : [
+                        <li className="link right join"><a href="/join">Join Scratch</a></li>,
+                        <li className="link right">
+                            <a href="#" onClick={this.handleLoginClick}>Sign In</a>
+                            <Dropdown
+                                    className="login-dropdown with-arrow"
+                                    isOpen={this.state.loginOpen}
+                                    onRequestClose={this.closeLogin}>
+                                <Login onLogIn={this.handleLogIn} />
+                            </Dropdown>
+                        </li>
+                    ]}
                 </ul>
             </div>
         );

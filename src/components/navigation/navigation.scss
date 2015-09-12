@@ -1,5 +1,4 @@
-$base-background-color: #0f8bc0;
-$border-color: rgb(20, 154, 203);
+@import 'colors';
 
 #navigation {
     position: fixed;
@@ -13,7 +12,7 @@ $border-color: rgb(20, 154, 203);
     /* NOTE: Height should match offset settings in main.scss file */
     height: 35px;
 
-    ul {
+    .inner > ul {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -24,7 +23,7 @@ $border-color: rgb(20, 154, 203);
         padding: 0;
         list-style: none;
         
-        li {
+        > li {
             display: inline-block;
             align-self: flex-start;
             float: left;
@@ -65,7 +64,7 @@ $border-color: rgb(20, 154, 203);
             }
 
             > a:hover {
-                background-color: rgb(1, 96, 135);
+                background-color: $active-background-color;
             }
         }
 
@@ -115,64 +114,77 @@ $border-color: rgb(20, 154, 203);
             margin-left: auto;
             font-weight: bold;
 
-            > a:hover {
-                background-color: #f79231;
-            }
-
             &:last-child {
                 border-right: 1px solid rgb(20, 154, 203);
             }
         }
 
-        .dropdown {
-            $dropdown-padding-h: 14px;
-            $dropdown-padding-v: 9px;
-            position: absolute;
-            right: 0;
+        .join > a:hover {
+            background-color: #f79231;
+        }
+
+        .messages, .mystuff {
+            > a {
+                background-repeat: no-repeat;
+                background-position: center center;
+                padding-left: 10px;
+                padding-right: 10px;
+                text-indent: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+        }
+
+        .messages {
+            > a {
+                background-image: url('/images/nav-notifications.png');
+                width: 22px;
+            }
+        }
+
+        .mystuff {
+            > a {
+                background-image: url('/images/mystuff.png');
+                width: 25px;
+            }
+        }
+
+        .login-dropdown {
             width: 200px;
-            padding: $dropdown-padding-v $dropdown-padding-h;
-            background-color: $base-background-color;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            color: white;
-            font-weight: normal;
-            font-size: 0.8125rem;
+        }
 
-            display: none;
-            &.open {
-                display: block;
-            }
+        .account-nav {
+            > a {
+                font-weight: normal;
+                font-size: 0.8125rem;
 
-            $arrow-border-width: 11px;
-            margin-top: $arrow-border-width;
-            &:before {
-                position: absolute;
-                display: block;
-                right: 10%;
-                top: -$arrow-border-width;
-                left: auto;
-                border-color: transparent;
-                border-bottom-color: $base-background-color;
-                border-style: solid;
-                border-width: 0 $arrow-border-width $arrow-border-width $arrow-border-width;
-                content: " ";
-            }
+                img {
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 5px;
+                    vertical-align: middle;
+                }
 
-            a {
-                color: white;
-            }
-    
-            input {
-                // 100% minus border and padding
-                width: calc(100% - 2px - 8px);
-                margin-bottom: 9px;
-            }
-    
-            label {
-                display: block;
-                margin-bottom: 5px;        
+                &:after {
+                    $caret-border-width: 4px;
+                    margin-left: $caret-border-width;
+                    border: $caret-border-width solid transparent;
+                    border-bottom-width: 0;
+                    border-top-color: white;
+                    content: " ";
+                    opacity: 0.5;
+                    vertical-align: middle;
+                    width: 0;
+                    height: 0;
+                    display: inline-block;
+                }
             }
 
+            .dropdown {
+                width: 100%;
+                padding: 0;
+                padding-top: 5px;
+            }
         }
     }
 }
