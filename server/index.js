@@ -1,5 +1,6 @@
 var compression = require('compression');
 var express = require('express');
+var _path = require('path');
 
 var handler = require('./handler');
 var log = require('./log');

@@ -7,7 +7,8 @@
         "linebreak-style": [2, "unix"],
         "max-len": [2, 120, 4],
         "semi": [2, "always"],
-        "strict": [2, "never"]
+        "strict": [2, "never"],
+        "no-unused-vars": [2, {"args": "after-used", "varsIgnorePattern": "^_"}]
     },
     "env": {
         "browser": true,
