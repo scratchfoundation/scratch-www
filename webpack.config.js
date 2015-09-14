@@ -7,7 +7,9 @@ var entry = {
     main: './src/main.jsx'
 };
 routes.forEach(function (route) {
-    entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
+    if ( ! route.static ) {
+        entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
+    }
 });
 
 // Config
