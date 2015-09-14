@@ -1,6 +1,5 @@
 var compression = require('compression');
 var express = require('express');
-var path = require('path');
 
 var handler = require('./handler');
 var log = require('./log');
@@ -16,9 +15,9 @@ app.use(compression());
 for (var item in routes) {
     var route = routes[item];
     if ( route.static ) {
-      app.use( express.static( eval( route.resolve ), route.attributes ) );
+        app.use( express.static( eval( route.resolve ), route.attributes ) );
     } else {
-      app.get(route.pattern, handler(route));
+        app.get(route.pattern, handler(route));
     }
 }
 

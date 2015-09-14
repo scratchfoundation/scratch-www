@@ -17,7 +17,7 @@
     },
     {
         "static": true,
-        "resolve": "path.resolve(__dirname, '../build')",
+        "resolve": "(function(){ var path = require('path'); return(path.resolve(__dirname, '../build'));})()",
         "attributes": { "lastModified": true, "maxAge": "1y" },
         "_todo": " TODO: Define a specification for how each entry is used/expected to look like, given the nginx conf generator's needs and stand-alone run-time needs.  An outline of this so far: static requires resolve/attributes but could use pattern too.  ..."
     }
