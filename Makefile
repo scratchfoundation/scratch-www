@@ -17,6 +17,10 @@ clean:
 static:
 	cp -a ./static/. ./build/
 
+nginx_conf:
+	@make static
+	node server/nginx.js
+
 webpack:
 	$(WEBPACK)
 
