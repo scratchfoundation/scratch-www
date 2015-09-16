@@ -4,6 +4,7 @@ var routes = require('./server/routes.json');
 
 // Prepare all entry points
 var entry = {
+    session: './src/providers/session.js',
     main: './src/main.jsx'
 };
 routes.forEach(function (route) {

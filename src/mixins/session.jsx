@@ -1,10 +1,13 @@
 module.exports = {
     getInitialState: function () {
         return {
-            session: {}
+            session: window._session
         };
     },
+    updateSession: function () {
+        this.setState({'session': window._session});
+    },
     componentWillMount: function () {
-        // @todo Fetch session from API
+        window.addEventListener('session', this.updateSession);
     }
 };
