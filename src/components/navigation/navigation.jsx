@@ -1,4 +1,5 @@
 var React = require('react');
+var classNames = require('classnames');
 var Login = require('../login/login.jsx');
 var Dropdown = require('./dropdown.jsx');
 
@@ -36,12 +37,12 @@ module.exports = React.createClass({
         this.setState({'accountNavOpen': false});
     },
     render: function () {
-        var className = [
-            'inner',
-            this.state.loggedIn ? 'logged-in' : 'logged-out'
-        ].join(' ');
+        var classes = classNames({
+            'inner': true,
+            'logged-in': this.state.loggedIn
+        });
         return (
-            <div className={className}>
+            <div className={classes}>
                 <ul>
                     <li className="logo"><a href="/"></a></li>
                     

@@ -1,4 +1,5 @@
 var React = require('react');
+var classNames = require('classnames');
 
 require('./dropdown.scss');
 
@@ -22,13 +23,13 @@ module.exports = React.createClass({
         }
     },
     render: function () {
-        var className = [
+        var classes = classNames(
             'dropdown',
             this.props.className,
-            this.props.isOpen ? 'open' : ''
-        ].join(' ');
+            {open: this.props.isOpen}
+        );
         return (
-            <this.props.as className={className}>
+            <this.props.as className={classes}>
                 {this.props.children}
             </this.props.as>
         );
