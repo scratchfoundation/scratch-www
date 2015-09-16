@@ -40,8 +40,9 @@ var View = React.createClass({
                 {this.state.featured.map(function (set) {
                     return (
                         <Box
-                            className="featured"
-                            title={set.title}>
+                                key={set.title}
+                                className="featured"
+                                title={set.title}>
                             <Carousel items={set.items} />
                         </Box>
                     );

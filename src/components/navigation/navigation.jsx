@@ -63,9 +63,13 @@ module.exports = React.createClass({
                         </form>
                     </li>
                     {this.state.loggedIn ? [
-                        <li className="link right messages"><a href="/messages/" title="Messages">Messages</a></li>,
-                        <li className="link right mystuff"><a href="/mystuff/" title="My Stuff">My Stuff</a></li>,
-                        <li className="link right account-nav">
+                        <li className="link right messages" key="messages">
+                            <a href="/messages/" title="Messages">Messages</a>
+                        </li>,
+                        <li className="link right mystuff" key="mystuff">
+                            <a href="/mystuff/" title="My Stuff">My Stuff</a>
+                        </li>,
+                        <li className="link right account-nav" key="account-nav">
                             <a className="userInfo" href="#" onClick={this.handleClickAccountNav}>
                                 <img src={this.state.loggedInUser.thumbnail} />
                                 {this.state.loggedInUser.username}
@@ -83,8 +87,8 @@ module.exports = React.createClass({
                             </Dropdown>
                         </li>
                     ] : [
-                        <li className="link right join"><a href="/join">Join Scratch</a></li>,
-                        <li className="link right">
+                        <li className="link right join" key="join"><a href="/join">Join Scratch</a></li>,
+                        <li className="link right" key="login">
                             <a href="#" onClick={this.handleLoginClick}>Sign In</a>
                             <Dropdown
                                     className="login-dropdown with-arrow"
