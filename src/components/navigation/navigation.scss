@@ -1,3 +1,5 @@
+@import 'colors';
+
 #navigation {
     position: fixed;
     z-index: 10;
@@ -5,12 +7,12 @@
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #0f8bc0;
+    background-color: $base-background-color;
     
     /* NOTE: Height should match offset settings in main.scss file */
     height: 35px;
 
-    ul {
+    .inner > ul {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -21,12 +23,13 @@
         padding: 0;
         list-style: none;
         
-        li {
+        > li {
             display: inline-block;
             align-self: flex-start;
             float: left;
             height: 100%;
-            border-left: 1px solid rgb(20, 154, 203);
+            border-left: 1px solid $border-color;
+            position: relative;
         }
 
         .logo {
@@ -49,7 +52,7 @@
         }
 
         .link {
-            a {
+            > a {
                 display: block;
                 height: 28px;
                 padding: 7px 15px 0 15px;
@@ -60,8 +63,8 @@
                 white-space: nowrap;
             }
 
-            a:hover {
-                background-color: rgb(1, 96, 135);
+            > a:hover {
+                background-color: $active-background-color;
             }
         }
 
@@ -75,7 +78,7 @@
 
             input {
                 display: inline-block;
-                height: 20px;
+                height: 14px;
                 outline: none;
                 border: none;
             }
@@ -86,7 +89,7 @@
                 height: 22px;
 
                 background-color: white;
-                background-image: url(/images/nav-search-glass.png);
+                background-image: url('/images/nav-search-glass.png');
                 background-repeat: no-repeat;
                 background-position: center center;
                 border-right: 1px solid #efefef;
@@ -111,12 +114,76 @@
             margin-left: auto;
             font-weight: bold;
 
-            a:hover {
-                background-color: #f79231;
-            }
-
             &:last-child {
                 border-right: 1px solid rgb(20, 154, 203);
+            }
+        }
+
+        .join > a:hover {
+            background-color: #f79231;
+        }
+
+        .messages, .mystuff {
+            > a {
+                background-repeat: no-repeat;
+                background-position: center center;
+                padding-left: 10px;
+                padding-right: 10px;
+                text-indent: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+        }
+
+        .messages {
+            > a {
+                background-image: url('/images/nav-notifications.png');
+                width: 22px;
+            }
+        }
+
+        .mystuff {
+            > a {
+                background-image: url('/images/mystuff.png');
+                width: 25px;
+            }
+        }
+
+        .login-dropdown {
+            width: 200px;
+        }
+
+        .account-nav {
+            > a {
+                font-weight: normal;
+                font-size: 0.8125rem;
+
+                img {
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 5px;
+                    vertical-align: middle;
+                }
+
+                &:after {
+                    $caret-border-width: 4px;
+                    margin-left: $caret-border-width;
+                    border: $caret-border-width solid transparent;
+                    border-bottom-width: 0;
+                    border-top-color: white;
+                    content: " ";
+                    opacity: 0.5;
+                    vertical-align: middle;
+                    width: 0;
+                    height: 0;
+                    display: inline-block;
+                }
+            }
+
+            .dropdown {
+                width: 100%;
+                padding: 0;
+                padding-top: 5px;
             }
         }
     }

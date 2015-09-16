@@ -34,7 +34,7 @@ var View = React.createClass({
                 <Intro projectCount={this.state.projectCount} />
                 <div className="activity"></div>
                 <News />
-                {this.state.featured.map(function(set){
+                {this.state.featured.map(function (set) {
                     return (
                         <Box
                             className="featured"

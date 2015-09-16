@@ -128,9 +128,8 @@
             border-right: 1px solid #000;
             padding: 0 5px;
 
-            &:last-child {
-                border-right: 0;
-            }
+            &:last-child { border-right: 0; }
+            &:first-child { padding-left: 0; }
         }
     }
 

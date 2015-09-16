@@ -15,9 +15,9 @@ module.exports = React.createClass({
     },
     render: function () {
         return (
-            <Box 
-                className="news" 
-                title="Scratch News" 
+            <Box
+                className="news"
+                title="Scratch News"
                 moreTitle="View All"
                 moreHref="/news">
 

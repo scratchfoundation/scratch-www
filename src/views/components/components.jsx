@@ -10,7 +10,7 @@ var View = React.createClass({
         return (
             <div className="inner">
                 <h1>Box Component</h1>
-                <Box 
+                <Box
                     title="Some Title"
                     more="Cat Gifs"
                     moreUrl="http://www.catgifpage.com/">

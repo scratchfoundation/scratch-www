@@ -53,3 +53,38 @@ a:hover {
     /* NOTE: Margin should match height in navigation.scss */
     margin-top: 35px;
 }
+
+/* Forms */
+input {
+    height: 18px;
+    line-height: 18px;
+    display: inline-block;
+    padding: 4px;
+    margin-bottom: 9px;
+    font-size: 13px;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    transition: border linear .2s,box-shadow linear .2s;
+}
+
+button {
+    cursor: pointer;
+    line-height: 30px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05);
+    transition: all .25s ease-in-out;
+    height: 32px;
+    text-shadow: 0 1px #fff;
+    font-weight: normal;
+    color: #666;
+    border-color: #999;
+    display: inline-block;
+    background: linear-gradient(to bottom, #fff, #ccc)
+}
+
+button:hover {
+    background-image: linear-gradient(#e6e6e6,#e6e6e6);
+}
