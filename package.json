@@ -2,13 +2,13 @@
   "name": "www",
   "version": "1.0.0",
   "description": "Standalone WWW client for Scratch",
-  "main": "index.js",
   "scripts": {
     "start": "make start",
     "test": "make test",
     "watch": "make watch",
     "stop-watch": "make stop-watch",
-    "build": "make build"
+    "build": "make build",
+    "prestart": "make build"
   },
   "repository": {
     "type": "git",
