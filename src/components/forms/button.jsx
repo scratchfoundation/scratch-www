@@ -11,7 +11,7 @@ module.exports = React.createClass({
         var classes = classNames(
             'button',
             this.props.className
-        );  
+        );
         return (
             <button {... this.props} className={classes} >{this.props.children}</button>
         );
