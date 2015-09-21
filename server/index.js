@@ -1,6 +1,6 @@
 var compression = require('compression');
 var express = require('express');
-var path = require('path');
+var _path = require('path');
 
 var handler = require('./handler');
 var log = require('./log');
@@ -11,15 +11,15 @@ var app = express();
 app.disable('x-powered-by');
 app.use(log());
 app.use(compression());
-app.use(express.static(path.resolve(__dirname, '../build'), {
-    lastModified: true,
-    maxAge: '1y'
-}));
 
 // Bind routes
 for (var item in routes) {
     var route = routes[item];
-    app.get(route.pattern, handler(route));
+    if ( route.static ) {
+        app.use( express.static( eval( route.resolve ), route.attributes ) );
+    } else {
+        app.get(route.pattern, handler(route));
+    }
 }
 
 // Start listening

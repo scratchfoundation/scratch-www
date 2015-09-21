@@ -1,0 +1,47 @@
+.carousel {
+    $icon-size: 40px;
+    $button-offset: $icon-size + 5px;
+    $box-content-offset: 20px;
+
+    padding: 0 $button-offset;
+
+    .box-content & {
+        padding: 0 $button-offset - 20px;
+    }
+
+    .slick-next, .slick-prev {
+        width: $icon-size;
+        height: $icon-size;
+        margin-top: -$icon-size/2;
+        
+        &:before {
+            font-size: $icon-size;
+            color: #ddd;
+        }
+
+        &.slick-disabled:before{
+            opacity: 1;
+        }
+    }
+
+    .slick-prev {
+        left: 0;
+
+        .box-content & {
+            left: -$box-content-offset;
+        }
+    }
+
+    .slick-next {
+        right: 0;
+
+        .box-content & {
+            right: -$box-content-offset;
+        }
+    }
+
+    .slick-slide {
+        padding-right: 30px;
+    }
+
+}

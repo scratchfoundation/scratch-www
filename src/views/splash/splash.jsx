@@ -4,6 +4,9 @@ var Api = require('../../mixins/api.jsx');
 var Session = require('../../mixins/session.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
+var Box = require('../../components/box/box.jsx');
+var Carousel = require('../../components/carousel/carousel.jsx');
+var Intro = require('../../components/intro/intro.jsx');
 var News = require('../../components/news/news.jsx');
 
 require('./splash.scss');
@@ -15,9 +18,10 @@ var View = React.createClass({
     ],
     getInitialState: function () {
         return {
+            projectCount: 10569070,
             activity: [],
             news: [],
-            featured: []
+            featured: require('./featured.json')
         };
     },
     componentDidMount: function () {
@@ -28,11 +32,20 @@ var View = React.createClass({
     render: function () {
         return (
             <div className="inner">
+                <Intro projectCount={this.state.projectCount} />
                 <div className="splash-header">
                     <Activity />
                     <News />
                 </div>
-                <div className="featured"></div>
+                {this.state.featured.map(function (set) {
+                    return (
+                        <Box
+                            className="featured"
+                            title={set.title}>
+                            <Carousel items={set.items} />
+                        </Box>
+                    );
+                })}
             </div>
         );
     }

@@ -22,6 +22,25 @@ webpack:
 
 # ------------------------------------
 
+watch:
+	$(WATCH) "make clean && make static" ./static &
+	$(WEBPACK) -d --watch &
+	wait
+
+stop:
+	pkill -f "node $(WEBPACK) -d --watch"
+	pkill -f "node $(WATCH) make clean && make static ./static"
+
+start:
+	$(NODE) ./server/index.js
+
+# ------------------------------------
+
+nginx_conf:
+	node server/nginx.js
+
+# ------------------------------------
+
 test:
 	@make lint
 
@@ -35,14 +54,4 @@ lint:
 
 # ------------------------------------
 
-watch:
-	$(WATCH) "make clean && make static" ./static &
-	$(WEBPACK) -d --watch &
-	wait
-
-start:
-	$(NODE) ./server/index.js
-
-# ------------------------------------
-
-.PHONY: build clean static webpack test lint watch start
+.PHONY: build clean static webpack watch stop start nginx_conf test lint

@@ -7,7 +7,9 @@ var entry = {
     main: './src/main.jsx'
 };
 routes.forEach(function (route) {
-    entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
+    if ( ! route.static ) {
+        entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
+    }
 });
 
 // Config
@@ -36,7 +38,11 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: 'style!css!sass!autoprefixer-loader?browsers=last 3 versions'
+                loader: 'style!css!autoprefixer-loader?browsers=last 3 versions!sass'
+            },
+            {
+                test: /\.(png|jpg|gif|eot|svg|ttf|woff)$/,
+                loader: 'url-loader'
             }
         ]
     },
