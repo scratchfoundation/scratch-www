@@ -16,8 +16,8 @@ module.exports = React.createClass({
     },
     render: function () {
         return (
-            <Box 
-                className="activity" 
+            <Box
+                className="activity"
                 title="What's Happening?">
 
                 <ul>
