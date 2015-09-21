@@ -62,20 +62,20 @@
         overflow: visible;
         &:before {        
             position: absolute;
-			display: block;
-			top: -$arrow-border-width/2;
-			right: 10%;
-			
-			height: $arrow-border-width;
-			width: $arrow-border-width;
-			content: '';
-			transform: rotate(45deg);
-			
-			background-color: $base-background-color;
-			border-top: 1px solid $active-background-color;
-			border-left: 1px solid $active-background-color;
-			border-radius: 5px;
-			
+            display: block;
+            top: -$arrow-border-width/2;
+            right: 10%;
+            
+            height: $arrow-border-width;
+            width: $arrow-border-width;
+            content: '';
+            transform: rotate(45deg);
+            
+            background-color: $base-background-color;
+            border-top: 1px solid $active-background-color;
+            border-left: 1px solid $active-background-color;
+            border-radius: 5px;
+            
         }
     }
 }

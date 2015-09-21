@@ -32,7 +32,7 @@
         }
 
         .logo {
-	        margin-right: 10px;
+            margin-right: 10px;
             a {
                 display: block;
                 width: 81px;
@@ -115,12 +115,12 @@
                 transition: .15s ease background-color; 
                 
                 &::placeholder {
-	                color:rgba(255, 255, 255, 0.75);
+                    color:rgba(255, 255, 255, 0.75);
                 }
                 
                 &:focus {
-	                background-color: rgba(0, 0, 0, 0.2);
-	                transition: .15s ease background-color;
+                    background-color: rgba(0, 0, 0, 0.2);
+                    transition: .15s ease background-color;
                 }
             }
 
@@ -170,11 +170,11 @@
         }
 
         .account-nav {
-	        .userInfo {
-	                padding-top: 11px;
-	                padding-bottom: 6px;
+            .userInfo {
+                    padding-top: 11px;
+                    padding-bottom: 6px;
                 }
-	        
+            
             > a {
                 font-weight: normal;
                 font-size: 0.8125rem;
