@@ -34,10 +34,10 @@ var View = React.createClass({
         return (
             <div className="inner">
                 {loggedIn ? [
-                <div className="splash-header">
-                    <Activity />
-                    <News />
-                </div>
+                    <div className="splash-header">
+                        <Activity />
+                        <News />
+                    </div>
                 ] : [
                     <Intro projectCount={this.state.projectCount} key="intro"/>
                 ]}
