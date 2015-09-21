@@ -12,7 +12,7 @@ var View = React.createClass({
     render: function () {
         return (
             <div className="inner">
-            	<h1>Button</h1>
+                <h1>Button</h1>
                 <Button>I love button</Button>
                 <h1>Form</h1>
                 <Input type="text" name="test" maxLength="30" />
