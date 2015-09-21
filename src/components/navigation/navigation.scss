@@ -10,7 +10,7 @@
     background-color: $base-background-color;
     
     /* NOTE: Height should match offset settings in main.scss file */
-    height: 35px;
+    height: 50px;
 
     .inner > ul {
         display: flex;
@@ -18,7 +18,7 @@
         flex-wrap: nowrap;
         justify-content: flex-start;
 
-        height: 35px;
+        height: 50px;
         margin: 0;
         padding: 0;
         list-style: none;
@@ -28,25 +28,27 @@
             align-self: flex-start;
             float: left;
             height: 100%;
-            border-left: 1px solid $border-color;
             position: relative;
         }
 
         .logo {
-            border-left: none;
-
+	        margin-right: 10px;
             a {
                 display: block;
-                width: 80px;
-                height: 35px;
-                margin: 4px 6px 0 0;
+                width: 81px;
+                height: 50px;
+                margin: 0px 6px 0 0;
 
                 border: none;
                 background-image: url('/images/logo_sm.png');
                 background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 95%;
+                transition: .15s ease all;
 
                 &:hover {
-                   background-image: url('/images/logo_sm_highlight.png');    
+                   background-size: 100%;
+                   transition: .15s ease all; 
                 }
             }
         }
@@ -54,13 +56,14 @@
         .link {
             > a {
                 display: block;
-                height: 28px;
-                padding: 7px 15px 0 15px;
+                height: 33px;
+                padding: 17px 15px 0px 15px;
                 
                 color: white;
                 text-decoration: none;
-                font-size: 0.95rem;
+                font-size: 0.85rem;
                 white-space: nowrap;
+                font-weight: bold;
             }
 
             > a:hover {
@@ -71,9 +74,11 @@
         .search {
             flex-grow: 3;
             border-right: none;
+            color: white;
+            margin:0px 20px;
 
             form {
-                margin: 6px 0 0 15px;
+                margin: 0;
             }
 
             input {
@@ -81,26 +86,42 @@
                 height: 14px;
                 outline: none;
                 border: none;
+                background-color: $active-background-color;
+                margin-top:5px;
             }
 
             input[type=submit] {
                 position: absolute;
-                width: 30px;
-                height: 22px;
-
-                background-color: white;
+                width: 40px;
+                height: 40px;
+                
+                background-color: transparent;
+                
                 background-image: url('/images/nav-search-glass.png');
+                background-size: 14px 14px;
                 background-repeat: no-repeat;
-                background-position: center center;
-                border-right: 1px solid #efefef;
-                border-radius: 10px 0 0 10px;
+                background-position: center center;     
             }
 
             input[type=text] {
                 width: calc(100% - 50px);
-                padding-left: 36px;
-                border-radius: 10px;
+                height: 40px;
+                padding: 0;
+                
+                color: white;
+                padding-left: 40px;
+                padding-right:10px;
                 font-size: 0.85em;
+                transition: .15s ease background-color; 
+                
+                &::placeholder {
+	                color:rgba(255, 255, 255, 0.75);
+                }
+                
+                &:focus {
+	                background-color: rgba(0, 0, 0, 0.2);
+	                transition: .15s ease background-color;
+                }
             }
 
             .ie9 input[type=text] {
@@ -112,15 +133,10 @@
             align-self: flex-end;
             float: right;
             margin-left: auto;
-            font-weight: bold;
 
-            &:last-child {
-                border-right: 1px solid rgb(20, 154, 203);
+            a:hover {
+                background-color: $active-background-color;
             }
-        }
-
-        .join > a:hover {
-            background-color: #f79231;
         }
 
         .messages, .mystuff {
@@ -154,15 +170,21 @@
         }
 
         .account-nav {
+	        .userInfo {
+	                padding-top: 11px;
+	                padding-bottom: 6px;
+                }
+	        
             > a {
                 font-weight: normal;
                 font-size: 0.8125rem;
-
+                
                 img {
-                    width: 24px;
-                    height: 24px;
-                    margin-right: 5px;
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 10px;
                     vertical-align: middle;
+                    border-radius: 3px;
                 }
 
                 &:after {

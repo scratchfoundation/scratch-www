@@ -1,0 +1,28 @@
+.input {
+	color:black;
+	border-radius: 5px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	font-size: .8rem;
+	padding: .75em 1em;
+	margin: .5em 0;
+	background-color: #f7f7f7;
+	transition:all 1s ease;
+	
+	&:focus {
+		background-color: #d3eaf8;
+		outline:none;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		transition:all 1s ease;
+	}
+	
+	&.fail {
+		border: 1px solid #eab012;
+		background-color: #fff7df;
+	}
+	
+	&.pass {
+		border: 1px solid #55db58;
+		background-color: #eafdea;
+	}
+}
+

@@ -1,7 +1,9 @@
 var React = require('react');
 var classNames = require('classnames');
-var Login = require('../login/login.jsx');
+
 var Dropdown = require('./dropdown.jsx');
+var Input = require('../forms/input.jsx');
+var Login = require('../login/login.jsx');
 
 require('./navigation.scss');
 
@@ -54,17 +56,17 @@ module.exports = React.createClass({
 
                     <li className="search">
                         <form action="/search/google_results" method="get">
-                            <input type="submit" value="" />
-                            <input type="text" placeholder="Search" name="q" />
-                            <input type="hidden" name="date" value="anytime" />
-                            <input type="hidden" name="sort_by" value="datetime_shared" />
+                            <Input type="submit" value="" />
+                            <Input type="text" placeholder="Search" name="q" />
+                            <Input type="hidden" name="date" value="anytime" />
+                            <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
                     {this.state.loggedIn ? [
                         <li className="link right messages"><a href="/messages/" title="Messages">Messages</a></li>,
                         <li className="link right mystuff"><a href="/mystuff/" title="My Stuff">My Stuff</a></li>,
                         <li className="link right account-nav">
-                            <a href="#" onClick={this.handleClickAccountNav}>
+                            <a className="userInfo" href="#" onClick={this.handleClickAccountNav}>
                                 <img src={this.state.loggedInUser.thumbnail} />
                                 {this.state.loggedInUser.username}
                             </a>
