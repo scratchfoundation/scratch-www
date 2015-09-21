@@ -1,7 +1,7 @@
 var React = require('react');
 
 var Box = require('../box/box.jsx');
-var Format = require('../../mixins/format.jsx');
+var Format = require('../../lib/format.js');
 
 require('./activity.scss');
 
