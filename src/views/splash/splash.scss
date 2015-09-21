@@ -1,4 +1,21 @@
 #view {
+    .splash-header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        .activity {
+            display: inline-block;
+            width: calc(60% - 20px);
+        }
+
+        .news {
+            display: inline-block;
+            width: 40%;
+        }
+    }
+
     .box {
         margin-bottom: 20px;
     }    
