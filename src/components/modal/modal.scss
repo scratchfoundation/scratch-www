@@ -1,30 +1,30 @@
 /* Copied from the un-styleable react-modal */
 
 .ReactModal__Overlay {
-  background-color: rgba(0, 0, 0, 0.75);
-  z-index: 100;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 100;
 }
 .ReactModal__Content {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  right: 40px;
-  bottom: 40px;
-  background: #fff;
-  overflow: visible;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 6px;
-  outline: none;
-  padding: 20px;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background: #fff;
+    overflow: visible;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 6px;
+    outline: none;
+    padding: 20px;
 }
 @media (max-width: 768px) {
-  .ReactModal__Content {
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    padding: 10px;
-  }
+    .ReactModal__Content {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 10px;
+    }
 }
 
 .modal-close {

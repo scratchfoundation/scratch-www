@@ -1,4 +1,4 @@
-@import 'colors';
+@import "colors";
 
 .dropdown {
     position: absolute;
@@ -49,8 +49,8 @@
             padding: 0 10px;
 
             &:hover {
-               background-color: $active-background-color;
-               text-decoration: none;
+                background-color: $active-background-color;
+                text-decoration: none;
             }
         }
     }        
@@ -68,7 +68,7 @@
             
             height: $arrow-border-width;
             width: $arrow-border-width;
-            content: '';
+            content: "";
             transform: rotate(45deg);
             
             background-color: $base-background-color;

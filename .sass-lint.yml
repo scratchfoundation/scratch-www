@@ -1,0 +1,15 @@
+rules:
+  final-newline: 2
+  indentation:
+    - 2
+    -
+      size: 4
+  property-sort-order:
+    - 1
+    -
+      order: concentric
+  quotes:
+    - 2
+    -
+      style: double
+  no-css-comments: 0
