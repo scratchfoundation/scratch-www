@@ -9,17 +9,18 @@
         padding: 0 $button-offset - 20px;
     }
 
-    .slick-next, .slick-prev {
+    .slick-next,
+    .slick-prev {
+        margin-top: -$icon-size/2;
         width: $icon-size;
         height: $icon-size;
-        margin-top: -$icon-size/2;
-        
+
         &:before {
-            font-size: $icon-size;
             color: #ddd;
+            font-size: $icon-size;
         }
 
-        &.slick-disabled:before{
+        &.slick-disabled:before {
             opacity: 1;
         }
     }

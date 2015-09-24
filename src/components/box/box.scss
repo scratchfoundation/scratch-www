@@ -1,23 +1,22 @@
 .box {
     display: inline-block;
-    width: 100%;
-
     border: 1px solid #e0e0e0;
     border-radius: 10px 10px 0 0;
-    box-shadow: 0 2px 3px rgba(34, 25, 25, 0.3);
+    box-shadow: 0 2px 3px rgba(34, 25, 25, .3);
+    width: 100%;
 
     .box-header {
         display: block;
-        margin: 0;
-        height: 20px;
-        padding: 8px 20px;
         clear: both;
-        overflow: hidden;
-
-        background-color: #efefef;
-        border-radius: 10px 10px 0 0;
+        margin: 0;
         border-top: 1px solid white;
         border-bottom: 1px solid #ccc;
+        border-radius: 10px 10px 0 0;
+        background-color: #efefef;
+
+        padding: 8px 20px;
+        height: 20px;
+        overflow: hidden;
 
         h4 {
             display: inline-block;
@@ -32,15 +31,14 @@
             margin: 1px 0 0 0;
             padding: 0;
 
-            font-size: 0.85rem;
+            font-size: .85rem;
         }
     }
 
     .box-content {
         display: block;
-        padding: 8px 20px;
         clear: both;
-
         background-color: white;
+        padding: 8px 20px;
     }
 }

@@ -1,39 +1,43 @@
 /* Tags */
-html, body {
+html,
+body {
     display: block;
     margin: 0;
-    padding: 0;
-
-    color: #322f31;
     background-color: #fdfdfd;
-
+    padding: 0;
+    color: #322f31;
     font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
 }
 
 /* Typography */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     margin: 0;
-    padding: 0;
     border: 0;
+    padding: 0;
 
     color: #554747;
     font-weight: 700;
 }
 
 h1 {
-    font-size: 1.625rem;
     line-height: 2.125rem;
+    font-size: 1.625rem;
 }
 
 h4 {
-    font-size: 1.0rem;
     line-height: 1.1rem;
+    font-size: 1.0rem;
 }
 
 /* Links */
-a:link, a:visited, a:active {
-    color: #1aa0d8;
+a:link,
+a:visited,
+a:active {
     text-decoration: none;
+    color: #1aa0d8;
 }
 
 a:hover {
@@ -42,14 +46,14 @@ a:hover {
 
 /* Classes */
 .inner {
-    width: 942px;
     margin: 0 auto;
+    width: 942px;
 }
 
 #view {
-    min-height: 768px;
-    padding: 20px 0;
-
     /* NOTE: Margin should match height in navigation.scss */
     margin-top: 50px;
+
+    padding: 20px 0;
+    min-height: 768px;
 }

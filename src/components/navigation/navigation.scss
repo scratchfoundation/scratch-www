@@ -1,54 +1,56 @@
 @import "colors";
 
 #navigation {
-    position: fixed;
-    z-index: 10;
     display: block;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    z-index: 10;
     background-color: $base-background-color;
+    width: 100%;
     
     /* NOTE: Height should match offset settings in main.scss file */
     height: 50px;
 
     .inner > ul {
         display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-
-        height: 50px;
         margin: 0;
         padding: 0;
+        height: 50px;
         list-style: none;
+
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
         
+
         > li {
             display: inline-block;
-            align-self: flex-start;
+            position: relative;
             float: left;
             height: 100%;
-            position: relative;
+            align-self: flex-start;
         }
 
         .logo {
             margin-right: 10px;
+
             a {
                 display: block;
-                width: 81px;
-                height: 50px;
-                margin: 0px 6px 0 0;
+                transition: .15s ease all;
+                margin: 0 6px 0 0;
+                border: 0;
 
-                border: none;
                 background-image: url("/images/logo_sm.png");
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-size: 95%;
-                transition: .15s ease all;
+                width: 81px;
+                height: 50px;
 
                 &:hover {
-                    background-size: 100%;
                     transition: .15s ease all; 
+                    background-size: 100%;
                 }
             }
         }
@@ -56,13 +58,13 @@
         .link {
             > a {
                 display: block;
+                padding: 17px 15px 0 15px;
                 height: 33px;
-                padding: 17px 15px 0px 15px;
                 
-                color: white;
                 text-decoration: none;
-                font-size: 0.85rem;
                 white-space: nowrap;
+                color: white;
+                font-size: .85rem;
                 font-weight: bold;
             }
 
@@ -72,10 +74,10 @@
         }
 
         .search {
-            flex-grow: 3;
-            border-right: none;
+            margin: 0 20px;
+            border-right: 0;
             color: white;
-            margin:0px 20px;
+            flex-grow: 3;
 
             form {
                 margin: 0;
@@ -83,44 +85,43 @@
 
             input {
                 display: inline-block;
-                height: 14px;
+                margin-top: 5px;
                 outline: none;
-                border: none;
+                border: 0;
                 background-color: $active-background-color;
-                margin-top:5px;
+                height: 14px;
             }
 
             input[type=submit] {
                 position: absolute;
-                width: 40px;
-                height: 40px;
                 
                 background-color: transparent;
-                
                 background-image: url("/images/nav-search-glass.png");
-                background-size: 14px 14px;
                 background-repeat: no-repeat;
                 background-position: center center;     
+                background-size: 14px 14px;
+                
+                width: 40px;
+                height: 40px;
             }
 
             input[type=text] {
+                transition: .15s ease background-color; 
+                padding: 0;
+                padding-right: 10px;
+                padding-left: 40px;
                 width: calc(100% - 50px);
                 height: 40px;
-                padding: 0;
-                
                 color: white;
-                padding-left: 40px;
-                padding-right:10px;
-                font-size: 0.85em;
-                transition: .15s ease background-color; 
-                
+                font-size: .85em;
+
                 &::placeholder {
-                    color:rgba(255, 255, 255, 0.75);
+                    color: rgba(255, 255, 255, .75);
                 }
-                
+
                 &:focus {
-                    background-color: rgba(0, 0, 0, 0.2);
                     transition: .15s ease background-color;
+                    background-color: rgba(0, 0, 0, .2);
                 }
             }
 
@@ -130,29 +131,27 @@
         }
 
         .right {
-            align-self: flex-end;
             float: right;
             margin-left: auto;
+            align-self: flex-end;
 
             a:hover {
                 background-color: $active-background-color;
             }
         }
 
-        .messages, .mystuff {
+        .messages,
+        .mystuff {
             > a {
                 background-repeat: no-repeat;
                 background-position: center center;
-                padding-left: 10px;
+                background-size: 45%;
                 padding-right: 10px;
+                padding-left: 10px;
+                width: 30px;
+                overflow: hidden;
                 text-indent: 100%;
                 white-space: nowrap;
-                overflow: hidden;
-
-                background-size: 45%;
-                background-repeat: no-repeat;
-                background-position: center center;
-                width: 30px;
             }
 
             > a:hover {
@@ -181,39 +180,38 @@
                 padding-top: 11px;
                 padding-bottom: 6px;
             }
-            
+
             > a {
+                font-size: .8125rem;
                 font-weight: normal;
-                font-size: 0.8125rem;
 
                 .avatar {
+                    margin-right: 5px;
+                    border-radius: 3px;
                     width: 24px;
                     height: 24px;
-                    margin-right: 5px;
                     vertical-align: middle;
-                    border-radius: 3px;
                 }
 
                 &:after {
-                    width: 20px;
-                    height: 20px;
-                    content: " ";
                     display: inline-block;
-                    vertical-align: middle;
+                    margin-left: 5px;
 
                     background-image: url("/images/dropdown.png");
-                    background-size: 50%;
                     background-repeat: no-repeat;
                     background-position: center center;
-                    
-                    margin-left: 5px;
+                    background-size: 50%;
+                    width: 20px;
+                    height: 20px;
+                    vertical-align: middle;
+                    content: " ";
                 }
             }
 
             .dropdown {
-                width: 100%;
                 padding: 0;
                 padding-top: 5px;
+                width: 100%;
             }
         }
     }

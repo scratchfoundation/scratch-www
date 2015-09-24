@@ -1,25 +1,25 @@
 .input {
-    color:black;
-    border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    font-size: .8rem;
-    padding: .75em 1em;
+    transition: all 1s ease;
     margin: .5em 0;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 5px;
     background-color: #f7f7f7;
-    transition:all 1s ease;
-    
+    padding: .75em 1em;
+    color: black;
+    font-size: .8rem;
+
     &:focus {
+        transition: all 1s ease;
+        outline: none;
+        border: 1px solid rgba(0, 0, 0, .1);
         background-color: #d3eaf8;
-        outline:none;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        transition:all 1s ease;
     }
-    
+
     &.fail {
         border: 1px solid #eab012;
         background-color: #fff7df;
     }
-    
+
     &.pass {
         border: 1px solid #55db58;
         background-color: #eafdea;

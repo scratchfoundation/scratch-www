@@ -1,22 +1,22 @@
 #footer {
     display: block;
+    background-color: #ececec;
     padding: 10px 0;
     color: #666;
-    background-color: #ececec;
 
     .lists {
         display: flex;
+        text-align: center;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: space-between;
-        text-align: center;
 
         dl {
             display: inline-block;
             width: 130pt;
-            font-size: 0.85rem;
-            text-align: left;
             vertical-align: top;
+            text-align: left;
+            font-size: .85rem;
         }
 
         dt {
@@ -30,14 +30,14 @@
             margin: 5px 0;
         }
     }
-    
+
     .copyright {
         display: block;
         width: 100%;
         text-align: center;
 
         p {
-            font-size: 0.7rem;
+            font-size: .7rem;
         }
     }
 }

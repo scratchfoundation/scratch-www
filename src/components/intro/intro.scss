@@ -1,18 +1,18 @@
 .intro {
     display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-content: flex-start;
-    margin-top: 20px;
-    margin-bottom: 20px;
 
     .content {
         display: inline-block;
         width: calc(66% - 20px);
 
         h1 {
-            color: #F9A739;
+            color: #f9a739;
             font-weight: 400;
         }
     }
@@ -21,12 +21,13 @@
         position: relative;
         clear: both;
         overflow: hidden;
+
         &:after {
             display: block;
-            visibility: hidden;
-            content: " ";
             clear: both;
+            visibility: hidden;
             height: 0;
+            content: " ";
         }
     }
 
@@ -37,13 +38,15 @@
         height: 136px;
         overflow: hidden;
 
-        .costume, .circle, .text {
+        .costume,
+        .circle,
+        .text {
             position: absolute;
         }
 
         .costume {
-            z-index: 2;
             left: 0;
+            z-index: 2;
         }
 
         .costume-2 {
@@ -59,49 +62,83 @@
         }
 
         .circle {
-            z-index: 0;
-            border-radius: 50%;
             display: block;
-            width: 112px;
-            height: 112px;
-            box-shadow: 0px 0px 5px #fff;
             top: 15px;
             left: 43px;
+            z-index: 0;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #fff;
+            width: 112px;
+            height: 112px;
         }
 
-        $text-bg-color: #F1F3F4;
         .text {
+            $text-bg-color: #f1f3f4;
+            left: 35px;
             z-index: 1;
+            border: 2px solid $text-bg-color;
+            background-color: $text-bg-color;
+            padding-right: 10px;
+            padding-left: 40px;
+            white-space: nowrap;
             font-size: 12px;
             font-weight: 700;
-            left: 35px;
-            padding-left: 40px;
-            padding-right: 10px;
-            white-space: nowrap;
-            background-color: $text-bg-color;
-            border: 2px solid $text-bg-color;
         }
 
         .subtext {
+            border: 0;
             background-color: transparent;
-            font-weight: 400;
+            text-shadow: 0;
             font-size: 12px;
-            text-shadow: none;
-            border: none;
+            font-weight: 400;
         }
 
-        $sprite-1-bgcolor: #9C0;
-        $sprite-2-bgcolor: #C2479D;
-        $sprite-3-bgcolor: #199ED7;
-        &.sprite-1 .circle { background-color: $sprite-1-bgcolor; }
-        &.sprite-2 .circle { background-color: $sprite-2-bgcolor; }
-        &.sprite-3 .circle { background-color: $sprite-3-bgcolor; }
-        &:hover.sprite-1 .circle { box-shadow: 0 0 10px 2px $sprite-1-bgcolor; }
-        &:hover.sprite-2 .circle { box-shadow: 0 0 10px 2px $sprite-2-bgcolor; }
-        &:hover.sprite-3 .circle { box-shadow: 0 0 10px 2px $sprite-3-bgcolor; }
-        &.sprite-1 .text { color: $sprite-1-bgcolor; top: 60px; left: 50px; }
-        &.sprite-2 .text { color: $sprite-2-bgcolor; top: 77px; left: 50px; }
-        &.sprite-3 .text { color: $sprite-3-bgcolor; top: 37px; left: 45px; }
+        $sprite-1-bgcolor: #9c0;
+        $sprite-2-bgcolor: #c2479d;
+        $sprite-3-bgcolor: #199ed7;
+
+        &.sprite-1 .circle {
+            background-color: $sprite-1-bgcolor;
+        }
+
+        &.sprite-2 .circle {
+            background-color: $sprite-2-bgcolor;
+        }
+
+        &.sprite-3 .circle {
+            background-color: $sprite-3-bgcolor;
+        }
+
+        &:hover.sprite-1 .circle {
+            box-shadow: 0 0 10px 2px $sprite-1-bgcolor;
+        }
+
+        &:hover.sprite-2 .circle {
+            box-shadow: 0 0 10px 2px $sprite-2-bgcolor;
+        }
+
+        &:hover.sprite-3 .circle {
+            box-shadow: 0 0 10px 2px $sprite-3-bgcolor;
+        }
+
+        &.sprite-1 .text {
+            top: 60px;
+            left: 50px;
+            color: $sprite-1-bgcolor;
+        }
+
+        &.sprite-2 .text {
+            top: 77px;
+            left: 50px;
+            color: $sprite-2-bgcolor;
+        }
+
+        &.sprite-3 .text {
+            top: 37px;
+            left: 45px;
+            color: $sprite-3-bgcolor;
+        }
+
         &.sprite-3 .subtext {
             top: 63px;
             left: 60px;
@@ -110,93 +147,95 @@
     }
 
     .description {
-        font-size: 17px;
         margin-top: 10px;
+        font-size: 17px;
     }
 
     .project-count {
         color: hsl(318, 50%, 52%);
-        font-weight: 700;
         font-size: 18px;
+        font-weight: 700;
     }
 
     .links {
-        font-size: 12px;
         margin-top: 20px;
+        font-size: 12px;
 
         a {
             border-right: 1px solid #000;
             padding: 0 5px;
 
             &:last-child { border-right: 0; }
+
             &:first-child { padding-left: 0; }
         }
     }
 
     .video {
         display: inline-block;
-        height: 208px;
-        width: 34%;
         position: relative;
-        padding: 10px;
         border: 1px solid #eee;
         border-radius: 5px;
-        background-color: #f7f7f7;
-        text-align: center;
         box-shadow: 0 2px 3px;
+        background-color: #f7f7f7;
+        padding: 10px;
+        width: 34%;
+        height: 208px;
+        text-align: center;
     }
 
     .play-button {
-        border-radius: 20px;
         display: block;
+        top: calc(50% - 25px);
+        left: calc(50% - 35px);
+        opacity: .8;
+        border: 5px solid #ccc;
+        border-radius: 20px;
+        background-color: #666;
         width: 70px;
         height: 50px;
-        left: calc(50% - 35px);
-        top: calc(50% - 25px);
-        background-color: #666;
-        border: 5px solid #ccc;
-        opacity: 0.8;
 
-        &, &:after {
+        &,
+        &:after {
             position: absolute;
-            cursor: pointer;
             margin: 0;
+            cursor: pointer;
             padding: 0;
         }
 
         &:after {
+            top: 37px;
             left: 28px;
+            margin-top: -30px;
             border: solid transparent;
-            content: " ";
-            height: 0;
-            width: 0;
-            pointer-events: none;
+            border-width: 18px;
             border-color: rgba(255, 255, 255, 0);
             border-left-color: #fff;
-            border-width: 18px;
-            top: 37px;
-            margin-top: -30px;
+            width: 0;
+            height: 0;
+            content: " ";
+            pointer-events: none;
         }
     }
-
 }
+
 .video-modal {
     $video-width: 570px;
     $video-height: 357px;
     $padding: 15px;
-    width: $video-width;
-    height: $video-height;
-    padding: $padding;
     top: 50%;
+    right: auto;
     bottom: auto;
     left: 50%;
-    right: auto;
-    margin-left: -($video-width + $padding * 2)/2;
     margin-top: -($video-height + $padding * 2)/2;
+    margin-left: -($video-width + $padding * 2)/2;
+    padding: $padding;
+    width: $video-width;
+    height: $video-height;
 
     iframe {
+        border: 0;
         width: $video-width;
         height: $video-height;
-        border: 0;
     }
 }

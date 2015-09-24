@@ -1,47 +1,47 @@
 @import "colors";
 
 .dropdown {
+    display: none;
     position: absolute;
     right: 0;
+    border: 1px solid $active-background-color;
+    border-radius: 0 0 5px 5px;
+    background-color: $base-background-color;
+    padding: 10px;
     min-width: 160px;
     max-width: 260px;
-    background-color: $base-background-color;
     overflow: visible;
-    border-radius: 0 0 5px 5px;
-    padding: 10px;
     color: white;
+    font-size: .8125rem;
     font-weight: normal;
-    font-size: 0.8125rem;
-    border: 1px solid $active-background-color;
 
-    display: none;
     &.open {
         display: block;
     }
 
     a {
-        color: white;
         background-color: transparent;
+        color: white;
     }
 
     input {
         // 100% minus border and padding
-        width: calc(100% - 30px);
         margin-bottom: 12px;
+        width: calc(100% - 30px);
     }
 
     label {
         display: block;
-        margin-bottom: 5px;        
+        margin-bottom: 5px;
     }
-    
+
     > li {
         display: block;
         line-height: 30px;
 
         &.divider {
-            border-top: 1px solid #149acb;
             margin-top: 10px;
+            border-top: 1px solid #149acb;
         }
 
         a {
@@ -60,22 +60,24 @@
         margin-top: $arrow-border-width;
         border-radius: 5px;
         overflow: visible;
+
         &:before {        
-            position: absolute;
             display: block;
+            position: absolute;
             top: -$arrow-border-width/2;
             right: 10%;
             
-            height: $arrow-border-width;
-            width: $arrow-border-width;
-            content: "";
             transform: rotate(45deg);
-            
-            background-color: $base-background-color;
+
             border-top: 1px solid $active-background-color;
             border-left: 1px solid $active-background-color;
             border-radius: 5px;
-            
+
+            background-color: $base-background-color;
+            width: $arrow-border-width;
+            height: $arrow-border-width;
+
+            content: "";
         }
     }
 }
