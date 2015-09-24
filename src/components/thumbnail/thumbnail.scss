@@ -18,16 +18,16 @@
 
     .thumbnail-title {
         margin-bottom: 1px;
-        text-overflow: ellipsis;
         overflow: hidden;
+        text-overflow: ellipsis;
         white-space: nowrap;
-        font-weight: 800;
         font-size: .9230em;
+        font-weight: 800;
     }
 
     .thumbnail-extra {
-        font-size: .8462em;
         color: #666;
+        font-size: .8462em;
     }
 
 }

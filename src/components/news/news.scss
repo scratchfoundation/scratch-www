@@ -9,10 +9,10 @@
 
     li {
         display: block;
-        min-height: 53px;
+        clear: both;
         margin: 0;
         padding: 12px 0;
-        clear: both;
+        min-height: 53px;
 
         a {
             display: block;
@@ -33,7 +33,7 @@
             display: block;
             
             color: #1aa0d8;
-            font-size: 0.85rem;
+            font-size: .85rem;
         }
 
         p {
@@ -42,7 +42,7 @@
             padding: 0;
 
             color: #322f31;
-            font-size: 0.85rem;
+            font-size: .85rem;
         }
     }
 

@@ -43,6 +43,7 @@
     "react-onclickoutside": "0.3.1",
     "react-slick": "0.7.0",
     "routes-to-nginx-conf": "0.0.4",
+    "sass-lint": "1.2.0",
     "sass-loader": "2.0.1",
     "slick-carousel": "1.5.8",
     "style-loader": "0.12.3",
