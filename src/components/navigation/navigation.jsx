@@ -28,7 +28,7 @@ module.exports = React.createClass({
     },
     handleLogIn: function () {
         // @todo Use an api
-        window.updateSession(require('../../providers/session.json'));
+        window.updateSession(require('../../session.json'));
     },
     handleLogOut: function () {
         // @todo Use an api
