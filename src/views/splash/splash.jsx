@@ -30,18 +30,23 @@ var View = React.createClass({
         // @todo API request for Featured
     },
     render: function () {
+        var loggedIn = !!this.state.session.token;
         return (
             <div className="inner">
-                <Intro projectCount={this.state.projectCount} />
-                <div className="splash-header">
-                    <Activity />
-                    <News />
-                </div>
+                {loggedIn ? [
+                    <div className="splash-header">
+                        <Activity />
+                        <News />
+                    </div>
+                ] : [
+                    <Intro projectCount={this.state.projectCount} key="intro"/>
+                ]}
                 {this.state.featured.map(function (set) {
                     return (
                         <Box
-                            className="featured"
-                            title={set.title}>
+                                key={set.title}
+                                className="featured"
+                                title={set.title}>
                             <Carousel items={set.items} />
                         </Box>
                     );

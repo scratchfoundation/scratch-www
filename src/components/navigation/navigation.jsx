@@ -1,21 +1,21 @@
 var React = require('react');
 var classNames = require('classnames');
 
+var Avatar = require('../avatar/avatar.jsx');
 var Dropdown = require('./dropdown.jsx');
 var Input = require('../forms/input.jsx');
 var Login = require('../login/login.jsx');
+var Session = require('../../mixins/session.jsx');
 
 require('./navigation.scss');
 
 module.exports = React.createClass({
+    mixins: [
+        Session
+    ],
     getInitialState: function () {
         return {
             'loginOpen': false,
-            'loggedIn': false,
-            'loggedInUser': {
-                'username': 'raimondious',
-                'thumbnail': '//cdn2.scratch.mit.edu/get_image/user/2584924_32x32.png'
-            },
             'accountNavOpen': false
         };
     },
@@ -27,10 +27,12 @@ module.exports = React.createClass({
         this.setState({'loginOpen': false});
     },
     handleLogIn: function () {
-        this.setState({'loggedIn': true});
+        // @todo Use an api
+        window.updateSession(require('../../session.json'));
     },
     handleLogOut: function () {
-        this.setState({'loggedIn': false});
+        // @todo Use an api
+        window.updateSession({});
     },
     handleClickAccountNav: function () {
         this.setState({'accountNavOpen': true});
@@ -39,6 +41,7 @@ module.exports = React.createClass({
         this.setState({'accountNavOpen': false});
     },
     render: function () {
+        var loggedIn = !!this.state.session.token;
         var classes = classNames({
             'inner': true,
             'logged-in': this.state.loggedIn
@@ -62,13 +65,20 @@ module.exports = React.createClass({
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
-                    {this.state.loggedIn ? [
-                        <li className="link right messages"><a href="/messages/" title="Messages">Messages</a></li>,
-                        <li className="link right mystuff"><a href="/mystuff/" title="My Stuff">My Stuff</a></li>,
-                        <li className="link right account-nav">
+                    {loggedIn ? [
+                        <li className="link right messages" key="messages">
+                            <a href="/messages/" title="Messages">Messages</a>
+                        </li>,
+                        <li className="link right mystuff" key="mystuff">
+                            <a href="/mystuff/" title="My Stuff">My Stuff</a>
+                        </li>,
+                        <li className="link right account-nav" key="account-nav">
                             <a className="userInfo" href="#" onClick={this.handleClickAccountNav}>
-                                <img src={this.state.loggedInUser.thumbnail} />
-                                {this.state.loggedInUser.username}
+                                <Avatar
+                                    userId={this.state.session.user.id}
+                                    version={this.state.session.user.avatarVersion}
+                                    size={24} />
+                                {this.state.session.user.username}
                             </a>
                             <Dropdown
                                     as="ul"
@@ -83,8 +93,8 @@ module.exports = React.createClass({
                             </Dropdown>
                         </li>
                     ] : [
-                        <li className="link right join"><a href="/join">Join Scratch</a></li>,
-                        <li className="link right">
+                        <li className="link right join" key="join"><a href="/join">Join Scratch</a></li>,
+                        <li className="link right" key="login">
                             <a href="#" onClick={this.handleLoginClick}>Sign In</a>
                             <Dropdown
                                     className="login-dropdown with-arrow"

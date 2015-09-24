@@ -23,7 +23,7 @@ for (var item in routes) {
 }
 
 // Start listening
-var port = process.env.PORT || 8888;
+var port = process.env.PORT || 8333;
 app.listen(port, function () {
     process.stdout.write('Server listening on port ' + port + '\n');
 });
