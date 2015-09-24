@@ -10,4 +10,4 @@ window.updateSession = function (session) {
 };
 
 // @todo Get the session from an API
-window.updateSession(require('./session.json'));
+window.updateSession({});
