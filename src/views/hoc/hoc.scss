@@ -1,6 +1,8 @@
 #view {
     padding: 0;
 
+    a[href=""] { outline: 1px solid red; }
+
     // To be integrated into the Global Typography standards 
     p {
         line-height: 2em;
