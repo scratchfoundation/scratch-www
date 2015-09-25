@@ -16,6 +16,11 @@
         "static": false
     },
     {
+        "pattern": "/hoc",
+        "view": "hoc",
+        "static": false
+    },
+    {
         "static": true,
         "resolve": "_path.resolve(__dirname, '../build')",
         "attributes": { "lastModified": true, "maxAge": "1y" },
