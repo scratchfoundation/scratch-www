@@ -49,14 +49,17 @@ var View = React.createClass({
                         <section className="one-up">
                             <div className="column">
                                 <h3>Related Resources</h3>
-                                <p>Below are some resources to help explore Scratch by yourself or to assist groups in workshops and classrooms <a href="#">Find out more</a></p>
+                                <p>Below are some resources to help explore Scratch by yourself or to assist groups in
+                                workshops and classrooms <a href="#">Find out more</a></p>
                             </div>
                         </section>
 
                         <section className="two-up">
                             <div className="column">
                                 <h3>Tips Window</h3>
-                                <p>New to Scratch or haven’t heard of the Tips Window? Check out interactive tutorials, handy block information, and other helpful hints all in the new 2015 <a href="#">Tips Window</a></p>
+                                <p>New to Scratch or haven’t heard of the Tips Window? Check out interactive tutorials,
+                                handy block information, and other helpful hints all in the new 2015 <a href="#">Tips
+                                Window</a></p>
                             </div>
                             <div className="column">
                                 <img src="https://www.dropbox.com/s/l1n1ba7aof3qqx4/tips-test-animation.gif?dl=1"></img>
@@ -66,7 +69,8 @@ var View = React.createClass({
                         <section className="one-up">
                             <div className="column">
                                 <h3>Still Want More?</h3>
-                                <p><strong>Awesome!</strong> Here are some addtional tutorials from the Tips Window. <a href="#">See all tips</a></p>
+                                <p><strong>Awesome!</strong> Here are some addtional tutorials
+                                from the Tips Window. <a href="#">See all tips</a></p>
                             </div>
                         </section>
                     </Box>

@@ -6,10 +6,11 @@
     top: 0;
     left: 0;
     z-index: 10;
-    background-color: $base-background-color;
-    width: 100%;
+
     box-shadow: 0 1px 2px rgba(0,0,0,0.4);
-    
+    background-color: $base-background-color;
+
+    width: 100%;   
     /* NOTE: Height should match offset settings in main.scss file */
     height: 50px;
 
