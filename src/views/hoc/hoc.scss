@@ -28,7 +28,8 @@
         width: 100%;
         
 
-        h1, p {
+        h1, 
+        p {
             margin: 0 auto;
             padding-top: 10px;
 
@@ -66,7 +67,7 @@
                 .card-info {
                     border-radius: 5px;
 
-                    background-color:white;
+                    background-color: white;
 
                     width: 100%;
                     height: 100%;
@@ -122,10 +123,10 @@
                 }
 
                 &:active {
-                    border: 0px solid transparent;
-                    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.25);
+                    border: 0 solid transparent;
+                    box-shadow: inset 0 0 5px rgba(0, 0, 0, .25);
                     background-color: rgba(0, 0, 0, .20);
-                    padding: calc(0.75em + 2px) calc(1em + 2px);
+                    padding: calc(.75em + 2px) calc(1em + 2px);
                 }
             }
         }
@@ -134,7 +135,7 @@
     .box section {
         display: flex;
         margin: 0 auto;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        border-bottom: 1px solid rgba(0, 0, 0, .15);
         padding: 30px 0;
         width: 95%;
 
