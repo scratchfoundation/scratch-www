@@ -1,0 +1,180 @@
+#view {
+    padding: 0;
+
+    a[href=""] { outline: 1px solid red; }
+
+    // To be integrated into the Global Typography standards 
+    p {
+        line-height: 2em;
+    }
+
+    // To be revamped in Global Grids standards
+    .inner {
+        margin: 0 auto;
+        width: 80%;
+        max-width: 960px;
+
+        .box {
+            margin-bottom: 100px;
+        }
+    } 
+
+    .top-banner {
+        margin-top: 10px;
+        margin-bottom: 40px;
+
+        background-color: #27d2b0;
+
+        padding: 10px 0;
+
+        width: 100%;
+        
+
+        h1, 
+        p {
+            margin: 0 auto;
+            padding-top: 10px;
+
+            max-width: 500px;
+
+            text-align: center;
+            color: white;        
+        }
+
+        .card-deck, 
+        .sub-nav {
+            display: flex;
+            margin: 20px auto;
+            
+            width: 80%;
+            max-width: 960px;
+
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card-deck {
+
+            .card {
+                display: inline-block;
+                margin: 10px;
+                border-radius: 7px;
+                background-color: rgba(0, 0, 0, .15);                
+                padding: 2px;
+                
+                width: 30%;
+                min-width: 200px;
+                max-width: 230px;
+
+                .card-info {
+                    border-radius: 5px;
+
+                    background-color: white;
+
+                    width: 100%;
+                    height: 100%;
+                    
+
+                    button,
+                    img {
+                        width: calc(100% - 20px);
+                    }
+
+                    img {
+                        margin: 10px 10px 5px 10px;
+                        border-radius: 5px;
+                    }
+
+                    button {
+                        margin: 0 10px 10px 10px;
+                    }
+                }
+            }
+        }
+
+        .sub-nav {
+            color: white;
+            font-size: .8em;
+            font-weight: bold;
+
+            li {
+
+                display: inline-block;
+                margin: 5px;
+
+                padding: .75em 1em;
+                
+                list-style-type: none;
+
+            }
+
+            a .link {
+                
+                border: 2px solid rgba(0, 0, 0, .15);
+
+                border-radius: 50px;
+
+                text-decoration: none;
+                color: white;
+                
+
+                &:hover {
+                    transition: background-color .25s ease;
+                    border-color: transparent;
+                    background-color: rgba(0, 0, 0, .15);
+                }
+
+                &:active {
+                    border: 0 solid transparent;
+                    box-shadow: inset 0 0 5px rgba(0, 0, 0, .25);
+                    background-color: rgba(0, 0, 0, .20);
+                    padding: calc(.75em + 2px) calc(1em + 2px);
+                }
+            }
+        }
+    }
+
+    .box section {
+        display: flex;
+        margin: 0 auto;
+        border-bottom: 1px solid rgba(0, 0, 0, .15);
+        padding: 30px 0;
+        width: 95%;
+
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+
+        h3, p {
+            color: #6b6b6b;
+            font-weight: 300; 
+        }
+
+        &.one-up {
+            text-align: center;
+
+            .column {
+                margin: 10px;
+                max-width: 600px;
+            }
+        }
+
+        &.two-up{
+
+            .column {
+                margin: 10px;
+
+                min-width: 200px;
+                max-width: 40%;
+
+                img {
+                    border: 2px solid #2aa3ef;
+                    border-radius: 5px;
+                    
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+}
