@@ -1,3 +1,5 @@
+@import "../../colors";
+
 .activity {
     ul {
         display: block;
@@ -35,7 +37,7 @@
         }
 
         .stamp {
-            color: #999;
+            color: $ui-dark-gray;
             font-size: .65rem;
         }
     }

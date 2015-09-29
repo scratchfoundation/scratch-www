@@ -1,3 +1,5 @@
+@import "../../colors";
+
 .news {
     ul {
         display: block;
@@ -32,7 +34,7 @@
         h4 {
             display: block;
             
-            color: #1aa0d8;
+            color: $link-blue;
             font-size: .85rem;
         }
 
@@ -41,13 +43,13 @@
             margin: 0;
             padding: 0;
 
-            color: #322f31;
+            color: $type-gray;
             font-size: .85rem;
         }
     }
 
     li:nth-child(even) {
-        border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
+        border-top: 1px solid $ui-border;
+        border-bottom: 1px solid $ui-border;
     }
 }

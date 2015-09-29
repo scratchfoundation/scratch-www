@@ -1,3 +1,5 @@
+@import "../../colors";
+
 .thumbnail {
     .thumbnail-image,
     .thumbnail-title,
@@ -7,7 +9,7 @@
 
     .thumbnail-image img {
         margin-bottom: 2px;
-        border: 1px solid #ddd;
+        border: 1px solid $ui-border;
     }
 
     .thumbnail-title,
@@ -26,7 +28,7 @@
     }
 
     .thumbnail-extra {
-        color: #666;
+        color: $type-gray;
         font-size: .8462em;
     }
 

@@ -1,4 +1,5 @@
 rules:
+  color-literals: 2
   final-newline: 2
   hex-notation: 2
   indentation:

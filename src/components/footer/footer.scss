@@ -1,8 +1,10 @@
+@import "../../colors";
+
 #footer {
     display: block;
-    background-color: #ececec;
+    background-color: $ui-gray;
     padding: 10px 0;
-    color: #666;
+    color: $type-gray;
 
     .lists {
         display: flex;
