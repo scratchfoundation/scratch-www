@@ -34,7 +34,7 @@ var View = React.createClass({
         return (
             <div className="inner">
                 {loggedIn ? [
-                    <div className="splash-header">
+                    <div key="header" className="splash-header">
                         <Activity />
                         <News />
                     </div>
