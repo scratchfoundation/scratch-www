@@ -1,3 +1,5 @@
+@import "../../colors";
+
 .intro {
     display: flex;
     margin-top: 20px;
@@ -12,7 +14,7 @@
         width: calc(66% - 20px);
 
         h1 {
-            color: #f9a739;
+            color: $ui-orange;
             font-weight: 400;
         }
     }
@@ -67,7 +69,7 @@
             left: 43px;
             z-index: 0;
             border-radius: 50%;
-            box-shadow: 0 0 5px #fff;
+            box-shadow: 0 0 5px $ui-white;
             width: 112px;
             height: 112px;
         }
@@ -142,7 +144,7 @@
         &.sprite-3 .subtext {
             top: 63px;
             left: 60px;
-            color: #fff;
+            color: $ui-white;
         }
     }
 
@@ -152,7 +154,8 @@
     }
 
     .project-count {
-        color: hsl(318, 50%, 52%);
+        $project-count-color: hsl(318, 50%, 52%); 
+        color: $project-count-color;
         font-size: 18px;
         font-weight: 700;
     }
@@ -162,7 +165,7 @@
         font-size: 12px;
 
         a {
-            border-right: 1px solid #000;
+            border-right: 1px solid $type-gray;
             padding: 0 5px;
 
             &:last-child { border-right: 0; }
@@ -174,10 +177,10 @@
     .video {
         display: inline-block;
         position: relative;
-        border: 1px solid #eee;
+        border: 1px solid $ui-border;
         border-radius: 5px;
         box-shadow: 0 2px 3px;
-        background-color: #f7f7f7;
+        background-color: $ui-gray;
         padding: 10px;
         width: 34%;
         height: 208px;
@@ -189,9 +192,9 @@
         top: calc(50% - 25px);
         left: calc(50% - 35px);
         opacity: .8;
-        border: 5px solid #ccc;
+        border: 5px solid $ui-border;
         border-radius: 20px;
-        background-color: #666;
+        background-color: $type-gray;
         width: 70px;
         height: 50px;
 
@@ -204,13 +207,14 @@
         }
 
         &:after {
+            $play-arrow: rgba(255, 255, 255, 0);
             top: 37px;
             left: 28px;
             margin-top: -30px;
             border: solid transparent;
             border-width: 18px;
-            border-color: rgba(255, 255, 255, 0);
-            border-left-color: #fff;
+            border-color: $play-arrow;
+            border-left-color: $ui-white;
             width: 0;
             height: 0;
             content: " ";

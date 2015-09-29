@@ -1,8 +1,12 @@
+@import "../../colors";
+
+$base-bg: $ui-white;
+
 /* Copied from the un-styleable react-modal */
 
 .ReactModal__Overlay {
     z-index: 100;
-    background-color: rgba(0, 0, 0, .75);
+    background-color: $overlay-gray;
 }
 
 .ReactModal__Content {
@@ -13,7 +17,7 @@
     left: 40px;
     outline: none;
     border-radius: 6px;
-    background: #fff;
+    background: $base-bg;
     padding: 20px;
     overflow: visible;
     -webkit-overflow-scrolling: touch;
@@ -36,15 +40,15 @@
     right: 0;
     margin-top: -$modal-close-size/2;
     margin-right: -$modal-close-size/2;
-    border: 2px solid #ddd;
+    border: 2px solid $ui-border;
     border-radius: $modal-close-size/2;
-    background-color: #666;
+    background-color: $active-dark-gray;
     cursor: pointer;
     width: $modal-close-size;
     height: $modal-close-size;
     text-align: center;
     line-height: $modal-close-size;
-    color: #fff;
+    color: $type-white;
     font-size: $modal-close-size;
 
     &:before {

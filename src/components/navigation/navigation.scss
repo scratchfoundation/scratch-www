@@ -1,4 +1,4 @@
-@import "colors";
+@import "../../colors";
 
 #navigation {
     display: block;
@@ -6,9 +6,11 @@
     top: 0;
     left: 0;
     z-index: 10;
+    border-bottom: 1px solid $active-gray;
 
-    box-shadow: 0 1px 2px rgba(0,0,0, .4);
-    background-color: $base-background-color;
+    box-shadow: 0 0 3px $box-shadow-gray;
+    background-color: $ui-blue;
+
 
     width: 100%;   
     /* NOTE: Height should match offset settings in main.scss file */
@@ -65,20 +67,20 @@
                 
                 text-decoration: none;
                 white-space: nowrap;
-                color: white;
+                color: $type-white;
                 font-size: .85rem;
                 font-weight: bold;
             }
 
             > a:hover {
-                background-color: $active-background-color;
+                background-color: $active-gray;
             }
         }
 
         .search {
             margin: 0 20px;
             border-right: 0;
-            color: white;
+            color: $type-white;
             flex-grow: 3;
 
             form {
@@ -90,7 +92,7 @@
                 margin-top: 5px;
                 outline: none;
                 border: 0;
-                background-color: $active-background-color;
+                background-color: $active-gray;
                 height: 14px;
             }
 
@@ -114,16 +116,17 @@
                 padding-left: 40px;
                 width: calc(100% - 50px);
                 height: 40px;
-                color: white;
+                color: $type-white;
                 font-size: .85em;
 
                 &::placeholder {
-                    color: rgba(255, 255, 255, .75);
+                    $placeholder-transparent: rgba(255, 255, 255, .75);
+                    color: $placeholder-transparent;
                 }
 
                 &:focus {
                     transition: .15s ease background-color;
-                    background-color: rgba(0, 0, 0, .2);
+                    background-color: $active-dark-gray;
                 }
             }
 
@@ -138,7 +141,7 @@
             align-self: flex-end;
 
             a:hover {
-                background-color: $active-background-color;
+                background-color: $active-gray;
             }
         }
 
@@ -179,8 +182,8 @@
 
         .account-nav {
             .userInfo {
-                padding-top: 11px;
-                padding-bottom: 6px;
+                padding-top: 14px;
+                padding-bottom: 3px;
             }
 
             > a {
@@ -188,7 +191,7 @@
                 font-weight: normal;
 
                 .avatar {
-                    margin-right: 5px;
+                    margin-right: 10px;
                     border-radius: 3px;
                     width: 24px;
                     height: 24px;
@@ -197,7 +200,7 @@
 
                 &:after {
                     display: inline-block;
-                    margin-left: 5px;
+                    margin-left: 8px;
 
                     background-image: url("/images/dropdown.png");
                     background-repeat: no-repeat;

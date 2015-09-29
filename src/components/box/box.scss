@@ -1,18 +1,21 @@
+@import "../../colors";
+
+$base-bg: $ui-white;
+
 .box {
     display: inline-block;
-    border: 1px solid #e0e0e0;
+    border: 1px solid $ui-border;
     border-radius: 10px 10px 0 0;
-    box-shadow: 0 2px 3px rgba(34, 25, 25, .3);
     width: 100%;
 
     .box-header {
         display: block;
         clear: both;
         margin: 0;
-        border-top: 1px solid white;
-        border-bottom: 1px solid #ccc;
+        border-top: 1px solid $ui-white;
+        border-bottom: 1px solid $ui-border;
         border-radius: 10px 10px 0 0;
-        background-color: #efefef;
+        background-color: $ui-gray;
 
         padding: 8px 20px;
         height: 20px;
@@ -38,7 +41,7 @@
     .box-content {
         display: block;
         clear: both;
-        background-color: white;
+        background-color: $base-bg;
         padding: 8px 20px;
     }
 }
