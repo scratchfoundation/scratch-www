@@ -1,4 +1,4 @@
-require('xhr');
+var api = require('./mixins/api.jsx').api;
 require('custom-event-polyfill');
 
 window._session = {};
@@ -9,5 +9,13 @@ window.updateSession = function (session) {
     window.dispatchEvent(sessionEvent);
 };
 
-// @todo Get the session from an API
-window.updateSession({});
+window.refreshSession = function () {
+    api({
+        uri: '/session/',
+        responseType: 'json'
+    }, function (err, res) {
+        if (!err) window.updateSession(res);
+    });
+};
+
+window.refreshSession();

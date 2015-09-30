@@ -41,7 +41,7 @@ module.exports = React.createClass({
         this.setState({'accountNavOpen': false});
     },
     render: function () {
-        var loggedIn = !!this.state.session.token;
+        var loggedIn = !!this.state.session.user;
         var classes = classNames({
             'inner': true,
             'logged-in': this.state.loggedIn
