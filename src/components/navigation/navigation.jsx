@@ -1,5 +1,7 @@
 var React = require('react');
 var classNames = require('classnames');
+var cookie = require('cookie');
+var xhr = require('xhr');
 
 var Avatar = require('../avatar/avatar.jsx');
 var Dropdown = require('./dropdown.jsx');
@@ -26,13 +28,27 @@ module.exports = React.createClass({
     closeLogin: function () {
         this.setState({'loginOpen': false});
     },
-    handleLogIn: function () {
-        // @todo Use an api
-        window.updateSession(require('../../session.json'));
+    handleLogIn: function (formData) {
+        var csrftoken = cookie.parse(document.cookie)['scratchcsrftoken'];
+        formData['csrftoken'] = csrftoken;
+        xhr({
+            method: 'post',
+            uri: '/accounts/login/',
+            json: formData,
+            headers: {
+                'X-CSRFToken': csrftoken,
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        }, function () {
+            window.refreshSession();
+        });
     },
     handleLogOut: function () {
-        // @todo Use an api
-        window.updateSession({});
+        xhr({
+            uri: '/accounts/logout/'
+        }, function () {
+            window.refreshSession();
+        });
     },
     handleClickAccountNav: function () {
         this.setState({'accountNavOpen': true});

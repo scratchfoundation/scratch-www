@@ -10,16 +10,19 @@ module.exports = React.createClass({
     },
     handleSubmit: function (event) {
         event.preventDefault();
-        this.props.onLogIn();
+        this.props.onLogIn({
+            'username': this.refs.username.getDOMNode().value,
+            'password': this.refs.password.getDOMNode().value
+        });
     },
     render: function () {
         return (
             <div className="login">
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="username">Username</label>
-                    <Input type="text" name="username" maxLength="30" />
+                    <Input type="text" ref="username" name="username" maxLength="30" />
                     <label htmlFor="password">Password</label>
-                    <Input type="password" name="password" />
+                    <Input type="password" ref="password" name="password" />
                     <Button className="submit-button white" type="submit">Sign in</Button>
                     <a className="right" href="/accounts/password_reset/">Forgot password?</a>
                 </form>
