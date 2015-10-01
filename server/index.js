@@ -24,7 +24,7 @@ for (var routeId in routes) {
 }
 
 // Bind proxies in development
-if ( process.env.ENVIRONMENT == 'development' ) {
+if ( process.env.NODE_ENV != 'production' ) {
     var proxies = require('./proxies.json');
     var url = require('url');
     var proxyHost = process.env.PROXY_HOST || 'http://localhost';
