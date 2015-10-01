@@ -16,21 +16,21 @@ var View = React.createClass({
                 <div className="card-deck">
                     <div className="card">
                         <div className="card-info">
-                            <img src="/images/hide-seek-tutorial.png"></img>
+                            <img src="/images/hide-seek-tutorial.png" />
                             <Button>Create a Hide & Seek Game</Button>
                         </div>
                     </div>
 
                     <div className="card">
                         <div className="card-info">
-                            <img src="/images/dance-tutorial.png"></img>
+                            <img src="/images/dance-tutorial.png" />
                             <Button>Compose a Dance Sequence</Button>
                         </div>
                     </div>
 
                     <div className="card">
                         <div className="card-info">
-                            <img src="/images/name-tutorial.png"></img>
+                            <img src="/images/name-tutorial.png" />
                             <Button>Animate Your Name</Button>
                         </div>
                     </div>
@@ -54,21 +54,21 @@ var View = React.createClass({
                             </div>
 
                             <div className="resource">
-                                    <img src="/svgs/tips-card.svg"></img>
+                                    <img src="/svgs/tips-card.svg" />
                                     <div className="resource-info">
                                         <a href="">Hide & Seek Tip Cards</a>
                                         <div className="file-size">13mbs</div>
                                     </div>
                             </div>
                             <div className="resource">
-                                    <img src="/svgs/tips-card.svg"></img>
+                                    <img src="/svgs/tips-card.svg" />
                                     <div className="resource-info">
                                         <a href="">Dance Tip Cards</a>
                                         <div className="file-size">5mbs</div>
                                     </div>
                             </div>
                             <div className="resource">
-                                    <img src="/svgs/tips-card.svg"></img>
+                                    <img src="/svgs/tips-card.svg" />
                                     <div className="resource-info">
                                         <a href="">Name Tip Cards</a>
                                         <div className="file-size">11mbs</div>
@@ -84,7 +84,7 @@ var View = React.createClass({
                                 Window</a></p>
                             </div>
                             <div className="column">
-                                <img src="/images/tips-test-animation.gif"></img>
+                                <img src="/images/tips-test-animation.gif" />
                             </div>
                         </section>
 

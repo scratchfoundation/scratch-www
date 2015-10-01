@@ -178,9 +178,12 @@ $base-bg: $ui-white;
                 margin-top: 5px;
                 width: inherit;
 
+                text-transform: uppercase;
+                letter-spacing: 1px;
                 color: $ui-orange;
                 font-size: .7em;
                 font-weight: 700;
+
             }
         }
 
