@@ -16,21 +16,21 @@ var View = React.createClass({
                 <div className="card-deck">
                     <div className="card">
                         <div className="card-info">
-                            <img src="https://www.dropbox.com/s/v8dvhd4i6soutit/temp-card-img.png?dl=1"></img>
+                            <img src="/images/hide-seek-tutorial.png"></img>
                             <Button>Create a Hide & Seek Game</Button>
                         </div>
                     </div>
 
                     <div className="card">
                         <div className="card-info">
-                            <img src="https://www.dropbox.com/s/v8dvhd4i6soutit/temp-card-img.png?dl=1"></img>
+                            <img src="/images/dance-tutorial.png"></img>
                             <Button>Compose a Dance Sequence</Button>
                         </div>
                     </div>
 
                     <div className="card">
                         <div className="card-info">
-                            <img src="https://www.dropbox.com/s/v8dvhd4i6soutit/temp-card-img.png?dl=1"></img>
+                            <img src="/images/name-tutorial.png"></img>
                             <Button>Animate Your Name</Button>
                         </div>
                     </div>
@@ -52,6 +52,28 @@ var View = React.createClass({
                                 <p>Below are some resources to help explore Scratch by yourself or to assist groups in
                                 workshops and classrooms <a href="">Find out more</a></p>
                             </div>
+
+                            <div className="resource">
+                                    <img src="/svgs/tips-card.svg"></img>
+                                    <div className="resource-info">
+                                        <a href="">Hide & Seek Tip Cards</a>
+                                        <div className="file-size">13mbs</div>
+                                    </div>
+                            </div>
+                            <div className="resource">
+                                    <img src="/svgs/tips-card.svg"></img>
+                                    <div className="resource-info">
+                                        <a href="">Dance Tip Cards</a>
+                                        <div className="file-size">5mbs</div>
+                                    </div>
+                            </div>
+                            <div className="resource">
+                                    <img src="/svgs/tips-card.svg"></img>
+                                    <div className="resource-info">
+                                        <a href="">Name Tip Cards</a>
+                                        <div className="file-size">11mbs</div>
+                                    </div>
+                            </div>
                         </section>
 
                         <section className="two-up">
@@ -62,7 +84,7 @@ var View = React.createClass({
                                 Window</a></p>
                             </div>
                             <div className="column">
-                                <img src="https://www.dropbox.com/s/l1n1ba7aof3qqx4/tips-test-animation.gif?dl=1"></img>
+                                <img src="/images/tips-test-animation.gif"></img>
                             </div>
                         </section>
 
