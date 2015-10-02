@@ -19,7 +19,7 @@ $base-bg: $ui-white;
         .box {
             margin-bottom: 100px;
         }
-    } 
+    }
 
     .top-banner {
         margin-top: 10px;
@@ -30,7 +30,6 @@ $base-bg: $ui-white;
         padding: 10px 0;
 
         width: 100%;
-        
 
         h1, 
         p {
@@ -152,6 +151,42 @@ $base-bg: $ui-white;
             font-weight: 300; 
         }
 
+        .resource {
+            display: flex;
+            margin: 10px;
+            border-radius: 5px;
+
+            padding: 10px 15px;
+            width: 30%;
+            min-width: 200px;
+            max-width: 230px;
+            text-align: left;
+
+            justify-content: center;
+            align-items: center;
+
+            img {
+                margin-right: 10px;
+            }
+
+            a {
+                font-size: .8em;
+                font-weight: 500;
+            }
+
+            .file-size {
+                margin-top: 5px;
+                width: inherit;
+
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: $ui-orange;
+                font-size: .7em;
+                font-weight: 700;
+
+            }
+        }
+
         &.one-up {
             text-align: center;
 
@@ -162,7 +197,7 @@ $base-bg: $ui-white;
         }
 
         &.two-up {
-
+            
             .column {
                 margin: 10px;
 
