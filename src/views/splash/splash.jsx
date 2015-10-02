@@ -46,7 +46,9 @@ var View = React.createClass({
                         <Box
                                 key={set.title}
                                 className="featured"
-                                title={set.title}>
+                                title={set.title}
+                                moreTitle={set.moreTitle}
+                                moreHref={set.moreHref}>
                             <Carousel items={set.items} />
                         </Box>
                     );

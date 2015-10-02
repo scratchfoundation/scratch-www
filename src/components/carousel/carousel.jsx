@@ -24,18 +24,39 @@ module.exports = React.createClass({
             }
         };
     },
+    typeDimensions: {
+        'project': [144, 108],
+        'gallery': [170, 100]
+    },
     render: function () {
         return (
             <Slider className={'carousel ' + this.props.className} {... this.props.settings}>
                 {this.props.items.map(function (item) {
+                    var thumbnailUrl = (
+                        '//cdn2.scratch.mit.edu/get_image/' + item.type + '/' + item.id + '_' +
+                        this.typeDimensions[item.type][0] + 'x' + this.typeDimensions[item.type][1] + '.png' +
+                        '?v=' + item.thumbnailVersion
+                    );
+                    var href = '';
+                    switch (item.type) {
+                    case 'gallery':
+                        href = '/studio/' + item.id + '/';
+                        break;
+                    default:
+                        href = '/' + item.type + '/' + item.id + '/';
+                    }
+
                     return (
                         <Thumbnail key={item.id}
-                                   href={item.href}
+                                   type={item.type}
+                                   href={href}
                                    title={item.title}
-                                   src={item.thumbnailUrl}
-                                   extra={item.creator ? 'by ' + item.creator:null} />
+                                   src={thumbnailUrl}
+                                   creator={item.creator}
+                                   remixes={item.remixes}
+                                   loves={item.loves} />
                     );
-                })}
+                }.bind(this))}
             </Slider>
         );
     }
