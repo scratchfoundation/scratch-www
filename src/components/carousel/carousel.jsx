@@ -33,7 +33,7 @@ module.exports = React.createClass({
             <Slider className={'carousel ' + this.props.className} {... this.props.settings}>
                 {this.props.items.map(function (item) {
                     var thumbnailUrl = (
-                        '//cdn2.scratch.mit.edu/get_image/' + item.type + '/' + item.id + '_' +
+                        process.env.IMAGE_HOST + '/get_image/' + item.type + '/' + item.id + '_' +
                         this.typeDimensions[item.type][0] + 'x' + this.typeDimensions[item.type][1] + '.png' +
                         '?v=' + item.thumbnailVersion
                     );

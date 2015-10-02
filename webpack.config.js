@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var routes = require('./server/routes.json');
+var buildEnv = require('./src/env.json');
 
 // Prepare all entry points
 var entry = {
@@ -48,6 +49,12 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': Object.keys(buildEnv).reduce(function (env, key) {
+                env[key] = JSON.stringify(process.env[key] || env[key]);
+                return env;
+            }, buildEnv)
+        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
