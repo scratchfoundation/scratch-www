@@ -6,7 +6,8 @@ require('./login.scss');
 
 module.exports = React.createClass({
     propTypes: {
-        onLogIn: React.PropTypes.func
+        onLogIn: React.PropTypes.func,
+        error: React.PropTypes.string
     },
     handleSubmit: function (event) {
         event.preventDefault();
@@ -16,6 +17,10 @@ module.exports = React.createClass({
         });
     },
     render: function () {
+        var error;
+        if (this.props.error) {
+            error = <div className="error">{this.props.error}</div>;
+        }
         return (
             <div className="login">
                 <form onSubmit={this.handleSubmit}>
@@ -25,6 +30,7 @@ module.exports = React.createClass({
                     <Input type="password" ref="password" name="password" />
                     <Button className="submit-button white" type="submit">Sign in</Button>
                     <a className="right" href="/accounts/password_reset/">Forgot password?</a>
+                    {error}
                 </form>
             </div>
         );

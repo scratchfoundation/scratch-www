@@ -3,21 +3,25 @@ var classNames = require('classnames');
 var cookie = require('cookie');
 var xhr = require('xhr');
 
+var Api = require('../../mixins/api.jsx');
+var Session = require('../../mixins/session.jsx');
+
 var Avatar = require('../avatar/avatar.jsx');
 var Dropdown = require('./dropdown.jsx');
 var Input = require('../forms/input.jsx');
 var Login = require('../login/login.jsx');
-var Session = require('../../mixins/session.jsx');
 
 require('./navigation.scss');
 
 module.exports = React.createClass({
     mixins: [
+        Api,
         Session
     ],
     getInitialState: function () {
         return {
             'loginOpen': false,
+            'loginError': null,
             'accountNavOpen': false
         };
     },
@@ -31,17 +35,18 @@ module.exports = React.createClass({
     handleLogIn: function (formData) {
         var csrftoken = cookie.parse(document.cookie)['scratchcsrftoken'];
         formData['csrftoken'] = csrftoken;
-        xhr({
+        this.api({
             method: 'post',
             uri: '/accounts/login/',
             json: formData,
-            headers: {
-                'X-CSRFToken': csrftoken,
-                'X-Requested-With': 'XMLHttpRequest'
+            headers: {'X-CSRFToken': csrftoken}
+        }, function (err, body) {
+            body = body[0];
+            if (!body.success) {
+                this.setState({'loginError': body.msg});
             }
-        }, function () {
             window.refreshSession();
-        });
+        }.bind(this));
     },
     handleLogOut: function () {
         xhr({
@@ -116,7 +121,9 @@ module.exports = React.createClass({
                                     className="login-dropdown with-arrow"
                                     isOpen={this.state.loginOpen}
                                     onRequestClose={this.closeLogin}>
-                                <Login onLogIn={this.handleLogIn} />
+                                <Login
+                                    onLogIn={this.handleLogIn}
+                                    error={this.state.loginError} />
                             </Dropdown>
                         </li>
                     ]}
