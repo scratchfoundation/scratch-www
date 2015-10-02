@@ -9,12 +9,19 @@ window.updateSession = function (session) {
     window.dispatchEvent(sessionEvent);
 };
 
-window.refreshSession = function () {
+window.refreshSession = function (iteration) {
+    if (!iteration) iteration = 1;
     api({
         uri: '/session/',
         responseType: 'json'
-    }, function (err, res) {
-        if (!err) window.updateSession(res);
+    }, function (err, body) {
+        if (err) {
+            var timeout = Math.floor(Math.pow(Math.E, iteration));
+            if (!isFinite(timeout)) return;
+            window.setTimeout(window.refreshSession.bind(window, iteration+1), timeout);
+        } else {
+            window.updateSession(body);
+        }
     });
 };
 
