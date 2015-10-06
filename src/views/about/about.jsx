@@ -22,17 +22,17 @@ var View = React.createClass({
                     <div className="leftcolumn">
                         <h2>Who Uses Scratch?</h2>
                         <br></br>
-                        <img src="//cdn.scratch.mit.edu/scratchr2/static/__f16bf09cb38e691ec567439a64899384__//images/help/about-1.jpg"></img>
+                        <img src="/images/about/who-uses-scratch.jpg"></img>
                         <p>Scratch is designed especially for ages 8 to 16, but is used by people of all ages. Millions of people are creating Scratch projects in a wide variety of settings, including homes, schools, museums, libraries, and community centers.</p>
                         <br></br>
                         <h2>Around the World</h2>
                         <br></br>
-                        <img src="https://cdn.scratch.mit.edu/scratchr2/static/__f16bf09cb38e691ec567439a64899384__//images/help/about-2.png"></img>
+                        <img src="/images/about/around-the-world.png"></img>
                         <p>Scratch is used in more than 150 different countries and available in more than 40 languages. To change languages, click the menu at the bottom of the page. Or, in the Project Editor, click the globe at the top of the page. To add or improve a translation, see the <b><a href="http://wiki.scratch.mit.edu/wiki/How_to_Translate_Scratch">translation</a></b> page.</p>
                         <br></br>
                         <h2>Quotes</h2>
                         <br></br>
-                        <img src="https://cdn.scratch.mit.edu/scratchr2/static/__f16bf09cb38e691ec567439a64899384__//images/help/quotes.gif"></img>
+                        <img src="images/about/quotes.gif"></img>
                         <p>The Scratch Team has received many emails from youth, parents, and educators expressing thanks for Scratch. Want to see what people are saying? You can read a collection of the <b><a href="/info/quotes">quotes</a></b> we&#39;ve received.</p>
                         <br></br>
                         <h2>Learn More About Scratch</h2>
@@ -56,12 +56,12 @@ var View = React.createClass({
                         <br></br>
                         <h2>Scratch in Schools</h2>
                         <br></br>
-                        <img src="https://cdn.scratch.mit.edu/scratchr2/static/__f16bf09cb38e691ec567439a64899384__//images/help/about-3.jpg"></img>
+                        <img src="/images/about/scratch-in-schools.jpg"></img>
                         <p>Students are learning with Scratch at all levels (from elementary school to college) and across disciplines (such as math, computer science, language arts, social studies). Educators share stories, exchange resources, ask questions, and find people on the <b><a href="http://scratched.gse.harvard.edu/">ScratchEd website</a></b>.</p>
                         <br></br>
                         <h2>Research</h2>
                         <br></br>
-                        <img src="https://cdn.scratch.mit.edu/scratchr2/static/__f16bf09cb38e691ec567439a64899384__//images/help/research-remix.png"></img>
+                        <img src="/images/about/research-remix.png"></img>
                         <p>The MIT Scratch Team and collaborators are researching how people use and learn with Scratch (for an introduction, see <a href="http://web.media.mit.edu/~mres/papers/Scratch-CACM-final.pdf"><b>Scratch: Programming for All</b></a>). Find out more about Scratch <b><a href="/info/research">research</a></b> and <b><a href="/statistics">statistics</a></b> about Scratch.</p>
                         <br></br>
                         <h2>Support and Funding</h2>
