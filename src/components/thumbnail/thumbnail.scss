@@ -1,9 +1,7 @@
 @import "../../colors";
 
 .thumbnail {
-    .thumbnail-image,
-    .thumbnail-title,
-    .thumbnail-extra {
+    .thumbnail-image {
         display: block;
     }
 
@@ -12,24 +10,51 @@
         border: 1px solid $ui-border;
     }
 
+    $extras: ".thumbnail-creator, .thumbnail-loves, .thumbnail-remixes";
+
     .thumbnail-title,
-    .thumbnail-extra {
+    #{$extras} {
         line-height: normal;
         word-wrap: break-word;
     }
 
     .thumbnail-title {
         margin-bottom: 1px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
         font-size: .9230em;
         font-weight: 800;
+
+        a {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     }
 
-    .thumbnail-extra {
+    #{$extras} {
         color: $type-gray;
         font-size: .8462em;
     }
 
+    &.project {
+        $project-width: 144px;
+        $project-height: 108px;
+        width: $project-width;
+
+        img {
+            width: $project-width;
+            height: $project-height;
+        }
+    }
+
+    &.gallery {
+        $gallery-width: 170px;
+        $gallery-height: 100px;
+        width: $gallery-width;
+
+        img {
+            width: $gallery-width;
+            height: $gallery-height;
+        }
+    }
 }

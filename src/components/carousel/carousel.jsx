@@ -28,12 +28,24 @@ module.exports = React.createClass({
         return (
             <Slider className={'carousel ' + this.props.className} {... this.props.settings}>
                 {this.props.items.map(function (item) {
+                    var href = '';
+                    switch (item.type) {
+                    case 'gallery':
+                        href = '/studio/' + item.id + '/';
+                        break;
+                    default:
+                        href = '/' + item.type + '/' + item.id + '/';
+                    }
+
                     return (
                         <Thumbnail key={item.id}
-                                   href={item.href}
+                                   type={item.type}
+                                   href={href}
                                    title={item.title}
                                    src={item.thumbnailUrl}
-                                   extra={item.creator ? 'by ' + item.creator:null} />
+                                   creator={item.creator}
+                                   remixes={item.remixes}
+                                   loves={item.loves} />
                     );
                 })}
             </Slider>
