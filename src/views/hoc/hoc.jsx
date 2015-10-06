@@ -38,9 +38,9 @@ var View = React.createClass({
 
                 <ul className="sub-nav">
                     <li className="info">Find out more:</li>
-                    <a href=""><li className="link">About Scratch</li></a>
-                    <a href=""><li className="link">For Parents</li></a>
-                    <a href=""><li className="link">For Educators</li></a>
+                    <a href="#"><li className="link">About Scratch</li></a>
+                    <a href="#"><li className="link">For Parents</li></a>
+                    <a href="#"><li className="link">For Educators</li></a>
                 </ul>
                 </div>
 
@@ -50,27 +50,27 @@ var View = React.createClass({
                             <div className="column">
                                 <h3>Related Resources</h3>
                                 <p>Below are some resources to help explore Scratch by yourself or to assist groups in
-                                workshops and classrooms <a href="">Find out more</a></p>
+                                workshops and classrooms <a href="#">Find out more</a></p>
                             </div>
 
                             <div className="resource">
                                     <img src="/svgs/tips-card.svg" />
                                     <div className="resource-info">
-                                        <a href="">Hide & Seek Tip Cards</a>
+                                        <a href="#">Hide & Seek Tip Cards</a>
                                         <div className="file-size">13mbs</div>
                                     </div>
                             </div>
                             <div className="resource">
                                     <img src="/svgs/tips-card.svg" />
                                     <div className="resource-info">
-                                        <a href="">Dance Tip Cards</a>
+                                        <a href="#">Dance Tip Cards</a>
                                         <div className="file-size">5mbs</div>
                                     </div>
                             </div>
                             <div className="resource">
                                     <img src="/svgs/tips-card.svg" />
                                     <div className="resource-info">
-                                        <a href="">Name Tip Cards</a>
+                                        <a href="#">Name Tip Cards</a>
                                         <div className="file-size">11mbs</div>
                                     </div>
                             </div>
@@ -80,7 +80,7 @@ var View = React.createClass({
                             <div className="column">
                                 <h3>Tips Window</h3>
                                 <p>New to Scratch or haven’t heard of the Tips Window? Check out interactive tutorials,
-                                handy block information, and other helpful hints all in the new 2015 <a href="">Tips
+                                handy block information, and other helpful hints all in the new 2015 <a href="#">Tips
                                 Window</a></p>
                             </div>
                             <div className="column">
@@ -92,7 +92,7 @@ var View = React.createClass({
                             <div className="column">
                                 <h3>Still Want More?</h3>
                                 <p><strong>Awesome!</strong> Here are some addtional tutorials
-                                from the Tips Window. <a href="">See all tips</a></p>
+                                from the Tips Window. <a href="#">See all tips</a></p>
                             </div>
                         </section>
                     </Box>
