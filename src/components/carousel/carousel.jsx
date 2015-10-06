@@ -24,19 +24,10 @@ module.exports = React.createClass({
             }
         };
     },
-    typeDimensions: {
-        'project': [144, 108],
-        'gallery': [170, 100]
-    },
     render: function () {
         return (
             <Slider className={'carousel ' + this.props.className} {... this.props.settings}>
                 {this.props.items.map(function (item) {
-                    var thumbnailUrl = (
-                        process.env.IMAGE_HOST + '/get_image/' + item.type + '/' + item.id + '_' +
-                        this.typeDimensions[item.type][0] + 'x' + this.typeDimensions[item.type][1] + '.png' +
-                        '?v=' + item.thumbnailVersion
-                    );
                     var href = '';
                     switch (item.type) {
                     case 'gallery':
@@ -51,12 +42,12 @@ module.exports = React.createClass({
                                    type={item.type}
                                    href={href}
                                    title={item.title}
-                                   src={thumbnailUrl}
+                                   src={item.thumbnailUrl}
                                    creator={item.creator}
                                    remixes={item.remixes}
                                    loves={item.loves} />
                     );
-                }.bind(this))}
+                })}
             </Slider>
         );
     }
