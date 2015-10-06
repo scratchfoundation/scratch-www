@@ -33,7 +33,11 @@ if ( process.env.NODE_ENV != 'production' ) {
         var proxyRoute = proxies[proxyId];
         app.use(proxyRoute.root, proxy(proxyRoute.proxy || proxyHost, {
             filter: function (req) {
-                return proxyRoute.paths.indexOf(url.parse(req.url).path) > -1;
+                for (var pathId in proxyRoute.paths) {
+                    var path = proxyRoute.paths[pathId];
+                    if (url.parse(req.url).path.indexOf(path) == 0) return true;
+                }
+                return false;
             },
             forwardPath: function (req) {
                 return url.parse(req.url).path;

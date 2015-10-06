@@ -4,7 +4,8 @@
         "paths": [
             "/session/",
             "/accounts/login/",
-            "/accounts/logout/"
+            "/accounts/logout/",
+            "/get_image/"
         ]
     }
 ]

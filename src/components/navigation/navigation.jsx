@@ -95,10 +95,7 @@ module.exports = React.createClass({
                         </li>,
                         <li className="link right account-nav" key="account-nav">
                             <a className="userInfo" href="#" onClick={this.handleClickAccountNav}>
-                                <Avatar
-                                    userId={this.state.session.user.id}
-                                    version={this.state.session.user.avatarVersion}
-                                    size={24} />
+                                <Avatar src={this.state.session.user.thumbnailUrl} />
                                 {this.state.session.user.username}
                             </a>
                             <Dropdown
