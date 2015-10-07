@@ -1,18 +1,18 @@
 var defaults = require('lodash.defaults');
 var xhr = require('xhr');
+var log = require('../log.js');
 
 module.exports = {
     api: function (opts, callback) {
-        opts = defaults(opts, {responseType: 'json'});
+        opts = defaults(opts, {json: {}});
         opts.headers = defaults(opts.headers, {'X-Requested-With': 'XMLHttpRequest'});
         xhr(opts, function (err, res, body) {
             if (err) {
-                // emit global "error" event
-                return callback(err);
+                log.error(err);
+                callback(err);
+            } else {
+                callback(err, body);
             }
-
-            // @todo Global error handler
-            callback(err, body);
-        }.bind(this));
+        });
     }
 };

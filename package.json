@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/llk/scratch-www#readme",
   "dependencies": {
-    "bunyan": "1.4.0",
+    "bunyan": "1.5.0",
     "compression": "1.5.2",
     "express": "4.13.3",
     "express-http-proxy": "0.6.0",
@@ -48,6 +48,7 @@
     "sass-lint": "1.2.0",
     "sass-loader": "2.0.1",
     "slick-carousel": "1.5.8",
+    "source-map-support": "0.3.2",
     "style-loader": "0.12.3",
     "tape": "4.2.0",
     "url-loader": "0.5.6",

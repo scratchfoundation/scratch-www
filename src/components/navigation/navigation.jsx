@@ -3,6 +3,8 @@ var classNames = require('classnames');
 var cookie = require('cookie');
 var xhr = require('xhr');
 
+var log = require('../../log.js');
+
 var Api = require('../../mixins/api.jsx');
 var Session = require('../../mixins/session.jsx');
 
@@ -41,18 +43,24 @@ module.exports = React.createClass({
             json: formData,
             headers: {'X-CSRFToken': csrftoken}
         }, function (err, body) {
-            body = body[0];
-            if (!body.success) {
-                this.setState({'loginError': body.msg});
+            if (body) {
+                body = body[0];
+                if (!body.success) {
+                    this.setState({'loginError': body.msg});
+                }
+                window.refreshSession();
             }
-            window.refreshSession();
         }.bind(this));
     },
     handleLogOut: function () {
         xhr({
             uri: '/accounts/logout/'
-        }, function () {
-            window.refreshSession();
+        }, function (err) {
+            if (err) {
+                log.error(err);
+            } else {
+                window.refreshSession();
+            }
         });
     },
     handleClickAccountNav: function () {
