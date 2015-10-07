@@ -70,10 +70,9 @@ module.exports = React.createClass({
         this.setState({'accountNavOpen': false});
     },
     render: function () {
-        var loggedIn = !!this.state.session.user;
         var classes = classNames({
             'inner': true,
-            'logged-in': this.state.loggedIn
+            'logged-in': this.state.session.user
         });
         return (
             <div className={classes}>
@@ -94,7 +93,7 @@ module.exports = React.createClass({
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
-                    {loggedIn ? [
+                    {this.state.session.user ? [
                         <li className="link right messages" key="messages">
                             <a href="/messages/" title="Messages">Messages</a>
                         </li>,
