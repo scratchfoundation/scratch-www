@@ -2,10 +2,11 @@
     {
         "root": "/",
         "paths": [
-            "/session/",
-            "/accounts/login/",
-            "/accounts/logout/",
-            "/get_image/"
+            "/accounts/",
+            "/accounts/",
+            "/csrf_token/",
+            "/get_image/",
+            "/session/"
         ]
     }
 ]

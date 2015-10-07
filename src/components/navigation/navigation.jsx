@@ -1,6 +1,5 @@
 var React = require('react');
 var classNames = require('classnames');
-var cookie = require('cookie');
 var xhr = require('xhr');
 
 var log = require('../../log.js');
@@ -35,13 +34,11 @@ module.exports = React.createClass({
         this.setState({'loginOpen': false});
     },
     handleLogIn: function (formData) {
-        var csrftoken = cookie.parse(document.cookie)['scratchcsrftoken'];
-        formData['csrftoken'] = csrftoken;
         this.api({
             method: 'post',
             uri: '/accounts/login/',
             json: formData,
-            headers: {'X-CSRFToken': csrftoken}
+            useCsrf: true
         }, function (err, body) {
             if (body) {
                 body = body[0];
