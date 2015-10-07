@@ -34,6 +34,7 @@ module.exports = React.createClass({
         this.setState({'loginOpen': false});
     },
     handleLogIn: function (formData) {
+        this.setState({'loginError': null});
         this.api({
             method: 'post',
             uri: '/accounts/login/',
@@ -44,8 +45,10 @@ module.exports = React.createClass({
                 body = body[0];
                 if (!body.success) {
                     this.setState({'loginError': body.msg});
+                } else {
+                    this.closeLogin();
+                    window.refreshSession();
                 }
-                window.refreshSession();
             }
         }.bind(this));
     },
@@ -56,9 +59,10 @@ module.exports = React.createClass({
             if (err) {
                 log.error(err);
             } else {
+                this.closeLogin();
                 window.refreshSession();
             }
-        });
+        }.bind(this));
     },
     handleClickAccountNav: function () {
         this.setState({'accountNavOpen': true});
