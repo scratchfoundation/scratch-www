@@ -30,11 +30,10 @@ var View = React.createClass({
         // @todo API request for Featured
     },
     render: function () {
-        var loggedIn = !!this.state.session.token;
         return (
             <div className="inner">
-                {loggedIn ? [
-                    <div className="splash-header">
+                {this.state.session.user ? [
+                    <div key="header" className="splash-header">
                         <Activity />
                         <News />
                     </div>

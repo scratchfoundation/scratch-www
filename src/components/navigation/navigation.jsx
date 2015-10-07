@@ -1,21 +1,28 @@
 var React = require('react');
 var classNames = require('classnames');
+var xhr = require('xhr');
+
+var log = require('../../log.js');
+
+var Api = require('../../mixins/api.jsx');
+var Session = require('../../mixins/session.jsx');
 
 var Avatar = require('../avatar/avatar.jsx');
 var Dropdown = require('./dropdown.jsx');
 var Input = require('../forms/input.jsx');
 var Login = require('../login/login.jsx');
-var Session = require('../../mixins/session.jsx');
 
 require('./navigation.scss');
 
 module.exports = React.createClass({
     mixins: [
+        Api,
         Session
     ],
     getInitialState: function () {
         return {
             'loginOpen': false,
+            'loginError': null,
             'accountNavOpen': false
         };
     },
@@ -26,13 +33,36 @@ module.exports = React.createClass({
     closeLogin: function () {
         this.setState({'loginOpen': false});
     },
-    handleLogIn: function () {
-        // @todo Use an api
-        window.updateSession(require('../../session.json'));
+    handleLogIn: function (formData) {
+        this.setState({'loginError': null});
+        this.api({
+            method: 'post',
+            uri: '/accounts/login/',
+            json: formData,
+            useCsrf: true
+        }, function (err, body) {
+            if (body) {
+                body = body[0];
+                if (!body.success) {
+                    this.setState({'loginError': body.msg});
+                } else {
+                    this.closeLogin();
+                    window.refreshSession();
+                }
+            }
+        }.bind(this));
     },
     handleLogOut: function () {
-        // @todo Use an api
-        window.updateSession({});
+        xhr({
+            uri: '/accounts/logout/'
+        }, function (err) {
+            if (err) {
+                log.error(err);
+            } else {
+                this.closeLogin();
+                window.refreshSession();
+            }
+        }.bind(this));
     },
     handleClickAccountNav: function () {
         this.setState({'accountNavOpen': true});
@@ -41,10 +71,9 @@ module.exports = React.createClass({
         this.setState({'accountNavOpen': false});
     },
     render: function () {
-        var loggedIn = !!this.state.session.token;
         var classes = classNames({
             'inner': true,
-            'logged-in': this.state.loggedIn
+            'logged-in': this.state.session.user
         });
         return (
             <div className={classes}>
@@ -65,7 +94,7 @@ module.exports = React.createClass({
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
-                    {loggedIn ? [
+                    {this.state.session.user ? [
                         <li className="link right messages" key="messages">
                             <a href="/messages/" title="Messages">Messages</a>
                         </li>,
@@ -74,10 +103,7 @@ module.exports = React.createClass({
                         </li>,
                         <li className="link right account-nav" key="account-nav">
                             <a className="userInfo" href="#" onClick={this.handleClickAccountNav}>
-                                <Avatar
-                                    userId={this.state.session.user.id}
-                                    version={this.state.session.user.avatarVersion}
-                                    size={24} />
+                                <Avatar src={this.state.session.user.thumbnailUrl} />
                                 {this.state.session.user.username}
                             </a>
                             <Dropdown
@@ -100,7 +126,9 @@ module.exports = React.createClass({
                                     className="login-dropdown with-arrow"
                                     isOpen={this.state.loginOpen}
                                     onRequestClose={this.closeLogin}>
-                                <Login onLogIn={this.handleLogIn} />
+                                <Login
+                                    onLogIn={this.handleLogIn}
+                                    error={this.state.loginError} />
                             </Dropdown>
                         </li>
                     ]}

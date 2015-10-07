@@ -48,6 +48,9 @@ module.exports = {
             }
         ]
     },
+    node: {
+        fs: 'empty'
+    },
     plugins: [
         new webpack.DefinePlugin({
             'process.env': Object.keys(buildEnv).reduce(function (env, key) {

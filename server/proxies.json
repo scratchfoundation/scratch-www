@@ -1,0 +1,12 @@
+[
+    {
+        "root": "/",
+        "paths": [
+            "/accounts/",
+            "/accounts/",
+            "/csrf_token/",
+            "/get_image/",
+            "/session/"
+        ]
+    }
+]
