@@ -37,6 +37,7 @@ module.exports = React.createClass({
         this.setState({'loginError': null});
         this.api({
             method: 'post',
+            host: '',
             uri: '/accounts/login/',
             json: formData,
             useCsrf: true
@@ -54,6 +55,7 @@ module.exports = React.createClass({
     },
     handleLogOut: function () {
         xhr({
+            host: '',
             uri: '/accounts/logout/'
         }, function (err) {
             if (err) {

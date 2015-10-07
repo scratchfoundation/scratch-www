@@ -25,6 +25,7 @@ module.exports = {
     },
     api: function (opts, callback) {
         defaults(opts, {
+            host: process.env.API_HOST,
             headers: {},
             json: {},
             useCsrf: false
@@ -33,6 +34,8 @@ module.exports = {
         defaults(opts.headers, {
             'X-Requested-With': 'XMLHttpRequest'
         });
+
+        opts.uri = opts.host + opts.uri;
 
         var apiRequest = function (opts) {
             xhr(opts, function (err, res, body) {

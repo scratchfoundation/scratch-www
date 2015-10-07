@@ -11,6 +11,7 @@ window.updateSession = function (session) {
 
 window.refreshSession = function () {
     api({
+        host: '',
         uri: '/session/'
     }, function (err, body) {
         window.updateSession(body);
