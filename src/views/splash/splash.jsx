@@ -24,8 +24,22 @@ var View = React.createClass({
             featured: require('./featured.json')
         };
     },
+    getNews: function () {
+        this.api({
+            uri: '/news?limit=3'
+        }, function (err, body) {
+            if (!err) this.setState({'news': body});
+        }.bind(this));
+    },
+    componentDidUpdate: function (prevProps, prevState) {
+        if (this.state.session.user != prevState.session.user && this.state.session.user) {
+            this.getNews();
+        }
+    },
     componentDidMount: function () {
-        // @todo API request for News
+        if (this.state.session.user) {
+            this.getNews();
+        }
         // @todo API request for Activity
         // @todo API request for Featured
     },
@@ -35,7 +49,7 @@ var View = React.createClass({
                 {this.state.session.user ? [
                     <div key="header" className="splash-header">
                         <Activity />
-                        <News />
+                        <News items={this.state.news} />
                     </div>
                 ] : [
                     <Intro projectCount={this.state.projectCount} key="intro"/>
