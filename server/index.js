@@ -27,8 +27,7 @@ for (var routeId in routes) {
 if ( process.env.NODE_ENV != 'production' ) {
     var proxies = require('./proxies.json');
     var url = require('url');
-    var proxyHost = process.env.PROXY_HOST || 'http://localhost';
-    proxyHost += ':' + (process.env.PROXY_PORT || 8080);
+    var proxyHost = process.env.PROXY_HOST || 'https://staging.scratch.mit.edu';
     for (var proxyId in proxies) {
         var proxyRoute = proxies[proxyId];
         app.use(proxyRoute.root, proxy(proxyRoute.proxy || proxyHost, {
