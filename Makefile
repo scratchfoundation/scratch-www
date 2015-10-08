@@ -29,8 +29,9 @@ watch:
 	wait
 
 stop:
-	pkill -f "node $(WEBPACK) -d --watch"
-	pkill -f "node $(WATCH) make clean && make static ./static"
+	-pkill -f "$(WEBPACK) -d --watch"
+	-pkill -f "$(WATCH) make clean && make static ./static"
+	-pkill -f "$(NODE) ./server/index.js"
 
 start:
 	$(NODE) ./server/index.js
