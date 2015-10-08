@@ -36,7 +36,7 @@ module.exports = React.createClass({
     },
     handleLoginClick: function (e) {
         e.preventDefault();
-        this.setState({'loginOpen': true});
+        this.setState({'loginOpen': !this.state.loginOpen});
     },
     closeLogin: function () {
         this.setState({'loginOpen': false});
@@ -129,7 +129,10 @@ module.exports = React.createClass({
                     ] : [
                         <li className="link right join" key="join"><a href="/join">Join Scratch</a></li>,
                         <li className="link right" key="login">
-                            <a href="#" onClick={this.handleLoginClick}>Sign In</a>
+                            <a
+                                href="#"
+                                onClick={this.handleLoginClick}
+                                className="ignore-react-onclickoutside">Sign In</a>
                             <Dropdown
                                     className="login-dropdown with-arrow"
                                     isOpen={this.state.loginOpen}
