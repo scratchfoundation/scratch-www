@@ -33,6 +33,9 @@ module.exports = React.createClass({
                     case 'gallery':
                         href = '/studio/' + item.id + '/';
                         break;
+                    case 'project':
+                        href = '/projects/' + item.id + '/';
+                        break;
                     default:
                         href = '/' + item.type + '/' + item.id + '/';
                     }
