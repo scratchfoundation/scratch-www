@@ -26,9 +26,17 @@ module.exports = React.createClass({
             'accountNavOpen': false
         };
     },
+    componentDidUpdate: function (prevProps, prevState) {
+        if (prevState.session.user != this.state.session.user) {
+            this.setState({
+                'loginOpen': false,
+                'accountNavOpen': false
+            });
+        }
+    },
     handleLoginClick: function (e) {
         e.preventDefault();
-        this.setState({'loginOpen': true});
+        this.setState({'loginOpen': !this.state.loginOpen});
     },
     closeLogin: function () {
         this.setState({'loginOpen': false});
@@ -53,7 +61,8 @@ module.exports = React.createClass({
             }
         }.bind(this));
     },
-    handleLogOut: function () {
+    handleLogOut: function (e) {
+        e.preventDefault();
         xhr({
             host: '',
             uri: '/accounts/logout/'
@@ -66,7 +75,8 @@ module.exports = React.createClass({
             }
         }.bind(this));
     },
-    handleClickAccountNav: function () {
+    handleAccountNavClick: function (e) {
+        e.preventDefault();
         this.setState({'accountNavOpen': true});
     },
     closeAccountNav: function () {
@@ -83,7 +93,7 @@ module.exports = React.createClass({
                     <li className="logo"><a href="/"></a></li>
                     
                     <li className="link"><a href="/projects/editor">Create</a></li>
-                    <li className="link"><a href="/explore">Explore</a></li>
+                    <li className="link"><a href="/explore?date=this_month">Explore</a></li>
                     <li className="link"><a href="/discuss">Discuss</a></li>
                     <li className="link"><a href="/about">About</a></li>
                     <li className="link"><a href="/help">Help</a></li>
@@ -104,7 +114,7 @@ module.exports = React.createClass({
                             <a href="/mystuff/" title="My Stuff">My Stuff</a>
                         </li>,
                         <li className="link right account-nav" key="account-nav">
-                            <a className="userInfo" href="#" onClick={this.handleClickAccountNav}>
+                            <a className="userInfo" href="#" onClick={this.handleAccountNavClick}>
                                 <Avatar src={this.state.session.user.thumbnailUrl} />
                                 {this.state.session.user.username}
                             </a>
@@ -123,7 +133,10 @@ module.exports = React.createClass({
                     ] : [
                         <li className="link right join" key="join"><a href="/join">Join Scratch</a></li>,
                         <li className="link right" key="login">
-                            <a href="#" onClick={this.handleLoginClick}>Sign In</a>
+                            <a
+                                href="#"
+                                onClick={this.handleLoginClick}
+                                className="ignore-react-onclickoutside">Sign In</a>
                             <Dropdown
                                     className="login-dropdown with-arrow"
                                     isOpen={this.state.loginOpen}
