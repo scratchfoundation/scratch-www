@@ -60,7 +60,8 @@ module.exports = React.createClass({
             }
         }.bind(this));
     },
-    handleLogOut: function () {
+    handleLogOut: function (e) {
+        e.preventDefault();
         xhr({
             uri: '/accounts/logout/'
         }, function (err) {
@@ -72,7 +73,8 @@ module.exports = React.createClass({
             }
         }.bind(this));
     },
-    handleClickAccountNav: function () {
+    handleAccountNavClick: function (e) {
+        e.preventDefault();
         this.setState({'accountNavOpen': true});
     },
     closeAccountNav: function () {
@@ -110,7 +112,7 @@ module.exports = React.createClass({
                             <a href="/mystuff/" title="My Stuff">My Stuff</a>
                         </li>,
                         <li className="link right account-nav" key="account-nav">
-                            <a className="userInfo" href="#" onClick={this.handleClickAccountNav}>
+                            <a className="userInfo" href="#" onClick={this.handleAccountNavClick}>
                                 <Avatar src={this.state.session.user.thumbnailUrl} />
                                 {this.state.session.user.username}
                             </a>
