@@ -1,4 +1,4 @@
-module.exports = {
+var Session = {
     getInitialState: function () {
         return {
             session: window._session
@@ -11,3 +11,5 @@ module.exports = {
         window.addEventListener('session', this.updateSession);
     }
 };
+
+module.exports = Session;

@@ -3,7 +3,7 @@ var classNames = require('classnames');
 
 require('./dropdown.scss');
 
-module.exports = React.createClass({
+var Dropdown = React.createClass({
     mixins: [
         require('react-onclickoutside')
     ],
@@ -35,3 +35,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Dropdown;

@@ -1,7 +1,7 @@
 var React = require('react');
 var classNames = require('classnames');
 
-module.exports = React.createClass({
+var Avatar = React.createClass({
     propTypes: {
         src: React.PropTypes.string
     },
@@ -18,3 +18,5 @@ module.exports = React.createClass({
         return <img {... this.props} className={classes} />;
     }
 });
+
+module.exports = Avatar;

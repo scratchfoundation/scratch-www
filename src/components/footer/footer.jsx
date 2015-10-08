@@ -2,7 +2,7 @@ var React = require('react');
 
 require('./footer.scss');
 
-module.exports = React.createClass({
+var Footer = React.createClass({
     render: function () {
         return (
             <div className="inner">
@@ -58,3 +58,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Footer;

@@ -4,7 +4,7 @@ var Box = require('../box/box.jsx');
 
 require('./news.scss');
 
-module.exports = React.createClass({
+var News = React.createClass({
     propTypes: {
         items: React.PropTypes.array
     },
@@ -38,3 +38,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = News;
