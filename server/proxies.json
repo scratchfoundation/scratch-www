@@ -3,10 +3,11 @@
         "root": "/",
         "paths": [
             "/accounts/",
-            "/accounts/",
             "/csrf_token/",
+            "/fragment/",
             "/get_image/",
-            "/session/"
+            "/session/",
+            "/static/"
         ]
     }
 ]

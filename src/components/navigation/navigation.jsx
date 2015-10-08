@@ -11,6 +11,7 @@ var Avatar = require('../avatar/avatar.jsx');
 var Dropdown = require('./dropdown.jsx');
 var Input = require('../forms/input.jsx');
 var Login = require('../login/login.jsx');
+var Registration = require('../registration/registration.jsx');
 
 require('./navigation.scss');
 
@@ -22,9 +23,10 @@ var Navigation = React.createClass({
     ],
     getInitialState: function () {
         return {
+            'accountNavOpen': false,
             'loginOpen': false,
             'loginError': null,
-            'accountNavOpen': false
+            'registrationOpen': false
         };
     },
     componentDidUpdate: function (prevProps, prevState) {
@@ -38,6 +40,10 @@ var Navigation = React.createClass({
     getProfileUrl: function () {
         if (!this.state.session.user) return;
         return '/users/' + this.state.session.user.username + '/';
+    },
+    handleJoinClick: function (e) {
+        e.preventDefault();
+        this.setState({'registrationOpen': true});
     },
     handleLoginClick: function (e) {
         e.preventDefault();
@@ -86,6 +92,9 @@ var Navigation = React.createClass({
     },
     closeAccountNav: function () {
         this.setState({'accountNavOpen': false});
+    },
+    closeRegistration: function () {
+        this.setState({'registrationOpen': false});
     },
     render: function () {
         var classes = classNames({
@@ -136,7 +145,13 @@ var Navigation = React.createClass({
                             </Dropdown>
                         </li>
                     ] : [
-                        <li className="link right join" key="join"><a href="/join">Join Scratch</a></li>,
+                        <li className="link right join" key="join">
+                            <a href="#" onClick={this.handleJoinClick}>Join Scratch</a>
+                        </li>,
+                        <Registration
+                                key="registration"
+                                isOpen={this.state.registrationOpen}
+                                onRequestClose={this.closeRegistration} />,
                         <li className="link right login-item" key="login">
                             <a
                                 href="#"
