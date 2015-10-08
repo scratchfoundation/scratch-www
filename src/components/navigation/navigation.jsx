@@ -26,6 +26,14 @@ module.exports = React.createClass({
             'accountNavOpen': false
         };
     },
+    componentDidUpdate: function (prevProps, prevState) {
+        if (prevState.session.user != this.state.session.user) {
+            this.setState({
+                'loginOpen': false,
+                'accountNavOpen': false
+            });
+        }
+    },
     handleLoginClick: function (e) {
         e.preventDefault();
         this.setState({'loginOpen': true});
