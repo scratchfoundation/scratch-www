@@ -91,7 +91,7 @@ module.exports = React.createClass({
                     <li className="logo"><a href="/"></a></li>
                     
                     <li className="link"><a href="/projects/editor">Create</a></li>
-                    <li className="link"><a href="/explore">Explore</a></li>
+                    <li className="link"><a href="/explore?date=this_month">Explore</a></li>
                     <li className="link"><a href="/discuss">Discuss</a></li>
                     <li className="link"><a href="/about">About</a></li>
                     <li className="link"><a href="/help">Help</a></li>
