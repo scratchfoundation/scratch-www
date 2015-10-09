@@ -5,7 +5,7 @@ require('./registration.scss');
 
 Modal.setAppElement(document.getElementById('view'));
 
-module.exports = React.createClass({
+var Registration = React.createClass({
     propTypes: {
         isOpen: React.PropTypes.bool,
         onRegistrationDone: React.PropTypes.func,
@@ -32,3 +32,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Registration;
