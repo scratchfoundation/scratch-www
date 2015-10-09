@@ -92,11 +92,11 @@ var Navigation = React.createClass({
                 <ul>
                     <li className="logo"><a href="/"></a></li>
                     
-                    <li className="link"><a href="/projects/editor">Create</a></li>
-                    <li className="link"><a href="/explore?date=this_month">Explore</a></li>
-                    <li className="link"><a href="/discuss">Discuss</a></li>
-                    <li className="link"><a href="/about">About</a></li>
-                    <li className="link"><a href="/help">Help</a></li>
+                    <li className="link create"><a href="/projects/editor">Create</a></li>
+                    <li className="link explore"><a href="/explore?date=this_month">Explore</a></li>
+                    <li className="link discuss"><a href="/discuss">Discuss</a></li>
+                    <li className="link about"><a href="/about">About</a></li>
+                    <li className="link help"><a href="/help">Help</a></li>
 
                     <li className="search">
                         <form action="/search/google_results" method="get">
@@ -132,7 +132,7 @@ var Navigation = React.createClass({
                         </li>
                     ] : [
                         <li className="link right join" key="join"><a href="/join">Join Scratch</a></li>,
-                        <li className="link right" key="login">
+                        <li className="link right login" key="login">
                             <a
                                 href="#"
                                 onClick={this.handleLoginClick}
