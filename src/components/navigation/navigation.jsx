@@ -96,6 +96,10 @@ var Navigation = React.createClass({
     closeRegistration: function () {
         this.setState({'registrationOpen': false});
     },
+    completeRegistration: function () {
+        window.refreshSession();
+        this.closeRegistration();
+    },
     render: function () {
         var classes = classNames({
             'inner': true,
@@ -151,7 +155,8 @@ var Navigation = React.createClass({
                         <Registration
                                 key="registration"
                                 isOpen={this.state.registrationOpen}
-                                onRequestClose={this.closeRegistration} />,
+                                onRequestClose={this.closeRegistration}
+                                onRegistrationDone={this.completeRegistration} />,
                         <li className="link right login-item" key="login">
                             <a
                                 href="#"
