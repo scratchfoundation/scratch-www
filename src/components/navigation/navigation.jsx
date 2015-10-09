@@ -14,7 +14,7 @@ var Login = require('../login/login.jsx');
 
 require('./navigation.scss');
 
-module.exports = React.createClass({
+var Navigation = React.createClass({
     mixins: [
         Api,
         Session
@@ -152,3 +152,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Navigation;

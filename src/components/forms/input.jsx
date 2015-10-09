@@ -3,7 +3,7 @@ var classNames = require('classnames');
 
 require('./input.scss');
 
-module.exports = React.createClass({
+var Input = React.createClass({
     propTypes: {
         
     },
@@ -17,3 +17,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Input;

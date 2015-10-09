@@ -5,7 +5,7 @@ var Format = require('../../lib/format.js');
 
 require('./activity.scss');
 
-module.exports = React.createClass({
+var Activity = React.createClass({
     propTypes: {
         items: React.PropTypes.array
     },
@@ -37,3 +37,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Activity;

@@ -3,7 +3,7 @@ var classNames = require('classnames');
 
 require('./thumbnail.scss');
 
-module.exports = React.createClass({
+var Thumbnail = React.createClass({
     propTypes: {
         src: React.PropTypes.string
     },
@@ -52,3 +52,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Thumbnail;

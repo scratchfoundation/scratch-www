@@ -4,7 +4,7 @@ var Button = require('../forms/button.jsx');
 
 require('./login.scss');
 
-module.exports = React.createClass({
+var Login = React.createClass({
     propTypes: {
         onLogIn: React.PropTypes.func,
         error: React.PropTypes.string
@@ -36,3 +36,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Login;

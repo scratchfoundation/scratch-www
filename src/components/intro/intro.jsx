@@ -5,7 +5,7 @@ require('./intro.scss');
 
 Modal.setAppElement(document.getElementById('view'));
 
-module.exports = React.createClass({
+var Intro = React.createClass({
     propTypes: {
         projectCount: React.PropTypes.number
     },
@@ -91,3 +91,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Intro;

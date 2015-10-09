@@ -1,3 +1,4 @@
 var bunyan = require('bunyan');
 
-module.exports = bunyan.createLogger({name: 'scratch-www'});
+var Logger = bunyan.createLogger({name: 'scratch-www'});
+module.exports = Logger;

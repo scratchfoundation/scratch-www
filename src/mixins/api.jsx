@@ -3,7 +3,7 @@ var defaults = require('lodash.defaults');
 var xhr = require('xhr');
 var log = require('../log.js');
 
-module.exports = {
+var Api = {
     getCsrf: function (callback) {
         var obj = cookie.parse(document.cookie) || {};
         if (typeof obj.scratchcsrftoken === 'undefined') return callback('Cookie not found.');
@@ -56,3 +56,5 @@ module.exports = {
         }
     }
 };
+
+module.exports = Api;

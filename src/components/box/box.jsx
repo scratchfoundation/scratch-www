@@ -2,7 +2,7 @@ var React = require('react');
 
 require('./box.scss');
 
-module.exports = React.createClass({
+var Box = React.createClass({
     propTypes: {
         title: React.PropTypes.string.isRequired,
         moreTitle: React.PropTypes.string,
@@ -27,3 +27,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Box;
