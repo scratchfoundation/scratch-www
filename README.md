@@ -16,7 +16,18 @@ During development, you can use `npm run watch` to cause any update you make to 
 npm start
 ```
 
+or to start and watch at once
+```bash
+npm run dev
+```
+
 Once running, open `http://localhost:8333` in your browser. If you wish to have the server reload automatically, you can install either [nodemon](https://github.com/remy/nodemon) or [forever](https://github.com/foreverjs/forever).
+
+### To stop
+```bash
+# Stops all `start` and `watch` processes
+npm stop
+```
 
 #### Configuration
 
