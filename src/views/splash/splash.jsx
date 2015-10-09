@@ -11,7 +11,8 @@ var News = require('../../components/news/news.jsx');
 
 require('./splash.scss');
 
-var View = React.createClass({
+var Splash = React.createClass({
+    type: 'Splash',
     mixins: [
         Api,
         Session
@@ -71,4 +72,9 @@ var View = React.createClass({
     }
 });
 
-React.render(<View />, document.getElementById('view'));
+var renderedView = React.render(<Splash />, document.getElementById('view'));
+
+if (process.env.NODE_ENV != 'production') {
+    window.renderedComponents = window.renderedComponents || [];
+    window.renderedComponents.push(renderedView);
+}

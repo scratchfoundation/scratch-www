@@ -4,6 +4,7 @@ var classNames = require('classnames');
 require('./thumbnail.scss');
 
 var Thumbnail = React.createClass({
+    type: 'Thumbnail',
     propTypes: {
         src: React.PropTypes.string
     },

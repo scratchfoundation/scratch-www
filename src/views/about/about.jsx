@@ -2,7 +2,8 @@ var React = require('react');
 
 require('./about.scss');
 
-var View = React.createClass({
+var About = React.createClass({
+    type: 'About',
     render: function () {
         return (
             <div>
@@ -12,4 +13,9 @@ var View = React.createClass({
     }
 });
 
-React.render(<View />, document.getElementById('view'));
+var renderedView = React.render(<About />, document.getElementById('view'));
+
+if (process.env.NODE_ENV != 'production') {
+    window.renderedComponents = window.renderedComponents || [];
+    window.renderedComponents.push(renderedView);
+}

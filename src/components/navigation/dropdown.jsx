@@ -4,6 +4,7 @@ var classNames = require('classnames');
 require('./dropdown.scss');
 
 var Dropdown = React.createClass({
+    type: 'Dropdown',
     mixins: [
         require('react-onclickoutside')
     ],

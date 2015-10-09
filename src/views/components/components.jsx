@@ -8,7 +8,8 @@ var Input = require('../../components/forms/input.jsx');
 
 require('./components.scss');
 
-var View = React.createClass({
+var Components = React.createClass({
+    type: 'Components',
     render: function () {
         return (
             <div className="inner">
@@ -35,4 +36,9 @@ var View = React.createClass({
     }
 });
 
-React.render(<View />, document.getElementById('view'));
+var renderedView = React.render(<Components />, document.getElementById('view'));
+
+if (process.env.NODE_ENV != 'production') {
+    window.renderedComponents = window.renderedComponents || [];
+    window.renderedComponents.push(renderedView);
+}

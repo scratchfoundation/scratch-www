@@ -4,6 +4,7 @@ var classNames = require('classnames');
 require('./input.scss');
 
 var Input = React.createClass({
+    type: 'Input',
     propTypes: {
         
     },

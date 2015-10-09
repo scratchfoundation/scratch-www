@@ -6,6 +6,7 @@ var Format = require('../../lib/format.js');
 require('./activity.scss');
 
 var Activity = React.createClass({
+    type: 'Activity',
     propTypes: {
         items: React.PropTypes.array
     },

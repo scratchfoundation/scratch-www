@@ -4,6 +4,7 @@ var classNames = require('classnames');
 require('./button.scss');
 
 var Button = React.createClass({
+    type: 'Button',
     propTypes: {
         
     },

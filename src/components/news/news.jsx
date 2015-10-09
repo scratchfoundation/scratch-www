@@ -5,6 +5,7 @@ var Box = require('../box/box.jsx');
 require('./news.scss');
 
 var News = React.createClass({
+    type: 'News',
     propTypes: {
         items: React.PropTypes.array
     },

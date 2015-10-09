@@ -2,6 +2,7 @@ var React = require('react');
 var classNames = require('classnames');
 
 var Avatar = React.createClass({
+    type: 'Avatar',
     propTypes: {
         src: React.PropTypes.string
     },

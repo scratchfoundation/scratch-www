@@ -5,7 +5,8 @@ require('./hoc.scss');
 var Button = require('../../components/forms/button.jsx');
 var Box = require('../../components/box/box.jsx');
 
-var View = React.createClass({
+var Hoc = React.createClass({
+    type: 'Hoc',
     render: function () {
         return (
             <div>
@@ -103,4 +104,9 @@ var View = React.createClass({
     }
 });
 
-React.render(<View />, document.getElementById('view'));
+var renderedView = React.render(<Hoc />, document.getElementById('view'));
+
+if (process.env.NODE_ENV != 'production') {
+    window.renderedComponents = window.renderedComponents || [];
+    window.renderedComponents.push(renderedView);
+}

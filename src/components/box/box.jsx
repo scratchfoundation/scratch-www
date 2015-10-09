@@ -3,6 +3,7 @@ var React = require('react');
 require('./box.scss');
 
 var Box = React.createClass({
+    type: 'Box',
     propTypes: {
         title: React.PropTypes.string.isRequired,
         moreTitle: React.PropTypes.string,
