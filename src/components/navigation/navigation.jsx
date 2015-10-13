@@ -2,7 +2,7 @@ var React = require('react');
 var classNames = require('classnames');
 var xhr = require('xhr');
 
-var log = require('../../log.js');
+var log = require('../../lib/log.js');
 
 var Api = require('../../mixins/api.jsx');
 var Session = require('../../mixins/session.jsx');

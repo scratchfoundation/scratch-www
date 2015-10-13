@@ -1,7 +1,7 @@
 var cookie = require('cookie');
 var defaults = require('lodash.defaults');
 var xhr = require('xhr');
-var log = require('../log.js');
+var log = require('../lib/log.js');
 
 var Api = {
     getCsrf: function (callback) {
