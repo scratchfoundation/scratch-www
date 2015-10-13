@@ -34,6 +34,10 @@ var Navigation = React.createClass({
             });
         }
     },
+    getProfileUrl: function () {
+        if (!this.state.session.user) return;
+        return '/users/' + this.state.session.user.username + '/';
+    },
     handleLoginClick: function (e) {
         e.preventDefault();
         this.setState({'loginOpen': !this.state.loginOpen});
@@ -122,7 +126,7 @@ var Navigation = React.createClass({
                                     as="ul"
                                     isOpen={this.state.accountNavOpen}
                                     onRequestClose={this.closeAccountNav}>
-                                <li><a href="/users/raimondious/">Profile</a></li>
+                                <li><a href={this.getProfileUrl()}>Profile</a></li>
                                 <li><a href="/mystuff/">My Stuff</a></li>
                                 <li><a href="/accounts/settings/">Account settings</a></li>
                                 <li className="divider">
