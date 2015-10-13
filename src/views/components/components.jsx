@@ -1,4 +1,5 @@
 var React = require('react');
+var Renderer = require('../../lib/renderer.jsx');
 
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
@@ -36,9 +37,4 @@ var Components = React.createClass({
     }
 });
 
-var renderedView = React.render(<Components />, document.getElementById('view'));
-
-if (process.env.NODE_ENV != 'production') {
-    window.renderedComponents = window.renderedComponents || [];
-    window.renderedComponents.push(renderedView);
-}
+Renderer.render(<Components />, document.getElementById('view'));

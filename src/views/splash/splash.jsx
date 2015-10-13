@@ -1,4 +1,5 @@
 var React = require('react');
+var Renderer = require('../../lib/renderer.jsx');
 
 var Api = require('../../mixins/api.jsx');
 var Session = require('../../mixins/session.jsx');
@@ -72,9 +73,4 @@ var Splash = React.createClass({
     }
 });
 
-var renderedView = React.render(<Splash />, document.getElementById('view'));
-
-if (process.env.NODE_ENV != 'production') {
-    window.renderedComponents = window.renderedComponents || [];
-    window.renderedComponents.push(renderedView);
-}
+Renderer.render(<Splash />, document.getElementById('view'));

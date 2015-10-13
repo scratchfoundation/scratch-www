@@ -1,4 +1,5 @@
 var React = require('react');
+var Renderer = require('../../lib/renderer.jsx');
 
 require('./about.scss');
 
@@ -13,9 +14,4 @@ var About = React.createClass({
     }
 });
 
-var renderedView = React.render(<About />, document.getElementById('view'));
-
-if (process.env.NODE_ENV != 'production') {
-    window.renderedComponents = window.renderedComponents || [];
-    window.renderedComponents.push(renderedView);
-}
+Renderer.render(<About />, document.getElementById('view'));
