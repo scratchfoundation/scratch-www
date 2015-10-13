@@ -55,52 +55,51 @@ var Hoc = React.createClass({
                         <section className="one-up">
                             <div className="column">
                                 <h3>Activity Cards and Guides</h3>
-                                <p>Print the Scratch cards for tips and ideas for each of the activities!</p>
+                                <p>
+                                    Want tips and ideas for your Hour-of-Code activities?&nbsp;
+                                    View and print activity cards and facilitator guides.
+                                    <br />
+                                    For more resources, see <a href="/help">Scratch Help</a>.
+                                </p>
                             </div>
 
                             <div className="resource">
-                                    <img src="/svgs/tips-card.svg" />
-                                    <div className="resource-info">
-                                        <a href="#">Animate Your Name</a>
-                                        <div className="file-size">13 mb</div>
-                                    </div>
+                                <img src="/svgs/tips-card.svg" />
+                                <div className="resource-info">
+                                    <a href="#">Animate Your Name</a>
+                                    <div className="file-size">13 mb</div>
+                                </div>
                             </div>
+
                             <div className="resource">
-                                    <img src="/svgs/tips-card.svg" />
-                                    <div className="resource-info">
-                                        <a href="#">Hide-and-Seek</a>
-                                        <div className="file-size">5 mb</div>
-                                    </div>
+                                <img src="/svgs/tips-card.svg" />
+                                <div className="resource-info">
+                                    <a href="#">Hide-and-Seek</a>
+                                    <div className="file-size">5 mb</div>
+                                </div>
                             </div>
+                            
                             <div className="resource">
-                                    <img src="/svgs/tips-card.svg" />
-                                    <div className="resource-info">
-                                        <a href="#">Dance, Dance, Dance</a>
-                                        <div className="file-size">11 mb</div>
-                                    </div>
+                                <img src="/svgs/tips-card.svg" />
+                                <div className="resource-info">
+                                    <a href="#">Dance, Dance, Dance</a>
+                                    <div className="file-size">11 mb</div>
+                                </div>
                             </div>
                         </section>
 
                         <section className="two-up">
                             <div className="column">
                                 <h3>Tips Window</h3>
-                                <p>New to Scratch or haven’t heard of the Tips Window? Check out interactive tutorials,
-                                handy block information, and other helpful hints in the new
-                                2015 <a href="/projects/editor/?tip_bar=home">Tips Window</a></p>
+                                <p>
+                                    Need help getting started? Looking for ideas?&nbsp;
+                                    You can find tutorials and helpful hints in the
+                                    <br />
+                                    <a href="/projects/editor/?tip_bar=home">Tips Window</a>
+                                </p>
                             </div>
                             <div className="column">
                                 <img src="/images/tips-test-animation.gif" />
-                            </div>
-                        </section>
-
-                        <section className="one-up">
-                            <div className="column">
-                                <h3>Still Want More?</h3>
-                                <p>
-                                    <strong>Go for it!</strong>&nbsp;
-                                    Try another tutorial from the Tips Window.&nbsp;
-                                    <a href="/projects/editor/?tip_bar=home">See all tips</a>
-                                </p>
                             </div>
                         </section>
                     </Box>
