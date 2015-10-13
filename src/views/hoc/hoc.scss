@@ -146,6 +146,10 @@ $base-bg: $ui-white;
         flex-wrap: wrap;
         align-items: center;
 
+        &:last-child {
+            border-bottom: none;
+        }
+
         h3, 
         p {
             font-weight: 300; 
