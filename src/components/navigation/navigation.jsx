@@ -15,6 +15,7 @@ var Login = require('../login/login.jsx');
 require('./navigation.scss');
 
 var Navigation = React.createClass({
+    type: 'Navigation',
     mixins: [
         Api,
         Session

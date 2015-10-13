@@ -1,4 +1,5 @@
 var React = require('react');
+var Renderer = require('../../lib/renderer.jsx');
 
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
@@ -8,7 +9,8 @@ var Input = require('../../components/forms/input.jsx');
 
 require('./components.scss');
 
-var View = React.createClass({
+var Components = React.createClass({
+    type: 'Components',
     render: function () {
         return (
             <div className="inner">
@@ -35,4 +37,4 @@ var View = React.createClass({
     }
 });
 
-React.render(<View />, document.getElementById('view'));
+Renderer.render(<Components />, document.getElementById('view'));

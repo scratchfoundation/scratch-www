@@ -5,6 +5,7 @@ require('./modal.scss');
 
 
 var Modal = React.createClass({
+    type: 'Modal',
     statics: {
         setAppElement: ReactModal.setAppElement
     },

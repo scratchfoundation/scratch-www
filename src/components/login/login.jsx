@@ -5,6 +5,7 @@ var Button = require('../forms/button.jsx');
 require('./login.scss');
 
 var Login = React.createClass({
+    type: 'Login',
     propTypes: {
         onLogIn: React.PropTypes.func,
         error: React.PropTypes.string

@@ -6,6 +6,7 @@ require('./intro.scss');
 Modal.setAppElement(document.getElementById('view'));
 
 var Intro = React.createClass({
+    type: 'Intro',
     propTypes: {
         projectCount: React.PropTypes.number
     },

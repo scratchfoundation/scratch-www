@@ -3,6 +3,7 @@ var React = require('react');
 require('./footer.scss');
 
 var Footer = React.createClass({
+    type: 'Footer',
     render: function () {
         return (
             <div className="inner">

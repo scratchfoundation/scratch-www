@@ -7,6 +7,7 @@ require('slick-carousel/slick/slick-theme.scss');
 require('./carousel.scss');
 
 var Carousel = React.createClass({
+    type: 'Carousel',
     propTypes: {
         items: React.PropTypes.array
     },

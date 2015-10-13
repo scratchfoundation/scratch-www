@@ -1,4 +1,5 @@
 var React = require('react');
+var Renderer = require('../../lib/renderer.jsx');
 
 var Api = require('../../mixins/api.jsx');
 var Session = require('../../mixins/session.jsx');
@@ -11,7 +12,8 @@ var News = require('../../components/news/news.jsx');
 
 require('./splash.scss');
 
-var View = React.createClass({
+var Splash = React.createClass({
+    type: 'Splash',
     mixins: [
         Api,
         Session
@@ -71,4 +73,4 @@ var View = React.createClass({
     }
 });
 
-React.render(<View />, document.getElementById('view'));
+Renderer.render(<Splash />, document.getElementById('view'));

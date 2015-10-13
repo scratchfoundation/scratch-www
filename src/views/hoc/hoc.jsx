@@ -1,11 +1,13 @@
 var React = require('react');
+var Renderer = require('../../lib/renderer.jsx');
 
 require('./hoc.scss');
 
 var Button = require('../../components/forms/button.jsx');
 var Box = require('../../components/box/box.jsx');
 
-var View = React.createClass({
+var Hoc = React.createClass({
+    type: 'Hoc',
     render: function () {
         return (
             <div>
@@ -103,4 +105,4 @@ var View = React.createClass({
     }
 });
 
-React.render(<View />, document.getElementById('view'));
+Renderer.render(<Hoc />, document.getElementById('view'));
