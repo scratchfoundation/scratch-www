@@ -14,9 +14,9 @@ var Hoc = React.createClass({
             bgClass: ''
         };
     },
-    onCardEnter: function (e) {
+    onCardEnter: function (bgClass) {
         this.setState({
-            bgClass: e
+            bgClass: bgClass
         });
     },
     render: function () {
@@ -31,20 +31,20 @@ var Hoc = React.createClass({
 
                     <div className="card-deck">
                         <div className="card">
-                            <div className="card-info" onMouseEnter={this.onCardEnter.bind(null, 'name-bg')}>
+                            <div className="card-info" onMouseEnter={this.onCardEnter.bind(this, 'name-bg')}>
                                 <img src="/images/name-tutorial.jpg" />
                                 <a href="/projects/editor/?tip_bar=name"><Button>Animate Your Name</Button></a>
                             </div>
                         </div>
 
-                        <div className="card" onMouseEnter={this.onCardEnter.bind(null, 'wbb-bg')}>
+                        <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'wbb-bg')}>
                             <div className="card-info">
                                 <img src="/images/hide-seek-tutorial.jpg" />
                                 <a href="/hide"><Button> Hide-and-Seek Game</Button></a>
                             </div>
                         </div>
 
-                        <div className="card" onMouseEnter={this.onCardEnter.bind(null, 'dance-bg')}>
+                        <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'dance-bg')}>
                             <div className="card-info">
                                 <img src="/images/dance-tutorial.jpg" />
                                 <a href="/projects/editor/?tip_bar=dance"><Button>Dance, Dance, Dance</Button></a>
