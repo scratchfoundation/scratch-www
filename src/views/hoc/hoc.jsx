@@ -6,8 +6,6 @@ require('./hoc.scss');
 var Button = require('../../components/forms/button.jsx');
 var Box = require('../../components/box/box.jsx');
 
-
-
 var Hoc = React.createClass({
     type: 'Hoc',
 
