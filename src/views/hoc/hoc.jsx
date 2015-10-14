@@ -6,41 +6,53 @@ require('./hoc.scss');
 var Button = require('../../components/forms/button.jsx');
 var Box = require('../../components/box/box.jsx');
 
+
+
 var Hoc = React.createClass({
     type: 'Hoc',
+
+    getInitialState: function () {
+        return {
+            bgClass: ''
+        };
+    },
+    onCardEnter: function (e) {
+        this.setState({
+            bgClass: e
+        });
+    },
     render: function () {
         return (
             <div>
-                <div className="top-banner">
+                <div className={'top-banner ' + this.state.bgClass}>
                     <h1>Get Creative with Coding</h1>
-
-                    <div className="card-deck">
-                        <div className="card">
-                            <div className="card-info">
-                                <img src="/images/name-tutorial.png" />
-                                <a href="/projects/editor/?tip_bar=name"><Button>Animate Your Name</Button></a>
-                            </div>
-                        </div>
-
-                        <div className="card">
-                            <div className="card-info">
-                                <img src="/images/hide-seek-tutorial.png" />
-                                <a href="#"><Button>Hide-and-Seek Game</Button></a>
-                            </div>
-                        </div>
-
-                        <div className="card">
-                            <div className="card-info">
-                                <img src="/images/dance-tutorial.png" />
-                                <a href="/projects/editor/?tip_bar=dance"><Button>Dance, Dance, Dance</Button></a>
-                            </div>
-                        </div>
-                    </div>
-
                     <p>
                         With Scratch, you can program your own stories, games, and animations —
                         and share them online.
                     </p>
+
+                    <div className="card-deck">
+                        <div className="card">
+                            <div className="card-info" onMouseEnter={this.onCardEnter.bind(null, 'name-bg')}>
+                                <img src="/images/name-tutorial.jpg" />
+                                <a href="/projects/editor/?tip_bar=name"><Button>Animate Your Name</Button></a>
+                            </div>
+                        </div>
+
+                        <div className="card" onMouseEnter={this.onCardEnter.bind(null, 'wbb-bg')}>
+                            <div className="card-info">
+                                <img src="/images/hide-seek-tutorial.jpg" />
+                                <a href="#"><Button> Hide-and-Seek Game</Button></a>
+                            </div>
+                        </div>
+
+                        <div className="card" onMouseEnter={this.onCardEnter.bind(null, 'dance-bg')}>
+                            <div className="card-info">
+                                <img src="/images/dance-tutorial.jpg" />
+                                <a href="/projects/editor/?tip_bar=dance"><Button>Dance, Dance, Dance</Button></a>
+                            </div>
+                        </div>
+                    </div>
 
                     <ul className="sub-nav">
                         <li className="info">Find out more:</li>
@@ -66,24 +78,27 @@ var Hoc = React.createClass({
                             <div className="resource">
                                 <img src="/svgs/tips-card.svg" />
                                 <div className="resource-info">
-                                    <a href="#">Animate Your Name</a>
-                                    <div className="file-size">13 mb</div>
+                                    <h5>Animate Your Name</h5>
+                                    <a href="#">Activity Cards</a>
+                                    <a href="#">Facilitator Guide</a>
                                 </div>
                             </div>
 
                             <div className="resource">
                                 <img src="/svgs/tips-card.svg" />
                                 <div className="resource-info">
-                                    <a href="#">Hide-and-Seek</a>
-                                    <div className="file-size">5 mb</div>
+                                    <h5>Hide-and-Seek</h5>
+                                    <a href="#">Activity Cards</a>
+                                    <a href="#">Facilitator Guide</a>
                                 </div>
                             </div>
                             
                             <div className="resource">
                                 <img src="/svgs/tips-card.svg" />
                                 <div className="resource-info">
-                                    <a href="#">Dance, Dance, Dance</a>
-                                    <div className="file-size">11 mb</div>
+                                    <h5>Dance, Dance, Dance</h5>
+                                    <a href="#">Activity Cards</a>
+                                    <a href="#">Facilitator Guide</a>
                                 </div>
                             </div>
                         </section>

@@ -1,6 +1,8 @@
 @import "../../colors";
 
 $base-bg: $ui-white;
+$bg-gradient-light: rgba(0, 0, 0, 0);
+$bg-gradient-dark: rgba(0, 0, 0, .5);
 
 #view {
     padding: 0;
@@ -22,14 +24,29 @@ $base-bg: $ui-white;
     }
 
     .top-banner {
+        transition: background-image .5s ease, background-color .5s ease;
+
         margin-top: 10px;
         margin-bottom: 40px;
 
         background-color: $ui-aqua;
+        background-position: center;
+        background-size: cover;
 
         padding: 10px 0;
-
         width: 100%;
+
+        &.wbb-bg {    
+            background-image: url("/images/hide-bg.jpg");
+        }
+
+        &.dance-bg {
+            background-image: url("/images/dance-bg.jpg");
+        }
+
+        &.name-bg {
+            background-image: url("/images/name-bg.jpg");
+        }
 
         h1, 
         p {
@@ -147,7 +164,7 @@ $base-bg: $ui-white;
         align-items: center;
 
         &:last-child {
-            border-bottom: none;
+            border-bottom: 0;
         }
 
         h3, 
@@ -170,24 +187,18 @@ $base-bg: $ui-white;
             align-items: center;
 
             img {
-                margin-right: 10px;
+                margin-right: 15px;
+            }
+
+            h5 {
+                margin: 8px 0;
+                font-weight: 500;
             }
 
             a {
+                display: block;
+                margin: 5px 0;
                 font-size: .8em;
-                font-weight: 500;
-            }
-
-            .file-size {
-                margin-top: 5px;
-                width: inherit;
-
-                text-transform: uppercase;
-                letter-spacing: .5px;
-                color: $ui-orange;
-                font-size: .7em;
-                font-weight: 500;
-
             }
         }
 
