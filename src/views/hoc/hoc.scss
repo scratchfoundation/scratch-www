@@ -17,7 +17,7 @@ $base-bg: $ui-white;
         max-width: 960px;
 
         .box {
-            margin-bottom: 100px;
+            margin-bottom: 10px;
         }
     }
 
@@ -150,7 +150,7 @@ $base-bg: $ui-white;
         }
     }
 
-    .box section {
+    section {
         display: flex;
         margin: 0 auto;
         border-bottom: 1px solid $ui-border;
@@ -168,6 +168,19 @@ $base-bg: $ui-white;
         h3, 
         p {
             font-weight: 300; 
+        }
+
+        .logos {
+            margin: 10px 0;
+            width: 100%;
+
+            img {
+                margin: 0 20px;
+                max-width: 200px;
+                max-height: 75px;
+
+                vertical-align: middle;
+            }
         }
 
         .resource {
@@ -207,6 +220,10 @@ $base-bg: $ui-white;
                 margin: 10px;
                 width: 100%;
             }
+
+            .logo {
+                display: block;
+            }
         }
 
         &.two-up {
@@ -225,5 +242,4 @@ $base-bg: $ui-white;
             }
         }
     }
-
 }

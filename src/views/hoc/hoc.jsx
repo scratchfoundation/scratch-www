@@ -42,7 +42,7 @@ var Hoc = React.createClass({
                         <div className="card" onMouseEnter={this.onCardEnter.bind(null, 'wbb-bg')}>
                             <div className="card-info">
                                 <img src="/images/hide-seek-tutorial.jpg" />
-                                <a href="#"><Button> Hide-and-Seek Game</Button></a>
+                                <a href="/hide"><Button> Hide-and-Seek Game</Button></a>
                             </div>
                         </div>
 
@@ -118,6 +118,16 @@ var Hoc = React.createClass({
                             </div>
                         </section>
                     </Box>
+
+                    <section className="one-up">
+                        <h3>Collaborators</h3>
+                        <div className="logos">
+                            <img src="/images/code-org-logo.png" />
+                            <img src="/images/cn-logo.png" />
+                            <img src="/images/paa-logo.png" />
+                            <img src="/images/pocketcode-logo.png" />
+                        </div>
+                    </section>
                 </div>
             </div>
 
