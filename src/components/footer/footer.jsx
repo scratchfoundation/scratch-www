@@ -1,9 +1,43 @@
 var React = require('react');
 
+var log = require('../../log.js');
+
+var Api = require('../../mixins/api.jsx');
+var CookieMixinFactory = require('../../mixins/cookieMixinFactory.jsx');
+var LanguageChooser = require('../languagechooser/languagechooser.jsx');
+
 require('./footer.scss');
 
 var Footer = React.createClass({
     type: 'Footer',
+    mixins: [
+        Api,
+        // Provides useScratchlanguage
+        CookieMixinFactory('scratchlanguage', '/site-api/i18n/set-preferred-language/')
+    ],
+    getInitialState: function () {
+        return {
+            language: 'en'
+        };
+    },
+    componentDidMount: function () {
+        this.updateLanguage();
+    },
+    updateLanguage: function () {
+        this.useScratchlanguage(function (err, language) {
+            if (err) return log.error(err);
+            this.setState({language: language});
+        }.bind(this));
+    },
+    handleSetLanguage: function (e) {
+        if (e) e.preventDefault();
+        this.api({
+            host: '',
+            uri: '/i18n/setlang/'
+        }, function (err, body) {
+            if (body) this.updateLanguage();
+        }.bind(this));
+    },
     render: function () {
         return (
             <div className="inner">
@@ -51,6 +85,8 @@ var Footer = React.createClass({
                         <dd><a href="http://www.scratchfoundation.org/">Scratch Foundation</a></dd>
                     </dl>
                 </div>
+
+                <LanguageChooser onSetLanguage={this.handleSetLanguage} choice={this.state.language} />
 
                 <div className="copyright">
                     <p>Scratch is a project of the Lifelong Kindergarten Group at the MIT Media Lab</p>

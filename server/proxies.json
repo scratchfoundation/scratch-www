@@ -6,7 +6,9 @@
             "/accounts/",
             "/csrf_token/",
             "/get_image/",
-            "/session/"
+            "/i18n/",
+            "/session/",
+            "/site-api/"
         ]
     }
 ]
