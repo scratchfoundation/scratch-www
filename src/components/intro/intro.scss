@@ -1,4 +1,5 @@
 @import "../../colors";
+@import "../../mixins";
 
 .intro {
     display: flex;
@@ -224,22 +225,5 @@
 }
 
 .video-modal {
-    $video-width: 570px;
-    $video-height: 357px;
-    $padding: 15px;
-    top: 50%;
-    right: auto;
-    bottom: auto;
-    left: 50%;
-    margin-top: -($video-height + $padding * 2)/2;
-    margin-left: -($video-width + $padding * 2)/2;
-    padding: $padding;
-    width: $video-width;
-    height: $video-height;
-
-    iframe {
-        border: 0;
-        width: $video-width;
-        height: $video-height;
-    }
+    @include modal-iframe(570px, 357px, 15px);
 }
