@@ -21,7 +21,8 @@ module.exports = {
     devtool: 'source-map',
     externals: {
         'react': 'React',
-        'react/addons': 'React'
+        'react/addons': 'React',
+        'react-dom': 'ReactDOM'
     },
     output: {
         path: path.resolve(__dirname, 'build/js'),
