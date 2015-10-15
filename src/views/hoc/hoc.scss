@@ -17,19 +17,34 @@ $base-bg: $ui-white;
         max-width: 960px;
 
         .box {
-            margin-bottom: 100px;
+            margin-bottom: 10px;
         }
     }
 
     .top-banner {
+        transition: background-image .5s ease, background-color .5s ease;
+
         margin-top: 10px;
         margin-bottom: 40px;
 
         background-color: $ui-aqua;
+        background-position: center;
+        background-size: cover;
 
         padding: 10px 0;
-
         width: 100%;
+
+        &.wbb-bg {    
+            background-image: url("/images/hide-bg.jpg");
+        }
+
+        &.dance-bg {
+            background-image: url("/images/dance-bg.jpg");
+        }
+
+        &.name-bg {
+            background-image: url("/images/name-bg.jpg");
+        }
 
         h1, 
         p {
@@ -135,7 +150,7 @@ $base-bg: $ui-white;
         }
     }
 
-    .box section {
+    section {
         display: flex;
         margin: 0 auto;
         border-bottom: 1px solid $ui-border;
@@ -147,12 +162,25 @@ $base-bg: $ui-white;
         align-items: center;
 
         &:last-child {
-            border-bottom: none;
+            border-bottom: 0;
         }
 
         h3, 
         p {
             font-weight: 300; 
+        }
+
+        .logos {
+            margin: 10px 0;
+            width: 100%;
+
+            img {
+                margin: 0 20px;
+                max-width: 200px;
+                max-height: 75px;
+
+                vertical-align: middle;
+            }
         }
 
         .resource {
@@ -170,24 +198,18 @@ $base-bg: $ui-white;
             align-items: center;
 
             img {
-                margin-right: 10px;
+                margin-right: 15px;
+            }
+
+            h5 {
+                margin: 8px 0;
+                font-weight: 500;
             }
 
             a {
+                display: block;
+                margin: 5px 0;
                 font-size: .8em;
-                font-weight: 500;
-            }
-
-            .file-size {
-                margin-top: 5px;
-                width: inherit;
-
-                text-transform: uppercase;
-                letter-spacing: .5px;
-                color: $ui-orange;
-                font-size: .7em;
-                font-weight: 500;
-
             }
         }
 
@@ -197,6 +219,10 @@ $base-bg: $ui-white;
             .column {
                 margin: 10px;
                 width: 100%;
+            }
+
+            .logo {
+                display: block;
             }
         }
 
@@ -216,5 +242,4 @@ $base-bg: $ui-white;
             }
         }
     }
-
 }

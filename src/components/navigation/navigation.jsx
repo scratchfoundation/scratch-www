@@ -137,7 +137,7 @@ var Navigation = React.createClass({
                         </li>
                     ] : [
                         <li className="link right join" key="join"><a href="/join">Join Scratch</a></li>,
-                        <li className="link right login" key="login">
+                        <li className="link right login-item" key="login">
                             <a
                                 href="#"
                                 onClick={this.handleLoginClick}
