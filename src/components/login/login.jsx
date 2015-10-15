@@ -13,8 +13,8 @@ var Login = React.createClass({
     handleSubmit: function (event) {
         event.preventDefault();
         this.props.onLogIn({
-            'username': this.refs.username.getDOMNode().value,
-            'password': this.refs.password.getDOMNode().value
+            'username': this.refs.username.value,
+            'password': this.refs.password.value
         });
     },
     render: function () {
