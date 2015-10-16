@@ -37,7 +37,6 @@ if (!args.length) {
 }
 
 var outputFile = path.resolve(__dirname, '../../', args[0]);
-// var outputDir = path.resolve(__dirname, '../../messages');
 var poUiDir = path.resolve(__dirname, '../../node_modules/scratchr2_translations/ui');
 
 var icuTemplateFile = path.resolve(__dirname, '../../en.json');
@@ -52,6 +51,8 @@ var locales = {
 
 // Get ui localization strings first
 glob(poUiDir + '/*', function (err, files) {
+    if (err) throw new Error(err);
+    
     files.forEach(function (file) {
         var lang = file.split('/').pop();
         var jsFile = path.resolve(file, 'LC_MESSAGES/djangojs.po');
@@ -62,18 +63,17 @@ glob(poUiDir + '/*', function (err, files) {
             var jsTranslations = po2icu.poFileToICUSync(lang, jsFile);
             translations = mergeNewTranslations(translations, jsTranslations, icuWithIds);
         } catch (err) {
-            // :);
+            process.stdout.write('Warning: the file ' + jsFile + ' was not found\n');
         }
 
         try {
             var pyTranslations = po2icu.poFileToICUSync(lang, pyFile);
             translations = mergeNewTranslations(translations, pyTranslations, icuWithIds);
         } catch (err) {
-            // :);
+            process.stdout.write('Warning: the file ' + pyFile + ' was not found\n');
         }
 
         locales[lang] = translations;
-        // fs.writeFileSync(icuFile, JSON.stringify(existingTranslations, null, 4));
     });
     fs.writeFileSync(outputFile, JSON.stringify(locales, null, 4));
 });

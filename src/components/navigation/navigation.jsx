@@ -123,31 +123,41 @@ var Navigation = React.createClass({
                 <ul>
                     <li className="logo"><a href="/"></a></li>
                     
-                    <li className="link create"><a href="/projects/editor">
-                        <FormattedMessage
-                            id="general.create"
-                            defaultMessage={'Create'} />
-                    </a></li>
-                    <li className="link explore"><a href="/explore?date=this_month">
-                        <FormattedMessage
-                            id="general.explore"
-                            defaultMessage={'Explore'} />
-                    </a></li>
-                    <li className="link discuss"><a href="/discuss">
-                        <FormattedMessage
-                            id="general.discuss"
-                            defaultMessage={'Discuss'} />
-                    </a></li>
-                    <li className="link about"><a href="/about">
-                        <FormattedMessage
-                            id="general.about"
-                            defaultMessage={'About'} />
-                    </a></li>
-                    <li className="link help"><a href="/help">
-                        <FormattedMessage
-                            id="general.help"
-                            defaultMessage={'Help'} />
-                    </a></li>
+                    <li className="link create">
+                        <a href="/projects/editor">
+                            <FormattedMessage
+                                id="general.create"
+                                defaultMessage={'Create'} />
+                        </a>
+                    </li>
+                    <li className="link explore">
+                        <a href="/explore?date=this_month">
+                            <FormattedMessage
+                                id="general.explore"
+                                defaultMessage={'Explore'} />
+                        </a>
+                    </li>
+                    <li className="link discuss">
+                        <a href="/discuss">
+                            <FormattedMessage
+                                id="general.discuss"
+                                defaultMessage={'Discuss'} />
+                        </a>
+                    </li>
+                    <li className="link about">
+                        <a href="/about">
+                            <FormattedMessage
+                                id="general.about"
+                                defaultMessage={'About'} />
+                        </a>
+                    </li>
+                    <li className="link help">
+                        <a href="/help">
+                            <FormattedMessage
+                                id="general.help"
+                                defaultMessage={'Help'} />
+                        </a>
+                    </li>
 
                     <li className="search">
                         <form action="/search/google_results" method="get">
@@ -161,16 +171,16 @@ var Navigation = React.createClass({
                         <li className="link right messages" key="messages">
                             <a
                                 href="/messages/"
-                                title={formatMessage(defaultMessages.messages)}
-                            >
+                                title={formatMessage(defaultMessages.messages)}>
+
                                 <FormattedMessage {...defaultMessages.messages} />
                             </a>
                         </li>,
                         <li className="link right mystuff" key="mystuff">
                             <a
                                 href="/mystuff/"
-                                title={formatMessage(defaultMessages.myStuff)}
-                            >
+                                title={formatMessage(defaultMessages.myStuff)}>
+
                                 <FormattedMessage {...defaultMessages.myStuff} />
                             </a>
                         </li>,
@@ -183,19 +193,25 @@ var Navigation = React.createClass({
                                     as="ul"
                                     isOpen={this.state.accountNavOpen}
                                     onRequestClose={this.closeAccountNav}>
-                                <li><a href={this.getProfileUrl()}>
-                                    <FormattedMessage
-                                        id='general.profile'
-                                        defaultMessage={'Profile'} />
-                                </a></li>
-                                <li><a href="/mystuff/">
-                                    <FormattedMessage {...defaultMessages.myStuff} />
-                                </a></li>
-                                <li><a href="/accounts/settings/">
-                                    <FormattedMessage
-                                        id='general.accountSettings'
-                                        defaultMessage={'Account settings'} />
-                                </a></li>
+                                <li>
+                                    <a href={this.getProfileUrl()}>
+                                        <FormattedMessage
+                                            id='general.profile'
+                                            defaultMessage={'Profile'} />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/mystuff/">
+                                        <FormattedMessage {...defaultMessages.myStuff} />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/accounts/settings/">
+                                        <FormattedMessage
+                                            id='general.accountSettings'
+                                            defaultMessage={'Account settings'} />
+                                    </a>
+                                </li>
                                 <li className="divider">
                                     <a href="#" onClick={this.handleLogOut}>
                                         <FormattedMessage
