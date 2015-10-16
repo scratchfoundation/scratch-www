@@ -1,14 +1,6 @@
 var api = require('./mixins/api.jsx').api;
 var jar = require('./lib/jar');
-// var locales = require('../languages.json');
-// var translations = {
-//     en: require('../en.json')
-// };
-// for (var id in locales) {
-//     try {
-//         translations[id] = require('../locales/' + id + '.json');
-//     } catch
-// }
+
 var translations = require('../locales/translations.json');
 
 require('custom-event-polyfill');
