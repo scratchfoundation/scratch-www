@@ -12,6 +12,7 @@ var Dropdown = require('./dropdown.jsx');
 var Input = require('../forms/input.jsx');
 var log = require('../../lib/log.js');
 var Login = require('../login/login.jsx');
+var Registration = require('../registration/registration.jsx');
 var Session = require('../../mixins/session.jsx');
 
 require('./navigation.scss');
@@ -35,9 +36,10 @@ var Navigation = React.createClass({
     ],
     getInitialState: function () {
         return {
+            'accountNavOpen': false,
             'loginOpen': false,
             'loginError': null,
-            'accountNavOpen': false
+            'registrationOpen': false
         };
     },
     componentDidUpdate: function (prevProps, prevState) {
@@ -51,6 +53,10 @@ var Navigation = React.createClass({
     getProfileUrl: function () {
         if (!this.state.session.user) return;
         return '/users/' + this.state.session.user.username + '/';
+    },
+    handleJoinClick: function (e) {
+        e.preventDefault();
+        this.setState({'registrationOpen': true});
     },
     handleLoginClick: function (e) {
         e.preventDefault();
@@ -99,6 +105,13 @@ var Navigation = React.createClass({
     },
     closeAccountNav: function () {
         this.setState({'accountNavOpen': false});
+    },
+    closeRegistration: function () {
+        this.setState({'registrationOpen': false});
+    },
+    completeRegistration: function () {
+        window.refreshSession();
+        this.closeRegistration();
     },
     render: function () {
         var classes = classNames({
@@ -198,6 +211,11 @@ var Navigation = React.createClass({
                                 id='general.joinScratch'
                                 defaultMessage={'Join Scratch'} />
                         </a></li>,
+                        <Registration
+                                key="registration"
+                                isOpen={this.state.registrationOpen}
+                                onRequestClose={this.closeRegistration}
+                                onRegistrationDone={this.completeRegistration} />,
                         <li className="link right login-item" key="login">
                             <a
                                 href="#"
