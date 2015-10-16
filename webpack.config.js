@@ -37,8 +37,7 @@ module.exports = {
             },
             {
                 test: /\.json$/,
-                loader: 'json-loader',
-                include: path.resolve(__dirname, 'src')
+                loader: 'json-loader'
             },
             {
                 test: /\.scss$/,
