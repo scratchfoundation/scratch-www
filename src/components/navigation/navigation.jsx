@@ -2,15 +2,13 @@ var React = require('react');
 var classNames = require('classnames');
 var xhr = require('xhr');
 
-var log = require('../../lib/log.js');
-
 var Api = require('../../mixins/api.jsx');
-var Session = require('../../mixins/session.jsx');
-
 var Avatar = require('../avatar/avatar.jsx');
 var Dropdown = require('./dropdown.jsx');
 var Input = require('../forms/input.jsx');
+var log = require('../../lib/log.js');
 var Login = require('../login/login.jsx');
+var Session = require('../../mixins/session.jsx');
 
 require('./navigation.scss');
 
