@@ -9,6 +9,7 @@ WEBPACK=./node_modules/.bin/webpack
 build:
 	@make clean
 	@make static
+	@make translations
 	@make webpack
 
 clean:
@@ -17,6 +18,9 @@ clean:
 
 static:
 	cp -a ./static/. ./build/
+
+translations:
+	./src/scripts/build-locales locales/translations.json
 
 webpack:
 	$(WEBPACK)
