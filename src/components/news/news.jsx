@@ -1,8 +1,22 @@
 var React = require('react');
+var ReactIntl = require('react-intl');
+var defineMessages = ReactIntl.defineMessages;
+var injectIntl = ReactIntl.injectIntl;
 
 var Box = require('../box/box.jsx');
 
 require('./news.scss');
+
+var defaultMessages = defineMessages({
+    scratchNews: {
+        id: 'news.scratchNews',
+        defaultMessage: 'Scratch News'
+    },
+    viewAll: {
+        id: 'general.viewAll',
+        defaultMessage: 'View All'
+    }
+});
 
 var News = React.createClass({
     type: 'News',
@@ -18,8 +32,8 @@ var News = React.createClass({
         return (
             <Box
                 className="news"
-                title="Scratch News"
-                moreTitle="View All"
+                title={formatMessage(defaultMessages.scratchNews)}
+                moreTitle={formatMessage(defaultMessages.viewAll)}
                 moreHref="/news">
 
                 <ul>
@@ -40,4 +54,4 @@ var News = React.createClass({
     }
 });
 
-module.exports = News;
+module.exports = injectIntl(News);

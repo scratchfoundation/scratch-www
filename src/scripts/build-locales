@@ -1,0 +1,79 @@
+#!/usr/bin/env node
+
+/*
+    Converts the existing .po translation files in the module to JSON files.
+    Requires po2json in order to work. Takes as input a directory
+    in which to store the resulting json translation files.
+*/
+
+var fs = require('fs');
+var glob = require('glob');
+var path = require('path');
+var po2icu = require('po2icu');
+
+/*
+    Existing translations should be in the key value format specified by react-intl (i.e.
+    formatted message id, with icu string as the value). New Translations should be in the
+    format returned by po2icu (i.e. a source language icu string for key, and a localized
+    language icu string for value).
+
+    ICU Map is an object in the reverse react-intl formatting (icu string as key), which will
+    help determine if the translation belongs in www currently.
+*/
+var mergeNewTranslations = function (existingTranslations, newTranslations, icuMap) {
+    for (var id in newTranslations) {
+        if (icuMap.hasOwnProperty(id) && newTranslations[id].length > 0) {
+            existingTranslations[icuMap[id]] = newTranslations[id];
+        }
+    }
+    return existingTranslations;
+};
+
+var args = process.argv.slice(2);
+
+if (!args.length) {
+    process.stdout.write('A destination directory must be specified.');
+    process.exit(1);
+}
+
+var outputFile = path.resolve(__dirname, '../../', args[0]);
+var poUiDir = path.resolve(__dirname, '../../node_modules/scratchr2_translations/ui');
+
+var icuTemplateFile = path.resolve(__dirname, '../../en.json');
+var idsWithICU = JSON.parse(fs.readFileSync(icuTemplateFile, 'utf8'));
+var icuWithIds = {};
+for (var id in idsWithICU) {
+    icuWithIds[idsWithICU[id]] = id;
+}
+var locales = {
+    en: idsWithICU
+};
+
+// Get ui localization strings first
+glob(poUiDir + '/*', function (err, files) {
+    if (err) throw new Error(err);
+    
+    files.forEach(function (file) {
+        var lang = file.split('/').pop();
+        var jsFile = path.resolve(file, 'LC_MESSAGES/djangojs.po');
+        var pyFile = path.resolve(file, 'LC_MESSAGES/django.po');
+
+        var translations = {};
+        try {
+            var jsTranslations = po2icu.poFileToICUSync(lang, jsFile);
+            translations = mergeNewTranslations(translations, jsTranslations, icuWithIds);
+        } catch (err) {
+            process.stdout.write('Warning: the file ' + jsFile + ' was not found\n');
+        }
+
+        try {
+            var pyTranslations = po2icu.poFileToICUSync(lang, pyFile);
+            translations = mergeNewTranslations(translations, pyTranslations, icuWithIds);
+        } catch (err) {
+            process.stdout.write('Warning: the file ' + pyFile + ' was not found\n');
+        }
+
+        locales[lang] = translations;
+    });
+    fs.writeFileSync(outputFile, JSON.stringify(locales, null, 4));
+});

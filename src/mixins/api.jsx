@@ -1,28 +1,14 @@
-var cookie = require('cookie');
 var defaults = require('lodash.defaults');
 var xhr = require('xhr');
 var log = require('../lib/log.js');
 
+var CookieMixinFactory = require('./cookieMixinFactory.jsx');
+
 var Api = {
-    getCsrf: function (callback) {
-        var obj = cookie.parse(document.cookie) || {};
-        if (typeof obj.scratchcsrftoken === 'undefined') return callback('Cookie not found.');
-        callback(null, obj.scratchcsrftoken);
-    },
-    useCsrf: function (callback) {
-        this.getCsrf(function (err, csrftoken) {
-            if (csrftoken) return callback(null, csrftoken);
-            xhr({
-                'uri': '/csrf_token/'
-            }, function (err) {
-                if (err) return callback(err);
-                this.getCsrf(function (err, csrftoken) {
-                    if (err) return callback(err);
-                    callback(err, csrftoken);
-                });
-            }.bind(this));
-        }.bind(this));
-    },
+    mixins: [
+        // Provides useScratchcsrftoken
+        CookieMixinFactory('scratchcsrftoken', '/csrf_token/')
+    ],
     api: function (opts, callback) {
         defaults(opts, {
             host: process.env.API_HOST,
@@ -45,7 +31,7 @@ var Api = {
         }.bind(this);
 
         if (opts.useCsrf) {
-            this.useCsrf(function (err, csrftoken) {
+            this.useScratchcsrftoken(function (err, csrftoken) {
                 if (err) return log.error('Error while retrieving CSRF token', err);
                 opts.json.csrftoken = csrftoken;
                 opts.headers['X-CSRFToken'] = csrftoken;

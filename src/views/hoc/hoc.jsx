@@ -1,5 +1,5 @@
 var React = require('react');
-var Renderer = require('../../lib/renderer.jsx');
+var render = require('../../lib/render.jsx');
 
 require('./hoc.scss');
 
@@ -133,4 +133,4 @@ var Hoc = React.createClass({
     }
 });
 
-Renderer.render(<Hoc />, document.getElementById('view'));
+render(<Hoc />, document.getElementById('view'));

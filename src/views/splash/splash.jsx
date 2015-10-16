@@ -1,5 +1,5 @@
 var React = require('react');
-var Renderer = require('../../lib/renderer.jsx');
+var render = require('../../lib/render.jsx');
 
 var Api = require('../../mixins/api.jsx');
 var Session = require('../../mixins/session.jsx');
@@ -73,4 +73,4 @@ var Splash = React.createClass({
     }
 });
 
-Renderer.render(<Splash />, document.getElementById('view'));
+render(<Splash />, document.getElementById('view'));

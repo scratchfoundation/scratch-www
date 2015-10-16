@@ -6,7 +6,7 @@ var routes = require('./server/routes.json');
 
 // Prepare all entry points
 var entry = {
-    session: './src/session.js',
+    init: './src/init.js',
     main: './src/main.jsx'
 };
 routes.forEach(function (route) {
@@ -37,8 +37,7 @@ module.exports = {
             },
             {
                 test: /\.json$/,
-                loader: 'json-loader',
-                include: path.resolve(__dirname, 'src')
+                loader: 'json-loader'
             },
             {
                 test: /\.scss$/,
