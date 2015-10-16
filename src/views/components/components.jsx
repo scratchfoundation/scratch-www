@@ -1,5 +1,5 @@
 var React = require('react');
-var Render = require('../../lib/render.jsx');
+var render = require('../../lib/render.jsx');
 
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
@@ -37,4 +37,4 @@ var Components = React.createClass({
     }
 });
 
-Render(<Components />, document.getElementById('view'));
+render(<Components />, document.getElementById('view'));

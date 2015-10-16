@@ -2,7 +2,7 @@ var ReactDOM = require('react-dom');
 var ReactIntl = require('react-intl');
 var IntlProvider = ReactIntl.IntlProvider;
 
-module.exports = function (jsx, element) {
+var render = function (jsx, element) {
     // Get locale and messages from global namespace (see "init.js")
     var locale = window._locale;
     var messages = window._translations[locale];
@@ -21,3 +21,5 @@ module.exports = function (jsx, element) {
         window._renderedComponents.push(component);
     }
 };
+
+module.exports = render;

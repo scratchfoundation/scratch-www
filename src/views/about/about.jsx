@@ -1,5 +1,5 @@
 var React = require('react');
-var Render = require('../../lib/render.jsx');
+var render = require('../../lib/render.jsx');
 
 require('./about.scss');
 
@@ -14,4 +14,4 @@ var About = React.createClass({
     }
 });
 
-Render(<About />, document.getElementById('view'));
+render(<About />, document.getElementById('view'));
