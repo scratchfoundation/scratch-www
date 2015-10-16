@@ -1,5 +1,9 @@
-var React = require('react');
 var classNames = require('classnames');
+var React = require('react');
+var ReactIntl = require('react-intl');
+var defineMessages = ReactIntl.defineMessages;
+var FormattedMessage = ReactIntl.FormattedMessage;
+var injectIntl = ReactIntl.injectIntl;
 var xhr = require('xhr');
 
 var Api = require('../../mixins/api.jsx');
@@ -11,6 +15,17 @@ var Login = require('../login/login.jsx');
 var Session = require('../../mixins/session.jsx');
 
 require('./navigation.scss');
+
+var defaultMessages = defineMessages({
+    messages: {
+        id: 'general.messages',
+        defaultMessage: 'Messages'
+    },
+    myStuff: {
+        id: 'general.myStuff',
+        defaultMessage: 'My Stuff'
+    }
+});
 
 var Navigation = React.createClass({
     type: 'Navigation',
@@ -95,11 +110,31 @@ var Navigation = React.createClass({
                 <ul>
                     <li className="logo"><a href="/"></a></li>
                     
-                    <li className="link create"><a href="/projects/editor">Create</a></li>
-                    <li className="link explore"><a href="/explore?date=this_month">Explore</a></li>
-                    <li className="link discuss"><a href="/discuss">Discuss</a></li>
-                    <li className="link about"><a href="/about">About</a></li>
-                    <li className="link help"><a href="/help">Help</a></li>
+                    <li className="link create"><a href="/projects/editor">
+                        <FormattedMessage
+                            id="general.create"
+                            defaultMessage={'Create'} />
+                    </a></li>
+                    <li className="link explore"><a href="/explore?date=this_month">
+                        <FormattedMessage
+                            id="general.explore"
+                            defaultMessage={'Explore'} />
+                    </a></li>
+                    <li className="link discuss"><a href="/discuss">
+                        <FormattedMessage
+                            id="general.discuss"
+                            defaultMessage={'Discuss'} />
+                    </a></li>
+                    <li className="link about"><a href="/about">
+                        <FormattedMessage
+                            id="general.about"
+                            defaultMessage={'About'} />
+                    </a></li>
+                    <li className="link help"><a href="/help">
+                        <FormattedMessage
+                            id="general.help"
+                            defaultMessage={'Help'} />
+                    </a></li>
 
                     <li className="search">
                         <form action="/search/google_results" method="get">
@@ -111,10 +146,20 @@ var Navigation = React.createClass({
                     </li>
                     {this.state.session.user ? [
                         <li className="link right messages" key="messages">
-                            <a href="/messages/" title="Messages">Messages</a>
+                            <a
+                                href="/messages/"
+                                title={formatMessage(defaultMessages.messages)}
+                            >
+                                <FormattedMessage {...defaultMessages.messages} />
+                            </a>
                         </li>,
                         <li className="link right mystuff" key="mystuff">
-                            <a href="/mystuff/" title="My Stuff">My Stuff</a>
+                            <a
+                                href="/mystuff/"
+                                title={formatMessage(defaultMessages.myStuff)}
+                            >
+                                <FormattedMessage {...defaultMessages.myStuff} />
+                            </a>
                         </li>,
                         <li className="link right account-nav" key="account-nav">
                             <a className="userInfo" href="#" onClick={this.handleAccountNavClick}>
@@ -125,21 +170,43 @@ var Navigation = React.createClass({
                                     as="ul"
                                     isOpen={this.state.accountNavOpen}
                                     onRequestClose={this.closeAccountNav}>
-                                <li><a href={this.getProfileUrl()}>Profile</a></li>
-                                <li><a href="/mystuff/">My Stuff</a></li>
-                                <li><a href="/accounts/settings/">Account settings</a></li>
+                                <li><a href={this.getProfileUrl()}>
+                                    <FormattedMessage
+                                        id='general.profile'
+                                        defaultMessage={'Profile'} />
+                                </a></li>
+                                <li><a href="/mystuff/">
+                                    <FormattedMessage {...defaultMessages.myStuff} />
+                                </a></li>
+                                <li><a href="/accounts/settings/">
+                                    <FormattedMessage
+                                        id='general.accountSettings'
+                                        defaultMessage={'Account settings'} />
+                                </a></li>
                                 <li className="divider">
-                                    <a href="#" onClick={this.handleLogOut}>Sign out</a>
+                                    <a href="#" onClick={this.handleLogOut}>
+                                        <FormattedMessage
+                                            id='navigation.signOut'
+                                            defaultMessage={'Sign out'} />
+                                    </a>
                                 </li>
                             </Dropdown>
                         </li>
                     ] : [
-                        <li className="link right join" key="join"><a href="/join">Join Scratch</a></li>,
+                        <li className="link right join" key="join"><a href="/join">
+                            <FormattedMessage
+                                id='general.joinScratch'
+                                defaultMessage={'Join Scratch'} />
+                        </a></li>,
                         <li className="link right login-item" key="login">
                             <a
                                 href="#"
                                 onClick={this.handleLoginClick}
-                                className="ignore-react-onclickoutside">Sign In</a>
+                                className="ignore-react-onclickoutside">
+                                    <FormattedMessage
+                                        id='general.signIn'
+                                        defaultMessage={'Sign In'} />
+                                </a>
                             <Dropdown
                                     className="login-dropdown with-arrow"
                                     isOpen={this.state.loginOpen}
@@ -156,4 +223,4 @@ var Navigation = React.createClass({
     }
 });
 
-module.exports = Navigation;
+module.exports = injectIntl(Navigation);

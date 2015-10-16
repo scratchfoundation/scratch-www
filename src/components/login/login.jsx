@@ -1,4 +1,6 @@
 var React = require('react');
+var FormattedMessage = require('react-intl').FormattedMessage;
+
 var Input = require('../forms/input.jsx');
 var Button = require('../forms/button.jsx');
 
@@ -25,12 +27,28 @@ var Login = React.createClass({
         return (
             <div className="login">
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username">
+                        <FormattedMessage
+                            id='general.username'
+                            defaultMessage={'Username'} />
+                    </label>
                     <Input type="text" ref="username" name="username" maxLength="30" />
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">
+                        <FormattedMessage
+                            id='general.password'
+                            defaultMessage={'Password'} />
+                    </label>
                     <Input type="password" ref="password" name="password" />
-                    <Button className="submit-button white" type="submit">Sign in</Button>
-                    <a className="right" href="/accounts/password_reset/">Forgot password?</a>
+                    <Button className="submit-button white" type="submit">
+                        <FormattedMessage
+                            id='general.signIn'
+                            defaultMessage={'Sign in'} />
+                    </Button>
+                    <a className="right" href="/accounts/password_reset/">
+                        <FormattedMessage
+                            id='login.forgotPassword'
+                            defaultMessage={'Forgot Password?'} />
+                    </a>
                     {error}
                 </form>
             </div>
