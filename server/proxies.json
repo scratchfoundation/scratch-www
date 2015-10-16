@@ -6,7 +6,6 @@
             "/accounts/",
             "/csrf_token/",
             "/get_image/",
-            "/i18n/",
             "/session/",
             "/site-api/"
         ]
