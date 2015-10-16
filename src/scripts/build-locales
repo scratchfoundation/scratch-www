@@ -6,9 +6,9 @@
     in which to store the resulting json translation files.
 */
 
-var path = require('path');
-var glob = require('glob');
 var fs = require('fs');
+var glob = require('glob');
+var path = require('path');
 var po2icu = require('po2icu');
 
 /*
