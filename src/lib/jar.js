@@ -30,3 +30,10 @@ module.use = function (name, uri, callback) {
         });
     });
 };
+
+module.set = function (name, value) {
+    var obj = cookie.serialize(name, value);
+    var expires = '; expires=' + new Date(new Date().setYear(new Date().getFullYear() + 1)).toUTCString();
+    var path = '; path=/';
+    document.cookie = obj + expires + path;
+};
