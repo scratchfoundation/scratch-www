@@ -21,6 +21,12 @@
         "static": false
     },
     {
+        "pattern": "/guidelines",
+        "view": "guidelines",
+        "title": "Community Guidelines",
+        "static": false
+    },
+    {
         "static": true,
         "resolve": "_path.resolve(__dirname, '../build')",
         "attributes": { "lastModified": true, "maxAge": "1y" },

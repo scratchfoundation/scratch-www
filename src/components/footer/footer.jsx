@@ -19,7 +19,7 @@ module.exports = React.createClass({
 
                     <dl>
                         <dt>Community</dt>
-                        <dd><a href="/community_guidelines/">Community Guidelines</a></dd>
+                        <dd><a href="/guidelines/">Community Guidelines</a></dd>
                         <dd><a href="/discuss/">Discussion Forums</a></dd>
                         <dd><a href="https://wiki.scratch.mit.edu/">Scratch Wiki</a></dd>
                         <dd><a href="/statistics/">Statistics</a></dd>
