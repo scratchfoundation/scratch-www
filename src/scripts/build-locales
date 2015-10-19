@@ -36,8 +36,16 @@ if (!args.length) {
     process.exit(1);
 }
 
-var outputFile = path.resolve(__dirname, '../../', args[0]);
 var poUiDir = path.resolve(__dirname, '../../node_modules/scratchr2_translations/ui');
+var outputFile = path.resolve(__dirname, '../../', args[0]);
+// Create the directory if it doesn't exist.
+var fileInfo = path.parse(outputFile);
+try {
+    fs.accessSync(fileInfo.dir, fs.F_OK);
+} catch (err) {
+    // Doesn't exist – create it.
+    fs.mkdirSync(fileInfo.dir);
+}
 
 var icuTemplateFile = path.resolve(__dirname, '../../en.json');
 var idsWithICU = JSON.parse(fs.readFileSync(icuTemplateFile, 'utf8'));
@@ -63,14 +71,14 @@ glob(poUiDir + '/*', function (err, files) {
             var jsTranslations = po2icu.poFileToICUSync(lang, jsFile);
             translations = mergeNewTranslations(translations, jsTranslations, icuWithIds);
         } catch (err) {
-            process.stdout.write('Warning: the file ' + jsFile + ' was not found\n');
+            process.stdout.write(lang + ': ' + err + '\n');
         }
 
         try {
             var pyTranslations = po2icu.poFileToICUSync(lang, pyFile);
             translations = mergeNewTranslations(translations, pyTranslations, icuWithIds);
         } catch (err) {
-            process.stdout.write('Warning: the file ' + pyFile + ' was not found\n');
+            process.stdout.write(lang + ': ' + err + '\n');
         }
 
         locales[lang] = translations;
