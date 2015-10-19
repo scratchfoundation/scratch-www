@@ -1,7 +1,7 @@
 var classNames = require('classnames');
 var React = require('react');
 
-var jar = require('../../lib/jar.js');
+var Api = require('../../mixins/api.jsx');
 var languages = require('../../../languages.json');
 var Select = require('../forms/select.jsx');
 
@@ -9,6 +9,9 @@ require('./languagechooser.scss');
 
 var LanguageChooser = React.createClass({
     type: 'LanguageChooser',
+    mixins: [
+        Api
+    ],
     getInitialState: function () {
         return {
             choice: window._locale
@@ -21,8 +24,20 @@ var LanguageChooser = React.createClass({
     },
     onSetLanguage: function (e) {
         e.preventDefault();
-        jar.set('scratchlanguage', e.target.value);
-        document.location.reload(true);
+        this.api({
+            method: 'post',
+            host: '',
+            uri: '/i18n/setlang/',
+            useCsrf: true,
+            body: {
+                language: e.target.value
+            }
+
+        }, function (err, body) {
+            if (body) {
+                document.location.reload(true);
+            }
+        }.bind(this));
     },
     render: function () {
         var classes = classNames(
