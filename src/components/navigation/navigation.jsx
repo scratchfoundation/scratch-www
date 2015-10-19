@@ -118,6 +118,7 @@ var Navigation = React.createClass({
             'inner': true,
             'logged-in': this.state.session.user
         });
+        var formatMessage = this.props.intl.formatMessage;
         return (
             <div className={classes}>
                 <ul>

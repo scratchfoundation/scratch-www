@@ -26,7 +26,7 @@ var Activity = React.createClass({
         };
     },
     render: function () {
-        var formatMessage = this.props.intl;
+        var formatMessage = this.props.intl.formatMessage;
         return (
             <Box
                 className="activity"
