@@ -5,7 +5,9 @@ var Api = require('../../mixins/api.jsx');
 var Session = require('../../mixins/session.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
+var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
 var Box = require('../../components/box/box.jsx');
+var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var News = require('../../components/news/news.jsx');
@@ -68,6 +70,41 @@ var Splash = React.createClass({
                         </Box>
                     );
                 })}
+                <AdminPanel>
+                    <dt>Tools</dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <a href="/scratch_admin/tickets">Ticket Queue</a>
+                            </li>
+                            <li>
+                                <a href="/scratch_admin/ip-search/">IP Search</a>
+                            </li>
+                            <li>
+                                <a href="/scratch_admin/email-search/">Email Search</a>
+                            </li>
+                        </ul>
+                    </dd>
+                    <dt>Homepage Cache</dt>
+                    <dd>
+                        <ul className="cache-list">
+                            <li>
+                                <form
+                                    id="homepage-refresh-form"
+                                    method="post"
+                                    action="/scratch_admin/homepage/clear-cache/">
+                                    
+                                    <div className="button-row">
+                                        <span>Refresh row data:</span>
+                                        <Button type="submit">
+                                            <span>Refresh</span>
+                                        </Button>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </dd>
+                </AdminPanel>
             </div>
         );
     }
