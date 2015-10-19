@@ -77,6 +77,9 @@ var Navigation = React.createClass({
             if (body) {
                 body = body[0];
                 if (!body.success) {
+                    if (body.redirect) {
+                        window.location = body.redirect;
+                    }
                     this.setState({'loginError': body.msg});
                 } else {
                     this.closeLogin();
