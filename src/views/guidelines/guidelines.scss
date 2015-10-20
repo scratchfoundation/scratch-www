@@ -1,0 +1,26 @@
+@import "../../colors";
+
+#view {
+
+ul {
+   list-style-image: url('/images/meow.png');
+}
+
+li {
+   margin-top: 10px;
+}
+
+.boldwords {
+	font-weight: bold;
+}
+
+.box-contents {
+	width: 80%;
+	margin: auto;
+}
+
+.image {
+	width: 80%;
+	margin: auto;
+}
+}
