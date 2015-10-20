@@ -72,7 +72,7 @@ var Splash = injectIntl(React.createClass({
     },
     getActivity: function () {
         this.api({
-            uri: '/proxy/users/' + this.state.session.user.username + '/activity?max=5'
+            uri: '/proxy/users/' + this.state.session.user.username + '/activity?limit=5'
         }, function (err, body) {
             if (!err) this.setState({'activity': body});
         }.bind(this));
