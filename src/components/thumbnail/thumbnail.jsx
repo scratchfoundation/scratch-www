@@ -13,7 +13,9 @@ var Thumbnail = React.createClass({
             href: '/projects/1000/',
             title: 'Example Project',
             src: 'http://www.lorempixel.com/144/108/',
-            type: 'project'
+            type: 'project',
+            showLoves: false,
+            showRemixes: false
         };
     },
     render: function () {
@@ -26,7 +28,7 @@ var Thumbnail = React.createClass({
         if (this.props.creator) {
             extra.push(<div key="creator" className="thumbnail-creator">by {this.props.creator}</div>);
         }
-        if (this.props.loves) {
+        if (this.props.loves && this.props.showLoves) {
             extra.push(
                 <div key="loves" className="thumbnail-loves"
                      title={this.props.loves + ' loves'}>
@@ -34,7 +36,7 @@ var Thumbnail = React.createClass({
                 </div>
             );
         }
-        if (this.props.remixes) {
+        if (this.props.remixes && this.props.showRemixes) {
             extra.push(
                 <div key="remixes" className="thumbnail-remixes"
                      title={this.props.remixes + ' remixes'}>
