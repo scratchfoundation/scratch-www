@@ -1,18 +1,64 @@
+@import "../../frameless";
+
 #view {
     .splash-header {
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-between;
 
-        .activity {
-            display: inline-block;
-            width: calc(60% - 20px);
+
+        //4 columns
+        @media only screen and (max-width: $mobile - 1) {
+            flex-wrap: wrap;
+            .activity {
+                width: $cols4;
+            }
+
+            .news {
+                width: $cols4;
+            }
         }
 
-        .news {
-            display: inline-block;
-            width: 40%;
+        //6 columns
+        @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+            flex-wrap: wrap;
+            .activity {
+                width: $cols6;
+            }
+
+            .news {
+                width: $cols6;
+            }
+        }
+
+        //8 columns
+        @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+            flex-wrap: nowrap;
+            .activity {
+                width: $cols5;
+                display: inline-block;
+            }
+
+            .news {
+                margin-left: $gutter/$em;
+                width: $cols3;
+                display: inline-block;
+            }
+        }
+
+        //12 columns
+        @media only screen and (min-width: $desktop) {
+            flex-wrap: nowrap;
+
+            .activity {
+                width: $cols7;
+                display: inline-block;
+            }
+
+            .news {
+                margin-left: $gutter/$em;
+                width: $cols5;
+                display: inline-block;
+            }
         }
     }
 

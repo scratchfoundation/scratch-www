@@ -1,4 +1,5 @@
 @import "colors";
+@import "frameless";
 
 /* Tags */
 html,
@@ -54,10 +55,6 @@ a[href=""] {
 }
 
 /* Classes */
-.inner {
-    margin: 0 auto;
-    width: 942px;
-}
 
 #view {
     /* NOTE: Margin should match height in navigation.scss */
@@ -67,3 +64,5 @@ a[href=""] {
     padding: 20px 0;
     min-height: 768px;
 }
+
+
