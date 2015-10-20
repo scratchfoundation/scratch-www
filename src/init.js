@@ -34,7 +34,11 @@ require('custom-event-polyfill');
             host: '',
             uri: '/session/'
         }, function (err, body) {
-            window.updateSession(body);
+            if (body.banned) {
+                return window.location = body.redirectUrl;
+            } else {
+                window.updateSession(body);
+            }
         });
     };
 
