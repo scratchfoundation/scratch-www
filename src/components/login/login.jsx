@@ -1,4 +1,5 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var FormattedMessage = require('react-intl').FormattedMessage;
 
 var Input = require('../forms/input.jsx');
@@ -15,8 +16,8 @@ var Login = React.createClass({
     handleSubmit: function (event) {
         event.preventDefault();
         this.props.onLogIn({
-            'username': this.refs.username.value,
-            'password': this.refs.password.value
+            'username': ReactDOM.findDOMNode(this.refs.username).value,
+            'password': ReactDOM.findDOMNode(this.refs.password).value
         });
     },
     render: function () {
