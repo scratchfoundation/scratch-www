@@ -28,6 +28,19 @@ var Splash = React.createClass({
             featured: require('./featured.json')
         };
     },
+    componentDidUpdate: function (prevProps, prevState) {
+        if (this.state.session.user != prevState.session.user && this.state.session.user) {
+            this.getNews();
+            this.getActivity();
+        }
+    },
+    componentDidMount: function () {
+        if (this.state.session.user) {
+            this.getNews();
+            this.getActivity();
+        }
+        // @todo API request for Featured
+    },
     getNews: function () {
         this.api({
             uri: '/news?limit=3'
@@ -35,24 +48,19 @@ var Splash = React.createClass({
             if (!err) this.setState({'news': body});
         }.bind(this));
     },
-    componentDidUpdate: function (prevProps, prevState) {
-        if (this.state.session.user != prevState.session.user && this.state.session.user) {
-            this.getNews();
-        }
-    },
-    componentDidMount: function () {
-        if (this.state.session.user) {
-            this.getNews();
-        }
-        // @todo API request for Activity
-        // @todo API request for Featured
+    getActivity: function () {
+        this.api({
+            uri: '/proxy/users/' + this.state.session.user.username + '/activity?max=5'
+        }, function (err, body) {
+            if (!err) this.setState({'activity': body});
+        }.bind(this));
     },
     render: function () {
         return (
             <div className="inner">
                 {this.state.session.user ? [
                     <div key="header" className="splash-header">
-                        <Activity />
+                        <Activity items={this.state.activity} />
                         <News items={this.state.news} />
                     </div>
                 ] : [
