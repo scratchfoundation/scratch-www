@@ -120,11 +120,13 @@ var Intro = React.createClass({
                     <img src="//cdn.scratch.mit.edu/scratchr2/static/images/hp-video-screenshot.png" />
                 </div>
                 <Modal
-                    className="video-modal"
-                    isOpen={this.state.videoOpen}
-                    onRequestClose={this.closeVideo}
-                    frameSettings={frameSettings}>
-                    <iframe src="//player.vimeo.com/video/65583694?title=0&amp;byline=0&amp;portrait=0" {...omit(frameSettings, 'padding')} />
+                        className="video-modal"
+                        isOpen={this.state.videoOpen}
+                        onRequestClose={this.closeVideo}
+                        frameSettings={frameSettings}>
+                    <iframe
+                        src="//player.vimeo.com/video/65583694?title=0&amp;byline=0&amp;portrait=0"
+                        {...omit(frameSettings, 'padding')} />
                 </Modal>
             </div>
         );
