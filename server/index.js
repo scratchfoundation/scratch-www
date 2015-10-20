@@ -1,3 +1,7 @@
+if (typeof process.env.NEW_RELIC_LICENSE_KEY === 'string') {
+    require('newrelic');
+}
+
 var compression = require('compression');
 var express = require('express');
 var proxy = require('express-http-proxy');
