@@ -1,0 +1,10 @@
+[
+    "/accounts/",
+    "/csrf_token/",
+    "/fragment/",
+    "/get_image/",
+    "/login_retry/",
+    "/media/",
+    "/session/",
+    "/static/"
+]

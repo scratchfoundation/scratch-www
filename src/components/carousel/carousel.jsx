@@ -6,13 +6,16 @@ require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
 require('./carousel.scss');
 
-module.exports = React.createClass({
+var Carousel = React.createClass({
+    type: 'Carousel',
     propTypes: {
         items: React.PropTypes.array
     },
     getDefaultProps: function () {
         return {
             items: require('./carousel.json'),
+            showRemixes: false,
+            showLoves: false,
             settings: {
                 arrows: true,
                 dots: false,
@@ -28,15 +31,34 @@ module.exports = React.createClass({
         return (
             <Slider className={'carousel ' + this.props.className} {... this.props.settings}>
                 {this.props.items.map(function (item) {
+                    var href = '';
+                    switch (item.type) {
+                    case 'gallery':
+                        href = '/studio/' + item.id + '/';
+                        break;
+                    case 'project':
+                        href = '/projects/' + item.id + '/';
+                        break;
+                    default:
+                        href = '/' + item.type + '/' + item.id + '/';
+                    }
+
                     return (
                         <Thumbnail key={item.id}
-                                   href={item.href}
+                                   showLoves={this.props.showLoves}
+                                   showRemixes={this.props.showRemixes}
+                                   type={item.type}
+                                   href={href}
                                    title={item.title}
-                                   src={item.thumbnailUrl}
-                                   extra={item.creator ? 'by ' + item.creator:null} />
+                                   src={item.thumbnail_url}
+                                   creator={item.creator}
+                                   remixes={item.remixers_count}
+                                   loves={item.love_count} />
                     );
-                })}
+                }.bind(this))}
             </Slider>
         );
     }
 });
+
+module.exports = Carousel;

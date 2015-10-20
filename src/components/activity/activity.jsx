@@ -1,11 +1,22 @@
 var React = require('react');
+var ReactIntl = require('react-intl');
+var defineMessages = ReactIntl.defineMessages;
+var FormattedRelative = ReactIntl.FormattedRelative;
+var injectIntl = ReactIntl.injectIntl;
 
 var Box = require('../box/box.jsx');
-var Format = require('../../lib/format.js');
 
 require('./activity.scss');
 
-module.exports = React.createClass({
+var defaultMessages = defineMessages({
+    whatsHappening: {
+        id: 'general.whatsHappening',
+        defaultMessage: 'What\'s Happening?'
+    }
+});
+
+var Activity = React.createClass({
+    type: 'Activity',
     propTypes: {
         items: React.PropTypes.array
     },
@@ -15,19 +26,29 @@ module.exports = React.createClass({
         };
     },
     render: function () {
+        var formatMessage = this.props.intl.formatMessage;
         return (
             <Box
                 className="activity"
-                title="What's Happening?">
+                title={formatMessage(defaultMessages.whatsHappening)}>
 
                 <ul>
                     {this.props.items.map(function (item) {
+                        var actorProfileUrl = '/users/' + item.actor.username + '/';
+                        var actionDate = new Date(item.datetime_created + 'Z');
+                        var activityMessageHTML = '<a href=' + actorProfileUrl + '>' +
+                            item.actor.username + '</a>' + item.message;
+                            
                         return (
-                            <li key={item.id}>
-                                <a href={item.url}>
-                                    <img src={item.author.avatar} width="34" height="34" />
-                                    <p>{item.author.username} {item.message}</p>
-                                    <p><span className="stamp">{Format.date(item.stamp)}</span></p>
+                            <li key={item.pk}>
+                                <a href={actorProfileUrl}>
+                                    <img src={item.actor.thumbnail_url} width="34" height="34" />
+                                    <p dangerouslySetInnerHTML={{__html: activityMessageHTML}}></p>
+                                    <p>
+                                        <span className="stamp">
+                                            <FormattedRelative value={actionDate} />
+                                        </span>
+                                    </p>
                                 </a>
                             </li>
                         );
@@ -37,3 +58,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = injectIntl(Activity);

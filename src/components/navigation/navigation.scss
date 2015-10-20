@@ -155,7 +155,7 @@
                 padding-left: 10px;
                 width: 30px;
                 overflow: hidden;
-                text-indent: 100%;
+                text-indent: 50px;
                 white-space: nowrap;
             }
 
@@ -167,6 +167,25 @@
         .messages {
             > a {
                 background-image: url("/images/nav-notifications.png");
+            }
+
+            .messageCount {
+                display: none;
+                
+                &.show {
+                    display: block;
+                    position: absolute;
+                    top: .5rem;
+                    right: .25rem;
+                    border-radius: 1rem;
+                    background-color: $ui-orange;
+                    width: 1rem;
+                    text-indent: .25rem;
+                    line-height: 1rem;
+                    color: $type-white;
+                    font-size: .7rem;
+                    font-weight: bold;
+                }
             }
         }
 

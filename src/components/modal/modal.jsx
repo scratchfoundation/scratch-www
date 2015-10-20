@@ -1,22 +1,25 @@
 var React = require('react');
-var Modal = require('react-modal');
+var ReactModal = require('react-modal');
 
 require('./modal.scss');
 
 
-module.exports = React.createClass({
+var Modal = React.createClass({
+    type: 'Modal',
     statics: {
-        setAppElement: Modal.setAppElement
+        setAppElement: ReactModal.setAppElement
     },
     requestClose: function () {
         return this.refs.modal.portal.requestClose();
     },
     render: function () {
         return (
-            <Modal ref="modal" {... this.props}>
+            <ReactModal ref="modal" {... this.props}>
                 <div className="modal-close" onClick={this.requestClose}></div>
                 {this.props.children}
-            </Modal>
+            </ReactModal>
         );
     }
 });
+
+module.exports = Modal;

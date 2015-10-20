@@ -1,61 +1,208 @@
-var React = require('react');
 var classNames = require('classnames');
+var React = require('react');
+var ReactIntl = require('react-intl');
+var defineMessages = ReactIntl.defineMessages;
+var FormattedMessage = ReactIntl.FormattedMessage;
+var injectIntl = ReactIntl.injectIntl;
+var xhr = require('xhr');
 
+var Api = require('../../mixins/api.jsx');
 var Avatar = require('../avatar/avatar.jsx');
 var Dropdown = require('./dropdown.jsx');
 var Input = require('../forms/input.jsx');
+var log = require('../../lib/log.js');
 var Login = require('../login/login.jsx');
+var Registration = require('../registration/registration.jsx');
 var Session = require('../../mixins/session.jsx');
 
 require('./navigation.scss');
 
-module.exports = React.createClass({
+var defaultMessages = defineMessages({
+    messages: {
+        id: 'general.messages',
+        defaultMessage: 'Messages'
+    },
+    myStuff: {
+        id: 'general.myStuff',
+        defaultMessage: 'My Stuff'
+    }
+});
+
+var Navigation = React.createClass({
+    type: 'Navigation',
     mixins: [
+        Api,
         Session
     ],
     getInitialState: function () {
         return {
+            'accountNavOpen': false,
             'loginOpen': false,
-            'accountNavOpen': false
+            'loginError': null,
+            'registrationOpen': false,
+            'unreadMessageCount': 0,
+            'messageCountIntervalId': -1
         };
+    },
+    componentDidMount: function () {
+        if (this.state.session.user) {
+            this.getMessageCount();
+            var intervalId = setInterval(this.getMessageCount, 120000);
+            this.setState({'messageCountIntervalId': intervalId});
+        }
+    },
+    componentDidUpdate: function (prevProps, prevState) {
+        if (prevState.session.user != this.state.session.user) {
+            this.setState({
+                'loginOpen': false,
+                'accountNavOpen': false
+            });
+            if (this.state.session.user) {
+                this.getMessageCount();
+                var intervalId = setInterval(this.getMessageCount, 120000);
+                this.setState({'messageCountIntervalId': intervalId});
+            } else {
+                // clear message count check, and set to default id.
+                clearInterval(this.state.messageCountIntervalId);
+                this.setState({'messageCountIntervalId': -1});
+            }
+        }
+    },
+    componentWillUnmount: function () {
+        // clear message interval if it exists
+        if (this.state.messageCountIntervalId != -1) {
+            clearInterval(this.state.messageCountIntervalId);
+            this.setState({'messageCountIntervalId': -1});
+        }
+    },
+    getProfileUrl: function () {
+        if (!this.state.session.user) return;
+        return '/users/' + this.state.session.user.username + '/';
+    },
+    getMessageCount: function () {
+        this.api({
+            method: 'get',
+            host: '',
+            uri: '/proxy/users/' + this.state.session.user.username + '/activity/count'
+        }, function (err, body) {
+            if (body) {
+                var count = parseInt(body.msg_count, this.state.unreadMessageCount);
+                this.setState({'unreadMessageCount': count});
+            }
+        }.bind(this));
+    },
+    handleJoinClick: function (e) {
+        e.preventDefault();
+        this.setState({'registrationOpen': true});
     },
     handleLoginClick: function (e) {
         e.preventDefault();
-        this.setState({'loginOpen': true});
+        this.setState({'loginOpen': !this.state.loginOpen});
     },
     closeLogin: function () {
         this.setState({'loginOpen': false});
     },
-    handleLogIn: function () {
-        // @todo Use an api
-        window.updateSession(require('../../session.json'));
+    handleLogIn: function (formData) {
+        this.setState({'loginError': null});
+        this.api({
+            method: 'post',
+            host: '',
+            uri: '/accounts/login/',
+            json: formData,
+            useCsrf: true
+        }, function (err, body) {
+            if (body) {
+                body = body[0];
+                if (!body.success) {
+                    if (body.redirect) {
+                        window.location = body.redirect;
+                    }
+                    this.setState({'loginError': body.msg});
+                } else {
+                    this.closeLogin();
+                    window.refreshSession();
+                }
+            }
+        }.bind(this));
     },
-    handleLogOut: function () {
-        // @todo Use an api
-        window.updateSession({});
+    handleLogOut: function (e) {
+        e.preventDefault();
+        xhr({
+            host: '',
+            uri: '/accounts/logout/'
+        }, function (err) {
+            if (err) {
+                log.error(err);
+            } else {
+                this.closeLogin();
+                window.refreshSession();
+            }
+        }.bind(this));
     },
-    handleClickAccountNav: function () {
+    handleAccountNavClick: function (e) {
+        e.preventDefault();
         this.setState({'accountNavOpen': true});
     },
     closeAccountNav: function () {
         this.setState({'accountNavOpen': false});
     },
+    closeRegistration: function () {
+        this.setState({'registrationOpen': false});
+    },
+    completeRegistration: function () {
+        window.refreshSession();
+        this.closeRegistration();
+    },
     render: function () {
-        var loggedIn = !!this.state.session.token;
         var classes = classNames({
             'inner': true,
-            'logged-in': this.state.loggedIn
+            'logged-in': this.state.session.user
         });
+        var messageClasses = classNames({
+            'messageCount': true,
+            'show': this.state.unreadMessageCount > 0
+        });
+        var formatMessage = this.props.intl.formatMessage;
         return (
             <div className={classes}>
                 <ul>
                     <li className="logo"><a href="/"></a></li>
                     
-                    <li className="link"><a href="/projects/editor">Create</a></li>
-                    <li className="link"><a href="/explore">Explore</a></li>
-                    <li className="link"><a href="/discuss">Discuss</a></li>
-                    <li className="link"><a href="/about">About</a></li>
-                    <li className="link"><a href="/help">Help</a></li>
+                    <li className="link create">
+                        <a href="/projects/editor">
+                            <FormattedMessage
+                                id="general.create"
+                                defaultMessage={'Create'} />
+                        </a>
+                    </li>
+                    <li className="link explore">
+                        <a href="/explore?date=this_month">
+                            <FormattedMessage
+                                id="general.explore"
+                                defaultMessage={'Explore'} />
+                        </a>
+                    </li>
+                    <li className="link discuss">
+                        <a href="/discuss">
+                            <FormattedMessage
+                                id="general.discuss"
+                                defaultMessage={'Discuss'} />
+                        </a>
+                    </li>
+                    <li className="link about">
+                        <a href="/about">
+                            <FormattedMessage
+                                id="general.about"
+                                defaultMessage={'About'} />
+                        </a>
+                    </li>
+                    <li className="link help">
+                        <a href="/help">
+                            <FormattedMessage
+                                id="general.help"
+                                defaultMessage={'Help'} />
+                        </a>
+                    </li>
 
                     <li className="search">
                         <form action="/search/google_results" method="get">
@@ -65,42 +212,88 @@ module.exports = React.createClass({
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
-                    {loggedIn ? [
+                    {this.state.session.user ? [
                         <li className="link right messages" key="messages">
-                            <a href="/messages/" title="Messages">Messages</a>
+                            <a
+                                href="/messages/"
+                                title={formatMessage(defaultMessages.messages)}>
+
+                                <span className={messageClasses}>{this.state.unreadMessageCount}</span>
+                                <FormattedMessage {...defaultMessages.messages} />
+                            </a>
                         </li>,
                         <li className="link right mystuff" key="mystuff">
-                            <a href="/mystuff/" title="My Stuff">My Stuff</a>
+                            <a
+                                href="/mystuff/"
+                                title={formatMessage(defaultMessages.myStuff)}>
+
+                                <FormattedMessage {...defaultMessages.myStuff} />
+                            </a>
                         </li>,
                         <li className="link right account-nav" key="account-nav">
-                            <a className="userInfo" href="#" onClick={this.handleClickAccountNav}>
-                                <Avatar
-                                    userId={this.state.session.user.id}
-                                    version={this.state.session.user.avatarVersion}
-                                    size={24} />
+                            <a className="userInfo" href="#" onClick={this.handleAccountNavClick}>
+                                <Avatar src={this.state.session.user.thumbnailUrl} />
                                 {this.state.session.user.username}
                             </a>
                             <Dropdown
                                     as="ul"
                                     isOpen={this.state.accountNavOpen}
                                     onRequestClose={this.closeAccountNav}>
-                                <li><a href="/users/raimondious/">Profile</a></li>
-                                <li><a href="/mystuff/">My Stuff</a></li>
-                                <li><a href="/accounts/settings/">Account settings</a></li>
+                                <li>
+                                    <a href={this.getProfileUrl()}>
+                                        <FormattedMessage
+                                            id='general.profile'
+                                            defaultMessage={'Profile'} />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/mystuff/">
+                                        <FormattedMessage {...defaultMessages.myStuff} />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/accounts/settings/">
+                                        <FormattedMessage
+                                            id='general.accountSettings'
+                                            defaultMessage={'Account settings'} />
+                                    </a>
+                                </li>
                                 <li className="divider">
-                                    <a href="#" onClick={this.handleLogOut}>Sign out</a>
+                                    <a href="#" onClick={this.handleLogOut}>
+                                        <FormattedMessage
+                                            id='navigation.signOut'
+                                            defaultMessage={'Sign out'} />
+                                    </a>
                                 </li>
                             </Dropdown>
                         </li>
                     ] : [
-                        <li className="link right join" key="join"><a href="/join">Join Scratch</a></li>,
-                        <li className="link right" key="login">
-                            <a href="#" onClick={this.handleLoginClick}>Sign In</a>
+                        <li className="link right join" key="join"><a href="/join">
+                            <FormattedMessage
+                                id='general.joinScratch'
+                                defaultMessage={'Join Scratch'} />
+                        </a></li>,
+                        <Registration
+                                key="registration"
+                                isOpen={this.state.registrationOpen}
+                                onRequestClose={this.closeRegistration}
+                                onRegistrationDone={this.completeRegistration} />,
+                        <li className="link right login-item" key="login">
+                            <a
+                                href="#"
+                                onClick={this.handleLoginClick}
+                                className="ignore-react-onclickoutside">
+                                    <FormattedMessage
+                                        id='general.signIn'
+                                        defaultMessage={'Sign In'} />
+                                </a>
                             <Dropdown
                                     className="login-dropdown with-arrow"
                                     isOpen={this.state.loginOpen}
                                     onRequestClose={this.closeLogin}>
-                                <Login onLogIn={this.handleLogIn} />
+                                <Login
+                                    onLogIn={this.handleLogIn}
+                                    error={this.state.loginError} />
                             </Dropdown>
                         </li>
                     ]}
@@ -109,3 +302,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = injectIntl(Navigation);

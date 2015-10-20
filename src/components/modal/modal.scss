@@ -23,16 +23,6 @@ $base-bg: $ui-white;
     -webkit-overflow-scrolling: touch;
 }
 
-@media (max-width: 768px) {
-    .ReactModal__Content {
-        top: 10px;
-        right: 10px;
-        bottom: 10px;
-        left: 10px;
-        padding: 10px;
-    }
-}
-
 .modal-close {
     $modal-close-size: 20px;
     position: absolute;

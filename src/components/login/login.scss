@@ -1,3 +1,5 @@
+@import "../../colors";
+
 .login {
     padding: 10px;
 
@@ -16,5 +18,12 @@
 
     a:hover {
         background-color: transparent;
+    }
+
+    .error {
+        border: 1px solid $active-dark-gray;
+        border-radius: 5px;
+        background-color: $ui-orange;
+        padding: .75em 1em;
     }
 }

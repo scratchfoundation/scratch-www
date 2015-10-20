@@ -1,8 +1,10 @@
 var React = require('react');
+var render = require('../../lib/render.jsx');
 
 require('./about.scss');
 
-var View = React.createClass({
+var About = React.createClass({
+    type: 'About',
     render: function () {
         return (
             <div className="inner">
@@ -58,4 +60,4 @@ var View = React.createClass({
     }
 });
 
-React.render(<View />, document.getElementById('view'));
+render(<About />, document.getElementById('view'));
