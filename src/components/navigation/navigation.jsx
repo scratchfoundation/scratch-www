@@ -268,11 +268,13 @@ var Navigation = React.createClass({
                             </Dropdown>
                         </li>
                     ] : [
-                        <li className="link right join" key="join"><a href="/join">
-                            <FormattedMessage
-                                id='general.joinScratch'
-                                defaultMessage={'Join Scratch'} />
-                        </a></li>,
+                        <li className="link right join" key="join">
+                            <a href="#" onClick={this.handleJoinClick}>
+                                <FormattedMessage
+                                    id='general.joinScratch'
+                                    defaultMessage={'Join Scratch'} />
+                            </a>
+                        </li>,
                         <Registration
                                 key="registration"
                                 isOpen={this.state.registrationOpen}

@@ -1,5 +1,4 @@
 @import "../../colors";
-@import "../../mixins";
 
 .intro {
     display: flex;
@@ -222,8 +221,4 @@
             pointer-events: none;
         }
     }
-}
-
-.video-modal {
-    @include modal-iframe(570px, 357px, 15px);
 }
