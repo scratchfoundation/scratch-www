@@ -1,3 +1,4 @@
+var omit = require('lodash.omit');
 var React = require('react');
 var ReactIntl = require('react-intl');
 var FormattedMessage = ReactIntl.FormattedMessage;
@@ -30,6 +31,11 @@ var Intro = React.createClass({
         this.setState({videoOpen: false});
     },
     render: function () {
+        var frameSettings = {
+            width: 570,
+            height: 357,
+            padding: 15
+        };
         return (
             <div className="intro">
                 <div className="content">
@@ -116,8 +122,9 @@ var Intro = React.createClass({
                 <Modal
                     className="video-modal"
                     isOpen={this.state.videoOpen}
-                    onRequestClose={this.closeVideo}>
-                    <iframe src="//player.vimeo.com/video/65583694?title=0&amp;byline=0&amp;portrait=0" />
+                    onRequestClose={this.closeVideo}
+                    frameSettings={frameSettings}>
+                    <iframe src="//player.vimeo.com/video/65583694?title=0&amp;byline=0&amp;portrait=0" {...omit(frameSettings, 'padding')} />
                 </Modal>
             </div>
         );

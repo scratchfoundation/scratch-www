@@ -44,6 +44,7 @@
     "json-loader": "0.5.2",
     "json2po-stream": "1.0.3",
     "jsx-loader": "0.13.2",
+    "lodash.omit": "3.1.0",
     "minilog": "2.0.8",
     "node-sass": "3.3.3",
     "po2icu": "git://github.com/LLK/po2icu.git#develop",
