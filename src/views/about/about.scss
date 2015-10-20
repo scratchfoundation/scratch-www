@@ -49,6 +49,14 @@
         border: 2px solid $ui-gray;
     }
 
+    .inner a {
+        font-weight: bold;
+    }
+
+    .information p {
+        margin-top: 10px;
+    }
+
     .moreinfolist {
         font-size: 120%;
         list-style-position: inside;
