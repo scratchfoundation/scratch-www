@@ -1,5 +1,6 @@
 var classNames = require('classnames');
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 var Api = require('../../mixins/api.jsx');
 var languages = require('../../../languages.json');
@@ -24,20 +25,8 @@ var LanguageChooser = React.createClass({
     },
     onSetLanguage: function (e) {
         e.preventDefault();
-        this.api({
-            method: 'post',
-            host: '',
-            uri: '/i18n/setlang/',
-            useCsrf: true,
-            body: {
-                language: e.target.value
-            }
-
-        }, function (err, body) {
-            if (body) {
-                document.location.reload(true);
-            }
-        }.bind(this));
+        this.setState({'choice': e.target.value});
+        ReactDOM.findDOMNode(this.refs.languageForm).submit();
     },
     render: function () {
         var classes = classNames(
@@ -46,7 +35,7 @@ var LanguageChooser = React.createClass({
         );
 
         return (
-            <form ref="languageForm" className={classes}>
+            <form ref="languageForm" className={classes} action="/i18n/setlang/" method="POST">
                 <Select name="language" defaultValue={this.state.choice} onChange={this.onSetLanguage}>
                     {Object.keys(this.props.languages).map(function (value) {
                         return <option value={value} key={value}>
