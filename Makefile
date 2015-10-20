@@ -24,7 +24,7 @@ translations:
 	./src/scripts/build-locales locales/translations.json
 
 webpack:
-	$(WEBPACK)
+	$(WEBPACK) --bail
 
 # ------------------------------------
 
@@ -45,6 +45,7 @@ start:
 
 test:
 	@make lint
+	@make build
 
 lint:
 	$(ESLINT) ./*.js
