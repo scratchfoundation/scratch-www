@@ -3,7 +3,8 @@
     "/csrf_token/",
     "/fragment/",
     "/get_image/",
-    "/login_retry",
+    "/login_retry/",
+    "/media/",
     "/session/",
     "/static/"
 ]

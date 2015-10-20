@@ -14,6 +14,8 @@ var Carousel = React.createClass({
     getDefaultProps: function () {
         return {
             items: require('./carousel.json'),
+            showRemixes: false,
+            showLoves: false,
             settings: {
                 arrows: true,
                 dots: false,
@@ -43,15 +45,17 @@ var Carousel = React.createClass({
 
                     return (
                         <Thumbnail key={item.id}
+                                   showLoves={this.props.showLoves}
+                                   showRemixes={this.props.showRemixes}
                                    type={item.type}
                                    href={href}
                                    title={item.title}
-                                   src={item.thumbnailUrl}
+                                   src={item.thumbnail_url}
                                    creator={item.creator}
-                                   remixes={item.remixes}
-                                   loves={item.loves} />
+                                   remixes={item.remixers_count}
+                                   loves={item.love_count} />
                     );
-                })}
+                }.bind(this))}
             </Slider>
         );
     }
