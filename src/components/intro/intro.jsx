@@ -1,11 +1,15 @@
 var React = require('react');
+var ReactIntl = require('react-intl');
+var FormattedMessage = ReactIntl.FormattedMessage;
+var FormattedHTMLMessage = ReactIntl.FormattedHTMLMessage;
 var Modal = require('../modal/modal.jsx');
 
 require('./intro.scss');
 
 Modal.setAppElement(document.getElementById('view'));
 
-module.exports = React.createClass({
+var Intro = React.createClass({
+    type: 'Intro',
     propTypes: {
         projectCount: React.PropTypes.number
     },
@@ -30,8 +34,12 @@ module.exports = React.createClass({
             <div className="intro">
                 <div className="content">
                     <h1>
-                        Create stories, games, and animations<br />
-                        Share with others around the world
+                        <FormattedHTMLMessage
+                            id='intro.tagLine'
+                            defaultMessage={
+                                'Create stories, games, and animations<br /> ' +
+                                'Share with others around the world'
+                            } />
                     </h1>
                     <div className="sprites">
                         <a className="sprite sprite-1" href="/projects/editor/?tip_bar=getStarted">
@@ -42,7 +50,11 @@ module.exports = React.createClass({
                                 className="costume costume-2"
                                 src="//cdn.scratch.mit.edu/scratchr2/static/images/cat-b.png" />
                             <div className="circle"></div>
-                            <div className="text">TRY IT OUT</div>
+                            <div className="text">
+                                <FormattedMessage
+                                    id='intro.tryItOut'
+                                    defaultMessage='TRY IT OUT' />
+                            </div>
                         </a>
                         <a className="sprite sprite-2" href="/starter_projects/">
                             <img
@@ -52,7 +64,11 @@ module.exports = React.createClass({
                                 className="costume costume-2"
                                 src="//cdn.scratch.mit.edu/scratchr2/static/images/tera-b.png" />
                             <div className="circle"></div>
-                            <div className="text">SEE EXAMPLES</div>
+                            <div className="text">
+                                <FormattedMessage
+                                    id='intro.seeExamples'
+                                    defaultMessage='SEE EXAMPLES' />
+                            </div>
                         </a>
                         <a className="sprite sprite-3" href="#">
                             <img
@@ -62,7 +78,11 @@ module.exports = React.createClass({
                                 className="costume costume-2"
                                 src="//cdn.scratch.mit.edu/scratchr2/static/images/gobo-b.png" />
                             <div className="circle"></div>
-                            <div className="text">JOIN SCRATCH</div>
+                            <div className="text">
+                                <FormattedMessage
+                                    id='intro.joinScratch'
+                                    defaultMessage='JOIN SCRATCH' />
+                            </div>
                             <div className="text subtext">( it&rsquo;s free )</div>
                         </a>
                     </div>
@@ -72,9 +92,21 @@ module.exports = React.createClass({
                         projects shared
                     </div>
                     <div className="links">
-                        <a href="/about/">ABOUT SCRATCH</a>
-                        <a href="/educators/">FOR EDUCATORS</a>
-                        <a className="last" href="/parents/">FOR PARENTS</a>
+                        <a href="/about/">
+                            <FormattedMessage
+                                id='intro.aboutScratch'
+                                defaultMessage='ABOUT SCRATCH' />
+                        </a>
+                        <a href="/educators/">
+                            <FormattedMessage
+                                id='intro.forEducators'
+                                defaultMessage='FOR EDUCATORS' />
+                        </a>
+                        <a className="last" href="/parents/">
+                            <FormattedMessage
+                                id='intro.forParents'
+                                defaultMessage='FOR PARENTS' />
+                        </a>
                     </div>
                 </div>
                 <div className="video">
@@ -91,3 +123,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Intro;

@@ -1,17 +1,21 @@
 var React = require('react');
+var render = require('../../lib/render.jsx');
 
 var Api = require('../../mixins/api.jsx');
 var Session = require('../../mixins/session.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
+var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
 var Box = require('../../components/box/box.jsx');
+var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var News = require('../../components/news/news.jsx');
 
 require('./splash.scss');
 
-var View = React.createClass({
+var Splash = React.createClass({
+    type: 'Splash',
     mixins: [
         Api,
         Session
@@ -24,19 +28,32 @@ var View = React.createClass({
             featured: require('./featured.json')
         };
     },
+    getNews: function () {
+        this.api({
+            uri: '/news?limit=3'
+        }, function (err, body) {
+            if (!err) this.setState({'news': body});
+        }.bind(this));
+    },
+    componentDidUpdate: function (prevProps, prevState) {
+        if (this.state.session.user != prevState.session.user && this.state.session.user) {
+            this.getNews();
+        }
+    },
     componentDidMount: function () {
-        // @todo API request for News
+        if (this.state.session.user) {
+            this.getNews();
+        }
         // @todo API request for Activity
         // @todo API request for Featured
     },
     render: function () {
-        var loggedIn = !!this.state.session.token;
         return (
             <div className="inner">
-                {loggedIn ? [
-                    <div className="splash-header">
+                {this.state.session.user ? [
+                    <div key="header" className="splash-header">
                         <Activity />
-                        <News />
+                        <News items={this.state.news} />
                     </div>
                 ] : [
                     <Intro projectCount={this.state.projectCount} key="intro"/>
@@ -53,9 +70,44 @@ var View = React.createClass({
                         </Box>
                     );
                 })}
+                <AdminPanel>
+                    <dt>Tools</dt>
+                    <dd>
+                        <ul>
+                            <li>
+                                <a href="/scratch_admin/tickets">Ticket Queue</a>
+                            </li>
+                            <li>
+                                <a href="/scratch_admin/ip-search/">IP Search</a>
+                            </li>
+                            <li>
+                                <a href="/scratch_admin/email-search/">Email Search</a>
+                            </li>
+                        </ul>
+                    </dd>
+                    <dt>Homepage Cache</dt>
+                    <dd>
+                        <ul className="cache-list">
+                            <li>
+                                <form
+                                    id="homepage-refresh-form"
+                                    method="post"
+                                    action="/scratch_admin/homepage/clear-cache/">
+                                    
+                                    <div className="button-row">
+                                        <span>Refresh row data:</span>
+                                        <Button type="submit">
+                                            <span>Refresh</span>
+                                        </Button>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </dd>
+                </AdminPanel>
             </div>
         );
     }
 });
 
-React.render(<View />, document.getElementById('view'));
+render(<Splash />, document.getElementById('view'));

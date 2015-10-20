@@ -1,11 +1,22 @@
 var React = require('react');
+var ReactIntl = require('react-intl');
+var defineMessages = ReactIntl.defineMessages;
+var injectIntl = ReactIntl.injectIntl;
 
 var Box = require('../box/box.jsx');
 var Format = require('../../lib/format.js');
 
 require('./activity.scss');
 
-module.exports = React.createClass({
+var defaultMessages = defineMessages({
+    whatsHappening: {
+        id: 'general.whatsHappening',
+        defaultMessage: 'What\'s Happening?'
+    }
+});
+
+var Activity = React.createClass({
+    type: 'Activity',
     propTypes: {
         items: React.PropTypes.array
     },
@@ -15,10 +26,11 @@ module.exports = React.createClass({
         };
     },
     render: function () {
+        var formatMessage = this.props.intl.formatMessage;
         return (
             <Box
                 className="activity"
-                title="What's Happening?">
+                title={formatMessage(defaultMessages.whatsHappening)}>
 
                 <ul>
                     {this.props.items.map(function (item) {
@@ -37,3 +49,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = injectIntl(Activity);

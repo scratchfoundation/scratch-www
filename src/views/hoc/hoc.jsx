@@ -1,101 +1,131 @@
 var React = require('react');
+var render = require('../../lib/render.jsx');
 
 require('./hoc.scss');
 
 var Button = require('../../components/forms/button.jsx');
 var Box = require('../../components/box/box.jsx');
 
-var View = React.createClass({
+var Hoc = React.createClass({
+    type: 'Hoc',
+
+    getInitialState: function () {
+        return {
+            bgClass: ''
+        };
+    },
+    onCardEnter: function (bgClass) {
+        this.setState({
+            bgClass: bgClass
+        });
+    },
     render: function () {
         return (
             <div>
-                <div className="top-banner">
-                <h1>Create Projects to Share!</h1>
-                <p>With Scratch, you can program your own stories, games, and animations — and share them online.</p>
+                <div className={'top-banner ' + this.state.bgClass}>
+                    <h1>Get Creative with Coding</h1>
+                    <p>
+                        With Scratch, you can program your own stories, games, and animations —
+                        and share them online.
+                    </p>
 
-                <div className="card-deck">
-                    <div className="card">
-                        <div className="card-info">
-                            <img src="/images/hide-seek-tutorial.png" />
-                            <Button>Create a Hide & Seek Game</Button>
+                    <div className="card-deck">
+                        <div className="card">
+                            <div className="card-info" onMouseEnter={this.onCardEnter.bind(this, 'name-bg')}>
+                                <img src="/images/name-tutorial.jpg" />
+                                <a href="/projects/editor/?tip_bar=name"><Button>Animate Your Name</Button></a>
+                            </div>
+                        </div>
+
+                        <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'wbb-bg')}>
+                            <div className="card-info">
+                                <img src="/images/hide-seek-tutorial.jpg" />
+                                <a href="/hide"><Button> Hide-and-Seek Game</Button></a>
+                            </div>
+                        </div>
+
+                        <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'dance-bg')}>
+                            <div className="card-info">
+                                <img src="/images/dance-tutorial.jpg" />
+                                <a href="/projects/editor/?tip_bar=dance"><Button>Dance, Dance, Dance</Button></a>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="card">
-                        <div className="card-info">
-                            <img src="/images/dance-tutorial.png" />
-                            <Button>Compose a Dance Sequence</Button>
-                        </div>
-                    </div>
-
-                    <div className="card">
-                        <div className="card-info">
-                            <img src="/images/name-tutorial.png" />
-                            <Button>Animate Your Name</Button>
-                        </div>
-                    </div>
-                </div>
-
-                <ul className="sub-nav">
-                    <li className="info">Find out more:</li>
-                    <a href=""><li className="link">About Scratch</li></a>
-                    <a href=""><li className="link">For Parents</li></a>
-                    <a href=""><li className="link">For Educators</li></a>
-                </ul>
+                    <ul className="sub-nav">
+                        <li className="info">Find out more:</li>
+                        <a href="/about"><li className="link">About Scratch</li></a>
+                        <a href="/parents"><li className="link">For Parents</li></a>
+                        <a href="/educators"><li className="link">For Educators</li></a>
+                    </ul>
                 </div>
 
                 <div className="inner">
                     <Box>
                         <section className="one-up">
                             <div className="column">
-                                <h3>Related Resources</h3>
-                                <p>Below are some resources to help explore Scratch by yourself or to assist groups in
-                                workshops and classrooms <a href="">Find out more</a></p>
+                                <h3>Activity Cards and Guides</h3>
+                                <p>
+                                    Want tips and ideas for your Hour-of-Code activities?&nbsp;
+                                    View and print activity cards and facilitator guides.
+                                    <br />
+                                    For more resources, see <a href="/help">Scratch Help</a>.
+                                </p>
                             </div>
 
                             <div className="resource">
-                                    <img src="/svgs/tips-card.svg" />
-                                    <div className="resource-info">
-                                        <a href="">Hide & Seek Tip Cards</a>
-                                        <div className="file-size">13mbs</div>
-                                    </div>
+                                <img src="/svgs/tips-card.svg" />
+                                <div className="resource-info">
+                                    <h5>Animate Your Name</h5>
+                                    <a href="#">Activity Cards</a>
+                                    <a href="#">Facilitator Guide</a>
+                                </div>
                             </div>
+
                             <div className="resource">
-                                    <img src="/svgs/tips-card.svg" />
-                                    <div className="resource-info">
-                                        <a href="">Dance Tip Cards</a>
-                                        <div className="file-size">5mbs</div>
-                                    </div>
+                                <img src="/svgs/tips-card.svg" />
+                                <div className="resource-info">
+                                    <h5>Hide-and-Seek</h5>
+                                    <a href="#">Activity Cards</a>
+                                    <a href="#">Facilitator Guide</a>
+                                </div>
                             </div>
+                            
                             <div className="resource">
-                                    <img src="/svgs/tips-card.svg" />
-                                    <div className="resource-info">
-                                        <a href="">Name Tip Cards</a>
-                                        <div className="file-size">11mbs</div>
-                                    </div>
+                                <img src="/svgs/tips-card.svg" />
+                                <div className="resource-info">
+                                    <h5>Dance, Dance, Dance</h5>
+                                    <a href="#">Activity Cards</a>
+                                    <a href="#">Facilitator Guide</a>
+                                </div>
                             </div>
                         </section>
 
                         <section className="two-up">
                             <div className="column">
                                 <h3>Tips Window</h3>
-                                <p>New to Scratch or haven’t heard of the Tips Window? Check out interactive tutorials,
-                                handy block information, and other helpful hints all in the new 2015 <a href="">Tips
-                                Window</a></p>
+                                <p>
+                                    Need help getting started? Looking for ideas?&nbsp;
+                                    You can find tutorials and helpful hints in the
+                                    <br />
+                                    <a href="/projects/editor/?tip_bar=home">Tips Window</a>
+                                </p>
                             </div>
                             <div className="column">
                                 <img src="/images/tips-test-animation.gif" />
                             </div>
                         </section>
-
-                        <section className="one-up">
-                            <div className="column">
-                                <h3>Still Want More?</h3>
-                                <p><strong>Awesome!</strong> Here are some addtional tutorials
-                                from the Tips Window. <a href="">See all tips</a></p>
-                            </div>
-                        </section>
                     </Box>
+
+                    <section className="one-up">
+                        <h3>Collaborators</h3>
+                        <div className="logos">
+                            <img src="/images/code-org-logo.png" />
+                            <img src="/images/cn-logo.png" />
+                            <img src="/images/paa-logo.png" />
+                            <img src="/images/pocketcode-logo.png" />
+                        </div>
+                    </section>
                 </div>
             </div>
 
@@ -103,4 +133,4 @@ var View = React.createClass({
     }
 });
 
-React.render(<View />, document.getElementById('view'));
+render(<Hoc />, document.getElementById('view'));

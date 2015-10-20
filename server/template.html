@@ -6,6 +6,7 @@
         <meta charset="UTF-8" />
 
         <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta http-equiv="x-frame-options" content="deny">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Scratch - {{title}}</title>
@@ -14,7 +15,7 @@
         <!-- Open Graph -->
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://scratch.mit.edu/" />
-        <meta property="og:title" content="Scratch - Imagine, Program, Share" />
+        <meta property="og:title" content="Scratch - {{title}}" />
         <meta property="og:description" content="Make games, stories and interactive art with Scratch. (scratch.mit.edu)" />    
 
         <!-- Favicon & CSS normalize -->
@@ -24,8 +25,8 @@
         <!-- Shim/Sham ES5 polyfill for older browsers -->
         <script src="/js/lib/polyfill.min.js"></script>
 
-        <!-- Session provider -->
-        <script src="/js/session.bundle.js"></script>
+        <!-- Initialize (Locale & Session) -->
+        <script src="/js/init.bundle.js"></script>
     </head>
 
     <body>
@@ -35,6 +36,8 @@
 
         <!-- Scripts -->
         <script src="/js/lib/react.js"></script>
+        <script src="/js/lib/react-dom.js"></script>
+
         <script src="/js/main.bundle.js"></script>
         <script src="/js/{{view}}.bundle.js"></script>
 

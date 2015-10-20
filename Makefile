@@ -9,14 +9,19 @@ WEBPACK=./node_modules/.bin/webpack
 build:
 	@make clean
 	@make static
+	@make translations
 	@make webpack
 
 clean:
 	rm -rf ./build
 	mkdir -p build
+	mkdir -p locales
 
 static:
 	cp -a ./static/. ./build/
+
+translations:
+	./src/scripts/build-locales locales/translations.json
 
 webpack:
 	$(WEBPACK)
@@ -29,8 +34,9 @@ watch:
 	wait
 
 stop:
-	pkill -f "node $(WEBPACK) -d --watch"
-	pkill -f "node $(WATCH) make clean && make static ./static"
+	-pkill -f "$(WEBPACK) -d --watch"
+	-pkill -f "$(WATCH) make clean && make static ./static"
+	-pkill -f "$(NODE) ./server/index.js"
 
 start:
 	$(NODE) ./server/index.js

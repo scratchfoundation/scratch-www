@@ -6,7 +6,8 @@ require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
 require('./carousel.scss');
 
-module.exports = React.createClass({
+var Carousel = React.createClass({
+    type: 'Carousel',
     propTypes: {
         items: React.PropTypes.array
     },
@@ -33,6 +34,9 @@ module.exports = React.createClass({
                     case 'gallery':
                         href = '/studio/' + item.id + '/';
                         break;
+                    case 'project':
+                        href = '/projects/' + item.id + '/';
+                        break;
                     default:
                         href = '/' + item.type + '/' + item.id + '/';
                     }
@@ -52,3 +56,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Carousel;

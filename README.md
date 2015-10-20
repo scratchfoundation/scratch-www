@@ -16,7 +16,29 @@ During development, you can use `npm run watch` to cause any update you make to 
 npm start
 ```
 
+or to start and watch at once
+```bash
+npm run dev
+```
+
 Once running, open `http://localhost:8333` in your browser. If you wish to have the server reload automatically, you can install either [nodemon](https://github.com/remy/nodemon) or [forever](https://github.com/foreverjs/forever).
+
+### To stop
+```bash
+# Stops all `start` and `watch` processes
+npm stop
+```
+
+#### Configuration
+
+`npm start` and `npm run watch` can be configured with the following environment variables
+
+| Variable      | Default                               | Description                                    |
+| ------------- | ------------------------------------- | ---------------------------------------------- |
+| `API_HOST`    | `https://api-staging.scratch.mit.edu` | Hostname for API requests                      |
+| `NODE_ENV`    | `null`                                | If not `production`, app acts like development |
+| `PORT`        | `8333`                                | Port for devserver (http://localhost:XXXX)     |
+| `PROXY_HOST`  | `https://staging.scratch.mit.edu`     | Pass-through location for scratchr2            |
 
 ### To Test
 ```bash

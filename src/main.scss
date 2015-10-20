@@ -47,13 +47,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Adds Red outline to Links with no href */
-
-a[href=""] { 
-    $fail-red: #ff0000;
-    outline: 1px solid $fail-red; 
-}
-
 /* Classes */
 
 #view {
