@@ -16,12 +16,6 @@
     #{$extras} {
         line-height: normal;
         word-wrap: break-word;
-    }
-
-    .thumbnail-title {
-        margin-bottom: 1px;
-        font-size: .9230em;
-        font-weight: 800;
 
         a {
             display: block;
@@ -29,6 +23,12 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+    }
+
+    .thumbnail-title {
+        margin-bottom: 1px;
+        font-size: .9230em;
+        font-weight: 800;
     }
 
     #{$extras} {
