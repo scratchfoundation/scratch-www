@@ -82,7 +82,6 @@ var Navigation = React.createClass({
     getMessageCount: function () {
         this.api({
             method: 'get',
-            host: '',
             uri: '/proxy/users/' + this.state.session.user.username + '/activity/count'
         }, function (err, body) {
             if (body) {
