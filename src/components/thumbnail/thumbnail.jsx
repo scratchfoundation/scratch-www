@@ -10,9 +10,9 @@ var Thumbnail = React.createClass({
     },
     getDefaultProps: function () {
         return {
-            href: '/projects/1000/',
-            title: 'Example Project',
-            src: 'http://www.lorempixel.com/144/108/',
+            href: '#',
+            title: 'Project',
+            src: '',
             type: 'project',
             showLoves: false,
             showRemixes: false

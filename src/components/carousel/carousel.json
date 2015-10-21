@@ -2,48 +2,49 @@
     {
         "id": 1,
         "type": "project",
-        "title": "Example Project",
-        "thumbnailUrl": "http://www.lorempixel.com/144/108/",
-        "creator": "raimondious",
-        "href": "/projects/1000/"
+        "title": "Project",
+        "thumbnailUrl": "",
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 2,
         "type": "project",
-        "title": "Example Project",
-        "thumbnailUrl": "http://www.lorempixel.com/144/108/",
-        "href": "/projects/1000/"
+        "title": "Project",
+        "thumbnailUrl": "",
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 3,
         "type": "project",
-        "title": "Example Project",
-        "thumbnailUrl": "http://www.lorempixel.com/144/108/",
-        "creator": "raimondious",
-        "href": "/projects/1000/"
+        "title": "Project",
+        "thumbnailUrl": "",
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 4,
         "type": "project",
-        "title": "Example Project",
-        "thumbnailUrl": "http://www.lorempixel.com/144/108/",
-        "creator": "raimondious",
-        "href": "/projects/1000/"
+        "title": "Project",
+        "thumbnailUrl": "",
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 5,
         "type": "project",
-        "title": "Example Project",
-        "thumbnailUrl": "http://www.lorempixel.com/144/108/",
-        "creator": "raimondious",
-        "href": "/projects/1000/"
+        "title": "Project",
+        "thumbnailUrl": "",
+        "creator": "",
+        "href": "#"
     },
     {
         "id": 6,
         "type": "project",
-        "title": "Example Project",
-        "thumbnailUrl": "http://www.lorempixel.com/144/108/",
-        "creator": "raimondious",
-        "href": "/projects/1000/"
+        "title": "Project",
+        "thumbnailUrl": "",
+        "creator": "",
+        "href": "#"
     }
 ]
