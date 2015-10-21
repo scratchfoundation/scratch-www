@@ -130,7 +130,10 @@ var Splash = injectIntl(React.createClass({
             );
         }
 
-        if (this.state.session.user) {
+        if (
+                this.state.session.user &&
+                this.state.featuredGlobal.community_newest_projects &&
+                this.state.featuredGlobal.community_newest_projects.length > 0) {
             rows.push(
                 <Box
                         title={
@@ -143,7 +146,9 @@ var Splash = injectIntl(React.createClass({
             );
         }
 
-        if (this.state.featuredCustom.custom_projects_by_following) {
+        if (
+                this.state.featuredCustom.custom_projects_by_following &&
+                this.state.featuredCustom.custom_projects_by_following.length > 0) {
             rows.push(
                 <Box
                         title={
@@ -155,7 +160,9 @@ var Splash = injectIntl(React.createClass({
                 </Box>
             );
         }
-        if (this.state.featuredCustom.custom_projects_loved_by_following) {
+        if (
+                this.state.featuredCustom.custom_projects_loved_by_following &&
+                this.state.featuredCustom.custom_projects_loved_by_following.length > 0) {
             rows.push(
                 <Box
                         title={
@@ -168,7 +175,9 @@ var Splash = injectIntl(React.createClass({
             );
         }
 
-        if (this.state.featuredCustom.custom_projects_in_studios_following) {
+        if (
+                this.state.featuredCustom.custom_projects_in_studios_following &&
+                this.state.featuredCustom.custom_projects_in_studios_following.length > 0) {
             rows.push(
                 <Box
                         title={
