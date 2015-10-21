@@ -3,6 +3,7 @@ var React = require('react');
 var ReactIntl = require('react-intl');
 var FormattedMessage = ReactIntl.FormattedMessage;
 var FormattedHTMLMessage = ReactIntl.FormattedHTMLMessage;
+
 var Modal = require('../modal/modal.jsx');
 
 require('./intro.scss');
