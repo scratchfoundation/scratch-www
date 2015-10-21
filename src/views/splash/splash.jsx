@@ -30,25 +30,11 @@ var Splash = injectIntl(React.createClass({
             featuredGlobal: {}
         };
     },
-    getGlobalHomepageRows: function () {
-        this.api({
-            uri: '/proxy/featured'
-        }, function (err, body) {
-            if (!err) this.setState({featuredGlobal: body});
-        }.bind(this));
-    },
-    getCustomHomepageRows: function () {
-        this.api({
-            uri: '/proxy/users/' + this.state.session.user.id + '/featured'
-        }, function (err, body) {
-            if (!err) this.setState({featuredCustom: body});
-        }.bind(this));
-    },
     componentDidUpdate: function (prevProps, prevState) {
         if (this.state.session.user != prevState.session.user) {
             if (this.state.session.user) {
                 this.getActivity();
-                this.getCustomHomepageRows();
+                this.getFeaturedCustom();
                 this.getNews();
             } else {
                 this.setState({featuredCustom: []});
@@ -57,27 +43,41 @@ var Splash = injectIntl(React.createClass({
         }
     },
     componentDidMount: function () {
-        this.getGlobalHomepageRows();
+        this.getFeaturedGlobal();
         if (this.state.session.user) {
             this.getActivity();
-            this.getCustomHomepageRows();
+            this.getFeaturedCustom();
             this.getNews();
         } else {
             this.getProjectCount();
         }
-    },
-    getNews: function () {
-        this.api({
-            uri: '/news?limit=3'
-        }, function (err, body) {
-            if (!err) this.setState({'news': body});
-        }.bind(this));
     },
     getActivity: function () {
         this.api({
             uri: '/proxy/users/' + this.state.session.user.username + '/activity?limit=5'
         }, function (err, body) {
             if (!err) this.setState({'activity': body});
+        }.bind(this));
+    },
+    getFeaturedGlobal: function () {
+        this.api({
+            uri: '/proxy/featured'
+        }, function (err, body) {
+            if (!err) this.setState({featuredGlobal: body});
+        }.bind(this));
+    },
+    getFeaturedCustom: function () {
+        this.api({
+            uri: '/proxy/users/' + this.state.session.user.id + '/featured'
+        }, function (err, body) {
+            if (!err) this.setState({featuredCustom: body});
+        }.bind(this));
+    },
+    getNews: function () {
+        this.api({
+            uri: '/news?limit=3'
+        }, function (err, body) {
+            if (!err) this.setState({'news': body});
         }.bind(this));
     },
     getProjectCount: function () {
