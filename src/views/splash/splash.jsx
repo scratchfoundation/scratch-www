@@ -88,8 +88,16 @@ var Splash = injectIntl(React.createClass({
             if (!err) this.setState({projectCount: body.count});
         }.bind(this));
     },
-    handleDismiss: function (flag) {
-        // TODO: Call flag setting xhr
+    handleDismiss: function (cue) {
+        this.api({
+            host: '',
+            uri: '/site-api/users/set-template-cue/',
+            method: 'post',
+            useCsrf: true,
+            json: {cue: cue, value: false}
+        }, function (err) {
+            if (!err) window.refreshSession();
+        });
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;

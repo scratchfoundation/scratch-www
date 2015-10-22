@@ -7,5 +7,6 @@
     "/login_retry/",
     "/media/",
     "/session/",
+    "/site-api",
     "/static/"
 ]
