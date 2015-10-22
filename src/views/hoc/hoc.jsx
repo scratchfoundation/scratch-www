@@ -31,24 +31,30 @@ var Hoc = React.createClass({
 
                     <div className="card-deck">
                         <div className="card">
-                            <div className="card-info" onMouseEnter={this.onCardEnter.bind(this, 'name-bg')}>
-                                <img src="/images/name-tutorial.jpg" />
-                                <a href="/projects/editor/?tip_bar=name"><Button>Animate Your Name</Button></a>
-                            </div>
+                            <a href="/projects/editor/?tip_bar=name">
+                                <div className="card-info" onMouseEnter={this.onCardEnter.bind(this, 'name-bg')}>
+                                    <img src="/images/name-tutorial.jpg" />
+                                    <Button>Animate Your Name</Button>
+                                </div>
+                            </a>
                         </div>
 
                         <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'wbb-bg')}>
-                            <div className="card-info">
-                                <img src="/images/hide-seek-tutorial.jpg" />
-                                <a href="/hide"><Button> Hide-and-Seek Game</Button></a>
-                            </div>
+                            <a href="/hide">
+                                <div className="card-info">
+                                    <img src="/images/hide-seek-tutorial.jpg" />
+                                    <Button> Hide-and-Seek Game</Button>
+                                </div>
+                            </a>
                         </div>
 
                         <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'dance-bg')}>
-                            <div className="card-info">
-                                <img src="/images/dance-tutorial.jpg" />
-                                <a href="/projects/editor/?tip_bar=dance"><Button>Dance, Dance, Dance</Button></a>
-                            </div>
+                            <a href="/projects/editor/?tip_bar=dance">
+                                <div className="card-info">
+                                    <img src="/images/dance-tutorial.jpg" />
+                                    <Button>Dance, Dance, Dance</Button>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
