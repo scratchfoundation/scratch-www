@@ -3,7 +3,7 @@
 .intro {
     display: flex;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -22,6 +22,7 @@
     .sprites {
         position: relative;
         clear: both;
+        margin: 20px 0;
         overflow: hidden;
 
         &:after {
@@ -75,7 +76,7 @@
         }
 
         .text {
-            $text-bg-color: #f1f3f4;
+            $text-bg-color: $background-color;
             left: 35px;
             z-index: 1;
             border: 2px solid $text-bg-color;
@@ -162,7 +163,8 @@
 
     .links {
         margin-top: 20px;
-        font-size: 12px;
+        letter-spacing: .5px;
+        font-size: 12px; 
 
         a {
             border-right: 1px solid $type-gray;
@@ -178,13 +180,16 @@
         display: inline-block;
         position: relative;
         border: 1px solid $ui-border;
-        border-radius: 5px;
-        box-shadow: 0 2px 3px;
-        background-color: $ui-gray;
-        padding: 10px;
+        border-radius: 10px;
+        background-color: $ui-white;
+        padding: 14px 10px;
         width: 34%;
         height: 208px;
         text-align: center;
+
+        img {
+            border-radius: 5px;
+        }
     }
 
     .play-button {
