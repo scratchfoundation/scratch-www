@@ -7,6 +7,7 @@ var Session = require('../../mixins/session.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
+var Banner = require('../../components/banner/banner.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
@@ -235,58 +236,71 @@ var Splash = injectIntl(React.createClass({
     },
     render: function () {
         var featured = this.renderHomepageRows();
+        var showEmailConfirmation = true;(
+            this.state.session.user && this.state.session.flags.has_outstanding_email_confirmation &&
+            this.state.session.flags.confirm_email_banner);
         return (
-            <div className="inner">
-                {this.state.session.user ? [
-                    <div key="header" className="splash-header">
-                        {this.state.session.flags.show_welcome ? [
-                            <Welcome key="welcome" onDismiss={this.handleDismiss.bind(this, 'welcome')}/>
-                        ] : [
-                            <Activity key="activity" items={this.state.activity} />
-                        ]}
-                        <News items={this.state.news} />
-                    </div>
-                ] : [
-                    <Intro projectCount={this.state.projectCount} key="intro"/>
-                ]}
+            <div className="splash">
+                {showEmailConfirmation ? [
+                    <Banner key="confirmedEmail"
+                            className="warning"
+                            onRequestDismiss={this.handleDismiss.bind(this, 'confirmed_email')}>
+                        <a href="#" onClick={this.showConfirmEmailPopup}>Confirm your email</a> to enable sharing.{' '}
+                        <a href="/info/faq/#accounts">Having trouble?</a>
+                    </Banner>
+                ] : []}
+                <div key="inner" className="inner">
+                    {this.state.session.user ? [
+                        <div key="header" className="splash-header">
+                            {this.state.session.flags.show_welcome ? [
+                                <Welcome key="welcome" onDismiss={this.handleDismiss.bind(this, 'welcome')}/>
+                            ] : [
+                                <Activity key="activity" items={this.state.activity} />
+                            ]}
+                            <News items={this.state.news} />
+                        </div>
+                    ] : [
+                        <Intro projectCount={this.state.projectCount} key="intro"/>
+                    ]}
 
-                {featured}
+                    {featured}
 
-                <AdminPanel>
-                    <dt>Tools</dt>
-                    <dd>
-                        <ul>
-                            <li>
-                                <a href="/scratch_admin/tickets">Ticket Queue</a>
-                            </li>
-                            <li>
-                                <a href="/scratch_admin/ip-search/">IP Search</a>
-                            </li>
-                            <li>
-                                <a href="/scratch_admin/email-search/">Email Search</a>
-                            </li>
-                        </ul>
-                    </dd>
-                    <dt>Homepage Cache</dt>
-                    <dd>
-                        <ul className="cache-list">
-                            <li>
-                                <form
-                                    id="homepage-refresh-form"
-                                    method="post"
-                                    action="/scratch_admin/homepage/clear-cache/">
-                                    
-                                    <div className="button-row">
-                                        <span>Refresh row data:</span>
-                                        <Button type="submit">
-                                            <span>Refresh</span>
-                                        </Button>
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
-                    </dd>
-                </AdminPanel>
+                    <AdminPanel>
+                        <dt>Tools</dt>
+                        <dd>
+                            <ul>
+                                <li>
+                                    <a href="/scratch_admin/tickets">Ticket Queue</a>
+                                </li>
+                                <li>
+                                    <a href="/scratch_admin/ip-search/">IP Search</a>
+                                </li>
+                                <li>
+                                    <a href="/scratch_admin/email-search/">Email Search</a>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dt>Homepage Cache</dt>
+                        <dd>
+                            <ul className="cache-list">
+                                <li>
+                                    <form
+                                        id="homepage-refresh-form"
+                                        method="post"
+                                        action="/scratch_admin/homepage/clear-cache/">
+                                        
+                                        <div className="button-row">
+                                            <span>Refresh row data:</span>
+                                            <Button type="submit">
+                                                <span>Refresh</span>
+                                            </Button>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </dd>
+                    </AdminPanel>
+                </div>
             </div>
         );
     }
