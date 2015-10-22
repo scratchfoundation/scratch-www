@@ -8,7 +8,12 @@ require('./modal.scss');
 var Modal = React.createClass({
     type: 'Modal',
     statics: {
-        setAppElement: ReactModal.setAppElement
+        setAppElement: ReactModal.setAppElement,
+        defaultFrameSettings: {
+            width: 500,
+            height: 250,
+            padding: 0
+        }
     },
     getDefaultProps: function () {
         return {
@@ -33,11 +38,7 @@ var Modal = React.createClass({
         var style = this.props.style;
         var modalProps = omit(this.props, ['frameSettings', 'style']);
         if (frameSettings) {
-            defaults(frameSettings, {
-                width: 500,
-                height: 250,
-                padding: 0
-            });
+            defaults(frameSettings, Modal.defaultFrameSettings);
             defaults(style.content, {
                 top: '50%',
                 right: 'auto',

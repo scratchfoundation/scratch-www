@@ -1,4 +1,5 @@
 var injectIntl = require('react-intl').injectIntl;
+var omit = require('lodash.omit');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
@@ -12,6 +13,7 @@ var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var Intro = require('../../components/intro/intro.jsx');
+var Modal = require('../../components/modal/modal.jsx');
 var News = require('../../components/news/news.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
@@ -29,7 +31,8 @@ var Splash = injectIntl(React.createClass({
             activity: [],
             news: [],
             featuredCustom: {},
-            featuredGlobal: {}
+            featuredGlobal: {},
+            showEmailConfirmationModal: false
         };
     },
     componentDidUpdate: function (prevProps, prevState) {
@@ -88,6 +91,12 @@ var Splash = injectIntl(React.createClass({
         }, function (err, body) {
             if (!err) this.setState({projectCount: body.count});
         }.bind(this));
+    },
+    showEmailConfirmationModal: function () {
+        this.setState({showEmailConfirmationModal: true});
+    },
+    hideEmailConfirmationModal: function () {
+        this.setState({showEmailConfirmationModal: false});
     },
     handleDismiss: function (cue) {
         this.api({
@@ -245,9 +254,18 @@ var Splash = injectIntl(React.createClass({
                     <Banner key="confirmedEmail"
                             className="warning"
                             onRequestDismiss={this.handleDismiss.bind(this, 'confirmed_email')}>
-                        <a href="#" onClick={this.showConfirmEmailPopup}>Confirm your email</a> to enable sharing.{' '}
+                        <a href="#" onClick={this.showEmailConfirmationModal}>Confirm your email</a>
+                        to enable sharing.{' '}
                         <a href="/info/faq/#accounts">Having trouble?</a>
-                    </Banner>
+                    </Banner>,
+                    <Modal key="emailConfirmationModal"
+                           isOpen={this.showEmailConfirmationModal}
+                           onRequestClose={this.hideEmailConfirmationModal}
+                           frameSettings={Modal.defaultFrameSettings}>
+                        <iframe
+                            src="/accounts/email_resend/"
+                            {...omit(Modal.defaultFrameSettings, 'padding')} />
+                    </Modal>
                 ] : []}
                 <div key="inner" className="inner">
                     {this.state.session.user ? [
