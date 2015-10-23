@@ -16,6 +16,12 @@
     #{$extras} {
         line-height: normal;
         word-wrap: break-word;
+
+        a {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     }
 
     .thumbnail-title {
@@ -25,15 +31,16 @@
 
         a {
             display: block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
     }
 
     #{$extras} {
         color: $type-gray;
         font-size: .8462em;
+
+        a {
+            display: inline;
+        }
     }
 
     &.project {

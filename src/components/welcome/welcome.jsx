@@ -1,4 +1,8 @@
 var React = require('react');
+var ReactIntl = require('react-intl');
+
+var injectIntl = ReactIntl.injectIntl;
+var FormattedMessage = ReactIntl.FormattedMessage;
 
 var Box = require('../box/box.jsx');
 
@@ -10,8 +14,9 @@ var Welcome = React.createClass({
         onDismiss: React.PropTypes.func
     },
     render: function () {
+        var formatMessage = this.props.intl.formatMessage;
         return (
-            <Box title="Welcome to Scratch!"
+            <Box title={formatMessage({id: 'welcome.welcomeToScratch', defaultMessage: 'Welcome to Scratch!'})}
                  className="welcome"
                  moreTitle="x"
                  moreHref="#"
@@ -24,7 +29,9 @@ var Welcome = React.createClass({
                 <div className="welcome-col blue">
                     <h4>
                         <a href="/projects/editor/?tip_bar=getStarted">
-                            Learn how to make a project in Scratch
+                            <FormattedMessage
+                                id="welcome.learn"
+                                defaultMessage="Learn how to make a project in Scratch" />
                         </a>
                     </h4>
                     <a href="/projects/editor/?tip_bar=getStarted">
@@ -34,7 +41,9 @@ var Welcome = React.createClass({
                 <div className="welcome-col green">
                     <h4>
                         <a href="/starter_projects/">
-                            Try out starter projects
+                            <FormattedMessage
+                                id="welcome.tryOut"
+                                defaultMessage="Try out starter projects" />
                         </a>
                     </h4>
                     <a href="/starter_projects/">
@@ -44,7 +53,9 @@ var Welcome = React.createClass({
                 <div className="welcome-col pink">
                     <h4>
                         <a href="/studios/146521/">
-                            Connect with other Scratchers
+                            <FormattedMessage
+                                id="welcome.connect"
+                                defaultMessage="Connect with other Scratchers" />
                         </a>
                     </h4>
                     <a href="/studios/146521/">
@@ -56,4 +67,4 @@ var Welcome = React.createClass({
     }
 });
 
-module.exports = Welcome;
+module.exports = injectIntl(Welcome);
