@@ -18,7 +18,6 @@
         word-wrap: break-word;
 
         a {
-            display: block;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -29,11 +28,19 @@
         margin-bottom: 1px;
         font-size: .9230em;
         font-weight: 800;
+
+        a {
+            display: block;
+        }
     }
 
     #{$extras} {
         color: $type-gray;
         font-size: .8462em;
+
+        a {
+            display: inline;
+        }
     }
 
     &.project {
