@@ -1,5 +1,7 @@
+var defaults = require('lodash.defaults');
 var React = require('react');
 var Slider = require('react-slick');
+
 var Thumbnail = require('../thumbnail/thumbnail.jsx');
 
 require('slick-carousel/slick/slick.scss');
@@ -15,21 +17,23 @@ var Carousel = React.createClass({
         return {
             items: require('./carousel.json'),
             showRemixes: false,
-            showLoves: false,
-            settings: {
-                arrows: true,
-                dots: false,
-                infinite: false,
-                lazyLoad: true,
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                variableWidth: true
-            }
+            showLoves: false
         };
     },
     render: function () {
+        var settings = this.props.settings || {};
+        defaults(settings, {
+            arrows: this.props.items.length > settings.slidesToShow,
+            dots: false,
+            infinite: false,
+            lazyLoad: true,
+            slidesToShow: 5,
+            slidesToScroll: 5,
+            variableWidth: true
+        });
+
         return (
-            <Slider className={'carousel ' + this.props.className} {... this.props.settings}>
+            <Slider className={'carousel ' + this.props.className} {... settings}>
                 {this.props.items.map(function (item) {
                     var href = '';
                     switch (item.type) {
