@@ -61,5 +61,9 @@
     "splash.projectsLovedByScratchersFollowing": "Projects Loved by Scratchers I'm Following",
     "splash.projectsInStudiosFollowing": "Projects in Studios I'm Following",
     "splash.communityRemixing": "What the Community is Remixing",
-    "splash.communityLoving": "What the Community is Loving"
+    "splash.communityLoving": "What the Community is Loving",
+    "welcome.welcomeToScratch": "Welcome to Scratch!",
+    "welcome.learn": "Learn how to make a project in Scratch",
+    "welcome.tryOut": "Try out starter projects",
+    "welcome.connect": "Connect with other Scratchers"
 }

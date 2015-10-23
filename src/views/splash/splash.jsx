@@ -12,6 +12,7 @@ var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var News = require('../../components/news/news.jsx');
+var Welcome = require('../../components/welcome/welcome.jsx');
 
 require('./splash.scss');
 
@@ -91,6 +92,17 @@ var Splash = injectIntl(React.createClass({
         }, function (err, body) {
             if (!err) this.setState({projectCount: body.count});
         }.bind(this));
+    },
+    handleDismiss: function (cue) {
+        this.api({
+            host: '',
+            uri: '/site-api/users/set-template-cue/',
+            method: 'post',
+            useCsrf: true,
+            json: {cue: cue, value: false}
+        }, function (err) {
+            if (!err) window.refreshSession();
+        });
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
@@ -249,7 +261,11 @@ var Splash = injectIntl(React.createClass({
             <div className="inner">
                 {this.state.session.user ? [
                     <div key="header" className="splash-header">
-                        <Activity items={this.state.activity} />
+                        {this.state.session.flags.show_welcome ? [
+                            <Welcome key="welcome" onDismiss={this.handleDismiss.bind(this, 'welcome')}/>
+                        ] : [
+                            <Activity key="activity" items={this.state.activity} />
+                        ]}
                         <News items={this.state.news} />
                     </div>
                 ] : [

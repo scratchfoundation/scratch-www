@@ -95,50 +95,47 @@
             font-weight: 400;
         }
 
-        $sprite-1-bgcolor: #9c0;
-        $sprite-2-bgcolor: #c2479d;
-        $sprite-3-bgcolor: #199ed7;
 
         &.sprite-1 .circle {
-            background-color: $sprite-1-bgcolor;
+            background-color: $splash-green;
         }
 
         &.sprite-2 .circle {
-            background-color: $sprite-2-bgcolor;
+            background-color: $splash-pink;
         }
 
         &.sprite-3 .circle {
-            background-color: $sprite-3-bgcolor;
+            background-color: $splash-blue;
         }
 
         &:hover.sprite-1 .circle {
-            box-shadow: 0 0 10px 2px $sprite-1-bgcolor;
+            box-shadow: 0 0 10px 2px $splash-green;
         }
 
         &:hover.sprite-2 .circle {
-            box-shadow: 0 0 10px 2px $sprite-2-bgcolor;
+            box-shadow: 0 0 10px 2px $splash-pink;
         }
 
         &:hover.sprite-3 .circle {
-            box-shadow: 0 0 10px 2px $sprite-3-bgcolor;
+            box-shadow: 0 0 10px 2px $splash-blue;
         }
 
         &.sprite-1 .text {
             top: 60px;
             left: 50px;
-            color: $sprite-1-bgcolor;
+            color: $splash-green;
         }
 
         &.sprite-2 .text {
             top: 77px;
             left: 50px;
-            color: $sprite-2-bgcolor;
+            color: $splash-pink;
         }
 
         &.sprite-3 .text {
             top: 37px;
             left: 45px;
-            color: $sprite-3-bgcolor;
+            color: $splash-blue;
         }
 
         &.sprite-3 .subtext {
