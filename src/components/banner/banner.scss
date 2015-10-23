@@ -5,6 +5,7 @@ $navigation-height: 50px;
 .banner {
     position: fixed;
     top: $navigation-height;
+    z-index: 99;
     box-shadow: 0 1px 1px $ui-dark-gray;
     background-color: $ui-orange;
     width: 100%;

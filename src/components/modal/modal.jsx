@@ -17,17 +17,7 @@ var Modal = React.createClass({
     },
     getDefaultProps: function () {
         return {
-            frameSettings: null,
-            style: {
-                overlay: {
-                    zIndex: 100,
-                    backgroundColor: 'rgba(0, 0, 0, .75)'
-                },
-                content: {
-                    overflow: 'visible',
-                    borderRadius: '6px'
-                }
-            }
+            frameSettings: null
         };
     },
     requestClose: function () {
@@ -35,7 +25,17 @@ var Modal = React.createClass({
     },
     render: function () {
         var frameSettings = this.props.frameSettings;
-        var style = this.props.style;
+        var style = this.props.style || {};
+        defaults(style, {
+            overlay: {
+                zIndex: 100,
+                backgroundColor: 'rgba(0, 0, 0, .75)'
+            },
+            content: {
+                overflow: 'visible',
+                borderRadius: '6px'
+            }
+        });
         var modalProps = omit(this.props, ['frameSettings', 'style']);
         if (frameSettings) {
             defaults(frameSettings, Modal.defaultFrameSettings);

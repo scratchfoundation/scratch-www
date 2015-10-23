@@ -41,9 +41,17 @@ var Splash = injectIntl(React.createClass({
                 this.getActivity();
                 this.getFeaturedCustom();
                 this.getNews();
+
+                if (
+                    this.state.session.flags.has_outstanding_email_confirmation &&
+                    this.state.session.flags.confirm_email_banner) {
+
+                    window.addEventListener('message', this.onMessage);
+                }
             } else {
                 this.setState({featuredCustom: []});
                 this.getProjectCount();
+                window.removeEventListener('message', this.onMessage);
             }
         }
     },
@@ -53,15 +61,36 @@ var Splash = injectIntl(React.createClass({
             this.getActivity();
             this.getFeaturedCustom();
             this.getNews();
+
+            if (
+                this.state.session.flags.has_outstanding_email_confirmation &&
+                this.state.session.flags.confirm_email_banner) {
+
+                window.addEventListener('message', this.onMessage);
+            }
         } else {
             this.getProjectCount();
+        }
+    },
+    componentWillUnmount: function () {
+        window.removeEventListener('message', this.onMessage);
+    },
+    onMessage: function (e) {
+        if (e.origin != window.location.origin) return;
+        if (e.data == 'resend-done') {
+            this.hideEmailConfirmationModal();
+        } else {
+            var data = JSON.parse(e.data);
+            if (data['action'] === 'leave-page') {
+                window.location.href = data['uri'];
+            }
         }
     },
     getActivity: function () {
         this.api({
             uri: '/proxy/users/' + this.state.session.user.username + '/activity?limit=5'
         }, function (err, body) {
-            if (!err) this.setState({'activity': body});
+            if (!err) this.setState({activity: body});
         }.bind(this));
     },
     getFeaturedGlobal: function () {
@@ -82,7 +111,7 @@ var Splash = injectIntl(React.createClass({
         this.api({
             uri: '/news?limit=3'
         }, function (err, body) {
-            if (!err) this.setState({'news': body});
+            if (!err) this.setState({news: body});
         }.bind(this));
     },
     getProjectCount: function () {
@@ -93,10 +122,10 @@ var Splash = injectIntl(React.createClass({
         }.bind(this));
     },
     showEmailConfirmationModal: function () {
-        this.setState({showEmailConfirmationModal: true});
+        this.setState({emailConfirmationModalOpen: true});
     },
     hideEmailConfirmationModal: function () {
-        this.setState({showEmailConfirmationModal: false});
+        this.setState({emailConfirmationModalOpen: false});
     },
     handleDismiss: function (cue) {
         this.api({
@@ -250,7 +279,7 @@ var Splash = injectIntl(React.createClass({
     },
     render: function () {
         var featured = this.renderHomepageRows();
-        var showEmailConfirmation = true;(
+        var showEmailConfirmation = (
             this.state.session.user && this.state.session.flags.has_outstanding_email_confirmation &&
             this.state.session.flags.confirm_email_banner);
         return (
@@ -260,16 +289,17 @@ var Splash = injectIntl(React.createClass({
                             className="warning"
                             onRequestDismiss={this.handleDismiss.bind(this, 'confirmed_email')}>
                         <a href="#" onClick={this.showEmailConfirmationModal}>Confirm your email</a>
-                        to enable sharing.{' '}
+                        {' '}to enable sharing.{' '}
                         <a href="/info/faq/#accounts">Having trouble?</a>
                     </Banner>,
                     <Modal key="emailConfirmationModal"
-                           isOpen={this.showEmailConfirmationModal}
+                           isOpen={this.state.emailConfirmationModalOpen}
                            onRequestClose={this.hideEmailConfirmationModal}
-                           frameSettings={Modal.defaultFrameSettings}>
+                           frameSettings={{width: 500, height: 330, padding: 1}}>
                         <iframe
-                            src="/accounts/email_resend/"
-                            {...omit(Modal.defaultFrameSettings, 'padding')} />
+                            src="/accounts/email_resend_standalone/"
+                            width="500"
+                            height="330" />
                     </Modal>
                 ] : []}
                 <div key="inner" className="inner">
