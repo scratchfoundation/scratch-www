@@ -22,11 +22,6 @@ var Splash = injectIntl(React.createClass({
         Api,
         Session
     ],
-    getDefaultProps: function () {
-        return {
-            slidesToShow: 5
-        };
-    },
     getInitialState: function () {
         return {
             projectCount: 10569070,
@@ -106,7 +101,7 @@ var Splash = injectIntl(React.createClass({
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
-        var showArrows = true;
+
         var rows = [
             <Box
                     title={formatMessage({
@@ -120,14 +115,14 @@ var Splash = injectIntl(React.createClass({
                         id: 'splash.featuredStudios',
                         defaultMessage: 'Featured Studios'})}
                     key="community_featured_studios">
-                <Carousel items={this.state.featuredGlobal.community_featured_studios} />
+                <Carousel items={this.state.featuredGlobal.community_featured_studios}
+                          settings={{slidesToShow: 4, slidesToScroll: 4, lazyLoad: false}} />
             </Box>
         ];
 
         if (this.state.featuredGlobal.curator_top_projects &&
             this.state.featuredGlobal.curator_top_projects.length > 4) {
             
-            showArrows = this.state.featuredGlobal.curator_top_projects.length > this.props.slidesToShow;
             rows.push(
                 <Box
                         key="curator_top_projects"
@@ -137,8 +132,7 @@ var Splash = injectIntl(React.createClass({
                         moreTitle={formatMessage({id: 'general.learnMore', defaultMessage: 'Learn More'})}
                         moreHref="/studios/386359/">
                     <Carousel
-                        items={this.state.featuredGlobal.curator_top_projects}
-                        arrows={showArrows} />
+                        items={this.state.featuredGlobal.curator_top_projects} />
                 </Box>
             );
         }
@@ -146,7 +140,6 @@ var Splash = injectIntl(React.createClass({
         if (this.state.featuredGlobal.scratch_design_studio &&
             this.state.featuredGlobal.scratch_design_studio.length > 4) {
             
-            showArrows = this.state.featuredGlobal.scratch_design_studio.length > this.props.slidesToShow;
             rows.push(
                 <Box
                         key="scratch_design_studio"
@@ -158,8 +151,7 @@ var Splash = injectIntl(React.createClass({
                         moreTitle={formatMessage({id: 'splash.visitTheStudio', defaultMessage: 'Visit the studio'})}
                         moreHref={'/studios/' + this.state.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}>
                     <Carousel
-                        items={this.state.featuredGlobal.scratch_design_studio}
-                        arrows={showArrows} />
+                        items={this.state.featuredGlobal.scratch_design_studio} />
                 </Box>
             );
         }
@@ -168,7 +160,6 @@ var Splash = injectIntl(React.createClass({
             this.state.featuredGlobal.community_newest_projects &&
             this.state.featuredGlobal.community_newest_projects.length > 0) {
             
-            showArrows = this.state.featuredGlobal.community_newest_projects.length > this.props.slidesToShow;
             rows.push(
                 <Box
                         title={
@@ -177,8 +168,7 @@ var Splash = injectIntl(React.createClass({
                                 defaultMessage: 'Recently Shared Projects' })}
                         key="community_newest_projects">
                     <Carousel
-                        items={this.state.featuredGlobal.community_newest_projects}
-                        arrows={showArrows} />
+                        items={this.state.featuredGlobal.community_newest_projects} />
                 </Box>
             );
         }
@@ -186,7 +176,6 @@ var Splash = injectIntl(React.createClass({
         if (this.state.featuredCustom.custom_projects_by_following &&
             this.state.featuredCustom.custom_projects_by_following.length > 0) {
             
-            showArrows = this.state.featuredCustom.custom_projects_by_following.length > this.props.slidesToShow;
             rows.push(
                 <Box title={
                             formatMessage({
@@ -194,15 +183,13 @@ var Splash = injectIntl(React.createClass({
                                 defaultMessage: 'Projects by Scratchers I\'m Following'})}
                      key="custom_projects_by_following">
                     
-                    <Carousel items={this.state.featuredCustom.custom_projects_by_following}
-                              arrows={showArrows} />
+                    <Carousel items={this.state.featuredCustom.custom_projects_by_following} />
                 </Box>
             );
         }
         if (this.state.featuredCustom.custom_projects_loved_by_following &&
             this.state.featuredCustom.custom_projects_loved_by_following.length > 0) {
 
-            showArrows = this.state.featuredCustom.custom_projects_loved_by_following.length > this.props.slidesToShow;
             rows.push(
                 <Box title={
                             formatMessage({
@@ -210,8 +197,7 @@ var Splash = injectIntl(React.createClass({
                                 defaultMessage: 'Projects Loved by Scratchers I\'m Following'})}
                      key="custom_projects_loved_by_following">
                     
-                    <Carousel items={this.state.featuredCustom.custom_projects_loved_by_following}
-                              arrows={showArrows} />
+                    <Carousel items={this.state.featuredCustom.custom_projects_loved_by_following} />
                 </Box>
             );
         }
@@ -219,8 +205,6 @@ var Splash = injectIntl(React.createClass({
         if (this.state.featuredCustom.custom_projects_in_studios_following &&
             this.state.featuredCustom.custom_projects_in_studios_following.length > 0) {
             
-            showArrows =
-                this.state.featuredCustom.custom_projects_in_studios_following.length > this.props.slidesToShow;
             rows.push(
                 <Box title={
                             formatMessage({
@@ -228,8 +212,7 @@ var Splash = injectIntl(React.createClass({
                                 defaultMessage: 'Projects in Studios I\'m Following'})}
                      key="custom_projects_in_studios_following">
                     
-                    <Carousel items={this.state.featuredCustom.custom_projects_in_studios_following}
-                              arrows={showArrows} />
+                    <Carousel items={this.state.featuredCustom.custom_projects_in_studios_following} />
                 </Box>
             );
         }
