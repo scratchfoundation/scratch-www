@@ -11,7 +11,9 @@ var AdminPanel = React.createClass({
         Session
     ],
     getInitialState: function () {
-        return {showPanel: true};
+        return {
+            showPanel: false
+        };
     },
     handleToggleVisibility: function (e) {
         e.preventDefault();

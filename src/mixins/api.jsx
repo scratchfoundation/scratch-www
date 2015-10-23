@@ -1,5 +1,7 @@
 var defaults = require('lodash.defaults');
 var xhr = require('xhr');
+
+var jar  = require('../lib/jar.js');
 var log = require('../lib/log.js');
 
 var CookieMixinFactory = require('./cookieMixinFactory.jsx');
@@ -30,6 +32,9 @@ var Api = {
             });
         }.bind(this);
 
+        if (typeof jar.get('scratchlanguage') !== 'undefined') {
+            opts.headers['Accept-Language'] = jar.get('scratchlanguage') + ', en;q=0.8';
+        }
         if (opts.useCsrf) {
             this.useScratchcsrftoken(function (err, csrftoken) {
                 if (err) return log.error('Error while retrieving CSRF token', err);

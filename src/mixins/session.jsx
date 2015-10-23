@@ -9,6 +9,9 @@ var Session = {
     },
     componentWillMount: function () {
         window.addEventListener('session', this.updateSession);
+    },
+    componentWillUnmount: function () {
+        window.removeEventListener('session', this.updateSession);
     }
 };
 

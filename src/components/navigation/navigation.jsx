@@ -39,8 +39,17 @@ var Navigation = React.createClass({
             'accountNavOpen': false,
             'loginOpen': false,
             'loginError': null,
-            'registrationOpen': false
+            'registrationOpen': false,
+            'unreadMessageCount': 0,
+            'messageCountIntervalId': -1
         };
+    },
+    componentDidMount: function () {
+        if (this.state.session.user) {
+            this.getMessageCount();
+            var intervalId = setInterval(this.getMessageCount, 120000);
+            this.setState({'messageCountIntervalId': intervalId});
+        }
     },
     componentDidUpdate: function (prevProps, prevState) {
         if (prevState.session.user != this.state.session.user) {
@@ -48,11 +57,38 @@ var Navigation = React.createClass({
                 'loginOpen': false,
                 'accountNavOpen': false
             });
+            if (this.state.session.user) {
+                this.getMessageCount();
+                var intervalId = setInterval(this.getMessageCount, 120000);
+                this.setState({'messageCountIntervalId': intervalId});
+            } else {
+                // clear message count check, and set to default id.
+                clearInterval(this.state.messageCountIntervalId);
+                this.setState({'messageCountIntervalId': -1});
+            }
+        }
+    },
+    componentWillUnmount: function () {
+        // clear message interval if it exists
+        if (this.state.messageCountIntervalId != -1) {
+            clearInterval(this.state.messageCountIntervalId);
+            this.setState({'messageCountIntervalId': -1});
         }
     },
     getProfileUrl: function () {
         if (!this.state.session.user) return;
         return '/users/' + this.state.session.user.username + '/';
+    },
+    getMessageCount: function () {
+        this.api({
+            method: 'get',
+            uri: '/proxy/users/' + this.state.session.user.username + '/activity/count'
+        }, function (err, body) {
+            if (body) {
+                var count = parseInt(body.msg_count, this.state.unreadMessageCount);
+                this.setState({'unreadMessageCount': count});
+            }
+        }.bind(this));
     },
     handleJoinClick: function (e) {
         e.preventDefault();
@@ -121,6 +157,10 @@ var Navigation = React.createClass({
             'inner': true,
             'logged-in': this.state.session.user
         });
+        var messageClasses = classNames({
+            'messageCount': true,
+            'show': this.state.unreadMessageCount > 0
+        });
         var formatMessage = this.props.intl.formatMessage;
         return (
             <div className={classes}>
@@ -177,6 +217,7 @@ var Navigation = React.createClass({
                                 href="/messages/"
                                 title={formatMessage(defaultMessages.messages)}>
 
+                                <span className={messageClasses}>{this.state.unreadMessageCount}</span>
                                 <FormattedMessage {...defaultMessages.messages} />
                             </a>
                         </li>,
@@ -226,11 +267,13 @@ var Navigation = React.createClass({
                             </Dropdown>
                         </li>
                     ] : [
-                        <li className="link right join" key="join"><a href="/join">
-                            <FormattedMessage
-                                id='general.joinScratch'
-                                defaultMessage={'Join Scratch'} />
-                        </a></li>,
+                        <li className="link right join" key="join">
+                            <a href="#" onClick={this.handleJoinClick}>
+                                <FormattedMessage
+                                    id='general.joinScratch'
+                                    defaultMessage={'Join Scratch'} />
+                            </a>
+                        </li>,
                         <Registration
                                 key="registration"
                                 isOpen={this.state.registrationOpen}

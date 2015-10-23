@@ -1,6 +1,6 @@
 ESLINT=./node_modules/.bin/eslint
-SASSLINT=./node_modules/.bin/sass-lint -v
 NODE=node
+SASSLINT=./node_modules/.bin/sass-lint -v
 WATCH=./node_modules/.bin/watch
 WEBPACK=./node_modules/.bin/webpack
 
@@ -24,7 +24,7 @@ translations:
 	./src/scripts/build-locales locales/translations.json
 
 webpack:
-	$(WEBPACK)
+	$(WEBPACK) --bail
 
 # ------------------------------------
 
@@ -43,13 +43,9 @@ start:
 
 # ------------------------------------
 
-nginx_conf:
-	node server/nginx.js
-
-# ------------------------------------
-
 test:
 	@make lint
+	@make build
 
 lint:
 	$(ESLINT) ./*.js
@@ -65,4 +61,4 @@ lint:
 
 # ------------------------------------
 
-.PHONY: build clean static webpack watch stop start nginx_conf test lint
+.PHONY: build clean static translations webpack watch stop start test lint

@@ -1,14 +1,12 @@
 [
-    {
-        "root": "/",
-        "paths": [
-            "/accounts/",
-            "/csrf_token/",
-            "/fragment/",
-            "/get_image/",
-            "/login_retry",
-            "/session/",
-            "/static/"
-        ]
-    }
+    "/accounts/",
+    "/csrf_token/",
+    "/fragment/",
+    "/get_image/",
+    "/i18n/setlang/",
+    "/login_retry/",
+    "/media/",
+    "/session/",
+    "/site-api",
+    "/static/"
 ]

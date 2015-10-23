@@ -10,22 +10,28 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Scratch - {{title}}</title>
-        <meta name="description" content="{{description}}" />
 
-        <!-- Open Graph -->
-        <meta property="og:type" content="website" />
+        <!-- Search & Open Graph-->
+        <meta name="description" content="{{description}}" />
+        <meta name="google-site-verification" content="m_3TAXDreGTFyoYnEmU9mcKB4Xtw5mw6yRkuJtXRKxM" />
+
         <meta property="og:url" content="https://scratch.mit.edu/" />
+        <meta property="og:type" content="website" />
         <meta property="og:title" content="Scratch - {{title}}" />
-        <meta property="og:description" content="Make games, stories and interactive art with Scratch. (scratch.mit.edu)" />    
+        <meta property="og:description" content="{{description}}" />
+        <meta property="og:image" content="{{&og_image}}" />
+        <meta property="og:image:type" content="{{&og_image_type}}" />
+        <meta property="og:image:width" content="{{&og_image_width}}" />
+        <meta property="og:image:height" content="{{&og_image_height}}" />
 
         <!-- Favicon & CSS normalize -->
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/lib/normalize.min.css" />
 
-        <!-- Shim/Sham ES5 polyfill for older browsers -->
+        <!-- Polyfill -->
         <script src="/js/lib/polyfill.min.js"></script>
 
-        <!-- Initialize (Locale & Session) -->
+        <!-- Initialize (Session & Localization) -->
         <script src="/js/init.bundle.js"></script>
     </head>
 
@@ -41,8 +47,19 @@
         <script src="/js/main.bundle.js"></script>
         <script src="/js/{{view}}.bundle.js"></script>
 
-        <!-- @todo Analytics (GA) -->
-        <!-- @todo Monitoring (Raven) -->
+        <!-- Analytics (GA) -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '{{&ga_tracker}}', {
+                'sampleRate': 10
+            });
+            ga('send', 'pageview');
+        </script>
+
         <!-- @todo New Relic -->
     </body>
 </html>

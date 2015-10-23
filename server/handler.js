@@ -4,12 +4,14 @@ var fs = require('fs');
 var mustache = require('mustache');
 var path = require('path');
 
+var config = require('./config');
+
 /**
  * Constructor
  */
 function Handler (route) {
     // Route definition
-    defaults(route, require('./defaults.json'));
+    defaults(route, config);
 
     // Render template
     var location = path.resolve(__dirname, './template.html');

@@ -1,57 +1,66 @@
 [
     {
-        "id": 5,
-        "author": {
-            "id": "lynxkitten101",
-            "username": "lynxkitten101",
-            "avatar": "https://cdn2.scratch.mit.edu/get_image/user/10122882_32x32.png?v=1438781835.82"
-        },
-        "stamp": "2015-09-08T19:40:00Z",
-        "message": "became a curator of A bit of everything",
-        "url": "/studios/1511220/"
-    },
+        "obj_id": 82475328, 
+        "datetime_created": "2015-10-20T15:13:36", 
+        "actor": {
+            "username": "ceebee", 
+            "pk": 2755634, 
+            "thumbnail_url": "//cdn.scratch.mit.edu/static/site/users/avatars/275/5634.png", 
+            "admin": true
+        }, 
+        "pk": 186757838, 
+        "message": "\nfavorited\n   <a href=\"/projects/82475328/\">miner man</a>", 
+        "extra_data": {
+            "project_title": "miner man"
+        }, 
+        "type": 3
+    }, 
     {
-        "id": 4,
-        "author": {
-            "id": "sheep_tester",
-            "username": "Sheep_tester",
-            "avatar": "https://cdn2.scratch.mit.edu/get_image/user/3290075_32x32.png?v=1439575340.77"
-        },
-        "stamp": "2015-09-08T03:20:00Z",
-        "message": "became a curator of To All My Great Followers & People",
-        "url": "/studios/1511360/"
-    },
+        "obj_id": 82475328, 
+        "datetime_created": "2015-10-20T15:13:36", 
+        "actor": {
+            "username": "ceebee", 
+            "pk": 2755634, 
+            "thumbnail_url": "//cdn.scratch.mit.edu/static/site/users/avatars/275/5634.png", 
+            "admin": true
+        }, 
+        "pk": 186757836, 
+        "message": "\nloved\n    <a href=\"/projects/82475328/\">miner man</a>", 
+        "extra_data": {
+            "project_title": "miner man"
+        }, 
+        "type": 2
+    }, 
     {
-        "id": 3,
-        "author": {
-            "id": "-vexvorlo-",
-            "username": "-VexVorlo-",
-            "avatar": "https://cdn2.scratch.mit.edu/get_image/user/10930092_32x32.png?v=1439735067.99"
-        },
-        "stamp": "2015-09-01T03:20:00Z",
-        "message": "loved Virtual Chicken Coop",
-        "url": "/projects/73311484/"
-    },
+        "obj_id": 82475328, 
+        "datetime_created": "2015-10-20T15:12:39", 
+        "actor": {
+            "username": "speakvisually", 
+            "pk": 3484484, 
+            "thumbnail_url": "//cdn.scratch.mit.edu/static/site/users/avatars/348/4484.png", 
+            "admin": true
+        }, 
+        "pk": 186757510, 
+        "message": "\nfavorited\n   <a href=\"/projects/82475328/\">miner man</a>", 
+        "extra_data": {
+            "project_title": "miner man"
+        }, 
+        "type": 3
+    }, 
     {
-        "id": 2,
-        "author": {
-            "id": "-vexvorlo-",
-            "username": "-VexVorlo-",
-            "avatar": "https://cdn2.scratch.mit.edu/get_image/user/10930092_32x32.png?v=1439735067.99"
-        },
-        "stamp": "2015-08-22T02:00:00Z",
-        "message": "loved Bread bread bread..",
-        "url": "/projects/75677832/"
-    },
-    {
-        "id": 1,
-        "author": {
-            "id": "getbent",
-            "username": "getbent",
-            "avatar": "https://cdn2.scratch.mit.edu/get_image/user/676422_32x32.png?v=1436728562.25"
-        },
-        "stamp": "2014-09-08T00:00:00Z",
-        "message": "loved Is ______ An Instrurment?",
-        "url": "/projects/75347968/"
+        "obj_id": 82475328, 
+        "datetime_created": "2015-10-20T15:12:37", 
+        "actor": {
+            "username": "speakvisually", 
+            "pk": 3484484, 
+            "thumbnail_url": "//cdn.scratch.mit.edu/static/site/users/avatars/348/4484.png", 
+            "admin": true
+        }, 
+        "pk": 186757500, 
+        "message": "\nloved\n    <a href=\"/projects/82475328/\">miner man</a>", 
+        "extra_data": {
+            "project_title": "miner man"
+        }, 
+        "type": 2
     }
 ]
