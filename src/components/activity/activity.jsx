@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactIntl = require('react-intl');
 var defineMessages = ReactIntl.defineMessages;
+var FormattedMessage = ReactIntl.FormattedMessage;
 var FormattedRelative = ReactIntl.FormattedRelative;
 var injectIntl = ReactIntl.injectIntl;
 
@@ -32,29 +33,44 @@ var Activity = React.createClass({
                 className="activity"
                 title={formatMessage(defaultMessages.whatsHappening)}>
 
-                <ul>
-                    {this.props.items.map(function (item) {
-                        var actorProfileUrl = '/users/' + item.actor.username + '/';
-                        var actionDate = new Date(item.datetime_created + 'Z');
-                        var activityMessageHTML = '<a href=' + actorProfileUrl + '>' +
-                            item.actor.username + '</a>' + item.message;
-                        if (item.message.replace(/\s/g, '')) {
-                            return (
-                                <li key={item.pk}>
-                                    <a href={actorProfileUrl}>
-                                        <img src={item.actor.thumbnail_url} width="34" height="34" />
-                                        <p dangerouslySetInnerHTML={{__html: activityMessageHTML}}></p>
-                                        <p>
-                                            <span className="stamp">
-                                                <FormattedRelative value={actionDate} />
-                                            </span>
-                                        </p>
-                                    </a>
-                                </li>
-                            );
-                        }
-                    })}
-                </ul>
+                {this.props.items && this.props.items.length > 0 ? [
+                    <ul>
+                        {this.props.items.map(function (item) {
+                            var actorProfileUrl = '/users/' + item.actor.username + '/';
+                            var actionDate = new Date(item.datetime_created + 'Z');
+                            var activityMessageHTML = '<a href=' + actorProfileUrl + '>' +
+                                item.actor.username + '</a>' + item.message;
+                                if (item.message.replace(/\s/g, '')) {
+                                    return (
+                                        <li key={item.pk}>
+                                            <a href={actorProfileUrl}>
+                                                <img src={item.actor.thumbnail_url} width="34" height="34" />
+                                                <p dangerouslySetInnerHTML={{__html: activityMessageHTML}}></p>
+                                                <p>
+                                                    <span className="stamp">
+                                                        <FormattedRelative value={actionDate} />
+                                                    </span>
+                                                </p>
+                                            </a>
+                                        </li>
+                                    );
+                                }
+                        })}
+                    </ul>
+                ] : [
+                    <div className="empty">
+                        <h4>
+                            <FormattedMessage
+                                id="activity.seeUpdates"
+                                defaultMessage="This is where you will see updates from Scratchers you follow" />
+                        </h4>
+                        <a href="/studios/146521/">
+                            <FormattedMessage
+                                id="activity.checkOutScratchers"
+                                defaultMessage="Check out some Scratchers you might like to follow" />
+                        </a>
+                    </div>
+                ]}
             </Box>
         );
     }
