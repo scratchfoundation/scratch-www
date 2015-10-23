@@ -23,7 +23,6 @@ var Carousel = React.createClass({
     render: function () {
         var settings = this.props.settings || {};
         defaults(settings, {
-            arrows: this.props.items.length > settings.slidesToShow,
             dots: false,
             infinite: false,
             lazyLoad: true,
@@ -31,9 +30,10 @@ var Carousel = React.createClass({
             slidesToScroll: 5,
             variableWidth: true
         });
+        var arrows = this.props.items.length > settings.slidesToShow;
 
         return (
-            <Slider className={'carousel ' + this.props.className} {... settings}>
+            <Slider className={'carousel ' + this.props.className} arrows={arrows} {... settings}>
                 {this.props.items.map(function (item) {
                     var href = '';
                     switch (item.type) {
