@@ -35,6 +35,8 @@ var Components = React.createClass({
                 </Box>
                 <h1>{'What\'s Happening??'}</h1>
                 <Activity />
+                <h1>{'Nothing!!!'}</h1>
+                <Activity items={[]} />
             </div>
         );
     }
