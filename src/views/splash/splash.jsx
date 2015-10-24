@@ -39,6 +39,8 @@ var Splash = injectIntl(React.createClass({
                 this.getNews();
             } else {
                 this.setState({featuredCustom: []});
+                this.setState({activity: []});
+                this.setState({news: []});
                 this.getProjectCount();
             }
         }
@@ -57,7 +59,7 @@ var Splash = injectIntl(React.createClass({
         this.api({
             uri: '/proxy/users/' + this.state.session.user.username + '/activity?limit=5'
         }, function (err, body) {
-            if (!err) this.setState({'activity': body});
+            if (!err) this.setState({activity: body});
         }.bind(this));
     },
     getFeaturedGlobal: function () {
@@ -78,7 +80,7 @@ var Splash = injectIntl(React.createClass({
         this.api({
             uri: '/news?limit=3'
         }, function (err, body) {
-            if (!err) this.setState({'news': body});
+            if (!err) this.setState({news: body});
         }.bind(this));
     },
     getProjectCount: function () {
