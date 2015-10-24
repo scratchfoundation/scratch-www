@@ -22,7 +22,7 @@ var Registration = React.createClass({
         window.removeEventListener('message', this.onMessage);
     },
     render: function () {
-        var frameSettings = {
+        var frameProps = {
             width: 610,
             height: 438
         };
@@ -31,8 +31,8 @@ var Registration = React.createClass({
                     isOpen={this.props.isOpen}
                     onRequestClose={this.props.onRequestClose}
                     className="registration"
-                    frameSettings={frameSettings}>
-                <iframe src="/accounts/standalone-registration/" {...frameSettings} />
+                    style={{content:frameProps}}>
+                <iframe src="/accounts/standalone-registration/" {...frameProps} />
             </Modal>
         );
     }

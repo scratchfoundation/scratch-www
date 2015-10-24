@@ -44,6 +44,8 @@
     "json-loader": "0.5.2",
     "json2po-stream": "1.0.3",
     "jsx-loader": "0.13.2",
+    "lodash.clone": "3.0.3",
+    "lodash.defaultsdeep": "3.10.0",
     "lodash.omit": "3.1.0",
     "minilog": "2.0.8",
     "node-sass": "3.3.3",
