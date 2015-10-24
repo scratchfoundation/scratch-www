@@ -38,7 +38,7 @@ var Carousel = React.createClass({
                     var href = '';
                     switch (item.type) {
                     case 'gallery':
-                        href = '/studio/' + item.id + '/';
+                        href = '/studios/' + item.id + '/';
                         break;
                     case 'project':
                         href = '/projects/' + item.id + '/';
