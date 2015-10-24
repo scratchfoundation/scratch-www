@@ -99,6 +99,13 @@ var Splash = injectIntl(React.createClass({
             if (!err) window.refreshSession();
         });
     },
+    shouldShowWelcome: function () {
+        if (!this.state.session.user || !this.state.session.flags.show_welcome) return false;
+        return (
+            new Date(this.state.session.user.dateJoined) >
+            new Date(new Date - 2*7*24*60*60*1000) // Two weeks ago
+        );
+    },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
 
@@ -244,7 +251,7 @@ var Splash = injectIntl(React.createClass({
             <div className="inner">
                 {this.state.session.user ? [
                     <div key="header" className="splash-header">
-                        {this.state.session.flags.show_welcome ? [
+                        {this.shouldShowWelcome() ? [
                             <Welcome key="welcome" onDismiss={this.handleDismiss.bind(this, 'welcome')}/>
                         ] : [
                             <Activity key="activity" items={this.state.activity} />
