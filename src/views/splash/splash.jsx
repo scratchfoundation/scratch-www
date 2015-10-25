@@ -41,18 +41,15 @@ var Splash = injectIntl(React.createClass({
                 this.getActivity();
                 this.getFeaturedCustom();
                 this.getNews();
-
-                if (
-                    this.state.session.flags.has_outstanding_email_confirmation &&
-                    this.state.session.flags.confirm_email_banner) {
-
-                    window.addEventListener('message', this.onMessage);
-                }
             } else {
                 this.setState({featuredCustom: []});
                 this.setState({activity: []});
                 this.setState({news: []});
                 this.getProjectCount();
+            }
+            if (this.shouldShowEmailConfirmation()) {
+                window.addEventListener('message', this.onMessage);
+            } else {
                 window.removeEventListener('message', this.onMessage);
             }
         }
@@ -63,16 +60,10 @@ var Splash = injectIntl(React.createClass({
             this.getActivity();
             this.getFeaturedCustom();
             this.getNews();
-
-            if (
-                this.state.session.flags.has_outstanding_email_confirmation &&
-                this.state.session.flags.confirm_email_banner) {
-
-                window.addEventListener('message', this.onMessage);
-            }
         } else {
             this.getProjectCount();
         }
+        if (this.shouldShowEmailConfirmation()) window.addEventListener('message', this.onMessage);
     },
     componentWillUnmount: function () {
         window.removeEventListener('message', this.onMessage);
@@ -146,6 +137,11 @@ var Splash = injectIntl(React.createClass({
             new Date(this.state.session.user.dateJoined) >
             new Date(new Date - 2*7*24*60*60*1000) // Two weeks ago
         );
+    },
+    shouldShowEmailConfirmation: function () {
+        return (
+            this.state.session.user && this.state.session.flags.has_outstanding_email_confirmation &&
+            this.state.session.flags.confirm_email_banner);
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
@@ -288,13 +284,10 @@ var Splash = injectIntl(React.createClass({
     },
     render: function () {
         var featured = this.renderHomepageRows();
-        var showEmailConfirmation = (
-            this.state.session.user && this.state.session.flags.has_outstanding_email_confirmation &&
-            this.state.session.flags.confirm_email_banner);
         var emailConfirmationStyle = {width: 500, height: 330, padding: 1};
         return (
             <div className="splash">
-                {showEmailConfirmation ? [
+                {this.shouldShowEmailConfirmation() ? [
                     <Banner key="confirmedEmail"
                             className="warning"
                             onRequestDismiss={this.handleDismiss.bind(this, 'confirmed_email')}>
