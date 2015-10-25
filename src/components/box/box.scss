@@ -6,6 +6,7 @@ $base-bg: $ui-white;
     display: inline-block;
     border: 1px solid $ui-border;
     border-radius: 10px 10px 0 0;
+    background-color: $ui-white;
     width: 100%;
 
     .box-header {
@@ -43,5 +44,9 @@ $base-bg: $ui-white;
         clear: both;
         background-color: $base-bg;
         padding: 8px 20px;
+    }
+
+    .empty {
+        margin-top: 20px;
     }
 }
