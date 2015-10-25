@@ -13,13 +13,27 @@ var Registration = React.createClass({
     },
     onMessage: function (e) {
         if (e.origin != window.location.origin) return;
+        if (e.source != this.refs.registrationIframe.contentWindow) return;
         if (e.data == 'registration-done') this.props.onRegistrationDone();
+        if (e.data == 'registration-relaunch') {
+            this.refs.registrationIframe.contentWindow.location.reload();
+        }
+    },
+    toggleMessageListener: function (present) {
+        if (present) {
+            window.addEventListener('message', this.onMessage);
+        } else {
+            window.removeEventListener('message', this.onMessage);
+        }
     },
     componentDidMount: function () {
-        window.addEventListener('message', this.onMessage);
+        if (this.props.isOpen) this.toggleMessageListener(true);
+    },
+    componentDidUpdate: function (prevProps) {
+        this.toggleMessageListener(this.props.isOpen && !prevProps.isOpen);
     },
     componentWillUnmount: function () {
-        window.removeEventListener('message', this.onMessage);
+        this.toggleMessageListener(false);
     },
     render: function () {
         var frameProps = {
@@ -32,7 +46,7 @@ var Registration = React.createClass({
                     onRequestClose={this.props.onRequestClose}
                     className="registration"
                     style={{content:frameProps}}>
-                <iframe src="/accounts/standalone-registration/" {...frameProps} />
+                <iframe ref="registrationIframe" src="/accounts/standalone-registration/" {...frameProps} />
             </Modal>
         );
     }
