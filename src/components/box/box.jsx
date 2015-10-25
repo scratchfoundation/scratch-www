@@ -1,3 +1,4 @@
+var classNames = require('classnames');
 var React = require('react');
 
 require('./box.scss');
@@ -11,8 +12,12 @@ var Box = React.createClass({
         moreProps: React.PropTypes.object
     },
     render: function () {
+        var classes = classNames(
+            'box',
+            this.props.className
+        );
         return (
-            <div className={'box ' + this.props.className}>
+            <div className={classes}>
                 <div className="box-header">
                     <h4>{this.props.title}</h4>
                     <p>

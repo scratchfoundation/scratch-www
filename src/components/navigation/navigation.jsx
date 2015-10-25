@@ -317,7 +317,7 @@ var Navigation = React.createClass({
                 </ul>
                 <Modal isOpen={this.state.canceledDeletionOpen}
                        onRequestClose={this.closeCanceledDeletion}
-                       frameSettings={{padding: 15}}>
+                       style={{content:{padding: 15}}}>
                     <h4>Your Account Will Not Be Deleted</h4>
                     <p>
                         Your account was scheduled for deletion but you logged in. Your account has been reactivated.

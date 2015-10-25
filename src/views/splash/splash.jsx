@@ -1,4 +1,5 @@
 var injectIntl = require('react-intl').injectIntl;
+var omit = require('lodash.omit');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
@@ -7,10 +8,12 @@ var Session = require('../../mixins/session.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
+var Banner = require('../../components/banner/banner.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var Intro = require('../../components/intro/intro.jsx');
+var Modal = require('../../components/modal/modal.jsx');
 var News = require('../../components/news/news.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
@@ -28,7 +31,8 @@ var Splash = injectIntl(React.createClass({
             activity: [],
             news: [],
             featuredCustom: {},
-            featuredGlobal: {}
+            featuredGlobal: {},
+            showEmailConfirmationModal: false
         };
     },
     componentDidUpdate: function (prevProps, prevState) {
@@ -43,6 +47,11 @@ var Splash = injectIntl(React.createClass({
                 this.setState({news: []});
                 this.getProjectCount();
             }
+            if (this.shouldShowEmailConfirmation()) {
+                window.addEventListener('message', this.onMessage);
+            } else {
+                window.removeEventListener('message', this.onMessage);
+            }
         }
     },
     componentDidMount: function () {
@@ -53,6 +62,22 @@ var Splash = injectIntl(React.createClass({
             this.getNews();
         } else {
             this.getProjectCount();
+        }
+        if (this.shouldShowEmailConfirmation()) window.addEventListener('message', this.onMessage);
+    },
+    componentWillUnmount: function () {
+        window.removeEventListener('message', this.onMessage);
+    },
+    onMessage: function (e) {
+        if (e.origin != window.location.origin) return;
+        if (e.source != this.refs.emailConfirmationiFrame.contentWindow) return;
+        if (e.data == 'resend-done') {
+            this.hideEmailConfirmationModal();
+        } else {
+            var data = JSON.parse(e.data);
+            if (data['action'] === 'leave-page') {
+                window.location.href = data['uri'];
+            }
         }
     },
     getActivity: function () {
@@ -90,6 +115,12 @@ var Splash = injectIntl(React.createClass({
             if (!err) this.setState({projectCount: body.count});
         }.bind(this));
     },
+    showEmailConfirmationModal: function () {
+        this.setState({emailConfirmationModalOpen: true});
+    },
+    hideEmailConfirmationModal: function () {
+        this.setState({emailConfirmationModalOpen: false});
+    },
     handleDismiss: function (cue) {
         this.api({
             host: '',
@@ -107,6 +138,11 @@ var Splash = injectIntl(React.createClass({
             new Date(this.state.session.user.dateJoined) >
             new Date(new Date - 2*7*24*60*60*1000) // Two weeks ago
         );
+    },
+    shouldShowEmailConfirmation: function () {
+        return (
+            this.state.session.user && this.state.session.flags.has_outstanding_email_confirmation &&
+            this.state.session.flags.confirm_email_banner);
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
@@ -249,58 +285,78 @@ var Splash = injectIntl(React.createClass({
     },
     render: function () {
         var featured = this.renderHomepageRows();
+        var emailConfirmationStyle = {width: 500, height: 330, padding: 1};
         return (
-            <div className="inner">
-                {this.state.session.user ? [
-                    <div key="header" className="splash-header">
-                        {this.shouldShowWelcome() ? [
-                            <Welcome key="welcome" onDismiss={this.handleDismiss.bind(this, 'welcome')}/>
-                        ] : [
-                            <Activity key="activity" items={this.state.activity} />
-                        ]}
-                        <News items={this.state.news} />
-                    </div>
-                ] : [
-                    <Intro projectCount={this.state.projectCount} key="intro"/>
-                ]}
+            <div className="splash">
+                {this.shouldShowEmailConfirmation() ? [
+                    <Banner key="confirmedEmail"
+                            className="warning"
+                            onRequestDismiss={this.handleDismiss.bind(this, 'confirmed_email')}>
+                        <a href="#" onClick={this.showEmailConfirmationModal}>Confirm your email</a>
+                        {' '}to enable sharing.{' '}
+                        <a href="/info/faq/#accounts">Having trouble?</a>
+                    </Banner>,
+                    <Modal key="emailConfirmationModal"
+                           isOpen={this.state.emailConfirmationModalOpen}
+                           onRequestClose={this.hideEmailConfirmationModal}
+                           style={{content: emailConfirmationStyle}}>
+                        <iframe ref="emailConfirmationiFrame"
+                                src="/accounts/email_resend_standalone/"
+                                {...omit(emailConfirmationStyle, 'padding')} />
+                    </Modal>
+                ] : []}
+                <div key="inner" className="inner">
+                    {this.state.session.user ? [
+                        <div key="header" className="splash-header">
+                            {this.state.session.flags.show_welcome ? [
+                                <Welcome key="welcome" onDismiss={this.handleDismiss.bind(this, 'welcome')}/>
+                            ] : [
+                                <Activity key="activity" items={this.state.activity} />
+                            ]}
+                            <News items={this.state.news} />
+                        </div>
+                    ] : [
+                        <Intro projectCount={this.state.projectCount} key="intro"/>
+                    ]}
 
-                {featured}
+                    {featured}
 
-                <AdminPanel>
-                    <dt>Tools</dt>
-                    <dd>
-                        <ul>
-                            <li>
-                                <a href="/scratch_admin/tickets">Ticket Queue</a>
-                            </li>
-                            <li>
-                                <a href="/scratch_admin/ip-search/">IP Search</a>
-                            </li>
-                            <li>
-                                <a href="/scratch_admin/email-search/">Email Search</a>
-                            </li>
-                        </ul>
-                    </dd>
-                    <dt>Homepage Cache</dt>
-                    <dd>
-                        <ul className="cache-list">
-                            <li>
-                                <form
-                                    id="homepage-refresh-form"
-                                    method="post"
-                                    action="/scratch_admin/homepage/clear-cache/">
-                                    
-                                    <div className="button-row">
-                                        <span>Refresh row data:</span>
-                                        <Button type="submit">
-                                            <span>Refresh</span>
-                                        </Button>
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
-                    </dd>
-                </AdminPanel>
+                    <AdminPanel>
+                        <dt>Tools</dt>
+                        <dd>
+                            <ul>
+                                <li>
+                                    <a href="/scratch_admin/tickets">Ticket Queue</a>
+                                </li>
+                                <li>
+                                    <a href="/scratch_admin/ip-search/">IP Search</a>
+                                </li>
+                                <li>
+                                    <a href="/scratch_admin/email-search/">Email Search</a>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dt>Homepage Cache</dt>
+                        <dd>
+                            <ul className="cache-list">
+                                <li>
+                                    <form
+                                        id="homepage-refresh-form"
+                                        method="post"
+                                        action="/scratch_admin/homepage/clear-cache/">
+                                        
+                                        <div className="button-row">
+                                            <span>Refresh row data:</span>
+                                            <Button type="submit">
+                                                <span>Refresh</span>
+                                            </Button>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </dd>
+                    </AdminPanel>
+                </div>
             </div>
         );
     }
