@@ -1,4 +1,5 @@
 var injectIntl = require('react-intl').injectIntl;
+var omit = require('lodash.omit');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
@@ -290,6 +291,7 @@ var Splash = injectIntl(React.createClass({
         var showEmailConfirmation = (
             this.state.session.user && this.state.session.flags.has_outstanding_email_confirmation &&
             this.state.session.flags.confirm_email_banner);
+        var emailConfirmationStyle = {width: 500, height: 330, padding: 1};
         return (
             <div className="splash">
                 {showEmailConfirmation ? [
@@ -303,11 +305,10 @@ var Splash = injectIntl(React.createClass({
                     <Modal key="emailConfirmationModal"
                            isOpen={this.state.emailConfirmationModalOpen}
                            onRequestClose={this.hideEmailConfirmationModal}
-                           frameSettings={{width: 500, height: 330, padding: 1}}>
+                           style={{content: emailConfirmationStyle}}>
                         <iframe
                             src="/accounts/email_resend_standalone/"
-                            width="500"
-                            height="330" />
+                            {...omit(emailConfirmationStyle, 'padding')} />
                     </Modal>
                 ] : []}
                 <div key="inner" className="inner">
