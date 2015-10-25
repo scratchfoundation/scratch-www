@@ -1,3 +1,4 @@
+var classNames = require('classnames');
 var defaults = require('lodash.defaults');
 var React = require('react');
 var Slider = require('react-slick');
@@ -31,9 +32,12 @@ var Carousel = React.createClass({
             variableWidth: true
         });
         var arrows = this.props.items.length > settings.slidesToShow;
-
+        var classes = classNames(
+            'carousel',
+            this.props.className
+        );
         return (
-            <Slider className={'carousel ' + this.props.className} arrows={arrows} {... settings}>
+            <Slider className={classes} arrows={arrows} {... settings}>
                 {this.props.items.map(function (item) {
                     var href = '';
                     switch (item.type) {
