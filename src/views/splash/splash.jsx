@@ -1,5 +1,4 @@
 var injectIntl = require('react-intl').injectIntl;
-var omit = require('lodash.omit');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
@@ -50,6 +49,8 @@ var Splash = injectIntl(React.createClass({
                 }
             } else {
                 this.setState({featuredCustom: []});
+                this.setState({activity: []});
+                this.setState({news: []});
                 this.getProjectCount();
                 window.removeEventListener('message', this.onMessage);
             }
@@ -137,6 +138,13 @@ var Splash = injectIntl(React.createClass({
         }, function (err) {
             if (!err) window.refreshSession();
         });
+    },
+    shouldShowWelcome: function () {
+        if (!this.state.session.user || !this.state.session.flags.show_welcome) return false;
+        return (
+            new Date(this.state.session.user.dateJoined) >
+            new Date(new Date - 2*7*24*60*60*1000) // Two weeks ago
+        );
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
