@@ -308,7 +308,7 @@ var Splash = injectIntl(React.createClass({
                 <div key="inner" className="inner">
                     {this.state.session.user ? [
                         <div key="header" className="splash-header">
-                            {this.state.session.flags.show_welcome ? [
+                            {this.shouldShowWelcome() ? [
                                 <Welcome key="welcome" onDismiss={this.handleDismiss.bind(this, 'welcome')}/>
                             ] : [
                                 <Activity key="activity" items={this.state.activity} />
