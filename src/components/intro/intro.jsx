@@ -44,7 +44,7 @@ var Intro = React.createClass({
         this.closeRegistration();
     },
     render: function () {
-        var frameSettings = {
+        var frameProps = {
             width: 570,
             height: 357,
             padding: 15
@@ -140,10 +140,10 @@ var Intro = React.createClass({
                         className="video-modal"
                         isOpen={this.state.videoOpen}
                         onRequestClose={this.closeVideo}
-                        frameSettings={frameSettings}>
+                        style={{content:frameProps}}>
                     <iframe
                         src="//player.vimeo.com/video/65583694?title=0&amp;byline=0&amp;portrait=0"
-                        {...omit(frameSettings, 'padding')} />
+                        {...omit(frameProps, 'padding')} />
                 </Modal>
             </div>
         );
