@@ -70,6 +70,7 @@ var Splash = injectIntl(React.createClass({
     },
     onMessage: function (e) {
         if (e.origin != window.location.origin) return;
+        if (e.source != this.refs.emailConfirmationiFrame.contentWindow) return;
         if (e.data == 'resend-done') {
             this.hideEmailConfirmationModal();
         } else {
@@ -299,9 +300,9 @@ var Splash = injectIntl(React.createClass({
                            isOpen={this.state.emailConfirmationModalOpen}
                            onRequestClose={this.hideEmailConfirmationModal}
                            style={{content: emailConfirmationStyle}}>
-                        <iframe
-                            src="/accounts/email_resend_standalone/"
-                            {...omit(emailConfirmationStyle, 'padding')} />
+                        <iframe ref="emailConfirmationiFrame"
+                                src="/accounts/email_resend_standalone/"
+                                {...omit(emailConfirmationStyle, 'padding')} />
                     </Modal>
                 ] : []}
                 <div key="inner" className="inner">
