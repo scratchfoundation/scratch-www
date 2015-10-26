@@ -4,7 +4,7 @@ var ReactIntl = require('react-intl');
 var defineMessages = ReactIntl.defineMessages;
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
-var xhr = require('xhr');
+var nets = require('nets');
 
 var Api = require('../../mixins/api.jsx');
 var Avatar = require('../avatar/avatar.jsx');
@@ -136,7 +136,7 @@ var Navigation = React.createClass({
     },
     handleLogOut: function (e) {
         e.preventDefault();
-        xhr({
+        nets({
             host: '',
             uri: '/accounts/logout/'
         }, function (err) {
