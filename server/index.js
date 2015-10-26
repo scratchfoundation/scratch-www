@@ -7,6 +7,7 @@ var express = require('express');
 var path = require('path');
 var proxy = require('express-http-proxy');
 var url = require('url');
+var nets = require('nets');
 
 var handler = require('./handler');
 var log = require('./log');
@@ -74,5 +75,18 @@ app.listen(port, function () {
     process.stdout.write('Server listening on port ' + port + '\n');
     if (proxyHost) {
         process.stdout.write('Proxy host: ' + proxyHost + '\n');
+    }
+    if (typeof process.env.FASTLY_KEY == 'string' && typeof process.env.FASTLY_PURGE_URL == 'string') {
+        nets({
+            method: 'post',
+            url: process.env.FASTLY_PURGE_URL,
+            headers: {'fastly-key': process.env.FASTLY_KEY}
+        }, function (err) {
+            if (err) {
+                process.stdout.write('Error while purging CDN ' + err + '\n');
+            } else {
+                process.stdout.write('CDN purge successful\n');
+            }
+        });
     }
 });
