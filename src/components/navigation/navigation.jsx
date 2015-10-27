@@ -12,10 +12,13 @@ var Dropdown = require('./dropdown.jsx');
 var Input = require('../forms/input.jsx');
 var log = require('../../lib/log.js');
 var Login = require('../login/login.jsx');
+var Modal = require('../modal/modal.jsx');
 var Registration = require('../registration/registration.jsx');
 var Session = require('../../mixins/session.jsx');
 
 require('./navigation.scss');
+
+Modal.setAppElement(document.getElementById('view'));
 
 var defaultMessages = defineMessages({
     messages: {
@@ -36,12 +39,13 @@ var Navigation = React.createClass({
     ],
     getInitialState: function () {
         return {
-            'accountNavOpen': false,
-            'loginOpen': false,
-            'loginError': null,
-            'registrationOpen': false,
-            'unreadMessageCount': 0,
-            'messageCountIntervalId': -1
+            accountNavOpen: false,
+            canceledDeletionOpen: false,
+            loginOpen: false,
+            loginError: null,
+            registrationOpen: false,
+            unreadMessageCount: 0,
+            messageCountIntervalId: -1
         };
     },
     componentDidMount: function () {
@@ -103,6 +107,7 @@ var Navigation = React.createClass({
     },
     handleLogIn: function (formData) {
         this.setState({'loginError': null});
+        formData['useMessages'] = true;
         this.api({
             method: 'post',
             host: '',
@@ -119,6 +124,11 @@ var Navigation = React.createClass({
                     this.setState({'loginError': body.msg});
                 } else {
                     this.closeLogin();
+                    body.messages.map(function (message) {
+                        if (message.message == 'canceled-deletion') {
+                            this.showCanceledDeletion();
+                        }
+                    }.bind(this));
                     window.refreshSession();
                 }
             }
@@ -144,6 +154,12 @@ var Navigation = React.createClass({
     },
     closeAccountNav: function () {
         this.setState({'accountNavOpen': false});
+    },
+    showCanceledDeletion: function () {
+        this.setState({'canceledDeletionOpen': true});
+    },
+    closeCanceledDeletion: function () {
+        this.setState({'canceledDeletionOpen': false});
     },
     closeRegistration: function () {
         this.setState({'registrationOpen': false});
@@ -299,6 +315,17 @@ var Navigation = React.createClass({
                         </li>
                     ]}
                 </ul>
+                <Modal isOpen={this.state.canceledDeletionOpen}
+                       onRequestClose={this.closeCanceledDeletion}
+                       style={{content:{padding: 15}}}>
+                    <h4>Your Account Will Not Be Deleted</h4>
+                    <p>
+                        Your account was scheduled for deletion but you logged in. Your account has been reactivated.
+                        If you didn’t request for your account to be deleted, you should
+                        {' '}<a href="/accounts/password_reset/">change your password</a>{' '}
+                        to make sure your account is secure.
+                    </p>
+                </Modal>
             </div>
         );
     }

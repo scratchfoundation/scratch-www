@@ -27,6 +27,8 @@ $base-bg: $ui-white;
     @media only screen and (min-width: $desktop) {
         width: $cols12;
     }
+    background-color: $ui-white;
+    width: 100%;
 
     .box-header {
         display: block;
@@ -63,5 +65,9 @@ $base-bg: $ui-white;
         clear: both;
         background-color: $base-bg;
         padding: 8px 20px;
+    }
+
+    .empty {
+        margin-top: 20px;
     }
 }

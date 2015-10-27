@@ -26,7 +26,7 @@ Jar.use = function (name, uri, callback) {
             uri: uri
         }, function (err) {
             if (err) return callback(err);
-            module.get(name, callback);
+            Jar.get(name, callback);
         });
     });
 };

@@ -1,3 +1,4 @@
+var classNames = require('classnames');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
@@ -20,9 +21,13 @@ var Hoc = React.createClass({
         });
     },
     render: function () {
+        var classes = classNames(
+            'top-banner',
+            this.state.bgClass
+        );
         return (
             <div>
-                <div className={'top-banner ' + this.state.bgClass}>
+                <div className={classes}>
                     <h1>Get Creative with Coding</h1>
                     <p>
                         With Scratch, you can program your own stories, games, and animations —
