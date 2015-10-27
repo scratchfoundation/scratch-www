@@ -48,14 +48,20 @@ $mobile: 480px;
 
 //4 columns
 @media only screen and (max-width: $mobile - 1) {
+    #view {
+        text-align: center;
+    }
         .inner {
             margin: 0 auto;
-            width: $mobile - 100;
+            width: 100%;
         }
 }
 
 //6 columns
 @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    #view {
+        text-align: center;
+    }
             .inner {
                 margin: 0 auto;
                 width: $mobile;
@@ -64,6 +70,9 @@ $mobile: 480px;
 
 //8 columns
 @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    #view {
+        text-align: center;
+    }
             .inner {
                 margin: 0 auto;
                 width: $tablet;

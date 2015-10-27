@@ -2,17 +2,14 @@
 @import "../../frameless";
 
 .intro {
-    display: flex;
+    display: block;
     margin-top: 20px;
     margin-bottom: 30px;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-content: flex-start;
+    margin-right: auto;
+    margin-left: auto;
 
     .content {
         display: inline-block;
-        width: calc(66% - 20px);
 
         h1 {
             color: $ui-orange;
@@ -23,8 +20,8 @@
     .sprites {
         position: relative;
         clear: both;
-        margin: 20px 0;
         overflow: hidden;
+        text-align: center;
 
         &:after {
             display: block;
@@ -37,7 +34,6 @@
 
     .sprite {
         position: relative;
-        float: left;
         width: 193px;
         height: 136px;
         overflow: hidden;
@@ -175,12 +171,14 @@
     }
 
     .video {
+        margin-left: auto;
+        margin-right: auto;
         position: relative;
         border: 1px solid $ui-border;
         border-radius: 10px;
+        width: $cols4+10px/$em;
         background-color: $ui-white;
         padding: 14px 10px;
-        width: 34%;
         height: 208px;
         text-align: center;
 
@@ -222,36 +220,126 @@
             content: " ";
             pointer-events: none;
         }
+    }
 
-        //4 columns
-        @media only screen and (max-width: $mobile - 1) {
-            .video {
-                display: flex;
-                flex-wrap: wrap;
+    //4 columns
+    @media only screen and (max-width: $mobile - 1) {
+        width: $cols4;
+        display: block;
+        text-align: center;
+
+        .content {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            width: $cols4;
+
+            h1 {
+                margin: auto;
             }
         }
-
-        //6 columns
-        @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-            .video {
-                display: flex;
-                flex-wrap: wrap;
-            }
+        
+        .sprite {
+            display: inline-block;
         }
 
-        //8 columns
-        @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-            .video {
-                display: flex;
-                flex-wrap: wrap;
-            }
+        .video {
+            margin-top: 20px;
         }
 
-        //12 columns
-        @media only screen and (min-width: $desktop) {
-            .video {
-                display: inline-block;
+        .description {
+            text-align: center;
+        }
+        
+        .links {
+            text-align: center;
+        }
+    }
+
+    //6 columns
+    @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+        width: $cols6;
+        display: block;
+        text-align: center;
+
+        .content {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            width: $cols6;
+
+            h1 {
+                margin: auto;
             }
+        }
+        
+        .sprite {
+            display: inline-block;
+        }
+
+        .video {
+            margin-top: 20px;
+        }
+
+        .description {
+            text-align: center;
+        }
+        
+        .links {
+            text-align: center;
+        }
+    }
+
+    //8 columns
+    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+        width: $cols8;
+        display: block;
+        text-align: center;
+
+        .content {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            width: $cols8;
+
+            h1 {
+                margin: auto;
+            }
+        }
+        
+        .sprite {
+            display: inline-block;
+        }
+
+        .video {
+            margin-top: 20px;
+        }
+
+        .description {
+            text-align: center;
+        }
+
+        .links {
+            text-align: center;
+        }
+    }
+
+    //12 columns
+    @media only screen and (min-width: $desktop) {
+        width: $cols12;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+
+        .content {
+            width: $cols8;
+        }
+
+        .sprite {
+            float: left;
+        }
+
+        .video {
         }
     }
 }
