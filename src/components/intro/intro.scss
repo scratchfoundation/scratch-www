@@ -1,5 +1,4 @@
 @import "../../colors";
-@import "../../mixins";
 @import "../../frameless";
 
 .intro {
@@ -176,7 +175,6 @@
     }
 
     .video {
-        display: inline-block;
         position: relative;
         border: 1px solid $ui-border;
         border-radius: 10px;
@@ -223,6 +221,37 @@
             height: 0;
             content: " ";
             pointer-events: none;
+        }
+
+        //4 columns
+        @media only screen and (max-width: $mobile - 1) {
+            .video {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+
+        //6 columns
+        @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+            .video {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+
+        //8 columns
+        @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+            .video {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+
+        //12 columns
+        @media only screen and (min-width: $desktop) {
+            .video {
+                display: inline-block;
+            }
         }
     }
 }
