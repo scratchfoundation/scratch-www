@@ -6,6 +6,7 @@
     "/i18n/setlang/",
     "/login_retry/",
     "/media/",
+    "/scratch_admin/homepage/clear-cache/",
     "/session/",
     "/site-api",
     "/static/"
