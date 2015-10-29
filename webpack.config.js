@@ -1,9 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
+
+var environment = require('./src/environment.js');
 var routes = require('./server/routes.json');
 
 // Prepare all entry points
 var entry = {
+    init: './src/init.js',
     main: './src/main.jsx'
 };
 routes.forEach(function (route) {
@@ -18,7 +21,8 @@ module.exports = {
     devtool: 'source-map',
     externals: {
         'react': 'React',
-        'react/addons': 'React'
+        'react/addons': 'React',
+        'react-dom': 'ReactDOM'
     },
     output: {
         path: path.resolve(__dirname, 'build/js'),
@@ -33,8 +37,7 @@ module.exports = {
             },
             {
                 test: /\.json$/,
-                loader: 'json-loader',
-                include: path.resolve(__dirname, 'src')
+                loader: 'json-loader'
             },
             {
                 test: /\.scss$/,
@@ -46,7 +49,13 @@ module.exports = {
             }
         ]
     },
+    node: {
+        fs: 'empty'
+    },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': environment
+        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false

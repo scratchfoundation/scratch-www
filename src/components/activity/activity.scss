@@ -1,3 +1,5 @@
+@import "../../colors";
+
 .activity {
     ul {
         display: block;
@@ -29,14 +31,14 @@
             margin: 0;
             padding: 0;
 
-            font-size: 0.9rem;
             white-space: nowrap;
+            font-size: .9rem;
             overflow-x: hidden;
         }
 
         .stamp {
-            color: #999;
-            font-size: 0.65rem;
+            color: $ui-dark-gray;
+            font-size: .65rem;
         }
     }
 }

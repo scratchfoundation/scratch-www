@@ -1,0 +1,245 @@
+@import "../../colors";
+
+$base-bg: $ui-white;
+
+#view {
+    padding: 0;
+
+    // To be integrated into the Global Typography standards 
+    p {
+        line-height: 2em;
+    }
+
+    // To be revamped in Global Grids standards
+    .inner {
+        margin: 0 auto;
+        width: 80%;
+        max-width: 960px;
+
+        .box {
+            margin-bottom: 10px;
+        }
+    }
+
+    .top-banner {
+        transition: background-image .5s ease, background-color .5s ease;
+
+        margin-top: 10px;
+        margin-bottom: 40px;
+
+        background-color: $ui-aqua;
+        background-position: center;
+        background-size: cover;
+
+        padding: 10px 0;
+        width: 100%;
+
+        &.wbb-bg {    
+            background-image: url("/images/hide-bg.jpg");
+        }
+
+        &.dance-bg {
+            background-image: url("/images/dance-bg.jpg");
+        }
+
+        &.name-bg {
+            background-image: url("/images/name-bg.jpg");
+        }
+
+        h1, 
+        p {
+            margin: 0 auto;
+            padding-top: 10px;
+
+            max-width: 500px;
+
+            text-align: center;
+            color: $type-white;        
+        }
+
+        .card-deck, 
+        .sub-nav {
+            display: flex;
+            margin: 20px auto;
+            
+            width: 80%;
+            max-width: 960px;
+
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card-deck {
+
+            .card {
+                display: inline-block;
+                margin: 10px;
+                border-radius: 7px;
+                background-color: $active-gray;                
+                padding: 2px;
+                
+                width: 30%;
+                min-width: 200px;
+                max-width: 230px;
+
+                .card-info {
+                    border-radius: 5px;
+
+                    background-color: $base-bg;
+
+                    width: 100%;
+                    height: 100%;
+                    
+
+                    button,
+                    img {
+                        width: calc(100% - 20px);
+                    }
+
+                    img {
+                        margin: 10px 10px 5px 10px;
+                        border-radius: 5px;
+                    }
+
+                    button {
+                        margin: 0 10px 10px 10px;
+                    }
+                }
+            }
+        }
+
+        .sub-nav {
+            color: $type-white;
+            font-size: .8em;
+            font-weight: bold;
+
+            li {
+
+                display: inline-block;
+                margin: 5px;
+
+                padding: .75em 1em;
+                
+                list-style-type: none;
+
+            }
+
+            a .link {
+                
+                border: 2px solid $active-gray;
+
+                border-radius: 50px;
+
+                text-decoration: none;
+                color: $type-white;
+                
+
+                &:hover {
+                    transition: background-color .25s ease;
+                    border-color: transparent;
+                    background-color: $active-gray;
+                }
+
+                &:active {
+                    border: 0 solid transparent;
+                    box-shadow: inset 0 0 5px $box-shadow-gray;
+                    background-color: $active-dark-gray;
+                    padding: calc(.75em + 2px) calc(1em + 2px);
+                }
+            }
+        }
+    }
+
+    section {
+        display: flex;
+        margin: 0 auto;
+        border-bottom: 1px solid $ui-border;
+        padding: 30px 0;
+        width: 95%;
+
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        h3, 
+        p {
+            font-weight: 300; 
+        }
+
+        .logos {
+            margin: 10px 0;
+            width: 100%;
+
+            img {
+                margin: 0 20px;
+                max-width: 200px;
+                max-height: 75px;
+
+                vertical-align: middle;
+            }
+        }
+
+        .resource {
+            display: flex;
+            margin: 10px;
+            border-radius: 5px;
+
+            padding: 10px 15px;
+            width: 30%;
+            min-width: 200px;
+            max-width: 230px;
+            text-align: left;
+
+            justify-content: center;
+            align-items: center;
+
+            img {
+                margin-right: 15px;
+            }
+
+            h5 {
+                margin: 8px 0;
+                font-weight: 500;
+            }
+
+            a {
+                display: block;
+                margin: 5px 0;
+                font-size: .8em;
+            }
+        }
+
+        &.one-up {
+            text-align: center;
+
+            .column {
+                margin: 10px;
+                width: 100%;
+            }
+
+            .logo {
+                display: block;
+            }
+        }
+
+        &.two-up {
+            
+            .column {
+                margin: 10px;
+
+                min-width: 200px;
+                max-width: 40%;
+
+                img {
+                    border-radius: 5px;
+                    
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

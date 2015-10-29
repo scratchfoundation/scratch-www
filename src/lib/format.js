@@ -7,7 +7,7 @@
  * Licensed under the MIT and GPL licenses.
  */
 
-module.exports = {
+var Format = {
     date: function (stamp) {
         stamp = (stamp || '').replace(/-/g,'/').replace(/[TZ]/g,' ');
 
@@ -30,3 +30,5 @@ module.exports = {
             day_diff < 31 && Math.ceil( day_diff / 7 ) + ' weeks ago';
     }
 };
+
+module.exports = Format;

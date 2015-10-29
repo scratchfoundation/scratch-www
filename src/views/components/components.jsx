@@ -1,5 +1,7 @@
 var React = require('react');
+var render = require('../../lib/render.jsx');
 
+var Activity = require('../../components/activity/activity.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
@@ -8,7 +10,8 @@ var Input = require('../../components/forms/input.jsx');
 
 require('./components.scss');
 
-var View = React.createClass({
+var Components = React.createClass({
+    type: 'Components',
     render: function () {
         return (
             <div className="inner">
@@ -30,9 +33,13 @@ var View = React.createClass({
                     title="Carousel component in a box!">
                     <Carousel />
                 </Box>
+                <h1>{'What\'s Happening??'}</h1>
+                <Activity />
+                <h1>{'Nothing!!!'}</h1>
+                <Activity items={[]} />
             </div>
         );
     }
 });
 
-React.render(<View />, document.getElementById('view'));
+render(<Components />, document.getElementById('view'));

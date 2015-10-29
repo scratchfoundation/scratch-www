@@ -1,3 +1,5 @@
+@import "../../colors";
+
 .news {
     ul {
         display: block;
@@ -9,10 +11,10 @@
 
     li {
         display: block;
-        min-height: 53px;
+        clear: both;
         margin: 0;
         padding: 12px 0;
-        clear: both;
+        min-height: 53px;
 
         a {
             display: block;
@@ -32,8 +34,8 @@
         h4 {
             display: block;
             
-            color: #1aa0d8;
-            font-size: 0.85rem;
+            color: $link-blue;
+            font-size: .85rem;
         }
 
         p {
@@ -41,13 +43,13 @@
             margin: 0;
             padding: 0;
 
-            color: #322f31;
-            font-size: 0.85rem;
+            color: $type-gray;
+            font-size: .85rem;
         }
     }
 
     li:nth-child(even) {
-        border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
+        border-top: 1px solid $ui-border;
+        border-bottom: 1px solid $ui-border;
     }
 }

@@ -1,0 +1,33 @@
+/* UI Primary Colors */
+$ui-blue: hsla(200, 90, 55, 1); // #25AFF4
+$ui-orange: hsla(35, 90, 55, 1); // #F49D25
+$ui-gray: hsla(0, 0, 95, 1); //#F2F2F2
+$ui-dark-gray: hsla(0, 0, 70, 1); //#B3B3B3
+
+$background-color: hsla(0, 0, 99, 1); //#FDFDFD
+
+
+/* UI Secondary Colors */
+$ui-aqua: hsla(170, 70, 50, 1); //#26D9BB
+$ui-white: #fff;
+
+$ui-border: hsla(0, 0, 85, 1); //#D9D9D9
+
+
+/* Overlay UI Gray Colors */
+$active-gray: hsla(0, 0, 0, .1);
+$active-dark-gray: hsla(0, 0, 0, .2);
+$box-shadow-gray: hsla(0, 0, 0, .25);
+$overlay-gray: hsla(0, 0, 0, .75);
+
+/* Typography Colors */
+$header-gray: hsla(0, 0, 42, 1); //#6B6B6B
+$type-gray: hsla(0, 0, 42, 1); //#6B6B6B
+$type-white: #fff;
+
+$link-blue: $ui-blue;
+
+/* Component colors */
+$splash-green: #9c0;
+$splash-pink: #c2479d;
+$splash-blue: #199ed7;

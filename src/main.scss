@@ -1,39 +1,45 @@
+@import "colors";
+
 /* Tags */
-html, body {
+html,
+body {
     display: block;
     margin: 0;
+    background-color: darken($ui-blue, 8%);
     padding: 0;
-
-    color: #322f31;
-    background-color: #fdfdfd;
-
+    color: $type-gray;
     font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
 }
 
 /* Typography */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     margin: 0;
-    padding: 0;
     border: 0;
+    padding: 0;
 
-    color: #554747;
+    color: $header-gray;
     font-weight: 700;
 }
 
 h1 {
-    font-size: 1.625rem;
     line-height: 2.125rem;
+    font-size: 1.625rem;
 }
 
 h4 {
-    font-size: 1.0rem;
     line-height: 1.1rem;
+    font-size: 1.0rem;
 }
 
 /* Links */
-a:link, a:visited, a:active {
-    color: #1aa0d8;
+a:link,
+a:visited,
+a:active {
     text-decoration: none;
+    color: $link-blue;
 }
 
 a:hover {
@@ -42,14 +48,30 @@ a:hover {
 
 /* Classes */
 .inner {
-    width: 942px;
     margin: 0 auto;
+    width: 942px;
+}
+
+.empty {
+    $bg-blue: #d9edf7;
+    $bg-blue-accent: #bce8f1;
+    border: 1px solid $bg-blue-accent;
+    border-radius: 5px;
+    background-color: $bg-blue;
+    padding: 10px;
+    text-align: center;
+    line-height: 2rem;
+    color: $type-gray;
+    h4 {
+        color: $type-gray;
+    }
 }
 
 #view {
-    min-height: 768px;
-    padding: 20px 0;
-
     /* NOTE: Margin should match height in navigation.scss */
     margin-top: 50px;
+    background-color: $background-color;
+
+    padding: 20px 0;
+    min-height: 768px;
 }

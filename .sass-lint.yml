@@ -1,0 +1,24 @@
+rules:
+  color-literals: 2
+  final-newline: 2
+  hex-notation: 2
+  indentation:
+    - 2
+    -
+      size: 4
+  leading-zero: 2
+  nesting-depth:
+    - 1
+    -
+      max-depth: 4
+  no-css-comments: 0
+  no-ids: 0
+  property-sort-order:
+    - 2
+    -
+      order: concentric
+  quotes:
+    - 2
+    -
+      style: double
+  zero-unit: 2

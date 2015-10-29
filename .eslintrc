@@ -16,6 +16,9 @@
         "browser": true,
         "node": true
     },
+    "globals": {
+        "formatMessage": true
+    },
     "ecmaFeatures": {
         "jsx": true
     },

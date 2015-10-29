@@ -1,6 +1,8 @@
+@import "../../colors";
+
 .login {
     padding: 10px;
-    
+
     label {
         padding-top: 5px;
         font-weight: bold;
@@ -9,12 +11,19 @@
     .submit-button {
         margin-top: 5px;
     }
-    
+
     a {
         margin-top: 15px;
     }
-    
+
     a:hover {
-        background-color: transparent !important;
+        background-color: transparent;
+    }
+
+    .error {
+        border: 1px solid $active-dark-gray;
+        border-radius: 5px;
+        background-color: $ui-orange;
+        padding: .75em 1em;
     }
 }
