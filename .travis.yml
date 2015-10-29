@@ -33,7 +33,7 @@ deploy:
   bucket_path: $EB_APP
   region: $EB_REGION
   app: $EB_APP
-  env: scratch-www-staging
+  env: scratch-www-production
   on:
     repo: LLK/scratch-www
     branch: master
