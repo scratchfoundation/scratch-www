@@ -76,7 +76,7 @@ app.listen(port, function () {
     if (proxyHost) {
         process.stdout.write('Proxy host: ' + proxyHost + '\n');
     }
-    if (typeof process.env.FASTLY_KEY == 'string' && typeof process.env.FASTLY_PURGE_URL == 'string') {
+    if (typeof process.env.FASTLY_KEY === 'string' && typeof process.env.FASTLY_PURGE_URL === 'string') {
         nets({
             method: 'post',
             url: process.env.FASTLY_PURGE_URL,
