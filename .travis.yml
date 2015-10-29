@@ -28,7 +28,7 @@ deploy:
   skip_cleanup: $SKIP_CLEANUP
   region: $EB_REGION
   app: $EB_APP
-  env: scratch-www-production
+  env: scratch-www-staging
   on:
     repo: LLK/scratch-www
     branch: develop
@@ -41,7 +41,7 @@ deploy:
   skip_cleanup: $SKIP_CLEANUP
   region: $EB_REGION
   app: $EB_APP
-  env: scratch-www-staging
+  env: scratch-www-production
   on:
     repo: LLK/scratch-www
     branch: master
