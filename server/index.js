@@ -13,9 +13,23 @@ var log = require('./log');
 var proxies = require('./proxies.json');
 var routes = require('./routes.json');
 
-// Server setup
+// Create server
 var app = express();
 app.disable('x-powered-by');
+
+// Block POST & PUT requests in production
+if (process.env.NODE_ENV === 'production') {
+    app.use(function (req, res, next) {
+        if (req.method === 'GET') return next();
+        if (req.method === 'OPTIONS') return next();
+        if (req.method === 'HEAD') return next();
+
+        res.writeHead(405, {'content-type' : 'application/json'});
+        res.end('{"error": "Method not allowed"}');
+    });
+}
+
+// Server setup
 app.use(log());
 app.use(compression());
 app.use(express.static(path.resolve(__dirname, '../build'), {
