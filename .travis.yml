@@ -17,7 +17,7 @@ env:
   - SKIP_CLEANUP=true
   - BUILD_ARCHIVE=$TRAVIS_BUILD_ID.zip
 before_deploy:
-- zip -r $BUILD_ARCHIVE .
+- zip -qr $BUILD_ARCHIVE .
 deploy:
 - provider: elasticbeanstalk
   access_key_id: $EB_AWS_ACCESS_KEY_ID
