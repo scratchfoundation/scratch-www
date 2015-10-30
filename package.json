@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Standalone WWW client for Scratch",
   "scripts": {
-    "prestart": "make build",
     "start": "make start",
     "stop": "make stop",
     "test": "make test",

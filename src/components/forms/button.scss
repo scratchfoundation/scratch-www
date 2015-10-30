@@ -1,6 +1,8 @@
 @import "../../colors";
 
 $base-bg: $ui-white;
+$fail-bg: $ui-orange;
+$pass-bg: $ui-aqua;
 
 .button {
     display: inline-block;
@@ -15,12 +17,7 @@ $base-bg: $ui-white;
     font-size: .8rem;
     font-weight: bold;
 
-    &.white {
-        border-top: 1px inset $active-gray;
-        background-color: $base-bg;
-        color: $ui-blue;
-    }
-
+    /* USER BUTTON STATES */
     &:hover {
         box-shadow: 0 2px 2px $box-shadow-gray;
     }
@@ -31,5 +28,24 @@ $base-bg: $ui-white;
 
     &:focus {
         outline: none;
+    }
+
+    /* DATA BUTTON STATES */
+    &.white {
+        border-top: 1px inset $active-gray;
+        background-color: $base-bg;
+        color: $ui-blue;
+    }
+
+    &.pass {
+        background-color: $pass-bg;
+    }
+
+    &.fail {
+        background-color: $fail-bg;
+    }
+
+    &:disabled {
+        box-shadow: none;
     }
 }

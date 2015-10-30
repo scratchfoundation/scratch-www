@@ -14,12 +14,18 @@ env:
   - EB_REGION=us-east-1
   - EB_APP=scratch-www
   - EB_AWS_BUCKET_NAME=elasticbeanstalk-us-east-1-307680192167
+  - SKIP_CLEANUP=true
+  - BUILD_ARCHIVE=$TRAVIS_BUILD_ID.zip
+before_deploy:
+- zip -qr $BUILD_ARCHIVE .
 deploy:
 - provider: elasticbeanstalk
   access_key_id: $EB_AWS_ACCESS_KEY_ID
   secret_access_key: $EB_AWS_SECRET_ACCESS_KEY
   bucket_name: $EB_AWS_BUCKET_NAME
   bucket_path: $EB_APP
+  zip_file: $BUILD_ARCHIVE
+  skip_cleanup: $SKIP_CLEANUP
   region: $EB_REGION
   app: $EB_APP
   env: scratch-www-staging
@@ -31,9 +37,11 @@ deploy:
   secret_access_key: $EB_AWS_SECRET_ACCESS_KEY
   bucket_name: $EB_AWS_BUCKET_NAME
   bucket_path: $EB_APP
+  zip_file: $BUILD_ARCHIVE
+  skip_cleanup: $SKIP_CLEANUP
   region: $EB_REGION
   app: $EB_APP
-  env: scratch-www-staging
+  env: scratch-www-production
   on:
     repo: LLK/scratch-www
     branch: master

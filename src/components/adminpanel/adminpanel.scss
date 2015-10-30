@@ -58,8 +58,12 @@
                     justify-content: space-between;
 
                     .button {
-                        background-color: $ui-dark-gray;
                         padding: .5rem 1rem;
+
+                        &.inprogress {
+                            background-color: $ui-dark-gray;
+                            color: $type-gray;
+                        }
                     }
                 }
             }

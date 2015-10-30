@@ -65,10 +65,12 @@ a:hover {
 }
 
 #view {
+    display: inline-block;
+
     /* NOTE: Margin should match height in navigation.scss */
     margin-top: 50px;
     background-color: $background-color;
-
-    padding: 20px 0;
+    padding: 20px 1px;
+    min-width: 100%;
     min-height: 768px;
 }
