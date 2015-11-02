@@ -1,5 +1,5 @@
 var cookie = require('cookie');
-var xhr = require('xhr');
+var nets = require('nets');
 
 var Jar = {};
 
@@ -22,7 +22,7 @@ Jar.use = function (name, uri, callback) {
         if (typeof obj !== 'undefined') return callback(null, obj);
 
         // Make XHR request to cookie setter uri
-        xhr({
+        nets({
             uri: uri
         }, function (err) {
             if (err) return callback(err);

@@ -1,5 +1,5 @@
 var defaults = require('lodash.defaults');
-var xhr = require('xhr');
+var nets = require('nets');
 
 var jar  = require('../lib/jar.js');
 var log = require('../lib/log.js');
@@ -26,7 +26,7 @@ var Api = {
         opts.uri = opts.host + opts.uri;
 
         var apiRequest = function (opts) {
-            xhr(opts, function (err, res, body) {
+            nets(opts, function (err, res, body) {
                 if (err) log.error(err);
                 callback(err, body);
             });
