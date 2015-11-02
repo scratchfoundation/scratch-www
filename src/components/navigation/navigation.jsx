@@ -28,6 +28,10 @@ var defaultMessages = defineMessages({
     myStuff: {
         id: 'general.myStuff',
         defaultMessage: 'My Stuff'
+    },
+    search: {
+        id: 'general.search',
+        defaultMessage: 'Search'
     }
 });
 
@@ -222,7 +226,7 @@ var Navigation = React.createClass({
                     <li className="search">
                         <form action="/search/google_results" method="get">
                             <Input type="submit" value="" />
-                            <Input type="text" placeholder="Search" name="q" />
+                            <Input type="text" placeholder={formatMessage(defaultMessages.search)} name="q" />
                             <Input type="hidden" name="date" value="anytime" />
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
