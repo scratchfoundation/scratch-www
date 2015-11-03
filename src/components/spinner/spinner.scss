@@ -1,0 +1,45 @@
+.spinner {
+    width: 20px;
+    height: 20px;
+    position: relative;
+
+    .circle {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+
+        &:before {
+            content: '';
+            display: block;
+            margin: 0 auto;
+            width: 15%;
+            height: 15%;
+            background-color: #333;
+            border-radius: 100%;
+            -webkit-animation: circleFadeDelay 1.2s infinite ease-in-out both;
+            animation: circleFadeDelay 1.2s infinite ease-in-out both;
+        }
+    }
+
+    @for $i from 1 through 12 {
+        $rotation: 30deg * ($i - 1);
+        $delay: -1.3s + $i * .1;
+        .circle#{$i} {
+            -webkit-transform: rotate($rotation);
+            -ms-transform: rotate($rotation);
+            transform: rotate($rotation);
+        }
+        .circle#{$i}:before {
+            -webkit-animation-delay: $delay;
+            animation-delay: $delay; 
+        }
+    }
+
+}
+
+@keyframes circleFadeDelay {
+    0%, 39%, 100% { opacity: 0; }
+    40% { opacity: 1; } 
+}
