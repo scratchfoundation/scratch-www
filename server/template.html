@@ -28,10 +28,15 @@
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/lib/normalize.min.css" />
 
-        <!-- Shim/Sham ES5 polyfill for older browsers -->
-        <script src="/js/lib/polyfill.min.js"></script>
+        <!-- Environment -->
+        <script>
+            window.env = {
+                API_HOST: "{{&api_host}}"
+            };
+        </script>
 
-        <!-- Initialize (Locale & Session) -->
+        <!-- Polyfill & Initialize (Session & Localization)-->
+        <script src="/js/lib/polyfill.min.js"></script>
         <script src="/js/init.bundle.js"></script>
     </head>
 
@@ -41,8 +46,8 @@
         <div id="footer"></div>
 
         <!-- Scripts -->
-        <script src="/js/lib/react.js"></script>
-        <script src="/js/lib/react-dom.js"></script>
+        <script src="/js/lib/react{{min}}.js"></script>
+        <script src="/js/lib/react-dom{{min}}.js"></script>
 
         <script src="/js/main.bundle.js"></script>
         <script src="/js/{{view}}.bundle.js"></script>
@@ -59,7 +64,5 @@
             });
             ga('send', 'pageview');
         </script>
-
-        <!-- @todo New Relic -->
     </body>
 </html>

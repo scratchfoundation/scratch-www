@@ -3,9 +3,12 @@ var jar = require('./lib/jar');
 
 var translations = require('../locales/translations.json');
 
-require('custom-event-polyfill');
+/**
+ * -----------------------------------------------------------------------------
+ * Session
+ * -----------------------------------------------------------------------------
+ */
 
-// Session
 (function () {
     window._session = {};
 
@@ -34,7 +37,11 @@ require('custom-event-polyfill');
             host: '',
             uri: '/session/'
         }, function (err, body) {
-            window.updateSession(body);
+            if (body.banned) {
+                return window.location = body.redirectUrl;
+            } else {
+                window.updateSession(body);
+            }
         });
     };
 
@@ -42,7 +49,11 @@ require('custom-event-polyfill');
     window.refreshSession();
 })();
 
-// L10N
+/**
+ * -----------------------------------------------------------------------------
+ * L10N
+ * -----------------------------------------------------------------------------
+ */
 (function () {
     /**
      * Bind locale code from cookie if available. Uses navigator language API as a fallback.

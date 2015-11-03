@@ -1,26 +1,9 @@
 @import "../../colors";
 
-$base-bg: $ui-white;
-
-/* Copied from the un-styleable react-modal */
-
-.ReactModal__Overlay {
-    z-index: 100;
-    background-color: $overlay-gray;
-}
-
-.ReactModal__Content {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    bottom: 40px;
-    left: 40px;
-    outline: none;
-    border-radius: 6px;
-    background: $base-bg;
-    padding: 20px;
-    overflow: visible;
-    -webkit-overflow-scrolling: touch;
+&.ReactModal__Content {
+    iframe {
+        border: 0;
+    }
 }
 
 .modal-close {

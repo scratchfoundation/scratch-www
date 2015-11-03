@@ -17,6 +17,19 @@ clean:
 	mkdir -p build
 	mkdir -p locales
 
+
+deploy:
+ifeq ($(shell grep "artifact: deploy.zip" .elasticbeanstalk/config.yml), )
+	@echo "You must configure elasticbeanstalk to deploy an artifact."
+	@echo "Add the following to your .elasticbeanstalk/config.yml"
+	@echo "deploy:\n  artifact: deploy.zip"
+else
+	@make build
+	git archive -o deploy.zip HEAD
+	zip -rv deploy.zip build
+	eb deploy -l $$(git rev-parse --verify --short=5 HEAD) -m "$$(git log -1 --pretty=%s)"
+endif
+
 static:
 	cp -a ./static/. ./build/
 
@@ -24,7 +37,7 @@ translations:
 	./src/scripts/build-locales locales/translations.json
 
 webpack:
-	$(WEBPACK)
+	$(WEBPACK) --bail
 
 # ------------------------------------
 
@@ -45,6 +58,7 @@ start:
 
 test:
 	@make lint
+	@make build
 
 lint:
 	$(ESLINT) ./*.js
@@ -60,4 +74,4 @@ lint:
 
 # ------------------------------------
 
-.PHONY: build clean static translations webpack watch stop start test lint
+.PHONY: build clean deploy static translations webpack watch stop start test lint

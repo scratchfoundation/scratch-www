@@ -52,11 +52,28 @@ a:hover {
     width: 942px;
 }
 
+.empty {
+    $bg-blue: #d9edf7;
+    $bg-blue-accent: #bce8f1;
+    border: 1px solid $bg-blue-accent;
+    border-radius: 5px;
+    background-color: $bg-blue;
+    padding: 10px;
+    text-align: center;
+    line-height: 2rem;
+    color: $type-gray;
+    h4 {
+        color: $type-gray;
+    }
+}
+
 #view {
+    display: inline-block;
+
     /* NOTE: Margin should match height in navigation.scss */
     margin-top: 50px;
     background-color: $background-color;
-
-    padding: 20px 0;
+    padding: 20px 1px;
+    min-width: 100%;
     min-height: 768px;
 }

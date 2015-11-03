@@ -1,6 +1,3 @@
-@import "../../mixins";
-
 .registration {
-    @include modal-iframe(610px, 438px);
     overflow: hidden;
 }

@@ -5,10 +5,10 @@
     $button-offset: $icon-size + 5px;
     $box-content-offset: 20px;
 
-    padding: 0 $button-offset;
+    padding: 12px $button-offset;
 
     .box-content & {
-        padding: 0 $button-offset - 20px;
+        padding: 12px $button-offset - 20px;
     }
 
     .slick-next,
@@ -18,8 +18,14 @@
         height: $icon-size;
 
         &:before {
-            color: $ui-dark-gray;
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 70%;
+            width: $icon-size;
+            height: $icon-size;
             font-size: $icon-size;
+            content: "";
         }
 
         &.slick-disabled:before {
@@ -30,6 +36,16 @@
     .slick-prev {
         left: 0;
 
+        &:before {
+            background-image: url("/svgs/carousel/prev_ui-dark-gray.svg");
+        }
+
+        &:hover:before {
+            background-image: url("/svgs/carousel/prev_ui-blue.svg");
+            background-size: 90%;
+        }
+
+
         .box-content & {
             left: -$box-content-offset;
         }
@@ -37,6 +53,15 @@
 
     .slick-next {
         right: 0;
+
+        &:before {
+            background-image: url("/svgs/carousel/next_ui-dark-gray.svg");
+        }
+
+        &:hover:before {
+            background-image: url("/svgs/carousel/next_ui-blue.svg");
+            background-size: 90%;
+        }
 
         .box-content & {
             right: -$box-content-offset;

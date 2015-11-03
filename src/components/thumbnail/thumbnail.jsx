@@ -10,9 +10,9 @@ var Thumbnail = React.createClass({
     },
     getDefaultProps: function () {
         return {
-            href: '/projects/1000/',
-            title: 'Example Project',
-            src: 'http://www.lorempixel.com/144/108/',
+            href: '#',
+            title: 'Project',
+            src: '',
             type: 'project',
             showLoves: false,
             showRemixes: false
@@ -26,21 +26,31 @@ var Thumbnail = React.createClass({
         );
         var extra = [];
         if (this.props.creator) {
-            extra.push(<div key="creator" className="thumbnail-creator">by {this.props.creator}</div>);
+            extra.push(
+                <div key="creator" className="thumbnail-creator">
+                    by <a href={'/users/' + this.props.creator + '/'}>{this.props.creator}</a>
+                </div>
+            );
         }
         if (this.props.loves && this.props.showLoves) {
             extra.push(
-                <div key="loves" className="thumbnail-loves"
-                     title={this.props.loves + ' loves'}>
-                        {this.props.loves}
+                <div
+                    key="loves"
+                    className="thumbnail-loves"
+                    title={this.props.loves + ' loves'}>
+                    
+                    {this.props.loves}
                 </div>
             );
         }
         if (this.props.remixes && this.props.showRemixes) {
             extra.push(
-                <div key="remixes" className="thumbnail-remixes"
-                     title={this.props.remixes + ' remixes'}>
-                        {this.props.remixes}
+                <div
+                    key="remixes"
+                    className="thumbnail-remixes"
+                    title={this.props.remixes + ' remixes'}>
+                    
+                    {this.props.remixes}
                 </div>
             );
         }
@@ -49,7 +59,9 @@ var Thumbnail = React.createClass({
                 <a className="thumbnail-image" href={this.props.href}>
                     <img src={this.props.src} />
                 </a>
-                <div className="thumbnail-title"><a href={this.props.href}>{this.props.title}</a></div>
+                <div className="thumbnail-title">
+                    <a href={this.props.href}>{this.props.title}</a>
+                </div>
                 {extra}
             </div>
         );

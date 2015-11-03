@@ -1,8 +1,11 @@
+var omit = require('lodash.omit');
 var React = require('react');
 var ReactIntl = require('react-intl');
 var FormattedMessage = ReactIntl.FormattedMessage;
 var FormattedHTMLMessage = ReactIntl.FormattedHTMLMessage;
+
 var Modal = require('../modal/modal.jsx');
+var Registration = require('../registration/registration.jsx');
 
 require('./intro.scss');
 
@@ -29,7 +32,23 @@ var Intro = React.createClass({
     closeVideo: function () {
         this.setState({videoOpen: false});
     },
+    handleJoinClick: function (e) {
+        e.preventDefault();
+        this.setState({'registrationOpen': true});
+    },
+    closeRegistration: function () {
+        this.setState({'registrationOpen': false});
+    },
+    completeRegistration: function () {
+        window.refreshSession();
+        this.closeRegistration();
+    },
     render: function () {
+        var frameProps = {
+            width: 570,
+            height: 357,
+            padding: 15
+        };
         return (
             <div className="intro">
                 <div className="content">
@@ -70,7 +89,7 @@ var Intro = React.createClass({
                                     defaultMessage='SEE EXAMPLES' />
                             </div>
                         </a>
-                        <a className="sprite sprite-3" href="#">
+                        <a className="sprite sprite-3" href="#" onClick={this.handleJoinClick}>
                             <img
                                 className="costume costume-1"
                                 src="//cdn.scratch.mit.edu/scratchr2/static/images/gobo-a.png" />
@@ -85,6 +104,10 @@ var Intro = React.createClass({
                             </div>
                             <div className="text subtext">( it&rsquo;s free )</div>
                         </a>
+                        <Registration key="registration"
+                                      isOpen={this.state.registrationOpen}
+                                      onRequestClose={this.closeRegistration}
+                                      onRegistrationDone={this.completeRegistration} />
                     </div>
                     <div className="description">
                         A creative learning community with
@@ -114,10 +137,13 @@ var Intro = React.createClass({
                     <img src="//cdn.scratch.mit.edu/scratchr2/static/images/hp-video-screenshot.png" />
                 </div>
                 <Modal
-                    className="video-modal"
-                    isOpen={this.state.videoOpen}
-                    onRequestClose={this.closeVideo}>
-                    <iframe src="//player.vimeo.com/video/65583694?title=0&amp;byline=0&amp;portrait=0" />
+                        className="video-modal"
+                        isOpen={this.state.videoOpen}
+                        onRequestClose={this.closeVideo}
+                        style={{content:frameProps}}>
+                    <iframe
+                        src="//player.vimeo.com/video/65583694?title=0&amp;byline=0&amp;portrait=0"
+                        {...omit(frameProps, 'padding')} />
                 </Modal>
             </div>
         );

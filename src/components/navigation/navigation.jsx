@@ -12,10 +12,13 @@ var Dropdown = require('./dropdown.jsx');
 var Input = require('../forms/input.jsx');
 var log = require('../../lib/log.js');
 var Login = require('../login/login.jsx');
+var Modal = require('../modal/modal.jsx');
 var Registration = require('../registration/registration.jsx');
 var Session = require('../../mixins/session.jsx');
 
 require('./navigation.scss');
+
+Modal.setAppElement(document.getElementById('view'));
 
 var defaultMessages = defineMessages({
     messages: {
@@ -25,6 +28,10 @@ var defaultMessages = defineMessages({
     myStuff: {
         id: 'general.myStuff',
         defaultMessage: 'My Stuff'
+    },
+    search: {
+        id: 'general.search',
+        defaultMessage: 'Search'
     }
 });
 
@@ -36,12 +43,13 @@ var Navigation = React.createClass({
     ],
     getInitialState: function () {
         return {
-            'accountNavOpen': false,
-            'loginOpen': false,
-            'loginError': null,
-            'registrationOpen': false,
-            'unreadMessageCount': 0,
-            'messageCountIntervalId': -1
+            accountNavOpen: false,
+            canceledDeletionOpen: false,
+            loginOpen: false,
+            loginError: null,
+            registrationOpen: false,
+            unreadMessageCount: 0,
+            messageCountIntervalId: -1
         };
     },
     componentDidMount: function () {
@@ -64,7 +72,10 @@ var Navigation = React.createClass({
             } else {
                 // clear message count check, and set to default id.
                 clearInterval(this.state.messageCountIntervalId);
-                this.setState({'messageCountIntervalId': -1});
+                this.setState({
+                    'unreadMessageCount': 0,
+                    'messageCountIntervalId': -1
+                });
             }
         }
     },
@@ -72,7 +83,10 @@ var Navigation = React.createClass({
         // clear message interval if it exists
         if (this.state.messageCountIntervalId != -1) {
             clearInterval(this.state.messageCountIntervalId);
-            this.setState({'messageCountIntervalId': -1});
+            this.setState({
+                'unreadMessageCount': 0,
+                'messageCountIntervalId': -1
+            });
         }
     },
     getProfileUrl: function () {
@@ -82,12 +96,12 @@ var Navigation = React.createClass({
     getMessageCount: function () {
         this.api({
             method: 'get',
-            host: '',
             uri: '/proxy/users/' + this.state.session.user.username + '/activity/count'
         }, function (err, body) {
+            if (err) return this.setState({'unreadMessageCount': 0});
             if (body) {
                 var count = parseInt(body.msg_count, this.state.unreadMessageCount);
-                this.setState({'unreadMessageCount': count});
+                return this.setState({'unreadMessageCount': count});
             }
         }.bind(this));
     },
@@ -104,6 +118,7 @@ var Navigation = React.createClass({
     },
     handleLogIn: function (formData) {
         this.setState({'loginError': null});
+        formData['useMessages'] = true;
         this.api({
             method: 'post',
             host: '',
@@ -120,6 +135,11 @@ var Navigation = React.createClass({
                     this.setState({'loginError': body.msg});
                 } else {
                     this.closeLogin();
+                    body.messages.map(function (message) {
+                        if (message.message == 'canceled-deletion') {
+                            this.showCanceledDeletion();
+                        }
+                    }.bind(this));
                     window.refreshSession();
                 }
             }
@@ -145,6 +165,12 @@ var Navigation = React.createClass({
     },
     closeAccountNav: function () {
         this.setState({'accountNavOpen': false});
+    },
+    showCanceledDeletion: function () {
+        this.setState({'canceledDeletionOpen': true});
+    },
+    closeCanceledDeletion: function () {
+        this.setState({'canceledDeletionOpen': false});
     },
     closeRegistration: function () {
         this.setState({'registrationOpen': false});
@@ -207,7 +233,7 @@ var Navigation = React.createClass({
                     <li className="search">
                         <form action="/search/google_results" method="get">
                             <Input type="submit" value="" />
-                            <Input type="text" placeholder="Search" name="q" />
+                            <Input type="text" placeholder={formatMessage(defaultMessages.search)} name="q" />
                             <Input type="hidden" name="date" value="anytime" />
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
@@ -268,11 +294,13 @@ var Navigation = React.createClass({
                             </Dropdown>
                         </li>
                     ] : [
-                        <li className="link right join" key="join"><a href="/join">
-                            <FormattedMessage
-                                id='general.joinScratch'
-                                defaultMessage={'Join Scratch'} />
-                        </a></li>,
+                        <li className="link right join" key="join">
+                            <a href="#" onClick={this.handleJoinClick}>
+                                <FormattedMessage
+                                    id='general.joinScratch'
+                                    defaultMessage={'Join Scratch'} />
+                            </a>
+                        </li>,
                         <Registration
                                 key="registration"
                                 isOpen={this.state.registrationOpen}
@@ -298,6 +326,17 @@ var Navigation = React.createClass({
                         </li>
                     ]}
                 </ul>
+                <Modal isOpen={this.state.canceledDeletionOpen}
+                       onRequestClose={this.closeCanceledDeletion}
+                       style={{content:{padding: 15}}}>
+                    <h4>Your Account Will Not Be Deleted</h4>
+                    <p>
+                        Your account was scheduled for deletion but you logged in. Your account has been reactivated.
+                        If you didn’t request for your account to be deleted, you should
+                        {' '}<a href="/accounts/password_reset/">change your password</a>{' '}
+                        to make sure your account is secure.
+                    </p>
+                </Modal>
             </div>
         );
     }

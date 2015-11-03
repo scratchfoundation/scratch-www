@@ -16,6 +16,12 @@
     #{$extras} {
         line-height: normal;
         word-wrap: break-word;
+
+        a {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     }
 
     .thumbnail-title {
@@ -25,15 +31,39 @@
 
         a {
             display: block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
     }
 
     #{$extras} {
         color: $type-gray;
         font-size: .8462em;
+
+        a {
+            display: inline;
+        }
+    }
+
+    .thumbnail-loves,
+    .thumbnail-remixes {
+        &:before {
+            display: inline-block;
+            margin-right: .1rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            width: .93rem;
+            height: .93rem;
+            vertical-align: text-top;
+            content: "";
+        }
+    }
+
+    .thumbnail-loves:before {
+        background-image: url("/svgs/love/love_type-gray.svg");
+    }
+
+    .thumbnail-remixes:before {
+        background-image: url("/svgs/remix/remix_type-gray.svg");
     }
 
     &.project {
