@@ -32,7 +32,8 @@ var Splash = injectIntl(React.createClass({
             news: [],
             featuredCustom: {},
             featuredGlobal: {},
-            showEmailConfirmationModal: false
+            showEmailConfirmationModal: false,
+            refreshCacheStatus: 'notrequested'
         };
     },
     componentDidUpdate: function (prevProps, prevState) {
@@ -114,6 +115,36 @@ var Splash = injectIntl(React.createClass({
         }, function (err, body) {
             if (!err) this.setState({projectCount: body.count});
         }.bind(this));
+    },
+    refreshHomepageCache: function () {
+        this.api({
+            host: '',
+            uri: '/scratch_admin/homepage/clear-cache/',
+            method: 'post',
+            useCsrf: true
+        }, function (err, body) {
+            if (err) return this.setState({refreshCacheStatus: 'fail'});
+            if (!body.success) return this.setState({refreshCacheStatus: 'inprogress'});
+            return this.setState({refreshCacheStatus: 'pass'});
+        }.bind(this));
+    },
+    getHomepageRefreshStatus: function () {
+        var status = {
+            status: this.state.refreshCacheStatus,
+            disabled: false,
+            content: 'Refresh'
+        };
+        if (this.state.refreshCacheStatus === 'inprogress') {
+            status.disabled = true;
+            status.content = 'In Progress';
+        } else if (this.state.refreshCacheStatus === 'pass') {
+            status.disabled = true;
+            status.content = 'Requested';
+        } else if (this.state.refreshCacheStatus == 'fail') {
+            status.disabled = false;
+            status.content = 'Error';
+        }
+        return status;
     },
     showEmailConfirmationModal: function () {
         this.setState({emailConfirmationModalOpen: true});
@@ -286,6 +317,7 @@ var Splash = injectIntl(React.createClass({
     render: function () {
         var featured = this.renderHomepageRows();
         var emailConfirmationStyle = {width: 500, height: 330, padding: 1};
+        var homepageCacheState = this.getHomepageRefreshStatus();
         return (
             <div className="splash">
                 {this.shouldShowEmailConfirmation() ? [
@@ -340,18 +372,14 @@ var Splash = injectIntl(React.createClass({
                         <dd>
                             <ul className="cache-list">
                                 <li>
-                                    <form
-                                        id="homepage-refresh-form"
-                                        method="post"
-                                        action="/scratch_admin/homepage/clear-cache/">
-                                        
-                                        <div className="button-row">
-                                            <span>Refresh row data:</span>
-                                            <Button type="submit">
-                                                <span>Refresh</span>
-                                            </Button>
-                                        </div>
-                                    </form>
+                                    <div className="button-row">
+                                        <span>Refresh row data:</span>
+                                        <Button onClick={this.refreshHomepageCache}
+                                                className={homepageCacheState.status}
+                                                disabled={homepageCacheState.disabled}>
+                                            <span>{homepageCacheState.content}</span>
+                                        </Button>
+                                    </div>
                                 </li>
                             </ul>
                         </dd>

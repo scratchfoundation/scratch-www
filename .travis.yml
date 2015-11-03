@@ -15,9 +15,10 @@ env:
   - EB_APP=scratch-www
   - EB_AWS_BUCKET_NAME=elasticbeanstalk-us-east-1-307680192167
   - SKIP_CLEANUP=true
-  - BUILD_ARCHIVE=$TRAVIS_BUILD_ID.zip
+  - ELASTIC_BEANSTALK_LABEL=${TRAVIS_COMMIT:0:5}
+  - BUILD_ARCHIVE=$ELASTIC_BEANSTALK_LABEL.zip
 before_deploy:
-- zip -r $BUILD_ARCHIVE .
+- zip -qr $BUILD_ARCHIVE .
 deploy:
 - provider: elasticbeanstalk
   access_key_id: $EB_AWS_ACCESS_KEY_ID
