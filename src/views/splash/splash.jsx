@@ -118,6 +118,7 @@ var Splash = injectIntl(React.createClass({
     },
     refreshHomepageCache: function () {
         this.api({
+            host: '',
             uri: '/scratch_admin/homepage/clear-cache/',
             method: 'post',
             useCsrf: true
@@ -375,7 +376,7 @@ var Splash = injectIntl(React.createClass({
                                         <span>Refresh row data:</span>
                                         <Button onClick={this.refreshHomepageCache}
                                                 className={homepageCacheState.status}
-                                                diabled={homepageCacheState.disabled}>
+                                                disabled={homepageCacheState.disabled}>
                                             <span>{homepageCacheState.content}</span>
                                         </Button>
                                     </div>
