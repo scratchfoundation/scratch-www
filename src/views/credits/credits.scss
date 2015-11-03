@@ -1,0 +1,54 @@
+@import "../../colors";
+
+#view {
+
+    .inner h1, .inner h2 {
+        margin-top: 20px;
+        font-weight: 300;
+    }
+
+    .scratch-team-members {
+        margin: 30px 0;
+        height: 860px;
+
+    }
+
+    .scratch-team-moderators {
+        margin: 10px 0;
+        height: 380px;
+
+    }
+
+
+    .scratch-team-profile {
+        float: left;
+        width: 170px;
+        text-align: center;
+
+    }
+
+    .image {
+        margin: 10px 23px;
+        border: 2px;
+        border-style: solid;
+        border-radius: 300px;
+        border-color: $ui-dark-gray;
+        background-color: $ui-white;
+        width: 120px;
+        height: 120px;
+    }
+
+    .image img {
+        margin: 17px 18px;
+        border-radius: 100px;
+        width: 85px;
+        height: 85px;
+
+    }
+
+    .inner p {
+        margin: 20px 0;
+        line-height: 150%;
+    }
+
+}
