@@ -17,7 +17,7 @@
             animation: circleFadeDelay 1.2s infinite ease-in-out both;
             margin: 0 auto;
             border-radius: 100%;
-            background-color: $overlay-gray;
+            background-color: darken($ui-blue, 8%);
             width: 15%;
             height: 15%;
             content: "";
