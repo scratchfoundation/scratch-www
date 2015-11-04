@@ -61,7 +61,7 @@ var Hoc = React.createClass({
                             </div>
 
                             <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'wbb-bg')}>
-                                <a href="/hide">
+                                <a href="/hide/">
                                     <div className="card-info">
                                         <img src="/images/hoc2015/hide-seek-tutorial.jpg" />
                                         <Button>
@@ -94,21 +94,21 @@ var Hoc = React.createClass({
                                 id='hoc.findOutMore'
                                 defaultMessage={'Find out more'} />:
                         </li>
-                        <a href="/about">
+                        <a href="/about/">
                             <li>
                                 <FormattedMessage
                                     id='footer.about'
                                     defaultMessage={'About Scratch'} />
                             </li>
                         </a>
-                        <a href="/parents">
+                        <a href="/parents/">
                             <li>
                                 <FormattedMessage
                                     id='general.forParents'
                                     defaultMessage={'For Parents'} />
                             </li>
                         </a>
-                        <a href="/educators">
+                        <a href="/educators/">
                             <li>
                                 <FormattedMessage
                                     id='general.forEducators'
@@ -218,7 +218,7 @@ var Hoc = React.createClass({
                                         defaultMessage={
                                             'You can find tutorials and helpful hints in the ' +
                                             '<a href="/projects/editor/?tip_bar=home">Tips Window</a>. ' +
-                                            'For more resources, see <a href="/help">Scratch Help</a>'
+                                            'For more resources, see <a href="/help/">Scratch Help</a>'
                                         } />
                                 </p>
                             </div>
@@ -239,7 +239,7 @@ var Hoc = React.createClass({
                                         id='hoc.moreDescription'
                                         defaultMessage={
                                             'Check out these other tutorials. Or remix one of our ' +
-                                            '<a href="/starter_projects">Starter Projects</a>'
+                                            '<a href="/starter_projects/">Starter Projects</a>'
                                         } />
                                  </p>
                             </div>
@@ -259,7 +259,7 @@ var Hoc = React.createClass({
                                 </div>
 
                                 <div className="card">
-                                    <a href="scratch.mit.edu/bearstack ">
+                                    <a href="/bearstack/">
                                         <div className="card-info">
                                             <img src="/images/hoc2015/bearstack-tutorial.jpg" />
                                             <Button>
@@ -320,7 +320,7 @@ var Hoc = React.createClass({
                             <div className="studio">
                                 <img src="/svgs/studio.svg" />
                                 <div className="studio-info">
-                                    <a href="/studios/1672166">
+                                    <a href="/studios/1672166/">
                                         <h5>
                                             <FormattedMessage
                                                 id='hoc.studioWeBareBears'
@@ -333,7 +333,7 @@ var Hoc = React.createClass({
                             <div className="studio">
                                 <img src="/svgs/studio.svg" />
                                 <div className="studio-info">
-                                    <a href="/1065372/projects/">
+                                    <a href="/studios/1065372/">
                                         <h5>
                                             <FormattedMessage
                                                 id='general.tipsDanceTitle'
