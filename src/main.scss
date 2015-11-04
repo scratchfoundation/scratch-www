@@ -1,4 +1,5 @@
 @import "colors";
+@import "frameless";
 
 /* Tags */
 html,
@@ -47,10 +48,6 @@ a:hover {
 }
 
 /* Classes */
-.inner {
-    margin: 0 auto;
-    width: 942px;
-}
 
 .empty {
     $bg-blue: #d9edf7;

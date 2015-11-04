@@ -1,3 +1,4 @@
+@import "../../frameless";
 @import "../../colors";
 
 $base-bg: $ui-white;
@@ -6,6 +7,46 @@ $base-bg: $ui-white;
     display: inline-block;
     border: 1px solid $ui-border;
     border-radius: 10px 10px 0 0;
+    
+    //4 columns
+    @media only screen and (max-width: $mobile - 1) {
+        width: $cols4;
+        .box-header {
+            h4 {
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    //6 columns
+    @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+        width: $cols6;
+        .box-header {
+            h4 {
+                font-size: 1.0rem;
+            }
+        }
+    }
+
+    //8 columns
+    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+        width: $cols8;
+        .box-header {
+            h4 {
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+    //12 columns
+    @media only screen and (min-width: $desktop) {
+        width: $cols12;
+        .box-header {
+            h4 {
+                font-size: 1.1rem;
+            }
+        }
+    }
     background-color: $ui-white;
     width: 100%;
 
@@ -25,8 +66,6 @@ $base-bg: $ui-white;
         h4 {
             display: inline-block;
             float: left;
-
-            font-size: 1.1rem;
         }
 
         p {

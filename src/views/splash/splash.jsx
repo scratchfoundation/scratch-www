@@ -177,14 +177,28 @@ var Splash = injectIntl(React.createClass({
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
-
+        var settingsCarousel = {slidesToShow: 5, slidesToScroll: 5, lazyLoad: false};
+        var settingsStudioCarousel = {slidesToShow: 4, slidesToScroll: 4, lazyLoad: false};
+        if (window.innerWidth < 480) {
+            settingsCarousel = {slidesToShow: 1, slidesToScroll: 1, lazyLoad: false};
+            settingsStudioCarousel = {slidesToShow: 1, slidesToScroll: 1, lazyLoad: false};
+        }
+        else if (window.innerWidth < 640) {
+            settingsCarousel = {slidesToShow: 2, slidesToScroll: 2, lazyLoad: false};
+            settingsStudioCarousel = {slidesToShow: 2, slidesToScroll: 2, lazyLoad: false};
+        }
+        else if (window.innerWidth < 942) {
+            settingsCarousel = {slidesToShow: 3, slidesToScroll: 3, lazyLoad: false};
+            settingsStudioCarousel = {slidesToShow: 2, slidesToScroll: 2, lazyLoad: false};
+        }
         var rows = [
             <Box
                     title={formatMessage({
                         id: 'splash.featuredProjects',
                         defaultMessage: 'Featured Projects'})}
                     key="community_featured_projects">
-                <Carousel items={this.state.featuredGlobal.community_featured_projects} />
+                <Carousel items={this.state.featuredGlobal.community_featured_projects}
+                settings={settingsCarousel} />
             </Box>,
             <Box
                     title={formatMessage({
@@ -192,44 +206,76 @@ var Splash = injectIntl(React.createClass({
                         defaultMessage: 'Featured Studios'})}
                     key="community_featured_studios">
                 <Carousel items={this.state.featuredGlobal.community_featured_studios}
-                          settings={{slidesToShow: 4, slidesToScroll: 4, lazyLoad: false}} />
+                          settings={settingsStudioCarousel} />
             </Box>
         ];
 
         if (this.state.featuredGlobal.curator_top_projects &&
             this.state.featuredGlobal.curator_top_projects.length > 4) {
-            
-            rows.push(
-                <Box
-                        key="curator_top_projects"
-                        title={
-                            'Projects Curated by ' +
-                            this.state.featuredGlobal.curator_top_projects[0].curator_name}
-                        moreTitle={formatMessage({id: 'general.learnMore', defaultMessage: 'Learn More'})}
-                        moreHref="/studios/386359/">
-                    <Carousel
-                        items={this.state.featuredGlobal.curator_top_projects} />
-                </Box>
-            );
+            if (window.innerWidth>=480) {
+                rows.push(
+                    <Box
+                            key="curator_top_projects"
+                            title={
+                                'Projects Curated by ' +
+                                this.state.featuredGlobal.curator_top_projects[0].curator_name}
+                            moreTitle={formatMessage({id: 'general.learnMore', defaultMessage: 'Learn More'})}
+                            moreHref="/studios/386359/">
+                        <Carousel
+                            items={this.state.featuredGlobal.curator_top_projects}
+                            settings={settingsCarousel} />
+                    </Box>
+                );
+            }
+            else {
+                rows.push(
+                    <Box
+                            key="curator_top_projects"
+                            title={
+                                'Projects Curated by ' +
+                                this.state.featuredGlobal.curator_top_projects[0].curator_name}>
+                        <Carousel items={this.state.featuredGlobal.curator_top_projects}
+                                  settings={settingsCarousel} />
+                    </Box>
+                );
+            }
         }
 
         if (this.state.featuredGlobal.scratch_design_studio &&
             this.state.featuredGlobal.scratch_design_studio.length > 4) {
-            
-            rows.push(
-                <Box
-                        key="scratch_design_studio"
-                        title={
-                            formatMessage({
-                                id: 'splash.scratchDesignStudioTitle',
-                                defaultMessage: 'Scratch Design Studio' })
-                            + ' - ' + this.state.featuredGlobal.scratch_design_studio[0].gallery_title}
-                        moreTitle={formatMessage({id: 'splash.visitTheStudio', defaultMessage: 'Visit the studio'})}
-                        moreHref={'/studios/' + this.state.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}>
-                    <Carousel
-                        items={this.state.featuredGlobal.scratch_design_studio} />
-                </Box>
-            );
+            if (window.innerWidth>=640) {
+                rows.push(
+                    <Box
+                            key="scratch_design_studio"
+                            title={
+                                formatMessage({
+                                    id: 'splash.scratchDesignStudioTitle',
+                                    defaultMessage: 'Scratch Design Studio' })
+                                + ' - ' + this.state.featuredGlobal.scratch_design_studio[0].gallery_title}
+                            moreTitle={formatMessage({id: 'splash.visitTheStudio', defaultMessage: 'Visit the studio'})}
+                            moreHref={'/studios/' + this.state.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}>
+                        <Carousel
+                            items={this.state.featuredGlobal.scratch_design_studio}
+                            settings = {settingsCarousel} />
+                    </Box>
+                );
+            }
+            else {
+                rows.push(
+                    <Box
+                            key="scratch_design_studio"
+                            title={
+                                formatMessage({
+                                    id: 'splash.scratchDesignStudioTitle',
+                                    defaultMessage: 'Scratch Design Studio' })}
+                            moreTitle={formatMessage({id: 'splash.visitTheStudio', defaultMessage: 'Visit the studio'})}
+                            moreHref={'/studios/' + this.state.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}>
+                        <Carousel
+                            items={this.state.featuredGlobal.scratch_design_studio}
+                            settings = {settingsCarousel} />
+                    </Box>
+                );
+            }
         }
 
         if (this.state.session.user &&
@@ -244,7 +290,8 @@ var Splash = injectIntl(React.createClass({
                                 defaultMessage: 'Recently Shared Projects' })}
                         key="community_newest_projects">
                     <Carousel
-                        items={this.state.featuredGlobal.community_newest_projects} />
+                        items={this.state.featuredGlobal.community_newest_projects}
+                        settings = {settingsCarousel} />
                 </Box>
             );
         }
@@ -259,7 +306,8 @@ var Splash = injectIntl(React.createClass({
                                 defaultMessage: 'Projects by Scratchers I\'m Following'})}
                      key="custom_projects_by_following">
                     
-                    <Carousel items={this.state.featuredCustom.custom_projects_by_following} />
+                    <Carousel items={this.state.featuredCustom.custom_projects_by_following}
+                    settings = {settingsCarousel} />
                 </Box>
             );
         }
@@ -273,7 +321,8 @@ var Splash = injectIntl(React.createClass({
                                 defaultMessage: 'Projects Loved by Scratchers I\'m Following'})}
                      key="custom_projects_loved_by_following">
                     
-                    <Carousel items={this.state.featuredCustom.custom_projects_loved_by_following} />
+                    <Carousel items={this.state.featuredCustom.custom_projects_loved_by_following}
+                    settings = {settingsCarousel} />
                 </Box>
             );
         }
@@ -288,7 +337,8 @@ var Splash = injectIntl(React.createClass({
                                 defaultMessage: 'Projects in Studios I\'m Following'})}
                      key="custom_projects_in_studios_following">
                     
-                    <Carousel items={this.state.featuredCustom.custom_projects_in_studios_following} />
+                    <Carousel items={this.state.featuredCustom.custom_projects_in_studios_following}
+                    settings = {settingsCarousel} />
                 </Box>
             );
         }
@@ -300,7 +350,8 @@ var Splash = injectIntl(React.createClass({
                             defaultMessage: 'What the Community is Remixing' })}
                  key="community_most_remixed_projects">
                 
-                <Carousel items={this.state.featuredGlobal.community_most_remixed_projects} showRemixes={true} />
+                <Carousel items={this.state.featuredGlobal.community_most_remixed_projects} showRemixes={true}
+                settings = {settingsCarousel} />
             </Box>,
             <Box title={
                         formatMessage({
@@ -308,7 +359,8 @@ var Splash = injectIntl(React.createClass({
                             defaultMessage: 'What the Community is Loving' })}
                  key="community_most_loved_projects">
                 
-                <Carousel items={this.state.featuredGlobal.community_most_loved_projects} showLoves={true} />
+                <Carousel items={this.state.featuredGlobal.community_most_loved_projects} showLoves={true}
+                settings = {settingsCarousel} />
             </Box>
         );
 
