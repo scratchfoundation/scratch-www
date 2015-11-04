@@ -1,11 +1,14 @@
 var classNames = require('classnames');
+var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
+var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-require('./hoc.scss');
-
 var Button = require('../../components/forms/button.jsx');
 var Box = require('../../components/box/box.jsx');
+var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+
+require('./hoc.scss');
 
 var Hoc = React.createClass({
     type: 'Hoc',
@@ -28,102 +31,329 @@ var Hoc = React.createClass({
         return (
             <div>
                 <div className={classes}>
-                    <h1>Get Creative with Coding</h1>
+                    <h1>
+                        <FormattedMessage
+                            id='hoc.title'
+                            defaultMessage={'Get Creative with Coding'} />
+                    </h1>
                     <p>
-                        With Scratch, you can program your own stories, games, and animations —
-                        and share them online.
+                        <FormattedMessage
+                            id='hoc.subTitle'
+                            defaultMessage={
+                                'With Scratch, you can program your own stories, games, and animations — ' +
+                                'and share them online.'
+                            } />
                     </p>
 
-                    <div className="card-deck">
-                        <div className="card">
-                            <a href="/projects/editor/?tip_bar=name">
-                                <div className="card-info" onMouseEnter={this.onCardEnter.bind(this, 'name-bg')}>
-                                    <img src="/images/name-tutorial.jpg" />
-                                    <Button>Animate Your Name</Button>
-                                </div>
-                            </a>
-                        </div>
+                    <section>
+                        <div className="card-deck">
+                            <div className="card">
+                                <a href="/projects/editor/?tip_bar=name">
+                                    <div className="card-info" onMouseEnter={this.onCardEnter.bind(this, 'name-bg')}>
+                                        <img src="/images/hoc2015/name-tutorial.jpg" />
+                                        <Button>
+                                            <FormattedMessage
+                                                id='general.tipsAnimateYourNameTitle'
+                                                defaultMessage={'Animate Your Name'} />
+                                        </Button>
+                                    </div>
+                                </a>
+                            </div>
 
-                        <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'wbb-bg')}>
-                            <a href="/hide">
-                                <div className="card-info">
-                                    <img src="/images/hide-seek-tutorial.jpg" />
-                                    <Button> Hide-and-Seek Game</Button>
-                                </div>
-                            </a>
-                        </div>
+                            <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'wbb-bg')}>
+                                <a href="/hide">
+                                    <div className="card-info">
+                                        <img src="/images/hoc2015/hide-seek-tutorial.jpg" />
+                                        <Button>
+                                            <FormattedMessage
+                                                id='general.tipsHideAndSeekTitle'
+                                                defaultMessage={'Hide-and-Seek Game'} />
+                                        </Button>
+                                    </div>
+                                </a>
+                            </div>
 
-                        <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'dance-bg')}>
-                            <a href="/projects/editor/?tip_bar=dance">
-                                <div className="card-info">
-                                    <img src="/images/dance-tutorial.jpg" />
-                                    <Button>Dance, Dance, Dance</Button>
-                                </div>
-                            </a>
+                            <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'dance-bg')}>
+                                <a href="/projects/editor/?tip_bar=dance">
+                                    <div className="card-info">
+                                        <img src="/images/hoc2015/dance-tutorial.jpg" />
+                                        <Button>
+                                            <FormattedMessage
+                                                id='general.tipsDanceTitle'
+                                                defaultMessage={'Dance, Dance, Dance'} />
+                                        </Button>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-
-                    <ul className="sub-nav">
-                        <li className="info">Find out more:</li>
-                        <a href="/about"><li className="link">About Scratch</li></a>
-                        <a href="/parents"><li className="link">For Parents</li></a>
-                        <a href="/educators"><li className="link">For Educators</li></a>
-                    </ul>
+                    </section>
+                    
+                    <SubNavigation>
+                        <li className="description">
+                            <FormattedMessage
+                                id='hoc.findOutMore'
+                                defaultMessage={'Find out more'} />:
+                        </li>
+                        <a href="/about">
+                            <li>
+                                <FormattedMessage
+                                    id='footer.about'
+                                    defaultMessage={'About Scratch'} />
+                            </li>
+                        </a>
+                        <a href="/parents">
+                            <li>
+                                <FormattedMessage
+                                    id='general.forParents'
+                                    defaultMessage={'For Parents'} />
+                            </li>
+                        </a>
+                        <a href="/educators">
+                            <li>
+                                <FormattedMessage
+                                    id='general.forEducators'
+                                    defaultMessage={'For Educators'} />
+                            </li>
+                        </a>
+                    </SubNavigation>
                 </div>
 
+                
+
                 <div className="inner">
-                    <Box>
+                    <Box title={''}>
                         <section className="one-up">
                             <div className="column">
-                                <h3>Activity Cards and Guides</h3>
+                                <h3>
+                                    <FormattedMessage
+                                        id='hoc.activityCardsHeader'
+                                        defaultMessage={'Activity Cards and Guides'} />
+                                </h3>
                                 <p>
-                                    Want tips and ideas for your Hour-of-Code activities?&nbsp;
-                                    View and print activity cards and facilitator guides.
-                                    <br />
-                                    For more resources, see <a href="/help">Scratch Help</a>.
+                                    <FormattedHTMLMessage
+                                        id='hoc.activityCardsInfo1'
+                                        defaultMessage={
+                                            'Want tips and ideas for these Hour of Code activities? ' +
+                                            'Use the activity cards to get ideas for creating with ' +
+                                            'Scratch. Facilitator guides can help you plan ' +
+                                            'a group activity.'
+                                        } />
                                 </p>
                             </div>
 
                             <div className="resource">
                                 <img src="/svgs/tips-card.svg" />
                                 <div className="resource-info">
-                                    <h5>Animate Your Name</h5>
-                                    <a href="#">Activity Cards</a>
-                                    <a href="#">Facilitator Guide</a>
+                                    <h5>
+                                        <FormattedMessage
+                                            id='general.tipsAnimateYourNameTitle'
+                                            defaultMessage={'Animate Your Name'} />
+                                    </h5>
+                                    <a href="/scratchr2/static/pdfs/help/AnimateYourNameCards.pdf">
+                                        <FormattedMessage
+                                            id='hoc.activityCards'
+                                            defaultMessage={'Activity Cards'} />
+                                    </a>
+                                    <a href="/scratchr2/static/pdfs/help/AnimateYourNameGuide.pdf">
+                                        <FormattedMessage
+                                            id='hoc.facilitatorGuide'
+                                            defaultMessage={'Facilitator Guide'} />
+                                    </a>
                                 </div>
                             </div>
 
                             <div className="resource">
                                 <img src="/svgs/tips-card.svg" />
                                 <div className="resource-info">
-                                    <h5>Hide-and-Seek</h5>
-                                    <a href="#">Activity Cards</a>
-                                    <a href="#">Facilitator Guide</a>
+                                    <h5>
+                                        <FormattedMessage
+                                            id='general.tipsHideAndSeekTitle'
+                                            defaultMessage={'Hide-and-Seek Game'} />
+                                    </h5>
+                                    <a href="/scratchr2/static/pdfs/help/Hide-and-Seek-Cards.pdf">
+                                        <FormattedMessage
+                                            id='hoc.activityCards'
+                                            defaultMessage={'Activity Cards'} />
+                                    </a>
+                                    <a href="/scratchr2/static/pdfs/help/Hide-and-Seek-Guide.pdf">
+                                        <FormattedMessage
+                                            id='hoc.facilitatorGuide'
+                                            defaultMessage={'Facilitator Guide'} />
+                                    </a>
                                 </div>
                             </div>
                             
                             <div className="resource">
                                 <img src="/svgs/tips-card.svg" />
                                 <div className="resource-info">
-                                    <h5>Dance, Dance, Dance</h5>
-                                    <a href="#">Activity Cards</a>
-                                    <a href="#">Facilitator Guide</a>
+                                    <h5>
+                                        <FormattedMessage
+                                            id='general.tipsDanceTitle'
+                                            defaultMessage={'Dance, Dance, Dance'} />
+                                    </h5>
+                                    <a href="/scratchr2/static/pdfs/help/DanceCards.pdf">
+                                        <FormattedMessage
+                                            id='hoc.activityCards'
+                                            defaultMessage={'Activity Cards'} />
+                                    </a>
+                                    <a href="/scratchr2/static/pdfs/help/DanceGuide.pdf">
+                                        <FormattedMessage
+                                            id='hoc.facilitatorGuide'
+                                            defaultMessage={'Facilitator Guide'} />
+                                    </a>
                                 </div>
                             </div>
                         </section>
 
                         <section className="two-up">
                             <div className="column">
-                                <h3>Tips Window</h3>
+                                <h3>
+                                    <FormattedMessage
+                                        id='hoc.helpScratch'
+                                        defaultMessage={'Help with Scratch'} />
+                                </h3>
                                 <p>
-                                    Need help getting started? Looking for ideas?&nbsp;
-                                    You can find tutorials and helpful hints in the
-                                    <br />
-                                    <a href="/projects/editor/?tip_bar=home">Tips Window</a>
+                                    <FormattedHTMLMessage
+                                        id='hoc.helpScratchDescription'
+                                        defaultMessage={
+                                            'You can find tutorials and helpful hints in the ' +
+                                            '<a href="/projects/editor/?tip_bar=home">Tips Window</a>. ' +
+                                            'For more resources, see <a href="/help">Scratch Help</a>'
+                                        } />
                                 </p>
                             </div>
                             <div className="column">
-                                <img src="/images/tips-test-animation.gif" />
+                                <img src="/images/hoc2015/tips-test-animation.gif" />
+                            </div>
+                        </section>
+
+                        <section className="one-up">
+                            <div className="column">
+                                <h3>
+                                    <FormattedMessage
+                                        id='hoc.moreActivities'
+                                        defaultMessage={'Want More Activities?'} />
+                                </h3>
+                                <p>
+                                    <FormattedHTMLMessage
+                                        id='hoc.moreDescription'
+                                        defaultMessage={
+                                            'Check out these other tutorials. Or remix one of our ' +
+                                            '<a href="/starter_projects">Starter Projects</a>'
+                                        } />
+                                 </p>
+                            </div>
+
+                            <div className="card-deck">
+                                <div className="card">
+                                    <a href="/projects/editor/?tip_bar=getStarted">
+                                        <div className="card-info">
+                                            <img src="/images/hoc2015/getting-started-tutorial.jpg" />
+                                            <Button>
+                                                <FormattedMessage
+                                                    id='general.tipsGetStarted'
+                                                    defaultMessage={'Getting Started'} />
+                                            </Button>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div className="card">
+                                    <a href="scratch.mit.edu/bearstack ">
+                                        <div className="card-info">
+                                            <img src="/images/hoc2015/bearstack-tutorial.jpg" />
+                                            <Button>
+                                                <FormattedMessage
+                                                    id='general.tipsBearstack'
+                                                    defaultMessage={'Bearstack Story'} />
+                                            </Button>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div className="card">
+                                    <a href="/projects/editor/?tip_bar=pong">
+                                        <div className="card-info">
+                                            <img src="/images/hoc2015/pong-tutorial.jpg" />
+                                            <Button>
+                                                <FormattedMessage
+                                                    id='general.tipsPongGame'
+                                                    defaultMessage={'Create a Pong Game'} />
+                                            </Button>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section className="one-up">
+                            <div className="column">
+                                <h3>
+                                    <FormattedMessage
+                                        id='hoc.addToStudios'
+                                        defaultMessage={'Add Your Projects to Studios'} />
+                                </h3>
+                                <p>
+                                    <FormattedHTMLMessage
+                                        id='hoc.addToStudiosDescription'
+                                        defaultMessage={
+                                            'These studios include projects created by young people ' +
+                                            'around the world. Take a look at the studios to get inspired - ' +
+                                            'or submit your own projects to the studios!'
+                                        } />
+                                 </p>
+                            </div>
+
+                            <div className="studio">
+                                <img src="/svgs/studio.svg" />
+                                <div className="studio-info">
+                                    <a href="/studios/432299/">
+                                        <h5>
+                                            <FormattedMessage
+                                                id='general.tipsAnimateYourNameTitle'
+                                                defaultMessage={'Animate Your Name'} />
+                                        </h5>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="studio">
+                                <img src="/svgs/studio.svg" />
+                                <div className="studio-info">
+                                    <a href="/studios/1672166">
+                                        <h5>
+                                            <FormattedMessage
+                                                id='hoc.studioWeBareBears'
+                                                defaultMessage={'We Bare Bears Studio'} />
+                                        </h5>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="studio">
+                                <img src="/svgs/studio.svg" />
+                                <div className="studio-info">
+                                    <a href="/1065372/projects/">
+                                        <h5>
+                                            <FormattedMessage
+                                                id='general.tipsDanceTitle'
+                                                defaultMessage={'Dance, Dance, Dance'} />
+                                        </h5>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="studio">
+                                <img src="/svgs/studio.svg" />
+                                <div className="studio-info">
+                                    <a href="/studios/1672164/">
+                                        <h5>
+                                            <FormattedMessage
+                                                id='hoc.studioAlice'
+                                                defaultMessage={'Alice in Wonderland Studio'} />
+                                        </h5>
+                                    </a>
+                                </div>
                             </div>
                         </section>
                     </Box>
@@ -131,10 +361,21 @@ var Hoc = React.createClass({
                     <section className="one-up">
                         <h3>Collaborators</h3>
                         <div className="logos">
-                            <img src="/images/code-org-logo.png" />
-                            <img src="/images/cn-logo.png" />
-                            <img src="/images/paa-logo.png" />
-                            <img src="/images/pocketcode-logo.png" />
+                            <a href="http://scratched.gse.harvard.edu/">
+                                <img src="/images/hoc2015/scratchEd-logo.png" />
+                            </a>
+                            <a href="https://code.org/">
+                                <img src="/images/hoc2015/code-org-logo.png" />
+                            </a>
+                            <a href="http://www.cartoonnetwork.com/">
+                                <img src="/images/hoc2015/cn-logo.png" />
+                            </a>
+                            <a href="http://www.paalive.org/">
+                                <img src="/images/hoc2015/paa-logo.png" />
+                            </a>
+                            <a href="http://www.catrobat.org/">
+                                <img src="/images/hoc2015/pocketcode-logo.png" />
+                            </a>
                         </div>
                     </section>
                 </div>
