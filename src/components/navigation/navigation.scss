@@ -16,6 +16,11 @@
     /* NOTE: Height should match offset settings in main.scss file */
     height: 50px;
 
+    .ie9 & {
+        display: table;
+        table-layout: fixed;
+    }
+
     .inner > ul {
         display: flex;
         margin: 0;
@@ -26,6 +31,10 @@
         flex-wrap: nowrap;
         flex-direction: row;
         justify-content: flex-start;
+
+        .ie9 & {
+            display: table-row;
+        }
         
 
         > li {
@@ -34,6 +43,13 @@
             float: left;
             height: 100%;
             align-self: flex-start;
+
+            .ie9 & {
+                display: table-cell;
+                float: none;
+                height: 50px;
+                vertical-align: bottom;
+            }
         }
 
         .logo {
@@ -82,6 +98,10 @@
             border-right: 0;
             color: $type-white;
             flex-grow: 3;
+
+            .ie9 & {
+                width: 100%;
+            }
 
             form {
                 margin: 0;
@@ -139,6 +159,10 @@
             float: right;
             margin-left: auto;
             align-self: flex-end;
+
+            .ie9 & {
+                float: none;
+            }
 
             a:hover {
                 background-color: $active-gray;
@@ -202,10 +226,13 @@
         .account-nav {
             .userInfo {
                 padding-top: 14px;
-                padding-bottom: 3px;
+                max-width: 260px;
             }
 
             > a {
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 font-size: .8125rem;
                 font-weight: normal;
 

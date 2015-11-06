@@ -72,7 +72,10 @@ var Navigation = React.createClass({
             } else {
                 // clear message count check, and set to default id.
                 clearInterval(this.state.messageCountIntervalId);
-                this.setState({'messageCountIntervalId': -1});
+                this.setState({
+                    'unreadMessageCount': 0,
+                    'messageCountIntervalId': -1
+                });
             }
         }
     },
@@ -80,7 +83,10 @@ var Navigation = React.createClass({
         // clear message interval if it exists
         if (this.state.messageCountIntervalId != -1) {
             clearInterval(this.state.messageCountIntervalId);
-            this.setState({'messageCountIntervalId': -1});
+            this.setState({
+                'unreadMessageCount': 0,
+                'messageCountIntervalId': -1
+            });
         }
     },
     getProfileUrl: function () {
@@ -92,9 +98,10 @@ var Navigation = React.createClass({
             method: 'get',
             uri: '/proxy/users/' + this.state.session.user.username + '/activity/count'
         }, function (err, body) {
+            if (err) return this.setState({'unreadMessageCount': 0});
             if (body) {
                 var count = parseInt(body.msg_count, this.state.unreadMessageCount);
-                this.setState({'unreadMessageCount': count});
+                return this.setState({'unreadMessageCount': count});
             }
         }.bind(this));
     },

@@ -15,11 +15,9 @@ var render = function (jsx, element) {
         element
     );
 
-    // If in production, provide list of rendered components
-    if (process.env.NODE_ENV != 'production') {
-        window._renderedComponents = window._renderedComponents || [];
-        window._renderedComponents.push(component);
-    }
+    // Provide list of rendered components
+    window._renderedComponents = window._renderedComponents || [];
+    window._renderedComponents.push(component);
 };
 
 module.exports = render;

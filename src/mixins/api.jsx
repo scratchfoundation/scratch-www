@@ -13,7 +13,7 @@ var Api = {
     ],
     api: function (opts, callback) {
         defaults(opts, {
-            host: process.env.API_HOST,
+            host: window.env.API_HOST,
             headers: {},
             json: {},
             useCsrf: false
