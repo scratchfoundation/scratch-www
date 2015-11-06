@@ -34,7 +34,7 @@ app.use(log());
 app.use(compression());
 app.use(express.static(path.resolve(__dirname, '../build'), {
     lastModified: true,
-    maxAge: '1y'
+    maxAge: '1h'
 }));
 app.use(function (req, res, next) {
     req._path = url.parse(req.url).path;
