@@ -5,13 +5,24 @@
         flex-wrap: nowrap;
         justify-content: space-between;
 
+        .ie9 & {
+            display: table;
+            margin: 0 -20px 20px -20px;
+            min-width: 100%;
+            border-spacing: 20px 0;
+        }
+
         .box {
             display: inline-block;
             width: calc(60% - 20px);
+
+            .ie9 & {
+                display: table-cell;
+                vertical-align: top;
+            }
         }
 
         .news {
-            display: inline-block;
             width: 40%;
         }
     }
