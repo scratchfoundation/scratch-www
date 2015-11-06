@@ -48,44 +48,44 @@ $mobile: 480px;
 
 //4 columns
 @media only screen and (max-width: $mobile - 1) {
-    #view {
-        text-align: center;
-    }
+        #view {
+            text-align: center;
+        }
 
-    .inner {
-        margin: 0 auto;
-        width: 100%;
-    }
+        .inner {
+            margin: 0 auto;
+            width: 100%;
+        }
 }
 
 //6 columns
 @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-    #view {
-        text-align: center;
-    }
+            #view {
+                text-align: center;
+            }
 
-    .inner {
-        margin: 0 auto;
-        width: $mobile;
-    }
+            .inner {
+                margin: 0 auto;
+                width: $mobile;
+            }
 }
 
 //8 columns
 @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-    #view {
-        text-align: center;
-    }
+            #view {
+                text-align: center;
+            }
 
-    .inner {
-        margin: 0 auto;
-        width: $tablet;
-    }
+            .inner {
+                margin: 0 auto;
+                width: $tablet;
+            }
 }
 
 //12 columns
 @media only screen and (min-width: $desktop) {
-    .inner {
-        margin: 0 auto;
-        width: $desktop;
-    }
+        .inner {
+            margin: 0 auto;
+            width: $desktop;
+        }
 }
