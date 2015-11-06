@@ -28,10 +28,15 @@
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/lib/normalize.min.css" />
 
-        <!-- Polyfill -->
-        <script src="/js/lib/polyfill.min.js"></script>
+        <!-- Environment -->
+        <script>
+            window.env = {
+                API_HOST: "{{&api_host}}"
+            };
+        </script>
 
-        <!-- Initialize (Session & Localization) -->
+        <!-- Polyfill & Initialize (Session & Localization)-->
+        <script src="/js/lib/polyfill.min.js"></script>
         <script src="/js/init.bundle.js"></script>
     </head>
 

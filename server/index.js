@@ -67,7 +67,7 @@ if (typeof process.env.SENTRY_DSN === 'string') {
 
 // Bind proxies in development
 if (process.env.NODE_ENV !== 'production') {
-    var proxyHost = process.env.PROXY_HOST || 'https://staging.scratch.mit.edu';
+    var proxyHost = process.env.PROXY_HOST || 'https://scratch.mit.edu';
 
     app.use('/', proxy(proxyHost, {
         filter: function (req) {
