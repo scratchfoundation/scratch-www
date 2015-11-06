@@ -57,7 +57,7 @@
     "react-onclickoutside": "0.3.1",
     "react-slick": "git://github.com/mewtaylor/react-slick.git#remove-deprecation-warnings",
     "routes-to-nginx-conf": "0.0.4",
-    "sass-lint": "1.2.0",
+    "sass-lint": "1.3.2",
     "sass-loader": "2.0.1",
     "scratchr2_translations": "git://github.com/mewtaylor/scratchr2_translations.git#feature/packageify",
     "slick-carousel": "1.5.8",
