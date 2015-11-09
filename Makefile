@@ -1,6 +1,7 @@
 ESLINT=./node_modules/.bin/eslint
 NODE=node
 SASSLINT=./node_modules/.bin/sass-lint -v
+TAP=./node_modules/.bin/tap
 WATCH=./node_modules/.bin/watch
 WEBPACK=./node_modules/.bin/webpack
 
@@ -34,7 +35,7 @@ static:
 	cp -a ./static/. ./build/
 
 translations:
-	./src/scripts/build-locales locales/translations.json
+	./src/scripts/buildLocales/build-locales locales/translations.json
 
 webpack:
 	$(WEBPACK) --bail
@@ -58,7 +59,13 @@ start:
 
 test:
 	@make lint
-	@make build
+	@echo ""
+	@make unit
+	@echo ""
+	@make functional
+	@echo ""
+	@make integration
+	@echo ""
 
 lint:
 	$(ESLINT) ./*.js
@@ -71,6 +78,15 @@ lint:
 	$(SASSLINT) ./src/*.scss
 	$(SASSLINT) ./src/views/**/*.scss
 	$(SASSLINT) ./src/components/**/*.scss
+
+unit:
+	$(TAP) ./test/unit/*.js
+
+functional:
+	$(TAP) ./test/functional/*.js
+
+integration:
+	$(TAP) ./test/integration/*.js
 
 # ------------------------------------
 
