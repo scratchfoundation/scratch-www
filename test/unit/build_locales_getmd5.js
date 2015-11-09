@@ -1,6 +1,6 @@
 var tap = require('tap');
 
-var buildLocales = require('../../src/scripts/buildLocales/helpers');
+var buildLocales = require('../../lib/locale-compare');
 
 tap.test('buildLocalesGetMD5', function (t) {
     var testString1 = 'are there bears here?';

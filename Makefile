@@ -35,7 +35,7 @@ static:
 	cp -a ./static/. ./build/
 
 translations:
-	./src/scripts/buildLocales/build-locales locales/translations.json
+	./lib/bin/build-locales locales/translations.json
 
 webpack:
 	$(WEBPACK) --bail
@@ -59,12 +59,11 @@ start:
 
 test:
 	@make lint
+	@make build
 	@echo ""
 	@make unit
 	@echo ""
 	@make functional
-	@echo ""
-	@make integration
 	@echo ""
 
 lint:

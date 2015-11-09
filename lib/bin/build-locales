@@ -10,7 +10,7 @@ var glob = require('glob');
 var path = require('path');
 var po2icu = require('po2icu');
 
-var helpers = require('./helpers');
+var localeCompare = require('../locale-compare');
 
 // -----------------------------------------------------------------------------
 // Main script
@@ -45,7 +45,7 @@ var icuWithIds = {};
 for (var id in idsWithICU) {
     icuWithIds[idsWithICU[id]] = id;
 }
-var md5WithIds = helpers.getMD5Map(icuWithIds);
+var md5WithIds = localeCompare.getMD5Map(icuWithIds);
 
 // Get ui localization strings first
 glob(poUiDir + '/*', function (err, files) {
@@ -59,14 +59,14 @@ glob(poUiDir + '/*', function (err, files) {
         var translations = {};
         try {
             var jsTranslations = po2icu.poFileToICUSync(lang, jsFile);
-            translations = helpers.mergeNewTranslations(translations, jsTranslations, md5WithIds);
+            translations = localeCompare.mergeNewTranslations(translations, jsTranslations, md5WithIds);
         } catch (err) {
             process.stdout.write(lang + ': ' + err + '\n');
         }
 
         try {
             var pyTranslations = po2icu.poFileToICUSync(lang, pyFile);
-            translations = helpers.mergeNewTranslations(translations, pyTranslations, md5WithIds);
+            translations = localeCompare.mergeNewTranslations(translations, pyTranslations, md5WithIds);
         } catch (err) {
             process.stdout.write(lang + ': ' + err + '\n');
         }
