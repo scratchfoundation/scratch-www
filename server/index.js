@@ -13,12 +13,14 @@ var log = require('./log');
 var proxies = require('./proxies.json');
 var routes = require('./routes.json');
 
+var isProduction = process.env.NODE_ENV === 'production';
+
 // Create server
 var app = express();
 app.disable('x-powered-by');
 
 // Block POST & PUT requests in production
-if (process.env.NODE_ENV === 'production') {
+if (isProduction) {
     app.use(function (req, res, next) {
         if (req.method === 'GET') return next();
         if (req.method === 'OPTIONS') return next();
@@ -65,8 +67,8 @@ if (typeof process.env.NODE_SENTRY_DSN === 'string') {
     });
 }
 
-// Bind proxies in development
-if (process.env.NODE_ENV !== 'production') {
+if (!isProduction) {
+    // Bind proxies in development
     var proxyHost = process.env.PROXY_HOST || 'https://scratch.mit.edu';
 
     app.use('/', proxy(proxyHost, {

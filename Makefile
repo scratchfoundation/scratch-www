@@ -8,7 +8,6 @@ WEBPACK=./node_modules/.bin/webpack
 
 build:
 	@make clean
-	@make static
 	@make translations
 	@make webpack
 
@@ -29,9 +28,6 @@ else
 	zip -rv deploy.zip build
 	eb deploy -l $$(git rev-parse --verify --short=5 HEAD) -m "$$(git log -1 --pretty=%s)"
 endif
-
-static:
-	cp -a ./static/. ./build/
 
 translations:
 	./src/scripts/build-locales locales/translations.json

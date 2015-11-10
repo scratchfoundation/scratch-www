@@ -1,3 +1,4 @@
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
 
@@ -9,9 +10,7 @@ var entry = {
     main: './src/main.jsx'
 };
 routes.forEach(function (route) {
-    if ( ! route.static ) {
-        entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
-    }
+    entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
 });
 
 // Config
@@ -25,8 +24,8 @@ module.exports = {
         'react-intl': 'ReactIntl'
     },
     output: {
-        path: path.resolve(__dirname, 'build/js'),
-        filename: '[name].bundle.js'
+        path: path.resolve(__dirname, 'build'),
+        filename: 'js/[name].bundle.js'
     },
     module: {
         loaders: [
@@ -53,6 +52,9 @@ module.exports = {
         fs: 'empty'
     },
     plugins: [
+        new CopyWebpackPlugin([
+            {from: 'static'}
+        ]),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
