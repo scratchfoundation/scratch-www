@@ -23,5 +23,15 @@
         "pattern": "/guidelines",
         "view": "guidelines",
         "title": "Community Guidelines"
+    },
+    {
+        "pattern": "/parents",
+        "view": "parents",
+        "title": "For Parents"
+    },
+    {
+        "pattern": "/educators",
+        "view": "educators",
+        "title": "For Educators"
     }
 ]
