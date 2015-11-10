@@ -11,7 +11,8 @@
 
     .content {
         display: inline-block;
-        width: calc(66% - 20px);
+        width: calc(66% - 30px);
+        vertical-align: top;
 
         h1 {
             color: $ui-orange;
