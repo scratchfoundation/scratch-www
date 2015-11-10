@@ -34,7 +34,7 @@ var Activity = React.createClass({
                 title={formatMessage(defaultMessages.whatsHappening)}>
 
                 {this.props.items && this.props.items.length > 0 ? [
-                    <ul>
+                    <ul key="activity-ul">
                         {this.props.items.map(function (item) {
                             if (item.message.replace(/\s/g, '')) {
                                 var actorProfileUrl = '/users/' + item.actor.username + '/';
@@ -60,7 +60,7 @@ var Activity = React.createClass({
                         })}
                     </ul>
                 ] : [
-                    <div className="empty">
+                    <div className="empty" key="activity-empty">
                         <h4>
                             <FormattedMessage
                                 id="activity.seeUpdates"
