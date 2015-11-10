@@ -7,6 +7,8 @@ var express = require('express');
 var path = require('path');
 var proxy = require('express-http-proxy');
 var url = require('url');
+var webpackDevMiddleware = require('webpack-dev-middleware');
+var webpack = require('webpack');
 
 var handler = require('./handler');
 var log = require('./log');
@@ -34,10 +36,12 @@ if (isProduction) {
 // Server setup
 app.use(log());
 app.use(compression());
-app.use(express.static(path.resolve(__dirname, '../build'), {
-    lastModified: true,
-    maxAge: '1y'
-}));
+if (isProduction) {
+    app.use(express.static(path.resolve(__dirname, '../build'), {
+        lastModified: true,
+        maxAge: '1y'
+    }));
+}
 app.use(function (req, res, next) {
     req._path = url.parse(req.url).path;
     next();
@@ -82,6 +86,15 @@ if (!isProduction) {
             return req._path;
         }
     }));
+
+    // Use webpack-dev-server in development
+    var compiler = webpack(require('../webpack.config.js'));
+    app.use(webpackDevMiddleware(compiler, {
+        headers: {
+            'X-From-Webpack': true
+        }
+    }));
+
 }
 
 // Start listening

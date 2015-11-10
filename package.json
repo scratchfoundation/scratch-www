@@ -70,6 +70,7 @@
     "url-loader": "0.5.6",
     "watch": "0.16.0",
     "webpack": "1.12.2",
+    "webpack-dev-middleware": "1.2.0",
     "xhr": "2.0.4"
   }
 }
