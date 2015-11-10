@@ -1,0 +1,366 @@
+@import "../../colors";
+@import "../../frameless";
+
+$base-bg: $ui-white;
+
+#view {
+  padding: 0;
+  background-color: $base-bg;
+
+  // To be integrated into the Global Typography standards
+  h3,
+  p {
+      font-weight: 300;
+
+  }
+
+  p {
+      line-height: 2em;
+  }
+
+  .top-banner, .videos-section, .section {
+      padding: 30px 0;
+      width: 100%;
+
+      h1,
+      p {
+          margin: 0 auto;
+          padding: 5px 0;
+          max-width: 500px;
+          text-align: center;
+          color: $type-gray;
+      }
+  }
+
+  .videos-container {
+    display: flex;
+    margin: 0 auto;
+    padding-top: 20px;
+    width: 95%;
+
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .videos {
+      display: inline-flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .video {
+      width: 30%;
+      margin: 10px;
+      border-radius: 7px;
+      background-color: $active-gray;
+      padding: 2px;
+
+      min-width: 300px;
+      max-width: 350px;
+    }
+
+    img {
+      width: calc(100% - 20px);
+      height: 179px;
+      margin: 10px 10px 5px 10px;
+      border-radius: 5px;
+    }
+
+    .play-button {
+      display: block;
+
+      opacity: .8;
+      border: 5px solid $ui-border;
+      border-radius: 20px;
+      background-color: $type-gray;
+      width: 70px;
+      height: 50px;
+      top: 69%;
+
+      &,
+      &:after {
+        position: absolute;
+        margin: 0;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      &:after {
+        $play-arrow: rgba(255, 255, 255, 0);
+        top: 37px;
+        left: 28px;
+        margin-top: -30px;
+        border: solid transparent;
+        border-width: 18px;
+        border-color: $play-arrow;
+        border-left-color: $ui-white;
+        width: 0;
+        height: 0;
+        content: " ";
+        pointer-events: none;
+      }
+    }
+  }
+
+  .content {
+    img {
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    .box, iframe {
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 15px;
+      padding-top: 25px;
+      border: 0px;
+      display: block;
+    }
+
+    iframe {
+      width: 900px;
+      height: 600px;
+    }
+
+    .box {
+      width: 900px;
+    }
+
+    .side-by-side {
+      margin-left: auto;
+      margin-right: auto;
+      width: 900px;
+
+      img {
+        width: 450px;
+      }
+
+      .forum,.design-studio {
+        width: 50%;
+        display: inline-block;
+      }
+      .forum {
+        float:left;
+      }
+      .design-studio {
+        float: right;
+      }
+
+
+    }
+  }
+
+
+  .pathways .box-content {padding:20px;}
+
+  .pathways .rightcol {float:right;width:30%;clear:none;margin-bottom:20px}
+  .pathways .rightcol .box-content{background-color:#FBFBFB}
+  .pathways .rightcol .box{margin-bottom:-10px;position:relative}
+
+
+  .pathways .thumb-with-subtext img {width:158px;height:128px;border:1px solid #ccc}
+  .pathways .thumb-with-subtext p {width:158px;height:auto}
+  .pathways .thumb-with-subtext{white-space:normal;display:inline-block;width:30%;margin:0 9px;vertical-align:top}
+  .pathways .thumb-with-title-and-sublinks{white-space:normal;display:inline-block;width:auto;margin:0 20px 20px 20px;vertical-align:top;text-align:left;}
+  .pathways .thumb-with-title-and-sublinks .span{}
+  .pathways .thumb-with-title-and-sublinks a {display:block}
+
+  .pathways  .intro{ overflow:auto;margin-bottom:20px; }
+  .pathways  h1{ text-align:center;}
+  .pathways  .tutorial-pane {height: 300px}
+  .pathways  .leftcol, .pathways  .rightcol { //margin-right: 20px;float:left;}
+    .pathways .leftcol {
+      width: 50%;
+    }
+    .pathways .rightcol {
+      text-align: center;
+      margin-left: 8%;
+    }
+    .pathways .intro .rightcol {
+      margin: 0;
+      text-align: right;
+    }
+    .pathways .intro .leftcol {
+      margin: 20px;
+      float: left;
+      position: relative;
+    }
+    .pathways .intro .introinfo {
+      font-size: 17px;
+      position: absolute;
+      top: 0;
+    }
+
+    .pathways .intro .introinfo ul {
+      list-style-type: none;
+      margin: 0;
+    }
+
+    .pathways .intro h1 {
+      text-align: left;
+    }
+    .pathways .intro p {
+      font-size: 18px;
+      padding-right: 25px;
+      text-align: left;
+    }
+
+    .pathways .microworld {
+      padding: 5px;
+    }
+    .pathways .editor-and-tips {
+      padding: 15px 15px 0px 15px;
+      border-radius: 15px 15px 0 0;
+      box-shadow: 0px 0px 8px #cccccc inset, 0 2px 3px rgba(34, 25, 25, 0.3);
+      border-top: 1px solid #E0E0E0;
+      border-right: 1px solid #E0E0E0;
+      border-left: 1px solid #E0E0E0;
+      background-color: white;
+      margin-bottom: 50px;
+      /* offset-x | offset-y | blur-radius | color */
+
+    }
+    //for tips slideshow
+
+    .pathways .tips-slider.flexslider {
+    }
+
+    .pathways .flexslider .flex-prev {
+      top: 130px;
+      margin-left: 50px;
+    }
+    .pathways .flexslider .flex-next {
+      margin-right: 50px;
+      top: 130px;
+    }
+
+    .pathways .tips {
+      background-color: #E6E6E8;
+      width: 887px;
+      margin-left: 10px;
+      padding-bottom: 1px;
+      margin-bottom: 15px;
+      border: 1px solid #D0D1D2;
+    }
+    .pathways .tips h3 {
+      text-align: center;
+      font-size: 1.4em;
+      padding: 5px;
+    }
+
+    .pathways .tip-slide {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+      //background: lightgray;
+    }
+    .pathways .tip-step {
+      display: inline-block;
+      margin: 0 10px;
+      min-width: 180px;
+      padding: 10px;
+      text-align: center;
+      vertical-align: middle;
+      height: 140px;
+      background-color: white;
+      border-radius: 10px;
+      position: relative;
+    }
+
+    .pathways .tip-step h5 {
+      color: #5C5D5F;
+      font-size: 1.1em;
+      font-weight: 400;
+      position: absolute;
+      border-radius: 0 0 10px 10px;
+      width: 100%;
+      bottom: 0;
+      margin: 0;
+      left: 0;
+    }
+    .pathways .tip-step img {
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      top: 45%;
+      transform: translateY(-50%);
+      overflow: hidden;
+      height: 50;
+    }
+
+    .pathways .tips-download {
+      background-color: #E6E6E8;
+      padding: 8px;
+      font-size: 1.1em;
+      margin: 0 -16px;
+      text-align: center;
+      font-family: "helvetica neue", arial, sans-serif;
+    }
+
+    .pathways .tips-download a:hover:after {
+      text-decoration: none;
+    }
+    .pathways .button {
+      padding-left: .5em;
+      padding-right: .5em;
+    }
+    .get-started .button {
+      text-size: 12px;
+      border-color: #ED8629;
+      background-color: #E58220;
+      background-image: -webkit-linear-gradient(top, #FF9522, #E58220);
+      background-image: -moz-linear-gradient(top, #FF9522, #E58220);
+      background-image: -ms-linear-gradient(top, #FF9522, #E58220);
+      background-image: -o-linear-gradient(top, #FF9522, #E58220);
+      background-image: linear-gradient(top, #FF9522, #E58220);
+      filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#FF9522, endColorStr=#E58220);
+    }
+    //.pathways  .box {background-color:#fff;}
+    .pathways .box-content {
+      margin: 5px 0;
+      border-top: none;
+    }
+    .pathways .tutorial-pane .box-content {
+      background-color: #f7f7f7;
+      padding: 20px 30px;
+      display: inline-block;
+    }
+    .pathways .slider-carousel {
+      padding: 10px 43px;
+    }
+
+    .gallery.thumb {
+      position: relative;
+    }
+
+    .pathways .gallery.thumb.item {
+      display: inline-block;
+      width: 33%;
+      font-size: 14px;
+    }
+
+    .pathways .gallery.thumb a.image {
+      display: block;
+    }
+
+    .pathways .gallery.thumb span.image img {
+      background-color: #fff;
+      width: 170px;
+      height: 100px;
+      margin: 5px;
+    }
+
+    .pathways .gallery.thumb .stats {
+      vertical-align: top;
+      opacity: .9;
+      border-radius: 5px;
+      background-color: #333;
+      color: white !important;
+      position: absolute;
+      bottom: 30px;
+      right: 120px;
+      padding: 1px;
+    }
+  }
+}

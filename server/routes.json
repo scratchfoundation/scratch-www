@@ -18,5 +18,10 @@
         "pattern": "/hoc",
         "view": "hoc",
         "title": "Hour of Code"
+    },
+    {
+        "pattern": "/microworlds_art",
+        "view": "microworlds_art",
+        "title": "Arts Microworld"
     }
 ]
