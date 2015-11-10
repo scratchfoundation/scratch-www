@@ -1,5 +1,6 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
+var Box = require('../../components/box/box.jsx');
 
 require('./parents.scss');
 
@@ -8,7 +9,7 @@ var Parents = React.createClass({
     render: function () {
         return (
             <div className="inner">
-                <h1> <img src="/images/help/cat1.png"> </img> About Scratch</h1>
+                <h1> <img src="/images/help/cat1.png"> </img> For Parents</h1>
                 <div className="intro">
                     <p> Scratch is a programming language and an online community where children can program and share
                      interactive media such as stories, games, and animation with people from all over the world.
