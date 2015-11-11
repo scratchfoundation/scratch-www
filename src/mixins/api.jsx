@@ -26,6 +26,12 @@ var Api = {
         opts.uri = opts.host + opts.uri;
 
         var apiRequest = function (opts) {
+            if (opts.host !== '') {
+                // For IE < 10, we must use XDR for cross-domain requests. XDR does not support
+                // custom headers.
+                defaults(opts, {useXDR: true});
+                opts.headers = {};
+            }
             xhr(opts, function (err, res, body) {
                 if (err) log.error(err);
                 callback(err, body);
