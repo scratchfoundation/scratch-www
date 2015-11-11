@@ -2,8 +2,11 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var FormattedMessage = require('react-intl').FormattedMessage;
 
+var log = require('../../lib/log.js');
+
 var Input = require('../forms/input.jsx');
 var Button = require('../forms/button.jsx');
+var Spinner = require('../spinner/spinner.jsx');
 
 require('./login.scss');
 
@@ -13,12 +16,21 @@ var Login = React.createClass({
         onLogIn: React.PropTypes.func,
         error: React.PropTypes.string
     },
+    getInitialState: function () {
+        return {
+            waiting: false
+        };
+    },
     handleSubmit: function (event) {
         event.preventDefault();
+        this.setState({waiting: true});
         this.props.onLogIn({
             'username': ReactDOM.findDOMNode(this.refs.username).value,
             'password': ReactDOM.findDOMNode(this.refs.password).value
-        });
+        }, function (err) {
+            if (err) log.error(err);
+            this.setState({waiting: false});
+        }.bind(this));
     },
     render: function () {
         var error;
@@ -40,11 +52,17 @@ var Login = React.createClass({
                             defaultMessage={'Password'} />
                     </label>
                     <Input type="password" ref="password" name="password" />
-                    <Button className="submit-button white" type="submit">
-                        <FormattedMessage
-                            id='general.signIn'
-                            defaultMessage={'Sign in'} />
-                    </Button>
+                    {this.state.waiting ? [
+                        <Button className="submit-button white" type="submit" disabled="disabled">
+                            <Spinner />
+                        </Button>
+                    ] : [
+                        <Button className="submit-button white" type="submit">
+                            <FormattedMessage
+                                id='general.signIn'
+                                defaultMessage={'Sign in'} />
+                        </Button>
+                    ]}
                     <a className="right" href="/accounts/password_reset/">
                         <FormattedMessage
                             id='login.forgotPassword'

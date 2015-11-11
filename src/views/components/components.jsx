@@ -6,6 +6,7 @@ var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var Input = require('../../components/forms/input.jsx');
+var Spinner = require('../../components/spinner/spinner.jsx');
 
 
 require('./components.scss');
@@ -37,6 +38,8 @@ var Components = React.createClass({
                 <Activity />
                 <h1>{'Nothing!!!'}</h1>
                 <Activity items={[]} />
+                <h1>This is a Spinner</h1>
+                <Spinner />
             </div>
         );
     }

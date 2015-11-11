@@ -116,7 +116,7 @@ var Navigation = React.createClass({
     closeLogin: function () {
         this.setState({'loginOpen': false});
     },
-    handleLogIn: function (formData) {
+    handleLogIn: function (formData, callback) {
         this.setState({'loginError': null});
         formData['useMessages'] = true;
         this.api({
@@ -142,6 +142,7 @@ var Navigation = React.createClass({
                     }.bind(this));
                     window.refreshSession();
                 }
+                callback();
             }
         }.bind(this));
     },
