@@ -48,9 +48,15 @@
         <!-- Scripts -->
         <script src="/js/lib/react{{min}}.js"></script>
         <script src="/js/lib/react-dom{{min}}.js"></script>
+        <script src="/js/lib/raven.min.js"></script>
 
         <script src="/js/main.bundle.js"></script>
         <script src="/js/{{view}}.bundle.js"></script>
+
+        <!-- Error logging (Sentry) -->
+        <script>
+            Raven.config('{{&sentry_dsn}}').install()
+        </script>
 
         <!-- Analytics (GA) -->
         <script>
