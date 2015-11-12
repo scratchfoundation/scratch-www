@@ -18,6 +18,9 @@ module.exports = {
     // Analytics & Monitoring
     ga_tracker: process.env.GA_TRACKER || '',
 
+    // Error handling
+    sentry_dsn: process.env.SENTRY_DSN || '',
+
     // Use minified JS libraries
     min: (process.env.NODE_ENV === 'production') ? '.min' : ''
 };

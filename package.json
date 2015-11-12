@@ -46,6 +46,7 @@
     "lodash.clone": "3.0.3",
     "lodash.defaultsdeep": "3.10.0",
     "lodash.omit": "3.1.0",
+    "lodash.range": "3.0.1",
     "minilog": "2.0.8",
     "node-sass": "3.3.3",
     "po2icu": "git://github.com/LLK/po2icu.git#develop",

@@ -116,7 +116,7 @@ var Navigation = React.createClass({
     closeLogin: function () {
         this.setState({'loginOpen': false});
     },
-    handleLogIn: function (formData) {
+    handleLogIn: function (formData, callback) {
         this.setState({'loginError': null});
         formData['useMessages'] = true;
         this.api({
@@ -126,12 +126,14 @@ var Navigation = React.createClass({
             json: formData,
             useCsrf: true
         }, function (err, body) {
+            if (err) this.setState({'loginError': err.message});
             if (body) {
                 body = body[0];
                 if (!body.success) {
                     if (body.redirect) {
                         window.location = body.redirect;
                     }
+                    // Update login error message to a friendlier one if it exists
                     this.setState({'loginError': body.msg});
                 } else {
                     this.closeLogin();
@@ -143,6 +145,8 @@ var Navigation = React.createClass({
                     window.refreshSession();
                 }
             }
+            // JS error already logged by api mixin
+            callback();
         }.bind(this));
     },
     handleLogOut: function (e) {

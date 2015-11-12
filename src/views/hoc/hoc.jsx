@@ -122,7 +122,7 @@ var Hoc = React.createClass({
 
                 <div className="inner">
                     <Box title={''}>
-                        <section className="one-up">
+                        <section id="teacher" className="one-up">
                             <div className="column">
                                 <h3>
                                     <FormattedMessage
@@ -272,13 +272,13 @@ var Hoc = React.createClass({
                                 </div>
 
                                 <div className="card">
-                                    <a href="/projects/editor/?tip_bar=pong">
+                                    <a href="/hoops">
                                         <div className="card-info">
-                                            <img src="/images/hoc2015/pong-tutorial.jpg" />
+                                            <img src="/images/hoc2015/bball-tutorial.jpg" />
                                             <Button>
                                                 <FormattedMessage
-                                                    id='general.tipsPongGame'
-                                                    defaultMessage={'Create a Pong Game'} />
+                                                    id='general.tipsBBallHoops'
+                                                    defaultMessage={'B-Ball Hoops'} />
                                             </Button>
                                         </div>
                                     </a>
