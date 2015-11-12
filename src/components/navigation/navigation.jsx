@@ -126,12 +126,14 @@ var Navigation = React.createClass({
             json: formData,
             useCsrf: true
         }, function (err, body) {
+            if (err) this.setState({'loginError': err.message});
             if (body) {
                 body = body[0];
                 if (!body.success) {
                     if (body.redirect) {
                         window.location = body.redirect;
                     }
+                    // Update login error message to a friendlier one if it exists
                     this.setState({'loginError': body.msg});
                 } else {
                     this.closeLogin();
@@ -142,8 +144,9 @@ var Navigation = React.createClass({
                     }.bind(this));
                     window.refreshSession();
                 }
-                callback();
             }
+            // JS error already logged by api mixin
+            callback();
         }.bind(this));
     },
     handleLogOut: function (e) {
