@@ -47,20 +47,20 @@ for (var routeId in routes) {
     app.get(route.pattern, handler(route));
 }
 
-if (typeof process.env.SENTRY_DSN === 'string') {
+if (typeof process.env.NODE_SENTRY_DSN === 'string') {
     var raven = require('raven');
     app.get('/sentrythrow', function mainHandler () { throw new Error('Sentry Test'); });
 
     // These handlers must be applied _AFTER_ other routes have been applied
-    app.use(raven.middleware.express.requestHandler(process.env.SENTRY_DSN));
-    app.use(raven.middleware.express.errorHandler(process.env.SENTRY_DSN));
+    app.use(raven.middleware.express.requestHandler(process.env.NODE_SENTRY_DSN));
+    app.use(raven.middleware.express.errorHandler(process.env.NODE_SENTRY_DSN));
     app.use(function errorHandler (err, req, res, next) {
         res.append('X-Sentry-ID:' + res.sentry);
         res.status(500);
         next(err);
     });
 
-    raven.patchGlobal(process.env.SENTRY_DSN,  function () {
+    raven.patchGlobal(process.env.NODE_SENTRY_DSN,  function () {
         process.exit(-1);
     });
 }
