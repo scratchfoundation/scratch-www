@@ -132,7 +132,7 @@ var Footer = React.createClass({
                             </a>
                         </dd>
                         <dd>
-                            <a href="https://secure.donationpay.org/codetolearn/">
+                            <a href="https://secure.donationpay.org/scratchfoundation/">
                                 <FormattedMessage
                                     id='general.donate'
                                     defaultMessage={'Donate'} />
