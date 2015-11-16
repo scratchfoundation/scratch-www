@@ -53,7 +53,7 @@
     "react": "0.14.0",
     "react-addons-test-utils": "0.14.0",
     "react-dom": "0.14.0",
-    "react-intl": "2.0.0-pr-3",
+    "react-intl": "2.0.0-beta-1",
     "react-modal": "git://github.com/mewtaylor/react-modal.git#react-14",
     "react-onclickoutside": "0.3.1",
     "react-slick": "git://github.com/mewtaylor/react-slick.git#remove-deprecation-warnings",
