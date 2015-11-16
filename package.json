@@ -53,7 +53,7 @@
     "react": "0.14.0",
     "react-addons-test-utils": "0.14.0",
     "react-dom": "0.14.0",
-    "react-intl": "2.0.0-pr-3",
+    "react-intl": "2.0.0-beta-1",
     "react-modal": "0.6.1",
     "react-onclickoutside": "4.1.1",
     "react-slick": "0.9.2",

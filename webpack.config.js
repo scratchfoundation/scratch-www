@@ -21,7 +21,8 @@ module.exports = {
     externals: {
         'react': 'React',
         'react/addons': 'React',
-        'react-dom': 'ReactDOM'
+        'react-dom': 'ReactDOM',
+        'react-intl': 'ReactIntl'
     },
     output: {
         path: path.resolve(__dirname, 'build/js'),
