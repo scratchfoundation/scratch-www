@@ -18,5 +18,10 @@
         "pattern": "/hoc",
         "view": "hoc",
         "title": "Hour of Code"
+    },
+    {
+        "pattern": "/guidelines",
+        "view": "guidelines",
+        "title": "Community Guidelines"
     }
 ]

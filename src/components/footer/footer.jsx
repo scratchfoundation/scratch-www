@@ -68,7 +68,7 @@ var Footer = React.createClass({
                                 defaultMessage={'Community'} />
                         </dt>
                         <dd>
-                            <a href="/community_guidelines/">
+                            <a href="/guidelines">
                                 <FormattedMessage
                                     id='general.guidelines'
                                     defaultMessage={'Community Guidelines'} />
