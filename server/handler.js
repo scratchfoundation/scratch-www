@@ -22,7 +22,7 @@ function Handler (route) {
     return function (req, res) {
         res.set({
             'Content-Type': 'text/html',
-            'Cache-Control': 'public, max-age=31536000',
+            'Cache-Control': 'public, max-age=3600',
             'Etag': 'W/"' + checksum + '"'
         });
         res.send(output);
