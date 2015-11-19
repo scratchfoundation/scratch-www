@@ -37,16 +37,6 @@ webpack:
 
 # ------------------------------------
 
-watch:
-	$(WATCH) "make clean && make static" ./static &
-	$(WEBPACK) -d --watch &
-	wait
-
-stop:
-	-pkill -f "$(WEBPACK) -d --watch"
-	-pkill -f "$(WATCH) make clean && make static ./static"
-	-pkill -f "$(NODE) ./server/index.js"
-
 start:
 	$(NODE) ./server/index.js
 
