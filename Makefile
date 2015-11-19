@@ -4,6 +4,9 @@ SASSLINT=./node_modules/.bin/sass-lint -v
 TAP=./node_modules/.bin/tap
 WATCH=./node_modules/.bin/watch
 WEBPACK=./node_modules/.bin/webpack
+GIT_VERSION=$(shell git rev-parse --verify --short=5 HEAD 2> /dev/null)
+GIT_VERSION?=$(WWW_VERSION)
+GIT_MESSAGE=$(shell git log -1 --pretty=%s 2> /dev/null)
 
 # ------------------------------------
 
@@ -11,6 +14,7 @@ build:
 	@make clean
 	@make translations
 	@make webpack
+	@make version
 
 clean:
 	rm -rf ./build
@@ -27,11 +31,14 @@ else
 	@make build
 	git archive -o deploy.zip HEAD
 	zip -rv deploy.zip build
-	eb deploy -l $$(git rev-parse --verify --short=5 HEAD) -m "$$(git log -1 --pretty=%s)"
+	eb deploy -l $(GIT_VERSION) -m "$(GIT_MESSAGE)"
 endif
 
 translations:
 	./lib/bin/build-locales locales/translations.json
+
+version:
+	echo $(GIT_VERSION) > ./build/version.txt
 
 webpack:
 	$(WEBPACK) --bail
@@ -75,4 +82,4 @@ integration:
 
 # ------------------------------------
 
-.PHONY: build clean deploy static translations webpack watch stop start test lint
+.PHONY: build clean deploy static translations version webpack watch stop start test lint
