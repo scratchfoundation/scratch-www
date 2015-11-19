@@ -23,7 +23,7 @@ clean:
 
 
 deploy:
-ifeq ($(shell grep "artifact: deploy.zip" .elasticbeanstalk/config.yml), )
+ifeq ($(shell grep "artifact: deploy.zip" .elasticbeanstalk/config.yml 2> /dev/null), )
 	@echo "You must configure elasticbeanstalk to deploy an artifact."
 	@echo "Add the following to your .elasticbeanstalk/config.yml"
 	@echo "deploy:\n  artifact: deploy.zip"
