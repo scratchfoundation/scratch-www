@@ -9,7 +9,6 @@ WEBPACK=./node_modules/.bin/webpack
 
 build:
 	@make clean
-	@make static
 	@make translations
 	@make webpack
 
@@ -31,9 +30,6 @@ else
 	eb deploy -l $$(git rev-parse --verify --short=5 HEAD) -m "$$(git log -1 --pretty=%s)"
 endif
 
-static:
-	cp -a ./static/. ./build/
-
 translations:
 	./lib/bin/build-locales locales/translations.json
 
@@ -41,16 +37,6 @@ webpack:
 	$(WEBPACK) --bail
 
 # ------------------------------------
-
-watch:
-	$(WATCH) "make clean && make static" ./static &
-	$(WEBPACK) -d --watch &
-	wait
-
-stop:
-	-pkill -f "$(WEBPACK) -d --watch"
-	-pkill -f "$(WATCH) make clean && make static ./static"
-	-pkill -f "$(NODE) ./server/index.js"
 
 start:
 	$(NODE) ./server/index.js

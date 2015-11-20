@@ -9,29 +9,21 @@ npm install
 npm run build
 ```
 
-During development, you can use `npm run watch` to cause any update you make to files in either `./static` or `./src` to trigger a rebuild of the project.
-
 ### To Run
 ```bash
 npm start
 ```
 
-or to start and watch at once
-```bash
-npm run dev
-```
+During development, `npm start` watches any update you make to files in either `./static` or `./src` and triggers a rebuild of the project.  In development the build is stored in memory, and not served from the `./build` directory.
 
 Once running, open `http://localhost:8333` in your browser. If you wish to have the server reload automatically, you can install either [nodemon](https://github.com/remy/nodemon) or [forever](https://github.com/foreverjs/forever).
 
 ### To stop
-```bash
-# Stops all `start` and `watch` processes
-npm stop
-```
+Use `^C` to stop the node process `npm start` starts. 
 
 #### Configuration
 
-`npm start` and `npm run watch` can be configured with the following environment variables
+`npm start` can be configured with the following environment variables
 
 | Variable      | Default                               | Description                                    |
 | ------------- | ------------------------------------- | ---------------------------------------------- |
