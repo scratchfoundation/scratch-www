@@ -4,8 +4,8 @@
 
 
     .intro {
-        background-color: $background-color;
         position: absolute;
+        background-color: $background-color;
         width: 500px;
         height: 120px;
         text-align: left;
@@ -19,34 +19,34 @@
     }
 
     .information {
+        position: relative;
+        margin: auto;
+        margin-top: 170px;
+        border: 2px solid $ui-gray;
         border-radius: 25px;
         background-color: $ui-white;
-        border: 2px solid $ui-gray;
-        margin: auto;
-        position: relative;
-        margin-top: 170px;
         padding: 20px 50px;
-        text-align: left;
         width: 900px;
+        text-align: left;
     }
 
     .leftcolumn {
-        width: 450px;
         position: absolute;
+        width: 450px;
     }
 
-	.rightcolumn {
-        width: 450px;
+    .rightcolumn {
         position: relative;
         left: 475px;
+        width: 450px;
     }
 
     .information iframe,
     .information img {
+        border: 2px solid $ui-gray;
+        padding: 5px;
         width: 384px;
         height: 210px;
-        padding: 5px;
-        border: 2px solid $ui-gray;
     }
 
     .inner a {

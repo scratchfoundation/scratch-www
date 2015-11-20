@@ -33,5 +33,15 @@
         "pattern": "/educators",
         "view": "educators",
         "title": "For Educators"
+    },
+    {
+        "pattern": "/help",
+        "view": "help",
+        "title": "Help"
+    },
+    {
+        "pattern": "/info/credits",
+        "view": "credits",
+        "title": "Credits"
     }
 ]

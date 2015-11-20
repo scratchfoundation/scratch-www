@@ -1,0 +1,73 @@
+@import "../../colors";
+
+#view {
+
+    .leftcolumn {
+        position: absolute;
+        width: 600px;
+    }
+
+    .leftcolumn Box {
+        margin-bottom: 30 px;
+    }
+
+    .rightcolumn {
+        position: relative;
+        left: 650px;
+        width: 300px;
+
+    }
+
+    .inner h1 {
+        margin-bottom: 30 px;
+    }
+
+    .inner a {
+        color: $ui-blue;
+        font-weight: bold;
+    }
+
+    .cat1 {
+        position: absolute;
+        width: 100%;
+
+    }
+
+    .intro {
+        position: absolute;
+        width: 150px;
+    }
+
+    .starter-projects {
+        position: relative;
+        left: 175px;
+        width: 150px;
+    }
+
+    .get-started {
+        position: relative;
+        top: 10px;
+        float: left;
+        margin: 0 15px;
+        width: 150px;
+    }
+
+
+    .what-is-scratch {
+        position: relative;
+        left: 90px;
+    }
+
+    .guides img {
+        position: absolute;
+        width: 12%;
+    }
+
+    .guides p,
+    .guides h4 {
+        position: relative;
+        left: 90px;
+        width: 400px;
+    }
+
+}

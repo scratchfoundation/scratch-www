@@ -2,25 +2,22 @@
 
 #view {
 
-ul {
-   list-style-image: url('/images/meow.png');
-}
+    ul {
+        list-style-image: url("/images/meow.png");
+    }
 
-li {
-   margin-top: 10px;
-}
+    li {
+        margin-top: 10px;
+    }
 
-.boldwords {
-	font-weight: bold;
-}
+    .boldwords {
+        font-weight: bold;
+    }
 
-.box-contents {
-	width: 80%;
-	margin: auto;
-}
+    .box-contents,
+    .image {
+        margin: auto;
+        width: 80%;
+    }
 
-.image {
-	width: 80%;
-	margin: auto;
-}
 }
