@@ -14,7 +14,7 @@ build:
 	@make clean
 	@make translations
 	@make webpack
-	@make version
+	@make tag
 
 clean:
 	rm -rf ./build
@@ -34,11 +34,11 @@ else
 	eb deploy -l $(GIT_VERSION) -m "$(GIT_MESSAGE)"
 endif
 
+tag:
+	echo $(GIT_VERSION) > ./build/version.txt
+
 translations:
 	./lib/bin/build-locales locales/translations.json
-
-version:
-	echo $(GIT_VERSION) > ./build/version.txt
 
 webpack:
 	$(WEBPACK) --bail
@@ -82,4 +82,4 @@ integration:
 
 # ------------------------------------
 
-.PHONY: build clean deploy static translations version webpack watch stop start test lint
+.PHONY: build clean deploy static tag translations webpack watch stop start test lint
