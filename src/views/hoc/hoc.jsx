@@ -370,6 +370,9 @@ var Hoc = React.createClass({
                             <a href="http://www.cartoonnetwork.com/">
                                 <img src="/images/hoc2015/cn-logo.png" />
                             </a>
+                            <a href="http://www.madewithcode.com/">
+                                <img src="/images/hoc2015/made-with-code-logo.png" />
+                            </a>
                             <a href="http://www.paalive.org/">
                                 <img src="/images/hoc2015/paa-logo.png" />
                             </a>
