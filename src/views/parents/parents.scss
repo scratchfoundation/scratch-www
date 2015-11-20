@@ -18,27 +18,29 @@
         height: 120px;
     }
 
-    .information {
-        position: relative;
-        margin: auto;
+    .leftcolumn {
+        position: absolute;
         margin-top: 170px;
         border: 2px solid $ui-gray;
         border-radius: 25px;
         background-color: $ui-white;
         padding: 20px 50px;
-        width: 900px;
+        width: 600px;
         text-align: left;
-    }
-
-    .leftcolumn {
-        position: absolute;
-        width: 450px;
     }
 
     .rightcolumn {
         position: relative;
+        top: -1200px;
         left: 475px;
-        width: 450px;
+        float: left;
+        margin-top: 170px;
+        margin-left: 300px;
+        width: 100px;
+    }
+
+    .rightcolumn Box {
+        width: 100px;
     }
 
     .information iframe,
@@ -47,6 +49,10 @@
         padding: 5px;
         width: 384px;
         height: 210px;
+    }
+
+    .information h2 {
+        color: $ui-orange;
     }
 
     .inner a {
@@ -60,6 +66,18 @@
     .moreinfolist {
         font-size: 120%;
         list-style-position: inside;
+    }
+
+    .inner Box  {
+        float: left;
+    }
+
+    .inner p {
+        line-height: 150%;
+    }
+
+    .information {
+        height: 1200px;
     }
 
 }
