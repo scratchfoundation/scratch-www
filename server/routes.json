@@ -18,5 +18,15 @@
         "pattern": "/hoc",
         "view": "hoc",
         "title": "Hour of Code"
+    },
+    {
+        "pattern": "/parents",
+        "view": "parents",
+        "title": "For Parents"
+    },
+    {
+        "pattern": "/educators",
+        "view": "educators",
+        "title": "For Educators"
     }
 ]
