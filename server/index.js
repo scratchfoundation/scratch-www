@@ -43,7 +43,7 @@ if (isProduction) {
     }));
 }
 app.use(function (req, res, next) {
-    req._path = url.parse(req.url).path;
+    req._path = url.parse(req.url).path.replace('index\.html', '');
     next();
 });
 
