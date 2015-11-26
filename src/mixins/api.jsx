@@ -34,6 +34,7 @@ var Api = {
             }
             xhr(opts, function (err, res, body) {
                 if (err) log.error(err);
+                if (body && body[0] && 'redirect' in body[0]) window.location = body[0].redirect;
                 callback(err, body);
             });
         }.bind(this);
