@@ -12,7 +12,6 @@ var webpack = require('webpack');
 
 var handler = require('./handler');
 var log = require('./log');
-var proxies = require('./proxies.json');
 var routes = require('./routes.json');
 
 var isProduction = process.env.NODE_ENV === 'production';
@@ -72,21 +71,6 @@ if (typeof process.env.NODE_SENTRY_DSN === 'string') {
 }
 
 if (!isProduction) {
-    // Bind proxies in development
-    var proxyHost = process.env.PROXY_HOST || 'https://scratch.mit.edu';
-
-    app.use('/', proxy(proxyHost, {
-        filter: function (req) {
-            for (var i in proxies) {
-                if (req._path.indexOf(proxies[i]) === 0) return true;
-            }
-            return false;
-        },
-        forwardPath: function (req) {
-            return req._path;
-        }
-    }));
-
     // Use webpack-dev-server in development
     var compiler = webpack(require('../webpack.config.js'));
     app.use(webpackDevMiddleware(compiler, {
@@ -95,6 +79,10 @@ if (!isProduction) {
         }
     }));
 
+    // Fall back to scratchr2 in development
+    // This proxy middleware must come last
+    var proxyHost = process.env.PROXY_HOST || 'https://scratch.mit.edu';
+    app.use('/', proxy(proxyHost));
 }
 
 // Start listening
