@@ -1,0 +1,69 @@
+@import "../../colors";
+
+#view {
+
+    .inner {
+        width: 100%;
+        .top {
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            background-color: $ui-white;
+            width: 100%;
+            font-size: 200%;
+            img {
+                width: 70%;
+                margin: auto;
+            }
+            p {
+                width: 70%;
+                margin: auto;
+                margin-bottom: 10px;
+            }
+        }
+
+        .middle {
+            background-color: $ui-gray;
+            width: 100%;
+            .info {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                width: 70%;
+                margin: auto;
+                .leftcolumn {
+                    width: calc(66% - 20px);
+                    line-height: 150%;
+                }
+                .rightcolumn {
+                    display: flex;
+                    width: 33%;
+                    img {
+                        margin-top: 20px;
+                        width: 100%;
+                        height: 100%;
+                        padding: 10px;
+                        border: 1px solid $ui-dark-gray;
+                    }
+                }
+            }
+        }
+
+        .thin-heading {
+            font-size: 150%;
+        }
+
+        .bottom {
+            background-color: $ui-white;
+            width: 100%;
+            line-height: 200%;
+            .thin-heading {
+                padding: 20px 0;
+            }
+            p {
+                width: 70%;
+                margin: auto;
+            }
+        }
+    }
+}
