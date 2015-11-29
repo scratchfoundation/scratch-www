@@ -51,6 +51,8 @@ var Carousel = React.createClass({
                         href = '/' + item.type + '/' + item.id + '/';
                     }
 
+                    href = "//scratch.mit.edu" + href;
+
                     return (
                         <Thumbnail key={item.id}
                                    showLoves={this.props.showLoves}

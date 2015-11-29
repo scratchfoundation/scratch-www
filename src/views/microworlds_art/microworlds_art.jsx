@@ -43,17 +43,25 @@ var Microworld = React.createClass({
             videoOpen2: false,
             videoOpen3: false,
             featuredGlobal: {},
+            featuredLocal: {},
         };
     },
     componentDidMount: function () {
         this.getFeaturedGlobal();
+        this.getFeaturedLocal();
     },
     getFeaturedGlobal: function () {
         this.api({
             uri: '/proxy/featured'
         }, function (err, body) {
-            if (!err) this.setState({featuredGlobal: body});
+            if (!err) {
+                this.setState({featuredGlobal: body});
+            }
         }.bind(this));
+    },
+    getFeaturedLocal: function () {
+        var art_projects = require("./microworlds_art_projects");
+        this.setState({featuredLocal: art_projects});
     },
     renderVideos: function (frameProps) {
         return (
@@ -104,8 +112,11 @@ var Microworld = React.createClass({
             <div className="editor section">
                 <h1>Start Creating!</h1>
                 {/*<iframe src="//scratch.mit.edu/projects/embed-editor/86999051/?isMicroworld=true"
-                        frameborder="0"> </iframe>*/}
-                <img src="/images/scratch-og.png" href="//scratch.mit.edu/projects/88148127/#editor" style={{width:"10%"}}></img>
+                        frameborder="0"> </iframe>
+                */}
+                <a href="//scratch.mit.edu/projects/88148127/#editor">
+                  <img src="/images/scratch-og.png" style={{width:"6%", position: "absolute", left: "75%"}}></img>
+                </a>
                 <iframe src="//scratch.mit.edu/projects/embed-editor/88148127/?isMicroworld=true"
                         frameborder="0"> </iframe>
                 {this.renderTips()}
@@ -219,26 +230,30 @@ var Microworld = React.createClass({
 
             );
     },
+    renderStarterProject: function() {
+        return (
+            <div className="project-ideas">
+                <Box
+                    title="More Starter Projects"
+                    key="design_studio">
+                    <Carousel items={this.state.featuredLocal.scratch_starter_projects} />
+                </Box>
+            </div>
+        )
+    },
     renderProjectIdeasBox: function() {
         var rows = [
             <Box
-                title="More Starter Projects"
-                key="design_studio">
-                <Carousel items={this.state.featuredGlobal.scratch_design_studio} />
-            </Box>,
-            <Box
                 title="Featured Community Projects"
                 key="community_featured_projects">
-                <Carousel items={this.state.featuredGlobal.community_featured_projects} />
+                <Carousel items={this.state.featuredLocal.community_featured_projects} />
             </Box>,
             <Box
                 title="All Community Projects"
                 key="community_all_projects">
-                <Carousel items={this.state.featuredGlobal.community_featured_studios} />
+                <Carousel items={this.state.featuredLocal.community_newest_projects} />
             </Box>,
         ];
-        console.log(this.state.featuredGlobal);
-
         return (
             <div className="project-ideas">
                 {rows}
@@ -248,16 +263,29 @@ var Microworld = React.createClass({
     renderForum: function() {
         return (
         <div className="forum">
-            <h1>Forum</h1>
+            <h1>Chat with other art lovers!</h1>
             <img src="/images/forum-image.png"/>
         </div>
         )
     },
     renderDesignStudio: function() {
         return (
-        <div className="design-studio">
-            <img src="/images/design-studio-image.png"/>
-        </div>
+            <div className="side-by-side section">
+                <h1>Join our Design Challenge!</h1>
+                <div className="design-studio">
+                    <iframe src="https://scratch.mit.edu/projects/89144801/#fullscreen" frameborder="0"> </iframe>
+                </div>
+                <div className="design-studio-projects">
+                    <Box
+                        title="Examples"
+                        key="scratch_desgin_studio"
+                        moreTitle="Visit the studio"
+                        moreHref={'/studios/' + '1728540' + '/'}>
+                    <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.featuredLocal.scratch_design_studio1} />
+                    <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.featuredLocal.scratch_design_studio2} />
+                        </Box>
+                    </div>
+                </div>
         )
     },
     render: function () {
@@ -273,8 +301,8 @@ var Microworld = React.createClass({
         return (
             <div>
                 <div className="top-banner section">
-                    <h1>Art and Creating</h1>
-                    <p>Watch a video about how to create with technology.<br></br>
+                    <h1>Make Some Art</h1>
+                    <p>Watch videos about how to create with technology.<br></br>
                        Then, create your own art project.<br></br>
                        Check out projects by others for inspiration,<br></br>
                        communicate in the forum and join the challenges!
@@ -285,12 +313,12 @@ var Microworld = React.createClass({
 
                 <div className="content">
                     {this.renderEditorWindow()}
-
+                    <h1>Check out ideas for more projects</h1>
+                    {this.renderStarterProject()}
+                    {this.renderDesignStudio()}
+                    <h1>Get inspiration from other projects</h1>
                     {this.renderProjectIdeasBox()}
-                    <div className="side-by-side section">
-                        {this.renderForum()}
-                        {this.renderDesignStudio()}
-                    </div>
+                    {this.renderForum()}
                 </div>
             </div>
 
