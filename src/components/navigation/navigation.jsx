@@ -25,10 +25,6 @@ var defaultMessages = defineMessages({
         id: 'general.messages',
         defaultMessage: 'Messages'
     },
-    myClasses: {
-        id: 'general.myClasses',
-        defaultMessage: 'My Classes'
-    },
     myStuff: {
         id: 'general.myStuff',
         defaultMessage: 'My Stuff'
@@ -288,7 +284,9 @@ var Navigation = React.createClass({
                                 {this.state.session.permissions.educator ? [
                                     <li>
                                         <a href="/educators/classes/">
-                                            <FormattedMessage {...defaultMessages.myClasses} />
+                                            <FormattedMessage
+                                                id='general.myClasses'
+                                                defaultMessage={'My Classes'} />
                                         </a>
                                     </li>
                                 ] : []}
