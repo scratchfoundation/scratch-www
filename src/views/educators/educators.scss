@@ -1,0 +1,72 @@
+@import "../../colors";
+
+#view {
+
+    .masthead {
+        display: flex;
+        justify-content: space-between;
+
+        .intro {
+            width: 50%;
+        }
+
+        .video {
+            width: 50%;
+        }
+    }
+
+    .information {
+        display: flex;
+        margin-top: 170px;
+        justify-content: space-between;
+
+        .leftcolumn {
+            border: 2px solid $ui-gray;
+            border-radius: 25px;
+            background-color: $ui-white;
+            padding: 20px 50px;
+            width: calc(66% - 120px);
+            text-align: left;
+        }
+
+        .rightcolumn {
+            float: left;
+            width: 33%;
+
+            .box {
+                width: 100%;
+            }
+        }
+    }
+
+    // .information iframe,
+    // .information img {
+    //     border: 2px solid $ui-gray;
+    //     padding: 5px;
+    //     width: 384px;
+    //     height: 210px;
+    // }
+
+    // .inner a {
+    //     font-weight: bold;
+    // }
+
+    // .information p {
+    //     margin-top: 10px;
+    // }
+
+    // .moreinfolist {
+    //     font-size: 120%;
+    //     list-style-position: inside;
+    // }
+
+    // .inner p {
+    //     line-height: 150%;
+    // }
+
+
+    // .information h2 {
+    //     color: $ui-orange;
+    // }
+
+}
