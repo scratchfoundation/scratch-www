@@ -45,13 +45,13 @@ var Jobs = React.createClass({
                         <a href="/jobs/learning-developer">
                             <FormattedMessage id='jobs.learningDeveloper' />
                         </a>
-                        <i>(MIT Media Lab, Cambridge, MA)</i>
+                        <i> (MIT Media Lab, Cambridge, MA)</i>
                     </p>
                     <p>
                         <a href="/jobs/moderator">
                             <FormattedMessage id='jobs.moderator' />
                         </a>
-                        <i>(MIT Media Lab, Cambrige, MA or Remote)</i>
+                        <i> (MIT Media Lab, Cambrige, MA or Remote)</i>
                     </p>
                 </div>
             </div>
