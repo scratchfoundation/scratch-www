@@ -3,6 +3,9 @@
 
 [![Build Status](https://magnum.travis-ci.com/LLK/scratch-www.svg?token=xzzHj4ct3SyBTpeqxnx1)](https://magnum.travis-ci.com/LLK/scratch-www)
 
+### Before Getting Started
+* make sure you have npm [installed](https://docs.npmjs.com/getting-started/installing-node)
+
 ### To Build
 ```bash
 npm install
@@ -15,6 +18,10 @@ npm start
 ```
 
 During development, `npm start` watches any update you make to files in either `./static` or `./src` and triggers a rebuild of the project.  In development the build is stored in memory, and not served from the `./build` directory.
+
+When running `npm start`, here are some important log messages to keep an eye out for:
+* `webpack: bundle is now VALID.` – the bundle has been loaded into memory and is now viewable in the browser. This will show up both once `npm start` has completed its setup, and also once updates you make to files have been re-compiled for viewing in the browser.
+* `webpack: bundle is now INVALID.` – if you see this, then it means you have made updates to files that are still being compiled for browser viewing. Pages will still be viewable, but they will not see any updates you made yet.
 
 Once running, open `http://localhost:8333` in your browser. If you wish to have the server reload automatically, you can install either [nodemon](https://github.com/remy/nodemon) or [forever](https://github.com/foreverjs/forever).
 
@@ -31,6 +38,8 @@ Use `^C` to stop the node process `npm start` starts.
 | `NODE_ENV`    | `null`                                | If not `production`, app acts like development |
 | `PORT`        | `8333`                                | Port for devserver (http://localhost:XXXX)     |
 | `FALLBACK`  | `''`             | Pass-through location for scratchr2            |
+
+**NOTE:** Because by default both `API_HOST=https://api.scratch.mit.edu` and `PROXY_HOST=https://scratch.mit.edu`, please be aware that, by default, you will be seeing and interacting with real data on the Scratch website.
 
 ### To Test
 ```bash
