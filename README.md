@@ -30,7 +30,11 @@ Use `^C` to stop the node process `npm start` starts.
 | `API_HOST`    | `https://api.scratch.mit.edu`         | Hostname for API requests                      |
 | `NODE_ENV`    | `null`                                | If not `production`, app acts like development |
 | `PORT`        | `8333`                                | Port for devserver (http://localhost:XXXX)     |
+| `FALLBACK`    | `false`                               | Whether or not to fallback to `PROXY_HOST` for non-existent pages/reqeusts |
 | `PROXY_HOST`  | `https://scratch.mit.edu`             | Pass-through location for scratchr2            |
+
+#### Current issues with the development
+* Login does not work (*In the process of being fixed*)
 
 ### To Test
 ```bash

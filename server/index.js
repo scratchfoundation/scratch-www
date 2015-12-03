@@ -79,10 +79,13 @@ if (!isProduction) {
         }
     }));
 
-    // Fall back to scratchr2 in development
-    // This proxy middleware must come last
-    var proxyHost = process.env.PROXY_HOST || 'https://scratch.mit.edu';
-    app.use('/', proxy(proxyHost));
+    var shouldFallback = (process.env.FALLBACK === 'true') || false;
+    if (shouldFallback) {
+        // Fall back to scratchr2 in development
+        // This proxy middleware must come last
+        var proxyHost = process.env.PROXY_HOST || 'https://scratch.mit.edu';
+        app.use('/', proxy(proxyHost));
+    }
 }
 
 // Start listening
