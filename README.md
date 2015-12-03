@@ -30,13 +30,20 @@ Use `^C` to stop the node process `npm start` starts.
 | `API_HOST`    | `https://api.scratch.mit.edu`         | Hostname for API requests                      |
 | `NODE_ENV`    | `null`                                | If not `production`, app acts like development |
 | `PORT`        | `8333`                                | Port for devserver (http://localhost:XXXX)     |
-| `FALLBACK`    | `false`                               | Whether or not to fallback to `PROXY_HOST` for non-existent pages/reqeusts |
-| `PROXY_HOST`  | `https://scratch.mit.edu`             | Pass-through location for scratchr2            |
-
-#### Current issues with the development
-* Login does not work (*In the process of being fixed*)
+| `PROXY_HOST`  | `''`             | Pass-through location for scratchr2            |
 
 ### To Test
 ```bash
 npm test
 ```
+
+### Current issues with the development
+We're currently in the process of transitioning into this web client from Scratch's existing structure. As we transition, there are going to be some issues along the way that relate to how this client needs to interact with the existing infrastructure to work properly in production.
+
+On top of migrating to using this as our web client, Scratch is also transitioning into using a new API backend, Scratch REST API. As that is also currently in development and incomplete, we are set up to fall back to using existing Scratch endpoints if an API endpoint does not exist – which is where the `PROXY_HOST` comes in.
+
+Most of the issues we have currently revolve around the use of `PROXY_HOST`. This variable is used to specify what url to fall back onto should a request fail within the context of this webclient, or when using the `API_HOST`. If not specified in the process, it will not be used, and any request that is not made through the web client or the API will be unreachable.
+
+Setting `PROXY_HOST=https://scratch.mit.edu` allows the web client to retrieve data from the Scratch website in your development environment. However, because of security concerns, trying to send data to Scratch through your development environment won't work. This means the following things will be broken for the time being:
+* Login on the splash page (*In the process of being fixed*)
+* Some update attempts to production data made through a development version of the web client
