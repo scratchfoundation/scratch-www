@@ -133,7 +133,7 @@ var Hoc = React.createClass({
                                     <FormattedHTMLMessage
                                         id='hoc.activityCardsInfo1'
                                         defaultMessage={
-                                            'Want tips and ideas for these Hour of Code activities? ' +
+                                            'Want tips and ideas for these Hour of Code&trade; activities? ' +
                                             'Use the activity cards to get ideas for creating with ' +
                                             'Scratch. Facilitator guides can help you plan ' +
                                             'a group activity.'
@@ -379,6 +379,19 @@ var Hoc = React.createClass({
                             <a href="http://www.catrobat.org/">
                                 <img src="/images/hoc2015/pocketcode-logo.png" />
                             </a>
+                        </div>
+
+                        <div className="trademark">
+                            <p className="legal">
+                                <FormattedHTMLMessage
+                                    id='hoc.officialNotice'
+                                    defaultMessage={
+                                        'The "Hour of Code&trade;" is a nationwide initiative by ' +
+                                        '<a href="http://csedweek.org">Computer Science Education Week</a> ' +
+                                        'and <a href="http://code.org">Code.org</a> to introduce millions of ' +
+                                        'students to one hour of computer science and computer programming.'
+                                    } />
+                            </p>
                         </div>
                     </section>
                 </div>
