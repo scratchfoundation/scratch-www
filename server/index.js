@@ -79,7 +79,7 @@ if (!isProduction) {
         }
     }));
 
-    var proxyHost = process.env.PROXY_HOST || '';
+    var proxyHost = process.env.FALLBACK || '';
     if (proxyHost !== '') {
         // Fall back to scratchr2 in development
         // This proxy middleware must come last
