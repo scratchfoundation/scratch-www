@@ -35,7 +35,7 @@ var News = React.createClass({
                 className="news"
                 title={formatMessage(defaultMessages.scratchNews)}
                 moreTitle={formatMessage(defaultMessages.viewAll)}
-                moreHref="/news">
+                moreHref="/discuss/5/">
 
                 <ul>
                     {this.props.items.map(function (item) {
