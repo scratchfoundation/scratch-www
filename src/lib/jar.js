@@ -1,7 +1,35 @@
 var cookie = require('cookie');
 var xhr = require('xhr');
+var pako = require('pako');
 
 var Jar = {
+    unsign: function (value, callback) {
+        // Return the usable content portion of a signed, compressed cookie
+        if (!value) return callback('No value to unsign');
+        try {
+            var b64Data = value.split(':')[0];
+            var decompress = false;
+            if (b64Data[0] === '.') {
+                decompress = true;
+                b64Data = b64Data.substring(1);
+            }
+
+            // Django makes its base64 strings url safe by replacing + and / with - and _ respectively
+            b64Data = b64Data.replace(/[-_]/g, function (c) {return {'-':'+', '_':'/'}[c]; });
+            var strData = atob(b64Data);
+
+            if (decompress) {
+                var charData = strData.split('').map(function (c) { return c.charCodeAt(0); });
+                var binData = new Uint8Array(charData);
+                var data = pako.inflate(binData);
+                strData = String.fromCharCode.apply(null, new Uint16Array(data));
+            }
+
+            return callback(null, strData);
+        } catch (e) {
+            return callback(e);
+        }
+    },
     get: function (name, callback) {
         // Get cookie by name
         var obj = cookie.parse(document.cookie) || {};
