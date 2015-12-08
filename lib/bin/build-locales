@@ -57,16 +57,17 @@ glob(poUiDir + '/*', function (err, files) {
         var pyFile = path.resolve(file, 'LC_MESSAGES/django.po');
 
         var translations = {};
+
         try {
             var jsTranslations = po2icu.poFileToICUSync(lang, jsFile);
-            translations = localeCompare.mergeNewTranslations(translations, jsTranslations, md5WithIds);
+            translations = localeCompare.mergeNewTranslations(translations, jsTranslations, idsWithICU, md5WithIds);
         } catch (err) {
             process.stdout.write(lang + ': ' + err + '\n');
         }
 
         try {
             var pyTranslations = po2icu.poFileToICUSync(lang, pyFile);
-            translations = localeCompare.mergeNewTranslations(translations, pyTranslations, md5WithIds);
+            translations = localeCompare.mergeNewTranslations(translations, pyTranslations, idsWithICU, md5WithIds);
         } catch (err) {
             process.stdout.write(lang + ': ' + err + '\n');
         }
