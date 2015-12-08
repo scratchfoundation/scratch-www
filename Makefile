@@ -1,16 +1,20 @@
 ESLINT=./node_modules/.bin/eslint
 NODE=node
 SASSLINT=./node_modules/.bin/sass-lint -v
+TAP=./node_modules/.bin/tap
 WATCH=./node_modules/.bin/watch
 WEBPACK=./node_modules/.bin/webpack
+GIT_VERSION=$(shell git rev-parse --verify --short=5 HEAD 2> /dev/null)
+GIT_VERSION?=$(WWW_VERSION)
+GIT_MESSAGE=$(shell git log -1 --pretty=%s 2> /dev/null)
 
 # ------------------------------------
 
 build:
 	@make clean
-	@make static
 	@make translations
 	@make webpack
+	@make tag
 
 clean:
 	rm -rf ./build
@@ -19,7 +23,7 @@ clean:
 
 
 deploy:
-ifeq ($(shell grep "artifact: deploy.zip" .elasticbeanstalk/config.yml), )
+ifeq ($(shell grep "artifact: deploy.zip" .elasticbeanstalk/config.yml 2> /dev/null), )
 	@echo "You must configure elasticbeanstalk to deploy an artifact."
 	@echo "Add the following to your .elasticbeanstalk/config.yml"
 	@echo "deploy:\n  artifact: deploy.zip"
@@ -27,29 +31,19 @@ else
 	@make build
 	git archive -o deploy.zip HEAD
 	zip -rv deploy.zip build
-	eb deploy -l $$(git rev-parse --verify --short=5 HEAD) -m "$$(git log -1 --pretty=%s)"
+	eb deploy -l $(GIT_VERSION) -m "$(GIT_MESSAGE)"
 endif
 
-static:
-	cp -a ./static/. ./build/
+tag:
+	echo $(GIT_VERSION) > ./build/version.txt
 
 translations:
-	./src/scripts/build-locales locales/translations.json
+	./lib/bin/build-locales locales/translations.json
 
 webpack:
 	$(WEBPACK) --bail
 
 # ------------------------------------
-
-watch:
-	$(WATCH) "make clean && make static" ./static &
-	$(WEBPACK) -d --watch &
-	wait
-
-stop:
-	-pkill -f "$(WEBPACK) -d --watch"
-	-pkill -f "$(WATCH) make clean && make static ./static"
-	-pkill -f "$(NODE) ./server/index.js"
 
 start:
 	$(NODE) ./server/index.js
@@ -59,6 +53,11 @@ start:
 test:
 	@make lint
 	@make build
+	@echo ""
+	@make unit
+	@echo ""
+	@make functional
+	@echo ""
 
 lint:
 	$(ESLINT) ./*.js
@@ -72,6 +71,15 @@ lint:
 	$(SASSLINT) ./src/views/**/*.scss
 	$(SASSLINT) ./src/components/**/*.scss
 
+unit:
+	$(TAP) ./test/unit/*.js
+
+functional:
+	$(TAP) ./test/functional/*.js
+
+integration:
+	$(TAP) ./test/integration/*.js
+
 # ------------------------------------
 
-.PHONY: build clean deploy static translations webpack watch stop start test lint
+.PHONY: build clean deploy static tag translations webpack watch stop start test lint
