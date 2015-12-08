@@ -39,7 +39,7 @@ Use `^C` to stop the node process `npm start` starts.
 | `PORT`        | `8333`                                | Port for devserver (http://localhost:XXXX)     |
 | `FALLBACK`  | `''`             | Pass-through location for scratchr2            |
 
-**NOTE:** Because by default both `API_HOST=https://api.scratch.mit.edu` and `PROXY_HOST=https://scratch.mit.edu`, please be aware that, by default, you will be seeing and interacting with real data on the Scratch website.
+**NOTE:** Because by default both `API_HOST=https://api.scratch.mit.edu` and `FALLBACK=https://scratch.mit.edu`, please be aware that, by default, you will be seeing and interacting with real data on the Scratch website.
 
 ### To Test
 ```bash
