@@ -1,3 +1,65 @@
+@import "../../colors";
+
 #view {
-    
+
+
+    .intro {
+        position: absolute;
+        background-color: $background-color;
+        width: 500px;
+        height: 120px;
+        text-align: left;
+    }
+
+    .video {
+        position: relative;
+        left: 550px;
+        width: 200px;
+        height: 120px;
+    }
+
+    .information {
+        position: relative;
+        margin: auto;
+        margin-top: 170px;
+        border: 2px solid $ui-gray;
+        border-radius: 25px;
+        background-color: $ui-white;
+        padding: 20px 50px;
+        width: 900px;
+        text-align: left;
+    }
+
+    .leftcolumn {
+        position: absolute;
+        width: 450px;
+    }
+
+    .rightcolumn {
+        position: relative;
+        left: 475px;
+        width: 450px;
+    }
+
+    .information iframe,
+    .information img {
+        border: 2px solid $ui-gray;
+        padding: 5px;
+        width: 384px;
+        height: 210px;
+    }
+
+    .inner a {
+        font-weight: bold;
+    }
+
+    .information p {
+        margin-top: 10px;
+    }
+
+    .moreinfolist {
+        font-size: 120%;
+        list-style-position: inside;
+    }
+
 }
