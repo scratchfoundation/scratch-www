@@ -10,18 +10,17 @@ var About = React.createClass({
     render: function () {
         return (
             <div className="inner">
-                <h1><FormattedMessage id='about.title' /></h1>
+                <h1><FormattedMessage id='general.aboutScratch' /></h1>
 
                 <div className="masthead">
                     <div>
-                        <FormattedHTMLMessage id='about.intro' />
+                        <p><FormattedMessage id='about.introOne' /></p>
+                        <p><FormattedMessage id='about.introTwo' /></p>
+                        <p><FormattedMessage id='about.introThree' /></p>
+
                         <ul>
-                            <li>
-                                <a href = "/parents/"><FormattedMessage id="about.introParents" /></a>
-                            </li>
-                            <li>
-                                <a href = "/educators/"><FormattedMessage id="about.introEducators" /></a>
-                            </li>
+                            <li><a href = "/parents/"><FormattedMessage id="about.introParents" /></a></li>
+                            <li><a href = "/educators/"><FormattedMessage id="about.introEducators" /></a></li>
                         </ul>
                     </div>
 
