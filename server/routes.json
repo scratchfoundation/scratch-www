@@ -18,5 +18,10 @@
         "pattern": "/hoc",
         "view": "hoc",
         "title": "Hour of Code"
+    },
+    {
+        "pattern": "/info/credits",
+        "view": "credits",
+        "title": "Credits"
     }
 ]
