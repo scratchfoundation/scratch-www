@@ -395,9 +395,8 @@ var Hoc = React.createClass({
                         </div>
                     </section>
                 </div>
-
-                <img src = "https://code.org/api/hour/begin_scratch.png" />
             </div>
+
         );
     }
 });
