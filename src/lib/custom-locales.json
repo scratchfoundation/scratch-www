@@ -1,0 +1,10 @@
+{
+    "yum": {
+        "locale": "yum",
+        "parentLocale": "en"
+    },
+    "cat": {
+        "locale": "cat",
+        "parentLocale": "en"
+    }
+}
