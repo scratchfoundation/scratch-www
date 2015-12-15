@@ -1,4 +1,12 @@
 {
+    "an": {
+        "locale": "an",
+        "parentLocale": "ca"
+    },
+    "la": {
+        "locale": "la",
+        "parentLocale": "it"
+    },
     "yum": {
         "locale": "yum",
         "parentLocale": "en"
