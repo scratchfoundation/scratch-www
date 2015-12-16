@@ -15,9 +15,10 @@ We are always excited to have people join us in working to make Scratch a wonder
 Road map
 
 Beyond this repo, there are also some other resources that you might want to take a look at:
-Scratch (the thing we work on)
-Bugs & Glitches forum on Scratch (where mosquitoes and dei ex machina congregate)
-Advanced Topics forum on Scratch (like Topics, but more complex-y)
+[Scratch](https://scratch.mit.edu/) (the thing we work on)
+[Open Source forum](https://scratch.mit.edu/discuss/49/) on Scratch (talk about the thing we work on on the thing we work on. so meta.)
+[Bugs & Glitches forum](https://scratch.mit.edu/discuss/3/) on Scratch (where mosquitoes and dei ex machina congregate)
+[Advanced Topics forum](https://scratch.mit.edu/discuss/31/) on Scratch (like Topics, but more complex-y)
 
 
 ### I wanna contribute! ###

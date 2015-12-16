@@ -1,4 +1,4 @@
-Copyright 2015 Lifelong Kindergarten Group
+Copyright 2015 Massachusetts Institute of Technology
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

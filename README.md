@@ -4,7 +4,7 @@
 [![Build Status](https://magnum.travis-ci.com/LLK/scratch-www.svg?token=xzzHj4ct3SyBTpeqxnx1)](https://magnum.travis-ci.com/LLK/scratch-www)
 
 ### Before Getting Started
-* make sure you have npm [installed](https://docs.npmjs.com/getting-started/installing-node)
+* make sure you have node and npm [installed](https://docs.npmjs.com/getting-started/installing-node)
 
 ### To Build
 ```bash
@@ -37,7 +37,7 @@ Use `^C` to stop the node process `npm start` starts.
 | `API_HOST`    | `https://api.scratch.mit.edu`         | Hostname for API requests                      |
 | `NODE_ENV`    | `null`                                | If not `production`, app acts like development |
 | `PORT`        | `8333`                                | Port for devserver (http://localhost:XXXX)     |
-| `FALLBACK`  | `''`             | Pass-through location for scratchr2            |
+| `FALLBACK`  | `''`             | Pass-through location for old site            |
 
 **NOTE:** Because by default both `API_HOST=https://api.scratch.mit.edu` and `FALLBACK=https://scratch.mit.edu`, please be aware that, by default, you will be seeing and interacting with real data on the Scratch website.
 
