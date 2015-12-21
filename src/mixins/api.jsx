@@ -34,6 +34,9 @@ var Api = {
             }
             xhr(opts, function (err, res, body) {
                 if (err) log.error(err);
+                // Legacy API responses come as lists, and indicate to redirect the client like
+                // [{success: true, redirect: "/location/to/redirect"}]
+                if (body && body[0] && 'redirect' in body[0]) window.location = body[0].redirect;
                 callback(err, body);
             });
         }.bind(this);

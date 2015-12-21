@@ -1,5 +1,6 @@
 var ReactDOM = require('react-dom');
-var ReactIntl = require('react-intl');
+
+var ReactIntl = require('./intl.jsx');
 var IntlProvider = ReactIntl.IntlProvider;
 
 var render = function (jsx, element) {

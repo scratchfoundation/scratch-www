@@ -5,29 +5,17 @@
     Requires po2json in order to work. Takes as input a directory
     in which to store the resulting json translation files.
 */
-
 var fs = require('fs');
 var glob = require('glob');
 var path = require('path');
 var po2icu = require('po2icu');
 
-/*
-    Existing translations should be in the key value format specified by react-intl (i.e.
-    formatted message id, with icu string as the value). New Translations should be in the
-    format returned by po2icu (i.e. a source language icu string for key, and a localized
-    language icu string for value).
+var localeCompare = require('../locale-compare');
 
-    ICU Map is an object in the reverse react-intl formatting (icu string as key), which will
-    help determine if the translation belongs in www currently.
-*/
-var mergeNewTranslations = function (existingTranslations, newTranslations, icuMap) {
-    for (var id in newTranslations) {
-        if (icuMap.hasOwnProperty(id) && newTranslations[id].length > 0) {
-            existingTranslations[icuMap[id]] = newTranslations[id];
-        }
-    }
-    return existingTranslations;
-};
+// -----------------------------------------------------------------------------
+// Main script
+// -----------------------------------------------------------------------------
+
 
 var args = process.argv.slice(2);
 
@@ -49,13 +37,15 @@ try {
 
 var icuTemplateFile = path.resolve(__dirname, '../../en.json');
 var idsWithICU = JSON.parse(fs.readFileSync(icuTemplateFile, 'utf8'));
+var locales = {
+    en: idsWithICU
+};
+
 var icuWithIds = {};
 for (var id in idsWithICU) {
     icuWithIds[idsWithICU[id]] = id;
 }
-var locales = {
-    en: idsWithICU
-};
+var md5WithIds = localeCompare.getMD5Map(icuWithIds);
 
 // Get ui localization strings first
 glob(poUiDir + '/*', function (err, files) {
@@ -67,16 +57,17 @@ glob(poUiDir + '/*', function (err, files) {
         var pyFile = path.resolve(file, 'LC_MESSAGES/django.po');
 
         var translations = {};
+
         try {
             var jsTranslations = po2icu.poFileToICUSync(lang, jsFile);
-            translations = mergeNewTranslations(translations, jsTranslations, icuWithIds);
+            translations = localeCompare.mergeNewTranslations(translations, jsTranslations, idsWithICU, md5WithIds);
         } catch (err) {
             process.stdout.write(lang + ': ' + err + '\n');
         }
 
         try {
             var pyTranslations = po2icu.poFileToICUSync(lang, pyFile);
-            translations = mergeNewTranslations(translations, pyTranslations, icuWithIds);
+            translations = localeCompare.mergeNewTranslations(translations, pyTranslations, idsWithICU, md5WithIds);
         } catch (err) {
             process.stdout.write(lang + ': ' + err + '\n');
         }
