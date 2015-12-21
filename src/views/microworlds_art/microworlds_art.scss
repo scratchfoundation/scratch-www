@@ -169,6 +169,15 @@ $base-bg: $ui-white;
     }
   }
 
+  .tipsslider {
+    text-align: center;
+    
+    .thumbnail {
+      display: inline-block;
+      margin: 0px 50px;
+    }
+  }
+
 
   .pathways .box-content {padding:20px;}
 
