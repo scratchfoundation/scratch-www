@@ -10,16 +10,16 @@
     }
 
     .intro {
+        margin-left: 5%;
         width: 60%;
         line-height: 1.5rem;
-        margin-left: 5%;
     }
 
     .steps {
         display: flex;
+        margin-bottom: 10px;
         background-color: $ui-gray;
         width: 100%;
-        margin-bottom: 10px;
         .column {
             text-align: center;
         }
@@ -35,8 +35,8 @@
     }
 
     .more-info {
-        margin-left: 5%;
         display: flex;
+        margin-left: 5%;
         line-height: 1.5rem;
         font-size: 90%;
     }
