@@ -64,7 +64,7 @@ var Footer = React.createClass({
                     <dl>
                         <dt>
                             <FormattedMessage
-                                id='general.communityHeader'
+                                id='general.community'
                                 defaultMessage={'Community'} />
                         </dt>
                         <dd>

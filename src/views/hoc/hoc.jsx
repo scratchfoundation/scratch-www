@@ -359,7 +359,11 @@ var Hoc = React.createClass({
                     </Box>
 
                     <section className="one-up">
-                        <h3>Collaborators</h3>
+                        <h3>
+                            <FormattedMessage
+                                id='general.collaborators'
+                                defaultMessage={'Collaborators'} />
+                        </h3>
                         <div className="logos">
                             <a href="http://scratched.gse.harvard.edu/">
                                 <img src="/images/hoc2015/scratchEd-logo.png" />
