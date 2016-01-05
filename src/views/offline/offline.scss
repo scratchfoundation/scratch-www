@@ -1,45 +1,45 @@
 @import "../../colors";
 
 #view {
-	.box-header {
-		height: 0;
-	}
+    .box-header {
+        height: 0;
+    }
 
-	.box-content {
-		padding: 20px 0;
-	}
+    .box-content {
+        padding: 20px 0;
+    }
 
-	.intro {
-		width: 60%;
-		line-height: 1.5rem;
-		margin-left: 5%;
-	}
+    .intro {
+        width: 60%;
+        line-height: 1.5rem;
+        margin-left: 5%;
+    }
 
-	.steps {
-		display: flex;
-		background-color: $ui-gray;
-		width: 100%;
-		margin-bottom: 10px;
-		.column {
-			text-align: center;
-		}
-		.verticalLine {
-			border-left: solid $ui-dark-gray 1px;
-		}
-		h4 {
-			margin: 10px 0;
-		}
-		p {
-			font-size: 90%;
-		}
-	}
+    .steps {
+        display: flex;
+        background-color: $ui-gray;
+        width: 100%;
+        margin-bottom: 10px;
+        .column {
+            text-align: center;
+        }
+        .verticalLine {
+            border-left: solid $ui-dark-gray 1px;
+        }
+        h4 {
+            margin: 10px 0;
+        }
+        p {
+            font-size: 90%;
+        }
+    }
 
-	.more-info {
-		margin-left: 5%;
-		display: flex;
-		line-height: 1.5rem;
-		font-size: 90%;
-	}
+    .more-info {
+        margin-left: 5%;
+        display: flex;
+        line-height: 1.5rem;
+        font-size: 90%;
+    }
 
 
 }
