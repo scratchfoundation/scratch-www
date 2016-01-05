@@ -4,6 +4,10 @@
         "parentLocale": "ca"
     },
     "la": {
+        "locale": "ht",
+        "parentLocale": "fr"
+    },
+    "la": {
         "locale": "la",
         "parentLocale": "it"
     },
