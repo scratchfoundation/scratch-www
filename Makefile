@@ -64,7 +64,6 @@ lint:
 	$(ESLINT) ./*.js
 	$(ESLINT) ./server/*.js
 	$(ESLINT) ./src/*.js
-	$(ESLINT) ./src/*.jsx
 	$(ESLINT) ./src/mixins/*.jsx
 	$(ESLINT) ./src/views/**/*.jsx
 	$(ESLINT) ./src/components/**/*.jsx
