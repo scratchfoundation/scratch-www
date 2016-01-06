@@ -37,6 +37,7 @@ app.use(log());
 app.use(compression());
 if (isProduction) {
     app.use(express.static(path.resolve(__dirname, '../build'), {
+        etag: 'strong',
         lastModified: true,
         maxAge: '1y'
     }));
