@@ -17,7 +17,11 @@ var Modal = require('../../components/modal/modal.jsx');
 var News = require('../../components/news/news.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
+require('../../main.scss');
 require('./splash.scss');
+
+var Navigation = require('../../components/navigation/navigation.jsx');
+var Footer = require('../../components/footer/footer.jsx');
 
 var Splash = injectIntl(React.createClass({
     type: 'Splash',
@@ -390,4 +394,6 @@ var Splash = injectIntl(React.createClass({
     }
 }));
 
+render(<Navigation />, document.getElementById('navigation'));
+render(<Footer />, document.getElementById('footer'));
 render(<Splash />, document.getElementById('view'));

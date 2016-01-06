@@ -3,7 +3,11 @@ var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
 
+require('../../main.scss');
 require('./about.scss');
+
+var Navigation = require('../../components/navigation/navigation.jsx');
+var Footer = require('../../components/footer/footer.jsx');
 
 var About = React.createClass({
     type: 'About',
@@ -100,4 +104,6 @@ var About = React.createClass({
     }
 });
 
+render(<Navigation />, document.getElementById('navigation'));
+render(<Footer />, document.getElementById('footer'));
 render(<About />, document.getElementById('view'));

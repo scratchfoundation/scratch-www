@@ -8,8 +8,11 @@ var Carousel = require('../../components/carousel/carousel.jsx');
 var Input = require('../../components/forms/input.jsx');
 var Spinner = require('../../components/spinner/spinner.jsx');
 
-
+require('../../main.scss');
 require('./components.scss');
+
+var Navigation = require('../../components/navigation/navigation.jsx');
+var Footer = require('../../components/footer/footer.jsx');
 
 var Components = React.createClass({
     type: 'Components',
@@ -45,4 +48,6 @@ var Components = React.createClass({
     }
 });
 
+render(<Navigation />, document.getElementById('navigation'));
+render(<Footer />, document.getElementById('footer'));
 render(<Components />, document.getElementById('view'));

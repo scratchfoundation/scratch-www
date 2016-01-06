@@ -6,8 +6,7 @@ var routes = require('./server/routes.json');
 
 // Prepare all entry points
 var entry = {
-    init: './src/init.js',
-    main: './src/main.jsx'
+    init: './src/init.js'
 };
 routes.forEach(function (route) {
     entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
