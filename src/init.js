@@ -1,8 +1,6 @@
 var api = require('./mixins/api.jsx').api;
 var jar = require('./lib/jar');
 
-var translations = require('../locales/translations.json');
-
 /**
  * -----------------------------------------------------------------------------
  * Session
@@ -65,17 +63,8 @@ var translations = require('../locales/translations.json');
         if (typeof obj === 'undefined') {
             obj = window.navigator.userLanguage || window.navigator.language;
         }
-        if (typeof translations[obj] === 'undefined') {
-            // Fall back on the split
-            obj = obj.split('-')[0];
-        }
-        if (typeof translations[obj] === 'undefined') {
-            // Language appears to not be supported – return `null`
-            obj = null;
-        }
         return obj;
     }
 
-    window._locale = updateLocale() || 'en';
-    window._translations = translations;
+    window._locale = updateLocale();
 })();

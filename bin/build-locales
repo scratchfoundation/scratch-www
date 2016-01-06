@@ -1,0 +1,157 @@
+#!/usr/bin/env node
+
+/*
+    Converts the existing .po translation files in the module to JSON files.
+    Requires po2json in order to work. Takes as input a directory
+    in which to store the resulting json translation files.
+
+    Takes in as an argument an output directory to put translation files.
+    Searches for files named `l10n.json` in the `src/views/` directory to get
+    template english strings (as well as the general template at `src/l10n.json`).
+
+    It compiles the template strings into a flat object that is compared against the
+    translations in the .po files from the `scratchr2_translations` dependency, using
+    an md5 of the template string without whitespace, and an md5 of the .po msgid string
+    without whitespace.
+
+    The output files are javascript files that declare objects by locale. Each locale
+    has a sub-object with FormattedMessage ids as keys, and translated strings as
+    values. If no translation was found for a string, the default english will be the
+    value.
+
+    Output Example:
+    '''
+    var message = {
+        en: {
+            'general.inAWorld': 'In a world, where bears are invisible...',
+            'general.question': 'Are there bears here?',
+            'general.answer': 'I dunno, but there could be...'
+        },
+        es: {
+            'general.inAWorld': 'En un mundo, donde hay osos invisibles',
+            'general.question': 'Are there bears here?',
+            'general.answer': 'No sé, pero es posible...'
+        }
+    }
+    '''
+*/
+var fs = require('fs');
+var glob = require('glob');
+var merge = require('lodash.merge');
+var path = require('path');
+var po2icu = require('po2icu');
+
+var localeCompare = require('./lib/locale-compare');
+
+// -----------------------------------------------------------------------------
+// Main script
+// -----------------------------------------------------------------------------
+
+
+var args = process.argv.slice(2);
+
+if (!args.length) {
+    process.stdout.write('A destination directory must be specified.');
+    process.exit(1);
+}
+
+var poUiDir = path.resolve(__dirname, '../node_modules/scratchr2_translations/ui');
+var outputDir = path.resolve(__dirname, '../', args[0]);
+try {
+    fs.accessSync(outputDir, fs.F_OK);
+} catch (err) {
+    // Doesn't exist - create it.
+    fs.mkdirSync(outputDir);
+}
+
+// get global locale strings first.
+var globalTemplateFile = path.resolve(__dirname, '../src/l10n.json');
+// message key with english string values (i.e. default values)
+var generalIds = JSON.parse(fs.readFileSync(globalTemplateFile, 'utf8'));
+var viewLocales = {};
+var generalLocales = {
+    en: generalIds
+};
+
+// FormattedMessage id with english string as value. Use for default values in translations
+// Sample structure: { 'general-general.blah': 'blah', 'about-about.blah': 'blahblah' }
+var idsWithICU = {};
+
+// reverse (i.e. english string with message key as the value) object for searching po files.
+// Sample structure: { 'blah': 'general-general.blah', 'blahblah': 'about-about.blah' }
+var icuWithIds = {};
+
+for (var id in generalIds) {
+    idsWithICU['general-' + id] = generalIds[id];
+    icuWithIds[generalIds[id]] = 'general-' + id;
+}
+
+// get view-specific locale strings.
+var files = glob.sync(path.resolve(__dirname, '../src/views/**/l10n.json'));
+files.forEach(function (file) {
+    var dirPath = file.split('/');
+    dirPath.pop();
+    var view = dirPath.pop();
+
+    var viewIds = JSON.parse(fs.readFileSync(file, 'utf8'));
+    viewLocales[view] = {
+        en: viewIds
+    };
+    for (var id in viewIds) {
+        idsWithICU[view + '-' + id] = viewIds[id];
+        icuWithIds[viewIds[id]] = view + '-' + id; // add viewName to identifier for later
+    }
+});
+
+// md5 of english strings with message key as the value for searching po files.
+// Sample structure: { 'sdfas43534sdfasdf': 'general-general.blah', 'lkjfasdf4t342asdfa': 'about-about.blah' }
+var md5WithIds = localeCompare.getMD5Map(icuWithIds);
+
+// Get ui localization strings first
+glob(poUiDir + '/*', function (err, files) {
+    if (err) throw new Error(err);
+    
+    files.forEach(function (file) {
+        var lang = file.split('/').pop();
+        var jsFile = path.resolve(file, 'LC_MESSAGES/djangojs.po');
+        var pyFile = path.resolve(file, 'LC_MESSAGES/django.po');
+
+        var translations = {};
+
+        try {
+            var jsTranslations = po2icu.poFileToICUSync(lang, jsFile);
+            translations = localeCompare.mergeNewTranslations(translations, jsTranslations, idsWithICU, md5WithIds);
+        } catch (err) {
+            process.stdout.write(lang + ': ' + err + '\n');
+        }
+
+        try {
+            var pyTranslations = po2icu.poFileToICUSync(lang, pyFile);
+            translations = localeCompare.mergeNewTranslations(translations, pyTranslations, idsWithICU, md5WithIds);
+        } catch (err) {
+            process.stdout.write(lang + ': ' + err + '\n');
+        }
+
+        // add new translations to locale object
+        for (var id in translations) {
+            var ids = id.split('-'); // [viewName, stringId]
+            var viewName = ids[0];
+            var stringId = ids[1];
+            if (viewLocales.hasOwnProperty(viewName)) {
+                if (!viewLocales[viewName].hasOwnProperty(lang)) viewLocales[viewName][lang] = {};
+                viewLocales[viewName][lang][stringId] = translations[id];
+            } else {
+                // default to general
+                if (!generalLocales.hasOwnProperty(lang)) generalLocales[lang] = {};
+                generalLocales[lang][stringId] = translations[id];
+            }
+        }
+    });
+    
+    for (var view in viewLocales) {
+        var viewTranslations = merge(viewLocales[view], generalLocales);
+        var objectString = JSON.stringify(viewTranslations);
+        var fileString = 'window._messages = ' + objectString + ';';
+        fs.writeFileSync(outputDir + '/' + view + '.js', fileString);
+    }
+});

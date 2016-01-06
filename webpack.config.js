@@ -53,7 +53,8 @@ module.exports = {
     },
     plugins: [
         new CopyWebpackPlugin([
-            {from: 'static'}
+            {from: 'static'},
+            {from: 'intl', to: 'js/intl'}
         ]),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
