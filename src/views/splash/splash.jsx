@@ -179,36 +179,6 @@ var Splash = injectIntl(React.createClass({
             this.state.session.user && this.state.session.flags.has_outstanding_email_confirmation &&
             this.state.session.flags.confirm_email_banner);
     },
-    getHomepageComponentMessages: function () {
-        var formatMessage = this.props.intl.formatMessage;
-        var messages = {};
-
-        if (this.state.session.user) {
-            messages['news'] = {
-                'general.viewAll': formatMessage({id: 'general.viewAll'}),
-                'news.scratchNews': formatMessage({id: 'news.scratchNews'})
-            };
-            if (this.shouldShowWelcome()) {
-                messages['welcome'] = {
-                    'welcome.welcomeToScratch': formatMessage({id: 'welcome.welcomeToScratch'}),
-                    'welcome.learn': formatMessage({id: 'welcome.learn'}),
-                    'welcome.tryOut': formatMessage({id: 'welcome.tryOut'}),
-                    'welcome.connect': formatMessage({id: 'welcome.connect'})
-                };
-            }
-        } else {
-            messages['intro'] = {
-                'intro.aboutScratch': formatMessage({id: 'intro.aboutScratch'}),
-                'intro.forEducators': formatMessage({id: 'intro.forEducators'}),
-                'intro.forParents': formatMessage({id: 'intro.forParents'}),
-                'intro.joinScratch': formatMessage({id: 'intro.joinScratch'}),
-                'intro.seeExamples': formatMessage({id: 'intro.seeExamples'}),
-                'intro.tagLine': formatMessage({id: 'intro.tagLine'}),
-                'intro.tryItOut': formatMessage({id: 'intro.tryItOut'})
-            };
-        }
-        return messages;
-    },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
 
@@ -353,7 +323,23 @@ var Splash = injectIntl(React.createClass({
         var emailConfirmationStyle = {width: 500, height: 330, padding: 1};
         var homepageCacheState = this.getHomepageRefreshStatus();
 
-        var messages = this.getHomepageComponentMessages();
+        var formatMessage = this.props.intl.formatMessage;
+        var formatHTMLMessage = this.props.intl.formatHTMLMessage;
+        var messages = {
+            'general.viewAll': formatMessage({id: 'general.viewAll'}),
+            'news.scratchNews': formatMessage({id: 'news.scratchNews'}),
+            'welcome.welcomeToScratch': formatMessage({id: 'welcome.welcomeToScratch'}),
+            'welcome.learn': formatMessage({id: 'welcome.learn'}),
+            'welcome.tryOut': formatMessage({id: 'welcome.tryOut'}),
+            'welcome.connect': formatMessage({id: 'welcome.connect'}),
+            'intro.aboutScratch': formatMessage({id: 'intro.aboutScratch'}),
+            'intro.forEducators': formatMessage({id: 'intro.forEducators'}),
+            'intro.forParents': formatMessage({id: 'intro.forParents'}),
+            'intro.joinScratch': formatMessage({id: 'intro.joinScratch'}),
+            'intro.seeExamples': formatMessage({id: 'intro.seeExamples'}),
+            'intro.tagLine': formatHTMLMessage({id: 'intro.tagLine'}),
+            'intro.tryItOut': formatMessage({id: 'intro.tryItOut'})
+        };
 
         return (
             <div className="splash">
@@ -380,14 +366,14 @@ var Splash = injectIntl(React.createClass({
                             {this.shouldShowWelcome() ? [
                                 <Welcome key="welcome"
                                          onDismiss={this.handleDismiss.bind(this, 'welcome')}
-                                         messages={messages['welcome']} />
+                                         messages={messages} />
                             ] : [
                                 <Activity key="activity" items={this.state.activity} />
                             ]}
-                            <News items={this.state.news} messages={messages['news']} />
+                            <News items={this.state.news} messages={messages} />
                         </div>
                     ] : [
-                        <Intro projectCount={this.state.projectCount} messages={messages['intro']} key="intro"/>
+                        <Intro projectCount={this.state.projectCount} messages={messages} key="intro"/>
                     ]}
 
                     {featured}
