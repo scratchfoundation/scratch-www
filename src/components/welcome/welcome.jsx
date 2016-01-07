@@ -1,8 +1,4 @@
 var React = require('react');
-var ReactIntl = require('react-intl');
-
-var injectIntl = ReactIntl.injectIntl;
-var FormattedMessage = ReactIntl.FormattedMessage;
 
 var Box = require('../box/box.jsx');
 
@@ -13,10 +9,19 @@ var Welcome = React.createClass({
     propTypes: {
         onDismiss: React.PropTypes.func
     },
+    getDefaultProps: function () {
+        return {
+            messages: {
+                'welcome.welcomeToScratch': 'Welcome to Scratch!',
+                'welcome.learn': 'Learn how to make a project in Scratch',
+                'welcome.tryOut': 'Try out starter projects',
+                'welcome.connect': 'Connect with other Scratchers'
+            }
+        };
+    },
     render: function () {
-        var formatMessage = this.props.intl.formatMessage;
         return (
-            <Box title={formatMessage({id: 'welcome.welcomeToScratch', defaultMessage: 'Welcome to Scratch!'})}
+            <Box title={this.props.messages['welcome.welcomeToScratch']}
                  className="welcome"
                  moreTitle="x"
                  moreHref="#"
@@ -29,9 +34,7 @@ var Welcome = React.createClass({
                 <div className="welcome-col blue">
                     <h4>
                         <a href="/projects/editor/?tip_bar=getStarted">
-                            <FormattedMessage
-                                id="welcome.learn"
-                                defaultMessage="Learn how to make a project in Scratch" />
+                            {this.props.messages['welcome.learn']}
                         </a>
                     </h4>
                     <a href="/projects/editor/?tip_bar=getStarted">
@@ -41,9 +44,7 @@ var Welcome = React.createClass({
                 <div className="welcome-col green">
                     <h4>
                         <a href="/starter_projects/">
-                            <FormattedMessage
-                                id="welcome.tryOut"
-                                defaultMessage="Try out starter projects" />
+                            {this.props.messages['welcome.tryOut']}
                         </a>
                     </h4>
                     <a href="/starter_projects/">
@@ -53,9 +54,7 @@ var Welcome = React.createClass({
                 <div className="welcome-col pink">
                     <h4>
                         <a href="/studios/146521/">
-                            <FormattedMessage
-                                id="welcome.connect"
-                                defaultMessage="Connect with other Scratchers" />
+                            {this.props.messages['welcome.connect']}
                         </a>
                     </h4>
                     <a href="/studios/146521/">
@@ -67,4 +66,4 @@ var Welcome = React.createClass({
     }
 });
 
-module.exports = injectIntl(Welcome);
+module.exports = Welcome;
