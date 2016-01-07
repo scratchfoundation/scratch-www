@@ -1,10 +1,15 @@
-var React = require('react');
 var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
+var merge = require('lodash.merge');
+var React = require('react');
+
 var render = require('../../lib/render.jsx');
 
 require('../../main.scss');
 require('./about.scss');
+
+var generalMessages = require('../../main.intl');
+var viewMessages = require('./about.intl');
 
 var Navigation = require('../../components/navigation/navigation.jsx');
 var Footer = require('../../components/footer/footer.jsx');
@@ -104,6 +109,6 @@ var About = React.createClass({
     }
 });
 
-render(<Navigation />, document.getElementById('navigation'));
-render(<Footer />, document.getElementById('footer'));
-render(<About />, document.getElementById('view'));
+render(<Navigation />, document.getElementById('navigation'), generalMessages);
+render(<Footer />, document.getElementById('footer'), generalMessages);
+render(<About />, document.getElementById('view'), merge(generalMessages, viewMessages));

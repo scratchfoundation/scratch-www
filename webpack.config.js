@@ -44,6 +44,10 @@ module.exports = {
             {
                 test: /\.(png|jpg|gif|eot|svg|ttf|woff)$/,
                 loader: 'url-loader'
+            },
+            {
+                test: /\.intl$/,
+                loader: 'scratch-www-intl-loader'
             }
         ]
     },
@@ -52,8 +56,7 @@ module.exports = {
     },
     plugins: [
         new CopyWebpackPlugin([
-            {from: 'static'},
-            {from: 'intl', to: 'js/intl'}
+            {from: 'static'}
         ]),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
