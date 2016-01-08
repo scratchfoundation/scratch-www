@@ -37,10 +37,14 @@ var translations = require('../locales/translations.json');
             host: '',
             uri: '/session/'
         }, function (err, body) {
-            if (body.banned) {
-                return window.location = body.redirectUrl;
-            } else {
-                window.updateSession(body);
+            if (err) return;
+
+            if (typeof body !== 'undefined') {
+                if (body.banned) {
+                    return window.location = body.redirectUrl;
+                } else {
+                    window.updateSession(body);
+                }
             }
         });
     };
