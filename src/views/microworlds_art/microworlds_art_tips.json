@@ -62,5 +62,57 @@
                 "thumbnailUrl": "/images/microworlds/hiphop/green-flag.gif"
             }
         ]
+    },
+    {
+        "title": "Shadow Dance",
+        "tips": [
+
+            {
+                "id": 7,
+                "type": "tip",
+                "title": "Add this block",
+                "thumbnailUrl": "/images/microworlds/hiphop/shadow-dance.gif"
+            },
+            {
+                "id": 8,
+                "type": "tip",
+                "title": "Start it",
+                "thumbnailUrl": "/images/microworlds/hiphop/green-flag.gif"
+            },
+            {
+                "id": 9,
+                "type": "tip",
+                "title": "Click the stop sign to reset",
+                "thumbnailUrl": "/images/microworlds/hiphop/stop.gif"
+            }
+
+        ]
+    },
+    {
+        "title": "More things to try",
+        "tips": [
+
+            {
+                "id": 10,
+                "type": "tip",
+                "title": "Try different dance moves",
+                "thumbnailUrl": "/images/microworlds/hiphop/change-dance-moves.gif"
+            },
+            {
+                "id": 11,
+                "type": "tip",
+                "title": "Add more moves",
+                "thumbnailUrl": "/images/microworlds/hiphop/long-dance-script.png"
+            },
+            {
+                "id": 12,
+                "type": "tip",
+                "title": "Change the timing",
+                "thumbnailUrl": "/images/microworlds/hiphop/change-dance-timing.png"
+            }
+
+        ]
     }
+
+    
 ]

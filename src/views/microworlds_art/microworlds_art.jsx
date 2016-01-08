@@ -120,131 +120,23 @@ var Microworld = React.createClass({
                 </a>
                 <iframe src="//scratch.mit.edu/projects/embed-editor/88148127/?isMicroworld=true"
                         frameborder="0"> </iframe>
-                <div className="box tipsslider">
-                    <div className="box-header">
-                        <h4>Start Painting</h4>
-                    </div>
-                    <div className="box-content">
-                        {this.createSlider()}
-                    </div>
-                </div>
+                {this.renderTips()}
+                
             </div>
         )
     },
-    createSlider: function() {
-        var tips =  require("./microworlds_art_tips.json");
-        console.error("in here!");
-        console.error(tips);
-        return (
-            <TipsSlider items={tips} settings={{slidesToShow:1,slidesToScroll:1}}/>
-            )
-    },
     renderTips: function() {
+        var tips =  require("./microworlds_art_tips.json");
         return (
-        <div className="pathways">
-            <div className="tips">
-            <div className="tips-slider flexslider">
-              <ul className =" slides">
-                <li>
-                    <div className="tip-slide">
-                        <h3>Start to Dance</h3>
-                        <div className="tip-step">
-                            <img src = "/images/microworlds/hiphop/dancer-sprite.png"/>
-                            <h5> First, select a sprite </h5>
-                        </div>
-
-                        <div className="tip-step">
-                            <img src = "/images/microworlds/hiphop/switch-wait.gif" />
-                            <h5> Then, try this script</h5>
-                        </div>
-
-                        <div className="tip-step">
-                            <img src = "/images/microworlds/hiphop/green-flag.gif" />
-                            <h5> Start it! </h5>
-                        </div>
-
-                    </div>
-                </li>
-                <li>
-                <div className="tip-slide">
-                    <h3>Repeat the Dance</h3>
-                <div className="tip-step">
-                    <img src = "/images/microworlds/hiphop/add-wait.gif" />
-                <h5>Add another "wait"</h5>
+            <div className="box tipsslider">
+                <div className="box-header">
+                    <h4>Start Painting</h4>
                 </div>
-                <div className="tip-step">
-                    <img src = "/images/microworlds/hiphop/add-repeat.gif" />
-                <h5>Drag this block over</h5>
+                <div className="box-content">
+                    <TipsSlider items={tips} settings={{slidesToShow:1,slidesToScroll:1}}/>
                 </div>
-
-                <div className="tip-step">
-                    <img src = "/images/microworlds/hiphop/green-flag.gif" />
-                <h5> Start it </h5>
-                </div>
-                </div>
-                </li>
-                <li>
-                <div className="tip-slide">
-                    <h3>Play Music</h3>
-                <div className="tip-step">
-
-                    <img src = "/images/microworlds/hiphop/add-play-sound.gif" />
-                <h5> Add music that repeats </h5>
-                </div>
-
-                <div className="tip-step">
-                    <img src = "/images/microworlds/hiphop/green-flag.gif"/>
-                <h5> Start it</h5>
-                </div>
-                </div>
-                </li>
-                <li>
-                <div className="tip-slide">
-                    <h3>Shadow Dance</h3>
-                <div className="tip-step">
-
-                    <img src = "/images/microworlds/hiphop/shadow-dance.gif" />
-                <h5> Add this block </h5>
-                </div>
-
-                <div className="tip-step">
-                    <img src = "/images/microworlds/hiphop/green-flag.gif" />
-                <h5> Start it </h5>
-                </div>
-
-                <div className="tip-step">
-                    <img src = "/images/microworlds/hiphop/stop.gif" />
-                <h5> Click the stop sign to reset </h5>
-                </div>
-                </div>
-                </li>
-                <li>
-                <div className="tip-slide">
-                    <h3>More things to try</h3>
-
-                <div className="tip-step">
-                    <img src = "/images/microworlds/hiphop/change-dance-moves.gif" />
-                    <h5> Try different dance moves</h5>
-                    </div>
-                    <div className="tip-step">
-                    <img src = "/images/microworlds/hiphop/long-dance-script.png" />
-                    <h5> Add more moves </h5>
-                    </div>
-
-                    <div className="tip-step">
-                    <img src = "/images/microworlds/hiphop/change-dance-timing.png" />
-                    <h5> Change the timing </h5>
-                    </div>
-
-
-                    </div>
-                    </li>
-              </ul>
             </div>
-          </div>
-        </div>
-
-            );
+            )
     },
     renderStarterProject: function() {
         return (

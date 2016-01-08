@@ -17,20 +17,16 @@ var TipsSlider = React.createClass({
     getDefaultProps: function () {
         return {
             items: require('./tipsslider.json'),
-            showRemixes: false,
-            showLoves: false
         };
     },
     render: function () {
-        console.error("ITEMS:");
-        console.error(this.props.items);
         var settings = this.props.settings || {};
         defaults(settings, {
-            dots: false,
+            dots: true,
             infinite: false,
             lazyLoad: true,
-            slidesToShow: 5,
-            slidesToScroll: 5,
+            slidesToShow: 1,
+            slidesToScroll: 1,
             variableWidth: true
         });
         
@@ -41,13 +37,9 @@ var TipsSlider = React.createClass({
             this.props.className
         );
         
-        var slides = [];
-        console.error("before");
-        console.error(this.props.items.length);
+        var stages = [];
         for (var i=0; i < this.props.items.length; i++) {
             var items = this.props.items[i].tips;
-            console.error("bla");
-            console.error(items);
             var thumbnails = [];
             for (var j=0; j < items.length; j++) {
                     var item = items[j];
@@ -55,18 +47,15 @@ var TipsSlider = React.createClass({
                                title={item.title}
                                src={item.thumbnailUrl} />)
             }
-            console.error(thumbnails)
-            slides.push(
+            stages.push(
             <div className="testing">
                 <h3>{this.props.items[i].title}</h3>
                 {thumbnails}
             </div>)
         } 
-        console.error("slides")
-        console.error(slides[0]);        
         return (
             <Slider className={classes} arrows={arrows} {... settings}>
-                {slides}    
+                {stages}    
             </Slider>
         );
     }
