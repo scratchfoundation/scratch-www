@@ -18,38 +18,26 @@ var Microworld = React.createClass({
         Api,
         Session
     ],
-    showVideo: function (keya) {
-        
+    showVideo: function (key) {
         var videoOpenArr = this.state.videoOpen;
-        videoOpenArr[keya] = true;
+        videoOpenArr[key] = true;
         this.setState({videoOpen: videoOpenArr});
-        console.error("show");
-        console.error(this.state.videoOpen);
     },
-    closeVideo: function (keya) {
+    closeVideo: function (key) {
         var videoOpenArr = this.state.videoOpen;
-        videoOpenArr[keya] = false;
+        videoOpenArr[key] = false;
         this.setState({videoOpen: videoOpenArr});
-        console.error("close");
-        console.error(this.state.videoOpen);
     },
     getInitialState: function () {
         return {
             videoOpen: {},
             featuredGlobal: {},
             featuredLocal: {},
-            microworlds_data: {}
+            microworlds_data: require("./microworlds_art.json")
         };
     },
     componentDidMount: function () {
-        this.getMicroworldData();
         this.getFeaturedGlobal();
-        this.getFeaturedLocal();
-    },
-    getMicroworldData: function() {
-        {/*Why is this not working?*/}
-        var data = require("./microworlds_art.json");
-        this.setState({microworlds_data: data});
     },
     getFeaturedGlobal: function () {
         this.api({
@@ -60,29 +48,19 @@ var Microworld = React.createClass({
             }
         }.bind(this));
     },
-    getFeaturedLocal: function () {
-        var art_projects = require("./microworlds_projects");
-        this.setState({featuredLocal: art_projects});
-    },
     renderVideos: function () {
-        {/*Change to read from global data*/}
-        var data = require("./microworlds_art.json");
-        console.error(data.videos);
-        
         return (
             <div className="videos-section section">
                 <h1>Get Inspired...</h1>
                 <div className="videos-container">
                     <div className="videos">
-                        {data.videos.map(this.renderVideo)}
+                        {this.state.microworlds_data.videos.map(this.renderVideo)}
                     </div>
                 </div>
             </div>
         );
     },
     renderVideo: function (video, key) {
-        console.error("video");
-        console.error(video);
         var frameProps = {
             width: 570,
             height: 357,
@@ -92,7 +70,7 @@ var Microworld = React.createClass({
         return (
             <div>
                 <div className="video">
-                    <div className="play-button" onClick={this.showVideo.bind(this, key)} style={{ left: left +'%' }}>
+                    <div className="play-button" onClick={this.showVideo.bind(this, key)} style={{ left: left +'%', top: '60%' }}>
                     </div>
                     <img src={video.image} />
                 </div>
@@ -108,16 +86,14 @@ var Microworld = React.createClass({
         )
     },
     renderEditorWindow: function() {
+        var project_id = this.state.microworlds_data.microworld_project_id;
         return (
             <div className="editor section">
                 <h1>Start Creating!</h1>
-                {/*<iframe src="//scratch.mit.edu/projects/embed-editor/86999051/?isMicroworld=true"
-                        frameborder="0"> </iframe>
-                */}
-                <a href="//scratch.mit.edu/projects/88148127/#editor">
+                <a href={"//scratch.mit.edu/projects/"+ project_id +"/#editor"}>
                   <img src="/images/scratch-og.png" style={{width:"6%", position: "absolute", left: "75%"}}></img>
                 </a>
-                <iframe src="//scratch.mit.edu/projects/embed-editor/88148127/?isMicroworld=true"
+                <iframe src={"//scratch.mit.edu/projects/embed-editor/" + project_id + "/?isMicroworld=true"}
                         frameborder="0"> </iframe>
                 {this.renderTips()}
                 
@@ -125,7 +101,8 @@ var Microworld = React.createClass({
         )
     },
     renderTips: function() {
-        var tips =  require("./microworlds_tips.json");
+        var tips =  this.state.microworlds_data.tips;
+
         return (
             <div className="box tipsslider">
                 <div className="box-header">
@@ -143,7 +120,7 @@ var Microworld = React.createClass({
                 <Box
                     title="More Starter Projects"
                     key="design_studio">
-                    <Carousel items={this.state.featuredLocal.scratch_starter_projects} />
+                    <Carousel items={this.state.microworlds_data.community_projects.scratch_starter_projects} />
                 </Box>
             </div>
         )
@@ -153,12 +130,12 @@ var Microworld = React.createClass({
             <Box
                 title="Featured Community Projects"
                 key="community_featured_projects">
-                <Carousel items={this.state.featuredLocal.community_featured_projects} />
+                <Carousel items={this.state.microworlds_data.community_projects.community_featured_projects} />
             </Box>,
             <Box
                 title="All Community Projects"
                 key="community_all_projects">
-                <Carousel items={this.state.featuredLocal.community_newest_projects} />
+                <Carousel items={this.state.microworlds_data.community_projects.community_newest_projects} />
             </Box>,
         ];
         return (
@@ -170,7 +147,7 @@ var Microworld = React.createClass({
     renderForum: function() {
         return (
         <div className="forum">
-            <h1>Chat with other art lovers!</h1>
+            <h1>Chat with others!</h1>
             <img src="/images/forum-image.png"/>
         </div>
         )
@@ -188,37 +165,25 @@ var Microworld = React.createClass({
                         key="scratch_desgin_studio"
                         moreTitle="Visit the studio"
                         moreHref={'/studios/' + '1728540' + '/'}>
-                    <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.featuredLocal.scratch_design_studio1} />
-                    <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.featuredLocal.scratch_design_studio2} />
+                    <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworlds_data.community_projects.scratch_design_studio1} />
+                    <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworlds_data.community_projects.scratch_design_studio2} />
                         </Box>
                     </div>
                 </div>
         )
     },
     render: function () {
-        console.error("beginning");
         var classes = classNames(
             'top-banner'
         );
-        var frameProps = {
-            width: 570,
-            height: 357,
-            padding: 15
-        };
-
         return (
             <div>
                 <div className="top-banner section">
-                    <h1>Make Some Art</h1>
-                    <p>Watch videos about how to create with technology.<br></br>
-                       Then, create your own art project.<br></br>
-                       Check out projects by others for inspiration,<br></br>
-                       communicate in the forum and join the challenges!
-                    </p>
+                    <h1>{this.state.microworlds_data.title}</h1>
+                    <p>{this.state.microworlds_data.description.join(" ")}</p>
                 </div>
 
-                {this.renderVideos(frameProps)}
-                console.error("here!!!");
+                {this.renderVideos()}
 
                 <div className="content">
                     {this.renderEditorWindow()}
