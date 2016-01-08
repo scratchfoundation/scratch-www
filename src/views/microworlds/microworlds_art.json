@@ -140,127 +140,127 @@
             ]
         }
     ],
-    "community_projects": {
-        "scratch_starter_projects": [
-            {
-              "title": "Architecture Stamps Starter Project",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2445/6318.png",
-              "creator": "CSFirst",
-              "id": 24456318
-            },
-            {
-              "title": "Digital Art Starter Project",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2513/9098.png",
-              "creator": "CSFirst",
-              "id": 25139098
-            },
-            {
-              "title": "Graffiti Starter Project",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2546/8311.png",
-              "creator": "CSFirst",
-              "id": 25468311
-            },
-            {
-              "title": "Paint with Tera Starter ",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2743/2322.png",
-              "creator": "CSFirst",
-              "id": 27432322
-            },
-            {
-              "title": "Interactive Art Starter Project",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2501/4570.png",
-              "creator": "CSFirst",
-              "id": 25014570
-            },
-            {
-              "title": "Interactive Art Starter Project - Kuniyoshi Start",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2482/0113.png",
-              "creator": "CSFirst",
-              "id": 24820113
-            },
-            {
-              "title": "Interactive Art Starter Project - American Gothic",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2445/4633.png",
-              "creator": "CSFirst",
-              "id": 24454633
-            },
-            {
-              "title": "Interactive Art Starter Project - The Scream",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2481/8944.png",
-              "creator": "CSFirst",
-              "id": 24818944
-            },
-            {
-              "title": "Animation Starter Project - Penguin",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2395/6722.png",
-              "creator": "CSFirst",
-              "id": 23956722
-            },
-            {
-              "title": "Animation Starter Project - Gobo",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2395/7767.png",
-              "creator": "CSFirst",
-              "id": 23957767
-            },
-            {
-              "title": "Animation Starter Project - Ghost",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2395/7153.png",
-              "creator": "CSFirst",
-              "id": 23957153
-            },
-            {
-              "title": "Animation Starter Project - Crab",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2395/6837.png",
-              "creator": "CSFirst",
-              "id": 23956837
-            },
-            {
-              "title": "Intro to Art Starter Project",
-              "type": "project",
-              "remixers_count": 168,
-              "love_count": 3062,
-              "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2420/9090.png",
-              "creator": "CSFirst",
-              "id": 24209090
-            }
-          ],
-          "community_featured_projects": [
+    "starter_projects" : [
+        {
+          "title": "Architecture Stamps Starter Project",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2445/6318.png",
+          "creator": "CSFirst",
+          "id": 24456318
+        },
+        {
+          "title": "Digital Art Starter Project",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2513/9098.png",
+          "creator": "CSFirst",
+          "id": 25139098
+        },
+        {
+          "title": "Graffiti Starter Project",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2546/8311.png",
+          "creator": "CSFirst",
+          "id": 25468311
+        },
+        {
+          "title": "Paint with Tera Starter ",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2743/2322.png",
+          "creator": "CSFirst",
+          "id": 27432322
+        },
+        {
+          "title": "Interactive Art Starter Project",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2501/4570.png",
+          "creator": "CSFirst",
+          "id": 25014570
+        },
+        {
+          "title": "Interactive Art Starter Project - Kuniyoshi Start",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2482/0113.png",
+          "creator": "CSFirst",
+          "id": 24820113
+        },
+        {
+          "title": "Interactive Art Starter Project - American Gothic",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2445/4633.png",
+          "creator": "CSFirst",
+          "id": 24454633
+        },
+        {
+          "title": "Interactive Art Starter Project - The Scream",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2481/8944.png",
+          "creator": "CSFirst",
+          "id": 24818944
+        },
+        {
+          "title": "Animation Starter Project - Penguin",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2395/6722.png",
+          "creator": "CSFirst",
+          "id": 23956722
+        },
+        {
+          "title": "Animation Starter Project - Gobo",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2395/7767.png",
+          "creator": "CSFirst",
+          "id": 23957767
+        },
+        {
+          "title": "Animation Starter Project - Ghost",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2395/7153.png",
+          "creator": "CSFirst",
+          "id": 23957153
+        },
+        {
+          "title": "Animation Starter Project - Crab",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2395/6837.png",
+          "creator": "CSFirst",
+          "id": 23956837
+        },
+        {
+          "title": "Intro to Art Starter Project",
+          "type": "project",
+          "remixers_count": 168,
+          "love_count": 3062,
+          "thumbnail_url": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/2420/9090.png",
+          "creator": "CSFirst",
+          "id": 24209090
+        }
+    ],
+    "community_projects" : {
+        "featured_projects": [
             {
               "title": "Change color effect by-function",
               "type": "project",
@@ -477,8 +477,8 @@
               "creator": "Paddle2See",
               "id": 728858
             }
-          ],
-          "community_newest_projects": [
+        ],
+        "newest_projects": [
             {
               "title": "Pixel Art - Emerald ore",
               "type": "project",
@@ -749,8 +749,12 @@
               "creator": "-PixelArt-",
               "id": 72944390
             }
-          ],
-          "scratch_design_studio1": [
+        ]
+    },
+    "design_challenge" : {
+        "project_id" : "89144801",
+        "studio_id" : "1728540",
+        "studio1": [
             {
               "gallery_id": 1728540,
               "creator": "mathjp",
@@ -818,8 +822,8 @@
               "creator": "Eddie101101",
               "id": 10451607
             }
-          ],
-          "scratch_design_studio2": [
+        ],
+        "studio2": [
             {
               "title": "Garden Secret",
               "type": "project",
@@ -839,5 +843,6 @@
               "id": 26580310
             }
         ]
-    }
+    },
+    "show_forum" : true
 }

@@ -48,7 +48,7 @@ var TipsSlider = React.createClass({
                                src={item.thumbnailUrl} />)
             }
             stages.push(
-            <div className="testing">
+            <div className="testing" key={"stage_" + i}>
                 <h3>{this.props.items[i].title}</h3>
                 {thumbnails}
             </div>)
