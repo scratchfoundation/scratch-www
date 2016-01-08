@@ -23,5 +23,10 @@
         "pattern": "/microworlds_art",
         "view": "microworlds_art",
         "title": "Arts Microworld"
+    },
+    {
+        "pattern": "/microworlds",
+        "view": "microworlds",
+        "title": "Microworld Template"
     }
 ]
