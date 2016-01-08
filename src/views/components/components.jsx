@@ -11,8 +11,6 @@ var Spinner = require('../../components/spinner/spinner.jsx');
 require('../../main.scss');
 require('./components.scss');
 
-var generalMessages = require('../../main.intl');
-
 var Navigation = require('../../components/navigation/navigation.jsx');
 var Footer = require('../../components/footer/footer.jsx');
 
@@ -50,6 +48,6 @@ var Components = React.createClass({
     }
 });
 
-render(<Navigation />, document.getElementById('navigation'), generalMessages);
-render(<Footer />, document.getElementById('footer'), generalMessages);
-render(<Components />, document.getElementById('view'), generalMessages);
+render(<Navigation />, document.getElementById('navigation'));
+render(<Footer />, document.getElementById('footer'));
+render(<Components />, document.getElementById('view'));

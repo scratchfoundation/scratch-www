@@ -1,7 +1,6 @@
 var classNames = require('classnames');
 var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
-var merge = require('lodash.merge');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
@@ -11,9 +10,6 @@ var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 
 require('../../main.scss');
 require('./hoc.scss');
-
-var generalMessages = require('../../main.intl');
-var viewMessages = require('./hoc.intl');
 
 var Navigation = require('../../components/navigation/navigation.jsx');
 var Footer = require('../../components/footer/footer.jsx');
@@ -413,6 +409,6 @@ var Hoc = React.createClass({
     }
 });
 
-render(<Navigation />, document.getElementById('navigation'), generalMessages);
-render(<Footer />, document.getElementById('footer'), generalMessages);
-render(<Hoc />, document.getElementById('view'), merge(generalMessages, viewMessages));
+render(<Navigation />, document.getElementById('navigation'));
+render(<Footer />, document.getElementById('footer'));
+render(<Hoc />, document.getElementById('view'));

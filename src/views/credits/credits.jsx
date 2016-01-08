@@ -4,8 +4,6 @@ var render = require('../../lib/render.jsx');
 require('../../main.scss');
 require('./credits.scss');
 
-var generalMessages = require('../../main.intl');
-
 var Navigation = require('../../components/navigation/navigation.jsx');
 var Footer = require('../../components/footer/footer.jsx');
 
@@ -300,6 +298,6 @@ var Credits = React.createClass({
     }
 });
 
-render(<Navigation />, document.getElementById('navigation'), generalMessages);
-render(<Footer />, document.getElementById('footer'), generalMessages);
-render(<Credits />, document.getElementById('view'), generalMessages);
+render(<Navigation />, document.getElementById('navigation'));
+render(<Footer />, document.getElementById('footer'));
+render(<Credits />, document.getElementById('view'));

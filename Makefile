@@ -12,6 +12,7 @@ GIT_MESSAGE=$(shell git log -1 --pretty=%s 2> /dev/null)
 
 build:
 	@make clean
+	@make translations
 	@make webpack
 	@make tag
 
@@ -53,6 +54,10 @@ start:
 test:
 	@make lint
 	@make build
+	@echo ""
+	@make unit
+	@echo ""
+	@make functional
 	@echo ""
 
 lint:
