@@ -40,8 +40,10 @@ p.legal {
 }
 
 /* Links */
-a {
-    white-space: nowrap;
+p {
+    a {
+        white-space: nowrap;
+    }
 }
 
 a:link,
