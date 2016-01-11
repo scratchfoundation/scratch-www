@@ -29,11 +29,15 @@ var Microworld = React.createClass({
         this.setState({videoOpen: videoOpenArr});
     },
     getInitialState: function () {
+        var json_data = require("./microworlds_fashion.json")
+        {/*var json_data = require("./microworlds_art.json")*/}
+        {/*var json_data = require("./microworlds_fashion.json")*/}
+        {/*var json_data = require("./microworlds_hiphop.json")*/}
         return {
             videoOpen: {},
             featuredGlobal: {},
             featuredLocal: {},
-            microworlds_data: require("./microworlds_art.json")
+            microworlds_data: json_data
         };
     },
     componentDidMount: function () {
@@ -72,6 +76,9 @@ var Microworld = React.createClass({
             padding: 15
         };
         var left = 25 * (key+1)
+        if (this.state.microworlds_data.videos.length == 1) {
+            left = 50
+        }
         return (
             <div>
                 <div className="video">
@@ -118,7 +125,6 @@ var Microworld = React.createClass({
         return (
             <div className="box tipsslider">
                 <div className="box-header">
-                    <h4>Start Painting</h4>
                 </div>
                 <div className="box-content">
                     <TipsSlider items={tips} settings={{slidesToShow:1,slidesToScroll:1}}/>
@@ -198,18 +204,23 @@ var Microworld = React.createClass({
         if (!designChallenge) {
             return null;
         }
+        var designStudioIntro;
+        if (designChallenge.project_id) {
+            designStudioIntro = 
+                <div className="design-studio">
+                    <iframe src={"https://scratch.mit.edu/projects/" + designChallenge.project_id + "/#fullscreen"} frameBorder="0"> </iframe>
+                </div>
+        }
 
         return (
             <div className="side-by-side section">
                 <h1>Join our Design Challenge!</h1>
-                <div className="design-studio">
-                    <iframe src={"https://scratch.mit.edu/projects/" + designChallenge.project_id + "/#fullscreen"} frameBorder="0"> </iframe>
-                </div>
+                {designStudioIntro}
                 <div className="design-studio-projects">
                     <Box title="Examples"
                          key="scratch_desgin_studio"
                          moreTitle="Visit the studio"
-                         moreHref={'/studios/' + designChallenge.studio_id + '/'}>
+                         moreHref={'https://scratch.mit.edu//studios/' + designChallenge.studio_id + '/'}>
                         <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworlds_data.design_challenge.studio1} />
                         <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworlds_data.design_challenge.studio2} />
                     </Box>
