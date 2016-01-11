@@ -96,7 +96,7 @@ var Navigation = React.createClass({
     getMessageCount: function () {
         this.api({
             method: 'get',
-            uri: '/proxy/users/' + this.state.session.user.username + '/activity/count'
+            uri: '/users/' + this.state.session.user.username + '/messages/count'
         }, function (err, body) {
             if (err) return this.setState({'unreadMessageCount': 0});
             if (body) {
@@ -197,7 +197,7 @@ var Navigation = React.createClass({
             <div className={classes}>
                 <ul>
                     <li className="logo"><a href="/"></a></li>
-                    
+
                     <li className="link create">
                         <a href="/projects/editor">
                             <FormattedMessage
