@@ -196,7 +196,7 @@ var Navigation = React.createClass({
         return (
             <div className={classes}>
                 <ul>
-                    <li className="logo"><a href="/"></a></li>
+                    <li className="logo"><a href="/" aria-label="Scratch"></a></li>
 
                     <li className="link create">
                         <a href="/projects/editor">
@@ -237,7 +237,10 @@ var Navigation = React.createClass({
                     <li className="search">
                         <form action="/search/google_results" method="get">
                             <Input type="submit" value="" />
-                            <Input type="text" placeholder={formatMessage(defaultMessages.search)} name="q" />
+                            <Input type="text"
+                                   aria-label={formatMessage(defaultMessages.search)}
+                                   placeholder={formatMessage(defaultMessages.search)}
+                                   name="q" />
                             <Input type="hidden" name="date" value="anytime" />
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
