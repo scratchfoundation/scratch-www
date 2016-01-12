@@ -100,7 +100,7 @@ var Navigation = React.createClass({
         }, function (err, body) {
             if (err) return this.setState({'unreadMessageCount': 0});
             if (body) {
-                var count = parseInt(body.msg_count, this.state.unreadMessageCount);
+                var count = parseInt(body.count, 10);
                 return this.setState({'unreadMessageCount': count});
             }
         }.bind(this));
