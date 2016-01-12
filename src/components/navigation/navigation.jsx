@@ -262,7 +262,7 @@ var Navigation = React.createClass({
                         </li>,
                         <li className="link right account-nav" key="account-nav">
                             <a className="userInfo" href="#" onClick={this.handleAccountNavClick}>
-                                <Avatar src={this.state.session.user.thumbnailUrl} />
+                                <Avatar src={this.state.session.user.thumbnailUrl} alt="" />
                                 {this.state.session.user.username}
                             </a>
                             <Dropdown
