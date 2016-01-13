@@ -1,0 +1,45 @@
+@import "../../colors";
+
+#view {
+    .box-header {
+        height: 0;
+    }
+
+    .box-content {
+        padding: 20px 0;
+    }
+
+    .intro {
+        margin-left: 5%;
+        width: 60%;
+        line-height: 1.5rem;
+    }
+
+    .steps {
+        display: flex;
+        margin-bottom: 10px;
+        background-color: $ui-gray;
+        width: 100%;
+        .column {
+            text-align: center;
+        }
+        .verticalLine {
+            border-left: solid $ui-dark-gray 1px;
+        }
+        h4 {
+            margin: 10px 0;
+        }
+        p {
+            font-size: 90%;
+        }
+    }
+
+    .more-info {
+        display: flex;
+        margin-left: 5%;
+        line-height: 1.5rem;
+        font-size: 90%;
+    }
+
+
+}
