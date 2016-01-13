@@ -155,9 +155,10 @@ var Navigation = React.createClass({
             method: 'post',
             uri: '/accounts/logout/',
             useCsrf: true
-        }, function (err, body) {
-            if (err) return;
-            if (body) log.warn('body found on logout'); // shouldn't happen
+        }, function (err) {
+            if (err) log.error(err);
+            this.closeLogin();
+            window.refreshSession();
         }.bind(this));
     },
     handleAccountNavClick: function (e) {
