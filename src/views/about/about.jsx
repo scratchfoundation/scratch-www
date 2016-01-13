@@ -81,10 +81,18 @@ var About = React.createClass({
                             <h2><FormattedMessage id='about.learnMore' /></h2>
                             <p>
                                 <ul className="list">
-                                    <li><a href="/help"><FormattedMessage id='about.learnMoreHelp' /></a></li>
-                                    <li><a href="/info/faq"><FormattedMessage id='about.learnMoreFaq' /></a></li>
-                                    <li><a href="/parents"><FormattedMessage id='about.learnMoreParents' /></a></li>
-                                    <li><a href="/credits"><FormattedMessage id='about.learnMoreCredits' /></a></li>
+                                    <li>
+                                        <a href="/help"><FormattedMessage id='about.learnMoreHelp' /></a>
+                                    </li>
+                                    <li>
+                                        <a href="/info/faq"><FormattedMessage id='about.learnMoreFaq' /></a>
+                                    </li>
+                                    <li>
+                                        <a href="/parents"><FormattedMessage id='about.learnMoreParents' /></a>
+                                    </li>
+                                    <li>
+                                        <a href="/info/credits"><FormattedMessage id='about.learnMoreCredits' /></a>
+                                    </li>
                                 </ul>
                             </p>
                         </li>
