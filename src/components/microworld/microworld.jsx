@@ -3,7 +3,7 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 var omit = require('lodash.omit');
 
-require('./microworlds.scss');
+require('./microworld.scss');
 
 var Box = require('../../components/box/box.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
@@ -12,6 +12,9 @@ var TipsSlider = require('../../components/tipsslider/tipsslider.jsx');
 
 var Microworld = React.createClass({
     type: 'Microworld',
+    propTypes: {
+        microworldData: React.PropTypes.node.isRequired
+    },
     showVideo: function (key) {
         var videoOpenArr = this.state.videoOpen;
         videoOpenArr[key] = true;
@@ -23,19 +26,15 @@ var Microworld = React.createClass({
         this.setState({videoOpen: videoOpenArr});
     },
     getInitialState: function () {
-        var json_data = require("./microworlds_fashion.json")
-        {/*var json_data = require("./microworlds_art.json")*/}
-        {/*var json_data = require("./microworlds_fashion.json")*/}
-        {/*var json_data = require("./microworlds_hiphop.json")*/}
         return {
             videoOpen: {},
             featuredGlobal: {},
             featuredLocal: {},
-            microworlds_data: json_data
+            microworld_data: this.props.microworldData
         };
     },
     renderVideos: function () {
-        var videos = this.state.microworlds_data.videos
+        var videos = this.state.microworld_data.videos
         if (!videos || videos.length <= 0) {
             return null;
         }
@@ -58,7 +57,7 @@ var Microworld = React.createClass({
             padding: 15
         };
         var left = 25 * (key+1)
-        if (this.state.microworlds_data.videos.length == 1) {
+        if (this.state.microworld_data.videos.length == 1) {
             left = 50
         }
         return (
@@ -80,7 +79,7 @@ var Microworld = React.createClass({
         )
     },
     renderEditorWindow: function() {
-        var projectId = this.state.microworlds_data.microworld_project_id;
+        var projectId = this.state.microworld_data.microworld_project_id;
         
         if (!projectId) {
             return null;
@@ -99,7 +98,7 @@ var Microworld = React.createClass({
         )
     },
     renderTips: function() {
-        var tips =  this.state.microworlds_data.tips;
+        var tips =  this.state.microworld_data.tips;
         if (!tips || tips.length <= 0) {
             return null;
         }
@@ -115,7 +114,7 @@ var Microworld = React.createClass({
             )
     },
     renderStarterProject: function() {
-        var starterProjects = this.state.microworlds_data.starter_projects;
+        var starterProjects = this.state.microworld_data.starter_projects;
         if (!starterProjects || starterProjects.length <= 0){
             return null;
         }
@@ -132,7 +131,7 @@ var Microworld = React.createClass({
         )
     },
     renderProjectIdeasBox: function() {
-        var communityProjects = this.state.microworlds_data.community_projects;
+        var communityProjects = this.state.microworld_data.community_projects;
         if (!communityProjects || communityProjects.size <= 0) {
             return null;
         }
@@ -170,7 +169,7 @@ var Microworld = React.createClass({
         )
     },
     renderForum: function() {
-        if (!this.state.microworlds_data.show_forum) {
+        if (!this.state.microworld_data.show_forum) {
             return null;
         }
 
@@ -182,7 +181,7 @@ var Microworld = React.createClass({
         )
     },
     renderDesignStudio: function() {
-        var designChallenge = this.state.microworlds_data.design_challenge;
+        var designChallenge = this.state.microworld_data.design_challenge;
         if (!designChallenge) {
             return null;
         }
@@ -202,8 +201,8 @@ var Microworld = React.createClass({
                              key="scratch_design_studio"
                              moreTitle={studioHref ? "Visit the studio" : null}
                              moreHref={studioHref ? studioHref : null}>
-                            <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworlds_data.design_challenge.studio1} />
-                            <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworlds_data.design_challenge.studio2} />
+                            <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworld_data.design_challenge.studio1} />
+                            <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworld_data.design_challenge.studio2} />
                         </Box>
                     </div>
                 </div>
@@ -217,8 +216,8 @@ var Microworld = React.createClass({
                         key="scratch_design_studio"
                         moreTitle={studioHref ? "Visit the studio" : null}
                         moreHref={studioHref ? studioHref : null}>
-                        <Carousel items={this.state.microworlds_data.design_challenge.studio1.concat(
-                            this.state.microworlds_data.design_challenge.studio2)} />
+                        <Carousel items={this.state.microworld_data.design_challenge.studio1.concat(
+                            this.state.microworld_data.design_challenge.studio2)} />
                    </Box>
                 </div>
             )
@@ -229,7 +228,7 @@ var Microworld = React.createClass({
             'top-banner'
         );
 
-        var microworldData = this.state.microworlds_data;
+        var microworldData = this.state.microworld_data;
         
 
         return (
@@ -253,5 +252,4 @@ var Microworld = React.createClass({
     }
 });
 
-render(<Microworld />, document.getElementById('view'));
-Modal.setAppElement(document.getElementById('view'));
+module.exports = Microworld;

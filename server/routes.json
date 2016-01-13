@@ -20,13 +20,18 @@
         "title": "Hour of Code"
     },
     {
-        "pattern": "/microworlds_art",
-        "view": "microworlds_art",
+        "pattern": "/microworlds/art",
+        "view": "microworld_art",
         "title": "Arts Microworld"
     },
     {
-        "pattern": "/microworlds",
-        "view": "microworlds",
-        "title": "Microworld Template"
+        "pattern": "/microworlds/fashion",
+        "view": "microworld_fashion",
+        "title": "Fashion Microworld"
+    },
+    {
+        "pattern": "/microworlds/hiphop",
+        "view": "microworld_hiphop",
+        "title": "Hip Hop Microworld"
     }
 ]
