@@ -5,8 +5,6 @@ var omit = require('lodash.omit');
 
 require('./microworlds.scss');
 
-var Api = require('../../mixins/api.jsx');
-var Session = require('../../mixins/session.jsx');
 var Box = require('../../components/box/box.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var Modal = require('../../components/modal/modal.jsx');
@@ -14,10 +12,6 @@ var TipsSlider = require('../../components/tipsslider/tipsslider.jsx');
 
 var Microworld = React.createClass({
     type: 'Microworld',
-    mixins: [
-        Api,
-        Session
-    ],
     showVideo: function (key) {
         var videoOpenArr = this.state.videoOpen;
         videoOpenArr[key] = true;
@@ -39,18 +33,6 @@ var Microworld = React.createClass({
             featuredLocal: {},
             microworlds_data: json_data
         };
-    },
-    componentDidMount: function () {
-        this.getFeaturedGlobal();
-    },
-    getFeaturedGlobal: function () {
-        this.api({
-            uri: '/proxy/featured'
-        }, function (err, body) {
-            if (!err) {
-                this.setState({featuredGlobal: body});
-            }
-        }.bind(this));
     },
     renderVideos: function () {
         var videos = this.state.microworlds_data.videos
@@ -143,7 +125,7 @@ var Microworld = React.createClass({
                 <h1>Check out ideas for more projects</h1>
                 <Box
                     title="More Starter Projects"
-                    key="design_studio">
+                    key="starter_projects">
                     <Carousel items={starterProjects} />
                 </Box>
             </div>
@@ -204,29 +186,43 @@ var Microworld = React.createClass({
         if (!designChallenge) {
             return null;
         }
+        if (designChallenge.studio_id) {
+            var studioHref = 'https://scratch.mit.edu//studios/' + designChallenge.studio_id + '/'
+        }
         var designStudioIntro;
         if (designChallenge.project_id) {
-            designStudioIntro = 
-                <div className="design-studio">
-                    <iframe src={"https://scratch.mit.edu/projects/" + designChallenge.project_id + "/#fullscreen"} frameBorder="0"> </iframe>
+            return (
+                <div className="side-by-side section">
+                    <h1>Join our Design Challenge!</h1>
+                    <div className="design-studio">
+                        <iframe src={"https://scratch.mit.edu/projects/" + designChallenge.project_id + "/#fullscreen"} frameBorder="0"> </iframe>
+                    </div>
+                    <div className="design-studio-projects">
+                        <Box title="Examples"
+                             key="scratch_design_studio"
+                             moreTitle={studioHref ? "Visit the studio" : null}
+                             moreHref={studioHref ? studioHref : null}>
+                            <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworlds_data.design_challenge.studio1} />
+                            <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworlds_data.design_challenge.studio2} />
+                        </Box>
+                    </div>
                 </div>
+            )
+        } else {
+            return ( 
+                <div className="section">
+                    <h1>Join our Design Challenge!</h1>
+                    <Box
+                        title="design Challenge Projects"
+                        key="scratch_design_studio"
+                        moreTitle={studioHref ? "Visit the studio" : null}
+                        moreHref={studioHref ? studioHref : null}>
+                        <Carousel items={this.state.microworlds_data.design_challenge.studio1.concat(
+                            this.state.microworlds_data.design_challenge.studio2)} />
+                   </Box>
+                </div>
+            )
         }
-
-        return (
-            <div className="side-by-side section">
-                <h1>Join our Design Challenge!</h1>
-                {designStudioIntro}
-                <div className="design-studio-projects">
-                    <Box title="Examples"
-                         key="scratch_desgin_studio"
-                         moreTitle="Visit the studio"
-                         moreHref={'https://scratch.mit.edu//studios/' + designChallenge.studio_id + '/'}>
-                        <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworlds_data.design_challenge.studio1} />
-                        <Carousel settings={{slidesToShow:2,slidesToScroll:2}} items={this.state.microworlds_data.design_challenge.studio2} />
-                    </Box>
-                </div>
-            </div>
-        )
     },
     render: function () {
         var classes = classNames(
