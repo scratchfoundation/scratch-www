@@ -27,6 +27,7 @@ var About = React.createClass({
 
                     <div>
                         <iframe
+                            title="Scratch Overview Video"
                             src="https://player.vimeo.com/video/65583694?title=0&byline=0&portrait=0"
                             frameBorder="0"
                             webkitAllowFullScreen

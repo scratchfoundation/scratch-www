@@ -51,7 +51,7 @@ var Hoc = React.createClass({
                             <div className="card">
                                 <a href="/projects/editor/?tip_bar=name">
                                     <div className="card-info" onMouseEnter={this.onCardEnter.bind(this, 'name-bg')}>
-                                        <img src="/images/hoc2015/name-tutorial.jpg" />
+                                        <img src="/images/hoc2015/name-tutorial.jpg" alt="" />
                                         <Button>
                                             <FormattedMessage
                                                 id='general.tipsAnimateYourNameTitle'
@@ -64,7 +64,7 @@ var Hoc = React.createClass({
                             <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'wbb-bg')}>
                                 <a href="/hide/">
                                     <div className="card-info">
-                                        <img src="/images/hoc2015/hide-seek-tutorial.jpg" />
+                                        <img src="/images/hoc2015/hide-seek-tutorial.jpg" alt="" />
                                         <Button>
                                             <FormattedMessage
                                                 id='general.tipsHideAndSeekTitle'
@@ -77,7 +77,7 @@ var Hoc = React.createClass({
                             <div className="card" onMouseEnter={this.onCardEnter.bind(this, 'dance-bg')}>
                                 <a href="/projects/editor/?tip_bar=dance">
                                     <div className="card-info">
-                                        <img src="/images/hoc2015/dance-tutorial.jpg" />
+                                        <img src="/images/hoc2015/dance-tutorial.jpg" alt="" />
                                         <Button>
                                             <FormattedMessage
                                                 id='general.tipsDanceTitle'
@@ -143,7 +143,7 @@ var Hoc = React.createClass({
                             </div>
 
                             <div className="resource">
-                                <img src="/svgs/tips-card.svg" />
+                                <img src="/svgs/tips-card.svg" alt="" />
                                 <div className="resource-info">
                                     <h5>
                                         <FormattedMessage
@@ -164,7 +164,7 @@ var Hoc = React.createClass({
                             </div>
 
                             <div className="resource">
-                                <img src="/svgs/tips-card.svg" />
+                                <img src="/svgs/tips-card.svg" alt="" />
                                 <div className="resource-info">
                                     <h5>
                                         <FormattedMessage
@@ -185,7 +185,7 @@ var Hoc = React.createClass({
                             </div>
                             
                             <div className="resource">
-                                <img src="/svgs/tips-card.svg" />
+                                <img src="/svgs/tips-card.svg" alt="" />
                                 <div className="resource-info">
                                     <h5>
                                         <FormattedMessage
@@ -224,7 +224,7 @@ var Hoc = React.createClass({
                                 </p>
                             </div>
                             <div className="column">
-                                <img src="/images/hoc2015/tips-test-animation.gif" />
+                                <img src="/images/hoc2015/tips-test-animation.gif" alt="Tips Window Animation" />
                             </div>
                         </section>
 
@@ -249,7 +249,7 @@ var Hoc = React.createClass({
                                 <div className="card">
                                     <a href="/projects/editor/?tip_bar=getStarted">
                                         <div className="card-info">
-                                            <img src="/images/hoc2015/getting-started-tutorial.jpg" />
+                                            <img src="/images/hoc2015/getting-started-tutorial.jpg" alt="" />
                                             <Button>
                                                 <FormattedMessage
                                                     id='general.tipsGetStarted'
@@ -262,7 +262,7 @@ var Hoc = React.createClass({
                                 <div className="card">
                                     <a href="/bearstack/">
                                         <div className="card-info">
-                                            <img src="/images/hoc2015/bearstack-tutorial.jpg" />
+                                            <img src="/images/hoc2015/bearstack-tutorial.jpg" alt="" />
                                             <Button>
                                                 <FormattedMessage
                                                     id='general.tipsBearstack'
@@ -275,7 +275,7 @@ var Hoc = React.createClass({
                                 <div className="card">
                                     <a href="/hoops">
                                         <div className="card-info">
-                                            <img src="/images/hoc2015/bball-tutorial.jpg" />
+                                            <img src="/images/hoc2015/bball-tutorial.jpg" alt="" />
                                             <Button>
                                                 <FormattedMessage
                                                     id='general.tipsBBallHoops'
@@ -306,7 +306,7 @@ var Hoc = React.createClass({
                             </div>
 
                             <div className="studio">
-                                <img src="/svgs/studio.svg" />
+                                <img src="/svgs/studio.svg" alt="" />
                                 <div className="studio-info">
                                     <a href="/studios/432299/">
                                         <h5>
@@ -319,7 +319,7 @@ var Hoc = React.createClass({
                             </div>
 
                             <div className="studio">
-                                <img src="/svgs/studio.svg" />
+                                <img src="/svgs/studio.svg" alt="" />
                                 <div className="studio-info">
                                     <a href="/studios/1672166/">
                                         <h5>
@@ -332,7 +332,7 @@ var Hoc = React.createClass({
                             </div>
 
                             <div className="studio">
-                                <img src="/svgs/studio.svg" />
+                                <img src="/svgs/studio.svg" alt="" />
                                 <div className="studio-info">
                                     <a href="/studios/1065372/">
                                         <h5>
@@ -345,7 +345,7 @@ var Hoc = React.createClass({
                             </div>
 
                             <div className="studio">
-                                <img src="/svgs/studio.svg" />
+                                <img src="/svgs/studio.svg" alt="" />
                                 <div className="studio-info">
                                     <a href="/studios/1672164/">
                                         <h5>
@@ -367,22 +367,22 @@ var Hoc = React.createClass({
                         </h3>
                         <div className="logos">
                             <a href="http://scratched.gse.harvard.edu/">
-                                <img src="/images/hoc2015/scratchEd-logo.png" />
+                                <img src="/images/hoc2015/scratchEd-logo.png" alt="ScratchEd" />
                             </a>
                             <a href="https://code.org/">
-                                <img src="/images/hoc2015/code-org-logo.png" />
+                                <img src="/images/hoc2015/code-org-logo.png" alt="code.org" />
                             </a>
                             <a href="http://www.cartoonnetwork.com/">
-                                <img src="/images/hoc2015/cn-logo.png" />
+                                <img src="/images/hoc2015/cn-logo.png" alt="Cartoon Network" />
                             </a>
                             <a href="http://www.madewithcode.com/">
-                                <img src="/images/hoc2015/made-with-code-logo.png" />
+                                <img src="/images/hoc2015/made-with-code-logo.png" alt="Made with Code" />
                             </a>
                             <a href="http://www.paalive.org/">
-                                <img src="/images/hoc2015/paa-logo.png" />
+                                <img src="/images/hoc2015/paa-logo.png" alt="Progressive Arts Alliance" />
                             </a>
                             <a href="http://www.catrobat.org/">
-                                <img src="/images/hoc2015/pocketcode-logo.png" />
+                                <img src="/images/hoc2015/pocketcode-logo.png" alt="Pocket Code" />
                             </a>
                         </div>
 

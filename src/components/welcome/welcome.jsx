@@ -38,7 +38,7 @@ var Welcome = React.createClass({
                         </a>
                     </h4>
                     <a href="/projects/editor/?tip_bar=getStarted">
-                        <img src="/images/welcome-learn.png" />
+                        <img src="/images/welcome-learn.png" alt="Get Started" />
                     </a>
                 </div>
                 <div className="welcome-col green">
@@ -48,7 +48,7 @@ var Welcome = React.createClass({
                         </a>
                     </h4>
                     <a href="/starter_projects/">
-                        <img src="/images/welcome-try.png" />
+                        <img src="/images/welcome-try.png" alt="Starter Projects" />
                     </a>
                 </div>
                 <div className="welcome-col pink">
@@ -58,7 +58,7 @@ var Welcome = React.createClass({
                         </a>
                     </h4>
                     <a href="/studios/146521/">
-                        <img src="/images/welcome-connect.png" />
+                        <img src="/images/welcome-connect.png" alt="Connect" />
                     </a>
                 </div>
             </Box>
