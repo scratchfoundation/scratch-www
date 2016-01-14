@@ -48,14 +48,14 @@ var Navigation = React.createClass({
             loginOpen: false,
             loginError: null,
             registrationOpen: false,
-            unreadMessageCount: 0,
-            messageCountIntervalId: -1
+            unreadMessageCount: 0, // bubble number to display how many notifications someone has.
+            messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
         };
     },
     componentDidMount: function () {
         if (this.state.session.user) {
             this.getMessageCount();
-            var intervalId = setInterval(this.getMessageCount, 120000);
+            var intervalId = setInterval(this.getMessageCount, 120000); // check for new messages every 2 mins.
             this.setState({'messageCountIntervalId': intervalId});
         }
     },

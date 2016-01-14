@@ -6,6 +6,13 @@ var log = require('../lib/log.js');
 
 var CookieMixinFactory = require('./cookieMixinFactory.jsx');
 
+/**
+ * Component mixin that constructs requests to the scratch api.
+ * Custom arguments:
+ *     - useCsrf [boolean] – handles csrf construction for POST requests
+ *
+ * It also takes in other arguments specified in the xhr library spec.
+ */
 var Api = {
     mixins: [
         // Provides useScratchcsrftoken

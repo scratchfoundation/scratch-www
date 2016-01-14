@@ -25,6 +25,9 @@ var defaultStyle = {
     }
 };
 
+/**
+ * Container for pop up windows (See: registration window)
+ */
 var Modal = React.createClass({
     type: 'Modal',
     statics: {
