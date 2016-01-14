@@ -1,6 +1,6 @@
 var tap = require('tap');
 
-var buildLocales = require('../../lib/locale-compare');
+var buildLocales = require('../../bin/lib/locale-compare');
 
 tap.test('buildLocalesMergeTranslations', function (t) {
     var existingTranslations = {

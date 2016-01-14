@@ -8,7 +8,7 @@ var Carousel = require('../../components/carousel/carousel.jsx');
 var Input = require('../../components/forms/input.jsx');
 var Spinner = require('../../components/spinner/spinner.jsx');
 
-
+require('../../main.scss');
 require('./components.scss');
 
 var Components = React.createClass({

@@ -1,8 +1,6 @@
 var api = require('./mixins/api.jsx').api;
 var jar = require('./lib/jar');
 
-var translations = require('../locales/translations.json');
-
 /**
  * -----------------------------------------------------------------------------
  * Session
@@ -72,17 +70,8 @@ var translations = require('../locales/translations.json');
                 obj = 'pt-br'; // default Portuguese users to Brazilian Portuguese due to our user base. Added in 2.2.5.
             }
         }
-        if (typeof translations[obj] === 'undefined') {
-            // Fall back on the split
-            obj = obj.split('-')[0];
-        }
-        if (typeof translations[obj] === 'undefined') {
-            // Language appears to not be supported – return `null`
-            obj = null;
-        }
         return obj;
     }
 
-    window._locale = updateLocale() || 'en';
-    window._translations = translations;
+    window._locale = updateLocale();
 })();

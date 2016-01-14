@@ -3,6 +3,7 @@ var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
 
+require('../../main.scss');
 require('./about.scss');
 
 var About = React.createClass({

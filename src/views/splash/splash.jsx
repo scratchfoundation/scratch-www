@@ -17,6 +17,7 @@ var Modal = require('../../components/modal/modal.jsx');
 var News = require('../../components/news/news.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
+require('../../main.scss');
 require('./splash.scss');
 
 var Splash = injectIntl(React.createClass({
@@ -318,6 +319,25 @@ var Splash = injectIntl(React.createClass({
         var featured = this.renderHomepageRows();
         var emailConfirmationStyle = {width: 500, height: 330, padding: 1};
         var homepageCacheState = this.getHomepageRefreshStatus();
+
+        var formatMessage = this.props.intl.formatMessage;
+        var formatHTMLMessage = this.props.intl.formatHTMLMessage;
+        var messages = {
+            'general.viewAll': formatMessage({id: 'general.viewAll'}),
+            'news.scratchNews': formatMessage({id: 'news.scratchNews'}),
+            'welcome.welcomeToScratch': formatMessage({id: 'welcome.welcomeToScratch'}),
+            'welcome.learn': formatMessage({id: 'welcome.learn'}),
+            'welcome.tryOut': formatMessage({id: 'welcome.tryOut'}),
+            'welcome.connect': formatMessage({id: 'welcome.connect'}),
+            'intro.aboutScratch': formatMessage({id: 'intro.aboutScratch'}),
+            'intro.forEducators': formatMessage({id: 'intro.forEducators'}),
+            'intro.forParents': formatMessage({id: 'intro.forParents'}),
+            'intro.joinScratch': formatMessage({id: 'intro.joinScratch'}),
+            'intro.seeExamples': formatMessage({id: 'intro.seeExamples'}),
+            'intro.tagLine': formatHTMLMessage({id: 'intro.tagLine'}),
+            'intro.tryItOut': formatMessage({id: 'intro.tryItOut'})
+        };
+
         return (
             <div className="splash">
                 {this.shouldShowEmailConfirmation() ? [
@@ -341,14 +361,16 @@ var Splash = injectIntl(React.createClass({
                     {this.state.session.user ? [
                         <div key="header" className="splash-header">
                             {this.shouldShowWelcome() ? [
-                                <Welcome key="welcome" onDismiss={this.handleDismiss.bind(this, 'welcome')}/>
+                                <Welcome key="welcome"
+                                         onDismiss={this.handleDismiss.bind(this, 'welcome')}
+                                         messages={messages} />
                             ] : [
                                 <Activity key="activity" items={this.state.activity} />
                             ]}
-                            <News items={this.state.news} />
+                            <News items={this.state.news} messages={messages} />
                         </div>
                     ] : [
-                        <Intro projectCount={this.state.projectCount} key="intro"/>
+                        <Intro projectCount={this.state.projectCount} messages={messages} key="intro"/>
                     ]}
 
                     {featured}
