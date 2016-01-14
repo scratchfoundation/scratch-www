@@ -9,6 +9,7 @@ npm-*
 /build
 
 # Locales
+/locales
 /intl
 
 # Elastic Beanstalk Files

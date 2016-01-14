@@ -11,9 +11,6 @@ var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 require('../../main.scss');
 require('./hoc.scss');
 
-var Navigation = require('../../components/navigation/navigation.jsx');
-var Footer = require('../../components/footer/footer.jsx');
-
 var Hoc = React.createClass({
     type: 'Hoc',
 
@@ -409,6 +406,4 @@ var Hoc = React.createClass({
     }
 });
 
-render(<Navigation />, document.getElementById('navigation'));
-render(<Footer />, document.getElementById('footer'));
 render(<Hoc />, document.getElementById('view'));
