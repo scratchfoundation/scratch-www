@@ -3,6 +3,8 @@ var ReactDOM = require('react-dom');
 var ReactIntl = require('./intl.jsx');
 var IntlProvider = ReactIntl.IntlProvider;
 
+require('../main.scss');
+
 var Navigation = require('../components/navigation/navigation.jsx');
 var Footer = require('../components/footer/footer.jsx');
 
