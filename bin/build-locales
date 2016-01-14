@@ -54,6 +54,10 @@ if (!args.length) {
     process.stdout.write('A destination directory must be specified.');
     process.exit(1);
 }
+var verbose = false;
+if (args.length > 1) {
+    verbose = (args[1] === '-v') ? true : false;
+}
 
 var poUiDir = path.resolve(__dirname, '../node_modules/scratchr2_translations/ui');
 var outputDir = path.resolve(__dirname, '../', args[0]);
@@ -122,14 +126,14 @@ glob(poUiDir + '/*', function (err, files) {
             var jsTranslations = po2icu.poFileToICUSync(lang, jsFile);
             translations = localeCompare.mergeNewTranslations(translations, jsTranslations, idsWithICU, md5WithIds);
         } catch (err) {
-            process.stdout.write(lang + ': ' + err + '\n');
+            if (verbose) process.stdout.write(lang + ': ' + err + '\n');
         }
 
         try {
             var pyTranslations = po2icu.poFileToICUSync(lang, pyFile);
             translations = localeCompare.mergeNewTranslations(translations, pyTranslations, idsWithICU, md5WithIds);
         } catch (err) {
-            process.stdout.write(lang + ': ' + err + '\n');
+            if (verbose) process.stdout.write(lang + ': ' + err + '\n');
         }
 
         // add new translations to locale object
@@ -152,6 +156,6 @@ glob(poUiDir + '/*', function (err, files) {
         var viewTranslations = merge(viewLocales[view], generalLocales);
         var objectString = JSON.stringify(viewTranslations);
         var fileString = 'window._messages = ' + objectString + ';';
-        fs.writeFileSync(outputDir + '/' + view + '.js', fileString);
+        fs.writeFileSync(outputDir + '/' + view + '.intl.js', fileString);
     }
 });
