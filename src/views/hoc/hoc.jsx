@@ -8,7 +8,6 @@ var Button = require('../../components/forms/button.jsx');
 var Box = require('../../components/box/box.jsx');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 
-require('../../main.scss');
 require('./hoc.scss');
 
 var Hoc = React.createClass({

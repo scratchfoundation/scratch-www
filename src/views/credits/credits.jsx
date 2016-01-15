@@ -1,7 +1,6 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-require('../../main.scss');
 require('./credits.scss');
 
 var Credits = React.createClass({

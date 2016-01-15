@@ -17,7 +17,6 @@ var Modal = require('../../components/modal/modal.jsx');
 var News = require('../../components/news/news.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
-require('../../main.scss');
 require('./splash.scss');
 
 var Splash = injectIntl(React.createClass({
