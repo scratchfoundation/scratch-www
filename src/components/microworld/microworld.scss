@@ -43,8 +43,6 @@ $base-bg: $ui-white;
   .videos-container {
     display: flex;
     margin: 0 auto;
-    padding-top: 20px;
-    width: 95%;
 
     justify-content: center;
     flex-wrap: wrap;
@@ -57,14 +55,12 @@ $base-bg: $ui-white;
     }
 
     .video {
-      width: 30%;
+      position:relative;
       margin: 10px;
       border-radius: 7px;
       background-color: $active-gray;
       padding: 2px;
-
-      min-width: 300px;
-      max-width: 350px;
+      max-width: 290px;
     }
 
     img {
@@ -76,14 +72,14 @@ $base-bg: $ui-white;
 
     .play-button {
       display: block;
-
+      top: calc(50% - 25px);
+      left: calc(50% - 35px);
       opacity: .8;
       border: 5px solid $ui-border;
       border-radius: 20px;
       background-color: $type-gray;
       width: 70px;
       height: 50px;
-      top: 60%;
 
       &,
       &:after {

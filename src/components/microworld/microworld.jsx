@@ -56,14 +56,10 @@ var Microworld = React.createClass({
             height: 357,
             padding: 15
         };
-        var left = 25 * (key+1)
-        if (this.state.microworld_data.videos.length == 1) {
-            left = 50
-        }
         return (
             <div>
                 <div className="video">
-                    <div className="play-button" onClick={this.showVideo.bind(this, key)} style={{ left: left +'%', top: '60%' }}>
+                    <div className="play-button" onClick={this.showVideo.bind(this, key)}>
                     </div>
                     <img src={video.image} />
                 </div>
@@ -232,7 +228,7 @@ var Microworld = React.createClass({
         
 
         return (
-            <div>
+            <div className="inner">
                 <div className="top-banner section">
                     <h1>{microworldData.title}</h1>
                     <p>{microworldData.description.join(" ")}</p>
