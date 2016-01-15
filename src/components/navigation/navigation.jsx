@@ -4,7 +4,6 @@ var ReactIntl = require('react-intl');
 var defineMessages = ReactIntl.defineMessages;
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
-var xhr = require('xhr');
 
 var Api = require('../../mixins/api.jsx');
 var Avatar = require('../avatar/avatar.jsx');
@@ -151,16 +150,15 @@ var Navigation = React.createClass({
     },
     handleLogOut: function (e) {
         e.preventDefault();
-        xhr({
+        this.api({
             host: '',
-            uri: '/accounts/logout/'
+            method: 'post',
+            uri: '/accounts/logout/',
+            useCsrf: true
         }, function (err) {
-            if (err) {
-                log.error(err);
-            } else {
-                this.closeLogin();
-                window.refreshSession();
-            }
+            if (err) log.error(err);
+            this.closeLogin();
+            window.refreshSession();
         }.bind(this));
     },
     handleAccountNavClick: function (e) {
