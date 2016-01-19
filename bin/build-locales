@@ -90,12 +90,21 @@ for (var id in generalIds) {
     icuWithIds[generalIds[id]] = 'general-' + id;
 }
 
+// start with all views, and remove localized ones as they are iterated over
+var nonLocalizedViews = glob.sync(path.resolve(__dirname, '../src/views/*'));
+for (var i = 0; i < nonLocalizedViews.length; i++) {
+    nonLocalizedViews[i] = nonLocalizedViews[i].split('/').pop();
+}
+
 // get view-specific locale strings.
 var files = glob.sync(path.resolve(__dirname, '../src/views/**/l10n.json'));
 files.forEach(function (file) {
     var dirPath = file.split('/');
     dirPath.pop();
     var view = dirPath.pop();
+    if (nonLocalizedViews.indexOf(view) > -1) {
+        nonLocalizedViews.splice(nonLocalizedViews.indexOf(view), 1);
+    }
 
     var viewIds = JSON.parse(fs.readFileSync(file, 'utf8'));
     viewLocales[view] = {
@@ -157,5 +166,12 @@ glob(poUiDir + '/*', function (err, files) {
         var objectString = JSON.stringify(viewTranslations);
         var fileString = 'window._messages = ' + objectString + ';';
         fs.writeFileSync(outputDir + '/' + view + '.intl.js', fileString);
+    }
+
+    // Add general localization strings for non localized views, to account for nav/footer.
+    for (var i in nonLocalizedViews) {
+        objectString = JSON.stringify(generalLocales);
+        fileString = 'window._messages = ' + objectString + ';';
+        fs.writeFileSync(outputDir + '/' + nonLocalizedViews[i] + '.intl.js', fileString);
     }
 });
