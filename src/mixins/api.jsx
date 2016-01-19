@@ -9,7 +9,8 @@ var CookieMixinFactory = require('./cookieMixinFactory.jsx');
 /**
  * Component mixin that constructs requests to the scratch api.
  * Custom arguments:
- *     - useCsrf [boolean] – handles csrf construction for POST requests
+ *     - useCsrf [boolean] – handles unique csrf token retrieval for POST requests. This prevents
+ *       CSRF forgeries (see: https://www.squarefree.com/securitytips/web-developers.html#CSRF)
  *
  * It also takes in other arguments specified in the xhr library spec.
  */
