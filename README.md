@@ -39,7 +39,7 @@ Use `^C` to stop the node process `npm start` starts.
 | `PORT`        | `8333`                                | Port for devserver (http://localhost:XXXX)     |
 | `FALLBACK`  | `''`             | Pass-through location for old site            |
 
-**NOTE:** Because by default both `API_HOST=https://api.scratch.mit.edu` and `FALLBACK=https://scratch.mit.edu`, please be aware that, by default, you will be seeing and interacting with real data on the Scratch website.
+**NOTE:** Because by default `API_HOST=https://api.scratch.mit.edu`, please be aware that, by default, you will be seeing and interacting with real data on the Scratch website.
 
 ### To Test
 ```bash
@@ -56,3 +56,5 @@ Most of the issues we have currently revolve around the use of `FALLBACK`. This 
 Setting `FALLBACK=https://scratch.mit.edu` allows the web client to retrieve data from the Scratch website in your development environment. However, because of security concerns, trying to send data to Scratch through your development environment won't work. This means the following things will be broken for the time being:
 * Login on the splash page (*In the process of being fixed*)
 * Some update attempts to production data made through a development version of the web client
+
+Additionally, if you set `FALLBACK=https://scratch.mit.edu`, be aware that clicking on links to parts of the website not yet migrated over (currently such as `Explore`, `Discuss`, `Profile`, etc.) will take you to the Scratch website itself.
