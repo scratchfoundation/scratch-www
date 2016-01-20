@@ -44,7 +44,11 @@ var Api = {
                 if (err) log.error(err);
                 // Legacy API responses come as lists, and indicate to redirect the client like
                 // [{success: true, redirect: "/location/to/redirect"}]
-                if (body && body[0] && 'redirect' in body[0]) window.location = body[0].redirect;
+                try {
+                    if (body && body[0] && 'redirect' in body[0]) window.location = body[0].redirect;
+                } catch (err) {
+                    // do nothing
+                }
                 callback(err, body);
             });
         }.bind(this);
