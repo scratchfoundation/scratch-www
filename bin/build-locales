@@ -90,6 +90,12 @@ for (var id in generalIds) {
     icuWithIds[generalIds[id]] = 'general-' + id;
 }
 
+// start with all views, and remove localized ones as they are iterated over
+var views = glob.sync(path.resolve(__dirname, '../src/views/*'));
+for (var i = 0; i < views.length; i++) {
+    views[i] = views[i].split('/').pop();
+}
+
 // get view-specific locale strings.
 var files = glob.sync(path.resolve(__dirname, '../src/views/**/l10n.json'));
 files.forEach(function (file) {
@@ -152,10 +158,13 @@ glob(poUiDir + '/*', function (err, files) {
         }
     });
     
-    for (var view in viewLocales) {
-        var viewTranslations = merge(viewLocales[view], generalLocales);
+    for (var i in views) {
+        var viewTranslations = generalLocales;
+        if (views[i] in viewLocales) {
+            viewTranslations = merge(viewLocales[views[i]], viewTranslations);
+        }
         var objectString = JSON.stringify(viewTranslations);
         var fileString = 'window._messages = ' + objectString + ';';
-        fs.writeFileSync(outputDir + '/' + view + '.intl.js', fileString);
+        fs.writeFileSync(outputDir + '/' + views[i] + '.intl.js', fileString);
     }
 });
