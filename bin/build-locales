@@ -91,9 +91,9 @@ for (var id in generalIds) {
 }
 
 // start with all views, and remove localized ones as they are iterated over
-var nonLocalizedViews = glob.sync(path.resolve(__dirname, '../src/views/*'));
-for (var i = 0; i < nonLocalizedViews.length; i++) {
-    nonLocalizedViews[i] = nonLocalizedViews[i].split('/').pop();
+var views = glob.sync(path.resolve(__dirname, '../src/views/*'));
+for (var i = 0; i < views.length; i++) {
+    views[i] = views[i].split('/').pop();
 }
 
 // get view-specific locale strings.
@@ -102,9 +102,6 @@ files.forEach(function (file) {
     var dirPath = file.split('/');
     dirPath.pop();
     var view = dirPath.pop();
-    if (nonLocalizedViews.indexOf(view) > -1) {
-        nonLocalizedViews.splice(nonLocalizedViews.indexOf(view), 1);
-    }
 
     var viewIds = JSON.parse(fs.readFileSync(file, 'utf8'));
     viewLocales[view] = {
@@ -161,17 +158,13 @@ glob(poUiDir + '/*', function (err, files) {
         }
     });
     
-    for (var view in viewLocales) {
-        var viewTranslations = merge(viewLocales[view], generalLocales);
+    for (var i in views) {
+        var viewTranslations = generalLocales;
+        if (views[i] in viewLocales) {
+            viewTranslations = merge(viewLocales[views[i]], viewTranslations);
+        }
         var objectString = JSON.stringify(viewTranslations);
         var fileString = 'window._messages = ' + objectString + ';';
-        fs.writeFileSync(outputDir + '/' + view + '.intl.js', fileString);
-    }
-
-    // Add general localization strings for non localized views, to account for nav/footer.
-    for (var i in nonLocalizedViews) {
-        objectString = JSON.stringify(generalLocales);
-        fileString = 'window._messages = ' + objectString + ';';
-        fs.writeFileSync(outputDir + '/' + nonLocalizedViews[i] + '.intl.js', fileString);
+        fs.writeFileSync(outputDir + '/' + views[i] + '.intl.js', fileString);
     }
 });
