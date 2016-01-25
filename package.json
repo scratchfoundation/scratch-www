@@ -46,6 +46,7 @@
     "jsx-loader": "0.13.2",
     "lodash.clone": "3.0.3",
     "lodash.defaultsdeep": "3.10.0",
+    "lodash.merge": "3.3.2",
     "lodash.omit": "3.1.0",
     "lodash.range": "3.0.1",
     "minilog": "2.0.8",

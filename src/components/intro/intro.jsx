@@ -1,8 +1,5 @@
 var omit = require('lodash.omit');
 var React = require('react');
-var ReactIntl = require('react-intl');
-var FormattedMessage = ReactIntl.FormattedMessage;
-var FormattedHTMLMessage = ReactIntl.FormattedHTMLMessage;
 
 var Modal = require('../modal/modal.jsx');
 var Registration = require('../registration/registration.jsx');
@@ -18,7 +15,16 @@ var Intro = React.createClass({
     },
     getDefaultProps: function () {
         return {
-            projectCount: 10569070
+            projectCount: 10569070,
+            messages: {
+                'intro.aboutScratch': 'ABOUT SCRATCH',
+                'intro.forEducators': 'FOR EDUCATORS',
+                'intro.forParents': 'FOR PARENTS',
+                'intro.joinScratch': 'JOIN SCRATCH',
+                'intro.seeExamples': 'SEE EXAMPLES',
+                'intro.tagLine': 'Create stories, games, and animations<br /> Share with others around the world',
+                'intro.tryItOut': 'TRY IT OUT'
+            }
         };
     },
     getInitialState: function () {
@@ -52,13 +58,7 @@ var Intro = React.createClass({
         return (
             <div className="intro">
                 <div className="content">
-                    <h1>
-                        <FormattedHTMLMessage
-                            id='intro.tagLine'
-                            defaultMessage={
-                                'Create stories, games, and animations<br /> ' +
-                                'Share with others around the world'
-                            } />
+                    <h1 dangerouslySetInnerHTML={{__html: this.props.messages['intro.tagLine']}}>
                     </h1>
                     <div className="sprites">
                         <a className="sprite sprite-1" href="/projects/editor/?tip_bar=getStarted">
@@ -70,9 +70,7 @@ var Intro = React.createClass({
                                 src="//cdn.scratch.mit.edu/scratchr2/static/images/cat-b.png" />
                             <div className="circle"></div>
                             <div className="text">
-                                <FormattedMessage
-                                    id='intro.tryItOut'
-                                    defaultMessage='TRY IT OUT' />
+                                {this.props.messages['intro.tryItOut']}
                             </div>
                         </a>
                         <a className="sprite sprite-2" href="/starter_projects/">
@@ -84,9 +82,7 @@ var Intro = React.createClass({
                                 src="//cdn.scratch.mit.edu/scratchr2/static/images/tera-b.png" />
                             <div className="circle"></div>
                             <div className="text">
-                                <FormattedMessage
-                                    id='intro.seeExamples'
-                                    defaultMessage='SEE EXAMPLES' />
+                                {this.props.messages['intro.seeExamples']}
                             </div>
                         </a>
                         <a className="sprite sprite-3" href="#" onClick={this.handleJoinClick}>
@@ -98,9 +94,7 @@ var Intro = React.createClass({
                                 src="//cdn.scratch.mit.edu/scratchr2/static/images/gobo-b.png" />
                             <div className="circle"></div>
                             <div className="text">
-                                <FormattedMessage
-                                    id='intro.joinScratch'
-                                    defaultMessage='JOIN SCRATCH' />
+                                {this.props.messages['intro.joinScratch']}
                             </div>
                             <div className="text subtext">( it&rsquo;s free )</div>
                         </a>
@@ -116,19 +110,13 @@ var Intro = React.createClass({
                     </div>
                     <div className="links">
                         <a href="/about/">
-                            <FormattedMessage
-                                id='intro.aboutScratch'
-                                defaultMessage='ABOUT SCRATCH' />
+                            {this.props.messages['intro.aboutScratch']}
                         </a>
                         <a href="/educators/">
-                            <FormattedMessage
-                                id='intro.forEducators'
-                                defaultMessage='FOR EDUCATORS' />
+                            {this.props.messages['intro.forEducators']}
                         </a>
                         <a className="last" href="/parents/">
-                            <FormattedMessage
-                                id='intro.forParents'
-                                defaultMessage='FOR PARENTS' />
+                            {this.props.messages['intro.forParents']}
                         </a>
                     </div>
                 </div>

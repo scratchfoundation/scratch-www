@@ -32,7 +32,10 @@ deploy:
   env: scratch-www-staging
   on:
     repo: LLK/scratch-www
-    branch: develop
+    branch:
+    - develop
+    - hotfix/*
+    - release/*
 - provider: elasticbeanstalk
   access_key_id: $EB_AWS_ACCESS_KEY_ID
   secret_access_key: $EB_AWS_SECRET_ACCESS_KEY

@@ -10,6 +10,7 @@ npm-*
 
 # Locales
 /locales
+/intl
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
