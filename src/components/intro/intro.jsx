@@ -128,7 +128,8 @@ var Intro = React.createClass({
                 </div>
                 <div className="video">
                     <div className="play-button" onClick={this.showVideo}></div>
-                    <img src="//cdn.scratch.mit.edu/scratchr2/static/images/hp-video-screenshot.png" alt="Intro Video" />
+                    <img src="//cdn.scratch.mit.edu/scratchr2/static/images/hp-video-screenshot.png"
+                         alt="Intro Video" />
                 </div>
                 <Modal
                         className="video-modal"
