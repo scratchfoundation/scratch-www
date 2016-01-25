@@ -64,10 +64,12 @@ var Intro = React.createClass({
                         <a className="sprite sprite-1" href="/projects/editor/?tip_bar=getStarted">
                             <img
                                 className="costume costume-1"
-                                src="//cdn.scratch.mit.edu/scratchr2/static/images/cat-a.png" />
+                                src="//cdn.scratch.mit.edu/scratchr2/static/images/cat-a.png"
+                                alt="Scratch Cat" />
                             <img
                                 className="costume costume-2"
-                                src="//cdn.scratch.mit.edu/scratchr2/static/images/cat-b.png" />
+                                src="//cdn.scratch.mit.edu/scratchr2/static/images/cat-b.png"
+                                alt="Scratch Cat" />
                             <div className="circle"></div>
                             <div className="text">
                                 {this.props.messages['intro.tryItOut']}
@@ -76,10 +78,12 @@ var Intro = React.createClass({
                         <a className="sprite sprite-2" href="/starter_projects/">
                             <img
                                 className="costume costume-1"
-                                src="//cdn.scratch.mit.edu/scratchr2/static/images/tera-a.png" />
+                                src="//cdn.scratch.mit.edu/scratchr2/static/images/tera-a.png"
+                                alt="Tera" />
                             <img
                                 className="costume costume-2"
-                                src="//cdn.scratch.mit.edu/scratchr2/static/images/tera-b.png" />
+                                src="//cdn.scratch.mit.edu/scratchr2/static/images/tera-b.png"
+                                alt="Tera" />
                             <div className="circle"></div>
                             <div className="text">
                                 {this.props.messages['intro.seeExamples']}
@@ -88,10 +92,12 @@ var Intro = React.createClass({
                         <a className="sprite sprite-3" href="#" onClick={this.handleJoinClick}>
                             <img
                                 className="costume costume-1"
-                                src="//cdn.scratch.mit.edu/scratchr2/static/images/gobo-a.png" />
+                                src="//cdn.scratch.mit.edu/scratchr2/static/images/gobo-a.png"
+                                alt="Gobo" />
                             <img
                                 className="costume costume-2"
-                                src="//cdn.scratch.mit.edu/scratchr2/static/images/gobo-b.png" />
+                                src="//cdn.scratch.mit.edu/scratchr2/static/images/gobo-b.png"
+                                alt="Gobo" />
                             <div className="circle"></div>
                             <div className="text">
                                 {this.props.messages['intro.joinScratch']}
@@ -122,7 +128,7 @@ var Intro = React.createClass({
                 </div>
                 <div className="video">
                     <div className="play-button" onClick={this.showVideo}></div>
-                    <img src="//cdn.scratch.mit.edu/scratchr2/static/images/hp-video-screenshot.png" />
+                    <img src="//cdn.scratch.mit.edu/scratchr2/static/images/hp-video-screenshot.png" alt="Intro Video" />
                 </div>
                 <Modal
                         className="video-modal"
