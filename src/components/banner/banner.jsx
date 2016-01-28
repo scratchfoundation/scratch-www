@@ -3,6 +3,10 @@ var React = require('react');
 
 require('./banner.scss');
 
+/**
+ * Container for messages displayed below the nav bar that can be dismissed
+ * (See: email not confirmed banner)
+ */
 var Banner = React.createClass({
     type: 'Banner',
     propTypes: {

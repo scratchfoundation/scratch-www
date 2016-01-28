@@ -18,8 +18,9 @@ build:
 
 clean:
 	rm -rf ./build
+	rm -rf ./intl
 	mkdir -p build
-	mkdir -p locales
+	mkdir -p intl
 
 
 deploy:
@@ -38,7 +39,7 @@ tag:
 	echo $(GIT_VERSION) > ./build/version.txt
 
 translations:
-	./lib/bin/build-locales locales/translations.json
+	./bin/build-locales intl
 
 webpack:
 	$(WEBPACK) --bail
@@ -63,7 +64,6 @@ lint:
 	$(ESLINT) ./*.js
 	$(ESLINT) ./server/*.js
 	$(ESLINT) ./src/*.js
-	$(ESLINT) ./src/*.jsx
 	$(ESLINT) ./src/mixins/*.jsx
 	$(ESLINT) ./src/views/**/*.jsx
 	$(ESLINT) ./src/components/**/*.jsx

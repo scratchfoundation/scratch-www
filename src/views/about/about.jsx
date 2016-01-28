@@ -26,6 +26,7 @@ var About = React.createClass({
 
                     <div>
                         <iframe
+                            title="Scratch Overview Video"
                             src="https://player.vimeo.com/video/65583694?title=0&byline=0&portrait=0"
                             frameBorder="0"
                             webkitAllowFullScreen
@@ -38,7 +39,7 @@ var About = React.createClass({
                     <ul>
                         <li>
                             <h2><FormattedMessage id='about.whoUsesScratch' /></h2>
-                            <img src="/images/about/who-uses-scratch.jpg" />
+                            <img src="/images/about/who-uses-scratch.jpg" alt="" />
                             <p><FormattedHTMLMessage id='about.whoUsesScratchDescription' /></p>
                         </li>
 
@@ -55,25 +56,25 @@ var About = React.createClass({
 
                         <li>
                             <h2><FormattedMessage id='about.aroundTheWorld' /></h2>
-                            <img src="/images/about/around-the-world.png" />
+                            <img src="/images/about/around-the-world.png" alt="" />
                             <p><FormattedHTMLMessage id='about.aroundTheWorldDescription' /></p>
                         </li>
 
                         <li>
                             <h2><FormattedMessage id='about.schools' /></h2>
-                            <img src="/images/about/scratch-in-schools.jpg" />
+                            <img src="/images/about/scratch-in-schools.jpg" alt="" />
                             <p><FormattedHTMLMessage id='about.schoolsDescription' /></p>
                         </li>
 
                         <li>
                             <h2><FormattedMessage id='about.quotes' /></h2>
-                            <img src="/images/about/quotes.gif" />
+                            <img src="/images/about/quotes.gif" alt="Quotes about Scratch" />
                             <p><FormattedHTMLMessage id='about.quotesDescription' /></p>
                         </li>
 
                         <li>
                             <h2><FormattedMessage id='about.research' /></h2>
-                            <img src="/images/about/research-remix.png" />
+                            <img src="/images/about/research-remix.png" alt="" />
                             <p><FormattedHTMLMessage id='about.researchDescription' /></p>
                         </li>
 
@@ -81,10 +82,18 @@ var About = React.createClass({
                             <h2><FormattedMessage id='about.learnMore' /></h2>
                             <p>
                                 <ul className="list">
-                                    <li><a href="/help"><FormattedMessage id='about.learnMoreHelp' /></a></li>
-                                    <li><a href="/info/faq"><FormattedMessage id='about.learnMoreFaq' /></a></li>
-                                    <li><a href="/parents"><FormattedMessage id='about.learnMoreParents' /></a></li>
-                                    <li><a href="/credits"><FormattedMessage id='about.learnMoreCredits' /></a></li>
+                                    <li>
+                                        <a href="/help"><FormattedMessage id='about.learnMoreHelp' /></a>
+                                    </li>
+                                    <li>
+                                        <a href="/info/faq"><FormattedMessage id='about.learnMoreFaq' /></a>
+                                    </li>
+                                    <li>
+                                        <a href="/parents"><FormattedMessage id='about.learnMoreParents' /></a>
+                                    </li>
+                                    <li>
+                                        <a href="/info/credits"><FormattedMessage id='about.learnMoreCredits' /></a>
+                                    </li>
                                 </ul>
                             </p>
                         </li>

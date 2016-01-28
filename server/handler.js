@@ -23,7 +23,7 @@ function Handler (route) {
         res.set({
             'Content-Type': 'text/html',
             'Cache-Control': 'public, max-age=31536000',
-            'Etag': 'W/"' + checksum + '"'
+            'Etag': '"' + checksum + '"'
         });
         res.send(output);
     };
