@@ -3,16 +3,40 @@
 
 [![Build Status](https://magnum.travis-ci.com/LLK/scratch-www.svg?token=xzzHj4ct3SyBTpeqxnx1)](https://magnum.travis-ci.com/LLK/scratch-www)
 
-### Before Getting Started
-* make sure you have node and npm [installed](https://docs.npmjs.com/getting-started/installing-node)
+### Where am I?
+Physically? No idea.
 
-### To Build
+Digitally? You’re at Scratch’s open source Web Client! 
+
+At Scratch, we’re working to update our UI to use a new codebase, which will be contained in this repository. The transition from existing to new codebase is an ongoing process, and we love to have people in the Scratch and Open Source communities help us along the way, and even afterwards as we develop new features for Scratch here.
+
+### Getting Started
+* If you're looking to get started with contributions, the community, etc., take a look at our [resources section](https://github.com/LLK/scratch-www#resources-for-www).
+* If you're looking to get started with the development environment, check out our [build section](https://github.com/LLK/scratch-www#building-www).
+
+### Resources for www
+We are always excited to have people join us in working to make Scratch a wonderful place for people of all ages to make projects together. If you’re new here, and looking to jump into our wonderful community, we have some wonderful resources for you to take a look at:
+
+* [Community Guidelines](https://github.com/LLK/scratch-www/wiki/Community-Guidelines) (we find it important to maintain a constructive and welcoming community, just like on Scratch)
+* [Issues](https://github.com/LLK/scratch-www/issues) – where we keep track of all the things that need fixin’ on the website
+Road map
+
+Beyond this repo, there are also some other resources that you might want to take a look at:
+[Scratch](https://scratch.mit.edu/) (the thing we work on)
+[Open Source forum](https://scratch.mit.edu/discuss/49/) on Scratch (talk about the thing we work on on the thing we work on. so meta.)
+[Bugs & Glitches forum](https://scratch.mit.edu/discuss/3/) on Scratch (where mosquitoes and dei ex machina congregate)
+[Advanced Topics forum](https://scratch.mit.edu/discuss/31/) on Scratch (like Topics, but more complex-y)
+
+### Building www
+**Before Getting Started**, make sure you have node and npm [installed](https://docs.npmjs.com/getting-started/installing-node)
+
+#### To Build
 ```bash
 npm install
 npm run build
 ```
 
-### To Run
+#### To Run
 ```bash
 npm start
 ```
@@ -25,10 +49,10 @@ When running `npm start`, here are some important log messages to keep an eye ou
 
 Once running, open `http://localhost:8333` in your browser. If you wish to have the server reload automatically, you can install either [nodemon](https://github.com/remy/nodemon) or [forever](https://github.com/foreverjs/forever).
 
-### To stop
+#### To stop
 Use `^C` to stop the node process `npm start` starts. 
 
-#### Configuration
+##### Configuration
 
 `npm start` can be configured with the following environment variables
 
@@ -41,12 +65,12 @@ Use `^C` to stop the node process `npm start` starts.
 
 **NOTE:** Because by default `API_HOST=https://api.scratch.mit.edu`, please be aware that, by default, you will be seeing and interacting with real data on the Scratch website.
 
-### To Test
+#### To Test
 ```bash
 npm test
 ```
 
-### Current issues with the development
+#### Current issues with the development
 We're currently in the process of transitioning into this web client from Scratch's existing structure. As we transition, there are going to be some issues along the way that relate to how this client needs to interact with the existing infrastructure to work properly in production.
 
 On top of migrating to using this as our web client, Scratch is also transitioning into using a new API backend, Scratch REST API. As that is also currently in development and incomplete, we are set up to fall back to using existing Scratch endpoints if an API endpoint does not exist – which is where the `FALLBACK` comes in.
