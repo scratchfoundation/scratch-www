@@ -29,8 +29,10 @@
             content: "";
         }
 
-        &.slick-disabled:before {
-            opacity: 1;
+        &.slick-disabled {
+            &:before {
+                opacity: 1;
+            }
         }
     }
 
@@ -39,11 +41,11 @@
 
         &:before {
             background-image: url("/svgs/carousel/prev_ui-dark-gray.svg");
-        }
 
-        &:hover:before {
-            background-image: url("/svgs/carousel/prev_ui-blue.svg");
-            background-size: 90%;
+            &:hover {
+                background-image: url("/svgs/carousel/prev_ui-blue.svg");
+                background-size: 90%;
+            }
         }
 
 
@@ -57,11 +59,11 @@
 
         &:before {
             background-image: url("/svgs/carousel/next_ui-dark-gray.svg");
-        }
 
-        &:hover:before {
-            background-image: url("/svgs/carousel/next_ui-blue.svg");
-            background-size: 90%;
+            &:hover {
+                background-image: url("/svgs/carousel/next_ui-blue.svg");
+                background-size: 90%;
+            }
         }
 
         .box-content & {
