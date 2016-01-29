@@ -14,112 +14,112 @@ var Credits = React.createClass({
 
                 <ul>
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/167_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/167_170x170.png" alt="Mitchel Avatar" />
                         <span className="name">Mitchel Resnick</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/169_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/169_170x170.png" alt="Natalie Avatar" />
                         <span className="name">Natalie Rusk</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/573207_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/573207_170x170.png" alt="Sayamindu Avatar" />
                         <span className="name">Sayamindu Dasgupta</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/13682_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/13682_170x170.png" alt="Ricarose Avatar" />
                         <span className="name">Ricarose Roque</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/2584924_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/2584924_170x170.png" alt="Ray Avatar" />
                         <span className="name">Ray Schamp</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/3484484_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/3484484_170x170.png" alt="Eric Avatar" />
                         <span className="name">Eric Schilling</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/3532363_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/3532363_170x170.png" alt="Chris Avatar" />
                         <span className="name">Chris Willis-Ford</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/3581881_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/3581881_170x170.png" alt="Carl Avatar" />
                         <span className="name">Carl Bowman</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/4373707_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/4373707_170x170.png" alt="Matthew Avatar" />
                         <span className="name">Matthew Taylor</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/4598206_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/4598206_170x170.png" alt="Kasia Avatar" />
                         <span className="name">Kasia Chmielinski</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/703844_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/703844_170x170.png" alt="Tim Avatar" />
                         <span className="name">Tim Mickel</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/2752403_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/2752403_170x170.png" alt="Saskia Avatar" />
                         <span className="name">Saskia Leggett</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/2755634_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/2755634_170x170.png" alt="Christan Avatar" />
                         <span className="name">Christan Balch</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/5721684_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/5721684_170x170.png" alt="Randy Avatar" />
                         <span className="name">Randy Jou</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/10866958_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/10866958_170x170.png" alt="Colby Avatar" />
                         <span className="name">Colby Gutierrez-Kraybill</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/1709047_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/1709047_170x170.png" alt="Andrew Avatar" />
                         <span className="name">Andrew Sliwinski</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/default_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/default_170x170.png" alt="Ben Avatar" />
                         <span className="name">Ben Berg</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/2286560_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/2286560_170x170.png" alt="Carmelo Avatar" />
                         <span className="name">Carmelo Presicce</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/default_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/default_170x170.png" alt="Moran Avatar" />
                         <span className="name">Moran Tsur</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/3661900_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/3661900_170x170.png" alt="Juanita Avatar" />
                         <span className="name">Juanita Buitrago</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/default_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/default_170x170.png" alt="Shruti Avatar" />
                         <span className="name">Shruti Mohnot</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/1915915_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/1915915_170x170.png" alt="Hannah Avatar" />
                         <span className="name">Hannah Cole</span>
                     </li>
                 </ul>
@@ -128,47 +128,47 @@ var Credits = React.createClass({
 
                 <ul>
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/49156_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/49156_170x170.png" alt="Mark Avatar" />
                         <span className="name">Mark Goff</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/159139_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/159139_170x170.png" alt="Franchette Avatar" />
                         <span className="name">Franchette Viloria</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/246290_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/246290_170x170.png" alt="Sarah Avatar" />
                         <span className="name">Sarah Otts</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/2496866_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/2496866_170x170.png" alt="Jolie Avatar" />
                         <span className="name">Jolie Castellucci</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/3087865_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/3087865_170x170.png" alt="Andrea Avatar" />
                         <span className="name">Andrea Saxman</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/373646_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/373646_170x170.png" alt="Dalton Avatar" />
                         <span className="name">Dalton Miner</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/586054_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/586054_170x170.png" alt="Megan Avatar" />
                         <span className="name">Megan Haddadi</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/4836354_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/4836354_170x170.png" alt="Christina Avatar" />
                         <span className="name">Christina Huang</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/4747093_170x170.png" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/4747093_170x170.png" alt="Annie Avatar" />
                         <span className="name">Annie Whitehouse</span>
                     </li>
                 </ul>
