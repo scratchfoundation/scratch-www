@@ -5,6 +5,7 @@
     $button-offset: $icon-size + 5px;
     $box-content-offset: 20px;
 
+    margin-bottom: 0;
     padding: 12px $button-offset;
 
     .box-content & {
@@ -28,8 +29,10 @@
             content: "";
         }
 
-        &.slick-disabled:before {
-            opacity: 1;
+        &.slick-disabled {
+            &:before {
+                opacity: 1;
+            }
         }
     }
 
@@ -38,11 +41,11 @@
 
         &:before {
             background-image: url("/svgs/carousel/prev_ui-dark-gray.svg");
-        }
 
-        &:hover:before {
-            background-image: url("/svgs/carousel/prev_ui-blue.svg");
-            background-size: 90%;
+            &:hover {
+                background-image: url("/svgs/carousel/prev_ui-blue.svg");
+                background-size: 90%;
+            }
         }
 
 
@@ -56,11 +59,11 @@
 
         &:before {
             background-image: url("/svgs/carousel/next_ui-dark-gray.svg");
-        }
 
-        &:hover:before {
-            background-image: url("/svgs/carousel/next_ui-blue.svg");
-            background-size: 90%;
+            &:hover {
+                background-image: url("/svgs/carousel/next_ui-blue.svg");
+                background-size: 90%;
+            }
         }
 
         .box-content & {
