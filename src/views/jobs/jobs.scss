@@ -1,0 +1,41 @@
+@import "../../colors";
+
+#view {
+    // background-color: $ui-white;
+
+    h1 {
+        font-size: 2.3rem;
+        font-weight: 300;
+        line-height: 2.6rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: 300;
+    }
+
+    .top {
+        img {
+            margin-bottom: 10px;
+        }
+    }
+
+    .middle {
+        background-color: $ui-gray;
+        width: 100%;
+        padding: 40px 0;
+        margin: 20px 0;
+    }
+
+    .bottom {
+        width: 100%;
+        line-height: 200%;
+        .thin-heading {
+            padding: 20px 0;
+        }
+        p {
+            margin: auto;
+            width: 70%;
+        }
+    }
+}
