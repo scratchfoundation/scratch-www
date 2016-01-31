@@ -14,8 +14,8 @@
     "type": "git",
     "url": "git+ssh://git@github.com/llk/scratch-www.git"
   },
-  "author": "MIT",
-  "license": "MIT",
+  "author": "Massachusetts Institute of Technology",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/llk/scratch-www/issues"
   },
