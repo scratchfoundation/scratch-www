@@ -27,7 +27,7 @@ var Splash = injectIntl(React.createClass({
     ],
     getInitialState: function () {
         return {
-            projectCount: 10569070,
+            projectCount: 12893209, // gets the shared project count
             activity: [], // recent social actions taken by users someone is following
             news: [], // gets news posts from the scratch Tumblr
             featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
