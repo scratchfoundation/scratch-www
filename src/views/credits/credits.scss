@@ -3,10 +3,9 @@
 #view {
     p {
         line-height: 1.5rem;
-    }
-
-    a {
-       word-wrap: break-word; /* Overrides: https://github.com/LLK/scratch-www/blob/develop/src/main.scss#L43-L47 */
+        a {
+            word-wrap: break-word; /* Overrides: https://github.com/LLK/scratch-www/blob/develop/src/main.scss#L43-L47 */
+        }
     }
     
     ul {
