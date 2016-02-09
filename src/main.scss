@@ -10,7 +10,6 @@ body {
     padding: 0;
     color: $type-gray;
     font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
-    overflow-x: hidden;
 }
 
 /* Typography */
@@ -81,7 +80,7 @@ a:hover {
     /* NOTE: Margin should match height in navigation.scss */
     margin-top: 50px;
     background-color: $background-color;
-    padding: 20px 1px;
+    padding: 20px 0px;
     min-width: 100%;
     min-height: 768px;
 }
