@@ -21,8 +21,8 @@ before_deploy:
 - zip -qr $BUILD_ARCHIVE .
 deploy:
 - provider: elasticbeanstalk
-  access-key-id: $EB_AWS_ACCESS_KEY_ID
-  secret-access-key: $EB_AWS_SECRET_ACCESS_KEY
+  access_key_id: $EB_AWS_ACCESS_KEY_ID
+  secret_access_key: $EB_AWS_SECRET_ACCESS_KEY
   bucket_name: $EB_AWS_BUCKET_NAME
   bucket_path: $EB_APP
   zip_file: $BUILD_ARCHIVE
@@ -37,8 +37,8 @@ deploy:
     - hotfix/*
     - release/*
 - provider: elasticbeanstalk
-  access-key-id: $EB_AWS_ACCESS_KEY_ID
-  secret-access-key: $EB_AWS_SECRET_ACCESS_KEY
+  access_key_id: $EB_AWS_ACCESS_KEY_ID
+  secret_access_key: $EB_AWS_SECRET_ACCESS_KEY
   bucket_name: $EB_AWS_BUCKET_NAME
   bucket_path: $EB_APP
   zip_file: $BUILD_ARCHIVE
