@@ -185,8 +185,8 @@ var Credits = React.createClass({
                     Andrés Monroy-Hernández (who led the development of the first Scratch community website),
                     Amos Blanton, Champika Fernando, Shane Clements, Abdulrahman idlbi, Evelyn Eastmond,
                     Amon Millner, Eric Rosenbaum, Jay Silver, Karen Brennan, Leo Burd, Oren Zuckerman, Gaia Carini,
-                    Michelle Chung, Margarita Dekoli, Dave Feinberg, Megan Haddadi, Chris Graves, Tony Hwang, Di Liu, Tammy Stern,
-                    Lis Sylvan, and Claudia Urrea.
+                    Michelle Chung, Margarita Dekoli, Dave Feinberg, Megan Haddadi, Chris Graves, Tony Hwang, Di Liu,
+                    Tammy Stern, Lis Sylvan, and Claudia Urrea.
                 </p>
 
                 <h2>Design and Development Partners</h2>
