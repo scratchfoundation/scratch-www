@@ -1,0 +1,8 @@
+@import "../../colors";
+@import "../carousel/carousel.scss";
+
+.nestedcarousel {
+    .slick-slide {
+        padding-left: 60px;
+    }
+}
