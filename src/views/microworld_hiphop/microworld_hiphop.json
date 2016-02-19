@@ -16,18 +16,21 @@
    "tips":[
       {
          "title":"Start Dancing",
-         "thumbnails":[
+         "tips":[
             {
+               "id":1,
                "type":"tip",
                "title":"First, select a sprite",
                "thumbnailUrl":"/images/microworlds/hiphop/dancer-sprite.png"
             },
             {
+               "id":2,
                "type":"tip",
                "title":"Then, try this script",
                "thumbnailUrl":"/images/microworlds/hiphop/switch-wait.gif"
             },
             {
+               "id":3,
                "type":"tip",
                "title":"Start it!",
                "thumbnailUrl":"/images/microworlds/hiphop/green-flag.gif"
@@ -36,18 +39,21 @@
       },
       {
          "title":"Repeat the Dance",
-         "thumbnails":[
+         "tips":[
             {
+               "id":4,
                "type":"tip",
                "title":"Add another \"wait\"",
                "thumbnailUrl":"/images/microworlds/hiphop/add-wait.gif"
             },
             {
+               "id":5,
                "type":"tip",
                "title":"Drag this block over",
                "thumbnailUrl":"/images/microworlds/hiphop/add-repeat.gif"
             },
             {
+               "id":6,
                "type":"tip",
                "title":"Start it",
                "thumbnailUrl":"/images/microworlds/hiphop/green-flag.gif"
@@ -56,13 +62,15 @@
       },
       {
          "title":"Play Music",
-         "thumbnails":[
+         "tips":[
             {
+               "id":7,
                "type":"tip",
                "title":"Add music that repeats",
                "thumbnailUrl":"/images/microworlds/hiphop/add-play-sound.gif"
             },
             {
+               "id":8,
                "type":"tip",
                "title":"Start it",
                "thumbnailUrl":"/images/microworlds/hiphop/green-flag.gif"
@@ -71,18 +79,21 @@
       },
       {
          "title":"Shadow Dance",
-         "thumbnails":[
+         "tips":[
             {
+               "id":7,
                "type":"tip",
                "title":"Add this block",
                "thumbnailUrl":"/images/microworlds/hiphop/shadow-dance.gif"
             },
             {
+               "id":8,
                "type":"tip",
                "title":"Start it",
                "thumbnailUrl":"/images/microworlds/hiphop/green-flag.gif"
             },
             {
+               "id":9,
                "type":"tip",
                "title":"Click the stop sign to reset",
                "thumbnailUrl":"/images/microworlds/hiphop/stop.gif"
@@ -91,18 +102,21 @@
       },
       {
          "title":"More things to try",
-         "thumbnails":[
+         "tips":[
             {
+               "id":10,
                "type":"tip",
                "title":"Try different dance moves",
                "thumbnailUrl":"/images/microworlds/hiphop/change-dance-moves.gif"
             },
             {
+               "id":11,
                "type":"tip",
                "title":"Add more moves",
                "thumbnailUrl":"/images/microworlds/hiphop/long-dance-script.png"
             },
             {
+               "id":12,
                "type":"tip",
                "title":"Change the timing",
                "thumbnailUrl":"/images/microworlds/hiphop/change-dance-timing.png"

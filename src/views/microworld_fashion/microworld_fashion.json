@@ -16,13 +16,15 @@
    "tips":[
       {
          "title":"Click on blocks to see what they do",
-         "thumbnails":[
+         "tips":[
             {
+               "id":0,
                "type":"tip",
                "title":" Try clicking this block ",
                "thumbnailUrl":"/images/microworlds/fashion/click-block-color.gif"
             },
             {
+               "id":1,
                "type":"tip",
                "title":" Or this block",
                "thumbnailUrl":"/images/microworlds/fashion/click-block-costume.gif"
@@ -31,18 +33,21 @@
       },
       {
          "title":"Try changing colors",
-         "thumbnails":[
+         "tips":[
             {
+               "id":2,
                "type":"tip",
                "title":" First, select a clothing item ",
                "thumbnailUrl":"/images/microworlds/fashion/shirts-sprite.png"
             },
             {
+               "id":3,
                "type":"tip",
                "title":" Then, try this script",
                "thumbnailUrl":"/images/microworlds/fashion/when-clicked-color.gif"
             },
             {
+               "id":4,
                "type":"tip",
                "title":" Test it out!",
                "thumbnailUrl":"/images/microworlds/fashion/click-shirt.gif"
@@ -51,18 +56,21 @@
       },
       {
          "title":"Try changing costumes",
-         "thumbnails":[
+         "tips":[
             {
+               "id":5,
                "type":"tip",
                "title":"Select a piece of clothing ",
                "thumbnailUrl":"/images/microworlds/fashion/hats-sprite.png"
             },
             {
+               "id":6,
                "type":"tip",
                "title":"Then, switch costumes",
                "thumbnailUrl":"/images/microworlds/fashion/when-clicked-costume.gif"
             },
             {
+               "id":7,
                "type":"tip",
                "title":" Now, click it!",
                "thumbnailUrl":"/images/microworlds/fashion/click-hat.gif"
@@ -71,18 +79,21 @@
       },
       {
          "title":"Say hello",
-         "thumbnails":[
+         "tips":[
             {
+               "id":8,
                "type":"tip",
                "title":"Select the person",
                "thumbnailUrl":"/images/microworlds/fashion/person-sprite.png"
             },
             {
+               "id":9,
                "type":"tip",
                "title":"Type in a phrase",
                "thumbnailUrl":"/images/microworlds/fashion/say-something.gif"
             },
             {
+               "id":10,
                "type":"tip",
                "title":"Then, try this script",
                "thumbnailUrl":"/images/microworlds/fashion/when-clicked-say.gif"
@@ -91,13 +102,15 @@
       },
       {
          "title":"Move the sprites",
-         "thumbnails":[
+         "tips":[
             {
+               "id":11,
                "type":"tip",
                "title":"Select an accessory",
                "thumbnailUrl":"/images/microworlds/fashion/accessories-sprite.png"
             },
             {
+               "id":12,
                "type":"tip",
                "title":"Tell it where to go",
                "thumbnailUrl":"/images/microworlds/fashion/when-clicked-goto.gif"
@@ -106,18 +119,21 @@
       },
       {
          "title":"Other things to try",
-         "thumbnails":[
+         "tips":[
             {
+               "id":13,
                "type":"tip",
                "title":"Add a sound ",
                "thumbnailUrl":"/images/microworlds/fashion/play-drum.png"
             },
             {
+               "id":14,
                "type":"tip",
                "title":" Explore other costumes ",
                "thumbnailUrl":"/images/microworlds/fashion/next-costume.png"
             },
             {
+               "id":15,
                "type":"tip",
                "title":"Make longer scripts ",
                "thumbnailUrl":"/images/microworlds/fashion/block-stack.png"
