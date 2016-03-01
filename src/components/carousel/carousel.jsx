@@ -9,6 +9,9 @@ require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
 require('./carousel.scss');
 
+/**
+ * Displays content in horizontal scrolling box. Example usage: splash page rows.
+ */
 var Carousel = React.createClass({
     type: 'Carousel',
     propTypes: {

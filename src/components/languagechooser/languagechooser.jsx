@@ -8,6 +8,9 @@ var Select = require('../forms/select.jsx');
 
 require('./languagechooser.scss');
 
+/**
+ * Footer dropdown menu that allows one to change their language.
+ */
 var LanguageChooser = React.createClass({
     type: 'LanguageChooser',
     mixins: [

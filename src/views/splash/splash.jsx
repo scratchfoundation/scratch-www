@@ -27,12 +27,12 @@ var Splash = injectIntl(React.createClass({
     ],
     getInitialState: function () {
         return {
-            projectCount: 10569070,
-            activity: [],
-            news: [],
-            featuredCustom: {},
-            featuredGlobal: {},
-            showEmailConfirmationModal: false,
+            projectCount: 'over 13 million', // gets the shared project count
+            activity: [], // recent social actions taken by users someone is following
+            news: [], // gets news posts from the scratch Tumblr
+            featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
+            featuredGlobal: {}, // global homepage rows, such as "Featured Projects"
+            showEmailConfirmationModal: false, // flag that determines whether to show banner to request email conf.
             refreshCacheStatus: 'notrequested'
         };
     },
