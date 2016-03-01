@@ -1,7 +1,22 @@
 ## scratch-www
 #### Standalone web client for Scratch
 
-[![Build Status](https://magnum.travis-ci.com/LLK/scratch-www.svg?token=xzzHj4ct3SyBTpeqxnx1)](https://magnum.travis-ci.com/LLK/scratch-www)
+[![Build Status](https://travis-ci.org/LLK/scratch-www.svg)](https://travis-ci.org/LLK/scratch-www)
+
+### Where am I?
+Physically? No idea.
+
+Digitally? You’re at Scratch’s open source web client! 
+
+We’re working to update the [Scratch website](https://scratch.mit.edu) to use a new codebase, contained in this repository.
+
+We’re currently building Scratch using [React](https://facebook.github.io/react/) and [SCSS](http://sass-lang.com/documentation/file.SASS_REFERENCE.html). Here are some resources to help you get acquainted with how we’re working on the Scratch codebase:
+
+* [Style Guide](https://github.com/LLK/scratch-www/wiki/Style-Guide)
+* [Testing Guide](https://github.com/LLK/scratch-www/wiki/Testing-Guide)
+* [Localization Guide](https://github.com/LLK/scratch-www/wiki/Localization-Guide)
+* [Map of the repository](https://github.com/LLK/scratch-www/wiki/Repo-Map)
+
 
 ### Before Getting Started
 * make sure you have node and npm [installed](https://docs.npmjs.com/getting-started/installing-node)
