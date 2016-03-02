@@ -27,18 +27,24 @@ var Jobs = React.createClass({
                 <div className="bottom">
                     <div className="inner">
                         <h2><FormattedMessage id='jobs.openings' /></h2>
-                        <p>
-                            <a href="/jobs/learning-developer">
-                                <FormattedMessage id='jobs.learningDeveloper' />
-                            </a>
-                            <i> (MIT Media Lab, Cambridge, MA)</i>
-                        </p>
-                        <p>
-                            <a href="/jobs/moderator">
-                                <FormattedMessage id='jobs.moderator' />
-                            </a>
-                            <i> (MIT Media Lab, Cambrige, MA or Remote)</i>
-                        </p>
+                        <ul>
+                            <li>
+                                <a href="http://bit.ly/24B9aEz">
+                                    Community Manager
+                                </a>
+                                <span>
+                                    (MIT Media Lab, Cambridge, MA)
+                                </span>
+                            </li>
+                            <li>
+                                <a href="http://bit.ly/21CTTE6">
+                                    Front-end Engineer
+                                </a>
+                                <span>
+                                    (MIT Media Lab, Cambridge, MA)
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

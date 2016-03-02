@@ -1,12 +1,10 @@
 @import "../../colors";
 
 #view {
-    // background-color: $ui-white;
-
     h1 {
+        line-height: 2.6rem;
         font-size: 2.3rem;
         font-weight: 300;
-        line-height: 2.6rem;
     }
 
     h2 {
@@ -21,21 +19,38 @@
     }
 
     .middle {
-        background-color: $ui-gray;
-        width: 100%;
-        padding: 40px 0;
         margin: 20px 0;
+        background-color: $ui-gray;
+        padding: 40px 0;
+        width: 100%;
     }
 
     .bottom {
         width: 100%;
         line-height: 200%;
+
         .thin-heading {
             padding: 20px 0;
         }
+
         p {
             margin: auto;
             width: 70%;
+        }
+
+        ul {
+            padding: 0;
+
+            list-style: none;
+
+            li {
+                margin: 0;
+                padding: 0;
+
+                span {
+                    margin-left: 10px;
+                }
+            }
         }
     }
 }
