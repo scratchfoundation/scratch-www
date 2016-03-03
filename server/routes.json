@@ -23,5 +23,10 @@
         "pattern": "/info/credits",
         "view": "credits",
         "title": "Credits"
+    },
+    {
+        "pattern": "/jobs",
+        "view": "jobs",
+        "title": "Jobs"
     }
 ]
