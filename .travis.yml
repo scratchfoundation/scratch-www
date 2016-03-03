@@ -37,7 +37,7 @@ deploy:
   skip_cleanup: $SKIP_CLEANUP
   region: $EB_REGION
   app: $EB_APP
-  env: scratch-www-staging
+  env: scratch-www-stage-v208
   on:
     repo: LLK/scratch-www
     branch:
