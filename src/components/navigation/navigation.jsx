@@ -191,13 +191,14 @@ var Navigation = React.createClass({
             'show': this.state.unreadMessageCount > 0
         });
         var formatMessage = this.props.intl.formatMessage;
+        var createLink = this.state.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
         return (
             <div className={classes}>
                 <ul>
                     <li className="logo"><a href="/" aria-label="Scratch"></a></li>
 
                     <li className="link create">
-                        <a href="/projects/editor">
+                        <a href={createLink}>
                             <FormattedMessage
                                 id="general.create"
                                 defaultMessage={'Create'} />
