@@ -153,10 +153,12 @@
     }
 
     .project-count {
-        $project-count-color: hsl(318, 50%, 52%); 
+        text-decoration: none; /* should stop Safari from making it into a phone number */
+        $project-count-color: hsl(318, 50%, 52%);
         color: $project-count-color;
         font-size: 18px;
         font-weight: 700;
+        pointer-events: none; /* disables clicking */
     }
 
     .links {
