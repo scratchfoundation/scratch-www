@@ -1,0 +1,117 @@
+@import "./colors";
+@import "./frameless";
+
+#view {
+
+// Global Typography
+
+    h1, h2, h3, h4, h5, p {
+        color: $type-gray;
+        line-height: 1.7em;
+    }
+
+    ::selection {
+        background-color: lighten($ui-blue, 30);
+    }
+
+// Headers
+    h3, h4, h5, {
+        margin: 1.5em 0 .3em 0;
+    }
+
+    h1 {
+        margin: .75em 0 .3em 0;
+        font-size: 2.5rem;
+        font-weight: 900;
+    }
+
+    h2 {
+        margin: .75em 0 .3em 0;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+        font-weight: 500;
+    }
+
+    h4 {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    h5 {
+        font-size: .85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+// Paragraph Typography
+
+    p {
+        margin: .25em 0 1em 0;
+        //max-width: 700px;
+        font-size: 1rem;
+        font-weight: 300;
+
+        &.intro {
+            font-size: 1.1rem;
+            margin-bottom: 1em;
+        }
+
+        &.callout{
+            // margin: 1.5em 0;
+            // border-top: 1px solid $ui-border;
+            // border-bottom: 1px solid $ui-border;
+            // padding: 1em 0;
+
+            margin: 1.5em 0;
+            border: 1px solid $active-gray;
+            border-radius: 5px;
+            padding: 1.25em 1.25em;
+            background-color: lighten($ui-blue, 40);
+
+            &.orange {
+                background-color: lighten($ui-orange, 30);
+            }
+        }
+    }
+
+    b {
+        font-weight: 500;
+    }
+
+// Link Typography
+
+    a {
+        font-weight: 500;
+        color: $ui-blue;
+        cursor: pointer;
+
+        &:hover {
+            color: darken($ui-blue, 15);
+            text-decoration: none;
+        }
+    }
+
+    p a {
+        white-space: nowrap;
+    }
+
+// List Typography
+    ol, ul {
+        margin: .25em 0 1em 0;
+        padding-left: 20px;
+
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.5em;
+
+        li {
+            margin: .75em 0;
+        }
+    }
+
+}
