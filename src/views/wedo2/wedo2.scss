@@ -1,0 +1,212 @@
+@import "../../colors";
+@import "../../frameless";
+@import "../../typography";
+
+#view {
+    padding: 0;
+
+    .top-banner {
+        margin-bottom: 50px;
+        background-color: $ui-blue;
+        padding: 50px 0;
+        width: 100%;
+
+            h2 {
+                color: $ui-white;
+            }
+
+            p {
+                color: $ui-white;
+            }
+
+            .columns2 {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .banner-text {
+                max-width: $cols7;
+            }
+
+            .banner-photo {
+                max-width: $cols4;
+
+                img {
+                    width: 100%;
+                }
+            }
+    } 
+
+    section {
+        margin-bottom: 50px;
+    }
+
+    // GETTING STARTED SECTION
+
+    #getting-started {
+        h3 {
+            text-align: center;
+        }
+    }
+
+    .columns3 {
+        display: flex;
+        justify-content: space-between;
+
+        .column { 
+            max-width: $cols4;
+            margin: 15px;
+            text-align: center;
+
+            img {
+                width: 80%;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    p.callout {
+        padding: .75em 1em;
+        text-align: center;
+    }
+
+
+    // PROJECT HIGHLIGHT SECTION
+
+    #starter-projects {
+        h3, p {
+            text-align: center;
+        }
+    }
+
+    .banner {
+        padding: 10px 0 50px;
+        background-color: $ui-gray;
+
+        h3 {
+            margin-top: 30px;
+        }
+    }
+
+    .project-list {
+            display: flex;
+            max-width: $cols9;
+            margin: 0 auto;
+            justify-content: space-between;
+    } 
+
+    .project-card {
+        max-width: $cols3;
+        margin: 10px;
+        background-color: $ui-white;
+        border-radius: 7px;
+        overflow: hidden;
+        transition: transform .25s ease;
+
+
+        img {
+            width: 100%;
+            border-bottom: 2px solid $ui-white;
+        }
+
+        p {
+            display: block;
+            margin: 15px 15px 20px 15px;
+            color: $ui-blue;
+            font-weight: 500;
+        }
+
+        &:hover {
+            //background-color: $ui-blue;
+            cursor: pointer; 
+
+            transform: scale(1.1, 1.1);
+            transition: transform .25s ease;
+
+            p {
+                color: darken($ui-blue, 15);
+            }
+        }
+    }
+
+    // DEVICE CARDS
+
+    .device-card {
+        display: inline-block;
+        max-width: $cols3;
+        margin: 0 10px;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    // RESPONSIVE BEHAVIOR
+
+    //4 columns
+    @media only screen and (max-width: $mobile - 1) {
+        .inner {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+        }
+
+        .top-banner {
+            text-align: center;
+
+            .banner-photo {
+                display: none;
+            }
+        }
+
+        .project-list, .columns3 {
+            display: block;
+        }
+
+        .project-card, .columns3 .column {
+            display: block;
+            width: $cols6;
+            margin: 20px auto;
+        }
+    }
+
+    //6 columns
+    @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+        .project-list, .columns3 {
+            display: inline-block;
+        }
+
+        .top-banner {
+            text-align: center;
+
+            .banner-photo {
+                display: none;
+            }
+        }
+
+        .project-card, .columns3 .column {
+            display: inline-block;
+            width: $cols6;
+        }
+    }
+
+    //8 columns
+    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+        #view {
+            text-align: center;
+        }
+
+        .top-banner {
+            text-align: left;
+
+            .banner-photo {
+                max-width: $cols3;
+            }
+        }
+
+        .inner {
+            margin: 0 auto;
+            width: $tablet;
+        }
+    }
+}
