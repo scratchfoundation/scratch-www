@@ -28,5 +28,10 @@
         "pattern": "/jobs",
         "view": "jobs",
         "title": "Jobs"
+    },
+    {
+        "pattern": "/wedo",
+        "view": "wedo2",
+        "title": "LEGO WeDo 2.0"
     }
 ]
