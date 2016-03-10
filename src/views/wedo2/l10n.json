@@ -3,7 +3,7 @@
     "wedo2.requirement": "The LEGO WeDo 2.0 extension is currently only available for Mac OSX. We plan to release a Windows version later in 2016.",
     "wedo2.getStarted": "Getting Started with LEGO WeDo 2.0",
     "wedo2.installTitle": "1. Install Device Manager",
-    "wedo2.installText": "The Device Manager lets you connect WeDo 2.0 to Scratch using Bluetooth <a href=\"#\">Download Here</a>",
+    "wedo2.installText": "The Device Manager lets you connect WeDo 2.0 to Scratch using Bluetooth <a href=\"https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1084869222&mt=12\">Download Here</a>",
     "wedo2.setupTitle": "2. Setup & Help",
     "wedo2.setupText": "Connect your WeDo 2.0 by following the steps in the <a href=\"/projects/editor/?tip_bar=ext2\">Tips Window</a>",
     "wedo2.createTitle": "3. Create",
