@@ -5,84 +5,80 @@
 #view {
     padding: 0;
 
+    p {
+        &.callout {
+            padding: .75em 1em;
+            text-align: center;
+        }
+    }
+
     .top-banner {
         margin-bottom: 50px;
         background-color: $ui-blue;
         padding: 50px 0;
         width: 100%;
 
-            h2 {
-                color: $ui-white;
-            }
+        h2 {
+            color: $ui-white;
+        }
 
-            p {
-                color: $ui-white;
-            }
+        p {
+            color: $ui-white;
+        }
 
-            .columns2 {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
+        .columns2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-            .banner-text {
-                max-width: $cols7;
-            }
+        .banner-text {
+            max-width: $cols7;
+        }
 
-            .banner-photo {
-                max-width: $cols4;
+        .banner-photo {
+            max-width: $cols4;
 
-                img {
-                    width: 100%;
-                }
+            img {
+                width: 100%;
             }
+        }
     } 
 
     section {
         margin-bottom: 50px;
+        text-align: center;
     }
 
-    // GETTING STARTED SECTION
-
-    #getting-started {
-        h3 {
-            text-align: center;
-        }
-    }
+    // Getting Started Section
 
     .columns3 {
         display: flex;
         justify-content: space-between;
 
         .column { 
-            max-width: $cols4;
             margin: 15px;
-            text-align: center;
+            max-width: $cols4;
 
             img {
-                width: 80%;
                 margin: 0 auto;
+                width: 80%;
             }
         }
     }
 
-    p.callout {
-        padding: .75em 1em;
-        text-align: center;
-    }
-
-
-    // PROJECT HIGHLIGHT SECTION
+    // Project Highlight Section
 
     #starter-projects {
-        h3, p {
+        h3,
+        p {
             text-align: center;
         }
     }
 
     .banner {
-        padding: 10px 0 50px;
         background-color: $ui-gray;
+        padding: 10px 0 50px;
 
         h3 {
             margin-top: 30px;
@@ -90,39 +86,37 @@
     }
 
     .project-list {
-            display: flex;
-            max-width: $cols9;
-            margin: 0 auto;
-            justify-content: space-between;
+        display: flex;
+        margin: 0 auto;
+        max-width: $cols9;
+        justify-content: space-between;
     } 
 
     .project-card {
-        max-width: $cols3;
-        margin: 10px;
-        background-color: $ui-white;
-        border-radius: 7px;
-        overflow: hidden;
         transition: transform .25s ease;
+        margin: 10px;
+        border-radius: 7px;
+        background-color: $ui-white;
+        max-width: $cols3;
+        overflow: hidden;
 
 
         img {
-            width: 100%;
             border-bottom: 2px solid $ui-white;
+            width: 100%;
         }
 
         p {
             display: block;
-            margin: 15px 15px 20px 15px;
+            margin: 15px 15px 20px;
             color: $ui-blue;
             font-weight: 500;
         }
 
         &:hover {
-            //background-color: $ui-blue;
-            cursor: pointer; 
-
             transform: scale(1.1, 1.1);
             transition: transform .25s ease;
+            cursor: pointer; 
 
             p {
                 color: darken($ui-blue, 15);
@@ -130,25 +124,25 @@
         }
     }
 
-    // DEVICE CARDS
+    // Device Cards
 
     .device-card {
         display: inline-block;
-        max-width: $cols3;
         margin: 0 10px;
+        max-width: $cols3;
 
         img {
             width: 100%;
         }
     }
 
-    // RESPONSIVE BEHAVIOR
+    // Responsive Behavior
 
     //4 columns
     @media only screen and (max-width: $mobile - 1) {
         .inner {
-            width: calc(100% - 40px);
             margin: 0 auto;
+            width: calc(100% - 40px);
         }
 
         .top-banner {
@@ -159,20 +153,23 @@
             }
         }
 
-        .project-list, .columns3 {
+        .project-list,
+        .columns3 {
             display: block;
         }
 
-        .project-card, .columns3 .column {
+        .project-card,
+        .columns3 .column {
             display: block;
-            width: $cols6;
             margin: 20px auto;
+            width: $cols6;
         }
     }
 
     //6 columns
     @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-        .project-list, .columns3 {
+        .project-list,
+        .columns3 {
             display: inline-block;
         }
 
@@ -184,7 +181,8 @@
             }
         }
 
-        .project-card, .columns3 .column {
+        .project-card,
+        .columns3 .column {
             display: inline-block;
             width: $cols6;
         }
