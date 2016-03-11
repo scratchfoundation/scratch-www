@@ -55,18 +55,21 @@ var Thumbnail = React.createClass({
                 </div>
             );
         }
-        var titleElement;
+        
+        var imgElement,titleElement;
         if (this.props.linkTitle) {
+            imgElement = <a className="thumbnail-image" href={this.props.href}>
+                             <img src={this.props.src} />
+                         </a>;
             titleElement =  <a href={this.props.href}>{this.props.title}</a>;
         } else {
+            imgElement = <img src={this.props.src} />;
             titleElement = this.props.title;
         }
 
         return (
             <div className={classes} >
-                <a className="thumbnail-image" href={this.props.href}>
-                    <img src={this.props.src} />
-                </a>
+                {imgElement}
                 <div className="thumbnail-title">
                     {titleElement}
                 </div>

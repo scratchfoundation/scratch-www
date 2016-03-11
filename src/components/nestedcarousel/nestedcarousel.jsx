@@ -35,7 +35,7 @@ var NestedCarousel = React.createClass({
             lazyLoad: true,
             slidesToShow: 1,
             slidesToScroll: 1,
-            variableWidth: true
+            variableWidth: false
         });
         
         var arrows = this.props.items.length > settings.slidesToShow;
