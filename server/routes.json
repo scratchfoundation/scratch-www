@@ -20,18 +20,18 @@
         "title": "Hour of Code"
     },
     {
-        "pattern": "/microworlds/art",
-        "view": "microworld_art",
-        "title": "Arts Microworld"
+        "pattern": "/info/credits",
+        "view": "credits",
+        "title": "Credits"
     },
     {
-        "pattern": "/microworlds/fashion",
-        "view": "microworld_fashion",
-        "title": "Fashion Microworld"
+        "pattern": "/jobs",
+        "view": "jobs",
+        "title": "Jobs"
     },
     {
-        "pattern": "/microworlds/hiphop",
-        "view": "microworld_hiphop",
-        "title": "Hip Hop Microworld"
+        "pattern": "/wedo",
+        "view": "wedo2",
+        "title": "LEGO WeDo 2.0"
     }
 ]

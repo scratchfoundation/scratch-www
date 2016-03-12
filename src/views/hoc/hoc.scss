@@ -77,10 +77,6 @@ $base-bg: $ui-white;
             min-width: 200px;
             max-width: 230px;
 
-            a {
-                white-space: normal;
-            }
-
             .card-info {
                 border-radius: 5px;
                 background-color: $base-bg;
@@ -203,10 +199,6 @@ $base-bg: $ui-white;
     .studio {
         width: 50%;
 
-        a {
-            white-space: normal;
-        }
-
         h5 {
             width: 200px;
         }
@@ -239,15 +231,15 @@ $base-bg: $ui-white;
         margin: 20px 0;
         width: 100%;
 
-        a {
-            white-space: normal;
-        }
-
         img {
             margin: 20px;
             max-width: 150px;
             max-height: 55px;
             vertical-align: middle;
         }
+    }
+
+    .trademark {
+        margin-top: 20px;
     }
 }

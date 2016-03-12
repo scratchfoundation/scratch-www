@@ -1,6 +1,14 @@
 var cookie = require('cookie');
 var xhr = require('xhr');
 
+/**
+ * Module that handles coookie interactions.
+ *     (Cookies?!?! Jar?!?! Get it?!?! WE'RE AMAZING!!!!)
+ *
+ * get(name, callback) – can be sync or async, as callback is optional
+ * set(name, value) – synchronously sets the cookie
+ * use(name, uri, callback) – can by sync or async, gets cookie from the uri if not there.
+ */
 var Jar = {};
 
 Jar.get = function (name, callback) {

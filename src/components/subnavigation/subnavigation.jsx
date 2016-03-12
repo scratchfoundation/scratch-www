@@ -3,6 +3,10 @@ var React = require('react');
 
 require('./subnavigation.scss');
 
+/**
+ * Container for a custom, horizontal list of navigation elements
+ * that can be displayed within a view or component.
+ */
 var SubNavigation = React.createClass({
     type: 'SubNavigation',
     render: function () {

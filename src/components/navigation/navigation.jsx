@@ -4,7 +4,6 @@ var ReactIntl = require('react-intl');
 var defineMessages = ReactIntl.defineMessages;
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
-var xhr = require('xhr');
 
 var Api = require('../../mixins/api.jsx');
 var Avatar = require('../avatar/avatar.jsx');
@@ -48,14 +47,14 @@ var Navigation = React.createClass({
             loginOpen: false,
             loginError: null,
             registrationOpen: false,
-            unreadMessageCount: 0,
-            messageCountIntervalId: -1
+            unreadMessageCount: 0, // bubble number to display how many notifications someone has.
+            messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
         };
     },
     componentDidMount: function () {
         if (this.state.session.user) {
             this.getMessageCount();
-            var intervalId = setInterval(this.getMessageCount, 120000);
+            var intervalId = setInterval(this.getMessageCount, 120000); // check for new messages every 2 mins.
             this.setState({'messageCountIntervalId': intervalId});
         }
     },
@@ -96,11 +95,11 @@ var Navigation = React.createClass({
     getMessageCount: function () {
         this.api({
             method: 'get',
-            uri: '/proxy/users/' + this.state.session.user.username + '/activity/count'
+            uri: '/users/' + this.state.session.user.username + '/messages/count'
         }, function (err, body) {
             if (err) return this.setState({'unreadMessageCount': 0});
             if (body) {
-                var count = parseInt(body.msg_count, this.state.unreadMessageCount);
+                var count = parseInt(body.count, 10);
                 return this.setState({'unreadMessageCount': count});
             }
         }.bind(this));
@@ -151,16 +150,15 @@ var Navigation = React.createClass({
     },
     handleLogOut: function (e) {
         e.preventDefault();
-        xhr({
+        this.api({
             host: '',
-            uri: '/accounts/logout/'
+            method: 'post',
+            uri: '/accounts/logout/',
+            useCsrf: true
         }, function (err) {
-            if (err) {
-                log.error(err);
-            } else {
-                this.closeLogin();
-                window.refreshSession();
-            }
+            if (err) log.error(err);
+            this.closeLogin();
+            window.refreshSession();
         }.bind(this));
     },
     handleAccountNavClick: function (e) {
@@ -193,13 +191,14 @@ var Navigation = React.createClass({
             'show': this.state.unreadMessageCount > 0
         });
         var formatMessage = this.props.intl.formatMessage;
+        var createLink = this.state.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
         return (
             <div className={classes}>
                 <ul>
-                    <li className="logo"><a href="/"></a></li>
-                    
+                    <li className="logo"><a href="/" aria-label="Scratch"></a></li>
+
                     <li className="link create">
-                        <a href="/projects/editor">
+                        <a href={createLink}>
                             <FormattedMessage
                                 id="general.create"
                                 defaultMessage={'Create'} />
@@ -237,7 +236,10 @@ var Navigation = React.createClass({
                     <li className="search">
                         <form action="/search/google_results" method="get">
                             <Input type="submit" value="" />
-                            <Input type="text" placeholder={formatMessage(defaultMessages.search)} name="q" />
+                            <Input type="text"
+                                   aria-label={formatMessage(defaultMessages.search)}
+                                   placeholder={formatMessage(defaultMessages.search)}
+                                   name="q" />
                             <Input type="hidden" name="date" value="anytime" />
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
@@ -262,7 +264,7 @@ var Navigation = React.createClass({
                         </li>,
                         <li className="link right account-nav" key="account-nav">
                             <a className="userInfo" href="#" onClick={this.handleAccountNavClick}>
-                                <Avatar src={this.state.session.user.thumbnailUrl} />
+                                <Avatar src={this.state.session.user.thumbnailUrl} alt="" />
                                 {this.state.session.user.username}
                             </a>
                             <Dropdown
@@ -281,6 +283,15 @@ var Navigation = React.createClass({
                                         <FormattedMessage {...defaultMessages.myStuff} />
                                     </a>
                                 </li>
+                                {this.state.session.permissions.educator ? [
+                                    <li>
+                                        <a href="/educators/classes/">
+                                            <FormattedMessage
+                                                id='general.myClasses'
+                                                defaultMessage={'My Classes'} />
+                                        </a>
+                                    </li>
+                                ] : []}
                                 <li>
                                     <a href="/accounts/settings/">
                                         <FormattedMessage

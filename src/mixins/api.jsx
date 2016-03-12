@@ -6,6 +6,14 @@ var log = require('../lib/log.js');
 
 var CookieMixinFactory = require('./cookieMixinFactory.jsx');
 
+/**
+ * Component mixin that constructs requests to the scratch api.
+ * Custom arguments:
+ *     - useCsrf [boolean] – handles unique csrf token retrieval for POST requests. This prevents
+ *       CSRF forgeries (see: https://www.squarefree.com/securitytips/web-developers.html#CSRF)
+ *
+ * It also takes in other arguments specified in the xhr library spec.
+ */
 var Api = {
     mixins: [
         // Provides useScratchcsrftoken
@@ -34,6 +42,13 @@ var Api = {
             }
             xhr(opts, function (err, res, body) {
                 if (err) log.error(err);
+                // Legacy API responses come as lists, and indicate to redirect the client like
+                // [{success: true, redirect: "/location/to/redirect"}]
+                try {
+                    if ('redirect' in body[0]) window.location = body[0].redirect;
+                } catch (err) {
+                    // do nothing
+                }
                 callback(err, body);
             });
         }.bind(this);

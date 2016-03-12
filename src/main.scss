@@ -35,9 +35,15 @@ h4 {
     font-size: 1.0rem;
 }
 
+p.legal {
+    font-size: .8rem;
+}
+
 /* Links */
-a {
-    white-space: nowrap;
+p {
+    a {
+        white-space: nowrap;
+    }
 }
 
 a:link,
@@ -74,7 +80,7 @@ a:hover {
     /* NOTE: Margin should match height in navigation.scss */
     margin-top: 50px;
     background-color: $background-color;
-    padding: 20px 1px;
+    padding: 20px 0;
     min-width: 100%;
     min-height: 768px;
 }

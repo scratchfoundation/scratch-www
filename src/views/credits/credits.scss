@@ -1,0 +1,37 @@
+@import "../../colors";
+
+#view {
+    p {
+        line-height: 1.5rem;
+        a {
+            word-wrap: break-word; /* Overrides: https://github.com/LLK/scratch-www/blob/develop/src/main.scss#L43-L47 */
+        }
+    }
+    
+    ul {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        flex-wrap: wrap;
+    }
+
+    li {
+        display: inline-block;
+        margin: 10px 0;
+        width: 188px;
+        text-align: center; 
+
+        img {
+            margin: 10px 23px;
+            border: 2px;
+            border-style: solid;
+            border-radius: 50%;
+            border-color: $ui-dark-gray;
+            background-color: $ui-white;
+            padding: 20px;
+            width: 85px;
+            height: 85px;
+        }
+    }
+}

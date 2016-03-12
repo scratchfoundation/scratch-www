@@ -16,7 +16,8 @@ var Thumbnail = React.createClass({
             type: 'project',
             showLoves: false,
             showRemixes: false,
-            linkTitle: true
+            linkTitle: true,
+            alt: ''
         };
     },
     render: function () {
@@ -59,7 +60,7 @@ var Thumbnail = React.createClass({
         var imgElement,titleElement;
         if (this.props.linkTitle) {
             imgElement = <a className="thumbnail-image" href={this.props.href}>
-                             <img src={this.props.src} />
+                             <img src={this.props.src} alt={this.props.alt} />
                          </a>;
             titleElement =  <a href={this.props.href}>{this.props.title}</a>;
         } else {

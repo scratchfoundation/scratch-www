@@ -1,0 +1,22 @@
+{
+    "an": {
+        "locale": "an",
+        "parentLocale": "ca"
+    },
+    "ht": {
+        "locale": "ht",
+        "parentLocale": "fr"
+    },
+    "la": {
+        "locale": "la",
+        "parentLocale": "it"
+    },
+    "yum": {
+        "locale": "yum",
+        "parentLocale": "en"
+    },
+    "cat": {
+        "locale": "cat",
+        "parentLocale": "en"
+    }
+}

@@ -27,12 +27,12 @@ var Splash = injectIntl(React.createClass({
     ],
     getInitialState: function () {
         return {
-            projectCount: 10569070,
-            activity: [],
-            news: [],
-            featuredCustom: {},
-            featuredGlobal: {},
-            showEmailConfirmationModal: false,
+            projectCount: 'over 13 million', // gets the shared project count
+            activity: [], // recent social actions taken by users someone is following
+            news: [], // gets news posts from the scratch Tumblr
+            featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
+            featuredGlobal: {}, // global homepage rows, such as "Featured Projects"
+            showEmailConfirmationModal: false, // flag that determines whether to show banner to request email conf.
             refreshCacheStatus: 'notrequested'
         };
     },
@@ -318,6 +318,25 @@ var Splash = injectIntl(React.createClass({
         var featured = this.renderHomepageRows();
         var emailConfirmationStyle = {width: 500, height: 330, padding: 1};
         var homepageCacheState = this.getHomepageRefreshStatus();
+
+        var formatMessage = this.props.intl.formatMessage;
+        var formatHTMLMessage = this.props.intl.formatHTMLMessage;
+        var messages = {
+            'general.viewAll': formatMessage({id: 'general.viewAll'}),
+            'news.scratchNews': formatMessage({id: 'news.scratchNews'}),
+            'welcome.welcomeToScratch': formatMessage({id: 'welcome.welcomeToScratch'}),
+            'welcome.learn': formatMessage({id: 'welcome.learn'}),
+            'welcome.tryOut': formatMessage({id: 'welcome.tryOut'}),
+            'welcome.connect': formatMessage({id: 'welcome.connect'}),
+            'intro.aboutScratch': formatMessage({id: 'intro.aboutScratch'}),
+            'intro.forEducators': formatMessage({id: 'intro.forEducators'}),
+            'intro.forParents': formatMessage({id: 'intro.forParents'}),
+            'intro.joinScratch': formatMessage({id: 'intro.joinScratch'}),
+            'intro.seeExamples': formatMessage({id: 'intro.seeExamples'}),
+            'intro.tagLine': formatHTMLMessage({id: 'intro.tagLine'}),
+            'intro.tryItOut': formatMessage({id: 'intro.tryItOut'})
+        };
+
         return (
             <div className="splash">
                 {this.shouldShowEmailConfirmation() ? [
@@ -341,14 +360,16 @@ var Splash = injectIntl(React.createClass({
                     {this.state.session.user ? [
                         <div key="header" className="splash-header">
                             {this.shouldShowWelcome() ? [
-                                <Welcome key="welcome" onDismiss={this.handleDismiss.bind(this, 'welcome')}/>
+                                <Welcome key="welcome"
+                                         onDismiss={this.handleDismiss.bind(this, 'welcome')}
+                                         messages={messages} />
                             ] : [
                                 <Activity key="activity" items={this.state.activity} />
                             ]}
-                            <News items={this.state.news} />
+                            <News items={this.state.news} messages={messages} />
                         </div>
                     ] : [
-                        <Intro projectCount={this.state.projectCount} key="intro"/>
+                        <Intro projectCount={this.state.projectCount} messages={messages} key="intro"/>
                     ]}
 
                     {featured}
