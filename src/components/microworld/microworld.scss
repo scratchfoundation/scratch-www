@@ -20,8 +20,7 @@ $base-bg: $ui-white;
 
     h1 {
         margin: 0 auto;
-        padding: 5px 0;
-        max-width: 500px;
+        padding: 5px 10%;
         text-align: center;
         color: $type-gray;
     }
@@ -35,8 +34,7 @@ $base-bg: $ui-white;
         h1,
         p {
             margin: 0 auto;
-            padding: 5px 0;
-            max-width: 500px;
+            padding: 5px 10%;
             text-align: center;
             color: $type-gray;
         }
@@ -125,29 +123,34 @@ $base-bg: $ui-white;
             padding-bottom: 15px;
         }
 
-        iframe {
-            width: 900px;
+        iframe {   
             height: 600px;
         }
 
-        .box {
-            width: 900px;
+        .editor {
+            position: relative;
+
+            iframe {
+                width: 100%;
+            }
+            
+            .scratch-link {
+                position: absolute;
+                right: 3%;
+                width: 10%;
+            }
         }
 
         .side-by-side {
             margin-right: auto;
             margin-left: auto;
-            width: 900px;
+            
             height: 520px;
-
-            .box {
-                width: 400px;
-            }
 
             .design-studio-projects,
             .design-studio {
                 display: inline-block;
-                width: 400px;
+                width: 45%;
                 height: 500px;
             }
 
@@ -160,7 +163,7 @@ $base-bg: $ui-white;
 
                 iframe {
                     margin-top: 60px;
-                    width: 960px;
+                    width: 200%;
                     -webkit-transform: scale(.5);
                     -webkit-transform-origin: top left;
                     -moz-transform: scale(.5);

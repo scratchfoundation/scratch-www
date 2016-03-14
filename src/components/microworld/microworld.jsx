@@ -83,7 +83,7 @@ var Microworld = React.createClass({
             <div className="editor section">
                 <h1>Start Creating!</h1>
                 <a href={'//scratch.mit.edu/projects/'+ projectId +'/#editor'}>
-                  <img src="/images/scratch-og.png" style={{width:'6%', position: 'absolute', left: '75%'}}></img>
+                  <img className="scratch-link" src="/images/scratch-og.png"></img>
                 </a>
                 <iframe src={'//scratch.mit.edu/projects/embed-editor/' + projectId + '/?isMicroworld=true'}
                         frameBorder="0"> </iframe>
