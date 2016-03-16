@@ -1,0 +1,23 @@
+{
+    "cards.introHeader": "Scratch Cards",
+    "cards.introContent": "Scratch cards provide a quick way to learn new Scratch code.",
+    "cards.introAllCards": "Get all the Cards",
+    "cards.introAllCardsEnglish": "English",
+    "cards.introWikiSupport": "Looking for Scratch Cards in your language? Check <a href=\"http://wiki.scratch.mit.edu/wiki/Scratch_Support_Materials\">Scratch Wiki</a>.",
+    "cards.viewCard": "View Card",
+    "cards.dance": "Dance, Dance, Dance",
+    "cards.name": "Animate Your Name",
+    "cards.hide": "Hide and Seek",
+    "cards.changeColor": "Change Color",
+    "cards.moveToBeat": "Move to a Beat",
+    "cards.keyMoves": "Key Moves",
+    "cards.saySomething": "Say Something",
+    "cards.glide": "Glide",
+    "cards.followMouse": "Follow the Mouse",
+    "cards.danceTwist": "Dance Twist",
+    "cards.whirl": "Interactive Whirl",
+    "cards.animateIt": "Animate It",
+    "cards.movingAnimation": "Moving Animation",
+    "cards.surpriseButton": "Surprise Button",
+    "cards.keepScore": "Keep Score"
+}

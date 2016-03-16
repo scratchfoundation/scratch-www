@@ -1,0 +1,39 @@
+@import "../../colors";
+@import "../../typography";
+
+.intro {
+    display: flex;
+    margin: 1em 0;
+    align-items: center;
+    justify-content: center;
+
+    .intro-content {
+        float: left;
+        width: 45%;
+    }
+
+    img {
+        width: 45%;
+    }
+}
+
+.cards-container {
+    text-align: center;
+
+    .box-content {  
+        div {
+            display: inline-block;
+            margin: 0 .75em;
+            max-width: 25%;
+
+            a {
+                display: block;
+
+                .pdf-icon {
+                    margin-right: .2em;
+                    width: 1em;
+                }
+            }
+        }
+    }
+}
