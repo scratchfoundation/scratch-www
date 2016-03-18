@@ -298,6 +298,15 @@ var Navigation = React.createClass({
                                         </a>
                                     </li>
                                 ] : []}
+                                {this.state.session.permissions.student ? [
+                                    <li>
+                                        <a href={'/classes/' + this.state.session.user.classroomId + '/'}>
+                                            <FormattedMessage
+                                                id='general.myClass'
+                                                defaultMessage={'My Class'} />
+                                        </a>
+                                    </li>
+                                ] : []}
                                 <li>
                                     <a href="/accounts/settings/">
                                         <FormattedMessage
