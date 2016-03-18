@@ -18,7 +18,7 @@ var Cards = injectIntl(React.createClass({
         };
         return (
             <div className="inner">
-                <div className="intro">
+                <div className="intro cards">
                     <div className="intro-content">
                         <h1><FormattedMessage id='cards.introHeader' /></h1>
                         <p><FormattedMessage id='cards.introContent' /></p>
