@@ -20,7 +20,8 @@ module.exports = {
         'react': 'React',
         'react/addons': 'React',
         'react-dom': 'ReactDOM',
-        'react-intl': 'ReactIntl'
+        'react-intl': 'ReactIntl',
+        'redux': 'Redux'
     },
     output: {
         path: path.resolve(__dirname, 'build'),

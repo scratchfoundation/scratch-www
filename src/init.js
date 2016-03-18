@@ -1,55 +1,6 @@
 var api = require('./mixins/api.jsx').api;
 var jar = require('./lib/jar');
 
-/**
- * -----------------------------------------------------------------------------
- * Session
- * -----------------------------------------------------------------------------
- */
-
-(function () {
-    window._session = {};
-
-    /**
-     * Binds the object to private session variable and dispatches a global
-     * "session" event.
-     *
-     * @param  {object} Session object
-     *
-     * @return {void}
-     */
-    window.updateSession = function (session) {
-        window._session = session;
-        var sessionEvent = new CustomEvent('session', session);
-        window.dispatchEvent(sessionEvent);
-    };
-
-    /**
-     * Gets a session object from the local proxy method. Calls "updateSession"
-     * once session has been returned from the proxy.
-     *
-     * @return {void}
-     */
-    window.refreshSession = function () {
-        api({
-            host: '',
-            uri: '/session/'
-        }, function (err, body) {
-            if (err) return;
-
-            if (typeof body !== 'undefined') {
-                if (body.banned) {
-                    return window.location = body.redirectUrl;
-                } else {
-                    window.updateSession(body);
-                }
-            }
-        });
-    };
-
-    // Fetch session
-    window.refreshSession();
-})();
 
 /**
  * -----------------------------------------------------------------------------

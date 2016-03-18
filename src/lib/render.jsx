@@ -1,9 +1,18 @@
+var redux = require('redux');
+var thunk = require('redux-thunk').default;
 var ReactDOM = require('react-dom');
+var StoreProvider = require('react-redux').Provider;
 
 var IntlProvider = require('./intl.jsx').IntlProvider;
+var actions = require('../redux/actions.js');
+var reducer = require('../redux/reducer.js');
 
 require('../main.scss');
 
+var store = redux.createStore(
+    reducer,
+    redux.applyMiddleware(thunk)
+);
 
 var render = function (jsx, element) {
     // Get locale and messages from global namespace (see "init.js")
@@ -20,12 +29,16 @@ var render = function (jsx, element) {
 
     // Render view component
     ReactDOM.render(
-        <IntlProvider locale={locale} messages={messages}>
-            {jsx}
-        </IntlProvider>,
+        <StoreProvider store={store}>
+            <IntlProvider locale={locale} messages={messages}>
+                {jsx}
+            </IntlProvider>
+        </StoreProvider>,
         element
     );
 
+    // Get initial session
+    store.dispatch(actions.refreshSession());
 };
 
 module.exports = render;

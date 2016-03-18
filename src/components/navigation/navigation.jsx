@@ -1,9 +1,12 @@
 var classNames = require('classnames');
+var connect = require('react-redux').connect;
 var React = require('react');
 var ReactIntl = require('react-intl');
 var defineMessages = ReactIntl.defineMessages;
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
+
+var actions = require('../../redux/actions.js');
 
 var Api = require('../../mixins/api.jsx');
 var Avatar = require('../avatar/avatar.jsx');
@@ -13,7 +16,6 @@ var log = require('../../lib/log.js');
 var Login = require('../login/login.jsx');
 var Modal = require('../modal/modal.jsx');
 var Registration = require('../registration/registration.jsx');
-var Session = require('../../mixins/session.jsx');
 
 require('./navigation.scss');
 
@@ -37,8 +39,7 @@ var defaultMessages = defineMessages({
 var Navigation = React.createClass({
     type: 'Navigation',
     mixins: [
-        Api,
-        Session
+        Api
     ],
     getInitialState: function () {
         return {
@@ -51,20 +52,25 @@ var Navigation = React.createClass({
             messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
         };
     },
+    getDefaultProps: function () {
+        return {
+            session: {}
+        };
+    },
     componentDidMount: function () {
-        if (this.state.session.user) {
+        if (this.props.session.user) {
             this.getMessageCount();
             var intervalId = setInterval(this.getMessageCount, 120000); // check for new messages every 2 mins.
             this.setState({'messageCountIntervalId': intervalId});
         }
     },
     componentDidUpdate: function (prevProps, prevState) {
-        if (prevState.session.user != this.state.session.user) {
+        if (prevProps.session.user != this.props.session.user) {
             this.setState({
                 'loginOpen': false,
                 'accountNavOpen': false
             });
-            if (this.state.session.user) {
+            if (this.props.session.user) {
                 this.getMessageCount();
                 var intervalId = setInterval(this.getMessageCount, 120000);
                 this.setState({'messageCountIntervalId': intervalId});
@@ -89,13 +95,13 @@ var Navigation = React.createClass({
         }
     },
     getProfileUrl: function () {
-        if (!this.state.session.user) return;
-        return '/users/' + this.state.session.user.username + '/';
+        if (!this.props.session.user) return;
+        return '/users/' + this.props.session.user.username + '/';
     },
     getMessageCount: function () {
         this.api({
             method: 'get',
-            uri: '/users/' + this.state.session.user.username + '/messages/count'
+            uri: '/users/' + this.props.session.user.username + '/messages/count'
         }, function (err, body) {
             if (err) return this.setState({'unreadMessageCount': 0});
             if (body) {
@@ -141,7 +147,7 @@ var Navigation = React.createClass({
                             this.showCanceledDeletion();
                         }
                     }.bind(this));
-                    window.refreshSession();
+                    this.props.dispatch(actions.refreshSession());
                 }
             }
             // JS error already logged by api mixin
@@ -158,7 +164,7 @@ var Navigation = React.createClass({
         }, function (err) {
             if (err) log.error(err);
             this.closeLogin();
-            window.refreshSession();
+            this.props.dispatch(actions.refreshSession());
         }.bind(this));
     },
     handleAccountNavClick: function (e) {
@@ -178,20 +184,20 @@ var Navigation = React.createClass({
         this.setState({'registrationOpen': false});
     },
     completeRegistration: function () {
-        window.refreshSession();
+        this.props.dispatch(actions.refreshSession());
         this.closeRegistration();
     },
     render: function () {
         var classes = classNames({
             'inner': true,
-            'logged-in': this.state.session.user
+            'logged-in': this.props.session.user
         });
         var messageClasses = classNames({
             'messageCount': true,
             'show': this.state.unreadMessageCount > 0
         });
         var formatMessage = this.props.intl.formatMessage;
-        var createLink = this.state.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
+        var createLink = this.props.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
         return (
             <div className={classes}>
                 <ul>
@@ -244,7 +250,7 @@ var Navigation = React.createClass({
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
-                    {this.state.session.user ? [
+                    {this.props.session.user ? [
                         <li className="link right messages" key="messages">
                             <a
                                 href="/messages/"
@@ -264,8 +270,8 @@ var Navigation = React.createClass({
                         </li>,
                         <li className="link right account-nav" key="account-nav">
                             <a className="userInfo" href="#" onClick={this.handleAccountNavClick}>
-                                <Avatar src={this.state.session.user.thumbnailUrl} alt="" />
-                                {this.state.session.user.username}
+                                <Avatar src={this.props.session.user.thumbnailUrl} alt="" />
+                                {this.props.session.user.username}
                             </a>
                             <Dropdown
                                     as="ul"
@@ -283,7 +289,7 @@ var Navigation = React.createClass({
                                         <FormattedMessage {...defaultMessages.myStuff} />
                                     </a>
                                 </li>
-                                {this.state.session.permissions.educator ? [
+                                {this.props.session.permissions.educator ? [
                                     <li>
                                         <a href="/educators/classes/">
                                             <FormattedMessage
@@ -357,4 +363,12 @@ var Navigation = React.createClass({
     }
 });
 
-module.exports = injectIntl(Navigation);
+var mapStateToProps = function (state) {
+    return {
+        session: state.session
+    };
+};
+
+var ConnectedNavigation = connect(mapStateToProps)(Navigation);
+
+module.exports = injectIntl(ConnectedNavigation);

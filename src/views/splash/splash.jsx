@@ -1,10 +1,12 @@
+var connect = require('react-redux').connect;
 var injectIntl = require('react-intl').injectIntl;
 var omit = require('lodash.omit');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
+var actions = require('../../redux/actions.js');
+
 var Api = require('../../mixins/api.jsx');
-var Session = require('../../mixins/session.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
@@ -23,8 +25,7 @@ require('./splash.scss');
 var Splash = injectIntl(React.createClass({
     type: 'Splash',
     mixins: [
-        Api,
-        Session
+        Api
     ],
     getInitialState: function () {
         return {
@@ -37,9 +38,14 @@ var Splash = injectIntl(React.createClass({
             refreshCacheStatus: 'notrequested'
         };
     },
+    getDefaultProps: function () {
+        return {
+            session: {}
+        }
+    },
     componentDidUpdate: function (prevProps, prevState) {
-        if (this.state.session.user != prevState.session.user) {
-            if (this.state.session.user) {
+        if (this.props.session.user != prevProps.session.user) {
+            if (this.props.session.user) {
                 this.getActivity();
                 this.getFeaturedCustom();
                 this.getNews();
@@ -58,7 +64,7 @@ var Splash = injectIntl(React.createClass({
     },
     componentDidMount: function () {
         this.getFeaturedGlobal();
-        if (this.state.session.user) {
+        if (this.props.session.user) {
             this.getActivity();
             this.getFeaturedCustom();
             this.getNews();
@@ -84,7 +90,7 @@ var Splash = injectIntl(React.createClass({
     },
     getActivity: function () {
         this.api({
-            uri: '/proxy/users/' + this.state.session.user.username + '/activity?limit=5'
+            uri: '/proxy/users/' + this.props.session.user.username + '/activity?limit=5'
         }, function (err, body) {
             if (!err) this.setState({activity: body});
         }.bind(this));
@@ -98,7 +104,7 @@ var Splash = injectIntl(React.createClass({
     },
     getFeaturedCustom: function () {
         this.api({
-            uri: '/proxy/users/' + this.state.session.user.id + '/featured'
+            uri: '/proxy/users/' + this.props.session.user.id + '/featured'
         }, function (err, body) {
             if (!err) this.setState({featuredCustom: body});
         }.bind(this));
@@ -161,20 +167,20 @@ var Splash = injectIntl(React.createClass({
             useCsrf: true,
             json: {cue: cue, value: false}
         }, function (err) {
-            if (!err) window.refreshSession();
+            if (!err) this.props.dispatch(actions.refreshSession());
         });
     },
     shouldShowWelcome: function () {
-        if (!this.state.session.user || !this.state.session.flags.show_welcome) return false;
+        if (!this.props.session.user || !this.props.session.flags.show_welcome) return false;
         return (
-            new Date(this.state.session.user.dateJoined) >
+            new Date(this.props.session.user.dateJoined) >
             new Date(new Date - 2*7*24*60*60*1000) // Two weeks ago
         );
     },
     shouldShowEmailConfirmation: function () {
         return (
-            this.state.session.user && this.state.session.flags.has_outstanding_email_confirmation &&
-            this.state.session.flags.confirm_email_banner);
+            this.props.session.user && this.props.session.flags.has_outstanding_email_confirmation &&
+            this.props.session.flags.confirm_email_banner);
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
@@ -233,7 +239,7 @@ var Splash = injectIntl(React.createClass({
             );
         }
 
-        if (this.state.session.user &&
+        if (this.props.session.user &&
             this.state.featuredGlobal.community_newest_projects &&
             this.state.featuredGlobal.community_newest_projects.length > 0) {
             
@@ -358,7 +364,7 @@ var Splash = injectIntl(React.createClass({
                     </Modal>
                 ] : []}
                 <div key="inner" className="inner">
-                    {this.state.session.user ? [
+                    {this.props.session.user ? [
                         <div key="header" className="splash-header">
                             {this.shouldShowWelcome() ? [
                                 <Welcome key="welcome"
@@ -412,4 +418,12 @@ var Splash = injectIntl(React.createClass({
     }
 }));
 
-render(<Page><Splash /></Page>, document.getElementById('app'));
+var mapStateToProps = function (state) {
+    return {
+        session: state.session
+    };
+};
+
+var ConnectedSplash = connect(mapStateToProps)(Splash);
+
+render(<Page><ConnectedSplash /></Page>, document.getElementById('app'));
