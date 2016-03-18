@@ -41,9 +41,9 @@ var Splash = injectIntl(React.createClass({
     getDefaultProps: function () {
         return {
             session: {}
-        }
+        };
     },
-    componentDidUpdate: function (prevProps, prevState) {
+    componentDidUpdate: function (prevProps) {
         if (this.props.session.user != prevProps.session.user) {
             if (this.props.session.user) {
                 this.getActivity();

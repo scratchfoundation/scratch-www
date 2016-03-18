@@ -1,4 +1,3 @@
-var api = require('./mixins/api.jsx').api;
 var jar = require('./lib/jar');
 
 

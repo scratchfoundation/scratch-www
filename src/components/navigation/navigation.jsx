@@ -64,7 +64,7 @@ var Navigation = React.createClass({
             this.setState({'messageCountIntervalId': intervalId});
         }
     },
-    componentDidUpdate: function (prevProps, prevState) {
+    componentDidUpdate: function (prevProps) {
         if (prevProps.session.user != this.props.session.user) {
             this.setState({
                 'loginOpen': false,
