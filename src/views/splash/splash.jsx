@@ -15,6 +15,7 @@ var Carousel = require('../../components/carousel/carousel.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var Modal = require('../../components/modal/modal.jsx');
 var News = require('../../components/news/news.jsx');
+var Page = require('../../components/page/page.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
 require('./splash.scss');
@@ -411,4 +412,4 @@ var Splash = injectIntl(React.createClass({
     }
 }));
 
-render(<Splash />, document.getElementById('view'));
+render(<Page><Splash /></Page>, document.getElementById('app'));

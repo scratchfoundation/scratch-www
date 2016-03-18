@@ -1,6 +1,8 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
+var Page = require('../../components/page/page.jsx');
+
 require('./credits.scss');
 
 var Credits = React.createClass({
@@ -299,4 +301,4 @@ var Credits = React.createClass({
     }
 });
 
-render(<Credits />, document.getElementById('view'));
+render(<Page><Credits /></Page>, document.getElementById('app'));
