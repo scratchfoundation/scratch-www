@@ -2,7 +2,6 @@ var classNames = require('classnames');
 var connect = require('react-redux').connect;
 var React = require('react');
 var ReactIntl = require('react-intl');
-var defineMessages = ReactIntl.defineMessages;
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
 
@@ -20,21 +19,6 @@ var Registration = require('../registration/registration.jsx');
 require('./navigation.scss');
 
 Modal.setAppElement(document.getElementById('view'));
-
-var defaultMessages = defineMessages({
-    messages: {
-        id: 'general.messages',
-        defaultMessage: 'Messages'
-    },
-    myStuff: {
-        id: 'general.myStuff',
-        defaultMessage: 'My Stuff'
-    },
-    search: {
-        id: 'general.search',
-        defaultMessage: 'Search'
-    }
-});
 
 var Navigation = React.createClass({
     type: 'Navigation',
@@ -205,37 +189,27 @@ var Navigation = React.createClass({
 
                     <li className="link create">
                         <a href={createLink}>
-                            <FormattedMessage
-                                id="general.create"
-                                defaultMessage={'Create'} />
+                            <FormattedMessage id="general.create" />
                         </a>
                     </li>
                     <li className="link explore">
                         <a href="/explore?date=this_month">
-                            <FormattedMessage
-                                id="general.explore"
-                                defaultMessage={'Explore'} />
+                            <FormattedMessage id="general.explore" />
                         </a>
                     </li>
                     <li className="link discuss">
                         <a href="/discuss">
-                            <FormattedMessage
-                                id="general.discuss"
-                                defaultMessage={'Discuss'} />
+                            <FormattedMessage id="general.discuss" />
                         </a>
                     </li>
                     <li className="link about">
                         <a href="/about">
-                            <FormattedMessage
-                                id="general.about"
-                                defaultMessage={'About'} />
+                            <FormattedMessage id="general.about" />
                         </a>
                     </li>
                     <li className="link help">
                         <a href="/help">
-                            <FormattedMessage
-                                id="general.help"
-                                defaultMessage={'Help'} />
+                            <FormattedMessage id="general.help" />
                         </a>
                     </li>
 
@@ -243,8 +217,8 @@ var Navigation = React.createClass({
                         <form action="/search/google_results" method="get">
                             <Input type="submit" value="" />
                             <Input type="text"
-                                   aria-label={formatMessage(defaultMessages.search)}
-                                   placeholder={formatMessage(defaultMessages.search)}
+                                   aria-label={formatMessage({id: 'general.search'})}
+                                   placeholder={formatMessage({id: 'general.search'})}
                                    name="q" />
                             <Input type="hidden" name="date" value="anytime" />
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
@@ -254,18 +228,18 @@ var Navigation = React.createClass({
                         <li className="link right messages" key="messages">
                             <a
                                 href="/messages/"
-                                title={formatMessage(defaultMessages.messages)}>
+                                title={formatMessage({id: 'general.messages'})}>
 
                                 <span className={messageClasses}>{this.state.unreadMessageCount}</span>
-                                <FormattedMessage {...defaultMessages.messages} />
+                                <FormattedMessage id="general.messages" />
                             </a>
                         </li>,
                         <li className="link right mystuff" key="mystuff">
                             <a
                                 href="/mystuff/"
-                                title={formatMessage(defaultMessages.myStuff)}>
+                                title={formatMessage({id: 'general.myStuff'})}>
 
-                                <FormattedMessage {...defaultMessages.myStuff} />
+                                <FormattedMessage id="general.myStuff" />
                             </a>
                         </li>,
                         <li className="link right account-nav" key="account-nav">
@@ -279,46 +253,36 @@ var Navigation = React.createClass({
                                     onRequestClose={this.closeAccountNav}>
                                 <li>
                                     <a href={this.getProfileUrl()}>
-                                        <FormattedMessage
-                                            id='general.profile'
-                                            defaultMessage={'Profile'} />
+                                        <FormattedMessage id="general.profile" />
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/mystuff/">
-                                        <FormattedMessage {...defaultMessages.myStuff} />
+                                        <FormattedMessage id="general.myStuff" />
                                     </a>
                                 </li>
                                 {this.props.session.permissions.educator ? [
                                     <li>
                                         <a href="/educators/classes/">
-                                            <FormattedMessage
-                                                id='general.myClasses'
-                                                defaultMessage={'My Classes'} />
+                                            <FormattedMessage id="general.myClasses" />
                                         </a>
                                     </li>
                                 ] : []}
                                 {this.state.session.permissions.student ? [
                                     <li>
                                         <a href={'/classes/' + this.state.session.user.classroomId + '/'}>
-                                            <FormattedMessage
-                                                id='general.myClass'
-                                                defaultMessage={'My Class'} />
+                                            <FormattedMessage id="general.myClass" />
                                         </a>
                                     </li>
                                 ] : []}
                                 <li>
                                     <a href="/accounts/settings/">
-                                        <FormattedMessage
-                                            id='general.accountSettings'
-                                            defaultMessage={'Account settings'} />
+                                        <FormattedMessage id="general.accountSettings" />
                                     </a>
                                 </li>
                                 <li className="divider">
                                     <a href="#" onClick={this.handleLogOut}>
-                                        <FormattedMessage
-                                            id='navigation.signOut'
-                                            defaultMessage={'Sign out'} />
+                                        <FormattedMessage id="navigation.signOut" />
                                     </a>
                                 </li>
                             </Dropdown>
@@ -326,9 +290,7 @@ var Navigation = React.createClass({
                     ] : [
                         <li className="link right join" key="join">
                             <a href="#" onClick={this.handleJoinClick}>
-                                <FormattedMessage
-                                    id='general.joinScratch'
-                                    defaultMessage={'Join Scratch'} />
+                                <FormattedMessage id="general.joinScratch" />
                             </a>
                         </li>,
                         <Registration
@@ -342,10 +304,8 @@ var Navigation = React.createClass({
                                 onClick={this.handleLoginClick}
                                 className="ignore-react-onclickoutside"
                                 key="login-link">
-                                    <FormattedMessage
-                                        id='general.signIn'
-                                        defaultMessage={'Sign In'} />
-                            </a>
+                                    <FormattedMessage id="general.signIn" />
+                           </a>
                             <Dropdown
                                     className="login-dropdown with-arrow"
                                     isOpen={this.state.loginOpen}
