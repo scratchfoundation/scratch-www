@@ -3,9 +3,17 @@
         "locale": "an",
         "parentLocale": "ca"
     },
+    "cat": {
+        "locale": "cat",
+        "parentLocale": "en"
+    },
     "ht": {
         "locale": "ht",
         "parentLocale": "fr"
+    },
+    "ja-hr": {
+        "locale": "ja-hr",
+        "parentLocale": "ja"
     },
     "la": {
         "locale": "la",
@@ -15,8 +23,12 @@
         "locale": "yum",
         "parentLocale": "en"
     },
-    "cat": {
-        "locale": "cat",
-        "parentLocale": "en"
+    "zh-cn": {
+        "locale": "zh-cn",
+        "parentLocale": "zh"
+    },
+    "zh-tw": {
+        "locale": "zh-tw",
+        "parentLocale": "zh"
     }
 }
