@@ -51,6 +51,7 @@
     "lodash.range": "3.0.1",
     "minilog": "2.0.8",
     "node-sass": "3.3.3",
+    "pako": "0.2.8",
     "po2icu": "git://github.com/LLK/po2icu.git#develop",
     "react-addons-test-utils": "0.14.7",
     "react-modal": "0.6.1",

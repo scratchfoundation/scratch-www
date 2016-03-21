@@ -1,5 +1,6 @@
-var api = require('./mixins/api.jsx').api;
 var jar = require('./lib/jar');
+var log = require('./lib/log');
+var translations = require('../locales/translations.json');
 
 /**
  * -----------------------------------------------------------------------------
@@ -31,19 +32,18 @@ var jar = require('./lib/jar');
      * @return {void}
      */
     window.refreshSession = function () {
-        api({
-            host: '',
-            uri: '/session/'
-        }, function (err, body) {
-            if (err) return;
-
-            if (typeof body !== 'undefined') {
-                if (body.banned) {
-                    return window.location = body.redirectUrl;
-                } else {
-                    window.updateSession(body);
+        jar.get('scratchsessionsid', function (err, value) {
+            if (err) return log.error('Error while fetching session cookie:', err);
+            jar.unsign(value, function (err, contents) {
+                if (err) return log.error('Error while unsigning session cookie:', err);
+                try {
+                    var sessionData = JSON.parse(contents);
+                } catch (e) {
+                    log.error('Could not deserialize session:', e);
+                    sessionData = {};
                 }
-            }
+                window.updateSession(sessionData);
+            });
         });
     };
 
