@@ -2,6 +2,7 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
+var Page = require('../../components/page/page.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
@@ -44,4 +45,4 @@ var Components = React.createClass({
     }
 });
 
-render(<Components />, document.getElementById('view'));
+render(<Page><Components /></Page>, document.getElementById('app'));

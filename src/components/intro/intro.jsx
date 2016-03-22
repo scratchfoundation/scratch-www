@@ -1,5 +1,8 @@
+var connect = require('react-redux').connect;
 var omit = require('lodash.omit');
 var React = require('react');
+
+var actions = require('../../redux/actions.js');
 
 var Modal = require('../modal/modal.jsx');
 var Registration = require('../registration/registration.jsx');
@@ -15,7 +18,6 @@ var Intro = React.createClass({
     },
     getDefaultProps: function () {
         return {
-            projectCount: 10569070,
             messages: {
                 'intro.aboutScratch': 'ABOUT SCRATCH',
                 'intro.forEducators': 'FOR EDUCATORS',
@@ -24,7 +26,9 @@ var Intro = React.createClass({
                 'intro.seeExamples': 'SEE EXAMPLES',
                 'intro.tagLine': 'Create stories, games, and animations<br /> Share with others around the world',
                 'intro.tryItOut': 'TRY IT OUT'
-            }
+            },
+            projectCount: 10569070,
+            session: {}
         };
     },
     getInitialState: function () {
@@ -46,7 +50,7 @@ var Intro = React.createClass({
         this.setState({'registrationOpen': false});
     },
     completeRegistration: function () {
-        window.refreshSession();
+        this.props.dispatch(actions.refreshSession());
         this.closeRegistration();
     },
     render: function () {
@@ -145,4 +149,12 @@ var Intro = React.createClass({
     }
 });
 
-module.exports = Intro;
+var mapStateToProps = function (state) {
+    return {
+        session: state.session
+    };
+};
+
+var ConnectedIntro = connect(mapStateToProps)(Intro);
+
+module.exports = ConnectedIntro;
