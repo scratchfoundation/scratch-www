@@ -7,7 +7,7 @@ var languages = require('../../languages.json');
 window = {};
 require('../../intl/wedo2.intl.js');
 
-tap.test('spotCheckSplashStrings', function (t) {
+tap.test('spotCheckWedo2Strings', function (t) {
     var isoCodes = Object.keys(languages);
     var keysToCheck = Object.keys(window._messages['en']).sort();
     for (var i in isoCodes) {

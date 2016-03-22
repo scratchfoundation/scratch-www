@@ -7,7 +7,7 @@ var languages = require('../../languages.json');
 window = {};
 require('../../intl/about.intl.js');
 
-tap.test('spotCheckSplashStrings', function (t) {
+tap.test('spotCheckAboutStrings', function (t) {
     var isoCodes = Object.keys(languages);
     var keysToCheck = Object.keys(window._messages['en']).sort();
     for (var i in isoCodes) {
