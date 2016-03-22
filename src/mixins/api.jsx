@@ -33,6 +33,13 @@ var Api = {
                 // custom headers.
                 defaults(opts, {useXDR: true});
                 delete opts.headers;
+                if (opts.authentication) {
+                    var authenticationParams = ['x-token=' + opts.authentication];
+                    var parts = opts.uri.split('?');
+                    var qs = (parts[1] || '').split('&').concat(authenticationParams).join('&');
+                    opts.uri = parts[0] + '?' + qs;
+
+                }
             }
             xhr(opts, function (err, res, body) {
                 if (err) log.error(err);
@@ -49,6 +56,9 @@ var Api = {
 
         if (typeof jar.get('scratchlanguage') !== 'undefined') {
             opts.headers['Accept-Language'] = jar.get('scratchlanguage') + ', en;q=0.8';
+        }
+        if (opts.authentication) {
+            opts.headers['X-Token'] = opts.authentication;
         }
         if (opts.useCsrf) {
             jar.use('scratchcsrftoken', '/csrf_token/', function (err, csrftoken) {
