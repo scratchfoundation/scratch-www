@@ -54,10 +54,6 @@ if (!args.length) {
     process.stdout.write('A destination directory must be specified.');
     process.exit(1);
 }
-var verbose = false;
-if (args.length > 1) {
-    verbose = (args[1] === '-v') ? true : false;
-}
 
 var poUiDir = path.resolve(__dirname, '../node_modules/scratchr2_translations/ui');
 var outputDir = path.resolve(__dirname, '../', args[0]);
@@ -129,17 +125,23 @@ glob(poUiDir + '/*', function (err, files) {
         var translations = {};
 
         try {
+            fs.accessSync(jsFile, fs.R_OK);
             var jsTranslations = po2icu.poFileToICUSync(lang, jsFile);
             translations = localeCompare.mergeNewTranslations(translations, jsTranslations, idsWithICU, md5WithIds);
         } catch (err) {
-            if (verbose) process.stdout.write(lang + ': ' + err + '\n');
+            if (err.code !== 'ENOENT') {
+                throw err;
+            }
         }
 
         try {
+            fs.accessSync(pyFile, fs.R_OK);
             var pyTranslations = po2icu.poFileToICUSync(lang, pyFile);
             translations = localeCompare.mergeNewTranslations(translations, pyTranslations, idsWithICU, md5WithIds);
         } catch (err) {
-            if (verbose) process.stdout.write(lang + ': ' + err + '\n');
+            if (err.code !== 'ENOENT') {
+                throw err;
+            }
         }
 
         // add new translations to locale object
