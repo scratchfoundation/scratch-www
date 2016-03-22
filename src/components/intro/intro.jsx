@@ -13,9 +13,6 @@ Modal.setAppElement(document.getElementById('view'));
 
 var Intro = React.createClass({
     type: 'Intro',
-    propTypes: {
-        projectCount: React.PropTypes.number
-    },
     getDefaultProps: function () {
         return {
             messages: {
@@ -29,7 +26,6 @@ var Intro = React.createClass({
                 'intro.description': 'A creative learning community with <span class="project-count"> ' +
                                      'over 13 million </span>projects shared'
             },
-            projectCount: 13000000,
             session: {}
         };
     },
