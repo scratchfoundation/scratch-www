@@ -5,7 +5,6 @@ var actionTypes = require('./actions.js').types;
 
 var sessionReducer = function (state, action) {
     // Reducer for handling changes to session state
-
     if (typeof state === 'undefined') {
         state = {};
     }
@@ -20,8 +19,25 @@ var sessionReducer = function (state, action) {
     }
 };
 
+var tokenReducer = function (state, action) {
+    // Reducer for updating the api token
+    if (typeof state === 'undefined') {
+        state = '';
+    }
+    switch (action.type) {
+        case actionTypes.SET_TOKEN:
+            return action.token;
+        case actionTypes.SET_TOKEN_ERROR:
+            // TODO: do something with the error
+            return state;
+        default:
+            return state;
+    }
+};
+
 var appReducer = combineReducers({
-    session: sessionReducer
+    session: sessionReducer,
+    token: tokenReducer
 });
 
 module.exports = appReducer;
