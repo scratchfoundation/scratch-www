@@ -29,7 +29,7 @@ var Splash = injectIntl(React.createClass({
     ],
     getInitialState: function () {
         return {
-            projectCount: 'over 13 million', // gets the shared project count
+            projectCount: 13000000, // gets the shared project count
             activity: [], // recent social actions taken by users someone is following
             news: [], // gets news posts from the scratch Tumblr
             featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
@@ -326,8 +326,9 @@ var Splash = injectIntl(React.createClass({
         var emailConfirmationStyle = {width: 500, height: 330, padding: 1};
         var homepageCacheState = this.getHomepageRefreshStatus();
 
-        var formatMessage = this.props.intl.formatMessage;
         var formatHTMLMessage = this.props.intl.formatHTMLMessage;
+        var formatNumber = this.props.intl.formatNumber;
+        var formatMessage = this.props.intl.formatMessage;
         var messages = {
             'general.viewAll': formatMessage({id: 'general.viewAll'}),
             'news.scratchNews': formatMessage({id: 'news.scratchNews'}),
@@ -343,6 +344,12 @@ var Splash = injectIntl(React.createClass({
             'intro.tagLine': formatHTMLMessage({id: 'intro.tagLine'}),
             'intro.tryItOut': formatMessage({id: 'intro.tryItOut'})
         };
+        if (this.state.projectCount === this.getInitialState().projectCount) {
+            messages['intro.description'] = formatHTMLMessage({id: 'intro.defaultDescription'});
+        } else {
+            var count = formatNumber(this.state.projectCount);
+            messages['intro.description'] = formatHTMLMessage({id: 'intro.description'}, {value: count});
+        }
 
         return (
             <div className="splash">

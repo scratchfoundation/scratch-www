@@ -25,9 +25,11 @@ var Intro = React.createClass({
                 'intro.joinScratch': 'JOIN SCRATCH',
                 'intro.seeExamples': 'SEE EXAMPLES',
                 'intro.tagLine': 'Create stories, games, and animations<br /> Share with others around the world',
-                'intro.tryItOut': 'TRY IT OUT'
+                'intro.tryItOut': 'TRY IT OUT',
+                'intro.description': 'A creative learning community with <span class="project-count"> ' +
+                                     'over 13 million </span>projects shared'
             },
-            projectCount: 10569070,
+            projectCount: 13000000,
             session: {}
         };
     },
@@ -113,11 +115,8 @@ var Intro = React.createClass({
                                       onRequestClose={this.closeRegistration}
                                       onRegistrationDone={this.completeRegistration} />
                     </div>
-                    <div className="description">
-                        A creative learning community with
-                        <span className="project-count"> {this.props.projectCount.toLocaleString()} </span>
-                        projects shared
-                    </div>
+                    <div className="description"
+                         dangerouslySetInnerHTML={{__html: this.props.messages['intro.description']}}></div>
                     <div className="links">
                         <a href="/about/">
                             {this.props.messages['intro.aboutScratch']}
