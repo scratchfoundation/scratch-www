@@ -59,6 +59,8 @@ test:
 	@echo ""
 	@make functional
 	@echo ""
+	@make localization
+	@echo ""
 
 lint:
 	$(ESLINT) ./*.js
@@ -71,6 +73,11 @@ lint:
 	$(SASSLINT) ./src/views/**/*.scss
 	$(SASSLINT) ./src/components/**/*.scss
 
+localization-standalone:
+	@make translations
+	@make localization
+	@echo ""
+
 unit:
 	$(TAP) ./test/unit/*.js
 
@@ -79,6 +86,9 @@ functional:
 
 integration:
 	$(TAP) ./test/integration/*.js
+
+localization:
+	$(TAP) ./test/localization/*.js
 
 # ------------------------------------
 
