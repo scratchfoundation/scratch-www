@@ -39,8 +39,8 @@ var Jar = {
         }
     },
     get: function (name, callback) {
-    // Get cookie by name
-    var obj = cookie.parse(document.cookie) || {};
+        // Get cookie by name
+        var obj = cookie.parse(document.cookie) || {};
 
         // Handle optional callback
         if (typeof callback === 'function') {
