@@ -57,14 +57,6 @@
             display: none;
         }
 
-        &:hover .costume-1 {
-            display: none;
-        }
-
-        &:hover .costume-2 {
-            display: block;
-        }
-
         .circle {
             display: block;
             top: 15px;
@@ -98,52 +90,74 @@
         }
 
 
-        &.sprite-1 .circle {
-            background-color: $splash-green;
+        &.sprite-1 {
+            .circle {
+                background-color: $splash-green;
+            }
+
+            .text {
+                top: 60px;
+                left: 50px;
+                color: $splash-green;
+            }
         }
 
-        &.sprite-2 .circle {
-            background-color: $splash-pink;
+        &.sprite-2 {
+            .circle {
+                background-color: $splash-pink;
+            }
+
+            .text {
+                top: 77px;
+                left: 50px;
+                color: $splash-pink;
+            }
         }
 
-        &.sprite-3 .circle {
-            background-color: $splash-blue;
+        &.sprite-3 {
+            .circle {
+                background-color: $splash-blue;
+            }
+
+            .text {
+                top: 37px;
+                left: 45px;
+                color: $splash-blue;
+            }
+
+            .subtext {
+                top: 63px;
+                left: 60px;
+                color: $ui-white;
+            }
         }
 
-        &:hover.sprite-1 .circle {
-            box-shadow: 0 0 10px 2px $splash-green;
-        }
+        &:hover {
+            .costume-1 {
+                display: none;
+            }
 
-        &:hover.sprite-2 .circle {
-            box-shadow: 0 0 10px 2px $splash-pink;
-        }
+            .costume-2 {
+                display: block;
+            }
 
-        &:hover.sprite-3 .circle {
-            box-shadow: 0 0 10px 2px $splash-blue;
-        }
+            &.sprite-1 {
+                .circle {
+                    box-shadow: 0 0 10px 2px $splash-green;
+                }
+            }
 
-        &.sprite-1 .text {
-            top: 60px;
-            left: 50px;
-            color: $splash-green;
-        }
+            &.sprite-2 {
+                .circle {
+                    box-shadow: 0 0 10px 2px $splash-pink;
+                }
+            }
 
-        &.sprite-2 .text {
-            top: 77px;
-            left: 50px;
-            color: $splash-pink;
-        }
-
-        &.sprite-3 .text {
-            top: 37px;
-            left: 45px;
-            color: $splash-blue;
-        }
-
-        &.sprite-3 .subtext {
-            top: 63px;
-            left: 60px;
-            color: $ui-white;
+            &.sprite-3 {
+                .circle {
+                    box-shadow: 0 0 10px 2px $splash-blue;
+                }
+            }
         }
     }
 

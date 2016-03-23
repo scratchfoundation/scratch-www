@@ -20,11 +20,12 @@
 
     a {
         margin-top: 15px;
+
+        &:hover {
+            background-color: transparent;
+        }
     }
 
-    a:hover {
-        background-color: transparent;
-    }
 
     .error {
         border: 1px solid $active-dark-gray;

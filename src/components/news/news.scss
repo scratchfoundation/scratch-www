@@ -46,10 +46,10 @@
             color: $type-gray;
             font-size: .85rem;
         }
-    }
 
-    li:nth-child(even) {
-        border-top: 1px solid $ui-border;
-        border-bottom: 1px solid $ui-border;
+        &:nth-child(even) {
+            border-top: 1px solid $ui-border;
+            border-bottom: 1px solid $ui-border;
+        }
     }
 }

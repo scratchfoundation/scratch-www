@@ -11,6 +11,7 @@ $base-bg: $ui-white;
     //4 columns
     @media only screen and (max-width: $mobile - 1) {
         width: $cols4;
+
         .box-header {
             h4 {
                 font-size: .9rem;
@@ -21,9 +22,10 @@ $base-bg: $ui-white;
     //6 columns
     @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
         width: $cols6;
+
         .box-header {
             h4 {
-                font-size: 1.0rem;
+                font-size: 1rem;
             }
         }
     }
@@ -31,6 +33,7 @@ $base-bg: $ui-white;
     //8 columns
     @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
         width: $cols8;
+
         .box-header {
             h4 {
                 font-size: 1.1rem;
@@ -41,6 +44,7 @@ $base-bg: $ui-white;
     //12 columns
     @media only screen and (min-width: $desktop) {
         width: $cols12;
+
         .box-header {
             h4 {
                 font-size: 1.1rem;

@@ -193,7 +193,7 @@ var Navigation = React.createClass({
             'logged-in': this.props.session.user
         });
         var messageClasses = classNames({
-            'messageCount': true,
+            'message-count': true,
             'show': this.state.unreadMessageCount > 0
         });
         var formatMessage = this.props.intl.formatMessage;
@@ -269,7 +269,7 @@ var Navigation = React.createClass({
                             </a>
                         </li>,
                         <li className="link right account-nav" key="account-nav">
-                            <a className="userInfo" href="#" onClick={this.handleAccountNavClick}>
+                            <a className="user-info" href="#" onClick={this.handleAccountNavClick}>
                                 <Avatar src={this.props.session.user.thumbnailUrl} alt="" />
                                 {this.props.session.user.username}
                             </a>
