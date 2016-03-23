@@ -59,6 +59,8 @@ test:
 	@echo ""
 	@make functional
 	@echo ""
+	@make localization
+	@echo ""
 
 lint:
 	$(ESLINT) ./*.js
@@ -79,6 +81,9 @@ functional:
 
 integration:
 	$(TAP) ./test/integration/*.js
+
+localization:
+	$(TAP) ./test/localization/*.js
 
 # ------------------------------------
 
