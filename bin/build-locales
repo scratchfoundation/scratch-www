@@ -39,8 +39,8 @@ var fs = require('fs');
 var glob = require('glob');
 var merge = require('lodash.merge');
 var path = require('path');
-var po2icu = require('po2icu');
 
+var languages = require('../languages.json');
 var localeCompare = require('./lib/locale-compare');
 
 // -----------------------------------------------------------------------------
@@ -55,7 +55,6 @@ if (!args.length) {
     process.exit(1);
 }
 
-var poUiDir = path.resolve(__dirname, '../node_modules/scratchr2_translations/ui');
 var outputDir = path.resolve(__dirname, '../', args[0]);
 try {
     fs.accessSync(outputDir, fs.F_OK);
@@ -64,27 +63,19 @@ try {
     fs.mkdirSync(outputDir);
 }
 
-// get global locale strings first.
-var globalTemplateFile = path.resolve(__dirname, '../src/l10n.json');
 // message key with english string values (i.e. default values)
-var generalIds = JSON.parse(fs.readFileSync(globalTemplateFile, 'utf8'));
 var viewLocales = {};
-var generalLocales = {
-    en: generalIds
-};
-
 // FormattedMessage id with english string as value. Use for default values in translations
 // Sample structure: { 'general-general.blah': 'blah', 'about-about.blah': 'blahblah' }
 var idsWithICU = {};
-
 // reverse (i.e. english string with message key as the value) object for searching po files.
 // Sample structure: { 'blah': 'general-general.blah', 'blahblah': 'about-about.blah' }
 var icuWithIds = {};
 
-for (var id in generalIds) {
-    idsWithICU['general-' + id] = generalIds[id];
-    icuWithIds[generalIds[id]] = 'general-' + id;
-}
+// get global locale strings first.
+var globalTemplateFile = path.resolve(__dirname, '../src/l10n.json');
+localeCompare.getIdsForView('general', globalTemplateFile, viewLocales, idsWithICU, icuWithIds);
+
 
 // start with all views, and remove localized ones as they are iterated over
 var views = glob.sync(path.resolve(__dirname, '../src/views/*'));
@@ -98,15 +89,7 @@ files.forEach(function (file) {
     var dirPath = file.split('/');
     dirPath.pop();
     var view = dirPath.pop();
-
-    var viewIds = JSON.parse(fs.readFileSync(file, 'utf8'));
-    viewLocales[view] = {
-        en: viewIds
-    };
-    for (var id in viewIds) {
-        idsWithICU[view + '-' + id] = viewIds[id];
-        icuWithIds[viewIds[id]] = view + '-' + id; // add viewName to identifier for later
-    }
+    localeCompare.getIdsForView(view, file, viewLocales, idsWithICU, icuWithIds);
 });
 
 // md5 of english strings with message key as the value for searching po files.
@@ -114,59 +97,18 @@ files.forEach(function (file) {
 var md5WithIds = localeCompare.getMD5Map(icuWithIds);
 
 // Get ui localization strings first
-glob(poUiDir + '/*', function (err, files) {
-    if (err) throw new Error(err);
-    
-    files.forEach(function (file) {
-        var lang = file.split('/').pop();
-        var jsFile = path.resolve(file, 'LC_MESSAGES/djangojs.po');
-        var pyFile = path.resolve(file, 'LC_MESSAGES/django.po');
-
-        var translations = {};
-
-        try {
-            fs.accessSync(jsFile, fs.R_OK);
-            var jsTranslations = po2icu.poFileToICUSync(lang, jsFile);
-            translations = localeCompare.mergeNewTranslations(translations, jsTranslations, idsWithICU, md5WithIds);
-        } catch (err) {
-            if (err.code !== 'ENOENT') {
-                throw err;
-            }
-        }
-
-        try {
-            fs.accessSync(pyFile, fs.R_OK);
-            var pyTranslations = po2icu.poFileToICUSync(lang, pyFile);
-            translations = localeCompare.mergeNewTranslations(translations, pyTranslations, idsWithICU, md5WithIds);
-        } catch (err) {
-            if (err.code !== 'ENOENT') {
-                throw err;
-            }
-        }
-
-        // add new translations to locale object
-        for (var id in translations) {
-            var ids = id.split('-'); // [viewName, stringId]
-            var viewName = ids[0];
-            var stringId = ids[1];
-            if (viewLocales.hasOwnProperty(viewName)) {
-                if (!viewLocales[viewName].hasOwnProperty(lang)) viewLocales[viewName][lang] = {};
-                viewLocales[viewName][lang][stringId] = translations[id];
-            } else {
-                // default to general
-                if (!generalLocales.hasOwnProperty(lang)) generalLocales[lang] = {};
-                generalLocales[lang][stringId] = translations[id];
-            }
-        }
-    });
-    
-    for (var i in views) {
-        var viewTranslations = generalLocales;
-        if (views[i] in viewLocales) {
-            viewTranslations = merge(viewLocales[views[i]], viewTranslations);
-        }
-        var objectString = JSON.stringify(viewTranslations);
-        var fileString = 'window._messages = ' + objectString + ';';
-        fs.writeFileSync(outputDir + '/' + views[i] + '.intl.js', fileString);
+var isoCodes = Object.keys(languages);
+for (i in isoCodes) {
+    var translations = localeCompare.getTranslationsForLanguage(isoCodes[i], idsWithICU, md5WithIds);
+    for (var key in translations) {
+        viewLocales[key] = merge(viewLocales[key], translations[key]);
     }
-});
+}
+
+for (i in views) {
+    var viewTranslations = viewLocales['general'];
+    if (views[i] in viewLocales) {
+        viewTranslations = merge(viewLocales[views[i]], viewTranslations);
+    }
+    localeCompare.writeTranslationsToJS(outputDir, views[i], viewTranslations);
+}

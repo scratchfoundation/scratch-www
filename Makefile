@@ -73,11 +73,6 @@ lint:
 	$(SASSLINT) ./src/views/**/*.scss
 	$(SASSLINT) ./src/components/**/*.scss
 
-localization-standalone:
-	@make translations
-	@make localization
-	@echo ""
-
 unit:
 	$(TAP) ./test/unit/*.js
 

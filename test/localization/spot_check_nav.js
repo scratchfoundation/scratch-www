@@ -12,9 +12,13 @@
  *     - Norwegian
  *     - German
  */
+var path = require('path');
 var tap = require('tap');
-window = {};
-require('../../intl/splash.intl.js');
+
+var localeCompare = require('../../bin/lib/locale-compare');
+var viewLocales = {};
+var idsWithICU = {};
+var icuWithIds = {};
 
 var languagesToCheck = [
     'he', 'zh-cn', 'ja', 'pt-br', 'pl', 'nb'
@@ -24,12 +28,24 @@ var idsToCheck = [
     'general.signIn', 'general.discuss'
 ];
 
+
+// Test nav for real languages.
+localeCompare.getIdsForView(
+    'general',
+    path.resolve(__dirname, '../../src/l10n.json'),
+    viewLocales,
+    idsWithICU,
+    icuWithIds
+);
+var md5WithIds = localeCompare.getMD5Map(icuWithIds);
+
 tap.test('spotCheckNavBar', function (t) {
     for (var i in languagesToCheck) {
+        var translations = localeCompare.getTranslationsForLanguage(languagesToCheck[i], idsWithICU, md5WithIds);
         for (var j in idsToCheck) {
             t.notEqual(
-                window._messages[languagesToCheck[i]][idsToCheck[j]],
-                window._messages['en'][idsToCheck[j]],
+                translations['general'][languagesToCheck[i]][idsToCheck[j]],
+                viewLocales['general']['en'][idsToCheck[j]],
                 'check localization of ' + idsToCheck[j] + ' for ' + languagesToCheck[i]
             );
         }
@@ -37,12 +53,25 @@ tap.test('spotCheckNavBar', function (t) {
     t.end();
 });
 
+
+// Test splash items for fake language.
 var fakeLanguageIdsToCheck = ['news.scratchNews', 'splash.featuredProjects', 'splash.featuredStudios'];
+
+localeCompare.getIdsForView(
+    'splash',
+    path.resolve(__dirname, '../../src/views/splash/l10n.json'),
+    viewLocales,
+    idsWithICU,
+    icuWithIds
+);
+md5WithIds = localeCompare.getMD5Map(icuWithIds);
+
 tap.test('spotCheckNavBarFakeLanguage', function (t) {
+    var translations = localeCompare.getTranslationsForLanguage('yum', idsWithICU, md5WithIds);
     for (var i in fakeLanguageIdsToCheck) {
         t.notEqual(
-            window._messages['yum'][fakeLanguageIdsToCheck[i]],
-            window._messages['en'][fakeLanguageIdsToCheck[i]],
+            translations['general']['yum'][fakeLanguageIdsToCheck[i]],
+            viewLocales['splash']['en'][fakeLanguageIdsToCheck[i]],
             'check localization of ' + fakeLanguageIdsToCheck[i] + ' for yum'
         );
     }

@@ -1,5 +1,5 @@
 /*
- * spot check that each language has values for the string id keys on Wedo2 page
+ * spot check that each language has values for the string id keys used generally in the site
  * that are contained in English (i.e. make sure strings will show up, not ids")
  */
 var merge = require('lodash.merge');
@@ -16,18 +16,18 @@ tap.test('spotCheckAboutStrings', function (t) {
     var idsWithICU = {};
     var icuWithIds = {};
     localeCompare.getIdsForView(
-        'wedo2',
-        path.resolve(__dirname, '../../src/views/wedo2/l10n.json'),
+        'general',
+        path.resolve(__dirname, '../../src/l10n.json'),
         viewLocales,
         idsWithICU,
         icuWithIds
     );
     var md5WithIds = localeCompare.getMD5Map(icuWithIds);
-    var keysToCheck = Object.keys(merge(viewLocales['wedo2']['en'])).sort();
+    var keysToCheck = Object.keys(merge(viewLocales['general']['en'])).sort();
     for (var i in isoCodes) {
         var translations = localeCompare.getTranslationsForLanguage(isoCodes[i], idsWithICU, md5WithIds);
         t.same(
-            Object.keys(translations['wedo2'][isoCodes[i]]).sort(),
+            Object.keys(translations['general'][isoCodes[i]]).sort(),
             keysToCheck,
             'check About keys for language ' + isoCodes[i]
         );
