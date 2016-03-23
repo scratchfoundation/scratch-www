@@ -1,10 +1,10 @@
 var React = require('react');
 var injectIntl = require('react-intl').injectIntl;
 var FormattedMessage = require('react-intl').FormattedMessage;
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var render = require('../../lib/render.jsx');
 
 var Box = require('../../components/box/box.jsx');
+var Page = require('../../components/page/page.jsx');
 
 require('./cards.scss');
 
@@ -147,4 +147,4 @@ var Cards = injectIntl(React.createClass({
     }
 }));
 
-render(<Cards />, document.getElementById('view'));
+render(<Page><Cards /></Page>, document.getElementById('app'));
