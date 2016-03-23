@@ -14,7 +14,20 @@ var Cards = injectIntl(React.createClass({
         var locale = window._locale || 'en';
         var formatMessage = this.props.intl.formatMessage;
         var englishLinks = {
-            'cards.allCardsLink': 'https://scratch.mit.edu/scratchr2/static/pdfs/help/Scratch2Cards.pdf'
+            'cards.starterLink': '//scratch.mit.edu/scratchr2/static/pdfs/help/Scratch2Cards.pdf',
+            'cards.nameLink': '//scratch.mit.edu/scratchr2/static/pdfs/help/AnimateYourNameCards.pdf',
+            'cards.pongLink': '//scratch.mit.edu/scratchr2/static/pdfs/help/PongCards.pdf',
+            'cards.storyLink': '//scratch.mit.edu/scratchr2/static/pdfs/help/StoryCards.pdf',
+            'cards.danceLink': '//scratch.mit.edu/scratchr2/static/pdfs/help/DanceCards.pdf',
+            'cards.hideLink': '//scratch.mit.edu/scratchr2/static/pdfs/help/Hide-and-Seek-Cards.pdf'
+        };
+        var formattedLinks = {
+            'cards.starterLink': formatMessage({id: 'cards.starterLink'}),
+            'cards.nameLink': formatMessage({id: 'cards.nameLink'}),
+            'cards.pongLink': formatMessage({id: 'cards.pongLink'}),
+            'cards.storyLink': formatMessage({id: 'cards.storyLink'}),
+            'cards.danceLink': formatMessage({id: 'cards.danceLink'}),
+            'cards.hideLink': formatMessage({id: 'cards.hideLink'})
         };
         return (
             <div className="inner">
@@ -22,184 +35,110 @@ var Cards = injectIntl(React.createClass({
                     <div className="intro-content">
                         <h1><FormattedMessage id='cards.introHeader' /></h1>
                         <p><FormattedMessage id='cards.introContent' /></p>
-                        <p>
-                            <a href={formatMessage({id: 'cards.allCardsLink'})}>
-                                <FormattedMessage id='cards.introAllCards' />
-                            </a>
-                        </p>
-                        {(
-                            locale.indexOf('en') === -1 &&
-                            formatMessage({id: 'cards.allCardsLink'}) === englishLinks['cards.allCardsLink']
-                        ) ? [
-                            <p>
-                                <FormattedHTMLMessage id='cards.introWikiSupport' />
-                            </p>
-                        ] : []}
-                        {(
-                            locale.indexOf('en') === -1 &&
-                            formatMessage({id: 'cards.allCardsLink'}) !== englishLinks['cards.allCardsLink']
-                        ) ? [
-                            <p>
-                                <a href={englishLinks['cards.allCardsLink']}>
-                                    <FormattedMessage id='cards.introAllCards' />&nbsp;
-                                    (<FormattedMessage id='cards.introAllCardsEnglish' />)
-                                </a>
-                            </p>
-                        ] : []}
                     </div>
-                    <img src='//scratch.mit.edu/scratchr2/static/images/help/card-use-overview.png' />
+                    <img src='/images/cards/card-use-overview.png' alt="Card Use Explanation" />
                 </div>
                 <div className='cards-container'>
                     <Box title={''}>
-                        <div>
-                            <h4><FormattedMessage id='cards.dance' /></h4>
-                            <a href={formatMessage({id: 'cards.danceLink'})}>
-                                <img src={formatMessage({id: 'cards.danceThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.danceLink'})}>
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
+                        <div className='card-row'>
+                            <div>
+                                <h4><FormattedMessage id='cards.starter' /></h4>
+                                <a href={formattedLinks['cards.starterLink']}>
+                                    <img src="/images/cards/cards-starter.png" alt="" />
+                                </a>
+                                <a href={formattedLinks['cards.starterLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        formattedLinks['cards.starterLink'] === englishLinks['cards.starterLink'] &&
+                                        locale !== 'en'
+                                    ) ? [
+                                        <span> <FormattedMessage id='cards.english' /></span>
+                                    ] : []}
+                                </a>
+                            </div>
+                            <div>
+                                <h4><FormattedMessage id='cards.name' /></h4>
+                                <a href={formattedLinks['cards.nameLink']}>
+                                    <img src="/images/cards/cards-name.png" alt="" />
+                                </a>
+                                <a href={formattedLinks['cards.nameLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        formattedLinks['cards.nameLink'] === englishLinks['cards.nameLink'] &&
+                                        locale !== 'en'
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
+                                    ] : []}
+                                </a>
+                            </div>
+                            <div>
+                                <h4><FormattedMessage id='cards.pong' /></h4>
+                                <a href={formattedLinks['cards.pongLink']}>
+                                    <img src="/images/cards/cards-pong.png" alt="" />
+                                </a>
+                                <a href={formattedLinks['cards.pongLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        formattedLinks['cards.pongLink'] === englishLinks['cards.pongLink'] &&
+                                        locale !== 'en'
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
+                                    ] : []}
+                                </a>
+                            </div>
                         </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.name' /></h4>
-                            <a href={formatMessage({id: 'cards.nameLink'})}>
-                                <img src={formatMessage({id: 'cards.nameThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.nameLink'})}>
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.hide' /></h4>
-                            <a href={formatMessage({id: 'cards.hideLink'})}>
-                                <img src={formatMessage({id: 'cards.hideThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.hideLink'})}>
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.changeColor' /></h4>
-                            <a href={formatMessage({id: 'cards.changeColorLink'})}>
-                                <img src={formatMessage({id: 'cards.changeColorThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.changeColorLink'})}>
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.moveToBeat' /></h4>
-                            <a href={formatMessage({id: 'cards.moveToBeatLink'})}>
-                                <img src={formatMessage({id: 'cards.moveToBeatThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.moveToBeatLink'})} class="inline-icon-left">
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.keyMoves' /></h4>
-                            <a href={formatMessage({id: 'cards.keyMovesLink'})}>
-                                <img src={formatMessage({id: 'cards.keyMovesThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.keyMovesLink'})} class="inline-icon-left">
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.saySomething' /></h4>
-                            <a href={formatMessage({id: 'cards.saySomethingLink'})}>
-                                <img src={formatMessage({id: 'cards.saySomethingThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.saySomethingLink'})} class="inline-icon-left">
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.glide' /></h4>
-                            <a href={formatMessage({id: 'cards.glideLink'})}>
-                                <img src={formatMessage({id: 'cards.glideThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.glideLink'})} class="inline-icon-left">
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.followMouse' /></h4>
-                            <a href={formatMessage({id: 'cards.followMouseLink'})}>
-                                <img src={formatMessage({id: 'cards.followMouseThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.followMouseLink'})} class="inline-icon-left">
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.danceTwist' /></h4>
-                            <a href={formatMessage({id: 'cards.danceTwistLink'})}>
-                                <img src={formatMessage({id: 'cards.danceTwistThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.danceTwistLink'})} class="inline-icon-left">
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.whirl' /></h4>
-                            <a href={formatMessage({id: 'cards.whirlLink'})}>
-                                <img src={formatMessage({id: 'cards.whirlThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.whirlLink'})} class="inline-icon-left">
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.animateIt' /></h4>
-                            <a href={formatMessage({id: 'cards.animateItLink'})}>
-                                <img src={formatMessage({id: 'cards.animateItThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.animateItLink'})} class="inline-icon-left">
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.movingAnimation' /></h4>
-                            <a href={formatMessage({id: 'cards.movingAnimationLink'})}>
-                                <img src={formatMessage({id: 'cards.movingAnimationThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.movingAnimationLink'})}>
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.surpriseButton' /></h4>
-                            <a href={formatMessage({id: 'cards.surpriseButtonLink'})}>
-                                <img src={formatMessage({id: 'cards.surpriseButtonThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.surpriseButtonLink'})}>
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
-                        </div>
-                        <div>
-                            <h4><FormattedMessage id='cards.keepScore' /></h4>
-                            <a href={formatMessage({id: 'cards.keepScoreLink'})}>
-                                <img src={formatMessage({id: 'cards.keepScoreThumb'})} />
-                            </a>
-                            <a href={formatMessage({id: 'cards.keepScoreLink'})} class="inline-icon-left">
-                                <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
-                                <FormattedMessage id='cards.viewCard' />
-                            </a>
+                        <div className='card-row'>
+                            <div>
+                                <h4><FormattedMessage id='cards.story' /></h4>
+                                <a href={formattedLinks['cards.storyLink']}>
+                                    <img src="/images/cards/cards-story.png" alt="" />
+                                </a>
+                                <a href={formattedLinks['cards.storyLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        formattedLinks['cards.storyLink'] === englishLinks['cards.storyLink'] &&
+                                        locale !== 'en'
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
+                                    ] : []}
+                                </a>
+                            </div>
+                            <div>
+                                <h4><FormattedMessage id='cards.dance' /></h4>
+                                <a href={formattedLinks['cards.danceLink']}>
+                                    <img src="/images/cards/cards-dance.png" alt="" />
+                                </a>
+                                <a href={formattedLinks['cards.danceLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        formattedLinks['cards.danceLink'] === englishLinks['cards.danceLink'] &&
+                                        locale !== 'en'
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
+                                    ] : []}
+                                </a>
+                            </div>
+                            <div>
+                                <h4><FormattedMessage id='cards.hide' /></h4>
+                                <a href={formattedLinks['cards.hideLink']}>
+                                    <img src="/images/cards/cards-hide.png" alt="" />
+                                </a>
+                                <a href={formattedLinks['cards.hideLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        formattedLinks['cards.hideLink'] === englishLinks['cards.hideLink'] &&
+                                        locale !== 'en'
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
+                                    ] : []}
+                                </a>
+                            </div>
                         </div>
                     </Box>
                 </div>

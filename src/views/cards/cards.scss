@@ -1,7 +1,7 @@
 @import "../../colors";
 @import "../../typography";
 
-.cards{
+.cards {
     display: flex;
     margin: 1em 0;
     align-items: center;
@@ -20,11 +20,15 @@
 .cards-container {
     text-align: center;
 
-    .box-content {  
+    .card-row {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+
         div {
             display: inline-block;
-            margin: 0 .75em;
-            max-width: 25%;
+            padding: .5em;
 
             a {
                 display: block;
