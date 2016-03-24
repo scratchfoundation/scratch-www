@@ -20,6 +20,11 @@
         "title": "Hour of Code"
     },
     {
+        "pattern": "/explore/:projects/:type",
+        "view": "explore",
+        "title": "Explore"
+    },
+    {
         "pattern": "/info/credits",
         "view": "credits",
         "title": "Credits"

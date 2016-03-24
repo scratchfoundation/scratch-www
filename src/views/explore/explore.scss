@@ -1,0 +1,86 @@
+@import "../../colors";
+@import "../../frameless";
+
+$base-bg: $ui-white;
+
+#view {
+    .box {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }   
+
+    .box .box-content {
+        padding: 0px;
+    }
+
+    .carousel {
+        padding: 15px;
+        width: calc(100%-5px);
+    }
+
+    .thumbnail.project {
+        width: 200px;
+    }
+
+    .thumbnail.project img {
+        width: 200px;
+        height: 150px;
+    }
+
+    .select {
+        width: 110px;
+        margin: auto 0px auto auto;
+    }
+
+    #sorter {
+        margin: auto 20px auto auto;
+        color: $header-gray;
+        display: inline-block;
+        width:170px;
+    }
+
+    #sortText {
+        width: 60px;
+        margin: auto 0px auto auto;
+        display:inline-block;
+    }
+
+    .sub-nav {
+        justify-content: flex-start;
+        padding: 0px 0px 0px 20px;
+        width: calc(100% - 20px);
+        background-color:  $ui-gray;
+    }
+
+    .sub-nav li {
+        background-color: $ui-white;
+        color: $header-gray;
+        opacity: .75;
+        margin-bottom: -4px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+
+        &:hover {
+            opacity: 1;
+            color: $header-gray;
+            border-color: $active-gray;
+        }
+    }
+
+    .sub-nav li.active {
+        opacity: 1;
+        border-bottom: 4px solid $ui-white;
+    }
+
+    #projectBox {
+        background-color: $ui-white;
+        width: 100%;
+        border-top: 2px solid;
+        border-color: $active-gray;
+        padding-bottom: 30px;
+    }
+}

@@ -1,6 +1,6 @@
 module.exports = {
     // Bind environment
-    api_host: process.env.API_HOST || 'https://api.scratch.mit.edu',
+    api_host: process.env.API_HOST || 'https://api-staging.scratch.mit.edu',
 
     // Search and metadata
     title: 'Imagine, Program, Share',

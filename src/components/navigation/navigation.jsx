@@ -211,7 +211,7 @@ var Navigation = React.createClass({
                         </a>
                     </li>
                     <li className="link explore">
-                        <a href="/explore?date=this_month">
+                        <a href="/explore/projects/all">
                             <FormattedMessage
                                 id="general.explore"
                                 defaultMessage={'Explore'} />

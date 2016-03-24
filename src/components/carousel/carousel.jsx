@@ -34,7 +34,7 @@ var Carousel = React.createClass({
             slidesToScroll: 5,
             variableWidth: true
         });
-        var arrows = this.props.items.length > settings.slidesToShow;
+        var arrows = this.props.items.length > settings.slidesToShow && settings.slidesToScroll>0;
         var classes = classNames(
             'carousel',
             this.props.className
