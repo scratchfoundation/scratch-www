@@ -1,6 +1,6 @@
 @import "../../colors";
 
-&.ReactModal__Content {
+.ReactModal__Content {
     iframe {
         border: 0;
     }
@@ -11,10 +11,10 @@
     position: absolute;
     top: 0;
     right: 0;
-    margin-top: -$modal-close-size/2;
-    margin-right: -$modal-close-size/2;
+    margin-top: -$modal-close-size / 2;
+    margin-right: -$modal-close-size / 2;
     border: 2px solid $ui-border;
-    border-radius: $modal-close-size/2;
+    border-radius: $modal-close-size / 2;
     background-color: $active-dark-gray;
     cursor: pointer;
     width: $modal-close-size;

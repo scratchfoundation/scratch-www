@@ -32,29 +32,31 @@ h1 {
 
 h4 {
     line-height: 1.1rem;
-    font-size: 1.0rem;
+    font-size: 1rem;
 }
 
-p.legal {
-    font-size: .8rem;
-}
-
-/* Links */
 p {
+    &.legal {
+        font-size: .8rem;
+    }
+
     a {
         white-space: nowrap;
     }
 }
 
-a:link,
-a:visited,
-a:active {
-    text-decoration: none;
-    color: $link-blue;
-}
+/* Links */
+a {
+    &:link,
+    &:visited,
+    &:active {
+        text-decoration: none;
+        color: $link-blue;
+    }
 
-a:hover {
-    text-decoration: underline;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 /* Classes */

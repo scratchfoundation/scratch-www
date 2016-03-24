@@ -51,72 +51,73 @@
                 vertical-align: bottom;
             }
         }
+    }
 
-        .logo {
-            margin-right: 10px;
+    .logo {
+        margin-right: 10px;
 
-            a {
-                display: block;
-                transition: .15s ease all;
-                margin: 0 6px 0 0;
-                border: 0;
+        a {
+            display: block;
+            transition: .15s ease all;
+            margin: 0 6px 0 0;
+            border: 0;
 
-                background-image: url("/images/logo_sm.png");
-                background-repeat: no-repeat;
-                background-position: center center;
-                background-size: 95%;
-                width: 81px;
-                height: 50px;
+            background-image: url("/images/logo_sm.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 95%;
+            width: 81px;
+            height: 50px;
 
-                &:hover {
-                    transition: .15s ease all; 
-                    background-size: 100%;
-                }
+            &:hover {
+                transition: .15s ease all; 
+                background-size: 100%;
             }
         }
+    }
 
-        .link {
-            > a {
-                display: block;
-                padding: 17px 15px 0 15px;
-                height: 33px;
-                
-                text-decoration: none;
-                white-space: nowrap;
-                color: $type-white;
-                font-size: .85rem;
-                font-weight: bold;
-            }
-
-            > a:hover {
-                background-color: $active-gray;
-            }
-        }
-
-        .search {
-            margin: 0 20px;
-            border-right: 0;
+    .link {
+        > a {
+            display: block;
+            padding: 17px 15px 0 15px;
+            height: 33px;
+            
+            text-decoration: none;
+            white-space: nowrap;
             color: $type-white;
-            flex-grow: 3;
+            font-size: .85rem;
+            font-weight: bold;
 
-            .ie9 & {
-                width: 100%;
-            }
-
-            form {
-                margin: 0;
-            }
-
-            input {
-                display: inline-block;
-                margin-top: 5px;
-                outline: none;
-                border: 0;
+            &:hover {
                 background-color: $active-gray;
-                height: 14px;
             }
+        }
 
-            input[type=submit] {
+    }
+
+    .search {
+        margin: 0 20px;
+        border-right: 0;
+        color: $type-white;
+        flex-grow: 3;
+
+        .ie9 & {
+            width: 100%;
+        }
+
+        form {
+            margin: 0;
+        }
+
+        input {
+            display: inline-block;
+            margin-top: 5px;
+            outline: none;
+            border: 0;
+            background-color: $active-gray;
+            height: 14px;
+
+            [type=submit] {
                 position: absolute;
                 
                 background-color: transparent;
@@ -129,7 +130,7 @@
                 height: 40px;
             }
 
-            input[type=text] {
+            [type=text] {
                 transition: .15s ease background-color; 
                 padding: 0;
                 padding-right: 10px;
@@ -148,122 +149,125 @@
                     transition: .15s ease background-color;
                     background-color: $active-dark-gray;
                 }
-            }
 
-            .ie9 input[type=text] {
-                width: 70px;
+                .ie9 & {
+                    width: 70px;
+                }
             }
         }
+    }
 
-        .right {
-            float: right;
-            margin-left: auto;
-            align-self: flex-end;
+    .right {
+        float: right;
+        margin-left: auto;
+        align-self: flex-end;
 
-            .ie9 & {
-                float: none;
-            }
+        .ie9 & {
+            float: none;
+        }
 
-            a:hover {
+        a {
+            &:hover {
                 background-color: $active-gray;
             }
         }
+    }
 
-        .messages,
-        .mystuff {
-            > a {
-                background-repeat: no-repeat;
-                background-position: center center;
-                background-size: 45%;
-                padding-right: 10px;
-                padding-left: 10px;
-                width: 30px;
-                overflow: hidden;
-                text-indent: 50px;
-                white-space: nowrap;
-            }
+    .messages,
+    .mystuff {
+        > a {
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 45%;
+            padding-right: 10px;
+            padding-left: 10px;
+            width: 30px;
+            overflow: hidden;
+            text-indent: 50px;
+            white-space: nowrap;
 
-            > a:hover {
+            &:hover {
                 background-size: 50%;
             }
         }
 
-        .messages {
-            > a {
-                background-image: url("/images/nav-notifications.png");
-            }
+    }
 
-            .messageCount {
-                display: none;
-                
-                &.show {
-                    display: block;
-                    position: absolute;
-                    top: .5rem;
-                    right: .25rem;
-                    border-radius: 1rem;
-                    background-color: $ui-orange;
-                    padding: 0 .25rem;
-                    text-indent: 0;
-                    line-height: 1rem;
-                    color: $type-white;
-                    font-size: .7rem;
-                    font-weight: bold;
-                }
-            }
+    .messages {
+        > a {
+            background-image: url("/images/nav-notifications.png");
         }
 
-        .mystuff {
-            > a {
-                background-image: url("/images/mystuff.png");
+        .message-count {
+            display: none;
+
+            &.show {
+                display: block;
+                position: absolute;
+                top: .5rem;
+                right: .25rem;
+                border-radius: 1rem;
+                background-color: $ui-orange;
+                padding: 0 .25rem;
+                text-indent: 0;
+                line-height: 1rem;
+                color: $type-white;
+                font-size: .7rem;
+                font-weight: bold;
             }
         }
+    }
 
-        .login-dropdown {
-            width: 200px;
+    .mystuff {
+        > a {
+            background-image: url("/images/mystuff.png");
+        }
+    }
+
+    .login-dropdown {
+        width: 200px;
+    }
+
+    .account-nav {
+        .user-info {
+            padding-top: 14px;
+            max-width: 260px;
         }
 
-        .account-nav {
-            .userInfo {
-                padding-top: 14px;
-                max-width: 260px;
+        > a {
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: .8125rem;
+            font-weight: normal;
+
+            .avatar {
+                margin-right: 10px;
+                border-radius: 3px;
+                width: 24px;
+                height: 24px;
+                vertical-align: middle;
             }
 
-            > a {
+            &:after {
                 display: inline-block;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                font-size: .8125rem;
-                font-weight: normal;
+                margin-left: 8px;
 
-                .avatar {
-                    margin-right: 10px;
-                    border-radius: 3px;
-                    width: 24px;
-                    height: 24px;
-                    vertical-align: middle;
-                }
-
-                &:after {
-                    display: inline-block;
-                    margin-left: 8px;
-
-                    background-image: url("/images/dropdown.png");
-                    background-repeat: no-repeat;
-                    background-position: center center;
-                    background-size: 50%;
-                    width: 20px;
-                    height: 20px;
-                    vertical-align: middle;
-                    content: " ";
-                }
+                background-image: url("/images/dropdown.png");
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: 50%;
+                width: 20px;
+                height: 20px;
+                vertical-align: middle;
+                content: " ";
             }
+        }
 
-            .dropdown {
-                padding: 0;
-                padding-top: 5px;
-                width: 100%;
-            }
+        .dropdown {
+            padding: 0;
+            padding-top: 5px;
+            width: 100%;
         }
     }
 }

@@ -4,6 +4,7 @@
     .box-content {
         padding: 0;
     }
+
     .welcome-col {
         display: inline-block;
         margin: 10px 15px;
@@ -33,26 +34,32 @@
             height: 10px;
             content: "";
         }
+
         &.blue {
             #{$color-bars} {
                 background-color: $splash-blue;
             }
+
             a {
                 color: $splash-blue;
             }
         }
+
         &.green {
             #{$color-bars} {
                 background-color: $splash-green;
             }
+
             a {
                 color: $splash-green;
             }
         }
+
         &.pink {
             #{$color-bars} {
                 background-color: $splash-pink;
             }
+
             a {
                 color: $splash-pink;
             }
