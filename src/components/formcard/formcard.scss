@@ -1,0 +1,17 @@
+@import "colors";
+
+.counterindicator {
+    display: inline-block;
+
+    &.active {
+        background-color: $ui-blue;
+    }
+
+    &.selected {
+        border: 2px solid $ui-blue;
+    }
+}
+
+.formcard {
+    width: 100px;
+}
