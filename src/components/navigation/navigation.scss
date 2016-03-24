@@ -117,7 +117,7 @@
             background-color: $active-gray;
             height: 14px;
 
-            [type=submit] {
+            &[type=submit] {
                 position: absolute;
                 
                 background-color: transparent;
@@ -130,7 +130,7 @@
                 height: 40px;
             }
 
-            [type=text] {
+            &[type=text] {
                 transition: .15s ease background-color; 
                 padding: 0;
                 padding-right: 10px;
