@@ -331,15 +331,17 @@ var Navigation = React.createClass({
                             <a
                                 href="#"
                                 onClick={this.handleLoginClick}
-                                className="ignore-react-onclickoutside">
+                                className="ignore-react-onclickoutside"
+                                key="login-link">
                                     <FormattedMessage
                                         id='general.signIn'
                                         defaultMessage={'Sign In'} />
-                                </a>
+                            </a>
                             <Dropdown
                                     className="login-dropdown with-arrow"
                                     isOpen={this.state.loginOpen}
-                                    onRequestClose={this.closeLogin}>
+                                    onRequestClose={this.closeLogin}
+                                    key="login-dropdown">
                                 <Login
                                     onLogIn={this.handleLogIn}
                                     error={this.state.loginError} />
