@@ -25,6 +25,11 @@
         "title": "Credits"
     },
     {
+        "pattern": "/info/cards",
+        "view": "cards",
+        "title": "Cards"
+    },
+    {
         "pattern": "/jobs",
         "view": "jobs",
         "title": "Jobs"

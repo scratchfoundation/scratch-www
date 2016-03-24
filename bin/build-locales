@@ -42,6 +42,7 @@ var path = require('path');
 
 var languages = require('../languages.json');
 var localeCompare = require('./lib/locale-compare');
+var localizedUrls = require('./lib/localized-urls');
 
 // -----------------------------------------------------------------------------
 // Main script
@@ -92,6 +93,28 @@ files.forEach(function (file) {
     localeCompare.getIdsForView(view, file, viewLocales, idsWithICU, icuWithIds);
 });
 
+// get asset url translations
+var localizedAssetUrls = {};
+files = glob.sync(path.resolve(__dirname, '../src/views/**/l10n-static.json'));
+files.forEach(function (file) {
+    var dirPath = file.split('/');
+    dirPath.pop();
+    var view = dirPath.pop();
+    localizedAssetUrls[view] = {};
+
+    var assetUrls = JSON.parse(fs.readFileSync(file, 'utf8'));
+    for (var lang in localizedUrls) {
+        localizedAssetUrls[view][lang] = {};
+        for (var key in assetUrls) {
+            if (localizedUrls[lang].hasOwnProperty(key)) {
+                localizedAssetUrls[view][lang][key] = localizedUrls[lang][key];
+            } else {
+                localizedAssetUrls[view][lang][key] = assetUrls[key];
+            }
+        }
+    }
+});
+
 // md5 of english strings with message key as the value for searching po files.
 // Sample structure: { 'sdfas43534sdfasdf': 'general-general.blah', 'lkjfasdf4t342asdfa': 'about-about.blah' }
 var md5WithIds = localeCompare.getMD5Map(icuWithIds);
@@ -109,6 +132,9 @@ for (i in views) {
     var viewTranslations = viewLocales['general'];
     if (views[i] in viewLocales) {
         viewTranslations = merge(viewLocales[views[i]], viewTranslations);
+    }
+    if (views[i] in localizedAssetUrls) {
+        viewTranslations = merge(viewTranslations, localizedAssetUrls[[views[i]]]);
     }
     localeCompare.writeTranslationsToJS(outputDir, views[i], viewTranslations);
 }
