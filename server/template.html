@@ -55,7 +55,9 @@
 
         <!-- Error logging (Sentry) -->
         <script>
-            Raven.config('{{&sentry_dsn}}').install()
+            if ('{{&sentry_dsn}}' !== '') {
+                Raven.config('{{&sentry_dsn}}').install();
+            }
         </script>
 
         <!-- Analytics (GA) -->
