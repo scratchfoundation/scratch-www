@@ -1,0 +1,20 @@
+@import "../../colors";
+@import "../carousel/carousel.scss";
+
+.nestedcarousel {
+    /* Overrides carousel's settings for extra padding */
+    .slick-slide {
+        padding: 0;
+
+        /* Add some padding under the title for each slide */
+        h3 {
+            padding-bottom: 10px;
+        }
+
+        /* Align to top. Important when one of the slides have 
+           more than one line of text */
+        .thumbnail.project {
+            vertical-align: top;
+        }
+    }
+}
