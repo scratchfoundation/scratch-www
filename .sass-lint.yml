@@ -1,6 +1,8 @@
 rules:
+  class-name-format: 0
   color-literals: 2
   final-newline: 2
+  force-element-nesting: 0
   hex-notation: 2
   indentation:
     - 2
@@ -13,6 +15,12 @@ rules:
       max-depth: 4
   no-css-comments: 0
   no-ids: 0
+  no-mergeable-selectors: 0
+  no-qualifying-elements:
+    - 1
+    -
+      - allow-element-with-attribute
+  no-transition-all: 0
   property-sort-order:
     - 2
     -
@@ -21,4 +29,5 @@ rules:
     - 2
     -
       style: double
+  shorthand-values: 0
   zero-unit: 2
