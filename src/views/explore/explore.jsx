@@ -130,4 +130,4 @@ var Explore = React.createClass({
     }
 });
 
-render(<Explore />, document.getElementById('view'));
+//render(<Explore />, document.getElementById('view'));
