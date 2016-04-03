@@ -35,6 +35,11 @@
         "title": "Cards"
     },
     {
+        "pattern": "/info/communityblocks-interviews",
+        "view": "communityblocks-interviews",
+        "title": "Community Blocks Beta Tester Interviews"
+    },
+    {
         "pattern": "/jobs",
         "view": "jobs",
         "title": "Jobs"
