@@ -47,14 +47,14 @@ $base-bg: $ui-white;
         display:inline-block;
     }
 
-    .sub-nav {
+    .tabs {
         justify-content: flex-start;
         padding: 0px 0px 0px 20px;
         width: calc(100% - 20px);
         background-color:  $ui-gray;
     }
 
-    .sub-nav li {
+    .tabs li {
         background-color: $ui-white;
         color: $header-gray;
         opacity: .75;
@@ -71,9 +71,15 @@ $base-bg: $ui-white;
         }
     }
 
-    .sub-nav li.active {
+    .tabs li.active {
         opacity: 1;
         border-bottom: 4px solid $ui-white;
+
+        &:hover {
+            opacity: 1;
+            color: $header-gray;
+            border-bottom: 4px solid $ui-white;
+        }
     }
 
     #projectBox {
@@ -82,5 +88,15 @@ $base-bg: $ui-white;
         border-top: 2px solid;
         border-color: $active-gray;
         padding-bottom: 30px;
+    }
+
+    .load button {
+        border: None;
+        padding: 0px;
+        background-color: $ui-white;
+
+        li {
+            color: $header-gray;
+        }
     }
 }

@@ -43,6 +43,16 @@ var Carousel = React.createClass({
             <Slider className={classes} arrows={arrows} {... settings}>
                 {this.props.items.map(function (item) {
                     var href = '';
+                    var thumbnail_url = item.thumbnail_url;
+                    if (item.thumbnail_url==undefined && item.thumbnail!=undefined) {
+                        var lastFour = (item.id%10000).toString();
+                        if (item.id%10000<1000) {
+                            while (lastFour.length<4) {
+                                lastFour = "0" + lastFour;
+                            }
+                        }
+                        thumbnail_url = "//cdn.scratch.mit.edu/static/site/projects/thumbnails/"+Math.floor(item.id/10000)+"/"+lastFour+".png";
+                    }
                     switch (item.type) {
                     case 'gallery':
                         href = '/studios/' + item.id + '/';
@@ -61,7 +71,7 @@ var Carousel = React.createClass({
                                    type={item.type}
                                    href={href}
                                    title={item.title}
-                                   src={item.thumbnail_url}
+                                   src={thumbnail_url}
                                    creator={item.creator}
                                    remixes={item.remixers_count}
                                    loves={item.love_count} />
