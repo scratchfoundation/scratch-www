@@ -46,6 +46,14 @@ var Jobs = React.createClass({
                                     (MIT Media Lab, Cambridge, MA)
                                 </span>
                             </li>
+                            <li>
+                                <a href="/jobs/community-counselor/">
+                                    Community Counselor
+                                </a>
+                                <span>
+                                    (MIT Media Lab, Cambridge, MA or Remote)
+                                </span>
+                            </li>
                         </ul>
                     </div>
                 </div>
