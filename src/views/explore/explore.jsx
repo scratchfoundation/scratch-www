@@ -58,7 +58,7 @@ var Explore = injectIntl(React.createClass({
         };
         offset+=16;
         this.api({
-            uri: '/search/projects?offset='+offset+tabText
+            uri: '/search/projects?limit=16&offset='+offset+tabText
         }, function (err, body) {
             if (!err) this.setState({exploreMore: body});
         }.bind(this));
