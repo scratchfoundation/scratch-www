@@ -41,13 +41,12 @@
     </head>
 
     <body>
-        <div id="navigation"></div>
-        <div id="view"></div>
-        <div id="footer"></div>
+        <div id="app"></div>
 
         <!-- Scripts -->
         <script src="/js/lib/react{{min}}.js"></script>
         <script src="/js/lib/react-dom{{min}}.js"></script>
+        <script src="/js/lib/redux{{min}}.js"></script>
         <script src="/js/lib/react-intl-with-locales{{min}}.js"></script>
         <script src="/js/lib/raven.min.js"></script>
 
@@ -56,7 +55,9 @@
 
         <!-- Error logging (Sentry) -->
         <script>
-            Raven.config('{{&sentry_dsn}}').install()
+            if ('{{&sentry_dsn}}' !== '') {
+                Raven.config('{{&sentry_dsn}}').install();
+            }
         </script>
 
         <!-- Analytics (GA) -->

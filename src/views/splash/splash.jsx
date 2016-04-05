@@ -1,10 +1,12 @@
+var connect = require('react-redux').connect;
 var injectIntl = require('react-intl').injectIntl;
 var omit = require('lodash.omit');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
+var actions = require('../../redux/actions.js');
+
 var Api = require('../../mixins/api.jsx');
-var Session = require('../../mixins/session.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
@@ -15,6 +17,7 @@ var Carousel = require('../../components/carousel/carousel.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var Modal = require('../../components/modal/modal.jsx');
 var News = require('../../components/news/news.jsx');
+var Page = require('../../components/page/page.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
 require('./splash.scss');
@@ -22,12 +25,11 @@ require('./splash.scss');
 var Splash = injectIntl(React.createClass({
     type: 'Splash',
     mixins: [
-        Api,
-        Session
+        Api
     ],
     getInitialState: function () {
         return {
-            projectCount: 10569070,
+            projectCount: 13000000, // gets the shared project count
             activity: [], // recent social actions taken by users someone is following
             news: [], // gets news posts from the scratch Tumblr
             featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
@@ -36,9 +38,14 @@ var Splash = injectIntl(React.createClass({
             refreshCacheStatus: 'notrequested'
         };
     },
-    componentDidUpdate: function (prevProps, prevState) {
-        if (this.state.session.user != prevState.session.user) {
-            if (this.state.session.user) {
+    getDefaultProps: function () {
+        return {
+            session: {}
+        };
+    },
+    componentDidUpdate: function (prevProps) {
+        if (this.props.session.user != prevProps.session.user) {
+            if (this.props.session.user) {
                 this.getActivity();
                 this.getFeaturedCustom();
                 this.getNews();
@@ -57,7 +64,7 @@ var Splash = injectIntl(React.createClass({
     },
     componentDidMount: function () {
         this.getFeaturedGlobal();
-        if (this.state.session.user) {
+        if (this.props.session.user) {
             this.getActivity();
             this.getFeaturedCustom();
             this.getNews();
@@ -83,7 +90,7 @@ var Splash = injectIntl(React.createClass({
     },
     getActivity: function () {
         this.api({
-            uri: '/proxy/users/' + this.state.session.user.username + '/activity?limit=5'
+            uri: '/proxy/users/' + this.props.session.user.username + '/activity?limit=5'
         }, function (err, body) {
             if (!err) this.setState({activity: body});
         }.bind(this));
@@ -97,7 +104,7 @@ var Splash = injectIntl(React.createClass({
     },
     getFeaturedCustom: function () {
         this.api({
-            uri: '/proxy/users/' + this.state.session.user.id + '/featured'
+            uri: '/proxy/users/' + this.props.session.user.id + '/featured'
         }, function (err, body) {
             if (!err) this.setState({featuredCustom: body});
         }.bind(this));
@@ -160,20 +167,20 @@ var Splash = injectIntl(React.createClass({
             useCsrf: true,
             json: {cue: cue, value: false}
         }, function (err) {
-            if (!err) window.refreshSession();
+            if (!err) this.props.dispatch(actions.refreshSession());
         });
     },
     shouldShowWelcome: function () {
-        if (!this.state.session.user || !this.state.session.flags.show_welcome) return false;
+        if (!this.props.session.user || !this.props.session.flags.show_welcome) return false;
         return (
-            new Date(this.state.session.user.dateJoined) >
+            new Date(this.props.session.user.dateJoined) >
             new Date(new Date - 2*7*24*60*60*1000) // Two weeks ago
         );
     },
     shouldShowEmailConfirmation: function () {
         return (
-            this.state.session.user && this.state.session.flags.has_outstanding_email_confirmation &&
-            this.state.session.flags.confirm_email_banner);
+            this.props.session.user && this.props.session.flags.has_outstanding_email_confirmation &&
+            this.props.session.flags.confirm_email_banner);
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
@@ -232,7 +239,7 @@ var Splash = injectIntl(React.createClass({
             );
         }
 
-        if (this.state.session.user &&
+        if (this.props.session.user &&
             this.state.featuredGlobal.community_newest_projects &&
             this.state.featuredGlobal.community_newest_projects.length > 0) {
             
@@ -319,8 +326,9 @@ var Splash = injectIntl(React.createClass({
         var emailConfirmationStyle = {width: 500, height: 330, padding: 1};
         var homepageCacheState = this.getHomepageRefreshStatus();
 
-        var formatMessage = this.props.intl.formatMessage;
         var formatHTMLMessage = this.props.intl.formatHTMLMessage;
+        var formatNumber = this.props.intl.formatNumber;
+        var formatMessage = this.props.intl.formatMessage;
         var messages = {
             'general.viewAll': formatMessage({id: 'general.viewAll'}),
             'news.scratchNews': formatMessage({id: 'news.scratchNews'}),
@@ -336,6 +344,12 @@ var Splash = injectIntl(React.createClass({
             'intro.tagLine': formatHTMLMessage({id: 'intro.tagLine'}),
             'intro.tryItOut': formatMessage({id: 'intro.tryItOut'})
         };
+        if (this.state.projectCount === this.getInitialState().projectCount) {
+            messages['intro.description'] = formatHTMLMessage({id: 'intro.defaultDescription'});
+        } else {
+            var count = formatNumber(this.state.projectCount);
+            messages['intro.description'] = formatHTMLMessage({id: 'intro.description'}, {value: count});
+        }
 
         return (
             <div className="splash">
@@ -357,7 +371,7 @@ var Splash = injectIntl(React.createClass({
                     </Modal>
                 ] : []}
                 <div key="inner" className="inner">
-                    {this.state.session.user ? [
+                    {this.props.session.user ? [
                         <div key="header" className="splash-header">
                             {this.shouldShowWelcome() ? [
                                 <Welcome key="welcome"
@@ -411,4 +425,12 @@ var Splash = injectIntl(React.createClass({
     }
 }));
 
-render(<Splash />, document.getElementById('view'));
+var mapStateToProps = function (state) {
+    return {
+        session: state.session
+    };
+};
+
+var ConnectedSplash = connect(mapStateToProps)(Splash);
+
+render(<Page><ConnectedSplash /></Page>, document.getElementById('app'));

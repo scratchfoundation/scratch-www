@@ -1,5 +1,8 @@
+var connect = require('react-redux').connect;
 var omit = require('lodash.omit');
 var React = require('react');
+
+var actions = require('../../redux/actions.js');
 
 var Modal = require('../modal/modal.jsx');
 var Registration = require('../registration/registration.jsx');
@@ -10,12 +13,8 @@ Modal.setAppElement(document.getElementById('view'));
 
 var Intro = React.createClass({
     type: 'Intro',
-    propTypes: {
-        projectCount: React.PropTypes.number
-    },
     getDefaultProps: function () {
         return {
-            projectCount: 10569070,
             messages: {
                 'intro.aboutScratch': 'ABOUT SCRATCH',
                 'intro.forEducators': 'FOR EDUCATORS',
@@ -23,8 +22,11 @@ var Intro = React.createClass({
                 'intro.joinScratch': 'JOIN SCRATCH',
                 'intro.seeExamples': 'SEE EXAMPLES',
                 'intro.tagLine': 'Create stories, games, and animations<br /> Share with others around the world',
-                'intro.tryItOut': 'TRY IT OUT'
-            }
+                'intro.tryItOut': 'TRY IT OUT',
+                'intro.description': 'A creative learning community with <span class="project-count"> ' +
+                                     'over 13 million </span>projects shared'
+            },
+            session: {}
         };
     },
     getInitialState: function () {
@@ -46,7 +48,7 @@ var Intro = React.createClass({
         this.setState({'registrationOpen': false});
     },
     completeRegistration: function () {
-        window.refreshSession();
+        this.props.dispatch(actions.refreshSession());
         this.closeRegistration();
     },
     render: function () {
@@ -109,11 +111,8 @@ var Intro = React.createClass({
                                       onRequestClose={this.closeRegistration}
                                       onRegistrationDone={this.completeRegistration} />
                     </div>
-                    <div className="description">
-                        A creative learning community with
-                        <span className="project-count"> {this.props.projectCount.toLocaleString()} </span>
-                        projects shared
-                    </div>
+                    <div className="description"
+                         dangerouslySetInnerHTML={{__html: this.props.messages['intro.description']}}></div>
                     <div className="links">
                         <a href="/about/">
                             {this.props.messages['intro.aboutScratch']}
@@ -145,4 +144,12 @@ var Intro = React.createClass({
     }
 });
 
-module.exports = Intro;
+var mapStateToProps = function (state) {
+    return {
+        session: state.session
+    };
+};
+
+var ConnectedIntro = connect(mapStateToProps)(Intro);
+
+module.exports = ConnectedIntro;

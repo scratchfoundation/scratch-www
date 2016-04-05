@@ -6,8 +6,6 @@ var jar  = require('../../lib/jar.js');
 var languages = require('../../../languages.json');
 var Select = require('../forms/select.jsx');
 
-require('./languagechooser.scss');
-
 /**
  * Footer dropdown menu that allows one to change their language.
  */

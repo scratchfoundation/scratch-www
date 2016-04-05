@@ -1,9 +1,11 @@
 var classNames = require('classnames');
+var connect = require('react-redux').connect;
 var React = require('react');
 var ReactIntl = require('react-intl');
-var defineMessages = ReactIntl.defineMessages;
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
+
+var actions = require('../../redux/actions.js');
 
 var Api = require('../../mixins/api.jsx');
 var Avatar = require('../avatar/avatar.jsx');
@@ -13,32 +15,15 @@ var log = require('../../lib/log.js');
 var Login = require('../login/login.jsx');
 var Modal = require('../modal/modal.jsx');
 var Registration = require('../registration/registration.jsx');
-var Session = require('../../mixins/session.jsx');
 
 require('./navigation.scss');
 
 Modal.setAppElement(document.getElementById('view'));
 
-var defaultMessages = defineMessages({
-    messages: {
-        id: 'general.messages',
-        defaultMessage: 'Messages'
-    },
-    myStuff: {
-        id: 'general.myStuff',
-        defaultMessage: 'My Stuff'
-    },
-    search: {
-        id: 'general.search',
-        defaultMessage: 'Search'
-    }
-});
-
 var Navigation = React.createClass({
     type: 'Navigation',
     mixins: [
-        Api,
-        Session
+        Api
     ],
     getInitialState: function () {
         return {
@@ -51,20 +36,25 @@ var Navigation = React.createClass({
             messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
         };
     },
+    getDefaultProps: function () {
+        return {
+            session: {}
+        };
+    },
     componentDidMount: function () {
-        if (this.state.session.user) {
+        if (this.props.session.user) {
             this.getMessageCount();
             var intervalId = setInterval(this.getMessageCount, 120000); // check for new messages every 2 mins.
             this.setState({'messageCountIntervalId': intervalId});
         }
     },
-    componentDidUpdate: function (prevProps, prevState) {
-        if (prevState.session.user != this.state.session.user) {
+    componentDidUpdate: function (prevProps) {
+        if (prevProps.session.user != this.props.session.user) {
             this.setState({
                 'loginOpen': false,
                 'accountNavOpen': false
             });
-            if (this.state.session.user) {
+            if (this.props.session.user) {
                 this.getMessageCount();
                 var intervalId = setInterval(this.getMessageCount, 120000);
                 this.setState({'messageCountIntervalId': intervalId});
@@ -89,13 +79,13 @@ var Navigation = React.createClass({
         }
     },
     getProfileUrl: function () {
-        if (!this.state.session.user) return;
-        return '/users/' + this.state.session.user.username + '/';
+        if (!this.props.session.user) return;
+        return '/users/' + this.props.session.user.username + '/';
     },
     getMessageCount: function () {
         this.api({
             method: 'get',
-            uri: '/users/' + this.state.session.user.username + '/messages/count'
+            uri: '/users/' + this.props.session.user.username + '/messages/count'
         }, function (err, body) {
             if (err) return this.setState({'unreadMessageCount': 0});
             if (body) {
@@ -141,7 +131,7 @@ var Navigation = React.createClass({
                             this.showCanceledDeletion();
                         }
                     }.bind(this));
-                    window.refreshSession();
+                    this.props.dispatch(actions.refreshSession());
                 }
             }
             // JS error already logged by api mixin
@@ -158,7 +148,7 @@ var Navigation = React.createClass({
         }, function (err) {
             if (err) log.error(err);
             this.closeLogin();
-            window.refreshSession();
+            this.props.dispatch(actions.refreshSession());
         }.bind(this));
     },
     handleAccountNavClick: function (e) {
@@ -178,57 +168,48 @@ var Navigation = React.createClass({
         this.setState({'registrationOpen': false});
     },
     completeRegistration: function () {
-        window.refreshSession();
+        this.props.dispatch(actions.refreshSession());
         this.closeRegistration();
     },
     render: function () {
         var classes = classNames({
             'inner': true,
-            'logged-in': this.state.session.user
+            'logged-in': this.props.session.user
         });
         var messageClasses = classNames({
-            'messageCount': true,
+            'message-count': true,
             'show': this.state.unreadMessageCount > 0
         });
         var formatMessage = this.props.intl.formatMessage;
+        var createLink = this.props.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
         return (
             <div className={classes}>
                 <ul>
                     <li className="logo"><a href="/" aria-label="Scratch"></a></li>
 
                     <li className="link create">
-                        <a href="/projects/editor">
-                            <FormattedMessage
-                                id="general.create"
-                                defaultMessage={'Create'} />
+                        <a href={createLink}>
+                            <FormattedMessage id="general.create" />
                         </a>
                     </li>
                     <li className="link explore">
                         <a href="/explore?date=this_month">
-                            <FormattedMessage
-                                id="general.explore"
-                                defaultMessage={'Explore'} />
+                            <FormattedMessage id="general.explore" />
                         </a>
                     </li>
                     <li className="link discuss">
                         <a href="/discuss">
-                            <FormattedMessage
-                                id="general.discuss"
-                                defaultMessage={'Discuss'} />
+                            <FormattedMessage id="general.discuss" />
                         </a>
                     </li>
                     <li className="link about">
                         <a href="/about">
-                            <FormattedMessage
-                                id="general.about"
-                                defaultMessage={'About'} />
+                            <FormattedMessage id="general.about" />
                         </a>
                     </li>
                     <li className="link help">
                         <a href="/help">
-                            <FormattedMessage
-                                id="general.help"
-                                defaultMessage={'Help'} />
+                            <FormattedMessage id="general.help" />
                         </a>
                     </li>
 
@@ -236,35 +217,35 @@ var Navigation = React.createClass({
                         <form action="/search/google_results" method="get">
                             <Input type="submit" value="" />
                             <Input type="text"
-                                   aria-label={formatMessage(defaultMessages.search)}
-                                   placeholder={formatMessage(defaultMessages.search)}
+                                   aria-label={formatMessage({id: 'general.search'})}
+                                   placeholder={formatMessage({id: 'general.search'})}
                                    name="q" />
                             <Input type="hidden" name="date" value="anytime" />
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
-                    {this.state.session.user ? [
+                    {this.props.session.user ? [
                         <li className="link right messages" key="messages">
                             <a
                                 href="/messages/"
-                                title={formatMessage(defaultMessages.messages)}>
+                                title={formatMessage({id: 'general.messages'})}>
 
                                 <span className={messageClasses}>{this.state.unreadMessageCount}</span>
-                                <FormattedMessage {...defaultMessages.messages} />
+                                <FormattedMessage id="general.messages" />
                             </a>
                         </li>,
                         <li className="link right mystuff" key="mystuff">
                             <a
                                 href="/mystuff/"
-                                title={formatMessage(defaultMessages.myStuff)}>
+                                title={formatMessage({id: 'general.myStuff'})}>
 
-                                <FormattedMessage {...defaultMessages.myStuff} />
+                                <FormattedMessage id="general.myStuff" />
                             </a>
                         </li>,
                         <li className="link right account-nav" key="account-nav">
-                            <a className="userInfo" href="#" onClick={this.handleAccountNavClick}>
-                                <Avatar src={this.state.session.user.thumbnailUrl} alt="" />
-                                {this.state.session.user.username}
+                            <a className="user-info" href="#" onClick={this.handleAccountNavClick}>
+                                <Avatar src={this.props.session.user.thumbnailUrl} alt="" />
+                                {this.props.session.user.username}
                             </a>
                             <Dropdown
                                     as="ul"
@@ -272,37 +253,36 @@ var Navigation = React.createClass({
                                     onRequestClose={this.closeAccountNav}>
                                 <li>
                                     <a href={this.getProfileUrl()}>
-                                        <FormattedMessage
-                                            id='general.profile'
-                                            defaultMessage={'Profile'} />
+                                        <FormattedMessage id="general.profile" />
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/mystuff/">
-                                        <FormattedMessage {...defaultMessages.myStuff} />
+                                        <FormattedMessage id="general.myStuff" />
                                     </a>
                                 </li>
-                                {this.state.session.permissions.educator ? [
+                                {this.props.session.permissions.educator ? [
                                     <li>
                                         <a href="/educators/classes/">
-                                            <FormattedMessage
-                                                id='general.myClasses'
-                                                defaultMessage={'My Classes'} />
+                                            <FormattedMessage id="general.myClasses" />
+                                        </a>
+                                    </li>
+                                ] : []}
+                                {this.props.session.permissions.student ? [
+                                    <li>
+                                        <a href={'/classes/' + this.props.session.user.classroomId + '/'}>
+                                            <FormattedMessage id="general.myClass" />
                                         </a>
                                     </li>
                                 ] : []}
                                 <li>
                                     <a href="/accounts/settings/">
-                                        <FormattedMessage
-                                            id='general.accountSettings'
-                                            defaultMessage={'Account settings'} />
+                                        <FormattedMessage id="general.accountSettings" />
                                     </a>
                                 </li>
                                 <li className="divider">
                                     <a href="#" onClick={this.handleLogOut}>
-                                        <FormattedMessage
-                                            id='navigation.signOut'
-                                            defaultMessage={'Sign out'} />
+                                        <FormattedMessage id="navigation.signOut" />
                                     </a>
                                 </li>
                             </Dropdown>
@@ -310,9 +290,7 @@ var Navigation = React.createClass({
                     ] : [
                         <li className="link right join" key="join">
                             <a href="#" onClick={this.handleJoinClick}>
-                                <FormattedMessage
-                                    id='general.joinScratch'
-                                    defaultMessage={'Join Scratch'} />
+                                <FormattedMessage id="general.joinScratch" />
                             </a>
                         </li>,
                         <Registration
@@ -324,15 +302,15 @@ var Navigation = React.createClass({
                             <a
                                 href="#"
                                 onClick={this.handleLoginClick}
-                                className="ignore-react-onclickoutside">
-                                    <FormattedMessage
-                                        id='general.signIn'
-                                        defaultMessage={'Sign In'} />
-                                </a>
+                                className="ignore-react-onclickoutside"
+                                key="login-link">
+                                    <FormattedMessage id="general.signIn" />
+                           </a>
                             <Dropdown
                                     className="login-dropdown with-arrow"
                                     isOpen={this.state.loginOpen}
-                                    onRequestClose={this.closeLogin}>
+                                    onRequestClose={this.closeLogin}
+                                    key="login-dropdown">
                                 <Login
                                     onLogIn={this.handleLogIn}
                                     error={this.state.loginError} />
@@ -356,4 +334,12 @@ var Navigation = React.createClass({
     }
 });
 
-module.exports = injectIntl(Navigation);
+var mapStateToProps = function (state) {
+    return {
+        session: state.session
+    };
+};
+
+var ConnectedNavigation = connect(mapStateToProps)(Navigation);
+
+module.exports = injectIntl(ConnectedNavigation);

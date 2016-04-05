@@ -38,7 +38,7 @@
                 font-size: large;
                 font-weight: 700;
             }
-           
+
             dd {
                 margin-left: 0;
             }
@@ -51,21 +51,22 @@
                 margin: 0;
                 list-style: none;
 
-                .button-row {
-                    display: flex;
-                    font-size: small;
-                    align-items: center;
-                    justify-content: space-between;
+            }
+        }
+    }
 
-                    .button {
-                        padding: .5rem 1rem;
+    .button-row {
+        display: flex;
+        font-size: small;
+        align-items: center;
+        justify-content: space-between;
 
-                        &.inprogress {
-                            background-color: $ui-dark-gray;
-                            color: $type-gray;
-                        }
-                    }
-                }
+        .button {
+            padding: .5rem 1rem;
+
+            &.inprogress {
+                background-color: $ui-dark-gray;
+                color: $type-gray;
             }
         }
     }
