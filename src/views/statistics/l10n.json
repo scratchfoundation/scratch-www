@@ -1,0 +1,21 @@
+{
+    "statistics.title": "Statistics",
+    "statistics.subtitle": "Statistics about the Scratch community.",
+    "statistics.communityTitle": "Community statistics at a glance",
+    "statistics.websiteTrafficTitle": "Website traffic last month",
+    "statistics.communityProjects": "projects shared,",
+    "statistics.communityUsers": "users registered,",
+    "statistics.communityComments": "comments posted,",
+    "statistics.communityStudios": "studios created",
+    "statistics.websitePageviews": "pageviews",
+    "statistics.websiteVisits": "visits",
+    "statistics.websiteVisitors": "visitors",
+    "statistics.monthlyActivityTitle": "Monthly Activity Trends",
+    "statistics.monthlyUsersTitle": "Monthly Active Users",
+    "statistics.ageDistributionTitle": "Age Distribution of New Scratchers",
+    "statistics.scratchersWorldwideTitle": "Scratchers Worldwide",
+    "statistics.monthlyProjectSharesTitle": "Monthly Project Shares",
+    "statistics.monthlyCommentsTitle": "Monthly Comment Activity",
+    "statistics.blocksTitle": "Scratch Block Usage (random sample)",
+    "statistics.blocksInstructions": "Click on a cell to zoom in. Ctrl + click to zoom out."
+}

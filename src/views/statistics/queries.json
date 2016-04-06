@@ -1,0 +1,40 @@
+{
+    "global_stats_queries_monthly" : {
+        "timeseries_queries": {
+            "PROJECTS_PER_MONTH": "SELECT UNIX_TIMESTAMP(CONCAT(YEAR(datetime_first_shared), '-', MONTH(date_joined), '-15', ' 00:00:00')) as unix_timestamp, COUNT(*) as count FROM projects_project WHERE isPublished=true AND YEAR(datetime_first_shared) > 2006 GROUP BY unix_timestamp;",
+            "USERS_PER_MONTH" : "SELECT UNIX_TIMESTAMP(CONCAT(YEAR(date_joined), '-', MONTH(date_joined), '-15', ' 00:00:00')) as unix_timestamp, COUNT(*) as count FROM auth_user WHERE YEAR(date_joined) > 2006 GROUP BY unix_timestamp;",
+            "PROJECT_COMMENTS_PER_MONTH": "SELECT UNIX_TIMESTAMP(CONCAT(YEAR(datetime_created), '-', MONTH(datetime_created), '-15', ' 00:00:00')) as unix_timestamp, COUNT(*) as count FROM project_comments_projectcomment WHERE YEAR(datetime_created) > 2006 GROUP BY unix_timestamp;",
+            "STUDIO_COMMENTS_PER_MONTH": "SELECT UNIX_TIMESTAMP(CONCAT(YEAR(datetime_created), '-', MONTH(datetime_created), '-15', ' 00:00:00')), COUNT(*) FROM gallery_comments_gallerycomment WHERE YEAR(datetime_created) > 2006 GROUP BY YEAR(datetime_created), MONTH(datetime_created);",
+            "PROFILE_COMMENTS_PER_MONTH": "SELECT UNIX_TIMESTAMP(CONCAT(YEAR(datetime_created), '-', MONTH(datetime_created), '-15', ' 00:00:00')), COUNT(*) FROM userprofile_comments_userprofilecomment WHERE YEAR(datetime_created) > 2006 GROUP BY YEAR(datetime_created), MONTH(datetime_created);",
+
+            "PROJECT_USERS_PER_MONTH": "SELECT UNIX_TIMESTAMP(CONCAT(YEAR(datetime_first_shared), '-', MONTH(datetime_first_shared), '-15', ' 00:00:00')) as unix_timestamp, COUNT(DISTINCT(creator_id)) as count FROM projects_project WHERE isPublished=true AND YEAR(datetime_first_shared) > 2006 GROUP BY unix_timestamp;",
+            "PROJECT_COMMENT_USERS_PER_MONTH": "SELECT UNIX_TIMESTAMP(CONCAT(YEAR(datetime_created), '-', MONTH(datetime_created), '-15', ' 00:00:00')) as unix_timestamp, COUNT(DISTINCT(user_id)) as count FROM project_comments_projectcomment WHERE YEAR(datetime_created) > 2006 GROUP BY unix_timestamp",
+            "STUDIO_COMMENT_USERS_PER_MONTH": "SELECT UNIX_TIMESTAMP(CONCAT(YEAR(datetime_created), '-', MONTH(datetime_created), '-15', ' 00:00:00')) as unix_timestamp, COUNT(DISTINCT(user_id)) as count FROM gallery_comments_gallerycomment WHERE YEAR(datetime_created) > 2006 GROUP BY unix_timestamp;",
+            "PROFILE_COMMENT_USERS_PER_MONTH": "SELECT UNIX_TIMESTAMP(CONCAT(YEAR(datetime_created), '-', MONTH(datetime_created), '-15', ' 00:00:00')) as unix_timestamp, COUNT(DISTINCT(user_id)) as count FROM userprofile_comments_userprofilecomment WHERE YEAR(datetime_created) > 2006 GROUP BY unix_timestamp;",
+
+            "PROJECTS_REMIX_PER_MONTH": "SELECT UNIX_TIMESTAMP(CONCAT(YEAR(datetime_first_shared), '-', MONTH(datetime_first_shared), '-15', ' 00:00:00')), COUNT(*) FROM projects_project WHERE isPublished=true AND YEAR(datetime_first_shared) > 2006 AND parent_id IS NOT NULL GROUP BY YEAR(datetime_first_shared), MONTH(datetime_first_shared);",
+            "PROJECTS_DENOVO_PER_MONTH": "SELECT UNIX_TIMESTAMP(CONCAT(YEAR(datetime_first_shared), '-', MONTH(datetime_first_shared), '-15', ' 00:00:00')), COUNT(*) FROM projects_project WHERE isPublished=true AND YEAR(datetime_first_shared) > 2006 AND parent_id IS NULL GROUP BY YEAR(datetime_first_shared), MONTH(datetime_first_shared);",
+        },
+
+        "x_y_queries": {
+            "AGE_DISTRIBUTION_MALE": "SELECT age,COUNT(*) FROM (SELECT YEAR(date_joined) - birthyear AS age FROM auth_user JOIN userprofiles_userprofile on auth_user.id=userprofiles_userprofile.user_id WHERE gender='male') AS T1 WHERE AGE BETWEEN 4 AND 80 GROUP BY age;",
+            "AGE_DISTRIBUTION_FEMALE": "SELECT age,COUNT(*) FROM (SELECT YEAR(date_joined) - birthyear AS age FROM auth_user JOIN userprofiles_userprofile on auth_user.id=userprofiles_userprofile.user_id WHERE gender='female') AS T1 WHERE AGE BETWEEN 4 AND 80 GROUP BY age;",
+            "AGE_DISTRIBUTION": "SELECT age,COUNT(*) FROM (SELECT YEAR(date_joined) - birthyear AS age FROM auth_user JOIN userprofiles_userprofile on auth_user.id=userprofiles_userprofile.user_id) AS T1 WHERE AGE BETWEEN 4 AND 80 GROUP BY age;",
+        },
+
+        "tabular_queries": {
+            "COUNTRY_DISTRIBUTION": "SELECT * FROM (SELECT country,COUNT(*) AS count FROM userprofiles_userprofile WHERE country IS NOT NULL AND country != "" AND country != 'Antarctica' GROUP BY country) AS T WHERE count > 10;",
+        },
+
+        "research_db_queries": {
+            "BLOCK_DISTRIBUTION": "SELECT s.hs_key, sum(s.hs_value::integer) FROM (SELECT DISTINCT ON(project_id) project_id, (each(block_frequency)).* FROM (SELECT DISTINCT 1 + trunc(random() * (SELECT MAX(id) FROM research_projectsaves))::integer AS id FROM generate_series(1, 100000) g) r JOIN research_projectsaves USING (id) ORDER BY project_id, timestamp DESC) AS s(project_id, hs_key, hs_value) GROUP BY hs_key ORDER by sum DESC;",
+        }
+    },
+
+    "global_stats_queries_daily" : {
+        "PROJECT_COUNT": "SELECT COUNT(*) FROM projects_project WHERE isPublished=true;",
+        "USER_COUNT": "SELECT COUNT(*) FROM auth_user;",
+        "STUDIO_COUNT": "SELECT COUNT(*) FROM galleries_gallery;",
+        "COMMENT_COUNT": "SELECT ((SELECT COUNT(*) FROM project_comments_projectcomment) + (SELECT COUNT(*) FROM gallery_comments_gallerycomment) + (SELECT COUNT(*) FROM userprofile_comments_userprofilecomment)) AS count;",
+    }
+}
