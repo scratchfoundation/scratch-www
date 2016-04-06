@@ -36,6 +36,8 @@ module.exports = {
                     {React.Children.map(this.props.children, function (child){
                         if (child.type === 'form') {
                             return React.cloneElement(child, {onSubmit: this.onSubmit});
+                        } else {
+                            return child;
                         }
                     }, this)}
                 </div>
