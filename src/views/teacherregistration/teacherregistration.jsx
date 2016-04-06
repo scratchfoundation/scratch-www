@@ -42,6 +42,7 @@ var TeacherRegistration = React.createClass({
                         <input type="password" name="password" />
                         <label htmlFor="passwordConfirmation">Confirm Password</label>
                         <input type="password" name="passwordConfirmation" />
+                        <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
                 <FormStep title="Demographics"
@@ -53,6 +54,7 @@ var TeacherRegistration = React.createClass({
                           key="step2">
                     <form>
                         Lipsum 
+                        <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
                 <FormStep title="First &amp; Last Name"
@@ -64,6 +66,7 @@ var TeacherRegistration = React.createClass({
                           key="step3">
                     <form>
                         Lipsum 
+                        <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
                 <FormStep title="Phone Number"
@@ -75,6 +78,7 @@ var TeacherRegistration = React.createClass({
                           key="step4">
                     <form>
                         Lipsum 
+                        <input type="submit" value="Next Step" /> 
                     </form>
                 </FormStep>
                 <FormStep title="Organization"
@@ -86,6 +90,7 @@ var TeacherRegistration = React.createClass({
                           key="step5">
                     <form>
                         Lipsum 
+                        <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
                 <FormStep title="Address"
@@ -97,6 +102,7 @@ var TeacherRegistration = React.createClass({
                           key="step6">
                     <form>
                         Lipsum 
+                        <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
                 <FormStep title="How do you use Scratch?"
@@ -108,6 +114,7 @@ var TeacherRegistration = React.createClass({
                           key="step7">
                     <form>
                         Lipsum 
+                        <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
                 <FormStep title="Email Address"
@@ -119,7 +126,34 @@ var TeacherRegistration = React.createClass({
                           key="step8">
                     <form>
                         Lipsum 
+                        <input type="submit" value="Next Step" />
                     </form>
+                </FormStep>
+                <FormStep title="Almost Done"
+                          description={
+                            <p>
+                                Lorem ipsum dolor sit amet
+                            </p>}
+                          key="step8">
+                    <div className="confirm">
+                        <h2>Confirm Your Email</h2>
+                        <p>
+                            Click the link in the confirmation email that we
+                            sent to the following address:<br />
+                            <strong>{this.state.email}</strong>
+                        </p>
+                        <div className="box-footer">
+                            <a onClick="">Wrong email?</a>
+                            <a onClick="">Having trouble?</a>
+                        </div>
+                    </div>
+                    <div className="wait">
+                        <h2>Wait for Approval</h2>
+                        <p>
+                            Your information is being reviewed. Please be
+                            patient, the approval process can take up to 24hrs.
+                        </p>
+                    </div>
                 </FormStep>
             </FormSet>
         );
