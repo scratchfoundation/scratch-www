@@ -19,6 +19,10 @@ var TeacherRegistration = React.createClass({
         this.setState({step: step});
     },
     render: function () {
+        var months = [
+            'January', 'February', 'March', 'April', 'May', 'June', 'July',
+            'August', 'September', 'October', 'November', 'December'];
+        var countries = require('./countries.json');
         var classes = classNames(
             'teacher-registration',
             this.props.className);
@@ -53,7 +57,29 @@ var TeacherRegistration = React.createClass({
                             </p>}
                           key="step2">
                     <form>
-                        Lipsum 
+                        <label htmlFor="month">Birth Month</label>
+                        <select name="month">
+                            {months.map(function (name, id) {
+                                return (<option value={id+1} key={id}>{name}</option>);
+                              })}
+                        </select>
+                        <label htmlFor="year">Birth Yeah</label>
+                        <select name="year">
+                            {Array.apply(null, Array(100)).map(function (v, id) {
+                                return (<option value={2016-id} key={id}>{2016-id}</option>);
+                            })}
+                        </select>
+                        <label htmlFor="gender">Gender</label>
+                        <radio name="gender" value="female" />
+                        <radio name="gender" value="male" />
+                        <radio name="gender" />
+                        <input name="gender" type="text" />
+                        <label htmlFor="country">Country</label>
+                        <select name="country">
+                            {Object.keys(countries).map(function (code, id) {
+                                return (<option value={code} key={id}>{countries[code]}</option>);
+                              })}
+                        </select>
                         <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
@@ -65,7 +91,10 @@ var TeacherRegistration = React.createClass({
                             </p>}
                           key="step3">
                     <form>
-                        Lipsum 
+                        <label htmlFor="first">First Name</label>
+                        <input type="text" name="first" />
+                        <label htmlFor="last">Last Name</label>
+                        <input type="text" name="last" />
                         <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
@@ -77,7 +106,13 @@ var TeacherRegistration = React.createClass({
                             </p>}
                           key="step4">
                     <form>
-                        Lipsum 
+                        <label htmlFor="phone">Phone Number</label>
+                        <input type="tel" name="phone" />
+                        <checkbox name="phoneConsent" />
+                        <label htmlFor="phoneConsent">
+                            Yes, I consent to lorem ipsum dolor sit amet,
+                            consectetur adipiscing elit.
+                        </label>
                         <input type="submit" value="Next Step" /> 
                     </form>
                 </FormStep>
@@ -89,7 +124,27 @@ var TeacherRegistration = React.createClass({
                             </p>}
                           key="step5">
                     <form>
-                        Lipsum 
+                        <label htmlFor="organization">Organization</label>
+                        <input type="text" name="organization" />
+                        <label htmlFor="title">Title / Position</label>
+                        <input type="text" name="title" />
+                        <label>Type of Organization</label>
+                        {['Elementary School', 'Middle School',
+                          'High School', 'University / College',
+                          'Museum', 'Library', 'Camp'].map(function (type, id) {
+                            var typeId = 'organizationType' + id;
+                            return [
+                                <input type="checkbox"
+                                       name="organizationType"
+                                       id={typeId}
+                                       value={type} />,
+                                <label htmlFor={typeId}>{type}</label>
+                            ];
+                          })}
+                        <input type="checkbox" name="organizationType" value="other" />
+                        <input type="text" name="organizationTypeOther" />
+                        <label htmlFor="website">Website URL (not required)</label>
+                        <input type="url" name="website" />
                         <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
@@ -101,7 +156,26 @@ var TeacherRegistration = React.createClass({
                             </p>}
                           key="step6">
                     <form>
-                        Lipsum 
+                        <label for="addressCountry">Country</label>
+                        <select name="addressCountry">
+                            {Object.keys(countries).map(function (code, id) {
+                                return (<option value={code} key={id}>{countries[code]}</option>);
+                              })}
+                        </select>
+                        <label for="addressLine1">Address Line 1</label>
+                        <input type="text" name="addressLine1" />
+                        <label for="addressLine2">Address Line 2</label>
+                        <input type="text" name="addressLine2" />
+                        <label for="addressCity">City</label>
+                        <input type="text" name="addressCity" />
+                        <label for="addressZip">Zip Code</label>
+                        <input type="text" name="addressZip" />
+                        <label for="addressState">State / Province</label>
+                        <select name="addressState">
+                            {['every','state','in','the','world'].map(function (name, id) {
+                                return <option value={name} key={id}>{name}</option>;
+                            })}
+                        </select>
                         <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
@@ -113,7 +187,6 @@ var TeacherRegistration = React.createClass({
                             </p>}
                           key="step7">
                     <form>
-                        Lipsum 
                         <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
@@ -125,7 +198,8 @@ var TeacherRegistration = React.createClass({
                             </p>}
                           key="step8">
                     <form>
-                        Lipsum 
+                        <label for="useScratch">How do you use Scratch?</label>
+                        <textarea name="useScratch" />
                         <input type="submit" value="Next Step" />
                     </form>
                 </FormStep>
