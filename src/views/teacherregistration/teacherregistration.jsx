@@ -3,10 +3,14 @@ var React = require('react');
 
 var render = require('../../lib/render.jsx');
 
+var Button = require('../../components/forms/button.jsx');
 var formset = require('../../components/forms/formset.jsx');
     var FormSet = formset.FormSet;
     var FormStep = formset.FormStep;
+var Input = require('../../components/forms/input.jsx');
 var Page = require('../../components/page/www/page.jsx');
+var Select = require('../../components/forms/select.jsx');
+var TextArea = require('../../components/forms/textarea.jsx');
 
 var TeacherRegistration = React.createClass({
     type: 'TeacherRegistration',
@@ -41,12 +45,12 @@ var TeacherRegistration = React.createClass({
                           key="step1">
                     <form>
                         <label htmlFor="username">Username</label>
-                        <input type="text" name="username" />
+                        <Input type="text" name="username" />
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" />
+                        <Input type="password" name="password" />
                         <label htmlFor="passwordConfirmation">Confirm Password</label>
-                        <input type="password" name="passwordConfirmation" />
-                        <input type="submit" value="Next Step" />
+                        <Input type="password" name="passwordConfirmation" />
+                        <Button type="submit">Next Step</Button>
                     </form>
                 </FormStep>
                 <FormStep title="Demographics"
@@ -58,29 +62,31 @@ var TeacherRegistration = React.createClass({
                           key="step2">
                     <form>
                         <label htmlFor="month">Birth Month</label>
-                        <select name="month">
+                        <Select name="month">
                             {months.map(function (name, id) {
                                 return (<option value={id+1} key={id}>{name}</option>);
                               })}
-                        </select>
+                        </Select>
                         <label htmlFor="year">Birth Yeah</label>
-                        <select name="year">
+                        <Select name="year">
                             {Array.apply(null, Array(100)).map(function (v, id) {
                                 return (<option value={2016-id} key={id}>{2016-id}</option>);
                             })}
-                        </select>
-                        <label htmlFor="gender">Gender</label>
-                        <radio name="gender" value="female" />
-                        <radio name="gender" value="male" />
-                        <radio name="gender" />
-                        <input name="gender" type="text" />
+                        </Select>
+                        <label>Gender</label>
+                        <Input type="radio" name="gender" id="genderFemale" value="female" />
+                        <label htmlFor="genderFemale">Female</label>
+                        <Input type="radio" name="gender" id="genderMale" value="male" />
+                        <label htmlFor="genderMale">Male</label>
+                        <Input type="radio" name="gender" value="genderOther" />
+                        <Input name="genderOther" type="text" />
                         <label htmlFor="country">Country</label>
-                        <select name="country">
+                        <Select name="country">
                             {Object.keys(countries).map(function (code, id) {
                                 return (<option value={code} key={id}>{countries[code]}</option>);
                               })}
-                        </select>
-                        <input type="submit" value="Next Step" />
+                        </Select>
+                        <Button type="submit">Next Step</Button>
                     </form>
                 </FormStep>
                 <FormStep title="First &amp; Last Name"
@@ -92,10 +98,10 @@ var TeacherRegistration = React.createClass({
                           key="step3">
                     <form>
                         <label htmlFor="first">First Name</label>
-                        <input type="text" name="first" />
+                        <Input type="text" name="first" />
                         <label htmlFor="last">Last Name</label>
-                        <input type="text" name="last" />
-                        <input type="submit" value="Next Step" />
+                        <Input type="text" name="last" />
+                        <Button type="submit">Next Step</Button>
                     </form>
                 </FormStep>
                 <FormStep title="Phone Number"
@@ -107,13 +113,13 @@ var TeacherRegistration = React.createClass({
                           key="step4">
                     <form>
                         <label htmlFor="phone">Phone Number</label>
-                        <input type="tel" name="phone" />
-                        <checkbox name="phoneConsent" />
+                        <Input type="tel" name="phone" />
+                        <Input type="checkbox" name="phoneConsent" />
                         <label htmlFor="phoneConsent">
                             Yes, I consent to lorem ipsum dolor sit amet,
                             consectetur adipiscing elit.
                         </label>
-                        <input type="submit" value="Next Step" /> 
+                        <Button type="submit">Next Step</Button> 
                     </form>
                 </FormStep>
                 <FormStep title="Organization"
@@ -125,27 +131,27 @@ var TeacherRegistration = React.createClass({
                           key="step5">
                     <form>
                         <label htmlFor="organization">Organization</label>
-                        <input type="text" name="organization" />
+                        <Input type="text" name="organization" />
                         <label htmlFor="title">Title / Position</label>
-                        <input type="text" name="title" />
+                        <Input type="text" name="title" />
                         <label>Type of Organization</label>
                         {['Elementary School', 'Middle School',
                           'High School', 'University / College',
                           'Museum', 'Library', 'Camp'].map(function (type, id) {
                             var typeId = 'organizationType' + id;
                             return [
-                                <input type="checkbox"
+                                <Input type="checkbox"
                                        name="organizationType"
                                        id={typeId}
                                        value={type} />,
                                 <label htmlFor={typeId}>{type}</label>
                             ];
                           })}
-                        <input type="checkbox" name="organizationType" value="other" />
-                        <input type="text" name="organizationTypeOther" />
+                        <Input type="checkbox" name="organizationType" value="other" />
+                        <Input type="text" name="organizationTypeOther" />
                         <label htmlFor="website">Website URL (not required)</label>
-                        <input type="url" name="website" />
-                        <input type="submit" value="Next Step" />
+                        <Input type="url" name="website" />
+                        <Button type="submit">Next Step</Button>
                     </form>
                 </FormStep>
                 <FormStep title="Address"
@@ -156,27 +162,27 @@ var TeacherRegistration = React.createClass({
                             </p>}
                           key="step6">
                     <form>
-                        <label for="addressCountry">Country</label>
-                        <select name="addressCountry">
+                        <label htmlFor="addressCountry">Country</label>
+                        <Select name="addressCountry">
                             {Object.keys(countries).map(function (code, id) {
                                 return (<option value={code} key={id}>{countries[code]}</option>);
                               })}
-                        </select>
-                        <label for="addressLine1">Address Line 1</label>
-                        <input type="text" name="addressLine1" />
-                        <label for="addressLine2">Address Line 2</label>
-                        <input type="text" name="addressLine2" />
-                        <label for="addressCity">City</label>
-                        <input type="text" name="addressCity" />
-                        <label for="addressZip">Zip Code</label>
-                        <input type="text" name="addressZip" />
-                        <label for="addressState">State / Province</label>
-                        <select name="addressState">
+                        </Select>
+                        <label htmlFor="addressLine1">Address Line 1</label>
+                        <Input type="text" name="addressLine1" />
+                        <label htmlFor="addressLine2">Address Line 2</label>
+                        <Input type="text" name="addressLine2" />
+                        <label htmlFor="addressCity">City</label>
+                        <Input type="text" name="addressCity" />
+                        <label htmlFor="addressZip">Zip Code</label>
+                        <Input type="text" name="addressZip" />
+                        <label htmlFor="addressState">State / Province</label>
+                        <Select name="addressState">
                             {['every','state','in','the','world'].map(function (name, id) {
                                 return <option value={name} key={id}>{name}</option>;
                             })}
-                        </select>
-                        <input type="submit" value="Next Step" />
+                        </Select>
+                        <Button type="submit">Next Step</Button>
                     </form>
                 </FormStep>
                 <FormStep title="How do you use Scratch?"
@@ -187,7 +193,9 @@ var TeacherRegistration = React.createClass({
                             </p>}
                           key="step7">
                     <form>
-                        <input type="submit" value="Next Step" />
+                        <label htmlFor="useScratch">How do you use Scratch?</label>
+                        <TextArea name="useScratch" />
+                        <Button type="submit">Next Step</Button>
                     </form>
                 </FormStep>
                 <FormStep title="Email Address"
@@ -198,9 +206,11 @@ var TeacherRegistration = React.createClass({
                             </p>}
                           key="step8">
                     <form>
-                        <label for="useScratch">How do you use Scratch?</label>
-                        <textarea name="useScratch" />
-                        <input type="submit" value="Next Step" />
+                        <label htmlFor="email">Email</label>
+                        <Input type="text" name="email" />
+                        <label htmlFor="confirmEmail">Confirm Email</label>
+                        <Input type="text" name="confirmEmail" />
+                        <Button type="submit">Next Step</Button>
                     </form>
                 </FormStep>
                 <FormStep title="Almost Done"
