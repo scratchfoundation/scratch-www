@@ -3,7 +3,7 @@ var React = require('react');
 
 var render = require('../../lib/render.jsx');
 
-var formset = require('../../components/formset/formset.jsx');
+var formset = require('../../components/forms/formset.jsx');
     var FormSet = formset.FormSet;
     var FormStep = formset.FormStep;
 var Page = require('../../components/page/www/page.jsx');
