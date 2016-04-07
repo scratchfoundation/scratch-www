@@ -16,15 +16,7 @@ $base-bg: $ui-white;
         line-height: 2em;
     }
 
-    .top-banner {
-        transition: background-image .5s ease, background-color .5s ease;
-        margin-bottom: 40px;
-        background-color: $ui-aqua;
-        background-position: center;
-        background-size: cover;
-        padding: 20px 0;
-        width: 100%;
-
+    .title-banner {
         &.wbb-bg {    
             background-image: url("/images/hoc2015/hide-bg.jpg");
         }
@@ -35,15 +27,6 @@ $base-bg: $ui-white;
 
         &.name-bg {
             background-image: url("/images/hoc2015/name-bg.jpg");
-        }
-
-        h1, 
-        p {
-            margin: 0 auto;
-            padding: 5px 0;
-            max-width: 500px;
-            text-align: center;
-            color: $type-white;        
         }
 
         section {

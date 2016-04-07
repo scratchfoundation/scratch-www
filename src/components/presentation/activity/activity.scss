@@ -1,0 +1,44 @@
+@import "../../../colors";
+
+.activity {
+    ul {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        display: block;
+        clear: both;
+
+        margin: 12px 0;
+        padding: 0;
+
+        a {
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        img {
+            display: block;
+            float: left;
+            padding-right: 10px;
+        }
+
+        p {
+            display: block;
+            margin: 0;
+            padding: 0;
+
+            white-space: nowrap;
+            font-size: .9rem;
+            overflow-x: hidden;
+        }
+
+        .stamp {
+            color: $ui-dark-gray;
+            font-size: .65rem;
+        }
+    }
+}

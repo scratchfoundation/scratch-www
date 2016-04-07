@@ -1,0 +1,78 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+var FormattedMessage = require('react-intl').FormattedMessage;
+
+var log = require('../../../lib/log.js');
+
+var Input = require('../../presentation/forms/input.jsx');
+var Button = require('../../presentation/forms/button.jsx');
+var Spinner = require('../../presentation/spinner/spinner.jsx');
+
+require('./login.scss');
+
+var Login = React.createClass({
+    type: 'Login',
+    propTypes: {
+        onLogIn: React.PropTypes.func,
+        error: React.PropTypes.string
+    },
+    getInitialState: function () {
+        return {
+            waiting: false
+        };
+    },
+    handleSubmit: function (event) {
+        event.preventDefault();
+        this.setState({waiting: true});
+        this.props.onLogIn({
+            'username': ReactDOM.findDOMNode(this.refs.username).value,
+            'password': ReactDOM.findDOMNode(this.refs.password).value
+        }, function (err) {
+            if (err) log.error(err);
+            this.setState({waiting: false});
+        }.bind(this));
+    },
+    render: function () {
+        var error;
+        if (this.props.error) {
+            error = <div className="error">{this.props.error}</div>;
+        }
+        return (
+            <div className="login">
+                <form onSubmit={this.handleSubmit}>
+                    <label htmlFor="username" key="usernameLabel">
+                        <FormattedMessage
+                            id='general.username'
+                            defaultMessage={'Username'} />
+                    </label>
+                    <Input type="text" ref="username" name="username" maxLength="30" key="usernameInput" />
+                    <label htmlFor="password" key="passwordLabel">
+                        <FormattedMessage
+                            id='general.password'
+                            defaultMessage={'Password'} />
+                    </label>
+                    <Input type="password" ref="password" name="password" key="passwordInput" />
+                    {this.state.waiting ? [
+                        <Button className="submit-button white" type="submit" disabled="disabled" key="submitButton">
+                            <Spinner />
+                        </Button>
+                    ] : [
+                        <Button className="submit-button white" type="submit" key="submitButton">
+                            <FormattedMessage
+                                id='general.signIn'
+                                defaultMessage={'Sign in'} />
+                        </Button>
+                    ]}
+                    <a className="right" href="/accounts/password_reset/" key="passwordResetLink">
+                        <FormattedMessage
+                            id='login.forgotPassword'
+                            defaultMessage={'Forgot Password?'} />
+                    </a>
+                    {error}
+                </form>
+            </div>
+        );
+    }
+});
+
+module.exports = Login;

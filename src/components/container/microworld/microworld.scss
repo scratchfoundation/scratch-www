@@ -1,0 +1,185 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+$base-bg: $ui-white;
+
+#view {
+    background-color: $base-bg;
+    padding: 0;
+
+    // To be integrated into the Global Typography standards
+    h3,
+    p {
+        font-weight: 300;
+
+    }
+
+    p {
+        line-height: 2em;
+    }
+
+    h1 {
+        margin: 0 auto;
+        padding: 5px 10%;
+        text-align: center;
+        color: $type-gray;
+    }
+
+    .top-banner, 
+    .videos-section,
+    .section {
+        padding: 30px 0;
+        width: 100%;
+
+        h1,
+        p {
+            margin: 0 auto;
+            padding: 5px 10%;
+            text-align: center;
+            color: $type-gray;
+        }
+    }
+
+    .videos-container {
+        display: flex;
+        margin: 0 auto;
+
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .videos {
+            display: inline-flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .video {
+            position: relative;
+            margin: 10px;
+            border-radius: 7px;
+            background-color: $active-gray;
+            padding: 2px;
+            max-width: 290px;
+        }
+
+        img {
+            margin: 10px 10px 5px;
+            border-radius: 5px;
+            width: calc(100% - 20px);
+            height: 179px;
+        }
+
+        .play-button {
+            display: block;
+            top: calc(50% - 25px);
+            left: calc(50% - 35px);
+            opacity: .8;
+            border: 5px solid $ui-border;
+            border-radius: 20px;
+            background-color: $type-gray;
+            width: 70px;
+            height: 50px;
+
+            &,
+            &:after {
+                position: absolute;
+                margin: 0;
+                cursor: pointer;
+                padding: 0;
+            }
+
+            &:after {
+                $play-arrow: rgba(255, 255, 255, 0);
+                top: 37px;
+                left: 28px;
+                margin-top: -30px;
+                border: solid transparent;
+                border-width: 18px;
+                border-color: $play-arrow;
+                border-left-color: $ui-white;
+                width: 0;
+                height: 0;
+                content: " ";
+                pointer-events: none;
+            }
+        }
+    }
+
+    .content {
+        img {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .box,
+        iframe {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+            border: 0;
+            padding-top: 25px;
+            padding-bottom: 15px;
+        }
+
+        iframe {   
+            height: 600px;
+        }
+
+        .editor {
+            position: relative;
+
+            iframe {
+                width: 100%;
+            }
+            
+            .scratch-link {
+                position: absolute;
+                right: 3%;
+                width: 10%;
+            }
+        }
+
+        .side-by-side {
+            margin-right: auto;
+            margin-left: auto;
+            
+            height: 520px;
+
+            .design-studio-projects,
+            .design-studio {
+                display: inline-block;
+                width: 45%;
+                height: 500px;
+            }
+
+            .design-studio-projects {
+                float: right;
+            }
+
+            .design-studio {
+                float: left;
+
+                iframe {
+                    margin-top: 60px;
+                    width: 200%;
+                    -webkit-transform: scale(.5);
+                    -webkit-transform-origin: top left;
+                    -moz-transform: scale(.5);
+                }
+            }
+        }
+    }
+
+    .box-content {
+        .nestedcarousel {
+            text-align: center;
+
+            .thumbnail {
+                display: inline-block;
+                margin: 0 50px;
+            }
+        }
+    }
+}

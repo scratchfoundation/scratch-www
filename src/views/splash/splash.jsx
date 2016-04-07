@@ -8,17 +8,17 @@ var actions = require('../../redux/actions.js');
 
 var Api = require('../../mixins/api.jsx');
 
-var Activity = require('../../components/activity/activity.jsx');
-var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
-var Banner = require('../../components/banner/banner.jsx');
-var Box = require('../../components/box/box.jsx');
-var Button = require('../../components/forms/button.jsx');
-var Carousel = require('../../components/carousel/carousel.jsx');
-var Intro = require('../../components/intro/intro.jsx');
-var Modal = require('../../components/modal/modal.jsx');
-var News = require('../../components/news/news.jsx');
-var Page = require('../../components/page/page.jsx');
-var Welcome = require('../../components/welcome/welcome.jsx');
+var Activity = require('../../components/presentation/activity/activity.jsx');
+var AdminPanel = require('../../components/presentation/adminpanel/adminpanel.jsx');
+var DropdownBanner = require('../../components/presentation/dropdown-banner/banner.jsx');
+var Box = require('../../components/presentation/box/box.jsx');
+var Button = require('../../components/presentation/forms/button.jsx');
+var Carousel = require('../../components/presentation/carousel/carousel.jsx');
+var Intro = require('../../components/container/intro/intro.jsx');
+var Modal = require('../../components/presentation/modal/modal.jsx');
+var News = require('../../components/presentation/news/news.jsx');
+var Page = require('../../components/container/page/www/page.jsx');
+var Welcome = require('../../components/presentation/welcome/welcome.jsx');
 
 require('./splash.scss');
 
@@ -354,13 +354,13 @@ var Splash = injectIntl(React.createClass({
         return (
             <div className="splash">
                 {this.shouldShowEmailConfirmation() ? [
-                    <Banner key="confirmedEmail"
+                    <DropdownBanner key="confirmedEmail"
                             className="warning"
                             onRequestDismiss={this.handleDismiss.bind(this, 'confirmed_email')}>
                         <a href="#" onClick={this.showEmailConfirmationModal}>Confirm your email</a>
                         {' '}to enable sharing.{' '}
                         <a href="/info/faq/#accounts">Having trouble?</a>
-                    </Banner>,
+                    </DropdownBanner>,
                     <Modal key="emailConfirmationModal"
                            isOpen={this.state.emailConfirmationModalOpen}
                            onRequestClose={this.hideEmailConfirmationModal}

@@ -1,13 +1,13 @@
-var classNames = require('classnames');
 var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var Page = require('../../components/page/page.jsx');
-var Button = require('../../components/forms/button.jsx');
-var Box = require('../../components/box/box.jsx');
-var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+var Page = require('../../components/container/page/www/page.jsx');
+var Button = require('../../components/presentation/forms/button.jsx');
+var Box = require('../../components/presentation/box/box.jsx');
+var SubNavigation = require('../../components/presentation/subnavigation/subnavigation.jsx');
+var TitleBanner = require('../../components/presentation/title-banner/title-banner.jsx');
 
 require('./hoc.scss');
 
@@ -25,13 +25,9 @@ var Hoc = React.createClass({
         });
     },
     render: function () {
-        var classes = classNames(
-            'top-banner',
-            this.state.bgClass
-        );
         return (
             <div>
-                <div className={classes}>
+                <TitleBanner className={this.state.bgClass}>
                     <h1>
                         <FormattedMessage
                             id='hoc.title'
@@ -117,7 +113,7 @@ var Hoc = React.createClass({
                             </li>
                         </a>
                     </SubNavigation>
-                </div>
+                </TitleBanner>
 
                 
 

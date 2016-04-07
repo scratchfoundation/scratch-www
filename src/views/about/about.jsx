@@ -3,7 +3,7 @@ var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
 
-var Page = require('../../components/page/page.jsx');
+var Page = require('../../components/container/page/www/page.jsx');
 
 require('./about.scss');
 
