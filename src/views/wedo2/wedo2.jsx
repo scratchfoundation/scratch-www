@@ -2,6 +2,7 @@ var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 
+var Page = require('../../components/page/page.jsx');
 var render = require('../../lib/render.jsx');
 
 require('./wedo2.scss');
@@ -130,4 +131,4 @@ var Wedo2 = React.createClass({
     }
 });
 
-render(<Wedo2 />, document.getElementById('view'));
+render(<Page><Wedo2 /></Page>, document.getElementById('app'));
