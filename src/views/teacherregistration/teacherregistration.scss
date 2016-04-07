@@ -1,0 +1,24 @@
+.teacher-registration {
+    .formset {
+        margin: 0 auto;
+        width: 50%;
+    }
+
+    .button,
+    .label {
+        display: block;
+        width: 100%;
+    }
+
+    input {
+        &[type=radio],
+        &[type=checkbox] {
+            + .label {
+                display: inline-block;
+                margin-right: 20px;
+                margin-left: 10px;
+                width: auto;                
+            }
+        }
+    }
+}
