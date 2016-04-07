@@ -4,6 +4,7 @@ var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
+var Page = require('../../components/page/page.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Box = require('../../components/box/box.jsx');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
@@ -405,4 +406,4 @@ var Hoc = React.createClass({
     }
 });
 
-render(<Hoc />, document.getElementById('view'));
+render(<Page><Hoc /></Page>, document.getElementById('app'));

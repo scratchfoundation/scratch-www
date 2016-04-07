@@ -7,8 +7,6 @@ var express = require('express');
 var path = require('path');
 var proxy = require('express-http-proxy');
 var url = require('url');
-var webpackDevMiddleware = require('webpack-dev-middleware');
-var webpack = require('webpack');
 
 var handler = require('./handler');
 var log = require('./log');
@@ -72,6 +70,8 @@ if (typeof process.env.NODE_SENTRY_DSN === 'string') {
 
 if (!isProduction) {
     // Use webpack-dev-server in development
+    var webpackDevMiddleware = require('webpack-dev-middleware');
+    var webpack = require('webpack');
     var compiler = webpack(require('../webpack.config.js'));
     app.use(webpackDevMiddleware(compiler, {
         headers: {

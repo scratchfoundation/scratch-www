@@ -22,5 +22,8 @@ module.exports = {
     sentry_dsn: process.env.CLIENT_SENTRY_DSN || '',
 
     // Use minified JS libraries
-    min: (process.env.NODE_ENV === 'production') ? '.min' : ''
+    min: (process.env.NODE_ENV === 'production') ? '.min' : '',
+
+    // Redux likes to have this
+    NODE_ENV: process.env.NODE_ENV
 };

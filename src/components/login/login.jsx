@@ -40,30 +40,30 @@ var Login = React.createClass({
         return (
             <div className="login">
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="username">
+                    <label htmlFor="username" key="usernameLabel">
                         <FormattedMessage
                             id='general.username'
                             defaultMessage={'Username'} />
                     </label>
-                    <Input type="text" ref="username" name="username" maxLength="30" />
-                    <label htmlFor="password">
+                    <Input type="text" ref="username" name="username" maxLength="30" key="usernameInput" />
+                    <label htmlFor="password" key="passwordLabel">
                         <FormattedMessage
                             id='general.password'
                             defaultMessage={'Password'} />
                     </label>
-                    <Input type="password" ref="password" name="password" />
+                    <Input type="password" ref="password" name="password" key="passwordInput" />
                     {this.state.waiting ? [
-                        <Button className="submit-button white" type="submit" disabled="disabled">
+                        <Button className="submit-button white" type="submit" disabled="disabled" key="submitButton">
                             <Spinner />
                         </Button>
                     ] : [
-                        <Button className="submit-button white" type="submit">
+                        <Button className="submit-button white" type="submit" key="submitButton">
                             <FormattedMessage
                                 id='general.signIn'
                                 defaultMessage={'Sign in'} />
                         </Button>
                     ]}
-                    <a className="right" href="/accounts/password_reset/">
+                    <a className="right" href="/accounts/password_reset/" key="passwordResetLink">
                         <FormattedMessage
                             id='login.forgotPassword'
                             defaultMessage={'Forgot Password?'} />

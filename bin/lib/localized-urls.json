@@ -1,0 +1,52 @@
+{
+    "en": {
+        "cards.starterLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/Scratch2Cards.pdf",
+        "cards.nameLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/AnimateYourNameCards.pdf",
+        "cards.pongLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/PongCards.pdf",
+        "cards.storyLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/StoryCards.pdf",
+        "cards.danceLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/DanceCards.pdf",
+        "cards.hideLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/Hide-and-Seek-Cards.pdf"
+    },
+    "ar": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ar/Scratch2Cards.pdf"
+    },
+    "ca": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ca/Scratch2Cards.pdf"
+    },
+    "cs": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/cs/Scratch2Cards.pdf"
+    },
+    "de": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/de/Scratch2Cards.pdf"
+    },
+    "es": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/es/Scratch2Cards.pdf"
+    },
+    "fr": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/fr/Scratch2Cards.pdf"
+    },
+    "hr": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/hr/Scratch2Cards.pdf"
+    },
+    "it": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/it/Scratch2Cards.pdf"
+    },
+    "ja": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ja/Scratch2Cards.pdf"
+    },
+    "ja-hr": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ja-hr/Scratch2Cards.pdf"
+    },
+    "ko": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ko/Scratch2Cards.pdf"
+    },
+    "nl": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/nl/Scratch2Cards.pdf"
+    },
+    "pt-br": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/pt-br/Scratch2Cards.pdf"
+    },
+    "sl": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/sl/Scratch2Cards.pdf"
+    }
+}

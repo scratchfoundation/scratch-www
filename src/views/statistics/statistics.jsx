@@ -3,6 +3,7 @@ var classNames = require('classnames');
 var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 
+var Page = require('../../components/page/page.jsx');
 var render = require('../../lib/render.jsx');
 var Api = require('../../mixins/api.jsx');
 var Box = require('../../components/box/box.jsx');
@@ -602,4 +603,4 @@ var Statistics = React.createClass({
     }
 });
 
-render(<Statistics />, document.getElementById('view'));
+render(<Page><Statistics /></Page>, document.getElementById('app'));
