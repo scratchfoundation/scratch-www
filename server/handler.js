@@ -3,13 +3,17 @@ var defaults = require('lodash.defaults');
 var fs = require('fs');
 var mustache = require('mustache');
 var path = require('path');
-
 var config = require('./config');
 
 /**
  * Constructor
  */
 function Handler (route) {
+    // Handle redirects
+    if (route.redirect) {
+        return (req, res) => { res.redirect(route.redirect); };
+    }
+
     // Route definition
     defaults(route, config);
 
