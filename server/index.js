@@ -45,10 +45,9 @@ app.use(function (req, res, next) {
 });
 
 // Bind routes
-for (var routeId in routes) {
-    var route = routes[routeId];
+routes.forEach(route => {
     app.get(route.pattern, handler(route));
-}
+});
 
 if (typeof process.env.NODE_SENTRY_DSN === 'string') {
     var raven = require('raven');
