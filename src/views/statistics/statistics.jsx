@@ -24,7 +24,6 @@ var MonthlyActivity = React.createClass({
     mixins: [
         Api
     ],
-
     getInitialState: function () {
         return {
             options: {
