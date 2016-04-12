@@ -1,22 +1,12 @@
 var crypto = require('crypto');
-var defaults = require('lodash.defaults');
-var fs = require('fs');
-var mustache = require('mustache');
-var path = require('path');
 
-var config = require('./config');
+var render = require('./render.js');
 
 /**
  * Constructor
  */
 function Handler (route) {
-    // Route definition
-    defaults(route, config);
-
-    // Render template
-    var location = path.resolve(__dirname, './template.html');
-    var template = fs.readFileSync(location, 'utf8');
-    var output = mustache.render(template, route);
+    var output = render(route);
     var checksum = crypto.createHash('md5').update(output).digest('hex');
 
     return function (req, res) {

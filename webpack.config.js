@@ -5,6 +5,36 @@ var webpack = require('webpack');
 
 var routes = require('./server/routes.json');
 
+
+function HtmlGeneratorPlugin (options) {
+    this.options = options;
+    return this;
+}
+
+HtmlGeneratorPlugin.prototype.apply = function (compiler) {
+    var render = this.options.render;
+    var routes = this.options.routes;
+
+    compiler.plugin('emit', function (compilation, callback) {
+        var outputRoutes = {};
+        routes.forEach(function (route) {
+            var filename = route.view + '.html';
+            var content = render(route);
+            outputRoutes[route.pattern] = filename;
+            compilation.assets[filename] = {
+                source: function () {return content;},
+                size: function () {return content.length;}
+            };
+        });
+        var routeJson = JSON.stringify(outputRoutes);
+        compilation.assets['routes.json'] = {
+            source: function () {return routeJson;},
+            size: function () {return routeJson.length;}
+        };
+        callback();
+    });
+};
+
 // Prepare all entry points
 var entry = {
     init: './src/init.js'
@@ -56,6 +86,10 @@ module.exports = {
         fs: 'empty'
     },
     plugins: [
+        new HtmlGeneratorPlugin({
+            render: require('./server/render.js'),
+            routes: routes
+        }),
         new CopyWebpackPlugin([
             {from: 'static'},
             {from: 'intl', to: 'js'}
