@@ -13,47 +13,40 @@ env:
   - secure: A138rYuXDsOmpEwYxZ31WyXEeq5fgr9qyqsQh1nTFsjBKpFtNM+CN9e0QJQFT3PLs4wH/lWTRSyHxakxKQS1sxq828f9gHed+f15REKk/fRUplcCYIexT9xKVtU3D8CRNn/KBFWk75fZyZt20eyOVIv4h3pInKQz7y84J6PWzB1BCrAFvADrzS1X68Z3NJJLyxnz0YEurzz8mC2v4D0s/XifKTWvRtefD4QM6pE0C2iYyk+ThrLwg7i9FDHVfo0MrkgcdX7mz37SnTr7p7mHWnGXrGngi/NiDRQ+Uwwq/sr2UIww0rCwS1xsOcS//dC4NNqrrt1kUTsoC1Yt87Ny+gI0nUplsfEpdKajAkOYdANC5bJUGqPdSlOds1v9aJs9Hx48uGamWkm/3cFmoJ5uA2ZzUwbSGjTkWbnhwzT0YRvcLGhP1WE/EswaIyK5qMp522E79mP1yH6M750iUvi4N39+QW1BNX3ADkOwyAI67ArX5on5gWP83RXcJ15im7XsBpsmVn/KXi6AouWPb8jmSmKCj0QZCzfLY7ivM42IugYpK2NV7kFB38DpXQamJ5eskgwYa3elRmednIFUuwb1QDnONvJogVjk4CLmoSxssC2mJnnrUItM7l8G6As81GMI+6lTtl86hAuXBjUk60FMbgTAQDX9ll26LgpBy8jHSx8=
   - secure: EX1fyov+f6ytWN2ZSL4dLslwrVkp6Ho/uoSLO38/qNG3XdGmBN4VprxddcQiWfo+Mrg3GdWcfcM/VazhhStBi1uLfZiw3RHZaSGuWbiuD2EtzqtlC+OVvoajgy91QFajh9Zzuwa0rYbEPd/sw01R53NoWJYl0GSteWk7C8Wv6anl4FUJCqgvvTV2ZEcyTtGcVJgUhKi1MfNpTSM6JWBy0DWszcyxj7C8LSs1+l9ZjAtnlUBWY13HsrNu8G5d+FwqGHZLUAjdu2O602wxV897/xLARLduZ+01ALpVefNEEGMB1Wd+xMw4dm2B0Uk86a4TBRCeOgJZ1yoJoPpGPOHTo+dgNXcU8ReszGVoy7uOjFWwu82FQq8gzfcf75yzaRJgG8/BJ6BkJfa0EmFg3iO5CwixQyHR5+CqsedtoLAWVT8zlOfQ/Z6yx4Pm7jXQSOkyvo09YJ2QIn4IFGPvwOVS7Firzi+fLl8GYApeSV9G10e1IzA4pPrKdJMRA4qRMPt9zJGq7ZO1J/d9aW/5KIsJUDnodnl7yXJyDMOyNeljT9I82ciHZcURxRRY080vrW6dgNJE1V9jxBhWEvr2iCeWMMedWaGuC41I7K9L79eW8lmaE+cQ+OZrzpOJP4GbfmIiXrh+0M4ChL/xBpjtiFwpNdkCXXhzWMnjJ4wCrii4yuc=
   - CXX=g++-4.8
-  - EB_REGION=us-east-1
-  - EB_APP=scratch-www
-  - EB_AWS_BUCKET_NAME=elasticbeanstalk-us-east-1-307680192167
+  - S3_ACL=public_read
+  - S3_LOCAL_DIR=build
+  - S3_REGION=us-east-1
   - SKIP_CLEANUP=true
-  - ELASTIC_BEANSTALK_LABEL=${TRAVIS_COMMIT:0:5}
-  - BUILD_ARCHIVE=$ELASTIC_BEANSTALK_LABEL.zip
 addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-before_deploy:
-- zip -qr $BUILD_ARCHIVE .
 deploy:
-- provider: elasticbeanstalk
+- provider: s3
   access_key_id: $EB_AWS_ACCESS_KEY_ID
   secret_access_key: $EB_AWS_SECRET_ACCESS_KEY
-  bucket_name: $EB_AWS_BUCKET_NAME
-  bucket_path: $EB_APP
-  zip_file: $BUILD_ARCHIVE
+  bucket: scratch-www-staging
+  local_dir: $S3_LOCAL_DIR
+  acl: $S3_ACL
+  region: $S3_REGION
   skip_cleanup: $SKIP_CLEANUP
-  region: $EB_REGION
-  app: $EB_APP
-  env: scratch-www-stage-v208
   on:
     repo: LLK/scratch-www
     branch:
     - develop
+    - s3
     - hotfix/*
     - release/*
-- provider: elasticbeanstalk
+- provider: s3
   access_key_id: $EB_AWS_ACCESS_KEY_ID
   secret_access_key: $EB_AWS_SECRET_ACCESS_KEY
-  bucket_name: $EB_AWS_BUCKET_NAME
-  bucket_path: $EB_APP
-  zip_file: $BUILD_ARCHIVE
+  bucket: scratch-www-production
+  local_dir: $S3_LOCAL_DIR
+  acl: $S3_ACL
+  region: $S3_REGION
   skip_cleanup: $SKIP_CLEANUP
-  region: $EB_REGION
-  app: $EB_APP
-  env: scratch-www-production
   on:
     repo: LLK/scratch-www
     branch: master
