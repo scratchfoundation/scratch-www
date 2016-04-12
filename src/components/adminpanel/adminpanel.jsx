@@ -1,15 +1,12 @@
 var React = require('react');
+var connect = require('react-redux').connect;
 
 var Button = require('../../components/forms/button.jsx');
-var Session = require('../../mixins/session.jsx');
 
 require('./adminpanel.scss');
 
 var AdminPanel = React.createClass({
     type: 'AdminPanel',
-    mixins: [
-        Session
-    ],
     getInitialState: function () {
         return {
             showPanel: false
@@ -22,8 +19,8 @@ var AdminPanel = React.createClass({
     render: function () {
         // make sure user is present before checking if they're an admin. Don't show anything if user not an admin.
         var showAdmin = false;
-        if (this.state.session.user) {
-            showAdmin = this.state.session.permissions.admin;
+        if (this.props.session.user) {
+            showAdmin = this.props.session.permissions.admin;
         }
 
         if (!showAdmin) return false;
@@ -78,4 +75,12 @@ var AdminPanel = React.createClass({
     }
 });
 
-module.exports = AdminPanel;
+var mapStateToProps = function (state) {
+    return {
+        session: state.session
+    };
+};
+
+var ConnectedAdminPanel = connect(mapStateToProps)(AdminPanel);
+
+module.exports = ConnectedAdminPanel;

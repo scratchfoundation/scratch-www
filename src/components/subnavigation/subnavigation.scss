@@ -37,7 +37,7 @@
 
         &.description {
             /* clear styling for info element */
-            border: none;
+            border: 0;
             border-radius: none;
             text-decoration: none;
 
@@ -47,7 +47,7 @@
             }
 
             &:active {
-                border: none;
+                border: 0;
                 box-shadow: none;
                 background-color: transparent;
             }

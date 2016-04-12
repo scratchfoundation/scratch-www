@@ -1,0 +1,42 @@
+[
+  {
+     "title":"Start Dancing",
+     "thumbnails":[
+        {
+           "type":"tip",
+           "title":"First, select a sprite",
+           "thumbnailUrl":"/images/microworlds/hiphop/dancer-sprite.png"
+        },
+        {
+           "type":"tip",
+           "title":"Then, try this script",
+           "thumbnailUrl":"/images/microworlds/hiphop/switch-wait.gif"
+        },
+        {
+           "type":"tip",
+           "title":"Start it!",
+           "thumbnailUrl":"/images/microworlds/hiphop/green-flag.gif"
+        }
+     ]
+  },
+  {
+     "title":"Repeat the Dance",
+     "thumbnails":[
+        {
+           "type":"tip",
+           "title":"Add another \"wait\"",
+           "thumbnailUrl":"/images/microworlds/hiphop/add-wait.gif"
+        },
+        {
+           "type":"tip",
+           "title":"Drag this block over",
+           "thumbnailUrl":"/images/microworlds/hiphop/add-repeat.gif"
+        },
+        {
+           "type":"tip",
+           "title":"Start it",
+           "thumbnailUrl":"/images/microworlds/hiphop/green-flag.gif"
+        }
+     ]
+  }
+]

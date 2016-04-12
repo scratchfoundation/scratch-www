@@ -3,6 +3,8 @@ var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
 
+var Page = require('../../components/page/page.jsx');
+
 require('./about.scss');
 
 var About = React.createClass({
@@ -109,4 +111,4 @@ var About = React.createClass({
     }
 });
 
-render(<About />, document.getElementById('view'));
+render(<Page><About /></Page>, document.getElementById('app'));

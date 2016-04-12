@@ -60,7 +60,8 @@
             width: calc(384px + 5px + 5px);
         }
 
-        img, iframe {
+        img,
+        iframe {
             display: block;
             border: 1px solid $ui-gray;
             padding: 5px;

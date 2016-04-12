@@ -32,29 +32,31 @@ h1 {
 
 h4 {
     line-height: 1.1rem;
-    font-size: 1.0rem;
+    font-size: 1rem;
 }
 
-p.legal {
-    font-size: .8rem;
-}
-
-/* Links */
 p {
+    &.legal {
+        font-size: .8rem;
+    }
+
     a {
         white-space: nowrap;
     }
 }
 
-a:link,
-a:visited,
-a:active {
-    text-decoration: none;
-    color: $link-blue;
-}
+/* Links */
+a {
+    &:link,
+    &:visited,
+    &:active {
+        text-decoration: none;
+        color: $link-blue;
+    }
 
-a:hover {
-    text-decoration: underline;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 /* Classes */
@@ -80,7 +82,7 @@ a:hover {
     /* NOTE: Margin should match height in navigation.scss */
     margin-top: 50px;
     background-color: $background-color;
-    padding: 20px 1px;
+    padding: 20px 0;
     min-width: 100%;
     min-height: 768px;
 }

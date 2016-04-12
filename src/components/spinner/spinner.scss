@@ -21,27 +21,33 @@
             width: 15%;
             height: 15%;
             content: "";
-            -webkit-animation: circleFadeDelay 1.2s infinite ease-in-out both;
         }
     }
 
     @for $i from 1 through 12 {
         $rotation: 30deg * ($i - 1);
         $delay: -1.3s + $i * .1;
+
         .circle#{$i} {
             transform: rotate($rotation);
-            -ms-transform: rotate($rotation);
-            -webkit-transform: rotate($rotation);
+
+            &:before {
+                animation-delay: $delay; 
+            }
         }
-        .circle#{$i}:before {
-            animation-delay: $delay; 
-            -webkit-animation-delay: $delay;
-        }
+
     }
 
 }
 
 @keyframes circleFadeDelay {
-    0%, 39%, 100% { opacity: 0; }
-    40% { opacity: 1; } 
+    0%,
+    39%,
+    100% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    } 
 }
