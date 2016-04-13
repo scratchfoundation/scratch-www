@@ -2,10 +2,12 @@
 
 #view {
     .body {
-        border: 1px solid $ui-gray;
+        position: relative;
+        border: 1px solid gray;
         border-radius: 10px;
-        background: $ui-white;
-        width: calc(100% - 80px);
+        background: white;
+        padding: 26px 40px 6px;
+        width: calc(100% - 100px);
         
         p {
             line-height: 1.5rem;
