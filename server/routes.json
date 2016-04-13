@@ -43,5 +43,10 @@
         "pattern": "/wedo",
         "view": "wedo2",
         "title": "LEGO WeDo 2.0"
+    },
+    {
+        "pattern": "/guidelines",
+        "view": "guidelines",
+        "title": "Scratch Community Guidelines"
     }
 ]
