@@ -1,19 +1,26 @@
 @import "../../colors";
 
 #view {
-    p {
-        line-height: 1.5rem;
-        word-wrap: break-word;
-    }
+    .body {
+        border: 1px solid $ui-gray;
+        border-radius: 10px;
+        background: $ui-white;
+        width: calc(100% - 80px);
+        
+        p {
+            line-height: 1.5rem;
+            word-wrap: break-word;
+        }
     
-    h1 {
-        line-height: 2.6rem;
-        font-size: 2.3rem;
-        font-weight: 300;
-    }
-    
-    h2 {
-        font-size: 1.8rem;
-        font-weight: 300;
+        h1 {
+            line-height: 2.6rem;
+            font-size: 2.3rem;
+            font-weight: 300;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+        }
     }
 }
