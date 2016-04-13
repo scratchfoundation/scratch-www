@@ -22,8 +22,8 @@ var Guidelines = React.createClass({
                         <li><b>Be constructive.</b><p> When commenting on others' projects,
                          say something you like about it and offer suggestions.</p></li>
                         <li><b>Share.</b><p> You are free to remix projects, ideas, images,
-                         or anything else you find on Scratch - and anyone can use anything 
-                        that you share. Be sure to give credit when you remix.</p></li>
+                         or anything else you find on Scratch - and anyone can use anything
+                         that you share. Be sure to give credit when you remix.</p></li>
                         <li><b>Keep personal info private.</b><p> For safety reasons,
                          don't use real names or post contact info like phone numbers or
                          addresses.</p></li>
