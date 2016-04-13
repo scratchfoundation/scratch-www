@@ -35,7 +35,7 @@ var Guidelines = React.createClass({
                     </ul>
                     <p>Scratch welcomes people of all ages, races, ethnicities, religions,
                      sexual orientations, and gender identities.</p>
-                    <img src="//cdn.scratch.mit.edu/scratchr2/static/__59036f4a23f9f535f48b54afa64f0d97__//images/help/spritesforcommunityguid.png" alt="lineosprites"/>
+                    <img src="//cdn.scratch.mit.edu/scratchr2/static/images/help/spritesforcommunityguid.png" alt="sprites"/>
                 </div>
             </div>
         );
