@@ -20,6 +20,7 @@ var Guidelines = React.createClass({
                     <li><b>Help keep the site friendly.</b> If you think a project or comment is mean, insulting, too violent, or otherwise inappropriate, click "Report" to let us know about it.</li>
                 </ul>
                 <p>Scratch welcomes people of all ages, races, ethnicities, religions, sexual orientations, and gender identities.</p>
+                <img src="//cdn.scratch.mit.edu/scratchr2/static/__59036f4a23f9f535f48b54afa64f0d97__//images/help/spritesforcommunityguid.png" alt="lineosprites"/>
             </div>
         );
     }
