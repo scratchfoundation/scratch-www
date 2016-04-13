@@ -3,11 +3,11 @@
 #view {
     .body {
         position: relative;
-        border: 1px solid gray;
+        border: 1px solid $ui-gray;
         border-radius: 10px;
-        background: white;
-        padding: 26px 40px 6px;
-        width: calc(100% - 100px);
+        background: $ui-white;
+        padding: 6px 40px 6px;
+        width: calc(100% - 80px);
         
         p {
             line-height: 1.5rem;
