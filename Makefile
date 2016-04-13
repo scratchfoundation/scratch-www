@@ -12,16 +12,12 @@ GIT_MESSAGE=$(shell git log -1 --pretty=%s 2> /dev/null)
 
 build:
 	@make clean
-	@make translations
 	@make webpack
 	@make tag
 
 clean:
 	rm -rf ./build
-	rm -rf ./intl
 	mkdir -p build
-	mkdir -p intl
-
 
 deploy:
 ifeq ($(shell grep "artifact: deploy.zip" .elasticbeanstalk/config.yml 2> /dev/null), )
@@ -37,9 +33,6 @@ endif
 
 tag:
 	echo $(GIT_VERSION) > ./build/version.txt
-
-translations:
-	./bin/build-locales intl
 
 webpack:
 	$(WEBPACK) --bail
@@ -87,4 +80,4 @@ localization:
 
 # ------------------------------------
 
-.PHONY: build clean deploy static tag translations webpack watch stop start test lint
+.PHONY: build clean deploy static tag webpack watch stop start test lint

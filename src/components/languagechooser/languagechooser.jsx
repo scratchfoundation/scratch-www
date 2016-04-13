@@ -3,7 +3,7 @@ var React = require('react');
 
 var Api = require('../../mixins/api.jsx');
 var jar  = require('../../lib/jar.js');
-var languages = require('../../../languages.json');
+var languages = require('../../../intl/languages.json');
 var Select = require('../forms/select.jsx');
 
 /**

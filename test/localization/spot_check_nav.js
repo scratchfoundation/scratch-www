@@ -15,7 +15,7 @@
 var path = require('path');
 var tap = require('tap');
 
-var localeCompare = require('../../bin/lib/locale-compare');
+var localeCompare = require('../../intl/locale-compare');
 var viewLocales = {};
 var idsWithICU = {};
 var icuWithIds = {};

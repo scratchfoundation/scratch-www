@@ -3,6 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 var routes = require('./server/routes.json');
+var BuildLocalePlugin = require('./intl/build-locale-webpack-plugin');
 
 // Prepare all entry points
 var entry = {
@@ -52,9 +53,12 @@ module.exports = {
         fs: 'empty'
     },
     plugins: [
+        new BuildLocalePlugin({
+            languages: require('./intl/languages.json'),
+            localizedUrls: require('./intl/localized-urls.json')
+        }),
         new CopyWebpackPlugin([
-            {from: 'static'},
-            {from: 'intl', to: 'js'}
+            {from: 'static'}
         ]),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
