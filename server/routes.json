@@ -45,7 +45,7 @@
         "title": "LEGO WeDo 2.0"
     },
     {
-        "pattern": "/guidelines",
+        "pattern": "/community_guidelines",
         "view": "guidelines",
         "title": "Scratch Community Guidelines"
     }
