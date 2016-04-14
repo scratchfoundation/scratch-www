@@ -124,6 +124,16 @@ var Credits = React.createClass({
                         <img src="//cdn.scratch.mit.edu/get_image/user/1915915_170x170.png" alt="Hannah Avatar" />
                         <span className="name">Hannah Cole</span>
                     </li>
+                    
+                    <li>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/1494_170x170.png" alt="Chris Avatar" />
+                        <span className="name">Chris Garrity</span>
+                    </li>
+                    
+                    <li>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/2796185_170x170.png" alt="Julia Avatar" />
+                        <span className="name">Julia Zimmerman</span>
+                    </li>
                 </ul>
 
                 <p>The team of Scratch moderators manages, supports, and improves the Scratch online community:</p>
