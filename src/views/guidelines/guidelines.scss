@@ -1,20 +1,10 @@
 @import "../../colors";
 
-#view {
+.view {
     .body {
-        #top, #bottom {
+        .bottom {
             position: relative;
             width: calc(100% - 80px);
-        }
-        
-        #top {
-            color: #6B6B6B;
-            border-radius: 10px 10px 5px 5px;
-            padding: 1px 20px;
-            background-color: #F2F2F2;
-        }
-        
-        #bottom {
             border-radius: 10px;
             border: 1px solid #D9D9D9;
             padding: 16px 20px 6px;
