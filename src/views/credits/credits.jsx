@@ -253,9 +253,9 @@ var Credits = React.createClass({
                     <a href="http://www.scratchfoundation.org/"> Scratch Foundation</a>,
                     <a href="http://www.google.org/"> Google</a>,
                     <a href="http://www.legofoundation.com/"> LEGO Foundation</a>,
-                    <a href="http://www.intel.com/">Intel Foundation</a>,
-                    <a href="http://www.turner.com/company/">Cartoon Network</a>,
-                    <a href="http://www.fundacaolemann.org.br/lemann-foundation/">Lemann Foundation</a>,
+                    <a href="http://www.intel.com/"> Intel</a>,
+                    <a href="http://www.turner.com/company/"> Cartoon Network</a>,
+                    <a href="http://www.fundacaolemann.org.br/lemann-foundation/"> Lemann Foundation</a>,
                     <a href="https://www.macfound.org/"> MacArthur Foundation</a>.
                 </p>
                 <p>
