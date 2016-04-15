@@ -44,6 +44,9 @@ translations:
 webpack:
 	$(WEBPACK) --bail
 
+configure-fastly:
+	$(NODE) ./bin/configure-fastly.js
+
 # ------------------------------------
 
 start:
