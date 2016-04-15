@@ -1,0 +1,76 @@
+@import "../../colors";
+@import "../../frameless";
+
+$base-bg: $ui-white;
+
+#view {
+    padding: 0;
+
+    h3,
+    p {
+        font-weight: 300;
+    }
+
+    p {
+        line-height: 2em;
+    }
+
+    body {
+        font: 10px sans-serif;
+    }
+
+    .box {
+        margin-bottom: 20px;
+    }
+
+    .leftHalf {
+        float: left;
+        width: 49%;
+    }
+
+    .rightHalf {
+        float: right;
+        width: 49%;
+    }
+
+    .stats {
+        li.data {
+            background-image: url("//cdn.scratch.mit.edu/scratchr2/static/__084c958abc0bf712cf84c9ad9a706380__//images/cat-face-bullet.gif");
+            background-repeat: no-repeat;
+            background-position: 0 .3em;
+        }
+
+        li {
+            padding-left: 28px;
+            line-height: 1.3em;
+            color: $ui-blue;
+            font-size: 1.4em;
+            font-weight: 500;
+            list-style-type: none;
+        }
+    }
+
+    .value {
+        color: $ui-orange;
+        font-weight: 600;
+    }
+
+    .top-banner {
+        transition: background-image .5s ease, background-color .5s ease;
+        margin-bottom: 40px;
+        background-color: $ui-aqua;
+        background-position: center;
+        background-size: cover;
+        padding: 20px 0;
+        width: 100%;
+
+        h1,
+        p {
+            margin: 0 auto;
+            padding: 5px 0;
+            max-width: 500px;
+            text-align: center;
+            color: $type-white;
+        }
+    }
+}

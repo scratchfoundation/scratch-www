@@ -56,6 +56,7 @@
     "po2icu": "git://github.com/LLK/po2icu.git#develop",
     "postcss-loader": "0.8.2",
     "react-addons-test-utils": "0.14.7",
+    "react-google-charts": "0.2.1",
     "react-modal": "0.6.1",
     "react-onclickoutside": "4.1.1",
     "react-redux": "4.4.0",
