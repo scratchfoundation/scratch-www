@@ -43,5 +43,10 @@
         "pattern": "/wedo",
         "view": "wedo2",
         "title": "LEGO WeDo 2.0"
+    },
+    {
+        "pattern": "/DMCA",
+        "view": "dmca",
+        "title": "DMCA"
     }
 ]
