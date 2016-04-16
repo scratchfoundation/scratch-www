@@ -13,10 +13,16 @@ module.exports = function (apiKey, serviceId) {
     };
 
     fastly.getLatestVersion = function (cb) {
-        if (!this.serviceId) return cb('No serviceId configured');
+        if (!this.serviceId) {
+            console.error('Failed to get latest version.');
+            return cb('No serviceId configured');
+        }
         var url = '/service/'+ encodeURIComponent(this.serviceId) +'/version';
         this.request('GET', url, function (err, versions) {
-            if (err) return cb(err);
+            if (err) {
+                console.error('Failed to get versions', err);
+                return cb(err);
+            }
             var latestVersion = versions.reduce(function (latestVersion, version) {
                 if (!latestVersion) return version;
                 if (version.number > latestVersion.number) return version;
@@ -26,24 +32,58 @@ module.exports = function (apiKey, serviceId) {
         });    
     };
 
-    fastly.setCondition = function (version, name, condition, cb) {
-        if (!this.serviceId) return callback('No serviceId configured');
+    fastly.setCondition = function (version, condition, cb) {
+        if (!this.serviceId) {
+            console.error('Failed to set condition', condition);
+            return cb('No serviceId configured');
+        }
+        var name = condition.name;
         var putUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/condition/' + encodeURIComponent(name);
         var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/condition';
         return this.request('PUT', putUrl, condition, function (err, response) {
-            if (err && err.statusCode === 404) return this.request('POST', postUrl, condition, cb);
-            return cb(err, response);
+            if (err && err.statusCode === 404) {
+                this.request('POST', postUrl, condition, function (err, response) {
+                    if (err) {
+                        console.log('Failed to POST header', header);
+                        return cb(err);
+                    }
+                    return cb(null, response);
+                });
+                return;
+            }
+            if (err) {
+                console.error('Failed to PUT condition', condition);
+                return cb(err);
+            }
+            return cb(null, response);
         }.bind(this));
     };
 
-    fastly.setHeader = function (version, name, header, cb) {
+    fastly.setFastlyHeader = function (version, header, cb) {
+        if (!this.serviceId) {
+            console.error('Failed to set header', header);
+            cb('No serviceId configured');
+        }
+        var name = header.name;
         var putUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/header/' + encodeURIComponent(name);
         var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/header';
         return this.request('PUT', putUrl, header, function (err, response) {
-            if (err && err.statusCode === 404) return this.request('POST', postUrl, header, cb);
-            return cb(err, response);
+            if (err && err.statusCode === 404) {
+                this.request('POST', postUrl, header, function (err, response) {
+                    if (err) {
+                        console.error('Failed to POST header', header);
+                        return cb(err);
+                    }
+                    return cb(null, response);
+                });
+                return;
+            }
+            if (err) {
+                console.error('Failed to PUT header', header);
+                return cb(err);
+            }
+            return cb(null, response);
         }.bind(this));
     };
-
     return fastly;
 };

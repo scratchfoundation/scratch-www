@@ -1,3 +1,4 @@
+var async = require('async');
 var defaults = require('lodash.defaults');
 var glob = require('glob');
 var path = require('path');
@@ -73,28 +74,9 @@ var getPassCacheConditionName = function () {
     return 'Cache ' + getPassRequestConditionName();
 };
 
-var getRouteHeaderConditionPairs = function (routes) {
-    return routes.map(function (route, id) {
-        return {
-            condition: {
-                name: getConditionNameForView(route.view),
-                statement: 'req.url ~ "' + route.pattern + '"',
-                type: 'REQUEST',
-                priority: 10
-            },
-            header: {
-                name: getHeaderNameForView(route.view),
-                action: 'set',
-                ignore_if_set: 0,
-                type: 'request',
-                dst: 'url',
-                src: '"/' + route.view + '.html"',
-                request_condition: getConditionNameForView(route.view),
-                priority: id
-            },
-        }
-    });
-};
+var getBucketNameHeaderName = function () {
+    return 'Bucket name';
+}
 
 var notPassCondition = {
     name: getNotPassRequestConditionName(),
@@ -102,121 +84,94 @@ var notPassCondition = {
     type: 'REQUEST',
     priority: 10
 };
-
 var passCondition = {
     name: getPassRequestConditionName(),
     statement: fastly.negateConditionStatement(notPassCondition.statement),
     type: 'REQUEST',
     priority: 10
 };
+var passCacheCondition = defaults({name: getPassCacheConditionName(), type: 'CACHE'}, passCondition);
+var bucketNameHeader = {
+    name: getBucketNameHeaderName(),
+    action: 'set',
+    ignore_if_set: 0,
+    type: 'REQUEST',
+    dst: 'http.host',
+    src: '"' + s3Bucket + '"',
+    request_condition: notPassCondition.name,
+    priority: 1
+};
 
-var routeHeaderConditionPairs = getRouteHeaderConditionPairs(routes);
-
-fastly.getLatestVersion(function (err, version) {
-    if (err) return console.error(err);
-    if (version.active) return console.error('Latest version is active. Will not modify.');
-    if (version.locked) return console.error('Latest version is locked. Cannot modify.');
-    fastly.setCondition(
-        version.number, notPassCondition.name, notPassCondition,
-        function (err) {
-            if (err) {
-                console.error('Failed to set !(Pass) request condition:');
-                console.dir(err);
-                console.error('Could not set bucket header without setting !(Pass) condition');
-                process.exit(1);
+async.waterfall([
+    fastly.getLatestVersion.bind(fastly),
+    function (version, next) {
+        if (version.active) return next('Latest version is active. Will not modify.');
+        if (version.locked) return next('Latest version is locked. Cannot modify.');
+        async.parallel([
+            function (cb) {
+                async.series([
+                    async.apply(fastly.setCondition.bind(fastly), version.number, notPassCondition),
+                    async.apply(fastly.setFastlyHeader.bind(fastly), version.number, bucketNameHeader)
+                ], cb)
+            },
+            function (cb) {
+                async.series([
+                    async.apply(fastly.setCondition.bind(fastly), version.number, passCondition),
+                    function (cb) {
+                        async.parallel([
+                            async.apply(
+                                fastly.request.bind(fastly), 'PUT',
+                                fastly.getFastlyAPIPrefix(serviceId, version.number) + '/request_settings/Pass',
+                                {request_condition: passCondition.name}
+                             ),
+                            async.apply(
+                                fastly.request.bind(fastly), 'PUT',
+                                fastly.getFastlyAPIPrefix(serviceId, version.number) + '/backend/femto',
+                                {request_condition: passCondition.name}
+                            )
+                        ], cb)
+                    }
+                ], cb)
+            },
+            function (cb) {
+                async.series([
+                    async.apply(fastly.setCondition.bind(fastly), version.number, passCacheCondition),
+                    async.apply(
+                        fastly.request.bind(fastly), 'PUT',
+                        fastly.getFastlyAPIPrefix(serviceId, version.number) + '/cache_settings/Pass',
+                        {request_condition: passCacheCondition.name}
+                    ),
+                ], cb)
+            },
+            function (cb) {
+                async.forEachOf(routes, function (route, id, cb) {
+                    var condition = {
+                        name: getConditionNameForView(route.view),
+                        statement: 'req.url ~ "' + route.pattern + '"',
+                        type: 'REQUEST',
+                        priority: 10
+                    };
+                    var header = {
+                        name: getHeaderNameForView(route.view),
+                        action: 'set',
+                        ignore_if_set: 0,
+                        type: 'request',
+                        dst: 'url',
+                        src: '"/' + route.view + '.html"',
+                        request_condition: getConditionNameForView(route.view),
+                        priority: id
+                    };
+                    async.series([
+                        async.apply(fastly.setCondition.bind(fastly), version.number, condition),
+                        async.apply(fastly.setFastlyHeader.bind(fastly), version.number, header)
+                    ], cb);
+                }, cb)
             }
-            
-            var bucketNameHeaderName = 'Bucket name';
-            fastly.setHeader(
-                version.number, bucketNameHeaderName,
-                {
-                    name: bucketNameHeaderName,
-                    action: 'set',
-                    ignore_if_set: 0,
-                    type: 'REQUEST',
-                    dst: 'http.host',
-                    src: '"' + s3Bucket + '"',
-                    request_condition: notPassCondition.name,
-                    priority: 1
-                },
-                function (err) {
-                    if (err) {
-                        console.error('Failed to set Bucket name header:', err);
-                        process.exit(1);
-                    }
-                }
-            );
+        ], next);
+    }], function (err, responses) {
+        if (err) {
+            console.log(err);
+            process.exit(1);
         }
-    );
-    fastly.setCondition(
-        version.number, passCondition.name, passCondition,
-        function (err) {
-            if (err) return console.error('Failed to set Pass condition:', err);
-            fastly.request(
-                'PUT',
-                fastly.getFastlyAPIPrefix(serviceId, version.number) + '/backend/femto',
-                {request_condition: passCondition.name},
-                function (err) {
-                    if (err) {
-                        console.error('Failed to set femto backend to use Pass condition.', err);
-                        process.exit(1);
-                    }
-                }
-            );
-            fastly.request(
-                'PUT',
-                fastly.getFastlyAPIPrefix(serviceId, version.number) + '/request_settings/Pass',
-                {request_condition: passCondition.name},
-                function (err) {
-                    if (err) {
-                        console.error('Failed to set Pass request setting to use Pass condition.', err);
-                        process.exit(1);
-                    }
-                }
-            );
-        }
-    );
-    var passCacheCondition = defaults({name: getPassCacheConditionName(), type: 'CACHE'}, passCondition);
-    fastly.setCondition(
-        version.number, getPassCacheConditionName(), passCacheCondition,
-        function (err) {
-            if (err) {
-                console.error('Failed to set Cache Pass condition:', err, passCacheCondition);
-                process.exit(1);
-            }
-            fastly.request(
-                'PUT',
-                fastly.getFastlyAPIPrefix(serviceId, version.number),
-                {cache_condition: getPassCacheConditionName()},
-                function (err) {
-                    if (err) {
-                        console.error('Failed to set Pass cache setting to use Cache Pass condition', err);
-                        process.exit(1);
-                    }
-                }
-            );
-        }
-    );
-    routeHeaderConditionPairs.forEach(function (pair) {
-        var condition = pair.condition;
-        var header = pair.header;
-        fastly.setCondition(
-            version.number, condition.name, condition,
-            function (err, response) {
-                if (err) {
-                    console.error('Failed to set route condition', condition.name, err);
-                    process.exit(1);
-                }
-                fastly.setHeader(
-                    version.number, header.name, header,
-                    function (err) {
-                        if (err) {
-                            console.error('Failed to set route rewrite header', header.name, err);
-                            process.exit(1);
-                        }
-                    }
-                )
-            }
-        );
-    });
-});
+    }
+);
