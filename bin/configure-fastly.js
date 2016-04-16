@@ -9,6 +9,11 @@ var s3Bucket = process.env.S3_BUCKET_NAME;
 
 var fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, serviceId);
 
+const PASS_REQUEST_CONDITION_NAME = 'Pass';
+const NOT_PASS_REQUEST_CONDITION_NAME = '!(Pass)'
+const PASS_CACHE_CONDITION_NAME = 'Cache Pass';
+const BUCKET_NAME_HEADER_NAME = 'Bucket name';
+
 var extraAppRoutes = [
     // Homepage with querystring.
     // TODO: Should this be added for every route?
@@ -62,43 +67,27 @@ var getHeaderNameForView = function (view) {
     return 'rewrites/' + view;
 }
 
-var getPassRequestConditionName = function () {
-    return 'Pass';
-};
-
-var getNotPassRequestConditionName = function () {
-    return '!(Pass)';
-};
-
-var getPassCacheConditionName = function () {
-    return 'Cache ' + getPassRequestConditionName();
-};
-
-var getBucketNameHeaderName = function () {
-    return 'Bucket name';
-}
-
 var notPassCondition = {
-    name: getNotPassRequestConditionName(),
+    name: NOT_PASS_REQUEST_CONDITION_NAME,
     statement: getAppRouteCondition('../static/*', routes, extraAppRoutes),
     type: 'REQUEST',
     priority: 10
 };
 var passCondition = {
-    name: getPassRequestConditionName(),
+    name: PASS_REQUEST_CONDITION_NAME,
     statement: fastly.negateConditionStatement(notPassCondition.statement),
     type: 'REQUEST',
     priority: 10
 };
-var passCacheCondition = defaults({name: getPassCacheConditionName(), type: 'CACHE'}, passCondition);
+var passCacheCondition = defaults({name: PASS_CACHE_CONDITION_NAME, type: 'CACHE'}, passCondition);
 var bucketNameHeader = {
-    name: getBucketNameHeaderName(),
+    name: BUCKET_NAME_HEADER_NAME,
     action: 'set',
     ignore_if_set: 0,
     type: 'REQUEST',
     dst: 'http.host',
     src: '"' + s3Bucket + '"',
-    request_condition: notPassCondition.name,
+    request_condition: NOT_PASS_REQUEST_CONDITION_NAME,
     priority: 1
 };
 
@@ -122,12 +111,12 @@ async.waterfall([
                             async.apply(
                                 fastly.request.bind(fastly), 'PUT',
                                 fastly.getFastlyAPIPrefix(serviceId, version.number) + '/request_settings/Pass',
-                                {request_condition: passCondition.name}
+                                {request_condition: PASS_REQUEST_CONDITION_NAME}
                              ),
                             async.apply(
                                 fastly.request.bind(fastly), 'PUT',
                                 fastly.getFastlyAPIPrefix(serviceId, version.number) + '/backend/femto',
-                                {request_condition: passCondition.name}
+                                {request_condition: PASS_REQUEST_CONDITION_NAME}
                             )
                         ], cb)
                     }
@@ -139,7 +128,7 @@ async.waterfall([
                     async.apply(
                         fastly.request.bind(fastly), 'PUT',
                         fastly.getFastlyAPIPrefix(serviceId, version.number) + '/cache_settings/Pass',
-                        {request_condition: passCacheCondition.name}
+                        {request_condition: PASS_CACHE_CONDITION_NAME}
                     ),
                 ], cb)
             },
