@@ -148,7 +148,7 @@ async.waterfall([
                         name: getConditionNameForView(route.view),
                         statement: 'req.url ~ "' + route.pattern + '"',
                         type: 'REQUEST',
-                        priority: 10
+                        priority: id
                     };
                     var header = {
                         name: getHeaderNameForView(route.view),
@@ -158,7 +158,7 @@ async.waterfall([
                         dst: 'url',
                         src: '"/' + route.view + '.html"',
                         request_condition: getConditionNameForView(route.view),
-                        priority: id
+                        priority: 10
                     };
                     async.series([
                         async.apply(fastly.setCondition.bind(fastly), version.number, condition),
