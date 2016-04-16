@@ -138,7 +138,7 @@ async.waterfall([
                     async.apply(
                         fastly.request.bind(fastly), 'PUT',
                         fastly.getFastlyAPIPrefix(serviceId, version.number) + '/cache_settings/Pass',
-                        {request_condition: PASS_CACHE_CONDITION_NAME}
+                        {cache_condition: PASS_CACHE_CONDITION_NAME}
                     ),
                 ], cb)
             },
