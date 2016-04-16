@@ -6,8 +6,8 @@ var merge = require('lodash.merge');
 var path = require('path');
 var tap = require('tap');
 
-var languages = require('../../languages.json');
-var localeCompare = require('../../bin/lib/locale-compare');
+var languages = require('../../intl/languages.json');
+var localeCompare = require('../../intl/locale-compare');
 
 tap.test('spotCheckAboutStrings', function (t) {
     var isoCodes = Object.keys(languages);

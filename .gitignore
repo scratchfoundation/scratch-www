@@ -8,10 +8,6 @@ npm-*
 # Build
 /build
 
-# Locales
-/locales
-/intl
-
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

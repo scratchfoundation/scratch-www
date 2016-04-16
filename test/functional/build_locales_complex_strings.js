@@ -3,7 +3,7 @@ var path = require('path');
 var po2icu = require('po2icu');
 var tap = require('tap');
 
-var buildLocales = require('../../bin/lib/locale-compare');
+var buildLocales = require('../../intl/locale-compare');
 
 tap.test('buildLocalesFile', function (t) {
     var md5map = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../fixtures/test_es_md5map.json'), 'utf8'));

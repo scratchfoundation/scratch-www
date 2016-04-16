@@ -77,7 +77,7 @@ Helpers.getMD5Map = function (ICUIdMap) {
  *                                          value: translated version of string
  */
 Helpers.getTranslationsForLanguage = function (lang, idsWithICU, md5WithIds) {
-    var poUiDir = path.resolve(__dirname, '../../node_modules/scratchr2_translations/ui');
+    var poUiDir = path.resolve(__dirname, '../node_modules/scratchr2_translations/ui');
     var jsFile = path.resolve(poUiDir, lang + '/LC_MESSAGES/djangojs.po');
     var pyFile = path.resolve(poUiDir, lang + '/LC_MESSAGES/django.po');
 
@@ -117,12 +117,6 @@ Helpers.getTranslationsForLanguage = function (lang, idsWithICU, md5WithIds) {
         translationsByView[viewName][lang][stringId] = translations[id];
     }
     return translationsByView;
-};
-
-Helpers.writeTranslationsToJS = function (outputDir, viewName, translationObject) {
-    var objectString = JSON.stringify(translationObject);
-    var fileString = 'window._messages = ' + objectString + ';';
-    fs.writeFileSync(outputDir + '/' + viewName + '.intl.js', fileString);
 };
 
 Helpers.getIdsForView = function (viewName, viewFile, localeObject, idsWithICU, icuWithIds) {
