@@ -1,17 +1,45 @@
 var Fastly = require('fastly');
 
+/*
+ * Fastly library extended to allow configuration for a particular service
+ * and some helper methods.
+ *
+ * @param {string} API key
+ * @param {string} Service id
+ */
 module.exports = function (apiKey, serviceId) {
     var fastly = Fastly(apiKey);
     fastly.serviceId = serviceId;
 
+    /*
+     * Helper method to NOT a condition statement
+     * 
+     * @param {string} Statement
+     *
+     * @return {string}
+     */
     fastly.negateConditionStatement = function (statement) {
         return '!(' + statement + ')';
     };
 
+
+    /*
+     * Helper method for constructing Fastly API urls
+     * 
+     * @param {string} Service id
+     * @param {number} Version
+     *
+     * @return {string}
+     */
     fastly.getFastlyAPIPrefix = function (serviceId, version) {
         return '/service/' + encodeURIComponent(serviceId) + '/version/' + version;
     };
 
+    /*
+     * getLatestVersion: Get the most recent version for the configured service
+     * 
+     * @param {callback} Callback with signature *err, latestVersion)
+     */
     fastly.getLatestVersion = function (cb) {
         if (!this.serviceId) {
             console.error('Failed to get latest version.');
@@ -32,6 +60,14 @@ module.exports = function (apiKey, serviceId) {
         });    
     };
 
+    /*
+     * setCondition: Upsert a Fastly condition entry
+     * Attempts to PUT and POSTs if the PUT request is a 404
+     * 
+     * @param {number} Version number
+     * @param {object} Condition object sent to the API
+     * @param {callback} Callback for fastly.request
+     */
     fastly.setCondition = function (version, condition, cb) {
         if (!this.serviceId) {
             console.error('Failed to set condition', condition);
@@ -59,6 +95,14 @@ module.exports = function (apiKey, serviceId) {
         }.bind(this));
     };
 
+    /*
+     * setFastlyHeader: Upsert a Fastly header entry
+     * Attempts to PUT and POSTs if the PUT request is a 404
+     * 
+     * @param {number} Version number
+     * @param {object} Header object sent to the API
+     * @param {callback} Callback for fastly.request
+     */
     fastly.setFastlyHeader = function (version, header, cb) {
         if (!this.serviceId) {
             console.error('Failed to set header', header);

@@ -24,9 +24,11 @@ var extraAppRoutes = [
     '^/[^\/]*\.html'
 ];
 
+/*
+ * Given the relative path to the static directory, return an array of
+ * patterns matching the files and directories there.
+ */
 var getStaticPaths = function (pathToStatic) {
-    // Given the relative path to the static directory, return an array of
-    // patterns matching the files and directories there.
     var staticPaths = glob.sync(path.resolve(__dirname, pathToStatic));
     return staticPaths.map( function (pathName) {
         // Reduce absolute path to relative paths like '/js'
@@ -35,23 +37,31 @@ var getStaticPaths = function (pathToStatic) {
     });
 }
 
+/*
+ * Given a list of express routes, return a list of patterns to match
+ * the express route and a static view file associated with the route
+ */
 var getViewPaths = function (routes) {
-    // Given a list of express routes, return a list of patterns to match
-    // the express route and a static view file associated with the route
     return routes.map(function (route) {
         return route.pattern;
     });
 }
 
+/*
+ * Given a list of patterns for paths, OR all of them together into one
+ * string suitable for a Fastly condition
+ */
 var pathsToCondition = function (paths) {
-    // Given a list of patterns for paths, OR all of them together into one
-    // string suitable for a Fastly condition
     return paths.reduce(function(conditionString, pattern) {
         var patternCondition = 'req.url ~ "' + pattern + '"';
         return conditionString + (conditionString ? ' || ' : '') + patternCondition;
     }, '');
 }
 
+/*
+ * Combine static paths, routes, and any additional paths to a single
+ * fastly condition to match req.url
+ */
 var getAppRouteCondition = function (pathToStatic, routes, additionalPaths) {
     var staticPaths = getStaticPaths(pathToStatic);
     var viewPaths = getViewPaths(routes);
