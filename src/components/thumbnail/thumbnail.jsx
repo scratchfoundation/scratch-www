@@ -40,7 +40,6 @@ var Thumbnail = React.createClass({
                     key="loves"
                     className="thumbnail-loves"
                     title={this.props.loves + ' loves'}>
-                    
                     {this.props.loves}
                 </div>
             );
@@ -56,7 +55,6 @@ var Thumbnail = React.createClass({
                 </div>
             );
         }
-        
         var imgElement,titleElement;
         if (this.props.linkTitle) {
             imgElement = <a className="thumbnail-image" href={this.props.href}>

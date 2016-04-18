@@ -15,13 +15,12 @@ var Carousel = require('../../components/carousel/carousel.jsx');
 var Select = require('../../components/forms/select.jsx');
 var offset = 0;
 var more = [];
-var tab = "all";
-var acceptableTabs = ["all","animations","art","games","music","stories"];
+var searchTerm = "";
 
-require('./explore.scss');
+require('./search.scss');
 
-var Explore = injectIntl(React.createClass({
-    type: 'Explore',
+var Search = injectIntl(React.createClass({
+    type: 'Search',
     mixins: [
         Api
     ],
@@ -29,64 +28,60 @@ var Explore = injectIntl(React.createClass({
         return {};
     },
     componentDidMount: function () {
-        var pathname = window.location.pathname
-        if (pathname.substring(pathname.length-1,pathname.length)=="/") {
-            pathname = pathname.substring(0,pathname.length-1);
+        var q = pathname.lastIndexOf("q=");
+        var and = pathname.indexOf("&");
+        if (q!=-1 && and!=-1) {
+            searchTerm = pathname.substring(q+2,and).toLowerCase();
         };
-        var slash = pathname.lastIndexOf("/");
-        tab = pathname.substring(slash+1,pathname.length).toLowerCase();
-        if (acceptableTabs.indexOf(tab)==-1) {
-            window.location=window.location.origin+"/explore/projects/all/";
-        }
-        this.getExploreAll(0);
+        this.getSearchResults(0);
     },
-    getExploreAll: function () {
-        var tabText = '';
-        if (tab!="all") {
-            tabText = "&q="+tab;
+    getSearchResults: function () {
+        var termText = '';
+        if (searchTerm!="") {
+            termText = "&q="+searchTerm;
         };
         this.api({
-            uri: '/search/projects?limit=16'+tabText
+            uri: '/search/projects?limit=16'+termText
         }, function (err, body) {
-            if (!err) this.setState({exploreAll: body});
+            if (!err) this.setState({searchResults: body});
         }.bind(this));
     },
-    getExploreMore: function () {
-        var tabText = '';
-        if (tab!="all") {
-            tabText = "&q="+tab;
+    getSearchMore: function () {
+        var termText = '';
+        if (searchTerm!="") {
+            termText = "&q="+searchTerm;
         };
         offset+=16;
         this.api({
-            uri: '/search/projects?limit=16&offset='+offset+tabText
+            uri: '/search/projects?limit=16&offset='+offset+termText
         }, function (err, body) {
-            if (!err) this.setState({exploreMore: body});
+            if (!err) this.setState({searchMore: body});
         }.bind(this));
     },
     renderRows: function () {
-        var row2 = this.state.exploreAll;
-        var row3 = this.state.exploreAll;
-        var row4 = this.state.exploreAll;
+        var row2 = this.state.searchResults;
+        var row3 = this.state.searchResults;
+        var row4 = this.state.searchResults;
         if (row2!=undefined) {
             row2 = row2.slice(4,8);
             row3 = row3.slice(8,12);
             row4 = row4.slice(12,16);
         }
         var rows = [
-                    <Carousel items={this.state.exploreAll} showLoves={true}
+                    <Carousel items={this.state.searchResults} 
                               settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row2} showLoves={true}
+                    <Carousel items={row2} 
                               settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row3} showLoves={true}
+                    <Carousel items={row3} 
                               settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row4} showLoves={true}
+                    <Carousel items={row4} 
                               settings={{slidesToShow: 4, slidesToScroll: 0}} />,
         ]
-        if (this.state.exploreMore!=undefined && more.length<offset) more = more.concat(this.state.exploreMore);
+        if (this.state.searchMore!=undefined && more.length<offset) more = more.concat(this.state.searchMore);
         if (more.length>0) {
             for (var i = 0; i<more.length; i+=4) {
                 var rowNext = more.slice(i,i+4);
-                rows.push(<Carousel items={rowNext} showLoves={true} settings={{slidesToShow: 4, slidesToScroll: 0}} />);
+                rows.push(<Carousel items={rowNext} settings={{slidesToShow: 4, slidesToScroll: 0}} />);
             }
         }
         return rows;
@@ -108,7 +103,7 @@ var Explore = injectIntl(React.createClass({
                         </li>
                     </a>;
         }
-        return allTab
+        return allTab;
     },
     render: function () {
         var projects = this.renderRows();
@@ -119,17 +114,15 @@ var Explore = injectIntl(React.createClass({
         return (
             <div>
                 <div className="outer">
-                    <Box title={'Explore'}
+                    <Box title={'Search Results: '+searchTerm}
                          moreProps={{
                             className: 'subnavigation'
                          }}>
                         <SubNavigation className="tabs">
-                            {this.getTab("all")}
-                            {this.getTab("animations")}
-                            {this.getTab("art")}
-                            {this.getTab("games")}
-                            {this.getTab("music")}
-                            {this.getTab("stories")}
+                            {this.getTab("projects")}
+                            {this.getTab("forums")}
+                            {this.getTab("users")}
+                            {this.getTab("studios")}
                             {/*<div id="sorter">
                                 <div id="sortText">
                                     Sort by:
@@ -150,7 +143,7 @@ var Explore = injectIntl(React.createClass({
                         <div id="projectBox" key="projectBox">
                             {projects}
                             <SubNavigation className="load">
-                                <button onClick={this.getExploreMore}>
+                                <button onClick={this.getSearchMore}>
                                     <li>
                                         <FormattedMessage
                                             id='load'
@@ -167,4 +160,4 @@ var Explore = injectIntl(React.createClass({
     }
 }));
 
-render(<Page><Explore /></Page>, document.getElementById('app'));
+render(<Page><Search /></Page>, document.getElementById('app'));
