@@ -3,7 +3,7 @@ var defaults = require('lodash.defaults');
 var glob = require('glob');
 var path = require('path');
 
-var routes = require('../server/routes.json');
+var routes = require('../src/routes.json');
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';

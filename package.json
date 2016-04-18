@@ -63,7 +63,6 @@
     "react-redux": "4.4.0",
     "react-slick": "0.9.2",
     "redux-thunk": "2.0.1",
-    "routes-to-nginx-conf": "0.0.4",
     "sass-lint": "1.5.1",
     "sass-loader": "2.0.1",
     "scratchr2_translations": "git://github.com/LLK/scratchr2_translations.git#master",

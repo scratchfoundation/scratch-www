@@ -50,7 +50,7 @@ configure-fastly:
 # ------------------------------------
 
 start:
-	$(NODE) ./server/index.js
+	$(NODE) ./dev-server/index.js
 
 # ------------------------------------
 
