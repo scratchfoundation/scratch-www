@@ -2,6 +2,8 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 var FormattedMessage = require('react-intl').FormattedMessage;
 
+var Page = require('../../components/page/page.jsx');
+
 require('./jobs.scss');
 
 var Jobs = React.createClass({
@@ -44,6 +46,14 @@ var Jobs = React.createClass({
                                     (MIT Media Lab, Cambridge, MA)
                                 </span>
                             </li>
+                            <li>
+                                <a href="/jobs/community-counselor/">
+                                    Community Counselor
+                                </a>
+                                <span>
+                                    (MIT Media Lab, Cambridge, MA or Remote)
+                                </span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -52,4 +62,4 @@ var Jobs = React.createClass({
     }
 });
 
-render(<Jobs />, document.getElementById('view'));
+render(<Page><Jobs /></Page>, document.getElementById('app'));

@@ -268,9 +268,9 @@ var Navigation = React.createClass({
                                         </a>
                                     </li>
                                 ] : []}
-                                {this.state.session.permissions.student ? [
+                                {this.props.session.permissions.student ? [
                                     <li>
-                                        <a href={'/classes/' + this.state.session.user.classroomId + '/'}>
+                                        <a href={'/classes/' + this.props.session.user.classroomId + '/'}>
                                             <FormattedMessage id="general.myClass" />
                                         </a>
                                     </li>

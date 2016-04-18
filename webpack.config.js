@@ -1,3 +1,4 @@
+var autoprefixer = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
@@ -40,13 +41,16 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: 'style!css!autoprefixer-loader?browsers=last 3 versions!sass'
+                loader: 'style!css!postcss-loader!sass'
             },
             {
                 test: /\.(png|jpg|gif|eot|svg|ttf|woff)$/,
                 loader: 'url-loader'
             }
         ]
+    },
+    postcss: function () {
+        return [autoprefixer({browsers: ['last 3 versions']})];
     },
     node: {
         fs: 'empty'
