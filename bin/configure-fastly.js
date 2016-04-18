@@ -9,7 +9,7 @@ const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
 
 const PASS_REQUEST_CONDITION_NAME = 'Pass';
-const NOT_PASS_REQUEST_CONDITION_NAME = '!(Pass)'
+const NOT_PASS_REQUEST_CONDITION_NAME = '!(Pass)';
 const PASS_CACHE_CONDITION_NAME = 'Cache Pass';
 const BUCKET_NAME_HEADER_NAME = 'Bucket name';
 
@@ -36,7 +36,7 @@ var getStaticPaths = function (pathToStatic) {
         var base = path.dirname(path.resolve(__dirname, pathToStatic));
         return '^' + pathName.replace(base, '');
     });
-}
+};
 
 /*
  * Given a list of express routes, return a list of patterns to match
@@ -46,18 +46,18 @@ var getViewPaths = function (routes) {
     return routes.map(function (route) {
         return route.pattern;
     });
-}
+};
 
 /*
  * Given a list of patterns for paths, OR all of them together into one
  * string suitable for a Fastly condition
  */
 var pathsToCondition = function (paths) {
-    return paths.reduce(function(conditionString, pattern) {
+    return paths.reduce(function (conditionString, pattern) {
         var patternCondition = 'req.url ~ "' + pattern + '"';
         return conditionString + (conditionString ? ' || ' : '') + patternCondition;
     }, '');
-}
+};
 
 /*
  * Combine static paths, routes, and any additional paths to a single
@@ -68,7 +68,7 @@ var getAppRouteCondition = function (pathToStatic, routes, additionalPaths) {
     var viewPaths = getViewPaths(routes);
     var allPaths = [].concat(staticPaths, viewPaths, additionalPaths);
     return pathsToCondition(allPaths);
-}
+};
 
 var getConditionNameForView = function (view) {
     return 'routes/' + view;
@@ -79,7 +79,7 @@ var getHeaderNameForView = function (view) {
 };
 
 async.auto({
-    version: function(cb) {
+    version: function (cb) {
         fastly.getLatestVersion(function (err, response) {
             if (err) return cb(err);
             // Validate latest version before continuing
@@ -186,14 +186,14 @@ async.auto({
             fastly.setFastlyHeader(results.version, header, function (err, response) {
                 if (err) return cb2(err);
                 headers[id] = response;
-                cb2(null, response)
+                cb2(null, response);
             });
         }, function (err) {
             if (err) return cb(err);
             cb(null, headers);
-        });        
+        });
     }]},
-    function (err, results) {
+    function (err) {
         if (err) throw new Error(err);
     }
 );
