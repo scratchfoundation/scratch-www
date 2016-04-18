@@ -4,15 +4,16 @@ var glob = require('glob');
 var path = require('path');
 
 var routes = require('../server/routes.json');
-var serviceId = process.env.FASTLY_SERVICE_ID
-var s3Bucket = process.env.S3_BUCKET_NAME;
 
-var fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, serviceId);
+const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
+const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
 
 const PASS_REQUEST_CONDITION_NAME = 'Pass';
 const NOT_PASS_REQUEST_CONDITION_NAME = '!(Pass)'
 const PASS_CACHE_CONDITION_NAME = 'Cache Pass';
 const BUCKET_NAME_HEADER_NAME = 'Bucket name';
+
+var fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY_SERVICE_ID);
 
 var extraAppRoutes = [
     // Homepage with querystring.
@@ -75,102 +76,124 @@ var getConditionNameForView = function (view) {
 
 var getHeaderNameForView = function (view) {
     return 'rewrites/' + view;
-}
-
-var notPassCondition = {
-    name: NOT_PASS_REQUEST_CONDITION_NAME,
-    statement: getAppRouteCondition('../static/*', routes, extraAppRoutes),
-    type: 'REQUEST',
-    priority: 10
-};
-var passCondition = {
-    name: PASS_REQUEST_CONDITION_NAME,
-    statement: fastly.negateConditionStatement(notPassCondition.statement),
-    type: 'REQUEST',
-    priority: 10
-};
-var passCacheCondition = defaults({name: PASS_CACHE_CONDITION_NAME, type: 'CACHE'}, passCondition);
-var bucketNameHeader = {
-    name: BUCKET_NAME_HEADER_NAME,
-    action: 'set',
-    ignore_if_set: 0,
-    type: 'REQUEST',
-    dst: 'http.host',
-    src: '"' + s3Bucket + '"',
-    request_condition: NOT_PASS_REQUEST_CONDITION_NAME,
-    priority: 1
 };
 
-async.waterfall([
-    fastly.getLatestVersion.bind(fastly),
-    function (version, next) {
-        if (version.active) return next('Latest version is active. Will not modify.');
-        if (version.locked) return next('Latest version is locked. Cannot modify.');
-        async.parallel([
-            function (cb) {
-                async.series([
-                    async.apply(fastly.setCondition.bind(fastly), version.number, notPassCondition),
-                    async.apply(fastly.setFastlyHeader.bind(fastly), version.number, bucketNameHeader)
-                ], cb)
-            },
-            function (cb) {
-                async.series([
-                    async.apply(fastly.setCondition.bind(fastly), version.number, passCondition),
-                    function (cb) {
-                        async.parallel([
-                            async.apply(
-                                fastly.request.bind(fastly), 'PUT',
-                                fastly.getFastlyAPIPrefix(serviceId, version.number) + '/request_settings/Pass',
-                                {request_condition: PASS_REQUEST_CONDITION_NAME}
-                             ),
-                            async.apply(
-                                fastly.request.bind(fastly), 'PUT',
-                                fastly.getFastlyAPIPrefix(serviceId, version.number) + '/backend/femto',
-                                {request_condition: PASS_REQUEST_CONDITION_NAME}
-                            )
-                        ], cb)
-                    }
-                ], cb)
-            },
-            function (cb) {
-                async.series([
-                    async.apply(fastly.setCondition.bind(fastly), version.number, passCacheCondition),
-                    async.apply(
-                        fastly.request.bind(fastly), 'PUT',
-                        fastly.getFastlyAPIPrefix(serviceId, version.number) + '/cache_settings/Pass',
-                        {cache_condition: PASS_CACHE_CONDITION_NAME}
-                    ),
-                ], cb)
-            },
-            function (cb) {
-                async.forEachOf(routes, function (route, id, cb) {
-                    var condition = {
-                        name: getConditionNameForView(route.view),
-                        statement: 'req.url ~ "' + route.pattern + '"',
-                        type: 'REQUEST',
-                        priority: id
-                    };
-                    var header = {
-                        name: getHeaderNameForView(route.view),
-                        action: 'set',
-                        ignore_if_set: 0,
-                        type: 'request',
-                        dst: 'url',
-                        src: '"/' + route.view + '.html"',
-                        request_condition: getConditionNameForView(route.view),
-                        priority: 10
-                    };
-                    async.series([
-                        async.apply(fastly.setCondition.bind(fastly), version.number, condition),
-                        async.apply(fastly.setFastlyHeader.bind(fastly), version.number, header)
-                    ], cb);
-                }, cb)
-            }
-        ], next);
-    }], function (err, responses) {
-        if (err) {
-            console.log(err);
-            process.exit(1);
-        }
+async.auto({
+    version: function(cb) {
+        fastly.getLatestVersion(function (err, response) {
+            if (err) return cb(err);
+            // Validate latest version before continuing
+            if (response.active) return cb('Latest version is active. Will not modify.');
+            if (response.locked) return cb('Latest version is locked. Cannot modify.');
+            cb(null, response.number);
+        });
+    },
+    notPassRequestCondition: ['version', function (cb, results) {
+        var statement = getAppRouteCondition('../static/*', routes, extraAppRoutes);
+        var condition = {
+            name: NOT_PASS_REQUEST_CONDITION_NAME,
+            statement: statement,
+            type: 'REQUEST',
+            priority: 10
+        };
+        fastly.setCondition(results.version, condition, cb);
+    }],
+    setBucketNameHeader: ['version', 'notPassRequestCondition', function (cb, results) {
+        var header = {
+            name: BUCKET_NAME_HEADER_NAME,
+            action: 'set',
+            ignore_if_set: 0,
+            type: 'REQUEST',
+            dst: 'http.host',
+            src: '"' + S3_BUCKET_NAME + '"',
+            request_condition: results.notPassRequestCondition.name,
+            priority: 1
+        };
+        fastly.setFastlyHeader(results.version, header, cb);
+    }],
+    passRequestCondition: ['version', 'notPassRequestCondition', function (cb, results) {
+        var condition = {
+            name: PASS_REQUEST_CONDITION_NAME,
+            statement: fastly.negateConditionStatement(results.notPassRequestCondition.statement),
+            type: 'REQUEST',
+            priority: 10
+        };
+        fastly.setCondition(results.version, condition, cb);
+    }],
+    passRequestSettingsCondition: ['version', 'passRequestCondition', function (cb, results) {
+        fastly.request(
+            'PUT',
+            fastly.getFastlyAPIPrefix(FASTLY_SERVICE_ID, results.version) + '/request_settings/Pass',
+            {request_condition: results.passRequestCondition.name},
+            cb
+        );
+    }],
+    backendCondition: ['version', 'passRequestCondition', function (cb, results) {
+        fastly.request(
+            'PUT',
+            fastly.getFastlyAPIPrefix(FASTLY_SERVICE_ID, results.version) + '/backend/femto',
+            {request_condition: results.passRequestCondition.name},
+            cb
+        );
+    }],
+    passCacheCondition: ['version', 'passRequestCondition', function (cb, results) {
+        var condition = defaults(
+            {name: PASS_CACHE_CONDITION_NAME, type: 'CACHE'},
+            results.passRequestCondition
+        );
+        fastly.setCondition(results.version, condition, cb);
+    }],
+    passCacheSettingsCondition: ['version', 'passCacheCondition', function (cb, results) {
+        fastly.request(
+            'PUT',
+            fastly.getFastlyAPIPrefix(FASTLY_SERVICE_ID, results.version) + '/cache_settings/Pass',
+            {cache_condition: results.passCacheCondition.name},
+            cb
+        );
+    }],
+    appRouteRequestConditions: ['version', function (cb, results) {
+        var conditions = {};
+        async.forEachOf(routes, function (route, id, cb2) {
+            var condition = {
+                name: getConditionNameForView(route.view),
+                statement: 'req.url ~ "' + route.pattern + '"',
+                type: 'REQUEST',
+                priority: id
+            };
+            fastly.setCondition(results.version, condition, function (err, response) {
+                if (err) return cb2(err);
+                conditions[id] = response;
+                cb2(null, response);
+            });
+        }, function (err) {
+            if (err) return cb(err);
+            cb(null, conditions);
+        });
+    }],
+    appRouteHeaders: ['version', 'appRouteRequestConditions', function (cb, results) {
+        var headers = {};
+        async.forEachOf(routes, function (route, id, cb2) {
+            var header = {
+                name: getHeaderNameForView(route.view),
+                action: 'set',
+                ignore_if_set: 0,
+                type: 'request',
+                dst: 'url',
+                src: '"/' + route.view + '.html"',
+                request_condition: results.appRouteRequestConditions[id].name,
+                priority: 10
+            };
+            fastly.setFastlyHeader(results.version, header, function (err, response) {
+                if (err) return cb2(err);
+                headers[id] = response;
+                cb2(null, response)
+            });
+        }, function (err) {
+            if (err) return cb(err);
+            cb(null, headers);
+        });        
+    }]},
+    function (err, results) {
+        if (err) throw new Error(err);
     }
 );
