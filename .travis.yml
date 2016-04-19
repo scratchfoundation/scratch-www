@@ -15,6 +15,9 @@ env:
   # EB_AWS_SECRET_ACCESS_KEY
   - secure: EX1fyov+f6ytWN2ZSL4dLslwrVkp6Ho/uoSLO38/qNG3XdGmBN4VprxddcQiWfo+Mrg3GdWcfcM/VazhhStBi1uLfZiw3RHZaSGuWbiuD2EtzqtlC+OVvoajgy91QFajh9Zzuwa0rYbEPd/sw01R53NoWJYl0GSteWk7C8Wv6anl4FUJCqgvvTV2ZEcyTtGcVJgUhKi1MfNpTSM6JWBy0DWszcyxj7C8LSs1+l9ZjAtnlUBWY13HsrNu8G5d+FwqGHZLUAjdu2O602wxV897/xLARLduZ+01ALpVefNEEGMB1Wd+xMw4dm2B0Uk86a4TBRCeOgJZ1yoJoPpGPOHTo+dgNXcU8ReszGVoy7uOjFWwu82FQq8gzfcf75yzaRJgG8/BJ6BkJfa0EmFg3iO5CwixQyHR5+CqsedtoLAWVT8zlOfQ/Z6yx4Pm7jXQSOkyvo09YJ2QIn4IFGPvwOVS7Firzi+fLl8GYApeSV9G10e1IzA4pPrKdJMRA4qRMPt9zJGq7ZO1J/d9aW/5KIsJUDnodnl7yXJyDMOyNeljT9I82ciHZcURxRRY080vrW6dgNJE1V9jxBhWEvr2iCeWMMedWaGuC41I7K9L79eW8lmaE+cQ+OZrzpOJP4GbfmIiXrh+0M4ChL/xBpjtiFwpNdkCXXhzWMnjJ4wCrii4yuc=
   - CXX=g++-4.8
+  - AWS_ACCESS_KEY_ID=$EB_AWS_ACCESS_KEY_ID
+  - AWS_SECRET_ACCESS_KEY=$EB_AWS_SECRET_ACCESS_KEY
+  - FASTLY_ACTIVATE_CHANGES=true
   - S3_BUCKET_NAME_STAGING=scratch-www-staging
   - S3_BUCKET_NAME_PRODUCTION=scratch-www-production
   - S3_ACL=public_read
@@ -34,14 +37,9 @@ addons:
     packages:
     - g++-4.8
 deploy:
-- provider: s3
-  access_key_id: $EB_AWS_ACCESS_KEY_ID
-  secret_access_key: $EB_AWS_SECRET_ACCESS_KEY
-  bucket: $S3_BUCKET_NAME_STAGING
-  local_dir: $S3_LOCAL_DIR
-  acl: $S3_ACL
-  region: $S3_REGION
+- provider: script
   skip_cleanup: $SKIP_CLEANUP
+  script: FASTLY_SERVICE_ID=$FASTLY_SERVICE_ID_STAGING S3_BUCKET_NAME=$S3_BUCKET_NAME_STAGING make sync
   on:
     repo: LLK/scratch-www
     branch:
@@ -49,17 +47,10 @@ deploy:
     - s3
     - hotfix/*
     - release/*
-- provider: s3
-  access_key_id: $EB_AWS_ACCESS_KEY_ID
-  secret_access_key: $EB_AWS_SECRET_ACCESS_KEY
-  bucket: $S3_BUCKET_NAME_PRODUCTION
-  local_dir: $S3_LOCAL_DIR
-  acl: $S3_ACL
-  region: $S3_REGION
+- provider: script
   skip_cleanup: $SKIP_CLEANUP
+  script: FASTLY_SERVICE_ID=$FASTLY_SERVICE_ID_PRODUCTION S3_BUCKET_NAME=$S3_BUCKET_NAME_PRODUCTION make sync
   on:
     repo: LLK/scratch-www
-    branch: master
-after_deploy:
-  - if [ $TRAVIS_BRANCH == 'master' ]; then export FASTLY_SERVICE_ID=$FASTLY_SERVICE_ID_PRODUCTION S3_BUCKET_NAME=$S3_BUCKET_NAME_PRODUCTION; else export FASTLY_SERVICE_ID=$FASTLY_SERVICE_ID_STAGING S3_BUCKET_NAME=$S3_BUCKET_NAME_STAGING; fi;
-  - make configure-fastly
+    branch:
+    - master

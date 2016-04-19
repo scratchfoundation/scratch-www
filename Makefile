@@ -24,16 +24,8 @@ clean:
 
 
 deploy:
-ifeq ($(shell grep "artifact: deploy.zip" .elasticbeanstalk/config.yml 2> /dev/null), )
-	@echo "You must configure elasticbeanstalk to deploy an artifact."
-	@echo "Add the following to your .elasticbeanstalk/config.yml"
-	@echo "deploy:\n  artifact: deploy.zip"
-else
 	@make build
-	git archive -o deploy.zip HEAD
-	zip -rv deploy.zip build
-	eb deploy -l $(GIT_VERSION) -m "$(GIT_MESSAGE)"
-endif
+	@make sync
 
 tag:
 	echo $(GIT_VERSION) > ./build/version.txt
@@ -44,8 +36,15 @@ translations:
 webpack:
 	$(WEBPACK) --bail
 
-configure-fastly:
+sync-s3:
+	$(NODE) ./bin/deploy-to-s3.js
+
+sync-fastly:
 	$(NODE) ./bin/configure-fastly.js
+
+sync:
+	@make sync-s3
+	@make sync-fastly
 
 # ------------------------------------
 
