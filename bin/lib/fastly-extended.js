@@ -12,20 +12,8 @@ module.exports = function (apiKey, serviceId) {
     fastly.serviceId = serviceId;
 
     /*
-     * Helper method to NOT a condition statement
-     * 
-     * @param {string} Statement
-     *
-     * @return {string}
-     */
-    fastly.negateConditionStatement = function (statement) {
-        return '!(' + statement + ')';
-    };
-
-
-    /*
      * Helper method for constructing Fastly API urls
-     * 
+     *
      * @param {string} Service id
      * @param {number} Version
      *
@@ -37,19 +25,17 @@ module.exports = function (apiKey, serviceId) {
 
     /*
      * getLatestVersion: Get the most recent version for the configured service
-     * 
+     *
      * @param {callback} Callback with signature *err, latestVersion)
      */
     fastly.getLatestVersion = function (cb) {
         if (!this.serviceId) {
-            console.error('Failed to get latest version.');
-            return cb('No serviceId configured');
+            return cb('Failed to get latest version. No serviceId configured');
         }
         var url = '/service/'+ encodeURIComponent(this.serviceId) +'/version';
         this.request('GET', url, function (err, versions) {
             if (err) {
-                console.error('Failed to get versions', err);
-                return cb(err);
+                return cb('Failed to fetch versions: ' + err);
             }
             var latestVersion = versions.reduce(function (latestVersion, version) {
                 if (!latestVersion) return version;
@@ -57,21 +43,20 @@ module.exports = function (apiKey, serviceId) {
                 return latestVersion;
             });
             return cb(null, latestVersion);
-        });    
+        });
     };
 
     /*
      * setCondition: Upsert a Fastly condition entry
      * Attempts to PUT and POSTs if the PUT request is a 404
-     * 
+     *
      * @param {number} Version number
      * @param {object} Condition object sent to the API
      * @param {callback} Callback for fastly.request
      */
     fastly.setCondition = function (version, condition, cb) {
         if (!this.serviceId) {
-            console.error('Failed to set condition', condition);
-            return cb('No serviceId configured');
+            return cb('Failed to set condition. No serviceId configured');
         }
         var name = condition.name;
         var putUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/condition/' + encodeURIComponent(name);
@@ -80,16 +65,14 @@ module.exports = function (apiKey, serviceId) {
             if (err && err.statusCode === 404) {
                 this.request('POST', postUrl, condition, function (err, response) {
                     if (err) {
-                        console.log('Failed to POST header', header);
-                        return cb(err);
+                        return cb('Failed while inserting condition: ' + err);
                     }
                     return cb(null, response);
                 });
                 return;
             }
             if (err) {
-                console.error('Failed to PUT condition', condition);
-                return cb(err);
+                return cb('Failed to update condition: ' + err);
             }
             return cb(null, response);
         }.bind(this));
@@ -98,15 +81,14 @@ module.exports = function (apiKey, serviceId) {
     /*
      * setFastlyHeader: Upsert a Fastly header entry
      * Attempts to PUT and POSTs if the PUT request is a 404
-     * 
+     *
      * @param {number} Version number
      * @param {object} Header object sent to the API
      * @param {callback} Callback for fastly.request
      */
     fastly.setFastlyHeader = function (version, header, cb) {
         if (!this.serviceId) {
-            console.error('Failed to set header', header);
-            cb('No serviceId configured');
+            cb('Failed to set header. No serviceId configured');
         }
         var name = header.name;
         var putUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/header/' + encodeURIComponent(name);
@@ -115,16 +97,14 @@ module.exports = function (apiKey, serviceId) {
             if (err && err.statusCode === 404) {
                 this.request('POST', postUrl, header, function (err, response) {
                     if (err) {
-                        console.error('Failed to POST header', header);
-                        return cb(err);
+                        return cb('Failed to insert header: ' + err);
                     }
                     return cb(null, response);
                 });
                 return;
             }
             if (err) {
-                console.error('Failed to PUT header', header);
-                return cb(err);
+                return cb('Failed to update header: ' + err);
             }
             return cb(null, response);
         }.bind(this));

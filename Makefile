@@ -68,7 +68,7 @@ test:
 lint:
 	$(ESLINT) ./*.js
 	$(ESLINT) ./dev-server/*.js
-	$(ESLINT) ./bin/**.js
+	$(ESLINT) ./bin/**/*.js
 	$(ESLINT) ./src/*.js
 	$(ESLINT) ./src/mixins/*.jsx
 	$(ESLINT) ./src/views/**/*.jsx

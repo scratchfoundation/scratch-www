@@ -60,6 +60,13 @@ var pathsToCondition = function (paths) {
 };
 
 /*
+ * Helper method to NOT a condition statement
+ */
+var negateConditionStatement = function (statement) {
+    return '!(' + statement + ')';
+};
+
+/*
  * Combine static paths, routes, and any additional paths to a single
  * fastly condition to match req.url
  */
@@ -114,7 +121,7 @@ async.auto({
     passRequestCondition: ['version', 'notPassRequestCondition', function (cb, results) {
         var condition = {
             name: PASS_REQUEST_CONDITION_NAME,
-            statement: fastly.negateConditionStatement(results.notPassRequestCondition.statement),
+            statement: negateConditionStatement(results.notPassRequestCondition.statement),
             type: 'REQUEST',
             priority: 10
         };
