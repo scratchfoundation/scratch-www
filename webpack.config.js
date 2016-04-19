@@ -11,7 +11,9 @@ var entry = {
     init: './src/init.js'
 };
 routes.forEach(function (route) {
-    entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
+    if (!route.redirect) {
+        entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
+    }
 });
 
 // Config

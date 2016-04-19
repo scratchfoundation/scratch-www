@@ -16,10 +16,9 @@ app.disable('x-powered-by');
 app.use(log());
 
 // Bind routes
-for (var routeId in routes) {
-    var route = routes[routeId];
+routes.forEach(route => {
     app.get(route.pattern, handler(route));
-}
+});
 
 app.use(webpackDevMiddleware(compiler));
 
