@@ -111,6 +111,38 @@ module.exports = function (apiKey, serviceId) {
     };
 
     /*
+     * setResponseObject: Upsert a Fastly response object
+     * Attempts to PUT and POSTs if the PUT request is a 404
+     *
+     * @param {number} Version number
+     * @param {object} Response object sent to the API
+     * @param {callback} Callback for fastly.request
+     */
+    fastly.setResponseObject = function (version, responseObj, cb) {
+        if (!this.serviceId) {
+            cb('Failed to set response object. No serviceId configured');
+        }
+        var name = responseObj.name;
+        var putUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/response_object/' + encodeURIComponent(name);
+        var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/response_object';
+        return this.request('PUT', putUrl, responseObj, function (err, response) {
+            if (err && err.statusCode === 404) {
+                this.request('POST', postUrl, responseObj, function (err, response) {
+                    if (err) {
+                        return cb('Failed to insert response object: ' + err);
+                    }
+                    return cb(null, response);
+                });
+                return;
+            }
+            if (err) {
+                return cb('Failed to update response object: ' + err);
+            }
+            return cb(null, response);
+        }.bind(this));
+    };
+
+    /*
      * cloneVersion: Clone a version to create a new version
      *
      * @param {number} Version to clone

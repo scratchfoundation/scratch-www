@@ -45,7 +45,7 @@
         "title": "LEGO WeDo 2.0"
     },
     {
-        "pattern": "/info/donate/",
+        "pattern": "^/info/donate",
         "redirect": "https://secure.donationpay.org/scratchfoundation/"
     }
 ]

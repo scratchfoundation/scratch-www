@@ -77,12 +77,17 @@ var getAppRouteCondition = function (pathToStatic, routes, additionalPaths) {
     return pathsToCondition(allPaths);
 };
 
-var getConditionNameForView = function (view) {
-    return 'routes/' + view;
+var getConditionNameForRoute = function (route, type) {
+    return 'routes/' + route.pattern + ' (' + type + ')';
 };
 
-var getHeaderNameForView = function (view) {
-    return 'rewrites/' + view;
+var getHeaderNameForRoute = function (route) {
+    if (route.view) return 'rewrites/' + route.view;
+    if (route.redirect) return 'redirects/' + route.pattern;
+};
+
+var getResponseNameForRoute = function (route) {
+    return 'redirects/' + route.pattern;
 };
 
 async.auto({
@@ -167,7 +172,7 @@ async.auto({
         var conditions = {};
         async.forEachOf(routes, function (route, id, cb2) {
             var condition = {
-                name: getConditionNameForView(route.view),
+                name: getConditionNameForRoute(route, 'request'),
                 statement: 'req.url ~ "' + route.pattern + '"',
                 type: 'REQUEST',
                 priority: id
@@ -185,21 +190,60 @@ async.auto({
     appRouteHeaders: ['version', 'appRouteRequestConditions', function (cb, results) {
         var headers = {};
         async.forEachOf(routes, function (route, id, cb2) {
-            var header = {
-                name: getHeaderNameForView(route.view),
-                action: 'set',
-                ignore_if_set: 0,
-                type: 'request',
-                dst: 'url',
-                src: '"/' + route.view + '.html"',
-                request_condition: results.appRouteRequestConditions[id].name,
-                priority: 10
-            };
-            fastly.setFastlyHeader(results.version, header, function (err, response) {
-                if (err) return cb2(err);
-                headers[id] = response;
-                cb2(null, response);
-            });
+            if (route.redirect) {
+                async.auto({
+                    responseCondition: function (cb3) {
+                        var condition = {
+                            name: getConditionNameForRoute(route, 'response'),
+                            statement: 'req.url ~ "' + route.pattern + '"',
+                            type: 'RESPONSE',
+                            priority: id
+                        };
+                        fastly.setCondition(results.version, condition, cb3);
+                    },
+                    responseObject: function (cb3) {
+                        var responseObject = {
+                            name: getResponseNameForRoute(route),
+                            status: 301,
+                            response: 'Moved Permanently',
+                            request_condition: getConditionNameForRoute(route, 'request')
+                        };
+                        fastly.setResponseObject(results.version, responseObject, cb3);
+                    },
+                    redirectHeader: ['responseCondition', function (cb3, redirectResults) {
+                        var header = {
+                            name: getHeaderNameForRoute(route),
+                            action: 'set',
+                            ignore_if_set: 0,
+                            type: 'RESPONSE',
+                            dst: 'http.Location',
+                            src: '"' + route.redirect + '"',
+                            response_condition: redirectResults.responseCondition.name
+                        };
+                        fastly.setFastlyHeader(results.version, header, cb3);
+                    }]
+                }, function (err, redirectResults) {
+                    if (err) return cb2(err);
+                    headers[id] = redirectResults.redirectHeader;
+                    cb2(null, redirectResults);
+                });
+            } else {
+                var header = {
+                    name: getHeaderNameForRoute(route, 'request'),
+                    action: 'set',
+                    ignore_if_set: 0,
+                    type: 'REQUEST',
+                    dst: 'url',
+                    src: '"/' + route.view + '.html"',
+                    request_condition: results.appRouteRequestConditions[id].name,
+                    priority: 10
+                };
+                fastly.setFastlyHeader(results.version, header, function (err, response) {
+                    if (err) return cb2(err);
+                    headers[id] = response;
+                    cb2(null, response);
+                });
+            }
         }, function (err) {
             if (err) return cb(err);
             cb(null, headers);
