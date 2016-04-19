@@ -109,5 +109,30 @@ module.exports = function (apiKey, serviceId) {
             return cb(null, response);
         }.bind(this));
     };
+
+    /*
+     * cloneVersion: Clone a version to create a new version
+     *
+     * @param {number} Version to clone
+     * @param {callback} Callback for fastly.request
+     */
+    fastly.cloneVersion = function (version, cb) {
+        if (!this.serviceId) return cb('Failed to clone version. No serviceId configured.');
+        var url = this.getFastlyAPIPrefix(this.serviceId, version) + '/clone';
+        this.request('PUT', url, cb);
+    };
+
+    /*
+     * activateVersion: Activate a version
+     *
+     * @param {number} Version number
+     * @param {callback} Callback for fastly.request
+     */
+    fastly.activateVersion = function (version, cb) {
+        if (!this.serviceId) return cb('Failed to activate version. No serviceId configured.');
+        var url = this.getFastlyAPIPrefix(this.serviceId, version) + '/activate';
+        this.request('PUT', url, cb);
+    };
+
     return fastly;
 };

@@ -90,9 +90,14 @@ async.auto({
         fastly.getLatestVersion(function (err, response) {
             if (err) return cb(err);
             // Validate latest version before continuing
-            if (response.active) return cb('Latest version is active. Will not modify.');
-            if (response.locked) return cb('Latest version is locked. Cannot modify.');
-            cb(null, response.number);
+            if (response.active || response.locked) {
+                fastly.cloneVersion(response.number, function (err, response) {
+                    if (err) return cb('Failed to clone latest version: ' + err);
+                    cb(null, response.number);
+                });
+            } else {
+                cb(null, response.number);
+            }
         });
     },
     notPassRequestCondition: ['version', function (cb, results) {
@@ -200,7 +205,13 @@ async.auto({
             cb(null, headers);
         });
     }]},
-    function (err) {
+    function (err, results) {
         if (err) throw new Error(err);
+        if (process.env.FASTLY_ACTIVATE_CHANGES) {
+            fastly.activateVersion(results.version, function (err, response) {
+                if (err) throw new Error(err);
+                process.stdout.write('Successfully configured and activated version ' + response.number + '\n');
+            });
+        }
     }
 );
