@@ -135,11 +135,11 @@ async.auto({
             cb
         );
     }],
-    backendCondition: ['version', 'passRequestCondition', function (cb, results) {
+    backendCondition: ['version', 'notPassRequestCondition', function (cb, results) {
         fastly.request(
             'PUT',
-            fastly.getFastlyAPIPrefix(FASTLY_SERVICE_ID, results.version) + '/backend/femto',
-            {request_condition: results.passRequestCondition.name},
+            fastly.getFastlyAPIPrefix(FASTLY_SERVICE_ID, results.version) + '/backend/s3',
+            {request_condition: results.notPassRequestCondition.name},
             cb
         );
     }],
