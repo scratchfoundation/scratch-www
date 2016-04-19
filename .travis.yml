@@ -36,21 +36,7 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
-deploy:
-- provider: script
-  skip_cleanup: $SKIP_CLEANUP
-  script: FASTLY_SERVICE_ID=$FASTLY_SERVICE_ID_STAGING S3_BUCKET_NAME=$S3_BUCKET_NAME_STAGING make sync
-  on:
-    repo: LLK/scratch-www
-    branch:
-    - develop
-    - s3
-    - hotfix/*
-    - release/*
-- provider: script
-  skip_cleanup: $SKIP_CLEANUP
-  script: FASTLY_SERVICE_ID=$FASTLY_SERVICE_ID_PRODUCTION S3_BUCKET_NAME=$S3_BUCKET_NAME_PRODUCTION make sync
-  on:
-    repo: LLK/scratch-www
-    branch:
-    - master
+after_success:
+  - if [ $TRAVIS_BRANCH == 'master' ]; then export FASTLY_SERVICE_ID=$FASTLY_SERVICE_ID_PRODUCTION S3_BUCKET_NAME=$S3_BUCKET_NAME_PRODUCTION make sync; fi;
+  - if [ $TRAVIS_BRANCH == 'develop' ]; then FASTLY_SERVICE_ID=$FASTLY_SERVICE_ID_STAGING S3_BUCKET_NAME=$S3_BUCKET_NAME_STAGING make sync; fi;
+  - if [ $TRAVIS_BRANCH == 's3' ]; then export FASTLY_SERVICE_ID=$FASTLY_SERVICE_ID_STAGING S3_BUCKET_NAME=$S3_BUCKET_NAME_STAGING make sync; fi;
