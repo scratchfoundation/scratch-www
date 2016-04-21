@@ -1,6 +1,21 @@
 @import "../../colors";
 @import "../../typography";
 
+// type-specific margins
+#view {
+    h4 {
+        margin: 1.5em 0 .3em;
+    }
+
+    h1 {
+        margin: .75em 0 .3em;
+    }
+
+    p {
+        margin: .25em 0 1em;
+    }
+}
+
 .cards {
     display: flex;
     margin: 1em 0;
