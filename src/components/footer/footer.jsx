@@ -82,7 +82,7 @@ var Footer = React.createClass({
                             </a>
                         </dd>
                         <dd>
-                            <a href="https://wiki.scratch.mit.edu/">
+                            <a href="http://wiki.scratch.mit.edu/">
                                 <FormattedMessage
                                     id='general.wiki'
                                     defaultMessage={'Scratch Wiki'} />
