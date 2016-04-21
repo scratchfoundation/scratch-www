@@ -1,0 +1,42 @@
+@import "../../colors";
+
+$navigation-height: 50px;
+
+.banner {
+    position: fixed;
+    top: $navigation-height;
+    z-index: 9;
+    box-shadow: 0 1px 1px $ui-dark-gray;
+    background-color: $ui-orange;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    line-height: $navigation-height;
+
+    &,
+    a {
+        color: $ui-white;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    .close {
+        float: right;
+        margin-top: $navigation-height / 4;
+        border-radius: $navigation-height / 4;
+        background-color: $box-shadow-gray;
+        width: $navigation-height / 2;
+        height: $navigation-height / 2;
+        text-decoration: none;
+        text-shadow: none;
+        line-height: $navigation-height / 2;
+        color: $ui-white;
+        font-weight: normal;
+    }
+
+    &.warning {
+        background-color: $ui-orange;
+    }    
+}

@@ -1,5 +1,5 @@
 var render = require('../../../lib/render.jsx');
-var Microworld = require('../../../components/container/microworld/microworld.jsx');
+var Microworld = require('../../../components/microworld/microworld.jsx');
 
 var microworldData = require('./microworld_art.json');
 

@@ -3,9 +3,9 @@ var injectIntl = require('react-intl').injectIntl;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
 
-var Box = require('../../components/presentation/box/box.jsx');
-var FlexRow = require('../../components/presentation/flex-row/flex-row.jsx');
-var Page = require('../../components/container/page/www/page.jsx');
+var Box = require('../../components/box/box.jsx');
+var FlexRow = require('../../components/flex-row/flex-row.jsx');
+var Page = require('../../components/page/www/page.jsx');
 
 require('./cards.scss');
 

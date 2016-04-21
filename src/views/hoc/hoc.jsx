@@ -3,12 +3,12 @@ var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var Button = require('../../components/presentation/forms/button.jsx');
-var Box = require('../../components/presentation/box/box.jsx');
-var FlexRow = require('../../components/presentation/flex-row/flex-row.jsx');
-var Page = require('../../components/container/page/www/page.jsx');
-var SubNavigation = require('../../components/presentation/subnavigation/subnavigation.jsx');
-var TitleBanner = require('../../components/presentation/title-banner/title-banner.jsx');
+var Button = require('../../components/forms/button.jsx');
+var Box = require('../../components/box/box.jsx');
+var FlexRow = require('../../components/flex-row/flex-row.jsx');
+var Page = require('../../components/page/www/page.jsx');
+var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+var TitleBanner = require('../../components/title-banner/title-banner.jsx');
 
 require('./hoc.scss');
 

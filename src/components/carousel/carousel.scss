@@ -1,0 +1,78 @@
+@import "../../colors";
+
+.carousel {
+    $icon-size: 40px;
+    $button-offset: $icon-size + 5px;
+    $box-content-offset: 20px;
+
+    margin-bottom: 0;
+    padding: 12px $button-offset;
+
+    .box-content & {
+        padding: 12px $button-offset - 20px;
+    }
+
+    .slick-next,
+    .slick-prev {
+        margin-top: -$icon-size / 2;
+        width: $icon-size;
+        height: $icon-size;
+
+        &:before {
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 70%;
+            width: $icon-size;
+            height: $icon-size;
+            font-size: $icon-size;
+            content: "";
+        }
+
+        &.slick-disabled {
+            &:before {
+                opacity: 1;
+            }
+        }
+    }
+
+    .slick-prev {
+        left: 0;
+
+        &:before {
+            background-image: url("/svgs/carousel/prev_ui-dark-gray.svg");
+
+            &:hover {
+                background-image: url("/svgs/carousel/prev_ui-blue.svg");
+                background-size: 90%;
+            }
+        }
+
+
+        .box-content & {
+            left: -$box-content-offset;
+        }
+    }
+
+    .slick-next {
+        right: 0;
+
+        &:before {
+            background-image: url("/svgs/carousel/next_ui-dark-gray.svg");
+
+            &:hover {
+                background-image: url("/svgs/carousel/next_ui-blue.svg");
+                background-size: 90%;
+            }
+        }
+
+        .box-content & {
+            right: -$box-content-offset;
+        }
+    }
+
+    .slick-slide {
+        padding-right: 30px;
+    }
+
+}

@@ -2,7 +2,7 @@ var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 
-var Page = require('../../components/container/page/www/page.jsx');
+var Page = require('../../components/page/www/page.jsx');
 var render = require('../../lib/render.jsx');
 
 require('./wedo2.scss');

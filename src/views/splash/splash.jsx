@@ -8,17 +8,17 @@ var actions = require('../../redux/actions.js');
 
 var Api = require('../../mixins/api.jsx');
 
-var Activity = require('../../components/presentation/activity/activity.jsx');
-var AdminPanel = require('../../components/presentation/adminpanel/adminpanel.jsx');
-var DropdownBanner = require('../../components/presentation/dropdown-banner/banner.jsx');
-var Box = require('../../components/presentation/box/box.jsx');
-var Button = require('../../components/presentation/forms/button.jsx');
-var Carousel = require('../../components/presentation/carousel/carousel.jsx');
-var Intro = require('../../components/container/intro/intro.jsx');
-var Modal = require('../../components/presentation/modal/modal.jsx');
-var News = require('../../components/presentation/news/news.jsx');
-var Page = require('../../components/container/page/www/page.jsx');
-var Welcome = require('../../components/presentation/welcome/welcome.jsx');
+var Activity = require('../../components/activity/activity.jsx');
+var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
+var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
+var Box = require('../../components/box/box.jsx');
+var Button = require('../../components/forms/button.jsx');
+var Carousel = require('../../components/carousel/carousel.jsx');
+var Intro = require('../../components/intro/intro.jsx');
+var Modal = require('../../components/modal/modal.jsx');
+var News = require('../../components/news/news.jsx');
+var Page = require('../../components/page/www/page.jsx');
+var Welcome = require('../../components/welcome/welcome.jsx');
 
 require('./splash.scss');
 
