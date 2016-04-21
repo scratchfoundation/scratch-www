@@ -30,7 +30,7 @@ MustacheRendererPlugin.prototype.apply = function (compiler) {
     compiler.plugin('emit', function (compilation, callback) {
         var outputRoutes = {};
         routes.forEach(function (route) {
-            var filename = route.view + '.html';
+            var filename = route.name + '.html';
             var content = render(template, route, config);
             outputRoutes[route.pattern] = filename;
             compilation.assets[filename] = {
