@@ -14,8 +14,11 @@
     p {
         margin: 0 auto;
         padding: 5px 0;
-        max-width: 500px;
         text-align: center;
         color: $type-white;        
+    }
+
+    p {
+        max-width: 500px;
     }
 }

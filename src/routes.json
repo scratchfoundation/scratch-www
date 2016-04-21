@@ -54,6 +54,24 @@
         "title": "LEGO WeDo 2.0"
     },
     {
+        "name": "conference-index",
+        "pattern": "^/conference$",
+        "view": "conference/index/index",
+        "title": "Scratch Conference"
+    },
+    {
+        "name": "conference-plan",
+        "pattern": "^/conference/plan$",
+        "view": "conference/plan/plan",
+        "title": "Plan Your Visit"
+    },
+    {
+        "name": "conference-expectations",
+        "pattern": "^/conference/expect$",
+        "view": "conference/expect/expect",
+        "title": "What to Expect"
+    },
+    {
         "name": "donate",
         "pattern": "^/info/donate",
         "redirect": "https://secure.donationpay.org/scratchfoundation/"
