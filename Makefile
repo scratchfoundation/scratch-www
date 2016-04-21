@@ -71,10 +71,10 @@ lint:
 	$(ESLINT) ./src/*.js
 	$(ESLINT) ./src/mixins/*.jsx
 	$(ESLINT) ./src/views/**/*.jsx
-	$(ESLINT) ./src/components/**/*.jsx
+	$(ESLINT) ./src/components/**/**/*.jsx
 	$(SASSLINT) ./src/*.scss
 	$(SASSLINT) ./src/views/**/*.scss
-	$(SASSLINT) ./src/components/**/*.scss
+	$(SASSLINT) ./src/components/**/**/*.scss
 
 unit:
 	$(TAP) ./test/unit/*.js
