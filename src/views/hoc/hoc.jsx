@@ -3,9 +3,10 @@ var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var Page = require('../../components/container/page/www/page.jsx');
 var Button = require('../../components/presentation/forms/button.jsx');
 var Box = require('../../components/presentation/box/box.jsx');
+var FlexRow = require('../../components/presentation/flex-row/flex-row.jsx');
+var Page = require('../../components/container/page/www/page.jsx');
 var SubNavigation = require('../../components/presentation/subnavigation/subnavigation.jsx');
 var TitleBanner = require('../../components/presentation/title-banner/title-banner.jsx');
 
@@ -43,7 +44,7 @@ var Hoc = React.createClass({
                     </p>
 
                     <section>
-                        <div className="card-deck">
+                        <FlexRow>
                             <div className="card">
                                 <a href="/projects/editor/?tip_bar=name">
                                     <div className="card-info" onMouseEnter={this.onCardEnter.bind(this, 'name-bg')}>
@@ -82,7 +83,7 @@ var Hoc = React.createClass({
                                     </div>
                                 </a>
                             </div>
-                        </div>
+                        </FlexRow>
                     </section>
                     
                     <SubNavigation>
@@ -241,7 +242,7 @@ var Hoc = React.createClass({
                                  </p>
                             </div>
 
-                            <div className="card-deck">
+                            <FlexRow>
                                 <div className="card">
                                     <a href="/projects/editor/?tip_bar=getStarted">
                                         <div className="card-info">
@@ -280,7 +281,7 @@ var Hoc = React.createClass({
                                         </div>
                                     </a>
                                 </div>
-                            </div>
+                            </FlexRow>
                         </section>
 
                         <section className="one-up">
@@ -301,57 +302,62 @@ var Hoc = React.createClass({
                                  </p>
                             </div>
 
-                            <div className="studio">
-                                <img src="/svgs/studio.svg" alt="" />
-                                <div className="studio-info">
-                                    <a href="/studios/432299/">
-                                        <h5>
-                                            <FormattedMessage
-                                                id='general.tipsAnimateYourNameTitle'
-                                                defaultMessage={'Animate Your Name'} />
-                                        </h5>
-                                    </a>
+                            <FlexRow>
+                                <div className="studio">
+                                    <img src="/svgs/studio.svg" alt="" />
+                                    <div className="studio-info">
+                                        <a href="/studios/432299/">
+                                            <h5>
+                                                <FormattedMessage
+                                                    id='general.tipsAnimateYourNameTitle'
+                                                    defaultMessage={'Animate Your Name'} />
+                                            </h5>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="studio">
-                                <img src="/svgs/studio.svg" alt="" />
-                                <div className="studio-info">
-                                    <a href="/studios/1672166/">
-                                        <h5>
-                                            <FormattedMessage
-                                                id='hoc.studioWeBareBears'
-                                                defaultMessage={'We Bare Bears Studio'} />
-                                        </h5>
-                                    </a>
+                            
+                                <div className="studio">
+                                    <img src="/svgs/studio.svg" alt="" />
+                                    <div className="studio-info">
+                                        <a href="/studios/1672166/">
+                                            <h5>
+                                                <FormattedMessage
+                                                    id='hoc.studioWeBareBears'
+                                                    defaultMessage={'We Bare Bears Studio'} />
+                                            </h5>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            </FlexRow>
 
-                            <div className="studio">
-                                <img src="/svgs/studio.svg" alt="" />
-                                <div className="studio-info">
-                                    <a href="/studios/1065372/">
-                                        <h5>
-                                            <FormattedMessage
-                                                id='general.tipsDanceTitle'
-                                                defaultMessage={'Dance, Dance, Dance'} />
-                                        </h5>
-                                    </a>
+                            <FlexRow>
+                                <div className="studio">
+                                    <img src="/svgs/studio.svg" alt="" />
+                                    <div className="studio-info">
+                                        <a href="/studios/1065372/">
+                                            <h5>
+                                                <FormattedMessage
+                                                    id='general.tipsDanceTitle'
+                                                    defaultMessage={'Dance, Dance, Dance'} />
+                                            </h5>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="studio">
-                                <img src="/svgs/studio.svg" alt="" />
-                                <div className="studio-info">
-                                    <a href="/studios/1672164/">
-                                        <h5>
-                                            <FormattedMessage
-                                                id='hoc.studioAlice'
-                                                defaultMessage={'Alice in Wonderland Studio'} />
-                                        </h5>
-                                    </a>
+                                <div className="studio">
+                                    <img src="/svgs/studio.svg" alt="" />
+                                    <div className="studio-info">
+                                        <a href="/studios/1672164/">
+                                            <h5>
+                                                <FormattedMessage
+                                                    id='hoc.studioAlice'
+                                                    defaultMessage={'Alice in Wonderland Studio'} />
+                                            </h5>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
+                            </FlexRow>
                         </section>
                     </Box>
 

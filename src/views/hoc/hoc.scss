@@ -45,11 +45,7 @@ $base-bg: $ui-white;
         }
     }
 
-    .card-deck {
-        display: inline-flex;
-        justify-content: center;
-        flex-wrap: wrap;
-
+    .flex-row {
         .card {
             margin: 10px;
             border-radius: 7px;

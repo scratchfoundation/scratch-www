@@ -35,14 +35,8 @@
 .cards-container {
     text-align: center;
 
-    .card-row {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: wrap;
-
+    .flex-row {
         div {
-            display: inline-block;
             padding: .5em;
 
             a {
@@ -53,6 +47,11 @@
                     width: 1em;
                 }
             }
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            flex-direction: column;
+            justify-content: center;
         }
     }
 }

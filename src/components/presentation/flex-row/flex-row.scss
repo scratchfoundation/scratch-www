@@ -1,0 +1,18 @@
+@import "../../../frameless";
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    &.column {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: $tablet - 1) {
+        flex-direction: column;
+    }
+}

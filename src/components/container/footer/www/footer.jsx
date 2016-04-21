@@ -1,6 +1,7 @@
 var React = require('react');
 var FormattedMessage = require('react-intl').FormattedMessage;
 
+var FooterBox = require('../../../presentation/footer/footer.jsx');
 var LanguageChooser = require('../../../presentation/languagechooser/languagechooser.jsx');
 
 require('./footer.scss');
@@ -9,7 +10,7 @@ var Footer = React.createClass({
     type: 'Footer',
     render: function () {
         return (
-            <div className="inner">
+            <FooterBox>
                 <div className="lists">
                     <dl>
                         <dt>
@@ -224,7 +225,7 @@ var Footer = React.createClass({
                             } />
                     </p>
                 </div>
-            </div>
+            </FooterBox>
         );
     }
 });
