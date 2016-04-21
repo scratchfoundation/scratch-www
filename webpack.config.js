@@ -12,7 +12,7 @@ var entry = {
 };
 routes.forEach(function (route) {
     if (!route.redirect) {
-        entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
+        entry[route.name] = './src/views/' + route.view + '.jsx';
     }
 });
 
