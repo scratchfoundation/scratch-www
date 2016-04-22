@@ -34,7 +34,7 @@ var ConferenceExpectations = React.createClass({
                             <p className="intro">
                                 The Scratch community keeps growing and growing.{' '}
                                 Young people around the world have shared more than{' '}
-                                13 million projects in the Scratch online community{' '}
+                                14 million projects in the Scratch online community{' '}
                                 – with 20,000 new projects every day.
                             </p>
                             <p className="intro">

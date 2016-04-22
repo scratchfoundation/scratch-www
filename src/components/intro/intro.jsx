@@ -24,7 +24,7 @@ var Intro = React.createClass({
                 'intro.tagLine': 'Create stories, games, and animations<br /> Share with others around the world',
                 'intro.tryItOut': 'TRY IT OUT',
                 'intro.description': 'A creative learning community with <span class="project-count"> ' +
-                                     'over 13 million </span>projects shared'
+                                     'over 14 million </span>projects shared'
             },
             session: {}
         };
