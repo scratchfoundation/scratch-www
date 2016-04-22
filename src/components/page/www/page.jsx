@@ -1,7 +1,7 @@
 var React = require('react');
 
-var Navigation = require('../navigation/navigation.jsx');
-var Footer = require('../footer/footer.jsx');
+var Navigation = require('../../navigation/www/navigation.jsx');
+var Footer = require('../../footer/www/footer.jsx');
 
 var Page = React.createClass({
     type: 'Page',

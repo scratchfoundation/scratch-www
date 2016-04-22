@@ -1,7 +1,7 @@
 var React = require('react');
 var connect = require('react-redux').connect;
 
-var Button = require('../../components/forms/button.jsx');
+var Button = require('../forms/button.jsx');
 
 require('./adminpanel.scss');
 

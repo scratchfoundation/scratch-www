@@ -5,16 +5,17 @@ var ReactIntl = require('react-intl');
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
 
-var actions = require('../../redux/actions.js');
+var actions = require('../../../redux/actions.js');
 
-var Api = require('../../mixins/api.jsx');
-var Avatar = require('../avatar/avatar.jsx');
-var Dropdown = require('./dropdown.jsx');
-var Input = require('../forms/input.jsx');
-var log = require('../../lib/log.js');
-var Login = require('../login/login.jsx');
-var Modal = require('../modal/modal.jsx');
-var Registration = require('../registration/registration.jsx');
+var Api = require('../../../mixins/api.jsx');
+var Avatar = require('../../avatar/avatar.jsx');
+var Dropdown = require('../../dropdown/dropdown.jsx');
+var Input = require('../../forms/input.jsx');
+var log = require('../../../lib/log.js');
+var Login = require('../../login/login.jsx');
+var Modal = require('../../modal/modal.jsx');
+var NavigationBox = require('../container/navigation.jsx');
+var Registration = require('../../registration/registration.jsx');
 
 require('./navigation.scss');
 
@@ -173,7 +174,6 @@ var Navigation = React.createClass({
     },
     render: function () {
         var classes = classNames({
-            'inner': true,
             'logged-in': this.props.session.user
         });
         var messageClasses = classNames({
@@ -183,7 +183,7 @@ var Navigation = React.createClass({
         var formatMessage = this.props.intl.formatMessage;
         var createLink = this.props.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
         return (
-            <div className={classes}>
+            <NavigationBox className={classes}>
                 <ul>
                     <li className="logo"><a href="/" aria-label="Scratch"></a></li>
 
@@ -329,7 +329,7 @@ var Navigation = React.createClass({
                         to make sure your account is secure.
                     </p>
                 </Modal>
-            </div>
+            </NavigationBox>
         );
     }
 });

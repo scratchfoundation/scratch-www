@@ -82,7 +82,7 @@ var getConditionNameForRoute = function (route, type) {
 };
 
 var getHeaderNameForRoute = function (route) {
-    if (route.view) return 'rewrites/' + route.view;
+    if (route.name) return 'rewrites/' + route.name;
     if (route.redirect) return 'redirects/' + route.pattern;
 };
 
@@ -234,7 +234,7 @@ async.auto({
                     ignore_if_set: 0,
                     type: 'REQUEST',
                     dst: 'url',
-                    src: '"/' + route.view + '.html"',
+                    src: '"/' + route.name + '.html"',
                     request_condition: results.appRouteRequestConditions[id].name,
                     priority: 10
                 };

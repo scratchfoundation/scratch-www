@@ -1,7 +1,7 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var Page = require('../../components/page/page.jsx');
+var Page = require('../../components/page/www/page.jsx');
 
 var CommunityBlocksInterviews = React.createClass({
     type: 'communityblocks-interviews',
