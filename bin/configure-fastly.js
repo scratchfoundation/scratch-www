@@ -54,8 +54,8 @@ var getViewPaths = function (routes) {
  */
 var pathsToCondition = function (paths) {
     return paths.reduce(function (conditionString, pattern) {
-        var patternCondition = 'req.url ~ "' + pattern + '"';
-        return conditionString + (conditionString ? ' || ' : '') + patternCondition;
+        var patternCondition = 'req.url~"' + pattern + '"';
+        return conditionString + (conditionString ? '||' : '') + patternCondition;
     }, '');
 };
 
