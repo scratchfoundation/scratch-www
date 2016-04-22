@@ -106,18 +106,17 @@ var ConferenceExpectations = React.createClass({
                             </div>
                             <div className="card">
                                 <div className="date">
-                                    <b>Caturday</b>
+                                    <b>Saturday</b>
                                 </div>
-                                <h3>Paws for Effect</h3>
+                                <h3>Creative Computing For All</h3>
                                 <img src="/images/conference/expect/karen.jpg" alt="Mimi and Nicole" />
                                 <p>
-                                    <b>Karen Brennan</b>
+                                    <b>Karen Brennan (moderator)</b>
                                 </p>
                                 <p>
-                                    It's a dog chase cat kind of world out there. With the rapidly{' '}
-                                    changing landscape of the neighborhood, how can we ensure safe,{' '}
-                                    productive chipmunk hunting without fear of Ruffles McBarkston{' '}
-                                    down the street?
+                                    With ever-increasing attention on computing education and computer{' '}
+                                    science in K–12, what role can teachers play in making creative{' '}
+                                    computing experiences accessible to all learners?
                                 </p>
                             </div>
                         </FlexRow>
