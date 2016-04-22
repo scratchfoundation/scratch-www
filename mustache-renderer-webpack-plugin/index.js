@@ -1,9 +1,8 @@
 var defaults = require('lodash.defaults');
 var fs = require('fs');
 var mustache = require('mustache');
-var path = require('path');
 
-render = function (template, route, config) {
+var render = function (template, route, config) {
     config = config || {};
     // Route definition
     defaults(route, config);

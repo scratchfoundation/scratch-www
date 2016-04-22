@@ -7,7 +7,7 @@ function Handler (route) {
         return (req, res) => { res.redirect(route.redirect); };
     }
 
-    var url = '/' + route.view + '.html';
+    var url = '/' + route.name + '.html';
     return function (req, res, next) {
         req.url = url;
         next();
