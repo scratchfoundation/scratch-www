@@ -1,0 +1,119 @@
+@import "../../../colors";
+@import "../../../main";
+
+#navigation {
+    h1 {
+        font-size: 4.5rem;
+    }
+
+    @media only screen and (max-width: $mobile - 1) {
+        h1 {
+            font-size: 2.5rem;
+        }
+    }
+
+    @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+        h1 {
+            font-size: 3rem;
+        }
+    }
+
+    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+        h1 {
+            font-size: 3.5rem;
+        }
+    }
+}
+
+#view {
+    padding: 0 0 20px 0;
+
+    p {
+        margin: .25em 0 1em;
+
+        &.intro {
+            margin-bottom: 1em;
+        }
+    }
+
+    ol,
+    ul {
+        margin: .25em 0 1em;
+
+        li {
+            margin: .75em 0;
+        }
+    }
+
+    @media only screen and (max-width: $tablet - 1) {
+        margin-top: 100px;
+    }
+
+    .title-banner {
+        background-color: $ui-blue;
+        padding: 2rem 0;
+
+        h1,
+        h4,
+        p {
+            margin: 0 auto;
+            padding: 5px 0;
+            text-align: center;
+            color: $type-white;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+        }
+
+        @media only screen and (max-width: $tablet - 1) {
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    }
+
+    .title-icon {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+
+        img {
+            width: 125px;
+        }
+
+        @media only screen and (max-width: $tablet - 1) {
+            img {
+                transform: translate(0, 5px);
+                width: 85px;
+            }
+        }
+    }
+
+    section {
+        padding: 64px 0;
+    }
+
+    .flex-row {
+        &.uneven {
+            align-items: flex-start;
+
+            .short {
+                width: $cols3;
+            }
+
+            .long {
+                width: $cols8;
+                text-align: left;
+            }
+
+            @media only screen and (max-width: $tablet - 1) {
+                .short,
+                .long {
+                    margin: auto;
+                    width: 90%;
+                }
+            }
+        }
+    } 
+}

@@ -1,16 +1,19 @@
 var autoprefixer = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var MustacheRendererPlugin = require('./mustache-renderer-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
 
-var routes = require('./server/routes.json');
+var routes = require('./src/routes.json');
 
 // Prepare all entry points
 var entry = {
     init: './src/init.js'
 };
 routes.forEach(function (route) {
-    entry[route.view] = './src/views/' + route.view + '/' + route.view + '.jsx';
+    if (!route.redirect) {
+        entry[route.name] = './src/views/' + route.view + '.jsx';
+    }
 });
 
 // Config
@@ -56,6 +59,11 @@ module.exports = {
         fs: 'empty'
     },
     plugins: [
+        new MustacheRendererPlugin({
+            templatePath: path.resolve(__dirname, './src/template.html'),
+            routes: routes,
+            config: require('./src/template-config.js')
+        }),
         new CopyWebpackPlugin([
             {from: 'static'},
             {from: 'intl', to: 'js'}
