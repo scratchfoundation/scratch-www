@@ -126,11 +126,6 @@ var ConferenceExpectations = React.createClass({
                     <div className="section-header">
                         <div className="title">
                             <h2>Daily Schedules</h2>
-                            <a href="/conference/schedule">
-                                <Button>
-                                    <b>View Full Schedule</b>
-                                </Button>
-                            </a>
                         </div>
                         <p className="callout">
                             <img src="/svgs/conference/expect/aug3-icon.svg" alt="August 3rd Icon" />
