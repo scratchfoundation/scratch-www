@@ -11,7 +11,7 @@ var ConferenceFooter = React.createClass({
         return (
             <FooterBox>
                 <div className="collaborators">
-                    <h4>Collaborators</h4>
+                    <h4>Sponsors</h4>
                     <FlexRow as="ul">
                         <li>
                             <a href="https://odl.mit.edu/">
@@ -51,23 +51,23 @@ var ConferenceFooter = React.createClass({
                         <FlexRow>
                             <FlexRow as="ul" className="column">
                                 <li>
-                                    <a href="https://scratch.mit.edu">Scratch</a>
+                                    <a href="https://scratch.mit.edu" target="_blank">Scratch</a>
                                 </li>
                                 <li>
-                                    <a href="http://www.scratchjr.org/">ScratchJr</a>
-                                </li>
-                            </FlexRow>
-                            <FlexRow as="ul" className="column">
-                                <li>
-                                    <a href="http://www.scratchfoundation.org/">Scratch Foundation</a>
-                                </li>
-                                <li>
-                                    <a href="http://scratched.gse.harvard.edu/">ScratchEd</a>
+                                    <a href="http://www.scratchjr.org/" target="_blank">ScratchJr</a>
                                 </li>
                             </FlexRow>
                             <FlexRow as="ul" className="column">
                                 <li>
-                                    <a href="http://day.scratch.mit.edu">Scratch Day</a>
+                                    <a href="http://www.scratchfoundation.org/" target="_blank">Scratch Foundation</a>
+                                </li>
+                                <li>
+                                    <a href="http://scratched.gse.harvard.edu/" target="_blank">ScratchEd</a>
+                                </li>
+                            </FlexRow>
+                            <FlexRow as="ul" className="column">
+                                <li>
+                                    <a href="http://day.scratch.mit.edu" target="_blank">Scratch Day</a>
                                 </li>
                             </FlexRow>
                         </FlexRow>
@@ -79,7 +79,7 @@ var ConferenceFooter = React.createClass({
                         <div className="contact-us">
                             <h4>Contact</h4>
                             <p>
-                                <a href="emailto:help@scratch.mit.edu">
+                                <a href="mailto:help@scratch.mit.edu" target="_blank">
                                     Email Us
                                 </a>
                             </p>
@@ -87,17 +87,17 @@ var ConferenceFooter = React.createClass({
                         <div className="social">
                             <FlexRow as="ul">
                                 <li>
-                                    <a href="//www.twitter.com/scratch">
+                                    <a href="//www.twitter.com/scratch" target="_blank">
                                         <img src="/images/conference/footer/twitter.png" alt="scratch twitter" />
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="//www.facebook.com/scratchteam">
+                                    <a href="//www.facebook.com/scratchteam" target="_blank">
                                         <img src="/images/conference/footer/facebook.png" alt="scratch facebook" />
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="http://medium.com/scratchfoundation-blog">
+                                    <a href="http://medium.com/scratchfoundation-blog" target="_blank">
                                         <img src="/images/conference/footer/medium.png" alt="scratch foundation blog" />
                                     </a>
                                 </li>

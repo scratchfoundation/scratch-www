@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var Button = require('../../../components/forms/button.jsx');
 var FlexRow = require('../../../components/flex-row/flex-row.jsx');
 var Page = require('../../../components/page/conference/page.jsx');
 var TitleBanner = require('../../../components/title-banner/title-banner.jsx');

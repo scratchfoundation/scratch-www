@@ -32,6 +32,7 @@
         .scratch-links {
             margin-top: 25px;
             justify-content: space-between;
+            align-items: flex-start;
         }
 
         .family {
@@ -43,6 +44,10 @@
 
                 ul {
                     align-items: flex-start;
+                }
+
+                li {
+                    margin-bottom: .5rem;
                 }
             }
         }
