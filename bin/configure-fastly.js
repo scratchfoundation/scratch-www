@@ -31,10 +31,10 @@ var extraAppRoutes = [
  */
 var getStaticPaths = function (pathToStatic) {
     var staticPaths = glob.sync(path.resolve(__dirname, pathToStatic));
-    return staticPaths.map( function (pathName) {
+    return staticPaths.map(function (pathName) {
         // Reduce absolute path to relative paths like '/js'
         var base = path.dirname(path.resolve(__dirname, pathToStatic));
-        return '^' + pathName.replace(base, '');
+        return '^' + pathName.replace(base, '') + (path.extname(pathName) ? '' : '/');
     });
 };
 
