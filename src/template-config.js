@@ -9,6 +9,9 @@ module.exports = {
         'where you can create your own interactive stories, games, ' +
         'and animations.',
 
+    // override if mobile-friendly
+    viewportWidth: 942,
+
     // Open graph
     og_image: 'https://scratch.mit.edu/images/scratch-og.png',
     og_image_type: 'image/png',
