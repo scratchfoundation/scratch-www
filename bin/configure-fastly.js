@@ -175,7 +175,8 @@ async.auto({
                 name: getConditionNameForRoute(route, 'request'),
                 statement: 'req.url ~ "' + route.pattern + '"',
                 type: 'REQUEST',
-                priority: id
+                // Priority needs to be > 1 to not interact with http->https redirect
+                priority: 10 + id
             };
             fastly.setCondition(results.version, condition, function (err, response) {
                 if (err) return cb2(err);
