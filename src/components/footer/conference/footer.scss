@@ -33,6 +33,10 @@
             margin-top: 25px;
             justify-content: space-between;
             align-items: flex-start;
+
+            @media only screen and (max-width: $tablet - 1) {
+                align-items: center;
+            }
         }
 
         .family {
