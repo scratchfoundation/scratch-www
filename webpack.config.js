@@ -1,10 +1,37 @@
 var autoprefixer = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var gitsha = require('git-bundle-sha');
 var MustacheRendererPlugin = require('./mustache-renderer-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
 
 var routes = require('./src/routes.json');
+
+var VersionPlugin = function (options) {
+    this.options = options || {};
+    return this;
+};
+VersionPlugin.prototype.apply = function (compiler) {
+    var addVersion = function (compilation, versionId, callback) {
+        compilation.assets['version.txt'] = {
+            source: function () {return versionId;},
+            size: function () {return versionId.length;}
+        };
+        callback();
+    };
+    var plugin = this;
+    compiler.plugin('emit', function (compilation, callback) {
+        var sha = process.env.WWW_VERSION;
+        if (!sha) {
+            gitsha(plugin.options, function (err, sha) {
+                if (err) return callback(err);
+                return addVersion(compilation, sha, callback);
+            });
+        } else {
+            return addVersion(compilation, sha, callback);
+        }
+    });
+};
 
 // Prepare all entry points
 var entry = {
@@ -59,6 +86,7 @@ module.exports = {
         fs: 'empty'
     },
     plugins: [
+        new VersionPlugin({length: 5}),
         new MustacheRendererPlugin({
             templatePath: path.resolve(__dirname, './src/template.html'),
             routes: routes,

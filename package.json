@@ -42,6 +42,7 @@
     "exenv": "1.2.0",
     "fastly": "1.2.1",
     "file-loader": "0.8.4",
+    "git-bundle-sha": "0.0.2",
     "glob": "5.0.15",
     "json-loader": "0.5.2",
     "json2po-stream": "1.0.3",
