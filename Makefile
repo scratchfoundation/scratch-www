@@ -4,9 +4,6 @@ SASSLINT=./node_modules/.bin/sass-lint -v
 TAP=./node_modules/.bin/tap
 WATCH=./node_modules/.bin/watch
 WEBPACK=./node_modules/.bin/webpack
-GIT_VERSION=$(shell git rev-parse --verify --short=5 HEAD 2> /dev/null)
-GIT_VERSION?=$(WWW_VERSION)
-GIT_MESSAGE=$(shell git log -1 --pretty=%s 2> /dev/null)
 
 # ------------------------------------
 
@@ -14,7 +11,6 @@ build:
 	@make clean
 	@make translations
 	@make webpack
-	@make tag
 
 clean:
 	rm -rf ./build
@@ -92,4 +88,4 @@ localization:
 
 # ------------------------------------
 
-.PHONY: build clean deploy static tag translations webpack watch stop start test lint
+.PHONY: build clean deploy translations webpack stop start test lint unit functional integration localization
