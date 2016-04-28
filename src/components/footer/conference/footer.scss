@@ -1,0 +1,150 @@
+@import "../../../colors";
+@import "../../../frameless";
+@import "../../../typography";
+
+#footer {
+    .inner {
+        ul {
+            padding-left: 0;
+
+            li {
+                list-style-type: none;
+            }
+        }
+
+        .collaborators {
+            margin-top: 20px;
+            border-bottom: 2px solid $ui-border;
+            width: 100%;
+
+            ul {
+                justify-content: space-between;
+                align-items: center;
+
+                img {
+                    margin: 20px 0;
+                    max-width: 180px;
+                    max-height: 30px;
+                }
+            }
+        }
+
+        .scratch-links {
+            margin-top: 25px;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            @media only screen and (max-width: $tablet - 1) {
+                align-items: center;
+            }
+        }
+
+        .family {
+            width: $cols8;
+
+            .flex-row {
+                justify-content: space-between;
+                align-items: flex-start;
+
+                ul {
+                    align-items: flex-start;
+                }
+
+                li {
+                    margin-bottom: .5rem;
+                }
+            }
+        }
+
+        .media {
+            width: $cols3;
+            text-align: center;
+
+            .contact-us {
+                text-align: left;
+            }
+
+            ul {
+                justify-content: flex-start;
+            }
+
+            li {
+                margin-right: 10px;
+                border-radius: 20px;
+                background-color: $ui-blue;
+                padding: 5px;
+                width: 20px;
+                height: 20px;
+
+                &:hover {
+                    background-color: $ui-orange;
+                }
+
+                img {
+                    width: 20px;
+                }
+            }
+        }
+
+        @media only screen and (max-width: $tablet - 1) {
+            text-align: center;
+
+            .family {
+                display: none;
+            }
+
+            .media {
+                .contact-us {
+                    text-align: center;
+                }
+
+                .flex-row {
+                    flex-direction: row;
+                    justify-content: center;
+                }
+            }
+        }
+
+        @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+            ul {
+                li {
+                    margin-left: 0;
+                }
+            }
+
+            .collaborators {
+                h4 {
+                    text-align: center;
+                }
+
+                ul {
+                    justify-content: center;
+
+                    li {
+                        margin: 0 15px;
+                    }
+
+                    img {
+                        margin: 20px 0;
+                        max-width: 180px;
+                        max-height: 30px;
+                    }
+                }
+            }
+
+            .scratch-links {
+                flex-wrap: nowrap;
+                align-items: flex-start;
+                justify-content: space-between;
+
+                .family {
+                    width: $cols6;
+                }
+
+                .media {
+                    width: 10em;
+                }
+            }
+        }
+    }
+}

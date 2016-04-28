@@ -1,7 +1,7 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var Page = require('../../components/page/page.jsx');
+var Page = require('../../components/page/www/page.jsx');
 
 require('./credits.scss');
 
@@ -124,6 +124,16 @@ var Credits = React.createClass({
                         <img src="//cdn.scratch.mit.edu/get_image/user/1915915_170x170.png" alt="Hannah Avatar" />
                         <span className="name">Hannah Cole</span>
                     </li>
+                    
+                    <li>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/1494_170x170.png" alt="Chris Avatar" />
+                        <span className="name">Chris Garrity</span>
+                    </li>
+                    
+                    <li>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/2796185_170x170.png" alt="Julia Avatar" />
+                        <span className="name">Julia Zimmerman</span>
+                    </li>
                 </ul>
 
                 <p>The team of Scratch moderators manages, supports, and improves the Scratch online community:</p>
@@ -243,7 +253,9 @@ var Credits = React.createClass({
                     <a href="http://www.scratchfoundation.org/"> Scratch Foundation</a>,
                     <a href="http://www.google.org/"> Google</a>,
                     <a href="http://www.legofoundation.com/"> LEGO Foundation</a>,
-                    <a href="http://www.intel.com/">Intel Foundation</a>,
+                    <a href="http://www.intel.com/"> Intel</a>,
+                    <a href="http://www.turner.com/company/"> Cartoon Network</a>,
+                    <a href="http://www.fundacaolemann.org.br/lemann-foundation/"> Lemann Foundation</a>,
                     <a href="https://www.macfound.org/"> MacArthur Foundation</a>.
                 </p>
                 <p>

@@ -2,10 +2,10 @@ var React = require('react');
 
 require('./microworld.scss');
 
-var Box = require('../../components/box/box.jsx');
-var Carousel = require('../../components/carousel/carousel.jsx');
-var Modal = require('../../components/modal/modal.jsx');
-var NestedCarousel = require('../../components/nestedcarousel/nestedcarousel.jsx');
+var Box = require('../box/box.jsx');
+var Carousel = require('../carousel/carousel.jsx');
+var Modal = require('../modal/modal.jsx');
+var NestedCarousel = require('../nestedcarousel/nestedcarousel.jsx');
 
 var Microworld = React.createClass({
     type: 'Microworld',

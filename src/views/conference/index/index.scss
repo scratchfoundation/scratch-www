@@ -1,0 +1,75 @@
+@import "../../../colors";
+@import "../../../typography";
+
+#view {
+    background-color: $ui-light-gray;
+    min-height: initial;
+
+    .title-banner {
+        margin-bottom: 0;
+        background-image: url("/images/conference/index/title-banner.jpg");
+        padding: 48px 0;
+
+        h1,
+        h3,
+        h4,
+        p {
+            margin: 0 auto;
+            padding: 5px 0;
+            text-align: center;
+            color: $type-white;
+        }
+
+        p {
+            margin-top: 3rem;
+
+            a {
+                
+                button {
+                    background-color: $ui-white;
+                    color: $ui-blue;
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        @media only screen and (max-width: $mobile - 1) {
+            h3 {
+                display: none;
+                margin-top: 0;
+            }
+
+            p {
+                margin-top: .25rem;
+            }
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                margin-top: 1.5rem;
+            }
+        }
+    }
+
+    .flex-row {
+        div {
+            width: 28%;
+            text-align: center;
+
+            img {
+                display: block;
+                margin: auto;
+                max-width: 65%;
+            }
+
+            @media only screen and (max-width: $tablet - 1) {
+                margin: .5rem;
+                width: 60%;
+            }
+        }
+    }
+}

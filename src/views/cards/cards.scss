@@ -1,6 +1,21 @@
 @import "../../colors";
 @import "../../typography";
 
+// type-specific margins
+#view {
+    h4 {
+        margin: 1.5em 0 .3em;
+    }
+
+    h1 {
+        margin: .75em 0 .3em;
+    }
+
+    p {
+        margin: .25em 0 1em;
+    }
+}
+
 .cards {
     display: flex;
     margin: 1em 0;
@@ -20,14 +35,8 @@
 .cards-container {
     text-align: center;
 
-    .card-row {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-wrap: wrap;
-
+    .flex-row {
         div {
-            display: inline-block;
             padding: .5em;
 
             a {
@@ -38,6 +47,11 @@
                     width: 1em;
                 }
             }
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            flex-direction: column;
+            justify-content: center;
         }
     }
 }

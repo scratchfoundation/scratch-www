@@ -24,16 +24,8 @@ clean:
 
 
 deploy:
-ifeq ($(shell grep "artifact: deploy.zip" .elasticbeanstalk/config.yml 2> /dev/null), )
-	@echo "You must configure elasticbeanstalk to deploy an artifact."
-	@echo "Add the following to your .elasticbeanstalk/config.yml"
-	@echo "deploy:\n  artifact: deploy.zip"
-else
 	@make build
-	git archive -o deploy.zip HEAD
-	zip -rv deploy.zip build
-	eb deploy -l $(GIT_VERSION) -m "$(GIT_MESSAGE)"
-endif
+	@make sync
 
 tag:
 	echo $(GIT_VERSION) > ./build/version.txt
@@ -44,10 +36,20 @@ translations:
 webpack:
 	$(WEBPACK) --bail
 
+sync-s3:
+	$(NODE) ./bin/deploy-to-s3.js
+
+sync-fastly:
+	$(NODE) ./bin/configure-fastly.js
+
+sync:
+	@make sync-s3
+	@make sync-fastly
+
 # ------------------------------------
 
 start:
-	$(NODE) ./server/index.js
+	$(NODE) ./dev-server/index.js
 
 # ------------------------------------
 
@@ -64,14 +66,17 @@ test:
 
 lint:
 	$(ESLINT) ./*.js
-	$(ESLINT) ./server/*.js
+	$(ESLINT) ./dev-server/*.js
+	$(ESLINT) ./bin/**/*.js
 	$(ESLINT) ./src/*.js
 	$(ESLINT) ./src/mixins/*.jsx
 	$(ESLINT) ./src/views/**/*.jsx
 	$(ESLINT) ./src/components/**/*.jsx
+	$(ESLINT) ./src/components/**/**/*.jsx
 	$(SASSLINT) ./src/*.scss
 	$(SASSLINT) ./src/views/**/*.scss
 	$(SASSLINT) ./src/components/**/*.scss
+	$(SASSLINT) ./src/components/**/**/*.scss
 
 unit:
 	$(TAP) ./test/unit/*.js

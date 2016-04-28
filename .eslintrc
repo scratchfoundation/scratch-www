@@ -20,6 +20,8 @@
         "formatMessage": true
     },
     "ecmaFeatures": {
+        "arrowFunctions": true,
+        "blockBindings": true,
         "jsx": true
     },
     "plugins": [
