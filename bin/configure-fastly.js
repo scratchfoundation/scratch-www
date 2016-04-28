@@ -53,10 +53,9 @@ var getViewPaths = function (routes) {
  * string suitable for a Fastly condition
  */
 var pathsToCondition = function (paths) {
-    return paths.reduce(function (conditionString, pattern) {
-        var patternCondition = 'req.url~"' + pattern + '"';
-        return conditionString + (conditionString ? '||' : '') + patternCondition;
-    }, '');
+    return 'req.url~"' + paths.reduce(function (conditionString, pattern) {
+        return conditionString + (conditionString ? '|' : '') + pattern;
+    }, '') + '"';
 };
 
 /*
