@@ -7,7 +7,7 @@
 
     .title-banner {
         margin-bottom: 0;
-        background-color: $ui-blue;
+        background-image: url("/images/conference/index/title-banner.jpg");
         padding: 48px 0;
 
         h1,
@@ -30,6 +30,27 @@
                     color: $ui-blue;
                     font-size: 1rem;
                 }
+            }
+        }
+
+        @media only screen and (max-width: $mobile - 1) {
+            h3 {
+                display: none;
+                margin-top: 0;
+            }
+
+            p {
+                margin-top: .25rem;
+            }
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                margin-top: 1.5rem;
             }
         }
     }
