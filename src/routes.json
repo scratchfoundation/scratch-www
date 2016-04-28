@@ -7,76 +7,76 @@
     },
     {
         "name": "about",
-        "pattern": "^/about$",
+        "pattern": "^/about/?$",
         "view": "about/about",
         "title": "About"
     },
     {
         "name": "components",
-        "pattern": "^/components$",
+        "pattern": "^/components/?$",
         "view": "components/components",
         "title": "Components"
     },
     {
         "name": "hoc",
-        "pattern": "^/hoc$",
+        "pattern": "^/hoc/?$",
         "view": "hoc/hoc",
         "title": "Hour of Code"
     },
     {
         "name": "credits",
-        "pattern": "^/info/credits$",
+        "pattern": "^/info/credits/?$",
         "view": "credits/credits",
         "title": "Credits"
     },
     {
         "name": "cards",
-        "pattern": "^/info/cards$",
+        "pattern": "^/info/cards/?$",
         "view": "cards/cards",
         "title": "Cards"
     },
     {
         "name": "communityblocks-interviews",
-        "pattern": "^/info/communityblocks-interviews$",
+        "pattern": "^/info/communityblocks-interviews/?$",
         "view": "communityblocks-interviews/communityblocks-interviews",
         "title": "Community Blocks Beta Tester Interviews"
     },
     {
         "name": "jobs",
-        "pattern": "^/jobs$",
+        "pattern": "^/jobs/?$",
         "view": "jobs/jobs",
         "title": "Jobs"
     },
     {
         "name": "wedo2",
-        "pattern": "^/wedo$",
+        "pattern": "^/wedo/?$",
         "view": "wedo2/wedo2",
         "title": "LEGO WeDo 2.0"
     },
     {
         "name": "conference-index",
-        "pattern": "^/conference$",
+        "pattern": "^/conference/?$",
         "view": "conference/index/index",
         "title": "Scratch Conference",
         "viewportWidth": "device-width"
     },
     {
         "name": "conference-plan",
-        "pattern": "^/conference/plan$",
+        "pattern": "^/conference/plan/?$",
         "view": "conference/plan/plan",
         "title": "Plan Your Visit",
         "viewportWidth": "device-width"
     },
     {
         "name": "conference-expectations",
-        "pattern": "^/conference/expect$",
+        "pattern": "^/conference/expect/?$",
         "view": "conference/expect/expect",
         "title": "What to Expect",
         "viewportWidth": "device-width"
     },
     {
         "name": "donate",
-        "pattern": "^/info/donate",
+        "pattern": "^/info/donate/?",
         "redirect": "https://secure.donationpay.org/scratchfoundation/"
     }
 ]
