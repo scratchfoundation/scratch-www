@@ -57,19 +57,22 @@
         "name": "conference-index",
         "pattern": "^/conference$",
         "view": "conference/index/index",
-        "title": "Scratch Conference"
+        "title": "Scratch Conference",
+        "viewportWidth": "device-width"
     },
     {
         "name": "conference-plan",
         "pattern": "^/conference/plan$",
         "view": "conference/plan/plan",
-        "title": "Plan Your Visit"
+        "title": "Plan Your Visit",
+        "viewportWidth": "device-width"
     },
     {
         "name": "conference-expectations",
         "pattern": "^/conference/expect$",
         "view": "conference/expect/expect",
-        "title": "What to Expect"
+        "title": "What to Expect",
+        "viewportWidth": "device-width"
     },
     {
         "name": "donate",

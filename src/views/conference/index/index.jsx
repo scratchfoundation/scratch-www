@@ -53,6 +53,15 @@ var ConferenceSplash = React.createClass({
                                 Information on traveling, staying, and exploring around the Media Lab
                             </p>
                         </div>
+                        <div>
+                            <h3>
+                                <img src="/images/conference/schedule/coming-soon.png" alt="schedule-coming-soon" />
+                                Schedule
+                            </h3>
+                            <p>
+                                Stay tuned for the full schedule of events and sessions
+                            </p>
+                        </div>
                     </FlexRow>
                 </section>
             </div>
