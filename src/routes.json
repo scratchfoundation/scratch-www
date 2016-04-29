@@ -78,5 +78,11 @@
         "name": "donate",
         "pattern": "^/info/donate/?",
         "redirect": "https://secure.donationpay.org/scratchfoundation/"
+    },
+    {
+        "name": "guidelines",
+        "pattern": "^/community_guidelines$",
+        "view": "guidelines/guidelines",
+        "title": "Scratch Community Guidelines"
     }
 ]
