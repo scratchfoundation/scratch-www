@@ -17,3 +17,4 @@ npm-*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 deploy.zip
+ENV
