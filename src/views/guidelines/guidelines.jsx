@@ -30,7 +30,7 @@ var Guidelines = React.createClass({
                     </dl>
                     <div className="guidelines-footer">
                         <p><FormattedMessage id='guidelines.footer' /></p>
-                        <img src="//cdn.scratch.mit.edu/scratchr2/static/images/help/spritesforcommunityguid.png" 
+                        <img src="//cdn.scratch.mit.edu/scratchr2/static/images/help/spritesforcommunityguid.png"
                             alt="sprites"/>
                     </div>
                 </Box>
