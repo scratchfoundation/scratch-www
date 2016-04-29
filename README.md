@@ -52,7 +52,7 @@ Use `^C` to stop the node process `npm start` starts.
 | `API_HOST`    | `https://api.scratch.mit.edu`         | Hostname for API requests                      |
 | `NODE_ENV`    | `null`                                | If not `production`, app acts like development |
 | `PORT`        | `8333`                                | Port for devserver (http://localhost:XXXX)     |
-| `FALLBACK`  | `''`             | Pass-through location for old site            |
+| `FALLBACK`    | `''`                                  | Pass-through location for old site             |
 
 **NOTE:** Because by default `API_HOST=https://api.scratch.mit.edu`, please be aware that, by default, you will be seeing and interacting with real data on the Scratch website.
 
@@ -60,6 +60,24 @@ Use `^C` to stop the node process `npm start` starts.
 ```bash
 npm test
 ```
+
+### To Deploy
+```bash
+npm install
+virtualenv ENV
+. ENV/bin/activate
+pip install -r requirements.txt
+make deploy
+```
+
+| Variable                | Default | Description                                     |
+| ----------------------- | ------- | ----------------------------------------------- |
+| `FASTLY_SERVICE_ID`     | `''`    | Fastly service ID for `bin/configure-fastly.js` |
+| `FASTLY_API_KEY`        | `''`    | Fastly API key for `bin/configure-fastly.js`    |
+| `AWS_ACCESS_KEY_ID`     | `''`    | AWS access key id for S3                        |
+| `AWS_SECRET_ACCESS_KEY` | `''`    | AWS secret access key for S3                    |
+| `S3_BUCKET_NAME`        | `''`    | S3 bucket name to deploy into                   |
+
 
 ### Current issues with the development
 We're currently in the process of transitioning into this web client from Scratch's existing structure. As we transition, there are going to be some issues along the way that relate to how this client needs to interact with the existing infrastructure to work properly in production.

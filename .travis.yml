@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - '4.2'
-sudo: false
+sudo: required
 cache:
   directories:
   - node_modules
@@ -37,6 +37,9 @@ addons:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
+install:
+  - sudo -H pip install -r requirements.txt
+  - npm install
 deploy:
 - provider: script
   skip_cleanup: $SKIP_CLEANUP
