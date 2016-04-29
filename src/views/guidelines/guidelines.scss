@@ -1,11 +1,16 @@
 @import "../../colors";
 @import "../../typography";
 
-.view {
+#view {
     .guidelines-footer {
         text-align: center;
-        img {
-            margin: 0 auto;
+        margin-top: 1.5rem;
+        text-align: center;
+    }
+    
+    dl {
+        dt {
+            margin-top: 1.5rem;
         }
     }
 }
