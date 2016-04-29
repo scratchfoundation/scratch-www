@@ -280,6 +280,18 @@ var ConferencePlan = React.createClass({
                                     </dd>
 
                                     <dt>
+                                        How much does it cost to register?
+                                    </dt>
+                                    <dd>
+                                        Through May 1, registration is $150 per ticket (Early Bird rate).{' '}
+                                        After May 1, registration increases to $250 per ticket. You can register{' '}
+                                        for the conference through the{' '}
+                                        <a href="https://www.eventbrite.com/e/scratchmit-2016-registration-21793477879">
+                                            registration form
+                                        </a>.
+                                    </dd>
+
+                                    <dt>
                                         I can only attend one day of the conference. Do you offer single-day{' '}
                                         registration?
                                     </dt>
