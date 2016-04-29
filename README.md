@@ -27,6 +27,20 @@ npm install
 npm run build
 ```
 
+#### Warnings during npm install
+
+These warnings can be safely ignored:
+
+```bash
+npm WARN react-modal@0.6.1 requires a peer of react@^0.14.0 but none was installed.
+npm WARN react-redux@4.4.0 requires a peer of react@^0.14.0 but none was installed.
+npm WARN react-redux@4.4.0 requires a peer of redux@^2.0.0 || ^3.0.0 but none was installed.
+npm WARN react-addons-test-utils@0.14.7 requires a peer of react@^0.14.7 but none was installed.
+npm WARN react-dom@0.14.8 requires a peer of react@^0.14.8 but none was installed.
+```
+
+These currently exist in static/js/lib
+
 ### To Run
 ```bash
 npm start
@@ -73,16 +87,4 @@ Setting `FALLBACK=https://scratch.mit.edu` allows the web client to retrieve dat
 * Some update attempts to production data made through a development version of the web client
 
 Additionally, if you set `FALLBACK=https://scratch.mit.edu`, be aware that clicking on links to parts of the website not yet migrated over (currently such as `Explore`, `Discuss`, `Profile`, etc.) will take you to the Scratch website itself.
-
-#### Warnings during npm install
-
-```bash
-npm WARN react-modal@0.6.1 requires a peer of react@^0.14.0 but none was installed.
-npm WARN react-redux@4.4.0 requires a peer of react@^0.14.0 but none was installed.
-npm WARN react-redux@4.4.0 requires a peer of redux@^2.0.0 || ^3.0.0 but none was installed.
-npm WARN react-addons-test-utils@0.14.7 requires a peer of react@^0.14.7 but none was installed.
-npm WARN react-dom@0.14.8 requires a peer of react@^0.14.8 but none was installed.
-```
-
-These currently exist in static/js/lib
 
