@@ -26,6 +26,7 @@ var skipped = 0;
 var uploaded = 0;
 
 var sync = s3Client.uploadDir({
+    deleteRemoved: true,
     localDir: localDir,
     getS3Params: function (localfile, stat, callback) {
         if (IGNORE_FILES.indexOf(path.basename(localfile)) != -1) {
