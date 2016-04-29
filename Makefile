@@ -1,6 +1,7 @@
 ESLINT=./node_modules/.bin/eslint
 NODE=node
 SASSLINT=./node_modules/.bin/sass-lint -v
+S3CMD=s3cmd
 TAP=./node_modules/.bin/tap
 WATCH=./node_modules/.bin/watch
 WEBPACK=./node_modules/.bin/webpack
@@ -33,7 +34,7 @@ webpack:
 	$(WEBPACK) --bail
 
 sync-s3:
-	$(NODE) ./bin/deploy-to-s3.js
+	$(S3CMD) sync -P --delete-removed --exclude '.DS_Store' ./build/ s3://$(S3_BUCKET_NAME)/
 
 sync-fastly:
 	$(NODE) ./bin/configure-fastly.js
