@@ -255,6 +255,10 @@ async.auto({
             fastly.activateVersion(results.version, function (err, response) {
                 if (err) throw new Error(err);
                 process.stdout.write('Successfully configured and activated version ' + response.number + '\n');
+                fastly.purgeAll(FASTLY_SERVICE_ID, function (err) {
+                    if (err) throw new Error(err);
+                    process.stdout.write('Purged all.\n');
+                });
             });
         }
     }
