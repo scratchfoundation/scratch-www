@@ -31,7 +31,7 @@
     },
     {
         "name": "search",
-        "pattern": "^/search/results?$/?$",
+        "pattern": "^/search/:projects?$/?$",
         "view": "search/search",
         "title": "Search"
     },

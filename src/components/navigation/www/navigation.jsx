@@ -214,7 +214,7 @@ var Navigation = React.createClass({
                     </li>
 
                     <li className="search">
-                        <form action="/search/results" method="get">
+                        <form action="/search/projects" method="get">
                             <Input type="submit" value="" />
                             <Input type="text"
                                    aria-label={formatMessage({id: 'general.search'})}

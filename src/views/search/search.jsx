@@ -35,6 +35,12 @@ var Search = injectIntl(React.createClass({
         if (q!=-1) {
             searchTerm = pathname.substring(q+2,pathname.length).toLowerCase();
         };
+        while (searchTerm.indexOf("/")>-1) {
+            searchTerm = searchTerm.substring(0,searchTerm.indexOf("/"));
+        }
+        while (searchTerm.indexOf("&")>-1) {
+            searchTerm = searchTerm.substring(0,searchTerm.indexOf("&"));
+        }
         searchTerm = searchTerm.split('+').join(' ');
         this.getSearchResults(0);
     },
@@ -90,7 +96,7 @@ var Search = injectIntl(React.createClass({
         return rows;
     },
     getTab: function(type) {
-        var allTab = <a href={"/explore/projects/"+type+"/"}>
+        var allTab = <a href={"/search/"+type+"?q="+searchTerm+"/"}>
                         <li>
                             <FormattedMessage
                                 id={'explore.'+type}
@@ -98,7 +104,7 @@ var Search = injectIntl(React.createClass({
                         </li>
                     </a>;
         if (tab==type) {
-            allTab = <a href={"/explore/projects/"+type+"/"}>
+            allTab = <a href={"/search/"+type+"?q="+searchTerm+"/"}>
                         <li className="active">
                             <FormattedMessage
                                 id={'explore.'+type}
@@ -125,8 +131,6 @@ var Search = injectIntl(React.createClass({
                             {this.getTab("all")}
                             {this.getTab("projects")}
                             {this.getTab("studios")}
-                            {this.getTab("forums")}
-                            {this.getTab("users")}
                             {/*<div id="sorter">
                                 <div id="sortText">
                                     Sort by:
