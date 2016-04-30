@@ -10,14 +10,14 @@ var Api = require('../../mixins/api.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
-var Banner = require('../../components/banner/banner.jsx');
+var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var Modal = require('../../components/modal/modal.jsx');
 var News = require('../../components/news/news.jsx');
-var Page = require('../../components/page/page.jsx');
+var Page = require('../../components/page/www/page.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
 require('./splash.scss');
@@ -29,7 +29,7 @@ var Splash = injectIntl(React.createClass({
     ],
     getInitialState: function () {
         return {
-            projectCount: 13000000, // gets the shared project count
+            projectCount: 14000000, // gets the shared project count
             activity: [], // recent social actions taken by users someone is following
             news: [], // gets news posts from the scratch Tumblr
             featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
@@ -354,13 +354,13 @@ var Splash = injectIntl(React.createClass({
         return (
             <div className="splash">
                 {this.shouldShowEmailConfirmation() ? [
-                    <Banner key="confirmedEmail"
+                    <DropdownBanner key="confirmedEmail"
                             className="warning"
                             onRequestDismiss={this.handleDismiss.bind(this, 'confirmed_email')}>
                         <a href="#" onClick={this.showEmailConfirmationModal}>Confirm your email</a>
                         {' '}to enable sharing.{' '}
                         <a href="/info/faq/#accounts">Having trouble?</a>
-                    </Banner>,
+                    </DropdownBanner>,
                     <Modal key="emailConfirmationModal"
                            isOpen={this.state.emailConfirmationModalOpen}
                            onRequestClose={this.hideEmailConfirmationModal}

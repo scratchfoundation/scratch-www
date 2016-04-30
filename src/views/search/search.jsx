@@ -7,10 +7,11 @@ var render = require('../../lib/render.jsx');
 
 var Api = require('../../mixins/api.jsx');
 
-var Page = require('../../components/page/page.jsx');
+var Page = require('../../components/page/www/page.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Box = require('../../components/box/box.jsx');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+var Tabs = require('../../components/tabs/tabs.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var Select = require('../../components/forms/select.jsx');
 var offset = 0;
@@ -121,7 +122,7 @@ var Search = injectIntl(React.createClass({
                          moreProps={{
                             className: 'subnavigation'
                          }}>
-                        <SubNavigation className="tabs">
+                        <Tabs>
                             {this.getTab("all")}
                             {this.getTab("projects")}
                             {this.getTab("studios")}
@@ -143,7 +144,7 @@ var Search = injectIntl(React.createClass({
                                     </option>
                                 </Select>
                             </div> \\can be reused in the future if different sorts are added*/}
-                        </SubNavigation>
+                        </Tabs>
                         <div id="projectBox" key="projectBox">
                             {projects}
                             <SubNavigation className="load">

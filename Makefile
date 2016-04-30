@@ -1,12 +1,10 @@
 ESLINT=./node_modules/.bin/eslint
 NODE=node
 SASSLINT=./node_modules/.bin/sass-lint -v
+S3CMD=s3cmd
 TAP=./node_modules/.bin/tap
 WATCH=./node_modules/.bin/watch
 WEBPACK=./node_modules/.bin/webpack
-GIT_VERSION=$(shell git rev-parse --verify --short=5 HEAD 2> /dev/null)
-GIT_VERSION?=$(WWW_VERSION)
-GIT_MESSAGE=$(shell git log -1 --pretty=%s 2> /dev/null)
 
 # ------------------------------------
 
@@ -14,7 +12,6 @@ build:
 	@make clean
 	@make translations
 	@make webpack
-	@make tag
 
 clean:
 	rm -rf ./build
@@ -24,16 +21,8 @@ clean:
 
 
 deploy:
-ifeq ($(shell grep "artifact: deploy.zip" .elasticbeanstalk/config.yml 2> /dev/null), )
-	@echo "You must configure elasticbeanstalk to deploy an artifact."
-	@echo "Add the following to your .elasticbeanstalk/config.yml"
-	@echo "deploy:\n  artifact: deploy.zip"
-else
 	@make build
-	git archive -o deploy.zip HEAD
-	zip -rv deploy.zip build
-	eb deploy -l $(GIT_VERSION) -m "$(GIT_MESSAGE)"
-endif
+	@make sync
 
 tag:
 	echo $(GIT_VERSION) > ./build/version.txt
@@ -44,10 +33,20 @@ translations:
 webpack:
 	$(WEBPACK) --bail
 
+sync-s3:
+	$(S3CMD) sync -P --delete-removed --exclude '.DS_Store' ./build/ s3://$(S3_BUCKET_NAME)/
+
+sync-fastly:
+	$(NODE) ./bin/configure-fastly.js
+
+sync:
+	@make sync-s3
+	@make sync-fastly
+
 # ------------------------------------
 
 start:
-	$(NODE) ./server/index.js
+	$(NODE) ./dev-server/index.js
 
 # ------------------------------------
 
@@ -64,14 +63,17 @@ test:
 
 lint:
 	$(ESLINT) ./*.js
-	$(ESLINT) ./server/*.js
+	$(ESLINT) ./dev-server/*.js
+	$(ESLINT) ./bin/**/*.js
 	$(ESLINT) ./src/*.js
 	$(ESLINT) ./src/mixins/*.jsx
 	$(ESLINT) ./src/views/**/*.jsx
 	$(ESLINT) ./src/components/**/*.jsx
+	$(ESLINT) ./src/components/**/**/*.jsx
 	$(SASSLINT) ./src/*.scss
 	$(SASSLINT) ./src/views/**/*.scss
 	$(SASSLINT) ./src/components/**/*.scss
+	$(SASSLINT) ./src/components/**/**/*.scss
 
 unit:
 	$(TAP) ./test/unit/*.js
@@ -87,4 +89,4 @@ localization:
 
 # ------------------------------------
 
-.PHONY: build clean deploy static tag translations webpack watch stop start test lint
+.PHONY: build clean deploy translations webpack stop start test lint unit functional integration localization

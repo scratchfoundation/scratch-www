@@ -1,0 +1,17 @@
+.accordion {
+    .title {
+        cursor: pointer;
+    }
+
+    .content {
+        transition: all .3s ease-in-out;
+        margin: .5rem 0;
+        max-height: 0;
+        overflow: hidden;
+
+        &.open {
+            margin: 1rem 0;
+            max-height: 100px;
+        }
+    }
+}

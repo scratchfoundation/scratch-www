@@ -4,7 +4,8 @@ var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
 
 var Box = require('../../components/box/box.jsx');
-var Page = require('../../components/page/page.jsx');
+var FlexRow = require('../../components/flex-row/flex-row.jsx');
+var Page = require('../../components/page/www/page.jsx');
 
 require('./cards.scss');
 
@@ -40,7 +41,7 @@ var Cards = injectIntl(React.createClass({
                 </div>
                 <div className='cards-container'>
                     <Box title={''}>
-                        <div className='card-row'>
+                        <FlexRow>
                             <div>
                                 <h4><FormattedMessage id='cards.starter' /></h4>
                                 <a href={formattedLinks['cards.starterLink']}>
@@ -89,8 +90,8 @@ var Cards = injectIntl(React.createClass({
                                     ] : []}
                                 </a>
                             </div>
-                        </div>
-                        <div className='card-row'>
+                        </FlexRow>
+                        <FlexRow>
                             <div>
                                 <h4><FormattedMessage id='cards.story' /></h4>
                                 <a href={formattedLinks['cards.storyLink']}>
@@ -139,7 +140,7 @@ var Cards = injectIntl(React.createClass({
                                     ] : []}
                                 </a>
                             </div>
-                        </div>
+                        </FlexRow>
                     </Box>
                 </div>
             </div>

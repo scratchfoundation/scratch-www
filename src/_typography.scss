@@ -21,20 +21,12 @@
 
     // Headers
 
-    h3,
-    h4,
-    h5 {
-        margin: 1.5em 0 .3em;
-    }
-
     h1 {
-        margin: .75em 0 .3em;
         font-size: 2.5rem;
         font-weight: 900;
     }
 
     h2 {
-        margin: .75em 0 .3em;
         font-size: 2rem;
         font-weight: 600;
     }
@@ -72,13 +64,11 @@
     // Paragraph Typography
 
     p {
-        margin: .25em 0 1em;
         //max-width: 700px;
         font-size: 1rem;
         font-weight: 300;
 
         &.intro {
-            margin-bottom: 1em;
             font-size: 1.1rem;
         }
 
@@ -112,7 +102,6 @@
 
     ol,
     ul {
-        margin: .25em 0 1em;
         padding-left: 20px;
 
         line-height: 1.5em;
@@ -121,6 +110,20 @@
 
         li {
             margin: .75em 0;
+        }
+    }
+
+    dl {
+        line-height: 1.5rem;
+        font-size: 1rem;
+        font-weight: 300;
+
+        dt {
+            font-weight: 700;
+        }
+        
+        dd {
+            margin: 0;
         }
     }
 }

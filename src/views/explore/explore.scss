@@ -47,41 +47,6 @@ $base-bg: $ui-white;
         display:inline-block;
     }
 
-    .tabs {
-        justify-content: flex-start;
-        padding: 0px 0px 0px 20px;
-        width: calc(100% - 20px);
-        background-color:  $ui-gray;
-    }
-
-    .tabs li {
-        background-color: $ui-white;
-        color: $header-gray;
-        opacity: .75;
-        margin-bottom: -4px;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-
-        &:hover {
-            opacity: 1;
-            color: $header-gray;
-            border-color: $active-gray;
-        }
-    }
-
-    .tabs li.active {
-        opacity: 1;
-        border-bottom: 4px solid $ui-white;
-
-        &:hover {
-            opacity: 1;
-            color: $header-gray;
-            border-bottom: 4px solid $ui-white;
-        }
-    }
-
     #projectBox {
         background-color: $ui-white;
         width: 100%;

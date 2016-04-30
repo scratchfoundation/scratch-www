@@ -1,57 +1,100 @@
 [
     {
-        "pattern": "/",
-        "view": "splash",
+        "name": "splash",
+        "pattern": "^/?$",
+        "view": "splash/splash",
         "title": "Imagine, Program, Share"
     },
     {
-        "pattern": "/about",
-        "view": "about",
+        "name": "about",
+        "pattern": "^/about/?$",
+        "view": "about/about",
         "title": "About"
     },
     {
-        "pattern": "/components",
-        "view": "components",
+        "name": "components",
+        "pattern": "^/components/?$",
+        "view": "components/components",
         "title": "Components"
     },
     {
-        "pattern": "/hoc",
-        "view": "hoc",
+        "name": "hoc",
+        "pattern": "^/hoc/?$",
+        "view": "hoc/hoc",
         "title": "Hour of Code"
     },
     {
-        "pattern": "/explore/:projects/:type",
-        "view": "explore",
+        "name": "explore",
+        "pattern": "^/explore/?$",
+        "view": "explore/explore",
         "title": "Explore"
     },
     {
-        "pattern": "/info/credits",
-        "view": "credits",
+        "name": "search",
+        "pattern": "^/search/?$",
+        "view": "search/search",
+        "title": "Search"
+    },
+    {
+        "name": "credits",
+        "pattern": "^/info/credits/?$",
+        "view": "credits/credits",
         "title": "Credits"
     },
     {
-        "pattern": "/info/cards",
-        "view": "cards",
+        "name": "cards",
+        "pattern": "^/info/cards/?$",
+        "view": "cards/cards",
         "title": "Cards"
     },
     {
-        "pattern": "/info/communityblocks-interviews",
-        "view": "communityblocks-interviews",
+        "name": "communityblocks-interviews",
+        "pattern": "^/info/communityblocks-interviews/?$",
+        "view": "communityblocks-interviews/communityblocks-interviews",
         "title": "Community Blocks Beta Tester Interviews"
     },
     {
-        "pattern": "/jobs",
-        "view": "jobs",
+        "name": "jobs",
+        "pattern": "^/jobs/?$",
+        "view": "jobs/jobs",
         "title": "Jobs"
     },
     {
-        "pattern": "/wedo",
-        "view": "wedo2",
+        "name": "wedo2",
+        "pattern": "^/wedo/?$",
+        "view": "wedo2/wedo2",
         "title": "LEGO WeDo 2.0"
     },
     {
-        "pattern": "/search/:params",
-        "view": "search",
-        "title": "Search"
+        "name": "conference-index",
+        "pattern": "^/conference/?$",
+        "view": "conference/index/index",
+        "title": "Scratch Conference",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "conference-plan",
+        "pattern": "^/conference/plan/?$",
+        "view": "conference/plan/plan",
+        "title": "Plan Your Visit",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "conference-expectations",
+        "pattern": "^/conference/expect/?$",
+        "view": "conference/expect/expect",
+        "title": "What to Expect",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "donate",
+        "pattern": "^/info/donate/?",
+        "redirect": "https://secure.donationpay.org/scratchfoundation/"
+    },
+    {
+        "name": "guidelines",
+        "pattern": "^/community_guidelines$",
+        "view": "guidelines/guidelines",
+        "title": "Scratch Community Guidelines"
     }
 ]

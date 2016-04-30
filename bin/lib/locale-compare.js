@@ -38,8 +38,8 @@ Helpers.mergeNewTranslations = function (existingTranslations, newTranslations, 
     }
 
     //Fill in defaults
-    for (var id in icuTemplate) {
-        if (!existingTranslations.hasOwnProperty(id)) existingTranslations[id] = icuTemplate[id];
+    for (var icuId in icuTemplate) {
+        if (!existingTranslations.hasOwnProperty(icuId)) existingTranslations[icuId] = icuTemplate[icuId];
     }
     return existingTranslations;
 };

@@ -2,7 +2,7 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
-var Page = require('../../components/page/page.jsx');
+var Page = require('../../components/page/www/page.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');

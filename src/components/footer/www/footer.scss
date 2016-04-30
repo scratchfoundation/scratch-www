@@ -1,0 +1,43 @@
+@import "../../../colors";
+
+#footer {
+    .lists {
+        display: flex;
+        text-align: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+
+        dl {
+            display: inline-block;
+            width: 130pt;
+            vertical-align: top;
+            text-align: left;
+        }
+
+        dt {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        dd {
+            display: block;
+            margin: 5px 0;
+        }
+    }
+
+    .copyright {
+        display: block;
+        width: 100%;
+        text-align: center;
+
+        p {
+            font-size: .7rem;
+        }
+    }
+
+    .language-chooser {
+        text-align: center;
+    }
+}
