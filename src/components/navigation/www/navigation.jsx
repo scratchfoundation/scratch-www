@@ -214,14 +214,12 @@ var Navigation = React.createClass({
                     </li>
 
                     <li className="search">
-                        <form action="/search/google_results" method="get">
+                        <form action="/search/results" method="get">
                             <Input type="submit" value="" />
                             <Input type="text"
                                    aria-label={formatMessage({id: 'general.search'})}
                                    placeholder={formatMessage({id: 'general.search'})}
                                    name="q" />
-                            <Input type="hidden" name="date" value="anytime" />
-                            <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
                     {this.props.session.user ? [

@@ -31,7 +31,7 @@
     },
     {
         "name": "search",
-        "pattern": "^/search/google_results?$/?$",
+        "pattern": "^/search/results?$/?$",
         "view": "search/search",
         "title": "Search"
     },

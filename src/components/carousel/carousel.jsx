@@ -44,14 +44,21 @@ var Carousel = React.createClass({
                 {this.props.items.map(function (item) {
                     var href = '';
                     var thumbnail_url = item.thumbnail_url;
-                    if (item.image!=undefined) {
+                    if (thumbnail_url==undefined && item.image!=undefined) {
                         thumbnail_url = item.image;
+                    }
+                    if (item.stats!=undefined) {
+                        item.love_count = item.stats.loves;
                     }
                     switch (item.type) {
                     case 'gallery':
                         href = '/studios/' + item.id + '/';
                         break;
                     case 'project':
+                        href = '/projects/' + item.id + '/';
+                        break;
+                    case undefined:
+                        item.type = 'project';
                         href = '/projects/' + item.id + '/';
                         break;
                     default:

@@ -32,9 +32,8 @@ var Search = injectIntl(React.createClass({
     componentDidMount: function () {
         var pathname = window.location.search;
         var q = pathname.lastIndexOf("q=");
-        var and = pathname.indexOf("&");
-        if (q!=-1 && and!=-1) {
-            searchTerm = pathname.substring(q+2,and).toLowerCase();
+        if (q!=-1) {
+            searchTerm = pathname.substring(q+2,pathname.length).toLowerCase();
         };
         searchTerm = searchTerm.split('+').join(' ');
         this.getSearchResults(0);
