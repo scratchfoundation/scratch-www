@@ -29,7 +29,7 @@ var Explore = injectIntl(React.createClass({
         return {};
     },
     componentDidMount: function () {
-        var pathname = window.location.pathname
+        var pathname = window.location.pathname;
         if (pathname.substring(pathname.length-1,pathname.length)=="/") {
             pathname = pathname.substring(0,pathname.length-1);
         };

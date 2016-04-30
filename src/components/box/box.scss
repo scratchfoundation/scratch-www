@@ -73,6 +73,14 @@ $base-bg: $ui-white;
             float: left;
         }
 
+        h2 {
+            display: inline-block;
+            float: left;
+            font-size: 1rem;
+            font-weight: normal;
+            padding-left:5px;
+        }
+
         p {
             display: inline-block;
             float: right;

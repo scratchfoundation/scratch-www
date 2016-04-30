@@ -15,6 +15,7 @@ var Carousel = require('../../components/carousel/carousel.jsx');
 var Select = require('../../components/forms/select.jsx');
 var offset = 0;
 var more = [];
+var tab = "projects";
 var searchTerm = "";
 
 require('./search.scss');
@@ -28,11 +29,13 @@ var Search = injectIntl(React.createClass({
         return {};
     },
     componentDidMount: function () {
+        var pathname = window.location.search;
         var q = pathname.lastIndexOf("q=");
         var and = pathname.indexOf("&");
         if (q!=-1 && and!=-1) {
             searchTerm = pathname.substring(q+2,and).toLowerCase();
         };
+        searchTerm = searchTerm.split('+').join(' ');
         this.getSearchResults(0);
     },
     getSearchResults: function () {
@@ -68,20 +71,20 @@ var Search = injectIntl(React.createClass({
             row4 = row4.slice(12,16);
         }
         var rows = [
-                    <Carousel items={this.state.searchResults} 
+                    <Carousel items={this.state.searchResults} showLoves={true}
                               settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row2} 
+                    <Carousel items={row2} showLoves={true}
                               settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row3} 
+                    <Carousel items={row3} showLoves={true}
                               settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row4} 
+                    <Carousel items={row4} showLoves={true}
                               settings={{slidesToShow: 4, slidesToScroll: 0}} />,
         ]
         if (this.state.searchMore!=undefined && more.length<offset) more = more.concat(this.state.searchMore);
         if (more.length>0) {
             for (var i = 0; i<more.length; i+=4) {
                 var rowNext = more.slice(i,i+4);
-                rows.push(<Carousel items={rowNext} settings={{slidesToShow: 4, slidesToScroll: 0}} />);
+                rows.push(<Carousel items={rowNext} showLoves={true} settings={{slidesToShow: 4, slidesToScroll: 0}} />);
             }
         }
         return rows;
@@ -114,15 +117,16 @@ var Search = injectIntl(React.createClass({
         return (
             <div>
                 <div className="outer">
-                    <Box title={'Search Results: '+searchTerm}
+                    <Box title={'Search Results:'} subtitle={searchTerm}
                          moreProps={{
                             className: 'subnavigation'
                          }}>
                         <SubNavigation className="tabs">
+                            {this.getTab("all")}
                             {this.getTab("projects")}
+                            {this.getTab("studios")}
                             {this.getTab("forums")}
                             {this.getTab("users")}
-                            {this.getTab("studios")}
                             {/*<div id="sorter">
                                 <div id="sortText">
                                     Sort by:

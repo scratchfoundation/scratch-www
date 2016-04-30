@@ -44,14 +44,8 @@ var Carousel = React.createClass({
                 {this.props.items.map(function (item) {
                     var href = '';
                     var thumbnail_url = item.thumbnail_url;
-                    if (item.thumbnail_url==undefined && item.thumbnail!=undefined) {
-                        var lastFour = (item.id%10000).toString();
-                        if (item.id%10000<1000) {
-                            while (lastFour.length<4) {
-                                lastFour = "0" + lastFour;
-                            }
-                        }
-                        thumbnail_url = "//cdn.scratch.mit.edu/static/site/projects/thumbnails/"+Math.floor(item.id/10000)+"/"+lastFour+".png";
+                    if (item.image!=undefined) {
+                        thumbnail_url = item.image;
                     }
                     switch (item.type) {
                     case 'gallery':
