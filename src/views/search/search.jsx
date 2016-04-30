@@ -1,6 +1,4 @@
 var injectIntl = require('react-intl').injectIntl;
-var classNames = require('classnames');
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 var render = require('../../lib/render.jsx');
@@ -8,16 +6,14 @@ var render = require('../../lib/render.jsx');
 var Api = require('../../mixins/api.jsx');
 
 var Page = require('../../components/page/www/page.jsx');
-var Button = require('../../components/forms/button.jsx');
 var Box = require('../../components/box/box.jsx');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
-var Select = require('../../components/forms/select.jsx');
 var offset = 0;
 var more = [];
-var tab = "projects";
-var searchTerm = "";
+var tab = 'projects';
+var searchTerm = '';
 
 require('./search.scss');
 
@@ -31,24 +27,24 @@ var Search = injectIntl(React.createClass({
     },
     componentDidMount: function () {
         var pathname = window.location.search;
-        var q = pathname.lastIndexOf("q=");
+        var q = pathname.lastIndexOf('q=');
         if (q!=-1) {
             searchTerm = pathname.substring(q+2,pathname.length).toLowerCase();
-        };
-        while (searchTerm.indexOf("/")>-1) {
-            searchTerm = searchTerm.substring(0,searchTerm.indexOf("/"));
         }
-        while (searchTerm.indexOf("&")>-1) {
-            searchTerm = searchTerm.substring(0,searchTerm.indexOf("&"));
+        while (searchTerm.indexOf('/')>-1) {
+            searchTerm = searchTerm.substring(0,searchTerm.indexOf('/'));
+        }
+        while (searchTerm.indexOf('&')>-1) {
+            searchTerm = searchTerm.substring(0,searchTerm.indexOf('&'));
         }
         searchTerm = searchTerm.split('+').join(' ');
         this.getSearchResults(0);
     },
     getSearchResults: function () {
         var termText = '';
-        if (searchTerm!="") {
-            termText = "&q="+searchTerm;
-        };
+        if (searchTerm!='') {
+            termText = '&q='+searchTerm;
+        }
         this.api({
             uri: '/search/projects?limit=16'+termText
         }, function (err, body) {
@@ -57,9 +53,9 @@ var Search = injectIntl(React.createClass({
     },
     getSearchMore: function () {
         var termText = '';
-        if (searchTerm!="") {
-            termText = "&q="+searchTerm;
-        };
+        if (searchTerm!='') {
+            termText = '&q='+searchTerm;
+        }
         offset+=16;
         this.api({
             uri: '/search/projects?limit=16&offset='+offset+termText
@@ -77,26 +73,27 @@ var Search = injectIntl(React.createClass({
             row4 = row4.slice(12,16);
         }
         var rows = [
-                    <Carousel items={this.state.searchResults} showLoves={true}
-                              settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row2} showLoves={true}
-                              settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row3} showLoves={true}
-                              settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row4} showLoves={true}
-                              settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-        ]
+            <Carousel items={this.state.searchResults} showLoves={true}
+                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
+            <Carousel items={row2} showLoves={true}
+                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
+            <Carousel items={row3} showLoves={true}
+                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
+            <Carousel items={row4} showLoves={true}
+                      settings={{slidesToShow: 4, slidesToScroll: 0}} />
+        ];
         if (this.state.searchMore!=undefined && more.length<offset) more = more.concat(this.state.searchMore);
         if (more.length>0) {
             for (var i = 0; i<more.length; i+=4) {
                 var rowNext = more.slice(i,i+4);
-                rows.push(<Carousel items={rowNext} showLoves={true} settings={{slidesToShow: 4, slidesToScroll: 0}} />);
+                rows.push(<Carousel items={rowNext} showLoves={true}
+                    settings={{slidesToShow: 4, slidesToScroll: 0}} />);
             }
         }
         return rows;
     },
-    getTab: function(type) {
-        var allTab = <a href={"/search/"+type+"?q="+searchTerm+"/"}>
+    getTab: function (type) {
+        var allTab = <a href={'/search/'+type+'?q='+searchTerm+'/'}>
                         <li>
                             <FormattedMessage
                                 id={'explore.'+type}
@@ -104,8 +101,8 @@ var Search = injectIntl(React.createClass({
                         </li>
                     </a>;
         if (tab==type) {
-            allTab = <a href={"/search/"+type+"?q="+searchTerm+"/"}>
-                        <li className="active">
+            allTab = <a href={'/search/'+type+'?q='+searchTerm+'/'}>
+                        <li className='active'>
                             <FormattedMessage
                                 id={'explore.'+type}
                                 defaultMessage={type.charAt(0).toUpperCase()+type.slice(1)} />
@@ -116,41 +113,21 @@ var Search = injectIntl(React.createClass({
     },
     render: function () {
         var projects = this.renderRows();
-        var classes = classNames(
-            'top-banner',
-            this.state.bgClass
-        );
         return (
             <div>
-                <div className="outer">
+                <div className='outer'>
                     <Box title={'Search Results:'} subtitle={searchTerm}
-                         moreProps={{
+                        moreProps={{
                             className: 'subnavigation'
-                         }}>
+                        }}>
                         <Tabs>
-                            {this.getTab("all")}
-                            {this.getTab("projects")}
-                            {this.getTab("studios")}
-                            {/*<div id="sorter">
-                                <div id="sortText">
-                                    Sort by:
-                                </div>
-                                <Select name="sort" defaultValue="Magic">
-                                    <option value="Magic" key="Magic">
-                                        Magic
-                                    </option>
-                                    <option value="Top Loved" key="Top Loved">
-                                        Top Loved
-                                    </option>
-                                    <option value="Top Viewed" key="Top Viewed">
-                                        Top Viewed
-                                    </option>
-                                </Select>
-                            </div> \\can be reused in the future if different sorts are added*/}
+                            {this.getTab('all')}
+                            {this.getTab('projects')}
+                            {this.getTab('studios')}
                         </Tabs>
-                        <div id="projectBox" key="projectBox">
+                        <div id='projectBox' key='projectBox'>
                             {projects}
-                            <SubNavigation className="load">
+                            <SubNavigation className='load'>
                                 <button onClick={this.getSearchMore}>
                                     <li>
                                         <FormattedMessage

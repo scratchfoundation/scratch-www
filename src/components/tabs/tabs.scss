@@ -1,39 +1,39 @@
 @import "../../colors";
 
 .tabs {
-        justify-content: flex-start;
-        padding: 0px 0px 0px 20px;
-        width: calc(100% - 20px);
-        background-color:  $ui-gray;
-    }
+    background-color:  $ui-gray;
+    padding: 0 0 0 20px;
+    width: calc(100% - 20px);
+    justify-content: flex-start;
+}
 
 .tabs li {
+    opacity: .75;
+    margin-bottom: -4px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: $ui-white;
+    color: $header-gray;
+    
+    &:hover {
+        opacity: 1;
+        border-color: $active-gray;
         background-color: $ui-white;
         color: $header-gray;
-        opacity: .75;
-        margin-bottom: -4px;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-        
-        &:hover {
-            opacity: 1;
-            color: $header-gray;
-            border-color: $active-gray;
-            background-color: $ui-white;
-        }
     }
+}
 
 
 .tabs li.active {
     opacity: 1;
     border-bottom: 4px solid $ui-white;
 
-        &:hover {
-            opacity: 1;
-            color: $header-gray;
-            border-bottom: 4px solid $ui-white;
-            background-color: $ui-white;
-        }
+    &:hover {
+        opacity: 1;
+        border-bottom: 4px solid $ui-white;
+        background-color: $ui-white;
+        color: $header-gray;
     }
+}

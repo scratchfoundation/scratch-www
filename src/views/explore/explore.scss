@@ -6,13 +6,13 @@ $base-bg: $ui-white;
 #view {
     .box {
         display: block;
-        margin-left: auto;
         margin-right: auto;
         margin-bottom: 20px;
+        margin-left: auto;
     }   
 
     .box .box-content {
-        padding: 0px;
+        padding: 0;
     }
 
     .carousel {
@@ -29,37 +29,19 @@ $base-bg: $ui-white;
         height: 150px;
     }
 
-    .select {
-        width: 110px;
-        margin: auto 0px auto auto;
-    }
-
-    #sorter {
-        margin: auto 20px auto auto;
-        color: $header-gray;
-        display: inline-block;
-        width:170px;
-    }
-
-    #sortText {
-        width: 60px;
-        margin: auto 0px auto auto;
-        display:inline-block;
-    }
-
     #projectBox {
-        background-color: $ui-white;
-        width: 100%;
         border-top: 2px solid;
         border-color: $active-gray;
+        background-color: $ui-white;
         padding-bottom: 30px;
+        width: 100%;
     }
 
     .load button {
-        border: None;
-        padding: 0px;
-        background-color: $ui-white;
         outline: None;
+        border: None;
+        background-color: $ui-white;
+        padding: 0;
 
         li {
             color: $header-gray;

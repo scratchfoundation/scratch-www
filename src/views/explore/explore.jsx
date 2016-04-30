@@ -1,6 +1,4 @@
 var injectIntl = require('react-intl').injectIntl;
-var classNames = require('classnames');
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 var render = require('../../lib/render.jsx');
@@ -8,16 +6,14 @@ var render = require('../../lib/render.jsx');
 var Api = require('../../mixins/api.jsx');
 
 var Page = require('../../components/page/www/page.jsx');
-var Button = require('../../components/forms/button.jsx');
 var Box = require('../../components/box/box.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
-var Select = require('../../components/forms/select.jsx');
 var offset = 0;
 var more = [];
-var tab = "all";
-var acceptableTabs = ["all","animations","art","games","music","stories"];
+var tab = 'all';
+var acceptableTabs = ['all','animations','art','games','music','stories'];
 
 require('./explore.scss');
 
@@ -31,21 +27,21 @@ var Explore = injectIntl(React.createClass({
     },
     componentDidMount: function () {
         var pathname = window.location.pathname;
-        if (pathname.substring(pathname.length-1,pathname.length)=="/") {
+        if (pathname.substring(pathname.length-1,pathname.length)=='/') {
             pathname = pathname.substring(0,pathname.length-1);
-        };
-        var slash = pathname.lastIndexOf("/");
+        }
+        var slash = pathname.lastIndexOf('/');
         tab = pathname.substring(slash+1,pathname.length).toLowerCase();
         if (acceptableTabs.indexOf(tab)==-1) {
-            window.location=window.location.origin+"/explore/projects/all/";
+            window.location=window.location.origin+'/explore/projects/all/';
         }
         this.getExploreAll(0);
     },
     getExploreAll: function () {
         var tabText = '';
-        if (tab!="all") {
-            tabText = "&q="+tab;
-        };
+        if (tab!='all') {
+            tabText = '&q='+tab;
+        }
         this.api({
             uri: '/search/projects?limit=16'+tabText
         }, function (err, body) {
@@ -54,9 +50,9 @@ var Explore = injectIntl(React.createClass({
     },
     getExploreMore: function () {
         var tabText = '';
-        if (tab!="all") {
-            tabText = "&q="+tab;
-        };
+        if (tab!='all') {
+            tabText = '&q='+tab;
+        }
         offset+=16;
         this.api({
             uri: '/search/projects?limit=16&offset='+offset+tabText
@@ -74,26 +70,27 @@ var Explore = injectIntl(React.createClass({
             row4 = row4.slice(12,16);
         }
         var rows = [
-                    <Carousel items={this.state.exploreAll} showLoves={true}
-                              settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row2} showLoves={true}
-                              settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row3} showLoves={true}
-                              settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-                    <Carousel items={row4} showLoves={true}
-                              settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-        ]
+            <Carousel items={this.state.exploreAll} showLoves={true}
+                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
+            <Carousel items={row2} showLoves={true}
+                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
+            <Carousel items={row3} showLoves={true}
+                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
+            <Carousel items={row4} showLoves={true}
+                      settings={{slidesToShow: 4, slidesToScroll: 0}} />
+        ];
         if (this.state.exploreMore!=undefined && more.length<offset) more = more.concat(this.state.exploreMore);
         if (more.length>0) {
             for (var i = 0; i<more.length; i+=4) {
                 var rowNext = more.slice(i,i+4);
-                rows.push(<Carousel items={rowNext} showLoves={true} settings={{slidesToShow: 4, slidesToScroll: 0}} />);
+                rows.push(<Carousel items={rowNext} showLoves={true}
+                    settings={{slidesToShow: 4, slidesToScroll: 0}}/>);
             }
         }
         return rows;
     },
-    getTab: function(type) {
-        var allTab = <a href={"/explore/projects/"+type+"/"}>
+    getTab: function (type) {
+        var allTab = <a href={'/explore/projects/'+type+'/'}>
                         <li>
                             <FormattedMessage
                                 id={'explore.'+type}
@@ -101,56 +98,36 @@ var Explore = injectIntl(React.createClass({
                         </li>
                     </a>;
         if (tab==type) {
-            allTab = <a href={"/explore/projects/"+type+"/"}>
-                        <li className="active">
+            allTab = <a href={'/explore/projects/'+type+'/'}>
+                        <li className='active'>
                             <FormattedMessage
                                 id={'explore.'+type}
                                 defaultMessage={type.charAt(0).toUpperCase()+type.slice(1)} />
                         </li>
                     </a>;
         }
-        return allTab
+        return allTab;
     },
     render: function () {
         var projects = this.renderRows();
-        var classes = classNames(
-            'top-banner',
-            this.state.bgClass
-        );
         return (
             <div>
-                <div className="outer">
+                <div className='outer'>
                     <Box title={'Explore'}
-                         moreProps={{
+                        moreProps={{
                             className: 'subnavigation'
-                         }}>
+                        }}>
                         <Tabs>
-                            {this.getTab("all")}
-                            {this.getTab("animations")}
-                            {this.getTab("art")}
-                            {this.getTab("games")}
-                            {this.getTab("music")}
-                            {this.getTab("stories")}
-                            {/*<div id="sorter">
-                                <div id="sortText">
-                                    Sort by:
-                                </div>
-                                <Select name="sort" defaultValue="Magic">
-                                    <option value="Magic" key="Magic">
-                                        Magic
-                                    </option>
-                                    <option value="Top Loved" key="Top Loved">
-                                        Top Loved
-                                    </option>
-                                    <option value="Top Viewed" key="Top Viewed">
-                                        Top Viewed
-                                    </option>
-                                </Select>
-                            </div> \\can be reused in the future if different sorts are added*/}
+                            {this.getTab('all')}
+                            {this.getTab('animations')}
+                            {this.getTab('art')}
+                            {this.getTab('games')}
+                            {this.getTab('music')}
+                            {this.getTab('stories')}
                         </Tabs>
-                        <div id="projectBox" key="projectBox">
+                        <div id='projectBox' key='projectBox'>
                             {projects}
-                            <SubNavigation className="load">
+                            <SubNavigation className='load'>
                                 <button onClick={this.getExploreMore}>
                                     <li>
                                         <FormattedMessage
