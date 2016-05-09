@@ -5,8 +5,8 @@ var render = require('../../lib/render.jsx');
 
 var Button = require('../../components/forms/button.jsx');
 var formset = require('../../components/forms/formset.jsx');
-    var FormSet = formset.FormSet;
-    var FormStep = formset.FormStep;
+var FormSet = formset.FormSet;
+var FormStep = formset.FormStep;
 var Input = require('../../components/forms/input.jsx');
 var Label = require('../../components/forms/label.jsx');
 var Page = require('../../components/page/www/page.jsx');
@@ -20,7 +20,7 @@ var TeacherRegistration = React.createClass({
     getInitialState: function () {
         return {
             step: 0
-        }
+        };
     },
     setStep: function (step) {
         this.setState({step: step});
@@ -69,7 +69,7 @@ var TeacherRegistration = React.createClass({
                             <Select name="month">
                                 {months.map(function (name, id) {
                                     return (<option value={id+1} key={id}>{name}</option>);
-                                  })}
+                                })}
                             </Select>
                             <Label htmlFor="year">Birth Yeah</Label>
                             <Select name="year">
@@ -88,7 +88,7 @@ var TeacherRegistration = React.createClass({
                             <Select name="country">
                                 {Object.keys(countries).map(function (code, id) {
                                     return (<option value={code} key={id}>{countries[code]}</option>);
-                                  })}
+                                })}
                             </Select>
                             <Button type="submit">Next Step</Button>
                         </form>
@@ -123,7 +123,7 @@ var TeacherRegistration = React.createClass({
                                 Yes, I consent to lorem ipsum dolor sit amet,
                                 consectetur adipiscing elit.
                             </Label>
-                            <Button type="submit">Next Step</Button> 
+                            <Button type="submit">Next Step</Button>
                         </form>
                     </FormStep>
                     <FormStep title="Organization"
@@ -150,7 +150,7 @@ var TeacherRegistration = React.createClass({
                                            value={type} />,
                                     <Label htmlFor={typeId}>{type}</Label>
                                 ];
-                              })}
+                            })}
                             <Input type="checkbox" name="organizationType" value="other" />
                             <Input type="text" name="organizationTypeOther" />
                             <Label htmlFor="website">Website URL (not required)</Label>
@@ -170,7 +170,7 @@ var TeacherRegistration = React.createClass({
                             <Select name="addressCountry">
                                 {Object.keys(countries).map(function (code, id) {
                                     return (<option value={code} key={id}>{countries[code]}</option>);
-                                  })}
+                                })}
                             </Select>
                             <Label htmlFor="addressLine1">Address Line 1</Label>
                             <Input type="text" name="addressLine1" />

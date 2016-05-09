@@ -17,7 +17,7 @@ module.exports = {
         getDefaultProps: function () {
             return {
                 navigation: null
-            }
+            };
         },
         onSubmit: function (e) {
             e.preventDefault();
@@ -47,14 +47,14 @@ module.exports = {
     FormSet: React.createClass({
         type: 'FormSet',
         propTypes: {
-            step: function(props, propName, componentName) {
+            step: function (props, propName, componentName) {
                 var stepValidator = function (props, propName) {
                     if (props[propName] > -1 && props[propName] < props.children.length) {
                         return null;
                     } else {
                         return new Error('Prop `step` out of range');
                     }
-                }
+                };
                 return (
                     React.PropTypes.number.isRequired(props, propName, componentName) ||
                     stepValidator(props, propName, componentName)
