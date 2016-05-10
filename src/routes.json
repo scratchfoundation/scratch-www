@@ -92,6 +92,12 @@
         "redirect": "https://secure.donationpay.org/scratchfoundation/"
     },
     {
+        "name": "dmca",
+        "pattern": "^/DMCA/?$",
+        "view": "dmca/dmca",
+        "title": "DMCA"
+    },
+    {
         "name": "guidelines",
         "pattern": "^/community_guidelines$",
         "view": "guidelines/guidelines",

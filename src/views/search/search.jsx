@@ -20,11 +20,14 @@ var Search = injectIntl(React.createClass({
         Api
     ],
     getDefaultProps: function () {
-        var pathname = window.location.search;
-        var q = pathname.lastIndexOf('q=');
+        var query = window.location.search;
+        var pathname = window.location.pathname;
+        var start = pathname.lastIndexOf('/');
+        var type = pathname.substring(start+1,pathname.length);
+        var q = query.lastIndexOf('q=');
         var term;
         if (q != -1) {
-            term = pathname.substring(q+2,pathname.length).toLowerCase();
+            term = query.substring(q+2,query.length).toLowerCase();
         }
         while (term.indexOf('/') > -1) {
             term = term.substring(0,term.indexOf('/'));
@@ -35,7 +38,7 @@ var Search = injectIntl(React.createClass({
         term = term.split('+').join(' ');
 
         return {
-            tab: 'projects',
+            tab: type,
             searchTerm: term,
             loadNumber: 16
         };
@@ -56,7 +59,7 @@ var Search = injectIntl(React.createClass({
             termText = '&q=' + this.props.searchTerm;
         }
         this.api({
-            uri: '/search/projects?limit=' + this.props.loadNumber + '&offset=' + this.state.offset + termText
+            uri: '/search/'+this.props.tab+'?limit=' + this.props.loadNumber + '&offset=' + this.state.offset + termText
         }, function (err, body) {
             var loadedSoFar = this.state.loaded;
             Array.prototype.push.apply(loadedSoFar,body);
@@ -66,7 +69,8 @@ var Search = injectIntl(React.createClass({
         }.bind(this));
     },
     getTab: function (type) {
-        var allTab = <a href={'/search/'+type+'?q='+this.state.searchTerm+'/'}>
+        var term = this.props.searchTerm.split(' ').join('+');
+        var allTab = <a href={'/search/'+type+'?q='+term+'/'}>
                         <li>
                             <FormattedMessage
                                 id={'explore.'+type}
@@ -74,7 +78,7 @@ var Search = injectIntl(React.createClass({
                         </li>
                     </a>;
         if (this.props.tab == type) {
-            allTab = <a href={'/search/'+type+'?q='+this.props.searchTerm+'/'}>
+            allTab = <a href={'/search/'+type+'?q='+term+'/'}>
                         <li className='active'>
                             <FormattedMessage
                                 id={'explore.'+type}
@@ -97,7 +101,7 @@ var Search = injectIntl(React.createClass({
                             {this.getTab('studios')}
                         </Tabs>
                         <div id='projectBox' key='projectBox'>
-                            <Grid items={this.state.loaded} itemType='projects'
+                            <Grid items={this.state.loaded} itemType={this.props.tab}
                                 showLoves={true} showFavorites={true} showViews={true} />
                             <SubNavigation className='load'>
                                 <button onClick={this.getSearchMore}>

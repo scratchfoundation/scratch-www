@@ -22,20 +22,25 @@ var Explore = injectIntl(React.createClass({
     ],
     getDefaultProps: function () {
         var tabOptions = ['all','animations','art','games','music','stories'];
+        var typeOptions = ['projects','studios'];
 
-        var pathname = window.location.pathname;
+        var pathname = window.location.pathname.toLowerCase();
         if (pathname.substring(pathname.length-1,pathname.length) == '/') {
             pathname = pathname.substring(0,pathname.length-1);
         }
         var slash = pathname.lastIndexOf('/');
-        var currentTab = pathname.substring(slash+1,pathname.length).toLowerCase();
-        if (tabOptions.indexOf(currentTab) == -1) {
+        var currentTab = pathname.substring(slash+1,pathname.length);
+        var typeStart = pathname.indexOf('explore/');
+        var type = pathname.substring(typeStart+8,slash);
+        if (tabOptions.indexOf(currentTab) == -1 || typeOptions.indexOf(type) == -1) {
             window.location = window.location.origin + '/explore/projects/all/';
         }
 
         return {
             tab: currentTab,
             acceptableTabs: tabOptions,
+            acceptableTypes: typeOptions,
+            itemType: type,
             loadNumber: 16
         };
     },
@@ -54,7 +59,8 @@ var Explore = injectIntl(React.createClass({
             tabText = '&q=' + this.props.tab;
         }
         this.api({
-            uri: '/search/projects?limit=' + this.props.loadNumber + '&offset=' + this.state.offset + tabText
+            uri: '/search/' + this.props.itemType
+                + '?limit=' + this.props.loadNumber + '&offset=' + this.state.offset + tabText
         }, function (err, body) {
             if (!err) {
                 var loadedSoFar = this.state.loaded;
@@ -65,8 +71,18 @@ var Explore = injectIntl(React.createClass({
             }
         }.bind(this));
     },
+    changeItemType: function () {
+        var newType;
+        for each (var t in this.props.acceptableTypes) {
+            if (this.props.itemType != t) {
+                newType = t;
+                break;
+            }
+        }
+        window.location = window.location.origin + '/explore/'+newType+'/'+this.props.tab;
+    },
     getTab: function (type) {
-        var allTab = <a href={'/explore/projects/'+type+'/'}>
+        var allTab = <a href={'/explore/'+this.props.itemType+'/'+type+'/'}>
                         <li>
                             <FormattedMessage
                                 id={'explore.' + type}
@@ -74,7 +90,7 @@ var Explore = injectIntl(React.createClass({
                         </li>
                     </a>;
         if (this.props.tab==type) {
-            allTab = <a href={'/explore/projects/' + type + '/'}>
+            allTab = <a href={'/explore/'+this.props.itemType+'/' + type + '/'}>
                         <li className='active'>
                             <FormattedMessage
                                 id={'explore.' + type}
@@ -99,17 +115,17 @@ var Explore = injectIntl(React.createClass({
                             {this.getTab('games')}
                             {this.getTab('music')}
                             {this.getTab('stories')}
-                            <Select name="sort" defaultValue="Projects">
-                                <option value="Projects" key="Projects">
+                            <Select onChange={this.changeItemType} name="sort" defaultValue={this.props.itemType}>
+                                <option value="projects" key="projects">
                                     Projects
                                 </option>
-                                <option value="Studios" key="Studios">
+                                <option value="studios" key="studios">
                                     Studios
                                 </option>
                             </Select>
                         </Tabs>
                         <div id='projectBox' key='projectBox'>
-                            <Grid items={this.state.loaded} itemType='projects'
+                            <Grid items={this.state.loaded} itemType={this.props.itemType}
                                 showLoves={true} showFavorites={true} showViews={true} />
                             <SubNavigation className='load'>
                                 <button onClick={this.getExploreMore}>

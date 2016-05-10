@@ -16,10 +16,10 @@ $base-bg: $ui-white;
     }   
 
     .select {
-        margin: auto 20px auto auto;
-        color: $header-gray;
         display: inline-block;
+        margin: auto 20px auto auto;
         width:100px;
+        color: $header-gray;
     }
 
     #projectBox {
