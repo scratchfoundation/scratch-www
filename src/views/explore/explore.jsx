@@ -73,7 +73,7 @@ var Explore = injectIntl(React.createClass({
     },
     changeItemType: function () {
         var newType;
-        for each (var t in this.props.acceptableTypes) {
+        for (var t in this.props.acceptableTypes) {
             if (this.props.itemType != t) {
                 newType = t;
                 break;
