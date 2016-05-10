@@ -53,7 +53,7 @@ var Carousel = React.createClass({
                     default:
                         href = '/' + item.type + '/' + item.id + '/';
                     }
-                    
+
                     return (
                         <Thumbnail key={item.id}
                                    showLoves={this.props.showLoves}
