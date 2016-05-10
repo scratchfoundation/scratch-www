@@ -8,114 +8,89 @@ var Api = require('../../mixins/api.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var Box = require('../../components/box/box.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
+var Select = require('../../components/forms/select.jsx');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
-var Carousel = require('../../components/carousel/carousel.jsx');
-var offset = 0;
-var more = [];
-var tab = 'all';
-var acceptableTabs = ['all','animations','art','games','music','stories'];
+var Grid = require('../../components/grid/grid.jsx');
 
 require('./explore.scss');
 
+// @todo migrate to React-Router once available
 var Explore = injectIntl(React.createClass({
     type: 'Explore',
     mixins: [
         Api
     ],
-    getInitialState: function () {
-        return {};
-    },
-    componentDidMount: function () {
+    getDefaultProps: function () {
+        var tabOptions = ['all','animations','art','games','music','stories'];
+
         var pathname = window.location.pathname;
-        if (pathname.substring(pathname.length-1,pathname.length)=='/') {
+        if (pathname.substring(pathname.length-1,pathname.length) == '/') {
             pathname = pathname.substring(0,pathname.length-1);
         }
         var slash = pathname.lastIndexOf('/');
-        tab = pathname.substring(slash+1,pathname.length).toLowerCase();
-        if (acceptableTabs.indexOf(tab)==-1) {
-            window.location=window.location.origin+'/explore/projects/all/';
+        var currentTab = pathname.substring(slash+1,pathname.length).toLowerCase();
+        if (tabOptions.indexOf(currentTab) == -1) {
+            window.location = window.location.origin + '/explore/projects/all/';
         }
-        this.getExploreAll(0);
+
+        return {
+            tab: currentTab,
+            acceptableTabs: tabOptions,
+            loadNumber: 16
+        };
     },
-    getExploreAll: function () {
-        var tabText = '';
-        if (tab!='all') {
-            tabText = '&q='+tab;
-        }
-        this.api({
-            uri: '/search/projects?limit=16'+tabText
-        }, function (err, body) {
-            if (!err) this.setState({exploreAll: body});
-        }.bind(this));
+    getInitialState: function () {
+        return {
+            loaded: [],
+            offset: 0
+        };
+    },
+    componentDidMount: function () {
+        this.getExploreMore();
     },
     getExploreMore: function () {
         var tabText = '';
-        if (tab!='all') {
-            tabText = '&q='+tab;
+        if (this.props.tab != 'all') {
+            tabText = '&q=' + this.props.tab;
         }
-        offset+=16;
         this.api({
-            uri: '/search/projects?limit=16&offset='+offset+tabText
+            uri: '/search/projects?limit=' + this.props.loadNumber + '&offset=' + this.state.offset + tabText
         }, function (err, body) {
-            if (!err) this.setState({exploreMore: body});
-        }.bind(this));
-    },
-    renderRows: function () {
-        var row2 = this.state.exploreAll;
-        var row3 = this.state.exploreAll;
-        var row4 = this.state.exploreAll;
-        if (row2!=undefined) {
-            row2 = row2.slice(4,8);
-            row3 = row3.slice(8,12);
-            row4 = row4.slice(12,16);
-        }
-        var rows = [
-            <Carousel items={this.state.exploreAll} showLoves={true}
-                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-            <Carousel items={row2} showLoves={true}
-                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-            <Carousel items={row3} showLoves={true}
-                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-            <Carousel items={row4} showLoves={true}
-                      settings={{slidesToShow: 4, slidesToScroll: 0}} />
-        ];
-        if (this.state.exploreMore!=undefined && more.length<offset) more = more.concat(this.state.exploreMore);
-        if (more.length>0) {
-            for (var i = 0; i<more.length; i+=4) {
-                var rowNext = more.slice(i,i+4);
-                rows.push(<Carousel items={rowNext} showLoves={true}
-                    settings={{slidesToShow: 4, slidesToScroll: 0}}/>);
+            if (!err) {
+                var loadedSoFar = this.state.loaded;
+                Array.prototype.push.apply(loadedSoFar,body);
+                this.setState({loaded: loadedSoFar});
+                var currentOffset = this.state.offset + this.props.loadNumber;
+                this.setState({offset: currentOffset});
             }
-        }
-        return rows;
+        }.bind(this));
     },
     getTab: function (type) {
         var allTab = <a href={'/explore/projects/'+type+'/'}>
                         <li>
                             <FormattedMessage
-                                id={'explore.'+type}
-                                defaultMessage={type.charAt(0).toUpperCase()+type.slice(1)} />
+                                id={'explore.' + type}
+                                defaultMessage={type.charAt(0).toUpperCase() + type.slice(1)} />
                         </li>
                     </a>;
-        if (tab==type) {
-            allTab = <a href={'/explore/projects/'+type+'/'}>
+        if (this.props.tab==type) {
+            allTab = <a href={'/explore/projects/' + type + '/'}>
                         <li className='active'>
                             <FormattedMessage
-                                id={'explore.'+type}
-                                defaultMessage={type.charAt(0).toUpperCase()+type.slice(1)} />
+                                id={'explore.' + type}
+                                defaultMessage={type.charAt(0).toUpperCase() + type.slice(1)} />
                         </li>
                     </a>;
         }
         return allTab;
     },
     render: function () {
-        var projects = this.renderRows();
         return (
             <div>
                 <div className='outer'>
                     <Box title={'Explore'}
                         moreProps={{
-                            className: 'subnavigation'
+                            className: 'tabs'
                         }}>
                         <Tabs>
                             {this.getTab('all')}
@@ -124,9 +99,18 @@ var Explore = injectIntl(React.createClass({
                             {this.getTab('games')}
                             {this.getTab('music')}
                             {this.getTab('stories')}
+                            <Select name="sort" defaultValue="Projects">
+                                <option value="Projects" key="Projects">
+                                    Projects
+                                </option>
+                                <option value="Studios" key="Studios">
+                                    Studios
+                                </option>
+                            </Select>
                         </Tabs>
                         <div id='projectBox' key='projectBox'>
-                            {projects}
+                            <Grid items={this.state.loaded} itemType='projects'
+                                showLoves={true} showFavorites={true} showViews={true} />
                             <SubNavigation className='load'>
                                 <button onClick={this.getExploreMore}>
                                     <li>

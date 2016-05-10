@@ -9,99 +9,72 @@ var Page = require('../../components/page/www/page.jsx');
 var Box = require('../../components/box/box.jsx');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
-var Carousel = require('../../components/carousel/carousel.jsx');
-var offset = 0;
-var more = [];
-var tab = 'projects';
-var searchTerm = '';
+var Grid = require('../../components/grid/grid.jsx');
 
 require('./search.scss');
 
+// @todo migrate to React-Router once available
 var Search = injectIntl(React.createClass({
     type: 'Search',
     mixins: [
         Api
     ],
-    getInitialState: function () {
-        return {};
-    },
-    componentDidMount: function () {
+    getDefaultProps: function () {
         var pathname = window.location.search;
         var q = pathname.lastIndexOf('q=');
-        if (q!=-1) {
-            searchTerm = pathname.substring(q+2,pathname.length).toLowerCase();
+        var term;
+        if (q != -1) {
+            term = pathname.substring(q+2,pathname.length).toLowerCase();
         }
-        while (searchTerm.indexOf('/')>-1) {
-            searchTerm = searchTerm.substring(0,searchTerm.indexOf('/'));
+        while (term.indexOf('/') > -1) {
+            term = term.substring(0,term.indexOf('/'));
         }
-        while (searchTerm.indexOf('&')>-1) {
-            searchTerm = searchTerm.substring(0,searchTerm.indexOf('&'));
+        while (term.indexOf('&') > -1) {
+            term = term.substring(0,term.indexOf('&'));
         }
-        searchTerm = searchTerm.split('+').join(' ');
-        this.getSearchResults(0);
+        term = term.split('+').join(' ');
+
+        return {
+            tab: 'projects',
+            searchTerm: term,
+            loadNumber: 16
+        };
     },
-    getSearchResults: function () {
-        var termText = '';
-        if (searchTerm!='') {
-            termText = '&q='+searchTerm;
-        }
-        this.api({
-            uri: '/search/projects?limit=16'+termText
-        }, function (err, body) {
-            if (!err) this.setState({searchResults: body});
-        }.bind(this));
+    getInitialState: function () {
+
+        return {
+            loaded: [],
+            offset: 0
+        };
+    },
+    componentDidMount: function () {
+        this.getSearchMore();
     },
     getSearchMore: function () {
         var termText = '';
-        if (searchTerm!='') {
-            termText = '&q='+searchTerm;
+        if (this.props.searchTerm != '') {
+            termText = '&q=' + this.props.searchTerm;
         }
-        offset+=16;
         this.api({
-            uri: '/search/projects?limit=16&offset='+offset+termText
+            uri: '/search/projects?limit=' + this.props.loadNumber + '&offset=' + this.state.offset + termText
         }, function (err, body) {
-            if (!err) this.setState({searchMore: body});
+            var loadedSoFar = this.state.loaded;
+            Array.prototype.push.apply(loadedSoFar,body);
+            this.setState({loaded: loadedSoFar});
+            var currentOffset = this.state.offset + this.props.loadNumber;
+            this.setState({offset: currentOffset});
         }.bind(this));
     },
-    renderRows: function () {
-        var row2 = this.state.searchResults;
-        var row3 = this.state.searchResults;
-        var row4 = this.state.searchResults;
-        if (row2!=undefined) {
-            row2 = row2.slice(4,8);
-            row3 = row3.slice(8,12);
-            row4 = row4.slice(12,16);
-        }
-        var rows = [
-            <Carousel items={this.state.searchResults} showLoves={true}
-                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-            <Carousel items={row2} showLoves={true}
-                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-            <Carousel items={row3} showLoves={true}
-                      settings={{slidesToShow: 4, slidesToScroll: 0}} />,
-            <Carousel items={row4} showLoves={true}
-                      settings={{slidesToShow: 4, slidesToScroll: 0}} />
-        ];
-        if (this.state.searchMore!=undefined && more.length<offset) more = more.concat(this.state.searchMore);
-        if (more.length>0) {
-            for (var i = 0; i<more.length; i+=4) {
-                var rowNext = more.slice(i,i+4);
-                rows.push(<Carousel items={rowNext} showLoves={true}
-                    settings={{slidesToShow: 4, slidesToScroll: 0}} />);
-            }
-        }
-        return rows;
-    },
     getTab: function (type) {
-        var allTab = <a href={'/search/'+type+'?q='+searchTerm+'/'}>
+        var allTab = <a href={'/search/'+type+'?q='+this.state.searchTerm+'/'}>
                         <li>
                             <FormattedMessage
                                 id={'explore.'+type}
                                 defaultMessage={type.charAt(0).toUpperCase()+type.slice(1)} />
                         </li>
                     </a>;
-        if (tab==type) {
-            allTab = <a href={'/search/'+type+'?q='+searchTerm+'/'}>
+        if (this.props.tab == type) {
+            allTab = <a href={'/search/'+type+'?q='+this.props.searchTerm+'/'}>
                         <li className='active'>
                             <FormattedMessage
                                 id={'explore.'+type}
@@ -112,21 +85,20 @@ var Search = injectIntl(React.createClass({
         return allTab;
     },
     render: function () {
-        var projects = this.renderRows();
         return (
             <div>
                 <div className='outer'>
-                    <Box title={'Search Results:'} subtitle={searchTerm}
+                    <Box title={'Search Results:'} subtitle={this.props.searchTerm}
                         moreProps={{
                             className: 'subnavigation'
                         }}>
                         <Tabs>
-                            {this.getTab('all')}
                             {this.getTab('projects')}
                             {this.getTab('studios')}
                         </Tabs>
                         <div id='projectBox' key='projectBox'>
-                            {projects}
+                            <Grid items={this.state.loaded} itemType='projects'
+                                showLoves={true} showFavorites={true} showViews={true} />
                             <SubNavigation className='load'>
                                 <button onClick={this.getSearchMore}>
                                     <li>

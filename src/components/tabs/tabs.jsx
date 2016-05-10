@@ -1,3 +1,4 @@
+var classNames = require('classnames');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 var React = require('react');
 
@@ -10,8 +11,12 @@ require('./tabs.scss');
 var Tabs = React.createClass({
     type: 'Tabs',
     render: function () {
+        var classes = classNames(
+            'tabs',
+            this.props.className
+        );
         return (
-            <SubNavigation className="tabs">
+            <SubNavigation className={classes}>
                 {this.props.children}
             </SubNavigation>
         );

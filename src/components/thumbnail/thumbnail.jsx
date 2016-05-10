@@ -15,7 +15,9 @@ var Thumbnail = React.createClass({
             src: '',
             type: 'project',
             showLoves: false,
+            showFavorites: false,
             showRemixes: false,
+            showViews: false,
             linkTitle: true,
             alt: ''
         };
@@ -44,14 +46,33 @@ var Thumbnail = React.createClass({
                 </div>
             );
         }
+        if (this.props.favorites && this.props.showFavorites) {
+            extra.push(
+                <div
+                    key="favorites"
+                    className="thumbnail-favorites"
+                    title={this.favorites + ' favorites'}>
+                    {this.props.favorites}
+                </div>
+            );
+        }
         if (this.props.remixes && this.props.showRemixes) {
             extra.push(
                 <div
                     key="remixes"
                     className="thumbnail-remixes"
                     title={this.props.remixes + ' remixes'}>
-                    
                     {this.props.remixes}
+                </div>
+            );
+        }
+        if (this.props.views && this.props.showViews) {
+            extra.push(
+                <div
+                    key="views"
+                    className="thumbnail-views"
+                    title={this.props.views + ' views'}>
+                    {this.props.views}
                 </div>
             );
         }

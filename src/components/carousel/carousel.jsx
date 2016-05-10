@@ -34,7 +34,7 @@ var Carousel = React.createClass({
             slidesToScroll: 5,
             variableWidth: true
         });
-        var arrows = this.props.items.length > settings.slidesToShow && settings.slidesToScroll>0;
+        var arrows = this.props.items.length > settings.slidesToShow;
         var classes = classNames(
             'carousel',
             this.props.className
@@ -43,13 +43,6 @@ var Carousel = React.createClass({
             <Slider className={classes} arrows={arrows} {... settings}>
                 {this.props.items.map(function (item) {
                     var href = '';
-                    var thumbnail_url = item.thumbnail_url;
-                    if (thumbnail_url==undefined && item.image!=undefined) {
-                        thumbnail_url = item.image;
-                    }
-                    if (item.stats!=undefined) {
-                        item.love_count = item.stats.loves;
-                    }
                     switch (item.type) {
                     case 'gallery':
                         href = '/studios/' + item.id + '/';
@@ -57,14 +50,9 @@ var Carousel = React.createClass({
                     case 'project':
                         href = '/projects/' + item.id + '/';
                         break;
-                    case undefined:
-                        item.type = 'project';
-                        href = '/projects/' + item.id + '/';
-                        break;
                     default:
                         href = '/' + item.type + '/' + item.id + '/';
                     }
-
                     return (
                         <Thumbnail key={item.id}
                                    showLoves={this.props.showLoves}
@@ -72,7 +60,7 @@ var Carousel = React.createClass({
                                    type={item.type}
                                    href={href}
                                    title={item.title}
-                                   src={thumbnail_url}
+                                   src={item.thumbnail_url}
                                    creator={item.creator}
                                    remixes={item.remixers_count}
                                    loves={item.love_count} />

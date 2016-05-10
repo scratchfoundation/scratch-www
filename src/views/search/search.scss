@@ -9,25 +9,11 @@ $base-bg: $ui-white;
         margin-right: auto;
         margin-bottom: 20px;
         margin-left: auto;
+
+        .box-content {
+            padding: 0;
+        }
     }   
-
-    .box .box-content {
-        padding: 0;
-    }
-
-    .carousel {
-        padding: 15px;
-        width: calc(100%-5px);
-    }
-
-    .thumbnail.project {
-        width: 200px;
-    }
-
-    .thumbnail.project img {
-        width: 200px;
-        height: 150px;
-    }
 
     #projectBox {
         border-top: 2px solid;
