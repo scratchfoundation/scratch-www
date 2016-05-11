@@ -37,7 +37,7 @@ var Actions = {
 
                 if (typeof body !== 'undefined') {
                     if (body.banned) {
-                        return window.location = url;
+                        return window.location = body.redirectUrl;
                     } else {
                         dispatch(Actions.getToken());
                         dispatch(Actions.setSession(body));
