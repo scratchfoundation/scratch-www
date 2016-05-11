@@ -7,6 +7,10 @@ var webpack = require('webpack');
 
 var routes = require('./src/routes.json');
 
+if (process.env.NODE_ENV !== 'production') {
+    routes = routes.concat(require('./src/routes-dev.json'));
+}
+
 var VersionPlugin = function (options) {
     this.options = options || {};
     return this;
