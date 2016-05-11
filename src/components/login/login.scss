@@ -7,7 +7,11 @@
         padding-top: 5px;
         font-weight: bold;
     }
-
+    
+    .right {
+        float: right;
+    }
+    
     .spinner {
         margin: 0 .8rem;
         width: 1rem;
@@ -16,7 +20,6 @@
 
     .submit-button {
         margin-top: 5px;
-        margin-right: 4.4px;
     }
 
     a {
