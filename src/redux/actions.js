@@ -17,14 +17,14 @@ var Actions = {
         return {
             type: Types.SET_SESSION_ERROR,
             error: error
-        }
+        };
     },
 
     setSession: function (session) {
         return {
             type: Types.SET_SESSION,
             session: session
-        }
+        };
     },
 
     refreshSession: function () {
@@ -62,7 +62,7 @@ var Actions = {
                     return dispatch(Actions.setToken(sessionData.token));
                 });
             });
-        }
+        };
     },
 
     setToken: function (token) {
