@@ -2,7 +2,7 @@ var connect = require('react-redux').connect;
 var omit = require('lodash.omit');
 var React = require('react');
 
-var actions = require('../../redux/auth.js');
+var actions = require('../../redux/actions.js');
 
 var Modal = require('../modal/modal.jsx');
 var Registration = require('../registration/registration.jsx');
