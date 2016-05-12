@@ -1,12 +1,5 @@
 @import "../../colors";
 
-h1 {
-    line-height: 2.125rem;
-    color: $ui-orange;
-    font-size: 1.625rem;
-    font-weight: 400;
-}
-
 .intro {
     display: flex;
     margin-top: 20px;
@@ -15,6 +8,13 @@ h1 {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-content: flex-start;
+
+    h1 {
+        line-height: 2.125rem;
+        color: $ui-orange;
+        font-size: 1.625rem;
+        font-weight: 400;
+    }
 
     .content {
         display: inline-block;

@@ -11,7 +11,7 @@ var Wedo2 = React.createClass({
     type: 'wedo2',
     render: function () {
         return (
-            <div>
+            <div className="wedo">
                 <div className="top-banner">
                     <div className="inner">
                         <div className="columns2">

@@ -11,7 +11,7 @@ var Guidelines = React.createClass({
     type: 'Guidelines',
     render: function () {
         return (
-            <div className="inner">
+            <div className="inner guidelines">
                 <Box title={<FormattedMessage id='guidelines.title' />}>
                     <p><FormattedMessage id='guidelines.header' className="intro" /></p>
                     <dl>

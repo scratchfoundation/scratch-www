@@ -15,7 +15,7 @@ var Components = React.createClass({
     type: 'Components',
     render: function () {
         return (
-            <div className="inner">
+            <div className="inner components">
                 <h1>Button</h1>
                 <Button>I love button</Button>
                 <h1>Form</h1>

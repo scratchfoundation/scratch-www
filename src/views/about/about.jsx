@@ -11,7 +11,7 @@ var About = React.createClass({
     type: 'About',
     render: function () {
         return (
-            <div className="inner">
+            <div className="inner about">
                 <h1><FormattedMessage id='general.aboutScratch' /></h1>
 
                 <div className="masthead">

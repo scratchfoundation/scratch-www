@@ -8,7 +8,7 @@ var Dmca = React.createClass({
     type: 'Dmca',
     render: function () {
         return (
-            <div className="inner">
+            <div className="inner dmca">
                 <Box title={'DMCA'}>
                     <p><FormattedMessage id='dmca.intro' /></p>
                     <p>

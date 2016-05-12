@@ -1,53 +1,55 @@
 @import "../../colors";
 
-h1 {
-    line-height: 2.6rem;
-    font-size: 2.3rem;
-    font-weight: 300;
-}
-
-h2 {
-    font-size: 1.8rem;
-    font-weight: 300;
-}
-
-.top {
-    img {
-        margin-bottom: 10px;
-    }
-}
-
-.middle {
-    margin: 20px 0;
-    background-color: $ui-gray;
-    padding: 40px 0;
-    width: 100%;
-}
-
-.bottom {
-    width: 100%;
-    line-height: 200%;
-
-    .thin-heading {
-        padding: 20px 0;
+.jobs {
+    h1 {
+        line-height: 2.6rem;
+        font-size: 2.3rem;
+        font-weight: 300;
     }
 
-    p {
-        margin: auto;
-        width: 70%;
+    h2 {
+        font-size: 1.8rem;
+        font-weight: 300;
     }
 
-    ul {
-        padding: 0;
+    .top {
+        img {
+            margin-bottom: 10px;
+        }
+    }
 
-        list-style: none;
+    .middle {
+        margin: 20px 0;
+        background-color: $ui-gray;
+        padding: 40px 0;
+        width: 100%;
+    }
 
-        li {
-            margin: 0;
+    .bottom {
+        width: 100%;
+        line-height: 200%;
+
+        .thin-heading {
+            padding: 20px 0;
+        }
+
+        p {
+            margin: auto;
+            width: 70%;
+        }
+
+        ul {
             padding: 0;
 
-            span {
-                margin-left: 10px;
+            list-style: none;
+
+            li {
+                margin: 0;
+                padding: 0;
+
+                span {
+                    margin-left: 10px;
+                }
             }
         }
     }

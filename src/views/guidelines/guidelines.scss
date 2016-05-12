@@ -1,12 +1,14 @@
 @import "../../colors";
 
-.guidelines-footer {
-    margin-top: 1.5rem;
-    text-align: center;
-}
-
-dl {
-    dt {
+.guidelines {
+    .guidelines-footer {
         margin-top: 1.5rem;
+        text-align: center;
+    }
+
+    dl {
+        dt {
+            margin-top: 1.5rem;
+        }
     }
 }

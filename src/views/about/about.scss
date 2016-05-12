@@ -1,70 +1,72 @@
 @import "../../colors";
 
-.masthead {
-    display: flex;
-    flex-wrap: no-wrap;
-    justify-content: space-between;
-    align-items: stretch;
+.about {
+    .masthead {
+        display: flex;
+        flex-wrap: no-wrap;
+        justify-content: space-between;
+        align-items: stretch;
 
-    div {
-        display: inline-block;
-        width: calc(50% - 10px);
+        div {
+            display: inline-block;
+            width: calc(50% - 10px);
+
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            li {
+                display: inline-block;
+                text-transform: uppercase;
+
+                &:nth-child(odd) {
+                    margin-right: 10px;
+                    border-right: 1px solid $ui-gray;
+                    padding-right: 10px;
+                }
+            }
+
+            iframe {
+                border: 1px solid $ui-gray;
+                width: 460px;
+                height: 290px;
+            }
+        }
+    }
+
+    .body {
+        position: relative;
+        margin: 20px 0 0;
+        border: 1px solid $ui-gray;
+        border-radius: 10px;
+        background: $ui-white;
+        padding: 26px 40px 6px;
+        width: calc(100% - 80px);
 
         ul {
+            display: flex;
             margin: 0;
             padding: 0;
             list-style: none;
+            justify-content: space-between;
+            flex-wrap: wrap;
         }
 
         li {
             display: inline-block;
-            text-transform: uppercase;
-
-            &:nth-child(odd) {
-                margin-right: 10px;
-                border-right: 1px solid $ui-gray;
-                padding-right: 10px;
-            }
+            margin-bottom: 20px;
+            width: calc(384px + 5px + 5px);
         }
 
+        img,
         iframe {
+            display: block;
             border: 1px solid $ui-gray;
-            width: 460px;
-            height: 290px;
+            padding: 5px;
+            width: 396px;
+            height: 222px;
         }
-    }
-}
-
-.body {
-    position: relative;
-    margin: 20px 0 0;
-    border: 1px solid $ui-gray;
-    border-radius: 10px;
-    background: $ui-white;
-    padding: 26px 40px 6px;
-    width: calc(100% - 80px);
-
-    ul {
-        display: flex;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
-
-    li {
-        display: inline-block;
-        margin-bottom: 20px;
-        width: calc(384px + 5px + 5px);
-    }
-
-    img,
-    iframe {
-        display: block;
-        border: 1px solid $ui-gray;
-        padding: 5px;
-        width: 396px;
-        height: 222px;
     }
 }

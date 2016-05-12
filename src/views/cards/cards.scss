@@ -1,55 +1,57 @@
 @import "../../colors";
 @import "../../frameless";
 
-// type-specific margins
-h4 {
-    margin: 1.5em 0 .3em;
-}
-
-h1 {
-    margin: .75em 0 .3em;
-}
-
-p {
-    margin: .25em 0 1em;
-}
-
 .cards {
-    display: flex;
-    margin: 1em 0;
-    align-items: center;
-    justify-content: center;
-
-    .intro-content {
-        float: left;
-        width: 45%;
+    // type-specific margins
+    h4 {
+        margin: 1.5em 0 .3em;
     }
 
-    img {
-        width: 45%;
+    h1 {
+        margin: .75em 0 .3em;
     }
-}
 
-.cards-container {
-    text-align: center;
+    p {
+        margin: .25em 0 1em;
+    }
 
-    .flex-row {
-        div {
-            padding: .5em;
+    .cards-intro {
+        display: flex;
+        margin: 1em 0;
+        align-items: center;
+        justify-content: center;
 
-            a {
-                display: block;
+        .intro-content {
+            float: left;
+            width: 45%;
+        }
 
-                .pdf-icon {
-                    margin-right: .2em;
-                    width: 1em;
+        img {
+            width: 45%;
+        }
+    }
+
+    .cards-container {
+        text-align: center;
+
+        .flex-row {
+            div {
+                padding: .5em;
+
+                a {
+                    display: block;
+
+                    .pdf-icon {
+                        margin-right: .2em;
+                        width: 1em;
+                    }
                 }
             }
-        }
 
-        @media only screen and (max-width: $desktop - 1) {
-            flex-direction: column;
-            justify-content: center;
+            @media only screen and (max-width: $desktop - 1) {
+                flex-direction: column;
+                justify-content: center;
+            }
         }
-    }
+}
 }
