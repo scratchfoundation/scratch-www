@@ -1,9 +1,9 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
 var FormattedMessage = require('react-intl').FormattedMessage;
 
 var log = require('../../lib/log.js');
 
+var Form = require('../forms/form.jsx');
 var Input = require('../forms/input.jsx');
 var Button = require('../forms/button.jsx');
 var Spinner = require('../spinner/spinner.jsx');
@@ -21,13 +21,9 @@ var Login = React.createClass({
             waiting: false
         };
     },
-    handleSubmit: function (event) {
-        event.preventDefault();
+    handleSubmit: function (formData) {
         this.setState({waiting: true});
-        this.props.onLogIn({
-            'username': ReactDOM.findDOMNode(this.refs.username).value,
-            'password': ReactDOM.findDOMNode(this.refs.password).value
-        }, function (err) {
+        this.props.onLogIn(formData, function (err) {
             if (err) log.error(err);
             this.setState({waiting: false});
         }.bind(this));
@@ -39,7 +35,7 @@ var Login = React.createClass({
         }
         return (
             <div className="login">
-                <form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handleSubmit}>
                     <label htmlFor="username" key="usernameLabel">
                         <FormattedMessage
                             id='general.username'
@@ -69,7 +65,7 @@ var Login = React.createClass({
                             defaultMessage={'Forgot Password?'} />
                     </a>
                     {error}
-                </form>
+                </Form>
             </div>
         );
     }
