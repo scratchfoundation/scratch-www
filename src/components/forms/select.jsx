@@ -1,5 +1,6 @@
-var React = require('react');
 var classNames = require('classnames');
+var FRCSelect = require('formsy-react-components').Select;
+var React = require('react');
 
 require('./select.scss');
 
@@ -14,9 +15,7 @@ var Select = React.createClass({
             this.props.className
         );
         return (
-            <select {... this.props} className={classes}>
-                {this.props.children}
-            </select>
+            <FRCSelect {... this.props} className={classes} />
         );
     }
 });

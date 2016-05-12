@@ -19,10 +19,6 @@ module.exports = {
                 navigation: null
             };
         },
-        onSubmit: function (e) {
-            e.preventDefault();
-            this.props.onNextStep();
-        },
         render: function () {
             var classes = classNames(
                 'step',
@@ -33,13 +29,7 @@ module.exports = {
                     <img className="icon" src={this.props.icon} />
                     {this.props.description}
                     {this.props.navigation}
-                    {React.Children.map(this.props.children, function (child){
-                        if (child.type === 'form') {
-                            return React.cloneElement(child, {onSubmit: this.onSubmit});
-                        } else {
-                            return child;
-                        }
-                    }, this)}
+                    {this.props.children}
                 </div>
             );
         }
@@ -85,9 +75,10 @@ module.exports = {
                 <div {... this.props} className={classes}>
                     {React.Children.map(this.props.children, function (child, id) {
                         if (id === this.props.step) {
-                            return React.cloneElement(child, {onNextStep: function () {
-                                this.props.onSetStep(this.props.step + 1);
-                            }.bind(this)});
+                            var props = {
+                                navigation: navigation
+                            };
+                            return React.cloneElement(child, props);
                         }
                     }, this)}
                 </div>
