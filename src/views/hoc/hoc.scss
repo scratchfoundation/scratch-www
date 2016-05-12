@@ -5,220 +5,224 @@ $base-bg: $ui-white;
 
 #view {
     padding: 0;
+}
 
-    // To be integrated into the Global Typography standards 
-    h3, 
-    p {
-        font-weight: 300; 
+.title-banner {
+    &.wbb-bg {    
+        background-image: url("/images/hoc2015/hide-bg.jpg");
     }
 
-    p {
-        line-height: 2em;
+    &.dance-bg {
+        background-image: url("/images/hoc2015/dance-bg.jpg");
     }
 
-    .title-banner {
-        &.wbb-bg {    
-            background-image: url("/images/hoc2015/hide-bg.jpg");
-        }
-
-        &.dance-bg {
-            background-image: url("/images/hoc2015/dance-bg.jpg");
-        }
-
-        &.name-bg {
-            background-image: url("/images/hoc2015/name-bg.jpg");
-        }
-
-        section {
-            border: 0;
-            padding: 10px 0;
-            max-width: $desktop;
-
-            .card-deck {
-                padding: 0 20px;
-            }
-
-            //6 columns
-            @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-                max-width: $mobile;
-            }
-        }
-    }
-
-    .flex-row {
-        .card {
-            margin: 10px;
-            border-radius: 7px;
-            background-color: $active-gray;                
-            padding: 2px;
-            
-            width: 30%;
-            min-width: 200px;
-            max-width: 230px;
-
-            .card-info {
-                border-radius: 5px;
-                background-color: $base-bg;
-                width: 100%;
-                height: 100%;
-                
-
-                button,
-                img {
-                    width: calc(100% - 20px);
-                }
-
-                img {
-                    margin: 10px 10px 5px 10px;
-                    border-radius: 5px;
-                }
-
-                button {
-                    margin: 0 10px 10px 10px;
-                }
-            }
-
-            //8 columns
-            @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-                margin: 2px;
-                min-width: 175px;
-
-                button {
-                    font-size: .7em;
-                }
-            }
-
-        }
+    &.name-bg {
+        background-image: url("/images/hoc2015/name-bg.jpg");
     }
 
     section {
-        display: flex;
-        margin: 0 auto;
-        border-bottom: 1px solid $ui-border;
-        padding: 50px 0;
-        width: 95%;
+        border: 0;
+        padding: 10px 0;
+        max-width: $desktop;
 
-        justify-content: center;
-        flex-wrap: wrap;
-        align-items: center;
-
-        p {
-            margin: 10px auto 20px;
-            max-width: 600px;
+        .card-deck {
+            padding: 0 20px;
         }
 
-        &:last-child {
-            border-bottom: 0;
+        //6 columns
+        @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+            max-width: $mobile;
         }
+    }
+}
 
-        &.one-up {
-            text-align: center;
+.flex-row {
+    .card {
+        margin: 10px;
+        border-radius: 7px;
+        background-color: $active-gray;                
+        padding: 2px;
+        
+        width: 30%;
+        min-width: 200px;
+        max-width: 230px;
 
-            .column {
-                width: 100%;
+        .card-info {
+            border-radius: 5px;
+            background-color: $base-bg;
+            width: 100%;
+            height: 100%;
+            
+
+            button,
+            img {
+                width: calc(100% - 20px);
+            }
+
+            img {
+                margin: 10px 10px 5px 10px;
+                border-radius: 5px;
+            }
+
+            button {
+                margin: 0 10px 10px 10px;
             }
         }
 
-        &.two-up {
-            .column {
-                min-width: 200px;
-                max-width: 40%;
-                text-align: left;
+        //8 columns
+        @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+            margin: 2px;
+            min-width: 175px;
 
-                img {
-                    border-radius: 5px;
-                    width: 100%;
-                }
+            button {
+                font-size: .7em;
             }
+        }
+
+    }
+}
+
+section {
+    display: flex;
+    margin: 0 auto;
+    border-bottom: 1px solid $ui-border;
+    padding: 50px 0;
+    width: 95%;
+
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+
+    p {
+        margin: 10px auto 20px;
+        max-width: 600px;
+    }
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    &.one-up {
+        text-align: center;
+
+        .column {
+            width: 100%;
         }
     }
 
-    .resource,
-    .studio {
-        display: flex;
-        margin: 10px 0; 
-        min-width: 200px;
+    &.two-up {
+        .column {
+            min-width: 200px;
+            max-width: 40%;
+            text-align: left;
 
-        text-align: left;
-        justify-content: center;
-        align-items: center;
-
-        img {
-            margin-right: 15px;
+            img {
+                border-radius: 5px;
+                width: 100%;
+            }
         }
+    }
+}
 
+.resource,
+.studio {
+    display: flex;
+    margin: 10px 0; 
+    min-width: 200px;
+
+    text-align: left;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        margin-right: 15px;
+    }
+
+    a {
         h5 {
             margin: 8px 0;
+            color: $ui-blue;
             font-weight: 500;
-        }
 
-        //8 columns
-        @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-            display: block;
-            width: 30%;
-            min-width: 180px;
-            text-align: center;
-
-            img {
-                margin: 0 auto;
+            &:hover {
+                color: darken($ui-blue, 15);
             }
         }
     }
 
-    .resource { 
-        width: 33%;
+    //8 columns
+    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+        display: block;
+        width: 30%;
+        min-width: 180px;
+        text-align: center;
 
-        a {
-            display: block;
-            margin: 5px 0;
-            font-size: .8em;
+        img {
+            margin: 0 auto;
         }
     }
+}
 
-    .studio {
-        width: 50%;
+.resource { 
+    width: 33%;
 
+    a {
+        display: block;
+        margin: 5px 0;
+        font-size: .8em;
+    }
+
+    .resource-info {
         h5 {
-            width: 200px;
+            margin: .85rem 0;
+            line-height: 0;
+        }
+    }
+}
+
+.studio {
+    width: 50%;
+
+    h5 {
+        width: 200px;
+    }
+
+    img {
+        float: left;
+    }
+
+    @media only screen and (max-width: $mobile - 1) {
+        display: inline-block;
+    }
+
+    @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+        display: inline-block;
+    }
+    
+    //8 columns
+    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+        h5 {
+            width: 100%;
         }
 
         img {
-            float: left;
-        }
-
-        @media only screen and (max-width: $mobile - 1) {
-            display: inline-block;
-        }
-
-        @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-            display: inline-block;
-        }
-        
-        //8 columns
-        @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-            h5 {
-                width: 100%;
-            }
-
-            img {
-                float: none;
-            }
+            float: none;
         }
     }
+}
 
-    .logos {
-        margin: 20px 0;
-        width: 100%;
+.logos {
+    margin: 20px 0;
+    width: 100%;
 
-        img {
-            margin: 20px;
-            max-width: 150px;
-            max-height: 55px;
-            vertical-align: middle;
-        }
+    img {
+        margin: 20px;
+        max-width: 150px;
+        max-height: 55px;
+        vertical-align: middle;
     }
+}
 
-    .trademark {
-        margin-top: 20px;
-    }
+.trademark {
+    margin-top: 20px;
 }

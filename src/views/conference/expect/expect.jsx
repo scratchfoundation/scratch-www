@@ -1,5 +1,5 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
+var render = require('../../../lib/render.jsx');
 
 var FlexRow = require('../../../components/flex-row/flex-row.jsx');
 var Page = require('../../../components/page/conference/page.jsx');
@@ -283,4 +283,4 @@ var ConferenceExpectations = React.createClass({
     }
 });
 
-ReactDOM.render(<Page><ConferenceExpectations /></Page>, document.getElementById('app'));
+render(<Page><ConferenceExpectations /></Page>, document.getElementById('app'));

@@ -24,63 +24,65 @@
         }
     }
 
-    .search {
-        margin: 0 20px;
-        border-right: 0;
-        color: $type-white;
-        flex-grow: 3;
+    .inner > ul > li {
+        &.search {
+            margin: 0 20px;
+            border-right: 0;
+            color: $type-white;
+            flex-grow: 3;
 
-        .ie9 & {
-            width: 100%;
-        }
-
-        form {
-            margin: 0;
-        }
-
-        input {
-            display: inline-block;
-            margin-top: 5px;
-            outline: none;
-            border: 0;
-            background-color: $active-gray;
-            height: 14px;
-
-            &[type=submit] {
-                position: absolute;
-                
-                background-color: transparent;
-                background-image: url("/images/nav-search-glass.png");
-                background-repeat: no-repeat;
-                background-position: center center;     
-                background-size: 14px 14px;
-                
-                width: 40px;
-                height: 40px;
+            .ie9 & {
+                width: 100%;
             }
 
-            &[type=text] {
-                transition: .15s ease background-color; 
-                padding: 0;
-                padding-right: 10px;
-                padding-left: 40px;
-                width: calc(100% - 50px);
-                height: 40px;
-                color: $type-white;
-                font-size: .85em;
+            form {
+                margin: 0;
+            }
 
-                &::placeholder {
-                    $placeholder-transparent: rgba(255, 255, 255, .75);
-                    color: $placeholder-transparent;
+            input {
+                display: inline-block;
+                margin-top: 5px;
+                outline: none;
+                border: 0;
+                background-color: $active-gray;
+                height: 14px;
+
+                &[type=submit] {
+                    position: absolute;
+                    
+                    background-color: transparent;
+                    background-image: url("/images/nav-search-glass.png");
+                    background-repeat: no-repeat;
+                    background-position: center center;     
+                    background-size: 14px 14px;
+                    
+                    width: 40px;
+                    height: 40px;
                 }
 
-                &:focus {
-                    transition: .15s ease background-color;
-                    background-color: $active-dark-gray;
-                }
+                &[type=text] {
+                    transition: .15s ease background-color; 
+                    padding: 0;
+                    padding-right: 10px;
+                    padding-left: 40px;
+                    width: calc(100% - 50px);
+                    height: 40px;
+                    color: $type-white;
+                    font-size: .85em;
 
-                .ie9 & {
-                    width: 70px;
+                    &::placeholder {
+                        $placeholder-transparent: rgba(255, 255, 255, .75);
+                        color: $placeholder-transparent;
+                    }
+
+                    &:focus {
+                        transition: .15s ease background-color;
+                        background-color: $active-dark-gray;
+                    }
+
+                    .ie9 & {
+                        width: 70px;
+                    }
                 }
             }
         }

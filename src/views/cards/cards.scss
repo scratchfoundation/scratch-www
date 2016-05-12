@@ -1,19 +1,17 @@
 @import "../../colors";
-@import "../../typography";
+@import "../../frameless";
 
 // type-specific margins
-#view {
-    h4 {
-        margin: 1.5em 0 .3em;
-    }
+h4 {
+    margin: 1.5em 0 .3em;
+}
 
-    h1 {
-        margin: .75em 0 .3em;
-    }
+h1 {
+    margin: .75em 0 .3em;
+}
 
-    p {
-        margin: .25em 0 1em;
-    }
+p {
+    margin: .25em 0 1em;
 }
 
 .cards {

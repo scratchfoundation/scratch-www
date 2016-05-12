@@ -18,12 +18,16 @@
         dt {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
         }
 
         dd {
             display: block;
             margin: 5px 0;
+            line-height: 1.2rem;
+
+            a {
+                font-weight: 400;
+            }
         }
     }
 

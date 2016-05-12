@@ -4,8 +4,6 @@ var render = require('../../lib/render.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var Box = require('../../components/box/box.jsx');
 
-require('./dmca.scss');
-
 var Dmca = React.createClass({
     type: 'Dmca',
     render: function () {
