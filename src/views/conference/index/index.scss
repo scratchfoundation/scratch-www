@@ -1,10 +1,12 @@
 @import "../../../colors";
-@import "../../../typography";
+@import "../../../frameless";
 
 #view {
     background-color: $ui-light-gray;
     min-height: initial;
+}
 
+.index {
     .title-banner {
         margin-bottom: 0;
         background-image: url("/images/conference/index/title-banner.jpg");
@@ -54,8 +56,9 @@
             }
         }
     }
-
     .flex-row {
+        align-items: flex-start;
+
         div {
             width: 28%;
             text-align: center;
@@ -63,12 +66,12 @@
             img {
                 display: block;
                 margin: auto;
-                max-width: 65%;
+                max-width: 125px;
             }
 
             @media only screen and (max-width: $tablet - 1) {
                 margin: .5rem;
-                width: 60%;
+                width: 125px;
             }
         }
     }

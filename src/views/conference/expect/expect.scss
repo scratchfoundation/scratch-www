@@ -1,8 +1,7 @@
 @import "../../../colors";
 @import "../../../frameless";
-@import "../../../typography";
 
-#view {
+.expect {
     .flex-row {
         align-items: flex-start;
         justify-content: space-between;
@@ -173,5 +172,5 @@
                 }
             }
         }
-    }  
+    }
 }

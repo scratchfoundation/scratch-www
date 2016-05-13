@@ -27,7 +27,7 @@ var Hoc = React.createClass({
     },
     render: function () {
         return (
-            <div>
+            <div className="hoc">
                 <TitleBanner className={this.state.bgClass}>
                     <h1>
                         <FormattedMessage
@@ -403,7 +403,6 @@ var Hoc = React.createClass({
                     </section>
                 </div>
             </div>
-
         );
     }
 });

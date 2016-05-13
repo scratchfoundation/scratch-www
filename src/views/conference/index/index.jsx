@@ -1,5 +1,5 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
+var render = require('../../../lib/render.jsx');
 
 var Button = require('../../../components/forms/button.jsx');
 var FlexRow = require('../../../components/flex-row/flex-row.jsx');
@@ -69,4 +69,4 @@ var ConferenceSplash = React.createClass({
     }
 });
 
-ReactDOM.render(<Page><ConferenceSplash /></Page>, document.getElementById('app'));
+render(<Page><ConferenceSplash /></Page>, document.getElementById('app'));
