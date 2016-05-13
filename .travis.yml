@@ -58,7 +58,7 @@ addons:
     - g++-4.8
 install:
   - sudo -H pip install -r requirements.txt
-  - npm install
+  - npm --production=false install
 deploy:
 - provider: script
   skip_cleanup: $SKIP_CLEANUP
