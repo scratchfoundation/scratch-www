@@ -1,172 +1,174 @@
 @import "../../../colors";
 @import "../../../frameless";
 
-.flex-row {
-    align-items: flex-start;
-    justify-content: space-between;
+.expect {
+    .flex-row {
+        align-items: flex-start;
+        justify-content: space-between;
 
-    .card {
-        width: $cols4;
+        .card {
+            width: $cols4;
 
-        p {
-            text-align: left;
-        }
-    }
-}
-
-.profile {
-    img {
-        border-radius: 8em;
-        width: 80%;
-    }
-
-    h4 {
-        margin-top: 1.2rem;
-    }
-
-    @media only screen and (max-width: $tablet - 1) {
-        img {
-            width: 50%;
-        }
-
-        h2 {
-            margin: 20px 0;
-            text-align: center;
-            font-size: 1.7rem;
-        }
-    }
-
-    @media only screen and (max-width: $desktop - 1) {
-        .uneven {
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-}
-
-.keynote {
-    background-color: $ui-purple;
-    padding: 48px 0 64px 0;
-    width: 100%;
-
-    h2,
-    h3,
-    b,
-    p {
-        color: $ui-white;
-    }
-
-    h2 {
-        margin-bottom: 32px;
-    }
-
-    h3 {
-        margin: 15px 0;
-    }
-
-    img {
-        width: 100%;
-    }
-
-    .date {
-        b {
-            border-radius: 20px;
-            background-color: $ui-orange;
-            padding: 5px 15px;
-            font-size: .85rem;
-        }
-
-        margin: 15px 0;
-    }
-
-    @media only screen and (max-width: $desktop - 1) {
-        .flex-row {
-            flex-direction: column;
-            align-items: center;
-
-            .card {
-                margin-top: 25px;
+            p {
                 text-align: left;
             }
         }
     }
-}
 
-.schedule {
-    .title {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .profile {
+        img {
+            border-radius: 8em;
+            width: 80%;
+        }
+
+        h4 {
+            margin-top: 1.2rem;
+        }
+
+        @media only screen and (max-width: $tablet - 1) {
+            img {
+                width: 50%;
+            }
+
+            h2 {
+                margin: 20px 0;
+                text-align: center;
+                font-size: 1.7rem;
+            }
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            .uneven {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+
+    .keynote {
+        background-color: $ui-purple;
+        padding: 48px 0 64px 0;
+        width: 100%;
+
+        h2,
+        h3,
+        b,
+        p {
+            color: $ui-white;
+        }
 
         h2 {
-            margin: 0;
+            margin-bottom: 32px;
         }
-    }
 
-    img {
-        width: 30px;
-    }
-
-    .callout {
-        display: flex;
-        padding: .85rem;
-        align-items: center;
+        h3 {
+            margin: 15px 0;
+        }
 
         img {
-            margin-right: 30px;
+            width: 100%;
+        }
+
+        .date {
+            b {
+                border-radius: 20px;
+                background-color: $ui-orange;
+                padding: 5px 15px;
+                font-size: .85rem;
+            }
+
+            margin: 15px 0;
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            .flex-row {
+                flex-direction: column;
+                align-items: center;
+
+                .card {
+                    margin-top: 25px;
+                    text-align: left;
+                }
+            }
         }
     }
 
-    table {
-        width: $cols4;
-
-        th {
+    .schedule {
+        .title {
             display: flex;
-            border-bottom: thin solid $ui-border;
-            padding: 2.5%;
+            justify-content: space-between;
             align-items: center;
-            justify-content: flex-start;
 
-            h3 {
+            h2 {
                 margin: 0;
             }
+        }
+
+        img {
+            width: 30px;
+        }
+
+        .callout {
+            display: flex;
+            padding: .85rem;
+            align-items: center;
 
             img {
                 margin-right: 30px;
             }
         }
 
-        td {
-            display: flex;
-            border-bottom: thin solid $ui-border;
-            padding: 2.5%;
-            height: 60px;
-            align-items: center;
+        table {
+            width: $cols4;
 
-            b {
-                width: 30%;
-                line-height: 1.7em;
+            th {
+                display: flex;
+                border-bottom: thin solid $ui-border;
+                padding: 2.5%;
+                align-items: center;
+                justify-content: flex-start;
+
+                h3 {
+                    margin: 0;
+                }
+
+                img {
+                    margin-right: 30px;
+                }
             }
 
-            p {
-                margin: 0;
-                width: 70%;
+            td {
+                display: flex;
+                border-bottom: thin solid $ui-border;
+                padding: 2.5%;
+                height: 60px;
+                align-items: center;
+
+                b {
+                    width: 30%;
+                    line-height: 1.7em;
+                }
+
+                p {
+                    margin: 0;
+                    width: 70%;
+                }
             }
         }
-    }
 
-    @media only screen and (max-width: $desktop - 1) {
-        .flex-row {
-            flex-direction: column;
-            align-items: center;
+        @media only screen and (max-width: $desktop - 1) {
+            .flex-row {
+                flex-direction: column;
+                align-items: center;
 
-            table {
-                margin-top: 50px;
-                width: $cols6;
-                text-align: left;
+                table {
+                    margin-top: 50px;
+                    width: $cols6;
+                    text-align: left;
 
-                th {
-                    justify-content: center;
+                    th {
+                        justify-content: center;
+                    }
                 }
             }
         }
