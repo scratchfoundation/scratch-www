@@ -1,6 +1,7 @@
 var classNames = require('classnames');
 var FRCRadioGroup = require('formsy-react-components').RadioGroup;
 var React = require('react');
+var validateMixin = require('./validateMixin.jsx');
 
 var RadioGroup = React.createClass({
     type: 'RadioGroup',
@@ -15,4 +16,4 @@ var RadioGroup = React.createClass({
     }
 });
 
-module.exports = RadioGroup;
+module.exports = validateMixin(RadioGroup);

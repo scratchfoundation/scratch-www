@@ -11,7 +11,6 @@ var Api = require('../../../mixins/api.jsx');
 var Avatar = require('../../avatar/avatar.jsx');
 var Button = require('../../forms/button.jsx');
 var Dropdown = require('../../dropdown/dropdown.jsx');
-var Form = require('../../forms/form.jsx');
 var Input = require('../../forms/input.jsx');
 var log = require('../../../lib/log.js');
 var Login = require('../../login/login.jsx');

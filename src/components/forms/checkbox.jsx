@@ -1,6 +1,7 @@
 var classNames = require('classnames');
 var FRCCheckbox = require('formsy-react-components').Checkbox;
 var React = require('react');
+var validateMixin = require('./validateMixin.jsx');
 
 var Checkbox = React.createClass({
     type: 'Checkbox',
@@ -15,4 +16,4 @@ var Checkbox = React.createClass({
     }
 });
 
-module.exports = Checkbox;
+module.exports = validateMixin(Checkbox);

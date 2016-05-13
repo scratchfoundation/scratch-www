@@ -1,6 +1,7 @@
 var classNames = require('classnames');
 var FRCTextarea = require('formsy-react-components').Textarea;
 var React = require('react');
+var validateMixin = require('./validateMixin.jsx');
 
 require('./textarea.scss');
 
@@ -17,4 +18,4 @@ var TextArea = React.createClass({
     }
 });
 
-module.exports = TextArea;
+module.exports = validateMixin(TextArea);

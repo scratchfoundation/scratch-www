@@ -12,7 +12,6 @@ var formset = require('../../components/forms/formset.jsx');
 var FormSet = formset.FormSet;
 var FormStep = formset.FormStep;
 var Input = require('../../components/forms/input.jsx');
-var Label = require('../../components/forms/label.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var RadioGroup = require('../../components/forms/radio-group.jsx');
 var Select = require('../../components/forms/select.jsx');
@@ -32,7 +31,7 @@ var UsernameStep = React.createClass({
                             for review.
                             <strong>The approval process can take up to 24 hours</strong>
                         </p>}>
-                <Form onValidSubmit={this.props.onNextStep} noValidate>
+                <Form onValidSubmit={this.props.onNextStep}>
                     <Input label="Username"
                            type="text"
                            name="username"
@@ -66,7 +65,7 @@ var UsernameStep = React.createClass({
                            name="passwordConfirmation"
                            validations="equalsField:password"
                            validationError="The passwords do not match"
-                           required/>
+                           required />
                     <Button type="submit">Next Step</Button>
                 </Form>
             </FormStep>
@@ -74,8 +73,11 @@ var UsernameStep = React.createClass({
     }
 });
 var DemographicsStep = React.createClass({
-    onSubmit: function () {
-        this.props.onNextStep();
+    getInitialState: function () {
+        return {otherDisabled: true};
+    },
+    onChooseGender: function (name, gender) {
+        this.setState({otherDisabled: gender !== 'other'});
     },
     render: function () {
         var countryOptions = Object.keys(COUNTRIES).map(function (code) {
@@ -98,19 +100,24 @@ var DemographicsStep = React.createClass({
                             Your responses to these questions will be kept private.
                             Why do we ask for this information <a onClick={this.handle}>?</a>
                         </p>}>
-                <Form onSubmit={this.onSubmit}>
-                    <Select label="Birth Month" name="month" options={monthOptions} />
-                    <Select label="Birth Yeah" name="year" options={yearOptions} />
+                <Form onValidSubmit={this.props.onNextStep}>
+                    <Select label="Birth Month" name="month" options={monthOptions} required />
+                    <Select label="Birth Yeah" name="year" options={yearOptions} required />
                     <RadioGroup label="Gender"
                                 name="gender"
+                                onChange={this.onChooseGender}
                                 options={[
                                     {value: 'female', label: 'Female'},
                                     {value: 'male', label: 'Male'},
                                     {value: 'other', label: 'Other'}
                                 ]}
-                    />
-                    <Input name="genderOther" type="text" />
-                    <Select label="Country" name="country" options={countryOptions} />
+                                required />
+                    <Input disabled={this.state.otherDisabled} name="genderOther" type="text" />
+                    <Select label="Country"
+                            name="country"
+                            options={countryOptions}
+                            value={countryOptions[0].value}
+                            required />
                     <Button type="submit">Next Step</Button>
                 </Form>
             </FormStep>
@@ -118,9 +125,6 @@ var DemographicsStep = React.createClass({
     }
 });
 var NameStep = React.createClass({
-    onSubmit: function () {
-        this.props.onNextStep();
-    },
     render: function () {
         return (
             <FormStep title="First &amp; Last Name"
@@ -129,11 +133,9 @@ var NameStep = React.createClass({
                             Your responses to these questions will be kept private.
                             Why do we ask for this information <a onClick={this.handle}>?</a>
                         </p>}>
-                <Form onSubmit={this.onSubmit}>
-                    <Label htmlFor="first">First Name</Label>
-                    <Input type="text" name="first" />
-                    <Label htmlFor="last">Last Name</Label>
-                    <Input type="text" name="last" />
+                <Form onValidSubmit={this.props.onNextStep}>
+                    <Input label="First Name" type="text" name="first" required />
+                    <Input label="Last Name" type="text" name="last" required />
                     <Button type="submit">Next Step</Button>
                 </Form>
             </FormStep>
@@ -141,9 +143,6 @@ var NameStep = React.createClass({
     }
 });
 var PhoneNumberStep = React.createClass({
-    onSubmit: function () {
-        this.props.onNextStep();
-    },
     render: function () {
         return (
             <FormStep title="Phone Number"
@@ -152,14 +151,17 @@ var PhoneNumberStep = React.createClass({
                             Your responses to these questions will be kept private.
                             Why do we ask for this information <a onClick={this.handle}>?</a>
                         </p>}>
-                <Form onSubmit={this.onSubmit}>
-                    <Label htmlFor="phone">Phone Number</Label>
-                    <Input type="tel" name="phone" />
-                    <Checkbox name="phoneConsent" />
-                    <Label htmlFor="phoneConsent">
-                        Yes, I consent to lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit.
-                    </Label>
+                <Form onValidSubmit={this.props.onNextStep}>
+                    <Input label="Phone Number" type="tel" name="phone" required />
+                    <Checkbox label={
+                                'Yes, I consent to lorem ipsum dolor sit amet, consectetur' +
+                                'adipiscing elit.'
+                              }
+                              name="phoneConsent"
+                              required="isFalse"
+                              validationErrors={{
+                                  isFalse: 'You must consent to lorem ipsum'
+                              }} />
                     <Button type="submit">Next Step</Button>
                 </Form>
             </FormStep>
@@ -167,13 +169,18 @@ var PhoneNumberStep = React.createClass({
     }
 });
 var OrganizationStep = React.createClass({
-    onSubmit: function () {
-        this.props.onNextStep();
+    getInitialState: function () {
+        return {
+            otherDisabled: true
+        };
+    },
+    onChooseOrganization: function (name, values) {
+        this.setState({otherDisabled: values.indexOf('Other') === -1});
     },
     render: function () {
         var organizationOptions = [
             'Elementary School', 'Middle School', 'High School', 'University / College',
-            'Museum', 'Library', 'Camp'
+            'Museum', 'Library', 'Camp', 'Other'
         ].map(function (type) { return {value: type, label: type}; });
         return (
             <FormStep title="Organization"
@@ -182,17 +189,20 @@ var OrganizationStep = React.createClass({
                             Your responses to these questions will be kept private.
                             Why do we ask for this information <a onClick={this.handle}>?</a>
                         </p>}>
-                <Form onSubmit={this.onSubmit}>
-                    <Label htmlFor="organization">Organization</Label>
-                    <Input type="text" name="organization" />
-                    <Label htmlFor="title">Title / Position</Label>
-                    <Input type="text" name="title" />
+                <Form onValidSubmit={this.props.onNextStep}>
+                    <Input label="Organization" type="text" name="organization" required />
+                    <Input label="Title / Position" type="text" name="title" required />
                     <CheckboxGroup label="Type of Organization"
-                                   options={organizationOptions} />
-                    <Checkbox name="organizationType" value="other" />
-                    <Input type="text" name="organizationTypeOther" />
-                    <Label htmlFor="website">Website URL (not required)</Label>
-                    <Input type="url" name="website" />
+                                   name="organizationType"
+                                   value={[]}
+                                   options={organizationOptions}
+                                   onChange={this.onChooseOrganization}
+                                   required />
+                    <Input type="text"
+                           name="organizationTypeOther"
+                           disabled={this.state.otherDisabled}
+                           required={!this.state.otherDisabled} />
+                    <Input label="Website URL (not required)" type="url" name="website" />
                     <Button type="submit">Next Step</Button>
                 </Form>
             </FormStep>
@@ -200,9 +210,6 @@ var OrganizationStep = React.createClass({
     }
 });
 var AddressStep = React.createClass({
-    onSubmit: function () {
-        this.props.onNextStep();
-    },
     render: function () {
         var countryOptions = Object.keys(COUNTRIES).map(function (code) {
             return {value: code, label: COUNTRIES[code]};
@@ -210,6 +217,8 @@ var AddressStep = React.createClass({
         var stateOptions = ['every','state','in','the','world'].map(function (name) {
             return {value: name, label: name};
         });
+        var stateDefault = 'Please select one of...';
+        stateOptions = [{label: stateDefault}].concat(stateOptions);
         return (
             <FormStep title="Address"
                       description={
@@ -217,19 +226,13 @@ var AddressStep = React.createClass({
                             Your responses to these questions will be kept private.
                             Why do we ask for this information <a onClick={this.handle}>?</a>
                         </p>}>
-                <Form onSubmit={this.onSubmit}>
-                    <Label htmlFor="addressCountry">Country</Label>
-                    <Select name="addressCountry" options={countryOptions} />
-                    <Label htmlFor="addressLine1">Address Line 1</Label>
-                    <Input type="text" name="addressLine1" />
-                    <Label htmlFor="addressLine2">Address Line 2</Label>
-                    <Input type="text" name="addressLine2" />
-                    <Label htmlFor="addressCity">City</Label>
-                    <Input type="text" name="addressCity" />
-                    <Label htmlFor="addressZip">Zip Code</Label>
-                    <Input type="text" name="addressZip" />
-                    <Label htmlFor="addressState">State / Province</Label>
-                    <Select name="addressState" options={stateOptions} />
+                <Form onValidSubmit={this.props.onNextStep}>
+                    <Select label="Country" name="addressCountry" options={countryOptions} required />
+                    <Input label="Address Line 1" type="text" name="addressLine1" required />
+                    <Input label="Address Line 2" type="text" name="addressLine2" />
+                    <Input label="City" type="text" name="addressCity" required />
+                    <Input label="ZIP Code" type="text" name="addressZip" required />
+                    <Select label="State / Province" name="addressState" options={stateOptions} required />
                     <Button type="submit">Next Step</Button>
                 </Form>
             </FormStep>
@@ -237,9 +240,6 @@ var AddressStep = React.createClass({
     }
 });
 var UseScratchStep = React.createClass({
-    onSubmit: function () {
-        this.props.onNextStep();
-    },
     render: function () {
         return (
             <FormStep title="How do you use Scratch?"
@@ -247,10 +247,10 @@ var UseScratchStep = React.createClass({
                         <p>
                             Tell us a little how you plan to use Scratch.
                             Why do we ask for this information <a onClick={this.handle}>?</a>
-                        </p>}>
-                <Form onSubmit={this.onSubmit}>
-                    <Label htmlFor="useScratch">How do you use Scratch?</Label>
-                    <TextArea name="useScratch" />
+                        </p>
+                      }>
+                <Form onValidSubmit={this.props.onNextStep}>
+                    <TextArea label="How do you use Scratch?" name="useScratch" required />
                     <Button type="submit">Next Step</Button>
                 </Form>
             </FormStep>
@@ -258,9 +258,6 @@ var UseScratchStep = React.createClass({
     }
 });
 var EmailStep = React.createClass({
-    onSubmit: function () {
-        this.props.onNextStep();
-    },
     render: function () {
         return (
             <FormStep title="Email Address"
@@ -269,11 +266,21 @@ var EmailStep = React.createClass({
                             We will send you a <strong>confirmation email</strong> that will
                             allow you to access your Scratch Teacher Account.
                         </p>}>
-                <Form onSubmit={this.onSubmit}>
-                    <Label htmlFor="email">Email</Label>
-                    <Input type="text" name="email" />
-                    <Label htmlFor="confirmEmail">Confirm Email</Label>
-                    <Input type="text" name="confirmEmail" />
+                <Form onValidSubmit={this.props.onNextStep}>
+                    <Input label="Email"
+                           type="text"
+                           name="email"
+                           validations="isEmail"
+                           validationError="Please enter a valid email address"
+                           required />
+                    <Input label="Confirm Email"
+                           type="text"
+                           name="confirmEmail"
+                           validations="equalsField:email"
+                           validationErrors={{
+                               equalsField: 'The emails do not match'
+                           }}
+                           required />
                     <Button type="submit">Next Step</Button>
                 </Form>
             </FormStep>
@@ -293,7 +300,7 @@ var LastStep = React.createClass({
                     <p>
                         Click the link in the confirmation email that we
                         sent to the following address:<br />
-                        <strong>{this.state.email}</strong>
+                        <strong>{this.props.formData.email}</strong>
                     </p>
                     <div className="box-footer">
                         <a onClick="">Wrong email?</a>
@@ -340,15 +347,15 @@ var TeacherRegistration = React.createClass({
             <div {...this.props} className={classes}>
                 <FormSet {... this.props}
                          step={this.state.step}>
-                    <UsernameStep onNextStep={this.advanceStep} />
-                    <DemographicsStep onNextStep={this.advanceStep} />
-                    <NameStep onNextStep={this.advanceStep} />
-                    <PhoneNumberStep onNextStep={this.advanceStep} />
-                    <OrganizationStep onNextStep={this.advanceStep} />
-                    <AddressStep onNextStep={this.advanceStep} />
-                    <UseScratchStep onNextStep={this.advanceStep} />
-                    <EmailStep onNextStep={this.advanceStep} />
-                    <LastStep />
+                    <UsernameStep formData={this.state.formData} onNextStep={this.advanceStep} />
+                    <DemographicsStep formData={this.state.formData} onNextStep={this.advanceStep} />
+                    <NameStep formData={this.state.formData} onNextStep={this.advanceStep} />
+                    <PhoneNumberStep formData={this.state.formData} onNextStep={this.advanceStep} />
+                    <OrganizationStep formData={this.state.formData} onNextStep={this.advanceStep} />
+                    <AddressStep formData={this.state.formData} onNextStep={this.advanceStep} />
+                    <UseScratchStep formData={this.state.formData} onNextStep={this.advanceStep} />
+                    <EmailStep formData={this.state.formData} onNextStep={this.advanceStep} />
+                    <LastStep formData={this.state.formData} />
                 </FormSet>
             </div>
         );

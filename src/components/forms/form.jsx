@@ -8,6 +8,11 @@ for (var validation in validations) {
 }
 
 var Form = React.createClass({
+    getDefaultProps: function () {
+        return {
+            noValidate: true
+        };
+    },
     render: function () {
         var classes = classNames(
             'form',
