@@ -90,5 +90,11 @@
         "pattern": "^/community_guidelines$",
         "view": "guidelines/guidelines",
         "title": "Scratch Community Guidelines"
+    },
+    {
+        "name": "privacypolicy",
+        "pattern": "^/privacy_policy/?$",
+        "view": "privacypolicy/privacypolicy",
+        "title": "Privacy Policy"
     }
 ]
