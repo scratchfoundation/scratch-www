@@ -35,7 +35,22 @@ VersionPlugin.prototype.apply = function (compiler) {
 
 // Prepare all entry points
 var entry = {
-    init: './src/init.js'
+    common: [
+        // Polyfills
+        './polyfill/b64.min.js',
+        './polyfill/custom-event.min.js',
+        './polyfill/es5-shim.min.js',
+        './polyfill/intl.min.js',
+        './polyfill/match-media.min.js',
+        // Vendor
+        'raven-js',
+        'react',
+        'react-dom',
+        'react-intl',
+        'redux',
+        // Init
+        './src/init.js'
+    ]
 };
 routes.forEach(function (route) {
     if (!route.redirect) {
@@ -47,13 +62,6 @@ routes.forEach(function (route) {
 module.exports = {
     entry: entry,
     devtool: 'source-map',
-    externals: {
-        'react': 'React',
-        'react/addons': 'React',
-        'react-dom': 'ReactDOM',
-        'react-intl': 'ReactIntl',
-        'redux': 'Redux'
-    },
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'js/[name].bundle.js'
@@ -97,10 +105,15 @@ module.exports = {
             {from: 'intl', to: 'js'}
         ]),
         new webpack.optimize.UglifyJsPlugin({
+            mangle: true,
             compress: {
                 warnings: false
             }
         }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': '"' + process.env.NODE_ENV + '"'
+        }),
+        new webpack.optimize.CommonsChunkPlugin('common', 'js/common.bundle.js'),
         new webpack.optimize.OccurenceOrderPlugin()
     ]
 };
