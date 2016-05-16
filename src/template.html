@@ -75,5 +75,21 @@
             });
             ga('send', 'pageview');
         </script>
+
+        <!-- translate title element -->
+        <script>
+            var loc = window._locale || 'en';
+            if (typeof window._messages !== 'undefined' && loc !== 'en') {
+                if (typeof window._messages[loc] === 'undefined') {
+                    loc = loc.split('-')[0];
+                }
+                if (typeof window._messages[loc] !== 'undefined') {
+                    var localizedTitle = window._messages[loc]['general.' + '{{title}}'.toLowerCase()] || '';
+                    if (localizedTitle.length > 0) {
+                        document.title = 'Scratch - ' + localizedTitle;
+                    }
+                }
+            }
+        </script>
     </body>
 </html>
