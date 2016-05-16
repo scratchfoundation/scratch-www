@@ -18,6 +18,12 @@
         "title": "Components"
     },
     {
+        "name": "developers",
+        "pattern": "^/developers/?$",
+        "view": "developers/developers",
+        "title": "Developers"
+    },
+    {
         "name": "hoc",
         "pattern": "^/hoc/?$",
         "view": "hoc/hoc",
