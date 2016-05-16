@@ -1,5 +1,4 @@
 var React = require('react');
-var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var Box = require('../../components/box/box.jsx');
@@ -153,8 +152,8 @@ var Privacypolicy = React.createClass({
                         You can update your password, email address, and country through
                          the <a href="/account/password_change">Account Settings</a> page.
                          You can also reset your password through the
-                          <a href="/account/password_reset">Account Reset</a> 
-                         page. You cannot change your username, but you can make a new 
+                          <a href="/account/password_reset">Account Reset</a>
+                         page. You cannot change your username, but you can make a new
                          account and manually copy your projects to the new account.
                     </p>
                     <p>
@@ -184,7 +183,7 @@ var Privacypolicy = React.createClass({
                          on the Scratch website. We encourage you to review our Privacy
                          Policy on a regular basis.
                     </p>
-                </Box>  
+                </Box>
             </div>
         );
     }
