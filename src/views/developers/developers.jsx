@@ -166,7 +166,7 @@ var Developers = React.createClass({
                                         We believe that the learning process is inherently iterative. Tinkerers{' '}
                                         start by exploring and experimenting, then revising and refining their{' '}
                                         goals and creations. To support this style of interaction, we design{' '}
-                                        our interfacesto encourage quick experimentation and rapid cycles of iteration.
+                                        our interfaces to encourage quick experimentation and rapid cycles of iteration.
                                     </dd>
                                 </dl>
                             </div>
