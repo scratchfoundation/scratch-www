@@ -29,13 +29,13 @@ var extraAppRoutes = [
  */
 var getStaticPaths = function (pathToStatic) {
     var staticPaths = glob.sync(path.resolve(__dirname, pathToStatic));
-    return staticPaths.map(function (pathName) {
+    return staticPaths.filter(function (pathName) {
         // Exclude view html, resolve everything else in the build
-        if (path.extname(pathName) !== '.html') {
-            // Reduce absolute path to relative paths like '/js'
-            var base = path.dirname(path.resolve(__dirname, pathToStatic));
-            return '^' + pathName.replace(base, '') + (path.extname(pathName) ? '' : '/');
-        }
+        return path.extname(pathName) !== '.html';
+    }).map(function (pathName) {
+        // Reduce absolute path to relative paths like '/js'
+        var base = path.dirname(path.resolve(__dirname, pathToStatic));
+        return '^' + pathName.replace(base, '') + (path.extname(pathName) ? '' : '/');
     });
 };
 
