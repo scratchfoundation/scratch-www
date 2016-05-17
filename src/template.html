@@ -38,21 +38,14 @@
             };
         </script>
 
-        <!-- Polyfill & Initialize (Session & Localization)-->
-        <script src="/js/lib/polyfill.min.js"></script>
-        <script src="/js/init.bundle.js"></script>
     </head>
 
     <body>
         <div id="app"></div>
 
+        <!-- Vendor & Initialize (Session & Localization)-->
+        <script src="/js/common.bundle.js"></script>
         <!-- Scripts -->
-        <script src="/js/lib/react{{min}}.js"></script>
-        <script src="/js/lib/react-dom{{min}}.js"></script>
-        <script src="/js/lib/redux{{min}}.js"></script>
-        <script src="/js/lib/react-intl-with-locales{{min}}.js"></script>
-        <script src="/js/lib/raven.min.js"></script>
-
         <script src="/js/{{name}}.intl.js"></script>
         <script src="/js/{{name}}.bundle.js"></script>
 
