@@ -110,7 +110,8 @@ module.exports = {
             }
         }),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': '"' + process.env.NODE_ENV + '"'
+            'process.env.NODE_ENV': '"' + (process.env.NODE_ENV || 'development') + '"',
+            'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"'
         }),
         new webpack.optimize.CommonsChunkPlugin('common', 'js/common.bundle.js'),
         new webpack.optimize.OccurenceOrderPlugin()
