@@ -2879,7 +2879,10 @@ var IntlProvider = (function (_Component) {
             config[name] = _this2.props[name];
             return config;
         }, {});
-
+        if(config.locale === 'zh-cn'||config.locale ==='zh-tw')
+        {
+           config.locale = 'zh';
+        }
         if (!_localeDataRegistry.hasLocaleData(config.locale)) {
             var _config = config;
             var locale = _config.locale;
