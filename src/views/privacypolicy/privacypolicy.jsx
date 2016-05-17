@@ -18,7 +18,7 @@ var Privacypolicy = React.createClass({
                          to explain what information we collect, how we use it,
                          and what we're doing to keep it safe. If you have any
                          questions regarding this privacy policy, you can
-                         <a href="/contact-us">contact us</a>.
+                         <a href="/contact-us"> contact us</a>.
                     </p>
                     <p><i>
                         Please do not share personal contact information, such as
@@ -49,7 +49,7 @@ var Privacypolicy = React.createClass({
                          Scratch Team is responsible for moderation, we have access to all
                          content stored on the Scratch website, including unshared projects.
                          If you prefer to work on projects in complete privacy, you can use
-                         either the <a href="/scratch2download">Scratch 2 offline editor</a>
+                         either the <a href="/scratch2download">Scratch 2 offline editor </a>
                          or <a href="/scratch_1.4">Scratch 1.4</a>.
                     </p>
                     <p>
@@ -104,7 +104,7 @@ var Privacypolicy = React.createClass({
                         <li>
                             Parents and guardians who register their under-13 year olds for
                              Scratch may also receive additional updates from the
-                             <a href="http://www.codetolearn.org/">Scratch Foundation</a>,
+                             <a href="http://www.codetolearn.org/"> Scratch Foundation</a>,
                              a non-profit that supports Scratch educational initiatives.
                              The Scratch Foundation will never sell or share your email
                              address without your permission. You can unsubscribe from these
@@ -123,7 +123,7 @@ var Privacypolicy = React.createClass({
                              how people learn with Scratch. The results of this research are
                              shared with educators and researchers through conferences,
                              journals, and other publications. You can find out more on our
-                             <a href="/info/research">Research page</a>.
+                             <a href="/info/research"> Research page</a>.
                         </li>
                         <li>
                             We may disclose some of the information we collect to third-party
@@ -152,7 +152,7 @@ var Privacypolicy = React.createClass({
                         You can update your password, email address, and country through
                          the <a href="/account/password_change">Account Settings</a> page.
                          You can also reset your password through the
-                          <a href="/account/password_reset">Account Reset</a>
+                          <a href="/account/password_reset">Account Reset </a>
                          page. You cannot change your username, but you can make a new
                          account and manually copy your projects to the new account.
                     </p>
