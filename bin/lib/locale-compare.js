@@ -125,15 +125,24 @@ Helpers.writeTranslationsToJS = function (outputDir, viewName, translationObject
     fs.writeFileSync(outputDir + '/' + viewName + '.intl.js', fileString);
 };
 
-Helpers.getIdsForView = function (viewName, viewFile, localeObject, idsWithICU, icuWithIds) {
-    var ids = JSON.parse(fs.readFileSync(viewFile, 'utf8'));
-    localeObject[viewName] = {
-        en: ids
-    };
+// Returns a FormattedMessage id with english string as value. Use for default values in translations
+// Sample structure: { 'general-general.blah': 'blah', 'about-about.blah': 'blahblah' }
+Helpers.idToICUMap = function (viewName, ids) {
+    var idsToICU = {};
     for (var id in ids) {
-        idsWithICU[viewName + '-' + id] = ids[id];
-        icuWithIds[ids[id]] = viewName + '-' + id; // add viewName to identifier for later
+        idsToICU[viewName + '-' + id] = ids[id];
     }
+    return idsToICU;
+};
+
+// Reuturns reverse (i.e. english string with message key as the value) object for searching po files.
+// Sample structure: { 'blah': 'general-general.blah', 'blahblah': 'about-about.blah' }
+Helpers.icuToIdMap = function (viewName, ids) {
+    var icuToIds = {};
+    for (var id in ids) {
+        icuToIds[ids[id]] = viewName + '-' + id;
+    }
+    return icuToIds;
 };
 
 module.exports = Helpers;

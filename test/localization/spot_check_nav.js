@@ -16,10 +16,6 @@ var path = require('path');
 var tap = require('tap');
 
 var localeCompare = require('../../bin/lib/locale-compare');
-var viewLocales = {};
-var idsWithICU = {};
-var icuWithIds = {};
-
 var languagesToCheck = [
     'he', 'zh-cn', 'ja', 'pt-br', 'pl', 'nb'
 ];
@@ -29,14 +25,12 @@ var idsToCheck = [
 ];
 
 
-// Test nav for real languages.
-localeCompare.getIdsForView(
-    'general',
-    path.resolve(__dirname, '../../src/l10n.json'),
-    viewLocales,
-    idsWithICU,
-    icuWithIds
-);
+var ids = path.resolve(__dirname, '../../src/l10n.json');
+var viewLocales = {
+    general: {en: ids}
+};
+var idsWithICU = localeCompare.idToICUMap('general', ids);
+var icuWithIds = localeCompare.icuToIdMap('general', ids);
 var md5WithIds = localeCompare.getMD5Map(icuWithIds);
 
 tap.test('spotCheckNavBar', function (t) {

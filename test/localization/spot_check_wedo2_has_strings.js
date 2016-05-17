@@ -9,19 +9,16 @@ var tap = require('tap');
 var languages = require('../../languages.json');
 var localeCompare = require('../../bin/lib/locale-compare');
 
-tap.test('spotCheckAboutStrings', function (t) {
+tap.test('spotCheckWedo2Strings', function (t) {
     var isoCodes = Object.keys(languages);
     isoCodes.splice(isoCodes.indexOf('en'), 1);
-    var viewLocales = {};
-    var idsWithICU = {};
-    var icuWithIds = {};
-    localeCompare.getIdsForView(
-        'wedo2',
-        path.resolve(__dirname, '../../src/views/wedo2/l10n.json'),
-        viewLocales,
-        idsWithICU,
-        icuWithIds
-    );
+    
+    var ids = path.resolve(__dirname, '../../views/wedo2/l10n.json');
+    var viewLocales = {
+        wedo2: {en: ids}
+    };
+    var idsWithICU = localeCompare.idToICUMap('wedo2', ids);
+    var icuWithIds = localeCompare.icuToIdMap('wedo2', ids);
     var md5WithIds = localeCompare.getMD5Map(icuWithIds);
     var keysToCheck = Object.keys(merge(viewLocales['wedo2']['en'])).sort();
     for (var i in isoCodes) {

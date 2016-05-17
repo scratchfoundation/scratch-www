@@ -12,16 +12,13 @@ var localeCompare = require('../../bin/lib/locale-compare');
 tap.test('spotCheckAboutStrings', function (t) {
     var isoCodes = Object.keys(languages);
     isoCodes.splice(isoCodes.indexOf('en'), 1);
-    var viewLocales = {};
-    var idsWithICU = {};
-    var icuWithIds = {};
-    localeCompare.getIdsForView(
-        'about',
-        path.resolve(__dirname, '../../src/views/about/l10n.json'),
-        viewLocales,
-        idsWithICU,
-        icuWithIds
-    );
+    
+    var ids = path.resolve(__dirname, '../../views/about/l10n.json');
+    var viewLocales = {
+        about: {en: ids}
+    };
+    var idsWithICU = localeCompare.idToICUMap('about', ids);
+    var icuWithIds = localeCompare.icuToIdMap('about', ids);
     var md5WithIds = localeCompare.getMD5Map(icuWithIds);
     var keysToCheck = Object.keys(merge(viewLocales['about']['en'])).sort();
     for (var i in isoCodes) {
