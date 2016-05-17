@@ -1,12 +1,13 @@
 @import "../../colors";
 @import "../../frameless";
-@import "../../typography";
 
 $developer-spot: $ui-aqua;
 
 #view {
     padding: 0;
+}
 
+.developers {
     .title-banner {
         &.masthead {
             background-color: $developer-spot;
