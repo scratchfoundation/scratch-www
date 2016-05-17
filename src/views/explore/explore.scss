@@ -15,11 +15,33 @@ $base-bg: $ui-white;
         }
     }   
 
-    .select {
+    .categories {
         display: inline-block;
-        margin: auto 20px auto auto;
-        width:100px;
-        color: $header-gray;
+        background-color: $ui-gray;
+        padding-left: 10px;
+        width: calc(100% - 10px);
+        justify-content: left;
+
+        li {
+            opacity: .75;
+            background-color: $ui-white;
+            color: $header-gray;
+    
+            &:hover {
+                opacity: 1;
+                border-color: $active-dark-gray;
+            }
+        }
+
+        li.active {
+            opacity: 1;
+            border-color: $active-dark-gray;
+
+            &:hover {
+                opacity: 1;
+                border-color: $active-dark-gray;
+            }
+        }
     }
 
     #projectBox {

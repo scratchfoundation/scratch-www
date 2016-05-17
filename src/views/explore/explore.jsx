@@ -8,7 +8,6 @@ var Api = require('../../mixins/api.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var Box = require('../../components/box/box.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
-var Select = require('../../components/forms/select.jsx');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 var Grid = require('../../components/grid/grid.jsx');
 
@@ -21,7 +20,7 @@ var Explore = injectIntl(React.createClass({
         Api
     ],
     getDefaultProps: function () {
-        var tabOptions = ['all','animations','art','games','music','stories'];
+        var categoryOptions = ['all','animations','art','games','music','stories'];
         var typeOptions = ['projects','studios'];
 
         var pathname = window.location.pathname.toLowerCase();
@@ -29,16 +28,16 @@ var Explore = injectIntl(React.createClass({
             pathname = pathname.substring(0,pathname.length-1);
         }
         var slash = pathname.lastIndexOf('/');
-        var currentTab = pathname.substring(slash+1,pathname.length);
+        var currentCategory = pathname.substring(slash+1,pathname.length);
         var typeStart = pathname.indexOf('explore/');
         var type = pathname.substring(typeStart+8,slash);
-        if (tabOptions.indexOf(currentTab) == -1 || typeOptions.indexOf(type) == -1) {
+        if (categoryOptions.indexOf(currentCategory) == -1 || typeOptions.indexOf(type) == -1) {
             window.location = window.location.origin + '/explore/projects/all/';
         }
 
         return {
-            tab: currentTab,
-            acceptableTabs: tabOptions,
+            category: currentCategory,
+            acceptableTabs: categoryOptions,
             acceptableTypes: typeOptions,
             itemType: type,
             loadNumber: 16
@@ -54,13 +53,13 @@ var Explore = injectIntl(React.createClass({
         this.getExploreMore();
     },
     getExploreMore: function () {
-        var tabText = '';
+        var qText = '';
         if (this.props.tab != 'all') {
-            tabText = '&q=' + this.props.tab;
+            qText = '&q=' + this.props.category;
         }
         this.api({
             uri: '/search/' + this.props.itemType
-                + '?limit=' + this.props.loadNumber + '&offset=' + this.state.offset + tabText
+                + '?limit=' + this.props.loadNumber + '&offset=' + this.state.offset + qText
         }, function (err, body) {
             if (!err) {
                 var loadedSoFar = this.state.loaded;
@@ -81,16 +80,35 @@ var Explore = injectIntl(React.createClass({
         }
         window.location = window.location.origin + '/explore/'+newType+'/'+this.props.tab;
     },
-    getTab: function (type) {
-        var allTab = <a href={'/explore/'+this.props.itemType+'/'+type+'/'}>
+    getBubble: function (type) {
+        var allBubble = <a href={'/explore/'+this.props.itemType+'/'+type+'/'}>
                         <li>
                             <FormattedMessage
                                 id={'explore.' + type}
                                 defaultMessage={type.charAt(0).toUpperCase() + type.slice(1)} />
                         </li>
                     </a>;
-        if (this.props.tab==type) {
-            allTab = <a href={'/explore/'+this.props.itemType+'/' + type + '/'}>
+        if (this.props.category==type) {
+            allBubble = <a href={'/explore/'+this.props.itemType+'/' + type + '/'}>
+                        <li className='active'>
+                            <FormattedMessage
+                                id={'explore.' + type}
+                                defaultMessage={type.charAt(0).toUpperCase() + type.slice(1)} />
+                        </li>
+                    </a>;
+        }
+        return allBubble;
+    },
+    getTab: function (type) {
+        var allTab = <a href={'/explore/'+type+'/'+this.props.category+'/'}>
+                        <li>
+                            <FormattedMessage
+                                id={'explore.' + type}
+                                defaultMessage={type.charAt(0).toUpperCase() + type.slice(1)} />
+                        </li>
+                    </a>;
+        if (this.props.itemType==type) {
+            allTab = <a href={'/explore/'+type+'/' + this.props.category + '/'}>
                         <li className='active'>
                             <FormattedMessage
                                 id={'explore.' + type}
@@ -104,25 +122,18 @@ var Explore = injectIntl(React.createClass({
         return (
             <div>
                 <div className='outer'>
-                    <Box title={'Explore'}
-                        moreProps={{
-                            className: 'tabs'
-                        }}>
+                    <Box title={'Explore'}>
+                        <SubNavigation className='categories'>
+                            {this.getBubble('all')}
+                            {this.getBubble('animations')}
+                            {this.getBubble('art')}
+                            {this.getBubble('games')}
+                            {this.getBubble('music')}
+                            {this.getBubble('stories')}
+                        </SubNavigation>
                         <Tabs>
-                            {this.getTab('all')}
-                            {this.getTab('animations')}
-                            {this.getTab('art')}
-                            {this.getTab('games')}
-                            {this.getTab('music')}
-                            {this.getTab('stories')}
-                            <Select onChange={this.changeItemType} name="sort" defaultValue={this.props.itemType}>
-                                <option value="projects" key="projects">
-                                    Projects
-                                </option>
-                                <option value="studios" key="studios">
-                                    Studios
-                                </option>
-                            </Select>
+                            {this.getTab('projects')}
+                            {this.getTab('studios')}
                         </Tabs>
                         <div id='projectBox' key='projectBox'>
                             <Grid items={this.state.loaded} itemType={this.props.itemType}

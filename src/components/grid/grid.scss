@@ -1,10 +1,8 @@
 @import "../../frameless";
 
 .grid {
-    display: flex;
+    display: inline-block;
     padding: 12px;
-    flex-direction: row;
-    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
 
