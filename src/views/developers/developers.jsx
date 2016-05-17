@@ -55,6 +55,7 @@ var Developers = React.createClass({
     
                 <div className="inner">
                     <section id="projects">
+                        <span className="nav-spacer"></span>
                         <h2>Projects</h2>
                         <p className="intro">
                             The following projects are open source and available for any purpose.
@@ -99,6 +100,7 @@ var Developers = React.createClass({
                     </section>
 
                     <section id="principles">
+                        <span className="nav-spacer"></span>
                         <h2>Principles</h2>
                         <p className="intro">
                             We created Scratch to empower young people to think creatively, reason systematically,{' '}
@@ -172,6 +174,7 @@ var Developers = React.createClass({
                     </section>
 
                     <section id="donate">
+                        <span className="nav-spacer"></span>
                         <h2>Donate</h2>
                         <p>
                             We are pleased to provide Scratch free of charge. If you enjoy using Scratch, please{' '}
@@ -188,6 +191,7 @@ var Developers = React.createClass({
                     </section>
 
                     <section id="partners">
+                        <span className="nav-spacer"></span>
                         <h3>Partners</h3>
                         <p>
                             The creation and maintenance of this open source code would not be possible without{' '}
@@ -206,6 +210,7 @@ var Developers = React.createClass({
                 <TitleBanner className="faq-banner">
                     <div className="inner">
                         <section id="faq">
+                            <span className="nav-spacer"></span>
                             <h3>FAQ</h3>
                             <FlexRow className="three-col-row">
                                 <div className="faq column">

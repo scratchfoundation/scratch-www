@@ -98,6 +98,19 @@ $developer-spot: $ui-aqua;
 
     #projects,
     #principles,
+    #donate,
+    #partners,
+    #faq {
+        .nav-spacer {
+            display: block;
+            visibility: hidden;
+            margin-top: -50px; // height of  nav bar
+            height: 50px;
+        }
+    }
+
+    #projects,
+    #principles,
     #donate {
 
         h3 {
