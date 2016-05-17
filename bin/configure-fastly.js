@@ -19,8 +19,6 @@ var extraAppRoutes = [
     // Homepage with querystring.
     // TODO: Should this be added for every route?
     '^/\\?',
-    // Version output by build
-    '/version\.txt$',
     // View html
     '^/[^\/]*\.html'
 ];
@@ -32,9 +30,12 @@ var extraAppRoutes = [
 var getStaticPaths = function (pathToStatic) {
     var staticPaths = glob.sync(path.resolve(__dirname, pathToStatic));
     return staticPaths.map(function (pathName) {
-        // Reduce absolute path to relative paths like '/js'
-        var base = path.dirname(path.resolve(__dirname, pathToStatic));
-        return '^' + pathName.replace(base, '') + (path.extname(pathName) ? '' : '/');
+        // Exclude view html, resolve everything else in the build
+        if (path.extname(pathName) !== '.html') {
+            // Reduce absolute path to relative paths like '/js'
+            var base = path.dirname(path.resolve(__dirname, pathToStatic));
+            return '^' + pathName.replace(base, '') + (path.extname(pathName) ? '' : '/');
+        }
     });
 };
 
@@ -105,7 +106,7 @@ async.auto({
         });
     },
     notPassRequestCondition: ['version', function (cb, results) {
-        var statement = getAppRouteCondition('../static/*', routes, extraAppRoutes);
+        var statement = getAppRouteCondition('../build/*', routes, extraAppRoutes);
         var condition = {
             name: NOT_PASS_REQUEST_CONDITION_NAME,
             statement: statement,
