@@ -105,7 +105,6 @@ module.exports = {
             {from: 'intl', to: 'js'}
         ]),
         new webpack.optimize.UglifyJsPlugin({
-            mangle: true,
             compress: {
                 warnings: false
             }
