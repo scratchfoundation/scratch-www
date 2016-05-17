@@ -1,0 +1,245 @@
+@import "../../colors";
+@import "../../frameless";
+@import "../../typography";
+
+$developer-spot: $ui-aqua;
+
+#view {
+    padding: 0;
+
+    .title-banner {
+        &.masthead {
+            background-color: $developer-spot;
+            padding-bottom: 0;
+
+            h1 {
+                margin: 0 0 2rem 0;
+                text-align: left;
+                color: $ui-white;
+            }
+
+            p {
+                margin: 0;
+                width: $cols6;
+                text-align: left;
+                color: $ui-white;
+
+                a {
+                    border-bottom: 1px solid $ui-white;
+                    color: $ui-white;
+                }
+            }
+
+            .band {
+                $band-color: hsla(360, 100, 100, .15);
+                
+                margin-top: 2rem;
+                background-color: $band-color;
+                padding: 1rem 0;
+            }
+
+            .sub-nav {
+                text-align: left;
+                justify-content: flex-start;
+
+                li {
+                    margin: 0 .5rem 0 0;
+                }
+            }
+        }
+
+        &.faq-banner {
+            margin-bottom: 0;
+            background-color: $ui-gray;
+        }
+    }
+
+
+    .flex-row {
+        &.sidebar-row {
+            margin: 2rem 0;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            .body-copy {
+                width: $cols8;
+            }
+
+            .sidebar {
+                width: $cols3;
+            }
+        }
+
+        &.three-col-row {
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+
+            .column {
+                $column-margin: 1rem;
+
+                margin: $column-margin;
+                width: calc(#{$cols4} - (#{$column-margin} * 2));
+
+                p {
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    section {
+        margin-bottom: 3rem;
+
+        p {
+            max-width: $cols8;
+        }
+    }
+
+    #projects,
+    #principles,
+    #donate,
+    #partners,
+    #faq {
+        .nav-spacer {
+            display: block;
+            visibility: hidden;
+            margin-top: -50px; // height of  nav bar
+            height: 50px;
+        }
+    }
+
+    #projects,
+    #principles,
+    #donate {
+
+        h3 {
+            border-bottom: 1px solid $ui-border;
+        }
+
+        dl {
+            dt {
+                margin-bottom: .25rem;
+            }
+
+            dd {
+                margin-bottom: 1.25rem;
+                margin-left: 0;
+            }
+        }
+    }
+
+    #donate {
+        border-bottom: 1px solid $ui-border;
+        padding-bottom: 2rem;
+    }
+
+    #partners {
+        text-align: center;
+
+        p {
+            margin: 0 auto;
+            margin-bottom: 2rem;
+        }
+
+        .logos {
+            justify-content: center;
+
+            .logo {
+                margin: 10px;
+                width: $cols2;
+            }
+        }
+    }
+
+    #faq {
+        border-bottom: 1px solid $ui-border;
+        padding-bottom: 2rem;
+
+        h3 {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        p {
+            color: $type-gray;
+        }
+    }
+
+}
+
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    #view {
+        text-align: left;
+    }
+
+    .title-banner {
+        &.masthead {
+            padding-bottom: 2rem;
+        }
+
+        .band {
+            display: none;
+        }
+    }
+
+    .flex-row {
+        &.sidebar-row {
+
+            .body-copy {
+                width: 100%;
+            }
+        }
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    #view {
+        text-align: left;
+    }
+
+    .flex-row {
+        &.sidebar-row {
+
+            .body-copy {
+                width: 100%;
+            }
+
+            .sidebar {
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+//8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    #view {
+        text-align: left;
+    }
+
+    .flex-row {
+        &.sidebar-row {
+
+            .body-copy {
+                width: 100%;
+            }
+
+            .sidebar {
+                margin: 0 auto;
+            }
+        }
+    }
+
+    section {
+        p {
+            width: 100%;
+        }
+    }
+}
+
+
+
+
