@@ -116,7 +116,7 @@ var Footer = React.createClass({
                         </dd>
                         <dd>
                             <a href="/privacy_policy/">
-                                <FormattedMessage id='privacyPolicy' />
+                                <FormattedMessage id='general.privacyPolicy' />
                             </a>
                         </dd>
                         <dd>
