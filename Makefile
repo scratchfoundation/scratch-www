@@ -24,9 +24,6 @@ deploy:
 	@make build
 	@make sync
 
-tag:
-	echo $(GIT_VERSION) > ./build/version.txt
-
 translations:
 	./bin/build-locales intl
 
