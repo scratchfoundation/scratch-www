@@ -17,14 +17,14 @@ var Actions = {
         return {
             type: Types.SET_SESSION_ERROR,
             error: error
-        }
+        };
     },
 
     setSession: function (session) {
         return {
             type: Types.SET_SESSION,
             session: session
-        }
+        };
     },
 
     refreshSession: function () {
@@ -37,7 +37,7 @@ var Actions = {
 
                 if (typeof body !== 'undefined') {
                     if (body.banned) {
-                        return window.location = url;
+                        return window.location = body.redirectUrl;
                     } else {
                         dispatch(Actions.getToken());
                         dispatch(Actions.setSession(body));
@@ -62,7 +62,7 @@ var Actions = {
                     return dispatch(Actions.setToken(sessionData.token));
                 });
             });
-        }
+        };
     },
 
     setToken: function (token) {

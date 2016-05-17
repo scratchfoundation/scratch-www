@@ -62,18 +62,9 @@ test:
 	@echo ""
 
 lint:
-	$(ESLINT) ./*.js
-	$(ESLINT) ./dev-server/*.js
-	$(ESLINT) ./bin/**/*.js
-	$(ESLINT) ./src/*.js
-	$(ESLINT) ./src/mixins/*.jsx
-	$(ESLINT) ./src/views/**/*.jsx
-	$(ESLINT) ./src/components/**/*.jsx
-	$(ESLINT) ./src/components/**/**/*.jsx
+	$(ESLINT) . --ext .js,.jsx,.json
 	$(SASSLINT) ./src/*.scss
-	$(SASSLINT) ./src/views/**/*.scss
-	$(SASSLINT) ./src/components/**/*.scss
-	$(SASSLINT) ./src/components/**/**/*.scss
+	$(SASSLINT) ./src/**/*.scss
 
 unit:
 	$(TAP) ./test/unit/*.js

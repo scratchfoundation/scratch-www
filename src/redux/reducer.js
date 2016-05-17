@@ -9,13 +9,13 @@ var sessionReducer = function (state, action) {
         state = {};
     }
     switch (action.type) {
-        case actionTypes.SET_SESSION:
-            return action.session;
-        case actionTypes.SET_SESSION_ERROR:
-            // TODO: do something with action.error
-            return state;
-        default:
-            return state;
+    case actionTypes.SET_SESSION:
+        return action.session;
+    case actionTypes.SET_SESSION_ERROR:
+        // TODO: do something with action.error
+        return state;
+    default:
+        return state;
     }
 };
 
@@ -25,13 +25,13 @@ var tokenReducer = function (state, action) {
         state = '';
     }
     switch (action.type) {
-        case actionTypes.SET_TOKEN:
-            return action.token;
-        case actionTypes.SET_TOKEN_ERROR:
-            // TODO: do something with the error
-            return state;
-        default:
-            return state;
+    case actionTypes.SET_TOKEN:
+        return action.token;
+    case actionTypes.SET_TOKEN_ERROR:
+        // TODO: do something with the error
+        return state;
+    default:
+        return state;
     }
 };
 
