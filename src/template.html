@@ -38,6 +38,8 @@
             };
         </script>
 
+        <!-- Polyfills -->
+        <script src="/js/polyfill.min.js"></script>
     </head>
 
     <body>
@@ -48,13 +50,6 @@
         <!-- Scripts -->
         <script src="/js/{{name}}.intl.js"></script>
         <script src="/js/{{name}}.bundle.js"></script>
-
-        <!-- Error logging (Sentry) -->
-        <script>
-            if ('{{&sentry_dsn}}' !== '') {
-                Raven.config('{{&sentry_dsn}}').install();
-            }
-        </script>
 
         <!-- Analytics (GA) -->
         <script>
