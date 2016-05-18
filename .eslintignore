@@ -2,3 +2,4 @@ node_modules/*
 static/*
 build/*
 intl/*
+**/*.min.js
