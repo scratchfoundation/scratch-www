@@ -19,8 +19,5 @@ module.exports = {
     og_image_height: 860,
 
     // Analytics & Monitoring
-    ga_tracker: process.env.GA_TRACKER || '',
-
-    // Use minified JS libraries
-    min: (process.env.NODE_ENV === 'production') ? '.min' : '',
+    ga_tracker: process.env.GA_TRACKER || ''
 };
