@@ -36,12 +36,6 @@ VersionPlugin.prototype.apply = function (compiler) {
 // Prepare all entry points
 var entry = {
     common: [
-        // Polyfills
-        './polyfill/b64.min.js',
-        './polyfill/custom-event.min.js',
-        './polyfill/es5-shim.min.js',
-        './polyfill/intl.min.js',
-        './polyfill/match-media.min.js',
         // Vendor
         'raven-js',
         'react',
