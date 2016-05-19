@@ -16,10 +16,6 @@ var path = require('path');
 var tap = require('tap');
 
 var localeCompare = require('../../bin/lib/locale-compare');
-var viewLocales = {};
-var idsWithICU = {};
-var icuWithIds = {};
-
 var languagesToCheck = [
     'he', 'zh-cn', 'ja', 'pt-br', 'pl', 'nb'
 ];
@@ -29,14 +25,12 @@ var idsToCheck = [
 ];
 
 
-// Test nav for real languages.
-localeCompare.getIdsForView(
-    'general',
-    path.resolve(__dirname, '../../src/l10n.json'),
-    viewLocales,
-    idsWithICU,
-    icuWithIds
-);
+var ids = require(path.resolve(__dirname, '../../src/l10n.json'));
+var viewLocales = {
+    general: {en: ids}
+};
+var idsWithICU = localeCompare.idToICUMap('general', ids);
+var icuWithIds = localeCompare.icuToIdMap('general', ids);
 var md5WithIds = localeCompare.getMD5Map(icuWithIds);
 
 tap.test('spotCheckNavBar', function (t) {
@@ -57,20 +51,19 @@ tap.test('spotCheckNavBar', function (t) {
 // Test splash items for fake language.
 var fakeLanguageIdsToCheck = ['news.scratchNews', 'splash.featuredProjects', 'splash.featuredStudios'];
 
-localeCompare.getIdsForView(
-    'splash',
-    path.resolve(__dirname, '../../src/views/splash/l10n.json'),
-    viewLocales,
-    idsWithICU,
-    icuWithIds
-);
+ids = require(path.resolve(__dirname, '../../src/views/splash/l10n.json'));
+viewLocales = {
+    splash: {en: ids}
+};
+idsWithICU = localeCompare.idToICUMap('splash', ids);
+icuWithIds = localeCompare.icuToIdMap('splash', ids);
 md5WithIds = localeCompare.getMD5Map(icuWithIds);
 
 tap.test('spotCheckNavBarFakeLanguage', function (t) {
     var translations = localeCompare.getTranslationsForLanguage('yum', idsWithICU, md5WithIds);
     for (var i in fakeLanguageIdsToCheck) {
         t.notEqual(
-            translations['general']['yum'][fakeLanguageIdsToCheck[i]],
+            translations['splash']['yum'][fakeLanguageIdsToCheck[i]],
             viewLocales['splash']['en'][fakeLanguageIdsToCheck[i]],
             'check localization of ' + fakeLanguageIdsToCheck[i] + ' for yum'
         );

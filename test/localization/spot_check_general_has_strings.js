@@ -9,19 +9,16 @@ var tap = require('tap');
 var languages = require('../../languages.json');
 var localeCompare = require('../../bin/lib/locale-compare');
 
-tap.test('spotCheckAboutStrings', function (t) {
+tap.test('spotCheckGeneralStrings', function (t) {
     var isoCodes = Object.keys(languages);
     isoCodes.splice(isoCodes.indexOf('en'), 1);
-    var viewLocales = {};
-    var idsWithICU = {};
-    var icuWithIds = {};
-    localeCompare.getIdsForView(
-        'general',
-        path.resolve(__dirname, '../../src/l10n.json'),
-        viewLocales,
-        idsWithICU,
-        icuWithIds
-    );
+    
+    var ids = require(path.resolve(__dirname, '../../src/l10n.json'));
+    var viewLocales = {
+        general: {en: ids}
+    };
+    var idsWithICU = localeCompare.idToICUMap('general', ids);
+    var icuWithIds = localeCompare.icuToIdMap('general', ids);
     var md5WithIds = localeCompare.getMD5Map(icuWithIds);
     var keysToCheck = Object.keys(merge(viewLocales['general']['en'])).sort();
     for (var i in isoCodes) {
