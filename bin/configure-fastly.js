@@ -54,6 +54,7 @@ var getViewPaths = function (routes) {
  */
 var pathsToCondition = function (paths) {
     return 'req.url~"' + paths.reduce(function (conditionString, pattern) {
+        pattern = pattern.replace(/(:[^/]+)\//gi, '.+?/');
         return conditionString + (conditionString ? '|' : '') + pattern;
     }, '') + '"';
 };
