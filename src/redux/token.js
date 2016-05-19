@@ -49,7 +49,7 @@ module.exports.setToken = function (token) {
 
 module.exports.setTokenError = function (error) {
     return {
-        type: Types.SET_SESSION_ERROR,
+        type: Types.SET_TOKEN_ERROR,
         error: error
     };
 };

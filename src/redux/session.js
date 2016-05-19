@@ -1,5 +1,7 @@
 var keyMirror = require('keymirror');
+
 var api = require('../mixins/api.jsx').api;
+var tokenActions = require('./token.js');
 
 var Types = keyMirror({
     SET_SESSION: null,
@@ -48,7 +50,7 @@ module.exports.refreshSession = function () {
                 if (body.banned) {
                     return window.location = body.url;
                 } else {
-                    dispatch(module.exports.getToken());
+                    dispatch(tokenActions.getToken());
                     dispatch(module.exports.setSession(body));
                     return;
                 }

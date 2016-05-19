@@ -10,7 +10,7 @@ var Types = keyMirror({
 module.exports.scheduleReducer = function (state, action) {
     if (typeof state === 'undefined') {
         state = {
-            chunks: [],
+            timeSlots: [],
             day: ''
         };
     }
@@ -54,6 +54,28 @@ module.exports.startGetSchedule = function (day) {
     };
 };
 
+// group periods of time by start time
+module.exports.sortTimeSlots = function (timeSlot1, timeSlot2) {
+    var timeSlot1Am = (timeSlot1.time.substr(timeSlot1.time.length - 1, timeSlot1.time.length) === 'a') ? true : false;
+    var timeSlot2Am = (timeSlot2.time.substr(timeSlot2.time.length - 1, timeSlot2.time.length) === 'a') ? true : false;
+    var timeSlot1Time = parseInt(timeSlot1.time.substr(0, timeSlot1.time.length - 1));
+    var timeSlot2Time = parseInt(timeSlot2.time.substr(0, timeSlot2.time.length - 1));
+
+    if (timeSlot1Time < timeSlot2Time) {
+        if (timeSlot2Am && !timeSlot1Am) {
+            return 1;
+        } else {
+            return -1;
+        }
+    } else {
+        if (timeSlot1Am && !timeSlot2Am) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+};
+
 /**
  * Gets the schedule for the given day from the api
  * @param  {String} day  Day of the conference (Thursday, Friday or Satrurday)
@@ -74,7 +96,7 @@ module.exports.getDaySchedule = function (day) {
                 var columns = body.columns;
                 var rows = body.rows || [];
                 // Group events by the time period in which they occur (for presentation)
-                var scheduleByChunk = rows.reduce(function (prev, cur) {
+                var scheduleByTimeSlot = rows.reduce(function (prev, cur) {
                     var cleanedRow = {};
                     for (var i = 0; i < columns.length; i++) {
                         if (cur[i].length > 0) {
@@ -82,48 +104,28 @@ module.exports.getDaySchedule = function (day) {
                         }
                     }
                     cleanedRow['uri'] = '/conference/' + cleanedRow.rowid + '/details';
-                    var chunk = cleanedRow.Chunk;
-                    if (typeof prev.chunks[chunk] === 'undefined') {
-                        prev.chunks[chunk] = [cleanedRow];
+                    var timeSlot = cleanedRow.Chunk;
+                    if (typeof prev.timeSlots[timeSlot] === 'undefined') {
+                        prev.timeSlots[timeSlot] = [cleanedRow];
                         prev.info.push({
-                            name: chunk,
+                            name: timeSlot,
                             time: cleanedRow.Start
                         });
                     } else {
-                        prev.chunks[chunk].push(cleanedRow);
+                        prev.timeSlots[timeSlot].push(cleanedRow);
                     }
                     return prev;
-                }, {chunks: [], info: []});
-                // group periods of time by start time
-                scheduleByChunk.info.sort(function compare (a, b) {
-                    var aAm = (a.time.substr(a.time.length - 1, a.time.length) === 'a') ? true : false;
-                    var bAm = (b.time.substr(b.time.length - 1, b.time.length) === 'a') ? true : false;
-                    var aTime = parseInt(a.time.substr(0, a.time.length - 1));
-                    var bTime = parseInt(b.time.substr(0, b.time.length - 1));
+                }, {timeSlots: [], info: []});
 
-                    if (aTime < bTime) {
-                        if (bAm && !aAm) {
-                            return 1;
-                        } else {
-                            return -1;
-                        }
-                    } else {
-                        if (aAm && !bAm) {
-                            return -1;
-                        } else {
-                            return 1;
-                        }
-                    }
+                scheduleByTimeSlot.info.sort(module.exports.sortTimeSlots);
+                var schedule = scheduleByTimeSlot.info.map(function (timeSlot) {
+                    return {
+                        info: timeSlot,
+                        items: scheduleByTimeSlot.timeSlots[timeSlot.name]
+                    };
                 });
-                var schedule = [];
-                for (var i = 0; i < scheduleByChunk.info.length; i++) {
-                    schedule.push({
-                        info: scheduleByChunk.info[i],
-                        items: scheduleByChunk.chunks[scheduleByChunk.info[i].name]
-                    });
-                }
                 dispatch(module.exports.setSchedule({
-                    chunks: schedule,
+                    timeSlots: schedule,
                     day: day
                 }));
                 return;

@@ -24,8 +24,8 @@ var ConferenceSchedule = React.createClass({
     handleScheduleChange: function (day) {
         this.props.dispatch(scheduleActions.startGetSchedule(day));
     },
-    renderChunkItems: function (chunk) {
-        return chunk.map(function (item) {
+    renderChunkItems: function (timeSlot) {
+        return timeSlot.map(function (item) {
             if (item.Presenter) {
                 return (
                     <a href={item.uri} className="item-url">
@@ -105,12 +105,12 @@ var ConferenceSchedule = React.createClass({
                     </li>
                 </SubNavigation>
                 <div className="inner">
-                    {this.props.conferenceSchedule.chunks.map(function (chunk) {
+                    {this.props.conferenceSchedule.timeSlots.map(function (timeSlot) {
                         return ([
-                            <h2 key={chunk.info.name} className="breaking-title">
-                                <span>{chunk.info.name} – {chunk.info.time}</span>
+                            <h2 key={timeSlot.info.name} className="breaking-title">
+                                <span>{timeSlot.info.name} – {timeSlot.info.time}</span>
                             </h2>,
-                            this.renderChunkItems(chunk.items)
+                            this.renderChunkItems(timeSlot.items)
                         ]);
                     }.bind(this))}
                 </div>
