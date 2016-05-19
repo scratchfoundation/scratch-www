@@ -66,7 +66,8 @@ try {
 
 // get global locale strings first.
 var globalTemplateFile = path.resolve(__dirname, '../src/l10n.json');
-var ids = JSON.parse(fs.readFileSync(globalTemplateFile, 'utf8'));
+var ids = require(globalTemplateFile);
+// var ids = JSON.parse(fs.readFileSync(globalTemplateFile, 'utf8'));
 
 // message key with english string values (i.e. default values)
 var viewLocales = {
@@ -76,7 +77,6 @@ var viewLocales = {
 };
 var idsWithICU = localeCompare.idToICUMap('general', ids);
 var icuWithIds = localeCompare.icuToIdMap('general', ids);
-// localeCompare.getIdsForView('general', globalTemplateFile, viewLocales, idsWithICU, icuWithIds);
 
 var views = [];
 var localizedAssetUrls = {};
@@ -92,15 +92,17 @@ for (var v in routes) {
         var subdir = routes[v].view.split('/');
         subdir.pop();
         var l10n = path.resolve(__dirname, '../src/views/' + subdir.join('/') + '/l10n.json');
-        fs.accessSync(l10n, fs.F_OK);
-        ids = JSON.parse(fs.readFileSync(l10n, 'utf8'));
+        ids = require(l10n);
         viewLocales[routes[v].name] = {
             en: ids
         };
         idsWithICU = merge(idsWithICU, localeCompare.idToICUMap(routes[v].name, ids));
         icuWithIds = merge(icuWithIds, localeCompare.icuToIdMap(routes[v].name, ids));
     } catch (err) {
-        // check that routes' view path is not malformed, error if it is
+        if (err.code !== 'MODULE_NOT_FOUND') {
+            throw err;
+        }
+
         try {
             fs.accessSync(path.resolve(__dirname, '../src/views/' + routes[v].view + '.jsx'));
         } catch (err) {
@@ -111,11 +113,12 @@ for (var v in routes) {
 
     // get asset url translations
     try {
-        var l10nStatic = path.resolve(__dirname, '../src/views/' + routes[v].view + '/l10n-static.json');
-        fs.accessSync(l10nStatic, fs.F_OK);
+        subdir = routes[v].view.split('/');
+        subdir.pop();
+        var l10nStatic = path.resolve(__dirname, '../src/views/' + subdir.join('/') + '/l10n-static.json');
         localizedAssetUrls[routes[v].name] = {};
 
-        var assetUrls = JSON.parse(fs.readFileSync(l10nStatic, 'utf8'));
+        var assetUrls = require(l10nStatic);
         for (var lang in localizedUrls) {
             localizedAssetUrls[routes[v].name][lang] = {};
             for (var key in assetUrls) {
@@ -127,7 +130,16 @@ for (var v in routes) {
             }
         }
     } catch (err) {
-        // :)
+        if (err.code !== 'MODULE_NOT_FOUND') {
+            throw err;
+        }
+
+        try {
+            fs.accessSync(path.resolve(__dirname, '../src/views/' + routes[v].view + '.jsx'));
+        } catch (err) {
+            // the config for the view is not set up correctly, so throw the error.
+            throw err;
+        }
     }
 }
 

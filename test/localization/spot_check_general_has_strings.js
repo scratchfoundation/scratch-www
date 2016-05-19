@@ -13,7 +13,7 @@ tap.test('spotCheckGeneralStrings', function (t) {
     var isoCodes = Object.keys(languages);
     isoCodes.splice(isoCodes.indexOf('en'), 1);
     
-    var ids = path.resolve(__dirname, '../../src/l10n.json');
+    var ids = require(path.resolve(__dirname, '../../src/l10n.json'));
     var viewLocales = {
         general: {en: ids}
     };

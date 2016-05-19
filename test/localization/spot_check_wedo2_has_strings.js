@@ -13,7 +13,7 @@ tap.test('spotCheckWedo2Strings', function (t) {
     var isoCodes = Object.keys(languages);
     isoCodes.splice(isoCodes.indexOf('en'), 1);
     
-    var ids = path.resolve(__dirname, '../../views/wedo2/l10n.json');
+    var ids = require(path.resolve(__dirname, '../../src/views/wedo2/l10n.json'));
     var viewLocales = {
         wedo2: {en: ids}
     };
