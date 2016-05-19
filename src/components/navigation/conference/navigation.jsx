@@ -24,6 +24,9 @@ var Navigation = React.createClass({
                             <li className="link plan">
                                 <a href="/conference/plan">Plan Your Visit</a>
                             </li>
+                            <li className="link schedule">
+                                <a href="/conference/schedule">Schedule</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

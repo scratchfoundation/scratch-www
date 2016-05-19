@@ -55,11 +55,13 @@ var ConferenceSplash = React.createClass({
                         </div>
                         <div>
                             <h3>
-                                <img src="/images/conference/schedule/coming-soon.png" alt="schedule-coming-soon" />
-                                Schedule
+                                <a href="/conference/schedule">
+                                    <img src="/images/conference/schedule/schedule.png" alt="schedule" />
+                                    Schedule
+                                </a>
                             </h3>
                             <p>
-                                Stay tuned for the full schedule of events and sessions
+                                Full schedule of events and sessions
                             </p>
                         </div>
                     </FlexRow>
