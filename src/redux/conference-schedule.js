@@ -2,30 +2,17 @@ var keyMirror = require('keymirror');
 var api = require('../mixins/api.jsx').api;
 
 var Types = keyMirror({
-    SET_DAY: null,
     SET_SCHEDULE: null,
     SET_SCHEDULE_FETCHING: null,
-    SET_DAY_ERROR: null,
     SET_SCHEDULE_ERROR: null
 });
 
-module.exports.dayReducer = function (state, action) {
-    if (typeof state === 'undefined') {
-        state = '';
-    }
-    switch (action.type) {
-    case Types.SET_DAY:
-        return action.day;
-    case Types.SET_DAY_ERROR:
-        return state;
-    default:
-        return state;
-    }
-};
-
 module.exports.scheduleReducer = function (state, action) {
     if (typeof state === 'undefined') {
-        state = [];
+        state = {
+            chunks: [],
+            day: ''
+        };
     }
     switch (action.type) {
     case Types.SET_SCHEDULE:
@@ -37,20 +24,6 @@ module.exports.scheduleReducer = function (state, action) {
     default:
         return state;
     }
-};
-
-module.exports.setDayError = function (error) {
-    return {
-        type: Types.SET_DAY_ERROR,
-        error: error
-    };
-};
-
-module.exports.setDay = function (day) {
-    return {
-        type: Types.SET_DAY,
-        day: day
-    };
 };
 
 module.exports.setSchedule = function (schedule) {
@@ -93,7 +66,6 @@ module.exports.getDaySchedule = function (day) {
             uri: '/conference/schedule/' + day
         }, function (err, body) {
             if (err) {
-                dispatch(module.exports.setDayError(err));
                 dispatch(module.exports.setScheduleError(err));
                 return;
             }
@@ -150,8 +122,13 @@ module.exports.getDaySchedule = function (day) {
                         items: scheduleByChunk.chunks[scheduleByChunk.info[i].name]
                     });
                 }
-                dispatch(module.exports.setDay(day));
-                dispatch(module.exports.setSchedule(schedule));
+                dispatch(module.exports.setSchedule({
+                    chunks: schedule,
+                    day: day
+                }));
+                return;
+            } else {
+                dispatch(module.exports.setScheduleError('An unexpected error occurred'));
                 return;
             }
         });

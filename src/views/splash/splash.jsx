@@ -4,7 +4,7 @@ var omit = require('lodash.omit');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var authActions = require('../../redux/actions.js');
+var sessionActions = require('../../redux/session.js');
 
 var Api = require('../../mixins/api.jsx');
 
@@ -167,7 +167,7 @@ var Splash = injectIntl(React.createClass({
             useCsrf: true,
             json: {cue: cue, value: false}
         }, function (err) {
-            if (!err) this.props.dispatch(authActions.refreshSession());
+            if (!err) this.props.dispatch(sessionActions.refreshSession());
         });
     },
     shouldShowWelcome: function () {

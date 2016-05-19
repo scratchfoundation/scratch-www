@@ -74,6 +74,9 @@ module.exports.getDetails = function (id) {
                     dispatch(module.exports.setDetailsError('Not Found'));
                 }
                 return;
+            } else {
+                dispatch(module.exports.setDetailsError('An unexpected error occurred'));
+                return;
             }
         });
     };

@@ -15,8 +15,7 @@ require('./schedule.scss');
 var ConferenceSchedule = React.createClass({
     type: 'ConferenceSchedule',
     propTypes: {
-        day: React.PropTypes.string,
-        schedule: React.PropTypes.array
+        conferenceSchedule: React.PropTypes.object
     },
     componentDidMount: function () {
         var day = window.location.hash.substr(1) || 'thursday';
@@ -71,14 +70,14 @@ var ConferenceSchedule = React.createClass({
     render: function () {
         var tabClasses = {
             'thursday': classNames({
-                'selected': (this.props.day === 'thursday')
+                'selected': (this.props.conferenceSchedule.day === 'thursday')
             }),
             'friday': classNames({
-                'selected': (this.props.day === 'friday')
+                'selected': (this.props.conferenceSchedule.day === 'friday')
             }),
             'saturday': classNames({
                 'last': true,
-                'selected': (this.props.day === 'saturday')
+                'selected': (this.props.conferenceSchedule.day === 'saturday')
             })
         };
         return (
@@ -106,7 +105,7 @@ var ConferenceSchedule = React.createClass({
                     </li>
                 </SubNavigation>
                 <div className="inner">
-                    {this.props.schedule.map(function (chunk) {
+                    {this.props.conferenceSchedule.chunks.map(function (chunk) {
                         return ([
                             <h2 key={chunk.info.name} className="breaking-title">
                                 <span>{chunk.info.name} – {chunk.info.time}</span>
@@ -122,10 +121,7 @@ var ConferenceSchedule = React.createClass({
 
 var mapStateToProps = function (state) {
     return {
-        day: state.day,
-        schedule: state.schedule,
-        fetching: state.fetching,
-        error: state.error
+        conferenceSchedule: state.conferenceSchedule
     };
 };
 

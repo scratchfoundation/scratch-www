@@ -13,7 +13,7 @@ var ConferenceDetails = React.createClass({
     type: 'ConferenceDetails',
     propTypes: {
         detailsId: React.PropTypes.number,
-        details: React.PropTypes.object
+        conferenceDetails: React.PropTypes.object
     },
     componentDidMount: function () {
         var pathname = window.location.pathname.toLowerCase();
@@ -26,13 +26,13 @@ var ConferenceDetails = React.createClass({
     },
     render: function () {
         var backUri = '/conference/schedule';
-        if (!this.props.details.error && !this.props.details.fetching) {
-            backUri = backUri + '#' + this.props.details.Day;
+        if (!this.props.conferenceDetails.error && !this.props.conferenceDetails.fetching) {
+            backUri = backUri + '#' + this.props.conferenceDetails.Day;
         }
         var classes = classNames({
             'inner': true,
             'details': true,
-            'fetching': this.props.details.fetching
+            'fetching': this.props.conferenceDetails.fetching
         });
         return (
             <div className={classes}>
@@ -41,33 +41,33 @@ var ConferenceDetails = React.createClass({
                         &larr; Back to Full Schedule
                     </a>
                 </div>
-                {this.props.details.error ? [
+                {this.props.conferenceDetails.error ? [
                     <h2>Agenda Item Not Found</h2>
                 ] : [
-                    <h2>{this.props.details.Title}</h2>,
+                    <h2>{this.props.conferenceDetails.Title}</h2>,
                     <ul className="logistics">
                         <li>
                             <img src="/svgs/conference/schedule/presenter-icon.svg" alt="presenter icon" />
-                            {this.props.details.Presenter}
+                            {this.props.conferenceDetails.Presenter}
                         </li>
                         <li>
                             <img src="/svgs/conference/schedule/time-icon.svg" alt="time icon" />
-                            {this.props.details.Start} &ndash; {this.props.details.End}
+                            {this.props.conferenceDetails.Start} &ndash; {this.props.conferenceDetails.End}
                         </li>
                         <li>
                             <img src="/svgs/conference/schedule/event-icon.svg" alt="event icon" />
-                            {this.props.details.Type}
+                            {this.props.conferenceDetails.Type}
                         </li>
                         <li>
                             <img src="/svgs/conference/schedule/location-icon.svg" alt="location icon" />
-                            {this.props.details.Location}
+                            {this.props.conferenceDetails.Location}
                         </li>
                     </ul>,
                     <div className="description">
-                        {this.props.details.Description}
+                        {this.props.conferenceDetails.Description}
                     </div>,
                     <div className="back">
-                    {this.props.details.fetching ? [] : [
+                    {this.props.conferenceDetails.fetching ? [] : [
                         <a href={backUri}>
                             &larr; Back to Full Schedule
                         </a>
@@ -81,9 +81,7 @@ var ConferenceDetails = React.createClass({
 
 var mapStateToProps = function (state) {
     return {
-        details: state.details,
-        fetching: state.fetching,
-        error: state.error
+        conferenceDetails: state.conferenceDetails
     };
 };
 
