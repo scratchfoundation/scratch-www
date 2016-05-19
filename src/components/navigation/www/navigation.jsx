@@ -5,7 +5,7 @@ var ReactIntl = require('react-intl');
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
 
-var actions = require('../../../redux/actions.js');
+var actions = require('../../../redux/auth.js');
 
 var Api = require('../../../mixins/api.jsx');
 var Avatar = require('../../avatar/avatar.jsx');

@@ -4,7 +4,7 @@ var ReactDOM = require('react-dom');
 var StoreProvider = require('react-redux').Provider;
 
 var IntlProvider = require('./intl.jsx').IntlProvider;
-var actions = require('../redux/actions.js');
+var authActions = require('../redux/auth.js');
 var reducer = require('../redux/reducer.js');
 
 require('../main.scss');
@@ -41,7 +41,7 @@ var render = function (jsx, element) {
     );
 
     // Get initial session
-    store.dispatch(actions.refreshSession());
+    store.dispatch(authActions.refreshSession());
 };
 
 module.exports = render;
