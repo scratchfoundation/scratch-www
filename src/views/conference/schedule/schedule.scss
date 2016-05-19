@@ -62,11 +62,13 @@
             }
         }
 
-        a.item-url {
-            display: block;
+        a {
+            &.item-url {
+                display: block;
 
-            &:hover {
-                background-color: lighten($ui-blue, 40);
+                &:hover {
+                    background-color: lighten($ui-blue, 40);
+                }
             }
         }
 
@@ -104,7 +106,7 @@
         .inner {
             h2 {
                 &.breaking-title {
-                    border-bottom: none;
+                    border-bottom: 0;
                 }
 
                 span {
@@ -112,6 +114,7 @@
                     padding: 0;
                 }
             }
+
             .agenda-item {
                 .flex-row {
                     p {
