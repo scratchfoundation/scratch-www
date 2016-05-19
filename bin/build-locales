@@ -149,20 +149,20 @@ var md5WithIds = localeCompare.getMD5Map(icuWithIds);
 
 // Get ui localization strings first
 var isoCodes = Object.keys(languages);
-for (var i in isoCodes) {
-    var translations = localeCompare.getTranslationsForLanguage(isoCodes[i], idsWithICU, md5WithIds);
-    for (key in translations) {
-        viewLocales[key] = merge(viewLocales[key], translations[key]);
+for (var isoCode in isoCodes) {
+    var translations = localeCompare.getTranslationsForLanguage(isoCodes[isoCode], idsWithICU, md5WithIds);
+    for (var messageId in translations) {
+        viewLocales[messageId] = merge(viewLocales[messageId], translations[messageId]);
     }
 }
 
-for (i in views) {
+for (var view in views) {
     var viewTranslations = viewLocales['general'];
-    if (views[i] in viewLocales) {
-        viewTranslations = merge(viewLocales[views[i]], viewTranslations);
+    if (views[view] in viewLocales) {
+        viewTranslations = merge(viewLocales[views[view]], viewTranslations);
     }
-    if (views[i] in localizedAssetUrls) {
-        viewTranslations = merge(viewTranslations, localizedAssetUrls[[views[i]]]);
+    if (views[view] in localizedAssetUrls) {
+        viewTranslations = merge(viewTranslations, localizedAssetUrls[[views[view]]]);
     }
-    localeCompare.writeTranslationsToJS(outputDir, views[i], viewTranslations);
+    localeCompare.writeTranslationsToJS(outputDir, views[view], viewTranslations);
 }
