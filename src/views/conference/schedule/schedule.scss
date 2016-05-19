@@ -1,4 +1,5 @@
 @import "../../../colors";
+@import "../../../frameless";
 
 .schedule {
     .title-banner {
@@ -16,6 +17,7 @@
             border-top: 4px solid transparent;
             border-left: 2px solid $active-gray;
             border-radius: 0;
+            padding: .75em 1em;
             color: $type-gray;
             font-size: 1rem;
 
@@ -30,7 +32,6 @@
                 border-left: 2px solid $active-gray;
                 box-shadow: none;
                 background-color: inherit;
-                padding: .75em 1em;
             }
 
             &.selected {
@@ -87,6 +88,36 @@
                 p {
                     margin: 0;
                     width: 50%;
+                    text-align: left;
+                }
+
+                img {
+                    margin-right: .5rem;
+                    width: 1rem;
+                    height: 1rem;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: $tablet - 1) {
+        .inner {
+            h2 {
+                &.breaking-title {
+                    border-bottom: none;
+                }
+
+                span {
+                    background-color: transparent;
+                    padding: 0;
+                }
+            }
+            .agenda-item {
+                .flex-row {
+                    p {
+                        margin: .5rem 0;
+                        width: 100%;
+                    }
                 }
             }
         }

@@ -33,12 +33,24 @@ var ConferenceSchedule = React.createClass({
                         <div key={item.rowid} className="agenda-item">
                             <h3>{item.Title}</h3>
                             <FlexRow>
-                                <p>{item.Start} &ndash; {item.End}</p>
-                                <p>{item.Location}</p>
+                                <p>
+                                    <img src="/svgs/conference/schedule/time-icon.svg" alt="time icon" />
+                                    {item.Start} &ndash; {item.End}
+                                </p>
+                                <p>
+                                    <img src="/svgs/conference/schedule/location-icon.svg" alt="location icon" />
+                                    {item.Location}
+                                </p>
                             </FlexRow>
                             <FlexRow>
-                                <p>{item.Presenter}</p>
-                                <p>{item.Type}</p>
+                                <p>
+                                    <img src="/svgs/conference/schedule/presenter-icon.svg" alt="presenter icon" />
+                                    {item.Presenter}
+                                </p>
+                                <p>
+                                    <img src="/svgs/conference/schedule/event-icon.svg" alt="event icon" />
+                                    {item.Type}
+                                </p>
                             </FlexRow>
                         </div>
                     </a>

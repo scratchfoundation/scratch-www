@@ -47,15 +47,19 @@ var ConferenceDetails = React.createClass({
                     <h2>{this.props.details.Title}</h2>,
                     <ul className="logistics">
                         <li>
+                            <img src="/svgs/conference/schedule/presenter-icon.svg" alt="presenter icon" />
                             {this.props.details.Presenter}
                         </li>
                         <li>
+                            <img src="/svgs/conference/schedule/time-icon.svg" alt="time icon" />
                             {this.props.details.Start} &ndash; {this.props.details.End}
                         </li>
                         <li>
+                            <img src="/svgs/conference/schedule/event-icon.svg" alt="event icon" />
                             {this.props.details.Type}
                         </li>
                         <li>
+                            <img src="/svgs/conference/schedule/location-icon.svg" alt="location icon" />
                             {this.props.details.Location}
                         </li>
                     </ul>,
