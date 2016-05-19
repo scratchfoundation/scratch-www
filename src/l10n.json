@@ -26,6 +26,7 @@
     "general.myClasses": "My Classes",
     "general.myStuff": "My Stuff",
     "general.offlineEditor": "Offline Editor",
+    "general.privacyPolicy": "Privacy Policy",
     "general.profile": "Profile",
     "general.scratchConference": "Scratch Conference",
     "general.scratchday": "Scratch Day",
@@ -49,7 +50,6 @@
     "general.whatsHappening": "What's Happening?",
     "general.wiki": "Scratch Wiki",
 
-    "footer.about": "About Scratch",    
     "footer.discuss": "Discussion Forums",
     "footer.help": "Help Page",
     "footer.scratchFamily": "Scratch Family",

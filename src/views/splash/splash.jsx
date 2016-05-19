@@ -4,7 +4,7 @@ var omit = require('lodash.omit');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var authActions = require('../../redux/auth.js');
+var authActions = require('../../redux/actions.js');
 
 var Api = require('../../mixins/api.jsx');
 

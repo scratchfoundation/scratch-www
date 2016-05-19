@@ -15,9 +15,9 @@
     li {
         display: inline-block;
         margin: 5px;
-        border: 2px solid $active-gray;
+        border: 1px solid $active-gray;
         border-radius: 50px;
-        padding: .75em 1em;
+        padding: .75em 1.5em;
         text-decoration: none;
         color: $type-white;
         list-style-type: none;
@@ -32,7 +32,7 @@
             border: 0 solid transparent;
             box-shadow: inset 0 0 5px $box-shadow-gray;
             background-color: $active-dark-gray;
-            padding: calc(.75em + 2px) calc(1em + 2px);
+            padding: calc(.75em + 1px) calc(1.5em + 1px);
         }
 
         &.description {

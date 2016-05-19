@@ -1,5 +1,7 @@
 var redux = require('redux');
 var thunk = require('redux-thunk').default;
+// JSX syntax transforms to React.createElement
+var React = require('react'); // eslint-disable-line
 var ReactDOM = require('react-dom');
 var StoreProvider = require('react-redux').Provider;
 

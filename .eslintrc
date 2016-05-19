@@ -25,7 +25,8 @@
         "jsx": true
     },
     "plugins": [
-        "react"
+        "react",
+        "json"
     ],
     "extends": "eslint:recommended"
 }
