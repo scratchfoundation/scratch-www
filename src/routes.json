@@ -75,6 +75,20 @@
         "viewportWidth": "device-width"
     },
     {
+        "name": "conference-schedule",
+        "pattern": "^/conference/schedule/?$",
+        "view": "conference/schedule/schedule",
+        "title": "Conference Schedule",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "conference-details",
+        "pattern": "^/conference/:id/details/?$",
+        "view": "conference/details/details",
+        "title": "Event Details",
+        "viewportWidth": "device-width"
+    },
+    {
         "name": "donate",
         "pattern": "^/info/donate/?",
         "redirect": "https://secure.donationpay.org/scratchfoundation/"
