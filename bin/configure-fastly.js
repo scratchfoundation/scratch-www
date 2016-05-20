@@ -3,7 +3,7 @@ var defaults = require('lodash.defaults');
 var glob = require('glob');
 var path = require('path');
 
-var routes = require('../src/routes.json');
+var route_json = require('../src/routes.json');
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
@@ -50,12 +50,19 @@ var getViewPaths = function (routes) {
 };
 
 /*
+ * Translate an express-style pattern e.g. /path/:arg/ to a regex
+ * all :arguments become .+?
+ */
+var expressPatternToRegex = function (pattern) {
+    return pattern.replace(/(:[^/]+)\//gi, '.+?/');
+};
+
+/*
  * Given a list of patterns for paths, OR all of them together into one
  * string suitable for a Fastly condition
  */
 var pathsToCondition = function (paths) {
     return 'req.url~"' + paths.reduce(function (conditionString, pattern) {
-        pattern = pattern.replace(/(:[^/]+)\//gi, '.+?/');
         return conditionString + (conditionString ? '|' : '') + pattern;
     }, '') + '"';
 };
@@ -90,6 +97,10 @@ var getHeaderNameForRoute = function (route) {
 var getResponseNameForRoute = function (route) {
     return 'redirects/' + route.pattern;
 };
+
+var routes = route_json.map(function (route) {
+    return defaults({}, {pattern: expressPatternToRegex(route.pattern)}, route);
+});
 
 async.auto({
     version: function (cb) {
