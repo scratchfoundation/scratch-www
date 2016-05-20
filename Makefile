@@ -31,7 +31,8 @@ webpack:
 	$(WEBPACK) --bail
 
 sync-s3:
-	$(S3CMD) sync -P --delete-removed --exclude '.DS_Store' ./build/ s3://$(S3_BUCKET_NAME)/
+	$(S3CMD) sync -P --delete-removed --exclude '.DS_Store' --exclude '*.svg' ./build/ s3://$(S3_BUCKET_NAME)/
+	$(S3CMD) sync -P --delete-removed --exclude '*' --include '*.svg' --default-mime-type 'image/svg+xml' ./build/ s3://$(S3_BUCKET_NAME)/
 
 sync-fastly:
 	$(NODE) ./bin/configure-fastly.js
