@@ -22,6 +22,7 @@ var ConferenceSchedule = React.createClass({
         this.handleScheduleChange(day);
     },
     handleScheduleChange: function (day) {
+        window.history.replaceState(history.state, '', "#" + day);
         this.props.dispatch(scheduleActions.startGetSchedule(day));
     },
     renderChunkItems: function (timeSlot) {
