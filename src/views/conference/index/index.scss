@@ -26,7 +26,7 @@
             margin-top: 3rem;
 
             a {
-                
+
                 button {
                     background-color: $ui-white;
                     color: $ui-blue;
@@ -44,6 +44,7 @@
             p {
                 margin-top: .25rem;
             }
+
         }
 
         @media only screen and (max-width: $desktop - 1) {
@@ -56,6 +57,7 @@
             }
         }
     }
+
 
     .flex-row {
         align-items: flex-start;
@@ -76,4 +78,12 @@
             }
         }
     }
+}
+
+@media only screen and (max-width: $tablet - 1) {
+  .index{
+    .flex-row {
+      align-items: center;
+    }
+  }
 }
