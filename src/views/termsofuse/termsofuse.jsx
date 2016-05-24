@@ -16,7 +16,7 @@ var Termsofuse = React.createClass({
                          <a href="https://scratch.mit.edu">scratch.mit.edu</a>{' '}
                          and all associated services, including but not limited
                          to the <a href="http://day.scratch.mit.edu">Scratch Day</a>{' '}
-                         and <a href="http://scratchx.org">ScratchX</a> websites 
+                         and <a href="http://scratchx.org">ScratchX</a> websites
                          (collectively "Scratch"). The Scratch Team is part of the
                          Lifelong Kindergarten Group in the Media Laboratory at the
                          Massachusetts Institute of Technology ("MIT"). Please
@@ -266,7 +266,7 @@ var Termsofuse = React.createClass({
                     <p>
                         5.5 The Scratch support materials library may contain images and sounds that
                          are trademarked by third parties. The fact that materials are included in
-                         the Scratch support materials library does not in any way limit or reduce 
+                         the Scratch support materials library does not in any way limit or reduce
                          intellectual property rights, including trademark rights, otherwise
                          available to the materials' owners. Nothing in these Terms of Use or the
                          Creative Commons 2.0 license will be construed to limit or reduce any
