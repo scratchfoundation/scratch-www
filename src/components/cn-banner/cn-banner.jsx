@@ -1,4 +1,5 @@
 var classNames = require('classnames');
+var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 
 var TitleBanner = require('../title-banner/title-banner.jsx');
@@ -21,14 +22,23 @@ var CNBanner = React.createClass({
             <TitleBanner className={classes}>
                 <FlexRow className="inner">
                     <div className="cta">
-                        <h1>Make It Fly</h1>
+                        <h1>
+                            <FormattedMessage id='cnbanner.makeItFly' />
+                        </h1>
                         <p>
-                            With Scratch, you can program anything to fly. Animate the Scratch Cat, a cartoon character,
-                            or even a taco!
+                            <FormattedMessage id='cnbanner.flyDescription' />
                         </p>
                         <div className="button-row">
-                            <a><Button>See examples</Button></a>
-                            <a><Button>Make your own</Button></a>
+                            <a>
+                                <Button>
+                                    <FormattedMessage id='cnbanner.seeExamples' />
+                                </Button>
+                            </a>
+                            <a>
+                                <Button>
+                                    <FormattedMessage id='cnbanner.makeYourOwn' />
+                                </Button>
+                            </a>
                         </div>
                     </div>
                     <div className="flying">
