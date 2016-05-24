@@ -12,7 +12,7 @@ require('./cards.scss');
 var Cards = injectIntl(React.createClass({
     type: 'Cards',
     render: function () {
-        var locale = window._locale || 'en';
+        var locale = this.props.intl.locale || 'en';
         var formatMessage = this.props.intl.formatMessage;
         var englishLinks = {
             'cards.starterLink': '//scratch.mit.edu/scratchr2/static/pdfs/help/Scratch2Cards.pdf',
@@ -52,7 +52,7 @@ var Cards = injectIntl(React.createClass({
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
                                         formattedLinks['cards.starterLink'] === englishLinks['cards.starterLink'] &&
-                                        locale !== 'en'
+                                        locale.indexOf('en') === -1
                                     ) ? [
                                         <span> <FormattedMessage id='cards.english' /></span>
                                     ] : []}
@@ -68,7 +68,7 @@ var Cards = injectIntl(React.createClass({
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
                                         formattedLinks['cards.nameLink'] === englishLinks['cards.nameLink'] &&
-                                        locale !== 'en'
+                                        locale.indexOf('en') === -1
                                     ) ? [
                                         <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
@@ -84,7 +84,7 @@ var Cards = injectIntl(React.createClass({
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
                                         formattedLinks['cards.pongLink'] === englishLinks['cards.pongLink'] &&
-                                        locale !== 'en'
+                                        locale.indexOf('en') === -1
                                     ) ? [
                                         <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
@@ -102,7 +102,7 @@ var Cards = injectIntl(React.createClass({
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
                                         formattedLinks['cards.storyLink'] === englishLinks['cards.storyLink'] &&
-                                        locale !== 'en'
+                                        locale.indexOf('en') === -1
                                     ) ? [
                                         <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
@@ -118,7 +118,7 @@ var Cards = injectIntl(React.createClass({
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
                                         formattedLinks['cards.danceLink'] === englishLinks['cards.danceLink'] &&
-                                        locale !== 'en'
+                                        locale.indexOf('en') === -1
                                     ) ? [
                                         <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
@@ -134,7 +134,7 @@ var Cards = injectIntl(React.createClass({
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
                                         formattedLinks['cards.hideLink'] === englishLinks['cards.hideLink'] &&
-                                        locale !== 'en'
+                                        locale.indexOf('en') === -1
                                     ) ? [
                                         <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
