@@ -113,7 +113,7 @@
     },
     {
         "name": "guidelines",
-        "pattern": "^/community_guidelines/?$",
+        "pattern": "^/community_guidelines/$",
         "view": "guidelines/guidelines",
         "title": "Scratch Community Guidelines"
     },
