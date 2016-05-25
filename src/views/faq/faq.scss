@@ -40,7 +40,8 @@ $faq-splash: darken($ui-blue, 10%);
 
             .sub-nav {
                 text-align: left;
-                justify-content: center;
+                justify-content: flex-start;
+                flex-wrap: wrap;
 
                 li {
                     margin: 0 .5rem .5rem 0;
