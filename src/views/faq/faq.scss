@@ -7,13 +7,34 @@
 $faq-splash: darken($ui-blue, 10%);
 
 .faq {
+    /* HACK: is this terrible and too specific */
+    #container {
+        margin: 0 auto;
+    }
+
+    nav {
+        width: 30%;
+        float: right;
+        border-left: 1px solid $ui-border;
+
+        ol {
+            list-style: none;
+        }
+    }
+
+    .main {
+        width: 60%;
+        float: left;
+    }
+    /* end potentially hacky solution */
+
     .title-banner {
         &.masthead {
             background-color: $faq-splash;
-            padding-bottom: 0;
+            padding-bottom: 0.5rem;
 
             h1 {
-                margin: 0 0 2rem 0;
+                margin: 0 0 1rem 0;
                 text-align: left;
                 color: $ui-white;
             }
@@ -27,24 +48,6 @@ $faq-splash: darken($ui-blue, 10%);
                 a {
                     border-bottom: 1px solid $ui-white;
                     color: $ui-white;
-                }
-            }
-
-            .band {
-                $band-color: hsla(360, 100, 100, .15);
-
-                margin-top: 2rem;
-                background-color: $band-color;
-                padding: 1rem 0 .5rem 0;
-            }
-
-            .sub-nav {
-                text-align: left;
-                justify-content: flex-start;
-                flex-wrap: wrap;
-
-                li {
-                    margin: 0 .5rem .5rem 0;
                 }
             }
         }
@@ -82,7 +85,7 @@ $faq-splash: darken($ui-blue, 10%);
                 margin: $column-margin;
                 width: calc(#{$cols4} - (#{$column-margin} * 2));
 
-                p {
+                dd {
                     text-align: left;
                 }
             }
@@ -92,16 +95,28 @@ $faq-splash: darken($ui-blue, 10%);
     section {
         margin-bottom: 3rem;
 
-        p {
+        dd {
+            max-width: $cols8;
+            text-align: left;
+        }
+
+        ul {
             max-width: $cols8;
         }
+
+        dt {
+            font-size: 1.1rem;
+        }
+
     }
 
-    #projects,
-    #principles,
-    #donate,
-    #partners,
-    #faq {
+    #about-scratch,
+    #privacy,
+    #accounts,
+    #permissions,
+    #remix,
+    #inappropriate-content,
+    #clouddata {
         .nav-spacer {
             display: block;
             visibility: hidden;
@@ -110,9 +125,13 @@ $faq-splash: darken($ui-blue, 10%);
         }
     }
 
-    #projects,
-    #principles,
-    #donate {
+    #about-scratch,
+    #privacy,
+    #accounts,
+    #permissions,
+    #remix,
+    #inappropriate-content,
+    #clouddata {
 
         h3 {
             border-bottom: 1px solid $ui-border;
@@ -127,43 +146,6 @@ $faq-splash: darken($ui-blue, 10%);
                 margin-bottom: 1.25rem;
                 margin-left: 0;
             }
-        }
-    }
-
-    #donate {
-        border-bottom: 1px solid $ui-border;
-        padding-bottom: 2rem;
-    }
-
-    #partners {
-        text-align: center;
-
-        p {
-            margin: 0 auto;
-            margin-bottom: 2rem;
-        }
-
-        .logos {
-            justify-content: center;
-
-            .logo {
-                margin: 10px;
-                width: $cols2;
-            }
-        }
-    }
-
-    #faq {
-        border-bottom: 1px solid $ui-border;
-        padding-bottom: 2rem;
-
-        h3 {
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        p {
-            color: $type-gray;
         }
     }
 
@@ -235,8 +217,13 @@ $faq-splash: darken($ui-blue, 10%);
     }
 
     section {
-        p {
+        dd {
             width: 100%;
         }
     }
+}
+
+
+nav {
+    width: 100%;
 }

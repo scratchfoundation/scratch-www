@@ -4,8 +4,6 @@ var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
 
 var Page = require('../../components/page/www/page.jsx');
-var FlexRow = require('../../components/flex-row/flex-row.jsx');
-var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 var TitleBanner = require('../../components/title-banner/title-banner.jsx');
 
 require('./faq.scss');
@@ -17,110 +15,46 @@ var Faq = React.createClass({
             <div className="faq">
                 <TitleBanner className="masthead">
                     <div className="inner">
-                        <h1>FAQ</h1>
-                        <p className="intro"><FormattedMessage id='faq.intro' /></p>
-                    </div>
-                    <div className="band">
-                        <SubNavigation className="inner">
-                            <a href="#about-scratch">
-                                <li>
-                                    <FormattedMessage id='faq.aboutTitle' />
-                                </li>
-                            </a>
-                            <a href="#privacy">
-                                <li>
-                                    <FormattedMessage id='faq.privacyTitle' />
-                                </li>
-                            </a>
-                            <a href="#remix">
-                                <li>
-                                    <FormattedMessage id='faq.remixTitle' />
-                                </li>
-                            </a>
-                            <a href="#accounts">
-                                <li>
-                                    <FormattedMessage id='faq.accountsTitle' />
-                                </li>
-                            </a>
-                            <a href="#permissions">
-                                <li>
-                                    <FormattedMessage id='faq.permissionsTitle' />
-                                </li>
-                            </a>
-                            <a href="#inappropriate-content">
-                                <li>
-                                    <FormattedMessage id='faq.inappropriateContentTitle' />
-                                </li>
-                            </a>
-                            <a href="#clouddata">
-                                <li>
-                                    <FormattedMessage id='faq.cloudDataTitle' />
-                                </li>
-                            </a>
-                        </SubNavigation>
+                        <h1>Frequently Asked Questions (FAQ)</h1>
                     </div>
                 </TitleBanner>
-                <div className="inner">
-                    <section id="about-scratch">
-                        <span className="nav-spacer"></span>
-                        <h2><FormattedMessage id='faq.aboutTitle' /></h2>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.aboutScratchTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.aboutScratchBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.makeGameTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.makeGameBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3 id="requirements"><FormattedMessage id='faq.requirementsTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.requirementsBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.offlineTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.offlineBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.uploadOldTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.uploadOldBody' /></p>
-                            </div>
-                       </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.recordVideoTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.recordVideoBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.scratchCostTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.scratchCostBody' /></p>
-                            </div>
-                        </FlexRow>
-                       <FlexRow className="sidebar-row">
-                           <div className="body-copy column">
-                               <h3><FormattedMessage id='faq.mediaLabTitle' /></h3>
-                               <p><FormattedHTMLMessage id='faq.mediaLabBody' /></p>
-                           </div>
-                        </FlexRow>
-                    </section>
+                <div id="container" className="inner">
+                    <div className="inner main">
+                        <section id="about-scratch">
+                            <span className="nav-spacer"></span>
+                            <h2><FormattedMessage id='faq.aboutTitle' /></h2>
+                            <dl>
+                                <dt><FormattedMessage id='faq.aboutScratchTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.aboutScratchBody' /></dd>
 
-                    <section id="privacy">
-                        <span className="nav-spacer"></span>
-                        <h2><FormattedMessage id='faq.privacyTitle' /></h2>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.accountInfoTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.accountInfoList' /></p>
+                                <dt><FormattedMessage id='faq.makeGameTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.makeGameBody' /></dd>
+
+                                <dt><FormattedMessage id='faq.requirementsTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.requirementsBody' /></dd>
+
+                                <dt><FormattedMessage id='faq.offlineTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.offlineBody' /></dd>
+
+                                <dt><FormattedMessage id='faq.uploadOldTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.uploadOldBody' /></dd>
+
+                                <dt><FormattedMessage id='faq.recordVideoTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.recordVideoBody' /></dd>
+
+                                <dt><FormattedMessage id='faq.scratchCostTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.scratchCostBody' /></dd>
+
+                                <dt><FormattedMessage id='faq.mediaLabTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.mediaLabBody' /></dd>
+                            </dl>
+                        </section>
+                        <section id="privacy">
+                            <span className="nav-spacer"></span>
+                            <h2><FormattedMessage id='faq.privacyTitle' /></h2>
+                            <dl>
+                                <dt><FormattedMessage id='faq.accountInfoTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.accountInfoList' /></dd>
                                 <ul>
                                     <li><FormattedHTMLMessage id='faq.privacyUsername' /></li>
                                     <li><FormattedHTMLMessage id='faq.privacyCountry' /></li>
@@ -128,290 +62,137 @@ var Faq = React.createClass({
                                     <li><FormattedHTMLMessage id='faq.privacyGender' /></li>
                                     <li><FormattedHTMLMessage id='faq.privacyEmail' /></li>
                                 </ul>
-                                <p><FormattedHTMLMessage id='faq.accountPublicInfo' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.dataCollectionTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.dataCollectionOne' /></p>
-
-                                <p><FormattedHTMLMessage id='faq.dataCollectionTwo' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.rentInfoTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.rentInfoBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.viewUnsharedTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.viewUnsharedBody' /></p>
-                            </div>
-                        </FlexRow>
-                    </section>
-                    <section id="remix">
-                        <span className="nav-spacer"></span>
-                        <h2><FormattedMessage id='faq.remixTitle' /></h2>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.remixDefinitionTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.remixDefinitionBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.remixableTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.remixableBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.creativeCommonsTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.creativeCommonsBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                             <div className="body-copy column">
-                                 <h3><FormattedMessage id='faq.fairUseTitle' /></h3>
-                                 <p><FormattedHTMLMessage id='faq.fairUseBody' /></p>
-                             </div>
-                        </FlexRow>
-                </section>
-                <section id="accounts">
-                    <span className="nav-spacer"></span>
-                    <h2><FormattedMessage id='faq.accountsTitle' /></h2>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.confirmedAccountTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.confirmedAccountBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.checkConfirmedTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.checkConfirmedBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.howToConfirmTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.howToConfirmBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.requireConfirmTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.requireConfirmBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.forgotPasswordTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.forgotPasswordBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.changePasswordTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.changePasswordBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.changeEmailTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.changeEmailBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.newScratcherTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.newScratcherBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.multipleAccountTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.multipleAccountBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.multipleLoginTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.multipleLoginBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.changeUsernameTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.changeUsernameBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.shareInfoTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.shareInfoBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.deleteAccountTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.deleteAccountBody' /></p>
-                            </div>
-                        </FlexRow>
-                    </section>
-                    <section id="permissions">
-                        <span className="nav-spacer"></span>
-                        <h2><FormattedMessage id='faq.permissionsTitle' /></h2>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.scratchFreeTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.scratchFreeBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.scratchScreenshotTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.scratchScreenshotBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.scratchDescriptionTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.scratchDescriptionBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.presentScratchTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.presentScratchBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.supportMaterialTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.supportMaterialBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.sellProjectsTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.sellProjectsBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.sourceCodeTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.sourceCodeBody' /></p>
-                            </div>
-                        </FlexRow>
-                    </section>
-                    <section id="inappropriate-content">
-                        <span className="nav-spacer"></span>
-                        <h2><FormattedMessage id='faq.inappropriateContentTitle' /></h2>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.okayToShareTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.okayToShareBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.reportContentTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.reportContentBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.noFlameTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.noFlameBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.reviewContentTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.reviewContentBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.blockedAccountTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.blockedAccountBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.stolenAccountTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.stolenAccountBody' /></p>
-                            </div>
-                        </FlexRow>
-                    </section>
-                    <section id="clouddata">
-                        <span className="nav-spacer"></span>
-                        <h2><FormattedMessage id='faq.cloudDataTitle' /></h2>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.cloudDataInfoTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.cloudDataInfoBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.storedCloudInfoTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.storedCloudInfoBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.onlyNumbersTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.onlyNumbersBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.reportCloudTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.reportCloudBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.chatRoomTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.chatRoomBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.makeCloudVarTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.makeCloudVarBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.changeCloudVarTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.changeCloudVarBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.newScratcherCloudTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.newScratcherCloudBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.multiplayerTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.multiplayerBody' /></p>
-                            </div>
-                        </FlexRow>
-                        <FlexRow className="sidebar-row">
-                            <div className="body-copy column">
-                                <h3><FormattedMessage id='faq.cloudLagTitle' /></h3>
-                                <p><FormattedHTMLMessage id='faq.cloudLagBody' /></p>
-                            </div>
-                        </FlexRow>
-                    </section>
+                                <dd><FormattedHTMLMessage id='faq.accountPublicInfo' /></dd>
+                                <dt><FormattedMessage id='faq.dataCollectionTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.dataCollectionOne' /></dd>
+                                <dt><FormattedMessage id='faq.rentInfoTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.rentInfoBody' /></dd>
+                                <dt><FormattedMessage id='faq.viewUnsharedTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.viewUnsharedBody' /></dd>
+                            </dl>
+                        </section>
+                        <section id="remix">
+                            <span className="nav-spacer"></span>
+                            <h2><FormattedMessage id='faq.remixTitle' /></h2>
+                            <dl>
+                                <dt><FormattedMessage id='faq.remixDefinitionTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.remixDefinitionBody' /></dd>
+                                <dt><FormattedMessage id='faq.remixableTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.remixableBody' /></dd>
+                                <dt><FormattedMessage id='faq.creativeCommonsTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.creativeCommonsBody' /></dd>
+                                <dt><FormattedMessage id='faq.fairUseTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.fairUseBody' /></dd>
+                            </dl>
+                        </section>
+                        <section id="accounts">
+                            <span className="nav-spacer"></span>
+                            <h2><FormattedMessage id='faq.accountsTitle' /></h2>
+                            <dl>
+                                <dt><FormattedMessage id='faq.confirmedAccountTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.confirmedAccountBody' /></dd>
+                                <dt><FormattedMessage id='faq.checkConfirmedTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.checkConfirmedBody' /></dd>
+                                <dt><FormattedMessage id='faq.howToConfirmTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.howToConfirmBody' /></dd>
+                                <dt><FormattedMessage id='faq.requireConfirmTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.requireConfirmBody' /></dd>
+                                <dt><FormattedMessage id='faq.forgotPasswordTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.forgotPasswordBody' /></dd>
+                                <dt><FormattedMessage id='faq.changePasswordTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.changePasswordBody' /></dd>
+                                <dt><FormattedMessage id='faq.changeEmailTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.changeEmailBody' /></dd>
+                                <dt><FormattedMessage id='faq.newScratcherTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.newScratcherBody' /></dd>
+                                <dt><FormattedMessage id='faq.multipleAccountTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.multipleAccountBody' /></dd>
+                                <dt><FormattedMessage id='faq.multipleLoginTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.multipleLoginBody' /></dd>
+                                <dt><FormattedMessage id='faq.changeUsernameTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.changeUsernameBody' /></dd>
+                                <dt><FormattedMessage id='faq.shareInfoTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.shareInfoBody' /></dd>
+                                <dt><FormattedMessage id='faq.deleteAccountTitle' /></dt>
+                                <dd><FormattedHTMLMessage id='faq.deleteAccountBody' /></dd>
+                            </dl>
+                            </section>
+                            <section id="permissions">
+                                <span className="nav-spacer"></span>
+                                <h2><FormattedMessage id='faq.permissionsTitle' /></h2>
+                                <dl>
+                                    <dt><FormattedMessage id='faq.scratchFreeTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.scratchFreeBody' /></dd>
+                                    <dt><FormattedMessage id='faq.scratchScreenshotTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.scratchScreenshotBody' /></dd>
+                                    <dt><FormattedMessage id='faq.scratchDescriptionTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.scratchDescriptionBody' /></dd>
+                                    <dt><FormattedMessage id='faq.presentScratchTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.presentScratchBody' /></dd>
+                                    <dt><FormattedMessage id='faq.supportMaterialTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.supportMaterialBody' /></dd>
+                                    <dt><FormattedMessage id='faq.sellProjectsTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.sellProjectsBody' /></dd>
+                                    <dt><FormattedMessage id='faq.sourceCodeTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.sourceCodeBody' /></dd>
+                                </dl>
+                            </section>
+                            <section id="inappropriate-content">
+                                <span className="nav-spacer"></span>
+                                <h2><FormattedMessage id='faq.inappropriateContentTitle' /></h2>
+                                <dl>
+                                    <dt><FormattedMessage id='faq.okayToShareTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.okayToShareBody' /></dd>
+                                    <dt><FormattedMessage id='faq.reportContentTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.reportContentBody' /></dd>
+                                    <dt><FormattedMessage id='faq.noFlameTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.noFlameBody' /></dd>
+                                    <dt><FormattedMessage id='faq.reviewContentTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.reviewContentBody' /></dd>
+                                    <dt><FormattedMessage id='faq.blockedAccountTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.blockedAccountBody' /></dd>
+                                    <dt><FormattedMessage id='faq.stolenAccountTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.stolenAccountBody' /></dd>
+                                </dl>
+                            </section>
+                            <section id="clouddata">
+                                <span className="nav-spacer"></span>
+                                <h2><FormattedMessage id='faq.cloudDataTitle' /></h2>
+                                <dl>
+                                    <dt><FormattedMessage id='faq.cloudDataInfoTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.cloudDataInfoBody' /></dd>
+                                    <dt><FormattedMessage id='faq.storedCloudInfoTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.storedCloudInfoBody' /></dd>
+                                    <dt><FormattedMessage id='faq.onlyNumbersTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.onlyNumbersBody' /></dd>
+                                    <dt><FormattedMessage id='faq.reportCloudTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.reportCloudBody' /></dd>
+                                    <dt><FormattedMessage id='faq.chatRoomTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.chatRoomBody' /></dd>
+                                    <dt><FormattedMessage id='faq.makeCloudVarTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.makeCloudVarBody' /></dd>
+                                    <dt><FormattedMessage id='faq.changeCloudVarTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.changeCloudVarBody' /></dd>
+                                    <dt><FormattedMessage id='faq.newScratcherCloudTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.newScratcherCloudBody' /></dd>
+                                    <dt><FormattedMessage id='faq.multiplayerTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.multiplayerBody' /></dd>
+                                    <dt><FormattedMessage id='faq.cloudLagTitle' /></dt>
+                                    <dd><FormattedHTMLMessage id='faq.cloudLagBody' /></dd>
+                                </dl>
+                            </section>
+                    </div>
+                    <nav>
+                        <ol>
+                            <li><a href="#about-scratch"><FormattedMessage id='faq.aboutTitle' /></a></li>
+                            <li><a href="#privacy"><FormattedMessage id='faq.privacyTitle' /></a></li>
+                            <li><a href="#remix"><FormattedMessage id='faq.remixTitle' /></a></li>
+                            <li><a href="#accounts"><FormattedMessage id='faq.accountsTitle' /></a></li>
+                            <li><a href="#permissions"><FormattedMessage id='faq.permissionsTitle' /></a></li>
+                            <li><a href="#inappropriate-content"><FormattedMessage id='faq.inappropriateContentTitle' /></a></li>
+                            <li><a href="#clouddata"><FormattedMessage id='faq.cloudDataTitle' /></a></li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         );
