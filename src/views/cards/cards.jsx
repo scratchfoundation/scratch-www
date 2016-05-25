@@ -11,8 +11,14 @@ require('./cards.scss');
 
 var Cards = injectIntl(React.createClass({
     type: 'Cards',
+    pdfLocaleMismatch: function (locale, pdf, englishPdf) {
+        if (pdf === englishPdf && locale.indexOf('en') !== 0) {
+            return true;
+        }
+        return false;
+    },
     render: function () {
-        var locale = window._locale || 'en';
+        var locale = this.props.intl.locale || 'en';
         var formatMessage = this.props.intl.formatMessage;
         var englishLinks = {
             'cards.starterLink': '//scratch.mit.edu/scratchr2/static/pdfs/help/Scratch2Cards.pdf',
@@ -51,8 +57,11 @@ var Cards = injectIntl(React.createClass({
                                     <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
-                                        formattedLinks['cards.starterLink'] === englishLinks['cards.starterLink'] &&
-                                        locale !== 'en'
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.starterLink'],
+                                            englishLinks['cards.starterLink']
+                                        )
                                     ) ? [
                                         <span> <FormattedMessage id='cards.english' /></span>
                                     ] : []}
@@ -67,8 +76,11 @@ var Cards = injectIntl(React.createClass({
                                     <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
-                                        formattedLinks['cards.nameLink'] === englishLinks['cards.nameLink'] &&
-                                        locale !== 'en'
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.nameLink'],
+                                            englishLinks['cards.nameLink']
+                                        )
                                     ) ? [
                                         <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
@@ -83,8 +95,11 @@ var Cards = injectIntl(React.createClass({
                                     <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
-                                        formattedLinks['cards.pongLink'] === englishLinks['cards.pongLink'] &&
-                                        locale !== 'en'
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.pongLink'],
+                                            englishLinks['cards.pongLink']
+                                        )
                                     ) ? [
                                         <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
@@ -101,8 +116,11 @@ var Cards = injectIntl(React.createClass({
                                     <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
-                                        formattedLinks['cards.storyLink'] === englishLinks['cards.storyLink'] &&
-                                        locale !== 'en'
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.storyLink'],
+                                            englishLinks['cards.storyLink']
+                                        )
                                     ) ? [
                                         <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
@@ -117,8 +135,11 @@ var Cards = injectIntl(React.createClass({
                                     <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
-                                        formattedLinks['cards.danceLink'] === englishLinks['cards.danceLink'] &&
-                                        locale !== 'en'
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.danceLink'],
+                                            englishLinks['cards.danceLink']
+                                        )
                                     ) ? [
                                         <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
@@ -133,8 +154,11 @@ var Cards = injectIntl(React.createClass({
                                     <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className='pdf-icon' />
                                     <FormattedMessage id='cards.viewCard' />
                                     {(
-                                        formattedLinks['cards.hideLink'] === englishLinks['cards.hideLink'] &&
-                                        locale !== 'en'
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.hideLink'],
+                                            englishLinks['cards.hideLink']
+                                        )
                                     ) ? [
                                         <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
