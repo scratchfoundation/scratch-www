@@ -189,7 +189,9 @@ var Faq = React.createClass({
                             <li><a href="#remix"><FormattedMessage id='faq.remixTitle' /></a></li>
                             <li><a href="#accounts"><FormattedMessage id='faq.accountsTitle' /></a></li>
                             <li><a href="#permissions"><FormattedMessage id='faq.permissionsTitle' /></a></li>
-                            <li><a href="#inappropriate-content"><FormattedMessage id='faq.inappropriateContentTitle' /></a></li>
+                            <li><a href="#inappropriate-content">
+                                <FormattedMessage id='faq.inappropriateContentTitle' />
+                            </a></li>
                             <li><a href="#clouddata"><FormattedMessage id='faq.cloudDataTitle' /></a></li>
                         </ol>
                     </nav>
