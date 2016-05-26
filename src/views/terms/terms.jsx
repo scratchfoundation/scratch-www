@@ -3,11 +3,11 @@ var render = require('../../lib/render.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var Box = require('../../components/box/box.jsx');
 
-var Termsofuse = React.createClass({
-    type: 'Termsofuse',
+var Terms = React.createClass({
+    type: 'Terms',
     render: function () {
         return (
-            <div className="inner termsofuse">
+            <div className="inner terms">
                 <Box title={'Scratch Terms of Use'}>
                     <h4>1. User Agreement</h4>
                     <p>
@@ -511,4 +511,4 @@ var Termsofuse = React.createClass({
     }
 });
 
-render(<Page><Termsofuse /></Page>, document.getElementById('app'));
+render(<Page><Terms /></Page>, document.getElementById('app'));
