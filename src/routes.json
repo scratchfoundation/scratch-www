@@ -104,9 +104,9 @@
         "title": "Privacy Policy"
     },
     {
-        "name": "termsofuse",
+        "name": "terms",
         "pattern": "^/terms_of_use/?$",
-        "view": "termsofuse/termsofuse",
+        "view": "terms/terms",
         "title": "Scratch Terms of Use"
     }
 ]
