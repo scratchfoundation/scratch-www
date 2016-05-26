@@ -116,5 +116,11 @@
         "pattern": "^/privacy_policy/?$",
         "view": "privacypolicy/privacypolicy",
         "title": "Privacy Policy"
+    },
+    {
+        "name": "terms",
+        "pattern": "^/terms_of_use/?$",
+        "view": "terms/terms",
+        "title": "Scratch Terms of Use"
     }
 ]
