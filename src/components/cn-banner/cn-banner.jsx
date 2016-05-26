@@ -42,7 +42,7 @@ var CNBanner = React.createClass({
                         </div>
                     </div>
                     <div className="flying">
-                        <img src="/svgs/flying.svg" alt="" />
+                        <img src="/svgs/make-it-fly-graphic.svg" alt="" />
                     </div>
                 </FlexRow>
             </TitleBanner>
