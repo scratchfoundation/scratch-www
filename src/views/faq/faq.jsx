@@ -4,7 +4,7 @@ var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
 
 var Page = require('../../components/page/www/page.jsx');
-var TitleBanner = require('../../components/title-banner/title-banner.jsx');
+var InformationPage = require('../../components/informationpage/informationpage.jsx');
 
 require('./faq.scss');
 
@@ -13,13 +13,8 @@ var Faq = React.createClass({
     render: function () {
         return (
             <div className="faq">
-                <TitleBanner className="masthead">
-                    <div className="inner">
-                        <h1>Frequently Asked Questions (FAQ)</h1>
-                    </div>
-                </TitleBanner>
-                <div id="container" className="inner">
-                    <div className="inner main">
+                <InformationPage title={'Frequently Asked Questions (FAQ)'}>
+                    <div className="inner info-inner">
                         <section id="about-scratch">
                             <span className="nav-spacer"></span>
                             <h2><FormattedMessage id='faq.aboutTitle' /></h2>
@@ -195,7 +190,7 @@ var Faq = React.createClass({
                             <li><a href="#clouddata"><FormattedMessage id='faq.cloudDataTitle' /></a></li>
                         </ol>
                     </nav>
-                </div>
+                </InformationPage>
             </div>
         );
     }

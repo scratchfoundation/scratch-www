@@ -4,33 +4,12 @@
 #view {
     padding: 0;
 }
-$faq-splash: darken($ui-blue, 10%);
+$ui-secondary: darken($ui-blue, 10%);
 
 .faq {
-    /* HACK: is this terrible and too specific */
-    #container {
-        margin: 0 auto;
-    }
-
-    nav {
-        float: right;
-        border-left: 1px solid $ui-border;
-        width: 30%;
-
-        ol {
-            list-style: none;
-        }
-    }
-
-    .main {
-        float: left;
-        width: 60%;
-    }
-    /* end potentially hacky solution */
-
     .title-banner {
         &.masthead {
-            background-color: $faq-splash;
+            background-color: $ui-secondary;
             padding-bottom: .5rem;
 
             h1 {
@@ -58,95 +37,45 @@ $faq-splash: darken($ui-blue, 10%);
         }
     }
 
+    p {
+        margin-bottom: 1.25rem;
+        margin-left: 0;
+        max-width: $cols8;
+        text-align: left;
+    }
 
-    .flex-row {
-        &.sidebar-row {
-            margin: 2rem 0;
-            justify-content: space-between;
-            align-items: flex-start;
-
-            .body-copy {
-                width: $cols8;
-            }
-
-            .sidebar {
-                width: $cols3;
-            }
+    dl {
+        dt {
+            margin-bottom: .25rem;
+            font-size: 1.1rem;
         }
 
-        &.three-col-row {
-            align-items: flex-start;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-
-            .column {
-                $column-margin: 1rem;
-
-                margin: $column-margin;
-                width: calc(#{$cols4} - (#{$column-margin} * 2));
-
-                dd {
-                    text-align: left;
-                }
-            }
+        dd {
+            margin-bottom: 1.25rem;
+            margin-left: 0;
+            max-width: $cols8;
+            text-align: left;
         }
+    }
+
+    ul {
+        max-width: $cols8;
     }
 
     section {
         margin-bottom: 3rem;
 
-        dd {
-            max-width: $cols8;
-            text-align: left;
-        }
-
         ul {
             max-width: $cols8;
         }
 
-        dt {
-            font-size: 1.1rem;
-        }
-
-    }
-
-    #about-scratch,
-    #privacy,
-    #accounts,
-    #permissions,
-    #remix,
-    #inappropriate-content,
-    #clouddata {
         .nav-spacer {
             display: block;
             visibility: hidden;
             margin-top: -50px; // height of  nav bar
             height: 50px;
         }
-    }
 
-    #about-scratch,
-    #privacy,
-    #accounts,
-    #permissions,
-    #remix,
-    #inappropriate-content,
-    #clouddata {
-
-        h3 {
-            border-bottom: 1px solid $ui-border;
-        }
-
-        dl {
-            dt {
-                margin-bottom: .25rem;
-            }
-
-            dd {
-                margin-bottom: 1.25rem;
-                margin-left: 0;
-            }
-        }
     }
 
 }
@@ -166,34 +95,12 @@ $faq-splash: darken($ui-blue, 10%);
             display: none;
         }
     }
-
-    .flex-row {
-        &.sidebar-row {
-
-            .body-copy {
-                width: 100%;
-            }
-        }
-    }
 }
 
 //6 columns
 @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
     #view {
         text-align: left;
-    }
-
-    .flex-row {
-        &.sidebar-row {
-
-            .body-copy {
-                width: 100%;
-            }
-
-            .sidebar {
-                margin: 0 auto;
-            }
-        }
     }
 }
 
@@ -203,27 +110,9 @@ $faq-splash: darken($ui-blue, 10%);
         text-align: left;
     }
 
-    .flex-row {
-        &.sidebar-row {
-
-            .body-copy {
-                width: 100%;
-            }
-
-            .sidebar {
-                margin: 0 auto;
-            }
-        }
-    }
-
     section {
         dd {
             width: 100%;
         }
     }
-}
-
-
-nav {
-    width: 100%;
 }
