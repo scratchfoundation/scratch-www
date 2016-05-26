@@ -37,7 +37,7 @@ var Termsofuse = React.createClass({
                     <p>
                         1.3 Scratch is open to children and adults of all ages, and
                          we ask that you keep this in mind when using the Scratch
-                         services. When you use Scratch, you agree to abide by the
+                         services. When you use Scratch, you agree to abide by the{' '}
                          <a href="/community_guidelines">Scratch Community Guidelines</a>.
                     </p>
                     <p>
