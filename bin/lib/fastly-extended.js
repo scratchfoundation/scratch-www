@@ -65,14 +65,14 @@ module.exports = function (apiKey, serviceId) {
             if (err && err.statusCode === 404) {
                 this.request('POST', postUrl, condition, function (err, response) {
                     if (err) {
-                        return cb('Failed while inserting condition \"' + condition + '\": ' + err);
+                        return cb('Failed while inserting condition \"' + condition.statement + '\": ' + err);
                     }
                     return cb(null, response);
                 });
                 return;
             }
             if (err) {
-                return cb('Failed to update condition \"' + condition + '\": ' + err);
+                return cb('Failed to update condition \"' + condition.statement + '\": ' + err);
             }
             return cb(null, response);
         }.bind(this));
