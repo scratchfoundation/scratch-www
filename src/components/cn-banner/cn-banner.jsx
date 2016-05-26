@@ -29,12 +29,12 @@ var CNBanner = React.createClass({
                             <FormattedMessage id='cnbanner.flyDescription' />
                         </p>
                         <div className="button-row">
-                            <a>
+                            <a href="/studios/2050750/">
                                 <Button>
                                     <FormattedMessage id='cnbanner.seeExamples' />
                                 </Button>
                             </a>
-                            <a>
+                            <a href="/fly/">
                                 <Button>
                                     <FormattedMessage id='cnbanner.makeYourOwn' />
                                 </Button>
