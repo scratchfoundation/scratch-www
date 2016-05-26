@@ -1,6 +1,10 @@
 @import "../../colors";
 
 .ReactModal__Content {
+    &:focus {
+        outline: none;
+    }
+
     iframe {
         border: 0;
     }
