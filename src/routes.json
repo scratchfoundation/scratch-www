@@ -36,6 +36,12 @@
         "title": "Credits"
     },
     {
+        "name": "faq",
+        "pattern": "^/info/faq/?$",
+        "view": "faq/faq",
+        "title": "FAQ"
+    },
+    {
         "name": "cards",
         "pattern": "^/info/cards/?$",
         "view": "cards/cards",
@@ -107,7 +113,7 @@
     },
     {
         "name": "guidelines",
-        "pattern": "^/community_guidelines$",
+        "pattern": "^/community_guidelines/?$",
         "view": "guidelines/guidelines",
         "title": "Scratch Community Guidelines"
     },
