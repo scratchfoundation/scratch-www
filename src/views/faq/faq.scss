@@ -13,9 +13,9 @@ $faq-splash: darken($ui-blue, 10%);
     }
 
     nav {
-        width: 30%;
         float: right;
         border-left: 1px solid $ui-border;
+        width: 30%;
 
         ol {
             list-style: none;
@@ -23,15 +23,15 @@ $faq-splash: darken($ui-blue, 10%);
     }
 
     .main {
-        width: 60%;
         float: left;
+        width: 60%;
     }
     /* end potentially hacky solution */
 
     .title-banner {
         &.masthead {
             background-color: $faq-splash;
-            padding-bottom: 0.5rem;
+            padding-bottom: .5rem;
 
             h1 {
                 margin: 0 0 1rem 0;
