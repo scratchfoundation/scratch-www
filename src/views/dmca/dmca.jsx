@@ -1,15 +1,17 @@
 var React = require('react');
 var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
-var Page = require('../../components/page/www/page.jsx');
-var Box = require('../../components/box/box.jsx');
 
+var InformationPage = require('../../components/informationpage/informationpage.jsx');
+var Page = require('../../components/page/www/page.jsx');
+
+require('./dmca.scss');
 var Dmca = React.createClass({
     type: 'Dmca',
     render: function () {
         return (
-            <div className="inner dmca">
-                <Box title={'DMCA'}>
+            <div className="dmca">
+                <InformationPage title={'DMCA'}>
                     <p><FormattedMessage id='dmca.intro' /></p>
                     <p>
                         Copyright Agent / Mitchel Resnick<br/>
@@ -23,7 +25,7 @@ var Dmca = React.createClass({
                     <p><FormattedMessage id='dmca.assessment' /></p>
                     <p><FormattedMessage id='dmca.eyetoeye' /></p>
                     <p><FormattedMessage id='dmca.afterfiling' /></p>
-                </Box>
+                </InformationPage>
             </div>
         );
     }
