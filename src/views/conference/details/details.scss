@@ -1,12 +1,18 @@
 @import "../../../frameless";
 
 #view {
+    @media only screen and (max-width: $tablet - 1) {
+        margin-top: 100px;
+    } 
+
     @media only screen and (max-width: $desktop - 1) {
         text-align: left;
     }   
 }
 
 .details {
+    width: $cols8;
+
     &.inner {
         margin-top: 2rem;
 
@@ -39,5 +45,12 @@
 
     .description {
         margin: 2rem 0;
+    }
+}
+
+//8 columns
+@media only screen and (max-width: $desktop - 1) {
+    .details {
+        width: 100%;
     }
 }

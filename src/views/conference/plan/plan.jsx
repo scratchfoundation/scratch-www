@@ -263,6 +263,17 @@ var ConferencePlan = React.createClass({
                                 <h2>FAQ</h2>
                                 <dl>
                                     <dt>
+                                        The conference is sold out. What can I do?
+                                    </dt>
+                                    <dd>
+                                        Scratch@MIT is sold out and at capacity. However, you can{' '}
+                                        <a href="//scratchconference2016.eventbrite.com">
+                                            join the waitlist
+                                        </a>. People on the waitlist will be notified of openings on{' '}
+                                        a first come, first served basis.
+                                    </dd>
+                                    
+                                    <dt>
                                         Who is this conference for?
                                     </dt>
                                     <dd>
@@ -277,18 +288,6 @@ var ConferencePlan = React.createClass({
                                     </dt>
                                     <dd>
                                         Proposal submissions are now closed.
-                                    </dd>
-
-                                    <dt>
-                                        How much does it cost to register?
-                                    </dt>
-                                    <dd>
-                                        Through May 1, registration is $150 per ticket (Early Bird rate).{' '}
-                                        After May 1, registration increases to $250 per ticket. You can register{' '}
-                                        for the conference through the{' '}
-                                        <a href="https://www.eventbrite.com/e/scratchmit-2016-registration-21793477879">
-                                            registration form
-                                        </a>.
                                     </dd>
 
                                     <dt>

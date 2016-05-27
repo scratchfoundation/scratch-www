@@ -14,14 +14,11 @@
 
     .thumbnail-title,
     #{$extras} {
+        overflow: hidden;
+        text-overflow: ellipsis;
         line-height: normal;
+        white-space: nowrap;
         word-wrap: break-word;
-
-        a {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
     }
 
     .thumbnail-title {

@@ -19,14 +19,19 @@ var ConferenceSplash = React.createClass({
                         Many Paths, Many Styles
                     </h1>
                     <h3>
-                        Scratch Conference 2016 | Cambridge, MA, USA
+                        August 4 - 6, 2016 | Cambridge, MA, USA
                     </h3>
                     <p>
-                        <a href="//scratchconference2016.eventbrite.com">
+                        <a href="/conference/schedule">
                             <Button>
-                                Register Now
+                                See the Schedule
                             </Button>
                         </a>
+                    </p>
+                    <p className="sub-button">
+                        <b>
+                            We're sold out! <a href="//scratchconference2016.eventbrite.com">Join the Waitlist</a>
+                        </b>
                     </p>
                 </TitleBanner>
                 <section className="inner">

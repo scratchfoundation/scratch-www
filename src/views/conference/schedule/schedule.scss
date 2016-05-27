@@ -102,6 +102,28 @@
         }
     }
 
+    @media only screen and (max-width: $mobile - 1) {
+        .sub-nav {
+            flex-wrap: nowrap;
+        }
+
+        .inner {
+            h2 {
+                &.breaking-title {
+                    margin: 2rem 0 2rem;
+                    height: 100%;
+                    font-size: 1.5rem;
+                }
+            }
+
+            .agenda-item {
+                h3 {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+
     @media only screen and (max-width: $tablet - 1) {
         .inner {
             h2 {
