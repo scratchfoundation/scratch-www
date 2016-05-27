@@ -21,10 +21,17 @@ var ConferenceSplash = React.createClass({
                     <h3>
                         Scratch Conference 2016 | Cambridge, MA, USA
                     </h3>
+                    <h3>
+                        August 4 - 6
+                    </h3>
                     <p>
-                        <a href="//scratchconference2016.eventbrite.com">
+                        <b>
+                            We're sold out! <a href="//scratchconference2016.eventbrite.com">Join the Waitlist</a>
+                        </b>
+                        <br />
+                        <a href="/conference/schedule">
                             <Button>
-                                Register Now
+                                See the Schedule
                             </Button>
                         </a>
                     </p>

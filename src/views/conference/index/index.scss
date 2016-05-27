@@ -25,6 +25,13 @@
         p {
             margin-top: 3rem;
 
+            b {
+                a {
+                    text-decoration: underline;
+                    color: $type-white;
+                }
+            }
+
             a {
 
                 button {
