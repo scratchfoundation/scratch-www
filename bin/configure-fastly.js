@@ -153,10 +153,12 @@ async.auto({
         );
     }],
     passCacheCondition: ['version', 'passRequestCondition', function (cb, results) {
-        var condition = defaults(
-            {name: PASS_CACHE_CONDITION_NAME, type: 'CACHE'},
-            results.passRequestCondition
-        );
+        var condition = {
+            name: PASS_CACHE_CONDITION_NAME,
+            type: 'CACHE',
+            statement: results.passRequestCondition.statement,
+            priority: results.passRequestCondition.priority
+        };
         fastly.setCondition(results.version, condition, cb);
     }],
     passCacheSettingsCondition: ['version', 'passCacheCondition', function (cb, results) {
