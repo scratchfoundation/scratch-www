@@ -19,10 +19,7 @@ var ConferenceSplash = React.createClass({
                         Many Paths, Many Styles
                     </h1>
                     <h3>
-                        Scratch Conference 2016 | Cambridge, MA, USA
-                    </h3>
-                    <h3>
-                        August 4 - 6
+                        August 4 - 6, 2016 | Cambridge, MA, USA
                     </h3>
                     <p>
                         <b>
