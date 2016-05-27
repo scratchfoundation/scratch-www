@@ -41,6 +41,20 @@
         }
     }
 
+    @media only screen and (max-width: $mobile - 1) {
+        .inner {
+            > ul {
+                li {
+                    &.right {
+                        ul {
+                            flex-flow: row nowrap;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     @media only screen and (max-width: $tablet - 1) {
         height: 100px;
 

@@ -46,25 +46,29 @@ var ConferenceDetails = React.createClass({
                 ] : [
                     <h2>{this.props.conferenceDetails.Title}</h2>,
                     <ul className="logistics">
-                        <li>
-                            <img src="/svgs/conference/schedule/presenter-icon.svg" alt="presenter icon" />
-                            {this.props.conferenceDetails.Presenter}
-                        </li>
-                        <li>
-                            <img src="/svgs/conference/schedule/time-icon.svg" alt="time icon" />
-                            {this.props.conferenceDetails.Start} &ndash; {this.props.conferenceDetails.End}
-                        </li>
-                        <li>
-                            <img src="/svgs/conference/schedule/event-icon.svg" alt="event icon" />
-                            {this.props.conferenceDetails.Type}
-                        </li>
-                        <li>
-                            <img src="/svgs/conference/schedule/location-icon.svg" alt="location icon" />
-                            {this.props.conferenceDetails.Location}
-                        </li>
+                        {this.props.conferenceDetails.fetching ? [] : [
+                            <li>
+                                <img src="/svgs/conference/schedule/presenter-icon.svg" alt="presenter icon" />
+                                {this.props.conferenceDetails.Presenter}
+                            </li>,
+                            <li>
+                                <img src="/svgs/conference/schedule/time-icon.svg" alt="time icon" />
+                                {this.props.conferenceDetails.Start} &ndash; {this.props.conferenceDetails.End}
+                            </li>,
+                            <li>
+                                <img src="/svgs/conference/schedule/event-icon.svg" alt="event icon" />
+                                {this.props.conferenceDetails.Type}
+                            </li>,
+                            <li>
+                                <img src="/svgs/conference/schedule/location-icon.svg" alt="location icon" />
+                                {this.props.conferenceDetails.Location}
+                            </li>
+                        ]}
                     </ul>,
                     <div className="description">
-                        {this.props.conferenceDetails.Description}
+                        <p>
+                            {this.props.conferenceDetails.Description}
+                        </p>
                     </div>,
                     <div className="back">
                     {this.props.conferenceDetails.fetching ? [] : [

@@ -71,7 +71,7 @@ var ConferenceFooter = React.createClass({
                                 </li>
                             </FlexRow>
                         </FlexRow>
-                        <p>
+                        <p className="legal">
                             Scratch is a project of the Lifelong Kindergarten Group at the MIT Media Lab.
                         </p>
                     </div>
