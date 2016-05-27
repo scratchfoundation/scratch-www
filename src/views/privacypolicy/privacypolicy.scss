@@ -44,6 +44,24 @@ $ui-secondary: darken($ui-blue, 10%);
         text-align: left;
     }
 
+    dl {
+        dt {
+            margin-bottom: .25rem;
+            font-size: 1.1rem;
+        }
+
+        dd {
+            margin-bottom: 1.25rem;
+            margin-left: 0;
+            max-width: $cols8;
+            text-align: left;
+        }
+    }
+
+    ul {
+        max-width: $cols8;
+    }
+
     section {
         margin-bottom: 3rem;
 
@@ -58,19 +76,6 @@ $ui-secondary: darken($ui-blue, 10%);
             height: 50px;
         }
 
-        dl {
-            dt {
-                margin-bottom: .25rem;
-                font-size: 1.1rem;
-            }
-
-            dd {
-                margin-bottom: 1.25rem;
-                margin-left: 0;
-                max-width: $cols8;
-                text-align: left;
-            }
-        }
     }
 
 }

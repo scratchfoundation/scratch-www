@@ -14,8 +14,7 @@ var Privacypolicy = React.createClass({
                 <InformationPage title={'Privacy Policy'}>
                     <div className="inner info-inner">
                         <section>
-                        <dl>
-                            <dd>
+                            <p className="intro">
                                 We made Scratch so people like you could create projects,
                                  share ideas, and build a community. To make this happen,
                                  we collect some information for our users. The Scratch Team
@@ -25,8 +24,8 @@ var Privacypolicy = React.createClass({
                                  and what we're doing to keep it safe. If you have any
                                  questions regarding this privacy policy, you can{' '}
                                  <a href="/contact-us">contact us</a>.
-                            </dd>
-                            <dd><i>
+                            </p>
+                            <p className="callout">
                                 Please do not share personal contact information, such as
                                  your name, physical address, email address, phone number,
                                  or anything else that can be used to make contact outside
@@ -34,8 +33,7 @@ var Privacypolicy = React.createClass({
                                  or forum posts that contain this kind of information so
                                  the Scratch team can remove it, and please remind the
                                  author of our policy.
-                            </i></dd>
-                        </dl>
+                             </p>
                         </section>
                         <section id="collection">
                             <dl>
