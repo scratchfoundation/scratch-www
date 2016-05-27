@@ -22,15 +22,16 @@ var ConferenceSplash = React.createClass({
                         August 4 - 6, 2016 | Cambridge, MA, USA
                     </h3>
                     <p>
-                        <b>
-                            We're sold out! <a href="//scratchconference2016.eventbrite.com">Join the Waitlist</a>
-                        </b>
-                        <br />
                         <a href="/conference/schedule">
                             <Button>
                                 See the Schedule
                             </Button>
                         </a>
+                    </p>
+                    <p className="sub-button">
+                        <b>
+                            We're sold out! <a href="//scratchconference2016.eventbrite.com">Join the Waitlist</a>
+                        </b>
                     </p>
                 </TitleBanner>
                 <section className="inner">

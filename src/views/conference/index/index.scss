@@ -25,7 +25,13 @@
         p {
             margin-top: 3rem;
 
+            &.sub-button {
+                margin-top: 1rem;
+            }
+
             b {
+                margin-top: 2rem;
+
                 a {
                     text-decoration: underline;
                     color: $type-white;
