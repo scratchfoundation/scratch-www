@@ -17,8 +17,10 @@
         min-height: 53px;
 
         a {
-            display: block;
+            display: flex;
             text-decoration: none;
+            flex-wrap: nowrap;
+            flex-direction: row;
 
             &:hover {
                 text-decoration: none;
@@ -26,9 +28,8 @@
         }
 
         img {
-            display: block;
-            float: left;
             margin-right: 12px;
+            width: initial;
         }
 
         h4 {
@@ -42,6 +43,7 @@
             display: block;
             margin: 0;
             padding: 0;
+            line-height: normal;
 
             color: $type-gray;
             font-size: .85rem;
