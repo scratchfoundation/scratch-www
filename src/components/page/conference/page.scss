@@ -123,5 +123,12 @@
                 }
             }
         }
-    } 
+    }
+}
+
+@media only screen and (max-width: $mobile - 1) {
+    #view {
+        width: 100%;
+        min-width: 100%;
+    }
 }
