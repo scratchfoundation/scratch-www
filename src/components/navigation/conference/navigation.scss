@@ -42,12 +42,19 @@
     }
 
     @media only screen and (max-width: $mobile - 1) {
-        .inner {
-            > ul {
-                li {
-                    &.right {
-                        ul {
-                            flex-flow: row nowrap;
+        .inner > ul {
+            li {
+                &.right {
+                    ul {
+                        flex-flow: row nowrap;
+
+                        li {
+                            margin: 0;
+                            padding: 0;
+
+                            a {
+                                font-size: .75rem;
+                            }
                         }
                     }
                 }
