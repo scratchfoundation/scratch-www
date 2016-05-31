@@ -225,99 +225,101 @@ var Navigation = React.createClass({
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
-                    {this.props.session.user ? [
-                        <li className="link right messages" key="messages">
-                            <a
-                                href="/messages/"
-                                title={formatMessage({id: 'general.messages'})}>
+                    {this.props.session.loaded ? (
+                        this.props.session.user ? [
+                            <li className="link right messages" key="messages">
+                                <a
+                                    href="/messages/"
+                                    title={formatMessage({id: 'general.messages'})}>
 
-                                <span className={messageClasses}>{this.state.unreadMessageCount}</span>
-                                <FormattedMessage id="general.messages" />
-                            </a>
-                        </li>,
-                        <li className="link right mystuff" key="mystuff">
-                            <a
-                                href="/mystuff/"
-                                title={formatMessage({id: 'general.myStuff'})}>
+                                    <span className={messageClasses}>{this.state.unreadMessageCount}</span>
+                                    <FormattedMessage id="general.messages" />
+                                </a>
+                            </li>,
+                            <li className="link right mystuff" key="mystuff">
+                                <a
+                                    href="/mystuff/"
+                                    title={formatMessage({id: 'general.myStuff'})}>
 
-                                <FormattedMessage id="general.myStuff" />
-                            </a>
-                        </li>,
-                        <li className="link right account-nav" key="account-nav">
-                            <a className="user-info" href="#" onClick={this.handleAccountNavClick}>
-                                <Avatar src={this.props.session.user.thumbnailUrl} alt="" />
-                                {this.props.session.user.username}
-                            </a>
-                            <Dropdown
-                                    as="ul"
-                                    isOpen={this.state.accountNavOpen}
-                                    onRequestClose={this.closeAccountNav}>
-                                <li>
-                                    <a href={this.getProfileUrl()}>
-                                        <FormattedMessage id="general.profile" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/mystuff/">
-                                        <FormattedMessage id="general.myStuff" />
-                                    </a>
-                                </li>
-                                {this.props.session.permissions.educator ? [
+                                    <FormattedMessage id="general.myStuff" />
+                                </a>
+                            </li>,
+                            <li className="link right account-nav" key="account-nav">
+                                <a className="user-info" href="#" onClick={this.handleAccountNavClick}>
+                                    <Avatar src={this.props.session.user.thumbnailUrl} alt="" />
+                                    {this.props.session.user.username}
+                                </a>
+                                <Dropdown
+                                        as="ul"
+                                        isOpen={this.state.accountNavOpen}
+                                        onRequestClose={this.closeAccountNav}>
                                     <li>
-                                        <a href="/educators/classes/">
-                                            <FormattedMessage id="general.myClasses" />
+                                        <a href={this.getProfileUrl()}>
+                                            <FormattedMessage id="general.profile" />
                                         </a>
                                     </li>
-                                ] : []}
-                                {this.props.session.permissions.student ? [
                                     <li>
-                                        <a href={'/classes/' + this.props.session.user.classroomId + '/'}>
-                                            <FormattedMessage id="general.myClass" />
+                                        <a href="/mystuff/">
+                                            <FormattedMessage id="general.myStuff" />
                                         </a>
                                     </li>
-                                ] : []}
-                                <li>
-                                    <a href="/accounts/settings/">
-                                        <FormattedMessage id="general.accountSettings" />
-                                    </a>
-                                </li>
-                                <li className="divider">
-                                    <a href="#" onClick={this.handleLogOut}>
-                                        <FormattedMessage id="navigation.signOut" />
-                                    </a>
-                                </li>
-                            </Dropdown>
-                        </li>
-                    ] : [
-                        <li className="link right join" key="join">
-                            <a href="#" onClick={this.handleJoinClick}>
-                                <FormattedMessage id="general.joinScratch" />
-                            </a>
-                        </li>,
-                        <Registration
-                                key="registration"
-                                isOpen={this.state.registrationOpen}
-                                onRequestClose={this.closeRegistration}
-                                onRegistrationDone={this.completeRegistration} />,
-                        <li className="link right login-item" key="login">
-                            <a
-                                href="#"
-                                onClick={this.handleLoginClick}
-                                className="ignore-react-onclickoutside"
-                                key="login-link">
-                                    <FormattedMessage id="general.signIn" />
-                           </a>
-                            <Dropdown
-                                    className="login-dropdown with-arrow"
-                                    isOpen={this.state.loginOpen}
-                                    onRequestClose={this.closeLogin}
-                                    key="login-dropdown">
-                                <Login
-                                    onLogIn={this.handleLogIn}
-                                    error={this.state.loginError} />
-                            </Dropdown>
-                        </li>
-                    ]}
+                                    {this.props.session.permissions.educator ? [
+                                        <li>
+                                            <a href="/educators/classes/">
+                                                <FormattedMessage id="general.myClasses" />
+                                            </a>
+                                        </li>
+                                    ] : []}
+                                    {this.props.session.permissions.student ? [
+                                        <li>
+                                            <a href={'/classes/' + this.props.session.user.classroomId + '/'}>
+                                                <FormattedMessage id="general.myClass" />
+                                            </a>
+                                        </li>
+                                    ] : []}
+                                    <li>
+                                        <a href="/accounts/settings/">
+                                            <FormattedMessage id="general.accountSettings" />
+                                        </a>
+                                    </li>
+                                    <li className="divider">
+                                        <a href="#" onClick={this.handleLogOut}>
+                                            <FormattedMessage id="navigation.signOut" />
+                                        </a>
+                                    </li>
+                                </Dropdown>
+                            </li>
+                        ] : [
+                            <li className="link right join" key="join">
+                                <a href="#" onClick={this.handleJoinClick}>
+                                    <FormattedMessage id="general.joinScratch" />
+                                </a>
+                            </li>,
+                            <Registration
+                                    key="registration"
+                                    isOpen={this.state.registrationOpen}
+                                    onRequestClose={this.closeRegistration}
+                                    onRegistrationDone={this.completeRegistration} />,
+                            <li className="link right login-item" key="login">
+                                <a
+                                    href="#"
+                                    onClick={this.handleLoginClick}
+                                    className="ignore-react-onclickoutside"
+                                    key="login-link">
+                                        <FormattedMessage id="general.signIn" />
+                               </a>
+                                <Dropdown
+                                        className="login-dropdown with-arrow"
+                                        isOpen={this.state.loginOpen}
+                                        onRequestClose={this.closeLogin}
+                                        key="login-dropdown">
+                                    <Login
+                                        onLogIn={this.handleLogIn}
+                                        error={this.state.loginError} />
+                                </Dropdown>
+                            </li>
+                        ]) : [
+                        ]}
                 </ul>
                 <Modal isOpen={this.state.canceledDeletionOpen}
                        onRequestClose={this.closeCanceledDeletion}

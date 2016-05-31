@@ -32,6 +32,7 @@ module.exports.setSessionError = function (error) {
 };
 
 module.exports.setSession = function (session) {
+    session.loaded = true;
     return {
         type: Types.SET_SESSION,
         session: session
