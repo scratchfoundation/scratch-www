@@ -150,9 +150,9 @@ var Privacypolicy = React.createClass({
                     <h3>How can I update my personal information?</h3>
                     <p>
                         You can update your password, email address, and country through
-                         the <a href="/account/password_change">Account Settings</a> page.
+                         the <a href="/accounts/password_change/">Account Settings</a> page.
                          You can also reset your password through the{' '}
-                          <a href="/account/password_reset">Account Reset</a>{' '}
+                          <a href="/accounts/password_reset/">Password Reset</a>{' '}
                          page. You cannot change your username, but you can make a new
                          account and manually copy your projects to the new account.
                     </p>

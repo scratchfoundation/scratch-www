@@ -25,8 +25,21 @@
         p {
             margin-top: 3rem;
 
+            &.sub-button {
+                margin-top: 1rem;
+            }
+
+            b {
+                margin-top: 2rem;
+
+                a {
+                    text-decoration: underline;
+                    color: $type-white;
+                }
+            }
+
             a {
-                
+
                 button {
                     background-color: $ui-white;
                     color: $ui-blue;
@@ -44,6 +57,7 @@
             p {
                 margin-top: .25rem;
             }
+
         }
 
         @media only screen and (max-width: $desktop - 1) {
@@ -56,6 +70,7 @@
             }
         }
     }
+
 
     .flex-row {
         align-items: flex-start;
@@ -74,6 +89,14 @@
                 margin: .5rem;
                 width: 125px;
             }
+        }
+    }
+}
+
+@media only screen and (max-width: $tablet - 1) {
+    .index {
+        .flex-row {
+            align-items: center;
         }
     }
 }

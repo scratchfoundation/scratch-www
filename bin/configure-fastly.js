@@ -20,7 +20,7 @@ var extraAppRoutes = [
     // TODO: Should this be added for every route?
     '^/\\?',
     // View html
-    '^/[^\/]*\.html'
+    '^/[^\/]*\.html$'
 ];
 
 /*

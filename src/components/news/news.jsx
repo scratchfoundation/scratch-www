@@ -31,9 +31,16 @@ var News = React.createClass({
                         return (
                             <li key={item.id}>
                                 <a href={item.url}>
-                                    <img src={item.image} width="53" height="53" alt="" />
-                                    <h4>{item.headline}</h4>
-                                    <p>{item.copy}</p>
+                                    <img src={item.image}
+                                         className="news-image"
+                                         width="53"
+                                         height="53"
+                                         alt=""
+                                    />
+                                    <div className="news-description">
+                                        <h4>{item.headline}</h4>
+                                        <p>{item.copy}</p>
+                                    </div>
                                 </a>
                             </li>
                         );

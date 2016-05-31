@@ -57,7 +57,7 @@
             }
 
             span {
-                background-color: $ui-white;
+                background-color: $background-color;
                 padding: 0 10px;
             }
         }
@@ -97,6 +97,28 @@
                     margin-right: .5rem;
                     width: 1rem;
                     height: 1rem;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: $mobile - 1) {
+        .sub-nav {
+            flex-wrap: nowrap;
+        }
+
+        .inner {
+            h2 {
+                &.breaking-title {
+                    margin: 2rem 0 2rem;
+                    height: 100%;
+                    font-size: 1.5rem;
+                }
+            }
+
+            .agenda-item {
+                h3 {
+                    font-size: 1.2rem;
                 }
             }
         }
