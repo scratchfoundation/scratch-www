@@ -10,6 +10,7 @@ var Api = require('../../mixins/api.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
+var CNBanner = require('../../components/cn-banner/cn-banner.jsx');
 var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
@@ -370,6 +371,7 @@ var Splash = injectIntl(React.createClass({
                                 {...omit(emailConfirmationStyle, 'padding')} />
                     </Modal>
                 ] : []}
+                <CNBanner />
                 <div key="inner" className="inner">
                     {this.props.session.user ? [
                         <div key="header" className="splash-header">

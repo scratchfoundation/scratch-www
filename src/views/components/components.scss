@@ -1,5 +1,115 @@
+@import "../../colors";
+
 .components {   
     h1 {
         margin: 0 0 10px 0;
+    }
+
+    .colors {
+        span {
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+            line-height: 200px;
+            font-weight: bold;
+        }
+
+        .ui-blue,
+        .ui-orange,
+        .ui-dark-gray,
+        .ui-purple,
+        .overlay-gray,
+        .header-gray,
+        .type-gray,
+        .link-blue,
+        .splash-green,
+        .splash-pink,
+        .splash-blue {
+            color: $ui-white;
+        }
+
+        .ui-blue {
+            background-color: $ui-blue;
+        }
+
+        .ui-orange {
+            background-color: $ui-orange;
+        }
+
+        .ui-light-gray {
+            background-color: $ui-light-gray;
+        }
+
+        .ui-gray {
+            background-color: $ui-gray;
+        }
+
+        .ui-dark-gray {
+            background-color: $ui-dark-gray;
+        }
+
+        .background-color {
+            background-color: $background-color;
+        }
+
+        .ui-aqua {
+            background-color: $ui-aqua;
+        }
+
+        .ui-purple {
+            background-color: $ui-purple;
+        }
+
+        .ui-white {
+            background-color: $ui-white;
+        }
+
+        .ui-border {
+            background-color: $ui-border;
+        }
+
+        .active-gray {
+            background-color: $active-gray;
+        }
+
+        .active-dark-gray {
+            background-color: $active-dark-gray;
+        }
+
+        .box-shadow-gray {
+            background-color: $box-shadow-gray;
+        }
+
+        .overlay-gray {
+            background-color: $overlay-gray;
+        }
+
+        .header-gray {
+            background-color: $header-gray;
+        }
+
+        .type-gray {
+            background-color: $type-gray;
+        }
+
+        .type-white {
+            background-color: $type-white;
+        }
+
+        .link-blue {
+            background-color: $link-blue;
+        }
+
+        .splash-green {
+            background-color: $splash-green;
+        }
+
+        .splash-pink {
+            background-color: $splash-pink;
+        }
+
+        .splash-blue {
+            background-color: $splash-blue;
+        }
     }
 }
