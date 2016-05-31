@@ -39,26 +39,14 @@
                 margin: 0;
             }
 
-            input {
+            input,
+            button {
                 display: inline-block;
                 margin-top: 5px;
                 outline: none;
                 border: 0;
                 background-color: $active-gray;
                 height: 14px;
-
-                &[type=submit] {
-                    position: absolute;
-                    
-                    background-color: transparent;
-                    background-image: url("/images/nav-search-glass.png");
-                    background-repeat: no-repeat;
-                    background-position: center center;     
-                    background-size: 14px 14px;
-                    
-                    width: 40px;
-                    height: 40px;
-                }
 
                 &[type=text] {
                     transition: .15s ease background-color; 
@@ -83,6 +71,24 @@
                     .ie9 & {
                         width: 70px;
                     }
+                }
+            }
+
+            .btn-search {
+                position: absolute;
+                
+                box-shadow: none;
+                background-color: transparent;
+                background-image: url("/images/nav-search-glass.png");
+                background-repeat: no-repeat;
+                background-position: center center;     
+                background-size: 14px 14px;
+                
+                width: 40px;
+                height: 40px;
+
+                &:hover {
+                    box-shadow: none;
                 }
             }
         }
