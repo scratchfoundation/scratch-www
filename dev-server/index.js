@@ -6,7 +6,7 @@ var webpack = require('webpack');
 var compiler = webpack(require('../webpack.config.js'));
 var handler = require('./handler');
 var log = require('./log');
-var routes = require('../src/routes.json');
+var routes = require('../src/routes.json').concat(require('../src/routes-dev.json'));
 
 // Create server
 var app = express();
