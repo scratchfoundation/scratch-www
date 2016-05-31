@@ -4,7 +4,7 @@ var omit = require('lodash.omit');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var actions = require('../../redux/actions.js');
+var sessionActions = require('../../redux/session.js');
 
 var Api = require('../../mixins/api.jsx');
 
@@ -29,7 +29,7 @@ var Splash = injectIntl(React.createClass({
     ],
     getInitialState: function () {
         return {
-            projectCount: 13000000, // gets the shared project count
+            projectCount: 14000000, // gets the shared project count
             activity: [], // recent social actions taken by users someone is following
             news: [], // gets news posts from the scratch Tumblr
             featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
@@ -167,7 +167,7 @@ var Splash = injectIntl(React.createClass({
             useCsrf: true,
             json: {cue: cue, value: false}
         }, function (err) {
-            if (!err) this.props.dispatch(actions.refreshSession());
+            if (!err) this.props.dispatch(sessionActions.refreshSession());
         });
     },
     shouldShowWelcome: function () {

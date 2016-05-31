@@ -1,6 +1,5 @@
 @import "../../../colors";
 @import "../../../frameless";
-@import "../../../typography";
 
 #footer {
     .inner {
@@ -51,7 +50,7 @@
                 }
 
                 li {
-                    margin-bottom: .5rem;
+                    margin: 0;
                 }
             }
         }

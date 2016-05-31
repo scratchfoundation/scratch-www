@@ -36,13 +36,13 @@
     '''
 */
 var fs = require('fs');
-var glob = require('glob');
 var merge = require('lodash.merge');
 var path = require('path');
 
 var languages = require('../languages.json');
 var localeCompare = require('./lib/locale-compare');
 var localizedUrls = require('./lib/localized-urls');
+var routes = require('../src/routes.json');
 
 // -----------------------------------------------------------------------------
 // Main script
@@ -64,56 +64,84 @@ try {
     fs.mkdirSync(outputDir);
 }
 
-// message key with english string values (i.e. default values)
-var viewLocales = {};
-// FormattedMessage id with english string as value. Use for default values in translations
-// Sample structure: { 'general-general.blah': 'blah', 'about-about.blah': 'blahblah' }
-var idsWithICU = {};
-// reverse (i.e. english string with message key as the value) object for searching po files.
-// Sample structure: { 'blah': 'general-general.blah', 'blahblah': 'about-about.blah' }
-var icuWithIds = {};
-
 // get global locale strings first.
 var globalTemplateFile = path.resolve(__dirname, '../src/l10n.json');
-localeCompare.getIdsForView('general', globalTemplateFile, viewLocales, idsWithICU, icuWithIds);
+var ids = require(globalTemplateFile);
+// var ids = JSON.parse(fs.readFileSync(globalTemplateFile, 'utf8'));
 
+// message key with english string values (i.e. default values)
+var viewLocales = {
+    general: {
+        en: ids
+    }
+};
+var idsWithICU = localeCompare.idToICUMap('general', ids);
+var icuWithIds = localeCompare.icuToIdMap('general', ids);
+
+var views = [];
+var localizedAssetUrls = {};
 
 // start with all views, and remove localized ones as they are iterated over
-var views = glob.sync(path.resolve(__dirname, '../src/views/*'));
-for (var i = 0; i < views.length; i++) {
-    views[i] = views[i].split('/').pop();
-}
+for (var v in routes) {
+    if (typeof routes[v].redirect !== 'undefined') {
+        continue;
+    }
+    
+    views.push(routes[v].name);
+    try {
+        var subdir = routes[v].view.split('/');
+        subdir.pop();
+        var l10n = path.resolve(__dirname, '../src/views/' + subdir.join('/') + '/l10n.json');
+        ids = require(l10n);
+        viewLocales[routes[v].name] = {
+            en: ids
+        };
+        idsWithICU = merge(idsWithICU, localeCompare.idToICUMap(routes[v].name, ids));
+        icuWithIds = merge(icuWithIds, localeCompare.icuToIdMap(routes[v].name, ids));
+    } catch (err) {
+        if (err.code !== 'MODULE_NOT_FOUND') {
+            throw err;
+        }
 
-// get view-specific locale strings.
-var files = glob.sync(path.resolve(__dirname, '../src/views/**/l10n.json'));
-files.forEach(function (file) {
-    var dirPath = file.split('/');
-    dirPath.pop();
-    var view = dirPath.pop();
-    localeCompare.getIdsForView(view, file, viewLocales, idsWithICU, icuWithIds);
-});
-
-// get asset url translations
-var localizedAssetUrls = {};
-files = glob.sync(path.resolve(__dirname, '../src/views/**/l10n-static.json'));
-files.forEach(function (file) {
-    var dirPath = file.split('/');
-    dirPath.pop();
-    var view = dirPath.pop();
-    localizedAssetUrls[view] = {};
-
-    var assetUrls = JSON.parse(fs.readFileSync(file, 'utf8'));
-    for (var lang in localizedUrls) {
-        localizedAssetUrls[view][lang] = {};
-        for (var key in assetUrls) {
-            if (localizedUrls[lang].hasOwnProperty(key)) {
-                localizedAssetUrls[view][lang][key] = localizedUrls[lang][key];
-            } else {
-                localizedAssetUrls[view][lang][key] = assetUrls[key];
-            }
+        try {
+            fs.accessSync(path.resolve(__dirname, '../src/views/' + routes[v].view + '.jsx'));
+        } catch (err) {
+            // the config for the view is not set up correctly, so throw the error.
+            throw err;
         }
     }
-});
+
+    // get asset url translations
+    try {
+        subdir = routes[v].view.split('/');
+        subdir.pop();
+        var l10nStatic = path.resolve(__dirname, '../src/views/' + subdir.join('/') + '/l10n-static.json');
+        localizedAssetUrls[routes[v].name] = {};
+
+        var assetUrls = require(l10nStatic);
+        for (var lang in localizedUrls) {
+            localizedAssetUrls[routes[v].name][lang] = {};
+            for (var key in assetUrls) {
+                if (localizedUrls[lang].hasOwnProperty(key)) {
+                    localizedAssetUrls[routes[v].name][lang][key] = localizedUrls[lang][key];
+                } else {
+                    localizedAssetUrls[routes[v].name][lang][key] = assetUrls[key];
+                }
+            }
+        }
+    } catch (err) {
+        if (err.code !== 'MODULE_NOT_FOUND') {
+            throw err;
+        }
+
+        try {
+            fs.accessSync(path.resolve(__dirname, '../src/views/' + routes[v].view + '.jsx'));
+        } catch (err) {
+            // the config for the view is not set up correctly, so throw the error.
+            throw err;
+        }
+    }
+}
 
 // md5 of english strings with message key as the value for searching po files.
 // Sample structure: { 'sdfas43534sdfasdf': 'general-general.blah', 'lkjfasdf4t342asdfa': 'about-about.blah' }
@@ -121,20 +149,20 @@ var md5WithIds = localeCompare.getMD5Map(icuWithIds);
 
 // Get ui localization strings first
 var isoCodes = Object.keys(languages);
-for (i in isoCodes) {
-    var translations = localeCompare.getTranslationsForLanguage(isoCodes[i], idsWithICU, md5WithIds);
-    for (var key in translations) {
-        viewLocales[key] = merge(viewLocales[key], translations[key]);
+for (var isoCode in isoCodes) {
+    var translations = localeCompare.getTranslationsForLanguage(isoCodes[isoCode], idsWithICU, md5WithIds);
+    for (var messageId in translations) {
+        viewLocales[messageId] = merge(viewLocales[messageId], translations[messageId]);
     }
 }
 
-for (i in views) {
+for (var view in views) {
     var viewTranslations = viewLocales['general'];
-    if (views[i] in viewLocales) {
-        viewTranslations = merge(viewLocales[views[i]], viewTranslations);
+    if (views[view] in viewLocales) {
+        viewTranslations = merge(viewLocales[views[view]], viewTranslations);
     }
-    if (views[i] in localizedAssetUrls) {
-        viewTranslations = merge(viewTranslations, localizedAssetUrls[[views[i]]]);
+    if (views[view] in localizedAssetUrls) {
+        viewTranslations = merge(viewTranslations, localizedAssetUrls[[views[view]]]);
     }
-    localeCompare.writeTranslationsToJS(outputDir, views[i], viewTranslations);
+    localeCompare.writeTranslationsToJS(outputDir, views[view], viewTranslations);
 }

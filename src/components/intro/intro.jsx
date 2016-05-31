@@ -2,7 +2,7 @@ var connect = require('react-redux').connect;
 var omit = require('lodash.omit');
 var React = require('react');
 
-var actions = require('../../redux/actions.js');
+var sessionActions = require('../../redux/session.js');
 
 var Modal = require('../modal/modal.jsx');
 var Registration = require('../registration/registration.jsx');
@@ -24,7 +24,7 @@ var Intro = React.createClass({
                 'intro.tagLine': 'Create stories, games, and animations<br /> Share with others around the world',
                 'intro.tryItOut': 'TRY IT OUT',
                 'intro.description': 'A creative learning community with <span class="project-count"> ' +
-                                     'over 13 million </span>projects shared'
+                                     'over 14 million </span>projects shared'
             },
             session: {}
         };
@@ -48,7 +48,7 @@ var Intro = React.createClass({
         this.setState({'registrationOpen': false});
     },
     completeRegistration: function () {
-        this.props.dispatch(actions.refreshSession());
+        this.props.dispatch(sessionActions.refreshSession());
         this.closeRegistration();
     },
     render: function () {

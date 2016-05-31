@@ -6,11 +6,12 @@
         ul {
             display: flex;
             justify-content: space-between;
-            flex-flow: row wrap;
+            flex-flow: row nowrap;
             align-items: center;
             list-style-type: none;
 
             li {
+                margin-top: 0;
                 margin-right: 10px;
                 color: $type-white;
             }
@@ -35,6 +36,27 @@
                     color: $type-white;
                     font-size: .85rem;
                     font-weight: bold;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: $mobile - 1) {
+        .inner > ul {
+            li {
+                &.right {
+                    ul {
+                        flex-flow: row nowrap;
+
+                        li {
+                            margin: 0;
+                            padding: 0;
+
+                            a {
+                                font-size: .75rem;
+                            }
+                        }
+                    }
                 }
             }
         }

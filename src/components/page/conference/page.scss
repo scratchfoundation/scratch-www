@@ -1,5 +1,5 @@
 @import "../../../colors";
-@import "../../../main";
+@import "../../../frameless";
 
 #navigation {
     h1 {
@@ -26,6 +26,13 @@
 }
 
 #view {
+    padding: 0;
+}
+
+.index,
+.plan,
+.expect,
+.schedule {
     padding: 0 0 20px 0;
 
     p {
@@ -46,10 +53,11 @@
     }
 
     @media only screen and (max-width: $tablet - 1) {
-        margin-top: 100px;
+        margin-top: 50px;
     }
 
     .title-banner {
+        margin-bottom: 0;
         background-color: $ui-blue;
         padding: 2rem 0;
 
@@ -115,5 +123,12 @@
                 }
             }
         }
-    } 
+    }
+}
+
+@media only screen and (max-width: $mobile - 1) {
+    #view {
+        width: 100%;
+        min-width: 100%;
+    }
 }

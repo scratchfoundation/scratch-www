@@ -1,10 +1,12 @@
 var redux = require('redux');
 var thunk = require('redux-thunk').default;
+// JSX syntax transforms to React.createElement
+var React = require('react'); // eslint-disable-line
 var ReactDOM = require('react-dom');
 var StoreProvider = require('react-redux').Provider;
 
 var IntlProvider = require('./intl.jsx').IntlProvider;
-var actions = require('../redux/actions.js');
+var sessionActions = require('../redux/session.js');
 var reducer = require('../redux/reducer.js');
 
 require('../main.scss');
@@ -17,15 +19,18 @@ var store = redux.createStore(
 var render = function (jsx, element) {
     // Get locale and messages from global namespace (see "init.js")
     var locale = window._locale || 'en';
-    if (typeof window._messages[locale] === 'undefined') {
-        // Fall back on the split
-        locale = locale.split('-')[0];
+    var messages = {};
+    if (typeof window._messages !== 'undefined') {
+        if (typeof window._messages[locale] === 'undefined') {
+            // Fall back on the split
+            locale = locale.split('-')[0];
+        }
+        if (typeof window._messages[locale] === 'undefined') {
+            // Language appears to not be supported – fall back to 'en'
+            locale = 'en';
+        }
+        messages = window._messages[locale];
     }
-    if (typeof window._messages[locale] === 'undefined') {
-        // Language appears to not be supported – fall back to 'en'
-        locale = 'en';
-    }
-    var messages = window._messages[locale];
 
     // Render view component
     ReactDOM.render(
@@ -38,7 +43,7 @@ var render = function (jsx, element) {
     );
 
     // Get initial session
-    store.dispatch(actions.refreshSession());
+    store.dispatch(sessionActions.refreshSession());
 };
 
 module.exports = render;

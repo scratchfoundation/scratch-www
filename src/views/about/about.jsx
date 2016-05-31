@@ -11,7 +11,7 @@ var About = React.createClass({
     type: 'About',
     render: function () {
         return (
-            <div className="inner">
+            <div className="inner about">
                 <h1><FormattedMessage id='general.aboutScratch' /></h1>
 
                 <div className="masthead">
@@ -40,13 +40,13 @@ var About = React.createClass({
                 <div className="body">
                     <ul>
                         <li>
-                            <h2><FormattedMessage id='about.whoUsesScratch' /></h2>
+                            <h3><FormattedMessage id='about.whoUsesScratch' /></h3>
                             <img src="/images/about/who-uses-scratch.jpg" alt="" />
                             <p><FormattedHTMLMessage id='about.whoUsesScratchDescription' /></p>
                         </li>
 
                         <li>
-                            <h2><FormattedMessage id='about.literacy' /></h2>
+                            <h3><FormattedMessage id='about.literacy' /></h3>
                             <iframe
                                 src="https://embed-ssl.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code.html"
                                 scrolling="no"
@@ -57,31 +57,31 @@ var About = React.createClass({
                         </li>
 
                         <li>
-                            <h2><FormattedMessage id='about.aroundTheWorld' /></h2>
+                            <h3><FormattedMessage id='about.aroundTheWorld' /></h3>
                             <img src="/images/about/around-the-world.png" alt="" />
                             <p><FormattedHTMLMessage id='about.aroundTheWorldDescription' /></p>
                         </li>
 
                         <li>
-                            <h2><FormattedMessage id='about.schools' /></h2>
+                            <h3><FormattedMessage id='about.schools' /></h3>
                             <img src="/images/about/scratch-in-schools.jpg" alt="" />
                             <p><FormattedHTMLMessage id='about.schoolsDescription' /></p>
                         </li>
 
                         <li>
-                            <h2><FormattedMessage id='about.quotes' /></h2>
+                            <h3><FormattedMessage id='about.quotes' /></h3>
                             <img src="/images/about/quotes.gif" alt="Quotes about Scratch" />
                             <p><FormattedHTMLMessage id='about.quotesDescription' /></p>
                         </li>
 
                         <li>
-                            <h2><FormattedMessage id='about.research' /></h2>
+                            <h3><FormattedMessage id='about.research' /></h3>
                             <img src="/images/about/research-remix.png" alt="" />
                             <p><FormattedHTMLMessage id='about.researchDescription' /></p>
                         </li>
 
                         <li>
-                            <h2><FormattedMessage id='about.learnMore' /></h2>
+                            <h3><FormattedMessage id='about.learnMore' /></h3>
                             <p>
                                 <ul className="list">
                                     <li>
@@ -101,7 +101,7 @@ var About = React.createClass({
                         </li>
 
                         <li>
-                            <h2><FormattedMessage id='about.support' /></h2>
+                            <h3><FormattedMessage id='about.support' /></h3>
                             <p><FormattedHTMLMessage id='about.supportDescription' /></p>
                         </li>
                     </ul>

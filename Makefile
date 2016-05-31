@@ -24,9 +24,6 @@ deploy:
 	@make build
 	@make sync
 
-tag:
-	echo $(GIT_VERSION) > ./build/version.txt
-
 translations:
 	./bin/build-locales intl
 
@@ -34,7 +31,8 @@ webpack:
 	$(WEBPACK) --bail
 
 sync-s3:
-	$(S3CMD) sync -P --delete-removed --exclude '.DS_Store' ./build/ s3://$(S3_BUCKET_NAME)/
+	$(S3CMD) sync -P --delete-removed --exclude '.DS_Store' --exclude '*.svg' ./build/ s3://$(S3_BUCKET_NAME)/
+	$(S3CMD) sync -P --delete-removed --exclude '*' --include '*.svg' --default-mime-type 'image/svg+xml' ./build/ s3://$(S3_BUCKET_NAME)/
 
 sync-fastly:
 	$(NODE) ./bin/configure-fastly.js
@@ -62,18 +60,9 @@ test:
 	@echo ""
 
 lint:
-	$(ESLINT) ./*.js
-	$(ESLINT) ./dev-server/*.js
-	$(ESLINT) ./bin/**/*.js
-	$(ESLINT) ./src/*.js
-	$(ESLINT) ./src/mixins/*.jsx
-	$(ESLINT) ./src/views/**/*.jsx
-	$(ESLINT) ./src/components/**/*.jsx
-	$(ESLINT) ./src/components/**/**/*.jsx
+	$(ESLINT) . --ext .js,.jsx,.json
 	$(SASSLINT) ./src/*.scss
-	$(SASSLINT) ./src/views/**/*.scss
-	$(SASSLINT) ./src/components/**/*.scss
-	$(SASSLINT) ./src/components/**/**/*.scss
+	$(SASSLINT) ./src/**/*.scss
 
 unit:
 	$(TAP) ./test/unit/*.js

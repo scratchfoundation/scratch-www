@@ -9,19 +9,16 @@ var tap = require('tap');
 var languages = require('../../languages.json');
 var localeCompare = require('../../bin/lib/locale-compare');
 
-tap.test('spotCheckAboutStrings', function (t) {
+tap.test('spotCheckCardStrings', function (t) {
     var isoCodes = Object.keys(languages);
     isoCodes.splice(isoCodes.indexOf('en'), 1);
-    var viewLocales = {};
-    var idsWithICU = {};
-    var icuWithIds = {};
-    localeCompare.getIdsForView(
-        'cards',
-        path.resolve(__dirname, '../../src/views/cards/l10n.json'),
-        viewLocales,
-        idsWithICU,
-        icuWithIds
-    );
+    
+    var ids = require(path.resolve(__dirname, '../../src/views/cards/l10n.json'));
+    var viewLocales = {
+        cards: {en: ids}
+    };
+    var idsWithICU = localeCompare.idToICUMap('cards', ids);
+    var icuWithIds = localeCompare.icuToIdMap('cards', ids);
     var md5WithIds = localeCompare.getMD5Map(icuWithIds);
     var keysToCheck = Object.keys(merge(viewLocales['cards']['en'])).sort();
     for (var i in isoCodes) {

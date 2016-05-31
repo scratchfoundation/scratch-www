@@ -31,8 +31,8 @@ var Cards = injectIntl(React.createClass({
             'cards.hideLink': formatMessage({id: 'cards.hideLink'})
         };
         return (
-            <div className="inner">
-                <div className="intro cards">
+            <div className="inner cards">
+                <div className="intro cards-intro">
                     <div className="intro-content">
                         <h1><FormattedMessage id='cards.introHeader' /></h1>
                         <p><FormattedMessage id='cards.introContent' /></p>

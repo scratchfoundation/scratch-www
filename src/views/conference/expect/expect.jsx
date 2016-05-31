@@ -1,5 +1,5 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
+var render = require('../../../lib/render.jsx');
 
 var FlexRow = require('../../../components/flex-row/flex-row.jsx');
 var Page = require('../../../components/page/conference/page.jsx');
@@ -33,7 +33,7 @@ var ConferenceExpectations = React.createClass({
                             <p className="intro">
                                 The Scratch community keeps growing and growing.{' '}
                                 Young people around the world have shared more than{' '}
-                                13 million projects in the Scratch online community{' '}
+                                14 million projects in the Scratch online community{' '}
                                 – with 20,000 new projects every day.
                             </p>
                             <p className="intro">
@@ -231,7 +231,7 @@ var ConferenceExpectations = React.createClass({
                                 <tr>
                                     <td>
                                         <b>4:30p</b>
-                                        <p>Poster Session</p>
+                                        <p>Poster Sessions</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -283,4 +283,4 @@ var ConferenceExpectations = React.createClass({
     }
 });
 
-ReactDOM.render(<Page><ConferenceExpectations /></Page>, document.getElementById('app'));
+render(<Page><ConferenceExpectations /></Page>, document.getElementById('app'));

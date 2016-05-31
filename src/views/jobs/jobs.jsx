@@ -10,7 +10,7 @@ var Jobs = React.createClass({
     type: 'Jobs',
     render: function () {
         return (
-            <div>
+            <div className="jobs">
                 <div className="top">
                     <div className="inner">
                         <img src="/images/jobs.png" />

@@ -41,6 +41,7 @@
             display: inline-block;
             position: relative;
             float: left;
+            margin: 0;
             height: 100%;
             align-self: flex-start;
 
@@ -72,7 +73,7 @@
     .link {
         > a {
             display: block;
-            padding: 17px 15px 0 15px;
+            padding: 13px 15px 3px 15px;
             height: 33px;
             
             text-decoration: none;

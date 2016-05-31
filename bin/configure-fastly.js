@@ -3,7 +3,7 @@ var defaults = require('lodash.defaults');
 var glob = require('glob');
 var path = require('path');
 
-var routes = require('../src/routes.json');
+var route_json = require('../src/routes.json');
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
@@ -19,10 +19,8 @@ var extraAppRoutes = [
     // Homepage with querystring.
     // TODO: Should this be added for every route?
     '^/\\?',
-    // Version output by build
-    '/version\.txt$',
     // View html
-    '^/[^\/]*\.html'
+    '^/[^\/]*\.html$'
 ];
 
 /*
@@ -31,7 +29,10 @@ var extraAppRoutes = [
  */
 var getStaticPaths = function (pathToStatic) {
     var staticPaths = glob.sync(path.resolve(__dirname, pathToStatic));
-    return staticPaths.map(function (pathName) {
+    return staticPaths.filter(function (pathName) {
+        // Exclude view html, resolve everything else in the build
+        return path.extname(pathName) !== '.html';
+    }).map(function (pathName) {
         // Reduce absolute path to relative paths like '/js'
         var base = path.dirname(path.resolve(__dirname, pathToStatic));
         return '^' + pathName.replace(base, '') + (path.extname(pathName) ? '' : '/');
@@ -46,6 +47,14 @@ var getViewPaths = function (routes) {
     return routes.map(function (route) {
         return route.pattern;
     });
+};
+
+/*
+ * Translate an express-style pattern e.g. /path/:arg/ to a regex
+ * all :arguments become .+?
+ */
+var expressPatternToRegex = function (pattern) {
+    return pattern.replace(/(:[^/]+)\//gi, '.+?/');
 };
 
 /*
@@ -89,6 +98,10 @@ var getResponseNameForRoute = function (route) {
     return 'redirects/' + route.pattern;
 };
 
+var routes = route_json.map(function (route) {
+    return defaults({}, {pattern: expressPatternToRegex(route.pattern)}, route);
+});
+
 async.auto({
     version: function (cb) {
         fastly.getLatestVersion(function (err, response) {
@@ -105,7 +118,7 @@ async.auto({
         });
     },
     notPassRequestCondition: ['version', function (cb, results) {
-        var statement = getAppRouteCondition('../static/*', routes, extraAppRoutes);
+        var statement = getAppRouteCondition('../build/*', routes, extraAppRoutes);
         var condition = {
             name: NOT_PASS_REQUEST_CONDITION_NAME,
             statement: statement,
@@ -153,10 +166,12 @@ async.auto({
         );
     }],
     passCacheCondition: ['version', 'passRequestCondition', function (cb, results) {
-        var condition = defaults(
-            {name: PASS_CACHE_CONDITION_NAME, type: 'CACHE'},
-            results.passRequestCondition
-        );
+        var condition = {
+            name: PASS_CACHE_CONDITION_NAME,
+            type: 'CACHE',
+            statement: results.passRequestCondition.statement,
+            priority: results.passRequestCondition.priority
+        };
         fastly.setCondition(results.version, condition, cb);
     }],
     passCacheSettingsCondition: ['version', 'passCacheCondition', function (cb, results) {

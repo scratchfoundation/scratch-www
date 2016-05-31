@@ -1,5 +1,5 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
+var render = require('../../../lib/render.jsx');
 
 var Button = require('../../../components/forms/button.jsx');
 var FlexRow = require('../../../components/flex-row/flex-row.jsx');
@@ -19,14 +19,19 @@ var ConferenceSplash = React.createClass({
                         Many Paths, Many Styles
                     </h1>
                     <h3>
-                        Scratch Conference 2016 | Cambridge, MA, USA
+                        August 4 - 6, 2016 | Cambridge, MA, USA
                     </h3>
                     <p>
-                        <a href="//scratchconference2016.eventbrite.com">
+                        <a href="/conference/schedule">
                             <Button>
-                                Register Now
+                                See the Schedule
                             </Button>
                         </a>
+                    </p>
+                    <p className="sub-button">
+                        <b>
+                            We're sold out! <a href="//scratchconference2016.eventbrite.com">Join the Waitlist</a>
+                        </b>
                     </p>
                 </TitleBanner>
                 <section className="inner">
@@ -55,11 +60,13 @@ var ConferenceSplash = React.createClass({
                         </div>
                         <div>
                             <h3>
-                                <img src="/images/conference/schedule/coming-soon.png" alt="schedule-coming-soon" />
-                                Schedule
+                                <a href="/conference/schedule">
+                                    <img src="/images/conference/schedule/schedule.png" alt="schedule" />
+                                    Schedule
+                                </a>
                             </h3>
                             <p>
-                                Stay tuned for the full schedule of events and sessions
+                                Full schedule of events and sessions
                             </p>
                         </div>
                     </FlexRow>
@@ -69,4 +76,4 @@ var ConferenceSplash = React.createClass({
     }
 });
 
-ReactDOM.render(<Page><ConferenceSplash /></Page>, document.getElementById('app'));
+render(<Page><ConferenceSplash /></Page>, document.getElementById('app'));

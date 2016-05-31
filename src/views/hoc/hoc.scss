@@ -5,17 +5,9 @@ $base-bg: $ui-white;
 
 #view {
     padding: 0;
+}
 
-    // To be integrated into the Global Typography standards 
-    h3, 
-    p {
-        font-weight: 300; 
-    }
-
-    p {
-        line-height: 2em;
-    }
-
+.hoc {
     .title-banner {
         &.wbb-bg {    
             background-image: url("/images/hoc2015/hide-bg.jpg");
@@ -147,9 +139,16 @@ $base-bg: $ui-white;
             margin-right: 15px;
         }
 
-        h5 {
-            margin: 8px 0;
-            font-weight: 500;
+        a {
+            h5 {
+                margin: 8px 0;
+                color: $ui-blue;
+                font-weight: 500;
+
+                &:hover {
+                    color: darken($ui-blue, 15);
+                }
+            }
         }
 
         //8 columns
@@ -172,6 +171,13 @@ $base-bg: $ui-white;
             display: block;
             margin: 5px 0;
             font-size: .8em;
+        }
+
+        .resource-info {
+            h5 {
+                margin: .85rem 0;
+                line-height: 0;
+            }
         }
     }
 

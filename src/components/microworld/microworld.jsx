@@ -223,7 +223,7 @@ var Microworld = React.createClass({
     },
     render: function () {
         return (
-            <div className="inner">
+            <div className="inner microworld">
                 <div className="top-banner section">
                     <h1>{this.props.microworldData.title}</h1>
                     <p>{this.props.microworldData.description.join(' ')}</p>

@@ -1,8 +1,8 @@
 @import "../../colors";
-@import "../../typography";
+@import "../../frameless";
 
-// type-specific margins
-#view {
+.cards {
+    // type-specific margins
     h4 {
         margin: 1.5em 0 .3em;
     }
@@ -14,44 +14,44 @@
     p {
         margin: .25em 0 1em;
     }
-}
 
-.cards {
-    display: flex;
-    margin: 1em 0;
-    align-items: center;
-    justify-content: center;
+    .cards-intro {
+        display: flex;
+        margin: 1em 0;
+        align-items: center;
+        justify-content: center;
 
-    .intro-content {
-        float: left;
-        width: 45%;
+        .intro-content {
+            float: left;
+            width: 45%;
+        }
+
+        img {
+            width: 45%;
+        }
     }
 
-    img {
-        width: 45%;
-    }
-}
+    .cards-container {
+        text-align: center;
 
-.cards-container {
-    text-align: center;
+        .flex-row {
+            div {
+                padding: .5em;
 
-    .flex-row {
-        div {
-            padding: .5em;
+                a {
+                    display: block;
 
-            a {
-                display: block;
-
-                .pdf-icon {
-                    margin-right: .2em;
-                    width: 1em;
+                    .pdf-icon {
+                        margin-right: .2em;
+                        width: 1em;
+                    }
                 }
             }
-        }
 
-        @media only screen and (max-width: $desktop - 1) {
-            flex-direction: column;
-            justify-content: center;
+            @media only screen and (max-width: $desktop - 1) {
+                flex-direction: column;
+                justify-content: center;
+            }
         }
-    }
+}
 }

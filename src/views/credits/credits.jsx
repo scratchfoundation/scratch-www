@@ -9,7 +9,7 @@ var Credits = React.createClass({
     type: 'Credits',
     render: function () {
         return (
-            <div className="inner">
+            <div className="inner credits">
                 <h1>Scratch Credits and Contributors</h1>
                 <h2>MIT Scratch Team</h2>
                 <p>Scratch is designed and developed by the Lifelong Kindergarten Group at MIT Media Lab:</p>

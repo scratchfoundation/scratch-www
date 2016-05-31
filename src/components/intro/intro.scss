@@ -9,15 +9,17 @@
     justify-content: space-between;
     align-content: flex-start;
 
+    h1 {
+        line-height: 2.125rem;
+        color: $ui-orange;
+        font-size: 1.625rem;
+        font-weight: 400;
+    }
+
     .content {
         display: inline-block;
         width: calc(66% - 30px);
         vertical-align: top;
-
-        h1 {
-            color: $ui-orange;
-            font-weight: 400;
-        }
     }
 
     .sprites {

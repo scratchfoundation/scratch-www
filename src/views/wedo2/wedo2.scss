@@ -1,10 +1,11 @@
 @import "../../colors";
 @import "../../frameless";
-@import "../../typography";
 
 #view {
     padding: 0;
+}
 
+.wedo {
     h3,
     h4 {
         margin: 1.5em 0 .3em;
@@ -150,16 +151,18 @@
             width: 100%;
         }
     }
+}
 
-    // Responsive Behavior
+// Responsive Behavior
 
-    //4 columns
-    @media only screen and (max-width: $mobile - 1) {
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    .wedo {
         .inner {
             margin: 0 auto;
             width: calc(100% - 40px);
         }
-
+        
         .top-banner {
             text-align: center;
 
@@ -180,9 +183,11 @@
             width: $cols6;
         }
     }
+}
 
-    //6 columns
-    @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .wedo {
         .project-list,
         .columns3 {
             display: inline-block;
@@ -202,13 +207,15 @@
             width: $cols6;
         }
     }
+}
 
-    //8 columns
-    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-        #view {
-            text-align: center;
-        }
+//8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    #view {
+        text-align: center;
+    }
 
+    .wedo {
         .top-banner {
             text-align: left;
 

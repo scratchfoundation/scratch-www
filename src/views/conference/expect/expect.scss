@@ -1,8 +1,7 @@
 @import "../../../colors";
 @import "../../../frameless";
-@import "../../../typography";
 
-#view {
+.expect {
     .flex-row {
         align-items: flex-start;
         justify-content: space-between;
@@ -157,6 +156,22 @@
             }
         }
 
+        @media only screen and (max-width: $mobile - 1) {
+            .flex-row {
+                table {
+                    width: 100%;
+                }
+            }
+        }
+
+        @media only screen and (min-width: $mobile) and (max-width: $desktop - 1) {
+            .flex-row {
+                table {
+                    width: $cols6;
+                }
+            }
+        }
+
         @media only screen and (max-width: $desktop - 1) {
             .flex-row {
                 flex-direction: column;
@@ -164,7 +179,6 @@
 
                 table {
                     margin-top: 50px;
-                    width: $cols6;
                     text-align: left;
 
                     th {
@@ -173,5 +187,5 @@
                 }
             }
         }
-    }  
+    }
 }

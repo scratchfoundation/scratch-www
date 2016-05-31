@@ -5,7 +5,7 @@ var ReactIntl = require('react-intl');
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
 
-var actions = require('../../../redux/actions.js');
+var sessionActions = require('../../../redux/session.js');
 
 var Api = require('../../../mixins/api.jsx');
 var Avatar = require('../../avatar/avatar.jsx');
@@ -132,7 +132,7 @@ var Navigation = React.createClass({
                             this.showCanceledDeletion();
                         }
                     }.bind(this));
-                    this.props.dispatch(actions.refreshSession());
+                    this.props.dispatch(sessionActions.refreshSession());
                 }
             }
             // JS error already logged by api mixin
@@ -149,7 +149,7 @@ var Navigation = React.createClass({
         }, function (err) {
             if (err) log.error(err);
             this.closeLogin();
-            this.props.dispatch(actions.refreshSession());
+            this.props.dispatch(sessionActions.refreshSession());
         }.bind(this));
     },
     handleAccountNavClick: function (e) {
@@ -169,7 +169,7 @@ var Navigation = React.createClass({
         this.setState({'registrationOpen': false});
     },
     completeRegistration: function () {
-        this.props.dispatch(actions.refreshSession());
+        this.props.dispatch(sessionActions.refreshSession());
         this.closeRegistration();
     },
     render: function () {
