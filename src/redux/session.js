@@ -8,10 +8,20 @@ var Types = keyMirror({
     SET_SESSION_ERROR: null
 });
 
+module.exports.Status = keyMirror({
+    FETCHED: null,
+    NOT_FETCHED: null,
+    FETCHING: null
+});
+
+module.exports.getInitialState = function (){
+    return {'status': module.exports.Status.NOT_FETCHED, 'results':{}};
+};
+
 module.exports.sessionReducer = function (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
-        state = {};
+        state = module.exports.getInitialState();
     }
     switch (action.type) {
     case Types.SET_SESSION:
@@ -31,20 +41,21 @@ module.exports.setSessionError = function (error) {
     };
 };
 
-module.exports.setSession = function (session) {
-    session.loaded = true;
+module.exports.setSession = function (status, results) {
     return {
         type: Types.SET_SESSION,
-        session: session
+        session: {'status': status,'results': results}
     };
 };
 
 module.exports.refreshSession = function () {
     return function (dispatch) {
+        dispatch(module.exports.setSession(module.exports.Status.NOT_FETCHED, {}));
         api({
             host: '',
             uri: '/session/'
         }, function (err, body) {
+            dispatch(module.exports.setSession(module.exports.Status.FETCHING, {}));
             if (err) return dispatch(module.exports.setSessionError(err));
 
             if (typeof body !== 'undefined') {
@@ -52,7 +63,7 @@ module.exports.refreshSession = function () {
                     return window.location = body.url;
                 } else {
                     dispatch(tokenActions.getToken());
-                    dispatch(module.exports.setSession(body));
+                    dispatch(module.exports.setSession(module.exports.Status.FETCHED, body));
                     return;
                 }
             }
