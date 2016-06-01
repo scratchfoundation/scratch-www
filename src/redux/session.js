@@ -17,7 +17,7 @@ module.exports.Status = keyMirror({
 });
 
 module.exports.getInitialState = function (){
-    return {status: module.exports.Status.NOT_FETCHED, results:{}};
+    return {status: module.exports.Status.NOT_FETCHED, session:{}};
 };
 
 module.exports.sessionReducer = function (state, action) {
