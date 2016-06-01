@@ -577,22 +577,3 @@ var Terms = React.createClass({
 });
 
 render(<Page><Terms /></Page>, document.getElementById('app'));
-
-/*<li><a href="#user-agreement">1. User Agreement</a></li>
-<li><a href="#account-creation">2. Account Creation and Maintenance</a></li>
-<li><a href="#rules-of-usage">3. Rules of Usage</a></li>
-<li><a href="#user-content">4. User-Generated Content and Licensing</a></li>
-<li><a href="#scratch-content">5. Scratch Content and Licensing</a></li>
-<li><a href="#dmca">6. Digital Millenium Copyright Act (DMCA)</a></li>
-<li><a href="#termination">7. Suspension and Termination of Accounts</a></li>
-<li><a href="#third-party">8. Third Party Websites</a></li>
-<li><a href="#indemnification">9. Indemnification</a></li>
-<li><a href="#disclaimer">10. Disclaimer of Warranty</a></li>
-<li><a href="#liability">11. Limitation of Liability</a></li>
-<li><a href="#jurisdiction">12. Jurisdiction</a></li>
-<li><a href="#choice-of-law">13. Choice of Law and Venue</a></li>
-<li><a href="#choice-of-language">14. Choice of Language</a></li>
-<li><a href="#no-waiver">15. No Waiver</a></li>
-<li><a href="#entire-agreement">16. Entire Agreement</a></li>
-* Talk to Matt/Carl about nav on ToS
-*/
