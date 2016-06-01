@@ -373,7 +373,7 @@ var Splash = injectIntl(React.createClass({
                 ] : []}
                 <CNBanner />
                 <div key="inner" className="inner">
-                    {this.props.session.user ? (
+                    {this.props.session.loaded ? (
                         this.props.session.user ? [
                             <div key="header" className="splash-header">
                                 {this.shouldShowWelcome() ? [
@@ -387,7 +387,7 @@ var Splash = injectIntl(React.createClass({
                             </div>
                         ] : [
                             <Intro projectCount={this.state.projectCount} messages={messages} key="intro"/>
-                        ]) : ()
+                        ]) : []
                     }
 
                     {featured}
