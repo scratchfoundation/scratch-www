@@ -1,0 +1,9 @@
+@import "../../infopage";
+
+#view {
+    padding: 0;
+}
+
+.faq {
+    @include info;
+}

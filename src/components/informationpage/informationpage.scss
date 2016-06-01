@@ -1,0 +1,20 @@
+@import "../../colors";
+
+.info-outer {
+    margin: 0 auto;
+
+    nav {
+        float: right;
+        border-left: 1px solid $ui-border;
+        width: 30%;
+
+        ol {
+            list-style: none;
+        }
+    }
+
+    .info-inner {
+        float: left;
+        width: 60%;
+    }
+}
