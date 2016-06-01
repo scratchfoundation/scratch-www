@@ -225,7 +225,7 @@ var Navigation = React.createClass({
                             <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
-                    {this.props.session.status == sessionActions.Status.FETCHED ? (
+                    {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.results.user ? [
                             <li className="link right messages" key="messages">
                                 <a

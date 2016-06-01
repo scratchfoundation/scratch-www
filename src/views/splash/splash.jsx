@@ -373,7 +373,7 @@ var Splash = injectIntl(React.createClass({
                 ] : []}
                 <CNBanner />
                 <div key="inner" className="inner">
-                    {this.props.session.status == sessionActions.Status.FETCHED ? (
+                    {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.results.user ? [
                             <div key="header" className="splash-header">
                                 {this.shouldShowWelcome() ? [
