@@ -44,19 +44,19 @@ var Navigation = React.createClass({
         };
     },
     componentDidMount: function () {
-        if (this.props.session.results.user) {
+        if (this.props.session.session.user) {
             this.getMessageCount();
             var intervalId = setInterval(this.getMessageCount, 120000); // check for new messages every 2 mins.
             this.setState({'messageCountIntervalId': intervalId});
         }
     },
     componentDidUpdate: function (prevProps) {
-        if (prevProps.session.results.user != this.props.session.results.user) {
+        if (prevProps.session.session.user != this.props.session.session.user) {
             this.setState({
                 'loginOpen': false,
                 'accountNavOpen': false
             });
-            if (this.props.session.results.user) {
+            if (this.props.session.session.user) {
                 this.getMessageCount();
                 var intervalId = setInterval(this.getMessageCount, 120000);
                 this.setState({'messageCountIntervalId': intervalId});
@@ -81,13 +81,13 @@ var Navigation = React.createClass({
         }
     },
     getProfileUrl: function () {
-        if (!this.props.session.results.user) return;
-        return '/users/' + this.props.session.results.user.username + '/';
+        if (!this.props.session.session.user) return;
+        return '/users/' + this.props.session.session.user.username + '/';
     },
     getMessageCount: function () {
         this.api({
             method: 'get',
-            uri: '/users/' + this.props.session.results.user.username + '/messages/count'
+            uri: '/users/' + this.props.session.session.user.username + '/messages/count'
         }, function (err, body) {
             if (err) return this.setState({'unreadMessageCount': 0});
             if (body) {
@@ -175,14 +175,14 @@ var Navigation = React.createClass({
     },
     render: function () {
         var classes = classNames({
-            'logged-in': this.props.session.results.user
+            'logged-in': this.props.session.session.user
         });
         var messageClasses = classNames({
             'message-count': true,
             'show': this.state.unreadMessageCount > 0
         });
         var formatMessage = this.props.intl.formatMessage;
-        var createLink = this.props.session.results.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
+        var createLink = this.props.session.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
         return (
             <NavigationBox className={classes}>
                 <ul>
@@ -226,7 +226,7 @@ var Navigation = React.createClass({
                         </form>
                     </li>
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
-                        this.props.session.results.user ? [
+                        this.props.session.session.user ? [
                             <li className="link right messages" key="messages">
                                 <a
                                     href="/messages/"
@@ -246,8 +246,8 @@ var Navigation = React.createClass({
                             </li>,
                             <li className="link right account-nav" key="account-nav">
                                 <a className="user-info" href="#" onClick={this.handleAccountNavClick}>
-                                    <Avatar src={this.props.session.results.user.thumbnailUrl} alt="" />
-                                    {this.props.session.results.user.username}
+                                    <Avatar src={this.props.session.session.user.thumbnailUrl} alt="" />
+                                    {this.props.session.session.user.username}
                                 </a>
                                 <Dropdown
                                         as="ul"
@@ -263,16 +263,16 @@ var Navigation = React.createClass({
                                             <FormattedMessage id="general.myStuff" />
                                         </a>
                                     </li>
-                                    {this.props.session.results.permissions.educator ? [
+                                    {this.props.session.session.permissions.educator ? [
                                         <li>
                                             <a href="/educators/classes/">
                                                 <FormattedMessage id="general.myClasses" />
                                             </a>
                                         </li>
                                     ] : []}
-                                    {this.props.session.results.permissions.student ? [
+                                    {this.props.session.session.permissions.student ? [
                                         <li>
-                                            <a href={'/classes/' + this.props.session.results.user.classroomId + '/'}>
+                                            <a href={'/classes/' + this.props.session.session.user.classroomId + '/'}>
                                                 <FormattedMessage id="general.myClass" />
                                             </a>
                                         </li>

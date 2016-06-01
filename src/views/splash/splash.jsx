@@ -45,8 +45,8 @@ var Splash = injectIntl(React.createClass({
         };
     },
     componentDidUpdate: function (prevProps) {
-        if (this.props.session.results.user != prevProps.session.results.user) {
-            if (this.props.session.results.user) {
+        if (this.props.session.session.user != prevProps.session.session.user) {
+            if (this.props.session.session.user) {
                 this.getActivity();
                 this.getFeaturedCustom();
                 this.getNews();
@@ -65,7 +65,7 @@ var Splash = injectIntl(React.createClass({
     },
     componentDidMount: function () {
         this.getFeaturedGlobal();
-        if (this.props.session.results.user) {
+        if (this.props.session.session.user) {
             this.getActivity();
             this.getFeaturedCustom();
             this.getNews();
@@ -91,7 +91,7 @@ var Splash = injectIntl(React.createClass({
     },
     getActivity: function () {
         this.api({
-            uri: '/proxy/users/' + this.props.session.results.user.username + '/activity?limit=5'
+            uri: '/proxy/users/' + this.props.session.session.user.username + '/activity?limit=5'
         }, function (err, body) {
             if (!err) this.setState({activity: body});
         }.bind(this));
@@ -105,7 +105,7 @@ var Splash = injectIntl(React.createClass({
     },
     getFeaturedCustom: function () {
         this.api({
-            uri: '/proxy/users/' + this.props.session.results.user.id + '/featured'
+            uri: '/proxy/users/' + this.props.session.session.user.id + '/featured'
         }, function (err, body) {
             if (!err) this.setState({featuredCustom: body});
         }.bind(this));
@@ -172,16 +172,16 @@ var Splash = injectIntl(React.createClass({
         });
     },
     shouldShowWelcome: function () {
-        if (!this.props.session.results.user || !this.props.session.results.flags.show_welcome) return false;
+        if (!this.props.session.session.user || !this.props.session.session.flags.show_welcome) return false;
         return (
-            new Date(this.props.session.results.user.dateJoined) >
+            new Date(this.props.session.session.user.dateJoined) >
             new Date(new Date - 2*7*24*60*60*1000) // Two weeks ago
         );
     },
     shouldShowEmailConfirmation: function () {
         return (
-            this.props.session.results.user && this.props.session.results.flags.has_outstanding_email_confirmation &&
-            this.props.session.results.flags.confirm_email_banner);
+            this.props.session.session.user && this.props.session.session.flags.has_outstanding_email_confirmation &&
+            this.props.session.session.flags.confirm_email_banner);
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
@@ -240,7 +240,7 @@ var Splash = injectIntl(React.createClass({
             );
         }
 
-        if (this.props.session.results.user &&
+        if (this.props.session.session.user &&
             this.state.featuredGlobal.community_newest_projects &&
             this.state.featuredGlobal.community_newest_projects.length > 0) {
 
@@ -374,7 +374,7 @@ var Splash = injectIntl(React.createClass({
                 <CNBanner />
                 <div key="inner" className="inner">
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
-                        this.props.session.results.user ? [
+                        this.props.session.session.user ? [
                             <div key="header" className="splash-header">
                                 {this.shouldShowWelcome() ? [
                                     <Welcome key="welcome"
