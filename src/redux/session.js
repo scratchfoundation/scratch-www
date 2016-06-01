@@ -7,7 +7,7 @@ var tokenActions = require('./token.js');
 var Types = keyMirror({
     SET_SESSION: null,
     SET_SESSION_ERROR: null,
-    SET_STATUS: null,
+    SET_STATUS: null
 });
 
 module.exports.Status = keyMirror({
@@ -27,9 +27,9 @@ module.exports.sessionReducer = function (state, action) {
     }
     switch (action.type) {
     case Types.SET_SESSION:
-        return defaultsDeep({"results": action.session}, state);
+        return defaultsDeep({'results': action.session}, state);
     case Types.SET_STATUS:
-        return defaultsDeep({"status": action.status}, state)
+        return defaultsDeep({'status': action.status}, state);
     case Types.SET_SESSION_ERROR:
         // TODO: do something with action.error
         return state;
@@ -52,12 +52,12 @@ module.exports.setSession = function (results) {
     };
 };
 
-module.exports.setStatus = function(status){
+module.exports.setStatus = function (status){
     return {
         type: Types.SET_STATUS,
         status: status
     };
-}
+};
 
 module.exports.refreshSession = function () {
     return function (dispatch) {
