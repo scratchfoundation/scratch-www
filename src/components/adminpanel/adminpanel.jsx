@@ -19,8 +19,8 @@ var AdminPanel = React.createClass({
     render: function () {
         // make sure user is present before checking if they're an admin. Don't show anything if user not an admin.
         var showAdmin = false;
-        if (this.props.session.user) {
-            showAdmin = this.props.session.permissions.admin;
+        if (this.props.session.session.user) {
+            showAdmin = this.props.session.session.permissions.admin;
         }
 
         if (!showAdmin) return false;
