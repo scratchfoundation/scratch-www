@@ -13,6 +13,7 @@ var FormSet = formset.FormSet;
 var FormStep = formset.FormStep;
 var Input = require('../../components/forms/input.jsx');
 var Page = require('../../components/page/www/page.jsx');
+var PhoneInput = require('../../components/forms/phone-input.jsx');
 var RadioGroup = require('../../components/forms/radio-group.jsx');
 var Select = require('../../components/forms/select.jsx');
 var TextArea = require('../../components/forms/textarea.jsx');
@@ -152,7 +153,10 @@ var PhoneNumberStep = React.createClass({
                             Why do we ask for this information <a onClick={this.handle}>?</a>
                         </p>}>
                 <Form onValidSubmit={this.props.onNextStep}>
-                    <Input label="Phone Number" type="tel" name="phone" required />
+                    <PhoneInput label="Phone Number"
+                                name="phone"
+                                defaultCountry="us"
+                                required />
                     <Checkbox label={
                                 'Yes, I consent to lorem ipsum dolor sit amet, consectetur' +
                                 'adipiscing elit.'

@@ -80,10 +80,15 @@ module.exports = {
                 loader: 'style!css!postcss-loader!sass'
             },
             {
+                test: /\.css$/,
+                loader: 'style!css!postcss-loader'
+            },
+            {
                 test: /\.(png|jpg|gif|eot|svg|ttf|woff)$/,
                 loader: 'url-loader'
             }
-        ]
+        ],
+        noParse: /node_modules\/google-libphonenumber\/dist/
     },
     postcss: function () {
         return [autoprefixer({browsers: ['last 3 versions']})];

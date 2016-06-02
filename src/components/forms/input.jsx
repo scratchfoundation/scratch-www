@@ -1,7 +1,7 @@
 var classNames = require('classnames');
 var FRCInput = require('formsy-react-components').Input;
 var React = require('react');
-var validateMixin = require('./validateMixin.jsx');
+var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
 
 require('./input.scss');
 
@@ -22,4 +22,4 @@ var Input = React.createClass({
     }
 });
 
-module.exports = validateMixin(Input);
+module.exports = defaultValidationHOC(Input);

@@ -1,7 +1,7 @@
 var classNames = require('classnames');
 var FRCCheckboxGroup = require('formsy-react-components').CheckboxGroup;
 var React = require('react');
-var validateMixin = require('./validateMixin.jsx');
+var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
 
 var CheckboxGroup = React.createClass({
     type: 'CheckboxGroup',
@@ -16,4 +16,4 @@ var CheckboxGroup = React.createClass({
     }
 });
 
-module.exports = validateMixin(CheckboxGroup);
+module.exports = defaultValidationHOC(CheckboxGroup);

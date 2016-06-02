@@ -1,7 +1,7 @@
 var classNames = require('classnames');
 var Formsy = require('formsy-react');
 var React = require('react');
-var validations = require('./validations');
+var validations = require('./validations.jsx').validations;
 
 for (var validation in validations) {
     Formsy.addValidationRule(validation, validations[validation]);

@@ -2,7 +2,7 @@ var classNames = require('classnames');
 var defaults = require('lodash.defaultsdeep');
 var FRCSelect = require('formsy-react-components').Select;
 var React = require('react');
-var validateMixin = require('./validateMixin.jsx');
+var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
 
 require('./select.scss');
 
@@ -26,4 +26,4 @@ var Select = React.createClass({
     }
 });
 
-module.exports = validateMixin(Select);
+module.exports = defaultValidationHOC(Select);
