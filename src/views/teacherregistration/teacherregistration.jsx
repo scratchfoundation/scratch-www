@@ -35,7 +35,7 @@ var UsernameStep = React.createClass({
                 <Form onValidSubmit={this.props.onNextStep}>
                     <Input label="Username"
                            type="text"
-                           name="username"
+                           name="user.username"
                            validations={{
                                matchRegexp: /^[\w-]*$/,
                                minLength: 3,
@@ -49,11 +49,11 @@ var UsernameStep = React.createClass({
                            required />
                     <Input label="Password"
                            type="password"
-                           name="password"
+                           name="user.password"
                            validations={{
                                minLength: 6,
                                notEquals: 'password',
-                               notEqualsField: 'username'
+                               notEqualsField: 'user.username'
                            }}
                            validationErrors={{
                                minLength: 'Passwords must be at least six characters',
@@ -64,7 +64,7 @@ var UsernameStep = React.createClass({
                     <Input label="Confirm Password"
                            type="password"
                            name="passwordConfirmation"
-                           validations="equalsField:password"
+                           validations="equalsField:user.password"
                            validationError="The passwords do not match"
                            required />
                     <Button type="submit">Next Step</Button>
@@ -102,10 +102,10 @@ var DemographicsStep = React.createClass({
                             Why do we ask for this information <a onClick={this.handle}>?</a>
                         </p>}>
                 <Form onValidSubmit={this.props.onNextStep}>
-                    <Select label="Birth Month" name="month" options={monthOptions} required />
-                    <Select label="Birth Yeah" name="year" options={yearOptions} required />
+                    <Select label="Birth Month" name="user.birth.month" options={monthOptions} required />
+                    <Select label="Birth Yeah" name="user.birth.year" options={yearOptions} required />
                     <RadioGroup label="Gender"
-                                name="gender"
+                                name="user.gender"
                                 onChange={this.onChooseGender}
                                 options={[
                                     {value: 'female', label: 'Female'},
@@ -113,9 +113,9 @@ var DemographicsStep = React.createClass({
                                     {value: 'other', label: 'Other'}
                                 ]}
                                 required />
-                    <Input disabled={this.state.otherDisabled} name="genderOther" type="text" />
+                    <Input disabled={this.state.otherDisabled} name="user.genderOther" type="text" />
                     <Select label="Country"
-                            name="country"
+                            name="user.country"
                             options={countryOptions}
                             value={countryOptions[0].value}
                             required />
@@ -135,8 +135,8 @@ var NameStep = React.createClass({
                             Why do we ask for this information <a onClick={this.handle}>?</a>
                         </p>}>
                 <Form onValidSubmit={this.props.onNextStep}>
-                    <Input label="First Name" type="text" name="first" required />
-                    <Input label="Last Name" type="text" name="last" required />
+                    <Input label="First Name" type="text" name="user.name.first" required />
+                    <Input label="Last Name" type="text" name="user.name.last" required />
                     <Button type="submit">Next Step</Button>
                 </Form>
             </FormStep>
@@ -194,19 +194,19 @@ var OrganizationStep = React.createClass({
                             Why do we ask for this information <a onClick={this.handle}>?</a>
                         </p>}>
                 <Form onValidSubmit={this.props.onNextStep}>
-                    <Input label="Organization" type="text" name="organization" required />
-                    <Input label="Title / Position" type="text" name="title" required />
+                    <Input label="Organization" type="text" name="organization.name" required />
+                    <Input label="Title / Position" type="text" name="organization.title" required />
                     <CheckboxGroup label="Type of Organization"
-                                   name="organizationType"
+                                   name="organization.type"
                                    value={[]}
                                    options={organizationOptions}
                                    onChange={this.onChooseOrganization}
                                    required />
                     <Input type="text"
-                           name="organizationTypeOther"
+                           name="organization.other"
                            disabled={this.state.otherDisabled}
                            required={!this.state.otherDisabled} />
-                    <Input label="Website URL (not required)" type="url" name="website" />
+                    <Input label="Website URL (not required)" type="organization.url" name="website" />
                     <Button type="submit">Next Step</Button>
                 </Form>
             </FormStep>
@@ -231,12 +231,12 @@ var AddressStep = React.createClass({
                             Why do we ask for this information <a onClick={this.handle}>?</a>
                         </p>}>
                 <Form onValidSubmit={this.props.onNextStep}>
-                    <Select label="Country" name="addressCountry" options={countryOptions} required />
-                    <Input label="Address Line 1" type="text" name="addressLine1" required />
-                    <Input label="Address Line 2" type="text" name="addressLine2" />
-                    <Input label="City" type="text" name="addressCity" required />
-                    <Input label="ZIP Code" type="text" name="addressZip" required />
-                    <Select label="State / Province" name="addressState" options={stateOptions} required />
+                    <Select label="Country" name="address.country" options={countryOptions} required />
+                    <Input label="Address Line 1" type="text" name="address.line1" required />
+                    <Input label="Address Line 2" type="text" name="address.line2" />
+                    <Input label="City" type="text" name="address.city" required />
+                    <Input label="ZIP Code" type="text" name="address.zip" required />
+                    <Select label="State / Province" name="address.state" options={stateOptions} required />
                     <Button type="submit">Next Step</Button>
                 </Form>
             </FormStep>
@@ -273,14 +273,14 @@ var EmailStep = React.createClass({
                 <Form onValidSubmit={this.props.onNextStep}>
                     <Input label="Email"
                            type="text"
-                           name="email"
+                           name="user.email"
                            validations="isEmail"
                            validationError="Please enter a valid email address"
                            required />
                     <Input label="Confirm Email"
                            type="text"
                            name="confirmEmail"
-                           validations="equalsField:email"
+                           validations="equalsField:user.email"
                            validationErrors={{
                                equalsField: 'The emails do not match'
                            }}
@@ -304,7 +304,7 @@ var LastStep = React.createClass({
                     <p>
                         Click the link in the confirmation email that we
                         sent to the following address:<br />
-                        <strong>{this.props.formData.email}</strong>
+                        <strong>{this.props.formData.user.email}</strong>
                     </p>
                     <div className="box-footer">
                         <a onClick="">Wrong email?</a>
