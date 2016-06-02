@@ -27,7 +27,7 @@ module.exports.sessionReducer = function (state, action) {
     }
     switch (action.type) {
     case Types.SET_SESSION:
-        return defaultsDeep({results: action.session}, state);
+        return defaultsDeep({session: action.session}, state);
     case Types.SET_STATUS:
         return defaultsDeep({status: action.status}, state);
     case Types.SET_SESSION_ERROR:
@@ -45,10 +45,10 @@ module.exports.setSessionError = function (error) {
     };
 };
 
-module.exports.setSession = function (results) {
+module.exports.setSession = function (session) {
     return {
         type: Types.SET_SESSION,
-        session: results
+        session: session
     };
 };
 
