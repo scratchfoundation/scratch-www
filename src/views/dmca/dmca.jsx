@@ -5,12 +5,10 @@ var render = require('../../lib/render.jsx');
 var InformationPage = require('../../components/informationpage/informationpage.jsx');
 var Page = require('../../components/page/www/page.jsx');
 
-require('./dmca.scss');
 var Dmca = React.createClass({
     type: 'Dmca',
     render: function () {
         return (
-            <div className="dmca">
                 <InformationPage title={'DMCA'}>
                     <p><FormattedMessage id='dmca.intro' /></p>
                     <p>
@@ -26,7 +24,6 @@ var Dmca = React.createClass({
                     <p><FormattedMessage id='dmca.eyetoeye' /></p>
                     <p><FormattedMessage id='dmca.afterfiling' /></p>
                 </InformationPage>
-            </div>
         );
     }
 });

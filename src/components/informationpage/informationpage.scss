@@ -1,4 +1,41 @@
 @import "../../colors";
+@import "../../frameless";
+
+$ui-secondary: darken($ui-blue, 10%);
+
+#view {
+    padding: 0;
+}
+
+.title-banner {
+    &.masthead {
+        background-color: $ui-secondary;
+        padding-bottom: .5rem;
+
+        h1 {
+            margin: 0 0 1rem 0;
+            text-align: left;
+            color: $ui-white;
+        }
+
+        p {
+            margin: 0;
+            width: $cols6;
+            text-align: left;
+            color: $ui-white;
+
+            a {
+                border-bottom: 1px solid $ui-white;
+                color: $ui-white;
+            }
+        }
+    }
+
+    &.faq-banner {
+        margin-bottom: 0;
+        background-color: $ui-gray;
+    }
+}
 
 .info-outer {
     margin: 0 auto;
@@ -16,5 +53,46 @@
     .info-inner {
         float: left;
         width: 60%;
+
+        p {
+            margin-bottom: 1.25rem;
+            margin-left: 0;
+            max-width: $cols8;
+            text-align: left;
+        }
+
+        dl {
+            dt {
+                margin-bottom: .25rem;
+                font-size: 1.1rem;
+            }
+
+            dd {
+                margin-bottom: 1.25rem;
+                margin-left: 0;
+                max-width: $cols8;
+                text-align: left;
+            }
+        }
+
+        ul {
+            max-width: $cols8;
+        }
+
+        section {
+            margin-bottom: 3rem;
+
+            ul {
+                max-width: $cols8;
+            }
+
+            .nav-spacer {
+                display: block;
+                visibility: hidden;
+                margin-top: -50px; // height of  nav bar
+                height: 50px;
+            }
+
+        }
     }
 }
