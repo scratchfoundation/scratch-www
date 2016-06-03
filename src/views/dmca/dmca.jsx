@@ -10,19 +10,21 @@ var Dmca = React.createClass({
     render: function () {
         return (
                 <InformationPage title={'DMCA'}>
-                    <p><FormattedMessage id='dmca.intro' /></p>
-                    <p>
-                        Copyright Agent / Mitchel Resnick<br/>
-                        MIT Media Laboratory<br/>
-                        77 Massachusetts Ave<br/>
-                        Room E14-445A<br/>
-                        Cambridge, MA 02139<br/>
-                        Tel: (617) 253-9783
-                    </p>
-                    <p><FormattedMessage id='dmca.llkresponse' /></p>
-                    <p><FormattedMessage id='dmca.assessment' /></p>
-                    <p><FormattedMessage id='dmca.eyetoeye' /></p>
-                    <p><FormattedMessage id='dmca.afterfiling' /></p>
+                    <div className="inner info-inner">
+                        <p><FormattedMessage id='dmca.intro' /></p>
+                        <p>
+                            Copyright Agent / Mitchel Resnick<br/>
+                            MIT Media Laboratory<br/>
+                            77 Massachusetts Ave<br/>
+                            Room E14-445A<br/>
+                            Cambridge, MA 02139<br/>
+                            Tel: (617) 253-9783
+                        </p>
+                        <p><FormattedMessage id='dmca.llkresponse' /></p>
+                        <p><FormattedMessage id='dmca.assessment' /></p>
+                        <p><FormattedMessage id='dmca.eyetoeye' /></p>
+                        <p><FormattedMessage id='dmca.afterfiling' /></p>
+                    </div>
                 </InformationPage>
         );
     }
