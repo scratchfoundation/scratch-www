@@ -1,6 +1,6 @@
 var React = require('react');
 
-var countryOptions = require('../../lib/country-data').asOptions;
+var countryData = require('../../lib/country-data');
 
 var Button = require('../../components/forms/button.jsx');
 var Checkbox = require('../../components/forms/checkbox.jsx');
@@ -110,7 +110,7 @@ module.exports = {
                         <Input disabled={this.state.otherDisabled} name="user.genderOther" type="text" />
                         <Select label="Country"
                                 name="user.country"
-                                options={countryOptions}
+                                options={countryData.countryOptions}
                                 value={this.props.defaultCountry}
                                 required />
                         <Button type="submit">Next Step</Button>
@@ -217,11 +217,20 @@ module.exports = {
         getDefaultProps: function () {
             return {defaultCountry: DEFAULT_COUNTRY};
         },
+        getInitialState: function () {
+            return {
+                countryChoice: (
+                    (this.props.formData.user && this.props.formData.user.country) ||
+                    this.props.defaultCountry
+                )
+            };
+        },
+        onChangeCountry: function (field, choice) {
+            this.setState({countryChoice: choice});
+        },
         render: function () {
-            var stateOptions = ['every','state','in','the','world'].map(function (name) {
-                return {value: name, label: name};
-            });
-            var stateDefault = 'Please select one of...';
+            var stateOptions = countryData.subdivisionOptions[this.state.countryChoice];
+            var stateDefault = 'Please select...';
             stateOptions = [{label: stateDefault}].concat(stateOptions);
             return (
                 <FormStep title="Address"
@@ -233,17 +242,18 @@ module.exports = {
                     <Form onValidSubmit={this.props.onNextStep}>
                         <Select label="Country"
                                 name="address.country"
-                                options={countryOptions}
-                                value={
-                                    (this.props.formData.user && this.props.formData.user.country) ||
-                                    this.props.defaultCountry
-                                }
+                                options={countryData.countryOptions}
+                                onChange={this.onChangeCountry}
+                                value={this.state.countryChoice}
                                 required />
                         <Input label="Address Line 1" type="text" name="address.line1" required />
                         <Input label="Address Line 2" type="text" name="address.line2" />
                         <Input label="City" type="text" name="address.city" required />
                         <Input label="ZIP Code" type="text" name="address.zip" required />
-                        <Select label="State / Province" name="address.state" options={stateOptions} required />
+                        {stateOptions.length > 2 ?
+                            <Select label="State / Province" name="address.state" options={stateOptions} required /> :
+                            []
+                        }
                         <Button type="submit">Next Step</Button>
                     </Form>
                 </FormStep>
