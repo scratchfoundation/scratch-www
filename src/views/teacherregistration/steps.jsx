@@ -147,7 +147,7 @@ module.exports = {
                     <Form onValidSubmit={this.props.onNextStep}>
                         <PhoneInput label="Phone Number"
                                     name="phone"
-                                    defaultCountry="us"
+                                    defaultCountry={this.props.formData.user && this.props.formData.user.country}
                                     required />
                         <Checkbox label={
                                     'Yes, I consent to lorem ipsum dolor sit amet, consectetur' +
@@ -223,7 +223,11 @@ module.exports = {
                                 Why do we ask for this information <a onClick={this.handle}>?</a>
                             </p>}>
                     <Form onValidSubmit={this.props.onNextStep}>
-                        <Select label="Country" name="address.country" options={countryOptions} required />
+                        <Select label="Country"
+                                name="address.country"
+                                options={countryOptions}
+                                value={this.props.formData.user && this.props.formData.user.country}
+                                required />
                         <Input label="Address Line 1" type="text" name="address.line1" required />
                         <Input label="Address Line 2" type="text" name="address.line2" />
                         <Input label="City" type="text" name="address.city" required />
