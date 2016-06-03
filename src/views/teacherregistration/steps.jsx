@@ -1,5 +1,7 @@
 var React = require('react');
 
+var countryOptions = require('../../lib/country-data').asOptions;
+
 var Button = require('../../components/forms/button.jsx');
 var Checkbox = require('../../components/forms/checkbox.jsx');
 var CheckboxGroup = require('../../components/forms/checkbox-group.jsx');
@@ -11,7 +13,7 @@ var RadioGroup = require('../../components/forms/radio-group.jsx');
 var Select = require('../../components/forms/select.jsx');
 var TextArea = require('../../components/forms/textarea.jsx');
 
-var COUNTRIES = require('./countries.json');
+var DEFAULT_COUNTRY = 'us';
 
 module.exports = {
     UsernameStep: React.createClass({
@@ -66,6 +68,9 @@ module.exports = {
         }
     }),
     DemographicsStep: React.createClass({
+        getDefaultProps: function () {
+            return {defaultCountry: DEFAULT_COUNTRY};
+        },
         getInitialState: function () {
             return {otherDisabled: true};
         },
@@ -73,9 +78,6 @@ module.exports = {
             this.setState({otherDisabled: gender !== 'other'});
         },
         render: function () {
-            var countryOptions = Object.keys(COUNTRIES).map(function (code) {
-                return {value: code, label: COUNTRIES[code]};
-            });
             var monthOptions = [
                 'January', 'February', 'March', 'April', 'May', 'June', 'July',
                 'August', 'September', 'October', 'November', 'December'
@@ -109,7 +111,7 @@ module.exports = {
                         <Select label="Country"
                                 name="user.country"
                                 options={countryOptions}
-                                value={countryOptions[0].value}
+                                value={this.props.defaultCountry}
                                 required />
                         <Button type="submit">Next Step</Button>
                     </Form>
@@ -136,6 +138,9 @@ module.exports = {
         }
     }),
     PhoneNumberStep: React.createClass({
+        getDefaultProps: function () {
+            return {defaultCountry: DEFAULT_COUNTRY};
+        },
         render: function () {
             return (
                 <FormStep title="Phone Number"
@@ -147,7 +152,10 @@ module.exports = {
                     <Form onValidSubmit={this.props.onNextStep}>
                         <PhoneInput label="Phone Number"
                                     name="phone"
-                                    defaultCountry={this.props.formData.user && this.props.formData.user.country}
+                                    defaultCountry={
+                                        (this.props.formData.user && this.props.formData.user.country) ||
+                                        this.props.defaultCountry
+                                    }
                                     required />
                         <Checkbox label={
                                     'Yes, I consent to lorem ipsum dolor sit amet, consectetur' +
@@ -206,10 +214,10 @@ module.exports = {
         }
     }),
     AddressStep: React.createClass({
+        getDefaultProps: function () {
+            return {defaultCountry: DEFAULT_COUNTRY};
+        },
         render: function () {
-            var countryOptions = Object.keys(COUNTRIES).map(function (code) {
-                return {value: code, label: COUNTRIES[code]};
-            });
             var stateOptions = ['every','state','in','the','world'].map(function (name) {
                 return {value: name, label: name};
             });
@@ -226,7 +234,10 @@ module.exports = {
                         <Select label="Country"
                                 name="address.country"
                                 options={countryOptions}
-                                value={this.props.formData.user && this.props.formData.user.country}
+                                value={
+                                    (this.props.formData.user && this.props.formData.user.country) ||
+                                    this.props.defaultCountry
+                                }
                                 required />
                         <Input label="Address Line 1" type="text" name="address.line1" required />
                         <Input label="Address Line 2" type="text" name="address.line2" />
