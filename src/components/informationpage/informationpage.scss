@@ -1,11 +1,11 @@
-@import "../../colors";
-@import "../../frameless";
-
 #view {
     padding: 0;
 }
 
 .information-page {
+    @import "../../colors";
+    @import "../../frameless";
+
     $ui-secondary: darken($ui-blue, 10%);
 
     .title-banner {
