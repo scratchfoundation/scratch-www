@@ -60,19 +60,19 @@ module.exports.sortTimeSlots = function (timeSlot1, timeSlot2) {
     var timeSlot2Am = (timeSlot2.time.substr(timeSlot2.time.length - 1, timeSlot2.time.length) === 'a') ? true : false;
     var timeSlot1Time = parseInt(timeSlot1.time.substr(0, timeSlot1.time.length - 1));
     var timeSlot2Time = parseInt(timeSlot2.time.substr(0, timeSlot2.time.length - 1));
-
+    
+    // convert to 24-hour for sorting
+    if (timeSlot1Time !== 12 && !timeSlot1Am) {
+        timeSlot1Time = timeSlot1Time + 12;
+    }
+    if (timeSlot2Time !== 12 && !timeSlot2Am) {
+        timeSlot2Time = timeSlot2Time + 12;
+    }
+    
     if (timeSlot1Time < timeSlot2Time) {
-        if (timeSlot2Am && !timeSlot1Am) {
-            return 1;
-        } else {
-            return -1;
-        }
+        return -1;
     } else {
-        if (timeSlot1Am && !timeSlot2Am) {
-            return -1;
-        } else {
-            return 1;
-        }
+        return 1;
     }
 };
 
@@ -104,11 +104,11 @@ module.exports.getDaySchedule = function (day) {
                         }
                     }
                     cleanedRow['uri'] = '/conference/' + cleanedRow.rowid + '/details';
-                    var timeSlot = cleanedRow.Chunk;
+                    var timeSlot = cleanedRow.Chunk + cleanedRow.Start;
                     if (typeof prev.timeSlots[timeSlot] === 'undefined') {
                         prev.timeSlots[timeSlot] = [cleanedRow];
                         prev.info.push({
-                            name: timeSlot,
+                            name: cleanedRow.Chunk,
                             time: cleanedRow.Start
                         });
                     } else {
@@ -121,7 +121,7 @@ module.exports.getDaySchedule = function (day) {
                 var schedule = scheduleByTimeSlot.info.map(function (timeSlot) {
                     return {
                         info: timeSlot,
-                        items: scheduleByTimeSlot.timeSlots[timeSlot.name]
+                        items: scheduleByTimeSlot.timeSlots[timeSlot.name + timeSlot.time]
                     };
                 });
                 dispatch(module.exports.setSchedule({
