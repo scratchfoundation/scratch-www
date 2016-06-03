@@ -20,7 +20,7 @@ var InformationPage = React.createClass({
             this.props.className
         );
         return (
-            <div>
+            <div className="information-page">
                 <TitleBanner className="masthead">
                     <div className="inner">
                         <h1>{this.props.title}</h1>
