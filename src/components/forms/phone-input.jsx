@@ -8,7 +8,7 @@ var validationHOCFactory = require('./validations.jsx').validationHOCFactory;
 var Row = require('formsy-react-components').Row;
 var ComponentMixin = require('formsy-react-components').ComponentMixin;
 
-var allIso2 = allCountries.map(function (country) {return country.iso2});
+var allIso2 = allCountries.map(function (country) {return country.iso2;});
 
 var PhoneInput = React.createClass({
     displayName: 'PhoneInput',
