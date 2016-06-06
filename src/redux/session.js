@@ -1,5 +1,5 @@
 var keyMirror = require('keymirror');
-var defaultsDeep = require('lodash.defaultsdeep');
+var defaults = require('lodash.defaults');
 
 var api = require('../mixins/api.jsx').api;
 var tokenActions = require('./token.js');
@@ -27,9 +27,9 @@ module.exports.sessionReducer = function (state, action) {
     }
     switch (action.type) {
     case Types.SET_SESSION:
-        return defaultsDeep({session: action.session}, state);
+        return defaults({session: action.session}, state);
     case Types.SET_STATUS:
-        return defaultsDeep({status: action.status}, state);
+        return defaults({status: action.status}, state);
     case Types.SET_SESSION_ERROR:
         // TODO: do something with action.error
         return state;
@@ -74,7 +74,7 @@ module.exports.refreshSession = function () {
                 } else {
                     dispatch(tokenActions.getToken());
                     dispatch(module.exports.setSession(body));
-                    dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
+                    dispatch(module.exports.setStatus(module.exports.Status.FETCHED)); //not firing?
                     return;
                 }
             }
