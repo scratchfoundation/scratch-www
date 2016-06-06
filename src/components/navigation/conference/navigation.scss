@@ -44,7 +44,7 @@
     @media only screen and (max-width: $mobile - 1) {
         .inner > ul {
             li {
-                &.right {
+                &.right {                                        
                     ul {
                         flex-flow: row nowrap;
 
@@ -67,8 +67,8 @@
 
         .inner {
             > ul {
-                justify-content: space-between;
-                flex-flow: column nowrap;
+                justify-content: center;
+                flex-flow: row wrap;
 
                 li {
                     align-self: center;

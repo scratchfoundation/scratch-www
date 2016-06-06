@@ -91,9 +91,9 @@ var ConferenceExpectations = React.createClass({
                                     <b>Friday</b>
                                 </div>
                                 <h3>Pathways to Participation</h3>
-                                <img src="/images/conference/expect/mimi-nichole.jpg" alt="Mimi and Nicole" />
+                                <img src="/images/conference/expect/mimi-nichole.jpg" alt="Mimi and Nichole" />
                                 <p>
-                                    <b>Mimi Ito &amp; Nicole Pinkard</b>
+                                    <b>Mimi Ito &amp; Nichole Pinkard</b>
                                     <br />
                                     <b>Ricarose Roque (moderator)</b>
                                 </p>
@@ -108,7 +108,7 @@ var ConferenceExpectations = React.createClass({
                                     <b>Saturday</b>
                                 </div>
                                 <h3>Creative Computing For All</h3>
-                                <img src="/images/conference/expect/karen.jpg" alt="Mimi and Nicole" />
+                                <img src="/images/conference/expect/karen.jpg" alt="Karen" />
                                 <p>
                                     <b>Karen Brennan (moderator)</b>
                                 </p>
