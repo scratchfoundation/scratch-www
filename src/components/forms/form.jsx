@@ -1,6 +1,7 @@
 var classNames = require('classnames');
 var Formsy = require('formsy-react');
 var React = require('react');
+var GeneralError = require('./general-error.jsx');
 var validations = require('./validations.jsx').validations;
 
 for (var validation in validations) {
@@ -20,6 +21,7 @@ var Form = React.createClass({
         );
         return (
           <Formsy.Form {... this.props} className={classes}>
+            <GeneralError name="all" />
             {this.props.children}
           </Formsy.Form>
         );

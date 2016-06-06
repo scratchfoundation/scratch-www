@@ -1,6 +1,8 @@
 var React = require('react');
 
 var countryData = require('../../lib/country-data');
+var log = require('../../lib/log');
+var smartyStreets = require('../../lib/smarty-streets');
 
 var Button = require('../../components/forms/button.jsx');
 var Checkbox = require('../../components/forms/checkbox.jsx');
@@ -11,6 +13,7 @@ var Input = require('../../components/forms/input.jsx');
 var PhoneInput = require('../../components/forms/phone-input.jsx');
 var RadioGroup = require('../../components/forms/radio-group.jsx');
 var Select = require('../../components/forms/select.jsx');
+var Spinner = require('../../components/spinner/spinner.jsx');
 var TextArea = require('../../components/forms/textarea.jsx');
 
 var DEFAULT_COUNTRY = 'us';
@@ -222,11 +225,42 @@ module.exports = {
                 countryChoice: (
                     (this.props.formData.user && this.props.formData.user.country) ||
                     this.props.defaultCountry
-                )
+                ),
+                waiting: false
             };
         },
         onChangeCountry: function (field, choice) {
             this.setState({countryChoice: choice});
+        },
+        onValidSubmit: function (formData, reset, invalidate) {
+            if (formData.address.country !== 'us') {
+                return this.props.onNextStep(formData);
+            }
+            this.setState({waiting: true});
+            var address = {
+                street: formData.address.line1,
+                secondary: formData.address.line2 || '',
+                city: formData.address.city,
+                state: formData.address.state,
+                zipcode: formData.address.zip
+            };
+            smartyStreets(address, function (err, res) {
+                this.setState({waiting: false});
+                if (err) {
+                    // We don't want to prevent registration because
+                    // address validation isn't working. Log it and
+                    // move on.
+                    log.error(err);
+                    return this.props.onNextStep(formData);
+                }
+                if (res && res.length > 0) {
+                    return this.props.onNextStep(formData);
+                } else {
+                    return invalidate({
+                        'all': 'This doesn\'t look like a real address'
+                    });
+                }
+            }.bind(this));
         },
         render: function () {
             var stateOptions = countryData.subdivisionOptions[this.state.countryChoice];
@@ -239,7 +273,7 @@ module.exports = {
                                 Your responses to these questions will be kept private.
                                 Why do we ask for this information <a onClick={this.handle}>?</a>
                             </p>}>
-                    <Form onValidSubmit={this.props.onNextStep}>
+                    <Form onValidSubmit={this.onValidSubmit}>
                         <Select label="Country"
                                 name="address.country"
                                 options={countryData.countryOptions}
@@ -249,12 +283,17 @@ module.exports = {
                         <Input label="Address Line 1" type="text" name="address.line1" required />
                         <Input label="Address Line 2" type="text" name="address.line2" />
                         <Input label="City" type="text" name="address.city" required />
-                        <Input label="ZIP Code" type="text" name="address.zip" required />
                         {stateOptions.length > 2 ?
                             <Select label="State / Province" name="address.state" options={stateOptions} required /> :
                             []
                         }
-                        <Button type="submit">Next Step</Button>
+                        <Input label="ZIP Code" type="text" name="address.zip" required />
+                        <Button type="submit" disabled={this.state.waiting}>
+                            {this.state.waiting ?
+                                <Spinner /> :
+                                <span>Next Step</span>
+                            }
+                        </Button>
                     </Form>
                 </FormStep>
             );
