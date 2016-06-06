@@ -74,7 +74,7 @@ module.exports.refreshSession = function () {
                 } else {
                     dispatch(tokenActions.getToken());
                     dispatch(module.exports.setSession(body));
-                    dispatch(module.exports.setStatus(module.exports.Status.FETCHED)); //not firing?
+                    dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
                     return;
                 }
             }
