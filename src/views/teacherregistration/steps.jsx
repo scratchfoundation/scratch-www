@@ -116,6 +116,9 @@ module.exports = {
                                 options={countryData.countryOptions}
                                 value={this.props.defaultCountry}
                                 required />
+                         <Checkbox className="demographics-checkbox-is-robot"
+                                   label="I'm a robot!"
+                                   name="user.isRobot" />
                         <Button type="submit">Next Step</Button>
                     </Form>
                 </FormStep>
