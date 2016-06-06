@@ -1,13 +1,12 @@
 module.exports = {};
 var countries = module.exports.data = require('iso-3166-2').data;
 
-var countryOptions = module.exports.countryOptions = Object.keys(countries).map(function (code) {
+module.exports.countryOptions = Object.keys(countries).map(function (code) {
     return {value: code.toLowerCase(), label: countries[code].name};
 }).sort(function (a, b) {
     return a.label < b.label ? -1 : 1;
 });
 
-var subdivisionOptions =
 module.exports.subdivisionOptions =
 Object.keys(countries).reduce(function (subByCountry, code) {
     subByCountry[code.toLowerCase()] = Object.keys(countries[code].sub).map(function (subCode) {
