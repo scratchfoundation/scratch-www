@@ -1,7 +1,6 @@
 var classNames = require('classnames');
 var React = require('react');
 
-var Api = require('../../mixins/api.jsx');
 var jar  = require('../../lib/jar.js');
 var languages = require('../../../languages.json');
 var Form = require('../forms/form.jsx');
@@ -12,9 +11,6 @@ var Select = require('../forms/select.jsx');
  */
 var LanguageChooser = React.createClass({
     type: 'LanguageChooser',
-    mixins: [
-        Api
-    ],
     getDefaultProps: function () {
         return {
             languages: languages,
