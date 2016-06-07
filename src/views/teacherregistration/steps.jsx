@@ -1,6 +1,7 @@
 var React = require('react');
 
 var countryData = require('../../lib/country-data');
+var intl = require('../../lib/intl.jsx');
 var log = require('../../lib/log');
 var smartyStreets = require('../../lib/smarty-streets');
 
@@ -19,7 +20,7 @@ var TextArea = require('../../components/forms/textarea.jsx');
 var DEFAULT_COUNTRY = 'us';
 
 module.exports = {
-    UsernameStep: React.createClass({
+    UsernameStep: intl.injectIntl(React.createClass({
         getInitialState: function () {
             return {showPassword: false};
         },
@@ -27,16 +28,15 @@ module.exports = {
             this.setState({showPassword: value});
         },
         render: function () {
+            var formatMessage = this.props.intl.formatMessage;
             return (
-                <ProgressionStep title="Create a Teacher Account"
-                          description={
-                            <p>
-                                Creating a Teacher Account requires additional information
-                                for review.
-                                <strong>The approval process can take up to 24 hours</strong>
-                            </p>}>
+                <ProgressionStep title={<intl.FormattedMessage id="teacherRegistration.usernameStepTitle" />}
+                                 description={
+                                    <p><intl.FormattedMessage id="teacherRegistration.usernameStepDescription" /></p>
+                                 }
+                >
                     <Form onValidSubmit={this.props.onNextStep}>
-                        <Input label="Username"
+                        <Input label={formatMessage({id: 'general.username'})}
                                type="text"
                                name="user.username"
                                validations={{
@@ -45,12 +45,12 @@ module.exports = {
                                    maxLength: 20
                                }}
                                validationErrors={{
-                                   matchRegexp: 'Your username may only contain characters and -',
-                                   minLength: 'Usernames must be at least three characters',
-                                   maxLength: 'Usernames must be at most 20 characters'
+                                   matchRegexp: formatMessage({id: 'teacherRegistration.validationUsernameRegexp'}),
+                                   minLength: formatMessage({id: 'teacherRegistration.validationUsernameMinLength'}),
+                                   maxLength: formatMessage({id: 'teacherRegistration.validationUsernameMaxLength'})
                                }}
                                required />
-                        <Input label="Password"
+                        <Input label={formatMessage({id: 'general.password'})}
                                type={this.state.showPassword ? 'text' : 'password'}
                                name="user.password"
                                validations={{
@@ -59,12 +59,18 @@ module.exports = {
                                    notEqualsField: 'user.username'
                                }}
                                validationErrors={{
-                                   minLength: 'Passwords must be at least six characters',
-                                   notEquals: 'Your password may not be "password"',
-                                   notEqualsField: 'Your password may not be your username'
+                                   minLength: formatMessage({
+                                       id: 'teacherRegistration.validationPasswordLength'
+                                   }),
+                                   notEquals: formatMessage({
+                                       id: 'teacherRegistration.validationPasswordNotEquals'
+                                   }),
+                                   notEqualsField: formatMessage({
+                                       id: 'teacherRegistration.validationPasswordNotUsername'
+                                   })
                                }}
                                required />
-                        <Checkbox label="Show password"
+                        <Checkbox label={formatMessage({id: 'teacherRegistration.showPassword'})}
                                   value={this.state.showPassword}
                                   onChange={this.onChangeShowPassword}
                                   name="showPassword" />
@@ -73,49 +79,55 @@ module.exports = {
                 </ProgressionStep>
             );
         }
-    }),
-    DemographicsStep: React.createClass({
+    })),
+    DemographicsStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {defaultCountry: DEFAULT_COUNTRY};
         },
         getInitialState: function () {
             return {otherDisabled: true};
         },
+        getMonthOptions: function () {
+            return [
+                'January', 'February', 'March', 'April', 'May', 'June', 'July',
+                'August', 'September', 'October', 'November', 'December'
+            ].map(function (label, id) {
+                return {
+                    value: id+1,
+                    label: this.props.intl.formatMessage({id: 'general.month' + label})};
+            }.bind(this));
+        },
+        getYearOptions: function () {
+            return Array.apply(null, Array(100)).map(function (v, id) {
+                var year = 2016 - id;
+                return {value: year, label: year};
+            });
+        },
         onChooseGender: function (name, gender) {
             this.setState({otherDisabled: gender !== 'other'});
         },
         render: function () {
-            var monthOptions = [
-                'January', 'February', 'March', 'April', 'May', 'June', 'July',
-                'August', 'September', 'October', 'November', 'December'
-            ].map(function (label, id) {
-                return {value: id+1, label: label};
-            });
-            var yearOptions = Array.apply(null, Array(100)).map(function (v, id) {
-                var year = 2016 - id;
-                return {value: year, label: year};
-            });
+            var formatMessage = this.props.intl.formatMessage;
             return (
-                <ProgressionStep title="Demographics"
+                <ProgressionStep title={<intl.FormattedMessage id="teacherRegistration.personalStepTitle" />}
                           description={
                             <p>
-                                Your responses to these questions will be kept private.
-                                Why do we ask for this information <a onClick={this.handle}>?</a>
+                                <intl.FormattedMessage id="teacherRegistration.personalStepDescription" />
                             </p>}>
                     <Form onValidSubmit={this.props.onNextStep}>
-                        <Select label="Birth Month" name="user.birth.month" options={monthOptions} required />
-                        <Select label="Birth Yeah" name="user.birth.year" options={yearOptions} required />
+                        <Select label="Birth Month" name="user.birth.month" options={this.getMonthOptions()} required />
+                        <Select label="Birth Yeah" name="user.birth.year" options={this.getYearOptions()} required />
                         <RadioGroup label="Gender"
                                     name="user.gender"
                                     onChange={this.onChooseGender}
                                     options={[
-                                        {value: 'female', label: 'Female'},
-                                        {value: 'male', label: 'Male'},
-                                        {value: 'other', label: 'Other'}
+                                        {value: 'female', label: formatMessage({id: 'general.female'})},
+                                        {value: 'male', label: formatMessage({id: 'general.male'})},
+                                        {value: 'other', label: formatMessage({id: 'general.other'})}
                                     ]}
                                     required />
                         <Input disabled={this.state.otherDisabled} name="user.genderOther" type="text" />
-                        <Select label="Country"
+                        <Select label={formatMessage({id: 'general.country'})}
                                 name="user.country"
                                 options={countryData.countryOptions}
                                 value={this.props.defaultCountry}
@@ -123,79 +135,102 @@ module.exports = {
                          <Checkbox className="demographics-checkbox-is-robot"
                                    label="I'm a robot!"
                                    name="user.isRobot" />
-                        <Button type="submit">Next Step</Button>
+                        <Button type="submit"><intl.FormattedMessage id="teacherRegistration.nextStep" /></Button>
                     </Form>
                 </ProgressionStep>
             );
         }
-    }),
-    NameStep: React.createClass({
+    })),
+    NameStep: intl.injectIntl(React.createClass({
         render: function () {
+            var formatMessage = this.props.intl.formatMessage;
             return (
-                <ProgressionStep title="First &amp; Last Name"
-                          description={
-                            <p>
-                                Your responses to these questions will be kept private.
-                                Why do we ask for this information <a onClick={this.handle}>?</a>
-                            </p>}>
+                <ProgressionStep title={formatMessage({id: 'teacherRegistration.nameStepTitle'})}
+                                 description={
+                                     <p>
+                                        <intl.FormattedMessage id="teacherRegistration.nameStepDescription" />
+                                     </p>
+                                 }
+                >
                     <Form onValidSubmit={this.props.onNextStep}>
-                        <Input label="First Name" type="text" name="user.name.first" required />
-                        <Input label="Last Name" type="text" name="user.name.last" required />
-                        <Button type="submit">Next Step</Button>
+                        <Input label={formatMessage({id: 'teacherRegistration.firstName'})}
+                               type="text"
+                               name="user.name.first"
+                               required />
+                        <Input label={formatMessage({id: 'teacherRegistration.lastName'})}
+                               type="text"
+                               name="user.name.last"
+                               required />
+                        <Button type="submit"><intl.FormattedMessage id="teacherRegistration.nextStep" /></Button>
                     </Form>
                 </ProgressionStep>
             );
         }
-    }),
-    PhoneNumberStep: React.createClass({
+    })),
+    PhoneNumberStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {defaultCountry: DEFAULT_COUNTRY};
         },
         render: function () {
+            var formatMessage = this.props.intl.formatMessage;
             return (
-                <ProgressionStep title="Phone Number"
-                          description={
-                            <p>
-                                Your responses to these questions will be kept private.
-                                Why do we ask for this information <a onClick={this.handle}>?</a>
-                            </p>}>
+                <ProgressionStep title={formatMessage({id: 'teacherRegistration.phoneStepTitle'})}
+                                 description={
+                                    <p>
+                                        <intl.FormattedMessage id="teacherRegistration.phoneStepDescription" />
+                                    </p>
+                                 }
+                >
                     <Form onValidSubmit={this.props.onNextStep}>
-                        <PhoneInput label="Phone Number"
+                        <PhoneInput label={formatMessage({id: 'teacherRegistration.phoneNumber'})}
                                     name="phone"
                                     defaultCountry={
                                         (this.props.formData.user && this.props.formData.user.country) ||
                                         this.props.defaultCountry
                                     }
                                     required />
-                        <Checkbox label={
-                                    'Yes, I consent to lorem ipsum dolor sit amet, consectetur' +
-                                    'adipiscing elit.'
-                                  }
+                        <Checkbox label={formatMessage({id: 'teacherRegistration.phoneConsent'})}
                                   name="phoneConsent"
                                   required="isFalse"
                                   validationErrors={{
-                                      isFalse: 'You must consent to lorem ipsum'
+                                      isFalse: formatMessage({id: 'teacherRegistration.validationPhoneConsent'})
                                   }} />
-                        <Button type="submit">Next Step</Button>
+                        <Button type="submit"><intl.FormattedMessage id="teacherRegistration.nextStep" /></Button>
                     </Form>
                 </ProgressionStep>
             );
         }
-    }),
-    OrganizationStep: React.createClass({
+    })),
+    OrganizationStep: intl.injectIntl(React.createClass({
         getInitialState: function () {
             return {
                 otherDisabled: true
             };
         },
+        getOrganizationOptions: function () {
+            var choices = {
+                ElementarySchool: 'Elementary School',
+                MiddleSchool: 'Middle School',
+                HighSchool: 'High School',
+                University: 'University / College',
+                Museum: 'Museum',
+                Library: 'Library',
+                Camp: 'Camp',
+                Other: 'Other'
+            };
+            return Object.keys(choices).map(function (key) {
+                return {
+                    value: choices[key],
+                    label: this.props.intl.formatMessage({
+                        id: 'teacherRegistration.organizationChoice' + key
+                    })
+                };
+            }.bind(this));
+        },
         onChooseOrganization: function (name, values) {
             this.setState({otherDisabled: values.indexOf('Other') === -1});
         },
         render: function () {
-            var organizationOptions = [
-                'Elementary School', 'Middle School', 'High School', 'University / College',
-                'Museum', 'Library', 'Camp', 'Other'
-            ].map(function (type) { return {value: type, label: type}; });
             return (
                 <ProgressionStep title="Organization"
                           description={
@@ -209,7 +244,7 @@ module.exports = {
                         <CheckboxGroup label="Type of Organization"
                                        name="organization.type"
                                        value={[]}
-                                       options={organizationOptions}
+                                       options={this.getOrganizationOptions()}
                                        onChange={this.onChooseOrganization}
                                        required />
                         <Input type="text"
@@ -222,7 +257,7 @@ module.exports = {
                 </ProgressionStep>
             );
         }
-    }),
+    })),
     AddressStep: React.createClass({
         getDefaultProps: function () {
             return {defaultCountry: DEFAULT_COUNTRY};
