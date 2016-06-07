@@ -20,6 +20,12 @@ var DEFAULT_COUNTRY = 'us';
 
 module.exports = {
     UsernameStep: React.createClass({
+        getInitialState: function () {
+            return {showPassword: false};
+        },
+        onChangeShowPassword: function (field, value) {
+            this.setState({showPassword: value});
+        },
         render: function () {
             return (
                 <ProgressionStep title="Create a Teacher Account"
@@ -45,7 +51,7 @@ module.exports = {
                                }}
                                required />
                         <Input label="Password"
-                               type="password"
+                               type={this.state.showPassword ? 'text' : 'password'}
                                name="user.password"
                                validations={{
                                    minLength: 6,
@@ -58,12 +64,10 @@ module.exports = {
                                    notEqualsField: 'Your password may not be your username'
                                }}
                                required />
-                        <Input label="Confirm Password"
-                               type="password"
-                               name="passwordConfirmation"
-                               validations="equalsField:user.password"
-                               validationError="The passwords do not match"
-                               required />
+                        <Checkbox label="Show password"
+                                  value={this.state.showPassword}
+                                  onChange={this.onChangeShowPassword}
+                                  name="showPassword" />
                         <Button type="submit">Next Step</Button>
                     </Form>
                 </ProgressionStep>
