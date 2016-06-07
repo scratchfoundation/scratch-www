@@ -7,6 +7,7 @@ var Box = React.createClass({
     type: 'Box',
     propTypes: {
         title: React.PropTypes.string.isRequired,
+        subtitle: React.PropTypes.string,
         moreTitle: React.PropTypes.string,
         moreHref: React.PropTypes.string,
         moreProps: React.PropTypes.object
@@ -20,6 +21,7 @@ var Box = React.createClass({
             <div className={classes}>
                 <div className="box-header">
                     <h4>{this.props.title}</h4>
+                    <h2>{this.props.subtitle}</h2>
                     <p>
                         <a href={this.props.moreHref} {...this.props.moreProps}>
                             {this.props.moreTitle}

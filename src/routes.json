@@ -30,6 +30,18 @@
         "title": "Hour of Code"
     },
     {
+        "name": "explore",
+        "pattern": "^/explore/:projects/:all/?$",
+        "view": "explore/explore",
+        "title": "Explore"
+    },
+    {
+        "name": "search",
+        "pattern": "^/search/:projects?$/?$",
+        "view": "search/search",
+        "title": "Search"
+    },
+    {
         "name": "credits",
         "pattern": "^/info/credits/?$",
         "view": "credits/credits",

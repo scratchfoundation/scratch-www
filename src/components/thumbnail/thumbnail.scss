@@ -10,7 +10,7 @@
         }
     }
 
-    $extras: ".thumbnail-creator, .thumbnail-loves, .thumbnail-remixes";
+    $extras: ".thumbnail-creator, .thumbnail-loves, .thumbnail-favorites,.thumbnail-remixes,.thumbnail-views";
 
     .thumbnail-title,
     #{$extras} {
@@ -41,7 +41,13 @@
     }
 
     .thumbnail-loves,
-    .thumbnail-remixes {
+    .thumbnail-favorites,
+    .thumbnail-remixes,
+    .thumbnail-views {
+
+        display: inline;
+        margin-right: 10px;
+
         &:before {
             display: inline-block;
             margin-right: .1rem;
@@ -61,9 +67,21 @@
         }
     }
 
+    .thumbnail-favorites {
+        &:before {
+            background-image: url("/svgs/favorite/favorite_type-gray.svg");
+        }
+    }
+
     .thumbnail-remixes {
         &:before {
             background-image: url("/svgs/remix/remix_type-gray.svg");
+        }
+    }
+
+    .thumbnail-views {
+        &:before {
+            background-image: url("/svgs/view/view_type-gray.svg");
         }
     }
 
