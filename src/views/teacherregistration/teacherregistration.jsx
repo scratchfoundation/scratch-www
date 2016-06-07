@@ -3,8 +3,8 @@ var defaults = require('lodash.defaultsdeep');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var FormSet = require('../../components/forms/formset.jsx').FormSet;
 var Page = require('../../components/page/www/page.jsx');
+var Progression = require('../../components/progression/progression.jsx');
 var Steps = require('./steps.jsx');
 
 require('./teacherregistration.scss');
@@ -31,7 +31,7 @@ var TeacherRegistration = React.createClass({
     render: function () {
         return (
             <div {...this.props} className={classNames('teacher-registration', 'inner', this.props.className)}>
-                <FormSet step={this.state.step}>
+                <Progression step={this.state.step}>
                     <Steps.UsernameStep formData={this.state.formData} onNextStep={this.advanceStep} />
                     <Steps.DemographicsStep formData={this.state.formData} onNextStep={this.advanceStep} />
                     <Steps.NameStep formData={this.state.formData} onNextStep={this.advanceStep} />
@@ -41,7 +41,7 @@ var TeacherRegistration = React.createClass({
                     <Steps.UseScratchStep formData={this.state.formData} onNextStep={this.advanceStep} />
                     <Steps.EmailStep formData={this.state.formData} onNextStep={this.advanceStep} />
                     <Steps.LastStep formData={this.state.formData} />
-                </FormSet>
+                </Progression>
             </div>
         );
     }

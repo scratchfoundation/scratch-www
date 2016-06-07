@@ -8,9 +8,9 @@ var Button = require('../../components/forms/button.jsx');
 var Checkbox = require('../../components/forms/checkbox.jsx');
 var CheckboxGroup = require('../../components/forms/checkbox-group.jsx');
 var Form = require('../../components/forms/form.jsx');
-var FormStep = require('../../components/forms/formset.jsx').FormStep;
 var Input = require('../../components/forms/input.jsx');
 var PhoneInput = require('../../components/forms/phone-input.jsx');
+var ProgressionStep = require('../../components/progression-step/progression-step.jsx');
 var RadioGroup = require('../../components/forms/radio-group.jsx');
 var Select = require('../../components/forms/select.jsx');
 var Spinner = require('../../components/spinner/spinner.jsx');
@@ -22,7 +22,7 @@ module.exports = {
     UsernameStep: React.createClass({
         render: function () {
             return (
-                <FormStep title="Create a Teacher Account"
+                <ProgressionStep title="Create a Teacher Account"
                           description={
                             <p>
                                 Creating a Teacher Account requires additional information
@@ -66,7 +66,7 @@ module.exports = {
                                required />
                         <Button type="submit">Next Step</Button>
                     </Form>
-                </FormStep>
+                </ProgressionStep>
             );
         }
     }),
@@ -92,7 +92,7 @@ module.exports = {
                 return {value: year, label: year};
             });
             return (
-                <FormStep title="Demographics"
+                <ProgressionStep title="Demographics"
                           description={
                             <p>
                                 Your responses to these questions will be kept private.
@@ -121,14 +121,14 @@ module.exports = {
                                    name="user.isRobot" />
                         <Button type="submit">Next Step</Button>
                     </Form>
-                </FormStep>
+                </ProgressionStep>
             );
         }
     }),
     NameStep: React.createClass({
         render: function () {
             return (
-                <FormStep title="First &amp; Last Name"
+                <ProgressionStep title="First &amp; Last Name"
                           description={
                             <p>
                                 Your responses to these questions will be kept private.
@@ -139,7 +139,7 @@ module.exports = {
                         <Input label="Last Name" type="text" name="user.name.last" required />
                         <Button type="submit">Next Step</Button>
                     </Form>
-                </FormStep>
+                </ProgressionStep>
             );
         }
     }),
@@ -149,7 +149,7 @@ module.exports = {
         },
         render: function () {
             return (
-                <FormStep title="Phone Number"
+                <ProgressionStep title="Phone Number"
                           description={
                             <p>
                                 Your responses to these questions will be kept private.
@@ -174,7 +174,7 @@ module.exports = {
                                   }} />
                         <Button type="submit">Next Step</Button>
                     </Form>
-                </FormStep>
+                </ProgressionStep>
             );
         }
     }),
@@ -193,7 +193,7 @@ module.exports = {
                 'Museum', 'Library', 'Camp', 'Other'
             ].map(function (type) { return {value: type, label: type}; });
             return (
-                <FormStep title="Organization"
+                <ProgressionStep title="Organization"
                           description={
                             <p>
                                 Your responses to these questions will be kept private.
@@ -215,7 +215,7 @@ module.exports = {
                         <Input label="Website URL (not required)" type="url" name="organization.url" />
                         <Button type="submit">Next Step</Button>
                     </Form>
-                </FormStep>
+                </ProgressionStep>
             );
         }
     }),
@@ -270,7 +270,7 @@ module.exports = {
             var stateDefault = 'Please select...';
             stateOptions = [{label: stateDefault}].concat(stateOptions);
             return (
-                <FormStep title="Address"
+                <ProgressionStep title="Address"
                           description={
                             <p>
                                 Your responses to these questions will be kept private.
@@ -298,14 +298,14 @@ module.exports = {
                             }
                         </Button>
                     </Form>
-                </FormStep>
+                </ProgressionStep>
             );
         }
     }),
     UseScratchStep: React.createClass({
         render: function () {
             return (
-                <FormStep title="How do you use Scratch?"
+                <ProgressionStep title="How do you use Scratch?"
                           description={
                             <p>
                                 Tell us a little how you plan to use Scratch.
@@ -316,14 +316,14 @@ module.exports = {
                         <TextArea label="How do you use Scratch?" name="useScratch" required />
                         <Button type="submit">Next Step</Button>
                     </Form>
-                </FormStep>
+                </ProgressionStep>
             );
         }
     }),
     EmailStep: React.createClass({
         render: function () {
             return (
-                <FormStep title="Email Address"
+                <ProgressionStep title="Email Address"
                           description={
                             <p>
                                 We will send you a <strong>confirmation email</strong> that will
@@ -346,14 +346,14 @@ module.exports = {
                                required />
                         <Button type="submit">Next Step</Button>
                     </Form>
-                </FormStep>
+                </ProgressionStep>
             );
         }
     }),
     LastStep: React.createClass({
         render: function () {
             return (
-                <FormStep title="Almost Done"
+                <ProgressionStep title="Almost Done"
                           description={
                             <p>
                                 Lorem ipsum dolor sit amet
@@ -377,7 +377,7 @@ module.exports = {
                             patient, the approval process can take up to 24hrs.
                         </p>
                     </div>
-                </FormStep>
+                </ProgressionStep>
             );
         }
     })
