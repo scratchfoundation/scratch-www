@@ -4,6 +4,7 @@ var omit = require('lodash.omit');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
+var permissionsActions = require('../../redux/permissions.js');
 var sessionActions = require('../../redux/session.js');
 
 var Api = require('../../mixins/api.jsx');
@@ -19,6 +20,7 @@ var Intro = require('../../components/intro/intro.jsx');
 var Modal = require('../../components/modal/modal.jsx');
 var News = require('../../components/news/news.jsx');
 var Page = require('../../components/page/www/page.jsx');
+var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
 require('./splash.scss');
@@ -41,7 +43,8 @@ var Splash = injectIntl(React.createClass({
     },
     getDefaultProps: function () {
         return {
-            session: {}
+            session: {},
+            permissions: {}
         };
     },
     componentDidUpdate: function (prevProps) {
@@ -62,6 +65,10 @@ var Splash = injectIntl(React.createClass({
                 window.removeEventListener('message', this.onMessage);
             }
         }
+    },
+    componentWillMount: function () {
+        // Determine whether to show the teacher banner or not
+        this.props.dispatch(permissionsActions.getPermissions());
     },
     componentDidMount: function () {
         this.getFeaturedGlobal();
@@ -371,6 +378,9 @@ var Splash = injectIntl(React.createClass({
                                 {...omit(emailConfirmationStyle, 'padding')} />
                     </Modal>
                 ] : []}
+                {this.props.permissions.educator ? [
+                    <TeacherBanner />
+                ] : []}
                 <CNBanner />
                 <div key="inner" className="inner">
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
@@ -431,7 +441,8 @@ var Splash = injectIntl(React.createClass({
 
 var mapStateToProps = function (state) {
     return {
-        session: state.session
+        session: state.session,
+        permissions: state.permissions
     };
 };
 

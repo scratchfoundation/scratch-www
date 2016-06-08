@@ -1,0 +1,38 @@
+@import "../../colors";
+@import "../../frameless";
+
+.teacher-banner {
+    background-color: $ui-purple;
+    min-height: 65px;
+
+    &.title-banner {
+        transition: none;
+        margin-bottom: 20px;
+        text-align: left;
+
+        h3,
+        p {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: left;
+        }
+    }
+
+    h3 {
+        color: $ui-white;
+    }
+
+    .flex-row {
+        &.inner {
+            justify-content: space-between;
+        }
+    }
+
+    .button {
+        margin-left: 10px;
+        background-color: $ui-white;
+        padding: 13px 20px;
+        color: $ui-blue;
+    }
+}
