@@ -31,31 +31,32 @@ var Grid = React.createClass({
 
                     if (this.props.itemType == 'projects') {
                         return (
-                        <Thumbnail key={item.id}
-                                   showLoves={this.props.showLoves}
-                                   showFavorites={this.props.showFavorites}
-                                   showRemixes={this.props.showRemixes}
-                                   showViews={this.props.showViews}
-                                   type={'project'}
-                                   href={href}
-                                   title={item.title}
-                                   src={item.image}
-                                   creator={item.creator}
-                                   loves={item.stats.loves}
-                                   favorites={item.stats.favorites}
-                                   remixes={item.stats.remixes}
-                                   views={item.stats.views}  />
-                    );
+                            <Thumbnail key={item.id}
+                                       showLoves={this.props.showLoves}
+                                       showFavorites={this.props.showFavorites}
+                                       showRemixes={this.props.showRemixes}
+                                       showViews={this.props.showViews}
+                                       type={'project'}
+                                       href={href}
+                                       title={item.title}
+                                       src={item.image}
+                                       creator={item.creator}
+                                       loves={item.stats.loves}
+                                       favorites={item.stats.favorites}
+                                       remixes={item.stats.remixes}
+                                       views={item.stats.views}  />
+                        );
                     }
                     else {
                         return (
-                        <Thumbnail key={item.id}
-                                   type={'gallery'}
-                                   href={href}
-                                   title={item.title}
-                                   src={item.thumbnail}
-                                   owner={item.owner}  />
-                    );}
+                            <Thumbnail key={item.id}
+                                       type={'gallery'}
+                                       href={href}
+                                       title={item.title}
+                                       src={item.image}
+                                       owner={item.owner}  />
+                        );
+                    }
                 }.bind(this))}
               </FlexRow>
             </div>
