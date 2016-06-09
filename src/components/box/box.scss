@@ -13,7 +13,8 @@ $base-bg: $ui-white;
         width: $cols4;
 
         .box-header {
-            h4 {
+            h4,
+            h5 {
                 line-height: .9rem;
                 font-size: .9rem;
             }
@@ -25,7 +26,8 @@ $base-bg: $ui-white;
         width: $cols6;
 
         .box-header {
-            h4 {
+            h4,
+            h5 {
                 line-height: 1rem;
                 font-size: 1rem;
             }
@@ -37,7 +39,8 @@ $base-bg: $ui-white;
         width: $cols8;
 
         .box-header {
-            h4 {
+            h4,
+            h5 {
                 line-height: 1.1rem;
                 font-size: 1.1rem;
             }
@@ -49,7 +52,8 @@ $base-bg: $ui-white;
         width: $cols12;
 
         .box-header {
-            h4 {
+            h4,
+            h5 {
                 line-height: 1.1rem;
                 font-size: 1.1rem;
             }
@@ -72,16 +76,17 @@ $base-bg: $ui-white;
         height: 20px;
         overflow: hidden;
 
-        h4 {
+        h4,
+        h5 {
             display: inline-block;
             float: left;
         }
 
-        h2 {
-            display: inline-block;
-            float: left;
+        h5 {
+            margin: 0;
             padding-left: 5px;
-            font-size: 1rem;
+            text-transform: none;
+            letter-spacing: normal;
             font-weight: normal;
         }
 
@@ -90,7 +95,6 @@ $base-bg: $ui-white;
             float: right;
             margin: 1px 0 0 0;
             padding: 0;
-
             font-size: .85rem;
         }
     }

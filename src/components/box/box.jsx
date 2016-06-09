@@ -21,7 +21,7 @@ var Box = React.createClass({
             <div className={classes}>
                 <div className="box-header">
                     <h4>{this.props.title}</h4>
-                    <h2>{this.props.subtitle}</h2>
+                    <h5>{this.props.subtitle}</h5>
                     <p>
                         <a href={this.props.moreHref} {...this.props.moreProps}>
                             {this.props.moreTitle}

@@ -90,10 +90,12 @@ var Search = injectIntl(React.createClass({
         return allTab;
     },
     render: function () {
+        var formatMessage = this.props.intl.formatMessage;
+        
         return (
             <div>
                 <div className='outer'>
-                    <Box title={'Search Results:'}
+                    <Box title={formatMessage({id: 'general.results'}) + ':'}
                          subtitle={this.props.searchTerm}
                          moreProps={{className: 'subnavigation'}}>
                         <Tabs>
