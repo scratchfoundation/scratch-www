@@ -194,7 +194,7 @@ var Navigation = React.createClass({
                         </a>
                     </li>
                     <li className="link explore">
-                        <a href="/explore?date=this_month">
+                        <a href="/explore/projects/all">
                             <FormattedMessage id="general.explore" />
                         </a>
                     </li>
@@ -215,14 +215,12 @@ var Navigation = React.createClass({
                     </li>
 
                     <li className="search">
-                        <form action="/search/google_results" method="get">
+                        <form action="/search/projects" method="get">
                             <Button type="submit" className="btn-search" />
                             <Input type="text"
                                    aria-label={formatMessage({id: 'general.search'})}
                                    placeholder={formatMessage({id: 'general.search'})}
                                    name="q" />
-                            <Input type="hidden" name="date" value="anytime" />
-                            <Input type="hidden" name="sort_by" value="datetime_shared" />
                         </form>
                     </li>
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
