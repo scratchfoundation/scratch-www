@@ -9,6 +9,7 @@ var sessionActions = require('../../../redux/session.js');
 
 var Api = require('../../../mixins/api.jsx');
 var Avatar = require('../../avatar/avatar.jsx');
+var Button = require('../../forms/button.jsx');
 var Dropdown = require('../../dropdown/dropdown.jsx');
 var Input = require('../../forms/input.jsx');
 var log = require('../../../lib/log.js');
@@ -215,7 +216,7 @@ var Navigation = React.createClass({
 
                     <li className="search">
                         <form action="/search/projects" method="get">
-                            <Input type="submit" value="" />
+                            <Button type="submit" className="btn-search" />
                             <Input type="text"
                                    aria-label={formatMessage({id: 'general.search'})}
                                    placeholder={formatMessage({id: 'general.search'})}
