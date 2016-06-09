@@ -21,19 +21,22 @@ var Search = injectIntl(React.createClass({
     ],
     getDefaultProps: function () {
         var query = window.location.search;
-        var pathname = window.location.pathname;
+        var pathname = window.location.pathname.toLowerCase();
+        if (pathname[pathname.length - 1] === '/') {
+            pathname = pathname.substring(0, pathname.length - 1);
+        }
         var start = pathname.lastIndexOf('/');
-        var type = pathname.substring(start+1,pathname.length);
+        var type = pathname.substring(start + 1, pathname.length);
         var q = query.lastIndexOf('q=');
-        var term;
-        if (q != -1) {
-            term = query.substring(q+2,query.length).toLowerCase();
+        var term = '';
+        if (q !== -1) {
+            term = query.substring(q + 2, query.length).toLowerCase();
         }
         while (term.indexOf('/') > -1) {
-            term = term.substring(0,term.indexOf('/'));
+            term = term.substring(0, term.indexOf('/'));
         }
         while (term.indexOf('&') > -1) {
-            term = term.substring(0,term.indexOf('&'));
+            term = term.substring(0, term.indexOf('&'));
         }
         term = term.split('+').join(' ');
 
@@ -44,7 +47,6 @@ var Search = injectIntl(React.createClass({
         };
     },
     getInitialState: function () {
-
         return {
             loaded: [],
             offset: 0
@@ -55,14 +57,17 @@ var Search = injectIntl(React.createClass({
     },
     getSearchMore: function () {
         var termText = '';
-        if (this.props.searchTerm != '') {
+        if (this.props.searchTerm !== '') {
             termText = '&q=' + this.props.searchTerm;
         }
         this.api({
-            uri: '/search/'+this.props.tab+'?limit=' + this.props.loadNumber + '&offset=' + this.state.offset + termText
+            uri: '/search/' + this.props.tab +
+                 '?limit=' + this.props.loadNumber +
+                 '&offset=' + this.state.offset +
+                 termText
         }, function (err, body) {
             var loadedSoFar = this.state.loaded;
-            Array.prototype.push.apply(loadedSoFar,body);
+            Array.prototype.push.apply(loadedSoFar, body);
             this.setState({loaded: loadedSoFar});
             var currentOffset = this.state.offset + this.props.loadNumber;
             this.setState({offset: currentOffset});
@@ -70,19 +75,15 @@ var Search = injectIntl(React.createClass({
     },
     getTab: function (type) {
         var term = this.props.searchTerm.split(' ').join('+');
-        var allTab = <a href={'/search/'+type+'?q='+term+'/'}>
+        var allTab = <a href={'/search/' + type + '?q=' + term + '/'}>
                         <li>
-                            <FormattedMessage
-                                id={'explore.'+type}
-                                defaultMessage={type.charAt(0).toUpperCase()+type.slice(1)} />
+                            <FormattedMessage id={'general.' + type} />
                         </li>
                     </a>;
         if (this.props.tab == type) {
-            allTab = <a href={'/search/'+type+'?q='+term+'/'}>
+            allTab = <a href={'/search/' + type + '?q=' + term + '/'}>
                         <li className='active'>
-                            <FormattedMessage
-                                id={'explore.'+type}
-                                defaultMessage={type.charAt(0).toUpperCase()+type.slice(1)} />
+                            <FormattedMessage id={'general.' + type} />
                         </li>
                     </a>;
         }
@@ -92,23 +93,23 @@ var Search = injectIntl(React.createClass({
         return (
             <div>
                 <div className='outer'>
-                    <Box title={'Search Results:'} subtitle={this.props.searchTerm}
-                        moreProps={{
-                            className: 'subnavigation'
-                        }}>
+                    <Box title={'Search Results:'}
+                         subtitle={this.props.searchTerm}
+                         moreProps={{className: 'subnavigation'}}>
                         <Tabs>
                             {this.getTab('projects')}
                             {this.getTab('studios')}
                         </Tabs>
                         <div id='projectBox' key='projectBox'>
-                            <Grid items={this.state.loaded} itemType={this.props.tab}
-                                showLoves={true} showFavorites={true} showViews={true} />
+                            <Grid items={this.state.loaded}
+                                  itemType={this.props.tab}
+                                  showLoves={true}
+                                  showFavorites={true}
+                                  showViews={true} />
                             <SubNavigation className='load'>
                                 <button onClick={this.getSearchMore}>
                                     <li>
-                                        <FormattedMessage
-                                            id='load'
-                                            defaultMessage={'Load More'} />
+                                        <FormattedMessage id='general.loadMore' />
                                     </li>
                                 </button>
                             </SubNavigation>
@@ -116,7 +117,6 @@ var Search = injectIntl(React.createClass({
                     </Box>
                 </div>
             </div>
-
         );
     }
 }));

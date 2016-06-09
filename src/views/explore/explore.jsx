@@ -24,14 +24,14 @@ var Explore = injectIntl(React.createClass({
         var typeOptions = ['projects','studios'];
 
         var pathname = window.location.pathname.toLowerCase();
-        if (pathname.substring(pathname.length-1,pathname.length) == '/') {
-            pathname = pathname.substring(0,pathname.length-1);
+        if (pathname[pathname.length - 1] === '/') {
+            pathname = pathname.substring(0, pathname.length - 1);
         }
         var slash = pathname.lastIndexOf('/');
-        var currentCategory = pathname.substring(slash+1,pathname.length);
+        var currentCategory = pathname.substring(slash + 1,pathname.length);
         var typeStart = pathname.indexOf('explore/');
-        var type = pathname.substring(typeStart+8,slash);
-        if (categoryOptions.indexOf(currentCategory) == -1 || typeOptions.indexOf(type) == -1) {
+        var type = pathname.substring(typeStart + 8,slash);
+        if (categoryOptions.indexOf(currentCategory) === -1 || typeOptions.indexOf(type) === -1) {
             window.location = window.location.origin + '/explore/projects/all/';
         }
 
@@ -58,8 +58,10 @@ var Explore = injectIntl(React.createClass({
             qText = '&q=' + this.props.category;
         }
         this.api({
-            uri: '/search/' + this.props.itemType
-                + '?limit=' + this.props.loadNumber + '&offset=' + this.state.offset + qText
+            uri: '/search/' + this.props.itemType +
+                 '?limit=' + this.props.loadNumber +
+                 '&offset=' + this.state.offset +
+                 qText
         }, function (err, body) {
             if (!err) {
                 var loadedSoFar = this.state.loaded;
@@ -73,46 +75,38 @@ var Explore = injectIntl(React.createClass({
     changeItemType: function () {
         var newType;
         for (var t in this.props.acceptableTypes) {
-            if (this.props.itemType != t) {
+            if (this.props.itemType !== t) {
                 newType = t;
                 break;
             }
         }
-        window.location = window.location.origin + '/explore/'+newType+'/'+this.props.tab;
+        window.location = window.location.origin + '/explore/' + newType + '/' + this.props.tab;
     },
     getBubble: function (type) {
-        var allBubble = <a href={'/explore/'+this.props.itemType+'/'+type+'/'}>
+        var allBubble = <a href={'/explore/' + this.props.itemType + '/' + type + '/'}>
                         <li>
-                            <FormattedMessage
-                                id={'explore.' + type}
-                                defaultMessage={type.charAt(0).toUpperCase() + type.slice(1)} />
+                            <FormattedMessage id={'general.' + type} />
                         </li>
                     </a>;
-        if (this.props.category==type) {
-            allBubble = <a href={'/explore/'+this.props.itemType+'/' + type + '/'}>
+        if (this.props.category === type) {
+            allBubble = <a href={'/explore/' + this.props.itemType+'/' + type + '/'}>
                         <li className='active'>
-                            <FormattedMessage
-                                id={'explore.' + type}
-                                defaultMessage={type.charAt(0).toUpperCase() + type.slice(1)} />
+                            <FormattedMessage id={'general.' + type} />
                         </li>
                     </a>;
         }
         return allBubble;
     },
     getTab: function (type) {
-        var allTab = <a href={'/explore/'+type+'/'+this.props.category+'/'}>
+        var allTab = <a href={'/explore/' + type + '/' + this.props.category + '/'}>
                         <li>
-                            <FormattedMessage
-                                id={'explore.' + type}
-                                defaultMessage={type.charAt(0).toUpperCase() + type.slice(1)} />
+                            <FormattedMessage id={'general.' + type} />
                         </li>
                     </a>;
-        if (this.props.itemType==type) {
-            allTab = <a href={'/explore/'+type+'/' + this.props.category + '/'}>
+        if (this.props.itemType === type) {
+            allTab = <a href={'/explore/' + type +' /' + this.props.category + '/'}>
                         <li className='active'>
-                            <FormattedMessage
-                                id={'explore.' + type}
-                                defaultMessage={type.charAt(0).toUpperCase() + type.slice(1)} />
+                            <FormattedMessage id={'general.' + type} />
                         </li>
                     </a>;
         }
@@ -136,14 +130,15 @@ var Explore = injectIntl(React.createClass({
                             {this.getTab('studios')}
                         </Tabs>
                         <div id='projectBox' key='projectBox'>
-                            <Grid items={this.state.loaded} itemType={this.props.itemType}
-                                showLoves={true} showFavorites={true} showViews={true} />
+                            <Grid items={this.state.loaded}
+                                  itemType={this.props.itemType}
+                                  showLoves={true}
+                                  showFavorites={true}
+                                  showViews={true} />
                             <SubNavigation className='load'>
                                 <button onClick={this.getExploreMore}>
                                     <li>
-                                        <FormattedMessage
-                                            id='load'
-                                            defaultMessage={'Load More'} />
+                                        <FormattedMessage id='general.loadMore' />
                                     </li>
                                 </button>
                             </SubNavigation>

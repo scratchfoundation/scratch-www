@@ -9,7 +9,6 @@ var sessionActions = require('../../../redux/session.js');
 
 var Api = require('../../../mixins/api.jsx');
 var Avatar = require('../../avatar/avatar.jsx');
-var Button = require('../../forms/button.jsx');
 var Dropdown = require('../../dropdown/dropdown.jsx');
 var Input = require('../../forms/input.jsx');
 var log = require('../../../lib/log.js');
