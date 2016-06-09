@@ -110,6 +110,19 @@ var Splash = injectIntl(React.createClass({
             if (!err) this.setState({featuredCustom: body});
         }.bind(this));
     },
+    shuffleArray: function (array) {
+        var i, j = 0;
+        var temp = null;
+        var tempArray = array.slice(0);
+
+        for (i = array.length - 1; i > 0; i -= 1) {
+            j = Math.floor(Math.random() * (i + 1));
+            temp = tempArray[i];
+            tempArray[i] = tempArray[j];
+            tempArray[j] = temp;
+        }
+        return tempArray;
+    },
     getNews: function () {
         this.api({
             uri: '/news?limit=3'
@@ -308,7 +321,8 @@ var Splash = injectIntl(React.createClass({
                             defaultMessage: 'What the Community is Remixing' })}
                  key="community_most_remixed_projects">
 
-                <Carousel items={this.state.featuredGlobal.community_most_remixed_projects} showRemixes={true} />
+                <Carousel items={this.shuffleArray(this.state.featuredGlobal.community_most_remixed_projects)}
+                          showRemixes={true} />
             </Box>,
             <Box title={
                         formatMessage({
@@ -316,7 +330,8 @@ var Splash = injectIntl(React.createClass({
                             defaultMessage: 'What the Community is Loving' })}
                  key="community_most_loved_projects">
 
-                <Carousel items={this.state.featuredGlobal.community_most_loved_projects} showLoves={true} />
+                <Carousel items={this.shuffleArray(this.state.featuredGlobal.community_most_loved_projects)}
+                          showLoves={true} />
             </Box>
         );
 
