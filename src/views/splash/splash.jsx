@@ -110,12 +110,16 @@ var Splash = injectIntl(React.createClass({
             if (!err) this.setState({featuredCustom: body});
         }.bind(this));
     },
-    shuffleArray: function (array) {
+    shuffleArray: function (arr) {
         var i, j = 0;
         var temp = null;
-        var tempArray = array.slice(0);
+        if (arr) {
+            var tempArray = arr.slice(0);
+        } else {
+            return arr;
+        }
 
-        for (i = array.length - 1; i > 0; i -= 1) {
+        for (i = arr.length - 1; i > 0; i -= 1) {
             j = Math.floor(Math.random() * (i + 1));
             temp = tempArray[i];
             tempArray[i] = tempArray[j];
