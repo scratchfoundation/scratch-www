@@ -7,8 +7,11 @@ var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
 var validationHOCFactory = require('./validations.jsx').validationHOCFactory;
 var Row = require('formsy-react-components').Row;
 var ComponentMixin = require('formsy-react-components').ComponentMixin;
+var inputHOC = require('./input-hoc.jsx');
 
 var allIso2 = allCountries.map(function (country) {return country.iso2;});
+
+require('./row.scss');
 
 var PhoneInput = React.createClass({
     displayName: 'PhoneInput',
@@ -61,4 +64,4 @@ var phoneValidationHOC = validationHOCFactory({
     isPhone: 'Please enter a valid phone number'
 });
 
-module.exports = defaultValidationHOC(phoneValidationHOC(PhoneInput));
+module.exports = inputHOC(defaultValidationHOC(phoneValidationHOC(PhoneInput)));

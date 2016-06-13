@@ -2,8 +2,10 @@ var classNames = require('classnames');
 var FRCInput = require('formsy-react-components').Input;
 var React = require('react');
 var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
+var inputHOC = require('./input-hoc.jsx');
 
 require('./input.scss');
+require('./row.scss');
 
 var Input = React.createClass({
     type: 'Input',
@@ -22,4 +24,4 @@ var Input = React.createClass({
     }
 });
 
-module.exports = defaultValidationHOC(Input);
+module.exports = inputHOC(defaultValidationHOC(Input));

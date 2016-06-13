@@ -41,13 +41,13 @@ var Login = React.createClass({
                             id='general.username'
                             defaultMessage={'Username'} />
                     </label>
-                    <Input type="text" ref="username" name="username" maxLength="30" key="usernameInput" />
+                    <Input type="text" ref="username" name="username" maxLength="30" key="usernameInput" required />
                     <label htmlFor="password" key="passwordLabel">
                         <FormattedMessage
                             id='general.password'
                             defaultMessage={'Password'} />
                     </label>
-                    <Input type="password" ref="password" name="password" key="passwordInput" />
+                    <Input type="password" ref="password" name="password" key="passwordInput" required />
                     {this.state.waiting ? [
                         <Button className="submit-button white" type="submit" disabled="disabled" key="submitButton">
                             <Spinner />

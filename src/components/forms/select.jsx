@@ -3,7 +3,9 @@ var defaults = require('lodash.defaultsdeep');
 var FRCSelect = require('formsy-react-components').Select;
 var React = require('react');
 var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
+var inputHOC = require('./input-hoc.jsx');
 
+require('./row.scss');
 require('./select.scss');
 
 var Select = React.createClass({
@@ -26,4 +28,4 @@ var Select = React.createClass({
     }
 });
 
-module.exports = defaultValidationHOC(Select);
+module.exports = inputHOC(defaultValidationHOC(Select));

@@ -73,6 +73,7 @@ module.exports = {
                         <Checkbox label={formatMessage({id: 'teacherRegistration.showPassword'})}
                                   value={this.state.showPassword}
                                   onChange={this.onChangeShowPassword}
+                                  help={null}
                                   name="showPassword" />
                         <Button type="submit">Next Step</Button>
                     </Form>
@@ -126,7 +127,11 @@ module.exports = {
                                         {value: 'other', label: formatMessage({id: 'general.other'})}
                                     ]}
                                     required />
-                        <Input disabled={this.state.otherDisabled} name="user.genderOther" type="text" />
+                        <Input name="user.genderOther"
+                               type="text"
+                               disabled={this.state.otherDisabled}
+                               required={!this.state.otherDisabled}
+                               help={null} />
                         <Select label={formatMessage({id: 'general.country'})}
                                 name="user.country"
                                 options={countryData.countryOptions}

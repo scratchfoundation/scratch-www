@@ -2,6 +2,9 @@ var classNames = require('classnames');
 var FRCRadioGroup = require('formsy-react-components').RadioGroup;
 var React = require('react');
 var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
+var inputHOC = require('./input-hoc.jsx');
+
+require('./row.scss');
 
 var RadioGroup = React.createClass({
     type: 'RadioGroup',
@@ -16,4 +19,4 @@ var RadioGroup = React.createClass({
     }
 });
 
-module.exports = defaultValidationHOC(RadioGroup);
+module.exports = inputHOC(defaultValidationHOC(RadioGroup));
