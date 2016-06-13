@@ -14,11 +14,11 @@ var TeacherBanner = React.createClass({
     getDefaultProps: function () {
         return {
             messages: {
-                'teacher-banner.greeting': 'Hi',
-                'teacher-banner.subgreeting': 'Teacher Account',
-                'teacher-banner.classesButton': 'My Classes',
-                'teacher-banner.resourcesButton': 'Educator Resources',
-                'teacher-banner.faqButton': 'Teacher Account FAQ'
+                'teacherbanner.greeting': 'Hi',
+                'teacherbanner.subgreeting': 'Teacher Account',
+                'teacherbanner.classesButton': 'My Classes',
+                'teacherbanner.resourcesButton': 'Educator Resources',
+                'teacherbanner.faqButton': 'Teacher Account FAQ'
             },
             session: {}
         };
