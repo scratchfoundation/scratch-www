@@ -15,9 +15,9 @@ var TeacherBanner = React.createClass({
         return {
             messages: {
                 'teacher-banner.greeting': 'Hi',
-                'teacher-banner.subgreeting': 'Here are some helpful links to check out:',
+                'teacher-banner.subgreeting': 'Teacher Account',
                 'teacher-banner.classesButton': 'My Classes',
-                'teacher-banner.resourcesButton': 'Learning Resources',
+                'teacher-banner.resourcesButton': 'Educator Resources',
                 'teacher-banner.faqButton': 'Teacher Account FAQ'
             },
             session: {}

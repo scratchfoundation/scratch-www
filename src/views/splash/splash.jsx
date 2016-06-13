@@ -350,7 +350,12 @@ var Splash = injectIntl(React.createClass({
             'intro.joinScratch': formatMessage({id: 'intro.joinScratch'}),
             'intro.seeExamples': formatMessage({id: 'intro.seeExamples'}),
             'intro.tagLine': formatHTMLMessage({id: 'intro.tagLine'}),
-            'intro.tryItOut': formatMessage({id: 'intro.tryItOut'})
+            'intro.tryItOut': formatMessage({id: 'intro.tryItOut'}),
+            'teacher-banner.greeting': formatMessage({id: 'teacher-banner.greeting'}),
+            'teacher-banner.subgreeting': formatMessage({id: 'teacher-banner.subgreeting'}),
+            'teacher-banner.classesButton': formatMessage({id: 'teacher-banner.classesButton'}),
+            'teacher-banner.resourcesButton': formatMessage({id: 'teacher-banner.resourcesButton'}),
+            'teacher-banner.faqButton': formatMessage({id: 'teacher-banner.faqButton'})
         };
         if (this.state.projectCount === this.getInitialState().projectCount) {
             messages['intro.description'] = formatHTMLMessage({id: 'intro.defaultDescription'});
@@ -379,7 +384,7 @@ var Splash = injectIntl(React.createClass({
                     </Modal>
                 ] : []}
                 {this.props.permissions.educator ? [
-                    <TeacherBanner />
+                    <TeacherBanner messages={messages} />
                 ] : []}
                 <CNBanner />
                 <div key="inner" className="inner">
