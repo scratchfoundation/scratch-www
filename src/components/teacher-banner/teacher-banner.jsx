@@ -35,11 +35,11 @@ var TeacherBanner = React.createClass({
                         {this.props.session.status === sessionActions.Status.FETCHED ? (
                             this.props.session.session.user ? [
                                 <h3>
-                                    {this.props.messages['teacher-banner.greeting']},{' '}
+                                    {this.props.messages['teacherbanner.greeting']},{' '}
                                     {this.props.session.session.user.username}
                                 </h3>,
                                 <p>
-                                    {this.props.messages['teacher-banner.subgreeting']}
+                                    {this.props.messages['teacherbanner.subgreeting']}
                                 </p>
                             ] : []
                         ): []}
@@ -49,17 +49,17 @@ var TeacherBanner = React.createClass({
                             this.props.session.session.user ? [
                                 <a href="/educators/classes">
                                     <Button>
-                                        {this.props.messages['teacher-banner.classesButton']}
+                                        {this.props.messages['teacherbanner.classesButton']}
                                     </Button>
                                 </a>,
                                 <a href="/info/educators">
                                     <Button>
-                                        {this.props.messages['teacher-banner.resourcesButton']}
+                                        {this.props.messages['teacherbanner.resourcesButton']}
                                     </Button>
                                 </a>,
                                 <a href="/info/educators/faq">
                                     <Button>
-                                        {this.props.messages['teacher-banner.faqButton']}
+                                        {this.props.messages['teacherbanner.faqButton']}
                                     </Button>
                                 </a>
                             ] : []
