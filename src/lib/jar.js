@@ -74,7 +74,7 @@ var Jar = {
         var path = '; path=/';
         document.cookie = obj + expires + path;
     },
-    getSignedValue: function (cookieName, signedValue, callback) {
+    getUnsignedValue: function (cookieName, signedValue, callback) {
         // Get a value from a signed object
         Jar.get(cookieName, function (err, value) {
             if (err) return callback(err);

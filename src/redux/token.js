@@ -25,7 +25,7 @@ module.exports.tokenReducer = function (state, action) {
 
 module.exports.getToken = function () {
     return function (dispatch) {
-        jar.getSignedValue('scratchsessionsid', 'token', function (err, value) {
+        jar.getUnsignedValue('scratchsessionsid', 'token', function (err, value) {
             if (err) return dispatch(module.exports.setTokenError(err));
             return dispatch(module.exports.setToken(value));
         });

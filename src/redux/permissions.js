@@ -22,7 +22,7 @@ module.exports.permissionsReducer = function (state, action) {
 
 module.exports.getPermissions = function () {
     return function (dispatch) {
-        jar.getSignedValue('scratchsessionsid', 'permissions', function (err, value) {
+        jar.getUnsignedValue('scratchsessionsid', 'permissions', function (err, value) {
             if (err) return dispatch(module.exports.setPermissionsError(err));
             return dispatch(module.exports.setPermissions(value));
         });
