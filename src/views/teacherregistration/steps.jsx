@@ -116,9 +116,14 @@ module.exports = {
                                 <intl.FormattedMessage id="teacherRegistration.personalStepDescription" />
                             </p>}>
                     <Form onValidSubmit={this.props.onNextStep}>
-                        <Select label="Birth Month" name="user.birth.month" options={this.getMonthOptions()} required />
-                        <Select label="Birth Yeah" name="user.birth.year" options={this.getYearOptions()} required />
-                        <RadioGroup label="Gender"
+                        <Select label={formatMessage({id: 'general.birthMonth'})}
+                                name="user.birth.month"
+                                options={this.getMonthOptions()}
+                                required />
+                        <Select label={formatMessage({id: 'general.birthYear'})}
+                                name="user.birth.year"
+                                options={this.getYearOptions()} required />
+                        <RadioGroup label={formatMessage({id: 'general.gender'})}
                                     name="user.gender"
                                     onChange={this.onChooseGender}
                                     options={[
@@ -213,21 +218,21 @@ module.exports = {
             };
         },
         getOrganizationOptions: function () {
-            var choices = {
-                ElementarySchool: 'Elementary School',
-                MiddleSchool: 'Middle School',
-                HighSchool: 'High School',
-                University: 'University / College',
-                Museum: 'Museum',
-                Library: 'Library',
-                Camp: 'Camp',
-                Other: 'Other'
-            };
-            return Object.keys(choices).map(function (key) {
+            return [
+                'orgChoiceElementarySchool',
+                'orgChoiceMiddleSchool',
+                'orgChoiceHighSchool',
+                'orgChoiceUniversity',
+                'orgChoiceAfterschool',
+                'orgChoiceMuseum',
+                'orgChoiceLibrary',
+                'orgChoiceCamp',
+                'orgChoiceOther'
+            ].map(function (choice, id) {
                 return {
-                    value: choices[key],
+                    value: id,
                     label: this.props.intl.formatMessage({
-                        id: 'teacherRegistration.organizationChoice' + key
+                        id: 'teacherRegistration.' + choice
                     })
                 };
             }.bind(this));
@@ -236,17 +241,24 @@ module.exports = {
             this.setState({otherDisabled: values.indexOf('Other') === -1});
         },
         render: function () {
+            var formatMessage = this.props.intl.formatMessage;
             return (
-                <ProgressionStep title="Organization"
-                          description={
-                            <p>
-                                Your responses to these questions will be kept private.
-                                Why do we ask for this information <a onClick={this.handle}>?</a>
-                            </p>}>
+                <ProgressionStep title={formatMessage({id: 'teacherRegistration.orgStepTitle'})}
+                                 description={
+                                    <p>
+                                        <intl.FormattedMessage id="teacherRegistration.orgStepDescription" />
+                                    </p>}>
                     <Form onValidSubmit={this.props.onNextStep}>
-                        <Input label="Organization" type="text" name="organization.name" required />
-                        <Input label="Title / Position" type="text" name="organization.title" required />
-                        <CheckboxGroup label="Type of Organization"
+                        <Input label={formatMessage({id: 'teacherRegistration.organization'})}
+                               type="text"
+                               name="organization.name"
+                               required />
+                        <Input label={formatMessage({id: 'teacherRegistration.orgTitle'})}
+                               type="text"
+                               name="organization.title"
+                               required />
+                        <CheckboxGroup label={formatMessage({id: 'teacherRegistration.orgType'})}
+                                       help={formatMessage({id: 'teacherRegistration.checkAll'})}
                                        name="organization.type"
                                        value={[]}
                                        options={this.getOrganizationOptions()}
@@ -256,14 +268,17 @@ module.exports = {
                                name="organization.other"
                                disabled={this.state.otherDisabled}
                                required={!this.state.otherDisabled} />
-                        <Input label="Website URL (not required)" type="url" name="organization.url" />
-                        <Button type="submit">Next Step</Button>
+                        <Input label={formatMessage({id: 'general.website'})}
+                               help={formatMessage({id: 'general.notRequired'})}
+                               type="url"
+                               name="organization.url" />
+                        <Button type="submit"><intl.FormattedMessage id="teacherRegistration.nextStep" /></Button>
                     </Form>
                 </ProgressionStep>
             );
         }
     })),
-    AddressStep: React.createClass({
+    AddressStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {defaultCountry: DEFAULT_COUNTRY};
         },
@@ -304,125 +319,151 @@ module.exports = {
                     return this.props.onNextStep(formData);
                 } else {
                     return invalidate({
-                        'all': 'This doesn\'t look like a real address'
+                        'all': <FormattedMessage id="teacherRegistration.addressValidationError" />
                     });
                 }
             }.bind(this));
         },
         render: function () {
+            var formatMessage = this.props.intl.formatMessage;
             var stateOptions = countryData.subdivisionOptions[this.state.countryChoice];
-            var stateDefault = 'Please select...';
-            stateOptions = [{label: stateDefault}].concat(stateOptions);
+            stateOptions = [{}].concat(stateOptions);
+            var countryOptions = countryData.countryOptions.concat({
+                label: formatMessage({id: 'teacherRegistration.selectCountry'}),
+                disabled: true,
+                selected: true
+            }).sort(function (a, b) {
+                if (a.disabled) return -1;
+                if (b.disabled) return 1;
+                if (a.value === this.props.defaultCountry) return -1;
+                if (b.value === this.props.defaultCountry) return 1;
+                return 0;
+            }.bind(this));
             return (
-                <ProgressionStep title="Address"
-                          description={
-                            <p>
-                                Your responses to these questions will be kept private.
-                                Why do we ask for this information <a onClick={this.handle}>?</a>
-                            </p>}>
+                <ProgressionStep title={formatMessage({id: 'teacherRegistration.addressStepTitle'})}
+                                 description={
+                                    <p>
+                                        <intl.FormattedMessage id="teacherRegistration.addressStepDescription" />
+                                    </p>}>
                     <Form onValidSubmit={this.onValidSubmit}>
-                        <Select label="Country"
+                        <Select label={formatMessage({id: 'general.country'})}
                                 name="address.country"
-                                options={countryData.countryOptions}
+                                options={countryOptions}
                                 onChange={this.onChangeCountry}
-                                value={this.state.countryChoice}
                                 required />
-                        <Input label="Address Line 1" type="text" name="address.line1" required />
-                        <Input label="Address Line 2" type="text" name="address.line2" />
-                        <Input label="City" type="text" name="address.city" required />
+                        <Input label={formatMessage({id: 'teacherRegistration.addressLine1'})}
+                               type="text"
+                               name="address.line1"
+                               required />
+                        <Input label={formatMessage({id: 'teacherRegistration.addressLine2'})}
+                               type="text"
+                               name="address.line2" />
+                        <Input label={formatMessage({id: 'teacherRegistration.city'})}
+                               type="text"
+                               name="address.city"
+                               required />
                         {stateOptions.length > 2 ?
-                            <Select label="State / Province" name="address.state" options={stateOptions} required /> :
+                            <Select label={formatMessage({id: 'teacherRegistration.stateProvince'})}
+                                    name="address.state"
+                                    options={stateOptions}
+                                    required /> :
                             []
                         }
-                        <Input label="ZIP Code" type="text" name="address.zip" required />
+                        <Input label={formatMessage({id: 'teacherRegistration.zipCode'})}
+                               type="text"
+                               name="address.zip"
+                               required />
                         <Button type="submit" disabled={this.state.waiting}>
                             {this.state.waiting ?
                                 <Spinner /> :
-                                <span>Next Step</span>
+                                <span><intl.FormattedMessage id="teacherRegistration.nextStep" /></span>
                             }
                         </Button>
                     </Form>
                 </ProgressionStep>
             );
         }
-    }),
-    UseScratchStep: React.createClass({
+    })),
+    UseScratchStep: intl.injectIntl(React.createClass({
         render: function () {
+            var formatMessage = this.props.intl.formatMessage;
             return (
-                <ProgressionStep title="How do you use Scratch?"
-                          description={
-                            <p>
-                                Tell us a little how you plan to use Scratch.
-                                Why do we ask for this information <a onClick={this.handle}>?</a>
-                            </p>
-                          }>
+                <ProgressionStep title={formatMessage({id: 'teacherRegistration.useScratchStepTitle'})}
+                                 description={
+                                    <p>
+                                        <intl.FormattedMessage id="teacherRegistration.useScratchStepDescription" />
+                                    </p>
+                                 }>
                     <Form onValidSubmit={this.props.onNextStep}>
-                        <TextArea label="How do you use Scratch?" name="useScratch" required />
-                        <Button type="submit">Next Step</Button>
+                        <TextArea label={formatMessage({id: 'teacherRegistration.howUseScratch'})}
+                                  name="useScratch"
+                                  required />
+                        <Button type="submit"><intl.FormattedMessage id="teacherRegistration.nextStep" /></Button>
                     </Form>
                 </ProgressionStep>
             );
         }
-    }),
-    EmailStep: React.createClass({
+    })),
+    EmailStep: intl.injectIntl(React.createClass({
         render: function () {
+            var formatMessage = this.props.intl.formatMessage;
             return (
-                <ProgressionStep title="Email Address"
-                          description={
-                            <p>
-                                We will send you a <strong>confirmation email</strong> that will
-                                allow you to access your Scratch Teacher Account.
-                            </p>}>
+                <ProgressionStep title={formatMessage({id: 'teacherRegistration.emailStepTitle'})}
+                                 description={
+                                    <p>
+                                        <intl.FormattedMessage id="teacherRegistration.emailStepDescription" />
+                                    </p>}>
                     <Form onValidSubmit={this.props.onNextStep}>
-                        <Input label="Email"
+                        <Input label={formatMessage({id: 'general.emailAddress'})}
                                type="text"
                                name="user.email"
                                validations="isEmail"
-                               validationError="Please enter a valid email address"
+                               validationError={formatMessage({id: 'general.validationEmail'})}
                                required />
-                        <Input label="Confirm Email"
+                        <Input label={formatMessage({id: 'general.confirmEmail'})}
                                type="text"
                                name="confirmEmail"
                                validations="equalsField:user.email"
                                validationErrors={{
-                                   equalsField: 'The emails do not match'
+                                   equalsField: formatMessage({id: 'general.validationEmailMatch'})
                                }}
                                required />
-                        <Button type="submit">Next Step</Button>
+                        <Button type="submit"><intl.FormattedMessage id="teacherRegistration.nextStep" /></Button>
                     </Form>
                 </ProgressionStep>
             );
         }
-    }),
-    LastStep: React.createClass({
+    })),
+    LastStep: intl.injectIntl(React.createClass({
         render: function () {
+            var formatMessage = this.props.intl.formatMessage;
             return (
-                <ProgressionStep title="Almost Done"
-                          description={
-                            <p>
-                                Lorem ipsum dolor sit amet
-                            </p>}>
+                <ProgressionStep title={formatMessage({id: 'teacherRegistration.lastStepTitle'})}
+                                 description={
+                                    <p>
+                                        <intl.FormattedMessage id="teacherRegistration.lastStepDescription" />
+                                    </p>}>
                     <div className="confirm">
-                        <h2>Confirm Your Email</h2>
+                        <h2><intl.FormattedMessage id="teacherRegistration.confirmYourEmail" /></h2>
                         <p>
-                            Click the link in the confirmation email that we
-                            sent to the following address:<br />
-                            <strong>{this.props.formData.user.email}</strong>
+                            <intl.FormattedMessage id="teacherRegistration.confirmYourEmailDescription" /><br />
+                            <strong>{this.props.formData.user && this.props.formData.user.email}</strong>
                         </p>
-                        <div className="box-footer">
-                            <a onClick="">Wrong email?</a>
-                            <a onClick="">Having trouble?</a>
-                        </div>
                     </div>
                     <div className="wait">
-                        <h2>Wait for Approval</h2>
+                        <h2><intl.FormattedMessage id="teacherRegistration.waitForApproval" /></h2>
                         <p>
-                            Your information is being reviewed. Please be
-                            patient, the approval process can take up to 24hrs.
+                            <intl.FormattedMessage id="teacherRegistration.waitForApprovalDescription" />
+                        </p>
+                    </div>
+                    <div className="resources">
+                        <h2><intl.FormattedMessage id="teacherRegistration.checkOutResources" /></h2>
+                        <p>
+                            <intl.FormattedHTMLMessage id="teacherRegistration.checkOutResourcesDescription" />
                         </p>
                     </div>
                 </ProgressionStep>
             );
         }
-    })
+    }))
 };
