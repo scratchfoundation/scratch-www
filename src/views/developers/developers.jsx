@@ -52,7 +52,7 @@ var Developers = React.createClass({
                         </SubNavigation>
                     </div>
                 </TitleBanner>
-    
+
                 <div className="inner">
                     <section id="projects">
                         <span className="nav-spacer"></span>
@@ -228,11 +228,10 @@ var Developers = React.createClass({
                                 <div className="faq column">
                                     <h4>Are there rules to using this code in my application?</h4>
                                     <p>
-                                        You may use this code in accordance with the{' '}
-                                        <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0</a> license
-                                        which governs this project. We also strongly encourage you to consider{' '}
-                                        the learning and design principles (above, on this page) when building{' '}
-                                        creative learning experiences for kids of all ages.
+                                        You may use this code in accordance with the license which governs{' '}
+                                        each project. We also strongly encourage you to consider the learning{' '}
+                                        and design principles (above, on this page) when building creative{' '}
+                                        learning experiences for kids of all ages.
                                     </p>
                                 </div>
                                 <div className="faq column">
@@ -243,7 +242,7 @@ var Developers = React.createClass({
                                     <p>
                                         If you wish, you can publicly state that your application is powered by{' '}
                                         Scratch Blocks. If you do so, we would also encourage you to link back to{' '}
-                                        code repository.
+                                        the code repository.
                                     </p>
                                 </div>
                                 <div className="faq column">
