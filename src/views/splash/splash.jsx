@@ -5,6 +5,7 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 
 var sessionActions = require('../../redux/session.js');
+var shuffle = require('../../lib/shuffle.js').shuffle;
 
 var Api = require('../../mixins/api.jsx');
 
@@ -109,23 +110,6 @@ var Splash = injectIntl(React.createClass({
         }, function (err, body) {
             if (!err) this.setState({featuredCustom: body});
         }.bind(this));
-    },
-    shuffleArray: function (arr) {
-        var i, j = 0;
-        var temp = null;
-        if (arr) {
-            var tempArray = arr.slice(0);
-        } else {
-            return arr;
-        }
-
-        for (i = arr.length - 1; i > 0; i -= 1) {
-            j = Math.floor(Math.random() * (i + 1));
-            temp = tempArray[i];
-            tempArray[i] = tempArray[j];
-            tempArray[j] = temp;
-        }
-        return tempArray;
     },
     getNews: function () {
         this.api({
@@ -325,7 +309,7 @@ var Splash = injectIntl(React.createClass({
                             defaultMessage: 'What the Community is Remixing' })}
                  key="community_most_remixed_projects">
 
-                <Carousel items={this.shuffleArray(this.state.featuredGlobal.community_most_remixed_projects)}
+                <Carousel items={shuffle(this.state.featuredGlobal.community_most_remixed_projects)}
                           showRemixes={true} />
             </Box>,
             <Box title={
@@ -334,7 +318,7 @@ var Splash = injectIntl(React.createClass({
                             defaultMessage: 'What the Community is Loving' })}
                  key="community_most_loved_projects">
 
-                <Carousel items={this.shuffleArray(this.state.featuredGlobal.community_most_loved_projects)}
+                <Carousel items={shuffle(this.state.featuredGlobal.community_most_loved_projects)}
                           showLoves={true} />
             </Box>
         );
