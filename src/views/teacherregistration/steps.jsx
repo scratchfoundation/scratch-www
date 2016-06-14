@@ -1,5 +1,6 @@
 var React = require('react');
 
+var api = require('../../lib/api');
 var countryData = require('../../lib/country-data');
 var intl = require('../../lib/intl.jsx');
 var log = require('../../lib/log');
@@ -22,10 +23,42 @@ var DEFAULT_COUNTRY = 'us';
 module.exports = {
     UsernameStep: intl.injectIntl(React.createClass({
         getInitialState: function () {
-            return {showPassword: false};
+            return {
+                showPassword: false,
+                waiting: false
+            };
         },
         onChangeShowPassword: function (field, value) {
             this.setState({showPassword: value});
+        },
+        onValidSubmit: function (formData, reset, invalidate) {
+            this.setState({waiting: true});
+            api({
+                host: '',
+                uri: '/accounts/check_username/' + formData.user.username + '/'
+            }, function (err, res) {
+                var formatMessage = this.props.intl.formatMessage;
+                this.setState({waiting: false});
+                if (err) return invalidate({all: err});
+                res = res[0];
+                switch (res.msg) {
+                case 'valid username':
+                    return this.props.onNextStep();
+                case 'username exists':
+                    return invalidate({
+                        'user.username': formatMessage({id: 'general.validationUsernameExists'})
+                    });
+                case 'bad username':
+                    return invalidate({
+                        'user.username': formatMessage({id: 'general.validationUsernameVulgar'})
+                    });
+                case 'invalid username':
+                default:
+                    return invalidate({
+                        'user.username': formatMessage({id: 'general.validationUsernameInvalid'})
+                    });
+                }
+            }.bind(this));
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
@@ -35,7 +68,7 @@ module.exports = {
                                     <p><intl.FormattedMessage id="teacherRegistration.usernameStepDescription" /></p>
                                  }
                 >
-                    <Form onValidSubmit={this.props.onNextStep}>
+                    <Form onValidSubmit={this.onValidSubmit}>
                         <Input label={formatMessage({id: 'general.username'})}
                                type="text"
                                name="user.username"
@@ -75,7 +108,12 @@ module.exports = {
                                   onChange={this.onChangeShowPassword}
                                   help={null}
                                   name="showPassword" />
-                        <Button type="submit">Next Step</Button>
+                        <Button type="submit" disabled={this.state.waiting}>
+                            {this.state.waiting ?
+                                <Spinner /> :
+                                <span><intl.FormattedMessage id="teacherRegistration.nextStep" /></span>
+                            }
+                        </Button>
                     </Form>
                 </ProgressionStep>
             );
