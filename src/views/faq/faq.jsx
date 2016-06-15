@@ -108,71 +108,94 @@ var Faq = React.createClass({
                             <dt><FormattedMessage id='faq.deleteAccountTitle' /></dt>
                             <dd><FormattedHTMLMessage id='faq.deleteAccountBody' /></dd>
                         </dl>
-                        </section>
-                        <section id="permissions">
-                            <span className="nav-spacer"></span>
-                            <h2><FormattedMessage id='faq.permissionsTitle' /></h2>
-                            <dl>
-                                <dt><FormattedMessage id='faq.scratchFreeTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.scratchFreeBody' /></dd>
-                                <dt><FormattedMessage id='faq.scratchScreenshotTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.scratchScreenshotBody' /></dd>
-                                <dt><FormattedMessage id='faq.scratchDescriptionTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.scratchDescriptionBody' /></dd>
-                                <dt><FormattedMessage id='faq.presentScratchTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.presentScratchBody' /></dd>
-                                <dt><FormattedMessage id='faq.supportMaterialTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.supportMaterialBody' /></dd>
-                                <dt><FormattedMessage id='faq.sellProjectsTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.sellProjectsBody' /></dd>
-                                <dt><FormattedMessage id='faq.sourceCodeTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.sourceCodeBody' /></dd>
-                            </dl>
-                        </section>
-                        <section id="inappropriate-content">
-                            <span className="nav-spacer"></span>
-                            <h2><FormattedMessage id='faq.inappropriateContentTitle' /></h2>
-                            <dl>
-                                <dt><FormattedMessage id='faq.okayToShareTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.okayToShareBody' /></dd>
-                                <dt><FormattedMessage id='faq.reportContentTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.reportContentBody' /></dd>
-                                <dt><FormattedMessage id='faq.noFlameTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.noFlameBody' /></dd>
-                                <dt><FormattedMessage id='faq.reviewContentTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.reviewContentBody' /></dd>
-                                <dt><FormattedMessage id='faq.blockedAccountTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.blockedAccountBody' /></dd>
-                                <dt><FormattedMessage id='faq.stolenAccountTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.stolenAccountBody' /></dd>
-                            </dl>
-                        </section>
-                        <section id="clouddata">
-                            <span className="nav-spacer"></span>
-                            <h2><FormattedMessage id='faq.cloudDataTitle' /></h2>
-                            <dl>
-                                <dt><FormattedMessage id='faq.cloudDataInfoTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.cloudDataInfoBody' /></dd>
-                                <dt><FormattedMessage id='faq.storedCloudInfoTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.storedCloudInfoBody' /></dd>
-                                <dt><FormattedMessage id='faq.onlyNumbersTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.onlyNumbersBody' /></dd>
-                                <dt><FormattedMessage id='faq.reportCloudTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.reportCloudBody' /></dd>
-                                <dt><FormattedMessage id='faq.chatRoomTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.chatRoomBody' /></dd>
-                                <dt><FormattedMessage id='faq.makeCloudVarTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.makeCloudVarBody' /></dd>
-                                <dt><FormattedMessage id='faq.changeCloudVarTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.changeCloudVarBody' /></dd>
-                                <dt><FormattedMessage id='faq.newScratcherCloudTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.newScratcherCloudBody' /></dd>
-                                <dt><FormattedMessage id='faq.multiplayerTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.multiplayerBody' /></dd>
-                                <dt><FormattedMessage id='faq.cloudLagTitle' /></dt>
-                                <dd><FormattedHTMLMessage id='faq.cloudLagBody' /></dd>
-                            </dl>
-                        </section>
+                    </section>
+                    <section id="permissions">
+                        <span className="nav-spacer"></span>
+                        <h2><FormattedMessage id='faq.permissionsTitle' /></h2>
+                        <dl>
+                            <dt><FormattedMessage id='faq.scratchFreeTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.scratchFreeBody' /></dd>
+                            <dt><FormattedMessage id='faq.scratchScreenshotTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.scratchScreenshotBody' /></dd>
+                            <dt><FormattedMessage id='faq.scratchDescriptionTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.scratchDescriptionBody' /></dd>
+                            <dt><FormattedMessage id='faq.presentScratchTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.presentScratchBody' /></dd>
+                            <dt><FormattedMessage id='faq.supportMaterialTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.supportMaterialBody' /></dd>
+                            <dt><FormattedMessage id='faq.sellProjectsTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.sellProjectsBody' /></dd>
+                            <dt><FormattedMessage id='faq.sourceCodeTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.sourceCodeBody' /></dd>
+                        </dl>
+                    </section>
+                    <section id="inappropriate-content">
+                        <span className="nav-spacer"></span>
+                        <h2><FormattedMessage id='faq.inappropriateContentTitle' /></h2>
+                        <dl>
+                            <dt><FormattedMessage id='faq.okayToShareTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.okayToShareBody' /></dd>
+                            <dt><FormattedMessage id='faq.reportContentTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.reportContentBody' /></dd>
+                            <dt><FormattedMessage id='faq.noFlameTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.noFlameBody' /></dd>
+                            <dt><FormattedMessage id='faq.reviewContentTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.reviewContentBody' /></dd>
+                            <dt><FormattedMessage id='faq.blockedAccountTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.blockedAccountBody' /></dd>
+                            <dt><FormattedMessage id='faq.stolenAccountTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.stolenAccountBody' /></dd>
+                        </dl>
+                    </section>
+                    <section id="clouddata">
+                        <span className="nav-spacer"></span>
+                        <h2><FormattedMessage id='faq.cloudDataTitle' /></h2>
+                        <dl>
+                            <dt><FormattedMessage id='faq.cloudDataInfoTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.cloudDataInfoBody' /></dd>
+                            <dt><FormattedMessage id='faq.storedCloudInfoTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.storedCloudInfoBody' /></dd>
+                            <dt><FormattedMessage id='faq.onlyNumbersTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.onlyNumbersBody' /></dd>
+                            <dt><FormattedMessage id='faq.reportCloudTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.reportCloudBody' /></dd>
+                            <dt><FormattedMessage id='faq.chatRoomTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.chatRoomBody' /></dd>
+                            <dt><FormattedMessage id='faq.makeCloudVarTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.makeCloudVarBody' /></dd>
+                            <dt><FormattedMessage id='faq.changeCloudVarTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.changeCloudVarBody' /></dd>
+                            <dt><FormattedMessage id='faq.newScratcherCloudTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.newScratcherCloudBody' /></dd>
+                            <dt><FormattedMessage id='faq.multiplayerTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.multiplayerBody' /></dd>
+                            <dt><FormattedMessage id='faq.cloudLagTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.cloudLagBody' /></dd>
+                        </dl>
+                    </section>
+                    <section id="schools">
+                        <span className="nav-spacer"></span>
+                        <h2><FormattedMessage id="faq.schoolsTitle" /></h2>
+                        <dl>
+                            <dt><FormattedMessage id='faq.howTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.howBody' /></dd>
+                            <dt><FormattedMessage id='faq.ageTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.ageBody' /></dd>
+                            <dt><FormattedMessage id='faq.noInternetTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.noInternetBody' /></dd>
+                            <dt><FormattedMessage id='faq.communityTitle' /></dt>
+                            <dd><FormattedMessage id='faq.communityBody' /></dd>
+                            <dt><FormattedMessage id='faq.teacherAccountTitle' /></dt>
+                            <dd><FormattedMessage id='faq.teacherAccountBody' /></dd>
+                            <dt><FormattedMessage id='faq.requestTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.requestBody' /></dd>
+                            <dt><FormattedMessage id='faq.edTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='faq.edBody' /></dd>
+                            <dt><FormattedMessage id='faq.dataTitle' /></dt>
+                            <dd><FormattedMessage id='faq.dataBody' /></dd>
+                        </dl>
+                        <i><FormattedHTMLMessage id='faq.schoolsMoreInfo' /></i>
+                    </section>
                 </div>
                 <nav>
                     <ol>
@@ -185,6 +208,7 @@ var Faq = React.createClass({
                             <FormattedMessage id='faq.inappropriateContentTitle' />
                         </a></li>
                         <li><a href="#clouddata"><FormattedMessage id='faq.cloudDataTitle' /></a></li>
+                        <li><a href="#schools"><FormattedMessage id='faq.schoolsTitle' /></a></li>
                     </ol>
                 </nav>
             </InformationPage>
