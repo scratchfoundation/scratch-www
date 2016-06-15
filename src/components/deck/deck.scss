@@ -1,0 +1,7 @@
+@import "../../frameless";
+
+@include responsive-layout (".deck", ".slide");
+
+.deck {
+    min-height: 100vh;
+}

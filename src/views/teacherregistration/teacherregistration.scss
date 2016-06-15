@@ -1,28 +1,32 @@
+@import "../../colors";
+
 .teacher-registration {
-    .formset {
-        margin: 0 auto;
-        width: 50%;
+    background-color: $ui-purple;
+
+    .slide {
+        h1,
+        p {
+            color: $type-white;    
+        }
     }
 
-    .button,
-    .label {
+    .card {
+        &,
+        h2,
+        p {
+            color: $type-gray;
+        }
+    }
+
+    .card-button {
         display: block;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background-color: $ui-aqua;
         width: 100%;
     }
 
     .demographics-checkbox-is-robot {
         display: none;
-    }
-
-    input {
-        &[type=radio],
-        &[type=checkbox] {
-            + .label {
-                display: inline-block;
-                margin-right: 20px;
-                margin-left: 10px;
-                width: auto;                
-            }
-        }
     }
 }
