@@ -73,6 +73,21 @@ var Jar = {
         var expires = '; expires=' + new Date(new Date().setYear(new Date().getFullYear() + 1)).toUTCString();
         var path = '; path=/';
         document.cookie = obj + expires + path;
+    },
+    getUnsignedValue: function (cookieName, signedValue, callback) {
+        // Get a value from a signed object
+        Jar.get(cookieName, function (err, value) {
+            if (err) return callback(err);
+            Jar.unsign(value, function (err, contents) {
+                if (err) return callback(err);
+                try {
+                    var data = JSON.parse(contents);
+                } catch (err) {
+                    return callback(err);
+                }
+                return callback(null, data[signedValue]);
+            });
+        });
     }
 };
 
