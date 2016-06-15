@@ -2,16 +2,25 @@
 
 .grid {
     display: inline-block;
-    padding: 12px;
-    justify-content: space-around;
-    align-items: center;
+    width: 100%;
+
+    $project-width: 200px;
+    $project-height: 150px;
+
+    $gallery-width: 200px;
+    $gallery-height: 118px;
+
+    .flex-row {
+        margin: 0 auto;
+        padding: 12px;
+        width: (96px + (4 * $project-width)) / $em;
+        justify-content: flex-start;
+    }
 
     .thumbnail {
         padding: 12px;
 
         &.project {
-            $project-width: 200px;
-            $project-height: 150px;
             width: $project-width;
 
             img {
@@ -21,8 +30,6 @@
         }
 
         &.gallery {
-            $gallery-width: 200px;
-            $gallery-height: 118px;
             width: $gallery-width;
 
             img {
@@ -39,5 +46,13 @@
 
     @media only screen and (max-width: $tablet - 1) {
         flex-direction: column;
+    }
+
+    @media only screen and (max-width: $desktop - 1) {
+        .flex-row {
+            padding: 12px 0;
+            width: 100%;
+            justify-content: space-around;
+        }
     }
 }
