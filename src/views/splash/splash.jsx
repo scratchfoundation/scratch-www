@@ -6,12 +6,12 @@ var render = require('../../lib/render.jsx');
 
 var permissionsActions = require('../../redux/permissions.js');
 var sessionActions = require('../../redux/session.js');
+var shuffle = require('../../lib/shuffle.js').shuffle;
 
 var Api = require('../../mixins/api.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
-var CNBanner = require('../../components/cn-banner/cn-banner.jsx');
 var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
@@ -315,7 +315,8 @@ var Splash = injectIntl(React.createClass({
                             defaultMessage: 'What the Community is Remixing' })}
                  key="community_most_remixed_projects">
 
-                <Carousel items={this.state.featuredGlobal.community_most_remixed_projects} showRemixes={true} />
+                <Carousel items={shuffle(this.state.featuredGlobal.community_most_remixed_projects)}
+                          showRemixes={true} />
             </Box>,
             <Box title={
                         formatMessage({
@@ -323,7 +324,8 @@ var Splash = injectIntl(React.createClass({
                             defaultMessage: 'What the Community is Loving' })}
                  key="community_most_loved_projects">
 
-                <Carousel items={this.state.featuredGlobal.community_most_loved_projects} showLoves={true} />
+                <Carousel items={shuffle(this.state.featuredGlobal.community_most_loved_projects)}
+                          showLoves={true} />
             </Box>
         );
 
@@ -386,7 +388,6 @@ var Splash = injectIntl(React.createClass({
                 {this.props.permissions.educator ? [
                     <TeacherBanner messages={messages} />
                 ] : []}
-                <CNBanner />
                 <div key="inner" className="inner">
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.session.user ? [

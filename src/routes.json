@@ -12,12 +12,6 @@
         "title": "About"
     },
     {
-        "name": "components",
-        "pattern": "^/components/?$",
-        "view": "components/components",
-        "title": "Components"
-    },
-    {
         "name": "developers",
         "pattern": "^/developers/?$",
         "view": "developers/developers",
@@ -28,6 +22,38 @@
         "pattern": "^/hoc/?$",
         "view": "hoc/hoc",
         "title": "Hour of Code"
+    },
+    {
+        "name": "explore",
+        "pattern": "^/explore/:projects/:all/?$",
+        "routeAlias": "^/explore",
+        "view": "explore/explore",
+        "title": "Explore"
+    },
+    {
+        "name": "explore-redirect",
+        "pattern": "^/explore/?$",
+        "routeAlias": "^/explore",
+        "redirect": "/explore/projects/all"
+    },
+    {
+        "name": "explore-projects-redirect",
+        "pattern": "^/explore/projects/?$",
+        "routeAlias": "^/explore",
+        "redirect": "/explore/projects/all"
+    },
+    {
+        "name": "explore-studios-redirect",
+        "pattern": "^/explore/studios/?$",
+        "routeAlias": "^/explore",
+        "redirect": "/explore/studios/all"
+    },
+    {
+        "name": "search",
+        "pattern": "^/search/:projects?$/?$",
+        "routeAlias": "^/search",
+        "view": "search/search",
+        "title": "Search"
     },
     {
         "name": "credits",
@@ -68,6 +94,7 @@
     {
         "name": "conference-index",
         "pattern": "^/conference/?$",
+        "routeAlias": "^/conference(?!/201[4-5])",
         "view": "conference/index/index",
         "title": "Scratch Conference",
         "viewportWidth": "device-width"
@@ -75,6 +102,7 @@
     {
         "name": "conference-plan",
         "pattern": "^/conference/plan/?$",
+        "routeAlias": "^/conference(?!/201[4-5])",
         "view": "conference/plan/plan",
         "title": "Plan Your Visit",
         "viewportWidth": "device-width"
@@ -82,6 +110,7 @@
     {
         "name": "conference-expectations",
         "pattern": "^/conference/expect/?$",
+        "routeAlias": "^/conference(?!/201[4-5])",
         "view": "conference/expect/expect",
         "title": "What to Expect",
         "viewportWidth": "device-width"
@@ -89,6 +118,7 @@
     {
         "name": "conference-schedule",
         "pattern": "^/conference/schedule/?$",
+        "routeAlias": "^/conference(?!/201[4-5])",
         "view": "conference/schedule/schedule",
         "title": "Conference Schedule",
         "viewportWidth": "device-width"
@@ -96,6 +126,7 @@
     {
         "name": "conference-details",
         "pattern": "^/conference/:id/details/?$",
+        "routeAlias": "^/conference(?!/201[4-5])",
         "view": "conference/details/details",
         "title": "Event Details",
         "viewportWidth": "device-width"

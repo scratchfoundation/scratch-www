@@ -20,6 +20,7 @@
     "general.jobs": "Jobs",
     "general.joinScratch": "Join Scratch",
     "general.legal": "Legal",
+    "general.loadMore": "Load More",
     "general.learnMore": "Learn More",
     "general.messages": "Messages",
     "general.myClass": "My Class",
@@ -28,6 +29,7 @@
     "general.offlineEditor": "Offline Editor",
     "general.press": "Press",
     "general.privacyPolicy": "Privacy Policy",
+    "general.projects": "Projects",
     "general.profile": "Profile",
     "general.scratchConference": "Scratch Conference",
     "general.scratchday": "Scratch Day",
@@ -37,6 +39,7 @@
     "general.search": "Search",
     "general.signIn": "Sign in",
     "general.statistics": "Statistics",
+    "general.studios": "Studios",
     "general.support": "Support",
     "general.tipsWindow": "Tips Window",
     "general.tipsAnimateYourNameTitle": "Animate Your Name",
@@ -51,6 +54,14 @@
     "general.whatsHappening": "What's Happening?",
     "general.wiki": "Scratch Wiki",
 
+    "general.all": "All",
+    "general.animations": "Animations",
+    "general.art": "Art",
+    "general.games": "Games",
+    "general.music": "Music",
+    "general.stories": "Stories",
+    "general.results": "Results",
+
     "footer.discuss": "Discussion Forums",
     "footer.help": "Help Page",
     "footer.scratchFamily": "Scratch Family",
@@ -58,11 +69,6 @@
     "login.forgotPassword": "Forgot Password?",
     
     "navigation.signOut": "Sign out",
-
-    "cnbanner.makeItFly": "Make It Fly",
-    "cnbanner.seeExamples": "See examples",
-    "cnbanner.makeYourOwn": "Create your own",
-    "cnbanner.flyDescription": "With Scratch, you can program anything to fly. Animate the Scratch Cat, The Powerpuff Girls, or even a taco!",
     
     "parents.FaqAgeRangeA": "While Scratch is primarily designed for 8 to 16 year olds, it is also used by people of all ages, including younger children with their parents.",
     "parents.FaqAgeRangeQ": "What is the age range for Scratch?",

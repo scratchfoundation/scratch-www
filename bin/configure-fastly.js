@@ -44,9 +44,13 @@ var getStaticPaths = function (pathToStatic) {
  * the express route and a static view file associated with the route
  */
 var getViewPaths = function (routes) {
-    return routes.map(function (route) {
-        return route.pattern;
-    });
+    return routes.reduce(function (paths, route) {
+        var path = route.routeAlias || route.pattern;
+        if (paths.indexOf(path) === -1) {
+            paths.push(path);
+        }
+        return paths;
+    }, []);
 };
 
 /*

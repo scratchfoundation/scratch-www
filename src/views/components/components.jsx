@@ -6,7 +6,6 @@ var Page = require('../../components/page/www/page.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
-var CNBanner = require('../../components/cn-banner/cn-banner.jsx');
 var Input = require('../../components/forms/input.jsx');
 var Spinner = require('../../components/spinner/spinner.jsx');
 
@@ -66,7 +65,6 @@ var Components = React.createClass({
                     <span className="splash-blue">$splash-blue</span>
                 </div>
             </div>
-            <CNBanner />
         </div>);
     }
 });
