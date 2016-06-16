@@ -68,6 +68,12 @@
         "title": "FAQ"
     },
     {
+        "name": "teacher-faq",
+        "pattern": "^/educators/faq/?$",
+        "view": "teachers/faq/faq",
+        "title": "Teacher Accounts FAQ"
+    },
+    {
         "name": "cards",
         "pattern": "^/info/cards/?$",
         "view": "cards/cards",
