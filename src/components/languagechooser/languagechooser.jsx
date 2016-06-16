@@ -34,7 +34,8 @@ var LanguageChooser = React.createClass({
                 <Select name="language"
                         options={languageOptions}
                         defaultValue={this.props.locale}
-                        onChange={this.onSetLanguage} />
+                        onChange={this.onSetLanguage}
+                        required />
             </Form>
         );
     }
