@@ -18,7 +18,7 @@ module.exports = function (opts, callback) {
     defaults(opts, {
         host: process.env.API_HOST,
         headers: {},
-        json: {},
+        responseType: 'json',
         useCsrf: false
     });
 
@@ -31,6 +31,11 @@ module.exports = function (opts, callback) {
     if (opts.params) {
         opts.uri = [opts.uri, urlParams(opts.params)]
             .join(opts.uri.indexOf('?') === -1 ? '?' : '&');
+    }
+
+    if (opts.formData) {
+        opts.body = urlParams(opts.formData);
+        opts.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     }
 
     var apiRequest = function (opts) {
@@ -69,7 +74,6 @@ module.exports = function (opts, callback) {
     if (opts.useCsrf) {
         jar.use('scratchcsrftoken', '/csrf_token/', function (err, csrftoken) {
             if (err) return log.error('Error while retrieving CSRF token', err);
-            opts.json.csrftoken = csrftoken;
             opts.headers['X-CSRFToken'] = csrftoken;
             apiRequest(opts);
         }.bind(this));

@@ -6,7 +6,8 @@ module.exports = function urlParams (values) {
     return Object
         .keys(values)
         .map(function (key) {
-            return [key, values[key]]
+            var value = typeof values[key] === 'undefined' ? '' : values[key];
+            return [key, value]
                 .map(encodeURIComponent)
                 .join('=');
         })
