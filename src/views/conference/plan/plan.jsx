@@ -266,11 +266,11 @@ var ConferencePlan = React.createClass({
                                         The conference is sold out. What can I do?
                                     </dt>
                                     <dd>
-                                        Scratch@MIT is sold out and at capacity. However, you can{' '}
-                                        <a href="//scratchconference2016.eventbrite.com">
-                                            join the waitlist
-                                        </a>. People on the waitlist will be notified of openings on{' '}
-                                        a first come, first served basis.
+                                        Scratch@MIT is sold out and at capacity. Regrettably, we are{' '}
+                                        unable to add any additional guests. Please keep in mind that{' '}
+                                        you must have registered on Eventbrite to attend Scratch@MIT;{' '}
+                                        people who are not registered / do not have a ticket will not be{' '}
+                                        able to attend the conference.
                                     </dd>
                                     
                                     <dt>

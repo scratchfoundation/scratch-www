@@ -167,7 +167,7 @@ var ConferenceExpectations = React.createClass({
                                 <tr>
                                     <td>
                                         <b>2:00p</b>
-                                        <p>Afternoon workshops</p>
+                                        <p>Afternoon Workshops</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -271,7 +271,7 @@ var ConferenceExpectations = React.createClass({
                                 <tr>
                                     <td>
                                         <b>12:00p</b>
-                                        <p>Lunch (provided)</p>
+                                        <p>Lunch (provided) and Wrap-up Session</p>
                                     </td>
                                 </tr>
                             </tbody>
