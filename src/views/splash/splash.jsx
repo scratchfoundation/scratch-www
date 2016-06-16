@@ -8,8 +8,9 @@ var permissionsActions = require('../../redux/permissions.js');
 var sessionActions = require('../../redux/session.js');
 var shuffle = require('../../lib/shuffle.js').shuffle;
 
-var Api = require('../../mixins/api.jsx');
-
+var GlobalRows = require('./components/global.jsx');
+var CustomRows = require('./components/custom.jsx');
+var ShuffledRows = require('./components/shuffled.jsx');
 var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
 var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
@@ -23,10 +24,10 @@ var Page = require('../../components/page/www/page.jsx');
 var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
-require('./splash.scss');
+var Api = require('../../mixins/api.jsx');
 
-var Splash = injectIntl(React.createClass({
-    type: 'Splash',
+var View = injectIntl(React.createClass({
+    type: 'View',
     mixins: [
         Api
     ],
@@ -332,7 +333,6 @@ var Splash = injectIntl(React.createClass({
         return rows;
     },
     render: function () {
-        var featured = this.renderHomepageRows();
         var emailConfirmationStyle = {width: 500, height: 330, padding: 1};
         var homepageCacheState = this.getHomepageRefreshStatus();
 
@@ -406,7 +406,20 @@ var Splash = injectIntl(React.createClass({
                         ]) : []
                     }
 
-                    {featured}
+                    <GlobalRows intl={this.props.intl}
+                            featured={this.state.featuredGlobal} />
+
+                    {this.props.session.status === sessionActions.Status.FETCHED ?
+                        (this.props.session.session.user ?
+                            <CustomRows intl={this.props.intl}
+                            featured={this.state.featuredCustom} />
+                        : null)
+                    : null }
+
+                    <ShuffledRows intl={this.props.intl}
+                            topLoved={shuffle(this.state.featuredGlobal.community_most_loved_projects)}
+                            topRemixed={shuffle(this.state.featuredGlobal.community_most_remixed_projects)} />
+
 
                     <AdminPanel>
                         <dt>Tools</dt>
@@ -452,6 +465,6 @@ var mapStateToProps = function (state) {
     };
 };
 
-var ConnectedSplash = connect(mapStateToProps)(Splash);
+var ConnectedSplash = connect(mapStateToProps)(View);
 
 render(<Page><ConnectedSplash /></Page>, document.getElementById('app'));
