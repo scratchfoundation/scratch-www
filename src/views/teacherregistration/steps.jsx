@@ -17,6 +17,7 @@ var RadioGroup = require('../../components/forms/radio-group.jsx');
 var Select = require('../../components/forms/select.jsx');
 var Slide = require('../../components/slide/slide.jsx');
 var Spinner = require('../../components/spinner/spinner.jsx');
+var StepNavigation = require('../../components/stepnavigation/stepnavigation.jsx');
 var TextArea = require('../../components/forms/textarea.jsx');
 
 var DEFAULT_COUNTRY = 'us';
@@ -124,6 +125,7 @@ module.exports = {
                             </Button>
                         </Form>
                     </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
                 </Slide>
             );
         }
@@ -200,6 +202,7 @@ module.exports = {
                             </Button>
                         </Form>
                     </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
                 </Slide>
             );
         }
@@ -230,6 +233,7 @@ module.exports = {
                             </Button>
                         </Form>
                     </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
                 </Slide>
             );
         }
@@ -268,6 +272,7 @@ module.exports = {
                             </Button>
                         </Form>
                     </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
                 </Slide>
             );
         }
@@ -341,6 +346,7 @@ module.exports = {
                             </Button>
                         </Form>
                     </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
                 </Slide>
             );
         }
@@ -451,6 +457,7 @@ module.exports = {
                             </Button>
                         </Form>
                     </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
                 </Slide>
             );
         }
@@ -476,6 +483,7 @@ module.exports = {
                             </Button>
                         </Form>
                     </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
                 </Slide>
             );
         }
@@ -512,6 +520,7 @@ module.exports = {
                             </Button>
                         </Form>
                     </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
                 </Slide>
             );
         }
