@@ -24,6 +24,10 @@
 
         .news {
             width: 40%;
+            
+            img {
+                flex-shrink: 0;
+            }
         }
     }
 
