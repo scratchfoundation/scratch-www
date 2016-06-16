@@ -7,11 +7,6 @@ require('./splash.scss');
 
 var GlobalRows = React.createClass({
     type: 'GlobalRows',
-    getDefaultProps: function () {
-        return {
-            featured: {}
-        };
-    },
     render: function () {
         var formatMessage = this.props.intl.formatMessage;
         return (
@@ -33,7 +28,8 @@ var GlobalRows = React.createClass({
                 </Box>
                 <Box
                         key="curator_top_projects"
-                        title={'Projects Curated by '}
+                        title={'Projects Curated by ' + (this.props.featured.curator_top_projects ?
+                        this.props.featured.curator_top_projects[0].curator_name : '')}
                         moreTitle={formatMessage({id: 'general.learnMore', defaultMessage: 'Learn More'})}
                         moreHref="/studios/386359/" >
                     <Carousel
@@ -45,8 +41,11 @@ var GlobalRows = React.createClass({
                             formatMessage({
                                 id: 'splash.scratchDesignStudioTitle',
                                 defaultMessage: 'Scratch Design Studio' })
-                            + ' - '}
-                        moreTitle={formatMessage({id: 'splash.visitTheStudio', defaultMessage: 'Visit the studio'})} >
+                            + ' - ' + (this.props.featured.scratch_design_studio ?
+                            this.props.featured.scratch_design_studio[0].gallery_title : '')}
+                        moreTitle={formatMessage({id: 'splash.visitTheStudio', defaultMessage: 'Visit the studio'})}
+                        moreHref={'/studios/' + (this.props.featured.scratch_design_studio ?
+                        this.props.featured.scratch_design_studio[0].gallery_id : '')}>
                     <Carousel
                         items={this.props.featured.scratch_design_studio} />
                 </Box>
