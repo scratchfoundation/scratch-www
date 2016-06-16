@@ -22,6 +22,25 @@ var TextArea = require('../../components/forms/textarea.jsx');
 
 var DEFAULT_COUNTRY = 'us';
 
+var NextStepButton = React.createClass({
+    getDefaultProps: function () {
+        return {
+            waiting: false,
+            text: 'Next Step'
+        };
+    },
+    render: function () {
+        return (
+            <Button type="submit" disabled={this.props.waiting} className="card-button">
+                {this.props.waiting ?
+                    <Spinner /> :
+                    this.props.text
+                }
+            </Button>
+        );
+    }
+});
+
 module.exports = {
     UsernameStep: intl.injectIntl(React.createClass({
         getInitialState: function () {
@@ -45,7 +64,7 @@ module.exports = {
                 res = res[0];
                 switch (res.msg) {
                 case 'valid username':
-                    return this.props.onNextStep();
+                    return this.props.onNextStep(formData);
                 case 'username exists':
                     return invalidate({
                         'user.username': formatMessage({id: 'general.validationUsernameExists'})
@@ -117,12 +136,8 @@ module.exports = {
                                       onChange={this.onChangeShowPassword}
                                       help={null}
                                       name="showPassword" />
-                            <Button type="submit" disabled={this.state.waiting} className="card-button">
-                                {this.state.waiting ?
-                                    <Spinner /> :
-                                    <intl.FormattedMessage id="teacherRegistration.nextStep" />
-                                }
-                            </Button>
+                            <NextStepButton waiting={this.state.waiting}
+                                           text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -197,9 +212,8 @@ module.exports = {
                              <Checkbox className="demographics-checkbox-is-robot"
                                        label="I'm a robot!"
                                        name="user.isRobot" />
-                            <Button type="submit" className="card-button">
-                                <intl.FormattedMessage id="teacherRegistration.nextStep" />
-                            </Button>
+                            <NextStepButton waiting={false}
+                                           text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -228,9 +242,8 @@ module.exports = {
                                    type="text"
                                    name="user.name.last"
                                    required />
-                            <Button type="submit" className="card-button">
-                                <intl.FormattedMessage id="teacherRegistration.nextStep" />
-                            </Button>
+                            <NextStepButton waiting={false}
+                                           text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -267,9 +280,8 @@ module.exports = {
                                       validationErrors={{
                                           isFalse: formatMessage({id: 'teacherRegistration.validationPhoneConsent'})
                                       }} />
-                            <Button type="submit" className="card-button">
-                                <intl.FormattedMessage id="teacherRegistration.nextStep" />
-                            </Button>
+                            <NextStepButton waiting={false}
+                                           text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -341,9 +353,8 @@ module.exports = {
                                    help={formatMessage({id: 'general.notRequired'})}
                                    type="url"
                                    name="organization.url" />
-                            <Button type="submit" className="card-button">
-                                <intl.FormattedMessage id="teacherRegistration.nextStep" />
-                            </Button>
+                            <NextStepButton waiting={false}
+                                           text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -449,12 +460,8 @@ module.exports = {
                                    type="text"
                                    name="address.zip"
                                    required />
-                            <Button type="submit" disabled={this.state.waiting} className="card-button">
-                                {this.state.waiting ?
-                                    <Spinner /> :
-                                    <intl.FormattedMessage id="teacherRegistration.nextStep" />
-                                }
-                            </Button>
+                            <NextStepButton waiting={this.state.waiting}
+                                           text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -478,9 +485,8 @@ module.exports = {
                             <TextArea label={formatMessage({id: 'teacherRegistration.howUseScratch'})}
                                       name="useScratch"
                                       required />
-                            <Button type="submit" className="card-button">
-                                <intl.FormattedMessage id="teacherRegistration.nextStep" />
-                            </Button>
+                            <NextStepButton waiting={false}
+                                           text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -489,6 +495,37 @@ module.exports = {
         }
     })),
     EmailStep: intl.injectIntl(React.createClass({
+        getInitialState: function () {
+            return {waiting: false};
+        },
+        onValidSubmit: function (formData, reset, invalidate) {
+            this.setState({waiting: true});
+            api({
+                host: '',
+                uri: '/classes/register_educator/',
+                method: 'post',
+                useCsrf: true,
+                formData: {
+                    username: this.props.formData.user.username,
+                    email: formData.user.email,
+                    password: this.props.formData.user.password,
+                    birth_month: this.props.formData.user.birth.month,
+                    birth_year: this.props.formData.user.birth.year,
+                    gender: (
+                        this.props.formData.user.gender === 'other' ?
+                        this.props.formData.user.genderOther :
+                        this.props.formData.user.gender
+                    ),
+                    country: this.props.formData.user.country,
+                    is_robot: this.props.formData.user.isRobot
+                }
+            }, function (err, res) {
+                this.setState({waiting: false});
+                if (err) return invalidate({all: err});
+                if (res[0].success) return this.props.onNextStep(formData);
+                invalidate({all: res[0].msg});
+            }.bind(this));
+        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
@@ -500,7 +537,7 @@ module.exports = {
                         <intl.FormattedMessage id="teacherRegistration.emailStepDescription" />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.props.onNextStep}>
+                        <Form onValidSubmit={this.onValidSubmit}>
                             <Input label={formatMessage({id: 'general.emailAddress'})}
                                    type="text"
                                    name="user.email"
@@ -515,9 +552,8 @@ module.exports = {
                                        equalsField: formatMessage({id: 'general.validationEmailMatch'})
                                    }}
                                    required />
-                            <Button type="submit" className="card-button">
-                                <intl.FormattedMessage id="teacherRegistration.nextStep" />
-                            </Button>
+                            <NextStepButton waiting={this.state.waiting}
+                                           text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
