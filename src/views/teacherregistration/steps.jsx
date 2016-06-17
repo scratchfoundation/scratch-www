@@ -295,18 +295,19 @@ module.exports = {
                 otherDisabled: true
             };
         },
+        organizationL10nStems: [
+            'orgChoiceElementarySchool',
+            'orgChoiceMiddleSchool',
+            'orgChoiceHighSchool',
+            'orgChoiceUniversity',
+            'orgChoiceAfterschool',
+            'orgChoiceMuseum',
+            'orgChoiceLibrary',
+            'orgChoiceCamp',
+            'orgChoiceOther'
+        ],
         getOrganizationOptions: function () {
-            return [
-                'orgChoiceElementarySchool',
-                'orgChoiceMiddleSchool',
-                'orgChoiceHighSchool',
-                'orgChoiceUniversity',
-                'orgChoiceAfterschool',
-                'orgChoiceMuseum',
-                'orgChoiceLibrary',
-                'orgChoiceCamp',
-                'orgChoiceOther'
-            ].map(function (choice, id) {
+            return this.organizationL10nStems.map(function (choice, id) {
                 return {
                     value: id,
                     label: this.props.intl.formatMessage({
@@ -316,7 +317,7 @@ module.exports = {
             }.bind(this));
         },
         onChooseOrganization: function (name, values) {
-            this.setState({otherDisabled: values.indexOf('Other') === -1});
+            this.setState({otherDisabled: values.indexOf(this.organizationL10nStems.indexOf('orgChoiceOther')) === -1});
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
