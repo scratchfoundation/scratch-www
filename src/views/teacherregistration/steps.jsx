@@ -240,7 +240,7 @@ module.exports = {
             return (
                 <Slide>
                     <h1>
-                        <intl.FormattedMessage id="teacherRegistration.nameStepTitle" />
+                        <intl.FormattedHTMLMessage id="teacherRegistration.nameStepTitle" />
                     </h1>
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.nameStepDescription" />
@@ -536,7 +536,7 @@ module.exports = {
                     <h1>
                         <intl.FormattedMessage id="teacherRegistration.emailStepTitle" />
                     </h1>
-                    <p>
+                    <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.emailStepDescription" />
                     </p>
                     <Card>
@@ -571,7 +571,7 @@ module.exports = {
                     <h1>
                         <intl.FormattedMessage id="teacherRegistration.lastStepTitle" />
                     </h1>
-                    <p>
+                    <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.lastStepDescription" />
                     </p>
                     <Card className="confirm">
