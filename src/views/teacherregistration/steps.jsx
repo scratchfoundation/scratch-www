@@ -5,6 +5,7 @@ var countryData = require('../../lib/country-data');
 var intl = require('../../lib/intl.jsx');
 var log = require('../../lib/log');
 var smartyStreets = require('../../lib/smarty-streets');
+var urlParams = require('../../lib/url-params');
 
 var Button = require('../../components/forms/button.jsx');
 var Card = require('../../components/card/card.jsx');
@@ -529,6 +530,29 @@ module.exports = {
                 waiting: false
             };
         },
+        getInitialState: function () {
+            return {
+                waiting: false
+            };
+        },
+        onValidSubmit: function (formData, reset, invalidate) {
+            this.setState({waiting: true});
+            api({
+                host: '',
+                uri: '/accounts/check_email/',
+                params: {email: formData.user.email}
+            }, function (err, res) {
+                this.setState({waiting: false});
+                if (err) return invalidate({all: err});
+                res = res[0];
+                switch (res.msg) {
+                case 'valid email':
+                    return this.props.onNextStep(formData);
+                default:
+                    return invalidate({'user.email': res.msg});
+                }
+            }.bind(this));
+        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
@@ -540,7 +564,7 @@ module.exports = {
                         <intl.FormattedMessage id="teacherRegistration.emailStepDescription" />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.props.onNextStep}>
+                        <Form onValidSubmit={this.onValidSubmit}>
                             <Input label={formatMessage({id: 'general.emailAddress'})}
                                    type="text"
                                    name="user.email"
