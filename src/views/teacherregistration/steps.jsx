@@ -517,7 +517,22 @@ module.exports = {
                         this.props.formData.user.gender
                     ),
                     country: this.props.formData.user.country,
-                    is_robot: this.props.formData.user.isRobot
+                    is_robot: this.props.formData.user.isRobot,
+                    first_name: this.props.formData.user.name.first,
+                    last_name: this.props.formData.user.name.last,
+                    phone_number: this.props.formData.phone.national_number,
+                    organization_name: this.props.formData.organization.name,
+                    organization_title: this.props.formData.organization.title,
+                    organization_type: this.props.formData.organization.type,
+                    organization_other: this.props.formData.organization.other,
+                    organization_url: this.props.formData.organization.url,
+                    address_country: this.props.formData.address.country,
+                    address_line1: this.props.formData.address.line1,
+                    address_line2: this.props.formData.address.line2,
+                    address_city: this.props.formData.address.city,
+                    address_state: this.props.formData.address.state,
+                    address_zip: this.props.formData.address.zip,
+                    how_use_scratch: this.props.formData.useScratch
                 }
             }, function (err, res) {
                 this.setState({waiting: false});
