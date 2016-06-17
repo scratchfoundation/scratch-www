@@ -1,4 +1,5 @@
 var React = require('react');
+var injectIntl = require('react-intl').injectIntl;
 var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
@@ -6,11 +7,12 @@ var render = require('../../lib/render.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var InformationPage = require('../../components/informationpage/informationpage.jsx');
 
-var Faq = React.createClass({
+var Faq = injectIntl(React.createClass({
     type: 'Faq',
     render: function () {
+        var formatMessage = this.props.intl.formatMessage;
         return (
-            <InformationPage title={'Frequently Asked Questions (FAQ)'}>
+            <InformationPage title={formatMessage({id: 'faq.title'})}>
                 <div className="inner info-inner">
                     <section id="about-scratch">
                         <span className="nav-spacer"></span>
@@ -214,6 +216,6 @@ var Faq = React.createClass({
             </InformationPage>
         );
     }
-});
+}));
 
 render(<Page><Faq /></Page>, document.getElementById('app'));
