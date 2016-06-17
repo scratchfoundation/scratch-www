@@ -34,6 +34,10 @@ $cols10: (10 * ($column + $gutter) - $gutter) / $em;
 $cols11: (11 * ($column + $gutter) - $gutter) / $em;
 $cols12: (12 * ($column + $gutter) - $gutter) / $em;
 
+$desktop: 942px;
+$tablet: 640px;
+$mobile: 480px;
+
 //
 // Column-widths in a function, in ems
 //
@@ -42,50 +46,67 @@ $cols12: (12 * ($column + $gutter) - $gutter) / $em;
     width: ($cols * ($column + $gutter) - $gutter) / $em;
 }
 
-$desktop: 942px;
-$tablet: 640px;
-$mobile: 480px;
-
 //4 columns
-@media only screen and (max-width: $mobile - 1) {
-    #view {
-        text-align: center;
-    }
+@mixin submobile ($parent-selector, $child-selector) {
+    @media only screen and (max-width: $mobile - 1) {
+        #{$parent-selector} {
+            text-align: center;
+        }
 
-    .inner {
-        margin: 0 auto;
-        width: 100%;
+        #{$child-selector} {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        @content;
     }
 }
 
 //6 columns
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-    #view {
-        text-align: center;
-    }
+@mixin mobile ($parent-selector, $child-selector) {
+    @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+        #{$parent-selector} {
+            text-align: center;
+        }
 
-    .inner {
-        margin: 0 auto;
-        width: $mobile;
+        #{$child-selector} {
+            margin: 0 auto;
+            width: $mobile;
+        }
+
+        @content;
     }
 }
 
 //8 columns
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-    #view {
-        text-align: center;
-    }
+@mixin tablet ($parent-selector, $child-selector) {
+    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+        #{$parent-selector} {
+            text-align: center;
+        }
 
-    .inner {
-        margin: 0 auto;
-        width: $tablet;
+        #{$child-selector} {
+            margin: 0 auto;
+            width: $tablet;
+        }
     }
 }
 
 //12 columns
-@media only screen and (min-width: $desktop) {
-    .inner {
-        margin: 0 auto;
-        width: $desktop;
+@mixin desktop ($parent-selector, $child-selector) {
+    @media only screen and (min-width: $desktop) {
+        #{$child-selector} {
+            margin: 0 auto;
+            width: $desktop;
+        }
     }
 }
+
+@mixin responsive-layout ($parent-selector, $child-selector) {
+    @include submobile($parent-selector, $child-selector);
+    @include mobile($parent-selector, $child-selector);
+    @include tablet($parent-selector, $child-selector);
+    @include desktop($parent-selector, $child-selector);
+}
+
+@include responsive-layout("#view", ".inner");

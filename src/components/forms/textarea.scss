@@ -1,0 +1,34 @@
+@import "../../colors";
+
+$base-bg: $ui-white;
+$focus-bg: lighten($ui-blue, 35%);
+$fail-bg: lighten($ui-orange, 35%);
+$pass-bg: lighten($ui-aqua, 35%);
+
+.textarea {
+    transition: all 1s ease;
+    margin: .5em 0;
+    border: 1px solid $active-gray;
+    border-radius: 5px;
+    background-color: $base-bg;
+    padding: .75em 1em;
+    color: $type-gray;
+    font-size: .8rem;
+
+    &:focus {
+        transition: all 1s ease;
+        outline: none;
+        border: 1px solid $active-dark-gray;
+        background-color: $focus-bg;
+    }
+
+    &.fail {
+        border: 1px solid $active-dark-gray;
+        background-color: $fail-bg;
+    }
+
+    &.pass {
+        border: 1px solid $active-dark-gray;
+        background-color: $pass-bg;
+    }
+}

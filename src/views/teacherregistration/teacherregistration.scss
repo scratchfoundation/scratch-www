@@ -1,0 +1,36 @@
+@import "../../colors";
+
+.teacher-registration {
+    background-color: $ui-purple;
+
+    .slide {
+        h1,
+        p {
+            color: $type-white;    
+        }
+    }
+
+    .card {
+        &,
+        h2,
+        p {
+            color: $type-gray;
+        }
+    }
+
+    .card-button {
+        display: block;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background-color: $ui-aqua;
+        width: 100%;
+    }
+
+    .step-navigation {
+        text-align: center;
+    }
+
+    .demographics-checkbox-is-robot {
+        display: none;
+    }
+}

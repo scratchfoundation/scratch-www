@@ -92,6 +92,12 @@
         "title": "Jobs"
     },
     {
+        "name": "teacherregistration",
+        "pattern": "^/register-teacher/?$",
+        "view": "teacherregistration/teacherregistration",
+        "title": "Teacher Registration"
+    },
+    {
         "name": "wedo2",
         "pattern": "^/wedo/?$",
         "view": "wedo2/wedo2",
