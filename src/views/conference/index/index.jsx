@@ -30,7 +30,7 @@ var ConferenceSplash = React.createClass({
                     </p>
                     <p className="sub-button">
                         <b>
-                            We're sold out! <a href="//scratchconference2016.eventbrite.com">Join the Waitlist</a>
+                            Scratch@MIT is sold out!
                         </b>
                     </p>
                 </TitleBanner>
