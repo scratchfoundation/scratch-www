@@ -351,7 +351,6 @@ module.exports = {
                                    disabled={this.state.otherDisabled}
                                    required={!this.state.otherDisabled} />
                             <Input label={formatMessage({id: 'general.website'})}
-                                   help={formatMessage({id: 'general.notRequired'})}
                                    type="url"
                                    name="organization.url" />
                             <NextStepButton waiting={false}
