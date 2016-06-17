@@ -43,6 +43,11 @@ var NextStepButton = React.createClass({
 
 module.exports = {
     UsernameStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                waiting: false
+            };
+        },
         getInitialState: function () {
             return {
                 showPassword: false,
@@ -136,7 +141,7 @@ module.exports = {
                                       onChange={this.onChangeShowPassword}
                                       help={null}
                                       name="showPassword" />
-                            <NextStepButton waiting={this.state.waiting}
+                            <NextStepButton waiting={this.props.waiting || this.state.waiting}
                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
@@ -147,7 +152,10 @@ module.exports = {
     })),
     DemographicsStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
-            return {defaultCountry: DEFAULT_COUNTRY};
+            return {
+                defaultCountry: DEFAULT_COUNTRY,
+                waiting: false
+            };
         },
         getInitialState: function () {
             return {otherDisabled: true};
@@ -212,7 +220,7 @@ module.exports = {
                              <Checkbox className="demographics-checkbox-is-robot"
                                        label="I'm a robot!"
                                        name="user.isRobot" />
-                            <NextStepButton waiting={false}
+                            <NextStepButton waiting={this.props.waiting}
                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
@@ -222,6 +230,11 @@ module.exports = {
         }
     })),
     NameStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                waiting: false
+            };
+        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
@@ -242,7 +255,7 @@ module.exports = {
                                    type="text"
                                    name="user.name.last"
                                    required />
-                            <NextStepButton waiting={false}
+                            <NextStepButton waiting={this.props.waiting}
                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
@@ -253,7 +266,10 @@ module.exports = {
     })),
     PhoneNumberStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
-            return {defaultCountry: DEFAULT_COUNTRY};
+            return {
+                defaultCountry: DEFAULT_COUNTRY,
+                waiting: false
+            };
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
@@ -280,7 +296,7 @@ module.exports = {
                                       validationErrors={{
                                           isFalse: formatMessage({id: 'teacherRegistration.validationPhoneConsent'})
                                       }} />
-                            <NextStepButton waiting={false}
+                            <NextStepButton waiting={this.props.waiting}
                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
@@ -293,6 +309,11 @@ module.exports = {
         getInitialState: function () {
             return {
                 otherDisabled: true
+            };
+        },
+        getDefaultProps: function () {
+            return {
+                waiting: false
             };
         },
         organizationL10nStems: [
@@ -353,7 +374,7 @@ module.exports = {
                             <Input label={formatMessage({id: 'general.website'})}
                                    type="url"
                                    name="organization.url" />
-                            <NextStepButton waiting={false}
+                            <NextStepButton waiting={this.props.waiting}
                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
@@ -364,7 +385,10 @@ module.exports = {
     })),
     AddressStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
-            return {defaultCountry: DEFAULT_COUNTRY};
+            return {
+                defaultCountry: DEFAULT_COUNTRY,
+                waiting: false
+            };
         },
         getInitialState: function () {
             return {
@@ -460,7 +484,7 @@ module.exports = {
                                    type="text"
                                    name="address.zip"
                                    required />
-                            <NextStepButton waiting={this.state.waiting}
+                            <NextStepButton waiting={this.props.waiting || this.state.waiting}
                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
@@ -470,6 +494,11 @@ module.exports = {
         }
     })),
     UseScratchStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                waiting: false
+            };
+        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
@@ -485,7 +514,7 @@ module.exports = {
                             <TextArea label={formatMessage({id: 'teacherRegistration.howUseScratch'})}
                                       name="useScratch"
                                       required />
-                            <NextStepButton waiting={false}
+                            <NextStepButton waiting={this.props.waiting}
                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
@@ -495,51 +524,10 @@ module.exports = {
         }
     })),
     EmailStep: intl.injectIntl(React.createClass({
-        getInitialState: function () {
-            return {waiting: false};
-        },
-        onValidSubmit: function (formData, reset, invalidate) {
-            this.setState({waiting: true});
-            api({
-                host: '',
-                uri: '/classes/register_educator/',
-                method: 'post',
-                useCsrf: true,
-                formData: {
-                    username: this.props.formData.user.username,
-                    email: formData.user.email,
-                    password: this.props.formData.user.password,
-                    birth_month: this.props.formData.user.birth.month,
-                    birth_year: this.props.formData.user.birth.year,
-                    gender: (
-                        this.props.formData.user.gender === 'other' ?
-                        this.props.formData.user.genderOther :
-                        this.props.formData.user.gender
-                    ),
-                    country: this.props.formData.user.country,
-                    is_robot: this.props.formData.user.isRobot,
-                    first_name: this.props.formData.user.name.first,
-                    last_name: this.props.formData.user.name.last,
-                    phone_number: this.props.formData.phone.national_number,
-                    organization_name: this.props.formData.organization.name,
-                    organization_title: this.props.formData.organization.title,
-                    organization_type: this.props.formData.organization.type,
-                    organization_other: this.props.formData.organization.other,
-                    organization_url: this.props.formData.organization.url,
-                    address_country: this.props.formData.address.country,
-                    address_line1: this.props.formData.address.line1,
-                    address_line2: this.props.formData.address.line2,
-                    address_city: this.props.formData.address.city,
-                    address_state: this.props.formData.address.state,
-                    address_zip: this.props.formData.address.zip,
-                    how_use_scratch: this.props.formData.useScratch
-                }
-            }, function (err, res) {
-                this.setState({waiting: false});
-                if (err) return invalidate({all: err});
-                if (res[0].success) return this.props.onNextStep(formData);
-                invalidate({all: res[0].msg});
-            }.bind(this));
+        getDefaultProps: function () {
+            return {
+                waiting: false
+            };
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
@@ -552,7 +540,7 @@ module.exports = {
                         <intl.FormattedMessage id="teacherRegistration.emailStepDescription" />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.onValidSubmit}>
+                        <Form onValidSubmit={this.props.onNextStep}>
                             <Input label={formatMessage({id: 'general.emailAddress'})}
                                    type="text"
                                    name="user.email"
@@ -567,7 +555,7 @@ module.exports = {
                                        equalsField: formatMessage({id: 'general.validationEmailMatch'})
                                    }}
                                    required />
-                            <NextStepButton waiting={this.state.waiting}
+                            <NextStepButton waiting={this.props.waiting}
                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
                     </Card>
@@ -603,6 +591,21 @@ module.exports = {
                         <h2><intl.FormattedMessage id="teacherRegistration.checkOutResources" /></h2>
                         <p>
                             <intl.FormattedHTMLMessage id="teacherRegistration.checkOutResourcesDescription" />
+                        </p>
+                    </Card>
+                </Slide>
+            );
+        }
+    })),
+    RegistrationError: intl.injectIntl(React.createClass({
+        render: function () {
+            return (
+                <Slide>
+                    <h1>Something went wrong</h1>
+                    <Card>
+                        <h2>There was an error while processing your registration</h2>
+                        <p>
+                            {this.props.registrationError}
                         </p>
                     </Card>
                 </Slide>
