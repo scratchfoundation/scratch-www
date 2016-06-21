@@ -5,35 +5,34 @@ var render = require('../../lib/render.jsx');
 
 var permissionsActions = require('../../redux/permissions.js');
 var sessionActions = require('../../redux/session.js');
+var rowActions = require('../../redux/splash-rows.js');
+var activityActions = require('../../redux/activity.js');
+var newsActions = require('../../redux/news.js');
+var countActions = require('../../redux/project-count.js');
+var cacheActions = require('../../redux/homepage-cache.js');
+var handleDismiss = require('../../redux/handle-dismiss.js');
 var shuffle = require('../../lib/shuffle.js').shuffle;
+
+var omit = require('lodash.omit');
 
 var GlobalRows = require('./components/global.jsx');
 var CustomRows = require('./components/custom.jsx');
 var ShuffledRows = require('./components/shuffled.jsx');
 var SplashAdmin = require('./components/admin.jsx');
-var ConfirmEmail = require('./components/emailconfirmation.jsx');
 
-var Activity = require('../../components/activity/activity.jsx');
-var Intro = require('../../components/intro/intro.jsx');
-var News = require('../../components/news/news.jsx');
+var Modal = require('../../components/modal/modal.jsx');
+var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
+var Activity = require('./components/activity/activity.jsx');
+var Intro = require('./components/intro/intro.jsx');
+var News = require('./components/news/news.jsx');
 var Page = require('../../components/page/www/page.jsx');
-var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
-var Welcome = require('../../components/welcome/welcome.jsx');
-
-var Api = require('../../mixins/api.jsx');
+var TeacherBanner = require('./components/teacher-banner/teacher-banner.jsx');
+var Welcome = require('./components/welcome/welcome.jsx');
 
 var View = injectIntl(React.createClass({
     type: 'View',
-    mixins: [
-        Api
-    ],
     getInitialState: function () {
         return {
-            projectCount: 14000000, // gets the shared project count
-            activity: [], // recent social actions taken by users someone is following
-            news: [], // gets news posts from the scratch Tumblr
-            featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
-            featuredGlobal: {}, // global homepage rows, such as "Featured Projects"
             showEmailConfirmationModal: false, // flag that determines whether to show banner to request email conf.
             refreshCacheStatus: 'notrequested'
         };
@@ -47,14 +46,12 @@ var View = injectIntl(React.createClass({
     componentDidUpdate: function (prevProps) {
         if (this.props.session.session.user != prevProps.session.session.user) {
             if (this.props.session.session.user) {
-                this.getActivity();
-                this.getFeaturedCustom();
-                this.getNews();
+                this.props.dispatch(activityActions.getActivity(this.props.session.session.user.username));
+                this.props.dispatch(rowActions.getCustom(this.props.session.session.user.id));
+                this.props.dispatch(newsActions.getNews());
             } else {
-                this.setState({featuredCustom: []});
-                this.setState({activity: []});
                 this.setState({news: []});
-                this.getProjectCount();
+                this.props.dispatch(countActions.getProjectCount());
             }
             if (this.shouldShowEmailConfirmation()) {
                 window.addEventListener('message', this.onMessage);
@@ -68,13 +65,13 @@ var View = injectIntl(React.createClass({
         this.props.dispatch(permissionsActions.getPermissions());
     },
     componentDidMount: function () {
-        this.getFeaturedGlobal();
+        this.props.dispatch(rowActions.getGlobal());
         if (this.props.session.session.user) {
-            this.getActivity();
-            this.getFeaturedCustom();
-            this.getNews();
+            this.props.dispatch(activityActions.getActivity(this.props.session.session.user.username));
+            this.props.dispatch(rowActions.getCustom(this.props.session.session.user.id));
+            this.props.dispatch(newsActions.getNews());
         } else {
-            this.getProjectCount();
+            this.props.dispatch(countActions.getProjectCount());
         }
         if (this.shouldShowEmailConfirmation()) window.addEventListener('message', this.onMessage);
     },
@@ -93,66 +90,19 @@ var View = injectIntl(React.createClass({
             }
         }
     },
-    getActivity: function () {
-        this.api({
-            uri: '/proxy/users/' + this.props.session.session.user.username + '/activity?limit=5'
-        }, function (err, body) {
-            if (!err) this.setState({activity: body});
-        }.bind(this));
-    },
-    getFeaturedGlobal: function () {
-        this.api({
-            uri: '/proxy/featured'
-        }, function (err, body) {
-            if (!err) this.setState({featuredGlobal: body});
-        }.bind(this));
-    },
-    getFeaturedCustom: function () {
-        this.api({
-            uri: '/proxy/users/' + this.props.session.session.user.id + '/featured'
-        }, function (err, body) {
-            if (!err) this.setState({featuredCustom: body});
-        }.bind(this));
-    },
-    getNews: function () {
-        this.api({
-            uri: '/news?limit=3'
-        }, function (err, body) {
-            if (!err) this.setState({news: body});
-        }.bind(this));
-    },
-    getProjectCount: function () {
-        this.api({
-            uri: '/projects/count/all'
-        }, function (err, body) {
-            if (!err) this.setState({projectCount: body.count});
-        }.bind(this));
-    },
-    refreshHomepageCache: function () {
-        this.api({
-            host: '',
-            uri: '/scratch_admin/homepage/clear-cache/',
-            method: 'post',
-            useCsrf: true
-        }, function (err, body) {
-            if (err) return this.setState({refreshCacheStatus: 'fail'});
-            if (!body.success) return this.setState({refreshCacheStatus: 'inprogress'});
-            return this.setState({refreshCacheStatus: 'pass'});
-        }.bind(this));
-    },
     getHomepageRefreshStatus: function () {
         var status = {
-            status: this.state.refreshCacheStatus,
+            status: this.props.homepageCache.status,
             disabled: false,
             content: 'Refresh'
         };
-        if (this.state.refreshCacheStatus === 'inprogress') {
+        if (this.props.homepageCache.status === cacheActions.Status.IN_PROGRESS) {
             status.disabled = true;
             status.content = 'In Progress';
-        } else if (this.state.refreshCacheStatus === 'pass') {
+        } else if (this.props.homepageCache.status === cacheActions.Status.PASS) {
             status.disabled = true;
             status.content = 'Requested';
-        } else if (this.state.refreshCacheStatus == 'fail') {
+        } else if (this.props.homepageCache.status == cacheActions.Status.FAIL) {
             status.disabled = false;
             status.content = 'Error';
         }
@@ -163,17 +113,6 @@ var View = injectIntl(React.createClass({
     },
     hideEmailConfirmationModal: function () {
         this.setState({emailConfirmationModalOpen: false});
-    },
-    handleDismiss: function (cue) {
-        this.api({
-            host: '',
-            uri: '/site-api/users/set-template-cue/',
-            method: 'post',
-            useCsrf: true,
-            json: {cue: cue, value: false}
-        }, function (err) {
-            if (!err) this.props.dispatch(sessionActions.refreshSession());
-        });
     },
     shouldShowWelcome: function () {
         if (!this.props.session.session.user || !this.props.session.session.flags.show_welcome) return false;
@@ -214,59 +153,66 @@ var View = injectIntl(React.createClass({
             'teacherbanner.resourcesButton': formatMessage({id: 'teacherbanner.resourcesButton'}),
             'teacherbanner.faqButton': formatMessage({id: 'teacherbanner.faqButton'})
         };
-        if (this.state.projectCount === this.getInitialState().projectCount) {
+        if (this.props.projectCount.projectCount === countActions.getInitialState().projectCount) {
             messages['intro.description'] = formatHTMLMessage({id: 'intro.defaultDescription'});
         } else {
-            var count = formatNumber(this.state.projectCount);
+            var count = formatNumber(this.props.projectCount.projectCount);
             messages['intro.description'] = formatHTMLMessage({id: 'intro.description'}, {value: count});
         }
 
         return (
             <div className="splash">
                 {this.shouldShowEmailConfirmation() ? [
-                    <ConfirmEmail handleDismiss={this.handleDismiss}
-                        emailConfirmationStyle={emailConfirmationStyle}
-                        showEmailConfirmationModal={this.showEmailConfirmationModal}
-                        hideEmailConfirmationModal={this.hideEmailConfirmationModal}
-                        emailConfirmationModalOpen={this.state.emailConfirmationModalOpen}/>
+                    <DropdownBanner key="confirmedEmail"
+                            className="warning"
+                            onRequestDismiss={handleDismiss.handleDismiss('confirmed_email')}>
+                        <a href="#" onClick={this.showEmailConfirmationModal}>Confirm your email</a>
+                        {' '}to enable sharing.{' '}
+                        <a href="/info/faq/#accounts">Having trouble?</a>
+                    </DropdownBanner>,
+                    <Modal key="emailConfirmationModal"
+                           isOpen={this.state.emailConfirmationModalOpen}
+                           onRequestClose={this.hideEmailConfirmationModal}
+                           style={{content: emailConfirmationStyle}}>
+                        <iframe ref="emailConfirmationiFrame"
+                                src="/accounts/email_resend_standalone/"
+                                {...omit(emailConfirmationStyle, 'padding')} />
+                    </Modal>
                 ] : []}
 
                 {this.props.permissions.educator ? [
                     <TeacherBanner messages={messages} />
                 ] : []}
+
                 <div key="inner" className="inner">
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.session.user ? [
                             <div key="header" className="splash-header">
                                 {this.shouldShowWelcome() ? [
                                     <Welcome key="welcome"
-                                             onDismiss={this.handleDismiss.bind(this, 'welcome')}
+                                             onDismiss={handleDismiss.handleDismiss('welcome')}
                                              messages={messages} />
                                 ] : [
-                                    <Activity key="activity" items={this.state.activity} />
+                                    <Activity key="activity" items={this.props.activity.activity} />
                                 ]}
-                                <News items={this.state.news} messages={messages} />
+                                <News items={this.props.news.news} messages={messages} />
                             </div>
                         ] : [
-                            <Intro projectCount={this.state.projectCount} messages={messages} key="intro"/>
+                            <Intro projectCount={this.props.projectCount.projectCount} messages={messages} key="intro"/>
                         ]) : []
                     }
 
                     <GlobalRows intl={this.props.intl}
-                            featured={this.state.featuredGlobal} />
+                            featured={this.props.rows.global} />
 
-                    {this.props.session.status === sessionActions.Status.FETCHED ?
-                        (this.props.session.session.user ?
-                            <CustomRows intl={this.props.intl}
-                            featured={this.state.featuredCustom} />
-                        : null)
-                    : null }
+                    <CustomRows intl={this.props.intl}
+                    featured={this.props.rows.custom} />
 
                     <ShuffledRows intl={this.props.intl}
-                            topLoved={shuffle(this.state.featuredGlobal.community_most_loved_projects)}
-                            topRemixed={shuffle(this.state.featuredGlobal.community_most_remixed_projects)} />
+                            topLoved={shuffle(this.props.rows.global.community_most_loved_projects)}
+                            topRemixed={shuffle(this.props.rows.global.community_most_remixed_projects)}/>
 
-                    <SplashAdmin refreshHomepageCache={this.refreshHomepageCache}
+                    <SplashAdmin refreshHomepageCache={cacheActions.refreshHomepageCache}
                             homepageCacheState={homepageCacheState}/>
                 </div>
             </div>
@@ -277,7 +223,12 @@ var View = injectIntl(React.createClass({
 var mapStateToProps = function (state) {
     return {
         session: state.session,
-        permissions: state.permissions
+        permissions: state.permissions,
+        rows: state.rows,
+        activity: state.activity,
+        news: state.news,
+        projectCount: state.projectCount,
+        homepageCache: state.homepageCache
     };
 };
 
