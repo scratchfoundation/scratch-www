@@ -14,13 +14,13 @@ var Jobs = React.createClass({
                 <div className="top">
                     <div className="inner">
                         <img src="/images/jobs.png" />
-                        <h1><FormattedMessage id='jobs.titleQuestion' /></h1>
+                        <h2><FormattedMessage id='jobs.titleQuestion' /></h2>
                     </div>
                 </div>
 
                 <div className="middle">
                     <div className="inner">
-                        <h2><FormattedMessage id='jobs.joinScratchTeam' /></h2>
+                        <h3><FormattedMessage id='jobs.joinScratchTeam' /></h3>
                         <p><FormattedMessage id='jobs.info' /></p>
                         <p><FormattedMessage id='jobs.workEnvironment' /></p>
                     </div>
@@ -28,7 +28,7 @@ var Jobs = React.createClass({
 
                 <div className="bottom">
                     <div className="inner">
-                        <h2><FormattedMessage id='jobs.openings' /></h2>
+                        <h3><FormattedMessage id='jobs.openings' /></h3>
                         <ul>
                             <li>
                                 <a href="http://bit.ly/24B9aEz">
@@ -52,6 +52,14 @@ var Jobs = React.createClass({
                                 </a>
                                 <span>
                                     (MIT Media Lab, Cambridge, MA or Remote)
+                                </span>
+                            </li>
+                            <li>
+                                <a href="http://media.mit.edu/about/opportunities/web-designer-scratch">
+                                    Web Designer
+                                </a>
+                                <span>
+                                    (MIT Media Lab, Cambridge, MA)
                                 </span>
                             </li>
                         </ul>
