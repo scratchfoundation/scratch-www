@@ -5,7 +5,6 @@ var countryData = require('../../lib/country-data');
 var intl = require('../../lib/intl.jsx');
 var log = require('../../lib/log');
 var smartyStreets = require('../../lib/smarty-streets');
-var urlParams = require('../../lib/url-params');
 
 var Button = require('../../components/forms/button.jsx');
 var Card = require('../../components/card/card.jsx');
@@ -286,10 +285,7 @@ module.exports = {
                         <Form onValidSubmit={this.props.onNextStep}>
                             <PhoneInput label={formatMessage({id: 'teacherRegistration.phoneNumber'})}
                                         name="phone"
-                                        defaultCountry={
-                                            (this.props.formData.user && this.props.formData.user.country) ||
-                                            this.props.defaultCountry
-                                        }
+                                        defaultCountry={this.props.defaultCountry}
                                         required />
                             <Checkbox label={formatMessage({id: 'teacherRegistration.phoneConsent'})}
                                       name="phoneConsent"
@@ -393,10 +389,7 @@ module.exports = {
         },
         getInitialState: function () {
             return {
-                countryChoice: (
-                    (this.props.formData.user && this.props.formData.user.country) ||
-                    this.props.defaultCountry
-                ),
+                countryChoice: this.props.defaultCountry,
                 waiting: false
             };
         },
@@ -589,6 +582,11 @@ module.exports = {
         }
     })),
     LastStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                email: null
+            };
+        },
         render: function () {
             return (
                 <Slide>
@@ -602,7 +600,7 @@ module.exports = {
                         <h2><intl.FormattedMessage id="teacherRegistration.confirmYourEmail" /></h2>
                         <p>
                             <intl.FormattedMessage id="teacherRegistration.confirmYourEmailDescription" /><br />
-                            <strong>{this.props.formData.user && this.props.formData.user.email}</strong>
+                            <strong>{this.props.email}</strong>
                         </p>
                     </Card>
                     <Card className="wait">
