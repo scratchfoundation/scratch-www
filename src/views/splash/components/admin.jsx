@@ -5,10 +5,8 @@ var Button = require('../../../components/forms/button.jsx');
 
 require('./splash.scss');
 
-var SplashAdmin = React.createClass({
-    type: 'SplashAdmin',
-    render: function () {
-        return (
+var SplashAdmin = (props) => {
+    return (
             <AdminPanel>
                 <dt>Tools</dt>
                 <dd>
@@ -30,10 +28,10 @@ var SplashAdmin = React.createClass({
                         <li>
                             <div className="button-row">
                                 <span>Refresh row data:</span>
-                                <Button onClick={this.props.refreshHomepageCache}
-                                        className={this.props.homepageCacheState.status}
-                                        disabled={this.props.homepageCacheState.disabled}>
-                                    <span>{this.props.homepageCacheState.content}</span>
+                                <Button onClick={props.refreshHomepageCache}
+                                        className={props.homepageCacheState.status}
+                                        disabled={props.homepageCacheState.disabled}>
+                                    <span>{props.homepageCacheState.content}</span>
                                 </Button>
                             </div>
                         </li>
@@ -41,7 +39,6 @@ var SplashAdmin = React.createClass({
                 </dd>
             </AdminPanel>
         );
-    }
-});
+};
 
 module.exports = SplashAdmin;

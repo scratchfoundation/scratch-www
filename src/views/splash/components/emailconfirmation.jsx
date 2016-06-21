@@ -15,7 +15,7 @@ var ConfirmEmail = React.createClass({
             <div>
                 <DropdownBanner key="confirmedEmail"
                         className="warning"
-                        onRequestDismiss={this.props.handleDismiss.bind(this, 'confirmed_email')}>
+                        onRequestDismiss={this.props.handleDismiss.bind(this.props.self, 'confirmed_email')}>
                     <a href="#" onClick={this.props.showEmailConfirmationModal}>Confirm your email</a>
                     {' '}to enable sharing.{' '}
                     <a href="/info/faq/#accounts">Having trouble?</a>
