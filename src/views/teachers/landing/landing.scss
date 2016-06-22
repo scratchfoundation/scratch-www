@@ -193,6 +193,40 @@ $teacher-spot: $ui-purple;
     #in-practice {
         border-bottom: 1px solid $ui-border;
         padding-bottom: 2rem;
+
+        .story {
+            width: $cols4;
+            border: 1px solid $ui-border;
+            border-radius: 10px;
+            background-color: $ui-white;
+
+            img {
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+            }
+
+            p {
+                width: $cols2;
+            }
+        }
+
+        .carousel {
+            max-width: $cols10;
+            margin: 0 auto;
+
+            .slick-dots {
+                right: 0;
+            }
+
+            .slick-slide {
+                border-radius: 10px;
+                width: $cols4;
+
+                img {
+                    width: $cols4;
+                }
+            }
+        }
     }
 
     #resources {

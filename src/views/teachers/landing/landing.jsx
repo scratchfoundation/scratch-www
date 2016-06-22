@@ -7,7 +7,20 @@ var SubNavigation = require('../../../components/subnavigation/subnavigation.jsx
 var TitleBanner = require('../../../components/title-banner/title-banner.jsx');
 var Button = require('../../../components/forms/button.jsx');
 
+var Slider = require('react-slick');
+require('slick-carousel/slick/slick.scss');
+require('slick-carousel/slick/slick-theme.scss');
+require('./carousel.scss');
+
 require('./landing.scss');
+
+var settings = {
+    dots: true,
+    arrows: true,
+    infinite: false,
+    slidesToShow: 2,
+    slidesToScroll: 2
+};
 
 var Landing = React.createClass({
     type: 'Landing',
@@ -57,6 +70,38 @@ var Landing = React.createClass({
                             <p><b>Subject Areas:</b> language arts, science, social studies,{' '}
                                 math, computer science, foreign languages, and the arts</p>
                         </FlexRow>
+                        <Slider className="carousel" {...settings}>
+                            <div>
+                                <div className="story">
+                                    <img src="/images/teachers/stories/dylan.jpg" alt="dylan's story" />
+                                    <a href="#">Dylan Person</a>
+                                    <p>A place</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="story">
+                                    <img src="/images/teachers/stories/ghana-code-club.jpg"
+                                         alt="ghana code club's story" />
+                                    <a href="#">Dylan Person</a>
+                                    <p>A place</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="story">
+                                    <img src="/images/teachers/stories/ingrid.jpg" alt="ingrid's story" />
+                                    <a href="#">Dylan Person</a>
+                                    <p>A place</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="story">
+                                    <img src="/images/teachers/stories/plug-in-studio.jpg"
+                                         alt="plug in studio's story" />
+                                    <a href="#">Dylan Person</a>
+                                    <p>A place</p>
+                                </div>
+                            </div>
+                        </Slider>
                     </section>
                     <section id="resources">
                         <span className="nav-spacer"></span>
