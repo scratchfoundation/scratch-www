@@ -1,0 +1,285 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+$teacher-spot: $ui-purple;
+
+#view {
+    padding: 0;
+}
+
+.educators {
+    .title-banner {
+        &.masthead {
+            background-color: $teacher-spot;
+            padding-bottom: 0;
+
+            h1 {
+                margin: 0 0 2rem 0;
+                text-align: left;
+                color: $ui-white;
+            }
+
+            p {
+                margin: 0;
+                width: $cols6;
+                text-align: left;
+                color: $ui-white;
+
+                a {
+                    border-bottom: 1px solid $ui-white;
+                    color: $ui-white;
+                }
+            }
+
+            .band {
+                $band-color: hsla(360, 100, 100, .15);
+
+                margin-top: 2rem;
+                background-color: $band-color;
+                padding: 1rem 0;
+            }
+
+            .sub-nav {
+                text-align: left;
+                justify-content: flex-start;
+
+                li {
+                    margin: 0 .5rem 0 0;
+                }
+            }
+
+        }
+
+        &.faq-banner {
+            margin-bottom: 0;
+            background-color: $ui-gray;
+        }
+    }
+
+    #teacher-accounts {
+        width: 100%;
+        height: $cols7;
+        background-color: $teacher-spot;
+        margin-bottom: 0px;
+
+        .inner {
+            display: flex;
+            height: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        p {
+            margin: 0;
+            text-align: left;
+            color: $ui-white;
+
+            a {
+                border-bottom: 1px solid $ui-white;
+                color: $ui-white;
+            }
+        }
+
+        h2 {
+            margin: 0 0 2rem 0;
+            text-align: left;
+            color: $ui-white;
+        }
+
+        #left {
+            max-width: $cols4;
+
+            p {
+                margin-bottom: 3.5rem;
+            }
+
+            button {
+                background-color: $ui-white;
+                color: $ui-blue;
+                font-size: 16px;
+                font-weight: 500;
+                padding: 16px 16px;
+                width: $cols5 / 2;
+            }
+        }
+
+        img {
+            display: inline;
+            max-width: $cols7;
+        }
+    }
+
+    .flex-row {
+        &.sidebar-row {
+            margin: 2rem 0;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            .body-copy {
+                width: $cols8;
+            }
+
+            .sidebar {
+                width: $cols3;
+            }
+        }
+
+        &.three-col-row {
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+
+            .column {
+                $column-margin: 1rem;
+
+                margin: $column-margin;
+                width: calc(#{$cols4} - (#{$column-margin} * 2));
+
+                p {
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    .general-usage {
+        justify-content: space-between;
+        align-items: flex-start;
+
+        p {
+            max-width: $cols4;
+        }
+    }
+
+    .educator-community {
+        margin-bottom: 2rem;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        div {
+            max-width: $cols6;
+        }
+    }
+
+    .guides-and-tutorials {
+        justify-content: space-between;
+        align-items: flex-start;
+
+        div {
+            text-align: center;
+            max-width: $cols4;
+        }
+    }
+
+    section {
+        margin-bottom: 3rem;
+
+        /*p {
+            max-width: $cols8;
+        }*/
+    }
+
+    #in-practice,
+    #resources {
+        .nav-spacer {
+            display: block;
+            visibility: hidden;
+            margin-top: -50px; // height of  nav bar
+            height: 50px;
+        }
+    }
+
+
+    #in-practice {
+        border-bottom: 1px solid $ui-border;
+        padding-bottom: 2rem;
+    }
+
+    #resources {
+        h2 {
+            text-align: center;
+            padding-bottom: 2rem;
+        }
+
+        h3 {
+            font-weight: 300;
+        }
+
+        #guides-header {
+            text-align: center;
+        }
+    }
+
+}
+
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    #view {
+        text-align: left;
+    }
+
+    .title-banner {
+        &.masthead {
+            padding-bottom: 2rem;
+        }
+
+        .band {
+            display: none;
+        }
+    }
+
+    .flex-row {
+        &.sidebar-row {
+
+            .body-copy {
+                width: 100%;
+            }
+        }
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    #view {
+        text-align: left;
+    }
+
+    .flex-row {
+        &.sidebar-row {
+
+            .body-copy {
+                width: 100%;
+            }
+
+            .sidebar {
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+//8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    #view {
+        text-align: left;
+    }
+
+    .flex-row {
+        &.sidebar-row {
+
+            .body-copy {
+                width: 100%;
+            }
+
+            .sidebar {
+                margin: 0 auto;
+            }
+        }
+    }
+
+    section {
+        p {
+            width: 100%;
+        }
+    }
+}
