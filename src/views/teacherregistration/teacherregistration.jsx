@@ -6,7 +6,7 @@ var api = require('../../lib/api');
 
 var Deck = require('../../components/deck/deck.jsx');
 var Progression = require('../../components/progression/progression.jsx');
-var Steps = require('./steps.jsx');
+var Steps = require('../../components/registration/steps.jsx');
 
 require('./teacherregistration.scss');
 
@@ -101,7 +101,7 @@ var TeacherRegistration = React.createClass({
                                                 waiting={this.state.waiting} />
                         <Steps.EmailStep        onNextStep={this.register}
                                                 waiting={this.state.waiting} />
-                        <Steps.LastStep         email={this.state.formData.user && this.state.formData.user.email} />
+                        <Steps.TeacherApprovalStep email={this.state.formData.user && this.state.formData.user.email} />
                     </Progression>
                 }
             </Deck>

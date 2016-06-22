@@ -581,38 +581,47 @@ module.exports = {
             );
         }
     })),
-    LastStep: intl.injectIntl(React.createClass({
+    TeacherApprovalStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
-                email: null
+                email: null,
+                invited: false
             };
         },
         render: function () {
             return (
                 <Slide>
                     <h1>
-                        <intl.FormattedMessage id="teacherRegistration.lastStepTitle" />
+                        <intl.FormattedMessage id="registration.lastStepTitle" />
                     </h1>
                     <p className="description">
-                        <intl.FormattedMessage id="teacherRegistration.lastStepDescription" />
+                        <intl.FormattedMessage id="registration.lastStepDescription" />
                     </p>
-                    <Card className="confirm">
-                        <h2><intl.FormattedMessage id="teacherRegistration.confirmYourEmail" /></h2>
-                        <p>
-                            <intl.FormattedMessage id="teacherRegistration.confirmYourEmailDescription" /><br />
-                            <strong>{this.props.email}</strong>
-                        </p>
-                    </Card>
-                    <Card className="wait">
-                        <h2><intl.FormattedMessage id="teacherRegistration.waitForApproval" /></h2>
-                        <p>
-                            <intl.FormattedMessage id="teacherRegistration.waitForApprovalDescription" />
-                        </p>
-                    </Card>
+                    {this.props.confirmed || !this.props.email ?
+                        []
+                        :
+                        (<Card className="confirm">
+                            <h2><intl.FormattedMessage id="registration.confirmYourEmail" /></h2>
+                            <p>
+                                <intl.FormattedMessage id="registration.confirmYourEmailDescription" /><br />
+                                <strong>{this.props.email}</strong>
+                            </p>
+                        </Card>)
+                    }
+                    {this.props.invited ?
+                        <Card className="wait">
+                            <h2><intl.FormattedMessage id="registration.waitForApproval" /></h2>
+                            <p>
+                                <intl.FormattedMessage id="registration.waitForApprovalDescription" />
+                            </p>
+                        </Card>
+                        :
+                        []
+                    }
                     <Card className="resources">
-                        <h2><intl.FormattedMessage id="teacherRegistration.checkOutResources" /></h2>
+                        <h2><intl.FormattedMessage id="registration.checkOutResources" /></h2>
                         <p>
-                            <intl.FormattedHTMLMessage id="teacherRegistration.checkOutResourcesDescription" />
+                            <intl.FormattedHTMLMessage id="registration.checkOutResourcesDescription" />
                         </p>
                     </Card>
                 </Slide>

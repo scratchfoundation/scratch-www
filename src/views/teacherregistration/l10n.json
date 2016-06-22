@@ -49,13 +49,5 @@
     "teacherRegistration.howUseScratch": "How do you plan to use Scratch at your organization?",
     "teacherRegistration.emailStepTitle": "Email Address",
     "teacherRegistration.emailStepDescription": "We will send you a confirmation email that will allow you to access your Scratch Teacher Account.",
-    "teacherRegistration.validationEmailMatch": "The emails do not match",
-    "teacherRegistration.lastStepTitle": "Thank you for requesting a Scratch Teacher Account",
-    "teacherRegistration.lastStepDescription": "We are currently processing your application. ",
-    "teacherRegistration.confirmYourEmail": "Confirm Your Email",
-    "teacherRegistration.confirmYourEmailDescription": "If you haven't already, please click the link in the confirmation email sent to:",
-    "teacherRegistration.waitForApproval": "Wait for Approval",
-    "teacherRegistration.waitForApprovalDescription": "Your information is being reviewed. Please be patient, the approval process can take up to 24 hours. You will receive an email with your login information once your account has been created.",
-    "teacherRegistration.checkOutResources": "Get Started with Resources",
-    "teacherRegistration.checkOutResourcesDescription": "Explore materials for educators and facilitators written by the Scratch Team, including <a href='/educators#resources'>tips, tutorials, and guides</a>."
+    "teacherRegistration.validationEmailMatch": "The emails do not match"
 }
