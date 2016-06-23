@@ -5,7 +5,7 @@
 
 html,
 body {
-    background-color: $ui-purple;
+    background-color: darken($ui-purple, 8%);
 }
 
 .teacher-registration {

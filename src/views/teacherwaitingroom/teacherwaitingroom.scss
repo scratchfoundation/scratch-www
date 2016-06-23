@@ -1,5 +1,29 @@
 @import "../../colors";
 
+html,
+body {
+    background-color: darken($ui-purple, 8%);
+}
+
 .teacher-waitingroom {
     background-color: $ui-purple;
+
+    .slide {
+        max-width: 38.75rem;
+    }
+
+    .card {
+        margin: 1rem 0;
+        padding: 1.5rem;
+        width: initial;
+
+        h4,
+        p {
+            text-align: left;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
 }
