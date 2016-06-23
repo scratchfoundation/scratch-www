@@ -9,7 +9,7 @@ $base-bg: $ui-white;
 
 .hoc {
     .title-banner {
-        &.wbb-bg {    
+        &.wbb-bg {
             background-image: url("/images/hoc2015/hide-bg.jpg");
         }
 
@@ -41,9 +41,9 @@ $base-bg: $ui-white;
         .card {
             margin: 10px;
             border-radius: 7px;
-            background-color: $active-gray;                
+            background-color: $active-gray;
             padding: 2px;
-            
+
             width: 30%;
             min-width: 200px;
             max-width: 230px;
@@ -53,7 +53,7 @@ $base-bg: $ui-white;
                 background-color: $base-bg;
                 width: 100%;
                 height: 100%;
-                
+
 
                 button,
                 img {
@@ -128,7 +128,7 @@ $base-bg: $ui-white;
     .resource,
     .studio {
         display: flex;
-        margin: 10px 0; 
+        margin: 10px 0;
         min-width: 200px;
 
         text-align: left;
@@ -164,7 +164,7 @@ $base-bg: $ui-white;
         }
     }
 
-    .resource { 
+    .resource {
         width: 33%;
 
         a {
@@ -175,8 +175,8 @@ $base-bg: $ui-white;
 
         .resource-info {
             h5 {
-                margin: .85rem 0;
-                line-height: 0;
+                margin: 0;
+                line-height: inherit;
             }
         }
     }
@@ -199,7 +199,7 @@ $base-bg: $ui-white;
         @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
             display: inline-block;
         }
-        
+
         //8 columns
         @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
             h5 {
