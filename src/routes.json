@@ -92,6 +92,19 @@
         "title": "Jobs"
     },
     {
+        "name": "teacherregistration",
+        "pattern": "^/educators/register$",
+        "view": "teacherregistration/teacherregistration",
+        "title": "Teacher Registration",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "teacherwaitingroom",
+        "pattern": "^/educators/waiting",
+        "view": "teacherwaitingroom/teacherwaitingroom",
+        "title": "Thank you for requesting a Scratch Teacher Account"
+    },
+    {
         "name": "wedo2",
         "pattern": "^/wedo/?$",
         "view": "wedo2/wedo2",

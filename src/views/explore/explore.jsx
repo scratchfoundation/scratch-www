@@ -3,7 +3,7 @@ var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var Api = require('../../mixins/api.jsx');
+var api = require('../../lib/api');
 
 var Page = require('../../components/page/www/page.jsx');
 var Box = require('../../components/box/box.jsx');
@@ -16,9 +16,6 @@ require('./explore.scss');
 // @todo migrate to React-Router once available
 var Explore = injectIntl(React.createClass({
     type: 'Explore',
-    mixins: [
-        Api
-    ],
     getDefaultProps: function () {
         var categoryOptions = ['all','animations','art','games','music','stories'];
         var typeOptions = ['projects','studios'];
@@ -57,7 +54,7 @@ var Explore = injectIntl(React.createClass({
         if (this.props.tab != 'all') {
             qText = '&q=' + this.props.category;
         }
-        this.api({
+        api({
             uri: '/search/' + this.props.itemType +
                  '?limit=' + this.props.loadNumber +
                  '&offset=' + this.state.offset +

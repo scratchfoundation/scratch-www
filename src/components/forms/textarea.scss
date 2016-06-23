@@ -1,0 +1,25 @@
+@import "../../colors";
+
+.textarea {
+    transition: all 1s ease;
+    margin: .75rem 0;
+    border: 1px solid $active-gray;
+    border-radius: 5px;
+    background-color: $ui-light-gray;
+    padding: .75rem 1rem;
+    width: 100%;
+    min-height: 15rem;
+    line-height: 1.75em;
+    color: $type-gray;
+    font-size: .875rem;
+
+    &:focus {
+        transition: all 1s ease;
+        outline: none;
+        border: 1px solid $ui-blue;
+    }
+
+    &.fail {
+        border: 1px solid $ui-orange;
+    }
+}

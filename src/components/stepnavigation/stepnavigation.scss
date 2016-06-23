@@ -1,0 +1,31 @@
+@import "../../colors";
+@import "../../frameless";
+
+.step-navigation {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: inline-block;
+        border-radius: 50%;
+        padding: .25rem;
+
+        .indicator {
+            border-radius: .25rem;
+            background-color: $ui-white;
+            width: .5rem;
+            height: .5rem;
+        }
+
+        &.active {
+            .indicator {
+                background-color: $ui-aqua;
+            }
+        }
+
+        &.selected {
+            border: 1px solid $ui-white;
+        }
+    }
+}
