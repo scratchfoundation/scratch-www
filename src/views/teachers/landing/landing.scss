@@ -20,6 +20,7 @@ $story-width: $cols3;
     a {
         white-space: normal;
     }
+
     .title-banner {
         &.masthead {
             background-color: $teacher-spot;
@@ -49,10 +50,10 @@ $story-width: $cols3;
                 }
 
                 iframe {
+                    margin-bottom: $gutter;
                     border: 2px solid $ui-border;
                     border-radius: 10px;
                     width: $cols4;
-                    margin-bottom: $gutter;
                 }
             }
 
@@ -90,9 +91,9 @@ $story-width: $cols3;
 
     .educator-community {
         margin-bottom: 2rem;
+        text-align: left;
         justify-content: space-between;
         align-items: flex-start;
-        text-align: left;
 
         div {
             max-width: $cols6;
@@ -101,17 +102,13 @@ $story-width: $cols3;
 
     .guides-and-tutorials {
         div {
-            text-align: center;
             max-width: $cols4;
+            text-align: center;
         }
     }
 
     section {
         margin-bottom: 3rem;
-
-        /*p {
-            max-width: $cols8;
-        }*/
     }
 
     #in-practice,
@@ -130,18 +127,18 @@ $story-width: $cols3;
         padding-bottom: 2rem;
 
         .stories {
-            align-items: center;
             margin: auto;
+            align-items: center;
             justify-content: space-between;
             flex-direction: row;
         }
 
         .story {
-            box-sizing: border-box;
             margin: 10px auto;
             border: 1px solid $ui-border;
             border-radius: 10px;
             background-color: $ui-white;
+            box-sizing: border-box;
 
             img {
                 border-top-left-radius: 9px;
@@ -150,8 +147,8 @@ $story-width: $cols3;
             }
 
             .story-info {
-                padding-left: 10px;
                 padding-top: 10px;
+                padding-left: 10px;
 
                 p {
                     margin: 10px 0;
@@ -163,8 +160,8 @@ $story-width: $cols3;
 
     #resources {
         h2 {
-            text-align: center;
             padding-bottom: 2rem;
+            text-align: center;
         }
 
         h3 {
@@ -177,10 +174,10 @@ $story-width: $cols3;
     }
 
     #teacher-accounts {
-        width: 100%;
-        background-color: $teacher-spot;
         margin-bottom: -3px;
+        background-color: $teacher-spot;
         padding: 50px 0;
+        width: 100%;
         overflow-x: hidden;
 
         .inner {
@@ -218,11 +215,11 @@ $story-width: $cols3;
 
             button {
                 background-color: $ui-white;
+                padding: 16px 16px;
+                width: $cols5 / 2;
                 color: $ui-blue;
                 font-size: 16px;
                 font-weight: 500;
-                padding: 16px 16px;
-                width: $cols5 / 2;
             }
         }
 
@@ -379,8 +376,8 @@ $story-width: $cols3;
         }
 
         iframe {
-            box-sizing: border-box;
             width: $cols4;
+            box-sizing: border-box;
         }
     }
 
@@ -407,8 +404,8 @@ $story-width: $cols3;
         }
 
         .intro {
-            text-align: center;
             margin-bottom: 1rem;
+            text-align: center;
         }
 
         .general-usage {
@@ -416,19 +413,20 @@ $story-width: $cols3;
 
             p {
                 margin: .25em 0;
-                text-align: center;
                 max-width: $cols8;
+                text-align: center;
             }
         }
     }
 
     .educators {
         #resources {
-            width: $cols6;
             margin: 0 auto;
+            width: $cols6;
+
             h2 {
-                text-align: left;
                 margin: 0 auto;
+                text-align: left;
             }
 
             .educator-community {
@@ -436,17 +434,17 @@ $story-width: $cols3;
             }
 
             #guides-header {
-                width: $cols6;
                 margin: auto;
+                width: $cols6;
                 text-align: left;
             }
 
             .guides-and-tutorials {
                 div {
                     display: flex;
-                    justify-content: space-between;
-                    text-align: left;
                     max-width: $cols8;
+                    text-align: left;
+                    justify-content: space-between;
                 }
 
                 p {
@@ -454,8 +452,8 @@ $story-width: $cols3;
                 }
 
                 img {
-                    width: $cols2;
                     margin: 0;
+                    width: $cols2;
                 }
             }
         }
@@ -468,9 +466,9 @@ $story-width: $cols3;
     }
 
     .guides-and-tutorials {
-        align-items: flex-start;
-        justify-content: space-around;
         margin-bottom: 2rem;
+        justify-content: space-around;
+        align-items: flex-start;
     }
 
     #teacher-accounts {
@@ -485,7 +483,7 @@ $story-width: $cols3;
 }
 
 // 12 columns
-@media only screen and (min-width: $desktop){
+@media only screen and (min-width: $desktop) {
     $story-width: $cols3;
 
     .stories {
