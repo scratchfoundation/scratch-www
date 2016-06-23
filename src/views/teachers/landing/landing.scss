@@ -8,6 +8,10 @@ $teacher-spot: $ui-purple;
 }
 
 .educators {
+    b {
+        font-weight: bold;
+    }
+
     a {
         white-space: normal;
     }
@@ -273,6 +277,10 @@ $teacher-spot: $ui-purple;
                 width: 100%;
             }
         }
+    }
+
+    .carousel {
+        display: none;
     }
 
     #teacher-icon {
