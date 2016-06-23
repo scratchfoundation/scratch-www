@@ -10,7 +10,6 @@ var Button = require('../../components/forms/button.jsx');
 var Card = require('../../components/card/card.jsx');
 var CharCount = require('../../components/forms/charcount.jsx');
 var Checkbox = require('../../components/forms/checkbox.jsx');
-var FlexRow = require('../../components/flex-row/flex-row.jsx');
 var CheckboxGroup = require('../../components/forms/checkbox-group.jsx');
 var Form = require('../../components/forms/form.jsx');
 var Input = require('../../components/forms/input.jsx');
