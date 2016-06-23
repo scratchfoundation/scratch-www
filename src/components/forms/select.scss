@@ -1,9 +1,30 @@
 @import "../../colors";
+@import "../../frameless";
 
 .select {
-    background-color: $ui-white;
-    width: 220px;
-    height: 28px;
-    line-height: 28px;
-    font-size: 1em;
+    label {
+        font-weight: 500;
+    }
+}
+
+select {
+    margin: .8rem 0;
+    border: 1px solid $active-gray;
+    border-radius: 5px;
+    background: $ui-light-gray url("../../../static/images/dropdown.png") no-repeat right center;
+    background-size: 1rem 1rem;
+    width: 100%;
+    height: 3rem;
+    text-indent: 1rem;
+    font-size: .875rem;
+    appearance: none;
+
+    &:focus {
+        outline: none;
+    }
+
+    > option {
+        background-color: $ui-white;
+        width: 100%;
+    }
 }

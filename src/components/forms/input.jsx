@@ -12,14 +12,33 @@ var Input = React.createClass({
     getDefaultProps: function () {
         return {};
     },
+    getInitialState: function () {
+        return {
+            status: ''
+        };
+    },
+    onValid: function () {
+        this.setState({
+            status: 'pass'
+        });
+    },
+    onInvalid: function () {
+        this.setState({
+            status: 'fail'
+        });
+    },
     render: function () {
         var classes = classNames(
             'input',
+            this.state.status,
             this.props.className
         );
         return (this.props.type === 'submit' || this.props.noformsy ?
             <input {... this.props} className={classes} /> :
-            <FRCInput {... this.props} className={classes} />
+            <FRCInput {... this.props}
+                      className={classes}
+                      onValid={this.onValid}
+                      onInvalid={this.onInvalid} />
         );
     }
 });

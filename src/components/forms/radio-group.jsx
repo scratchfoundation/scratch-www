@@ -5,6 +5,7 @@ var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
 var inputHOC = require('./input-hoc.jsx');
 
 require('./row.scss');
+require('./radio-group.scss');
 
 var RadioGroup = React.createClass({
     type: 'RadioGroup',

@@ -5,6 +5,7 @@ var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
 var inputHOC = require('./input-hoc.jsx');
 
 require('./row.scss');
+require('./checkbox-group.scss');
 
 var CheckboxGroup = React.createClass({
     type: 'CheckboxGroup',
@@ -14,7 +15,9 @@ var CheckboxGroup = React.createClass({
             this.props.className
         );
         return (
-            <FRCCheckboxGroup {... this.props} className={classes} />
+            <div className={classes}>
+                <FRCCheckboxGroup {... this.props} className={classes} />
+            </div>
         );
     }
 });

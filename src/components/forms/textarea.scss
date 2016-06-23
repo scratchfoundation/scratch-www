@@ -1,19 +1,22 @@
 @import "../../colors";
 
-$base-bg: $ui-white;
-$focus-bg: lighten($ui-blue, 35%);
+$base-bg: $ui-light-gray;
+$focus-bg: lighten($ui-light-gray, 35%);
 $fail-bg: lighten($ui-orange, 35%);
 $pass-bg: lighten($ui-aqua, 35%);
 
 .textarea {
     transition: all 1s ease;
-    margin: .5em 0;
+    margin: .75rem 0;
     border: 1px solid $active-gray;
     border-radius: 5px;
     background-color: $base-bg;
-    padding: .75em 1em;
+    padding: .75rem 1rem;
+    width: 100%;
+    min-height: 15rem;
+    line-height: 1.75em;
     color: $type-gray;
-    font-size: .8rem;
+    font-size: .875rem;
 
     &:focus {
         transition: all 1s ease;

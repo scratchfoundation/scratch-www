@@ -1,0 +1,42 @@
+@import "../../colors";
+
+.input-group {
+    margin: .8rem 0;
+    width: 100%;
+}
+
+.react-tel-input {
+    width: 100%;
+
+    input {
+        &[type=tel] {
+            background-color: $ui-light-gray;
+            height: 3rem;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+
+    .flag-dropdown {
+        background-color: $ui-light-gray;
+        height: 3rem;
+
+        .selected-flag {
+            background-color: $ui-light-gray;
+            height: 100%;
+
+            &:hover,
+            &:focus,
+            &:active {
+                background-color: $active-gray;
+            }
+        }
+
+        .country-list {
+            top: 3rem;
+            background-color: $ui-light-gray;
+        }
+    }
+}

@@ -1,36 +1,131 @@
 @import "../../colors";
+@import "../../frameless";
+
+@include responsive-layout (".teacher-registration", ".slide");
 
 .teacher-registration {
     background-color: $ui-purple;
 
-    .slide {
-        h1,
-        p {
-            color: $type-white;    
-        }
-    }
-
-    .card {
-        &,
-        h2,
-        p {
-            color: $type-gray;
-        }
-    }
-
-    .card-button {
-        display: block;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        background-color: $ui-aqua;
-        width: 100%;
-    }
-
-    .step-navigation {
-        text-align: center;
-    }
-
     .demographics-checkbox-is-robot {
         display: none;
+    }
+
+    .gender-input,
+    .other-input {
+        float: right;
+        width: 90%;
+    }
+
+    .gender-input {
+        margin-top: -5.75rem;
+    }
+
+    .other-input {
+        margin-top: -5.875rem;
+    }
+
+    .username-step,
+    .name-step,
+    .address-step,
+    .email-step {
+        .help-block {
+            transform: translate(15.5rem, -4rem);
+        }
+    }
+
+    .demographics-step {
+        .help-block {
+            transform: translate(14rem, -4rem);
+        }
+    }
+
+    .phone-step {
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        input {
+            &[type=checkbox] {
+                margin-bottom: 1.25rem;
+            }
+        }
+
+        .help-block {
+            margin-top: .7rem;
+        }
+
+        .checkbox-row {
+            .help-block {
+                margin-top: 0;
+            }
+        }
+    }
+
+    .organization-step {
+        .help-block {
+            transform: translate(16rem, -4rem);
+        }
+
+        .organization-type,
+        .url-input {
+            p {
+                margin: .25rem 0;
+                text-align: left;
+                color: $ui-dark-gray;
+            }
+        }
+    }
+
+    .usescratch-step {
+        .form {
+            .form-group {
+                margin-bottom: 0;
+            }
+        }
+
+        .help-block {
+            margin-top: .75rem;
+        }
+
+        p {
+            &.char-count {
+                margin-top: 0;
+                margin-bottom: 1rem;
+                text-align: right;
+            }
+        }
+    }
+
+    .last-step {
+        &.slide {
+            max-width: 38.75rem;
+        }
+
+        .card {
+            margin: 1rem 0;
+            padding: 1.5rem;
+            width: initial;
+
+            h4,
+            p {
+                text-align: left;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $desktop - 1) {
+    .teacher-registration {
+        .username-step,
+        .demographics-step,
+        .name-step{
+            .help-block {
+                transform: none;
+            }
+        } 
     }
 }

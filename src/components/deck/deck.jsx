@@ -8,8 +8,10 @@ var Deck = React.createClass({
     render: function () {
         return (
             <div className={classNames(['deck', this.props.className])}>
-                <img src="/images/logo_sm.png" />
-                {this.props.children}
+                <div className="inner">
+                    <img src="/images/logo_sm.png" />
+                    {this.props.children}
+                </div>
             </div>
         );
     }

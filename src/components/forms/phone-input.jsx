@@ -12,6 +12,7 @@ var inputHOC = require('./input-hoc.jsx');
 var allIso2 = allCountries.map(function (country) {return country.iso2;});
 
 require('./row.scss');
+require('./phone-input.scss');
 
 var PhoneInput = React.createClass({
     displayName: 'PhoneInput',

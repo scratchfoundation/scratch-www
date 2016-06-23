@@ -1,0 +1,76 @@
+@import "../../colors";
+@import "../../frameless";
+
+.tooltip {
+    .tip {
+        display: inline-block;
+        margin: 0 5px;
+        border-radius: $font-size;
+        background-color: $ui-blue;
+        padding: 0 ($font-size / 2);
+        color: $type-white;
+    }
+
+    .expand {
+        $arrow-border-width: 1rem;
+        position: absolute;
+        transform: translate(-2.75rem, 2rem);
+        visibility: hidden;
+        margin-top: $arrow-border-width;
+        border-radius: 5px;
+        background-color: $ui-blue;
+        padding: 1rem;
+        width: 13.75rem;
+        text-align: left;
+        color: $type-white;
+
+        &:before {
+            display: block;
+            position: absolute;
+            top: -$arrow-border-width / 2;
+            left: $arrow-border-width;
+
+            transform: rotate(45deg);
+
+            border-bottom: 5px solid $ui-blue;
+            border-left: 5px solid $ui-blue;
+            border-radius: 5px;
+
+            background-color: $ui-blue;
+            width: $arrow-border-width;
+            height: $arrow-border-width;
+
+            content: "";
+        }
+    }
+
+    &:hover {
+        .expand {
+            visibility: visible;
+        }
+    }
+}
+
+@media only screen and (max-width: $desktop - 1) {
+    .tooltip {
+        display: block;
+
+        .expand {
+            display: none;
+            position: relative;
+            clear: both;
+            transform: none;
+
+            &:before {
+                display: none;
+            }
+        }
+
+        &:hover {
+            .expand {
+                display: block;
+                margin: 5px auto;
+            }
+        }
+    }
+}

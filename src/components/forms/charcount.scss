@@ -1,0 +1,11 @@
+@import "../../colors";
+
+p {
+    &.char-count {
+        color: $active-dark-gray;
+
+        &.overmax {
+            color: $ui-orange;
+        }
+    }
+}

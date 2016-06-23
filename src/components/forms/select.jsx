@@ -23,7 +23,9 @@ var Select = React.createClass({
             props = defaults({}, this.props, {value: this.props.options[0].value});
         }
         return (
-            <FRCSelect {... props} className={classes} />
+            <div className={classes}>
+                <FRCSelect {... props} />
+            </div>
         );
     }
 });

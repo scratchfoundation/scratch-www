@@ -1,0 +1,36 @@
+@import "../../colors";
+
+.col-sm-9 {
+    display: flex;
+    flex-flow: row wrap;
+
+    input {
+        &[type="radio"] {
+            margin-top: 1px;
+            border: 1px solid $active-gray;
+            border-radius: .8rem;
+            width: .8rem;
+            height: .8rem;
+            appearance: none;
+
+            &:checked,
+            &:focus {
+                outline: none;
+            }
+
+            &:checked {
+                background-color: $ui-blue;
+
+                &:after {
+                    display: block;
+                    transform: translate(.25rem, .25rem);
+                    border-radius: .2rem;
+                    background-color: $ui-white;
+                    width: .2rem;
+                    height: .2rem;
+                    content: "";
+                }
+            }
+        }
+    }
+}
