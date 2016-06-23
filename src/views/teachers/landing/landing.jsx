@@ -19,7 +19,14 @@ var settings = {
     arrows: true,
     infinite: false,
     slidesToShow: 2,
-    slidesToScroll: 2
+    slidesToScroll: 2,
+    responsive: [
+        { breakpoint: 640, settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            centerMode: true
+        }}
+    ]
 };
 
 var Landing = React.createClass({
@@ -73,32 +80,40 @@ var Landing = React.createClass({
                         <Slider className="carousel" {...settings}>
                             <div>
                                 <div className="story">
-                                    <img src="/images/teachers/stories/dylan.jpg" alt="dylan's story" />
-                                    <a href="#">Dylan Person</a>
-                                    <p>A place</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="story">
-                                    <img src="/images/teachers/stories/ghana-code-club.jpg"
-                                         alt="ghana code club's story" />
-                                    <a href="#">Dylan Person</a>
-                                    <p>A place</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className="story">
                                     <img src="/images/teachers/stories/ingrid.jpg" alt="ingrid's story" />
-                                    <a href="#">Dylan Person</a>
-                                    <p>A place</p>
+                                    <div className="story-info">
+                                         <a href="//bit.ly/28SBsa9">Ingrid Gustafson</a>
+                                         <p>Instructional Technology Specialist</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="story">
+                                    <img src="/images/teachers/stories/dylan.jpg" alt="dylan's story" />
+                                    <div className="story-info">
+                                        <a href="//bit.ly/28Q5l6P">Dylan Ryder</a>
+                                        <p>Educational Technologist</p>
+                                    </div>
                                 </div>
                             </div>
                             <div>
                                 <div className="story">
                                     <img src="/images/teachers/stories/plug-in-studio.jpg"
                                          alt="plug in studio's story" />
-                                    <a href="#">Dylan Person</a>
-                                    <p>A place</p>
+                                     <div className="story-info">
+                                         <a href="//bit.ly/28SC1AY">Plug-In Studios</a>
+                                         <p>After-School Program</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="story">
+                                    <img src="/images/teachers/stories/ghana-code-club.jpg"
+                                         alt="ghana code club's story" />
+                                    <div className="story-info">
+                                         <a href="//bit.ly/28UzapJ">Ghana Code Club</a>
+                                         <p>After-School Program</p>
+                                    </div>
                                 </div>
                             </div>
                         </Slider>
@@ -112,8 +127,8 @@ var Landing = React.createClass({
                                 <p>
                                     <a href="http://scratched.gse.harvard.edu/">ScratchEd</a> is an{' '}
                                     online community where Scratch educators{' '}
-                                    <a href="http://scratched.gse.harvard.edu/stories">share stories</a>,{' '}
-                                    exchange resources, ask questions, and{' '}
+                                    <a href="http://scratched.gse.harvard.edu/stories">share stories</a>,
+                                     exchange resources, ask questions, and{' '}
                                     find people. ScratchEd is developed and supported by{' '}
                                     the Harvard Graduate School of Education.
                                 </p>
@@ -147,9 +162,10 @@ var Landing = React.createClass({
                             </div>
                             <div>
                                 <img src="/svgs/teachers/creative-computing.svg" alt="creative computing icon" />
-                                <p className="intro">
+                                <p>
                                     The <a href="http://scratched.gse.harvard.edu/guide/">Creative Computing{' '}
-                                    Curriculum <br />Guide</a> provides plans, activities, and{' '}
+                                    Curriculum Guide</a>{' '}
+                                    provides plans, activities, and{' '}
                                     strategies for introducing creative computing.
                                 </p>
                             </div>
@@ -167,9 +183,9 @@ var Landing = React.createClass({
                                 projects and comments. To learn more, see the{' '}
                                 Teacher Account FAQ page.
                             </p>
-                            <Button>Request Account</Button>
+                            <a href="register"><Button>Request Account</Button></a>
                         </div>
-                        <img src="/images/teachers/teacher-account.png" alt="teacher account" />
+                        <img src="/images/teachers/teacher-account.png" alt="teacher account" id="teacher-icon"/>
                     </div>
                 </div>
             </div>

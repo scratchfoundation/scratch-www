@@ -8,6 +8,9 @@ $teacher-spot: $ui-purple;
 }
 
 .educators {
+    a {
+        white-space: normal;
+    }
     .title-banner {
         &.masthead {
             background-color: $teacher-spot;
@@ -21,7 +24,7 @@ $teacher-spot: $ui-purple;
 
             p {
                 margin: 0;
-                width: $cols6;
+                max-width: $cols6;
                 text-align: left;
                 color: $ui-white;
 
@@ -58,9 +61,10 @@ $teacher-spot: $ui-purple;
 
     #teacher-accounts {
         width: 100%;
-        height: $cols7;
         background-color: $teacher-spot;
-        margin-bottom: 0px;
+        margin-bottom: -3px;
+        padding: 50px 0;
+        overflow-x: hidden;
 
         .inner {
             display: flex;
@@ -88,6 +92,7 @@ $teacher-spot: $ui-purple;
 
         #left {
             max-width: $cols4;
+            text-align: left;
 
             p {
                 margin-bottom: 3.5rem;
@@ -104,7 +109,6 @@ $teacher-spot: $ui-purple;
         }
 
         img {
-            display: inline;
             max-width: $cols7;
         }
     }
@@ -155,6 +159,7 @@ $teacher-spot: $ui-purple;
         margin-bottom: 2rem;
         justify-content: space-between;
         align-items: flex-start;
+        text-align: left;
 
         div {
             max-width: $cols6;
@@ -195,19 +200,10 @@ $teacher-spot: $ui-purple;
         padding-bottom: 2rem;
 
         .story {
-            width: $cols4;
+            width: $cols4 - 0.125em ;
             border: 1px solid $ui-border;
             border-radius: 10px;
             background-color: $ui-white;
-
-            img {
-                border-top-left-radius: 10px;
-                border-top-right-radius: 10px;
-            }
-
-            p {
-                width: $cols2;
-            }
         }
 
         .carousel {
@@ -218,12 +214,23 @@ $teacher-spot: $ui-purple;
                 right: 0;
             }
 
-            .slick-slide {
+            .story {
                 border-radius: 10px;
-                width: $cols4;
+                width: $cols4 - 0.125em;
 
                 img {
-                    width: $cols4;
+                    width: $cols4 - 0.125em;
+                    border-top-left-radius: 9px;
+                    border-top-right-radius: 9px;
+                }
+
+                .story-info {
+                    padding-left: 10px;
+                    padding-top: 10px;
+
+                    p {
+                        margin: 10px 0;
+                    }
                 }
             }
         }
@@ -248,9 +255,6 @@ $teacher-spot: $ui-purple;
 
 //4 columns
 @media only screen and (max-width: $mobile - 1) {
-    #view {
-        text-align: left;
-    }
 
     .title-banner {
         &.masthead {
@@ -270,12 +274,28 @@ $teacher-spot: $ui-purple;
             }
         }
     }
+
+    #teacher-icon {
+        display: none;
+    }
+
+    .in-practice {
+        text-align: center;
+    }
+
+    .flex-row {
+        align-items: center !important;
+    }
+
+    .story {
+        margin-left: 50px;
+    }
 }
 
 //6 columns
 @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-    #view {
-        text-align: left;
+    #teacher-icon {
+        display: none;
     }
 
     .flex-row {
@@ -289,6 +309,18 @@ $teacher-spot: $ui-purple;
                 margin: 0 auto;
             }
         }
+    }
+
+    .in-practice {
+        text-align: center;
+    }
+
+    .flex-row {
+        align-items: center !important;
+    }
+
+    .story {
+        margin-left: 50px;
     }
 }
 

@@ -5,6 +5,10 @@
     $button-offset: $icon-size + 5px;
     $box-content-offset: 20px;
 
+    .slick-slide {
+        padding: 0;
+    }
+
     margin-bottom: 0;
     padding: 12px $button-offset;
 
@@ -72,7 +76,7 @@
     }
 
     /*.slick-slide {
-        padding-right: 30px;
+        padding-right: 2px;
     }*/
 
 }
