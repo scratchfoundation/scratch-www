@@ -7,27 +7,7 @@ var SubNavigation = require('../../../components/subnavigation/subnavigation.jsx
 var TitleBanner = require('../../../components/title-banner/title-banner.jsx');
 var Button = require('../../../components/forms/button.jsx');
 
-var Slider = require('react-slick');
-require('slick-carousel/slick/slick.scss');
-require('slick-carousel/slick/slick-theme.scss');
-require('./carousel.scss');
-
 require('./landing.scss');
-
-var settings = {
-    dots: true,
-    arrows: true,
-    infinite: false,
-    slidesToShow: 2,
-    slidesToScroll: 2,
-    responsive: [
-        { breakpoint: 640, settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            centerMode: true
-        }}
-    ]
-};
 
 var Landing = React.createClass({
     type: 'Landing',
@@ -77,46 +57,38 @@ var Landing = React.createClass({
                             <p><b>Subject Areas:</b> language arts, science, social studies,{' '}
                                 math, computer science, foreign languages, and the arts</p>
                         </FlexRow>
-                        <Slider className="carousel" {...settings}>
-                            <div>
-                                <div className="story">
-                                    <img src="/images/teachers/stories/ingrid.jpg" alt="ingrid's story" />
-                                    <div className="story-info">
-                                         <a href="//bit.ly/28SBsa9">Ingrid Gustafson</a>
-                                         <p>Instructional Technology Specialist</p>
-                                    </div>
+                        <FlexRow className="stories">
+                            <div className="story">
+                                <img src="/images/teachers/stories/ingrid.jpg" alt="ingrid's story" />
+                                <div className="story-info">
+                                     <a href="//bit.ly/28SBsa9">Ingrid Gustafson</a>
+                                     <p>Instructional Technology Specialist</p>
                                 </div>
                             </div>
-                            <div>
-                                <div className="story">
-                                    <img src="/images/teachers/stories/dylan.jpg" alt="dylan's story" />
-                                    <div className="story-info">
-                                        <a href="//bit.ly/28Q5l6P">Dylan Ryder</a>
-                                        <p>Educational Technologist</p>
-                                    </div>
+                            <div className="story">
+                                <img src="/images/teachers/stories/dylan.jpg" alt="dylan's story" />
+                                <div className="story-info">
+                                    <a href="//bit.ly/28Q5l6P">Dylan Ryder</a>
+                                    <p>Educational Technologist</p>
                                 </div>
                             </div>
-                            <div>
-                                <div className="story">
-                                    <img src="/images/teachers/stories/plug-in-studio.jpg"
-                                         alt="plug in studio's story" />
-                                     <div className="story-info">
-                                         <a href="//bit.ly/28SC1AY">Plug-In Studios</a>
-                                         <p>After-School Program</p>
-                                    </div>
+                            <div className="story">
+                                <img src="/images/teachers/stories/plug-in-studio.jpg"
+                                     alt="plug in studio's story" />
+                                 <div className="story-info">
+                                     <a href="//bit.ly/28SC1AY">Plug-In Studios</a>
+                                     <p>After-School Program</p>
                                 </div>
                             </div>
-                            <div>
-                                <div className="story">
-                                    <img src="/images/teachers/stories/ghana-code-club.jpg"
-                                         alt="ghana code club's story" />
-                                    <div className="story-info">
-                                         <a href="//bit.ly/28UzapJ">Ghana Code Club</a>
-                                         <p>After-School Program</p>
-                                    </div>
+                            <div className="story">
+                                <img src="/images/teachers/stories/ghana-code-club.jpg"
+                                     alt="ghana code club's story" />
+                                <div className="story-info">
+                                     <a href="//bit.ly/28UzapJ">Ghana Code Club</a>
+                                     <p>After-School Program</p>
                                 </div>
                             </div>
-                        </Slider>
+                        </FlexRow>
                     </section>
                     <section id="resources">
                         <span className="nav-spacer"></span>
@@ -173,7 +145,7 @@ var Landing = React.createClass({
                     </section>
                 </div>
                 <div id="teacher-accounts">
-                    <div className="inner">
+                    <div className="inner account-flex">
                         <div id="left">
                             <h2>Teacher Accounts in Scratch</h2>
                             <p>

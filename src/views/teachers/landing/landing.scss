@@ -2,6 +2,7 @@
 @import "../../../frameless";
 
 $teacher-spot: $ui-purple;
+$story-width: $cols3;
 
 #view {
     padding: 0;
@@ -63,60 +64,6 @@ $teacher-spot: $ui-purple;
         }
     }
 
-    #teacher-accounts {
-        width: 100%;
-        background-color: $teacher-spot;
-        margin-bottom: -3px;
-        padding: 50px 0;
-        overflow-x: hidden;
-
-        .inner {
-            display: flex;
-            height: 100%;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        p {
-            margin: 0;
-            text-align: left;
-            color: $ui-white;
-
-            a {
-                border-bottom: 1px solid $ui-white;
-                color: $ui-white;
-            }
-        }
-
-        h2 {
-            margin: 0 0 2rem 0;
-            text-align: left;
-            color: $ui-white;
-        }
-
-        #left {
-            max-width: $cols4;
-            text-align: left;
-
-            p {
-                margin-bottom: 3.5rem;
-            }
-
-            button {
-                background-color: $ui-white;
-                color: $ui-blue;
-                font-size: 16px;
-                font-weight: 500;
-                padding: 16px 16px;
-                width: $cols5 / 2;
-            }
-        }
-
-        img {
-            max-width: $cols7;
-        }
-    }
-
     .flex-row {
         &.sidebar-row {
             margin: 2rem 0;
@@ -152,7 +99,6 @@ $teacher-spot: $ui-purple;
 
     .general-usage {
         justify-content: space-between;
-        align-items: flex-start;
 
         p {
             max-width: $cols4;
@@ -171,9 +117,6 @@ $teacher-spot: $ui-purple;
     }
 
     .guides-and-tutorials {
-        justify-content: space-between;
-        align-items: flex-start;
-
         div {
             text-align: center;
             max-width: $cols4;
@@ -203,38 +146,33 @@ $teacher-spot: $ui-purple;
         border-bottom: 1px solid $ui-border;
         padding-bottom: 2rem;
 
+        .stories {
+            align-items: center;
+            margin: auto;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+
         .story {
-            width: $cols4 - 0.125em ;
+            box-sizing: border-box;
+            margin: 10px auto;
             border: 1px solid $ui-border;
             border-radius: 10px;
             background-color: $ui-white;
-        }
 
-        .carousel {
-            max-width: $cols10;
-            margin: 0 auto;
-
-            .slick-dots {
-                right: 0;
+            img {
+                border-top-left-radius: 9px;
+                border-top-right-radius: 9px;
+                width: 100%;
             }
 
-            .story {
-                border-radius: 10px;
-                width: $cols4 - 0.125em;
+            .story-info {
+                padding-left: 10px;
+                padding-top: 10px;
 
-                img {
-                    width: $cols4 - 0.125em;
-                    border-top-left-radius: 9px;
-                    border-top-right-radius: 9px;
-                }
-
-                .story-info {
-                    padding-left: 10px;
-                    padding-top: 10px;
-
-                    p {
-                        margin: 10px 0;
-                    }
+                p {
+                    margin: 10px 0;
+                    font-size: .75rem;
                 }
             }
         }
@@ -255,10 +193,76 @@ $teacher-spot: $ui-purple;
         }
     }
 
+    #teacher-accounts {
+        width: 100%;
+        background-color: $teacher-spot;
+        margin-bottom: -3px;
+        padding: 50px 0;
+        overflow-x: hidden;
+
+        .inner {
+            display: flex;
+            height: 100%;
+            align-items: center;
+        }
+
+        p {
+            margin: 0;
+            text-align: left;
+            color: $ui-white;
+
+            a {
+                border-bottom: 1px solid $ui-white;
+                color: $ui-white;
+            }
+        }
+
+        h2 {
+            margin: 0 0 2rem 0;
+            text-align: left;
+            color: $ui-white;
+        }
+
+        #left {
+            width: $cols4;
+
+            text-align: left;
+
+            p {
+                margin-bottom: 3.5rem;
+            }
+
+            button {
+                background-color: $ui-white;
+                color: $ui-blue;
+                font-size: 16px;
+                font-weight: 500;
+                padding: 16px 16px;
+                width: $cols5 / 2;
+            }
+        }
+
+        img {
+            width: $cols7;
+        }
+    }
 }
 
 //4 columns
 @media only screen and (max-width: $mobile - 1) {
+    $story-width: $cols4;
+
+    .stories {
+        width: $cols4;
+    }
+
+    .story {
+        width: $story-width;
+
+        img {
+            width: $story-width;
+        }
+    }
 
     .title-banner {
         &.masthead {
@@ -279,10 +283,6 @@ $teacher-spot: $ui-purple;
         }
     }
 
-    .carousel {
-        display: none;
-    }
-
     #teacher-icon {
         display: none;
     }
@@ -292,16 +292,38 @@ $teacher-spot: $ui-purple;
     }
 
     .flex-row {
-        align-items: center !important;
+        align-items: center;
     }
 
     .story {
         margin-left: 50px;
     }
+
+    .general-usage {
+        align-items: center;
+    }
+
+    .guides-and-tutorials {
+        align-items: center;
+    }
+
+    .account-flex {
+        justify-content: center;
+    }
 }
 
 //6 columns
 @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    $story-width: $cols3;
+
+    .stories {
+        width: $cols6;
+    }
+
+    .story {
+        width: $story-width;
+    }
+
     #teacher-icon {
         display: none;
     }
@@ -324,16 +346,39 @@ $teacher-spot: $ui-purple;
     }
 
     .flex-row {
-        align-items: center !important;
+        align-items: center;
     }
 
     .story {
         margin-left: 50px;
     }
+
+    .general-usage {
+        align-items: center;
+    }
+
+    .guides-and-tutorials {
+        align-items: center;
+    }
+
+    .account-flex {
+        justify-content: center;
+    }
 }
+
 
 //8 columns
 @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    $story-width: $cols4;
+
+    .stories {
+        width: $cols8;
+    }
+
+    .story {
+        width: $story-width;
+    }
+
     #view {
         text-align: left;
     }
@@ -355,5 +400,40 @@ $teacher-spot: $ui-purple;
         p {
             width: 100%;
         }
+    }
+
+    .guides-and-tutorials {
+        align-items: flex-start;
+        justify-content: space-around;
+    }
+
+    #left {
+        margin-right: 50px;
+    }
+}
+
+// 12 columns
+@media only screen and (min-width: $desktop){
+    $story-width: $cols3;
+
+    .stories {
+        width: $cols12;
+    }
+
+    .story {
+        width: $story-width;
+    }
+
+    .general-usage {
+        align-items: flex-start;
+    }
+
+    .guides-and-tutorials {
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .account-flex {
+        justify-content: space-between;
     }
 }
