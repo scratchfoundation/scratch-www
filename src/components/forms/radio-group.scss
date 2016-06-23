@@ -1,5 +1,13 @@
 @import "../../colors";
 
+.row {
+    .radio {
+        label {
+            font-weight: 300;
+        }
+    }
+}
+
 .col-sm-9 {
     display: flex;
     flex-flow: row wrap;

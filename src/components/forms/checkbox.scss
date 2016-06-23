@@ -1,6 +1,14 @@
 @import "../../colors";
 @import "../../frameless";
 
+.row {
+    .checkbox {
+        label {
+            font-weight: 300;
+        }
+    }
+}
+
 input {
     &[type=checkbox] {
         display: block;

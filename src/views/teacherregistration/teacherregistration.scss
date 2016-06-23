@@ -170,6 +170,10 @@ body {
 
 @media only screen and (max-width: $desktop - 1) {
     .teacher-registration {
+        .form {
+            text-align: left;
+        }
+
         .username-step,
         .demographics-step,
         .name-step {
@@ -190,13 +194,6 @@ body {
         }
 
         .organization-step {
-            .organization-type,
-            .url-input {
-                p {
-                    text-align: center;
-                }
-            }
-
             .checkbox-group {
                 text-align: left;
             }

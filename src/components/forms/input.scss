@@ -4,6 +4,12 @@
 $base-bg: $ui-light-gray;
 $pass-bg: lighten($ui-aqua, 35%);
 
+.row {
+    label {
+        font-weight: 500;
+    }
+}
+
 .input {
     transition: all .5s ease;
     margin: .75rem 0;
@@ -28,9 +34,5 @@ $pass-bg: lighten($ui-aqua, 35%);
     &.pass {
         border: 1px solid $active-dark-gray;
         background-color: $pass-bg;
-    }
-
-    label {
-        font-weight: 500;
     }
 }
