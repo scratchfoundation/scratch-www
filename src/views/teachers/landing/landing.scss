@@ -9,6 +9,10 @@ $story-width: $cols3;
 }
 
 .educators {
+    .intro {
+        margin: 0;
+    }
+
     b {
         font-weight: bold;
     }
@@ -22,20 +26,33 @@ $story-width: $cols3;
             padding-bottom: 0;
 
             h1 {
-                margin: 0 0 2rem 0;
-                text-align: left;
+                margin: 0;
                 color: $ui-white;
             }
 
-            p {
-                margin: 0;
-                max-width: $cols6;
-                text-align: left;
-                color: $ui-white;
 
-                a {
-                    border-bottom: 1px solid $ui-white;
+            .masthead-info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                p {
+                    margin: 0;
+                    max-width: $cols6;
+                    text-align: left;
                     color: $ui-white;
+
+                    a {
+                        border-bottom: 1px solid $ui-white;
+                        color: $ui-white;
+                    }
+                }
+
+                iframe {
+                    border: 2px solid $ui-border;
+                    border-radius: 10px;
+                    width: $cols4;
+                    margin-bottom: $gutter;
                 }
             }
 
@@ -49,7 +66,6 @@ $story-width: $cols3;
 
             .sub-nav {
                 text-align: left;
-                justify-content: flex-start;
 
                 li {
                     margin: 0 .5rem 0 0;
@@ -61,39 +77,6 @@ $story-width: $cols3;
         &.faq-banner {
             margin-bottom: 0;
             background-color: $ui-gray;
-        }
-    }
-
-    .flex-row {
-        &.sidebar-row {
-            margin: 2rem 0;
-            justify-content: space-between;
-            align-items: flex-start;
-
-            .body-copy {
-                width: $cols8;
-            }
-
-            .sidebar {
-                width: $cols3;
-            }
-        }
-
-        &.three-col-row {
-            align-items: flex-start;
-            justify-content: flex-start;
-            flex-wrap: wrap;
-
-            .column {
-                $column-margin: 1rem;
-
-                margin: $column-margin;
-                width: calc(#{$cols4} - (#{$column-margin} * 2));
-
-                p {
-                    text-align: left;
-                }
-            }
         }
     }
 
@@ -225,6 +208,7 @@ $story-width: $cols3;
 
         #left {
             width: $cols4;
+            max-width: $cols4;
 
             text-align: left;
 
@@ -379,6 +363,27 @@ $story-width: $cols3;
         width: $story-width;
     }
 
+    .masthead {
+        h1 {
+            text-align: center;
+        }
+
+        .subnav {
+            justify-content: center;
+        }
+    }
+
+    .masthead-info {
+        p {
+            width: $cols4;
+        }
+
+        iframe {
+            box-sizing: border-box;
+            width: $cols4;
+        }
+    }
+
     #view {
         text-align: left;
     }
@@ -396,6 +401,66 @@ $story-width: $cols3;
         }
     }
 
+    #in-practice {
+        h2 {
+            text-align: center;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .general-usage {
+            margin-bottom: 2rem;
+
+            p {
+                margin: .25em 0;
+                text-align: center;
+                max-width: $cols8;
+            }
+        }
+    }
+
+    .educators {
+        #resources {
+            width: $cols6;
+            margin: 0 auto;
+            h2 {
+                text-align: left;
+                margin: 0 auto;
+            }
+
+            .educator-community {
+                justify-content: center;
+            }
+
+            #guides-header {
+                width: $cols6;
+                margin: auto;
+                text-align: left;
+            }
+
+            .guides-and-tutorials {
+                div {
+                    display: flex;
+                    justify-content: space-between;
+                    text-align: left;
+                    max-width: $cols8;
+                }
+
+                p {
+                    width: $cols4;
+                }
+
+                img {
+                    width: $cols2;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
     section {
         p {
             width: 100%;
@@ -405,10 +470,17 @@ $story-width: $cols3;
     .guides-and-tutorials {
         align-items: flex-start;
         justify-content: space-around;
+        margin-bottom: 2rem;
+    }
+
+    #teacher-accounts {
+        .inner {
+            justify-content: space-between;
+        }
     }
 
     #left {
-        margin-right: 50px;
+        width: $cols4;
     }
 }
 
@@ -422,6 +494,16 @@ $story-width: $cols3;
 
     .story {
         width: $story-width;
+    }
+
+    .masthead {
+        h1 {
+            text-align: left;
+        }
+
+        .sub-nav {
+            justify-content: flex-start;
+        }
     }
 
     .general-usage {

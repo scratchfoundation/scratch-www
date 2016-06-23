@@ -17,13 +17,17 @@ var Landing = React.createClass({
                 <TitleBanner className="masthead">
                     <div className="inner">
                         <h1>Scratch for Educators</h1>
-                        <p className="intro">
-                            Your students can use Scratch to code their own{' '}
-                            interactive stories, animations, and games.{' '}
-                            In the process, they learn to think creatively,{' '}
-                            reason systematically, and work{' '}
-                            collaboratively — essential skills for everyone in today’s society.
-                        </p>
+                        <FlexRow className="masthead-info">
+                            <p className="intro">
+                                Your students can use Scratch to code their own{' '}
+                                interactive stories, animations, and games.{' '}
+                                In the process, they learn to think creatively,{' '}
+                                reason systematically, and work{' '}
+                                collaboratively — essential skills for everyone in today’s society.
+                            </p>
+                            <iframe src="https://www.youtube.com/embed/uPSuG063jhA"
+                                frameborder="0" allowfullscreen></iframe>
+                        </FlexRow>
                     </div>
                     <div className="band">
                         <SubNavigation className="inner">
@@ -50,7 +54,7 @@ var Landing = React.createClass({
                     <section id="in-practice">
                         <span className="nav-spacer"></span>
                         <h2>Who Uses Scratch?</h2>
-                        <p>Educators are using Scratch in a wide variety of: </p>
+                        <p className="intro">Educators are using Scratch in a wide variety of: </p>
                         <FlexRow className="general-usage">
                             <p><b>Settings:</b> schools, museums, libraries, community centers</p>
                             <p><b>Grade Levels:</b> elementary, middle, and high school (and some colleges too!)</p>
@@ -153,7 +157,7 @@ var Landing = React.createClass({
                                 which makes it easier to create accounts for{' '}
                                 groups of students and to manage your students’{' '}
                                 projects and comments. To learn more, see the{' '}
-                                Teacher Account FAQ page.
+                                <a href="faq">Teacher Account FAQ page</a>.
                             </p>
                             <a href="register"><Button>Request Account</Button></a>
                         </div>
