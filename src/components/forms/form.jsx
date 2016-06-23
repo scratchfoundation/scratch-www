@@ -20,10 +20,10 @@ var Form = React.createClass({
             this.props.className
         );
         return (
-          <Formsy.Form {... this.props} className={classes}>
-            <GeneralError name="all" />
-            {this.props.children}
-          </Formsy.Form>
+            <Formsy.Form {... this.props} className={classes}>
+                <GeneralError name="all" />
+                {this.props.children}
+            </Formsy.Form>
         );
     }
 });
