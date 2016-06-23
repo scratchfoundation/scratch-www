@@ -93,9 +93,15 @@
     },
     {
         "name": "teacherregistration",
-        "pattern": "^/register-teacher/?$",
+        "pattern": "^/educators/register$",
         "view": "teacherregistration/teacherregistration",
         "title": "Teacher Registration"
+    },
+    {
+        "name": "teacherwaitingroom",
+        "pattern": "^/educators/waiting",
+        "view": "teacherwaitingroom/teacherwaitingroom",
+        "title": "Thank you for requesting a Scratch Teacher Account"
     },
     {
         "name": "wedo2",

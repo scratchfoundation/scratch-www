@@ -301,10 +301,7 @@ module.exports = {
                         <Form onValidSubmit={this.props.onNextStep}>
                             <PhoneInput label={formatMessage({id: 'teacherRegistration.phoneNumber'})}
                                         name="phone"
-                                        defaultCountry={
-                                            (this.props.formData.user && this.props.formData.user.country) ||
-                                            this.props.defaultCountry
-                                        }
+                                        defaultCountry={this.props.defaultCountry}
                                         required />
                             <Checkbox label={formatMessage({id: 'teacherRegistration.phoneConsent'})}
                                       name="phoneConsent"
@@ -420,10 +417,7 @@ module.exports = {
         },
         getInitialState: function () {
             return {
-                countryChoice: (
-                    (this.props.formData.user && this.props.formData.user.country) ||
-                    this.props.defaultCountry
-                ),
+                countryChoice: this.props.defaultCountry,
                 waiting: false
             };
         },
@@ -644,33 +638,47 @@ module.exports = {
             );
         }
     })),
-    LastStep: intl.injectIntl(React.createClass({
+    TeacherApprovalStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                email: null,
+                invited: false
+            };
+        },
         render: function () {
             return (
                 <Slide className="last-step">
                     <h2>
-                        <intl.FormattedMessage id="teacherRegistration.lastStepTitle" />
+                        <intl.FormattedMessage id="registration.lastStepTitle" />
                     </h2>
                     <p className="description">
-                        <intl.FormattedMessage id="teacherRegistration.lastStepDescription" />
+                        <intl.FormattedMessage id="registration.lastStepDescription" />
                     </p>
-                    <Card className="confirm">
-                        <h4><intl.FormattedMessage id="teacherRegistration.confirmYourEmail" /></h4>
-                        <p>
-                            <intl.FormattedMessage id="teacherRegistration.confirmYourEmailDescription" /><br />
-                            <strong>{this.props.formData.user && this.props.formData.user.email}</strong>
-                        </p>
-                    </Card>
-                    <Card className="wait">
-                        <h4><intl.FormattedMessage id="teacherRegistration.waitForApproval" /></h4>
-                        <p>
-                            <intl.FormattedMessage id="teacherRegistration.waitForApprovalDescription" />
-                        </p>
-                    </Card>
+                    {this.props.confirmed || !this.props.email ?
+                        []
+                        :
+                        (<Card className="confirm">
+                            <h4><intl.FormattedMessage id="registration.confirmYourEmail" /></h4>
+                            <p>
+                                <intl.FormattedMessage id="registration.confirmYourEmailDescription" /><br />
+                                <strong>{this.props.email}</strong>
+                            </p>
+                        </Card>)
+                    }
+                    {this.props.invited ?
+                        <Card className="wait">
+                            <h4><intl.FormattedMessage id="registration.waitForApproval" /></h4>
+                            <p>
+                                <intl.FormattedMessage id="registration.waitForApprovalDescription" />
+                            </p>
+                        </Card>
+                        :
+                        []
+                    }
                     <Card className="resources">
-                        <h4><intl.FormattedMessage id="teacherRegistration.checkOutResources" /></h4>
+                        <h4><intl.FormattedMessage id="registration.checkOutResources" /></h4>
                         <p>
-                            <intl.FormattedHTMLMessage id="teacherRegistration.checkOutResourcesDescription" />
+                            <intl.FormattedHTMLMessage id="registration.checkOutResourcesDescription" />
                         </p>
                     </Card>
                 </Slide>
