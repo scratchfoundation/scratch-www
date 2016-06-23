@@ -8,11 +8,12 @@
 }
 
 select {
-    margin: .8rem 0;
+    transition: all .5s ease;
+    margin: .75rem 0;
     border: 1px solid $active-gray;
     border-radius: 5px;
-    background: $ui-light-gray url("../../../static/images/dropdown.png") no-repeat right center;
-    background-size: 1rem 1rem;
+    background: $ui-light-gray url("../../../static/svgs/forms/carot.svg") no-repeat right center;
+    padding-right: 4rem;
     width: 100%;
     height: 3rem;
     text-indent: 1rem;
@@ -20,7 +21,14 @@ select {
     appearance: none;
 
     &:focus {
+        transition: all .5s ease;
         outline: none;
+        border: 1px solid $ui-blue;
+    }
+
+    &:focus,
+    &:hover {
+        background: $ui-light-gray url("../../../static/svgs/forms/carot-hover.svg") no-repeat right center;
     }
 
     > option {

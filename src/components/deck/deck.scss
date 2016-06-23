@@ -7,8 +7,9 @@
     min-height: 100vh;
 
     img {
-        padding: 10px 0;
-        width: 125px;
+        margin-left: 2px;
+        padding: 12px 0;
+        width: 76px;
     }
 
     .step-navigation {
@@ -50,7 +51,7 @@
     padding: 3rem 4rem;
 
     .form-group {        
-        margin-bottom: 2rem;
+        margin-bottom: 1.2rem;
 
         &.has-error {
             .input {
@@ -118,12 +119,17 @@
     }
 }
 
-.radio {
-    width: 50%;
-    line-height: 3rem;
+@media only screen and (max-width: $mobile - 1) {
+    .card {
+        width: 22.5rem;
+    }
 
-    input {
-        margin-right: 1rem;
+    .form {
+        text-align: left;
+        
+        .button {
+            width: 22.5rem;
+        }
     }
 }
 

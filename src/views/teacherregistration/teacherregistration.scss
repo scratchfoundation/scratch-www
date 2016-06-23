@@ -3,6 +3,11 @@
 
 @include responsive-layout (".teacher-registration", ".slide");
 
+html,
+body {
+    background-color: $ui-purple;
+}
+
 .teacher-registration {
     background-color: $ui-purple;
 
@@ -14,14 +19,10 @@
     .other-input {
         float: right;
         width: 90%;
-    }
 
-    .gender-input {
-        margin-top: -5.75rem;
-    }
-
-    .other-input {
-        margin-top: -5.875rem;
+        .row {
+            margin-left: .5rem;
+        }
     }
 
     .username-step,
@@ -34,8 +35,21 @@
     }
 
     .demographics-step {
+        .gender-input {
+            margin-top: -5.5rem;
+        }
+
         .help-block {
             transform: translate(14rem, -4rem);
+        }
+
+        .radio {
+            margin-right: 2.5rem;
+            line-height: 3rem;
+
+            input {
+                margin-right: 1rem;
+            }
         }
     }
 
@@ -74,13 +88,31 @@
                 color: $ui-dark-gray;
             }
         }
+
+        input {
+            &[value="8"] {
+                margin: 1rem 0;
+            }
+        }
+
+        .other-input {
+            margin-top: -5.75rem;
+        }
     }
 
     .usescratch-step {
         .form {
             .form-group {
                 margin-bottom: 0;
+
+                &.has-error {
+                    .textarea {
+                        border: 1px solid $ui-orange;
+                    }
+                }
             }
+
+
         }
 
         .help-block {
@@ -118,14 +150,56 @@
     }
 }
 
+@media only screen and (max-width: $mobile - 1) {
+    .teacher-registration {
+        .demographics-step {
+            .radio {
+                width: 100%;
+                text-align: left;
+            }
+        }
+
+        .last-step {
+            .card {
+                margin: 0 auto;
+                width: 18.75rem;
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: $desktop - 1) {
     .teacher-registration {
         .username-step,
         .demographics-step,
-        .name-step{
+        .name-step {
             .help-block {
                 transform: none;
             }
-        } 
+        }
+
+        .phone-step {
+            .checkbox,
+            .help-block {
+                text-align: left;
+            }
+
+            .checkbox {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .organization-step {
+            .organization-type,
+            .url-input {
+                p {
+                    text-align: center;
+                }
+            }
+
+            .checkbox-group {
+                text-align: left;
+            }
+        }
     }
 }

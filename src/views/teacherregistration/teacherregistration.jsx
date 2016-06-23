@@ -79,8 +79,6 @@ var TeacherRegistration = React.createClass({
                     <Steps.RegistrationError {... this.state} />
                 :
                     <Progression {... this.state}>
-                        <Steps.UsernameStep     onNextStep={this.advanceStep}
-                                                waiting={this.state.waiting} />
                         <Steps.DemographicsStep onNextStep={this.advanceStep}
                                                 waiting={this.state.waiting} />
                         <Steps.NameStep         onNextStep={this.advanceStep}

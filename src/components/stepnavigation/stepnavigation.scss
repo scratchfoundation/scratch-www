@@ -8,14 +8,14 @@
 
     li {
         display: inline-block;
-        border-radius: 8px / $em;
-        padding: 4px / $em;
+        border-radius: 50%;
+        padding: .25rem;
 
         .indicator {
-            border-radius: 4px / $em;
+            border-radius: .25rem;
             background-color: $ui-white;
-            width: 8px / $em;
-            height: 8px / $em;
+            width: .5rem;
+            height: .5rem;
         }
 
         &.active {

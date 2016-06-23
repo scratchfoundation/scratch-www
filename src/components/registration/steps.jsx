@@ -537,6 +537,8 @@ module.exports = {
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
+            var textAreaClass = (this.state.characterCount > this.props.maxCharacters) ? 'fail' : '';
+            
             return (
                 <Slide className="usescratch-step">
                     <h2>
@@ -551,6 +553,7 @@ module.exports = {
                         <Form onValidSubmit={this.props.onNextStep}>
                             <TextArea label={formatMessage({id: 'teacherRegistration.howUseScratch'})}
                                       name="useScratch"
+                                      className={textAreaClass}
                                       onChange={this.handleTyping}
                                       validations={{
                                           maxLength: this.props.maxCharacters

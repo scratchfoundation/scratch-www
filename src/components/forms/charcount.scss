@@ -2,7 +2,9 @@
 
 p {
     &.char-count {
-        color: $active-dark-gray;
+        letter-spacing: 1px;
+        color: lighten($type-gray, 30%);
+        font-weight: 500;
 
         &.overmax {
             color: $ui-orange;

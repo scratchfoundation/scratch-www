@@ -20,7 +20,7 @@ var Tooltip = React.createClass({
         return (
             <span className={classes}>
                 <span className="tip">
-                    {this.props.title}
+                    <img src="/svgs/tooltip/info.svg" alt="info icon" />
                 </span>
                 <span className="expand">
                     {this.props.tipContent}

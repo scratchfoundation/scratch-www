@@ -95,7 +95,8 @@
         "name": "teacherregistration",
         "pattern": "^/educators/register$",
         "view": "teacherregistration/teacherregistration",
-        "title": "Teacher Registration"
+        "title": "Teacher Registration",
+        "viewportWidth": "device-width"
     },
     {
         "name": "teacherwaitingroom",

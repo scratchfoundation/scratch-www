@@ -19,7 +19,7 @@ var CharCount = React.createClass({
         );
         return (
             <p className={classes}>
-                ({this.props.currentCharacters}/{this.props.maxCharacters})
+                {this.props.currentCharacters}/{this.props.maxCharacters}
             </p>
         );
     }
