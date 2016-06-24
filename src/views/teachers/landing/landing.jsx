@@ -43,7 +43,7 @@ var Landing = injectIntl(React.createClass({
                             </a>
                             <a href="#teacher-accounts">
                                 <li>
-                                    <FormattedMessage id="teacherlanding.accountsAnchor" />
+                                    <FormattedMessage id="general.teacherAccounts" />
                                 </li>
                             </a>
                         </SubNavigation>
