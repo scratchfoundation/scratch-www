@@ -291,7 +291,7 @@ module.exports = {
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.phoneStepTitle" />
                     </h2>
-                    <p>
+                    <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.phoneStepDescription" />
                         <Tooltip title={'?'}
                                  tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
@@ -359,7 +359,7 @@ module.exports = {
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.orgStepTitle" />
                     </h2>
-                    <p>
+                    <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.orgStepDescription" />
                         <Tooltip title={'?'}
                                  tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
@@ -448,7 +448,7 @@ module.exports = {
                     return this.props.onNextStep(formData);
                 } else {
                     return invalidate({
-                        'all': <FormattedMessage id="teacherRegistration.addressValidationError" />
+                        'all': <intl.FormattedMessage id="teacherRegistration.addressValidationError" />
                     });
                 }
             }.bind(this));
@@ -693,7 +693,7 @@ module.exports = {
                 <Slide className="error-step">
                     <h2>Something went wrong</h2>
                     <Card>
-                        <h2>There was an error while processing your registration</h2>
+                        <h4>There was an error while processing your registration</h4>
                         <p>
                             {this.props.registrationError}
                         </p>
