@@ -1,4 +1,5 @@
 var classNames = require('classnames');
+var connect = require('react-redux').connect;
 var React = require('react');
 
 var sessionActions = require('../../redux/session.js');
@@ -71,4 +72,12 @@ var TeacherBanner = React.createClass({
     }
 });
 
-module.exports = TeacherBanner;
+var mapStateToProps = function (state) {
+    return {
+        session: state.session
+    };
+};
+
+var ConnectedTeacherBanner = connect(mapStateToProps)(TeacherBanner);
+
+module.exports = ConnectedTeacherBanner;
