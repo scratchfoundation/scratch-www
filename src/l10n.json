@@ -92,14 +92,17 @@
     "general.stories": "Stories",
     "general.results": "Results",
 
+    "general.teacherAccounts": "Teacher Accounts",
+
+
     "footer.discuss": "Discussion Forums",
     "footer.help": "Help Page",
     "footer.scratchFamily": "Scratch Family",
 
     "login.forgotPassword": "Forgot Password?",
-    
+
     "navigation.signOut": "Sign out",
-    
+
     "parents.FaqAgeRangeA": "While Scratch is primarily designed for 8 to 16 year olds, it is also used by people of all ages, including younger children with their parents.",
     "parents.FaqAgeRangeQ": "What is the age range for Scratch?",
     "parents.FaqResourcesQ": "What resources are available for learning Scratch?",
