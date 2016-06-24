@@ -1,6 +1,11 @@
-var React = require('react');
 var classNames = require('classnames');
+var defaults = require('lodash.defaultsdeep');
+var FRCSelect = require('formsy-react-components').Select;
+var React = require('react');
+var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
+var inputHOC = require('./input-hoc.jsx');
 
+require('./row.scss');
 require('./select.scss');
 
 var Select = React.createClass({
@@ -13,12 +18,16 @@ var Select = React.createClass({
             'select',
             this.props.className
         );
+        var props = this.props;
+        if (this.props.required && !this.props.value) {
+            props = defaults({}, this.props, {value: this.props.options[0].value});
+        }
         return (
-            <select {... this.props} className={classes}>
-                {this.props.children}
-            </select>
+            <div className={classes}>
+                <FRCSelect {... props} />
+            </div>
         );
     }
 });
 
-module.exports = Select;
+module.exports = inputHOC(defaultValidationHOC(Select));

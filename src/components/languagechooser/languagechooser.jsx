@@ -1,9 +1,9 @@
 var classNames = require('classnames');
 var React = require('react');
 
-var Api = require('../../mixins/api.jsx');
 var jar  = require('../../lib/jar.js');
 var languages = require('../../../languages.json');
+var Form = require('../forms/form.jsx');
 var Select = require('../forms/select.jsx');
 
 /**
@@ -11,18 +11,14 @@ var Select = require('../forms/select.jsx');
  */
 var LanguageChooser = React.createClass({
     type: 'LanguageChooser',
-    mixins: [
-        Api
-    ],
     getDefaultProps: function () {
         return {
             languages: languages,
             locale: window._locale
         };
     },
-    onSetLanguage: function (e) {
-        e.preventDefault();
-        jar.set('scratchlanguage', e.target.value);
+    onSetLanguage: function (name, value) {
+        jar.set('scratchlanguage', value);
         window.location.reload();
     },
     render: function () {
@@ -30,17 +26,17 @@ var LanguageChooser = React.createClass({
             'language-chooser',
             this.props.className
         );
-
+        var languageOptions = Object.keys(this.props.languages).map(function (value) {
+            return {value: value, label: this.props.languages[value]};
+        }.bind(this));
         return (
-            <div className={classes}>
-                <Select name="language" defaultValue={this.props.locale} onChange={this.onSetLanguage}>
-                    {Object.keys(this.props.languages).map(function (value) {
-                        return <option value={value} key={value}>
-                                    {this.props.languages[value]}
-                                </option>;
-                    }.bind(this))}
-                </Select>
-            </div>
+            <Form className={classes}>
+                <Select name="language"
+                        options={languageOptions}
+                        defaultValue={this.props.locale}
+                        onChange={this.onSetLanguage}
+                        required />
+            </Form>
         );
     }
 });

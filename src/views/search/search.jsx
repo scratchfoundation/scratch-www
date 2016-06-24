@@ -3,7 +3,7 @@ var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var Api = require('../../mixins/api.jsx');
+var api = require('../../lib/api');
 
 var Page = require('../../components/page/www/page.jsx');
 var Box = require('../../components/box/box.jsx');
@@ -16,9 +16,6 @@ require('./search.scss');
 // @todo migrate to React-Router once available
 var Search = injectIntl(React.createClass({
     type: 'Search',
-    mixins: [
-        Api
-    ],
     getDefaultProps: function () {
         var query = window.location.search;
         var pathname = window.location.pathname.toLowerCase();
@@ -60,7 +57,7 @@ var Search = injectIntl(React.createClass({
         if (this.props.searchTerm !== '') {
             termText = '&q=' + this.props.searchTerm;
         }
-        this.api({
+        api({
             uri: '/search/' + this.props.tab +
                  '?limit=' + this.props.loadNumber +
                  '&offset=' + this.state.offset +

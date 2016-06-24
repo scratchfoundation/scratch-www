@@ -68,6 +68,12 @@
         "title": "FAQ"
     },
     {
+        "name": "educator-landing",
+        "pattern": "^/educators/?$",
+        "view": "teachers/landing/landing",
+        "title": "Educators"
+    },
+    {
         "name": "teacher-faq",
         "pattern": "^/educators/faq/?$",
         "view": "teachers/faq/faq",
@@ -90,6 +96,19 @@
         "pattern": "^/jobs/?$",
         "view": "jobs/jobs",
         "title": "Jobs"
+    },
+    {
+        "name": "teacherregistration",
+        "pattern": "^/educators/register$",
+        "view": "teacherregistration/teacherregistration",
+        "title": "Teacher Registration",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "teacherwaitingroom",
+        "pattern": "^/educators/waiting",
+        "view": "teacherwaitingroom/teacherwaitingroom",
+        "title": "Thank you for requesting a Scratch Teacher Account"
     },
     {
         "name": "wedo2",

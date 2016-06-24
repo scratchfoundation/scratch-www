@@ -1,9 +1,38 @@
 @import "../../colors";
+@import "../../frameless";
 
 .select {
-    background-color: $ui-white;
-    width: 220px;
-    height: 28px;
-    line-height: 28px;
-    font-size: 1em;
+    label {
+        font-weight: 500;
+    }
+}
+
+select {
+    transition: all .5s ease;
+    margin: .75rem 0;
+    border: 1px solid $active-gray;
+    border-radius: 5px;
+    background: $ui-light-gray url("../../../static/svgs/forms/carot.svg") no-repeat right center;
+    padding-right: 4rem;
+    width: 100%;
+    height: 3rem;
+    text-indent: 1rem;
+    font-size: .875rem;
+    appearance: none;
+
+    &:focus {
+        transition: all .5s ease;
+        outline: none;
+        border: 1px solid $ui-blue;
+    }
+
+    &:focus,
+    &:hover {
+        background: $ui-light-gray url("../../../static/svgs/forms/carot-hover.svg") no-repeat right center;
+    }
+
+    > option {
+        background-color: $ui-white;
+        width: 100%;
+    }
 }

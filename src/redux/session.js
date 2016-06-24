@@ -1,7 +1,7 @@
 var keyMirror = require('keymirror');
 var defaults = require('lodash.defaults');
 
-var api = require('../mixins/api.jsx').api;
+var api = require('../lib/api');
 var tokenActions = require('./token.js');
 
 var Types = keyMirror({

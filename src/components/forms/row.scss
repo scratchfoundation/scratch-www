@@ -1,0 +1,11 @@
+/*
+ * Styles for the Row component used by formsy-react-components
+ * Should be imported for each component that extends one of
+ * the formsy-react-components
+ */
+
+.form-group {
+    .required-symbol {
+        display: none;
+    }
+}

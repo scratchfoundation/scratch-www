@@ -1,30 +1,34 @@
 @import "../../colors";
+@import "../../frameless";
 
-$base-bg: $ui-white;
-$focus-bg: lighten($ui-blue, 35%);
-$fail-bg: lighten($ui-orange, 35%);
+$base-bg: $ui-light-gray;
 $pass-bg: lighten($ui-aqua, 35%);
 
+.row {
+    label {
+        font-weight: 500;
+    }
+}
+
 .input {
-    transition: all 1s ease;
-    margin: .5em 0;
+    transition: all .5s ease;
+    margin: .75rem 0;
     border: 1px solid $active-gray;
     border-radius: 5px;
     background-color: $base-bg;
-    padding: .75em 1em;
+    padding: 0 1rem;
+    height: 3rem;
     color: $type-gray;
-    font-size: .8rem;
+    font-size: .875rem;
 
     &:focus {
-        transition: all 1s ease;
+        transition: all .5s ease;
         outline: none;
-        border: 1px solid $active-dark-gray;
-        background-color: $focus-bg;
+        border: 1px solid $ui-blue;
     }
 
     &.fail {
-        border: 1px solid $active-dark-gray;
-        background-color: $fail-bg;
+        border: 1px solid $ui-orange;
     }
 
     &.pass {

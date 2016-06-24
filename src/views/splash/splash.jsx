@@ -2,13 +2,12 @@ var connect = require('react-redux').connect;
 var injectIntl = require('react-intl').injectIntl;
 var omit = require('lodash.omit');
 var React = require('react');
-var render = require('../../lib/render.jsx');
 
+var api = require('../../lib/api');
 var permissionsActions = require('../../redux/permissions.js');
+var render = require('../../lib/render.jsx');
 var sessionActions = require('../../redux/session.js');
 var shuffle = require('../../lib/shuffle.js').shuffle;
-
-var Api = require('../../mixins/api.jsx');
 
 var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
@@ -27,9 +26,6 @@ require('./splash.scss');
 
 var Splash = injectIntl(React.createClass({
     type: 'Splash',
-    mixins: [
-        Api
-    ],
     getInitialState: function () {
         return {
             projectCount: 14000000, // gets the shared project count
@@ -97,42 +93,42 @@ var Splash = injectIntl(React.createClass({
         }
     },
     getActivity: function () {
-        this.api({
+        api({
             uri: '/proxy/users/' + this.props.session.session.user.username + '/activity?limit=5'
         }, function (err, body) {
             if (!err) this.setState({activity: body});
         }.bind(this));
     },
     getFeaturedGlobal: function () {
-        this.api({
+        api({
             uri: '/proxy/featured'
         }, function (err, body) {
             if (!err) this.setState({featuredGlobal: body});
         }.bind(this));
     },
     getFeaturedCustom: function () {
-        this.api({
+        api({
             uri: '/proxy/users/' + this.props.session.session.user.id + '/featured'
         }, function (err, body) {
             if (!err) this.setState({featuredCustom: body});
         }.bind(this));
     },
     getNews: function () {
-        this.api({
+        api({
             uri: '/news?limit=3'
         }, function (err, body) {
             if (!err) this.setState({news: body});
         }.bind(this));
     },
     getProjectCount: function () {
-        this.api({
+        api({
             uri: '/projects/count/all'
         }, function (err, body) {
             if (!err) this.setState({projectCount: body.count});
         }.bind(this));
     },
     refreshHomepageCache: function () {
-        this.api({
+        api({
             host: '',
             uri: '/scratch_admin/homepage/clear-cache/',
             method: 'post',
@@ -168,7 +164,7 @@ var Splash = injectIntl(React.createClass({
         this.setState({emailConfirmationModalOpen: false});
     },
     handleDismiss: function (cue) {
-        this.api({
+        api({
             host: '',
             uri: '/site-api/users/set-template-cue/',
             method: 'post',

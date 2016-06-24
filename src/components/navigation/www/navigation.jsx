@@ -7,7 +7,7 @@ var injectIntl = ReactIntl.injectIntl;
 
 var sessionActions = require('../../../redux/session.js');
 
-var Api = require('../../../mixins/api.jsx');
+var api = require('../../../lib/api');
 var Avatar = require('../../avatar/avatar.jsx');
 var Button = require('../../forms/button.jsx');
 var Dropdown = require('../../dropdown/dropdown.jsx');
@@ -24,9 +24,6 @@ Modal.setAppElement(document.getElementById('view'));
 
 var Navigation = React.createClass({
     type: 'Navigation',
-    mixins: [
-        Api
-    ],
     getInitialState: function () {
         return {
             accountNavOpen: false,
@@ -85,7 +82,7 @@ var Navigation = React.createClass({
         return '/users/' + this.props.session.session.user.username + '/';
     },
     getMessageCount: function () {
-        this.api({
+        api({
             method: 'get',
             uri: '/users/' + this.props.session.session.user.username + '/messages/count'
         }, function (err, body) {
@@ -110,7 +107,7 @@ var Navigation = React.createClass({
     handleLogIn: function (formData, callback) {
         this.setState({'loginError': null});
         formData['useMessages'] = true;
-        this.api({
+        api({
             method: 'post',
             host: '',
             uri: '/accounts/login/',
@@ -142,7 +139,7 @@ var Navigation = React.createClass({
     },
     handleLogOut: function (e) {
         e.preventDefault();
-        this.api({
+        api({
             host: '',
             method: 'post',
             uri: '/accounts/logout/',
@@ -220,7 +217,8 @@ var Navigation = React.createClass({
                             <Input type="text"
                                    aria-label={formatMessage({id: 'general.search'})}
                                    placeholder={formatMessage({id: 'general.search'})}
-                                   name="q" />
+                                   name="q"
+                                   noformsy />
                         </form>
                     </li>
                     {this.props.session.status === sessionActions.Status.FETCHED ? (

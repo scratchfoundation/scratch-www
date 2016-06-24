@@ -19,10 +19,10 @@ var ConferenceFooter = React.createClass({
                                      alt="MIT Office of Digital Learning" />
                             </a>
                         </li>
-                        <li className="scratchfoundation">
-                            <a href="http://www.scratchfoundation.org/">
-                                <img src="/images/conference/footer/scratch-foundation.png"
-                                     alt="Scratch Foundation" />
+                        <li className="intel">
+                            <a href="http://www.intel.com/content/www/us/en/homepage.html">
+                                <img src="/images/conference/footer/intel.png"
+                                     alt="Intel" />
                             </a>
                         </li>
                         <li className="lego">
@@ -49,10 +49,10 @@ var ConferenceFooter = React.createClass({
                                      alt="No Starch Press" />
                             </a>
                         </li>
-                        <li className="intel">
-                            <a href="http://www.intel.com/content/www/us/en/homepage.html">
-                                <img src="/images/conference/footer/intel.png"
-                                     alt="Intel" />
+                        <li className="scratchfoundation">
+                            <a href="http://www.scratchfoundation.org/">
+                                <img src="/images/conference/footer/scratch-foundation.png"
+                                     alt="Scratch Foundation" />
                             </a>
                         </li>
                     </FlexRow>

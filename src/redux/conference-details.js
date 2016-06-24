@@ -1,5 +1,5 @@
 var keyMirror = require('keymirror');
-var api = require('../mixins/api.jsx').api;
+var api = require('../lib/api');
 
 var Types = keyMirror({
     SET_DETAILS: null,
