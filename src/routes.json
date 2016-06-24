@@ -68,6 +68,12 @@
         "title": "FAQ"
     },
     {
+        "name": "educator-landing",
+        "pattern": "^/educators/?$",
+        "view": "teachers/landing/landing",
+        "title": "Educators"
+    },
+    {
         "name": "teacher-faq",
         "pattern": "^/educators/faq/?$",
         "view": "teachers/faq/faq",
