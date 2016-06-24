@@ -6,6 +6,8 @@ var languages = require('../../../languages.json');
 var Form = require('../forms/form.jsx');
 var Select = require('../forms/select.jsx');
 
+require('./languagechooser.scss');
+
 /**
  * Footer dropdown menu that allows one to change their language.
  */
