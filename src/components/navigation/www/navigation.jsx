@@ -259,14 +259,14 @@ var Navigation = React.createClass({
                                             <FormattedMessage id="general.myStuff" />
                                         </a>
                                     </li>
-                                    {this.props.session.session.permissions.educator ? [
+                                    {this.props.permissions.educator ? [
                                         <li>
                                             <a href="/educators/classes/">
                                                 <FormattedMessage id="general.myClasses" />
                                             </a>
                                         </li>
                                     ] : []}
-                                    {this.props.session.session.permissions.student ? [
+                                    {this.props.permissions.student ? [
                                         <li>
                                             <a href={'/classes/' + this.props.session.session.user.classroomId + '/'}>
                                                 <FormattedMessage id="general.myClass" />
@@ -335,7 +335,8 @@ var Navigation = React.createClass({
 
 var mapStateToProps = function (state) {
     return {
-        session: state.session
+        session: state.session,
+        permissions: state.permissions
     };
 };
 

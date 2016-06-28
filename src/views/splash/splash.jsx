@@ -4,7 +4,6 @@ var omit = require('lodash.omit');
 var React = require('react');
 
 var api = require('../../lib/api');
-var permissionsActions = require('../../redux/permissions.js');
 var render = require('../../lib/render.jsx');
 var sessionActions = require('../../redux/session.js');
 var shuffle = require('../../lib/shuffle.js').shuffle;
@@ -61,15 +60,6 @@ var Splash = injectIntl(React.createClass({
                 window.removeEventListener('message', this.onMessage);
             }
         }
-    },
-    componentWillReceiveProps: function () {
-        // Determine whether to show the teacher banner or not
-        this.props.dispatch(permissionsActions.getPermissions());
-    },
-    componentWillMount: function () {
-        // Determine whether to show the teacher banner or not
-        // Needed still for initial render
-        this.props.dispatch(permissionsActions.getPermissions());
     },
     componentDidMount: function () {
         this.getFeaturedGlobal();

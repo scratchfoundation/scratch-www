@@ -6,6 +6,7 @@ var ReactDOM = require('react-dom');
 var StoreProvider = require('react-redux').Provider;
 
 var IntlProvider = require('./intl.jsx').IntlProvider;
+var permissionsActions = require('../redux/permissions.js');
 var sessionActions = require('../redux/session.js');
 var reducer = require('../redux/reducer.js');
 
@@ -42,7 +43,8 @@ var render = function (jsx, element) {
         element
     );
 
-    // Get initial session
+    // Get initial session & permissions
+    store.dispatch(permissionsActions.getPermissions());
     store.dispatch(sessionActions.refreshSession());
 };
 

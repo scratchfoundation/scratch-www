@@ -2,6 +2,7 @@ var keyMirror = require('keymirror');
 var defaults = require('lodash.defaults');
 
 var api = require('../lib/api');
+var permissionsActions = require('./permissions.js');
 var tokenActions = require('./token.js');
 
 var Types = keyMirror({
@@ -75,6 +76,9 @@ module.exports.refreshSession = function () {
                     dispatch(tokenActions.getToken());
                     dispatch(module.exports.setSession(body));
                     dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
+
+                    // get the permissions from the updated session
+                    dispatch(permissionsActions.getPermissions());
                     return;
                 }
             }
