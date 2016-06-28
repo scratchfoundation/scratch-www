@@ -18,7 +18,7 @@ module.exports.getInitialState = function () {
     return {status: module.exports.Status.NOT_REFRESHED};
 };
 
-module.exports.cacheReducer = function (state, action) {
+module.exports.reducer = function (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
         state = module.exports.getInitialState();

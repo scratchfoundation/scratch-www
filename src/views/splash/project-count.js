@@ -18,7 +18,7 @@ module.exports.getInitialState = function () {
     return {status: module.exports.Status.FETCHING, projectCount: 15000000};
 };
 
-module.exports.countReducer = function (state, action) {
+module.exports.reducer = function (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
         state = module.exports.getInitialState();

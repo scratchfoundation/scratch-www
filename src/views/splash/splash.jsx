@@ -233,13 +233,13 @@ var mapStateToProps = function (state) {
 var ConnectedSplash = connect(mapStateToProps)(View);
 
 var reducers = {
-    session: session.sessionReducer,
-    permissions: permissions.permissionsReducer,
-    rows: splashRows.rowReducer,
-    activity: activity.activityReducer,
-    news: news.newsReducer,
-    projectCount: projectCount.countReducer,
-    homepageCache: homepageCache.cacheReducer
+    session: session.reducer,
+    permissions: permissions.reducer,
+    rows: splashRows.reducer,
+    activity: activity.reducer,
+    news: news.reducer,
+    projectCount: projectCount.reducer,
+    homepageCache: homepageCache.reducer
 };
 
 render(<Page><ConnectedSplash /></Page>, document.getElementById('app'), reducers);

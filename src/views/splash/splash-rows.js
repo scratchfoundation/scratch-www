@@ -25,7 +25,7 @@ module.exports.getInitialState = function (){
     };
 };
 
-module.exports.rowReducer = function (state, action) {
+module.exports.reducer = function (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
         state = module.exports.getInitialState();

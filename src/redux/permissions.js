@@ -6,7 +6,7 @@ var Types = keyMirror({
     SET_PERMISSIONS_ERROR: null
 });
 
-module.exports.permissionsReducer = function (state, action) {
+module.exports.reducer = function (state, action) {
     if (typeof state === 'undefined') {
         state = '';
     }
