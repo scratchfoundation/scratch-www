@@ -62,8 +62,13 @@ var Splash = injectIntl(React.createClass({
             }
         }
     },
+    componentWillReceiveProps: function () {
+        // Determine whether to show the teacher banner or not
+        this.props.dispatch(permissionsActions.getPermissions());
+    },
     componentWillMount: function () {
         // Determine whether to show the teacher banner or not
+        // Needed still for initial render
         this.props.dispatch(permissionsActions.getPermissions());
     },
     componentDidMount: function () {
