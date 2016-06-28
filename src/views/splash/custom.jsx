@@ -1,7 +1,7 @@
 var React = require('react');
 
-var Box = require('../../../components/box/box.jsx');
-var Carousel = require('../../../components/carousel/carousel.jsx');
+var Box = require('../../components/box/box.jsx');
+var Carousel = require('../../components/carousel/carousel.jsx');
 
 require('./splash.scss');
 

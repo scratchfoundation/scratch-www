@@ -1,6 +1,8 @@
 var keyMirror = require('keymirror');
-var api = require('../mixins/api.jsx').api;
+var api = require('../../mixins/api.jsx').api;
 var defaultsDeep = require('lodash.defaultsdeep');
+
+var sessionActions = require('../../redux/session.js');
 
 var Types = keyMirror({
     SET_STATUS: null,
@@ -8,17 +10,16 @@ var Types = keyMirror({
 });
 
 module.exports.Status = keyMirror({
-    PASS: null,
-    NOT_REFRESHED: null,
-    IN_PROGRESS: null,
-    FAIL: null
+    HANDLED: null,
+    NOT_HANDLED: null,
+    HANDLING: null
 });
 
 module.exports.getInitialState = function () {
-    return {status: module.exports.Status.NOT_REFRESHED};
+    return {status: module.exports.Status.NOT_HANDLED};
 };
 
-module.exports.cacheReducer = function (state, action) {
+module.exports.dismissReducer = function (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
         state = module.exports.getInitialState();
@@ -49,19 +50,21 @@ module.exports.setStatus = function (status){
     };
 };
 
-module.exports.refreshHomepageCache = function () {
+module.exports.handleDismiss = function (cue) {
     return function (dispatch) {
-        dispatch(module.exports.setStatus(module.exports.Status.IN_PROGRESS));
+        dispatch(module.exports.setStatus(module.exports.Status.HANDLING));
         api({
             host: '',
-            uri: '/scratch_admin/homepage/clear-cache/',
+            uri: '/site-api/users/set-template-cue/',
             method: 'post',
-            useCsrf: true
+            useCsrf: true,
+            json: {cue: cue, value: false}
         }, function (err) {
             if (err) {
-                dispatch(module.exports.setStatus(module.exports.Status.FAIL));
+                dispatch(module.exports.setError(err));
             } else {
-                dispatch(module.exports.setStatus(module.exports.Status.PASS));
+                dispatch(sessionActions.refreshSession());
+                dispatch(module.exports.setStatus(module.exports.Status.HANDLED));
             }
         });
     };

@@ -1,7 +1,7 @@
 var React = require('react');
 
-var Modal = require('../../../components/modal/modal.jsx');
-var DropdownBanner = require('../../../components/dropdown-banner/banner.jsx');
+var Modal = require('../../components/modal/modal.jsx');
+var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
 
 var omit = require('lodash.omit');
 

@@ -1,13 +1,13 @@
 var classNames = require('classnames');
 var React = require('react');
 
-var sessionActions = require('../../../../redux/session.js');
+var sessionActions = require('../../redux/session.js');
 
-var TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
-var Button = require('../../../../components/forms/button.jsx');
-var FlexRow = require('../../../../components/flex-row/flex-row.jsx');
+var TitleBanner = require('../../components/title-banner/title-banner.jsx');
+var Button = require('../../components/forms/button.jsx');
+var FlexRow = require('../../components/flex-row/flex-row.jsx');
 
-require('./teacher-banner.scss');
+require('./splash.scss');
 
 var TeacherBanner = React.createClass({
     type: 'TeacherBanner',

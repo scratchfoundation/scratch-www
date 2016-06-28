@@ -1,8 +1,6 @@
 var keyMirror = require('keymirror');
-var api = require('../mixins/api.jsx').api;
+var api = require('../../mixins/api.jsx').api;
 var defaultsDeep = require('lodash.defaultsdeep');
-
-var sessionActions = require('./session.js');
 
 var Types = keyMirror({
     SET_STATUS: null,
@@ -10,16 +8,17 @@ var Types = keyMirror({
 });
 
 module.exports.Status = keyMirror({
-    HANDLED: null,
-    NOT_HANDLED: null,
-    HANDLING: null
+    PASS: null,
+    NOT_REFRESHED: null,
+    IN_PROGRESS: null,
+    FAIL: null
 });
 
 module.exports.getInitialState = function () {
-    return {status: module.exports.Status.NOT_HANDLED};
+    return {status: module.exports.Status.NOT_REFRESHED};
 };
 
-module.exports.dismissReducer = function (state, action) {
+module.exports.cacheReducer = function (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
         state = module.exports.getInitialState();
@@ -50,21 +49,19 @@ module.exports.setStatus = function (status){
     };
 };
 
-module.exports.handleDismiss = function (cue) {
+module.exports.refreshHomepageCache = function () {
     return function (dispatch) {
-        dispatch(module.exports.setStatus(module.exports.Status.HANDLING));
+        dispatch(module.exports.setStatus(module.exports.Status.IN_PROGRESS));
         api({
             host: '',
-            uri: '/site-api/users/set-template-cue/',
+            uri: '/scratch_admin/homepage/clear-cache/',
             method: 'post',
-            useCsrf: true,
-            json: {cue: cue, value: false}
+            useCsrf: true
         }, function (err) {
             if (err) {
-                dispatch(module.exports.setError(err));
+                dispatch(module.exports.setStatus(module.exports.Status.FAIL));
             } else {
-                dispatch(sessionActions.refreshSession());
-                dispatch(module.exports.setStatus(module.exports.Status.HANDLED));
+                dispatch(module.exports.setStatus(module.exports.Status.PASS));
             }
         });
     };

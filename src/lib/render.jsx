@@ -2,21 +2,21 @@ var redux = require('redux');
 var thunk = require('redux-thunk').default;
 // JSX syntax transforms to React.createElement
 var React = require('react'); // eslint-disable-line
+var combineReducers = require('redux').combineReducers;
 var ReactDOM = require('react-dom');
 var StoreProvider = require('react-redux').Provider;
 
 var IntlProvider = require('./intl.jsx').IntlProvider;
 var sessionActions = require('../redux/session.js');
-var reducer = require('../redux/reducer.js');
 
 require('../main.scss');
 
-var store = redux.createStore(
-    reducer,
-    redux.applyMiddleware(thunk)
-);
+var render = function (jsx, element, reducers) {
+    var store = redux.createStore(
+        combineReducers(reducers),
+        redux.applyMiddleware(thunk)
+    ); //TODO: spread things
 
-var render = function (jsx, element) {
     // Get locale and messages from global namespace (see "init.js")
     var locale = window._locale || 'en';
     var messages = {};

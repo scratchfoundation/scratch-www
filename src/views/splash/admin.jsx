@@ -1,11 +1,11 @@
-var React = require('react');
+var React = require('react'); // eslint-disable-line
 
-var AdminPanel = require('../../../components/adminpanel/adminpanel.jsx');
-var Button = require('../../../components/forms/button.jsx');
+var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
+var Button = require('../../components/forms/button.jsx');
 
 require('./splash.scss');
 
-var SplashAdmin = (props) => {
+var SplashAdmin = function (props) {
     return (
             <AdminPanel>
                 <dt>Tools</dt>

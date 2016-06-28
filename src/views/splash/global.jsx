@@ -1,11 +1,11 @@
-var React = require('react');
+var React = require('react'); // eslint-disable-line
 
-var Box = require('../../../components/box/box.jsx');
-var Carousel = require('../../../components/carousel/carousel.jsx');
+var Box = require('../../components/box/box.jsx');
+var Carousel = require('../../components/carousel/carousel.jsx');
 
 require('./splash.scss');
 
-var GlobalRows = (props) => {
+var GlobalRows = function (props) {
     var formatMessage = props.intl.formatMessage;
     return (
         <div>
