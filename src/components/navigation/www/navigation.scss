@@ -18,7 +18,7 @@
             height: 50px;
 
             &:hover {
-                transition: .15s ease all; 
+                transition: .15s ease all;
                 background-size: 100%;
             }
         }
@@ -49,7 +49,7 @@
                 height: 14px;
 
                 &[type=text] {
-                    transition: .15s ease background-color; 
+                    transition: .15s ease background-color;
                     padding: 0;
                     padding-right: 10px;
                     padding-left: 40px;
@@ -76,14 +76,14 @@
 
             .btn-search {
                 position: absolute;
-                
+
                 box-shadow: none;
                 background-color: transparent;
                 background-image: url("/images/nav-search-glass.png");
                 background-repeat: no-repeat;
-                background-position: center center;     
+                background-position: center center;
                 background-size: 14px 14px;
-                
+
                 width: 40px;
                 height: 40px;
 
@@ -186,9 +186,11 @@
         }
 
         .dropdown {
+            top: 50px;
             padding: 0;
             padding-top: 5px;
             width: 100%;
+            box-sizing: border-box;
         }
     }
 }
