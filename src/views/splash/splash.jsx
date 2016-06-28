@@ -3,6 +3,9 @@ var injectIntl = require('react-intl').injectIntl;
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
+var shuffle = require('../../lib/shuffle.js').shuffle;
+var omit = require('lodash.omit');
+
 var permissions = require('../../redux/permissions.js');
 var session = require('../../redux/session.js');
 var splashRows = require('./splash-rows.js');
@@ -11,9 +14,6 @@ var news = require('./news.js');
 var projectCount = require('./project-count.js');
 var homepageCache = require('./homepage-cache.js');
 var templateCue = require('./template-cue.js');
-var shuffle = require('../../lib/shuffle.js').shuffle;
-
-var omit = require('lodash.omit');
 
 var GlobalRows = require('./global.jsx');
 var CustomRows = require('./custom.jsx');
@@ -210,8 +210,8 @@ var View = injectIntl(React.createClass({
                             topLoved={shuffle(this.props.rows.global.community_most_loved_projects)}
                             topRemixed={shuffle(this.props.rows.global.community_most_remixed_projects)}/>
 
-                        <SplashAdmin refreshHomepageCache={homepageCache.refreshHomepageCache}
-                            homepageCacheState={homepageCacheState}/>
+                    <SplashAdmin refreshHomepageCache={homepageCache.refreshHomepageCache}
+                        homepageCacheState={homepageCacheState}/>
                 </div>
             </div>
         );
@@ -240,6 +240,6 @@ var reducers = {
     news: news.reducer,
     projectCount: projectCount.reducer,
     homepageCache: homepageCache.reducer
-};
+}; //TODO: is there a nicer way to do this?
 
 render(<Page><ConnectedSplash /></Page>, document.getElementById('app'), reducers);
