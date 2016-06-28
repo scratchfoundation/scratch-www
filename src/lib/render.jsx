@@ -1,5 +1,7 @@
 var redux = require('redux');
 var thunk = require('redux-thunk').default;
+var merge = require('lodash.merge');
+
 // JSX syntax transforms to React.createElement
 var React = require('react'); // eslint-disable-line
 var combineReducers = require('redux').combineReducers;
@@ -9,13 +11,20 @@ var StoreProvider = require('react-redux').Provider;
 var IntlProvider = require('./intl.jsx').IntlProvider;
 var sessionActions = require('../redux/session.js');
 
+var session = require('../redux/session.js');
+var permissions = require('../redux/permissions.js');
+var token = require('../redux/token.js');
+
 require('../main.scss');
 
 var render = function (jsx, element, reducers) {
     var store = redux.createStore(
-        combineReducers(reducers),
-        redux.applyMiddleware(thunk)
-    ); //TODO: spread things
+        combineReducers(merge(reducers, {
+            session: session.reducer,
+            permissions: permissions.reducer,
+            token: token.reducer
+        })),
+        redux.applyMiddleware(thunk));
 
     // Get locale and messages from global namespace (see "init.js")
     var locale = window._locale || 'en';
