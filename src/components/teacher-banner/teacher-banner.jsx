@@ -58,7 +58,7 @@ var TeacherBanner = React.createClass({
                                         {this.props.messages['teacherbanner.resourcesButton']}
                                     </Button>
                                 </a>,
-                                <a href="/info/educators/faq">
+                                <a href="/educators/faq">
                                     <Button>
                                         {this.props.messages['teacherbanner.faqButton']}
                                     </Button>
