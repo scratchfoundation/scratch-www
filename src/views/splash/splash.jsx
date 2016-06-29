@@ -23,7 +23,7 @@ var TeacherBanner = require('./teacher-banner.jsx');
 
 var Modal = require('../../components/modal/modal.jsx');
 var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
-var Activity = require('../../components/activity/activity.jsx');
+var Activity = require('./activity.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var News = require('../../components/news/news.jsx');
 var Page = require('../../components/page/www/page.jsx');
@@ -192,12 +192,15 @@ var View = injectIntl(React.createClass({
                                              onDismiss={templateCue.handleDismiss('welcome')}
                                              messages={messages} />
                                 ] : [
-                                    <Activity key="activity" items={this.props.activity.activity} />
+                                    <Activity key="activity"
+                                        items={this.props.activity.activity}
+                                        intl={this.props.intl}/>
                                 ]}
                                 <News items={this.props.news.news} messages={messages} />
                             </div>
                         ] : [
-                            <Intro projectCount={this.props.projectCount.projectCount} messages={messages} key="intro"/>
+                            <Intro projectCount={this.props.projectCount.projectCount} messages={messages}
+                                refreshSession={session.refreshSession()} key="intro"/>
                         ]) : []
                     }
 
