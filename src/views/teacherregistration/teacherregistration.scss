@@ -128,7 +128,8 @@ body {
         }
     }
 
-    .last-step {
+    .last-step,
+    .error-step {
         &.slide {
             max-width: 38.75rem;
         }
@@ -159,7 +160,8 @@ body {
             }
         }
 
-        .last-step {
+        .last-step,
+        .error-step {
             .card {
                 margin: 0 auto;
                 width: 18.75rem;
