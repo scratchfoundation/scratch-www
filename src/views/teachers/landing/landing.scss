@@ -214,12 +214,19 @@ $story-width: $cols3;
             }
 
             button {
-                background-color: $ui-white;
+                border: 2px solid $ui-white;
+                border-radius: 50px;
+                box-shadow: none;
+                background-color: transparent;
                 padding: 16px 16px;
                 width: $cols5 / 2;
-                color: $ui-blue;
+                color: $ui-white;
                 font-size: 16px;
                 font-weight: 500;
+
+                &:hover {
+                    box-shadow: none;
+                }
             }
         }
 
