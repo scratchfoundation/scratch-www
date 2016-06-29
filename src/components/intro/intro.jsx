@@ -2,8 +2,6 @@ var connect = require('react-redux').connect;
 var omit = require('lodash.omit');
 var React = require('react');
 
-var sessionActions = require('../../redux/session.js');
-
 var Modal = require('../modal/modal.jsx');
 var Registration = require('../registration/registration.jsx');
 
@@ -48,7 +46,7 @@ var Intro = React.createClass({
         this.setState({'registrationOpen': false});
     },
     completeRegistration: function () {
-        this.props.dispatch(sessionActions.refreshSession());
+        this.props.dispatch(this.props.refreshSession());
         this.closeRegistration();
     },
     render: function () {
