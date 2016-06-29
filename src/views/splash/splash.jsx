@@ -8,7 +8,7 @@ var omit = require('lodash.omit');
 
 var permissions = require('../../redux/permissions.js');
 var session = require('../../redux/session.js');
-var splashRows = require('./splash-rows.js');
+var rows = require('./splash-rows.js');
 var activity = require('./activity.js');
 var news = require('./news.js');
 var projectCount = require('./project-count.js');
@@ -47,7 +47,7 @@ var View = injectIntl(React.createClass({
         if (this.props.session.session.user != prevProps.session.session.user) {
             if (this.props.session.session.user) {
                 this.props.dispatch(activity.getActivity(this.props.session.session.user.username));
-                this.props.dispatch(splashRows.getCustom(this.props.session.session.user.id));
+                this.props.dispatch(rows.getCustom(this.props.session.session.user.id));
                 this.props.dispatch(news.getNews());
             } else {
                 this.props.dispatch(projectCount.getProjectCount());
@@ -64,10 +64,10 @@ var View = injectIntl(React.createClass({
         this.props.dispatch(permissions.getPermissions());
     },
     componentDidMount: function () {
-        this.props.dispatch(splashRows.getGlobal());
+        this.props.dispatch(rows.getGlobal());
         if (this.props.session.session.user) {
             this.props.dispatch(activity.getActivity(this.props.session.session.user.username));
-            this.props.dispatch(splashRows.getCustom(this.props.session.session.user.id));
+            this.props.dispatch(rows.getCustom(this.props.session.session.user.id));
             this.props.dispatch(news.getNews());
         } else {
             this.props.dispatch(projectCount.getProjectCount());
@@ -233,11 +233,11 @@ var mapStateToProps = function (state) {
 var ConnectedSplash = connect(mapStateToProps)(View);
 
 var reducers = {
-    rows: splashRows.reducer,
+    rows: rows.reducer,
     activity: activity.reducer,
     news: news.reducer,
     projectCount: projectCount.reducer,
     homepageCache: homepageCache.reducer
-}; //TODO: is there a nicer way to do this?
+};
 
 render(<Page><ConnectedSplash /></Page>, document.getElementById('app'), reducers);
