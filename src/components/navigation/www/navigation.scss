@@ -147,6 +147,21 @@
 
     .login-dropdown {
         width: 200px;
+
+        .button {
+            padding: .75em;
+        }
+    }
+
+    .dropdown {
+        .row {
+            margin-bottom: 1.25rem;
+
+            input {
+                margin: 0;
+                height: 2.25rem;
+            }
+        }
     }
 
     .account-nav {
