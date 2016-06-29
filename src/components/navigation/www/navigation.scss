@@ -170,6 +170,10 @@
                 vertical-align: middle;
             }
 
+            &.open {
+                background-color: $active-gray;
+            }
+
             &:after {
                 display: inline-block;
                 margin-left: 8px;

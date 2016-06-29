@@ -178,6 +178,10 @@ var Navigation = React.createClass({
             'message-count': true,
             'show': this.state.unreadMessageCount > 0
         });
+        var dropdownClasses = classNames({
+            'user-info': true,
+            'open': this.state.accountNavOpen
+        });
         var formatMessage = this.props.intl.formatMessage;
         var createLink = this.props.session.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
         return (
@@ -241,7 +245,8 @@ var Navigation = React.createClass({
                                 </a>
                             </li>,
                             <li className="link right account-nav" key="account-nav">
-                                <a className="user-info" href="#" onClick={this.handleAccountNavClick}>
+                                <a className={dropdownClasses}
+                                    href="#" onClick={this.handleAccountNavClick}>
                                     <Avatar src={this.props.session.session.user.thumbnailUrl} alt="" />
                                     {this.props.session.session.user.username}
                                 </a>
