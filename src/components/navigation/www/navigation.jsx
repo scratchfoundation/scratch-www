@@ -241,7 +241,8 @@ var Navigation = React.createClass({
                                 </a>
                             </li>,
                             <li className="link right account-nav" key="account-nav">
-                                <a className="user-info" href="#" onClick={this.handleAccountNavClick}>
+                                <a className={this.state.accountNavOpen ? 'user-info open' : 'user-info'}
+                                    href="#" onClick={this.handleAccountNavClick}>
                                     <Avatar src={this.props.session.session.user.thumbnailUrl} alt="" />
                                     {this.props.session.session.user.username}
                                 </a>
