@@ -63,8 +63,8 @@ $story-width: $cols3;
                 iframe {
                     z-index: 9;
                     border: 0;
-                    width: $cols4;
-                    height: $cols4 * .5625;
+                    width: inherit;
+                    height: inherit;
                 }
             }
 
