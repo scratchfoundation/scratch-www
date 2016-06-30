@@ -24,6 +24,8 @@ module.exports.getPermissions = function () {
     return function (dispatch) {
         jar.getUnsignedValue('scratchsessionsid', 'permissions', function (err, value) {
             if (err) return dispatch(module.exports.setPermissionsError(err));
+
+            value = value || {};
             return dispatch(module.exports.setPermissions(value));
         });
     };
