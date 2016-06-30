@@ -79,9 +79,10 @@ var Jar = {
         // Get a value from a signed object
         Jar.get(cookieName, function (err, value) {
             if (err) return callback(err);
+            if (typeof value === 'undefined') return callback(null, value);
+            
             Jar.unsign(value, function (err, contents) {
                 if (err) return callback(err);
-                if (typeof contents === 'undefined') return callback(null, contents);
                 
                 try {
                     var data = JSON.parse(contents);
