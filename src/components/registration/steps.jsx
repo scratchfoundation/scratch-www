@@ -448,7 +448,7 @@ module.exports = {
                     return this.props.onNextStep(formData);
                 } else {
                     return invalidate({
-                        'all': <intl.FormattedMessage id="teacherRegistration.addressValidationError" />
+                        'all': this.props.intl.formatMessage({id: 'teacherRegistration.addressValidationError'})
                     });
                 }
             }.bind(this));
