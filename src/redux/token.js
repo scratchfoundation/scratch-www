@@ -27,6 +27,8 @@ module.exports.getToken = function () {
     return function (dispatch) {
         jar.getUnsignedValue('scratchsessionsid', 'token', function (err, value) {
             if (err) return dispatch(module.exports.setTokenError(err));
+
+            value = value || '';
             return dispatch(module.exports.setToken(value));
         });
     };
