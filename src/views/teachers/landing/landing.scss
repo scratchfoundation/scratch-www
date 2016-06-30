@@ -52,7 +52,6 @@ $story-width: $cols3;
 
             .ted-talk {
                 position: relative;
-                z-index: 10;
                 margin-bottom: $gutter;
                 border: 2px solid $ui-border;
                 border-radius: 10px;
@@ -61,7 +60,6 @@ $story-width: $cols3;
                 overflow: hidden;
 
                 iframe {
-                    z-index: 9;
                     border: 0;
                     width: inherit;
                     height: inherit;
