@@ -102,7 +102,7 @@ module.exports = {
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
-                            <Input label={formatMessage({id: 'general.username'})}
+                            <Input label={formatMessage({id: 'general.createUsername'})}
                                    className={this.state.validUsername}
                                    type="text"
                                    name="user.username"
