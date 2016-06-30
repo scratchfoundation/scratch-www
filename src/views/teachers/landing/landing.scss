@@ -48,12 +48,23 @@ $story-width: $cols3;
                         color: $ui-white;
                     }
                 }
+            }
+
+            .ted-talk {
+                position: relative;
+                z-index: 10;
+                margin-bottom: $gutter;
+                border: 2px solid $ui-border;
+                border-radius: 10px;
+                width: $cols4;
+                height: $cols4 * .5625;
+                overflow: hidden;
 
                 iframe {
-                    margin-bottom: $gutter;
-                    border: 2px solid $ui-border;
-                    border-radius: 10px;
-                    width: $cols4;
+                    z-index: 9;
+                    border: 0;
+                    width: inherit;
+                    height: inherit;
                 }
             }
 

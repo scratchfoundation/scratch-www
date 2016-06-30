@@ -25,8 +25,10 @@ var Landing = injectIntl(React.createClass({
                             <p className="intro">
                                 <FormattedMessage id="teacherlanding.intro" />
                             </p>
-                            <iframe src="https://www.youtube.com/embed/uPSuG063jhA"
-                                frameborder="0" allowfullscreen></iframe>
+                            <div className="ted-talk">
+                                <iframe src="https://www.youtube.com/embed/uPSuG063jhA?border=0&wmode=transparent"
+                                    frameBorder="0" allowFullScreen></iframe>
+                            </div>
                         </FlexRow>
                     </div>
                     <div className="band">
