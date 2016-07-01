@@ -1,6 +1,18 @@
 @import "../../../colors";
 
 #navigation {
+    &.staging {
+        .messages {
+            .message-count {
+                display: none;
+
+                &.show {
+                    background-color: $ui-blue;
+                }
+            }
+        }
+    }
+
     .logo {
         margin-right: 10px;
 

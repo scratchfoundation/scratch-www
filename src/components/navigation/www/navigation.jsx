@@ -253,7 +253,8 @@ var Navigation = React.createClass({
                                 <Dropdown
                                         as="ul"
                                         isOpen={this.state.accountNavOpen}
-                                        onRequestClose={this.closeAccountNav}>
+                                        onRequestClose={this.closeAccountNav}
+                                        className={process.env.SCRATCH_ENV}>
                                     <li>
                                         <a href={this.getProfileUrl()}>
                                             <FormattedMessage id="general.profile" />
