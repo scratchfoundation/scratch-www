@@ -76,12 +76,14 @@ Helpers.getMD5Map = function (ICUIdMap) {
  *                                          key: '<react-intl string id>'
  *                                          value: translated version of string
  */
-Helpers.getTranslationsForLanguage = function (lang, idsWithICU, md5WithIds) {
+Helpers.getTranslationsForLanguage = function (lang, idsWithICU, md5WithIds, separator) {
     var poUiDir = path.resolve(__dirname, '../../node_modules/scratchr2_translations/ui');
     var jsFile = path.resolve(poUiDir, lang + '/LC_MESSAGES/djangojs.po');
     var pyFile = path.resolve(poUiDir, lang + '/LC_MESSAGES/django.po');
 
     var translations = {};
+    separator = separator || ':';
+
     try {
         fs.accessSync(jsFile, fs.R_OK);
         var jsTranslations = po2icu.poFileToICUSync(lang, jsFile);
@@ -104,7 +106,7 @@ Helpers.getTranslationsForLanguage = function (lang, idsWithICU, md5WithIds) {
     
     var translationsByView = {};
     for (var id in translations) {
-        var ids = id.split('-'); // [viewName, stringId]
+        var ids = id.split(separator); // [viewName, stringId]
         var viewName = ids[0];
         var stringId = ids[1];
 
@@ -127,20 +129,24 @@ Helpers.writeTranslationsToJS = function (outputDir, viewName, translationObject
 
 // Returns a FormattedMessage id with english string as value. Use for default values in translations
 // Sample structure: { 'general-general.blah': 'blah', 'about-about.blah': 'blahblah' }
-Helpers.idToICUMap = function (viewName, ids) {
+Helpers.idToICUMap = function (viewName, ids, separator) {
     var idsToICU = {};
+    separator = separator || ':';
+    
     for (var id in ids) {
-        idsToICU[viewName + '-' + id] = ids[id];
+        idsToICU[viewName + separator + id] = ids[id];
     }
     return idsToICU;
 };
 
 // Reuturns reverse (i.e. english string with message key as the value) object for searching po files.
 // Sample structure: { 'blah': 'general-general.blah', 'blahblah': 'about-about.blah' }
-Helpers.icuToIdMap = function (viewName, ids) {
+Helpers.icuToIdMap = function (viewName, ids, separator) {
     var icuToIds = {};
+    separator = separator || ':';
+
     for (var id in ids) {
-        icuToIds[ids[id]] = viewName + '-' + id;
+        icuToIds[ids[id]] = viewName + separator + id;
     }
     return icuToIds;
 };
