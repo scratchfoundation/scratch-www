@@ -55,7 +55,7 @@ var Carousel = React.createClass({
                     }
 
                     return (
-                        <Thumbnail key={item.id}
+                        <Thumbnail key={[this.key, item.id].join('.')}
                                    showLoves={this.props.showLoves}
                                    showRemixes={this.props.showRemixes}
                                    type={item.type}

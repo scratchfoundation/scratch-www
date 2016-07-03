@@ -35,11 +35,11 @@ var TeacherBanner = React.createClass({
                     <div className="welcome">
                         {this.props.session.status === sessionActions.Status.FETCHED ? (
                             this.props.session.session.user ? [
-                                <h3>
+                                <h3 key="greeting">
                                     {this.props.messages['teacherbanner.greeting']},{' '}
                                     {this.props.session.session.user.username}
                                 </h3>,
-                                <p>
+                                <p key="subgreeting">
                                     {this.props.messages['teacherbanner.subgreeting']}
                                 </p>
                             ] : []
@@ -48,17 +48,17 @@ var TeacherBanner = React.createClass({
                     <FlexRow className="quick-links">
                         {this.props.session.status === sessionActions.Status.FETCHED ? (
                             this.props.session.session.user ? [
-                                <a href="/educators/classes">
+                                <a href="/educators/classes" key="classes-button">
                                     <Button>
                                         {this.props.messages['teacherbanner.classesButton']}
                                     </Button>
                                 </a>,
-                                <a href="/info/educators">
+                                <a href="/info/educators" key="resources-button">
                                     <Button>
                                         {this.props.messages['teacherbanner.resourcesButton']}
                                     </Button>
                                 </a>,
-                                <a href="/educators/faq">
+                                <a href="/educators/faq" key="faq-button">
                                     <Button>
                                         {this.props.messages['teacherbanner.faqButton']}
                                     </Button>
