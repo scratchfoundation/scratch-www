@@ -54,6 +54,16 @@ module.exports = function (opts, callback) {
         }
         xhr(opts, function (err, res, body) {
             if (err) log.error(err);
+            if (opts.responseType === 'json' && typeof body === 'string') {
+                // IE doesn't parse responses as JSON without the json attribute,
+                // even with responseType: 'json'.
+                // See https://github.com/Raynos/xhr/issues/123
+                try {
+                    body = JSON.parse(body);
+                } catch (e) {
+                    // Not parseable anyway, don't worry about it
+                }
+            }
             // Legacy API responses come as lists, and indicate to redirect the client like
             // [{success: true, redirect: "/location/to/redirect"}]
             try {
