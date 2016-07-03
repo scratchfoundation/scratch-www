@@ -377,7 +377,7 @@ var Splash = injectIntl(React.createClass({
                     </Modal>
                 ] : []}
                 {this.props.permissions.educator ? [
-                    <TeacherBanner messages={messages} />
+                    <TeacherBanner key="teacherbanner" messages={messages} />
                 ] : []}
                 <div key="inner" className="inner">
                     {this.props.session.status === sessionActions.Status.FETCHED ? (

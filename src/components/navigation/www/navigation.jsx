@@ -266,7 +266,7 @@ var Navigation = React.createClass({
                                         </a>
                                     </li>
                                     {this.props.permissions.educator ? [
-                                        <li>
+                                        <li key="my-classes-li">
                                             <a href="/educators/classes/">
                                                 <FormattedMessage id="general.myClasses" />
                                             </a>
