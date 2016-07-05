@@ -32,6 +32,7 @@ var Form = React.createClass({
         return (
             <Formsy.Form {... this.props} className={classes} ref="formsy" onChange={this.onChange}>
                 {React.Children.map(this.props.children, function (child) {
+                    if (!child) return child;
                     if (child.props.name === 'all') {
                         return React.cloneElement(child, {value: this.state.allValues});
                     } else {
