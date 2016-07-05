@@ -1,47 +1,48 @@
-var keyMirror = require('keymirror');
 var jar = require('../lib/jar.js');
 
-var Types = keyMirror({
-    SET_TOKEN: null,
-    SET_TOKEN_ERROR: null,
-    USE_TOKEN: null
-});
+var Types = {
+    SET_STATE: 'www/token/SET_TOKEN',
+    SET_ERROR: 'www/token/SET_ERROR',
+    USE_TOKEN: 'www/token/USE_TOKEN'
+};
 
-module.exports.tokenReducer = function (state, action) {
+function reducer (state, action) {
     // Reducer for updating the api token
     if (typeof state === 'undefined') {
         state = '';
     }
     switch (action.type) {
-    case Types.SET_TOKEN:
+    case Types.SET_STATE:
         return action.token;
-    case Types.SET_TOKEN_ERROR:
+    case Types.SET_ERROR:
         // TODO: do something with the error
         return state;
     default:
         return state;
     }
-};
+}
 
-module.exports.getToken = function () {
+reducer.getToken = function () {
     return function (dispatch) {
         jar.getUnsignedValue('scratchsessionsid', 'token', function (err, value) {
-            if (err) return dispatch(module.exports.setTokenError(err));
-            return dispatch(module.exports.setToken(value));
+            if (err) return dispatch(reducer.setTokenError(err));
+            return dispatch(reducer.setToken(value));
         });
     };
 };
 
-module.exports.setToken = function (token) {
+reducer.setToken = function (token) {
     return {
-        type: Types.SET_TOKEN,
+        type: Types.SET_STATE,
         token: token
     };
 };
 
-module.exports.setTokenError = function (error) {
+reducer.setTokenError = function (error) {
     return {
-        type: Types.SET_TOKEN_ERROR,
+        type: Types.SET_ERROR,
         error: error
     };
 };
+
+module.exports = reducer;

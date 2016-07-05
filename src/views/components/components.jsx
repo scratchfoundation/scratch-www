@@ -1,7 +1,7 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var Activity = require('../../components/activity/activity.jsx');
+// var Activity = require('../../components/activity/activity.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
@@ -35,9 +35,9 @@ var Components = React.createClass({
                     <Carousel />
                 </Box>
                 <h1>{'What\'s Happening??'}</h1>
-                <Activity />
+                // <Activity />
                 <h1>{'Nothing!!!'}</h1>
-                <Activity items={[]} />
+                // <Activity items={[]} />
                 <h1>This is a Spinner</h1>
                 <Spinner />
                 <h1>Colors</h1>

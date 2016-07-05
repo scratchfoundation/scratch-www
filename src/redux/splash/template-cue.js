@@ -4,25 +4,16 @@ var defaultsDeep = require('lodash.defaultsdeep');
 
 var sessionActions = require('../../redux/session.js');
 
-var Types = keyMirror({
-    SET_STATUS: null,
-    SET_ERROR: null
-});
-
-module.exports.Status = keyMirror({
-    HANDLED: null,
-    NOT_HANDLED: null,
-    HANDLING: null
-});
-
-module.exports.getInitialState = function () {
-    return {status: module.exports.Status.NOT_HANDLED};
+var Types = {
+    SET_STATUS: 'splash/template-cue/SET_STATUS',
+    SET_ERROR: 'splash/template-cue/SET_ERROR'
 };
 
-module.exports.reducer = function (state, action) {
+
+function reducer (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
-        state = module.exports.getInitialState();
+        state = reducer.getInitialState();
     }
     switch (action.type) {
     case Types.SET_STATUS:
@@ -33,9 +24,19 @@ module.exports.reducer = function (state, action) {
     default:
         return state;
     }
+}
+
+reducer.Status = keyMirror({
+    HANDLED: null,
+    NOT_HANDLED: null,
+    HANDLING: null
+});
+
+reducer.getInitialState = function () {
+    return {status: reducer.Status.NOT_HANDLED};
 };
 
-module.exports.setError = function (error) {
+reducer.setError = function (error) {
     return {
         type: Types.SET_ERROR,
         error: error
@@ -43,16 +44,16 @@ module.exports.setError = function (error) {
 };
 
 
-module.exports.setStatus = function (status){
+reducer.setStatus = function (status){
     return {
         type: Types.SET_STATUS,
         status: status
     };
 };
 
-module.exports.handleDismiss = function (cue) {
+reducer.handleDismiss = function (cue) {
     return function (dispatch) {
-        dispatch(module.exports.setStatus(module.exports.Status.HANDLING));
+        dispatch(reducer.setStatus(reducer.Status.HANDLING));
         api({
             host: '',
             uri: '/site-api/users/set-template-cue/',
@@ -61,11 +62,13 @@ module.exports.handleDismiss = function (cue) {
             json: {cue: cue, value: false}
         }, function (err) {
             if (err) {
-                dispatch(module.exports.setError(err));
+                dispatch(reducer.setError(err));
             } else {
                 dispatch(sessionActions.refreshSession());
-                dispatch(module.exports.setStatus(module.exports.Status.HANDLED));
+                dispatch(reducer.setStatus(reducer.Status.HANDLED));
             }
         });
     };
 };
+
+module.exports = reducer;

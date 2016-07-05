@@ -8,12 +8,12 @@ var omit = require('lodash.omit');
 
 var permissions = require('../../redux/permissions.js');
 var session = require('../../redux/session.js');
-var rows = require('./splash-rows.js');
-var activity = require('./activity.js');
-var news = require('./news.js');
-var projectCount = require('./project-count.js');
-var homepageCache = require('./homepage-cache.js');
-var templateCue = require('./template-cue.js');
+var rows = require('../../redux/splash/splash-rows.js');
+var activity = require('../../redux/splash/activity.js');
+var news = require('../../redux/splash/news.js');
+var projectCount = require('../../redux/splash/project-count.js');
+var homepageCache = require('../../redux/splash/homepage-cache.js');
+var templateCue = require('../../redux/splash/template-cue.js');
 
 var GlobalRows = require('./global.jsx');
 var CustomRows = require('./custom.jsx');
@@ -160,63 +160,65 @@ var View = injectIntl(React.createClass({
         }
 
         return (
-            <div className="splash">
-                {this.shouldShowEmailConfirmation() ? [
-                    <DropdownBanner key="confirmedEmail"
-                            className="warning"
-                            onRequestDismiss={templateCue.handleDismiss('confirmed_email')}>
-                        <a href="#" onClick={this.showEmailConfirmationModal}>Confirm your email</a>
-                        {' '}to enable sharing.{' '}
-                        <a href="/info/faq/#accounts">Having trouble?</a>
-                    </DropdownBanner>,
-                    <Modal key="emailConfirmationModal"
-                           isOpen={this.state.emailConfirmationModalOpen}
-                           onRequestClose={this.hideEmailConfirmationModal}
-                           style={{content: emailConfirmationStyle}}>
-                        <iframe ref="emailConfirmationiFrame"
-                                src="/accounts/email_resend_standalone/"
-                                {...omit(emailConfirmationStyle, 'padding')} />
-                    </Modal>
-                ] : []}
+            <Page>
+                <div className="splash">
+                    {this.shouldShowEmailConfirmation() ? [
+                        <DropdownBanner key="confirmedEmail"
+                                className="warning"
+                                onRequestDismiss={templateCue.handleDismiss('confirmed_email')}>
+                            <a href="#" onClick={this.showEmailConfirmationModal}>Confirm your email</a>
+                            {' '}to enable sharing.{' '}
+                            <a href="/info/faq/#accounts">Having trouble?</a>
+                        </DropdownBanner>,
+                        <Modal key="emailConfirmationModal"
+                               isOpen={this.state.emailConfirmationModalOpen}
+                               onRequestClose={this.hideEmailConfirmationModal}
+                               style={{content: emailConfirmationStyle}}>
+                            <iframe ref="emailConfirmationiFrame"
+                                    src="/accounts/email_resend_standalone/"
+                                    {...omit(emailConfirmationStyle, 'padding')} />
+                        </Modal>
+                    ] : []}
 
-                {this.props.permissions.educator ? [
-                    <TeacherBanner messages={messages} />
-                ] : []}
+                    {this.props.permissions.educator ? [
+                        <TeacherBanner messages={messages} />
+                    ] : []}
 
-                <div key="inner" className="inner">
-                    {this.props.session.status === session.Status.FETCHED ? (
-                        this.props.session.session.user ? [
-                            <div key="header" className="splash-header">
-                                {this.shouldShowWelcome() ? [
-                                    <Welcome key="welcome"
-                                             onDismiss={templateCue.handleDismiss('welcome')}
-                                             messages={messages} />
-                                ] : [
-                                    <Activity key="activity"
-                                        items={this.props.activity.activity}
-                                        intl={this.props.intl}/>
-                                ]}
-                                <News items={this.props.news.news} messages={messages} />
-                            </div>
-                        ] : [
-                            <Intro projectCount={this.props.projectCount.projectCount} messages={messages}
-                                refreshSession={session.refreshSession()} key="intro"/>
-                        ]) : []
-                    }
+                    <div key="inner" className="inner">
+                        {this.props.session.status === session.Status.FETCHED ? (
+                            this.props.session.session.user ? [
+                                <div key="header" className="splash-header">
+                                    {this.shouldShowWelcome() ? [
+                                        <Welcome key="welcome"
+                                                 onDismiss={templateCue.handleDismiss('welcome')}
+                                                 messages={messages} />
+                                    ] : [
+                                        <Activity key="activity"
+                                            items={this.props.activity.activity}
+                                            intl={this.props.intl}/>
+                                    ]}
+                                    <News items={this.props.news.news} messages={messages} />
+                                </div>
+                            ] : [
+                                <Intro projectCount={this.props.projectCount.projectCount} messages={messages}
+                                    refreshSession={session.refreshSession()} key="intro"/>
+                            ]) : []
+                        }
 
-                    <GlobalRows intl={this.props.intl}
-                            featured={this.props.rows.global} />
-                    <CustomRows intl={this.props.intl}
-                    featured={this.props.rows.custom} />
+                        <GlobalRows intl={this.props.intl}
+                                featured={this.props.rows.global} />
+                        <CustomRows intl={this.props.intl}
+                        featured={this.props.rows.custom} />
 
-                    <ShuffledRows intl={this.props.intl}
-                            topLoved={shuffle(this.props.rows.global.community_most_loved_projects)}
-                            topRemixed={shuffle(this.props.rows.global.community_most_remixed_projects)}/>
+                        <ShuffledRows intl={this.props.intl}
+                                topLoved={shuffle(this.props.rows.global.community_most_loved_projects)}
+                                topRemixed={shuffle(this.props.rows.global.community_most_remixed_projects)}/>
 
-                    <SplashAdmin refreshHomepageCache={homepageCache.refreshHomepageCache}
-                        homepageCacheState={homepageCacheState}/>
+                        <SplashAdmin refreshHomepageCache={homepageCache.refreshHomepageCache}
+                            homepageCacheState={homepageCacheState}/>
+                    </div>
                 </div>
-            </div>
+            </Page>
         );
     }
 }));
@@ -236,11 +238,11 @@ var mapStateToProps = function (state) {
 var ConnectedSplash = connect(mapStateToProps)(View);
 
 var reducers = {
-    rows: rows.reducer,
-    activity: activity.reducer,
-    news: news.reducer,
-    projectCount: projectCount.reducer,
-    homepageCache: homepageCache.reducer
+    rows,
+    activity,
+    news,
+    projectCount,
+    homepageCache
 };
 
-render(<Page><ConnectedSplash /></Page>, document.getElementById('app'), reducers);
+render(<ConnectedSplash />, document.getElementById('app'), reducers);

@@ -4,80 +4,83 @@ var defaults = require('lodash.defaults');
 var api = require('../mixins/api.jsx').api;
 var tokenActions = require('./token.js');
 
-var Types = keyMirror({
-    SET_SESSION: null,
-    SET_SESSION_ERROR: null,
-    SET_STATUS: null
-});
-
-module.exports.Status = keyMirror({
-    FETCHED: null,
-    NOT_FETCHED: null,
-    FETCHING: null
-});
-
-module.exports.getInitialState = function (){
-    return {status: module.exports.Status.NOT_FETCHED, session:{}};
+var Types = {
+    SET_STATE: 'www/session/SET_SESSION',
+    SET_ERROR: 'www/session/SET_ERROR',
+    SET_STATUS: 'www/session/SET_STATUS'
 };
 
-module.exports.reducer = function (state, action) {
+function reducer (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
-        state = module.exports.getInitialState();
+        state = reducer.getInitialState();
     }
     switch (action.type) {
-    case Types.SET_SESSION:
+    case Types.SET_STATE:
         return defaults({session: action.session}, state);
     case Types.SET_STATUS:
         return defaults({status: action.status}, state);
-    case Types.SET_SESSION_ERROR:
+    case Types.SET_ERROR:
         // TODO: do something with action.error
         return state;
     default:
         return state;
     }
+}
+
+reducer.Status = keyMirror({
+    FETCHED: null,
+    NOT_FETCHED: null,
+    FETCHING: null
+});
+
+reducer.getInitialState = function (){
+    return {status: reducer.Status.NOT_FETCHED, session:{}};
 };
 
-module.exports.setSessionError = function (error) {
+
+reducer.setError = function (error) {
     return {
-        type: Types.SET_SESSION_ERROR,
+        type: Types.SET_ERROR,
         error: error
     };
 };
 
-module.exports.setSession = function (session) {
+reducer.setState = function (session) {
     return {
-        type: Types.SET_SESSION,
+        type: Types.SET_STATE,
         session: session
     };
 };
 
-module.exports.setStatus = function (status){
+reducer.setStatus = function (status){
     return {
         type: Types.SET_STATUS,
         status: status
     };
 };
 
-module.exports.refreshSession = function () {
+reducer.refreshSession = function () {
     return function (dispatch) {
-        dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
+        dispatch(reducer.setStatus(reducer.Status.FETCHING));
         api({
             host: '',
             uri: '/session/'
         }, function (err, body) {
-            if (err) return dispatch(module.exports.setSessionError(err));
+            if (err) return dispatch(reducer.setSessionError(err));
 
             if (typeof body !== 'undefined') {
                 if (body.banned) {
                     return window.location = body.url;
                 } else {
                     dispatch(tokenActions.getToken());
-                    dispatch(module.exports.setSession(body));
-                    dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
+                    dispatch(reducer.setState(body));
+                    dispatch(reducer.setStatus(reducer.Status.FETCHED));
                     return;
                 }
             }
         });
     };
 };
+
+module.exports = reducer;
