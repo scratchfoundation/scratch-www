@@ -1,6 +1,8 @@
 var Formsy = require('formsy-react');
 var React = require('react');
 
+require('./general-error.scss');
+
 /*
  * A special formsy-react component that only outputs
  * error messages. If you want to display errors that
@@ -12,7 +14,7 @@ module.exports = Formsy.HOC(React.createClass({
     render: function () {
         if (!this.props.showError()) return null;
         return (
-            <p className="error">
+            <p className="general-error">
                 {this.props.getErrorMessage()}
             </p>
         );
