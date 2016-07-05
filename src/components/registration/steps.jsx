@@ -12,6 +12,7 @@ var CharCount = require('../../components/forms/charcount.jsx');
 var Checkbox = require('../../components/forms/checkbox.jsx');
 var CheckboxGroup = require('../../components/forms/checkbox-group.jsx');
 var Form = require('../../components/forms/form.jsx');
+var GeneralError = require('../../components/forms/general-error.jsx');
 var Input = require('../../components/forms/input.jsx');
 var PhoneInput = require('../../components/forms/phone-input.jsx');
 var RadioGroup = require('../../components/forms/radio-group.jsx');
@@ -148,6 +149,7 @@ module.exports = {
                                       onChange={this.onChangeShowPassword}
                                       help={null}
                                       name="showPassword" />
+                            <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
                                             text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
@@ -508,6 +510,7 @@ module.exports = {
                                    type="text"
                                    name="address.zip"
                                    required />
+                            <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
                                             text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
@@ -631,6 +634,7 @@ module.exports = {
                                        equalsField: formatMessage({id: 'general.validationEmailMatch'})
                                    }}
                                    required />
+                            <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting}
                                             text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
