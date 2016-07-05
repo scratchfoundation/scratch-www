@@ -19,6 +19,10 @@
         font-size: .875rem;
         appearance: none;
 
+        &::-ms-expand {
+            display: none;
+        }
+
         &:focus {
             transition: all .5s ease;
             outline: none;
