@@ -86,7 +86,7 @@ var Explore = injectIntl(React.createClass({
         window.location = window.location.origin + '/explore/' + newType + '/' + this.props.tab;
     },
     getBubble: function (type) {
-        let classes = classNames({
+        var classes = classNames({
             active: (this.props.category === type)
         });
         return (
@@ -98,7 +98,7 @@ var Explore = injectIntl(React.createClass({
         );
     },
     getTab: function (type) {
-        let classes = classNames({
+        var classes = classNames({
             active: (this.props.itemType === type)
         });
         return (
