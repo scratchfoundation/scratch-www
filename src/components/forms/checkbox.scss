@@ -20,12 +20,12 @@
 
                 &:checked,
                 &:focus {
+                    transition: all .5s ease;
                     outline: none;
+                    box-shadow: 0 0 0 .25rem $active-gray;
                 }
 
                 &:checked {
-                    transition: all .5s ease;
-                    box-shadow: 0 0 0 .25rem $active-gray;
                     background-color: $ui-blue;
                     text-align: center;
                     text-indent: .125rem;
