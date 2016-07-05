@@ -2,7 +2,6 @@ var classNames = require('classnames');
 var Formsy = require('formsy-react');
 var omit = require('lodash.omit');
 var React = require('react');
-var GeneralError = require('./general-error.jsx');
 var validations = require('./validations.jsx').validations;
 
 for (var validation in validations) {
@@ -32,8 +31,13 @@ var Form = React.createClass({
         );
         return (
             <Formsy.Form {... this.props} className={classes} ref="formsy" onChange={this.onChange}>
-                <GeneralError name="all" value={this.state.allValues} />
-                {this.props.children}
+                {React.Children.map(this.props.children, function (child) {
+                    if (child.props.name === 'all') {
+                        return React.cloneElement(child, {value: this.state.allValues});
+                    } else {
+                        return child;
+                    }
+                }.bind(this))}
             </Formsy.Form>
         );
     }
