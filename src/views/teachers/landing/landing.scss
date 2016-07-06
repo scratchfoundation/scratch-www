@@ -230,17 +230,18 @@ $story-width: $cols3;
                 margin-bottom: 3.5rem;
             }
 
-            button {
+            .coming-soon {
                 border: 2px solid $ui-white;
                 border-radius: 50px;
                 box-shadow: none;
                 background-color: transparent;
-                cursor: default;
                 padding: 16px 16px;
                 width: $cols5 / 2;
+                text-align: center;
                 color: $ui-white;
                 font-size: 16px;
                 font-weight: 500;
+                box-sizing: border-box;
 
                 &:hover {
                     box-shadow: none;
