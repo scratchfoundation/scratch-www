@@ -9,7 +9,6 @@ var Page = require('../../../components/page/www/page.jsx');
 var FlexRow = require('../../../components/flex-row/flex-row.jsx');
 var SubNavigation = require('../../../components/subnavigation/subnavigation.jsx');
 var TitleBanner = require('../../../components/title-banner/title-banner.jsx');
-var Button = require('../../../components/forms/button.jsx');
 
 require('./landing.scss');
 
@@ -63,36 +62,36 @@ var Landing = injectIntl(React.createClass({
                             <p><FormattedHTMLMessage id="teacherlanding.generalUsageSubjectAreas"/></p>
                         </FlexRow>
                         <FlexRow className="stories">
-                            <div className="story">
-                                <img src="/images/teachers/stories/ingrid.jpg" alt="ingrid's story" />
-                                <div className="story-info">
-                                     <a href="//bit.ly/28SBsa9">Ingrid Gustafson</a>
-                                     <p><FormattedMessage id="teacherlanding.ingridTitle" /></p>
-                                </div>
-                            </div>
-                            <div className="story">
+                            <a href="//bit.ly/28SBsa9" className="story">
+                                    <img src="/images/teachers/stories/ingrid.jpg" alt="ingrid's story" />
+                                    <div className="story-info">
+                                         <p className="name">Ingrid Gustafson</p>
+                                         <p><FormattedMessage id="teacherlanding.ingridTitle" /></p>
+                                    </div>
+                            </a>
+                            <a href="//bit.ly/28Q5l6P" className="story">
                                 <img src="/images/teachers/stories/dylan.jpg" alt="dylan's story" />
                                 <div className="story-info">
-                                    <a href="//bit.ly/28Q5l6P">Dylan Ryder</a>
+                                    <p className="name">Dylan Ryder</p>
                                     <p><FormattedMessage id="teacherlanding.dylanTitle" /></p>
                                 </div>
-                            </div>
-                            <div className="story">
+                            </a>
+                            <a href="//bit.ly/28SC1AY" className="story">
                                 <img src="/images/teachers/stories/plug-in-studio.jpg"
                                      alt="plug in studio's story" />
                                  <div className="story-info">
-                                     <a href="//bit.ly/28SC1AY">Plug-In Studios</a>
+                                     <p className="name">Plug-In Studios</p>
                                      <p><FormattedMessage id="teacherlanding.afterSchoolTitle" /></p>
                                 </div>
-                            </div>
-                            <div className="story">
+                            </a>
+                            <a href="//bit.ly/28UzapJ" className="story">
                                 <img src="/images/teachers/stories/ghana-code-club.jpg"
                                      alt="ghana code club's story" />
                                 <div className="story-info">
-                                     <a href="//bit.ly/28UzapJ">Ghana Code Club</a>
+                                     <p className="name">Ghana Code Club</p>
                                      <p><FormattedMessage id="teacherlanding.afterSchoolTitle" /></p>
                                 </div>
-                            </div>
+                            </a>
                         </FlexRow>
                     </section>
                     <section id="resources">
@@ -142,7 +141,7 @@ var Landing = injectIntl(React.createClass({
                             <p>
                                 <FormattedHTMLMessage id="teacherlanding.accountsDescription" />
                             </p>
-                            <Button><FormattedMessage id="teacherlanding.accountsButton" /></Button>
+                            <div className="coming-soon"><FormattedMessage id="teacherlanding.accountsButton" /></div>
                         </div>
                         <img src="/images/teachers/teacher-account.png" alt="teacher account" id="teacher-icon"/>
                     </div>
