@@ -159,6 +159,14 @@ $story-width: $cols3;
                 padding-top: 10px;
                 padding-left: 10px;
 
+                .name {
+                    margin: 0;
+                    line-height: initial;
+                    color: $ui-blue;
+                    font-size: initial;
+                    font-weight: 500;
+                }
+
                 p {
                     margin: 10px 0;
                     font-size: .75rem;
@@ -227,6 +235,7 @@ $story-width: $cols3;
                 border-radius: 50px;
                 box-shadow: none;
                 background-color: transparent;
+                cursor: default;
                 padding: 16px 16px;
                 width: $cols5 / 2;
                 color: $ui-white;
