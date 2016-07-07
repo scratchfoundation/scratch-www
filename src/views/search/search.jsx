@@ -61,6 +61,7 @@ var Search = injectIntl(React.createClass({
             uri: '/search/' + this.props.tab +
                  '?limit=' + this.props.loadNumber +
                  '&offset=' + this.state.offset +
+                 '&language=' + this.props.intl.locale +
                  termText
         }, function (err, body) {
             var loadedSoFar = this.state.loaded;
