@@ -64,6 +64,7 @@ var Explore = injectIntl(React.createClass({
             uri: '/search/' + this.props.itemType +
                  '?limit=' + this.props.loadNumber +
                  '&offset=' + this.state.offset +
+                 '&language=' + this.props.intl.locale +
                  qText
         }, function (err, body) {
             if (!err) {
