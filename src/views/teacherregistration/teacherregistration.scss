@@ -30,7 +30,7 @@ body {
     .address-step,
     .email-step {
         .help-block {
-            transform: translate(15.5rem, -4rem);
+            transform: translate(15.75rem, -4rem);
         }
     }
 
@@ -40,7 +40,7 @@ body {
         }
 
         .help-block {
-            transform: translate(14rem, -4rem);
+            transform: translate(13rem, -2rem);
         }
 
         .radio {
@@ -65,7 +65,7 @@ body {
         }
 
         .help-block {
-            margin-top: .7rem;
+            margin-top: .5rem;
         }
 
         .checkbox-row {
@@ -78,6 +78,12 @@ body {
     .organization-step {
         .help-block {
             transform: translate(16rem, -4rem);
+        }
+
+        .checkbox-group {
+            .help-block {
+                transform: translate(16rem, -16rem);
+            }
         }
 
         .organization-type,
@@ -97,6 +103,14 @@ body {
 
         .other-input {
             margin-top: -5.75rem;
+        }
+    }
+
+    .address-step {
+        .select {
+            .help-block {
+                transform: translate(0, .5rem);
+            }
         }
     }
 

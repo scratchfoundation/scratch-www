@@ -286,6 +286,14 @@ module.exports = {
                 waiting: false
             };
         },
+        onValidSubmit: function (formData, reset, invalidate) {
+            if (formData.phone.national_number.length !== formData.phone.country_code.format.length) {
+                return invalidate({
+                    'phone': this.props.intl.formatMessage({id: 'teacherRegistration.validationPhoneNumber'})
+                });
+            }
+            return this.props.onNextStep(formData);
+        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
@@ -299,7 +307,7 @@ module.exports = {
                                  tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.props.onNextStep}>
+                        <Form onValidSubmit={this.onValidSubmit}>
                             <PhoneInput label={formatMessage({id: 'teacherRegistration.phoneNumber'})}
                                         name="phone"
                                         defaultCountry={this.props.defaultCountry}
@@ -354,6 +362,14 @@ module.exports = {
         onChooseOrganization: function (name, values) {
             this.setState({otherDisabled: values.indexOf(this.organizationL10nStems.indexOf('orgChoiceOther')) === -1});
         },
+        onValidSubmit: function (formData, reset, invalidate) {
+            if (formData.organization.type.length < 1) {
+                return invalidate({
+                    'organization.type': this.props.intl.formatMessage({id: 'teacherRegistration.validationRequired'})
+                });
+            }
+            return this.props.onNextStep(formData);
+        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
@@ -367,7 +383,7 @@ module.exports = {
                                  tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.props.onNextStep}>
+                        <Form onValidSubmit={this.onValidSubmit}>
                             <Input label={formatMessage({id: 'teacherRegistration.organization'})}
                                    type="text"
                                    name="organization.name"
