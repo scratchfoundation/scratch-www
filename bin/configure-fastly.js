@@ -94,8 +94,8 @@ var getConditionNameForRoute = function (route, type) {
 };
 
 var getHeaderNameForRoute = function (route) {
-    if (route.redirect) return 'redirects/' + route.pattern;
     if (route.name) return 'rewrites/' + route.name;
+    if (route.redirect) return 'redirects/' + route.pattern;
 };
 
 var getResponseNameForRoute = function (route) {
