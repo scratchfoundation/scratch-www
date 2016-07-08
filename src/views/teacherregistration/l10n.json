@@ -20,6 +20,7 @@
     "teacherRegistration.phoneNumber": "Phone Number",
     "teacherRegistration.phoneStepDescription": "Your phone number will not be displayed publicly, and will be kept confidential and secure",
     "teacherRegistration.phoneConsent": "Yes, the Scratch Team may call me to verify my Teacher Account if needed",
+    "teacherRegistration.validationPhoneNumber": "Please enter a valid phone number",
     "teacherRegistration.validationPhoneConsent": "You must consent to verification of your Teacher Account",
     "teacherRegistration.orgStepTitle": "Organization",
     "teacherRegistration.orgStepDescription": "Your information will not be displayed publicly, and will be kept confidential and secure",
@@ -38,7 +39,7 @@
     "teacherRegistration.orgChoiceOther": " ",
     "teacherRegistration.notRequired": "Not Required",
     "teacherRegistration.selectCountry": "select country",
-    "teacherRegistration.validationAddress": "This doesn't look like a real address",
+    "teacherRegistration.addressValidationError": "This doesn't look like a real address",
     "teacherRegistration.addressLine1": "Address Line 1",
     "teacherRegistration.addressLine2": "Address Line 2 (Optional)",
     "teacherRegistration.zipCode": "ZIP",
@@ -52,5 +53,6 @@
     "teacherRegistration.howUseScratch": "How do you plan to use Scratch at your organization?",
     "teacherRegistration.emailStepTitle": "Email Address",
     "teacherRegistration.emailStepDescription": "We will send you a confirmation email that will allow you to access your Scratch Teacher Account.",
-    "teacherRegistration.validationEmailMatch": "The emails do not match"
+    "teacherRegistration.validationEmailMatch": "The emails do not match",
+    "teacherRegistration.validationRequired": "This field is required"
 }

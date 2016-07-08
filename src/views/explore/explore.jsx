@@ -1,3 +1,4 @@
+var classNames = require('classnames');
 var injectIntl = require('react-intl').injectIntl;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
@@ -17,7 +18,14 @@ require('./explore.scss');
 var Explore = injectIntl(React.createClass({
     type: 'Explore',
     getDefaultProps: function () {
-        var categoryOptions = ['all','animations','art','games','music','stories'];
+        var categoryOptions = {
+            all: '*',
+            animations: 'animations',
+            art: 'art',
+            games: 'games',
+            music: 'music',
+            stories: 'stories'
+        };
         var typeOptions = ['projects','studios'];
 
         var pathname = window.location.pathname.toLowerCase();
@@ -28,7 +36,7 @@ var Explore = injectIntl(React.createClass({
         var currentCategory = pathname.substring(slash + 1,pathname.length);
         var typeStart = pathname.indexOf('explore/');
         var type = pathname.substring(typeStart + 8,slash);
-        if (categoryOptions.indexOf(currentCategory) === -1 || typeOptions.indexOf(type) === -1) {
+        if (Object.keys(categoryOptions).indexOf(currentCategory) === -1 || typeOptions.indexOf(type) === -1) {
             window.location = window.location.origin + '/explore/projects/all/';
         }
 
@@ -50,14 +58,13 @@ var Explore = injectIntl(React.createClass({
         this.getExploreMore();
     },
     getExploreMore: function () {
-        var qText = '';
-        if (this.props.tab != 'all') {
-            qText = '&q=' + this.props.category;
-        }
+        var qText = '&q=' + this.props.acceptableTabs[this.props.category] || '*';
+        
         api({
             uri: '/search/' + this.props.itemType +
                  '?limit=' + this.props.loadNumber +
                  '&offset=' + this.state.offset +
+                 '&language=' + this.props.intl.locale +
                  qText
         }, function (err, body) {
             if (!err) {
@@ -80,34 +87,28 @@ var Explore = injectIntl(React.createClass({
         window.location = window.location.origin + '/explore/' + newType + '/' + this.props.tab;
     },
     getBubble: function (type) {
-        var allBubble = <a href={'/explore/' + this.props.itemType + '/' + type + '/'}>
-                        <li>
-                            <FormattedMessage id={'general.' + type} />
-                        </li>
-                    </a>;
-        if (this.props.category === type) {
-            allBubble = <a href={'/explore/' + this.props.itemType+'/' + type + '/'}>
-                        <li className='active'>
-                            <FormattedMessage id={'general.' + type} />
-                        </li>
-                    </a>;
-        }
-        return allBubble;
+        var classes = classNames({
+            active: (this.props.category === type)
+        });
+        return (
+            <a href={'/explore/' + this.props.itemType + '/' + type + '/'}>
+                <li className={classes}>
+                    <FormattedMessage id={'general.' + type} />
+                </li>
+            </a>
+        );
     },
     getTab: function (type) {
-        var allTab = <a href={'/explore/' + type + '/' + this.props.category + '/'}>
-                        <li>
-                            <FormattedMessage id={'general.' + type} />
-                        </li>
-                    </a>;
-        if (this.props.itemType === type) {
-            allTab = <a href={'/explore/' + type +' /' + this.props.category + '/'}>
-                        <li className='active'>
-                            <FormattedMessage id={'general.' + type} />
-                        </li>
-                    </a>;
-        }
-        return allTab;
+        var classes = classNames({
+            active: (this.props.itemType === type)
+        });
+        return (
+            <a href={'/explore/' + type + '/' + this.props.category + '/'}>
+                <li className={classes}>
+                    <FormattedMessage id={'general.' + type} />
+                </li>
+            </a>
+        );
     },
     render: function () {
         return (

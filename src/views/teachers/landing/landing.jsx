@@ -1,49 +1,50 @@
 var React = require('react');
 var render = require('../../../lib/render.jsx');
 
+var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
+var FormattedMessage = require('react-intl').FormattedMessage;
+var injectIntl = require('react-intl').injectIntl;
+
 var Page = require('../../../components/page/www/page.jsx');
 var FlexRow = require('../../../components/flex-row/flex-row.jsx');
 var SubNavigation = require('../../../components/subnavigation/subnavigation.jsx');
 var TitleBanner = require('../../../components/title-banner/title-banner.jsx');
-var Button = require('../../../components/forms/button.jsx');
 
 require('./landing.scss');
 
-var Landing = React.createClass({
+var Landing = injectIntl(React.createClass({
     type: 'Landing',
     render: function () {
         return (
             <div className="educators">
                 <TitleBanner className="masthead">
                     <div className="inner">
-                        <h1>Scratch for Educators</h1>
+                        <h1><FormattedMessage id="teacherlanding.title" /></h1>
                         <FlexRow className="masthead-info">
                             <p className="intro">
-                                Your students can use Scratch to code their own{' '}
-                                interactive stories, animations, and games.{' '}
-                                In the process, they learn to think creatively,{' '}
-                                reason systematically, and work{' '}
-                                collaboratively — essential skills for everyone in today’s society.
+                                <FormattedMessage id="teacherlanding.intro" />
                             </p>
-                            <iframe src="https://www.youtube.com/embed/uPSuG063jhA"
-                                frameborder="0" allowfullscreen></iframe>
+                            <div className="ted-talk">
+                                <iframe src="https://www.youtube.com/embed/uPSuG063jhA?border=0&wmode=transparent"
+                                    frameBorder="0" allowFullScreen></iframe>
+                            </div>
                         </FlexRow>
                     </div>
                     <div className="band">
                         <SubNavigation className="inner">
                             <a href="#in-practice">
                                 <li>
-                                    In Practice
+                                    <FormattedMessage id="teacherlanding.inPracticeAnchor" />
                                 </li>
                             </a>
                             <a href="#resources">
                                 <li>
-                                    Resources
+                                    <FormattedMessage id="teacherlanding.resourcesAnchor" />
                                 </li>
                             </a>
                             <a href="#teacher-accounts">
                                 <li>
-                                    Teacher Accounts
+                                    <FormattedMessage id="general.teacherAccounts" />
                                 </li>
                             </a>
                         </SubNavigation>
@@ -53,96 +54,81 @@ var Landing = React.createClass({
                 <div className="inner">
                     <section id="in-practice">
                         <span className="nav-spacer"></span>
-                        <h2>Who Uses Scratch?</h2>
-                        <p className="intro">Educators are using Scratch in a wide variety of: </p>
+                        <h2><FormattedMessage id="teacherlanding.inPracticeTitle" /></h2>
+                        <p className="intro"><FormattedMessage id="teacherlanding.inPracticeIntro" /></p>
                         <FlexRow className="general-usage">
-                            <p><b>Settings:</b> schools, museums, libraries, community centers</p>
-                            <p><b>Grade Levels:</b> elementary, middle, and high school (and some colleges too!)</p>
-                            <p><b>Subject Areas:</b> language arts, science, social studies,{' '}
-                                math, computer science, foreign languages, and the arts</p>
+                            <p><FormattedHTMLMessage id="teacherlanding.generalUsageSettings" /></p>
+                            <p><FormattedHTMLMessage id="teacherlanding.generalUsageGradeLevels" /></p>
+                            <p><FormattedHTMLMessage id="teacherlanding.generalUsageSubjectAreas"/></p>
                         </FlexRow>
                         <FlexRow className="stories">
-                            <div className="story">
-                                <img src="/images/teachers/stories/ingrid.jpg" alt="ingrid's story" />
-                                <div className="story-info">
-                                     <a href="//bit.ly/28SBsa9">Ingrid Gustafson</a>
-                                     <p>Instructional Technology Specialist</p>
-                                </div>
-                            </div>
-                            <div className="story">
+                            <a href="//bit.ly/28SBsa9" className="story">
+                                    <img src="/images/teachers/stories/ingrid.jpg" alt="ingrid's story" />
+                                    <div className="story-info">
+                                         <p className="name">Ingrid Gustafson</p>
+                                         <p><FormattedMessage id="teacherlanding.ingridTitle" /></p>
+                                    </div>
+                            </a>
+                            <a href="//bit.ly/28Q5l6P" className="story">
                                 <img src="/images/teachers/stories/dylan.jpg" alt="dylan's story" />
                                 <div className="story-info">
-                                    <a href="//bit.ly/28Q5l6P">Dylan Ryder</a>
-                                    <p>Educational Technologist</p>
+                                    <p className="name">Dylan Ryder</p>
+                                    <p><FormattedMessage id="teacherlanding.dylanTitle" /></p>
                                 </div>
-                            </div>
-                            <div className="story">
+                            </a>
+                            <a href="//bit.ly/28SC1AY" className="story">
                                 <img src="/images/teachers/stories/plug-in-studio.jpg"
                                      alt="plug in studio's story" />
                                  <div className="story-info">
-                                     <a href="//bit.ly/28SC1AY">Plug-In Studios</a>
-                                     <p>After-School Program</p>
+                                     <p className="name">Plug-In Studios</p>
+                                     <p><FormattedMessage id="teacherlanding.afterSchoolTitle" /></p>
                                 </div>
-                            </div>
-                            <div className="story">
+                            </a>
+                            <a href="//bit.ly/28UzapJ" className="story">
                                 <img src="/images/teachers/stories/ghana-code-club.jpg"
                                      alt="ghana code club's story" />
                                 <div className="story-info">
-                                     <a href="//bit.ly/28UzapJ">Ghana Code Club</a>
-                                     <p>After-School Program</p>
+                                     <p className="name">Ghana Code Club</p>
+                                     <p><FormattedMessage id="teacherlanding.afterSchoolTitle" /></p>
                                 </div>
-                            </div>
+                            </a>
                         </FlexRow>
                     </section>
                     <section id="resources">
                         <span className="nav-spacer"></span>
-                        <h2>Educator Resources</h2>
+                        <h2><FormattedMessage id="teacherlanding.resourcesTitle" /></h2>
                         <FlexRow className="educator-community">
                             <div>
-                                <h3>A Community for Educators</h3>
+                                <h3><FormattedMessage id="teacherlanding.scratchEdTitle" /></h3>
                                 <p>
-                                    <a href="http://scratched.gse.harvard.edu/">ScratchEd</a> is an{' '}
-                                    online community where Scratch educators{' '}
-                                    <a href="http://scratched.gse.harvard.edu/stories">share stories</a>,
-                                     exchange resources, ask questions, and{' '}
-                                    find people. ScratchEd is developed and supported by{' '}
-                                    the Harvard Graduate School of Education.
+                                    <FormattedHTMLMessage id="teacherlanding.scratchEdDescription" />
                                 </p>
                             </div>
                             <div>
-                                <h3>In-Person Gatherings</h3>
+                                <h3><FormattedMessage id="teacherlanding.meetupTitle" /></h3>
                                 <p>
-                                    <a href="http://www.meetup.com/pro/scratched/">Scratch Educator Meetups</a>{' '}
-                                    are gatherings of Scratch Educators who want to learn with and{' '}
-                                    from each other, sharing their ideas and strategies{' '}
-                                    for supporting computational creativity in all its forms.
+                                    <FormattedHTMLMessage id="teacherlanding.meetupDescription" />
                                 </p>
                             </div>
                         </FlexRow>
-                        <h3 id="guides-header">Guides & Tutorials</h3>
+                        <h3 id="guides-header"><FormattedMessage id="teacherlanding.guidesTitle" /></h3>
                         <FlexRow className="guides-and-tutorials">
                             <div>
                                 <img src="/svgs/teachers/resources.svg" alt="resources icon" />
                                 <p>
-                                    On the <a href="https://scratch.mit.edu/help/">Help Page</a>,{' '}
-                                    you can find workshop guides, Scratch Cards, videos, and other resources.
+                                    <FormattedHTMLMessage id="teacherlanding.helpPage" />
                                 </p>
                             </div>
                             <div>
                                 <img src="/svgs/teachers/tips-window.svg" alt="tips window icon" />
                                 <p>
-                                    The{' '}
-                                    <a href="https://scratch.mit.edu/projects/editor/?tip_bar=home">Tips Window</a>{' '}
-                                    features step-by-step tutorials for getting started in Scratch.
+                                    <FormattedHTMLMessage id="teacherlanding.tipsWindow" />
                                 </p>
                             </div>
                             <div>
                                 <img src="/svgs/teachers/creative-computing.svg" alt="creative computing icon" />
                                 <p>
-                                    The <a href="http://scratched.gse.harvard.edu/guide/">Creative Computing{' '}
-                                    Curriculum Guide</a>{' '}
-                                    provides plans, activities, and{' '}
-                                    strategies for introducing creative computing.
+                                    <FormattedHTMLMessage id="teacherlanding.creativeComputing" />
                                 </p>
                             </div>
                         </FlexRow>
@@ -151,15 +137,11 @@ var Landing = React.createClass({
                 <div id="teacher-accounts">
                     <div className="inner account-flex">
                         <div id="left">
-                            <h2>Teacher Accounts in Scratch</h2>
+                            <h2><FormattedMessage id="teacherlanding.accountsTitle" /></h2>
                             <p>
-                                As an educator, you can request a Scratch Teacher Account,{' '}
-                                which makes it easier to create accounts for{' '}
-                                groups of students and to manage your students’{' '}
-                                projects and comments. To learn more, see the{' '}
-                                <a href="faq">Teacher Account FAQ page</a>.
+                                <FormattedHTMLMessage id="teacherlanding.accountsDescription" />
                             </p>
-                            <a href="register"><Button>Request Account</Button></a>
+                            <div className="coming-soon"><FormattedMessage id="teacherlanding.accountsButton" /></div>
                         </div>
                         <img src="/images/teachers/teacher-account.png" alt="teacher account" id="teacher-icon"/>
                     </div>
@@ -167,6 +149,6 @@ var Landing = React.createClass({
             </div>
         );
     }
-});
+}));
 
 render(<Page><Landing /></Page>, document.getElementById('app'));

@@ -178,6 +178,10 @@ var Navigation = React.createClass({
             'message-count': true,
             'show': this.state.unreadMessageCount > 0
         });
+        var dropdownClasses = classNames({
+            'user-info': true,
+            'open': this.state.accountNavOpen
+        });
         var formatMessage = this.props.intl.formatMessage;
         var createLink = this.props.session.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
         return (
@@ -241,14 +245,16 @@ var Navigation = React.createClass({
                                 </a>
                             </li>,
                             <li className="link right account-nav" key="account-nav">
-                                <a className="user-info" href="#" onClick={this.handleAccountNavClick}>
+                                <a className={dropdownClasses}
+                                    href="#" onClick={this.handleAccountNavClick}>
                                     <Avatar src={this.props.session.session.user.thumbnailUrl} alt="" />
                                     {this.props.session.session.user.username}
                                 </a>
                                 <Dropdown
                                         as="ul"
                                         isOpen={this.state.accountNavOpen}
-                                        onRequestClose={this.closeAccountNav}>
+                                        onRequestClose={this.closeAccountNav}
+                                        className={process.env.SCRATCH_ENV}>
                                     <li>
                                         <a href={this.getProfileUrl()}>
                                             <FormattedMessage id="general.profile" />
@@ -259,14 +265,14 @@ var Navigation = React.createClass({
                                             <FormattedMessage id="general.myStuff" />
                                         </a>
                                     </li>
-                                    {this.props.session.session.permissions.educator ? [
-                                        <li>
+                                    {this.props.permissions.educator ? [
+                                        <li key="my-classes-li">
                                             <a href="/educators/classes/">
                                                 <FormattedMessage id="general.myClasses" />
                                             </a>
                                         </li>
                                     ] : []}
-                                    {this.props.session.session.permissions.student ? [
+                                    {this.props.permissions.student ? [
                                         <li>
                                             <a href={'/classes/' + this.props.session.session.user.classroomId + '/'}>
                                                 <FormattedMessage id="general.myClass" />
@@ -335,7 +341,8 @@ var Navigation = React.createClass({
 
 var mapStateToProps = function (state) {
     return {
-        session: state.session
+        session: state.session,
+        permissions: state.permissions
     };
 };
 

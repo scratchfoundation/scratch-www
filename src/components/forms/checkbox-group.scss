@@ -1,9 +1,11 @@
 .checkbox-group {
-    .col-sm-9 {
-        flex-flow: column wrap;
+    .row {
+        .col-sm-9 {
+            flex-flow: column wrap;
 
-        .checkbox {
-            margin: .5rem 0;
+            .checkbox {
+                margin: .5rem 0;
+            }
         }
     }
 }

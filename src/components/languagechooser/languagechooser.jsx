@@ -6,6 +6,8 @@ var languages = require('../../../languages.json');
 var Form = require('../forms/form.jsx');
 var Select = require('../forms/select.jsx');
 
+require('./languagechooser.scss');
+
 /**
  * Footer dropdown menu that allows one to change their language.
  */
@@ -33,7 +35,7 @@ var LanguageChooser = React.createClass({
             <Form className={classes}>
                 <Select name="language"
                         options={languageOptions}
-                        defaultValue={this.props.locale}
+                        value={this.props.locale}
                         onChange={this.onSetLanguage}
                         required />
             </Form>

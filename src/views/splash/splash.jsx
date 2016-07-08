@@ -4,7 +4,6 @@ var omit = require('lodash.omit');
 var React = require('react');
 
 var api = require('../../lib/api');
-var permissionsActions = require('../../redux/permissions.js');
 var render = require('../../lib/render.jsx');
 var sessionActions = require('../../redux/session.js');
 var shuffle = require('../../lib/shuffle.js').shuffle;
@@ -61,10 +60,6 @@ var Splash = injectIntl(React.createClass({
                 window.removeEventListener('message', this.onMessage);
             }
         }
-    },
-    componentWillMount: function () {
-        // Determine whether to show the teacher banner or not
-        this.props.dispatch(permissionsActions.getPermissions());
     },
     componentDidMount: function () {
         this.getFeaturedGlobal();
@@ -382,7 +377,7 @@ var Splash = injectIntl(React.createClass({
                     </Modal>
                 ] : []}
                 {this.props.permissions.educator ? [
-                    <TeacherBanner messages={messages} />
+                    <TeacherBanner key="teacherbanner" messages={messages} />
                 ] : []}
                 <div key="inner" className="inner">
                     {this.props.session.status === sessionActions.Status.FETCHED ? (

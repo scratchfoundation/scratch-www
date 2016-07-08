@@ -9,7 +9,9 @@ var Deck = React.createClass({
         return (
             <div className={classNames(['deck', this.props.className])}>
                 <div className="inner">
-                    <img src="/images/logo_sm.png" />
+                    <a href="/" aria-label="Scratch">
+                        <img src="/images/logo_sm.png" />
+                    </a>
                     {this.props.children}
                 </div>
             </div>

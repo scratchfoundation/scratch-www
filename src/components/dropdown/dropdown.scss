@@ -15,6 +15,10 @@
     font-size: .8125rem;
     font-weight: normal;
 
+    &.staging {
+        background-color: $ui-orange;
+    }
+
     &.open {
         display: block;
     }
@@ -53,7 +57,7 @@
                 text-decoration: none;
             }
         }
-    }        
+    }
 
     &.with-arrow {
         $arrow-border-width: 14px;
@@ -61,12 +65,12 @@
         border-radius: 5px;
         overflow: visible;
 
-        &:before {        
+        &:before {
             display: block;
             position: absolute;
             top: -$arrow-border-width / 2;
             right: 10%;
-            
+
             transform: rotate(45deg);
 
             border-top: 1px solid $active-gray;

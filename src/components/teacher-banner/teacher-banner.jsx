@@ -1,4 +1,5 @@
 var classNames = require('classnames');
+var connect = require('react-redux').connect;
 var React = require('react');
 
 var sessionActions = require('../../redux/session.js');
@@ -34,11 +35,11 @@ var TeacherBanner = React.createClass({
                     <div className="welcome">
                         {this.props.session.status === sessionActions.Status.FETCHED ? (
                             this.props.session.session.user ? [
-                                <h3>
+                                <h3 key="greeting">
                                     {this.props.messages['teacherbanner.greeting']},{' '}
                                     {this.props.session.session.user.username}
                                 </h3>,
-                                <p>
+                                <p key="subgreeting">
                                     {this.props.messages['teacherbanner.subgreeting']}
                                 </p>
                             ] : []
@@ -47,17 +48,17 @@ var TeacherBanner = React.createClass({
                     <FlexRow className="quick-links">
                         {this.props.session.status === sessionActions.Status.FETCHED ? (
                             this.props.session.session.user ? [
-                                <a href="/educators/classes">
+                                <a href="/educators/classes" key="classes-button">
                                     <Button>
                                         {this.props.messages['teacherbanner.classesButton']}
                                     </Button>
                                 </a>,
-                                <a href="/info/educators">
+                                <a href="/info/educators" key="resources-button">
                                     <Button>
                                         {this.props.messages['teacherbanner.resourcesButton']}
                                     </Button>
                                 </a>,
-                                <a href="/info/educators/faq">
+                                <a href="/educators/faq" key="faq-button">
                                     <Button>
                                         {this.props.messages['teacherbanner.faqButton']}
                                     </Button>
@@ -71,4 +72,12 @@ var TeacherBanner = React.createClass({
     }
 });
 
-module.exports = TeacherBanner;
+var mapStateToProps = function (state) {
+    return {
+        session: state.session
+    };
+};
+
+var ConnectedTeacherBanner = connect(mapStateToProps)(TeacherBanner);
+
+module.exports = ConnectedTeacherBanner;

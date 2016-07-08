@@ -12,6 +12,7 @@ var CharCount = require('../../components/forms/charcount.jsx');
 var Checkbox = require('../../components/forms/checkbox.jsx');
 var CheckboxGroup = require('../../components/forms/checkbox-group.jsx');
 var Form = require('../../components/forms/form.jsx');
+var GeneralError = require('../../components/forms/general-error.jsx');
 var Input = require('../../components/forms/input.jsx');
 var PhoneInput = require('../../components/forms/phone-input.jsx');
 var RadioGroup = require('../../components/forms/radio-group.jsx');
@@ -102,7 +103,7 @@ module.exports = {
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
-                            <Input label={formatMessage({id: 'general.username'})}
+                            <Input label={formatMessage({id: 'general.createUsername'})}
                                    className={this.state.validUsername}
                                    type="text"
                                    name="user.username"
@@ -148,6 +149,7 @@ module.exports = {
                                       onChange={this.onChangeShowPassword}
                                       help={null}
                                       name="showPassword" />
+                            <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
                                             text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
@@ -284,6 +286,14 @@ module.exports = {
                 waiting: false
             };
         },
+        onValidSubmit: function (formData, reset, invalidate) {
+            if (formData.phone.national_number.length !== formData.phone.country_code.format.length) {
+                return invalidate({
+                    'phone': this.props.intl.formatMessage({id: 'teacherRegistration.validationPhoneNumber'})
+                });
+            }
+            return this.props.onNextStep(formData);
+        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
@@ -291,13 +301,13 @@ module.exports = {
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.phoneStepTitle" />
                     </h2>
-                    <p>
+                    <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.phoneStepDescription" />
                         <Tooltip title={'?'}
                                  tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.props.onNextStep}>
+                        <Form onValidSubmit={this.onValidSubmit}>
                             <PhoneInput label={formatMessage({id: 'teacherRegistration.phoneNumber'})}
                                         name="phone"
                                         defaultCountry={this.props.defaultCountry}
@@ -352,6 +362,14 @@ module.exports = {
         onChooseOrganization: function (name, values) {
             this.setState({otherDisabled: values.indexOf(this.organizationL10nStems.indexOf('orgChoiceOther')) === -1});
         },
+        onValidSubmit: function (formData, reset, invalidate) {
+            if (formData.organization.type.length < 1) {
+                return invalidate({
+                    'organization.type': this.props.intl.formatMessage({id: 'teacherRegistration.validationRequired'})
+                });
+            }
+            return this.props.onNextStep(formData);
+        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
@@ -359,13 +377,13 @@ module.exports = {
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.orgStepTitle" />
                     </h2>
-                    <p>
+                    <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.orgStepDescription" />
                         <Tooltip title={'?'}
                                  tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.props.onNextStep}>
+                        <Form onValidSubmit={this.onValidSubmit}>
                             <Input label={formatMessage({id: 'teacherRegistration.organization'})}
                                    type="text"
                                    name="organization.name"
@@ -448,7 +466,7 @@ module.exports = {
                     return this.props.onNextStep(formData);
                 } else {
                     return invalidate({
-                        'all': <FormattedMessage id="teacherRegistration.addressValidationError" />
+                        'all': this.props.intl.formatMessage({id: 'teacherRegistration.addressValidationError'})
                     });
                 }
             }.bind(this));
@@ -508,6 +526,7 @@ module.exports = {
                                    type="text"
                                    name="address.zip"
                                    required />
+                            <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
                                             text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
@@ -631,6 +650,7 @@ module.exports = {
                                        equalsField: formatMessage({id: 'general.validationEmailMatch'})
                                    }}
                                    required />
+                            <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting}
                                             text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
                         </Form>
@@ -693,7 +713,7 @@ module.exports = {
                 <Slide className="error-step">
                     <h2>Something went wrong</h2>
                     <Card>
-                        <h2>There was an error while processing your registration</h2>
+                        <h4>There was an error while processing your registration</h4>
                         <p>
                             {this.props.registrationError}
                         </p>

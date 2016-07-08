@@ -29,6 +29,7 @@ module.exports.validationHOCFactory = function (defaultValidationErrors) {
         var ValidatedComponent = React.createClass({
             render: function () {
                 var validationErrors = defaults(
+                    {},
                     defaultValidationErrors,
                     this.props.validationErrors
                 );

@@ -9,7 +9,7 @@
     "teacherfaq.teacherGoogleTitle": "Are teacher accounts integrated with Google Classroom or any other classroom managment service?",
     "teacherfaq.teacherGoogleBody": "Scratch Teacher accounts are not integrated with any classroom management services.",
     "teacherfaq.teacherEdTitle": "Are ScratchEd & Scratch Teacher accounts the same thing?",
-    "teacherfaq.teacherEdBody": "<a href=\"//scratched.gse.harvard.edu/\">ScratchEd</a> accounts are not linked to Scratch Teacher accounts.",
+    "teacherfaq.teacherEdBody": "<a href=\"http://scratched.gse.harvard.edu/\">ScratchEd</a> accounts are not linked to Scratch Teacher accounts.",
     "teacherfaq.teacherWaitTitle": "Why do I have to wait 24 hours for my account?",
     "teacherfaq.teacherWaitBody": "The Scratch Team uses this time to manually review account creation submissions to verify the account creator is an educator.",
     "teacherfaq.teacherPersonalTitle": "Why do you need to know my personal information during registration?",
@@ -33,7 +33,7 @@
     "teacherfaq.studentMultipleTitle": "Can a student be in multiple classes? ",
     "teacherfaq.studentMultipleBody": "A student can only be a part of one class. However, we are looking into adding this functionality in later versions.",
     "teacherfaq.studentDiscussTitle": "Is there a space to discuss Teacher Accounts with other teachers?",
-    "teacherfaq.studentDiscussBody": "Yes, you can engage in discussions with other teachers at <a href=\"//scratched.gse.harvard.edu/\">ScratchEd</a>, an online community for Scratch educators. Check out their forums to join conversations about a <a href=\"//scratched.gse.harvard.edu/discussions\">number of topics</a>, including but not limited to Teacher Accounts. ScratchEd is developed and supported by the Harvard Graduate School of Education.",
+    "teacherfaq.studentDiscussBody": "Yes, you can engage in discussions with other teachers at <a href=\"http://scratched.gse.harvard.edu/\">ScratchEd</a>, an online community for Scratch educators. Check out their forums to join conversations about a <a href=\"http://scratched.gse.harvard.edu/discussions\">number of topics</a>, including but not limited to Teacher Accounts. ScratchEd is developed and supported by the Harvard Graduate School of Education.",
 
     "teacherfaq.commTitle": "Community",
     "teacherfaq.commHiddenTitle": "Can I create a hidden class?",
