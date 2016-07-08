@@ -33,7 +33,7 @@ var ConferenceExpectations = React.createClass({
                             <p className="intro">
                                 The Scratch community keeps growing and growing.{' '}
                                 Young people around the world have shared more than{' '}
-                                14 million projects in the Scratch online community{' '}
+                                15 million projects in the Scratch online community{' '}
                                 – with 20,000 new projects every day.
                             </p>
                             <p className="intro">
@@ -58,7 +58,7 @@ var ConferenceExpectations = React.createClass({
                             <p className="intro">
                                 We are planning a very participatory conference, with lots of{' '}
                                 hands-on workshops and opportunities for collaboration and sharing.{' '}
-                                We hope you’ll join us. Let’s learn together!
+                                Let’s learn together!
                             </p>
                         </div>
                     </FlexRow>
@@ -167,7 +167,7 @@ var ConferenceExpectations = React.createClass({
                                 <tr>
                                     <td>
                                         <b>2:00p</b>
-                                        <p>Afternoon workshops</p>
+                                        <p>Afternoon Workshops</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -271,7 +271,7 @@ var ConferenceExpectations = React.createClass({
                                 <tr>
                                     <td>
                                         <b>12:00p</b>
-                                        <p>Lunch (provided)</p>
+                                        <p>Lunch (provided) and Wrap-up Session</p>
                                     </td>
                                 </tr>
                             </tbody>

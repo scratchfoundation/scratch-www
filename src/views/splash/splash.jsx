@@ -2,11 +2,11 @@ var connect = require('react-redux').connect;
 var injectIntl = require('react-intl').injectIntl;
 var omit = require('lodash.omit');
 var React = require('react');
+
+var api = require('../../lib/api');
 var render = require('../../lib/render.jsx');
-
 var sessionActions = require('../../redux/session.js');
-
-var Api = require('../../mixins/api.jsx');
+var shuffle = require('../../lib/shuffle.js').shuffle;
 
 var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
@@ -18,15 +18,13 @@ var Intro = require('../../components/intro/intro.jsx');
 var Modal = require('../../components/modal/modal.jsx');
 var News = require('../../components/news/news.jsx');
 var Page = require('../../components/page/www/page.jsx');
+var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
 require('./splash.scss');
 
 var Splash = injectIntl(React.createClass({
     type: 'Splash',
-    mixins: [
-        Api
-    ],
     getInitialState: function () {
         return {
             projectCount: 14000000, // gets the shared project count
@@ -40,12 +38,13 @@ var Splash = injectIntl(React.createClass({
     },
     getDefaultProps: function () {
         return {
-            session: {}
+            session: {},
+            permissions: {}
         };
     },
     componentDidUpdate: function (prevProps) {
-        if (this.props.session.user != prevProps.session.user) {
-            if (this.props.session.user) {
+        if (this.props.session.session.user != prevProps.session.session.user) {
+            if (this.props.session.session.user) {
                 this.getActivity();
                 this.getFeaturedCustom();
                 this.getNews();
@@ -64,7 +63,7 @@ var Splash = injectIntl(React.createClass({
     },
     componentDidMount: function () {
         this.getFeaturedGlobal();
-        if (this.props.session.user) {
+        if (this.props.session.session.user) {
             this.getActivity();
             this.getFeaturedCustom();
             this.getNews();
@@ -89,42 +88,42 @@ var Splash = injectIntl(React.createClass({
         }
     },
     getActivity: function () {
-        this.api({
-            uri: '/proxy/users/' + this.props.session.user.username + '/activity?limit=5'
+        api({
+            uri: '/proxy/users/' + this.props.session.session.user.username + '/activity?limit=5'
         }, function (err, body) {
             if (!err) this.setState({activity: body});
         }.bind(this));
     },
     getFeaturedGlobal: function () {
-        this.api({
+        api({
             uri: '/proxy/featured'
         }, function (err, body) {
             if (!err) this.setState({featuredGlobal: body});
         }.bind(this));
     },
     getFeaturedCustom: function () {
-        this.api({
-            uri: '/proxy/users/' + this.props.session.user.id + '/featured'
+        api({
+            uri: '/proxy/users/' + this.props.session.session.user.id + '/featured'
         }, function (err, body) {
             if (!err) this.setState({featuredCustom: body});
         }.bind(this));
     },
     getNews: function () {
-        this.api({
+        api({
             uri: '/news?limit=3'
         }, function (err, body) {
             if (!err) this.setState({news: body});
         }.bind(this));
     },
     getProjectCount: function () {
-        this.api({
+        api({
             uri: '/projects/count/all'
         }, function (err, body) {
             if (!err) this.setState({projectCount: body.count});
         }.bind(this));
     },
     refreshHomepageCache: function () {
-        this.api({
+        api({
             host: '',
             uri: '/scratch_admin/homepage/clear-cache/',
             method: 'post',
@@ -160,7 +159,7 @@ var Splash = injectIntl(React.createClass({
         this.setState({emailConfirmationModalOpen: false});
     },
     handleDismiss: function (cue) {
-        this.api({
+        api({
             host: '',
             uri: '/site-api/users/set-template-cue/',
             method: 'post',
@@ -171,16 +170,16 @@ var Splash = injectIntl(React.createClass({
         });
     },
     shouldShowWelcome: function () {
-        if (!this.props.session.user || !this.props.session.flags.show_welcome) return false;
+        if (!this.props.session.session.user || !this.props.session.session.flags.show_welcome) return false;
         return (
-            new Date(this.props.session.user.dateJoined) >
+            new Date(this.props.session.session.user.dateJoined) >
             new Date(new Date - 2*7*24*60*60*1000) // Two weeks ago
         );
     },
     shouldShowEmailConfirmation: function () {
         return (
-            this.props.session.user && this.props.session.flags.has_outstanding_email_confirmation &&
-            this.props.session.flags.confirm_email_banner);
+            this.props.session.session.user && this.props.session.session.flags.has_outstanding_email_confirmation &&
+            this.props.session.session.flags.confirm_email_banner);
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
@@ -205,7 +204,7 @@ var Splash = injectIntl(React.createClass({
 
         if (this.state.featuredGlobal.curator_top_projects &&
             this.state.featuredGlobal.curator_top_projects.length > 4) {
-            
+
             rows.push(
                 <Box
                         key="curator_top_projects"
@@ -222,7 +221,7 @@ var Splash = injectIntl(React.createClass({
 
         if (this.state.featuredGlobal.scratch_design_studio &&
             this.state.featuredGlobal.scratch_design_studio.length > 4) {
-            
+
             rows.push(
                 <Box
                         key="scratch_design_studio"
@@ -239,10 +238,10 @@ var Splash = injectIntl(React.createClass({
             );
         }
 
-        if (this.props.session.user &&
+        if (this.props.session.session.user &&
             this.state.featuredGlobal.community_newest_projects &&
             this.state.featuredGlobal.community_newest_projects.length > 0) {
-            
+
             rows.push(
                 <Box
                         title={
@@ -258,14 +257,14 @@ var Splash = injectIntl(React.createClass({
 
         if (this.state.featuredCustom.custom_projects_by_following &&
             this.state.featuredCustom.custom_projects_by_following.length > 0) {
-            
+
             rows.push(
                 <Box title={
                             formatMessage({
                                 id: 'splash.projectsByScratchersFollowing',
                                 defaultMessage: 'Projects by Scratchers I\'m Following'})}
                      key="custom_projects_by_following">
-                    
+
                     <Carousel items={this.state.featuredCustom.custom_projects_by_following} />
                 </Box>
             );
@@ -279,7 +278,7 @@ var Splash = injectIntl(React.createClass({
                                 id: 'splash.projectsLovedByScratchersFollowing',
                                 defaultMessage: 'Projects Loved by Scratchers I\'m Following'})}
                      key="custom_projects_loved_by_following">
-                    
+
                     <Carousel items={this.state.featuredCustom.custom_projects_loved_by_following} />
                 </Box>
             );
@@ -287,14 +286,14 @@ var Splash = injectIntl(React.createClass({
 
         if (this.state.featuredCustom.custom_projects_in_studios_following &&
             this.state.featuredCustom.custom_projects_in_studios_following.length > 0) {
-            
+
             rows.push(
                 <Box title={
                             formatMessage({
                                 id:'splash.projectsInStudiosFollowing',
                                 defaultMessage: 'Projects in Studios I\'m Following'})}
                      key="custom_projects_in_studios_following">
-                    
+
                     <Carousel items={this.state.featuredCustom.custom_projects_in_studios_following} />
                 </Box>
             );
@@ -306,16 +305,18 @@ var Splash = injectIntl(React.createClass({
                             id: 'splash.communityRemixing',
                             defaultMessage: 'What the Community is Remixing' })}
                  key="community_most_remixed_projects">
-                
-                <Carousel items={this.state.featuredGlobal.community_most_remixed_projects} showRemixes={true} />
+
+                <Carousel items={shuffle(this.state.featuredGlobal.community_most_remixed_projects)}
+                          showRemixes={true} />
             </Box>,
             <Box title={
                         formatMessage({
                             id: 'splash.communityLoving',
                             defaultMessage: 'What the Community is Loving' })}
                  key="community_most_loved_projects">
-                
-                <Carousel items={this.state.featuredGlobal.community_most_loved_projects} showLoves={true} />
+
+                <Carousel items={shuffle(this.state.featuredGlobal.community_most_loved_projects)}
+                          showLoves={true} />
             </Box>
         );
 
@@ -342,7 +343,12 @@ var Splash = injectIntl(React.createClass({
             'intro.joinScratch': formatMessage({id: 'intro.joinScratch'}),
             'intro.seeExamples': formatMessage({id: 'intro.seeExamples'}),
             'intro.tagLine': formatHTMLMessage({id: 'intro.tagLine'}),
-            'intro.tryItOut': formatMessage({id: 'intro.tryItOut'})
+            'intro.tryItOut': formatMessage({id: 'intro.tryItOut'}),
+            'teacherbanner.greeting': formatMessage({id: 'teacherbanner.greeting'}),
+            'teacherbanner.subgreeting': formatMessage({id: 'teacherbanner.subgreeting'}),
+            'teacherbanner.classesButton': formatMessage({id: 'teacherbanner.classesButton'}),
+            'teacherbanner.resourcesButton': formatMessage({id: 'teacherbanner.resourcesButton'}),
+            'teacherbanner.faqButton': formatMessage({id: 'teacherbanner.faqButton'})
         };
         if (this.state.projectCount === this.getInitialState().projectCount) {
             messages['intro.description'] = formatHTMLMessage({id: 'intro.defaultDescription'});
@@ -370,21 +376,26 @@ var Splash = injectIntl(React.createClass({
                                 {...omit(emailConfirmationStyle, 'padding')} />
                     </Modal>
                 ] : []}
+                {this.props.permissions.educator ? [
+                    <TeacherBanner key="teacherbanner" messages={messages} />
+                ] : []}
                 <div key="inner" className="inner">
-                    {this.props.session.user ? [
-                        <div key="header" className="splash-header">
-                            {this.shouldShowWelcome() ? [
-                                <Welcome key="welcome"
-                                         onDismiss={this.handleDismiss.bind(this, 'welcome')}
-                                         messages={messages} />
-                            ] : [
-                                <Activity key="activity" items={this.state.activity} />
-                            ]}
-                            <News items={this.state.news} messages={messages} />
-                        </div>
-                    ] : [
-                        <Intro projectCount={this.state.projectCount} messages={messages} key="intro"/>
-                    ]}
+                    {this.props.session.status === sessionActions.Status.FETCHED ? (
+                        this.props.session.session.user ? [
+                            <div key="header" className="splash-header">
+                                {this.shouldShowWelcome() ? [
+                                    <Welcome key="welcome"
+                                             onDismiss={this.handleDismiss.bind(this, 'welcome')}
+                                             messages={messages} />
+                                ] : [
+                                    <Activity key="activity" items={this.state.activity} />
+                                ]}
+                                <News items={this.state.news} messages={messages} />
+                            </div>
+                        ] : [
+                            <Intro projectCount={this.state.projectCount} messages={messages} key="intro"/>
+                        ]) : []
+                    }
 
                     {featured}
 
@@ -427,7 +438,8 @@ var Splash = injectIntl(React.createClass({
 
 var mapStateToProps = function (state) {
     return {
-        session: state.session
+        session: state.session,
+        permissions: state.permissions
     };
 };
 

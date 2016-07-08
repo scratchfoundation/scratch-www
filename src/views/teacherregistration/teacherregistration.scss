@@ -1,0 +1,218 @@
+@import "../../colors";
+@import "../../frameless";
+
+@include responsive-layout (".teacher-registration", ".slide");
+
+html,
+body {
+    background-color: darken($ui-purple, 8%);
+}
+
+.teacher-registration {
+    background-color: $ui-purple;
+
+    .demographics-checkbox-is-robot {
+        display: none;
+    }
+
+    .gender-input,
+    .other-input {
+        float: right;
+        width: 90%;
+
+        .row {
+            margin-left: .5rem;
+        }
+    }
+
+    .username-step,
+    .name-step,
+    .address-step,
+    .email-step {
+        .help-block {
+            transform: translate(15.75rem, -4rem);
+        }
+    }
+
+    .demographics-step {
+        .gender-input {
+            margin-top: -5.5rem;
+        }
+
+        .help-block {
+            transform: translate(13rem, -2rem);
+        }
+
+        .radio {
+            margin-right: 2.5rem;
+            line-height: 3rem;
+
+            input {
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    .phone-step {
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        input {
+            &[type=checkbox] {
+                margin-bottom: 1.25rem;
+            }
+        }
+
+        .help-block {
+            margin-top: .5rem;
+        }
+
+        .checkbox-row {
+            .help-block {
+                margin-top: 0;
+            }
+        }
+    }
+
+    .organization-step {
+        .help-block {
+            transform: translate(16rem, -4rem);
+        }
+
+        .checkbox-group {
+            .help-block {
+                transform: translate(16rem, -16rem);
+            }
+        }
+
+        .organization-type,
+        .url-input {
+            p {
+                margin: .25rem 0;
+                text-align: left;
+                color: $ui-dark-gray;
+            }
+        }
+
+        input {
+            &[value="8"] {
+                margin: 1rem 0;
+            }
+        }
+
+        .other-input {
+            margin-top: -5.75rem;
+        }
+    }
+
+    .address-step {
+        .select {
+            .help-block {
+                transform: translate(0, .5rem);
+            }
+        }
+    }
+
+    .usescratch-step {
+        .form {
+            .form-group {
+                margin-bottom: 0;
+
+                &.has-error {
+                    .textarea {
+                        border: 1px solid $ui-orange;
+                    }
+                }
+            }
+
+
+        }
+
+        .help-block {
+            margin-top: .75rem;
+        }
+
+        p {
+            &.char-count {
+                margin-top: 0;
+                margin-bottom: 1rem;
+                text-align: right;
+            }
+        }
+    }
+
+    .last-step,
+    .error-step {
+        &.slide {
+            max-width: 38.75rem;
+        }
+
+        .card {
+            margin: 1rem 0;
+            padding: 1.5rem;
+            width: initial;
+
+            h4,
+            p {
+                text-align: left;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $mobile - 1) {
+    .teacher-registration {
+        .demographics-step {
+            .radio {
+                width: 100%;
+                text-align: left;
+            }
+        }
+
+        .last-step,
+        .error-step {
+            .card {
+                margin: 0 auto;
+                width: 18.75rem;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $desktop - 1) {
+    .teacher-registration {
+        .form {
+            text-align: left;
+        }
+
+        .username-step,
+        .demographics-step,
+        .name-step {
+            .help-block {
+                transform: none;
+            }
+        }
+
+        .phone-step {
+            .checkbox,
+            .help-block {
+                text-align: left;
+            }
+
+            .checkbox {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .organization-step {
+            .checkbox-group {
+                text-align: left;
+            }
+        }
+    }
+}

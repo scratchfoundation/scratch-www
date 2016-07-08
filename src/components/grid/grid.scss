@@ -1,0 +1,58 @@
+@import "../../frameless";
+
+.grid {
+    display: inline-block;
+    width: 100%;
+
+    $project-width: 200px;
+    $project-height: 150px;
+
+    $gallery-width: 200px;
+    $gallery-height: 118px;
+
+    .flex-row {
+        margin: 0 auto;
+        padding: 12px;
+        width: (96px + (4 * $project-width)) / $em;
+        justify-content: flex-start;
+    }
+
+    .thumbnail {
+        padding: 12px;
+
+        &.project {
+            width: $project-width;
+
+            img {
+                width: $project-width;
+                height: $project-height;
+            }
+        }
+
+        &.gallery {
+            width: $gallery-width;
+
+            img {
+                width: $gallery-width;
+                height: $gallery-height;
+            }
+        }
+    }
+
+    &.column {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    @media only screen and (max-width: $tablet - 1) {
+        flex-direction: column;
+    }
+
+    @media only screen and (max-width: $desktop - 1) {
+        .flex-row {
+            padding: 12px 0;
+            width: 100%;
+            justify-content: space-around;
+        }
+    }
+}

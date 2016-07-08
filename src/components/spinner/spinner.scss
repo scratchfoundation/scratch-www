@@ -2,6 +2,7 @@
 
 .spinner {
     position: relative;
+    margin: 0 auto;
     width: 20px;
     height: 20px;
 
@@ -17,10 +18,14 @@
             animation: circleFadeDelay 1.2s infinite ease-in-out both;
             margin: 0 auto;
             border-radius: 100%;
-            background-color: darken($ui-blue, 8%);
+            background-color: darken($ui-white, 8%);
             width: 15%;
             height: 15%;
             content: "";
+
+            .white & {
+                background-color: darken($ui-blue, 8%);    
+            }
         }
     }
 

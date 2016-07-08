@@ -10,10 +10,10 @@
         <meta name="viewport" content="width={{viewportWidth}}, initial-scale=1">
 
         <title>Scratch - {{title}}</title>
-        
+
         <!-- Prevent mobile Safari from making phone numbers -->
         <meta name="format-detection" content="telephone=no">
-        
+
         <!-- Search & Open Graph-->
         <meta name="description" content="{{description}}" />
         <meta name="google-site-verification" content="m_3TAXDreGTFyoYnEmU9mcKB4Xtw5mw6yRkuJtXRKxM" />
@@ -31,25 +31,8 @@
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="stylesheet" href="/css/lib/normalize.min.css" />
 
-        <!-- Environment -->
-        <script>
-            window.env = {
-                API_HOST: "{{&api_host}}"
-            };
-        </script>
-
         <!-- Polyfills -->
         <script src="/js/polyfill.min.js"></script>
-    </head>
-
-    <body>
-        <div id="app"></div>
-
-        <!-- Vendor & Initialize (Session & Localization)-->
-        <script src="/js/common.bundle.js"></script>
-        <!-- Scripts -->
-        <script src="/js/{{name}}.intl.js"></script>
-        <script src="/js/{{name}}.bundle.js"></script>
 
         <!-- Analytics (GA) -->
         <script>
@@ -63,8 +46,19 @@
             });
             ga('send', 'pageview');
         </script>
+    </head>
 
-        <!-- translate title element -->
+    <body>
+        <div id="app"></div>
+
+        <!-- Vendor & Initialize (Session & Localization)-->
+        <script src="/js/common.bundle.js"></script>
+
+        <!-- Scripts -->
+        <script src="/js/{{name}}.intl.js"></script>
+        <script src="/js/{{name}}.bundle.js"></script>
+
+        <!-- Translate title element -->
         <script>
             var loc = window._locale || 'en';
             if (typeof window._messages !== 'undefined' && loc !== 'en') {

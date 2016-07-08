@@ -12,7 +12,28 @@
         justify-content: center;
     }
 
+    &.uneven {
+        align-items: flex-start;
+
+        .short {
+            width: $cols3;
+        }
+
+        .long {
+            width: $cols8;
+            text-align: left;
+        }
+    }
+
     @media only screen and (max-width: $tablet - 1) {
         flex-direction: column;
+
+        &.uneven {
+            .short,
+            .long {
+                margin: auto;
+                width: 90%;
+            }
+        }
     }
 }

@@ -24,7 +24,15 @@
 
         .news {
             width: 40%;
+            
+            img {
+                flex-shrink: 0;
+            }
         }
+    }
+
+    .teacher-banner {
+        margin-top: -20px;
     }
 
     .box {

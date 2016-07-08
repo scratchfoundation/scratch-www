@@ -1,0 +1,11 @@
+@import "../../frameless";
+
+.slide {
+    padding: 10px;
+}
+
+@media only screen and (max-width: $tablet - 1) {
+    .slide {
+        padding: 0;
+    }
+}

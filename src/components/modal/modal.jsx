@@ -11,6 +11,7 @@ var defaultStyle = {
         backgroundColor: 'rgba(0, 0, 0, .75)'
     },
     content: {
+        position: 'absolute',
         overflow: 'visible',
         borderRadius: '6px',
         width: 500,

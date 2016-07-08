@@ -32,6 +32,11 @@ var Footer = React.createClass({
                             </a>
                         </dd>
                         <dd>
+                            <a href="/developers">
+                                <FormattedMessage id='general.forDevelopers' />
+                            </a>
+                        </dd>
+                        <dd>
                             <a href="/info/credits/">
                                 <FormattedMessage id='general.credits' />
                             </a>

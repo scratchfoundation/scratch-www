@@ -23,6 +23,12 @@
 
     "news.scratchNews": "Scratch News",
 
+    "teacherbanner.greeting": "Hi",
+    "teacherbanner.subgreeting": "Teacher Account",
+    "teacherbanner.classesButton": "My Classes",
+    "teacherbanner.resourcesButton": "Educator Resources",
+    "teacherbanner.faqButton": "Teacher Account FAQ",
+
     "welcome.welcomeToScratch": "Welcome to Scratch!",
     "welcome.learn": "Learn how to make a project in Scratch",
     "welcome.tryOut": "Try out starter projects",

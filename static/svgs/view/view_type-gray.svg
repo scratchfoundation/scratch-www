@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+	<ellipse ry="5.47" rx="8.403" cy="10.566" cx="11.132" fill="#6b6b6b" stroke="#6b6b6b" stroke-width="1.74" stroke-linejoin="bevel"/>
+	<ellipse cx="11.085" cy="10.605" rx="3.67" ry="3.598" fill="none" stroke="#fff" stroke-width="2.121" stroke-linejoin="round"/>
+	<g stroke="#fff" fill="none" stroke-linejoin="bevel">
+		<path transform="matrix(1.03203 0 0 -1.1522 -.523 -1.591)" d="M20.575-18.124a12.19 9.241 0 0 1-3.78 12.088A12.19 9.241 0 0 1 .558-7.724" stroke-width="1.417"/>
+		<path d="M20.166 3.088a12.138 9.243 0 0 1-3.765 12.09A12.138 9.243 0 0 1 .234 13.489" stroke-width="1.414" transform="matrix(1.03203 0 0 1.1522 -.523 -1.591)"/>
+	</g>
+	<g stroke="#fff" fill="none" stroke-linejoin="bevel">
+		<path transform="matrix(-1.03217 0 0 -1.14523 22.758 -1.517)" d="M20.575-18.124a12.19 9.241 0 0 1-3.78 12.088A12.19 9.241 0 0 1 .558-7.724" stroke-width="1.417"/>
+		<path d="M20.166 3.088a12.138 9.243 0 0 1-3.765 12.09A12.138 9.243 0 0 1 .234 13.489" stroke-width="1.414" transform="matrix(-1.03217 0 0 1.14523 22.758 -1.517)"/>
+	</g>
+</svg>

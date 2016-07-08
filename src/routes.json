@@ -12,12 +12,6 @@
         "title": "About"
     },
     {
-        "name": "components",
-        "pattern": "^/components/?$",
-        "view": "components/components",
-        "title": "Components"
-    },
-    {
         "name": "developers",
         "pattern": "^/developers/?$",
         "view": "developers/developers",
@@ -30,10 +24,60 @@
         "title": "Hour of Code"
     },
     {
+        "name": "explore",
+        "pattern": "^/explore/:projects/:all/?$",
+        "routeAlias": "^/explore",
+        "view": "explore/explore",
+        "title": "Explore"
+    },
+    {
+        "name": "explore-redirect",
+        "pattern": "^/explore/?$",
+        "routeAlias": "^/explore",
+        "redirect": "/explore/projects/all"
+    },
+    {
+        "name": "explore-projects-redirect",
+        "pattern": "^/explore/projects/?$",
+        "routeAlias": "^/explore",
+        "redirect": "/explore/projects/all"
+    },
+    {
+        "name": "explore-studios-redirect",
+        "pattern": "^/explore/studios/?$",
+        "routeAlias": "^/explore",
+        "redirect": "/explore/studios/all"
+    },
+    {
+        "name": "search",
+        "pattern": "^/search/:projects?$/?$",
+        "routeAlias": "^/search",
+        "view": "search/search",
+        "title": "Search"
+    },
+    {
         "name": "credits",
         "pattern": "^/info/credits/?$",
         "view": "credits/credits",
         "title": "Credits"
+    },
+    {
+        "name": "faq",
+        "pattern": "^/info/faq/?$",
+        "view": "faq/faq",
+        "title": "FAQ"
+    },
+    {
+        "name": "educator-landing",
+        "pattern": "^/educators/?$",
+        "view": "teachers/landing/landing",
+        "title": "Educators"
+    },
+    {
+        "name": "teacher-faq",
+        "pattern": "^/educators/faq/?$",
+        "view": "teachers/faq/faq",
+        "title": "Teacher Accounts FAQ"
     },
     {
         "name": "cards",
@@ -54,6 +98,19 @@
         "title": "Jobs"
     },
     {
+        "name": "teacherregistration",
+        "pattern": "^/educators/register$",
+        "view": "teacherregistration/teacherregistration",
+        "title": "Teacher Registration",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "teacherwaitingroom",
+        "pattern": "^/educators/waiting",
+        "view": "teacherwaitingroom/teacherwaitingroom",
+        "title": "Thank you for requesting a Scratch Teacher Account"
+    },
+    {
         "name": "wedo2",
         "pattern": "^/wedo/?$",
         "view": "wedo2/wedo2",
@@ -62,6 +119,7 @@
     {
         "name": "conference-index",
         "pattern": "^/conference/?$",
+        "routeAlias": "^/conference(?!/201[4-5])",
         "view": "conference/index/index",
         "title": "Scratch Conference",
         "viewportWidth": "device-width"
@@ -69,6 +127,7 @@
     {
         "name": "conference-plan",
         "pattern": "^/conference/plan/?$",
+        "routeAlias": "^/conference(?!/201[4-5])",
         "view": "conference/plan/plan",
         "title": "Plan Your Visit",
         "viewportWidth": "device-width"
@@ -76,6 +135,7 @@
     {
         "name": "conference-expectations",
         "pattern": "^/conference/expect/?$",
+        "routeAlias": "^/conference(?!/201[4-5])",
         "view": "conference/expect/expect",
         "title": "What to Expect",
         "viewportWidth": "device-width"
@@ -83,6 +143,7 @@
     {
         "name": "conference-schedule",
         "pattern": "^/conference/schedule/?$",
+        "routeAlias": "^/conference(?!/201[4-5])",
         "view": "conference/schedule/schedule",
         "title": "Conference Schedule",
         "viewportWidth": "device-width"
@@ -90,6 +151,7 @@
     {
         "name": "conference-details",
         "pattern": "^/conference/:id/details/?$",
+        "routeAlias": "^/conference(?!/201[4-5])",
         "view": "conference/details/details",
         "title": "Event Details",
         "viewportWidth": "device-width"
@@ -107,7 +169,7 @@
     },
     {
         "name": "guidelines",
-        "pattern": "^/community_guidelines$",
+        "pattern": "^/community_guidelines/?$",
         "view": "guidelines/guidelines",
         "title": "Scratch Community Guidelines"
     },
@@ -116,5 +178,11 @@
         "pattern": "^/privacy_policy/?$",
         "view": "privacypolicy/privacypolicy",
         "title": "Privacy Policy"
+    },
+    {
+        "name": "terms",
+        "pattern": "^/terms_of_use/?$",
+        "view": "terms/terms",
+        "title": "Scratch Terms of Use"
     }
 ]

@@ -1,0 +1,65 @@
+@import "../../colors";
+@import "../../frameless";
+
+$base-bg: $ui-white;
+
+#view {
+    .box {
+        display: block;
+        margin-right: auto;
+        margin-bottom: 20px;
+        margin-left: auto;
+
+        .box-content {
+            padding: 0;
+        }
+    }   
+
+    .categories {
+        display: inline-block;
+        background-color: $ui-gray;
+        padding-left: 10px;
+        width: calc(100% - 10px);
+        justify-content: left;
+
+        li {
+            opacity: .75;
+            background-color: $ui-white;
+            color: $header-gray;
+    
+            &:hover {
+                opacity: 1;
+                border-color: $active-dark-gray;
+            }
+        }
+
+        li.active {
+            opacity: 1;
+            border-color: $active-dark-gray;
+
+            &:hover {
+                opacity: 1;
+                border-color: $active-dark-gray;
+            }
+        }
+    }
+
+    #projectBox {
+        border-top: 2px solid;
+        border-color: $active-gray;
+        background-color: $ui-white;
+        padding-bottom: 30px;
+        width: 100%;
+    }
+
+    .load button {
+        outline: None;
+        border: None;
+        background-color: $ui-white;
+        padding: 0;
+
+        li {
+            color: $header-gray;
+        }
+    }
+}

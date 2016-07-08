@@ -1,0 +1,8 @@
+@import "../../colors";
+@import "../../frameless";
+
+.card {
+    border-radius: 8px / $em;
+    box-shadow: 0 0 0 .125rem $active-gray;
+    background-color: $ui-white;
+}

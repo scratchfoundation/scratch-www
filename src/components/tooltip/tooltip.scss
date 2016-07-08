@@ -1,0 +1,83 @@
+@import "../../colors";
+@import "../../frameless";
+
+.tooltip {
+    .tip {
+        display: inline-flex;
+        margin: 0 .5rem;
+
+        img {
+            border-radius: 50%;
+            box-shadow: 0 0 0 .125rem $active-gray;
+            background-color: $ui-blue;
+            padding: .25rem;
+            width: .75rem;
+            height: .75rem;
+        }
+    }
+
+    .expand {
+        $arrow-border-width: 1rem;
+        position: absolute;
+        transform: translate(-2.75rem, 2rem);
+        visibility: hidden;
+        z-index: 1;
+        margin-top: $arrow-border-width / 2;
+        border: 1px solid $active-gray;
+        border-radius: 5px;
+        background-color: $ui-blue;
+        padding: 1rem;
+        width: 13.75rem;
+        text-align: left;
+        color: $type-white;
+
+        &:before {
+            display: block;
+            position: absolute;
+            top: -$arrow-border-width / 2;
+            left: $arrow-border-width;
+
+            transform: rotate(45deg);
+
+            border-top: 1px solid $active-gray;
+            border-left: 1px solid $active-gray;
+            border-radius: 5px;
+
+            background-color: $ui-blue;
+            width: $arrow-border-width;
+            height: $arrow-border-width;
+
+            content: "";
+        }
+    }
+
+    &:hover {
+        .expand {
+            visibility: visible;
+        }
+    }
+}
+
+@media only screen and (max-width: $desktop - 1) {
+    .tooltip {
+        display: block;
+
+        .expand {
+            display: none;
+            position: relative;
+            clear: both;
+            transform: none;
+
+            &:before {
+                display: none;
+            }
+        }
+
+        &:hover {
+            .expand {
+                display: block;
+                margin: 5px auto;
+            }
+        }
+    }
+}

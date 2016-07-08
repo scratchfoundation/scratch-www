@@ -11,8 +11,12 @@
     box-shadow: 0 0 3px $box-shadow-gray;
     background-color: $ui-blue;
 
+    &.staging {
+        background-color: $ui-orange;
+    }
 
-    width: 100%;   
+
+    width: 100%;
     /* NOTE: Height should match offset settings in main.scss file */
     height: 50px;
 
@@ -35,7 +39,7 @@
         .ie9 & {
             display: table-row;
         }
-        
+
 
         > li {
             display: inline-block;
@@ -73,9 +77,9 @@
     .link {
         > a {
             display: block;
-            padding: 13px 15px 3px 15px;
+            padding: 13px 15px 4px 15px;
             height: 33px;
-            
+
             text-decoration: none;
             white-space: nowrap;
             color: $type-white;
