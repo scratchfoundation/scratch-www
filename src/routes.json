@@ -26,26 +26,26 @@
     {
         "name": "explore",
         "pattern": "^/explore/:projects/:all/?$",
-        "routeAlias": "^/explore",
+        "routeAlias": "^/explore(?!/ajax)",
         "view": "explore/explore",
         "title": "Explore"
     },
     {
         "name": "explore-redirect",
         "pattern": "^/explore/?$",
-        "routeAlias": "^/explore",
+        "routeAlias": "^/explore(?!/ajax)",
         "redirect": "/explore/projects/all"
     },
     {
         "name": "explore-projects-redirect",
         "pattern": "^/explore/projects/?$",
-        "routeAlias": "^/explore",
+        "routeAlias": "^/explore(?!/ajax)",
         "redirect": "/explore/projects/all"
     },
     {
         "name": "explore-studios-redirect",
         "pattern": "^/explore/studios/?$",
-        "routeAlias": "^/explore",
+        "routeAlias": "^/explore(?!/ajax)",
         "redirect": "/explore/studios/all"
     },
     {
