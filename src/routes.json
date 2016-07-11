@@ -33,7 +33,7 @@
     {
         "name": "explore-redirect",
         "pattern": "^/explore/?$",
-        "routeAlias": "^/explore",
+        "routeAlias": "^/explore(?!/ajax)",
         "redirect": "/explore/projects/all"
     },
     {
