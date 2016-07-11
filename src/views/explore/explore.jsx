@@ -130,9 +130,9 @@ var Explore = injectIntl(React.createClass({
                         <div id='projectBox' key='projectBox'>
                             <Grid items={this.state.loaded}
                                   itemType={this.props.itemType}
-                                  showLoves={true}
-                                  showFavorites={true}
-                                  showViews={true} />
+                                  showLoves={false}
+                                  showFavorites={false}
+                                  showViews={false} />
                             <SubNavigation className='load'>
                                 <button onClick={this.getExploreMore}>
                                     <li>
