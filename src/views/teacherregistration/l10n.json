@@ -1,7 +1,7 @@
 {
     "teacherRegistration.usernameStepDescription": "Fill in the following forms to request an account. The approval process may take up to 24 hours.",
     "teacherRegistration.usernameStepTitle": "Request a Teacher Account",
-    "teacherRegistration.validationUsernameRegexp": "Your username may only contain characters and \"-\"",
+    "teacherRegistration.validationUsernameRegexp": "Your username may only contain letters, numbers, \"-\", and \"_\"",
     "teacherRegistration.validationUsernameMinLength": "Usernames must be at least 3 characters",
     "teacherRegistration.validationUsernameMaxLength": "Usernames must be at most 20 characters",
     "teacherRegistration.validationPasswordLength": "Passwords must be at least six characters",
