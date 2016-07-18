@@ -79,28 +79,28 @@ var TeacherRegistration = React.createClass({
                     <Steps.RegistrationError {... this.state} />
                 :
                     <Progression {... this.state}>
-                        <Steps.UsernameStep     onNextStep={this.advanceStep}
-                                                waiting={this.state.waiting} />
+                        <Steps.UsernameStep onNextStep={this.advanceStep}
+                                            waiting={this.state.waiting} />
                         <Steps.DemographicsStep onNextStep={this.advanceStep}
                                                 waiting={this.state.waiting} />
-                        <Steps.NameStep         onNextStep={this.advanceStep}
-                                                waiting={this.state.waiting} />
-                        <Steps.PhoneNumberStep  onNextStep={this.advanceStep}
-                                                waiting={this.state.waiting}
-                                                defaultCountry={
-                                                    this.state.formData.user && this.state.formData.user.country
-                                                } />
+                        <Steps.NameStep onNextStep={this.advanceStep}
+                                        waiting={this.state.waiting} />
+                        <Steps.PhoneNumberStep onNextStep={this.advanceStep}
+                                               waiting={this.state.waiting}
+                                               defaultCountry={
+                                                   this.state.formData.user && this.state.formData.user.country
+                                               } />
                         <Steps.OrganizationStep onNextStep={this.advanceStep}
                                                 waiting={this.state.waiting} />
-                        <Steps.AddressStep      onNextStep={this.advanceStep}
-                                                waiting={this.state.waiting}
-                                                defaultCountry={
-                                                    this.state.formData.user && this.state.formData.user.country
-                                                } />
-                        <Steps.UseScratchStep   onNextStep={this.advanceStep}
-                                                waiting={this.state.waiting} />
-                        <Steps.EmailStep        onNextStep={this.register}
-                                                waiting={this.state.waiting} />
+                        <Steps.AddressStep onNextStep={this.advanceStep}
+                                           waiting={this.state.waiting}
+                                           defaultCountry={
+                                               this.state.formData.user && this.state.formData.user.country
+                                           } />
+                        <Steps.UseScratchStep onNextStep={this.advanceStep}
+                                              waiting={this.state.waiting} />
+                        <Steps.EmailStep onNextStep={this.register}
+                                         waiting={this.state.waiting} />
                         <Steps.TeacherApprovalStep email={this.state.formData.user && this.state.formData.user.email} />
                     </Progression>
                 }
