@@ -6,6 +6,7 @@ var intl = require('../../lib/intl.jsx');
 var log = require('../../lib/log');
 var smartyStreets = require('../../lib/smarty-streets');
 
+var Avatar = require('../../components/avatar/avatar.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Card = require('../../components/card/card.jsx');
 var CharCount = require('../../components/forms/charcount.jsx');
@@ -36,7 +37,7 @@ var NextStepButton = React.createClass({
     },
     render: function () {
         return (
-            <Button type="submit" disabled={this.props.waiting} className="card-button">
+            <Button type="submit" disabled={this.props.waiting} className="card-button" {... this.props}>
                 {this.props.waiting ?
                     <Spinner /> :
                     this.props.text
@@ -81,16 +82,16 @@ module.exports = {
                     return this.props.onNextStep(formData);
                 case 'username exists':
                     return invalidate({
-                        'user.username': formatMessage({id: 'general.validationUsernameExists'})
+                        'user.username': formatMessage({id: 'registration.validationUsernameExists'})
                     });
                 case 'bad username':
                     return invalidate({
-                        'user.username': formatMessage({id: 'general.validationUsernameVulgar'})
+                        'user.username': formatMessage({id: 'registration.validationUsernameVulgar'})
                     });
                 case 'invalid username':
                 default:
                     return invalidate({
-                        'user.username': formatMessage({id: 'general.validationUsernameInvalid'})
+                        'user.username': formatMessage({id: 'registration.validationUsernameInvalid'})
                     });
                 }
             }.bind(this));
@@ -98,14 +99,14 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                    <h2><intl.FormattedMessage id="teacherRegistration.usernameStepTitle" /></h2>
                 <Slide className="registration-step username-step">
+                    <h2><intl.FormattedMessage id="registration.usernameStepTitle" /></h2>
                     <p className="description">
-                        <intl.FormattedMessage id="teacherRegistration.usernameStepDescription" />
+                        <intl.FormattedMessage id="registration.usernameStepDescription" />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
-                            <Input label={formatMessage({id: 'general.createUsername'})}
+                            <Input label={formatMessage({id: 'registration.createUsername'})}
                                    className={this.state.validUsername}
                                    type="text"
                                    name="user.username"
@@ -116,13 +117,13 @@ module.exports = {
                                    }}
                                    validationErrors={{
                                        matchRegexp: formatMessage({
-                                           id: 'teacherRegistration.validationUsernameRegexp'
+                                           id: 'registration.validationUsernameRegexp'
                                        }),
                                        minLength: formatMessage({
-                                           id: 'teacherRegistration.validationUsernameMinLength'
+                                           id: 'registration.validationUsernameMinLength'
                                        }),
                                        maxLength: formatMessage({
-                                           id: 'teacherRegistration.validationUsernameMaxLength'
+                                           id: 'registration.validationUsernameMaxLength'
                                        })
                                    }}
                                    required />
@@ -136,24 +137,24 @@ module.exports = {
                                    }}
                                    validationErrors={{
                                        minLength: formatMessage({
-                                           id: 'teacherRegistration.validationPasswordLength'
+                                           id: 'registration.validationPasswordLength'
                                        }),
                                        notEquals: formatMessage({
-                                           id: 'teacherRegistration.validationPasswordNotEquals'
+                                           id: 'registration.validationPasswordNotEquals'
                                        }),
                                        notEqualsField: formatMessage({
-                                           id: 'teacherRegistration.validationPasswordNotUsername'
+                                           id: 'registration.validationPasswordNotUsername'
                                        })
                                    }}
                                    required />
-                            <Checkbox label={formatMessage({id: 'teacherRegistration.showPassword'})}
+                            <Checkbox label={formatMessage({id: 'registration.showPassword'})}
                                       value={this.state.showPassword}
                                       onChange={this.onChangeShowPassword}
                                       help={null}
                                       name="showPassword" />
                             <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -195,12 +196,12 @@ module.exports = {
             return (
                 <Slide className="registration-step demographics-step">
                     <h2>
-                        <intl.FormattedMessage id="teacherRegistration.personalStepTitle" />
+                        <intl.FormattedMessage id="registration.personalStepTitle" />
                     </h2>
                     <p className="description">
-                        <intl.FormattedMessage id="teacherRegistration.personalStepDescription" />
+                        <intl.FormattedMessage id="registration.personalStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.props.onNextStep}>
@@ -236,7 +237,7 @@ module.exports = {
                                       label="I'm a robot!"
                                       name="user.isRobot" />
                             <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -260,7 +261,7 @@ module.exports = {
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.nameStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.props.onNextStep}>
@@ -273,7 +274,7 @@ module.exports = {
                                    name="user.name.last"
                                    required />
                             <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -306,7 +307,7 @@ module.exports = {
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.phoneStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
@@ -321,7 +322,7 @@ module.exports = {
                                           isFalse: formatMessage({id: 'teacherRegistration.validationPhoneConsent'})
                                       }} />
                             <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -382,7 +383,7 @@ module.exports = {
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.orgStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
@@ -419,7 +420,7 @@ module.exports = {
                                        placeholder={'http://'} />
                             </div>
                             <NextStepButton waiting={this.props.waiting}
-                                           text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                           text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -496,7 +497,7 @@ module.exports = {
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.addressStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
@@ -530,7 +531,7 @@ module.exports = {
                                    required />
                             <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -567,7 +568,7 @@ module.exports = {
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.useScratchStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.props.onNextStep}>
@@ -587,7 +588,7 @@ module.exports = {
                             <CharCount maxCharacters={this.props.maxCharacters}
                                        currentCharacters={this.state.characterCount} />
                             <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -634,7 +635,7 @@ module.exports = {
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.emailStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
@@ -654,7 +655,7 @@ module.exports = {
                                    required />
                             <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -704,6 +705,96 @@ module.exports = {
                         <p>
                             <intl.FormattedHTMLMessage id="registration.checkOutResourcesDescription" />
                         </p>
+                    </Card>
+                </Slide>
+            );
+        }
+    })),
+    ClassInviteStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                classroom: {
+                    title: '',
+                    thumbnail: '',
+                    educator: {
+                        username: '',
+                        profile: {
+                            images: ''
+                        }
+                    }
+                },
+                messages: {
+                    'general.getStarted': 'Get Started',
+                    'registration.classroomInviteStepDescription': 'has invited you to join the class:'
+                },
+                waiting: false
+            };
+        },
+        onNextStep: function () {
+            console.log("onNextStep");
+            this.props.onNextStep();
+        },
+        render: function () {
+            return (
+                <Slide className="registration-step class-invite-step">
+                    <Avatar className="invite-avatar" src={this.props.classroom.educator.profile.images['50x50']} />
+                    <h2>{this.props.classroom.educator.username}</h2>
+                    <p className="description">
+                        {this.props.messages['registration.classroomInviteStepDescription']}
+                    </p>
+                    <Card>
+                        <div className="contents">
+                            <h3>{this.props.classroom.title}</h3>
+                            <img className="class-image" src={this.props.classroom.image} />
+                        </div>
+                        <NextStepButton onClick={this.onNextStep}
+                                        waiting={this.props.waiting}
+                                        text={this.props.messages['general.getStarted']} />
+                    </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                </Slide>
+            );
+        }
+    })),
+    ClassWelcomeStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                classroom: {
+                    title: '',
+                    thumbnail: '',
+                    educator: {
+                        username: '',
+                        profile: {
+                            images: ''
+                        }
+                    }
+                },
+                messages: {
+                    'registration.goToClass': 'Go to Class',
+                    'registration.welcomeStepDescription': 'You have successfully set up a Scratch account! ' +
+                                                                  'You are now a member of the class:',
+                    'registration.welcomeStepPrompt': 'To get started, click on the button below.',
+                    'registration.welcomeStepTitle': 'Hurray! Welcome to Scratch!'
+                }
+            };
+        },
+        onNextStep: function () {
+            this.props.onNextStep();
+        },
+        render: function () {
+            return (
+                <Slide className="registration-step class-welcome-step">
+                    <h2>{this.props.messages['registration.welcomeStepTitle']}</h2>
+                    <p className="description">{this.props.messages['registration.welcomeStepDescription']}</p>
+                    <Card>
+                        <div className="contents">
+                            <h3>{this.props.classroom.title}</h3>
+                            <img className="class-image" src={this.props.classroom.image} />
+                            <p>{this.props.messages['registration.welcomeStepPrompt']}</p>
+                        </div>
+                        <NextStepButton onClick={this.onNextStep}
+                                        waiting={this.props.waiting}
+                                        text={this.props.messages['registration.goToClass']} />
                     </Card>
                 </Slide>
             );
