@@ -1,7 +1,28 @@
 @import "../../frameless";
+@import "../../colors";
 
 .slide {
     padding: 10px;
+
+    > h2,
+    > .description {
+        text-align: center;  
+        color: $type-white;  
+    }
+
+    > .description {
+        margin-top: 0;
+        margin-bottom: 2rem;
+    }
+
+    .card {
+        margin: 0 auto;
+    }
+
+    .step-navigation {
+        margin-top: 2rem;
+        text-align: center;
+    }
 }
 
 @media only screen and (max-width: $tablet - 1) {

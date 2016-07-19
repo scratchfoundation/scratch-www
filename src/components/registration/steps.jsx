@@ -23,6 +23,8 @@ var StepNavigation = require('../../components/stepnavigation/stepnavigation.jsx
 var TextArea = require('../../components/forms/textarea.jsx');
 var Tooltip = require('../../components/tooltip/tooltip.jsx');
 
+require('./steps.scss');
+
 var DEFAULT_COUNTRY = 'us';
 
 var NextStepButton = React.createClass({
@@ -96,8 +98,8 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="username-step">
                     <h2><intl.FormattedMessage id="teacherRegistration.usernameStepTitle" /></h2>
+                <Slide className="registration-step username-step">
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.usernameStepDescription" />
                     </p>
@@ -191,7 +193,7 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="demographics-step">
+                <Slide className="registration-step demographics-step">
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.personalStepTitle" />
                     </h2>
@@ -251,7 +253,7 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="name-step">
+                <Slide className="registration-step name-step">
                     <h2>
                         <intl.FormattedHTMLMessage id="teacherRegistration.nameStepTitle" />
                     </h2>
@@ -297,7 +299,7 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="phone-step">
+                <Slide className="registration-step phone-step">
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.phoneStepTitle" />
                     </h2>
@@ -373,7 +375,7 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="organization-step">
+                <Slide className="registration-step organization-step">
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.orgStepTitle" />
                     </h2>
@@ -487,7 +489,7 @@ module.exports = {
                 return 0;
             }.bind(this));
             return (
-                <Slide className="address-step">
+                <Slide className="registration-step address-step">
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.addressStepTitle" />
                     </h2>
@@ -558,7 +560,7 @@ module.exports = {
             var textAreaClass = (this.state.characterCount > this.props.maxCharacters) ? 'fail' : '';
             
             return (
-                <Slide className="usescratch-step">
+                <Slide className="registration-step usescratch-step">
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.useScratchStepTitle" />
                     </h2>
@@ -625,7 +627,7 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="email-step">
+                <Slide className="registration-step email-step">
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.emailStepTitle" />
                     </h2>
@@ -669,7 +671,7 @@ module.exports = {
         },
         render: function () {
             return (
-                <Slide className="last-step">
+                <Slide className="registration-step last-step">
                     <h2>
                         <intl.FormattedMessage id="registration.lastStepTitle" />
                     </h2>
@@ -710,7 +712,7 @@ module.exports = {
     RegistrationError: intl.injectIntl(React.createClass({
         render: function () {
             return (
-                <Slide className="error-step">
+                <Slide className="registration-step error-step">
                     <h2>Something went wrong</h2>
                     <Card>
                         <h4>There was an error while processing your registration</h4>
