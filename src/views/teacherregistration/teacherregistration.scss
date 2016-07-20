@@ -192,7 +192,9 @@ body {
 
         .username-step,
         .demographics-step,
-        .name-step {
+        .name-step,
+        .address-step,
+        .email-step {
             .help-block {
                 transform: none;
             }
@@ -205,13 +207,41 @@ body {
             }
 
             .checkbox {
-                margin-bottom: 1rem;
+                margin-bottom: (1em * $em);
             }
         }
 
         .organization-step {
             .checkbox-group {
                 text-align: left;
+            }
+
+            .help-block {
+                transform: none;
+            }
+        }
+    }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .teacher-registration {
+        .username-step,
+        .demographics-step,
+        .name-step,
+        .phone-step,
+        .organization-step,
+        .address-step,
+        .email-step {
+            .help-block {
+                position: relative;
+                transform: none;
+                margin: inherit;
+                width: 100%;
+                height: inherit;
+
+                &:before {
+                    display: none;
+                }
             }
         }
     }

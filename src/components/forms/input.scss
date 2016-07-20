@@ -35,4 +35,9 @@ $pass-bg: lighten($ui-aqua, 35%);
         border: 1px solid $active-dark-gray;
         background-color: $pass-bg;
     }
+
+    /* IE10/11-specific style resets */
+    &::-ms-reveal, &::-ms-clear {
+        display: none;
+    }
 }
