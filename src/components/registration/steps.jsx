@@ -715,7 +715,7 @@ module.exports = {
             );
         }
     })),
-    ClassInviteStep: intl.injectIntl(React.createClass({
+    ClassInviteStep: React.createClass({
         getDefaultProps: function () {
             return {
                 classroom: {
@@ -736,7 +736,6 @@ module.exports = {
             };
         },
         onNextStep: function () {
-            console.log("onNextStep");
             this.props.onNextStep();
         },
         render: function () {
@@ -760,8 +759,8 @@ module.exports = {
                 </Slide>
             );
         }
-    })),
-    ClassWelcomeStep: intl.injectIntl(React.createClass({
+    }),
+    ClassWelcomeStep: React.createClass({
         getDefaultProps: function () {
             return {
                 classroom: {
@@ -804,7 +803,7 @@ module.exports = {
                 </Slide>
             );
         }
-    })),
+    }),
     RegistrationError: intl.injectIntl(React.createClass({
         render: function () {
             return (

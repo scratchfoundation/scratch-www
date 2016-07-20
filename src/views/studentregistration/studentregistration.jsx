@@ -41,8 +41,7 @@ var StudentRegistration = intl.injectIntl(React.createClass({
             if (err) {
                 return this.setState({
                     registrationError: this.props.intl.formatMessage({
-                        id: 'studentRegistration.classroomApiGeneralError',
-                        defaultMessage: 'Sorry, we could not find the registration information for this class'
+                        id: 'studentRegistration.classroomApiGeneralError'
                     })
                 });
             }
@@ -87,10 +86,7 @@ var StudentRegistration = intl.injectIntl(React.createClass({
         window.location = '/classes/' + this.props.classroomId + '/';
     },
     render: function () {
-        var demographicsDescription = this.props.intl.formatMessage({
-            id: 'registration.notOnWebsite',
-            defaultMessage: 'This information will not appear on the Scratch website.'
-        });
+        var demographicsDescription = this.props.intl.formatMessage({id: 'registration.notOnWebsite'});
         return (
             <Deck className="student-registration">
                 {this.state.registrationError ?
