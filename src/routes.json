@@ -12,109 +12,16 @@
         "title": "About"
     },
     {
-        "name": "developers",
-        "pattern": "^/developers/?$",
-        "view": "developers/developers",
-        "title": "Developers"
+        "name": "guidelines",
+        "pattern": "^/community_guidelines/?$",
+        "view": "guidelines/guidelines",
+        "title": "Scratch Community Guidelines"
     },
     {
-        "name": "hoc",
-        "pattern": "^/hoc/?$",
-        "view": "hoc/hoc",
-        "title": "Hour of Code"
-    },
-    {
-        "name": "explore",
-        "pattern": "^/explore/:projects/:all/?$",
-        "routeAlias": "^/explore(?!/ajax)",
-        "view": "explore/explore",
-        "title": "Explore"
-    },
-    {
-        "name": "explore-redirect",
-        "pattern": "^/explore/?$",
-        "routeAlias": "^/explore(?!/ajax)",
-        "redirect": "/explore/projects/all"
-    },
-    {
-        "name": "explore-projects-redirect",
-        "pattern": "^/explore/projects/?$",
-        "routeAlias": "^/explore(?!/ajax)",
-        "redirect": "/explore/projects/all"
-    },
-    {
-        "name": "explore-studios-redirect",
-        "pattern": "^/explore/studios/?$",
-        "routeAlias": "^/explore(?!/ajax)",
-        "redirect": "/explore/studios/all"
-    },
-    {
-        "name": "search",
-        "pattern": "^/search/:projects?$/?$",
-        "routeAlias": "^/search",
-        "view": "search/search",
-        "title": "Search"
-    },
-    {
-        "name": "credits",
-        "pattern": "^/info/credits/?$",
-        "view": "credits/credits",
-        "title": "Credits"
-    },
-    {
-        "name": "faq",
-        "pattern": "^/info/faq/?$",
-        "view": "faq/faq",
-        "title": "FAQ"
-    },
-    {
-        "name": "educator-landing",
-        "pattern": "^/educators/?$",
-        "view": "teachers/landing/landing",
-        "title": "Educators"
-    },
-    {
-        "name": "teacher-faq",
-        "pattern": "^/educators/faq/?$",
-        "view": "teachers/faq/faq",
-        "title": "Teacher Accounts FAQ"
-    },
-    {
-        "name": "cards",
-        "pattern": "^/info/cards/?$",
-        "view": "cards/cards",
-        "title": "Cards"
-    },
-    {
-        "name": "communityblocks-interviews",
-        "pattern": "^/info/communityblocks-interviews/?$",
-        "view": "communityblocks-interviews/communityblocks-interviews",
-        "title": "Community Blocks Beta Tester Interviews"
-    },
-    {
-        "name": "jobs",
-        "pattern": "^/jobs/?$",
-        "view": "jobs/jobs",
-        "title": "Jobs"
-    },
-    {
-        "name": "teacherregistration",
-        "pattern": "^/educators/register$",
-        "view": "teacherregistration/teacherregistration",
-        "title": "Teacher Registration",
-        "viewportWidth": "device-width"
-    },
-    {
-        "name": "teacherwaitingroom",
-        "pattern": "^/educators/waiting",
-        "view": "teacherwaitingroom/teacherwaitingroom",
-        "title": "Thank you for requesting a Scratch Teacher Account"
-    },
-    {
-        "name": "wedo2",
-        "pattern": "^/wedo/?$",
-        "view": "wedo2/wedo2",
-        "title": "LEGO WeDo 2.0"
+        "name": "student-registration",
+        "pattern": "^/classes/:id/register/:token",
+        "view": "studentregistration/studentregistration",
+        "title": "Class Registration"
     },
     {
         "name": "conference-index",
@@ -157,9 +64,10 @@
         "viewportWidth": "device-width"
     },
     {
-        "name": "donate",
-        "pattern": "^/info/donate/?",
-        "redirect": "https://secure.donationpay.org/scratchfoundation/"
+        "name": "developers",
+        "pattern": "^/developers/?$",
+        "view": "developers/developers",
+        "title": "Developers"
     },
     {
         "name": "dmca",
@@ -168,10 +76,72 @@
         "title": "DMCA"
     },
     {
-        "name": "guidelines",
-        "pattern": "^/community_guidelines/?$",
-        "view": "guidelines/guidelines",
-        "title": "Scratch Community Guidelines"
+        "name": "educator-landing",
+        "pattern": "^/educators/?$",
+        "view": "teachers/landing/landing",
+        "title": "Educators"
+    },
+    {
+        "name": "teacher-faq",
+        "pattern": "^/educators/faq/?$",
+        "view": "teachers/faq/faq",
+        "title": "Teacher Accounts FAQ"
+    },
+    {
+        "name": "teacherregistration",
+        "pattern": "^/educators/register$",
+        "view": "teacherregistration/teacherregistration",
+        "title": "Teacher Registration",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "teacherwaitingroom",
+        "pattern": "^/educators/waiting",
+        "view": "teacherwaitingroom/teacherwaitingroom",
+        "title": "Thank you for requesting a Scratch Teacher Account"
+    },
+    {
+        "name": "explore",
+        "pattern": "^/explore/:projects/:all/?$",
+        "routeAlias": "^/explore(?!/ajax)",
+        "view": "explore/explore",
+        "title": "Explore"
+    },
+    {
+        "name": "hoc",
+        "pattern": "^/hoc/?$",
+        "view": "hoc/hoc",
+        "title": "Hour of Code"
+    },
+    {
+        "name": "cards",
+        "pattern": "^/info/cards/?$",
+        "view": "cards/cards",
+        "title": "Cards"
+    },
+    {
+        "name": "communityblocks-interviews",
+        "pattern": "^/info/communityblocks-interviews/?$",
+        "view": "communityblocks-interviews/communityblocks-interviews",
+        "title": "Community Blocks Beta Tester Interviews"
+    },
+    {
+        "name": "credits",
+        "pattern": "^/info/credits/?$",
+        "view": "credits/credits",
+        "title": "Credits"
+    },
+    {
+        "name": "faq",
+        "pattern": "^/info/faq/?$",
+        "view": "faq/faq",
+        "title": "FAQ"
+    },
+    {
+        "name": "jobs",
+        "pattern": "^/jobs/?$",
+        "view": "jobs/jobs",
+        "title": "Jobs"
     },
     {
         "name": "privacypolicy",
@@ -180,9 +150,45 @@
         "title": "Privacy Policy"
     },
     {
+        "name": "search",
+        "pattern": "^/search/:projects?$/?$",
+        "routeAlias": "^/search",
+        "view": "search/search",
+        "title": "Search"
+    },
+    {
         "name": "terms",
         "pattern": "^/terms_of_use/?$",
         "view": "terms/terms",
         "title": "Scratch Terms of Use"
+    },
+    {
+        "name": "wedo2",
+        "pattern": "^/wedo/?$",
+        "view": "wedo2/wedo2",
+        "title": "LEGO WeDo 2.0"
+    },
+    {
+        "name": "donate",
+        "pattern": "^/info/donate/?",
+        "redirect": "https://secure.donationpay.org/scratchfoundation/"
+    },
+    {
+        "name": "explore-redirect",
+        "pattern": "^/explore/?$",
+        "routeAlias": "^/explore(?!/ajax)",
+        "redirect": "/explore/projects/all"
+    },
+    {
+        "name": "explore-projects-redirect",
+        "pattern": "^/explore/projects/?$",
+        "routeAlias": "^/explore(?!/ajax)",
+        "redirect": "/explore/projects/all"
+    },
+    {
+        "name": "explore-studios-redirect",
+        "pattern": "^/explore/studios/?$",
+        "routeAlias": "^/explore(?!/ajax)",
+        "redirect": "/explore/studios/all"
     }
 ]

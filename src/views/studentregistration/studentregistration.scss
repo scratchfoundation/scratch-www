@@ -1,7 +1,7 @@
 @import "../../colors";
 @import "../../frameless";
 
-@include responsive-layout (".teacher-registration", ".slide");
+@include responsive-layout (".student-registration", ".slide");
 
 html,
 body {
