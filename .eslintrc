@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "rules": {
         "curly": [2, "multi-line"],
         "eol-last": [2],
@@ -14,15 +15,11 @@
     },
     "env": {
         "browser": true,
+        "es6": true,
         "node": true
     },
     "globals": {
         "formatMessage": true
-    },
-    "ecmaFeatures": {
-        "arrowFunctions": true,
-        "blockBindings": true,
-        "jsx": true
     },
     "plugins": [
         "react",
