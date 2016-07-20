@@ -16,7 +16,7 @@ var Footer = React.createClass({
                         <dt>
                             <FormattedMessage id='general.about' />
                         </dt>
-                        <dd>
+                        <dd className="showMobile">
                             <a href="/about/">
                                 <FormattedMessage id='general.aboutScratch' />
                             </a>
@@ -41,7 +41,7 @@ var Footer = React.createClass({
                                 <FormattedMessage id='general.credits' />
                             </a>
                         </dd>
-                        <dd>
+                        <dd className="showMobile">
                             <a href="/jobs/">
                                 <FormattedMessage id='general.jobs' />
                             </a>
@@ -57,7 +57,7 @@ var Footer = React.createClass({
                         <dt>
                             <FormattedMessage id='general.community' />
                         </dt>
-                        <dd>
+                        <dd className="showMobile">
                             <a href="/community_guidelines/">
                                 <FormattedMessage id='general.guidelines' />
                             </a>
@@ -98,7 +98,7 @@ var Footer = React.createClass({
                                 <FormattedMessage id='general.offlineEditor' />
                             </a>
                         </dd>
-                        <dd>
+                        <dd className="showMobile">
                             <a href="/contact-us/">
                                 <FormattedMessage id='general.contactUs' />
                             </a>
@@ -114,12 +114,12 @@ var Footer = React.createClass({
                         <dt>
                             <FormattedMessage id='general.legal'/>
                         </dt>
-                        <dd>
+                        <dd className="showMobile">
                             <a href="/terms_of_use/">
                                 <FormattedMessage id='general.termsOfUse' />
                             </a>
                         </dd>
-                        <dd>
+                        <dd className="showMobile">
                             <a href="/privacy_policy/">
                                 <FormattedMessage id='general.privacyPolicy' />
                             </a>

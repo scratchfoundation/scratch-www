@@ -1,4 +1,5 @@
 @import "../../../colors";
+@import "../../../frameless";
 
 #footer {
     .lists {
@@ -44,5 +45,22 @@
 
     .language-chooser {
         text-align: center;
+    }
+}
+
+
+
+//4 and 6 columns
+@media only screen and (max-width: $tablet - 1) {
+    #footer .lists dd {
+        &:not(.showMobile) {
+            display: none;
+        }
+    }
+
+    #footer .lists dl {
+        dt {
+            display: none;
+        }
     }
 }

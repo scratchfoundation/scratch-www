@@ -393,7 +393,7 @@ var Splash = injectIntl(React.createClass({
                                 <News items={this.state.news} messages={messages} />
                             </div>
                         ] : [
-                            <Intro projectCount={this.state.projectCount} messages={messages} key="intro"/>
+                            /*<Intro projectCount={this.state.projectCount} messages={messages} key="intro"/>*/
                         ]) : []
                     }
 
