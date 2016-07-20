@@ -166,7 +166,8 @@ module.exports = {
         getDefaultProps: function () {
             return {
                 defaultCountry: DEFAULT_COUNTRY,
-                waiting: false
+                waiting: false,
+                description: null
             };
         },
         getInitialState: function () {
@@ -199,7 +200,11 @@ module.exports = {
                         <intl.FormattedMessage id="registration.personalStepTitle" />
                     </h2>
                     <p className="description">
-                        <intl.FormattedMessage id="registration.personalStepDescription" />
+                        {this.props.description ?
+                            this.props.description
+                        :
+                            <intl.FormattedMessage id="registration.personalStepDescription" />
+                        }
                         <Tooltip title={'?'}
                                  tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>

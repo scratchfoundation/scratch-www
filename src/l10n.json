@@ -115,6 +115,7 @@
     "registration.lastStepDescription": "We are currently processing your application. ",
     "registration.nameStepTooltip": "This information is used for verification and to aggregate usage statistics.",
     "registration.nextStep": "Next Step",
+    "registration.notOnWebsite": "This information will not appear on the Scratch website.",
     "registration.personalStepTitle": "Personal Information",
     "registration.personalStepDescription": "Your individual responses will not be displayed publicly, and will be kept confidential and secure",
     "registration.showPassword": "Show password",

@@ -87,6 +87,10 @@ var StudentRegistration = intl.injectIntl(React.createClass({
         window.location = '/classes/' + this.props.classroomId + '/';
     },
     render: function () {
+        var demographicsDescription = this.props.intl.formatMessage({
+            id: 'registration.notOnWebsite',
+            defaultMessage: 'This information will not appear on the Scratch website.'
+        });
         return (
             <Deck className="student-registration">
                 {this.state.registrationError ?
@@ -99,7 +103,8 @@ var StudentRegistration = intl.injectIntl(React.createClass({
                                                waiting={this.state.waiting} />
                         <Steps.UsernameStep onNextStep={this.advanceStep}
                                             waiting={this.state.waiting} />
-                        <Steps.DemographicsStep onNextStep={this.register}
+                        <Steps.DemographicsStep description={demographicsDescription}
+                                                onNextStep={this.register}
                                                 waiting={this.state.waiting} />
                         <Steps.ClassWelcomeStep classroom={this.state.classroom}
                                                 messages={this.props.messages}
