@@ -749,7 +749,7 @@ module.exports = {
                     <Card>
                         <div className="contents">
                             <h3>{this.props.classroom.title}</h3>
-                            <img className="class-image" src={this.props.classroom.image} />
+                            <img className="class-image" src={this.props.classroom.images['250x150']} />
                         </div>
                         <NextStepButton onClick={this.onNextStep}
                                         waiting={this.props.waiting}
@@ -793,7 +793,7 @@ module.exports = {
                     <Card>
                         <div className="contents">
                             <h3>{this.props.classroom.title}</h3>
-                            <img className="class-image" src={this.props.classroom.image} />
+                            <img className="class-image" src={this.props.classroom.images['250x150']} />
                             <p>{this.props.messages['registration.welcomeStepPrompt']}</p>
                         </div>
                         <NextStepButton onClick={this.onNextStep}
