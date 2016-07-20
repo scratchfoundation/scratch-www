@@ -80,7 +80,7 @@ var Landing = injectIntl(React.createClass({
                                 <img src="/images/teachers/stories/plug-in-studio.jpg"
                                      alt="plug in studio's story" />
                                  <div className="story-info">
-                                     <p className="name">Plug-In Studios</p>
+                                     <p className="name">Plug-In Studio</p>
                                      <p><FormattedMessage id="teacherlanding.afterSchoolTitle" /></p>
                                 </div>
                             </a>
