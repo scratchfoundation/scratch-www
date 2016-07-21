@@ -10,7 +10,7 @@
         display: block;
         margin: 0 auto 1rem auto;
         border: 2px solid $ui-white;
-        border-radius: 8px;   
+        border-radius: 8px;
     }
 
     .gender-input,
@@ -201,7 +201,9 @@
 
         &.username-step,
         &.demographics-step,
-        &.name-step {
+        &.name-step,
+        &.address-step,
+        &.email-step {
             .help-block {
                 transform: none;
             }
@@ -221,6 +223,31 @@
         &.organization-step {
             .checkbox-group {
                 text-align: left;
+            }
+        }
+    }
+}
+
+/* IE10 and IE11 fallback */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .registration-step {
+        &.username-step,
+        &.demographics-step,
+        &.name-step,
+        &.phone-step,
+        &.organization-step,
+        &.address-step,
+        &.email-step {
+            .help-block {
+                position: relative;
+                transform: none;
+                margin: inherit;
+                width: 100%;
+                height: inherit;
+
+                &:before {
+                    display: none;
+                }
             }
         }
     }
