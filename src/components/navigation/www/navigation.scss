@@ -1,4 +1,5 @@
 @import "../../../colors";
+@import "../../../frameless";
 
 #navigation {
     &.staging {
@@ -222,6 +223,39 @@
             padding-top: 5px;
             width: 100%;
             box-sizing: border-box;
+        }
+    }
+}
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    #navigation .inner > ul > li {
+        &.create,
+        &.explore,
+        &.discuss,
+        &.help,
+        &.search {
+            display: none;
+        }
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    #navigation .inner > ul > li {
+        &.explore,
+        &.discuss,
+        &.search {
+            display: none;
+        }
+    }
+}
+
+//8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    #navigation .inner > ul > li {
+        &.explore,
+        &.search {
+            display: none;
         }
     }
 }

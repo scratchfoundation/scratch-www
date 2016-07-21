@@ -27,12 +27,29 @@ var Carousel = React.createClass({
     render: function () {
         var settings = this.props.settings || {};
         defaults(settings, {
+            centerMode: false,
             dots: false,
             infinite: false,
             lazyLoad: true,
             slidesToShow: 5,
             slidesToScroll: 5,
-            variableWidth: true
+            variableWidth: true,
+            responsive: [
+                {breakpoint: 480, settings: {
+                    arrows: true,
+                    slidesToScroll: 1,
+                    slidesToShow: 1,
+                    centerMode: true
+                }},
+                {breakpoint: 640, settings: {
+                    slidesToScroll: 2,
+                    slidesToShow: 2
+                }},
+                {breakpoint: 942, settings: {
+                    slidesToScroll: 4,
+                    slidesToShow: 4
+                }}
+            ]
         });
         var arrows = this.props.items.length > settings.slidesToShow;
         var classes = classNames(
