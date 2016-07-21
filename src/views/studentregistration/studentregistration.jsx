@@ -36,7 +36,8 @@ var StudentRegistration = intl.injectIntl(React.createClass({
     },
     componentDidMount: function () {
         api({
-            uri: '/classrooms/' + this.props.classroomId + '/' + this.props.classroomToken
+            uri: '/classrooms/' + this.props.classroomId,
+            params: {token: this.props.classroomToken}
         }, function (err, body, res) {
             if (err) {
                 return this.setState({
