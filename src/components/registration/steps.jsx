@@ -100,9 +100,25 @@ module.exports = {
             var formatMessage = this.props.intl.formatMessage;
             return (
                 <Slide className="registration-step username-step">
-                    <h2><intl.FormattedMessage id="registration.usernameStepTitle" /></h2>
+                    <h2>
+                        {this.props.title ? (
+                            this.props.title
+                        ) : (
+                            <intl.FormattedMessage id="registration.usernameStepTitle" />
+                        )}
+                    </h2>
                     <p className="description">
-                        <intl.FormattedMessage id="registration.usernameStepDescription" />
+                        {this.props.description ? (
+                            this.props.description
+                        ) : (
+                            <intl.FormattedMessage id="registration.usernameStepDescription" />
+                        )}
+                        {this.props.tooltip ? (
+                             <Tooltip title={'?'}
+                                 tipContent={this.props.tooltip} />
+                        ) : (
+                            null
+                        )}
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
@@ -110,6 +126,7 @@ module.exports = {
                                    className={this.state.validUsername}
                                    type="text"
                                    name="user.username"
+                                   help={this.props.usernameHelp}
                                    validations={{
                                        matchRegexp: /^[\w-]*$/,
                                        minLength: 3,

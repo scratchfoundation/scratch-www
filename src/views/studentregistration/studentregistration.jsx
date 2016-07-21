@@ -87,7 +87,15 @@ var StudentRegistration = intl.injectIntl(React.createClass({
         window.location = '/classes/' + this.props.classroomId + '/';
     },
     render: function () {
-        var demographicsDescription = this.props.intl.formatMessage({id: 'registration.notOnWebsite'});
+        var demographicsDescription = this.props.intl.formatMessage({
+            id: 'registration.studentPersonalStepDescription'});
+        var usernameTitle = this.props.intl.formatMessage({id: 'registration.studentUsernameStepTitle'});
+        var usernameHelp = this.props.intl.formatMessage({id: 'registration.studentUsernameFieldHelpText'});
+        var usernameDescription = (
+            this.props.intl.formatMessage({id: 'registration.studentUsernameStepDescription'}) + ' ' +
+            this.props.intl.formatMessage({id: 'registration.studentUsernameStepHelpText'})
+        );
+        var usernameTooltip = this.props.intl.formatMessage({id: 'registration.studentUsernameStepTooltip'});
         return (
             <Deck className="student-registration">
                 {this.state.registrationError ?
@@ -99,6 +107,10 @@ var StudentRegistration = intl.injectIntl(React.createClass({
                                                onNextStep={this.advanceStep}
                                                waiting={this.state.waiting || !this.state.classroom} />
                         <Steps.UsernameStep onNextStep={this.advanceStep}
+                                            title={usernameTitle}
+                                            description={usernameDescription}
+                                            tooltip={usernameTooltip}
+                                            usernameHelp={usernameHelp}
                                             waiting={this.state.waiting} />
                         <Steps.DemographicsStep description={demographicsDescription}
                                                 onNextStep={this.register}
