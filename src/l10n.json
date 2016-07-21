@@ -22,6 +22,7 @@
     "general.forParents": "For Parents",
     "general.forEducators": "For Educators",
     "general.forDevelopers": "For Developers",
+    "general.getStarted": "Get Started",
     "general.gender": "Gender",
     "general.guidelines": "Community Guidelines",
     "general.help": "Help",
@@ -107,6 +108,7 @@
 
     "registration.checkOutResources": "Get Started with Resources",
     "registration.checkOutResourcesDescription": "Explore materials for educators and facilitators written by the Scratch Team, including <a href='/educators#resources'>tips, tutorials, and guides</a>.",
+    "registration.classroomInviteStepDescription": "has invited you to join the class:",
     "registration.confirmYourEmail": "Confirm Your Email",
     "registration.confirmYourEmailDescription": "If you haven't already, please click the link in the confirmation email sent to:",
     "registration.createUsername": "Create a Username",
