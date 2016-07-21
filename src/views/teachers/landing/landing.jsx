@@ -62,34 +62,34 @@ var Landing = injectIntl(React.createClass({
                             <p><FormattedHTMLMessage id="teacherlanding.generalUsageSubjectAreas"/></p>
                         </FlexRow>
                         <FlexRow className="stories">
-                            <a href="//bit.ly/28SBsa9" className="story">
-                                    <img src="/images/teachers/stories/ingrid.jpg" alt="ingrid's story" />
-                                    <div className="story-info">
-                                         <p className="name">Ingrid Gustafson</p>
-                                         <p><FormattedMessage id="teacherlanding.ingridTitle" /></p>
-                                    </div>
-                            </a>
                             <a href="//bit.ly/28Q5l6P" className="story">
-                                <img src="/images/teachers/stories/dylan.jpg" alt="dylan's story" />
+                                <img src="/images/teachers/stories/dylan.jpg" alt="Elementary Schools" />
                                 <div className="story-info">
-                                    <p className="name">Dylan Ryder</p>
-                                    <p><FormattedMessage id="teacherlanding.dylanTitle" /></p>
+                                    <p className="name"><FormattedMessage id="teacherlanding.elementaryTitle" /></p>
+                                    <p>The School at Columbia University</p>
+                                </div>
+                            </a>
+                            <a href="//bit.ly/28SBsa9" className="story">
+                                <img src="/images/teachers/stories/ingrid.jpg" alt="Middle Schools" />
+                                <div className="story-info">
+                                    <p className="name"><FormattedMessage id="teacherlanding.middleTitle" /></p>
+                                    <p>Cambridge Public Schools</p>
                                 </div>
                             </a>
                             <a href="//bit.ly/28SC1AY" className="story">
                                 <img src="/images/teachers/stories/plug-in-studio.jpg"
-                                     alt="plug in studio's story" />
+                                     alt="Community Programs" />
                                  <div className="story-info">
-                                     <p className="name">Plug-In Studios</p>
-                                     <p><FormattedMessage id="teacherlanding.afterSchoolTitle" /></p>
+                                     <p className="name"><FormattedMessage id="teacherlanding.communityTitle" /></p>
+                                     <p>Plug-In Studio</p>
                                 </div>
                             </a>
                             <a href="//bit.ly/28UzapJ" className="story">
                                 <img src="/images/teachers/stories/ghana-code-club.jpg"
-                                     alt="ghana code club's story" />
+                                     alt="After-School Programs" />
                                 <div className="story-info">
-                                     <p className="name">Ghana Code Club</p>
-                                     <p><FormattedMessage id="teacherlanding.afterSchoolTitle" /></p>
+                                     <p className="name"><FormattedMessage id="teacherlanding.afterSchoolTitle" /></p>
+                                     <p>Ghana Code Club</p>
                                 </div>
                             </a>
                         </FlexRow>
