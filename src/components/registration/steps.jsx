@@ -718,16 +718,6 @@ module.exports = {
     ClassInviteStep: React.createClass({
         getDefaultProps: function () {
             return {
-                classroom: {
-                    title: '',
-                    thumbnail: '',
-                    educator: {
-                        username: '',
-                        profile: {
-                            images: ''
-                        }
-                    }
-                },
                 messages: {
                     'general.getStarted': 'Get Started',
                     'registration.classroomInviteStepDescription': 'has invited you to join the class:'
@@ -741,21 +731,26 @@ module.exports = {
         render: function () {
             return (
                 <Slide className="registration-step class-invite-step">
-                    <Avatar className="invite-avatar" src={this.props.classroom.educator.profile.images['50x50']} />
-                    <h2>{this.props.classroom.educator.username}</h2>
-                    <p className="description">
-                        {this.props.messages['registration.classroomInviteStepDescription']}
-                    </p>
-                    <Card>
-                        <div className="contents">
-                            <h3>{this.props.classroom.title}</h3>
-                            <img className="class-image" src={this.props.classroom.images['250x150']} />
-                        </div>
-                        <NextStepButton onClick={this.onNextStep}
-                                        waiting={this.props.waiting}
-                                        text={this.props.messages['general.getStarted']} />
-                    </Card>
-                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                    {this.props.waiting ? [
+                        <Spinner />
+                    ] : [
+                        <Avatar className="invite-avatar"
+                                src={this.props.classroom.educator.profile.images['50x50']} />,
+                        <h2>{this.props.classroom.educator.username}</h2>,
+                        <p className="description">
+                            {this.props.messages['registration.classroomInviteStepDescription']}
+                        </p>,
+                        <Card>
+                            <div className="contents">
+                                <h3>{this.props.classroom.title}</h3>
+                                <img className="class-image" src={this.props.classroom.images['250x150']} />
+                            </div>
+                            <NextStepButton onClick={this.onNextStep}
+                                            waiting={this.props.waiting}
+                                            text={this.props.messages['general.getStarted']} />
+                        </Card>,
+                        <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                    ]}
                 </Slide>
             );
         }
@@ -763,23 +758,14 @@ module.exports = {
     ClassWelcomeStep: React.createClass({
         getDefaultProps: function () {
             return {
-                classroom: {
-                    title: '',
-                    thumbnail: '',
-                    educator: {
-                        username: '',
-                        profile: {
-                            images: ''
-                        }
-                    }
-                },
                 messages: {
                     'registration.goToClass': 'Go to Class',
                     'registration.welcomeStepDescription': 'You have successfully set up a Scratch account! ' +
                                                                   'You are now a member of the class:',
                     'registration.welcomeStepPrompt': 'To get started, click on the button below.',
                     'registration.welcomeStepTitle': 'Hurray! Welcome to Scratch!'
-                }
+                },
+                waiting: false
             };
         },
         onNextStep: function () {
@@ -788,18 +774,26 @@ module.exports = {
         render: function () {
             return (
                 <Slide className="registration-step class-welcome-step">
-                    <h2>{this.props.messages['registration.welcomeStepTitle']}</h2>
-                    <p className="description">{this.props.messages['registration.welcomeStepDescription']}</p>
-                    <Card>
-                        <div className="contents">
-                            <h3>{this.props.classroom.title}</h3>
-                            <img className="class-image" src={this.props.classroom.images['250x150']} />
-                            <p>{this.props.messages['registration.welcomeStepPrompt']}</p>
-                        </div>
-                        <NextStepButton onClick={this.onNextStep}
-                                        waiting={this.props.waiting}
-                                        text={this.props.messages['registration.goToClass']} />
-                    </Card>
+                    {this.props.waiting ? [
+                        <Spinner />
+                    ] : [
+                        <h2>{this.props.messages['registration.welcomeStepTitle']}</h2>,
+                        <p className="description">{this.props.messages['registration.welcomeStepDescription']}</p>,
+                        <Card>
+                            {this.props.classroom ? (
+                                <div className="contents">
+                                    <h3>{this.props.classroom.title}</h3>
+                                    <img className="class-image" src={this.props.classroom.images['250x150']} />
+                                    <p>{this.props.messages['registration.welcomeStepPrompt']}</p>
+                                </div>
+                            ) : (
+                                null
+                            )}
+                            <NextStepButton onClick={this.onNextStep}
+                                            waiting={this.props.waiting}
+                                            text={this.props.messages['registration.goToClass']} />
+                        </Card>
+                    ]}
                 </Slide>
             );
         }
