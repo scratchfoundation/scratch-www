@@ -185,6 +185,61 @@ module.exports = {
             );
         }
     })),
+    ChoosePasswordStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                waiting: false
+            };
+        },
+        getInitialState: function () {
+            return {
+                showPassword: false
+            };
+        },
+        onChangeShowPassword: function (field, value) {
+            this.setState({showPassword: value});
+        },
+        render: function () {
+            var formatMessage = this.props.intl.formatMessage;
+            return (
+                <Slide className="registration-step choose-password-step">
+                    <h2>{formatMessage({id: 'registration.choosePasswordStepTitle'})}</h2>
+                    <Card>
+                        <Form onValidSubmit={this.props.onNextStep}>
+                            <Input label={formatMessage({id: 'general.password'})}
+                                   type={this.state.showPassword ? 'text' : 'password'}
+                                   name="user.password"
+                                   validations={{
+                                       minLength: 6,
+                                       notEquals: 'password',
+                                       notEqualsField: 'user.username'
+                                   }}
+                                   validationErrors={{
+                                       minLength: formatMessage({
+                                           id: 'registration.validationPasswordLength'
+                                       }),
+                                       notEquals: formatMessage({
+                                           id: 'registration.validationPasswordNotEquals'
+                                       }),
+                                       notEqualsField: formatMessage({
+                                           id: 'registration.validationPasswordNotUsername'
+                                       })
+                                   }}
+                                   required />
+                            <Checkbox label={formatMessage({id: 'registration.showPassword'})}
+                                      value={this.state.showPassword}
+                                      onChange={this.onChangeShowPassword}
+                                      help={null}
+                                      name="showPassword" />
+                            <NextStepButton waiting={this.props.waiting || this.state.waiting}
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
+                        </Form>
+                    </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                </Slide>
+            );
+        }
+    })),
     DemographicsStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {

@@ -18,6 +18,12 @@
         "title": "Scratch Community Guidelines"
     },
     {
+        "name": "student-complete-registration",
+        "pattern": "^/classes/complete_registration",
+        "view": "studentcompleteregistration/studentcompleteregistration",
+        "title": "Complete your Registration"
+    },
+    {
         "name": "student-registration",
         "pattern": "^/classes/:id/register/:token",
         "view": "studentregistration/studentregistration",
