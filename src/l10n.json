@@ -108,7 +108,9 @@
 
     "registration.checkOutResources": "Get Started with Resources",
     "registration.checkOutResourcesDescription": "Explore materials for educators and facilitators written by the Scratch Team, including <a href='/educators#resources'>tips, tutorials, and guides</a>.",
-    "registration.choosePasswordStepTitle": "Choose a password",
+    "registration.choosePasswordStepDescription": "Type in a new password for your account. You will use this password the next time you log into Scratch.",
+    "registration.choosePasswordStepTitle": "Create a password",
+    "registration.choosePasswordStepTooltip": "Don't use your name or anything that's easy for someone else to guess.",
     "registration.classroomInviteStepDescription": "has invited you to join the class:",
     "registration.confirmYourEmail": "Confirm Your Email",
     "registration.confirmYourEmailDescription": "If you haven't already, please click the link in the confirmation email sent to:",
@@ -118,6 +120,7 @@
     "registration.lastStepDescription": "We are currently processing your application. ",
     "registration.mustBeNewStudent": "You must be a new student to complete your registration",
     "registration.nameStepTooltip": "This information is used for verification and to aggregate usage statistics.",
+    "registration.newPassword": "New Password",
     "registration.nextStep": "Next Step",
     "registration.personalStepTitle": "Personal Information",
     "registration.personalStepDescription": "Your individual responses will not be displayed publicly, and will be kept confidential and secure",

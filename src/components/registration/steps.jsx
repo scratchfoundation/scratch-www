@@ -204,9 +204,15 @@ module.exports = {
             return (
                 <Slide className="registration-step choose-password-step">
                     <h2>{formatMessage({id: 'registration.choosePasswordStepTitle'})}</h2>
+                    <p className="description">
+                        <intl.FormattedMessage id="registration.choosePasswordStepDescription" />
+                        <Tooltip title={'?'}
+                                 tipContent={formatMessage({id: 'registration.choosePasswordStepTooltip'})} />
+                    </p>
+
                     <Card>
                         <Form onValidSubmit={this.props.onNextStep}>
-                            <Input label={formatMessage({id: 'general.password'})}
+                            <Input label={formatMessage({id: 'registration.newPassword'})}
                                    type={this.state.showPassword ? 'text' : 'password'}
                                    name="user.password"
                                    validations={{
