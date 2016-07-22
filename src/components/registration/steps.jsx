@@ -51,12 +51,13 @@ module.exports = {
     UsernameStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
+                showPassword: false,
                 waiting: false
             };
         },
         getInitialState: function () {
             return {
-                showPassword: false,
+                showPassword: this.props.showPassword,
                 waiting: false,
                 validUsername: ''
             };
@@ -188,12 +189,13 @@ module.exports = {
     ChoosePasswordStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
+                showPassword: false,
                 waiting: false
             };
         },
         getInitialState: function () {
             return {
-                showPassword: false
+                showPassword: this.props.showPassword
             };
         },
         onChangeShowPassword: function (field, value) {

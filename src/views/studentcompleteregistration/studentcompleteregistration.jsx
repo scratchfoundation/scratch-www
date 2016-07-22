@@ -117,6 +117,7 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
                                                    waiting={this.state.waiting} />
                             {this.props.session.session.flags.must_reset_password ?
                                 <Steps.ChoosePasswordStep onNextStep={this.advanceStep}
+                                                          showPassword={true}
                                                           waiting={this.state.waiting} />
                             :
                                 []
