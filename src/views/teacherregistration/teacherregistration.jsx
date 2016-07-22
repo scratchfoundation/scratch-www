@@ -82,7 +82,9 @@ var TeacherRegistration = React.createClass({
         return (
             <Deck className="teacher-registration">
                 {this.state.registrationError ?
-                    <Steps.RegistrationError {... this.state} />
+                    <Steps.RegistrationError>
+                        {this.state.registrationError}
+                    </Steps.RegistrationError>
                 :
                     <Progression {... this.state}>
                         <Steps.UsernameStep onNextStep={this.advanceStep}

@@ -51,12 +51,13 @@ module.exports = {
     UsernameStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
+                showPassword: false,
                 waiting: false
             };
         },
         getInitialState: function () {
             return {
-                showPassword: false,
+                showPassword: this.props.showPassword,
                 waiting: false,
                 validUsername: ''
             };
@@ -176,6 +177,68 @@ module.exports = {
                                       help={null}
                                       name="showPassword" />
                             <GeneralError name="all" />
+                            <NextStepButton waiting={this.props.waiting || this.state.waiting}
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
+                        </Form>
+                    </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                </Slide>
+            );
+        }
+    })),
+    ChoosePasswordStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                showPassword: false,
+                waiting: false
+            };
+        },
+        getInitialState: function () {
+            return {
+                showPassword: this.props.showPassword
+            };
+        },
+        onChangeShowPassword: function (field, value) {
+            this.setState({showPassword: value});
+        },
+        render: function () {
+            var formatMessage = this.props.intl.formatMessage;
+            return (
+                <Slide className="registration-step choose-password-step">
+                    <h2>{formatMessage({id: 'registration.choosePasswordStepTitle'})}</h2>
+                    <p className="description">
+                        <intl.FormattedMessage id="registration.choosePasswordStepDescription" />
+                        <Tooltip title={'?'}
+                                 tipContent={formatMessage({id: 'registration.choosePasswordStepTooltip'})} />
+                    </p>
+
+                    <Card>
+                        <Form onValidSubmit={this.props.onNextStep}>
+                            <Input label={formatMessage({id: 'registration.newPassword'})}
+                                   type={this.state.showPassword ? 'text' : 'password'}
+                                   name="user.password"
+                                   validations={{
+                                       minLength: 6,
+                                       notEquals: 'password',
+                                       notEqualsField: 'user.username'
+                                   }}
+                                   validationErrors={{
+                                       minLength: formatMessage({
+                                           id: 'registration.validationPasswordLength'
+                                       }),
+                                       notEquals: formatMessage({
+                                           id: 'registration.validationPasswordNotEquals'
+                                       }),
+                                       notEqualsField: formatMessage({
+                                           id: 'registration.validationPasswordNotUsername'
+                                       })
+                                   }}
+                                   required />
+                            <Checkbox label={formatMessage({id: 'registration.showPassword'})}
+                                      value={this.state.showPassword}
+                                      onChange={this.onChangeShowPassword}
+                                      help={null}
+                                      name="showPassword" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
                                             text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
@@ -742,13 +805,9 @@ module.exports = {
             );
         }
     })),
-    ClassInviteStep: React.createClass({
+    ClassInviteStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
-                messages: {
-                    'general.getStarted': 'Get Started',
-                    'registration.classroomInviteStepDescription': 'has invited you to join the class:'
-                },
                 waiting: false
             };
         },
@@ -756,6 +815,7 @@ module.exports = {
             this.props.onNextStep();
         },
         render: function () {
+            var formatMessage = this.props.intl.formatMessage;
             return (
                 <Slide className="registration-step class-invite-step">
                     {this.props.waiting ? [
@@ -765,7 +825,7 @@ module.exports = {
                                 src={this.props.classroom.educator.profile.images['50x50']} />,
                         <h2>{this.props.classroom.educator.username}</h2>,
                         <p className="description">
-                            {this.props.messages['registration.classroomInviteStepDescription']}
+                            {formatMessage({id: 'registration.classroomInviteStepDescription'})}
                         </p>,
                         <Card>
                             <div className="contents">
@@ -774,24 +834,17 @@ module.exports = {
                             </div>
                             <NextStepButton onClick={this.onNextStep}
                                             waiting={this.props.waiting}
-                                            text={this.props.messages['general.getStarted']} />
+                                            text={formatMessage({id: 'general.getStarted'})} />
                         </Card>,
                         <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
                     ]}
                 </Slide>
             );
         }
-    }),
-    ClassWelcomeStep: React.createClass({
+    })),
+    ClassWelcomeStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
-                messages: {
-                    'registration.goToClass': 'Go to Class',
-                    'registration.welcomeStepDescription': 'You have successfully set up a Scratch account! ' +
-                                                                  'You are now a member of the class:',
-                    'registration.welcomeStepPrompt': 'To get started, click on the button below.',
-                    'registration.welcomeStepTitle': 'Hurray! Welcome to Scratch!'
-                },
                 waiting: false
             };
         },
@@ -799,32 +852,33 @@ module.exports = {
             this.props.onNextStep();
         },
         render: function () {
+            var formatMessage = this.props.intl.formatMessage;
             return (
                 <Slide className="registration-step class-welcome-step">
                     {this.props.waiting ? [
                         <Spinner />
                     ] : [
-                        <h2>{this.props.messages['registration.welcomeStepTitle']}</h2>,
-                        <p className="description">{this.props.messages['registration.welcomeStepDescription']}</p>,
+                        <h2>{formatMessage({id: 'registration.welcomeStepTitle'})}</h2>,
+                        <p className="description">{formatMessage({id: 'registration.welcomeStepDescription'})}</p>,
                         <Card>
                             {this.props.classroom ? (
                                 <div className="contents">
                                     <h3>{this.props.classroom.title}</h3>
                                     <img className="class-image" src={this.props.classroom.images['250x150']} />
-                                    <p>{this.props.messages['registration.welcomeStepPrompt']}</p>
+                                    <p>{formatMessage({id: 'registration.welcomeStepPrompt'})}</p>
                                 </div>
                             ) : (
                                 null
                             )}
                             <NextStepButton onClick={this.onNextStep}
                                             waiting={this.props.waiting}
-                                            text={this.props.messages['registration.goToClass']} />
+                                            text={formatMessage({id: 'registration.goToClass'})} />
                         </Card>
                     ]}
                 </Slide>
             );
         }
-    }),
+    })),
     RegistrationError: intl.injectIntl(React.createClass({
         render: function () {
             return (
@@ -833,7 +887,7 @@ module.exports = {
                     <Card>
                         <h4>There was an error while processing your registration</h4>
                         <p>
-                            {this.props.registrationError}
+                            {this.props.children}
                         </p>
                     </Card>
                 </Slide>
