@@ -66,7 +66,7 @@ var expressPatternToRegex = function (pattern) {
  * string suitable for a Fastly condition
  */
 var pathsToCondition = function (paths) {
-    return 'req.url~^("' + paths.reduce(function (conditionString, pattern) {
+    return 'req.url~"^(' + paths.reduce(function (conditionString, pattern) {
         return conditionString + (conditionString ? '|' : '') + pattern;
     }, '') + ')"';
 };
