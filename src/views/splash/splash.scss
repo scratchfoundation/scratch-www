@@ -1,3 +1,5 @@
+@import "../../frameless";
+
 .splash {
     .splash-header {
         display: flex;
@@ -24,7 +26,7 @@
 
         .news {
             width: 40%;
-            
+
             img {
                 flex-shrink: 0;
             }
@@ -38,4 +40,33 @@
     .box {
         margin-bottom: 20px;
     }
-}    
+}
+
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    .splash {
+        .splash-header {
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .box {
+                width: $cols4;
+            }
+        }
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .splash {
+        .splash-header {
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .box {
+                width: $cols6;
+                white-space: normal;
+            }
+        }
+    }
+}

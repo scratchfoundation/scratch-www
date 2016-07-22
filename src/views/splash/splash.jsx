@@ -6,6 +6,7 @@ var React = require('react');
 var api = require('../../lib/api');
 var render = require('../../lib/render.jsx');
 var sessionActions = require('../../redux/session.js');
+var layout = require('../../redux/layout.js');
 var shuffle = require('../../lib/shuffle.js').shuffle;
 
 var Activity = require('../../components/activity/activity.jsx');
@@ -41,6 +42,12 @@ var Splash = injectIntl(React.createClass({
             session: {},
             permissions: {}
         };
+    },
+    componentWillMount: function () {
+        this.props.dispatch(layout.getLayout());
+        for (var query in layout.mediaQueries) {
+            layout.mediaQueries[query].addListener(this.onResize);
+        }
     },
     componentDidUpdate: function (prevProps) {
         if (this.props.session.session.user != prevProps.session.session.user) {
@@ -86,6 +93,9 @@ var Splash = injectIntl(React.createClass({
                 window.location.href = data['uri'];
             }
         }
+    },
+    onResize: function () {
+        this.props.dispatch(layout.getLayout());
     },
     getActivity: function () {
         api({
@@ -439,7 +449,8 @@ var Splash = injectIntl(React.createClass({
 var mapStateToProps = function (state) {
     return {
         session: state.session,
-        permissions: state.permissions
+        permissions: state.permissions,
+        layout: state.layout
     };
 };
 
