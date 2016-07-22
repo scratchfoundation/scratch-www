@@ -122,28 +122,34 @@ module.exports = {
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
-                            <Input label={formatMessage({id: 'registration.createUsername'})}
-                                   className={this.state.validUsername}
-                                   type="text"
-                                   name="user.username"
-                                   help={this.props.usernameHelp}
-                                   validations={{
-                                       matchRegexp: /^[\w-]*$/,
-                                       minLength: 3,
-                                       maxLength: 20
-                                   }}
-                                   validationErrors={{
-                                       matchRegexp: formatMessage({
-                                           id: 'registration.validationUsernameRegexp'
-                                       }),
-                                       minLength: formatMessage({
-                                           id: 'registration.validationUsernameMinLength'
-                                       }),
-                                       maxLength: formatMessage({
-                                           id: 'registration.validationUsernameMaxLength'
-                                       })
-                                   }}
-                                   required />
+                            <div>
+                                <b>{formatMessage({id: 'registration.createUsername'})}</b>
+                                {this.props.usernameHelp ? (
+                                    <p className="help-text">{this.props.usernameHelp}</p>
+                                ):(
+                                    null
+                                )}
+                                <Input className={this.state.validUsername}
+                                       type="text"
+                                       name="user.username"
+                                       validations={{
+                                           matchRegexp: /^[\w-]*$/,
+                                           minLength: 3,
+                                           maxLength: 20
+                                       }}
+                                       validationErrors={{
+                                           matchRegexp: formatMessage({
+                                               id: 'registration.validationUsernameRegexp'
+                                           }),
+                                           minLength: formatMessage({
+                                               id: 'registration.validationUsernameMinLength'
+                                           }),
+                                           maxLength: formatMessage({
+                                               id: 'registration.validationUsernameMaxLength'
+                                           })
+                                       }}
+                                       required />
+                            </div>
                             <Input label={formatMessage({id: 'general.password'})}
                                    type={this.state.showPassword ? 'text' : 'password'}
                                    name="user.password"
@@ -419,7 +425,9 @@ module.exports = {
                                    required />
                             <div className="organization-type">
                                 <b><intl.FormattedMessage id="teacherRegistration.orgType" /></b>
-                                <p><intl.FormattedMessage id="teacherRegistration.checkAll" /></p>
+                                <p className="help-text">
+                                    <intl.FormattedMessage id="teacherRegistration.checkAll" />
+                                </p>
                                 <CheckboxGroup name="organization.type"
                                                value={[]}
                                                options={this.getOrganizationOptions()}
@@ -435,7 +443,9 @@ module.exports = {
                             </div>
                             <div className="url-input">
                                 <b><intl.FormattedMessage id="general.website" /></b>
-                                <p><intl.FormattedMessage id="teacherRegistration.notRequired" /></p>
+                                <p className="help-text">
+                                    <intl.FormattedMessage id="teacherRegistration.notRequired" />
+                                </p>
                                 <Input type="url"
                                        name="organization.url"
                                        required="isFalse"

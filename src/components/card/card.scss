@@ -22,6 +22,7 @@
     }
 
     .form {
+        position: relative;
         padding: 3rem 4rem;
 
         .card-button {
@@ -39,10 +40,12 @@
         }
     }
 
-    .help-block {
+    .validation-message {
         $arrow-border-width: 1rem;
         display: block;
         position: absolute;
+        left: 0;
+        transform: translate(20rem, -4rem);
         margin-left: $arrow-border-width;
         border: 1px solid $active-gray;
         border-radius: 5px;
@@ -100,7 +103,7 @@
 
 @media only screen and (max-width: $desktop - 1) {
     .card {
-        .help-block {
+        .validation-message {
             position: relative;
             transform: none;
             margin: inherit;
