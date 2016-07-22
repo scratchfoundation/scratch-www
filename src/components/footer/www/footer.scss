@@ -7,11 +7,10 @@
         text-align: center;
         flex-direction: row;
         flex-wrap: nowrap;
-        justify-content: space-between;
+        justify-content: space-around;
 
         dl {
             display: inline-block;
-            width: 130pt;
             vertical-align: top;
             text-align: left;
             font-size: .8rem;
@@ -52,15 +51,7 @@
 
 //4 and 6 columns
 @media only screen and (max-width: $tablet - 1) {
-    #footer .lists dd {
-        &:not(.showMobile) {
-            display: none;
-        }
-    }
-
-    #footer .lists dl {
-        dt {
-            display: none;
-        }
+    #footer .lists {
+        justify-content: space-around;
     }
 }
