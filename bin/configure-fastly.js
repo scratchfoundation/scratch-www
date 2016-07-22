@@ -58,7 +58,7 @@ var getViewPaths = function (routes) {
  * all :arguments become .+?
  */
 var expressPatternToRegex = function (pattern) {
-    return pattern.replace(/(:[^/]+)\//gi, '.+?/');
+    return pattern.replace(/(:[^/]+)/gi, '.+?');
 };
 
 /*
