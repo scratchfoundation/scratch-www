@@ -20,7 +20,7 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
         return {
             classroom: null,
             formData: {},
-            registrationError: null,
+            registrationErrors: null,
             step: 0,
             waiting: false
         };
@@ -42,9 +42,9 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
             }, function (err, body, res) {
                 if (err || res.statusCode === 404) {
                     return this.setState({
-                        registrationError: this.props.intl.formatMessage({
-                            id: 'studentRegistration.classroomApiGeneralError'
-                        })
+                        registrationErrors: {
+                            __all__: this.props.intl.formatMessage({id: 'studentRegistration.classroomApiGeneralError'})
+                        }
                     });
                 }
                 this.setState({classroom: body});
@@ -78,17 +78,7 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
             if (body.success) return this.advanceStep(formData);
-            this.setState({registrationError: (
-                <ul>
-                    {Object.keys(body.errors).map(function (field) {
-                        var label = field + ': ';
-                        if (field === '__all__') {
-                            label = '';
-                        }
-                        return (<li>{label}{body.errors[field]}</li>);
-                    })}
-                </ul>
-            )});
+            this.setState({registrationErrors: body.errors});
         }.bind(this));
     },
     goToClass: function () {
@@ -97,18 +87,30 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
     render: function () {
         var demographicsDescription = this.props.intl.formatMessage({
             id: 'registration.studentPersonalStepDescription'});
-        var registrationError = this.state.registrationError;
+        var registrationErrors = this.state.registrationErrors;
         var sessionFetched = this.props.session.status === sessionStatus.FETCHED;
         if (sessionFetched &&
             !(this.props.session.session.permissions.student &&
               this.props.session.session.flags.must_complete_registration)) {
-            registrationError = this.props.intl.formatMessage({id: 'registration.mustBeNewStudent'});
+            registrationErrors = {
+                __all__: this.props.intl.formatMessage({id: 'registration.mustBeNewStudent'})
+            };
         }
         return (
             <Deck className="student-registration">
                 {sessionFetched && this.state.classroom ?
-                    (registrationError ?
-                        <Steps.RegistrationError registrationError={registrationError} />
+                    (registrationErrors ?
+                        <Steps.RegistrationError>
+                            <ul>
+                                {Object.keys(registrationErrors).map(function (field) {
+                                    var label = field + ': ';
+                                    if (field === '__all__') {
+                                        label = '';
+                                    }
+                                    return (<li>{label}{registrationErrors[field]}</li>);
+                                })}
+                            </ul>
+                        </Steps.RegistrationError>
                     :
                         <Progression {... this.state}>
                             <Steps.ClassInviteStep classroom={this.state.classroom}

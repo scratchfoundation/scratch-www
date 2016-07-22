@@ -99,7 +99,9 @@ var StudentRegistration = intl.injectIntl(React.createClass({
         return (
             <Deck className="student-registration">
                 {this.state.registrationError ?
-                    <Steps.RegistrationError {... this.state} />
+                    <Steps.RegistrationError>
+                        {this.state.registrationError}
+                    </Steps.RegistrationError>
                 :
                     <Progression {... this.state}>
                         <Steps.ClassInviteStep classroom={this.state.classroom}

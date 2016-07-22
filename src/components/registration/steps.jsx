@@ -887,7 +887,7 @@ module.exports = {
                     <Card>
                         <h4>There was an error while processing your registration</h4>
                         <p>
-                            {this.props.registrationError}
+                            {this.props.children}
                         </p>
                     </Card>
                 </Slide>
