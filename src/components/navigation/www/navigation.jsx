@@ -248,7 +248,8 @@ var Navigation = React.createClass({
                                 <a className={dropdownClasses}
                                     href="#" onClick={this.handleAccountNavClick}>
                                     <Avatar src={this.props.session.session.user.thumbnailUrl} alt="" />
-                                    {this.props.session.session.user.username}
+                                    {this.props.layout == 'COLS8' || this.props.layout == 'COLS12' ?
+                                        this.props.session.session.user.username : ''}
                                 </a>
                                 <Dropdown
                                         as="ul"
@@ -302,7 +303,7 @@ var Navigation = React.createClass({
                                     isOpen={this.state.registrationOpen}
                                     onRequestClose={this.closeRegistration}
                                     onRegistrationDone={this.completeRegistration} />,
-                            <li className="link login-item" key="login">
+                            <li className="link right login-item" key="login">
                                 <a
                                     href="#"
                                     onClick={this.handleLoginClick}

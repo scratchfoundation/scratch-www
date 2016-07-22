@@ -228,34 +228,91 @@
 }
 //4 columns
 @media only screen and (max-width: $mobile - 1) {
-    #navigation .inner > ul > li {
-        &.create,
-        &.explore,
-        &.discuss,
-        &.help,
-        &.search {
-            display: none;
+    #navigation .inner {
+        width: $cols4;
+
+        > ul > li {
+            &.create,
+            &.explore,
+            &.discuss,
+            &.help,
+            &.search,
+            &.mystuff {
+                display: none;
+            }
+
+            &.login-item {
+                margin-left: 0;
+            }
+
+            &.account-nav {
+                margin-left: 0;
+
+                > a {
+                    .avatar {
+                        margin-right: 0;
+                    }
+
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
         }
     }
 }
 
+
 //6 columns
 @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-    #navigation .inner > ul > li {
-        &.explore,
-        &.discuss,
-        &.search {
-            display: none;
+    #navigation .inner {
+        width: $cols6;
+
+        > ul > li {
+            &.explore,
+            &.discuss,
+            &.search,
+            &.mystuff {
+                display: none;
+            }
+
+            &.login-item {
+                margin-left: 0;
+            }
+
+            &.account-nav {
+                margin-left: 0;
+
+                > a {
+                    .avatar {
+                        margin-right: 0;
+                    }
+
+                    &:after {
+                        display: none;
+                    }
+                }
+            }
         }
     }
 }
 
 //8 columns
 @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-    #navigation .inner > ul > li {
-        &.explore,
-        &.search {
-            display: none;
+    #navigation .inner {
+        width: $cols8;
+
+        > ul > li {
+            &.explore,
+            &.search,
+            &.mystuff {
+                display: none;
+            }
+
+            &.login-item,
+            &.account-nav {
+                margin-left: 0;
+            }
         }
     }
 }
