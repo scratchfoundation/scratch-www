@@ -1,4 +1,5 @@
 var React = require('react');
+var connect = require('react-redux').connect;
 var classNames = require('classnames');
 
 var Navigation = require('../../navigation/www/navigation.jsx');
@@ -13,17 +14,24 @@ var Page = React.createClass({
         return (
             <div className="page">
                 <div id="navigation" className={classes}>
-                    <Navigation />
+                    <Navigation layout={this.props.layout}/>
                 </div>
                 <div id="view">
                     {this.props.children}
                 </div>
                 <div id="footer">
-                    <Footer />
+                    <Footer layout={this.props.layout}/>
                 </div>
             </div>
         );
     }
 });
 
-module.exports = Page;
+var mapStateToProps = function (state) {
+    return {
+        layout: state.layout
+    };
+};
+
+var ConnectedPage = connect(mapStateToProps)(Page);
+module.exports = ConnectedPage;
