@@ -36,7 +36,8 @@ var StudentRegistration = intl.injectIntl(React.createClass({
     },
     componentDidMount: function () {
         api({
-            uri: '/classrooms/' + this.props.classroomId + '/' + this.props.classroomToken
+            uri: '/classrooms/' + this.props.classroomId,
+            params: {token: this.props.classroomToken}
         }, function (err, body, res) {
             if (err) {
                 return this.setState({
@@ -86,7 +87,15 @@ var StudentRegistration = intl.injectIntl(React.createClass({
         window.location = '/classes/' + this.props.classroomId + '/';
     },
     render: function () {
-        var demographicsDescription = this.props.intl.formatMessage({id: 'registration.notOnWebsite'});
+        var demographicsDescription = this.props.intl.formatMessage({
+            id: 'registration.studentPersonalStepDescription'});
+        var usernameTitle = this.props.intl.formatMessage({id: 'registration.studentUsernameStepTitle'});
+        var usernameHelp = this.props.intl.formatMessage({id: 'registration.studentUsernameFieldHelpText'});
+        var usernameDescription = (
+            this.props.intl.formatMessage({id: 'registration.studentUsernameStepDescription'}) + ' ' +
+            this.props.intl.formatMessage({id: 'registration.studentUsernameStepHelpText'})
+        );
+        var usernameTooltip = this.props.intl.formatMessage({id: 'registration.studentUsernameStepTooltip'});
         return (
             <Deck className="student-registration">
                 {this.state.registrationError ?
@@ -96,8 +105,12 @@ var StudentRegistration = intl.injectIntl(React.createClass({
                         <Steps.ClassInviteStep classroom={this.state.classroom}
                                                messages={this.props.messages}
                                                onNextStep={this.advanceStep}
-                                               waiting={this.state.waiting} />
+                                               waiting={this.state.waiting || !this.state.classroom} />
                         <Steps.UsernameStep onNextStep={this.advanceStep}
+                                            title={usernameTitle}
+                                            description={usernameDescription}
+                                            tooltip={usernameTooltip}
+                                            usernameHelp={usernameHelp}
                                             waiting={this.state.waiting} />
                         <Steps.DemographicsStep description={demographicsDescription}
                                                 onNextStep={this.register}
@@ -105,7 +118,7 @@ var StudentRegistration = intl.injectIntl(React.createClass({
                         <Steps.ClassWelcomeStep classroom={this.state.classroom}
                                                 messages={this.props.messages}
                                                 onNextStep={this.goToClass}
-                                                waiting={this.state.waiting} />
+                                                waiting={this.state.waiting || !this.state.classroom} />
                     </Progression>
                 }
             </Deck>

@@ -100,33 +100,56 @@ module.exports = {
             var formatMessage = this.props.intl.formatMessage;
             return (
                 <Slide className="registration-step username-step">
-                    <h2><intl.FormattedMessage id="registration.usernameStepTitle" /></h2>
+                    <h2>
+                        {this.props.title ? (
+                            this.props.title
+                        ) : (
+                            <intl.FormattedMessage id="registration.usernameStepTitle" />
+                        )}
+                    </h2>
                     <p className="description">
-                        <intl.FormattedMessage id="registration.usernameStepDescription" />
+                        {this.props.description ? (
+                            this.props.description
+                        ) : (
+                            <intl.FormattedMessage id="registration.usernameStepDescription" />
+                        )}
+                        {this.props.tooltip ? (
+                             <Tooltip title={'?'}
+                                 tipContent={this.props.tooltip} />
+                        ) : (
+                            null
+                        )}
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
-                            <Input label={formatMessage({id: 'registration.createUsername'})}
-                                   className={this.state.validUsername}
-                                   type="text"
-                                   name="user.username"
-                                   validations={{
-                                       matchRegexp: /^[\w-]*$/,
-                                       minLength: 3,
-                                       maxLength: 20
-                                   }}
-                                   validationErrors={{
-                                       matchRegexp: formatMessage({
-                                           id: 'registration.validationUsernameRegexp'
-                                       }),
-                                       minLength: formatMessage({
-                                           id: 'registration.validationUsernameMinLength'
-                                       }),
-                                       maxLength: formatMessage({
-                                           id: 'registration.validationUsernameMaxLength'
-                                       })
-                                   }}
-                                   required />
+                            <div>
+                                <b>{formatMessage({id: 'registration.createUsername'})}</b>
+                                {this.props.usernameHelp ? (
+                                    <p className="help-text">{this.props.usernameHelp}</p>
+                                ):(
+                                    null
+                                )}
+                                <Input className={this.state.validUsername}
+                                       type="text"
+                                       name="user.username"
+                                       validations={{
+                                           matchRegexp: /^[\w-]*$/,
+                                           minLength: 3,
+                                           maxLength: 20
+                                       }}
+                                       validationErrors={{
+                                           matchRegexp: formatMessage({
+                                               id: 'registration.validationUsernameRegexp'
+                                           }),
+                                           minLength: formatMessage({
+                                               id: 'registration.validationUsernameMinLength'
+                                           }),
+                                           maxLength: formatMessage({
+                                               id: 'registration.validationUsernameMaxLength'
+                                           })
+                                       }}
+                                       required />
+                            </div>
                             <Input label={formatMessage({id: 'general.password'})}
                                    type={this.state.showPassword ? 'text' : 'password'}
                                    name="user.password"
@@ -402,7 +425,9 @@ module.exports = {
                                    required />
                             <div className="organization-type">
                                 <b><intl.FormattedMessage id="teacherRegistration.orgType" /></b>
-                                <p><intl.FormattedMessage id="teacherRegistration.checkAll" /></p>
+                                <p className="help-text">
+                                    <intl.FormattedMessage id="teacherRegistration.checkAll" />
+                                </p>
                                 <CheckboxGroup name="organization.type"
                                                value={[]}
                                                options={this.getOrganizationOptions()}
@@ -418,7 +443,9 @@ module.exports = {
                             </div>
                             <div className="url-input">
                                 <b><intl.FormattedMessage id="general.website" /></b>
-                                <p><intl.FormattedMessage id="teacherRegistration.notRequired" /></p>
+                                <p className="help-text">
+                                    <intl.FormattedMessage id="teacherRegistration.notRequired" />
+                                </p>
                                 <Input type="url"
                                        name="organization.url"
                                        required="isFalse"
@@ -718,16 +745,6 @@ module.exports = {
     ClassInviteStep: React.createClass({
         getDefaultProps: function () {
             return {
-                classroom: {
-                    title: '',
-                    thumbnail: '',
-                    educator: {
-                        username: '',
-                        profile: {
-                            images: ''
-                        }
-                    }
-                },
                 messages: {
                     'general.getStarted': 'Get Started',
                     'registration.classroomInviteStepDescription': 'has invited you to join the class:'
@@ -741,21 +758,26 @@ module.exports = {
         render: function () {
             return (
                 <Slide className="registration-step class-invite-step">
-                    <Avatar className="invite-avatar" src={this.props.classroom.educator.profile.images['50x50']} />
-                    <h2>{this.props.classroom.educator.username}</h2>
-                    <p className="description">
-                        {this.props.messages['registration.classroomInviteStepDescription']}
-                    </p>
-                    <Card>
-                        <div className="contents">
-                            <h3>{this.props.classroom.title}</h3>
-                            <img className="class-image" src={this.props.classroom.images['250x150']} />
-                        </div>
-                        <NextStepButton onClick={this.onNextStep}
-                                        waiting={this.props.waiting}
-                                        text={this.props.messages['general.getStarted']} />
-                    </Card>
-                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                    {this.props.waiting ? [
+                        <Spinner />
+                    ] : [
+                        <Avatar className="invite-avatar"
+                                src={this.props.classroom.educator.profile.images['50x50']} />,
+                        <h2>{this.props.classroom.educator.username}</h2>,
+                        <p className="description">
+                            {this.props.messages['registration.classroomInviteStepDescription']}
+                        </p>,
+                        <Card>
+                            <div className="contents">
+                                <h3>{this.props.classroom.title}</h3>
+                                <img className="class-image" src={this.props.classroom.images['250x150']} />
+                            </div>
+                            <NextStepButton onClick={this.onNextStep}
+                                            waiting={this.props.waiting}
+                                            text={this.props.messages['general.getStarted']} />
+                        </Card>,
+                        <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                    ]}
                 </Slide>
             );
         }
@@ -763,23 +785,14 @@ module.exports = {
     ClassWelcomeStep: React.createClass({
         getDefaultProps: function () {
             return {
-                classroom: {
-                    title: '',
-                    thumbnail: '',
-                    educator: {
-                        username: '',
-                        profile: {
-                            images: ''
-                        }
-                    }
-                },
                 messages: {
                     'registration.goToClass': 'Go to Class',
                     'registration.welcomeStepDescription': 'You have successfully set up a Scratch account! ' +
                                                                   'You are now a member of the class:',
                     'registration.welcomeStepPrompt': 'To get started, click on the button below.',
                     'registration.welcomeStepTitle': 'Hurray! Welcome to Scratch!'
-                }
+                },
+                waiting: false
             };
         },
         onNextStep: function () {
@@ -788,18 +801,26 @@ module.exports = {
         render: function () {
             return (
                 <Slide className="registration-step class-welcome-step">
-                    <h2>{this.props.messages['registration.welcomeStepTitle']}</h2>
-                    <p className="description">{this.props.messages['registration.welcomeStepDescription']}</p>
-                    <Card>
-                        <div className="contents">
-                            <h3>{this.props.classroom.title}</h3>
-                            <img className="class-image" src={this.props.classroom.images['250x150']} />
-                            <p>{this.props.messages['registration.welcomeStepPrompt']}</p>
-                        </div>
-                        <NextStepButton onClick={this.onNextStep}
-                                        waiting={this.props.waiting}
-                                        text={this.props.messages['registration.goToClass']} />
-                    </Card>
+                    {this.props.waiting ? [
+                        <Spinner />
+                    ] : [
+                        <h2>{this.props.messages['registration.welcomeStepTitle']}</h2>,
+                        <p className="description">{this.props.messages['registration.welcomeStepDescription']}</p>,
+                        <Card>
+                            {this.props.classroom ? (
+                                <div className="contents">
+                                    <h3>{this.props.classroom.title}</h3>
+                                    <img className="class-image" src={this.props.classroom.images['250x150']} />
+                                    <p>{this.props.messages['registration.welcomeStepPrompt']}</p>
+                                </div>
+                            ) : (
+                                null
+                            )}
+                            <NextStepButton onClick={this.onNextStep}
+                                            waiting={this.props.waiting}
+                                            text={this.props.messages['registration.goToClass']} />
+                        </Card>
+                    ]}
                 </Slide>
             );
         }

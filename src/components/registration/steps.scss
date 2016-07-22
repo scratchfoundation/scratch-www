@@ -23,6 +23,13 @@
         }
     }
 
+    .help-text {
+        margin: .25rem 0;
+        text-align: left;
+        color: $ui-dark-gray;
+    }
+
+
     &.class-invite-step,
     &.class-welcome-step {
         .card {
@@ -34,22 +41,9 @@
         }
     }
 
-    &.username-step,
-    &.name-step,
-    &.address-step,
-    &.email-step {
-        .help-block {
-            transform: translate(15.75rem, -4rem);
-        }
-    }
-
     &.demographics-step {
         .gender-input {
             margin-top: -5.5rem;
-        }
-
-        .help-block {
-            transform: translate(13rem, -2rem);
         }
 
         .radio {
@@ -73,34 +67,25 @@
             }
         }
 
-        .help-block {
+        .validation-message {
             margin-top: .5rem;
         }
 
         .checkbox-row {
-            .help-block {
+            .validation-message {
                 margin-top: 0;
             }
         }
     }
 
     &.organization-step {
-        .help-block {
+        .validation-message {
             transform: translate(16rem, -4rem);
         }
 
         .checkbox-group {
-            .help-block {
+            .validation-message {
                 transform: translate(16rem, -16rem);
-            }
-        }
-
-        .organization-type,
-        .url-input {
-            p {
-                margin: .25rem 0;
-                text-align: left;
-                color: $ui-dark-gray;
             }
         }
 
@@ -117,7 +102,7 @@
 
     &.address-step {
         .select {
-            .help-block {
+            .validation-message {
                 transform: translate(0, .5rem);
             }
         }
@@ -138,7 +123,7 @@
 
         }
 
-        .help-block {
+        .validation-message {
             margin-top: .75rem;
         }
 
@@ -199,19 +184,9 @@
             text-align: left;
         }
 
-        &.username-step,
-        &.demographics-step,
-        &.name-step,
-        &.address-step,
-        &.email-step {
-            .help-block {
-                transform: none;
-            }
-        }
-
         &.phone-step {
             .checkbox,
-            .help-block {
+            .validation-message {
                 text-align: left;
             }
 
@@ -238,7 +213,7 @@
         &.organization-step,
         &.address-step,
         &.email-step {
-            .help-block {
+            .validation-message {
                 position: relative;
                 transform: none;
                 margin: inherit;
