@@ -3,6 +3,7 @@ var FormattedMessage = require('react-intl').FormattedMessage;
 
 var FooterBox = require('../container/footer.jsx');
 var LanguageChooser = require('../../languagechooser/languagechooser.jsx');
+var MediaQuery = require('react-responsive');
 
 require('./footer.scss');
 
@@ -11,7 +12,7 @@ var Footer = React.createClass({
     render: function () {
         return (
             <FooterBox>
-                {this.props.layout == 'COLS4' || this.props.layout == 'COLS6' ? [
+                <MediaQuery maxWidth={639}>
                     <div className="lists">
                         <dl>
                             <dd>
@@ -48,7 +49,8 @@ var Footer = React.createClass({
                             </dd>
                         </dl>
                     </div>
-                ] : [
+                </MediaQuery>
+                <MediaQuery minWidth={640}>
                     <div className="lists">
                         <dl>
                             <dt>
@@ -199,7 +201,7 @@ var Footer = React.createClass({
                             </dd>
                         </dl>
                     </div>
-                ]}
+                </MediaQuery>
                 <LanguageChooser />
 
                 <div className="copyright">

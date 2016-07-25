@@ -65,8 +65,17 @@
 
             .box {
                 width: $cols6;
-                white-space: normal;
             }
+        }
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .splash {
+        .splash-header {
+            margin: 0 auto;
+            width: $cols8;
         }
     }
 }

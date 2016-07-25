@@ -17,6 +17,7 @@ var Login = require('../../login/login.jsx');
 var Modal = require('../../modal/modal.jsx');
 var NavigationBox = require('../container/navigation.jsx');
 var Registration = require('../../registration/registration.jsx');
+var MediaQuery = require('react-responsive');
 
 require('./navigation.scss');
 
@@ -248,8 +249,9 @@ var Navigation = React.createClass({
                                 <a className={dropdownClasses}
                                     href="#" onClick={this.handleAccountNavClick}>
                                     <Avatar src={this.props.session.session.user.thumbnailUrl} alt="" />
-                                    {this.props.layout == 'COLS8' || this.props.layout == 'COLS12' ?
-                                        this.props.session.session.user.username : ''}
+                                    <MediaQuery minWidth={640} component='span'>
+                                        {this.props.session.session.user.username}
+                                    </MediaQuery>
                                 </a>
                                 <Dropdown
                                         as="ul"
