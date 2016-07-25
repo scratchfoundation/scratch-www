@@ -58,6 +58,13 @@
         }
     }
 
+    .checkbox-row,
+    .textarea-row {
+        .validation-message {
+            transform: translate(20rem, 0);  
+        }
+    }
+
     .form {
         position: relative;
         padding: 3rem 4rem;
@@ -66,20 +73,12 @@
             margin: 0 0 -3rem -4rem;
         }
 
-        .form-group {        
+        .row {        
             margin-bottom: 1.2rem;
 
             &.has-error {
                 .input {
                     border: 1px solid $ui-orange;
-                }
-            }
-
-            .checkbox-row,
-            .phone-input,
-            .textarea-group {
-                .validation-message {
-                    transform: translate(20rem, 0);  
                 }
             }
         }
