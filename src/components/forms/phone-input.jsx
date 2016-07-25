@@ -42,7 +42,7 @@ var PhoneInput = React.createClass({
         return (
             <Row {... this.getRowProperties()}
                  htmlFor={this.getId()}
-                 className={classNames('phone-input', this.props.className)}
+                 elementWrapperClassName={classNames('phone-input', this.props.className)}
             >
                 <div className="input-group">
                     <ReactPhoneInput className="form-control"

@@ -79,13 +79,9 @@
     }
 
     &.organization-step {
-        .validation-message {
-            transform: translate(16rem, -4rem);
-        }
-
         .checkbox-group {
             .validation-message {
-                transform: translate(16rem, -16rem);
+                transform: translate(20rem, -16rem);
             }
         }
 
@@ -103,7 +99,7 @@
     &.address-step {
         .select {
             .validation-message {
-                transform: translate(0, .5rem);
+                transform: translate(20rem, .5rem);
             }
         }
     }

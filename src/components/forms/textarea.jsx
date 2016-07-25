@@ -15,7 +15,9 @@ var TextArea = React.createClass({
             this.props.className
         );
         return (
-            <FRCTextarea {... this.props} className={classes} />
+            <FRCTextarea {... this.props}
+                         className={classes}
+                         elementWrapperClassName="textarea-group" />
         );
     }
 });
