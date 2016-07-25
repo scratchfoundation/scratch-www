@@ -37,10 +37,12 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
             this.props.session.session.permissions &&
             this.props.session.session.permissions.student) {
             var classroomId = this.props.session.session.user.classroomId;
+            this.setState({waiting: true});
             api({
                 uri: '/classrooms/' + classroomId
             }, function (err, body, res) {
-                if (err || res.statusCode === 404) {
+                this.setState({waiting: false});
+                if (err || res.statusCode !== 200) {
                     return this.setState({
                         registrationErrors: {
                             __all__: this.props.intl.formatMessage({id: 'studentRegistration.classroomApiGeneralError'})
