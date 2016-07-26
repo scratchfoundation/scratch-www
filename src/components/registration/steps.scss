@@ -66,26 +66,12 @@
                 margin-bottom: 1.25rem;
             }
         }
-
-        .validation-message {
-            margin-top: .5rem;
-        }
-
-        .checkbox-row {
-            .validation-message {
-                margin-top: 0;
-            }
-        }
     }
 
     &.organization-step {
-        .validation-message {
-            transform: translate(16rem, -4rem);
-        }
-
         .checkbox-group {
             .validation-message {
-                transform: translate(16rem, -16rem);
+                transform: translate(20rem, -16rem);
             }
         }
 
@@ -103,7 +89,7 @@
     &.address-step {
         .select {
             .validation-message {
-                transform: translate(0, .5rem);
+                transform: translate(20rem, .5rem);
             }
         }
     }
@@ -119,12 +105,6 @@
                     }
                 }
             }
-
-
-        }
-
-        .validation-message {
-            margin-top: .75rem;
         }
 
         p {

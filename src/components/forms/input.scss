@@ -12,7 +12,7 @@ $pass-bg: lighten($ui-aqua, 35%);
 
 .input {
     transition: all .5s ease;
-    margin: .75rem 0;
+    margin-bottom: .75rem;
     border: 1px solid $active-gray;
     border-radius: 5px;
     background-color: $base-bg;

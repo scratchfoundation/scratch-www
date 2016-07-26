@@ -21,25 +21,6 @@
         }
     }
 
-    .form {
-        position: relative;
-        padding: 3rem 4rem;
-
-        .card-button {
-            margin: 0 0 -3rem -4rem;
-        }
-
-        .form-group {        
-            margin-bottom: 1.2rem;
-
-            &.has-error {
-                .input {
-                    border: 1px solid $ui-orange;
-                }
-            }
-        }
-    }
-
     .validation-message {
         $arrow-border-width: 1rem;
         display: block;
@@ -77,6 +58,31 @@
         }
     }
 
+    .checkbox-row,
+    .textarea-row {
+        .validation-message {
+            transform: translate(20rem, 0);  
+        }
+    }
+
+    .form {
+        position: relative;
+        padding: 3rem 4rem;
+
+        .card-button {
+            margin: 0 0 -3rem -4rem;
+        }
+
+        .row {        
+            margin-bottom: 1.2rem;
+
+            &.has-error {
+                .input {
+                    border: 1px solid $ui-orange;
+                }
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: $mobile - 1) {

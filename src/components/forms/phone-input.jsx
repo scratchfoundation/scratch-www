@@ -42,7 +42,7 @@ var PhoneInput = React.createClass({
         return (
             <Row {... this.getRowProperties()}
                  htmlFor={this.getId()}
-                 className={classNames('phone-input', this.props.className)}
+                 rowClassName={classNames('phone-input', this.props.className)}
             >
                 <div className="input-group">
                     <ReactPhoneInput className="form-control"
@@ -53,9 +53,9 @@ var PhoneInput = React.createClass({
                                      label={null}
                                      disabled={this.isFormDisabled() || this.props.disabled}
                     />
+                    {this.renderHelp()}
+                    {this.renderErrorMessage()}
                 </div>
-                {this.renderHelp()}
-                {this.renderErrorMessage()}
             </Row>
         );
     }

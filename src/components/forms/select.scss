@@ -8,7 +8,7 @@
 
     select {
         transition: all .5s ease;
-        margin: .75rem 0;
+        margin-bottom: .75rem;
         border: 1px solid $active-gray;
         border-radius: 5px;
         background: $ui-light-gray url("../../../static/svgs/forms/carot.svg") no-repeat right center;
