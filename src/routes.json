@@ -2,126 +2,43 @@
     {
         "name": "splash",
         "pattern": "^/?$",
+        "routeAlias": "/?$",
         "view": "splash/splash",
-        "viewportWidth": "device-width",
-        "title": "Imagine, Program, Share"
+        "title": "Imagine, Program, Share",
+        "viewportWidth": "device-width"
     },
     {
         "name": "about",
         "pattern": "^/about/?$",
+        "routeAlias": "/about/?$",
         "view": "about/about",
         "title": "About"
     },
     {
-        "name": "developers",
-        "pattern": "^/developers/?$",
-        "view": "developers/developers",
-        "title": "Developers"
+        "name": "guidelines",
+        "pattern": "^/community_guidelines/?$",
+        "routeAlias": "/community_guidelines/?$",
+        "view": "guidelines/guidelines",
+        "title": "Scratch Community Guidelines"
     },
     {
-        "name": "hoc",
-        "pattern": "^/hoc/?$",
-        "view": "hoc/hoc",
-        "title": "Hour of Code"
+        "name": "student-complete-registration",
+        "pattern": "^/classes/complete_registration",
+        "routeAlias": "/classes/(complete_registration|.+/register/.+)",
+        "view": "studentcompleteregistration/studentcompleteregistration",
+        "title": "Complete your Registration"
     },
     {
-        "name": "explore",
-        "pattern": "^/explore/:projects/:all/?$",
-        "routeAlias": "^/explore(?!/ajax)",
-        "view": "explore/explore",
-        "title": "Explore"
-    },
-    {
-        "name": "explore-redirect",
-        "pattern": "^/explore/?$",
-        "routeAlias": "^/explore(?!/ajax)",
-        "redirect": "/explore/projects/all"
-    },
-    {
-        "name": "explore-projects-redirect",
-        "pattern": "^/explore/projects/?$",
-        "routeAlias": "^/explore(?!/ajax)",
-        "redirect": "/explore/projects/all"
-    },
-    {
-        "name": "explore-studios-redirect",
-        "pattern": "^/explore/studios/?$",
-        "routeAlias": "^/explore(?!/ajax)",
-        "redirect": "/explore/studios/all"
-    },
-    {
-        "name": "search",
-        "pattern": "^/search/:projects?$/?$",
-        "routeAlias": "^/search",
-        "view": "search/search",
-        "title": "Search"
-    },
-    {
-        "name": "credits",
-        "pattern": "^/info/credits/?$",
-        "view": "credits/credits",
-        "title": "Credits"
-    },
-    {
-        "name": "faq",
-        "pattern": "^/info/faq/?$",
-        "view": "faq/faq",
-        "viewportWidth": "device-width",
-        "title": "FAQ"
-    },
-    {
-        "name": "educator-landing",
-        "pattern": "^/educators/?$",
-        "view": "teachers/landing/landing",
-        "title": "Educators"
-    },
-    {
-        "name": "teacher-faq",
-        "pattern": "^/educators/faq/?$",
-        "view": "teachers/faq/faq",
-        "title": "Teacher Accounts FAQ"
-    },
-    {
-        "name": "cards",
-        "pattern": "^/info/cards/?$",
-        "view": "cards/cards",
-        "title": "Cards"
-    },
-    {
-        "name": "communityblocks-interviews",
-        "pattern": "^/info/communityblocks-interviews/?$",
-        "view": "communityblocks-interviews/communityblocks-interviews",
-        "title": "Community Blocks Beta Tester Interviews"
-    },
-    {
-        "name": "jobs",
-        "pattern": "^/jobs/?$",
-        "view": "jobs/jobs",
-        "title": "Jobs"
-    },
-    {
-        "name": "teacherregistration",
-        "pattern": "^/educators/register$",
-        "view": "teacherregistration/teacherregistration",
-        "title": "Teacher Registration",
-        "viewportWidth": "device-width"
-    },
-    {
-        "name": "teacherwaitingroom",
-        "pattern": "^/educators/waiting",
-        "view": "teacherwaitingroom/teacherwaitingroom",
-        "title": "Thank you for requesting a Scratch Teacher Account"
-    },
-    {
-        "name": "wedo2",
-        "pattern": "^/wedo/?$",
-        "view": "wedo2/wedo2",
-        "title": "LEGO WeDo 2.0"
+        "name": "student-registration",
+        "pattern": "^/classes/:id/register/:token",
+        "routeAlias": "/classes/(complete_registration|.+/register/.+)",
+        "view": "studentregistration/studentregistration",
+        "title": "Class Registration"
     },
     {
         "name": "conference-index",
         "pattern": "^/conference/?$",
-        "routeAlias": "^/conference(?!/201[4-5])",
+        "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/index/index",
         "title": "Scratch Conference",
         "viewportWidth": "device-width"
@@ -129,7 +46,7 @@
     {
         "name": "conference-plan",
         "pattern": "^/conference/plan/?$",
-        "routeAlias": "^/conference(?!/201[4-5])",
+        "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/plan/plan",
         "title": "Plan Your Visit",
         "viewportWidth": "device-width"
@@ -137,7 +54,7 @@
     {
         "name": "conference-expectations",
         "pattern": "^/conference/expect/?$",
-        "routeAlias": "^/conference(?!/201[4-5])",
+        "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/expect/expect",
         "title": "What to Expect",
         "viewportWidth": "device-width"
@@ -145,7 +62,7 @@
     {
         "name": "conference-schedule",
         "pattern": "^/conference/schedule/?$",
-        "routeAlias": "^/conference(?!/201[4-5])",
+        "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/schedule/schedule",
         "title": "Conference Schedule",
         "viewportWidth": "device-width"
@@ -153,38 +70,153 @@
     {
         "name": "conference-details",
         "pattern": "^/conference/:id/details/?$",
-        "routeAlias": "^/conference(?!/201[4-5])",
+        "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/details/details",
         "title": "Event Details",
         "viewportWidth": "device-width"
     },
     {
-        "name": "donate",
-        "pattern": "^/info/donate/?",
-        "redirect": "https://secure.donationpay.org/scratchfoundation/"
+        "name": "developers",
+        "pattern": "^/developers/?$",
+        "routeAlias": "/developers/?$",
+        "view": "developers/developers",
+        "title": "Developers"
     },
     {
         "name": "dmca",
         "pattern": "^/DMCA/?$",
+        "routeAlias": "/DMCA/?$",
         "view": "dmca/dmca",
         "title": "DMCA"
     },
     {
-        "name": "guidelines",
-        "pattern": "^/community_guidelines/?$",
-        "view": "guidelines/guidelines",
-        "title": "Scratch Community Guidelines"
+        "name": "educator-landing",
+        "pattern": "^/educators/?$",
+        "routeAlias": "/educators(?:/(faq|register|waiting))?/?$",
+        "view": "teachers/landing/landing",
+        "title": "Educators"
+    },
+    {
+        "name": "teacher-faq",
+        "pattern": "^/educators/faq/?$",
+        "routeAlias": "/educators(?:/(faq|register|waiting))?/?$",
+        "view": "teachers/faq/faq",
+        "title": "Teacher Accounts FAQ"
+    },
+    {
+        "name": "teacherregistration",
+        "pattern": "^/educators/register$",
+        "routeAlias": "/educators(?:/(faq|register|waiting))?/?$",
+        "view": "teacherregistration/teacherregistration",
+        "title": "Teacher Registration",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "teacherwaitingroom",
+        "pattern": "^/educators/waiting",
+        "routeAlias": "/educators(?:/(faq|register|waiting))?/?$",
+        "view": "teacherwaitingroom/teacherwaitingroom",
+        "title": "Thank you for requesting a Scratch Teacher Account"
+    },
+    {
+        "name": "explore",
+        "pattern": "^/explore/:projects/:all/?$",
+        "routeAlias": "/explore(?!/ajax)",
+        "view": "explore/explore",
+        "title": "Explore"
+    },
+    {
+        "name": "hoc",
+        "pattern": "^/hoc/?$",
+        "routeAlias": "/hoc/?$",
+        "view": "hoc/hoc",
+        "title": "Hour of Code"
+    },
+    {
+        "name": "cards",
+        "pattern": "^/info/cards/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
+        "view": "cards/cards",
+        "title": "Cards"
+    },
+    {
+        "name": "communityblocks-interviews",
+        "pattern": "^/info/communityblocks-interviews/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "view": "communityblocks-interviews/communityblocks-interviews",
+        "title": "Community Blocks Beta Tester Interviews"
+    },
+    {
+        "name": "credits",
+        "pattern": "^/info/credits/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
+        "view": "credits/credits",
+        "title": "Credits"
+    },
+    {
+        "name": "faq",
+        "pattern": "^/info/faq/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
+        "view": "faq/faq",
+        "title": "FAQ"
+    },
+    {
+        "name": "jobs",
+        "pattern": "^/jobs/?$",
+        "routeAlias": "/jobs/?$",
+        "view": "jobs/jobs",
+        "title": "Jobs"
     },
     {
         "name": "privacypolicy",
         "pattern": "^/privacy_policy/?$",
+        "routeAlias": "/privacy_policy/?$",
         "view": "privacypolicy/privacypolicy",
         "title": "Privacy Policy"
     },
     {
+        "name": "search",
+        "pattern": "^/search/:projects?$/?$",
+        "routeAlias": "/search",
+        "view": "search/search",
+        "title": "Search"
+    },
+    {
         "name": "terms",
         "pattern": "^/terms_of_use/?$",
+        "routeAlias": "/terms_of_use/?$",
         "view": "terms/terms",
         "title": "Scratch Terms of Use"
+    },
+    {
+        "name": "wedo2",
+        "pattern": "^/wedo/?$",
+        "routeAlias": "/wedo/?$",
+        "view": "wedo2/wedo2",
+        "title": "LEGO WeDo 2.0"
+    },
+    {
+        "name": "donate",
+        "pattern": "^/info/donate/?",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "redirect": "https://secure.donationpay.org/scratchfoundation/"
+    },
+    {
+        "name": "explore-redirect",
+        "pattern": "^/explore/?$",
+        "routeAlias": "/explore(?!/ajax)",
+        "redirect": "/explore/projects/all"
+    },
+    {
+        "name": "explore-projects-redirect",
+        "pattern": "^/explore/projects/?$",
+        "routeAlias": "/explore(?!/ajax)",
+        "redirect": "/explore/projects/all"
+    },
+    {
+        "name": "explore-studios-redirect",
+        "pattern": "^/explore/studios/?$",
+        "routeAlias": "/explore(?!/ajax)",
+        "redirect": "/explore/studios/all"
     }
 ]
