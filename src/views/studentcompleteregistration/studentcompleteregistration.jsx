@@ -90,30 +90,33 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
         var demographicsDescription = this.props.intl.formatMessage({
             id: 'registration.studentPersonalStepDescription'});
         var registrationErrors = this.state.registrationErrors;
-        var sessionFetched = this.props.session.status === sessionStatus.FETCHED;
-        if (sessionFetched &&
-            !(this.props.session.session.permissions.student &&
-              this.props.session.session.flags.must_complete_registration)) {
+        if (this.props.session.status === sessionStatus.FETCHED && !(
+                this.props.session.session.permissions &&
+                this.props.session.session.permissions.student &&
+                this.props.session.session.flags.must_complete_registration)
+        ) {
             registrationErrors = {
                 __all__: this.props.intl.formatMessage({id: 'registration.mustBeNewStudent'})
             };
         }
         return (
             <Deck className="student-registration">
-                {sessionFetched && this.state.classroom ?
-                    (registrationErrors ?
-                        <Steps.RegistrationError>
-                            <ul>
-                                {Object.keys(registrationErrors).map(function (field) {
-                                    var label = field + ': ';
-                                    if (field === '__all__') {
-                                        label = '';
-                                    }
-                                    return (<li>{label}{registrationErrors[field]}</li>);
-                                })}
-                            </ul>
-                        </Steps.RegistrationError>
-                    :
+                {registrationErrors ? (
+                    <Steps.RegistrationError>
+                        <ul>
+                            {Object.keys(registrationErrors).map(function (field) {
+                                var label = field + ': ';
+                                if (field === '__all__') {
+                                    label = '';
+                                }
+                                return (<li>{label}{registrationErrors[field]}</li>);
+                            })}
+                        </ul>
+                    </Steps.RegistrationError>
+                ) : (
+                    this.state.waiting || !this.state.classroom ? (
+                        <Spinner />
+                    ) : (
                         <Progression {... this.state}>
                             <Steps.ClassInviteStep classroom={this.state.classroom}
                                                    messages={this.props.messages}
@@ -134,9 +137,7 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
                                                     waiting={this.state.waiting} />
                         </Progression>
                     )
-                :
-                    <Spinner />
-                }
+                )}
             </Deck>
         );
     }
