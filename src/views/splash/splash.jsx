@@ -21,6 +21,9 @@ var Page = require('../../components/page/www/page.jsx');
 var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
+var MediaQuery = require('react-responsive');
+var frameless = require('../../lib/frameless');
+
 require('./splash.scss');
 
 var Splash = injectIntl(React.createClass({
@@ -393,7 +396,9 @@ var Splash = injectIntl(React.createClass({
                                 <News items={this.state.news} messages={messages} />
                             </div>
                         ] : [
-                            /*<Intro projectCount={this.state.projectCount} messages={messages} key="intro"/>*/
+                            <MediaQuery minWidth={frameless.desktop}>
+                                <Intro projectCount={this.state.projectCount} messages={messages} key="intro"/>
+                            </MediaQuery>
                         ]) : []
                     }
 
