@@ -315,6 +315,7 @@ module.exports = {
                             <div className="gender-input">
                                 <Input name="user.genderOther"
                                        type="text"
+                                       className="no-label"
                                        disabled={this.state.otherDisabled}
                                        required={!this.state.otherDisabled}
                                        help={null} />
@@ -499,6 +500,7 @@ module.exports = {
                             </div>
                             <div className="other-input">
                                 <Input type="text"
+                                       className="no-label"
                                        name="organization.other"
                                        disabled={this.state.otherDisabled}
                                        required="isFalse"

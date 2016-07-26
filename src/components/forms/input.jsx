@@ -29,14 +29,13 @@ var Input = React.createClass({
     },
     render: function () {
         var classes = classNames(
-            'input',
             this.state.status,
             this.props.className
         );
-        return (this.props.type === 'submit' || this.props.noformsy ?
-            <input {... this.props} className={classes} /> :
+        return (
             <FRCInput {... this.props}
-                      className={classes}
+                      className="input"
+                      rowClassName={classes}
                       onValid={this.onValid}
                       onInvalid={this.onInvalid} />
         );
