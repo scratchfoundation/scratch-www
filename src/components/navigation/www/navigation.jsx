@@ -223,7 +223,6 @@ var Navigation = React.createClass({
                         <Form onSubmit={this.onSearchSubmit}>
                             <Button type="submit" className="btn-search" />
                             <Input type="text"
-                                   className="no-label"
                                    aria-label={formatMessage({id: 'general.search'})}
                                    placeholder={formatMessage({id: 'general.search'})}
                                    name="q" />

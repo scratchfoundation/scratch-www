@@ -30,7 +30,8 @@ var Input = React.createClass({
     render: function () {
         var classes = classNames(
             this.state.status,
-            this.props.className
+            this.props.className,
+            {'no-label': (typeof this.props.label === 'undefined')}
         );
         return (
             <FRCInput {... this.props}
