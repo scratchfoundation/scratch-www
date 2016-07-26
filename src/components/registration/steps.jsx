@@ -763,14 +763,8 @@ module.exports = {
             return {
                 email: null,
                 invited: false,
-                confirmed: false,
-                educator: true
+                confirmed: false
             };
-        },
-        componentWillReceiveProps: function (nextProps) {
-            if (nextProps.educator && nextProps.confirmed) {
-                window.location.href = '/educators/classes/';
-            }
         },
         render: function () {
             return (
