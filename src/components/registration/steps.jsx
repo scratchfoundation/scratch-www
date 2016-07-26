@@ -762,8 +762,15 @@ module.exports = {
         getDefaultProps: function () {
             return {
                 email: null,
-                invited: false
+                invited: false,
+                confirmed: false,
+                educator: true
             };
+        },
+        componentWillReceiveProps: function (nextProps) {
+            if (nextProps.educator && nextProps.confirmed) {
+                window.location.href = '/educators/classes/';
+            }
         },
         render: function () {
             return (
