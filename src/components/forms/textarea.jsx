@@ -11,13 +11,13 @@ var TextArea = React.createClass({
     type: 'TextArea',
     render: function () {
         var classes = classNames(
-            'textarea',
+            'textarea-row',
             this.props.className
         );
         return (
             <FRCTextarea {... this.props}
-                         className={classes}
-                         rowClassName="textarea-row" />
+                         className="textarea"
+                         rowClassName={classes} />
         );
     }
 });

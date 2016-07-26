@@ -53,9 +53,9 @@ var PhoneInput = React.createClass({
                                      label={null}
                                      disabled={this.isFormDisabled() || this.props.disabled}
                     />
+                    {this.renderHelp()}
                     {this.renderErrorMessage()}
                 </div>
-                {this.renderHelp()}
             </Row>
         );
     }
