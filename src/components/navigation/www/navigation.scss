@@ -226,21 +226,13 @@
         }
     }
 }
+
 //4 columns
 @media only screen and (max-width: $mobile - 1) {
     #navigation .inner {
         width: $cols4;
 
         > ul > li {
-            &.create,
-            &.explore,
-            &.discuss,
-            &.help,
-            &.search,
-            &.mystuff {
-                display: none;
-            }
-
             &.login-item {
                 margin-left: 0;
             }
@@ -269,13 +261,6 @@
         width: $cols6;
 
         > ul > li {
-            &.explore,
-            &.discuss,
-            &.search,
-            &.mystuff {
-                display: none;
-            }
-
             &.login-item {
                 margin-left: 0;
             }
@@ -303,12 +288,6 @@
         width: $cols8;
 
         > ul > li {
-            &.explore,
-            &.search,
-            &.mystuff {
-                display: none;
-            }
-
             &.login-item,
             &.account-nav {
                 margin-left: 0;

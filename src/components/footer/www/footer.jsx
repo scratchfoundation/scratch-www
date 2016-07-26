@@ -3,7 +3,9 @@ var FormattedMessage = require('react-intl').FormattedMessage;
 
 var FooterBox = require('../container/footer.jsx');
 var LanguageChooser = require('../../languagechooser/languagechooser.jsx');
+
 var MediaQuery = require('react-responsive');
+var frameless = require('../../../lib/frameless');
 
 require('./footer.scss');
 
@@ -12,7 +14,7 @@ var Footer = React.createClass({
     render: function () {
         return (
             <FooterBox>
-                <MediaQuery maxWidth={639}>
+                <MediaQuery maxWidth={frameless.tablet - 1}>
                     <div className="lists">
                         <dl>
                             <dd>
@@ -50,7 +52,7 @@ var Footer = React.createClass({
                         </dl>
                     </div>
                 </MediaQuery>
-                <MediaQuery minWidth={640}>
+                <MediaQuery minWidth={frameless.tablet}>
                     <div className="lists">
                         <dl>
                             <dt>

@@ -17,7 +17,9 @@ var Login = require('../../login/login.jsx');
 var Modal = require('../../modal/modal.jsx');
 var NavigationBox = require('../container/navigation.jsx');
 var Registration = require('../../registration/registration.jsx');
+
 var MediaQuery = require('react-responsive');
+var frameless = require('../../../lib/frameless');
 
 require('./navigation.scss');
 
@@ -190,33 +192,33 @@ var Navigation = React.createClass({
                 <ul>
                     <li className="logo"><a href="/" aria-label="Scratch"></a></li>
 
-                    <li className="link create">
+                    <MediaQuery minWidth={frameless.mobile} component="li" className="link create">
                         <a href={createLink}>
                             <FormattedMessage id="general.create" />
                         </a>
-                    </li>
-                    <li className="link explore">
+                    </MediaQuery>
+                    <MediaQuery minWidth={frameless.desktop} component="li" className="link explore">
                         <a href="/explore/projects/all">
                             <FormattedMessage id="general.explore" />
                         </a>
-                    </li>
-                    <li className="link discuss">
+                    </MediaQuery>
+                    <MediaQuery minWidth={frameless.tablet} component="li" className="link discuss">
                         <a href="/discuss">
                             <FormattedMessage id="general.discuss" />
                         </a>
-                    </li>
+                    </MediaQuery>
                     <li className="link about">
                         <a href="/about">
                             <FormattedMessage id="general.about" />
                         </a>
                     </li>
-                    <li className="link help">
+                    <MediaQuery minWidth={frameless.mobile} component="li" className="link help">
                         <a href="/help">
                             <FormattedMessage id="general.help" />
                         </a>
-                    </li>
+                    </MediaQuery>
 
-                    <li className="search">
+                    <MediaQuery minWidth={frameless.desktop} component="li" className="search">
                         <form action="/search/projects" method="get">
                             <Button type="submit" className="btn-search" />
                             <Input type="text"
@@ -225,7 +227,7 @@ var Navigation = React.createClass({
                                    name="q"
                                    noformsy />
                         </form>
-                    </li>
+                    </MediaQuery>
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.session.user ? [
                             <li className="link right messages" key="messages">
@@ -237,19 +239,20 @@ var Navigation = React.createClass({
                                     <FormattedMessage id="general.messages" />
                                 </a>
                             </li>,
-                            <li className="link right mystuff" key="mystuff">
+                            <MediaQuery minWidth={frameless.desktop}
+                                        component="li" className="link right mystuff" key="mystuff">
                                 <a
                                     href="/mystuff/"
                                     title={formatMessage({id: 'general.myStuff'})}>
 
                                     <FormattedMessage id="general.myStuff" />
                                 </a>
-                            </li>,
+                            </MediaQuery>,
                             <li className="link right account-nav" key="account-nav">
                                 <a className={dropdownClasses}
                                     href="#" onClick={this.handleAccountNavClick}>
                                     <Avatar src={this.props.session.session.user.thumbnailUrl} alt="" />
-                                    <MediaQuery minWidth={640} component='span'>
+                                    <MediaQuery minWidth={frameless.tablet} component='span'>
                                         {this.props.session.session.user.username}
                                     </MediaQuery>
                                 </a>
