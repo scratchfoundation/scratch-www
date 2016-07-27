@@ -46,12 +46,3 @@
         text-align: center;
     }
 }
-
-
-
-//4 and 6 columns
-@media only screen and (max-width: $tablet - 1) {
-    #footer .lists {
-        justify-content: space-around;
-    }
-}
