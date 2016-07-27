@@ -809,6 +809,9 @@ module.exports = {
     ClassInviteStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
+                classroom: null,
+                onHandleLogOut: function () {},
+                studentUsername: null,
                 waiting: false
             };
         },
@@ -822,9 +825,7 @@ module.exports = {
                     {this.props.waiting ? [
                         <Spinner />
                     ] : [
-                        <Avatar className="invite-avatar"
-                                src={this.props.classroom.educator.profile.images['50x50']} />,
-                        <h2>{this.props.classroom.educator.username}</h2>,
+                        <h2>{this.props.studentUsername}</h2>,
                         <p className="description">
                             {formatMessage({id: 'registration.classroomInviteStepDescription'})}
                         </p>,
@@ -832,11 +833,14 @@ module.exports = {
                             <div className="contents">
                                 <h3>{this.props.classroom.title}</h3>
                                 <img className="class-image" src={this.props.classroom.images['250x150']} />
+                                <p>{formatMessage({id: 'registration.invitedBy'})}</p>
+                                <p><strong>{this.props.classroom.educator.username}</strong></p>
                             </div>
                             <NextStepButton onClick={this.onNextStep}
                                             waiting={this.props.waiting}
                                             text={formatMessage({id: 'general.getStarted'})} />
                         </Card>,
+                        <p><a onClick={this.props.onHandleLogOut}>{formatMessage({id: 'registration.notYou'})}</a></p>,
                         <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
                     ]}
                 </Slide>

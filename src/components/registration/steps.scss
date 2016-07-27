@@ -29,6 +29,15 @@
         color: $ui-dark-gray;
     }
 
+    &.class-invite-step {
+        text-align: center;
+
+        > p a {
+            text-decoration: underline;
+            color: $ui-white;
+            font-weight: inherit;
+        }
+    }
 
     &.class-invite-step,
     &.class-welcome-step {
