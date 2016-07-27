@@ -82,6 +82,7 @@ module.exports.refreshSession = function () {
             } else if (
                     body.flags &&
                     body.flags.must_reset_password &&
+                    !body.flags.must_complete_registration &&
                     window.location.pathname !== '/classes/student_password_reset/') {
                 return window.location = '/classes/student_password_reset/';
             } else {
