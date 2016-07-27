@@ -10,6 +10,11 @@ require('./teacherwaitingroom.scss');
 
 var TeacherWaitingRoom = React.createClass({
     displayName: 'TeacherWaitingRoom',
+    componentWillReceiveProps: function (nextProps) {
+        if (nextProps.session.permissions.educator && nextProps.session.permissions.social) {
+            window.location.href = '/educators/classes/';
+        }
+    },
     render: function () {
         var permissions = this.props.session.permissions || {};
         var user = this.props.session.user || {};

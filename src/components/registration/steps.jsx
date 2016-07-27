@@ -762,7 +762,8 @@ module.exports = {
         getDefaultProps: function () {
             return {
                 email: null,
-                invited: false
+                invited: false,
+                confirmed: false
             };
         },
         render: function () {
