@@ -34,19 +34,16 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
         });
     },
     componentDidUpdate: function (prevProps) {
-        if (prevProps.session.session !== this.props.session.session &&
-            this.props.session.session.permissions &&
-            this.props.session.session.permissions.student) {
-            var classroomId = this.props.session.session.user.classroomId;
+        if (prevProps.studentUsername !== this.props.studentUsername && this.props.newStudent) {
             this.setState({waiting: true});
             api({
-                uri: '/classrooms/' + classroomId
+                uri: '/classrooms/' + this.props.classroomId
             }, function (err, body, res) {
                 this.setState({waiting: false});
                 if (err || res.statusCode !== 200) {
                     return this.setState({
                         registrationErrors: {
-                            __all__: this.props.intl.formatMessage({id: 'studentRegistration.classroomApiGeneralError'})
+                            __all__: this.props.intl.formatMessage({id: 'registration.classroomApiGeneralError'})
                         }
                     });
                 }
@@ -80,7 +77,7 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
             country: formData.user.country,
             is_robot: formData.user.isRobot
         };
-        if (this.props.session.session.flags.must_reset_password) {
+        if (this.props.must_reset_password) {
             submittedData.password = formData.user.password;
         }
         api({
@@ -103,11 +100,7 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
         var demographicsDescription = this.props.intl.formatMessage({
             id: 'registration.studentPersonalStepDescription'});
         var registrationErrors = this.state.registrationErrors;
-        if (this.props.session.status === sessionStatus.FETCHED && !(
-                this.props.session.session.permissions &&
-                this.props.session.session.permissions.student &&
-                this.props.session.session.flags.must_complete_registration)
-        ) {
+        if (!this.props.newStudent) {
             registrationErrors = {
                 __all__: this.props.intl.formatMessage({id: 'registration.mustBeNewStudent'})
             };
@@ -131,12 +124,12 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
                         <Spinner />
                     ) : (
                         <Progression {... this.state}>
-                            <Steps.ClassInviteStep classroom={this.state.classroom}
-                                                   onHandleLogOut={this.handleLogOut}
-                                                   onNextStep={this.advanceStep}
-                                                   studentUsername={this.props.session.session.user.username}
+                            <Steps.ClassInviteExistingStudentStep classroom={this.state.classroom}
+                                                                  onHandleLogOut={this.handleLogOut}
+                                                                  onNextStep={this.advanceStep}
+                                                                  studentUsername={this.props.studentUsername}
                                                    waiting={this.state.waiting} />
-                            {this.props.session.session.flags.must_reset_password ?
+                            {this.props.must_reset_password ?
                                 <Steps.ChoosePasswordStep onNextStep={this.advanceStep}
                                                           showPassword={true}
                                                           waiting={this.state.waiting} />
@@ -159,7 +152,14 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
 
 var mapStateToProps = function (state) {
     return {
-        session: state.session
+        classroomId: state.session.session.user && state.session.session.user.classroomId,
+        must_reset_password: state.session.session.flags && state.session.session.flags.must_reset_password,
+        newStudent: (
+            state.session.session.permissions &&
+            state.session.session.permissions.student &&
+            state.session.session.flags.must_complete_registration),
+        sessionFetched: state.session.status === sessionStatus.FETCHED,
+        studentUsername: state.session.session.user && state.session.session.user.username
     };
 };
 
