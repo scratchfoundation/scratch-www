@@ -50,7 +50,7 @@ var Login = React.createClass({
                         </Button>
                     ] : [
                         <Button className="submit-button white" type="submit" key="submitButton">
-                            <FormattedMessage id='general.logIn' />
+                            <FormattedMessage id='general.signIn' />
                         </Button>
                     ]}
                     <a className="right" href="/accounts/password_reset/" key="passwordResetLink">

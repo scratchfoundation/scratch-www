@@ -300,7 +300,7 @@ var Navigation = React.createClass({
                         ] : [
                             <li className="link right join" key="join">
                                 <a href="#" onClick={this.handleJoinClick}>
-                                    <FormattedMessage id="general.signUp" />
+                                    <FormattedMessage id="general.joinScratch" />
                                 </a>
                             </li>,
                             <Registration
@@ -314,7 +314,7 @@ var Navigation = React.createClass({
                                     onClick={this.handleLoginClick}
                                     className="ignore-react-onclickoutside"
                                     key="login-link">
-                                        <FormattedMessage id="general.logIn" />
+                                        <FormattedMessage id="general.signIn" />
                                </a>
                                 <Dropdown
                                         className="login-dropdown with-arrow"

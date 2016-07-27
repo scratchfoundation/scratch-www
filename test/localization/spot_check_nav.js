@@ -20,8 +20,8 @@ var languagesToCheck = [
     'he', 'zh-cn', 'ja', 'pt-br', 'pl', 'nb'
 ];
 var idsToCheck = [
-    'general.about', 'general.create', 'general.help', 'general.signUp',
-    'general.logIn', 'general.discuss'
+    'general.about', 'general.create', 'general.help', 'general.joinScratch',
+    'general.signIn', 'general.discuss'
 ];
 
 
