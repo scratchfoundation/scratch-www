@@ -6,6 +6,7 @@ var render = require('../../lib/render.jsx');
 var sessionStatus = require('../../redux/session').Status;
 var api = require('../../lib/api');
 var intl = require('../../lib/intl.jsx');
+var log = require('../../lib/log.js');
 
 var Deck = require('../../components/deck/deck.jsx');
 var Progression = require('../../components/progression/progression.jsx');
@@ -52,6 +53,18 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
                 this.setState({classroom: body});
             }.bind(this));
         }
+    },
+    handleLogOut: function (e) {
+        e.preventDefault();
+        api({
+            host: '',
+            method: 'post',
+            uri: '/accounts/logout/',
+            useCsrf: true
+        }, function (err) {
+            if (err) return log.error(err);
+            window.location = '/';
+        }.bind(this));
     },
     register: function (formData) {
         this.setState({waiting: true});
@@ -119,8 +132,9 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
                     ) : (
                         <Progression {... this.state}>
                             <Steps.ClassInviteStep classroom={this.state.classroom}
-                                                   messages={this.props.messages}
+                                                   onHandleLogOut={this.handleLogOut}
                                                    onNextStep={this.advanceStep}
+                                                   studentUsername={this.props.session.session.user.username}
                                                    waiting={this.state.waiting} />
                             {this.props.session.session.flags.must_reset_password ?
                                 <Steps.ChoosePasswordStep onNextStep={this.advanceStep}
