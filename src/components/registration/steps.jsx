@@ -6,6 +6,7 @@ var intl = require('../../lib/intl.jsx');
 var log = require('../../lib/log');
 var smartyStreets = require('../../lib/smarty-streets');
 
+var Avatar = require('../../components/avatar/avatar.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Card = require('../../components/card/card.jsx');
 var CharCount = require('../../components/forms/charcount.jsx');
@@ -805,7 +806,44 @@ module.exports = {
             );
         }
     })),
-    ClassInviteStep: intl.injectIntl(React.createClass({
+    ClassInviteNewStudentStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                waiting: false
+            };
+        },
+        onNextStep: function () {
+            this.props.onNextStep();
+        },
+        render: function () {
+            var formatMessage = this.props.intl.formatMessage;
+            return (
+                <Slide className="registration-step class-invite-step">
+                    {this.props.waiting ? [
+                        <Spinner />
+                    ] : [
+                        <Avatar className="invite-avatar"
+                                src={this.props.classroom.educator.profile.images['50x50']} />,
+                        <h2>{this.props.classroom.educator.username}</h2>,
+                        <p className="description">
+                            {formatMessage({id: 'registration.classroomInviteNewStudentStepDescription'})}
+                        </p>,
+                        <Card>
+                            <div className="contents">
+                                <h3>{this.props.classroom.title}</h3>
+                                <img className="class-image" src={this.props.classroom.images['250x150']} />
+                            </div>
+                            <NextStepButton onClick={this.onNextStep}
+                                            waiting={this.props.waiting}
+                                            text={formatMessage({id: 'general.getStarted'})} />
+                        </Card>,
+                        <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                    ]}
+                </Slide>
+            );
+        }
+    })),
+    ClassInviteExistingStudentStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
                 classroom: null,
@@ -826,7 +864,7 @@ module.exports = {
                     ] : [
                         <h2>{this.props.studentUsername}</h2>,
                         <p className="description">
-                            {formatMessage({id: 'registration.classroomInviteStepDescription'})}
+                            {formatMessage({id: 'registration.classroomInviteExistingStudentStepDescription'})}
                         </p>,
                         <Card>
                             <div className="contents">

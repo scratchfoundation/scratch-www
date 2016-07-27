@@ -44,7 +44,7 @@ var StudentRegistration = intl.injectIntl(React.createClass({
             if (err) {
                 return this.setState({
                     registrationError: this.props.intl.formatMessage({
-                        id: 'studentRegistration.classroomApiGeneralError'
+                        id: 'registration.classroomApiGeneralError'
                     })
                 });
             }
@@ -106,9 +106,9 @@ var StudentRegistration = intl.injectIntl(React.createClass({
                     </Steps.RegistrationError>
                 :
                     <Progression {... this.state}>
-                        <Steps.ClassInviteStep classroom={this.state.classroom}
-                                               onNextStep={this.advanceStep}
-                                               waiting={this.state.waiting || !this.state.classroom} />
+                        <Steps.ClassInviteNewStudentStep classroom={this.state.classroom}
+                                                         onNextStep={this.advanceStep}
+                                                         waiting={this.state.waiting || !this.state.classroom} />
                         <Steps.UsernameStep onNextStep={this.advanceStep}
                                             title={usernameTitle}
                                             description={usernameDescription}
