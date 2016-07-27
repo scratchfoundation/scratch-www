@@ -6,7 +6,6 @@ var intl = require('../../lib/intl.jsx');
 var log = require('../../lib/log');
 var smartyStreets = require('../../lib/smarty-streets');
 
-var Avatar = require('../../components/avatar/avatar.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Card = require('../../components/card/card.jsx');
 var CharCount = require('../../components/forms/charcount.jsx');
