@@ -22,6 +22,20 @@
         "title": "Scratch Community Guidelines"
     },
     {
+        "name": "student-complete-registration",
+        "pattern": "^/classes/complete_registration",
+        "routeAlias": "/classes/(complete_registration|.+/register/.+)",
+        "view": "studentcompleteregistration/studentcompleteregistration",
+        "title": "Complete your Registration"
+    },
+    {
+        "name": "student-registration",
+        "pattern": "^/classes/:id/register/:token",
+        "routeAlias": "/classes/(complete_registration|.+/register/.+)",
+        "view": "studentregistration/studentregistration",
+        "title": "Class Registration"
+    },
+    {
         "name": "conference-index",
         "pattern": "^/conference/?$",
         "routeAlias": "/conference(?!/201[4-5])",
