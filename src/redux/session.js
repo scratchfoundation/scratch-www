@@ -79,6 +79,11 @@ module.exports.refreshSession = function () {
                     body.flags.must_complete_registration &&
                     window.location.pathname !== '/classes/complete_registration') {
                 return window.location = '/classes/complete_registration';
+            } else if (
+                    body.flags &&
+                    body.flags.must_reset_password &&
+                    window.location.pathname !== '/classes/student_password_reset/') {
+                return window.location = '/classes/student_password_reset/';
             } else {
                 dispatch(tokenActions.getToken());
                 dispatch(module.exports.setSession(body));
