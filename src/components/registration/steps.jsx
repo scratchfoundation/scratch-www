@@ -27,6 +27,17 @@ var Tooltip = require('../../components/tooltip/tooltip.jsx');
 require('./steps.scss');
 
 var DEFAULT_COUNTRY = 'us';
+var COUNTRY_OPTIONS = countryData.countryOptions.concat({
+    label: <intl.FormattedMessage id="teacherRegistration.selectCountry" />,
+    disabled: true,
+    selected: true
+}).sort(function (a, b) {
+    if (a.disabled) return -1;
+    if (b.disabled) return 1;
+    if (a.value === DEFAULT_COUNTRY) return -1;
+    if (b.value === DEFAULT_COUNTRY) return 1;
+    return 0;
+}.bind(this));
 
 var NextStepButton = React.createClass({
     getDefaultProps: function () {
@@ -253,7 +264,6 @@ module.exports = {
     DemographicsStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
-                defaultCountry: DEFAULT_COUNTRY,
                 waiting: false,
                 description: null
             };
@@ -282,17 +292,6 @@ module.exports = {
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
-            var countryOptions = countryData.countryOptions.concat({
-                label: formatMessage({id: 'teacherRegistration.selectCountry'}),
-                disabled: true,
-                selected: true
-            }).sort(function (a, b) {
-                if (a.disabled) return -1;
-                if (b.disabled) return 1;
-                if (a.value === this.props.defaultCountry) return -1;
-                if (b.value === this.props.defaultCountry) return 1;
-                return 0;
-            }.bind(this));
             return (
                 <Slide className="registration-step demographics-step">
                     <h2>
@@ -334,7 +333,7 @@ module.exports = {
                             </div>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="user.country"
-                                    options={countryOptions}
+                                    options={COUNTRY_OPTIONS}
                                     required />
                             <Checkbox className="demographics-checkbox-is-robot"
                                       label="I'm a robot!"
@@ -585,17 +584,6 @@ module.exports = {
             var formatMessage = this.props.intl.formatMessage;
             var stateOptions = countryData.subdivisionOptions[this.state.countryChoice];
             stateOptions = [{}].concat(stateOptions);
-            var countryOptions = countryData.countryOptions.concat({
-                label: formatMessage({id: 'teacherRegistration.selectCountry'}),
-                disabled: true,
-                selected: true
-            }).sort(function (a, b) {
-                if (a.disabled) return -1;
-                if (b.disabled) return 1;
-                if (a.value === this.props.defaultCountry) return -1;
-                if (b.value === this.props.defaultCountry) return 1;
-                return 0;
-            }.bind(this));
             return (
                 <Slide className="registration-step address-step">
                     <h2>
@@ -610,7 +598,7 @@ module.exports = {
                         <Form onValidSubmit={this.onValidSubmit}>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="address.country"
-                                    options={countryOptions}
+                                    options={COUNTRY_OPTIONS}
                                     onChange={this.onChangeCountry}
                                     required />
                             <Input label={formatMessage({id: 'teacherRegistration.addressLine1'})}
