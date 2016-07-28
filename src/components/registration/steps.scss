@@ -212,5 +212,57 @@
                 }
             }
         }
+
+        &.demographics-step {
+            .form-group {
+                &.has-error {
+                    .gender-input {
+                        transform: translateY(-3rem);
+                    }
+                }
+            }
+        }
+
+        &.organization-step {
+            .checkbox-group {
+                .validation-message {
+                    $arrow-border-width: 1rem;
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    transform: translate(16rem, -16rem);
+                    margin-left: $arrow-border-width;
+                    border: 1px solid $active-gray;
+                    border-radius: 5px;
+                    background-color: $ui-orange;
+                    padding: 1rem;
+                    max-width: 18.75rem;
+                    min-height: 1rem;
+                    max-height: 3rem;
+                    overflow: visible;
+                    color: $type-white;
+
+                    &:before {
+                        display: block;
+                        position: absolute;
+                        top: 1rem;
+                        left: -$arrow-border-width / 2;
+
+                        transform: rotate(45deg);
+
+                        border-bottom: 1px solid $active-gray;
+                        border-left: 1px solid $active-gray;
+                        border-radius: 5px;
+
+                        background-color: $ui-orange;
+                        width: $arrow-border-width;
+                        height: $arrow-border-width;
+
+                        content: "";
+                    }
+                }
+            }
+        }
     }
 }
