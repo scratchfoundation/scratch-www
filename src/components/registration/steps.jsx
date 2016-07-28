@@ -29,7 +29,7 @@ require('./steps.scss');
 var DEFAULT_COUNTRY = 'us';
 var getCountryOptions = function (defaultCountry) {
     var options = countryData.countryOptions.concat({
-        label: <intl.FormattedMessage id="teacherRegistration.selectCountry" />,
+        label: <intl.FormattedMessage id="registration.selectCountry" />,
         disabled: true,
         selected: true
     });
