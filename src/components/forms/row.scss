@@ -4,8 +4,19 @@
  * the formsy-react-components
  */
 
-.form-group {
+.row {
     .required-symbol {
         display: none;
+    }
+
+    label {
+        display: inline-block;
+        margin-bottom: .75rem;
+    }
+
+    &.no-label {
+        label {
+            display: none;
+        }
     }
 }

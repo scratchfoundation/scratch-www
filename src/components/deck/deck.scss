@@ -6,146 +6,22 @@
 .deck {
     min-height: 100vh;
 
-    img {
+    .logo {
         margin-left: 2px;
         padding: 12px 0;
         width: 76px;
     }
 
-    .step-navigation {
-        margin-top: 2rem;
-        text-align: center;
-    }
-
     .slide {
         max-width: 28.75rem;
-
-        h2,
-        .description {
-            text-align: center;  
-            color: $type-white;  
-        }
-
-        .description {
-            margin-top: 0;
-            margin-bottom: 2rem;
-        }
     }
 
     .card {
-        margin: 0 auto;
-        width: 23.75rem;
-    }
-
-    .form {
-        padding: 3rem 4rem;
-
-        .form-group {        
-            margin-bottom: 1.2rem;
-
-            &.has-error {
-                .input {
-                    border: 1px solid $ui-orange;
-                }
-            }
-        }
-
-        .button {
-            margin: 0 0 -3rem -4rem;
-            border-radius: .5rem;
-            box-shadow: none;
-            width: 23.75rem;
-            height: 4rem;
-
-            &.card-button {
-                display: block;
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
-                background-color: $ui-aqua;
-            }
-
-            &:hover {
-                box-shadow: none;
-            }
-        }
+        width: 23.75rem;    
     }
 
     .input {
-        width: $cols5;
+        width: 100%;
     }
 
-    .help-block {
-        $arrow-border-width: 1rem;
-        display: block;
-        position: absolute;
-        margin-left: $arrow-border-width;
-        border: 1px solid $active-gray;
-        border-radius: 5px;
-        background-color: $ui-orange;
-        padding: 1rem;
-        max-width: 18.75rem;
-        min-height: 1rem;
-        max-height: 3rem;
-        overflow: visible;
-        color: $type-white;
-
-        &:before {
-            display: block;
-            position: absolute;
-            top: 1rem;
-            left: -$arrow-border-width / 2;
-
-            transform: rotate(45deg);
-
-            border-bottom: 1px solid $active-gray;
-            border-left: 1px solid $active-gray;
-            border-radius: 5px;
-
-            background-color: $ui-orange;
-            width: $arrow-border-width;
-            height: $arrow-border-width;
-
-            content: "";
-        }
-    }
-}
-
-@media only screen and (max-width: $mobile - 1) {
-    .deck {
-        .card {
-            width: 22.5rem;
-        }
-
-        .form {
-            text-align: left;
-
-            .button {
-                width: 22.5rem;
-            }
-        }
-    }
-}
-
-@media only screen and (max-width: $tablet - 1) {
-    .deck {
-        .input {
-            width: 90%;
-        }
-    }
-}
-
-@media only screen and (max-width: $desktop - 1) {
-    .deck {
-        .help-block {
-            position: relative;
-            transform: none;
-            margin: inherit;
-            width: 100%;
-            height: inherit;
-
-            &:before {
-                display: none;
-            }
-        }
-    }
 }

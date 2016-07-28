@@ -61,38 +61,6 @@ var Landing = injectIntl(React.createClass({
                             <p><FormattedHTMLMessage id="teacherlanding.generalUsageGradeLevels" /></p>
                             <p><FormattedHTMLMessage id="teacherlanding.generalUsageSubjectAreas"/></p>
                         </FlexRow>
-                        <FlexRow className="stories">
-                            <a href="//bit.ly/28SBsa9" className="story">
-                                    <img src="/images/teachers/stories/ingrid.jpg" alt="ingrid's story" />
-                                    <div className="story-info">
-                                         <p className="name">Ingrid Gustafson</p>
-                                         <p><FormattedMessage id="teacherlanding.ingridTitle" /></p>
-                                    </div>
-                            </a>
-                            <a href="//bit.ly/28Q5l6P" className="story">
-                                <img src="/images/teachers/stories/dylan.jpg" alt="dylan's story" />
-                                <div className="story-info">
-                                    <p className="name">Dylan Ryder</p>
-                                    <p><FormattedMessage id="teacherlanding.dylanTitle" /></p>
-                                </div>
-                            </a>
-                            <a href="//bit.ly/28SC1AY" className="story">
-                                <img src="/images/teachers/stories/plug-in-studio.jpg"
-                                     alt="plug in studio's story" />
-                                 <div className="story-info">
-                                     <p className="name">Plug-In Studios</p>
-                                     <p><FormattedMessage id="teacherlanding.afterSchoolTitle" /></p>
-                                </div>
-                            </a>
-                            <a href="//bit.ly/28UzapJ" className="story">
-                                <img src="/images/teachers/stories/ghana-code-club.jpg"
-                                     alt="ghana code club's story" />
-                                <div className="story-info">
-                                     <p className="name">Ghana Code Club</p>
-                                     <p><FormattedMessage id="teacherlanding.afterSchoolTitle" /></p>
-                                </div>
-                            </a>
-                        </FlexRow>
                     </section>
                     <section id="resources">
                         <span className="nav-spacer"></span>

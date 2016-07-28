@@ -68,19 +68,31 @@ module.exports.refreshSession = function () {
             uri: '/session/'
         }, function (err, body) {
             if (err) return dispatch(module.exports.setSessionError(err));
+            if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
+            if (
+                    body.user &&
+                    body.user.banned &&
+                    window.location.pathname !== '/accounts/banned-response/') {
+                return window.location = '/accounts/banned-response/';
+            } else if (
+                    body.flags &&
+                    body.flags.must_complete_registration &&
+                    window.location.pathname !== '/classes/complete_registration') {
+                return window.location = '/classes/complete_registration';
+            } else if (
+                    body.flags &&
+                    body.flags.must_reset_password &&
+                    !body.flags.must_complete_registration &&
+                    window.location.pathname !== '/classes/student_password_reset/') {
+                return window.location = '/classes/student_password_reset/';
+            } else {
+                dispatch(tokenActions.getToken());
+                dispatch(module.exports.setSession(body));
+                dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
 
-            if (typeof body !== 'undefined') {
-                if (body.banned) {
-                    return window.location = body.url;
-                } else {
-                    dispatch(tokenActions.getToken());
-                    dispatch(module.exports.setSession(body));
-                    dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
-
-                    // get the permissions from the updated session
-                    dispatch(permissionsActions.getPermissions());
-                    return;
-                }
+                // get the permissions from the updated session
+                dispatch(permissionsActions.getPermissions());
+                return;
             }
         });
     };

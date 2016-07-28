@@ -11,6 +11,7 @@ var api = require('../../../lib/api');
 var Avatar = require('../../avatar/avatar.jsx');
 var Button = require('../../forms/button.jsx');
 var Dropdown = require('../../dropdown/dropdown.jsx');
+var Form = require('../../forms/form.jsx');
 var Input = require('../../forms/input.jsx');
 var log = require('../../../lib/log.js');
 var Login = require('../../login/login.jsx');
@@ -170,6 +171,9 @@ var Navigation = React.createClass({
         this.props.dispatch(sessionActions.refreshSession());
         this.closeRegistration();
     },
+    onSearchSubmit: function (formData) {
+        window.location.href = '/search/projects?q=' + formData.q;
+    },
     render: function () {
         var classes = classNames({
             'logged-in': this.props.session.session.user
@@ -216,14 +220,13 @@ var Navigation = React.createClass({
                     </li>
 
                     <li className="search">
-                        <form action="/search/projects" method="get">
+                        <Form onSubmit={this.onSearchSubmit}>
                             <Button type="submit" className="btn-search" />
                             <Input type="text"
                                    aria-label={formatMessage({id: 'general.search'})}
                                    placeholder={formatMessage({id: 'general.search'})}
-                                   name="q"
-                                   noformsy />
-                        </form>
+                                   name="q" />
+                        </Form>
                     </li>
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.session.user ? [

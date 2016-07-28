@@ -15,9 +15,7 @@ var Checkbox = React.createClass({
             this.props.className
         );
         return (
-            <div className={classes}>
-                <FRCCheckbox {... this.props} />
-            </div>
+            <FRCCheckbox rowClassName={classes} {... this.props} />
         );
     }
 });

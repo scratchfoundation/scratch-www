@@ -6,6 +6,7 @@ var intl = require('../../lib/intl.jsx');
 var log = require('../../lib/log');
 var smartyStreets = require('../../lib/smarty-streets');
 
+var Avatar = require('../../components/avatar/avatar.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Card = require('../../components/card/card.jsx');
 var CharCount = require('../../components/forms/charcount.jsx');
@@ -23,7 +24,26 @@ var StepNavigation = require('../../components/stepnavigation/stepnavigation.jsx
 var TextArea = require('../../components/forms/textarea.jsx');
 var Tooltip = require('../../components/tooltip/tooltip.jsx');
 
+require('./steps.scss');
+
 var DEFAULT_COUNTRY = 'us';
+var getCountryOptions = function (defaultCountry) {
+    var options = countryData.countryOptions.concat({
+        label: <intl.FormattedMessage id="registration.selectCountry" />,
+        disabled: true,
+        selected: true
+    });
+    if (typeof defaultCountry !== 'undefined') {
+        return options.sort(function (a, b) {
+            if (a.disabled) return -1;
+            if (b.disabled) return 1;
+            if (a.value === defaultCountry) return -1;
+            if (b.value === defaultCountry) return 1;
+            return 0;
+        }.bind(this));
+    }
+    return options;
+};
 
 var NextStepButton = React.createClass({
     getDefaultProps: function () {
@@ -34,7 +54,7 @@ var NextStepButton = React.createClass({
     },
     render: function () {
         return (
-            <Button type="submit" disabled={this.props.waiting} className="card-button">
+            <Button type="submit" disabled={this.props.waiting} className="card-button" {... this.props}>
                 {this.props.waiting ?
                     <Spinner /> :
                     this.props.text
@@ -48,12 +68,13 @@ module.exports = {
     UsernameStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
+                showPassword: false,
                 waiting: false
             };
         },
         getInitialState: function () {
             return {
-                showPassword: false,
+                showPassword: this.props.showPassword,
                 waiting: false,
                 validUsername: ''
             };
@@ -79,16 +100,16 @@ module.exports = {
                     return this.props.onNextStep(formData);
                 case 'username exists':
                     return invalidate({
-                        'user.username': formatMessage({id: 'general.validationUsernameExists'})
+                        'user.username': formatMessage({id: 'registration.validationUsernameExists'})
                     });
                 case 'bad username':
                     return invalidate({
-                        'user.username': formatMessage({id: 'general.validationUsernameVulgar'})
+                        'user.username': formatMessage({id: 'registration.validationUsernameVulgar'})
                     });
                 case 'invalid username':
                 default:
                     return invalidate({
-                        'user.username': formatMessage({id: 'general.validationUsernameInvalid'})
+                        'user.username': formatMessage({id: 'registration.validationUsernameInvalid'})
                     });
                 }
             }.bind(this));
@@ -96,34 +117,59 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="username-step">
-                    <h2><intl.FormattedMessage id="teacherRegistration.usernameStepTitle" /></h2>
+                <Slide className="registration-step username-step">
+                    <h2>
+                        {this.props.title ? (
+                            this.props.title
+                        ) : (
+                            <intl.FormattedMessage id="registration.usernameStepTitle" />
+                        )}
+                    </h2>
                     <p className="description">
-                        <intl.FormattedMessage id="teacherRegistration.usernameStepDescription" />
+                        {this.props.description ? (
+                            this.props.description
+                        ) : (
+                            <intl.FormattedMessage id="registration.usernameStepDescription" />
+                        )}
+                        {this.props.tooltip ? (
+                             <Tooltip title={'?'}
+                                 tipContent={this.props.tooltip} />
+                        ) : (
+                            null
+                        )}
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
-                            <Input label={formatMessage({id: 'general.createUsername'})}
-                                   className={this.state.validUsername}
-                                   type="text"
-                                   name="user.username"
-                                   validations={{
-                                       matchRegexp: /^[\w-]*$/,
-                                       minLength: 3,
-                                       maxLength: 20
-                                   }}
-                                   validationErrors={{
-                                       matchRegexp: formatMessage({
-                                           id: 'teacherRegistration.validationUsernameRegexp'
-                                       }),
-                                       minLength: formatMessage({
-                                           id: 'teacherRegistration.validationUsernameMinLength'
-                                       }),
-                                       maxLength: formatMessage({
-                                           id: 'teacherRegistration.validationUsernameMaxLength'
-                                       })
-                                   }}
-                                   required />
+                            <div>
+                                <div className="username-label">
+                                    <b>{formatMessage({id: 'registration.createUsername'})}</b>
+                                    {this.props.usernameHelp ? (
+                                        <p className="help-text">{this.props.usernameHelp}</p>
+                                    ):(
+                                        null
+                                    )}
+                                </div>
+                                <Input className={this.state.validUsername}
+                                       type="text"
+                                       name="user.username"
+                                       validations={{
+                                           matchRegexp: /^[\w-]*$/,
+                                           minLength: 3,
+                                           maxLength: 20
+                                       }}
+                                       validationErrors={{
+                                           matchRegexp: formatMessage({
+                                               id: 'registration.validationUsernameRegexp'
+                                           }),
+                                           minLength: formatMessage({
+                                               id: 'registration.validationUsernameMinLength'
+                                           }),
+                                           maxLength: formatMessage({
+                                               id: 'registration.validationUsernameMaxLength'
+                                           })
+                                       }}
+                                       required />
+                            </div>
                             <Input label={formatMessage({id: 'general.password'})}
                                    type={this.state.showPassword ? 'text' : 'password'}
                                    name="user.password"
@@ -134,24 +180,86 @@ module.exports = {
                                    }}
                                    validationErrors={{
                                        minLength: formatMessage({
-                                           id: 'teacherRegistration.validationPasswordLength'
+                                           id: 'registration.validationPasswordLength'
                                        }),
                                        notEquals: formatMessage({
-                                           id: 'teacherRegistration.validationPasswordNotEquals'
+                                           id: 'registration.validationPasswordNotEquals'
                                        }),
                                        notEqualsField: formatMessage({
-                                           id: 'teacherRegistration.validationPasswordNotUsername'
+                                           id: 'registration.validationPasswordNotUsername'
                                        })
                                    }}
                                    required />
-                            <Checkbox label={formatMessage({id: 'teacherRegistration.showPassword'})}
+                            <Checkbox label={formatMessage({id: 'registration.showPassword'})}
                                       value={this.state.showPassword}
                                       onChange={this.onChangeShowPassword}
                                       help={null}
                                       name="showPassword" />
                             <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
+                        </Form>
+                    </Card>
+                    <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                </Slide>
+            );
+        }
+    })),
+    ChoosePasswordStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                showPassword: false,
+                waiting: false
+            };
+        },
+        getInitialState: function () {
+            return {
+                showPassword: this.props.showPassword
+            };
+        },
+        onChangeShowPassword: function (field, value) {
+            this.setState({showPassword: value});
+        },
+        render: function () {
+            var formatMessage = this.props.intl.formatMessage;
+            return (
+                <Slide className="registration-step choose-password-step">
+                    <h2>{formatMessage({id: 'registration.choosePasswordStepTitle'})}</h2>
+                    <p className="description">
+                        <intl.FormattedMessage id="registration.choosePasswordStepDescription" />
+                        <Tooltip title={'?'}
+                                 tipContent={formatMessage({id: 'registration.choosePasswordStepTooltip'})} />
+                    </p>
+
+                    <Card>
+                        <Form onValidSubmit={this.props.onNextStep}>
+                            <Input label={formatMessage({id: 'registration.newPassword'})}
+                                   type={this.state.showPassword ? 'text' : 'password'}
+                                   name="user.password"
+                                   validations={{
+                                       minLength: 6,
+                                       notEquals: 'password',
+                                       notEqualsField: 'user.username'
+                                   }}
+                                   validationErrors={{
+                                       minLength: formatMessage({
+                                           id: 'registration.validationPasswordLength'
+                                       }),
+                                       notEquals: formatMessage({
+                                           id: 'registration.validationPasswordNotEquals'
+                                       }),
+                                       notEqualsField: formatMessage({
+                                           id: 'registration.validationPasswordNotUsername'
+                                       })
+                                   }}
+                                   required />
+                            <Checkbox label={formatMessage({id: 'registration.showPassword'})}
+                                      value={this.state.showPassword}
+                                      onChange={this.onChangeShowPassword}
+                                      help={null}
+                                      name="showPassword" />
+                            <NextStepButton waiting={this.props.waiting || this.state.waiting}
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -162,8 +270,8 @@ module.exports = {
     DemographicsStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
-                defaultCountry: DEFAULT_COUNTRY,
-                waiting: false
+                waiting: false,
+                description: null
             };
         },
         getInitialState: function () {
@@ -175,7 +283,7 @@ module.exports = {
                 'August', 'September', 'October', 'November', 'December'
             ].map(function (label, id) {
                 return {
-                    value: id+1,
+                    value: id + 1,
                     label: this.props.intl.formatMessage({id: 'general.month' + label})};
             }.bind(this));
         },
@@ -191,14 +299,18 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="demographics-step">
+                <Slide className="registration-step demographics-step">
                     <h2>
-                        <intl.FormattedMessage id="teacherRegistration.personalStepTitle" />
+                        <intl.FormattedMessage id="registration.personalStepTitle" />
                     </h2>
                     <p className="description">
-                        <intl.FormattedMessage id="teacherRegistration.personalStepDescription" />
+                        {this.props.description ?
+                            this.props.description
+                        :
+                            <intl.FormattedMessage id="registration.personalStepDescription" />
+                        }
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.props.onNextStep}>
@@ -227,14 +339,13 @@ module.exports = {
                             </div>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="user.country"
-                                    options={countryData.countryOptions}
-                                    value={this.props.defaultCountry}
+                                    options={getCountryOptions(DEFAULT_COUNTRY)}
                                     required />
                             <Checkbox className="demographics-checkbox-is-robot"
                                       label="I'm a robot!"
                                       name="user.isRobot" />
                             <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -251,14 +362,14 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="name-step">
+                <Slide className="registration-step name-step">
                     <h2>
                         <intl.FormattedHTMLMessage id="teacherRegistration.nameStepTitle" />
                     </h2>
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.nameStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.props.onNextStep}>
@@ -271,7 +382,7 @@ module.exports = {
                                    name="user.name.last"
                                    required />
                             <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -297,14 +408,14 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="phone-step">
+                <Slide className="registration-step phone-step">
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.phoneStepTitle" />
                     </h2>
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.phoneStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
@@ -319,7 +430,7 @@ module.exports = {
                                           isFalse: formatMessage({id: 'teacherRegistration.validationPhoneConsent'})
                                       }} />
                             <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -373,14 +484,14 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="organization-step">
+                <Slide className="registration-step organization-step">
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.orgStepTitle" />
                     </h2>
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.orgStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
@@ -394,7 +505,9 @@ module.exports = {
                                    required />
                             <div className="organization-type">
                                 <b><intl.FormattedMessage id="teacherRegistration.orgType" /></b>
-                                <p><intl.FormattedMessage id="teacherRegistration.checkAll" /></p>
+                                <p className="help-text">
+                                    <intl.FormattedMessage id="teacherRegistration.checkAll" />
+                                </p>
                                 <CheckboxGroup name="organization.type"
                                                value={[]}
                                                options={this.getOrganizationOptions()}
@@ -410,14 +523,16 @@ module.exports = {
                             </div>
                             <div className="url-input">
                                 <b><intl.FormattedMessage id="general.website" /></b>
-                                <p><intl.FormattedMessage id="teacherRegistration.notRequired" /></p>
+                                <p className="help-text">
+                                    <intl.FormattedMessage id="teacherRegistration.notRequired" />
+                                </p>
                                 <Input type="url"
                                        name="organization.url"
                                        required="isFalse"
                                        placeholder={'http://'} />
                             </div>
                             <NextStepButton waiting={this.props.waiting}
-                                           text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                           text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -475,32 +590,22 @@ module.exports = {
             var formatMessage = this.props.intl.formatMessage;
             var stateOptions = countryData.subdivisionOptions[this.state.countryChoice];
             stateOptions = [{}].concat(stateOptions);
-            var countryOptions = countryData.countryOptions.concat({
-                label: formatMessage({id: 'teacherRegistration.selectCountry'}),
-                disabled: true,
-                selected: true
-            }).sort(function (a, b) {
-                if (a.disabled) return -1;
-                if (b.disabled) return 1;
-                if (a.value === this.props.defaultCountry) return -1;
-                if (b.value === this.props.defaultCountry) return 1;
-                return 0;
-            }.bind(this));
             return (
-                <Slide className="address-step">
+                <Slide className="registration-step address-step">
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.addressStepTitle" />
                     </h2>
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.addressStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="address.country"
-                                    options={countryOptions}
+                                    options={getCountryOptions()}
+                                    value={this.props.defaultCountry}
                                     onChange={this.onChangeCountry}
                                     required />
                             <Input label={formatMessage({id: 'teacherRegistration.addressLine1'})}
@@ -528,7 +633,7 @@ module.exports = {
                                    required />
                             <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -558,14 +663,14 @@ module.exports = {
             var textAreaClass = (this.state.characterCount > this.props.maxCharacters) ? 'fail' : '';
             
             return (
-                <Slide className="usescratch-step">
+                <Slide className="registration-step usescratch-step">
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.useScratchStepTitle" />
                     </h2>
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.useScratchStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.props.onNextStep}>
@@ -585,7 +690,7 @@ module.exports = {
                             <CharCount maxCharacters={this.props.maxCharacters}
                                        currentCharacters={this.state.characterCount} />
                             <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -625,14 +730,14 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
-                <Slide className="email-step">
+                <Slide className="registration-step email-step">
                     <h2>
                         <intl.FormattedMessage id="teacherRegistration.emailStepTitle" />
                     </h2>
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.emailStepDescription" />
                         <Tooltip title={'?'}
-                                 tipContent={formatMessage({id: 'teacherRegistration.nameStepTooltip'})} />
+                                 tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
@@ -652,7 +757,7 @@ module.exports = {
                                    required />
                             <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="teacherRegistration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
@@ -664,12 +769,13 @@ module.exports = {
         getDefaultProps: function () {
             return {
                 email: null,
-                invited: false
+                invited: false,
+                confirmed: false
             };
         },
         render: function () {
             return (
-                <Slide className="last-step">
+                <Slide className="registration-step last-step">
                     <h2>
                         <intl.FormattedMessage id="registration.lastStepTitle" />
                     </h2>
@@ -707,15 +813,130 @@ module.exports = {
             );
         }
     })),
+    ClassInviteNewStudentStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                waiting: false
+            };
+        },
+        onNextStep: function () {
+            this.props.onNextStep();
+        },
+        render: function () {
+            var formatMessage = this.props.intl.formatMessage;
+            return (
+                <Slide className="registration-step class-invite-step">
+                    {this.props.waiting ? [
+                        <Spinner />
+                    ] : [
+                        <Avatar className="invite-avatar"
+                                src={this.props.classroom.educator.profile.images['50x50']} />,
+                        <h2>{this.props.classroom.educator.username}</h2>,
+                        <p className="description">
+                            {formatMessage({id: 'registration.classroomInviteNewStudentStepDescription'})}
+                        </p>,
+                        <Card>
+                            <div className="contents">
+                                <h3>{this.props.classroom.title}</h3>
+                                <img className="class-image" src={this.props.classroom.images['250x150']} />
+                            </div>
+                            <NextStepButton onClick={this.onNextStep}
+                                            waiting={this.props.waiting}
+                                            text={formatMessage({id: 'general.getStarted'})} />
+                        </Card>,
+                        <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                    ]}
+                </Slide>
+            );
+        }
+    })),
+    ClassInviteExistingStudentStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                classroom: null,
+                onHandleLogOut: function () {},
+                studentUsername: null,
+                waiting: false
+            };
+        },
+        onNextStep: function () {
+            this.props.onNextStep();
+        },
+        render: function () {
+            var formatMessage = this.props.intl.formatMessage;
+            return (
+                <Slide className="registration-step class-invite-step">
+                    {this.props.waiting ? [
+                        <Spinner />
+                    ] : [
+                        <h2>{this.props.studentUsername}</h2>,
+                        <p className="description">
+                            {formatMessage({id: 'registration.classroomInviteExistingStudentStepDescription'})}
+                        </p>,
+                        <Card>
+                            <div className="contents">
+                                <h3>{this.props.classroom.title}</h3>
+                                <img className="class-image" src={this.props.classroom.images['250x150']} />
+                                <p>{formatMessage({id: 'registration.invitedBy'})}</p>
+                                <p><strong>{this.props.classroom.educator.username}</strong></p>
+                            </div>
+                            <NextStepButton onClick={this.onNextStep}
+                                            waiting={this.props.waiting}
+                                            text={formatMessage({id: 'general.getStarted'})} />
+                        </Card>,
+                        <p><a onClick={this.props.onHandleLogOut}>{formatMessage({id: 'registration.notYou'})}</a></p>,
+                        <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                    ]}
+                </Slide>
+            );
+        }
+    })),
+    ClassWelcomeStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                waiting: false
+            };
+        },
+        onNextStep: function () {
+            this.props.onNextStep();
+        },
+        render: function () {
+            var formatMessage = this.props.intl.formatMessage;
+            return (
+                <Slide className="registration-step class-welcome-step">
+                    {this.props.waiting ? [
+                        <Spinner />
+                    ] : [
+                        <h2>{formatMessage({id: 'registration.welcomeStepTitle'})}</h2>,
+                        <p className="description">{formatMessage({id: 'registration.welcomeStepDescription'})}</p>,
+                        <Card>
+                            {this.props.classroom ? (
+                                <div className="contents">
+                                    <h3>{this.props.classroom.title}</h3>
+                                    <img className="class-image" src={this.props.classroom.images['250x150']} />
+                                    <p>{formatMessage({id: 'registration.welcomeStepPrompt'})}</p>
+                                </div>
+                            ) : (
+                                null
+                            )}
+                            <NextStepButton onClick={this.onNextStep}
+                                            waiting={this.props.waiting}
+                                            text={formatMessage({id: 'registration.goToClass'})} />
+                        </Card>
+                    ]}
+                </Slide>
+            );
+        }
+    })),
     RegistrationError: intl.injectIntl(React.createClass({
         render: function () {
             return (
-                <Slide className="error-step">
+                <Slide className="registration-step error-step">
                     <h2>Something went wrong</h2>
                     <Card>
                         <h4>There was an error while processing your registration</h4>
                         <p>
-                            {this.props.registrationError}
+                            {this.props.children}
                         </p>
                     </Card>
                 </Slide>

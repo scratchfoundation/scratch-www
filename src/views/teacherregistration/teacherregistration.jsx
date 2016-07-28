@@ -1,8 +1,10 @@
+var connect = require('react-redux').connect;
 var defaults = require('lodash.defaultsdeep');
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
 var api = require('../../lib/api');
+var sessionActions = require('../../redux/session.js');
 
 var Deck = require('../../components/deck/deck.jsx');
 var Progression = require('../../components/progression/progression.jsx');
@@ -67,41 +69,50 @@ var TeacherRegistration = React.createClass({
         }, function (err, res) {
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
-            if (res[0].success) return this.advanceStep(formData);
+            if (res[0].success) {
+                this.props.dispatch(sessionActions.refreshSession());
+                return this.advanceStep(formData);
+            }
             this.setState({registrationError: res[0].msg});
         }.bind(this));
 
     },
     render: function () {
+        var permissions = this.props.session.permissions || {};
         return (
             <Deck className="teacher-registration">
                 {this.state.registrationError ?
-                    <Steps.RegistrationError {... this.state} />
+                    <Steps.RegistrationError>
+                        {this.state.registrationError}
+                    </Steps.RegistrationError>
                 :
                     <Progression {... this.state}>
-                        <Steps.UsernameStep     onNextStep={this.advanceStep}
-                                                waiting={this.state.waiting} />
+                        <Steps.UsernameStep onNextStep={this.advanceStep}
+                                            waiting={this.state.waiting} />
                         <Steps.DemographicsStep onNextStep={this.advanceStep}
                                                 waiting={this.state.waiting} />
-                        <Steps.NameStep         onNextStep={this.advanceStep}
-                                                waiting={this.state.waiting} />
-                        <Steps.PhoneNumberStep  onNextStep={this.advanceStep}
-                                                waiting={this.state.waiting}
-                                                defaultCountry={
-                                                    this.state.formData.user && this.state.formData.user.country
-                                                } />
+                        <Steps.NameStep onNextStep={this.advanceStep}
+                                        waiting={this.state.waiting} />
+                        <Steps.PhoneNumberStep onNextStep={this.advanceStep}
+                                               waiting={this.state.waiting}
+                                               defaultCountry={
+                                                   this.state.formData.user && this.state.formData.user.country
+                                               } />
                         <Steps.OrganizationStep onNextStep={this.advanceStep}
                                                 waiting={this.state.waiting} />
-                        <Steps.AddressStep      onNextStep={this.advanceStep}
-                                                waiting={this.state.waiting}
-                                                defaultCountry={
-                                                    this.state.formData.user && this.state.formData.user.country
-                                                } />
-                        <Steps.UseScratchStep   onNextStep={this.advanceStep}
-                                                waiting={this.state.waiting} />
-                        <Steps.EmailStep        onNextStep={this.register}
-                                                waiting={this.state.waiting} />
-                        <Steps.TeacherApprovalStep email={this.state.formData.user && this.state.formData.user.email} />
+                        <Steps.AddressStep onNextStep={this.advanceStep}
+                                           waiting={this.state.waiting}
+                                           defaultCountry={
+                                               this.state.formData.user && this.state.formData.user.country
+                                           } />
+                        <Steps.UseScratchStep onNextStep={this.advanceStep}
+                                              waiting={this.state.waiting} />
+                        <Steps.EmailStep onNextStep={this.register}
+                                         waiting={this.state.waiting} />
+                        <Steps.TeacherApprovalStep email={this.state.formData.user && this.state.formData.user.email}
+                                                   confirmed={permissions.social}
+                                                   invited={permissions.educator_invitee}
+                                                   educator={permissions.educator} />
                     </Progression>
                 }
             </Deck>
@@ -109,4 +120,12 @@ var TeacherRegistration = React.createClass({
     }
 });
 
-render(<TeacherRegistration />, document.getElementById('app'));
+var mapStateToProps = function (state) {
+    return {
+        session: state.session.session
+    };
+};
+
+var ConnectedTeacherRegistration = connect(mapStateToProps)(TeacherRegistration);
+
+render(<ConnectedTeacherRegistration />, document.getElementById('app'));

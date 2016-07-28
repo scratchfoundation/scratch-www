@@ -18,9 +18,9 @@ var fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY
 var extraAppRoutes = [
     // Homepage with querystring.
     // TODO: Should this be added for every route?
-    '^/\\?',
+    '/\\?',
     // View html
-    '^/[^\/]*\.html$'
+    '/[^\/]*\.html$'
 ];
 
 /*
@@ -35,7 +35,7 @@ var getStaticPaths = function (pathToStatic) {
     }).map(function (pathName) {
         // Reduce absolute path to relative paths like '/js'
         var base = path.dirname(path.resolve(__dirname, pathToStatic));
-        return '^' + pathName.replace(base, '') + (path.extname(pathName) ? '' : '/');
+        return pathName.replace(base, '') + (path.extname(pathName) ? '' : '/');
     });
 };
 
@@ -58,7 +58,7 @@ var getViewPaths = function (routes) {
  * all :arguments become .+?
  */
 var expressPatternToRegex = function (pattern) {
-    return pattern.replace(/(:[^/]+)\//gi, '.+?/');
+    return pattern.replace(/(:[^/]+)/gi, '.+?');
 };
 
 /*
@@ -66,9 +66,9 @@ var expressPatternToRegex = function (pattern) {
  * string suitable for a Fastly condition
  */
 var pathsToCondition = function (paths) {
-    return 'req.url~"' + paths.reduce(function (conditionString, pattern) {
+    return 'req.url~"^(' + paths.reduce(function (conditionString, pattern) {
         return conditionString + (conditionString ? '|' : '') + pattern;
-    }, '') + '"';
+    }, '') + ')"';
 };
 
 /*
