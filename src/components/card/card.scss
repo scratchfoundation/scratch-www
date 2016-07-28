@@ -25,8 +25,9 @@
         $arrow-border-width: 1rem;
         display: block;
         position: absolute;
+        top: 0;
         left: 0;
-        transform: translate(20rem, -4rem);
+        transform: translate(16rem, 0);
         margin-left: $arrow-border-width;
         border: 1px solid $active-gray;
         border-radius: 5px;
@@ -58,15 +59,7 @@
         }
     }
 
-    .checkbox-row,
-    .textarea-row {
-        .validation-message {
-            transform: translate(20rem, 0);  
-        }
-    }
-
     .form {
-        position: relative;
         padding: 3rem 4rem;
 
         .card-button {
@@ -80,6 +73,10 @@
                 .input {
                     border: 1px solid $ui-orange;
                 }
+            }
+
+            .col-sm-9 {
+                position: relative;
             }
         }
     }
