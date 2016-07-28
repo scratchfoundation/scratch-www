@@ -128,6 +128,7 @@
     "registration.notYou": "Not you? Log in as another user",
     "registration.personalStepTitle": "Personal Information",
     "registration.personalStepDescription": "Your individual responses will not be displayed publicly, and will be kept confidential and secure",
+    "registration.selectCountry": "select country",
     "registration.studentPersonalStepDescription": "This information will not appear on the Scratch website.",
     "registration.showPassword": "Show password",
     "registration.usernameStepDescription": "Fill in the following forms to request an account. The approval process may take up to 24 hours.",
