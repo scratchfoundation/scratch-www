@@ -189,28 +189,3 @@
         }
     }
 }
-
-/* IE10 and IE11 fallback */
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    .registration-step {
-        &.username-step,
-        &.demographics-step,
-        &.name-step,
-        &.phone-step,
-        &.organization-step,
-        &.address-step,
-        &.email-step {
-            .validation-message {
-                position: relative;
-                transform: none;
-                margin: inherit;
-                width: 100%;
-                height: inherit;
-
-                &:before {
-                    display: none;
-                }
-            }
-        }
-    }
-}
