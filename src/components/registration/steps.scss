@@ -80,7 +80,7 @@
     &.organization-step {
         .checkbox-group {
             .validation-message {
-                transform: translate(20rem, -16rem);
+                transform: translate(16rem, -16rem);
             }
         }
 
@@ -92,14 +92,6 @@
 
         .other-input {
             margin-top: -5.75rem;
-        }
-    }
-
-    &.address-step {
-        .select {
-            .validation-message {
-                transform: translate(20rem, .5rem);
-            }
         }
     }
 
