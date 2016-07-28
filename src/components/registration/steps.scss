@@ -29,6 +29,15 @@
         color: $ui-dark-gray;
     }
 
+    &.class-invite-step {
+        text-align: center;
+
+        > p a {
+            text-decoration: underline;
+            color: $ui-white;
+            font-weight: inherit;
+        }
+    }
 
     &.class-invite-step,
     &.class-welcome-step {
@@ -38,6 +47,12 @@
             .contents {
                 padding: 2rem 0;
             }
+        }
+    }
+
+    &.username-step {
+        .username-label {
+            margin-bottom: .75rem;
         }
     }
 
@@ -66,26 +81,12 @@
                 margin-bottom: 1.25rem;
             }
         }
-
-        .validation-message {
-            margin-top: .5rem;
-        }
-
-        .checkbox-row {
-            .validation-message {
-                margin-top: 0;
-            }
-        }
     }
 
     &.organization-step {
-        .validation-message {
-            transform: translate(16rem, -4rem);
-        }
-
         .checkbox-group {
             .validation-message {
-                transform: translate(16rem, -16rem);
+                transform: translate(16rem, 8rem);
             }
         }
 
@@ -100,14 +101,6 @@
         }
     }
 
-    &.address-step {
-        .select {
-            .validation-message {
-                transform: translate(0, .5rem);
-            }
-        }
-    }
-
     &.usescratch-step {
         .form {
             .form-group {
@@ -119,12 +112,6 @@
                     }
                 }
             }
-
-
-        }
-
-        .validation-message {
-            margin-top: .75rem;
         }
 
         p {

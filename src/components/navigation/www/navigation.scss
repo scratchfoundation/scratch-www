@@ -47,12 +47,18 @@
                 width: 100%;
             }
 
-            form {
+            .form {
                 margin: 0;
             }
 
-            input,
-            button {
+            .row {
+                .help-block {
+                    display: none;
+                }
+            }
+
+            .input,
+            .button {
                 display: inline-block;
                 margin-top: 5px;
                 outline: none;

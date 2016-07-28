@@ -27,6 +27,23 @@ var Tooltip = require('../../components/tooltip/tooltip.jsx');
 require('./steps.scss');
 
 var DEFAULT_COUNTRY = 'us';
+var getCountryOptions = function (defaultCountry) {
+    var options = countryData.countryOptions.concat({
+        label: <intl.FormattedMessage id="registration.selectCountry" />,
+        disabled: true,
+        selected: true
+    });
+    if (typeof defaultCountry !== 'undefined') {
+        return options.sort(function (a, b) {
+            if (a.disabled) return -1;
+            if (b.disabled) return 1;
+            if (a.value === defaultCountry) return -1;
+            if (b.value === defaultCountry) return 1;
+            return 0;
+        }.bind(this));
+    }
+    return options;
+};
 
 var NextStepButton = React.createClass({
     getDefaultProps: function () {
@@ -124,12 +141,14 @@ module.exports = {
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
                             <div>
-                                <b>{formatMessage({id: 'registration.createUsername'})}</b>
-                                {this.props.usernameHelp ? (
-                                    <p className="help-text">{this.props.usernameHelp}</p>
-                                ):(
-                                    null
-                                )}
+                                <div className="username-label">
+                                    <b>{formatMessage({id: 'registration.createUsername'})}</b>
+                                    {this.props.usernameHelp ? (
+                                        <p className="help-text">{this.props.usernameHelp}</p>
+                                    ):(
+                                        null
+                                    )}
+                                </div>
                                 <Input className={this.state.validUsername}
                                        type="text"
                                        name="user.username"
@@ -251,7 +270,6 @@ module.exports = {
     DemographicsStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
-                defaultCountry: DEFAULT_COUNTRY,
                 waiting: false,
                 description: null
             };
@@ -265,7 +283,7 @@ module.exports = {
                 'August', 'September', 'October', 'November', 'December'
             ].map(function (label, id) {
                 return {
-                    value: id+1,
+                    value: id + 1,
                     label: this.props.intl.formatMessage({id: 'general.month' + label})};
             }.bind(this));
         },
@@ -321,8 +339,7 @@ module.exports = {
                             </div>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="user.country"
-                                    options={countryData.countryOptions}
-                                    value={this.props.defaultCountry}
+                                    options={getCountryOptions(DEFAULT_COUNTRY)}
                                     required />
                             <Checkbox className="demographics-checkbox-is-robot"
                                       label="I'm a robot!"
@@ -573,17 +590,6 @@ module.exports = {
             var formatMessage = this.props.intl.formatMessage;
             var stateOptions = countryData.subdivisionOptions[this.state.countryChoice];
             stateOptions = [{}].concat(stateOptions);
-            var countryOptions = countryData.countryOptions.concat({
-                label: formatMessage({id: 'teacherRegistration.selectCountry'}),
-                disabled: true,
-                selected: true
-            }).sort(function (a, b) {
-                if (a.disabled) return -1;
-                if (b.disabled) return 1;
-                if (a.value === this.props.defaultCountry) return -1;
-                if (b.value === this.props.defaultCountry) return 1;
-                return 0;
-            }.bind(this));
             return (
                 <Slide className="registration-step address-step">
                     <h2>
@@ -598,7 +604,8 @@ module.exports = {
                         <Form onValidSubmit={this.onValidSubmit}>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="address.country"
-                                    options={countryOptions}
+                                    options={getCountryOptions()}
+                                    value={this.props.defaultCountry}
                                     onChange={this.onChangeCountry}
                                     required />
                             <Input label={formatMessage({id: 'teacherRegistration.addressLine1'})}
@@ -762,7 +769,8 @@ module.exports = {
         getDefaultProps: function () {
             return {
                 email: null,
-                invited: false
+                invited: false,
+                confirmed: false
             };
         },
         render: function () {
@@ -805,7 +813,7 @@ module.exports = {
             );
         }
     })),
-    ClassInviteStep: intl.injectIntl(React.createClass({
+    ClassInviteNewStudentStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
                 waiting: false
@@ -825,7 +833,7 @@ module.exports = {
                                 src={this.props.classroom.educator.profile.images['50x50']} />,
                         <h2>{this.props.classroom.educator.username}</h2>,
                         <p className="description">
-                            {formatMessage({id: 'registration.classroomInviteStepDescription'})}
+                            {formatMessage({id: 'registration.classroomInviteNewStudentStepDescription'})}
                         </p>,
                         <Card>
                             <div className="contents">
@@ -836,6 +844,47 @@ module.exports = {
                                             waiting={this.props.waiting}
                                             text={formatMessage({id: 'general.getStarted'})} />
                         </Card>,
+                        <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
+                    ]}
+                </Slide>
+            );
+        }
+    })),
+    ClassInviteExistingStudentStep: intl.injectIntl(React.createClass({
+        getDefaultProps: function () {
+            return {
+                classroom: null,
+                onHandleLogOut: function () {},
+                studentUsername: null,
+                waiting: false
+            };
+        },
+        onNextStep: function () {
+            this.props.onNextStep();
+        },
+        render: function () {
+            var formatMessage = this.props.intl.formatMessage;
+            return (
+                <Slide className="registration-step class-invite-step">
+                    {this.props.waiting ? [
+                        <Spinner />
+                    ] : [
+                        <h2>{this.props.studentUsername}</h2>,
+                        <p className="description">
+                            {formatMessage({id: 'registration.classroomInviteExistingStudentStepDescription'})}
+                        </p>,
+                        <Card>
+                            <div className="contents">
+                                <h3>{this.props.classroom.title}</h3>
+                                <img className="class-image" src={this.props.classroom.images['250x150']} />
+                                <p>{formatMessage({id: 'registration.invitedBy'})}</p>
+                                <p><strong>{this.props.classroom.educator.username}</strong></p>
+                            </div>
+                            <NextStepButton onClick={this.onNextStep}
+                                            waiting={this.props.waiting}
+                                            text={formatMessage({id: 'general.getStarted'})} />
+                        </Card>,
+                        <p><a onClick={this.props.onHandleLogOut}>{formatMessage({id: 'registration.notYou'})}</a></p>,
                         <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
                     ]}
                 </Slide>
