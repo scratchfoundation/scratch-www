@@ -50,6 +50,12 @@
         }
     }
 
+    &.username-step {
+        .username-label {
+            margin-bottom: .75rem;
+        }
+    }
+
     &.demographics-step {
         .gender-input {
             margin-top: -5.5rem;

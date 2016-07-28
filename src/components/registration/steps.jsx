@@ -124,12 +124,14 @@ module.exports = {
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
                             <div>
-                                <b>{formatMessage({id: 'registration.createUsername'})}</b>
-                                {this.props.usernameHelp ? (
-                                    <p className="help-text">{this.props.usernameHelp}</p>
-                                ):(
-                                    null
-                                )}
+                                <div className="username-label">
+                                    <b>{formatMessage({id: 'registration.createUsername'})}</b>
+                                    {this.props.usernameHelp ? (
+                                        <p className="help-text">{this.props.usernameHelp}</p>
+                                    ):(
+                                        null
+                                    )}
+                                </div>
                                 <Input className={this.state.validUsername}
                                        type="text"
                                        name="user.username"
@@ -280,6 +282,17 @@ module.exports = {
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
+            var countryOptions = countryData.countryOptions.concat({
+                label: formatMessage({id: 'teacherRegistration.selectCountry'}),
+                disabled: true,
+                selected: true
+            }).sort(function (a, b) {
+                if (a.disabled) return -1;
+                if (b.disabled) return 1;
+                if (a.value === this.props.defaultCountry) return -1;
+                if (b.value === this.props.defaultCountry) return 1;
+                return 0;
+            }.bind(this));
             return (
                 <Slide className="registration-step demographics-step">
                     <h2>
@@ -321,8 +334,7 @@ module.exports = {
                             </div>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="user.country"
-                                    options={countryData.countryOptions}
-                                    value={this.props.defaultCountry}
+                                    options={countryOptions}
                                     required />
                             <Checkbox className="demographics-checkbox-is-robot"
                                       label="I'm a robot!"
