@@ -50,6 +50,12 @@
         }
     }
 
+    &.username-step {
+        .username-label {
+            margin-bottom: .75rem;
+        }
+    }
+
     &.demographics-step {
         .gender-input {
             margin-top: -5.5rem;
@@ -80,7 +86,7 @@
     &.organization-step {
         .checkbox-group {
             .validation-message {
-                transform: translate(16rem, -16rem);
+                transform: translate(16rem, 8rem);
             }
         }
 
