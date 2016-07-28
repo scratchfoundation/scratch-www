@@ -27,17 +27,23 @@ var Tooltip = require('../../components/tooltip/tooltip.jsx');
 require('./steps.scss');
 
 var DEFAULT_COUNTRY = 'us';
-var COUNTRY_OPTIONS = countryData.countryOptions.concat({
-    label: <intl.FormattedMessage id="teacherRegistration.selectCountry" />,
-    disabled: true,
-    selected: true
-}).sort(function (a, b) {
-    if (a.disabled) return -1;
-    if (b.disabled) return 1;
-    if (a.value === DEFAULT_COUNTRY) return -1;
-    if (b.value === DEFAULT_COUNTRY) return 1;
-    return 0;
-}.bind(this));
+var getCountryOptions = function (defaultCountry) {
+    var options = countryData.countryOptions.concat({
+        label: <intl.FormattedMessage id="teacherRegistration.selectCountry" />,
+        disabled: true,
+        selected: true
+    });
+    if (typeof defaultCountry !== 'undefined') {
+        return options.sort(function (a, b) {
+            if (a.disabled) return -1;
+            if (b.disabled) return 1;
+            if (a.value === defaultCountry) return -1;
+            if (b.value === defaultCountry) return 1;
+            return 0;
+        }.bind(this));
+    }
+    return options;
+};
 
 var NextStepButton = React.createClass({
     getDefaultProps: function () {
@@ -277,7 +283,7 @@ module.exports = {
                 'August', 'September', 'October', 'November', 'December'
             ].map(function (label, id) {
                 return {
-                    value: id+1,
+                    value: id + 1,
                     label: this.props.intl.formatMessage({id: 'general.month' + label})};
             }.bind(this));
         },
@@ -333,7 +339,7 @@ module.exports = {
                             </div>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="user.country"
-                                    options={COUNTRY_OPTIONS}
+                                    options={getCountryOptions(DEFAULT_COUNTRY)}
                                     required />
                             <Checkbox className="demographics-checkbox-is-robot"
                                       label="I'm a robot!"
@@ -598,7 +604,8 @@ module.exports = {
                         <Form onValidSubmit={this.onValidSubmit}>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="address.country"
-                                    options={COUNTRY_OPTIONS}
+                                    options={getCountryOptions()}
+                                    value={this.props.defaultCountry}
                                     onChange={this.onChangeCountry}
                                     required />
                             <Input label={formatMessage({id: 'teacherRegistration.addressLine1'})}
