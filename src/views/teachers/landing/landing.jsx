@@ -5,6 +5,7 @@ var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var injectIntl = require('react-intl').injectIntl;
 
+var Button = require('../../../components/forms/button.jsx');
 var Page = require('../../../components/page/www/page.jsx');
 var FlexRow = require('../../../components/flex-row/flex-row.jsx');
 var SubNavigation = require('../../../components/subnavigation/subnavigation.jsx');
@@ -109,7 +110,11 @@ var Landing = injectIntl(React.createClass({
                             <p>
                                 <FormattedHTMLMessage id="teacherlanding.accountsDescription" />
                             </p>
-                            <div className="coming-soon"><FormattedMessage id="teacherlanding.accountsButton" /></div>
+                            <SubNavigation className="teacher-account-buttons" align="left">
+                                <a href="/educators/register">
+                                    <li><FormattedMessage id="teacherlanding.requestAccount" /></li>
+                                </a>
+                            </SubNavigation>
                         </div>
                         <img src="/images/teachers/teacher-account.png" alt="teacher account" id="teacher-icon"/>
                     </div>
