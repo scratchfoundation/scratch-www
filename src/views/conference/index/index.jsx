@@ -30,7 +30,9 @@ var ConferenceSplash = React.createClass({
                     </p>
                     <p className="sub-button">
                         <b>
-                            Scratch@MIT is sold out!
+                            <a href="http://bit.ly/scratchmit2016-live" target="_blank">
+                                Watch the keynote live
+                            </a>
                         </b>
                     </p>
                 </TitleBanner>
