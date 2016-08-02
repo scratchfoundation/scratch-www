@@ -5,7 +5,7 @@ var Slider = require('react-slick');
 
 var Thumbnail = require('../thumbnail/thumbnail.jsx');
 
-var frameless = require('../../../lib/frameless.js')
+var frameless = require('../../lib/frameless.js');
 
 require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
