@@ -5,7 +5,6 @@ var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var injectIntl = require('react-intl').injectIntl;
 
-var Button = require('../../../components/forms/button.jsx');
 var Page = require('../../../components/page/www/page.jsx');
 var FlexRow = require('../../../components/flex-row/flex-row.jsx');
 var SubNavigation = require('../../../components/subnavigation/subnavigation.jsx');
