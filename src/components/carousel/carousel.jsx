@@ -5,6 +5,8 @@ var Slider = require('react-slick');
 
 var Thumbnail = require('../thumbnail/thumbnail.jsx');
 
+var frameless = require('../../../lib/frameless.js')
+
 require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
 require('./carousel.scss');
@@ -35,17 +37,17 @@ var Carousel = React.createClass({
             slidesToScroll: 5,
             variableWidth: true,
             responsive: [
-                {breakpoint: 480, settings: {
+                {breakpoint: frameless.mobile, settings: {
                     arrows: true,
                     slidesToScroll: 1,
                     slidesToShow: 1,
                     centerMode: true
                 }},
-                {breakpoint: 640, settings: {
+                {breakpoint: frameless.tablet, settings: {
                     slidesToScroll: 2,
                     slidesToShow: 2
                 }},
-                {breakpoint: 942, settings: {
+                {breakpoint: frameless.desktop, settings: {
                     slidesToScroll: 4,
                     slidesToShow: 4
                 }}
