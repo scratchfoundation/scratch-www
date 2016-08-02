@@ -13,13 +13,13 @@ var Page = React.createClass({
         return (
             <div className="page">
                 <div id="navigation" className={classes}>
-                    <Navigation/>
+                    <Navigation />
                 </div>
                 <div id="view">
                     {this.props.children}
                 </div>
                 <div id="footer">
-                    <Footer/>
+                    <Footer />
                 </div>
             </div>
         );
