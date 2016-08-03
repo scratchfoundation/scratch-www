@@ -499,9 +499,6 @@ module.exports = {
         onChooseOrganization: function (name, values) {
             this.setState({otherDisabled: values.indexOf(this.organizationL10nStems.indexOf('orgChoiceOther')) === -1});
         },
-        onValidSubmit: function (formData) {
-            return this.props.onNextStep(formData);
-        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
@@ -515,7 +512,7 @@ module.exports = {
                                  tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.onValidSubmit} onSubmit={this.onSubmit}>
+                        <Form onValidSubmit={this.props.onNextStep}>
                             <Input label={formatMessage({id: 'teacherRegistration.organization'})}
                                    type="text"
                                    name="organization.name"
