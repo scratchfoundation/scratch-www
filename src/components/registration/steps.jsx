@@ -83,6 +83,7 @@ module.exports = {
             this.setState({showPassword: value});
         },
         validateUsername: function (username, callback) {
+            callback = callback || function () {};
             api({
                 host: '',
                 uri: '/accounts/check_username/' + username + '/'
@@ -91,41 +92,32 @@ module.exports = {
                 if (err || res.statusCode !== 200) {
                     err = err || formatMessage({id: 'general.error'});
                     this.refs.form.refs.formsy.updateInputsWithError({all: err});
-                    if (typeof callback !== 'undefined') {
-                        callback(false);
-                    }
-                    return;
+                    return callback(false);
                 }
                 body = body[0];
-                var isValid = false;
 
                 switch (body.msg) {
                 case 'valid username':
                     this.setState({
                         validUsername: 'pass'
                     });
-                    isValid = true;
-                    break;
+                    return callback(true);
                 case 'username exists':
                     this.refs.form.refs.formsy.updateInputsWithError({
                         'user.username': formatMessage({id: 'registration.validationUsernameExists'})
                     });
-                    break;
+                    return callback(false);
                 case 'bad username':
                     this.refs.form.refs.formsy.updateInputsWithError({
                         'user.username': formatMessage({id: 'registration.validationUsernameVulgar'})
                     });
-                    break;
+                    return callback(false);
                 case 'invalid username':
                 default:
                     this.refs.form.refs.formsy.updateInputsWithError({
                         'user.username': formatMessage({id: 'registration.validationUsernameInvalid'})
                     });
-                    break;
-                }
-
-                if (typeof callback !== 'undefined') {
-                    callback(isValid);
+                    return callback(false);
                 }
             }.bind(this));
         },
