@@ -9,10 +9,21 @@ require('./subnavigation.scss');
  */
 var SubNavigation = React.createClass({
     type: 'SubNavigation',
+    getDefaultProps: function () {
+        return {
+            align: 'middle'
+        };
+    },
     render: function () {
         var classes = classNames(
-            'sub-nav',
-            this.props.className
+            [
+                'sub-nav',
+                this.props.className
+            ],
+            {
+                'sub-nav-align-left': this.props.align === 'left',
+                'sub-nav-align-right': this.props.align === 'right'
+            }
         );
         return (
             <div className={classes}>

@@ -109,7 +109,11 @@ var Landing = injectIntl(React.createClass({
                             <p>
                                 <FormattedHTMLMessage id="teacherlanding.accountsDescription" />
                             </p>
-                            <div className="coming-soon"><FormattedMessage id="teacherlanding.accountsButton" /></div>
+                            <SubNavigation className="teacher-account-buttons" align="left">
+                                <a href="/educators/register">
+                                    <li><FormattedMessage id="teacherlanding.requestAccount" /></li>
+                                </a>
+                            </SubNavigation>
                         </div>
                         <img src="/images/teachers/teacher-account.png" alt="teacher account" id="teacher-icon"/>
                     </div>
