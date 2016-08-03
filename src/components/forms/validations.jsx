@@ -12,9 +12,6 @@ module.exports.validations = {
     notEqualsField: function (values, value, field) {
         return value !== values[field];
     },
-    checkboxRequired: function (values, value) {
-        return value.length > 0;
-    },
     isPhone: function (values, value) {
         if (typeof value === 'undefined') return true;
         if (value && value.national_number === '+') return true;

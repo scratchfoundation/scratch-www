@@ -534,10 +534,10 @@ module.exports = {
                                                options={this.getOrganizationOptions()}
                                                onChange={this.onChooseOrganization}
                                                validations={{
-                                                   checkboxRequired: true
+                                                   minLength: 1
                                                }}
                                                validationErrors={{
-                                                   checkboxRequired: formatMessage({
+                                                   minLength: formatMessage({
                                                        id: 'teacherRegistration.validationRequired'
                                                    })
                                                }}
