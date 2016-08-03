@@ -11,27 +11,28 @@ require('./teacherwaitingroom.scss');
 var TeacherWaitingRoom = React.createClass({
     displayName: 'TeacherWaitingRoom',
     componentWillReceiveProps: function (nextProps) {
-        if (nextProps.session.permissions.educator && nextProps.session.permissions.social) {
+        if (nextProps.approved) {
             window.location.href = '/educators/classes/';
         }
     },
     render: function () {
-        var permissions = this.props.session.permissions || {};
-        var user = this.props.session.user || {};
         return (
             <Deck className={classNames('teacher-waitingroom', this.props.className)}>
-                <TeacherApprovalStep confirmed={permissions.social}
-                                     invited={permissions.educator_invitee}
-                                     educator={permissions.educator}
-                                     email={user.email} />
+                <TeacherApprovalStep {... this.props} />
             </Deck>
         );
     }
 });
 
 var mapStateToProps = function (state) {
+    var permissions = state.session.session.permissions || {};
+    var user = state.session.session.user || {};
     return {
-        session: state.session.session
+        approved: permissions && permissions.educator && !permissions.educator_invitee && permissions.social,
+        confirmed: permissions && permissions.social,
+        invited: permissions && permissions.educator_invitee,
+        educator: permissions && permissions.educator,
+        email: user && user.email
     };
 };
 

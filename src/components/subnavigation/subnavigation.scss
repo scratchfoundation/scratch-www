@@ -53,4 +53,18 @@
             }
         }
     }
+
+    &.sub-nav-align-left {
+        justify-content: flex-start;
+
+        li {
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+
+    &.sub-nav-align-right {
+        justify-content: flex-end;
+    }
 }
