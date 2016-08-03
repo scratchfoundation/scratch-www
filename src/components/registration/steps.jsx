@@ -82,39 +82,50 @@ module.exports = {
         onChangeShowPassword: function (field, value) {
             this.setState({showPassword: value});
         },
-        validateUsername: function (username) {
+        validateUsername: function (username, callback) {
             api({
                 host: '',
                 uri: '/accounts/check_username/' + username + '/'
-            }, function (err, res) {
+            }, function (err, body, res) {
                 var formatMessage = this.props.intl.formatMessage;
-                if (err) {
+                if (err || res.statusCode !== 200) {
+                    err = err || formatMessage({id: 'general.error'});
                     this.refs.form.refs.formsy.updateInputsWithError({all: err});
-                    return false;
+                    if (typeof callback !== 'undefined') {
+                        callback(false);
+                    }
+                    return;
                 }
-                res = res[0];
-                switch (res.msg) {
+                body = body[0];
+                var isValid = false;
+
+                switch (body.msg) {
                 case 'valid username':
                     this.setState({
                         validUsername: 'pass'
                     });
-                    return true;
+                    isValid = true;
+                    break;
                 case 'username exists':
                     this.refs.form.refs.formsy.updateInputsWithError({
                         'user.username': formatMessage({id: 'registration.validationUsernameExists'})
                     });
-                    return false;
+                    break;
                 case 'bad username':
                     this.refs.form.refs.formsy.updateInputsWithError({
                         'user.username': formatMessage({id: 'registration.validationUsernameVulgar'})
                     });
-                    return false;
+                    break;
                 case 'invalid username':
                 default:
                     this.refs.form.refs.formsy.updateInputsWithError({
                         'user.username': formatMessage({id: 'registration.validationUsernameInvalid'})
                     });
-                    return false;
+                    break;
+                }
+
+                if (typeof callback !== 'undefined') {
+                    callback(isValid);
                 }
             }.bind(this));
         },
@@ -123,11 +134,10 @@ module.exports = {
         },
         onValidSubmit: function (formData) {
             this.setState({waiting: true});
-            this.validateUsername(formData.user.username);
-            this.setState({waiting: false});
-            if (this.state.validUsername === 'pass') {
-                this.props.onNextStep(formData);
-            }
+            this.validateUsername(formData.user.username, function (isValid) {
+                this.setState({waiting: false});
+                if (isValid) return this.props.onNextStep(formData);
+            }.bind(this));
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
@@ -489,25 +499,7 @@ module.exports = {
         onChooseOrganization: function (name, values) {
             this.setState({otherDisabled: values.indexOf(this.organizationL10nStems.indexOf('orgChoiceOther')) === -1});
         },
-        validateOrganizationType: function (formData) {
-            if (formData.organization.type.length < 1) {
-                return false;
-            }
-            return true;
-        },
-        onSubmit: function (formData, reset, invalidate) {
-            if (!this.validateOrganizationType(formData)) {
-                return invalidate({
-                    'organization.type': this.props.intl.formatMessage({id: 'teacherRegistration.validationRequired'})
-                });
-            }
-        },
-        onValidSubmit: function (formData, reset, invalidate) {
-            if (!this.validateOrganizationType(formData)) {
-                return invalidate({
-                    'organization.type': this.props.intl.formatMessage({id: 'teacherRegistration.validationRequired'})
-                });
-            }
+        onValidSubmit: function (formData) {
             return this.props.onNextStep(formData);
         },
         render: function () {
@@ -541,6 +533,14 @@ module.exports = {
                                                value={[]}
                                                options={this.getOrganizationOptions()}
                                                onChange={this.onChooseOrganization}
+                                               validations={{
+                                                   checkboxRequired: true
+                                               }}
+                                               validationErrors={{
+                                                   checkboxRequired: formatMessage({
+                                                       id: 'teacherRegistration.validationRequired'
+                                                   })
+                                               }}
                                                required />
                             </div>
                             <div className="other-input">
