@@ -220,6 +220,15 @@ $story-width: $cols3;
             color: $ui-white;
         }
 
+        .teacher-account-buttons {
+            li {
+                border: 2px solid $ui-white;
+                padding: 16px;
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+
         #left {
             width: $cols4;
             max-width: $cols4;
@@ -228,24 +237,6 @@ $story-width: $cols3;
 
             p {
                 margin-bottom: 3.5rem;
-            }
-
-            .coming-soon {
-                border: 2px solid $ui-white;
-                border-radius: 50px;
-                box-shadow: none;
-                background-color: transparent;
-                padding: 16px 16px;
-                width: $cols5 / 2;
-                text-align: center;
-                color: $ui-white;
-                font-size: 16px;
-                font-weight: 500;
-                box-sizing: border-box;
-
-                &:hover {
-                    box-shadow: none;
-                }
             }
         }
 
