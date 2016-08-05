@@ -13,7 +13,7 @@
                 float: left;
                 margin-right: 1rem;
                 border: 1px solid;
-                border-color: rgba(0,0,0,.2);
+                border-color: $active-dark-gray;
                 border-radius: 3px;
                 width: 1.25rem;
                 height: 1.25rem;
@@ -23,7 +23,7 @@
                 &:focus {
                     transition: all .5s ease;
                     outline: none;
-                    box-shadow: 0 0 0 .25rem $active-gray;
+                    box-shadow: 0 0 0 .25rem $active-dark-gray;
                 }
 
                 &:checked {
