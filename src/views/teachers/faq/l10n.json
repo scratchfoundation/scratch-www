@@ -23,7 +23,7 @@
     "teacherfaq.studentEndTitle": "What happens when I \"end\" my class?",
     "teacherfaq.studentEndBody": "When you end a class, your class profile page will be hidden and your students will no longer be able to log in (but their projects and the class studios will still be visible on the site).  You may re-open the class at any time. ",
     "teacherfaq.studentForgetTitle": "What happens if a student forgets their password?",
-    "teacherfaq.studentForgetBody": "You can manually reset a student password from within your Scratch Teacher Account. First, navigate to <a href=\"/educators/classes\">My Classes</a>. From there, find the correct Class and click on the Students link. You can then reset the password at the student level using the Settings menu. ",
+    "teacherfaq.studentForgetBody": "You can manually reset a student password from within your Scratch Teacher Account. First, navigate to My Classes (either from the purple banner on the homepage or in the dropdown menu next to your user icon). From there, find the correct Class and click on the Students link. You can then reset the password at the student level using the Settings menu. ",
     "teacherfaq.studentUnsharedTitle": "Can I see unshared student projects?",
     "teacherfaq.studentUnsharedBody": "Teacher accounts can only access shared student projects.",
     "teacherfaq.studentDeleteTitle": "Can I delete student accounts?",
