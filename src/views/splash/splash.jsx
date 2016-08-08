@@ -167,7 +167,7 @@ var Splash = injectIntl(React.createClass({
             json: {cue: cue, value: false}
         }, function (err) {
             if (!err) this.props.dispatch(sessionActions.refreshSession());
-        });
+        }.bind(this));
     },
     shouldShowWelcome: function () {
         if (!this.props.session.session.user || !this.props.session.session.flags.show_welcome) return false;
