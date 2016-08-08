@@ -13,11 +13,13 @@ var Thumbnail = React.createClass({
             href: '#',
             title: 'Project',
             src: '',
+            avatar: '',
             type: 'project',
             showLoves: false,
             showFavorites: false,
             showRemixes: false,
             showViews: false,
+            showAvatar: false,
             linkTitle: true,
             explore: false,
             alt: ''
@@ -31,6 +33,13 @@ var Thumbnail = React.createClass({
             {'explore': this.props.explore}
         );
         var extra = [];
+        if (this.props.avatar && this.props.showAvatar) {
+            extra.push(
+                <a className="creator-image" href={'/users/' + this.props.creator + '/'}>
+                    <img src={this.props.avatar} alt={this.props.creator} />
+                </a>
+            );
+        }
         if (this.props.creator) {
             extra.push(
                 <div key="creator" className="thumbnail-creator">

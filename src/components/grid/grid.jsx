@@ -4,6 +4,7 @@ var React = require('react');
 var Thumbnail = require('../thumbnail/thumbnail.jsx');
 var FlexRow = require('../flex-row/flex-row.jsx');
 
+var api = require('../../lib/api');
 require('./grid.scss');
 
 var Grid = React.createClass({
@@ -16,8 +17,18 @@ var Grid = React.createClass({
             showLoves: false,
             showFavorites: false,
             showRemixes: false,
-            showViews: false
+            showViews: false,
+            showAvatar: false
         };
+    },
+    getAvatar: function (username) {
+        var url = '';
+        api({
+            uri: '/users/' + username
+        }, function (err, body) {
+            this.url = body.profile.images['32x32'];
+        }.bind(this));
+        console.log(url);
     },
     render: function () {
         var classes = classNames(
@@ -38,10 +49,12 @@ var Grid = React.createClass({
                                            showFavorites={this.props.showFavorites}
                                            showRemixes={this.props.showRemixes}
                                            showViews={this.props.showViews}
+                                           showAvatar={this.props.showAvatar}
                                            type={'project'}
                                            href={href}
                                            title={item.title}
                                            src={item.image}
+                                           avatar={this.getAvatar(item.author.username)}
                                            creator={item.author.username}
                                            loves={item.stats.loves}
                                            favorites={item.stats.favorites}

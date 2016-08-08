@@ -77,9 +77,13 @@ $base-bg: $ui-white;
     #projectBox {
         border-top: 2px solid;
         border-color: $active-gray;
-        background-color: $ui-white;
+        background-color: $ui-gray;
         padding-bottom: 30px;
         width: 100%;
+
+        .grid .flex-row {
+            justify-content: space-around;
+        }
     }
 
     .load button {
@@ -90,6 +94,37 @@ $base-bg: $ui-white;
 
         li {
             color: $header-gray;
+        }
+    }
+
+    .thumbnail {
+        $project-width: 220px;
+        $project-height: 208px;
+        margin-left: 8px;
+        padding: 0;
+
+        &.project {
+            margin-bottom: 16px;
+            border-radius: 4px;
+            width: $project-width;
+            height: $project-height;
+
+            .thumbnail-image {
+                margin: 8px auto;
+                width: 204px;
+                height: 152px;
+
+                img {
+                    border: 0;
+                    border-radius: 4px;
+                }
+            }
+
+            .thumbnail-title,
+            .thumbnail-creator {
+                margin: 0 auto;
+                width: 204px;
+            }
         }
     }
 }
