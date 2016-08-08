@@ -92,6 +92,7 @@ $base-bg: $ui-white;
 
     .categories {
         border-bottom: 1px solid $ui-border;
+        padding: 8px 0;
         width: 58.75rem;
         justify-content: center;
 
@@ -114,7 +115,8 @@ $base-bg: $ui-white;
 
     #projectBox {
         background-color: $ui-gray;
-        padding-bottom: 30px;
+        padding-top: 8px;
+        padding-bottom: 32px;
         width: 100%;
 
         .grid .flex-row {
