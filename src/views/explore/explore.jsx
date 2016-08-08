@@ -139,7 +139,8 @@ var Explore = injectIntl(React.createClass({
                               explore={true}
                               showLoves={false}
                               showFavorites={false}
-                              showViews={false} />
+                              showViews={false}
+                              showAvatar={true}/>
                         <SubNavigation className='load'>
                             <button onClick={this.getExploreMore}>
                                 <li>
