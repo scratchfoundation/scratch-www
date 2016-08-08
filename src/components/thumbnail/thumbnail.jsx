@@ -1,5 +1,4 @@
 var classNames = require('classnames');
-var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 
 require('./thumbnail.scss');
@@ -44,10 +43,7 @@ var Thumbnail = React.createClass({
         if (this.props.creator) {
             extra.push(
                 <div key="creator" className="thumbnail-creator">
-                    <FormattedMessage id={'thumbnail.by'} />{' '}
-                    <a href={'/users/' + this.props.creator + '/'}>
-                        {this.props.creator}
-                    </a>
+                    <a href={'/users/' + this.props.creator + '/'}>{this.props.creator}</a>
                 </div>
             );
         }
