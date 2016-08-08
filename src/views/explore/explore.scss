@@ -4,6 +4,7 @@
 $base-bg: $ui-white;
 
 #view {
+    background-color: $ui-gray;
     padding: 0;
 }
 
@@ -45,43 +46,79 @@ $base-bg: $ui-white;
         }
     }
 
-    .categories {
-        display: inline-block;
-        background-color: $ui-gray;
-        padding-left: 10px;
-        width: calc(100% - 10px);
-        justify-content: left;
+    .tab-background {
+        box-shadow: 1px 0 1px $box-shadow-gray;
+        background-color: $ui-white;
+        width: 100%;
+    }
+
+    .tabs {
+        background-color: $ui-white;
+        padding: 0;
+        width: 100%;
+        justify-content: center;
 
         li {
-            opacity: .75;
-            background-color: $ui-white;
-            color: $header-gray;
-
-            &:hover {
-                opacity: 1;
-                border-color: $active-dark-gray;
-            }
+            margin: 0;
+            border: 0;
+            border-radius: 0;
+            width: $cols2;
+            text-align: center;
 
             &.active {
-                opacity: 1;
-                border-color: $active-dark-gray;
+                border-bottom: 3px solid $ui-aqua;
+            }
 
-                &:hover {
-                    opacity: 1;
-                    border-color: $active-dark-gray;
+            &:active {
+                box-shadow: none;
+                padding: .75em 1.5em;
+            }
+
+            .tab-icon {
+                display: block;
+                margin: 0 auto;
+
+                &.projects {
+                    margin-bottom: 4px;
+                    width: 20px;
+                }
+
+                &.studios {
+                    width: 24px;
                 }
             }
         }
     }
 
+    .categories {
+        border-bottom: 1px solid $ui-border;
+        width: 58.75rem;
+        justify-content: center;
+
+        li {
+            border: 0;
+            background-color: $ui-dark-gray;
+            color: $ui-light-gray;
+
+            &.active {
+                opacity: 1;
+                background-color: $ui-aqua;
+                color: $ui-white;
+            }
+
+            &:active {
+                padding: .75em 1.5em;
+            }
+        }
+    }
+
     #projectBox {
-        border-top: 2px solid;
-        border-color: $active-gray;
         background-color: $ui-gray;
         padding-bottom: 30px;
         width: 100%;
 
         .grid .flex-row {
+            width: $cols12;
             justify-content: space-around;
         }
     }
@@ -89,7 +126,7 @@ $base-bg: $ui-white;
     .load button {
         outline: None;
         border: None;
-        background-color: $ui-white;
+        background-color: $ui-gray;
         padding: 0;
 
         li {
