@@ -105,6 +105,11 @@ var Explore = injectIntl(React.createClass({
         return (
             <a href={'/explore/' + type + '/' + this.props.category + '/'}>
                 <li className={classes}>
+                    {this.props.itemType === type ? [
+                        <img src={'/svgs/explore/' + type + '-active.svg'} className={'tab-icon ' + type} />
+                    ] : [
+                        <img src={'/svgs/explore/' + type + '-inactive.svg'} className={'tab-icon ' + type} />
+                    ]}
                     <FormattedMessage id={'general.' + type} />
                 </li>
             </a>
