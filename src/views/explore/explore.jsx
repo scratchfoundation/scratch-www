@@ -7,8 +7,8 @@ var render = require('../../lib/render.jsx');
 var api = require('../../lib/api');
 
 var Page = require('../../components/page/www/page.jsx');
-var Box = require('../../components/box/box.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
+var TitleBanner = require('../../components/title-banner/title-banner.jsx');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 var Grid = require('../../components/grid/grid.jsx');
 
@@ -59,7 +59,7 @@ var Explore = injectIntl(React.createClass({
     },
     getExploreMore: function () {
         var qText = '&q=' + this.props.acceptableTabs[this.props.category] || '*';
-        
+
         api({
             uri: '/search/' + this.props.itemType +
                  '?limit=' + this.props.loadNumber +
@@ -114,34 +114,38 @@ var Explore = injectIntl(React.createClass({
         return (
             <div>
                 <div className='outer'>
-                    <Box title={'Explore'}>
-                        <SubNavigation className='categories'>
-                            {this.getBubble('all')}
-                            {this.getBubble('animations')}
-                            {this.getBubble('art')}
-                            {this.getBubble('games')}
-                            {this.getBubble('music')}
-                            {this.getBubble('stories')}
-                        </SubNavigation>
-                        <Tabs>
-                            {this.getTab('projects')}
-                            {this.getTab('studios')}
-                        </Tabs>
-                        <div id='projectBox' key='projectBox'>
-                            <Grid items={this.state.loaded}
-                                  itemType={this.props.itemType}
-                                  showLoves={false}
-                                  showFavorites={false}
-                                  showViews={false} />
-                            <SubNavigation className='load'>
-                                <button onClick={this.getExploreMore}>
-                                    <li>
-                                        <FormattedMessage id='general.loadMore' />
-                                    </li>
-                                </button>
-                            </SubNavigation>
+                    <TitleBanner className="masthead">
+                        <div className="inner">
+                            <h1>Explore</h1>
                         </div>
-                    </Box>
+                    </TitleBanner>
+                    <Tabs>
+                        {this.getTab('projects')}
+                        {this.getTab('studios')}
+                    </Tabs>
+                    <SubNavigation className='categories'>
+                        {this.getBubble('all')}
+                        {this.getBubble('animations')}
+                        {this.getBubble('art')}
+                        {this.getBubble('games')}
+                        {this.getBubble('music')}
+                        {this.getBubble('stories')}
+                    </SubNavigation>
+                    <div id='projectBox' key='projectBox'>
+                        <Grid items={this.state.loaded}
+                              itemType={this.props.itemType}
+                              explore={true}
+                              showLoves={false}
+                              showFavorites={false}
+                              showViews={false} />
+                        <SubNavigation className='load'>
+                            <button onClick={this.getExploreMore}>
+                                <li>
+                                    <FormattedMessage id='general.loadMore' />
+                                </li>
+                            </button>
+                        </SubNavigation>
+                    </div>
                 </div>
             </div>
 

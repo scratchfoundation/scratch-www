@@ -12,6 +12,7 @@ var Grid = React.createClass({
         return {
             items: require('./grid.json'),
             itemType: 'projects',
+            explore: false,
             showLoves: false,
             showFavorites: false,
             showRemixes: false,
@@ -32,6 +33,7 @@ var Grid = React.createClass({
                         if (this.props.itemType == 'projects') {
                             return (
                                 <Thumbnail key={item.id}
+                                           explore={this.props.explore}
                                            showLoves={this.props.showLoves}
                                            showFavorites={this.props.showFavorites}
                                            showRemixes={this.props.showRemixes}
@@ -50,6 +52,7 @@ var Grid = React.createClass({
                         else {
                             return (
                                 <Thumbnail key={item.id}
+                                           explore={this.props.explore}
                                            type={'gallery'}
                                            href={href}
                                            title={item.title}
