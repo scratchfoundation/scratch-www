@@ -20,6 +20,7 @@ var Thumbnail = React.createClass({
             showRemixes: false,
             showViews: false,
             linkTitle: true,
+            explore: false,
             alt: ''
         };
     },
@@ -27,7 +28,8 @@ var Thumbnail = React.createClass({
         var classes = classNames(
             'thumbnail',
             this.props.type,
-            this.props.className
+            this.props.className,
+            {'explore': this.props.explore}
         );
         var extra = [];
         if (this.props.creator) {

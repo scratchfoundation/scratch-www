@@ -1,4 +1,5 @@
 @import "../../frameless";
+@import "../../colors";
 
 .grid {
     display: inline-block;
@@ -20,21 +21,37 @@
     .thumbnail {
         padding: 12px;
 
-        &.project {
-            width: $project-width;
-
-            img {
+        &:not(.explore) {
+            &.project {
                 width: $project-width;
-                height: $project-height;
+
+                img {
+                    width: $project-width;
+                    height: $project-height;
+                }
+            }
+
+            &.gallery {
+                width: $gallery-width;
+
+                img {
+                    width: $gallery-width;
+                    height: $gallery-height;
+                }
             }
         }
 
-        &.gallery {
-            width: $gallery-width;
+        &.explore {
+            &.project {
+                box-shadow: 0 0 3px $box-shadow-gray;
+                background-color: $ui-white;
+                width: 220px;
+                height: 208px;
 
-            img {
-                width: $gallery-width;
-                height: $gallery-height;
+                img {
+                    width: 204px;
+                    height: 152px;
+                }
             }
         }
     }

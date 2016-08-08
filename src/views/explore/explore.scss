@@ -4,6 +4,36 @@
 $base-bg: $ui-white;
 
 #view {
+    padding: 0;
+}
+
+.outer {
+    .title-banner {
+        &.masthead {
+            margin-bottom: 0;
+            background-color: $ui-yellow;
+            padding: 0;
+
+            h1 {
+                text-align: center;
+                color: $ui-white;
+                font-size: 3rem;
+            }
+
+            p {
+                margin: 0;
+                width: $cols6;
+                text-align: left;
+                color: $ui-white;
+
+                a {
+                    border-bottom: 1px solid $ui-white;
+                    color: $ui-white;
+                }
+            }
+        }
+    }
+
     .box {
         display: block;
         margin-right: auto;
@@ -13,7 +43,7 @@ $base-bg: $ui-white;
         .box-content {
             padding: 0;
         }
-    }   
+    }
 
     .categories {
         display: inline-block;
@@ -26,20 +56,20 @@ $base-bg: $ui-white;
             opacity: .75;
             background-color: $ui-white;
             color: $header-gray;
-    
+
             &:hover {
                 opacity: 1;
                 border-color: $active-dark-gray;
             }
-        }
 
-        li.active {
-            opacity: 1;
-            border-color: $active-dark-gray;
-
-            &:hover {
+            &.active {
                 opacity: 1;
                 border-color: $active-dark-gray;
+
+                &:hover {
+                    opacity: 1;
+                    border-color: $active-dark-gray;
+                }
             }
         }
     }
