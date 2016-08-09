@@ -85,7 +85,7 @@ var Terms = React.createClass({
                              (for example, in the event of a loss, theft, or unauthorized disclosure
                              of your password), promptly change your password. If you cannot access
                              your account to change your password, notify us at{' '}
-                             <a href="mailto:help@scratch.mit.edu"></a>.
+                             <a href="mailto:help@scratch.mit.edu">help@scratch.mit.edu</a>.
                         </p>
                     </section>
                     <section id="rules-of-usage">
