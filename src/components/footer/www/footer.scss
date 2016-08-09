@@ -1,4 +1,5 @@
 @import "../../../colors";
+@import "../../../frameless";
 
 #footer {
     .lists {
@@ -6,11 +7,10 @@
         text-align: center;
         flex-direction: row;
         flex-wrap: nowrap;
-        justify-content: space-between;
+        justify-content: space-around;
 
         dl {
             display: inline-block;
-            width: 130pt;
             vertical-align: top;
             text-align: left;
             font-size: .8rem;

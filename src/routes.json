@@ -4,7 +4,8 @@
         "pattern": "^/?$",
         "routeAlias": "/?$",
         "view": "splash/splash",
-        "title": "Imagine, Program, Share"
+        "title": "Imagine, Program, Share",
+        "viewportWidth": "device-width"
     },
     {
         "name": "about",

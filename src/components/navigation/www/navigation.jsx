@@ -251,7 +251,9 @@ var Navigation = React.createClass({
                                 <a className={dropdownClasses}
                                     href="#" onClick={this.handleAccountNavClick}>
                                     <Avatar src={this.props.session.session.user.thumbnailUrl} alt="" />
-                                    {this.props.session.session.user.username}
+                                    <span className='profile-name'>
+                                        {this.props.session.session.user.username}
+                                    </span>
                                 </a>
                                 <Dropdown
                                         as="ul"
