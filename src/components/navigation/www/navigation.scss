@@ -251,6 +251,16 @@
                 }
             }
         }
+
+        .create,
+        .discuss,
+        .explore,
+        .search,
+        .help,
+        .mystuff,
+        .profile-name {
+            display: none;
+        }
     }
 }
 
@@ -279,6 +289,15 @@
                 }
             }
         }
+
+        .discuss,
+        .explore,
+        .search,
+        .mystuff,
+        .profile-name {
+            display: none;
+        }
+
     }
 }
 
@@ -292,6 +311,12 @@
             &.account-nav {
                 margin-left: 0;
             }
+        }
+
+        .explore,
+        .search,
+        .mystuff {
+            display: none;
         }
     }
 }
