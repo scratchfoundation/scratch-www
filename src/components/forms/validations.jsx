@@ -21,14 +21,6 @@ module.exports.validations = {
             return false;
         }
         return phoneNumberUtil.isValidNumber(parsed);
-    },
-    phoneLength: function (values, value) {
-        if (typeof value === 'undefined') return true;
-        if (value && value.national_number === '+') return true;
-        if (value && value.national_number.length === value.country_code.format.length) {
-            return true;
-        }
-        return false;
     }
 };
 
