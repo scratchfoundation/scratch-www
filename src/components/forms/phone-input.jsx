@@ -25,8 +25,7 @@ var PhoneInput = React.createClass({
     getDefaultProps: function () {
         return {
             validations: {
-                isPhone: true,
-                phoneLength: true
+                isPhone: true
             },
             flagsImagePath: '/images/flags.png',
             defaultCountry: 'us'
@@ -65,8 +64,7 @@ var PhoneInput = React.createClass({
 });
 
 var phoneValidationHOC = validationHOCFactory({
-    isPhone: <intl.FormattedMessage id="teacherRegistration.validationPhoneNumber" />,
-    phoneLength: <intl.FormattedMessage id="teacherRegistration.validationPhoneNumber" />
+    isPhone: <intl.FormattedMessage id="teacherRegistration.validationPhoneNumber" />
 });
 
 module.exports = inputHOC(defaultValidationHOC(phoneValidationHOC(PhoneInput)));
