@@ -397,14 +397,6 @@ module.exports = {
                 waiting: false
             };
         },
-        onValidSubmit: function (formData, reset, invalidate) {
-            if (formData.phone.national_number.length !== formData.phone.country_code.format.length) {
-                return invalidate({
-                    'phone': this.props.intl.formatMessage({id: 'teacherRegistration.validationPhoneNumber'})
-                });
-            }
-            return this.props.onNextStep(formData);
-        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
@@ -418,7 +410,7 @@ module.exports = {
                                  tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.onValidSubmit}>
+                        <Form onValidSubmit={this.props.onNextStep}>
                             <PhoneInput label={formatMessage({id: 'teacherRegistration.phoneNumber'})}
                                         name="phone"
                                         defaultCountry={this.props.defaultCountry}
