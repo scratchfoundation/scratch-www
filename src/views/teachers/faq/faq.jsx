@@ -21,7 +21,7 @@ var TeacherFaq = injectIntl(React.createClass({
                             <dt><FormattedMessage id='teacherfaq.teacherWhatTitle' /></dt>
                             <dd><FormattedHTMLMessage id='teacherfaq.teacherWhatBody' /></dd>
                             <iframe width="565" height="318" src="https://www.youtube.com/embed/7Hl9GxA1zwQ"
-                            frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>...</iframe>
+                            frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                             <dt><FormattedMessage id='teacherfaq.teacherQuestionsTitle' /></dt>
                             <dd><FormattedHTMLMessage id='teacherfaq.teacherQuestionsBody' /></dd>
                             <dt><FormattedMessage id='teacherfaq.teacherConvertTitle' /></dt>
