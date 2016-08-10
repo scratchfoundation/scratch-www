@@ -8,7 +8,11 @@ module.exports = function smartyStreetApi (params, callback) {
     api({
         host: 'https://api.smartystreets.com',
         uri: '/street-address',
-        params: params
+        headers: {
+            'X-Standardize-Only': true
+        },
+        params: params,
+        useXDR: false
     }, function (err, body, res) {
         if (err) return callback(err);
         if (res.statusCode !== 200) {
