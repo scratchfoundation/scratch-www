@@ -416,7 +416,7 @@ module.exports = {
             };
         },
         onValidSubmit: function (formData, reset, invalidate) {
-            if (formData.phone.national_number.length !== formData.phone.country_code.format.length) {
+            if (!formData.phone || formData.phone.national_number === '+') {
                 return invalidate({
                     'phone': this.props.intl.formatMessage({id: 'teacherRegistration.validationPhoneNumber'})
                 });
