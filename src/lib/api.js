@@ -1,4 +1,5 @@
 var defaults = require('lodash.defaults');
+var defaultsDeep = require('lodash.defaultsdeep');
 var xhr = require('xhr');
 
 var jar  = require('./jar');
@@ -15,15 +16,13 @@ var urlParams = require('./url-params');
  */
 
 module.exports = function (opts, callback) {
-    defaults(opts, {
+    defaultsDeep(opts, {
         host: process.env.API_HOST,
-        headers: {},
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        },
         responseType: 'json',
         useCsrf: false
-    });
-
-    defaults(opts.headers, {
-        'X-Requested-With': 'XMLHttpRequest'
     });
 
     opts.uri = opts.host + opts.uri;
@@ -43,7 +42,9 @@ module.exports = function (opts, callback) {
             // For IE < 10, we must use XDR for cross-domain requests. XDR does not support
             // custom headers.
             defaults(opts, {useXDR: true});
-            delete opts.headers;
+            if (opts.useXDR) {
+                delete opts.headers;
+            }
             if (opts.authentication) {
                 var authenticationParams = ['x-token=' + opts.authentication];
                 var parts = opts.uri.split('?');
