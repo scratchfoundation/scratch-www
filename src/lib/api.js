@@ -18,9 +18,7 @@ var urlParams = require('./url-params');
 module.exports = function (opts, callback) {
     defaultsDeep(opts, {
         host: process.env.API_HOST,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
+        headers: {},
         responseType: 'json',
         useCsrf: false
     });
@@ -52,6 +50,8 @@ module.exports = function (opts, callback) {
                 opts.uri = parts[0] + '?' + qs;
 
             }
+        } else {
+            opts['X-Requested-With'] = 'XMLHttpRequest';
         }
         xhr(opts, function (err, res, body) {
             if (err) log.error(err);
