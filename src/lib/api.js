@@ -22,6 +22,12 @@ module.exports = function (opts, callback) {
         useCsrf: false
     });
 
+    if (opts.host === '') {
+        defaults(opts.headers, {
+            'X-Requested-With': 'XMLHttpRequest'
+        });
+    }
+
     opts.uri = opts.host + opts.uri;
 
     if (opts.params) {
@@ -49,8 +55,6 @@ module.exports = function (opts, callback) {
                 opts.uri = parts[0] + '?' + qs;
 
             }
-        } else {
-            opts['X-Requested-With'] = 'XMLHttpRequest';
         }
         xhr(opts, function (err, res, body) {
             if (err) log.error(err);
