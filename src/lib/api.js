@@ -1,5 +1,4 @@
 var defaults = require('lodash.defaults');
-var defaultsDeep = require('lodash.defaultsdeep');
 var xhr = require('xhr');
 
 var jar  = require('./jar');
