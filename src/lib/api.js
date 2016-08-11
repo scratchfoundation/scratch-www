@@ -16,14 +16,18 @@ var urlParams = require('./url-params');
  */
 
 module.exports = function (opts, callback) {
-    defaultsDeep(opts, {
+    defaults(opts, {
         host: process.env.API_HOST,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        },
+        headers: {},
         responseType: 'json',
         useCsrf: false
     });
+
+    if (opts.host === '') {
+        defaults(opts.headers, {
+            'X-Requested-With': 'XMLHttpRequest'
+        });
+    }
 
     opts.uri = opts.host + opts.uri;
 
