@@ -1,5 +1,4 @@
 var defaults = require('lodash.defaults');
-var defaultsDeep = require('lodash.defaultsdeep');
 var xhr = require('xhr');
 
 var jar  = require('./jar');
@@ -16,7 +15,7 @@ var urlParams = require('./url-params');
  */
 
 module.exports = function (opts, callback) {
-    defaultsDeep(opts, {
+    defaults(opts, {
         host: process.env.API_HOST,
         headers: {},
         responseType: 'json',
