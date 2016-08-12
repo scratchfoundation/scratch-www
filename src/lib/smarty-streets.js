@@ -3,16 +3,13 @@ var api = require('./api');
 
 module.exports = function smartyStreetApi (params, callback) {
     defaults(params, {
-        'auth-id': process.env.SMARTY_STREETS_API_KEY
+        'auth-id': process.env.SMARTY_STREETS_API_KEY,
+        'match': 'range'
     });
     api({
         host: 'https://api.smartystreets.com',
         uri: '/street-address',
-        headers: {
-            'X-Standardize-Only': true
-        },
-        params: params,
-        useXDR: false
+        params: params
     }, function (err, body, res) {
         if (err) return callback(err);
         if (res.statusCode !== 200) {
