@@ -27,12 +27,14 @@ var Tooltip = require('../../components/tooltip/tooltip.jsx');
 require('./steps.scss');
 
 var DEFAULT_COUNTRY = 'us';
-var getCountryOptions = function (defaultCountry, intl) {
-    if (typeof intl === 'undefined') {
-        intl = defaultCountry;
-        defaultCountry = undefined;
-    }
 
+/**
+ * Return a list of options to give to frc select
+ * @param  {Object} intl           react-intl, used to localize strings
+ * @param  {String} defaultCountry optional string of default country to put at top of list
+ * @return {Object}                ordered set of county options formatted for frc select
+ */
+var getCountryOptions = function (intl, defaultCountry) {
     var options = countryData.countryOptions.concat({
         label: intl.formatMessage({id: 'registration.selectCountry'}),
         disabled: true,
@@ -352,7 +354,7 @@ module.exports = {
                             </div>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="user.country"
-                                    options={getCountryOptions(DEFAULT_COUNTRY, this.props.intl)}
+                                    options={getCountryOptions(this.props.intl, DEFAULT_COUNTRY)}
                                     required />
                             <Checkbox className="demographics-checkbox-is-robot"
                                       label="I'm a robot!"
