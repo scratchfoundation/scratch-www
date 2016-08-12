@@ -226,7 +226,7 @@ module.exports = {
     ChoosePasswordStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
-                studentUsername: null,
+                username: null,
                 showPassword: false,
                 waiting: false
             };
@@ -258,7 +258,7 @@ module.exports = {
                                    validations={{
                                        minLength: 6,
                                        notEquals: 'password',
-                                       notEqualsUsername: this.props.studentUsername
+                                       notEqualsUsername: this.props.username
                                    }}
                                    validationErrors={{
                                        minLength: formatMessage({
@@ -880,11 +880,7 @@ module.exports = {
             };
         },
         onNextStep: function () {
-            this.props.onNextStep({
-                user: {
-                    username: this.props.studentUsername
-                }
-            });
+            this.props.onNextStep();
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;

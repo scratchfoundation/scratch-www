@@ -133,10 +133,7 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
                                 <Steps.ChoosePasswordStep onNextStep={this.advanceStep}
                                                           showPassword={true}
                                                           waiting={this.state.waiting}
-                                                          studentUsername={
-                                                              this.state.formData.user &&
-                                                              this.state.formData.user.username
-                                                          } />
+                                                          username={this.props.studentUsername} />
                             :
                                 []
                             }
