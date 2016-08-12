@@ -27,9 +27,16 @@ var Tooltip = require('../../components/tooltip/tooltip.jsx');
 require('./steps.scss');
 
 var DEFAULT_COUNTRY = 'us';
-var getCountryOptions = function (defaultCountry) {
+
+/**
+ * Return a list of options to give to frc select
+ * @param  {Object} intl           react-intl, used to localize strings
+ * @param  {String} defaultCountry optional string of default country to put at top of list
+ * @return {Object}                ordered set of county options formatted for frc select
+ */
+var getCountryOptions = function (intl, defaultCountry) {
     var options = countryData.countryOptions.concat({
-        label: <intl.FormattedMessage id="registration.selectCountry" />,
+        label: intl.formatMessage({id: 'registration.selectCountry'}),
         disabled: true,
         selected: true
     });
@@ -351,13 +358,21 @@ module.exports = {
                             <div className="gender-input">
                                 <Input name="user.genderOther"
                                        type="text"
+                                       validations={{
+                                           maxLength: 25
+                                       }}
+                                       validationErrors={{
+                                           maxLength: formatMessage({
+                                               id: 'registration.validationMaxLength'
+                                           })
+                                       }}
                                        disabled={this.state.otherDisabled}
                                        required={!this.state.otherDisabled}
                                        help={null} />
                             </div>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="user.country"
-                                    options={getCountryOptions(DEFAULT_COUNTRY)}
+                                    options={getCountryOptions(this.props.intl, DEFAULT_COUNTRY)}
                                     required />
                             <Checkbox className="demographics-checkbox-is-robot"
                                       label="I'm a robot!"
@@ -394,10 +409,26 @@ module.exports = {
                             <Input label={formatMessage({id: 'teacherRegistration.firstName'})}
                                    type="text"
                                    name="user.name.first"
+                                   validations={{
+                                       maxLength: 50
+                                   }}
+                                   validationErrors={{
+                                       maxLength: formatMessage({
+                                           id: 'registration.validationMaxLength'
+                                       })
+                                   }}
                                    required />
                             <Input label={formatMessage({id: 'teacherRegistration.lastName'})}
                                    type="text"
                                    name="user.name.last"
+                                   validations={{
+                                       maxLength: 50
+                                   }}
+                                   validationErrors={{
+                                       maxLength: formatMessage({
+                                           id: 'registration.validationMaxLength'
+                                       })
+                                   }}
                                    required />
                             <NextStepButton waiting={this.props.waiting}
                                             text={<intl.FormattedMessage id="registration.nextStep" />} />
@@ -508,10 +539,26 @@ module.exports = {
                             <Input label={formatMessage({id: 'teacherRegistration.organization'})}
                                    type="text"
                                    name="organization.name"
+                                   validations={{
+                                       maxLength: 50
+                                   }}
+                                   validationErrors={{
+                                       maxLength: formatMessage({
+                                           id: 'registration.validationMaxLength'
+                                       })
+                                   }}
                                    required />
                             <Input label={formatMessage({id: 'teacherRegistration.orgTitle'})}
                                    type="text"
                                    name="organization.title"
+                                   validations={{
+                                       maxLength: 50
+                                   }}
+                                   validationErrors={{
+                                       maxLength: formatMessage({
+                                           id: 'registration.validationMaxLength'
+                                       })
+                                   }}
                                    required />
                             <div className="organization-type">
                                 <b><intl.FormattedMessage id="teacherRegistration.orgType" /></b>
@@ -535,6 +582,14 @@ module.exports = {
                             <div className="other-input">
                                 <Input name="organization.other"
                                        type="text"
+                                       validations={{
+                                           maxLength: 50
+                                       }}
+                                       validationErrors={{
+                                           maxLength: formatMessage({
+                                               id: 'registration.validationMaxLength'
+                                           })
+                                       }}
                                        disabled={this.state.otherDisabled}
                                        required={!this.state.otherDisabled}
                                        help={null}
@@ -547,6 +602,14 @@ module.exports = {
                                 </p>
                                 <Input type="url"
                                        name="organization.url"
+                                       validations={{
+                                           maxLength: 200
+                                       }}
+                                       validationErrors={{
+                                           maxLength: formatMessage({
+                                               id: 'registration.validationMaxLength'
+                                           })
+                                       }}
                                        required="isFalse"
                                        placeholder={'http://'} />
                             </div>
@@ -623,21 +686,45 @@ module.exports = {
                         <Form onValidSubmit={this.onValidSubmit}>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="address.country"
-                                    options={getCountryOptions()}
+                                    options={getCountryOptions(this.props.intl)}
                                     value={this.props.defaultCountry}
                                     onChange={this.onChangeCountry}
                                     required />
                             <Input label={formatMessage({id: 'teacherRegistration.addressLine1'})}
                                    type="text"
                                    name="address.line1"
+                                   validations={{
+                                       maxLength: 100
+                                   }}
+                                   validationErrors={{
+                                       maxLength: formatMessage({
+                                           id: 'registration.validationMaxLength'
+                                       })
+                                   }}
                                    required />
                             <Input label={formatMessage({id: 'teacherRegistration.addressLine2'})}
                                    type="text"
                                    name="address.line2"
+                                   validations={{
+                                       maxLength: 100
+                                   }}
+                                   validationErrors={{
+                                       maxLength: formatMessage({
+                                           id: 'registration.validationMaxLength'
+                                       })
+                                   }}
                                    required="isFalse" />
                             <Input label={formatMessage({id: 'teacherRegistration.city'})}
                                    type="text"
                                    name="address.city"
+                                   validations={{
+                                       maxLength: 50
+                                   }}
+                                   validationErrors={{
+                                       maxLength: formatMessage({
+                                           id: 'registration.validationMaxLength'
+                                       })
+                                   }}
                                    required />
                             {stateOptions.length > 2 ?
                                 <Select label={formatMessage({id: 'teacherRegistration.stateProvince'})}
@@ -649,6 +736,14 @@ module.exports = {
                             <Input label={formatMessage({id: 'teacherRegistration.zipCode'})}
                                    type="text"
                                    name="address.zip"
+                                   validations={{
+                                       maxLength: 10
+                                   }}
+                                   validationErrors={{
+                                       maxLength: formatMessage({
+                                           id: 'registration.validationMaxLength'
+                                       })
+                                   }}
                                    required />
                             <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
