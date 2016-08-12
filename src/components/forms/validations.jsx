@@ -23,6 +23,7 @@ module.exports.validations = {
         return phoneNumberUtil.isValidNumber(parsed);
     }
 };
+module.exports.validations.notEqualsUsername = module.exports.validations.notEquals;
 
 module.exports.validationHOCFactory = function (defaultValidationErrors) {
     return function (Component) {
