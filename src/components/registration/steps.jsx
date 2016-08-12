@@ -27,9 +27,14 @@ var Tooltip = require('../../components/tooltip/tooltip.jsx');
 require('./steps.scss');
 
 var DEFAULT_COUNTRY = 'us';
-var getCountryOptions = function (defaultCountry) {
+var getCountryOptions = function (defaultCountry, intl) {
+    if (typeof intl === 'undefined') {
+        intl = defaultCountry;
+        defaultCountry = undefined;
+    }
+
     var options = countryData.countryOptions.concat({
-        label: <intl.FormattedMessage id="registration.selectCountry" />,
+        label: intl.formatMessage({id: 'registration.selectCountry'}),
         disabled: true,
         selected: true
     });
@@ -347,7 +352,7 @@ module.exports = {
                             </div>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="user.country"
-                                    options={getCountryOptions(DEFAULT_COUNTRY)}
+                                    options={getCountryOptions(DEFAULT_COUNTRY, this.props.intl)}
                                     required />
                             <Checkbox className="demographics-checkbox-is-robot"
                                       label="I'm a robot!"
@@ -660,7 +665,7 @@ module.exports = {
                         <Form onValidSubmit={this.onValidSubmit}>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="address.country"
-                                    options={getCountryOptions()}
+                                    options={getCountryOptions(this.props.intl)}
                                     value={this.props.defaultCountry}
                                     onChange={this.onChangeCountry}
                                     required />
