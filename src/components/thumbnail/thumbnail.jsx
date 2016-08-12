@@ -21,7 +21,7 @@ var Thumbnail = React.createClass({
             showViews: false,
             showAvatar: false,
             linkTitle: true,
-            explore: false,
+            cards: false,
             alt: ''
         };
     },
@@ -30,23 +30,11 @@ var Thumbnail = React.createClass({
             'thumbnail',
             this.props.type,
             this.props.className,
-            {'explore': this.props.explore}
+            {'cards': this.props.cards}
         );
         var extra = [];
-        if (this.props.avatar && this.props.showAvatar) {
-            extra.push(
-                <a className="creator-image" href={'/users/' + this.props.creator + '/'}>
-                    <img src={this.props.avatar} alt={this.props.creator} />
-                </a>
-            );
-        }
-        if (this.props.creator) {
-            extra.push(
-                <div key="creator" className="thumbnail-creator">
-                    <a href={'/users/' + this.props.creator + '/'}>{this.props.creator}</a>
-                </div>
-            );
-        }
+        var info = [];
+
         if (this.props.loves && this.props.showLoves) {
             extra.push(
                 <div
@@ -87,7 +75,7 @@ var Thumbnail = React.createClass({
                 </div>
             );
         }
-        var imgElement,titleElement;
+        var imgElement,titleElement,avatarElement;
         if (this.props.linkTitle) {
             imgElement = <a className="thumbnail-image" href={this.props.href}>
                              <img src={this.props.src} alt={this.props.alt} />
@@ -98,11 +86,30 @@ var Thumbnail = React.createClass({
             titleElement = this.props.title;
         }
 
+        info.push(titleElement);
+
+        if (this.props.creator) {
+            info.push(
+                <div key="creator" className="thumbnail-creator">
+                    <a href={'/users/' + this.props.creator + '/'}>{this.props.creator}</a>
+                </div>
+            );
+        }
+
+        if (this.props.avatar && this.props.showAvatar) {
+            avatarElement =
+                <a className="creator-image" href={'/users/' + this.props.creator + '/'}>
+                    <img src={this.props.avatar} alt={this.props.creator} />
+                </a>;
+        }
         return (
             <div className={classes} >
                 {imgElement}
-                <div className="thumbnail-title">
-                    {titleElement}
+                <div className="thumbnail-info">
+                    {avatarElement}
+                    <div className="thumbnail-title">
+                        {info}
+                    </div>
                 </div>
                 {extra}
             </div>
