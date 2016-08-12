@@ -35,111 +35,103 @@ $base-bg: $ui-white;
         }
     }
 
-    .box {
-        display: block;
+    .left-pusher {
         margin-right: auto;
-        margin-bottom: 20px;
-        margin-left: auto;
-
-        .box-content {
-            padding: 0;
-        }
+        width: 8.75rem;
     }
 
     .tab-background {
-        box-shadow: 1px 0 1px $box-shadow-gray;
+        box-shadow: 0 0 1px $box-shadow-gray;
         background-color: $ui-white;
         width: 100%;
     }
 
     .tabs {
-        background-color: $ui-white;
-        padding: 0;
-        width: 100%;
-        justify-content: center;
+        width: 58.75rem;
+    }
 
-        li {
-            margin: 0;
-            border: 0;
-            border-radius: 0;
-            width: $cols2;
-            text-align: center;
+    /* HACK: sort controls are terrible. There's some sort of magic formula for height of formsy components that I can't control. */
 
-            &.active {
-                border-bottom: 3px solid $ui-aqua;
+    .sort-controls {
+        display: flex;
+        margin: 0 auto;
+        border-bottom: 1px solid $ui-border;
+        padding: 8px 0;
+        width: 58.75rem;
+        justify-content: space-between;
+    }
+
+    .sort-mode {
+        margin-top: -4px;
+        width: 13.75rem;
+
+        .select {
+
+            select {
+                margin-bottom: 0;
+                border: 0;
+                background-color: transparent;
+                height: 32px;
+                color: $header-gray;
+
+                &:focus,
+                &:active {
+                    background-color: transparent;
+                }
             }
 
-            &:active {
-                box-shadow: none;
-                padding: .75em 1.5em;
-            }
-
-            .tab-icon {
-                display: block;
-                margin: 0 auto;
-
-                &.projects {
-                    margin-bottom: 4px;
-                    width: 20px;
-                }
-
-                &.studios {
-                    width: 24px;
-                }
+            .help-block {
+                display: none;
             }
         }
     }
 
     .categories {
-        border-bottom: 1px solid $ui-border;
-        padding: 8px 0;
-        width: 58.75rem;
-        justify-content: center;
+        justify-content: flex-start;
 
         li {
             border: 0;
-            background-color: $ui-dark-gray;
-            color: $ui-light-gray;
+            background-color: $active-gray;
+            color: $ui-white;
 
             &.active {
                 opacity: 1;
                 background-color: $ui-aqua;
                 color: $ui-white;
+
             }
 
             &:active {
                 padding: .75em 1.5em;
+            }
+
+            &:hover {
+                background-color: $active-dark-gray;
             }
         }
     }
 
     #projectBox {
         background-color: $ui-gray;
-        padding-top: 8px;
+        padding-top: 16px;
         padding-bottom: 32px;
         width: 100%;
 
         .grid .flex-row {
             width: $cols12;
-            justify-content: space-around;
+            justify-content: space-between;
+        }
+
+        .button {
+            display: block;
+            margin: 0 auto;
         }
     }
 
-    .load button {
-        outline: None;
-        border: None;
-        background-color: $ui-gray;
-        padding: 0;
-
-        li {
-            color: $header-gray;
-        }
-    }
 
     .thumbnail {
         $project-width: 220px;
         $project-height: 208px;
-        margin-left: 8px;
         padding: 0;
 
         &.project {
@@ -158,11 +150,111 @@ $base-bg: $ui-white;
                     border-radius: 4px;
                 }
             }
+        }
 
-            .thumbnail-title,
-            .thumbnail-creator {
-                margin: 0 auto;
+        &.gallery {
+            margin-bottom: 16px;
+            border-radius: 4px;
+            width: $project-width;
+            height: $project-height;
+
+            .thumbnail-image {
+                margin: 8px auto;
                 width: 204px;
+                height: 120px;
+
+                img {
+                    border: 0;
+                    border-radius: 4px;
+                }
+            }
+        }
+
+        .thumbnail-info {
+            margin: 0 auto;
+            width: 204px;
+
+            .creator-image {
+                float: left;
+
+                img {
+                    margin-right: 8px;
+                    border-radius: 4px;
+                    width: 32px;
+                    height: 32px;
+                }
+            }
+
+            .thumbnail-title {
+                float: left;
+                max-width: 164px;
+
+                .thumbnail-creator a {
+                    color: $type-gray;
+                }
+            }
+        }
+    }
+}
+
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    .outer {
+        .tabs {
+            width: $cols4;
+        }
+
+        .sort-controls {
+            width: $cols4;
+        }
+
+        #projectBox {
+            .grid {
+                .flex-row {
+                    width: $cols4;
+                }
+            }
+        }
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .outer {
+        .tabs {
+            width: $cols6;
+        }
+
+        .sort-controls {
+            width: $cols6;
+        }
+
+        #projectBox {
+            .grid {
+                .flex-row {
+                    width: $cols6;
+                }
+            }
+        }
+    }
+}
+
+// 8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .outer {
+        .tabs {
+            width: $cols8;
+        }
+
+        .sort-controls {
+            width: $cols8;
+        }
+
+        #projectBox {
+            .grid {
+                .flex-row {
+                    width: $cols9;
+                }
             }
         }
     }
