@@ -16,9 +16,11 @@ var Tabs = React.createClass({
             this.props.className
         );
         return (
-            <SubNavigation className={classes}>
-                {this.props.children}
-            </SubNavigation>
+            <div className='tab-background'>
+                <SubNavigation className={classes}>
+                    {this.props.children}
+                </SubNavigation>
+            </div>
         );
     }
 });
