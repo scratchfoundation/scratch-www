@@ -4,7 +4,6 @@ var React = require('react');
 var Thumbnail = require('../thumbnail/thumbnail.jsx');
 var FlexRow = require('../flex-row/flex-row.jsx');
 
-var api = require('../../lib/api');
 require('./grid.scss');
 
 var Grid = React.createClass({
@@ -13,22 +12,13 @@ var Grid = React.createClass({
         return {
             items: require('./grid.json'),
             itemType: 'projects',
-            explore: false,
+            cards: false,
             showLoves: false,
             showFavorites: false,
             showRemixes: false,
             showViews: false,
             showAvatar: false
         };
-    },
-    getAvatar: function (username) {
-        var url = '';
-        api({
-            uri: '/users/' + username
-        }, function (err, body) {
-            this.url = body.profile.images['32x32'];
-        }.bind(this));
-        console.log(url);
     },
     render: function () {
         var classes = classNames(
@@ -44,7 +34,7 @@ var Grid = React.createClass({
                         if (this.props.itemType == 'projects') {
                             return (
                                 <Thumbnail key={item.id}
-                                           explore={this.props.explore}
+                                           cards={this.props.cards}
                                            showLoves={this.props.showLoves}
                                            showFavorites={this.props.showFavorites}
                                            showRemixes={this.props.showRemixes}
@@ -54,7 +44,8 @@ var Grid = React.createClass({
                                            href={href}
                                            title={item.title}
                                            src={item.image}
-                                           avatar={this.getAvatar(item.author.username)}
+                                           avatar={'https://cdn2.scratch.mit.edu/get_image/user/'
+                                               + item.author.id + '_32x32.png'}
                                            creator={item.author.username}
                                            loves={item.stats.loves}
                                            favorites={item.stats.favorites}
@@ -65,7 +56,7 @@ var Grid = React.createClass({
                         else {
                             return (
                                 <Thumbnail key={item.id}
-                                           explore={this.props.explore}
+                                           cards={this.props.cards}
                                            type={'gallery'}
                                            href={href}
                                            title={item.title}

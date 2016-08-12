@@ -21,7 +21,7 @@
     .thumbnail {
         padding: 12px;
 
-        &:not(.explore) {
+        &:not(.cards) {
             &.project {
                 width: $project-width;
 
@@ -41,7 +41,7 @@
             }
         }
 
-        &.explore {
+        &.cards {
             &.project {
                 box-shadow: 0 0 3px $box-shadow-gray;
                 background-color: $ui-white;
@@ -51,6 +51,18 @@
                 img {
                     width: 204px;
                     height: 152px;
+                }
+            }
+
+            &.gallery {
+                box-shadow: 0 0 3px $box-shadow-gray;
+                background-color: $ui-white;
+                width: 220px;
+                height: 164px;
+
+                img {
+                    width: 204px;
+                    height: 120px;
                 }
             }
         }
