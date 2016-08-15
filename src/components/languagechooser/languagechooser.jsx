@@ -16,7 +16,7 @@ var LanguageChooser = React.createClass({
     getDefaultProps: function () {
         return {
             languages: languages,
-            locale: window._locale
+            locale: 'en'
         };
     },
     onSetLanguage: function (name, value) {

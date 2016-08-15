@@ -1,5 +1,7 @@
 var React = require('react');
-var FormattedMessage = require('react-intl').FormattedMessage;
+var ReactIntl = require('react-intl');
+var FormattedMessage = ReactIntl.FormattedMessage;
+var injectIntl = ReactIntl.injectIntl;
 
 var FooterBox = require('../container/footer.jsx');
 var LanguageChooser = require('../../languagechooser/languagechooser.jsx');
@@ -204,7 +206,7 @@ var Footer = React.createClass({
                         </dl>
                     </div>
                 </MediaQuery>
-                <LanguageChooser />
+                <LanguageChooser locale={this.props.intl.locale} />
 
                 <div className="copyright">
                     <p>
@@ -216,4 +218,4 @@ var Footer = React.createClass({
     }
 });
 
-module.exports = Footer;
+module.exports = injectIntl(Footer);
