@@ -140,7 +140,7 @@
     "registration.studentUsernameFieldHelpText": "For safety, don't use your real name!",
     "registration.usernameStepTitle": "Request a Teacher Account",
     "registration.usernameStepTitleScratcher": "Create a Scratch Account",
-    "registration.validationMaxLength": "Sorry, that is too many characters for us.",
+    "registration.validationMaxLength": "Sorry, you have exceeded the maximum character limit.",
     "registration.validationPasswordLength": "Passwords must be at least six characters",
     "registration.validationPasswordNotEquals": "Your password may not be \"password\"",
     "registration.validationPasswordNotUsername": "Your password may not be your username",
