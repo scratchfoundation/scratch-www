@@ -233,6 +233,7 @@ module.exports = {
     ChoosePasswordStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
+                username: null,
                 showPassword: false,
                 waiting: false
             };
@@ -264,7 +265,7 @@ module.exports = {
                                    validations={{
                                        minLength: 6,
                                        notEquals: 'password',
-                                       notEqualsField: 'user.username'
+                                       notEqualsUsername: this.props.username
                                    }}
                                    validationErrors={{
                                        minLength: formatMessage({
@@ -273,7 +274,7 @@ module.exports = {
                                        notEquals: formatMessage({
                                            id: 'registration.validationPasswordNotEquals'
                                        }),
-                                       notEqualsField: formatMessage({
+                                       notEqualsUsername: formatMessage({
                                            id: 'registration.validationPasswordNotUsername'
                                        })
                                    }}
