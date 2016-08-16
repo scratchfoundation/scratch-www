@@ -22,9 +22,11 @@ module.exports = function (opts, callback) {
         useCsrf: false
     });
 
-    defaults(opts.headers, {
-        'X-Requested-With': 'XMLHttpRequest'
-    });
+    if (opts.host === '') {
+        defaults(opts.headers, {
+            'X-Requested-With': 'XMLHttpRequest'
+        });
+    }
 
     opts.uri = opts.host + opts.uri;
 
@@ -43,7 +45,9 @@ module.exports = function (opts, callback) {
             // For IE < 10, we must use XDR for cross-domain requests. XDR does not support
             // custom headers.
             defaults(opts, {useXDR: true});
-            delete opts.headers;
+            if (opts.useXDR) {
+                delete opts.headers;
+            }
             if (opts.authentication) {
                 var authenticationParams = ['x-token=' + opts.authentication];
                 var parts = opts.uri.split('?');
