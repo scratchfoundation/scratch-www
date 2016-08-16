@@ -324,7 +324,7 @@ var Splash = injectIntl(React.createClass({
             'teacherbanner.greeting': formatMessage({id: 'teacherbanner.greeting'}),
             'teacherbanner.subgreeting': formatMessage({id: 'teacherbanner.subgreeting'}),
             'teacherbanner.classesButton': formatMessage({id: 'teacherbanner.classesButton'}),
-            'teacherbanner.resourcesButton': formatMessage({id: 'teacherbanner.resourcesButton'}),
+            'teacherbanner.resourcesButton': formatMessage({id: 'general.resourcesTitle'}),
             'teacherbanner.faqButton': formatMessage({id: 'teacherbanner.faqButton'})
         };
         if (this.state.projectCount === this.getInitialState().projectCount) {

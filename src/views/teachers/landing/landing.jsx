@@ -64,7 +64,7 @@ var Landing = injectIntl(React.createClass({
                     </section>
                     <section id="resources">
                         <span className="nav-spacer"></span>
-                        <h2><FormattedMessage id="teacherlanding.resourcesTitle" /></h2>
+                        <h2><FormattedMessage id="general.resourcesTitle" /></h2>
                         <FlexRow className="educator-community">
                             <div>
                                 <h3><FormattedMessage id="teacherlanding.scratchEdTitle" /></h3>
