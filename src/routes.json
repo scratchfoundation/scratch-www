@@ -105,7 +105,7 @@
     },
     {
         "name": "teacherregistration",
-        "pattern": "^/educators/register$",
+        "pattern": "^/educators/register/?$",
         "routeAlias": "/educators(?:/(faq|register|waiting))?/?$",
         "view": "teacherregistration/teacherregistration",
         "title": "Teacher Registration",
