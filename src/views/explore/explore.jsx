@@ -111,10 +111,12 @@ var Explore = injectIntl(React.createClass({
         );
     },
     render: function () {
+        var formatMessage = this.props.intl.formatMessage;
+
         return (
             <div>
                 <div className='outer'>
-                    <Box title={'Explore'}>
+                    <Box title={formatMessage({id: 'general.explore'})}>
                         <SubNavigation className='categories'>
                             {this.getBubble('all')}
                             {this.getBubble('animations')}
