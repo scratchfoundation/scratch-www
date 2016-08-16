@@ -189,16 +189,12 @@ var Splash = injectIntl(React.createClass({
 
         var rows = [
             <Box
-                    title={formatMessage({
-                        id: 'splash.featuredProjects',
-                        defaultMessage: 'Featured Projects'})}
+                    title={formatMessage({id: 'splash.featuredProjects'})}
                     key="community_featured_projects">
                 <Carousel items={this.state.featuredGlobal.community_featured_projects} />
             </Box>,
             <Box
-                    title={formatMessage({
-                        id: 'splash.featuredStudios',
-                        defaultMessage: 'Featured Studios'})}
+                    title={formatMessage({id: 'splash.featuredStudios'})}
                     key="community_featured_studios">
                 <Carousel items={this.state.featuredGlobal.community_featured_studios}
                           settings={{slidesToShow: 4, slidesToScroll: 4, lazyLoad: false}} />
@@ -216,8 +212,8 @@ var Splash = injectIntl(React.createClass({
                             this.state.featuredGlobal.curator_top_projects[0].curator_name}
                         moreTitle={formatMessage({id: 'general.learnMore', defaultMessage: 'Learn More'})}
                         moreHref="/studios/386359/">
-                    <Carousel
-                        items={this.state.featuredGlobal.curator_top_projects} />
+                    
+                    <Carousel items={this.state.featuredGlobal.curator_top_projects} />
                 </Box>
             );
         }
@@ -229,14 +225,12 @@ var Splash = injectIntl(React.createClass({
                 <Box
                         key="scratch_design_studio"
                         title={
-                            formatMessage({
-                                id: 'splash.scratchDesignStudioTitle',
-                                defaultMessage: 'Scratch Design Studio' })
+                            formatMessage({id: 'splash.scratchDesignStudioTitle'})
                             + ' - ' + this.state.featuredGlobal.scratch_design_studio[0].gallery_title}
                         moreTitle={formatMessage({id: 'splash.visitTheStudio', defaultMessage: 'Visit the studio'})}
                         moreHref={'/studios/' + this.state.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}>
-                    <Carousel
-                        items={this.state.featuredGlobal.scratch_design_studio} />
+                    
+                    <Carousel items={this.state.featuredGlobal.scratch_design_studio} />
                 </Box>
             );
         }
@@ -246,14 +240,9 @@ var Splash = injectIntl(React.createClass({
             this.state.featuredGlobal.community_newest_projects.length > 0) {
 
             rows.push(
-                <Box
-                        title={
-                            formatMessage({
-                                id: 'splash.recentlySharedProjects',
-                                defaultMessage: 'Recently Shared Projects' })}
-                        key="community_newest_projects">
-                    <Carousel
-                        items={this.state.featuredGlobal.community_newest_projects} />
+                <Box title={formatMessage({id: 'splash.recentlySharedProjects'})}
+                     key="community_newest_projects">
+                    <Carousel items={this.state.featuredGlobal.community_newest_projects} />
                 </Box>
             );
         }
@@ -262,12 +251,9 @@ var Splash = injectIntl(React.createClass({
             this.state.featuredCustom.custom_projects_by_following.length > 0) {
 
             rows.push(
-                <Box title={
-                            formatMessage({
-                                id: 'splash.projectsByScratchersFollowing',
-                                defaultMessage: 'Projects by Scratchers I\'m Following'})}
+                <Box title={formatMessage({id: 'splash.projectsByScratchersFollowing'})}
                      key="custom_projects_by_following">
-
+                    
                     <Carousel items={this.state.featuredCustom.custom_projects_by_following} />
                 </Box>
             );
@@ -276,12 +262,9 @@ var Splash = injectIntl(React.createClass({
             this.state.featuredCustom.custom_projects_loved_by_following.length > 0) {
 
             rows.push(
-                <Box title={
-                            formatMessage({
-                                id: 'splash.projectsLovedByScratchersFollowing',
-                                defaultMessage: 'Projects Loved by Scratchers I\'m Following'})}
+                <Box title={formatMessage({id: 'splash.projectsLovedByScratchersFollowing'})}
                      key="custom_projects_loved_by_following">
-
+                    
                     <Carousel items={this.state.featuredCustom.custom_projects_loved_by_following} />
                 </Box>
             );
@@ -291,31 +274,22 @@ var Splash = injectIntl(React.createClass({
             this.state.featuredCustom.custom_projects_in_studios_following.length > 0) {
 
             rows.push(
-                <Box title={
-                            formatMessage({
-                                id:'splash.projectsInStudiosFollowing',
-                                defaultMessage: 'Projects in Studios I\'m Following'})}
+                <Box title={formatMessage({id:'splash.projectsInStudiosFollowing'})}
                      key="custom_projects_in_studios_following">
-
+                    
                     <Carousel items={this.state.featuredCustom.custom_projects_in_studios_following} />
                 </Box>
             );
         }
 
         rows.push(
-            <Box title={
-                        formatMessage({
-                            id: 'splash.communityRemixing',
-                            defaultMessage: 'What the Community is Remixing' })}
+            <Box title={formatMessage({id: 'splash.communityRemixing'})}
                  key="community_most_remixed_projects">
 
                 <Carousel items={shuffle(this.state.featuredGlobal.community_most_remixed_projects)}
                           showRemixes={true} />
             </Box>,
-            <Box title={
-                        formatMessage({
-                            id: 'splash.communityLoving',
-                            defaultMessage: 'What the Community is Loving' })}
+            <Box title={formatMessage({id: 'splash.communityLoving'})}
                  key="community_most_loved_projects">
 
                 <Carousel items={shuffle(this.state.featuredGlobal.community_most_loved_projects)}
@@ -350,7 +324,7 @@ var Splash = injectIntl(React.createClass({
             'teacherbanner.greeting': formatMessage({id: 'teacherbanner.greeting'}),
             'teacherbanner.subgreeting': formatMessage({id: 'teacherbanner.subgreeting'}),
             'teacherbanner.classesButton': formatMessage({id: 'teacherbanner.classesButton'}),
-            'teacherbanner.resourcesButton': formatMessage({id: 'teacherbanner.resourcesButton'}),
+            'teacherbanner.resourcesButton': formatMessage({id: 'general.resourcesTitle'}),
             'teacherbanner.faqButton': formatMessage({id: 'teacherbanner.faqButton'})
         };
         if (this.state.projectCount === this.getInitialState().projectCount) {
