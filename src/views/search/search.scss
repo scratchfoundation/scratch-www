@@ -212,6 +212,8 @@ $base-bg: $ui-white;
 @media only screen and (max-width: $mobile - 1) {
     .outer {
         .search {
+            width: $cols4;
+
             .btn-search {
                 left: 40px;
             }
