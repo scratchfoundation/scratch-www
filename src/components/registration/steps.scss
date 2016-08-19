@@ -2,10 +2,6 @@
 @import "../../frameless";
 
 .registration-step {
-    .demographics-checkbox-is-robot {
-        display: none;
-    }
-
     .invite-avatar {
         display: block;
         margin: 0 auto 1rem auto;
@@ -13,20 +9,30 @@
         border-radius: 8px;
     }
 
-    .gender-input,
-    .other-input {
-        float: right;
-        width: 90%;
-
-        .row {
-            margin-left: .5rem;
+    .card {
+        .demographics-checkbox-is-robot {
+            display: none;
         }
-    }
 
-    .help-text {
-        margin: .25rem 0;
-        text-align: left;
-        color: $ui-dark-gray;
+        .gender-input,
+        .other-input {
+            float: right;
+            width: 90%;
+
+            .row {
+                margin-left: .5rem;
+
+                .validation-message {
+                    transform: translate(14rem, 0);
+                }
+            }
+        }
+
+        .help-text {
+            margin: .25rem 0;
+            text-align: left;
+            color: $ui-dark-gray;
+        }
     }
 
     &.class-invite-step {
@@ -51,58 +57,66 @@
     }
 
     &.username-step {
-        .username-label {
-            margin-bottom: .75rem;
+        .card {
+            .username-label {
+                margin-bottom: .75rem;
+            }
         }
     }
 
     &.demographics-step {
-        .gender-input {
-            margin-top: -5.5rem;
-        }
+        .card {
+            .gender-input {
+                margin-top: -5.5rem;
+            }
 
-        .radio {
-            margin-right: 2.5rem;
-            line-height: 3rem;
+            .radio {
+                margin-right: 2.5rem;
+                line-height: 3rem;
 
-            input {
-                margin-right: 1rem;
+                input {
+                    margin-right: 1rem;
+                }
             }
         }
     }
 
     &.phone-step {
-        .form-group {
-            margin-bottom: 2rem;
-        }
+        .card {
+            .form-group {
+                margin-bottom: 2rem;
+            }
 
-        input {
-            &[type=checkbox] {
-                margin-bottom: 1.25rem;
+            input {
+                &[type=checkbox] {
+                    margin-bottom: 1.25rem;
+                }
             }
         }
     }
 
     &.organization-step {
-        .checkbox-group {
-            .validation-message {
-                transform: translate(16rem, 8rem);
+        .card {
+            .checkbox-group {
+                .validation-message {
+                    transform: translate(16rem, 8rem);
+                }
             }
-        }
 
-        input {
-            &[value="8"] {
-                margin: 1rem 0;
+            input {
+                &[value="8"] {
+                    margin: 1rem 0;
+                }
             }
-        }
 
-        .other-input {
-            margin-top: -5.75rem;
+            .other-input {
+                margin-top: -5.75rem;
+            }
         }
     }
 
     &.usescratch-step {
-        .form {
+        .card {
             .form-group {
                 margin-bottom: 0;
 
@@ -112,13 +126,13 @@
                     }
                 }
             }
-        }
 
-        p {
-            &.char-count {
-                margin-top: 0;
-                margin-bottom: 1rem;
-                text-align: right;
+            p {
+                &.char-count {
+                    margin-top: 0;
+                    margin-bottom: 1rem;
+                    text-align: right;
+                }
             }
         }
     }
@@ -149,9 +163,11 @@
 @media only screen and (max-width: $mobile - 1) {
     .registration-step {
         &.demographics-step {
-            .radio {
-                width: 100%;
-                text-align: left;
+            .card {
+                .radio {
+                    width: 100%;
+                    text-align: left;
+                }
             }
         }
 
@@ -167,24 +183,30 @@
 
 @media only screen and (max-width: $desktop - 1) {
     .registration-step {
-        .form {
-            text-align: left;
+        .card {
+            .form {
+                text-align: left;
+            }
         }
 
         &.phone-step {
-            .checkbox,
-            .validation-message {
-                text-align: left;
-            }
+            .card {
+                .checkbox,
+                .validation-message {
+                    text-align: left;
+                }
 
-            .checkbox {
-                margin-bottom: 1rem;
+                .checkbox {
+                    margin-bottom: 1rem;
+                }
             }
         }
 
         &.organization-step {
-            .checkbox-group {
-                text-align: left;
+            .card {
+                .checkbox-group {
+                    text-align: left;
+                }
             }
         }
     }
