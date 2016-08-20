@@ -14,6 +14,23 @@ require('./footer.scss');
 var Footer = React.createClass({
     type: 'Footer',
     render: function () {
+        // Make it so that the Scratch Wiki url reflects the user's language.
+        var wiki_mapping = {
+            "de": "http://scratch-dach.info/wiki/Hauptseite",
+            "hu": "http://hu.scratch-wiki.info/wiki/Kezdőlap",
+            "id": "http://scratch-indo.info/wiki/Halaman_Utama",
+            "jp": "http://jp.scratch-wiki.info/wiki/メインページ",
+            "nl": "http://nl.scratch-wiki.info/wiki/Hoofdpagina",
+            "ru": "http://scratch-ru.info/wiki/Заглавная_страница"
+        };
+        var wiki_url = null; // The url to the wiki in the user's language.
+        if (this.props.intl.locale in wiki_mapping) {
+            wiki_url = wiki_mapping[this.props.intl.locale];
+        } else {
+            // If the user uses English or there is no wiki in their language, use the English Wiki's url.
+            wiki_url = "https://wiki.scratch.mit.edu/wiki/Scratch_Wiki_Home";
+        }
+            
         return (
             <FooterBox>
                 <MediaQuery maxWidth={frameless.tablet - 1}>
@@ -111,7 +128,7 @@ var Footer = React.createClass({
                                 </a>
                             </dd>
                             <dd>
-                                <a href="https://wiki.scratch.mit.edu/">
+                                <a href={wiki_url}>
                                     <FormattedMessage id='general.wiki' />
                                 </a>
                             </dd>
