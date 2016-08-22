@@ -82,19 +82,25 @@ var Landing = injectIntl(React.createClass({
                         <h3 id="guides-header"><FormattedMessage id="teacherlanding.guidesTitle" /></h3>
                         <FlexRow className="guides-and-tutorials">
                             <div>
-                                <img src="/svgs/teachers/resources.svg" alt="resources icon" />
+                                <a href="/help">
+                                    <img src="/svgs/teachers/resources.svg" alt="resources icon" />
+                                </a>
                                 <p>
                                     <FormattedHTMLMessage id="teacherlanding.helpPage" />
                                 </p>
                             </div>
                             <div>
-                                <img src="/svgs/teachers/tips-window.svg" alt="tips window icon" />
+                                <a href="/projects/editor/?tip_bar=home">
+                                    <img src="/svgs/teachers/tips-window.svg" alt="tips window icon" />
+                                </a>
                                 <p>
                                     <FormattedHTMLMessage id="teacherlanding.tipsWindow" />
                                 </p>
                             </div>
                             <div>
-                                <img src="/svgs/teachers/creative-computing.svg" alt="creative computing icon" />
+                                <a href="http://scratched.gse.harvard.edu/guide/">
+                                    <img src="/svgs/teachers/creative-computing.svg" alt="creative computing icon" />
+                                </a>
                                 <p>
                                     <FormattedHTMLMessage id="teacherlanding.creativeComputing" />
                                 </p>
