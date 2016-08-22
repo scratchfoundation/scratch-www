@@ -115,8 +115,7 @@ var Explore = injectIntl(React.createClass({
     },
     getTab: function (type) {
         var classes = classNames({
-            active: (this.props.itemType === type),
-            inactive: (this.props.itemType !== type)
+            active: (this.props.itemType === type)
         });
         return (
             <a href={'/explore/' + type + '/' + this.props.category + '/' + this.props.mode}>

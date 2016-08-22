@@ -1,6 +1,12 @@
 @import "../../colors";
 @import "../../frameless";
 
+.tab-background {
+    box-shadow: 0 0 1px $box-shadow-gray;
+    background-color: $ui-white;
+    width: 100%;
+}
+
 .tabs {
     background-color:  $ui-white;
     padding: 0;
@@ -20,6 +26,7 @@
         border-bottom: 3px solid $ui-aqua;
 
         &:hover {
+            border-bottom: 3px solid $ui-aqua;
             color: $header-gray;
         }
     }
@@ -29,10 +36,8 @@
         padding: .75em 1.5em;
     }
 
-    &.inactive {
-        &:hover {
-            border-bottom: 3px solid $active-dark-gray;
-        }
+    &:hover {
+        border-bottom: 3px solid $active-dark-gray;
     }
 
     .tab-icon {
