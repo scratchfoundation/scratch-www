@@ -5,8 +5,8 @@
     display: inline-block;
     width: 100%;
 
-    $project-width: 200px;
-    $project-height: 150px;
+    $project-width: 220px;
+    $project-height: 208px;
 
     $gallery-width: 200px;
     $gallery-height: 118px;
@@ -14,55 +14,78 @@
     .flex-row {
         margin: 0 auto;
         padding: 12px;
-        width: (96px + (4 * $project-width)) / $em;
-        justify-content: flex-start;
-    }
+        width: $cols12;
+        justify-content: space-between;    }
 
     .thumbnail {
-        padding: 12px;
+        padding: 0;
 
-        &:not(.cards) {
-            &.project {
-                width: $project-width;
+        &.project {
+            margin-bottom: 16px;
+            border-radius: 4px;
+            box-shadow: 0 0 3px $box-shadow-gray;
+            background-color: $ui-white;
+            width: $project-width;
+            height: $project-height;
 
-                img {
-                    width: $project-width;
-                    height: $project-height;
-                }
-            }
-
-            &.gallery {
-                width: $gallery-width;
-
-                img {
-                    width: $gallery-width;
-                    height: $gallery-height;
-                }
-            }
-        }
-
-        &.cards {
-            &.project {
-                box-shadow: 0 0 3px $box-shadow-gray;
-                background-color: $ui-white;
-                width: 220px;
-                height: 208px;
+            .thumbnail-image {
+                margin: 8px auto;
+                width: 204px;
+                height: 152px;
 
                 img {
+                    margin: 0 auto;
+                    border: 0;
+                    border-radius: 4px;
                     width: 204px;
                     height: 152px;
                 }
             }
+        }
 
-            &.gallery {
-                box-shadow: 0 0 3px $box-shadow-gray;
-                background-color: $ui-white;
-                width: 220px;
-                height: 164px;
+        &.gallery {
+            margin-bottom: 16px;
+            border-radius: 4px;
+            box-shadow: 0 0 3px $box-shadow-gray;
+            background-color: $ui-white;
+            width: $project-width;
+            height: 164px;
+
+            .thumbnail-image {
+                margin: 8px auto;
+                width: 204px;
+                height: 120px;
 
                 img {
+                    border: 0;
+                    border-radius: 4px;
                     width: 204px;
                     height: 120px;
+                }
+            }
+        }
+
+        .thumbnail-info {
+            margin: 0 auto;
+            width: 204px;
+
+            .creator-image {
+                float: left;
+
+                img {
+                    margin-right: 8px;
+                    border-radius: 4px;
+                    width: 32px;
+                    height: 32px;
+                }
+            }
+
+            .thumbnail-title {
+                float: left;
+                max-width: 164px;
+
+                .thumbnail-creator a {
+                    color: $type-gray;
                 }
             }
         }
@@ -73,15 +96,24 @@
         justify-content: center;
     }
 
-    @media only screen and (max-width: $tablet - 1) {
-        flex-direction: column;
+    //4 columns
+    @media only screen and (max-width: $mobile - 1) {
+        .flex-row {
+            width: $cols4;
+        }
     }
 
-    @media only screen and (max-width: $desktop - 1) {
+    //6 columns
+    @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
         .flex-row {
-            padding: 12px 0;
-            width: 100%;
-            justify-content: space-around;
+            width: $cols6;
+        }
+    }
+
+    // 8 columns
+    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+        .flex-row {
+            width: $cols9;
         }
     }
 }

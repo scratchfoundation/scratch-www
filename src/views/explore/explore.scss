@@ -40,12 +40,6 @@ $base-bg: $ui-white;
         width: 8.75rem;
     }
 
-    .tab-background {
-        box-shadow: 0 0 1px $box-shadow-gray;
-        background-color: $ui-white;
-        width: 100%;
-    }
-
     .tabs {
         width: 58.75rem;
     }
@@ -117,82 +111,9 @@ $base-bg: $ui-white;
         padding-bottom: 32px;
         width: 100%;
 
-        .grid .flex-row {
-            width: $cols12;
-            justify-content: space-between;
-        }
-
         .button {
             display: block;
             margin: 0 auto;
-        }
-    }
-
-
-    .thumbnail {
-        $project-width: 220px;
-        $project-height: 208px;
-        padding: 0;
-
-        &.project {
-            margin-bottom: 16px;
-            border-radius: 4px;
-            width: $project-width;
-            height: $project-height;
-
-            .thumbnail-image {
-                margin: 8px auto;
-                width: 204px;
-                height: 152px;
-
-                img {
-                    border: 0;
-                    border-radius: 4px;
-                }
-            }
-        }
-
-        &.gallery {
-            margin-bottom: 16px;
-            border-radius: 4px;
-            width: $project-width;
-            height: $project-height;
-
-            .thumbnail-image {
-                margin: 8px auto;
-                width: 204px;
-                height: 120px;
-
-                img {
-                    border: 0;
-                    border-radius: 4px;
-                }
-            }
-        }
-
-        .thumbnail-info {
-            margin: 0 auto;
-            width: 204px;
-
-            .creator-image {
-                float: left;
-
-                img {
-                    margin-right: 8px;
-                    border-radius: 4px;
-                    width: 32px;
-                    height: 32px;
-                }
-            }
-
-            .thumbnail-title {
-                float: left;
-                max-width: 164px;
-
-                .thumbnail-creator a {
-                    color: $type-gray;
-                }
-            }
         }
     }
 }
@@ -207,14 +128,6 @@ $base-bg: $ui-white;
         .sort-controls {
             width: $cols4;
         }
-
-        #projectBox {
-            .grid {
-                .flex-row {
-                    width: $cols4;
-                }
-            }
-        }
     }
 }
 
@@ -227,14 +140,6 @@ $base-bg: $ui-white;
 
         .sort-controls {
             width: $cols6;
-        }
-
-        #projectBox {
-            .grid {
-                .flex-row {
-                    width: $cols6;
-                }
-            }
         }
     }
 }

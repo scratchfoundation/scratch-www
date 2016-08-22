@@ -21,7 +21,6 @@ var Thumbnail = React.createClass({
             showViews: false,
             showAvatar: false,
             linkTitle: true,
-            cards: false,
             alt: ''
         };
     },
@@ -29,8 +28,7 @@ var Thumbnail = React.createClass({
         var classes = classNames(
             'thumbnail',
             this.props.type,
-            this.props.className,
-            {'cards': this.props.cards}
+            this.props.className
         );
         var extra = [];
         var info = [];
