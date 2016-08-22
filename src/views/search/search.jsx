@@ -80,7 +80,7 @@ var Search = injectIntl(React.createClass({
     getTab: function (type) {
         var term = this.props.searchTerm.split(' ').join('+');
         var allTab = <a href={'/search/' + type + '?q=' + term + '/'}>
-                        <li className='inactive'>
+                        <li>
                             <img src={'/svgs/tabs/' + type + '-inactive.svg'} className={'tab-icon ' + type} />
                             <FormattedMessage id={'general.' + type} />
                         </li>
