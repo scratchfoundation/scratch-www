@@ -1,4 +1,8 @@
 {
+    "ab": {
+        "locale": "ab",
+        "parentLocale": "az"
+    },
     "an": {
         "locale": "an",
         "parentLocale": "ca"
