@@ -131,7 +131,6 @@ var Explore = injectIntl(React.createClass({
         );
     },
     render: function () {
-        var formatMessage = this.props.intl.formatMessage;
 
         return (
             <div>
