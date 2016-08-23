@@ -89,7 +89,7 @@ var Search = injectIntl(React.createClass({
     },
     render: function () {
         var formatMessage = this.props.intl.formatMessage;
-        document.getElementsByClassName('input')[0].value = {this.props.searchTerm};
+        document.getElementsByClassName('input')[0].value = this.props.searchTerm;
         
         return (
             <div>
