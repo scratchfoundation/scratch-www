@@ -4,62 +4,163 @@
 $base-bg: $ui-white;
 
 #view {
-    .box {
-        display: block;
-        margin-right: auto;
-        margin-bottom: 20px;
-        margin-left: auto;
+    background-color: $ui-gray;
+    padding: 0;
+}
 
-        .box-content {
+.outer {
+    .title-banner {
+        &.masthead {
+            margin-bottom: 0;
+            background-color: $ui-yellow;
             padding: 0;
-        }
-    }   
 
-    .categories {
-        display: inline-block;
-        background-color: $ui-gray;
-        padding-left: 10px;
-        width: calc(100% - 10px);
-        justify-content: left;
+            h1 {
+                text-align: center;
+                color: $ui-white;
+                font-size: 3rem;
+            }
 
-        li {
-            opacity: .75;
-            background-color: $ui-white;
-            color: $header-gray;
-    
-            &:hover {
-                opacity: 1;
-                border-color: $active-dark-gray;
+            p {
+                margin: 0;
+                width: $cols6;
+                text-align: left;
+                color: $ui-white;
+
+                a {
+                    border-bottom: 1px solid $ui-white;
+                    color: $ui-white;
+                }
             }
         }
+    }
 
-        li.active {
-            opacity: 1;
-            border-color: $active-dark-gray;
+    .left-pusher {
+        margin-right: auto;
+        width: 8.75rem;
+    }
+
+    .tabs {
+        width: 58.75rem;
+    }
+
+    /* HACK: sort controls are terrible. There's some sort of magic formula for height of formsy components that I can't control. */
+
+    .sort-controls {
+        display: flex;
+        margin: 0 auto;
+        border-bottom: 1px solid $ui-border;
+        padding: 8px 0;
+        width: 58.75rem;
+        justify-content: space-between;
+    }
+
+    .sort-mode {
+        margin-top: -4px;
+        width: 13.75rem;
+
+        .select {
+
+            select {
+                margin-bottom: 0;
+                border: 0;
+                background-color: transparent;
+                height: 32px;
+                color: $header-gray;
+
+                &:focus,
+                &:active {
+                    background-color: transparent;
+                }
+            }
+
+            .help-block {
+                display: none;
+            }
+        }
+    }
+
+    .categories {
+        justify-content: flex-start;
+
+        li {
+            border: 0;
+            background-color: $active-gray;
+            color: $ui-white;
+
+            &.active {
+                opacity: 1;
+                background-color: $ui-aqua;
+                color: $ui-white;
+
+            }
+
+            &:active {
+                padding: .75em 1.5em;
+            }
 
             &:hover {
-                opacity: 1;
-                border-color: $active-dark-gray;
+                background-color: $active-dark-gray;
             }
         }
     }
 
     #projectBox {
-        border-top: 2px solid;
-        border-color: $active-gray;
-        background-color: $ui-white;
-        padding-bottom: 30px;
+        background-color: $ui-gray;
+        padding-top: 16px;
+        padding-bottom: 32px;
         width: 100%;
+
+        .button {
+            display: block;
+            margin: 0 auto;
+        }
     }
+}
 
-    .load button {
-        outline: None;
-        border: None;
-        background-color: $ui-white;
-        padding: 0;
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    .outer {
+        .tabs {
+            width: $cols4;
+        }
 
-        li {
-            color: $header-gray;
+        .sort-controls {
+            width: $cols4;
+        }
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .outer {
+        .tabs {
+            width: $cols6;
+        }
+
+        .sort-controls {
+            width: $cols6;
+        }
+    }
+}
+
+// 8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .outer {
+        .tabs {
+            width: $cols8;
+        }
+
+        .sort-controls {
+            width: $cols8;
+        }
+
+        #projectBox {
+            .grid {
+                .flex-row {
+                    width: $cols9;
+                }
+            }
         }
     }
 }

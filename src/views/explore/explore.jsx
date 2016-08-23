@@ -7,8 +7,11 @@ var render = require('../../lib/render.jsx');
 var api = require('../../lib/api');
 
 var Page = require('../../components/page/www/page.jsx');
-var Box = require('../../components/box/box.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
+var TitleBanner = require('../../components/title-banner/title-banner.jsx');
+var Button = require('../../components/forms/button.jsx');
+var Form = require('../../components/forms/form.jsx');
+var Select = require('../../components/forms/select.jsx');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 var Grid = require('../../components/grid/grid.jsx');
 
@@ -27,16 +30,19 @@ var Explore = injectIntl(React.createClass({
             stories: 'stories'
         };
         var typeOptions = ['projects','studios'];
+        var modeOptions = ['trending', 'popular', 'recent', ''];
 
         var pathname = window.location.pathname.toLowerCase();
         if (pathname[pathname.length - 1] === '/') {
             pathname = pathname.substring(0, pathname.length - 1);
         }
-        var slash = pathname.lastIndexOf('/');
-        var currentCategory = pathname.substring(slash + 1,pathname.length);
-        var typeStart = pathname.indexOf('explore/');
-        var type = pathname.substring(typeStart + 8,slash);
-        if (Object.keys(categoryOptions).indexOf(currentCategory) === -1 || typeOptions.indexOf(type) === -1) {
+        var options = pathname.split('/');
+        var type = options[2];
+        var currentCategory = options[3];
+        var currentMode = options.length > 4 ? options[4] : '';
+        if (Object.keys(categoryOptions).indexOf(currentCategory) === -1 ||
+        typeOptions.indexOf(type) === -1 ||
+        modeOptions.indexOf(currentMode) === -1){
             window.location = window.location.origin + '/explore/projects/all/';
         }
 
@@ -44,7 +50,9 @@ var Explore = injectIntl(React.createClass({
             category: currentCategory,
             acceptableTabs: categoryOptions,
             acceptableTypes: typeOptions,
+            acceptableModes: modeOptions,
             itemType: type,
+            mode: currentMode,
             loadNumber: 16
         };
     },
@@ -59,12 +67,13 @@ var Explore = injectIntl(React.createClass({
     },
     getExploreMore: function () {
         var qText = '&q=' + this.props.acceptableTabs[this.props.category] || '*';
-        
+
         api({
             uri: '/search/' + this.props.itemType +
                  '?limit=' + this.props.loadNumber +
                  '&offset=' + this.state.offset +
                  '&language=' + this.props.intl.locale +
+                 '&mode=' + (this.props.mode ? this.props.mode : 'trending') +
                  qText
         }, function (err, body) {
             if (!err) {
@@ -84,14 +93,20 @@ var Explore = injectIntl(React.createClass({
                 break;
             }
         }
-        window.location = window.location.origin + '/explore/' + newType + '/' + this.props.tab;
+        window.location = window.location.origin + '/explore/' + newType + '/' + this.props.tab + '/' + this.props.mode;
+    },
+    changeSortMode: function (name, value) {
+        if (this.props.acceptableModes.indexOf(value) !== -1) {
+            window.location = window.location.origin + '/explore/' +
+            this.props.itemType + '/' + this.props.category + '/' + value;
+        }
     },
     getBubble: function (type) {
         var classes = classNames({
             active: (this.props.category === type)
         });
         return (
-            <a href={'/explore/' + this.props.itemType + '/' + type + '/'}>
+            <a href={'/explore/' + this.props.itemType + '/' + type + '/' + this.props.mode}>
                 <li className={classes}>
                     <FormattedMessage id={'general.' + type} />
                 </li>
@@ -103,20 +118,33 @@ var Explore = injectIntl(React.createClass({
             active: (this.props.itemType === type)
         });
         return (
-            <a href={'/explore/' + type + '/' + this.props.category + '/'}>
+            <a href={'/explore/' + type + '/' + this.props.category + '/' + this.props.mode}>
                 <li className={classes}>
+                    {this.props.itemType === type ? [
+                        <img src={'/svgs/tabs/' + type + '-active.svg'} className={'tab-icon ' + type} />
+                    ] : [
+                        <img src={'/svgs/tabs/' + type + '-inactive.svg'} className={'tab-icon ' + type} />
+                    ]}
                     <FormattedMessage id={'general.' + type} />
                 </li>
             </a>
         );
     },
     render: function () {
-        var formatMessage = this.props.intl.formatMessage;
 
         return (
             <div>
                 <div className='outer'>
-                    <Box title={formatMessage({id: 'general.explore'})}>
+                    <TitleBanner className="masthead">
+                        <div className="inner">
+                            <h1>Explore</h1>
+                        </div>
+                    </TitleBanner>
+                    <Tabs>
+                        {this.getTab('projects')}
+                        {this.getTab('studios')}
+                    </Tabs>
+                    <div className="sort-controls">
                         <SubNavigation className='categories'>
                             {this.getBubble('all')}
                             {this.getBubble('animations')}
@@ -125,25 +153,29 @@ var Explore = injectIntl(React.createClass({
                             {this.getBubble('music')}
                             {this.getBubble('stories')}
                         </SubNavigation>
-                        <Tabs>
-                            {this.getTab('projects')}
-                            {this.getTab('studios')}
-                        </Tabs>
-                        <div id='projectBox' key='projectBox'>
-                            <Grid items={this.state.loaded}
-                                  itemType={this.props.itemType}
-                                  showLoves={false}
-                                  showFavorites={false}
-                                  showViews={false} />
-                            <SubNavigation className='load'>
-                                <button onClick={this.getExploreMore}>
-                                    <li>
-                                        <FormattedMessage id='general.loadMore' />
-                                    </li>
-                                </button>
-                            </SubNavigation>
-                        </div>
-                    </Box>
+                        <Form className='sort-mode'>
+                            <Select name="sort"
+                                    options={[
+                                        {value: 'trending', label: 'Trending'},
+                                        {value: 'popular', label: 'Popular'},
+                                        {value: 'recent', label: 'Recent'}
+                                    ]}
+                                    value={this.props.mode}
+                                    onChange={this.changeSortMode}/>
+                        </Form>
+                    </div>
+                    <div id='projectBox' key='projectBox'>
+                        <Grid items={this.state.loaded}
+                              itemType={this.props.itemType}
+                              cards={true}
+                              showLoves={false}
+                              showFavorites={false}
+                              showViews={false}
+                              showAvatar={true}/>
+                          <Button onClick={this.getExploreMore} className="white">
+                            <FormattedMessage id='general.loadMore' />
+                        </Button>
+                    </div>
                 </div>
             </div>
 

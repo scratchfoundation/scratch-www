@@ -6,8 +6,10 @@ var render = require('../../lib/render.jsx');
 var api = require('../../lib/api');
 
 var Page = require('../../components/page/www/page.jsx');
-var Box = require('../../components/box/box.jsx');
-var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+var TitleBanner = require('../../components/title-banner/title-banner.jsx');
+var Form = require('../../components/forms/form.jsx');
+var Input = require('../../components/forms/input.jsx');
+var Button = require('../../components/forms/button.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var Grid = require('../../components/grid/grid.jsx');
 
@@ -62,6 +64,7 @@ var Search = injectIntl(React.createClass({
                  '?limit=' + this.props.loadNumber +
                  '&offset=' + this.state.offset +
                  '&language=' + this.props.intl.locale +
+                 '&mode=popular' +
                  termText
         }, function (err, body) {
             var loadedSoFar = this.state.loaded;
@@ -71,16 +74,21 @@ var Search = injectIntl(React.createClass({
             this.setState({offset: currentOffset});
         }.bind(this));
     },
+    onSearchSubmit: function (formData) {
+        window.location.href = '/search/projects?q=' + formData.q;
+    },
     getTab: function (type) {
         var term = this.props.searchTerm.split(' ').join('+');
         var allTab = <a href={'/search/' + type + '?q=' + term + '/'}>
                         <li>
+                            <img src={'/svgs/tabs/' + type + '-inactive.svg'} className={'tab-icon ' + type} />
                             <FormattedMessage id={'general.' + type} />
                         </li>
                     </a>;
         if (this.props.tab == type) {
             allTab = <a href={'/search/' + type + '?q=' + term + '/'}>
                         <li className='active'>
+                            <img src={'/svgs/tabs/' + type + '-active.svg'} className={'tab-icon ' + type} />
                             <FormattedMessage id={'general.' + type} />
                         </li>
                     </a>;
@@ -89,32 +97,41 @@ var Search = injectIntl(React.createClass({
     },
     render: function () {
         var formatMessage = this.props.intl.formatMessage;
-        
+
         return (
             <div>
                 <div className='outer'>
-                    <Box title={formatMessage({id: 'general.results'}) + ':'}
-                         subtitle={this.props.searchTerm}
-                         moreProps={{className: 'subnavigation'}}>
+                        <TitleBanner className="masthead">
+                            <div className="inner">
+                                <h1>Search</h1>
+                                <div className="search">
+                                    <Form onSubmit={this.onSearchSubmit}>
+                                        <Button type="submit" className="btn-search" />
+                                        <Input type="text"
+                                               aria-label={formatMessage({id: 'general.search'})}
+                                               placeholder={formatMessage({id: 'general.search'})}
+                                               defaultValue={decodeURI(this.props.searchTerm)}
+                                               name="q" />
+                                    </Form>
+                                </div>
+                            </div>
+                        </TitleBanner>
                         <Tabs>
                             {this.getTab('projects')}
                             {this.getTab('studios')}
                         </Tabs>
                         <div id='projectBox' key='projectBox'>
-                            <Grid items={this.state.loaded}
-                                  itemType={this.props.tab}
-                                  showLoves={false}
-                                  showFavorites={false}
-                                  showViews={false} />
-                            <SubNavigation className='load'>
-                                <button onClick={this.getSearchMore}>
-                                    <li>
-                                        <FormattedMessage id='general.loadMore' />
-                                    </li>
-                                </button>
-                            </SubNavigation>
+                        <Grid items={this.state.loaded}
+                              itemType={this.props.tab}
+                              cards={true}
+                              showAvatar={true}
+                              showLoves={false}
+                              showFavorites={false}
+                              showViews={false} />
+                         <Button onClick={this.getSearchMore} className="white">
+                            <FormattedMessage id='general.loadMore' />
+                        </Button>
                         </div>
-                    </Box>
                 </div>
             </div>
         );

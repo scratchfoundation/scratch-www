@@ -1,38 +1,53 @@
 @import "../../colors";
+@import "../../frameless";
+
+.tab-background {
+    box-shadow: 0 0 1px $box-shadow-gray;
+    background-color: $ui-white;
+    width: 100%;
+}
 
 .tabs {
-    background-color:  $ui-gray;
-    padding: 0 0 0 20px;
-    width: calc(100% - 20px);
-    justify-content: flex-start;
+    background-color:  $ui-white;
+    padding: 0;
+    width: $cols12;
+    justify-content: center;
 }
 
 .tabs li {
-    opacity: .75;
-    margin-bottom: -4px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    background-color: $ui-white;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    width: $cols2;
+    text-align: center;
     color: $header-gray;
-    
-    &:hover {
-        opacity: 1;
-        border-color: $active-gray;
-        background-color: $ui-white;
-        color: $header-gray;
+
+    &.active {
+        border-bottom: 3px solid $ui-aqua;
+
+        &:hover {
+            border-bottom: 3px solid $ui-aqua;
+            color: $header-gray;
+        }
     }
-}
 
-
-.tabs li.active {
-    opacity: 1;
-    border-bottom: 4px solid $ui-white;
+    &:active {
+        box-shadow: none;
+        padding: .75em 1.5em;
+    }
 
     &:hover {
-        opacity: 1;
-        border-bottom: 4px solid $ui-white;
+        border-bottom: 3px solid $active-dark-gray;
+    }
+
+    .tab-icon {
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 4px;
+        width: 24px;
+    }
+
+    &:hover {
         background-color: $ui-white;
         color: $header-gray;
     }
