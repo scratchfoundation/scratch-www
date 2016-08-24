@@ -13,26 +13,46 @@
 
     .flex-row {
         margin: 0 auto;
-        padding: 12px;
+        padding: 12px 0;
         width: $cols12;
         justify-content: flex-start;
     }
 
     .thumbnail {
-        margin: 6px;
-        padding: 0;
+        margin: 7px;
+        border-radius: 4px;
+        box-shadow: 0 0 3px $box-shadow-gray;
+        background-color: $ui-white;
+        padding-bottom: 4px;
+        width: $thumbnail-width;
 
-        &.gallery,
-        &.project {
-            margin-bottom: 16px;
-            border-radius: 4px;
-            box-shadow: 0 0 3px $box-shadow-gray;
-            background-color: $ui-white;
-            width: $thumbnail-width;
+        .thumbnail-image {
+            margin: 8px auto;
+            width: $thumbnail-inner-width;
+        }
 
-            .thumbnail-image {
-                margin: 8px auto;
-                width: $thumbnail-inner-width;
+        .thumbnail-info {
+            margin: 0 auto;
+            width: $thumbnail-inner-width;
+
+            .creator-image {
+                float: left;
+
+                img {
+                    margin-right: 8px;
+                    border-radius: 4px;
+                    width: 32px;
+                    height: 32px;
+                }
+            }
+
+            .thumbnail-title {
+                float: left;
+                max-width: 164px;
+
+                .thumbnail-creator a {
+                    color: $type-gray;
+                }
             }
         }
 
@@ -63,31 +83,6 @@
                     border-radius: 4px;
                     width: $thumbnail-inner-width;
                     height: 120px;
-                }
-            }
-        }
-
-        .thumbnail-info {
-            margin: 0 auto;
-            width: $thumbnail-inner-width;
-
-            .creator-image {
-                float: left;
-
-                img {
-                    margin-right: 8px;
-                    border-radius: 4px;
-                    width: 32px;
-                    height: 32px;
-                }
-            }
-
-            .thumbnail-title {
-                float: left;
-                max-width: 164px;
-
-                .thumbnail-creator a {
-                    color: $type-gray;
                 }
             }
         }
