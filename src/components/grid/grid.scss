@@ -5,11 +5,11 @@
     display: inline-block;
     width: 100%;
 
-    $project-width: 220px;
+    $thumbnail-width: 220px;
+    $thumbnail-inner-width: 204px;
+    
     $project-height: 208px;
-
-    $gallery-width: 200px;
-    $gallery-height: 118px;
+    $gallery-height: 164px;
 
     .flex-row {
         margin: 0 auto;
@@ -22,46 +22,46 @@
         margin: 6px;
         padding: 0;
 
+        &.gallery,
         &.project {
             margin-bottom: 16px;
             border-radius: 4px;
             box-shadow: 0 0 3px $box-shadow-gray;
             background-color: $ui-white;
-            width: $project-width;
-            height: $project-height;
+            width: $thumbnail-width;
 
             .thumbnail-image {
                 margin: 8px auto;
-                width: 204px;
+                width: $thumbnail-inner-width;
+            }
+        }
+
+        &.project {
+            height: $project-height;
+
+            .thumbnail-image {
                 height: 152px;
 
                 img {
                     margin: 0 auto;
                     border: 0;
                     border-radius: 4px;
-                    width: 204px;
+                    width: $thumbnail-inner-width;
                     height: 152px;
                 }
             }
         }
 
         &.gallery {
-            margin-bottom: 16px;
-            border-radius: 4px;
-            box-shadow: 0 0 3px $box-shadow-gray;
-            background-color: $ui-white;
-            width: $project-width;
-            height: 164px;
+            height: $gallery-height;
 
             .thumbnail-image {
-                margin: 8px auto;
-                width: 204px;
                 height: 120px;
 
                 img {
                     border: 0;
                     border-radius: 4px;
-                    width: 204px;
+                    width: $thumbnail-inner-width;
                     height: 120px;
                 }
             }
@@ -69,7 +69,7 @@
 
         .thumbnail-info {
             margin: 0 auto;
-            width: 204px;
+            width: $thumbnail-inner-width;
 
             .creator-image {
                 float: left;
