@@ -15,10 +15,11 @@
         margin: 0 auto;
         padding: 12px;
         width: $cols12;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 
     .thumbnail {
+        margin: 6px;
         padding: 0;
 
         &.project {
