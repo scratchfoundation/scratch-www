@@ -7,7 +7,7 @@ module.exports = {
         'and animations.',
 
     // override if mobile-friendly
-    viewportWidth: 942,
+    viewportWidth: 'device-width',
 
     // Open graph
     og_image: 'https://scratch.mit.edu/images/scratch-og.png',
