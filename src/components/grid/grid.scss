@@ -5,70 +5,35 @@
     display: inline-block;
     width: 100%;
 
-    $project-width: 220px;
+    $thumbnail-width: 220px;
+    $thumbnail-inner-width: 204px;
+    
     $project-height: 208px;
-
-    $gallery-width: 200px;
-    $gallery-height: 118px;
+    $gallery-height: 164px;
 
     .flex-row {
         margin: 0 auto;
-        padding: 12px;
+        padding: 12px 0;
         width: $cols12;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
 
     .thumbnail {
-        padding: 0;
+        margin: 7px;
+        border-radius: 4px;
+        box-shadow: 0 0 3px $box-shadow-gray;
+        background-color: $ui-white;
+        padding-bottom: 4px;
+        width: $thumbnail-width;
 
-        &.project {
-            margin-bottom: 16px;
-            border-radius: 4px;
-            box-shadow: 0 0 3px $box-shadow-gray;
-            background-color: $ui-white;
-            width: $project-width;
-            height: $project-height;
-
-            .thumbnail-image {
-                margin: 8px auto;
-                width: 204px;
-                height: 152px;
-
-                img {
-                    margin: 0 auto;
-                    border: 0;
-                    border-radius: 4px;
-                    width: 204px;
-                    height: 152px;
-                }
-            }
-        }
-
-        &.gallery {
-            margin-bottom: 16px;
-            border-radius: 4px;
-            box-shadow: 0 0 3px $box-shadow-gray;
-            background-color: $ui-white;
-            width: $project-width;
-            height: 164px;
-
-            .thumbnail-image {
-                margin: 8px auto;
-                width: 204px;
-                height: 120px;
-
-                img {
-                    border: 0;
-                    border-radius: 4px;
-                    width: 204px;
-                    height: 120px;
-                }
-            }
+        .thumbnail-image {
+            margin: 8px auto;
+            width: $thumbnail-inner-width;
         }
 
         .thumbnail-info {
             margin: 0 auto;
-            width: 204px;
+            width: $thumbnail-inner-width;
 
             .creator-image {
                 float: left;
@@ -87,6 +52,37 @@
 
                 .thumbnail-creator a {
                     color: $type-gray;
+                }
+            }
+        }
+
+        &.project {
+            height: $project-height;
+
+            .thumbnail-image {
+                height: 152px;
+
+                img {
+                    margin: 0 auto;
+                    border: 0;
+                    border-radius: 4px;
+                    width: $thumbnail-inner-width;
+                    height: 152px;
+                }
+            }
+        }
+
+        &.gallery {
+            height: $gallery-height;
+
+            .thumbnail-image {
+                height: 120px;
+
+                img {
+                    border: 0;
+                    border-radius: 4px;
+                    width: $thumbnail-inner-width;
+                    height: 120px;
                 }
             }
         }
