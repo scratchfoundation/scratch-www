@@ -20,6 +20,10 @@
 
         .row {
             margin-left: .5rem;
+
+            .validation-message {
+                transform: translate(14rem, 0);
+            }
         }
     }
 
@@ -102,14 +106,12 @@
     }
 
     &.usescratch-step {
-        .form {
-            .form-group {
-                margin-bottom: 0;
+        .form-group {
+            margin-bottom: 0;
 
-                &.has-error {
-                    .textarea {
-                        border: 1px solid $ui-orange;
-                    }
+            &.has-error {
+                .textarea {
+                    border: 1px solid $ui-orange;
                 }
             }
         }
@@ -185,31 +187,6 @@
         &.organization-step {
             .checkbox-group {
                 text-align: left;
-            }
-        }
-    }
-}
-
-/* IE10 and IE11 fallback */
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    .registration-step {
-        &.username-step,
-        &.demographics-step,
-        &.name-step,
-        &.phone-step,
-        &.organization-step,
-        &.address-step,
-        &.email-step {
-            .validation-message {
-                position: relative;
-                transform: none;
-                margin: inherit;
-                width: 100%;
-                height: inherit;
-
-                &:before {
-                    display: none;
-                }
             }
         }
     }

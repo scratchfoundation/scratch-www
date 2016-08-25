@@ -4,33 +4,181 @@
 $base-bg: $ui-white;
 
 #view {
-    .box {
-        display: block;
-        margin-right: auto;
-        margin-bottom: 20px;
-        margin-left: auto;
+    background-color: $ui-gray;
+    padding: 0;
+}
 
-        .box-content {
+.outer {
+    .title-banner {
+        &.masthead {
+            margin-bottom: 0;
+            background-color: darken($ui-blue, 10%);
             padding: 0;
-        }
-    }   
 
-    #projectBox {
-        border-top: 2px solid;
-        border-color: $active-gray;
+            h1 {
+                text-align: center;
+                color: $ui-white;
+                font-size: 3rem;
+            }
+
+            p {
+                margin: 0;
+                width: $cols6;
+                text-align: left;
+                color: $ui-white;
+
+                a {
+                    border-bottom: 1px solid $ui-white;
+                    color: $ui-white;
+                }
+            }
+        }
+    }
+
+    .search {
+        margin: 0 auto;
+        border-right: 0;
+        width: $cols6;
+        color: $type-white;
+
+        .form {
+            margin: 0;
+        }
+
+        .row {
+            .help-block {
+                display: none;
+            }
+        }
+
+        .input,
+        .button {
+            display: inline-block;
+            margin-top: 5px;
+            outline: none;
+            border: 0;
+            background-color: $active-gray;
+            height: 14px;
+
+            &[type=text] {
+                transition: .15s ease background-color;
+                padding: 0;
+                padding-right: 10px;
+                padding-left: 40px;
+                width: calc(100% - 50px);
+                height: 40px;
+                color: $type-white;
+                font-size: .85em;
+
+                &::placeholder {
+                    $placeholder-transparent: rgba(255, 255, 255, .75);
+                    color: $placeholder-transparent;
+                }
+
+                &:focus {
+                    transition: .15s ease background-color;
+                    background-color: $active-dark-gray;
+                }
+
+                .ie9 & {
+                    width: 70px;
+                }
+            }
+        }
+
+        .btn-search {
+            position: absolute;
+
+            box-shadow: none;
+            background-color: transparent;
+            background-image: url("/images/nav-search-glass.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 14px 14px;
+
+            width: 40px;
+            height: 40px;
+
+            &:hover {
+                box-shadow: none;
+            }
+        }
+    }
+
+    .select {
+        select {
+            margin-bottom: 0;
+            color: $header-gray;
+        }
+
+        .help-block {
+            display: none;
+        }
+    }
+
+    .tab-background {
+        box-shadow: 0 0 1px $box-shadow-gray;
         background-color: $ui-white;
-        padding-bottom: 30px;
         width: 100%;
     }
 
-    .load button {
-        outline: None;
-        border: None;
-        background-color: $ui-white;
-        padding: 0;
+    #projectBox {
+        margin-top: 16px;
+        background-color: $ui-gray;
+        padding-bottom: 32px;
+        width: 100%;
 
-        li {
-            color: $header-gray;
+        .button {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+}
+
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    .outer {
+        .search {
+            width: $cols4;
+
+            .btn-search {
+                left: 40px;
+            }
+        }
+
+        .tabs {
+            width: $cols4;
+        }
+
+        .sort-controls {
+            width: $cols4;
+        }
+    }
+}
+
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .outer {
+        .tabs {
+            width: $cols6;
+        }
+
+        .sort-controls {
+            width: $cols6;
+        }
+    }
+}
+
+// 8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .outer {
+        .tabs {
+            width: $cols8;
+        }
+
+        .sort-controls {
+            width: $cols8;
         }
     }
 }

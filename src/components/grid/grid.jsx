@@ -15,7 +15,8 @@ var Grid = React.createClass({
             showLoves: false,
             showFavorites: false,
             showRemixes: false,
-            showViews: false
+            showViews: false,
+            showAvatar: false
         };
     },
     render: function () {
@@ -36,10 +37,13 @@ var Grid = React.createClass({
                                            showFavorites={this.props.showFavorites}
                                            showRemixes={this.props.showRemixes}
                                            showViews={this.props.showViews}
+                                           showAvatar={this.props.showAvatar}
                                            type={'project'}
                                            href={href}
                                            title={item.title}
                                            src={item.image}
+                                           avatar={'https://cdn2.scratch.mit.edu/get_image/user/'
+                                               + item.author.id + '_32x32.png'}
                                            creator={item.author.username}
                                            loves={item.stats.loves}
                                            favorites={item.stats.favorites}

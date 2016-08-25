@@ -20,18 +20,22 @@ var TeacherFaq = injectIntl(React.createClass({
                         <dl>
                             <dt><FormattedMessage id='teacherfaq.teacherWhatTitle' /></dt>
                             <dd><FormattedHTMLMessage id='teacherfaq.teacherWhatBody' /></dd>
-                            <dt><FormattedMessage id='teacherfaq.teacherQuestionsTitle' /></dt>
-                            <dd><FormattedHTMLMessage id='teacherfaq.teacherQuestionsBody' /></dd>
-                            <dt><FormattedMessage id='teacherfaq.teacherGoogleTitle' /></dt>
-                            <dd><FormattedHTMLMessage id='teacherfaq.teacherGoogleBody' /></dd>
-                            <dt><FormattedMessage id='teacherfaq.teacherEdTitle' /></dt>
-                            <dd><FormattedHTMLMessage id='teacherfaq.teacherEdBody' /></dd>
+                            <iframe width="565" height="318" src="https://www.youtube.com/embed/7Hl9GxA1zwQ"
+                            frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            <dt><FormattedMessage id='teacherfaq.teacherSignUpTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='teacherfaq.teacherSignUpBody' /></dd>
                             <dt><FormattedMessage id='teacherfaq.teacherWaitTitle' /></dt>
                             <dd><FormattedHTMLMessage id='teacherfaq.teacherWaitBody' /></dd>
                             <dt><FormattedMessage id='teacherfaq.teacherPersonalTitle' /></dt>
                             <dd><FormattedHTMLMessage id='teacherfaq.teacherPersonalBody' /></dd>
+                            <dt><FormattedMessage id='teacherfaq.teacherGoogleTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='teacherfaq.teacherGoogleBody' /></dd>
+                            <dt><FormattedMessage id='teacherfaq.teacherEdTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='teacherfaq.teacherEdBody' /></dd>
                             <dt><FormattedMessage id='teacherfaq.teacherMultipleTitle' /></dt>
                             <dd><FormattedHTMLMessage id='teacherfaq.teacherMultipleBody' /></dd>
+                            <dt><FormattedMessage id='teacherfaq.teacherQuestionsTitle' /></dt>
+                            <dd><FormattedHTMLMessage id='teacherfaq.teacherQuestionsBody' /></dd>
                         </dl>
                     </section>
                     <section id="student-accounts">

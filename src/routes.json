@@ -47,32 +47,28 @@
         "pattern": "^/conference/plan/?$",
         "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/plan/plan",
-        "title": "Plan Your Visit",
-        "viewportWidth": "device-width"
+        "title": "Plan Your Visit"
     },
     {
         "name": "conference-expectations",
         "pattern": "^/conference/expect/?$",
         "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/expect/expect",
-        "title": "What to Expect",
-        "viewportWidth": "device-width"
+        "title": "What to Expect"
     },
     {
         "name": "conference-schedule",
         "pattern": "^/conference/schedule/?$",
         "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/schedule/schedule",
-        "title": "Conference Schedule",
-        "viewportWidth": "device-width"
+        "title": "Conference Schedule"
     },
     {
         "name": "conference-details",
         "pattern": "^/conference/:id/details/?$",
         "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/details/details",
-        "title": "Event Details",
-        "viewportWidth": "device-width"
+        "title": "Event Details"
     },
     {
         "name": "developers",
@@ -104,11 +100,10 @@
     },
     {
         "name": "teacherregistration",
-        "pattern": "^/educators/register$",
+        "pattern": "^/educators/register/?$",
         "routeAlias": "/educators(?:/(faq|register|waiting))?/?$",
         "view": "teacherregistration/teacherregistration",
-        "title": "Teacher Registration",
-        "viewportWidth": "device-width"
+        "title": "Teacher Registration"
     },
     {
         "name": "teacherwaitingroom",

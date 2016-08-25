@@ -1,13 +1,15 @@
-var classNames = require('classnames');
-var React = require('react');
-var FormsyMixin = require('formsy-react').Mixin;
-var ReactPhoneInput = require('react-telephone-input/lib/withStyles');
 var allCountries = require('react-telephone-input/lib/country_data').allCountries;
-var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
-var validationHOCFactory = require('./validations.jsx').validationHOCFactory;
-var Row = require('formsy-react-components').Row;
+var classNames = require('classnames');
 var ComponentMixin = require('formsy-react-components').ComponentMixin;
+var FormsyMixin = require('formsy-react').Mixin;
+var React = require('react');
+var ReactPhoneInput = require('react-telephone-input/lib/withStyles');
+var Row = require('formsy-react-components').Row;
+
+var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
 var inputHOC = require('./input-hoc.jsx');
+var intl = require('../../lib/intl.jsx');
+var validationHOCFactory = require('./validations.jsx').validationHOCFactory;
 
 var allIso2 = allCountries.map(function (country) {return country.iso2;});
 
@@ -62,7 +64,7 @@ var PhoneInput = React.createClass({
 });
 
 var phoneValidationHOC = validationHOCFactory({
-    isPhone: 'Please enter a valid phone number'
+    isPhone: <intl.FormattedMessage id="teacherRegistration.validationPhoneNumber" />
 });
 
 module.exports = inputHOC(defaultValidationHOC(phoneValidationHOC(PhoneInput)));

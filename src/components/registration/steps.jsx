@@ -89,36 +89,53 @@ module.exports = {
         onChangeShowPassword: function (field, value) {
             this.setState({showPassword: value});
         },
-        onValidSubmit: function (formData, reset, invalidate) {
-            this.setState({waiting: true});
+        validateUsername: function (username, callback) {
+            callback = callback || function () {};
             api({
                 host: '',
-                uri: '/accounts/check_username/' + formData.user.username + '/'
-            }, function (err, res) {
+                uri: '/accounts/check_username/' + username + '/'
+            }, function (err, body, res) {
                 var formatMessage = this.props.intl.formatMessage;
-                this.setState({waiting: false});
-                if (err) return invalidate({all: err});
-                res = res[0];
-                switch (res.msg) {
+                if (err || res.statusCode !== 200) {
+                    err = err || formatMessage({id: 'general.error'});
+                    this.refs.form.refs.formsy.updateInputsWithError({all: err});
+                    return callback(false);
+                }
+                body = body[0];
+
+                switch (body.msg) {
                 case 'valid username':
                     this.setState({
                         validUsername: 'pass'
                     });
-                    return this.props.onNextStep(formData);
+                    return callback(true);
                 case 'username exists':
-                    return invalidate({
+                    this.refs.form.refs.formsy.updateInputsWithError({
                         'user.username': formatMessage({id: 'registration.validationUsernameExists'})
                     });
+                    return callback(false);
                 case 'bad username':
-                    return invalidate({
+                    this.refs.form.refs.formsy.updateInputsWithError({
                         'user.username': formatMessage({id: 'registration.validationUsernameVulgar'})
                     });
+                    return callback(false);
                 case 'invalid username':
                 default:
-                    return invalidate({
+                    this.refs.form.refs.formsy.updateInputsWithError({
                         'user.username': formatMessage({id: 'registration.validationUsernameInvalid'})
                     });
+                    return callback(false);
                 }
+            }.bind(this));
+        },
+        onUsernameBlur: function (event) {
+            this.validateUsername(event.currentTarget.value);
+        },
+        onValidSubmit: function (formData) {
+            this.setState({waiting: true});
+            this.validateUsername(formData.user.username, function (isValid) {
+                this.setState({waiting: false});
+                if (isValid) return this.props.onNextStep(formData);
             }.bind(this));
         },
         render: function () {
@@ -146,7 +163,7 @@ module.exports = {
                         )}
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.onValidSubmit}>
+                        <Form onValidSubmit={this.onValidSubmit} ref="form">
                             <div>
                                 <div className="username-label">
                                     <b>{formatMessage({id: 'registration.createUsername'})}</b>
@@ -159,6 +176,7 @@ module.exports = {
                                 <Input className={this.state.validUsername}
                                        type="text"
                                        name="user.username"
+                                       onBlur={this.onUsernameBlur}
                                        validations={{
                                            matchRegexp: /^[\w-]*$/,
                                            minLength: 3,
@@ -215,6 +233,7 @@ module.exports = {
     ChoosePasswordStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {
+                username: null,
                 showPassword: false,
                 waiting: false
             };
@@ -246,7 +265,7 @@ module.exports = {
                                    validations={{
                                        minLength: 6,
                                        notEquals: 'password',
-                                       notEqualsField: 'user.username'
+                                       notEqualsUsername: this.props.username
                                    }}
                                    validationErrors={{
                                        minLength: formatMessage({
@@ -255,7 +274,7 @@ module.exports = {
                                        notEquals: formatMessage({
                                            id: 'registration.validationPasswordNotEquals'
                                        }),
-                                       notEqualsField: formatMessage({
+                                       notEqualsUsername: formatMessage({
                                            id: 'registration.validationPasswordNotUsername'
                                        })
                                    }}
@@ -504,14 +523,6 @@ module.exports = {
         onChooseOrganization: function (name, values) {
             this.setState({otherDisabled: values.indexOf(this.organizationL10nStems.indexOf('orgChoiceOther')) === -1});
         },
-        onValidSubmit: function (formData, reset, invalidate) {
-            if (formData.organization.type.length < 1) {
-                return invalidate({
-                    'organization.type': this.props.intl.formatMessage({id: 'teacherRegistration.validationRequired'})
-                });
-            }
-            return this.props.onNextStep(formData);
-        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             return (
@@ -525,7 +536,7 @@ module.exports = {
                                  tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.onValidSubmit}>
+                        <Form onValidSubmit={this.props.onNextStep}>
                             <Input label={formatMessage({id: 'teacherRegistration.organization'})}
                                    type="text"
                                    name="organization.name"
@@ -559,11 +570,19 @@ module.exports = {
                                                value={[]}
                                                options={this.getOrganizationOptions()}
                                                onChange={this.onChooseOrganization}
+                                               validations={{
+                                                   minLength: 1
+                                               }}
+                                               validationErrors={{
+                                                   minLength: formatMessage({
+                                                       id: 'teacherRegistration.validationRequired'
+                                                   })
+                                               }}
                                                required />
                             </div>
                             <div className="other-input">
-                                <Input type="text"
-                                       name="organization.other"
+                                <Input name="organization.other"
+                                       type="text"
                                        validations={{
                                            maxLength: 50
                                        }}
@@ -573,7 +592,8 @@ module.exports = {
                                            })
                                        }}
                                        disabled={this.state.otherDisabled}
-                                       required="isFalse"
+                                       required={!this.state.otherDisabled}
+                                       help={null}
                                        placeholder={formatMessage({id: 'general.other'})} />
                             </div>
                             <div className="url-input">
@@ -595,7 +615,7 @@ module.exports = {
                                        placeholder={'http://'} />
                             </div>
                             <NextStepButton waiting={this.props.waiting}
-                                           text={<intl.FormattedMessage id="registration.nextStep" />} />
+                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />

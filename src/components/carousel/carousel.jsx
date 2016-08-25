@@ -5,6 +5,8 @@ var Slider = require('react-slick');
 
 var Thumbnail = require('../thumbnail/thumbnail.jsx');
 
+var frameless = require('../../lib/frameless.js');
+
 require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
 require('./carousel.scss');
@@ -27,12 +29,29 @@ var Carousel = React.createClass({
     render: function () {
         var settings = this.props.settings || {};
         defaults(settings, {
+            centerMode: false,
             dots: false,
             infinite: false,
             lazyLoad: true,
             slidesToShow: 5,
             slidesToScroll: 5,
-            variableWidth: true
+            variableWidth: true,
+            responsive: [
+                {breakpoint: frameless.mobile, settings: {
+                    arrows: true,
+                    slidesToScroll: 1,
+                    slidesToShow: 1,
+                    centerMode: true
+                }},
+                {breakpoint: frameless.tablet, settings: {
+                    slidesToScroll: 2,
+                    slidesToShow: 2
+                }},
+                {breakpoint: frameless.desktop, settings: {
+                    slidesToScroll: 4,
+                    slidesToShow: 4
+                }}
+            ]
         });
         var arrows = this.props.items.length > settings.slidesToShow;
         var classes = classNames(
