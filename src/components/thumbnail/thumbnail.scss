@@ -90,9 +90,11 @@
         $project-height: 108px;
         width: $project-width;
 
-        img {
-            width: $project-width;
-            height: $project-height;
+        .thumbnail-image {
+            img {
+                width: $project-width;
+                height: $project-height;
+            }
         }
     }
 

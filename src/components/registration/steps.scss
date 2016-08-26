@@ -20,6 +20,10 @@
 
         .row {
             margin-left: .5rem;
+
+            .validation-message {
+                transform: translate(14rem, 0);
+            }
         }
     }
 
@@ -102,14 +106,12 @@
     }
 
     &.usescratch-step {
-        .form {
-            .form-group {
-                margin-bottom: 0;
+        .form-group {
+            margin-bottom: 0;
 
-                &.has-error {
-                    .textarea {
-                        border: 1px solid $ui-orange;
-                    }
+            &.has-error {
+                .textarea {
+                    border: 1px solid $ui-orange;
                 }
             }
         }
