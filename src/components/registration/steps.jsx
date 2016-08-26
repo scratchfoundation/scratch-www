@@ -745,7 +745,7 @@ module.exports = {
                                            id: 'registration.validationMaxLength'
                                        })
                                    }}
-                                   required />
+                                   required={(this.state.countryChoice === 'us')} />
                             <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
                                             text={<intl.FormattedMessage id="registration.nextStep" />} />
