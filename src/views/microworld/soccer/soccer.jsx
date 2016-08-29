@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('react'); // eslint-disable-line
 var render = require('../../../lib/render.jsx');
 var Microworld = require('../../../components/microworld/microworld.jsx');
 var Page = require('../../../components/page/www/page.jsx');
