@@ -16,6 +16,8 @@
 
 @media only screen and (max-width: $tablet - 1){
     .guidelines-footer {
-        display: none;
+        img {
+            display: none;
+        }
     }
 }
