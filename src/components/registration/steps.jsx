@@ -91,7 +91,7 @@ module.exports = {
         },
         validateUsername: function (username, callback) {
             callback = callback || function () {};
-            if (username.length < 1) {
+            if (!username) {
                 this.refs.form.refs.formsy.updateInputsWithError({
                     'user.username': formatMessage({id: 'teacherRegistration.validationRequired'})
                 });
