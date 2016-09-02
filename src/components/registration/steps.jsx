@@ -91,6 +91,13 @@ module.exports = {
         },
         validateUsername: function (username, callback) {
             callback = callback || function () {};
+            if (!username) {
+                this.refs.form.refs.formsy.updateInputsWithError({
+                    'user.username': formatMessage({id: 'teacherRegistration.validationRequired'})
+                });
+                return callback(false);
+            }
+
             api({
                 host: '',
                 uri: '/accounts/check_username/' + username + '/'
