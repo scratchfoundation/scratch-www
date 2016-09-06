@@ -96,17 +96,12 @@ var Credits = React.createClass({
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/default_170x170.png" alt="Ben Avatar" />
-                        <span className="name">Ben Berg</span>
-                    </li>
-
-                    <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/2286560_170x170.png" alt="Carmelo Avatar" />
                         <span className="name">Carmelo Presicce</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/default_170x170.png" alt="Moran Avatar" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/2678986_170x170.png" alt="Moran Avatar" />
                         <span className="name">Moran Tsur</span>
                     </li>
 
@@ -116,13 +111,8 @@ var Credits = React.createClass({
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/default_170x170.png" alt="Shruti Avatar" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/3714374_170x170.png" alt="Shruti Avatar" />
                         <span className="name">Shruti Mohnot</span>
-                    </li>
-
-                    <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/1915915_170x170.png" alt="Hannah Avatar" />
-                        <span className="name">Hannah Cole</span>
                     </li>
                     
                     <li>
@@ -133,6 +123,21 @@ var Credits = React.createClass({
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/2796185_170x170.png" alt="Julia Avatar" />
                         <span className="name">Julia Zimmerman</span>
+                    </li>
+                    
+                    <li>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/246290_170x170.png" alt="Sarah Avatar" />
+                        <span className="name">Sarah Otts</span>
+                    </li>
+                    
+                    <li>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/36977_170x170.png" alt="Connor Avatar" />
+                        <span className="name">Connor Hudson</span>
+                    </li>
+                    
+                    <li>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/17618638_170x170.png" alt="Hanako Avatar" />
+                        <span className="name">Hanako Tjia</span>
                     </li>
                 </ul>
 
@@ -150,18 +155,8 @@ var Credits = React.createClass({
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/246290_170x170.png" alt="Sarah Avatar" />
-                        <span className="name">Sarah Otts</span>
-                    </li>
-
-                    <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/2496866_170x170.png" alt="Jolie Avatar" />
                         <span className="name">Jolie Castellucci</span>
-                    </li>
-
-                    <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/3087865_170x170.png" alt="Andrea Avatar" />
-                        <span className="name">Andrea Saxman</span>
                     </li>
 
                     <li>
@@ -188,6 +183,11 @@ var Credits = React.createClass({
                         <img src="//cdn.scratch.mit.edu/get_image/user/14110644_170x170.png" alt="Lily Avatar" />
                         <span className="name">Lily Kim</span>
                     </li>
+                    
+                    <li>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/13639421_170x170.png" alt="Tauntaun Avatar" />
+                        <span className="name">Tauntaun Kim</span>
+                    </li>
                 </ul>
 
                 <h2>Previous MIT Scratch Team Members</h2>
@@ -198,7 +198,7 @@ var Credits = React.createClass({
                     Amos Blanton, Champika Fernando, Shane Clements, Abdulrahman idlbi, Evelyn Eastmond,
                     Amon Millner, Eric Rosenbaum, Jay Silver, Karen Brennan, Leo Burd, Oren Zuckerman, Gaia Carini,
                     Michelle Chung, Margarita Dekoli, Dave Feinberg, Megan Haddadi, Chris Graves, Tony Hwang, Di Liu,
-                    Tammy Stern, Lis Sylvan, and Claudia Urrea.
+                    Tammy Stern, Lis Sylvan, Claudia Urrea, Ben Berg, Hannah Cole, and Andrea Saxman.
                 </p>
 
                 <h2>Design and Development Partners</h2>
