@@ -1,4 +1,5 @@
 @import "../../colors";
+@import "../../frameless";
 
 .guidelines {
     .guidelines-footer {
@@ -9,6 +10,14 @@
     dl {
         dt {
             margin-top: 1.5rem;
+        }
+    }
+}
+
+@media only screen and (max-width: $tablet - 1){
+    .guidelines-footer {
+        img {
+            display: none;
         }
     }
 }
