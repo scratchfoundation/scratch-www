@@ -3,7 +3,6 @@ var defaults = require('lodash.defaults');
 
 var api = require('../lib/api');
 var permissionsActions = require('./permissions.js');
-var tokenActions = require('./token.js');
 
 var Types = keyMirror({
     SET_SESSION: null,
@@ -86,7 +85,6 @@ module.exports.refreshSession = function () {
                     window.location.pathname !== '/classes/student_password_reset/') {
                 return window.location = '/classes/student_password_reset/';
             } else {
-                dispatch(tokenActions.getToken());
                 dispatch(module.exports.setSession(body));
                 dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
 
