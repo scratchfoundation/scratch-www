@@ -1,7 +1,7 @@
 ESLINT=./node_modules/.bin/eslint
 NODE=node
 SASSLINT=./node_modules/.bin/sass-lint -v
-S3CMD=s3cmd sync -P --delete-removed --add-header=Cache-Control:public,max-age=86400
+S3CMD=s3cmd sync -P --delete-removed --add-header=Cache-Control:public,max-age=3600
 TAP=./node_modules/.bin/tap
 WATCH=./node_modules/.bin/watch
 WEBPACK=./node_modules/.bin/webpack
