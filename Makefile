@@ -1,7 +1,7 @@
 ESLINT=./node_modules/.bin/eslint
 NODE=node
 SASSLINT=./node_modules/.bin/sass-lint -v
-S3CMD=s3cmd
+S3CMD=s3cmd sync -P --delete-removed --add-header=Cache-Control:public,max-age=3600
 TAP=./node_modules/.bin/tap
 WATCH=./node_modules/.bin/watch
 WEBPACK=./node_modules/.bin/webpack
@@ -31,9 +31,9 @@ webpack:
 	$(WEBPACK) --bail
 
 sync-s3:
-	$(S3CMD) sync -P --delete-removed --exclude '.DS_Store' --exclude '*.svg' --exclude '*.js' ./build/ s3://$(S3_BUCKET_NAME)/
-	$(S3CMD) sync -P --delete-removed --exclude '*' --include '*.svg' --mime-type 'image/svg+xml' ./build/ s3://$(S3_BUCKET_NAME)/
-	$(S3CMD) sync -P --delete-removed --exclude '*' --include '*.js' --mime-type 'application/javascript' ./build/ s3://$(S3_BUCKET_NAME)/	
+	$(S3CMD) --exclude '.DS_Store' --exclude '*.svg' --exclude '*.js' ./build/ s3://$(S3_BUCKET_NAME)/
+	$(S3CMD) --exclude '*' --include '*.svg' --mime-type 'image/svg+xml' ./build/ s3://$(S3_BUCKET_NAME)/
+	$(S3CMD) --exclude '*' --include '*.js' --mime-type 'application/javascript' ./build/ s3://$(S3_BUCKET_NAME)/
 
 sync-fastly:
 	$(NODE) ./bin/configure-fastly.js
