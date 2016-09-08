@@ -89,7 +89,7 @@ module.exports.refreshSession = function () {
                 dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
 
                 // get the permissions from the updated session
-                dispatch(permissionsActions.getPermissions());
+                dispatch(permissionsActions.storePermissions(body.permissions));
                 return;
             }
         });
