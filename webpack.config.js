@@ -102,13 +102,16 @@ module.exports = {
     },
     plugins: [
         new VersionPlugin({length: 5})
-    ].concat(routes.map(function (route) {
-        return new HtmlWebpackPlugin(defaults({}, require('./src/template-config.js'), {
-            title: route.title,
-            filename: route.name + '.html',
-            route: route
-        }));
-    })).concat([
+    ].concat(routes
+        .filter(function (route) {return !route.redirect;})
+        .map(function (route) {
+            return new HtmlWebpackPlugin(defaults({}, require('./src/template-config.js'), {
+                title: route.title,
+                filename: route.name + '.html',
+                route: route
+            }));
+        })
+    ).concat([
         new CopyWebpackPlugin([
             {from: 'static'},
             {from: 'intl', to: 'js'}
