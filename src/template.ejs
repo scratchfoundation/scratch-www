@@ -6,25 +6,25 @@
         <meta charset="UTF-8" />
 
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=<%= htmlWebpackPlugin.options.config.viewportWidth %>, initial-scale=1">
+        <meta name="viewport" content="width=<%= htmlWebpackPlugin.options.viewportWidth %>, initial-scale=1">
 
-        <title>Scratch - <%= htmlWebpackPlugin.options.config.title %></title>
+        <title>Scratch - <%= htmlWebpackPlugin.options.title %></title>
 
         <!-- Prevent mobile Safari from making phone numbers -->
         <meta name="format-detection" content="telephone=no">
 
         <!-- Search & Open Graph-->
-        <meta name="description" content="<%= htmlWebpackPlugin.options.config.description %>" />
+        <meta name="description" content="<%= htmlWebpackPlugin.options.description %>" />
         <meta name="google-site-verification" content="m_3TAXDreGTFyoYnEmU9mcKB4Xtw5mw6yRkuJtXRKxM" />
 
         <meta property="og:url" content="https://scratch.mit.edu/" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Scratch - <%= htmlWebpackPlugin.options.config.title %>" />
-        <meta property="og:description" content="<%= htmlWebpackPlugin.options.config.description %>" />
-        <meta property="og:image" content="<%- htmlWebpackPlugin.options.config.og_image %>" />
-        <meta property="og:image:type" content="<%- htmlWebpackPlugin.options.config.og_image_type %>" />
-        <meta property="og:image:width" content="<%- htmlWebpackPlugin.options.config.og_image_width %>" />
-        <meta property="og:image:height" content="<%- htmlWebpackPlugin.options.config.og_image_height %>" />
+        <meta property="og:title" content="Scratch - <%= htmlWebpackPlugin.options.title %>" />
+        <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>" />
+        <meta property="og:image" content="<%- htmlWebpackPlugin.options.og_image %>" />
+        <meta property="og:image:type" content="<%- htmlWebpackPlugin.options.og_image_type %>" />
+        <meta property="og:image:width" content="<%- htmlWebpackPlugin.options.og_image_width %>" />
+        <meta property="og:image:height" content="<%- htmlWebpackPlugin.options.og_image_height %>" />
 
         <!-- Favicon & CSS normalize -->
         <link rel="shortcut icon" href="/favicon.ico" />
@@ -35,15 +35,17 @@
 
         <!-- Analytics (GA) -->
         <script>
+            /* eslint-disable */
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-            ga('create', '<%- htmlWebpackPlugin.options.config.ga_tracker %>', {
+            ga('create', '<%- htmlWebpackPlugin.options.ga_tracker %>', {
                 'sampleRate': 10
             });
             ga('send', 'pageview');
+            /* eslint-enable */
         </script>
     </head>
 
@@ -65,7 +67,7 @@
                     loc = loc.split('-')[0];
                 }
                 if (typeof window._messages[loc] !== 'undefined') {
-                    var localizedTitle = window._messages[loc]['general.' + '<%= htmlWebpackPlugin.options.config.title %>'.toLowerCase()] || '';
+                    var localizedTitle = window._messages[loc]['general.' + '<%= htmlWebpackPlugin.options.title %>'.toLowerCase()] || '';
                     if (localizedTitle.length > 0) {
                         document.title = 'Scratch - ' + localizedTitle;
                     }

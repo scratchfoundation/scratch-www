@@ -1,5 +1,6 @@
 var autoprefixer = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var defaults = require('lodash.defaults');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var gitsha = require('git-bundle-sha');
 var path = require('path');
@@ -102,14 +103,11 @@ module.exports = {
     plugins: [
         new VersionPlugin({length: 5})
     ].concat(routes.map(function (route) {
-        return new HtmlWebpackPlugin({
+        return new HtmlWebpackPlugin(defaults({}, require('./src/template-config.js'), {
             title: route.title,
             filename: route.name + '.html',
-            template: './src/template.html',
-            route: route,
-            config: require('./src/template-config.js'),
-            inject: false
-        });
+            route: route
+        }));
     })).concat([
         new CopyWebpackPlugin([
             {from: 'static'},
