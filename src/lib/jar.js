@@ -1,4 +1,5 @@
 var cookie = require('cookie');
+var defaults = require('lodash.defaults');
 var xhr = require('xhr');
 var pako = require('pako');
 
@@ -69,11 +70,13 @@ var Jar = {
             });
         });
     },
-    set: function (name, value) {
-        var obj = cookie.serialize(name, value);
-        var expires = '; expires=' + new Date(new Date().setYear(new Date().getFullYear() + 1)).toUTCString();
-        var path = '; path=/';
-        document.cookie = obj + expires + path;
+    set: function (name, value, opts) {
+        defaults(opts, {
+            expires: new Date(new Date().setYear(new Date().getFullYear() + 1)),
+            path: '/'
+        });
+        var obj = cookie.serialize(name, value, opts);
+        document.cookie = obj;
     },
     getUnsignedValue: function (cookieName, signedValue, callback) {
         // Get a value from a signed object
