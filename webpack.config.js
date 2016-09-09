@@ -1,7 +1,8 @@
 var autoprefixer = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var defaults = require('lodash.defaults');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var gitsha = require('git-bundle-sha');
-var MustacheRendererPlugin = require('./mustache-renderer-webpack-plugin');
 var path = require('path');
 var webpack = require('webpack');
 
@@ -100,12 +101,17 @@ module.exports = {
         fs: 'empty'
     },
     plugins: [
-        new VersionPlugin({length: 5}),
-        new MustacheRendererPlugin({
-            templatePath: path.resolve(__dirname, './src/template.html'),
-            routes: routes,
-            config: require('./src/template-config.js')
-        }),
+        new VersionPlugin({length: 5})
+    ].concat(routes
+        .filter(function (route) {return !route.redirect;})
+        .map(function (route) {
+            return new HtmlWebpackPlugin(defaults({}, require('./src/template-config.js'), {
+                title: route.title,
+                filename: route.name + '.html',
+                route: route
+            }));
+        })
+    ).concat([
         new CopyWebpackPlugin([
             {from: 'static'},
             {from: 'intl', to: 'js'}
@@ -124,5 +130,5 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin('common', 'js/common.bundle.js'),
         new webpack.optimize.OccurenceOrderPlugin()
-    ]
+    ])
 };

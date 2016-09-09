@@ -26,7 +26,6 @@
     "express": "4.13.4",
     "express-http-proxy": "0.6.0",
     "lodash.defaults": "4.0.1",
-    "mustache": "2.2.1",
     "newrelic": "1.25.4",
     "raven": "0.10.0"
   },
@@ -53,6 +52,7 @@
     "git-bundle-sha": "0.0.2",
     "glob": "5.0.15",
     "google-libphonenumber": "1.0.21",
+    "html-webpack-plugin": "2.22.0",
     "iso-3166-2": "0.4.0",
     "json-loader": "0.5.2",
     "json2po-stream": "1.0.3",
