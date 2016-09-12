@@ -40,7 +40,7 @@ var Microworld = React.createClass({
 
         return (
             <div className="videos-section section">
-                <h1>Get Inspired...</h1>
+                <h1 className="sectionheader">Get Inspired...</h1>
                 <div className="videos-container">
                     <div className="videos">
                         {videos.map(this.renderVideo)}
@@ -81,10 +81,7 @@ var Microworld = React.createClass({
         }
         return (
             <div className="editor section">
-                <h1>Start Creating!</h1>
-                <a href={'//scratch.mit.edu/projects/'+ projectId +'/#editor'}>
-                  <img className="scratch-link" src="/images/scratch-og.png"></img>
-                </a>
+                <h1 className="sectionheader">Start Creating!</h1>
                 <iframe src={'//scratch.mit.edu/projects/embed-editor/' + projectId + '/?isMicroworld=true'}
                         frameBorder="0"> </iframe>
                 {this.renderTips()}
@@ -115,7 +112,7 @@ var Microworld = React.createClass({
 
         return (
             <div className="project-ideas">
-                <h1>Check out ideas for more projects</h1>
+                <h1 className="sectionheader">Check out ideas for more projects</h1>
                 <Box
                     title="More Starter Projects"
                     key="starter_projects">
@@ -156,8 +153,8 @@ var Microworld = React.createClass({
             return null;
         }
         return (
-            <div className="project-ideas">
-                <h1>Get inspiration from other projects</h1>
+            <div className="project-ideas section">
+                <h1 className="sectionheader">Get inspiration from other projects</h1>
                 {rows}
             </div>
         );
@@ -169,7 +166,7 @@ var Microworld = React.createClass({
 
         return (
         <div className="forum">
-            <h1>Chat with others!</h1>
+            <h1 className="sectionheader">Chat with others!</h1>
             <img src="/images/forum-image.png"/>
         </div>
         );
@@ -185,7 +182,7 @@ var Microworld = React.createClass({
         if (designChallenge.project_id) {
             return (
                 <div className="side-by-side section">
-                    <h1>Join our Design Challenge!</h1>
+                    <h1 className="sectionheader">Join our Design Challenge!</h1>
                     <div className="design-studio">
                         <iframe src={'https://scratch.mit.edu/projects/' + designChallenge.project_id +
                                      '/#fullscreen'} frameBorder="0"> </iframe>
@@ -208,7 +205,7 @@ var Microworld = React.createClass({
         } else {
             return (
                 <div className="section">
-                    <h1>Join our Design Challenge!</h1>
+                    <h1 className="sectionheader">Join our Design Challenge!</h1>
                     <Box
                         title="design Challenge Projects"
                         key="scratch_design_studio"
@@ -225,7 +222,7 @@ var Microworld = React.createClass({
         return (
             <div className="inner microworld">
                 <div className="top-banner section">
-                    <h1>{this.props.microworldData.title}</h1>
+                    <h1 className="sectionheader">{this.props.microworldData.title}</h1>
                     <p>{this.props.microworldData.description.join(' ')}</p>
                 </div>
                 {this.renderVideos()}

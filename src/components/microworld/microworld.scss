@@ -9,6 +9,13 @@ $base-bg: $ui-white;
 }
 
 .microworld {
+    .sectionheader {
+        margin: 0 auto;
+        padding: 5px 10%;
+        text-align: center;
+        color: $type-gray;
+    }
+
     .top-banner, 
     .videos-section,
     .section {
@@ -140,6 +147,10 @@ $base-bg: $ui-white;
 
             .design-studio-projects {
                 float: right;
+
+                .box {
+                    width: 100%;
+                }
             }
 
             .design-studio {

@@ -110,17 +110,6 @@
          ]
       }
    ],
-   "_commentedout_starter_projects":[
-      {
-         "title":"Architecture Stamps Starter Project",
-         "type":"project",
-         "remixers_count":168,
-         "love_count":3062,
-         "thumbnail_url":"//cdn.scratch.mit.edu/static/site/projects/thumbnails/2445/6318.png",
-         "creator":"CSFirst",
-         "id":24456318
-      }
-   ],
    "community_projects":{
       "featured_projects":[
          {
@@ -353,7 +342,6 @@
       ]
    },
    "design_challenge":{
-      "_commentedout_project_id":"89144801",
       "studio_id":"1065372",
       "studio1":[
          {
