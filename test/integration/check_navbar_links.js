@@ -7,6 +7,9 @@
 var tap=require('tap'),  
     seleniumWebdriver = require('selenium-webdriver');
 
+/*
+ * Remove question comments after resolving them
+ */
 //how to generalize for other browsers... how will this work in saucelabs? Do I need to iterate through the drivers for each browser here?
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
@@ -14,7 +17,7 @@ var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.
 driver.get('https://scratch.ly')
 
 /*
- * Remove later after resolving these questions
+ * Remove question comments after resolving them
  */
 //find the navbar
 //var navbarElement = driver.findElement(seleniumWebdriver.By.id("navigation"))
@@ -23,6 +26,9 @@ driver.get('https://scratch.ly')
 //find the create link within the navbar
 //the create link depends on whether the user is signed in or not (tips window opens)
 
+/*
+ * Remove question comments after resolving them
+ */
 //this xpath is fragile, can i look up by successive attributes instead?
 tap.test('checkCreateLinkWhenSignedOut', function (t) {
 	var createLinkSignedOut = driver.findElement(seleniumWebdriver.By.xpath('//div[@id="navigation"]/div[@class="inner"]/ul/li[@class="link create"]/a'));
