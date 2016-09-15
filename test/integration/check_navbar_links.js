@@ -4,13 +4,13 @@
  * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows#Create_should_take_you_to_the_editor
  */
 
-var tap=require('tap'),
-    seleniumWebdriver = require('selenium-webdriver');
+var tap=require('tap');
+var seleniumWebdriver = require('selenium-webdriver');
 
 /*
  * Remove question comments after resolving them
  */
-//how to generalize for other browsers... how will this work in saucelabs? Do I need to iterate 
+//how to generalize for other browsers... how will this work in saucelabs? Do I need to iterate
 //through the drivers for each browser here?
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
@@ -33,7 +33,8 @@ driver.get('https://scratch.ly');
  */
 //this xpath is fragile, can i look up by successive attributes instead?
 tap.test('checkCreateLinkWhenSignedOut', function (t) {
-    var createLinkSignedOut = driver.findElement(seleniumWebdriver.By.xpath('//div[@id="navigation"]/div[@class="inner"]/ul/li[@class="link create"]/a'));
+	var xPathLink = '//div[@id="navigation"]/div[@class="inner"]/ul/li[@class="link create"]/a';
+    var createLinkSignedOut = driver.findElement(seleniumWebdriver.By.xpath(xPathLink));
     createLinkSignedOut.getAttribute('href').then( function (href) {
         t.equal('https://scratch.ly/projects/editor/?tip_bar=home', href);
         t.end();
