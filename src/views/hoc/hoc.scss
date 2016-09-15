@@ -8,6 +8,85 @@ $base-bg: $ui-white;
 }
 
 .hoc {
+    .img,
+    .button {
+        &.card-info {
+            width: calc(100% - 20px);
+        }
+    }
+
+    .img {
+        &.card-info {
+            margin: 10px 10px 5px 10px;
+            border-radius: 5px;
+        }
+
+        &.mod-border {
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        &.mod-resource,
+        &.mod-studio {
+            margin-right: 15px;
+        }
+
+        &.mod-studio {
+            float: left;
+        }
+
+        &.mod-logo {
+            margin: 20px;
+            max-width: 150px;
+            max-height: 55px;
+            vertical-align: middle;
+        }
+    }
+
+    .button {
+        &.card-info {
+            margin: 0 10px 10px 10px;
+        }
+    }
+
+    .section {
+        display: flex;
+        margin: 0 auto;
+        border-bottom: 1px solid $ui-border;
+        padding: 50px 0;
+        width: 95%;
+        text-align: center;
+
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        &.title-banner-section {
+            border: 0;
+            padding: 10px 0;
+            max-width: $desktop;
+        }
+    }
+
+    .section-column {
+        width: 100%;
+
+        &.mod-split {
+            min-width: 200px;
+            max-width: 40%;
+            text-align: left;
+        }
+    }
+
+    .section-paragraph {
+        margin: 10px auto 20px;
+        max-width: 600px;
+    }
+
     .title-banner {
         &.wbb-bg {
             background-image: url("/images/hoc2015/hide-bg.jpg");
@@ -20,109 +99,24 @@ $base-bg: $ui-white;
         &.name-bg {
             background-image: url("/images/hoc2015/name-bg.jpg");
         }
-
-        section {
-            border: 0;
-            padding: 10px 0;
-            max-width: $desktop;
-
-            .card-deck {
-                padding: 0 20px;
-            }
-
-            //6 columns
-            @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-                max-width: $mobile;
-            }
-        }
     }
 
-    .flex-row {
-        .card {
-            margin: 10px;
-            border-radius: 7px;
-            background-color: $active-gray;
-            padding: 2px;
+    .flex-row-card {
+        margin: 10px;
+        border-radius: 7px;
+        background-color: $active-gray;
+        padding: 2px;
 
-            width: 30%;
-            min-width: 200px;
-            max-width: 230px;
-
-            .card-info {
-                border-radius: 5px;
-                background-color: $base-bg;
-                width: 100%;
-                height: 100%;
-
-
-                button,
-                img {
-                    width: calc(100% - 20px);
-                }
-
-                img {
-                    margin: 10px 10px 5px 10px;
-                    border-radius: 5px;
-                }
-
-                button {
-                    margin: 0 10px 10px 10px;
-                }
-            }
-
-            //8 columns
-            @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-                margin: 2px;
-                min-width: 175px;
-
-                button {
-                    font-size: .7em;
-                }
-            }
-
-        }
+        width: 30%;
+        min-width: 200px;
+        max-width: 230px;
     }
 
-    section {
-        display: flex;
-        margin: 0 auto;
-        border-bottom: 1px solid $ui-border;
-        padding: 50px 0;
-        width: 95%;
-
-        justify-content: center;
-        flex-wrap: wrap;
-        align-items: center;
-
-        p {
-            margin: 10px auto 20px;
-            max-width: 600px;
-        }
-
-        &:last-child {
-            border-bottom: 0;
-        }
-
-        &.one-up {
-            text-align: center;
-
-            .column {
-                width: 100%;
-            }
-        }
-
-        &.two-up {
-            .column {
-                min-width: 200px;
-                max-width: 40%;
-                text-align: left;
-
-                img {
-                    border-radius: 5px;
-                    width: 100%;
-                }
-            }
-        }
+    .flex-row-card-info {
+        border-radius: 5px;
+        background-color: $base-bg;
+        width: 100%;
+        height: 100%;
     }
 
     .resource,
@@ -134,97 +128,104 @@ $base-bg: $ui-white;
         text-align: left;
         justify-content: center;
         align-items: center;
-
-        img {
-            margin-right: 15px;
-        }
-
-        a {
-            h5 {
-                margin: 8px 0;
-                color: $ui-blue;
-                font-weight: 500;
-
-                &:hover {
-                    color: darken($ui-blue, 15);
-                }
-            }
-        }
-
-        //8 columns
-        @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-            display: block;
-            width: 30%;
-            min-width: 180px;
-            text-align: center;
-
-            img {
-                margin: 0 auto;
-            }
-        }
     }
 
     .resource {
         width: 33%;
+    }
 
-        a {
-            display: block;
-            margin: 5px 0;
-            font-size: .8em;
-        }
+    .resource-anchor {
+        display: block;
+        margin: 5px 0;
+        font-size: .8em;
+    }
 
-        .resource-info {
-            h5 {
-                margin: 0;
-                line-height: inherit;
-            }
-        }
+    .resource-info-header {
+        margin: 0;
+        line-height: inherit;
     }
 
     .studio {
         width: 50%;
+    }
 
-        h5 {
-            width: 200px;
-        }
+    .studio-info-header {
+        margin: 8px 0;
+        width: 200px;
+        color: $ui-blue;
+        font-weight: 500;
 
-        img {
-            float: left;
-        }
-
-        @media only screen and (max-width: $mobile - 1) {
-            display: inline-block;
-        }
-
-        @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-            display: inline-block;
-        }
-
-        //8 columns
-        @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-            h5 {
-                width: 100%;
-            }
-
-            img {
-                float: none;
-            }
+        &:hover {
+            color: darken($ui-blue, 15);
         }
     }
 
     .logos {
         margin: 20px 0;
         width: 100%;
-
-        img {
-            margin: 20px;
-            max-width: 150px;
-            max-height: 55px;
-            vertical-align: middle;
-        }
     }
 
     .trademark {
         margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: $mobile - 1) {
+    .hoc {
+        .studio {
+            display: inline-block;
+        }
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .hoc {
+        .title-banner-section {
+            max-width: $mobile;
+        }
+
+        .studio {
+            display: inline-block;
+        }
+    }
+}
+
+//8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .hoc {
+        .img {
+            &.mod-resource,
+            &.mod-studio {
+                margin: 0 auto;
+            }
+
+            &.mod-studio {
+                float: none;
+            }
+        }
+
+        .button {
+            &.card-info {
+                font-size: .7em;
+            }
+        }
+
+        .flex-row-card {
+            margin: 2px;
+            min-width: 175px;
+        }
+
+        .resource,
+        .studio {
+            display: block;
+            width: 30%;
+            min-width: 180px;
+            text-align: center;
+        }
+
+        .studio-info-header {
+            width: 100%;
+        }
     }
 }
