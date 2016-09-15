@@ -179,7 +179,8 @@ var Hoc = React.createClass({
                                     <a href="/bearstack/">
                                         <div className="flex-row-card-info">
                                             <img className="img card-info"
-                                                 src="/images/hoc/bearstack-tutorial.jpg" alt="" />
+                                                 src="/images/hoc/bearstack-tutorial.jpg"
+                                                 alt="" />
                                             <Button>
                                                 <FormattedMessage id='hoc.tipsBearstack' />
                                             </Button>
@@ -191,7 +192,8 @@ var Hoc = React.createClass({
                                     <a href="/hoops">
                                         <div className="flex-row-card-info">
                                             <img className="img card-info"
-                                                 src="/images/hoc/bball-tutorial.jpg" alt="" />
+                                                 src="/images/hoc/bball-tutorial.jpg"
+                                                 alt="" />
                                             <Button>
                                                 <FormattedMessage id='hoc.tipsBBallHoops' />
                                             </Button>
@@ -279,27 +281,33 @@ var Hoc = React.createClass({
                         <div className="logos">
                             <a href="http://scratched.gse.harvard.edu/">
                                 <img className="img mod-logo"
-                                     src="/images/hoc/scratchEd-logo.png" alt="ScratchEd" />
+                                     src="/images/hoc/scratchEd-logo.png"
+                                     alt="ScratchEd" />
                             </a>
                             <a href="https://code.org/">
                                 <img className="img mod-logo"
-                                     src="/images/hoc/code-org-logo.png" alt="code.org" />
+                                     src="/images/hoc/code-org-logo.png"
+                                     alt="code.org" />
                             </a>
                             <a href="http://www.cartoonnetwork.com/">
                                 <img className="img mod-logo"
-                                     src="/images/hoc/cn-logo.png" alt="Cartoon Network" />
+                                     src="/images/hoc/cn-logo.png"
+                                     alt="Cartoon Network" />
                             </a>
                             <a href="http://www.madewithcode.com/">
                                 <img className="img mod-logo"
-                                     src="/images/hoc/made-with-code-logo.png" alt="Made with Code" />
+                                     src="/images/hoc/made-with-code-logo.png"
+                                     alt="Made with Code" />
                             </a>
                             <a href="http://www.paalive.org/">
                                 <img className="img mod-logo"
-                                     src="/images/hoc/paa-logo.png" alt="Progressive Arts Alliance" />
+                                     src="/images/hoc/paa-logo.png"
+                                     alt="Progressive Arts Alliance" />
                             </a>
                             <a href="http://www.catrobat.org/">
                                 <img className="img mod-logo"
-                                     src="/images/hoc/pocketcode-logo.png" alt="Pocket Code" />
+                                     src="/images/hoc/pocketcode-logo.png"
+                                     alt="Pocket Code" />
                             </a>
                         </div>
 
