@@ -134,6 +134,34 @@ var Hoc = React.createClass({
                                     </a>
                                 </div>
                             </div>
+                            <div className="hoc-section-resource">
+                                <img className="hoc-section-resource-img"
+                                     src="/svgs/tips-card.svg"
+                                     alt="" />
+                                <div className="hoc-section-resource-info">
+                                    <h5 className="hoc-section-resource-info-header">
+                                        <FormattedMessage id='hoc.tipsMakeItFlyTitle' />
+                                    </h5>
+                                    <a className="hoc-section-resource-anchor"
+                                       href="/scratchr2/static/pdfs/help/FlyCards.pdf">
+                                        <FormattedMessage id='hoc.activityCards' />
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="hoc-section-resource">
+                                <img className="hoc-section-resource-img"
+                                     src="/svgs/tips-card.svg"
+                                     alt="" />
+                                <div className="hoc-section-resource-info">
+                                    <h5 className="hoc-section-resource-info-header">
+                                        <FormattedMessage id='hoc.tipsMakeMusicTitle' />
+                                    </h5>
+                                    <a className="hoc-section-resource-anchor"
+                                       href="/scratchr2/static/pdfs/help/MusicCards.pdf">
+                                        <FormattedMessage id='hoc.activityCards' />
+                                    </a>
+                                </div>
+                            </div>
                         </section>
 
                         <section className="hoc-section">
