@@ -7,36 +7,40 @@
 var tap=require('tap');
 var seleniumWebdriver = require('selenium-webdriver');
 
-/*
- * Remove question comments after resolving them
- */
-//how to generalize for other browsers... how will this work in saucelabs? Do I need to iterate
-//through the drivers for each browser here?
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 //open scratch.ly in a new instance of the browser
 driver.get('https://scratch.ly');
 
-/*
- * Remove question comments after resolving them
- */
-//find the navbar
-//var navbarElement = driver.findElement(seleniumWebdriver.By.id("navigation"))
-//var createLinkSignedOut = navbarElement.findElement(seleniumWebdriver.By.xpath('//li[@class="link create"]/a'))
-//^^this doesn't work to force findElement to look in the scope of navbarElement
+//return only the part of the URL that is in the href in the page's html,
+//and the index that the href was found at
+function getHrefFromUrl(url, expectedHref) {
+	var hrefOnly = "";
+	var hrefIndex = url.lastIndexOf(expectedHref);
+	if (hrefIndex != -1) {
+        var hrefOnly = url.substr(hrefIndex);
+	};
+    return {hrefIndex: hrefIndex,
+            hrefOnly: hrefOnly};
+};
 
 //find the create link within the navbar
 //the create link depends on whether the user is signed in or not (tips window opens)
-
-/*
- * Remove question comments after resolving them
- */
-//this xpath is fragile, can i look up by successive attributes instead?
 tap.test('checkCreateLinkWhenSignedOut', function (t) {
-    var xPathLink = '//div[@id="navigation"]/div[@class="inner"]/ul/li[@class="link create"]/a';
+    var xPathLink = '//li[contains(@class, "link") and contains(@class, "create")]/a';
     var createLinkSignedOut = driver.findElement(seleniumWebdriver.By.xpath(xPathLink));
-    createLinkSignedOut.getAttribute('href').then( function (href) {
-        t.equal('https://scratch.ly/projects/editor/?tip_bar=home', href);
+    createLinkSignedOut.getAttribute('href').then( function (url) {
+    	//expected value of the href
+    	var expectedHref = '/projects/editor/?tip_bar=home';
+    	var hrefInfo = getHrefFromUrl(url, expectedHref);
+    	var hrefIndex = hrefInfo.hrefIndex;
+    	var hrefOnly = hrefInfo.hrefOnly;
+    	//the create href should match `/projects/editor/?tip_bar=home`
+        t.equal(expectedHref, hrefOnly);
+        //the create href should be at the end of the URL
+        var urlLength = url.length;
+        var urlLengthFromHrefInfo = hrefOnly.length + hrefIndex;
+        t.equal(urlLengthFromHrefInfo, urlLength)
         t.end();
     });
 });
