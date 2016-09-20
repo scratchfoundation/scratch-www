@@ -20,12 +20,28 @@ module.exports.permissionsReducer = function (state, action) {
     }
 };
 
+module.exports.storePermissions = function (permissions) {
+    permissions = permissions || {};
+    return function (dispatch) {
+        jar.set('permissions', permissions, {
+            encode: function (value) {
+                return encodeURIComponent(JSON.stringify(value));
+            }
+        });
+        return dispatch(module.exports.setPermissions(permissions));
+    };
+};
+
 module.exports.getPermissions = function () {
     return function (dispatch) {
-        jar.getUnsignedValue('scratchsessionsid', 'permissions', function (err, value) {
+        jar.get('permissions', function (err, value) {
             if (err) return dispatch(module.exports.setPermissionsError(err));
 
-            value = value || {};
+            try {
+                value = JSON.parse(decodeURIComponent(value)) || {};
+            } catch (e) {
+                value = {};
+            }
             return dispatch(module.exports.setPermissions(value));
         });
     };
