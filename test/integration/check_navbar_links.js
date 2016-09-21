@@ -23,7 +23,6 @@ tap.test('checkCreateLinkWhenSignedOut', function (t) {
         //the create href should match `/projects/editor/?tip_bar=home`
         //the create href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
-        console.log(url.substr(-expectedHref.length));
         t.end();
     });
 });
