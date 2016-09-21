@@ -7,224 +7,207 @@ $base-bg: $ui-white;
     padding: 0;
 }
 
-.hoc {
-    .title-banner {
-        &.wbb-bg {
-            background-image: url("/images/hoc2015/hide-bg.jpg");
-        }
+.hoc-section {
+    display: flex;
+    margin: 0 auto;
+    border-bottom: 1px solid $ui-border;
+    padding: 50px 0;
+    width: 95%;
+    text-align: center;
 
-        &.dance-bg {
-            background-image: url("/images/hoc2015/dance-bg.jpg");
-        }
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
 
-        &.name-bg {
-            background-image: url("/images/hoc2015/name-bg.jpg");
-        }
+.hoc-section:last-child {
+    border-bottom: 0;
+}
 
-        section {
-            border: 0;
-            padding: 10px 0;
-            max-width: $desktop;
+.hoc-section.mod-title-banner {
+    border: 0;
+    padding: 10px 0;
+    max-width: $desktop;
+}
 
-            .card-deck {
-                padding: 0 20px;
-            }
+.hoc-section-column {
+    width: 100%;
+}
 
-            //6 columns
-            @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-                max-width: $mobile;
-            }
-        }
+.hoc-section-column.mod-split {
+    min-width: 200px;
+    max-width: 40%;
+    text-align: left;
+}
+
+.hoc-section-column-img {
+    border-radius: 5px;
+    width: 100%;
+}
+
+.hoc-section-paragraph {
+    margin: 10px auto 20px;
+    max-width: 600px;
+}
+
+.title-banner.mod-wbb-bg {
+    background-image: url("/images/hoc2015/hide-bg.jpg");
+}
+
+.title-banner.mod-dance-bg {
+    background-image: url("/images/hoc2015/dance-bg.jpg");
+}
+
+.title-banner.mod-name-bg {
+    background-image: url("/images/hoc2015/name-bg.jpg");
+}
+
+.flex-row-card {
+    margin: 10px;
+    border-radius: 7px;
+    background-color: $active-gray;
+    padding: 2px;
+
+    width: 30%;
+    min-width: 200px;
+    max-width: 230px;
+}
+
+.flex-row-card-info {
+    border-radius: 5px;
+    background-color: $base-bg;
+    width: 100%;
+    height: 100%;
+}
+
+.flex-row-card-info-img,
+.button.flex-row-card-info-button {
+    width: calc(100% - 20px);
+}
+
+.flex-row-card-info-img {
+    margin: 10px 10px 5px 10px;
+    border-radius: 5px;
+}
+
+.button.flex-row-card-info-button {
+    margin: 0 10px 10px 10px;
+}
+
+.hoc-section-resource,
+.hoc-section-studio {
+    display: flex;
+    margin: 10px 0;
+    min-width: 200px;
+
+    text-align: left;
+    justify-content: center;
+}
+
+.hoc-section-resource-img,
+.hoc-section-studio-img {
+    margin-right: 15px;
+}
+
+.hoc-section-resource {
+    width: 33%;
+    min-height: 4rem;
+    align-items: flex-start;
+}
+
+.hoc-section-resource-anchor {
+    display: block;
+    margin: 5px 0;
+    font-size: .8em;
+}
+
+.hoc-section-resource-info-header {
+    margin: 0;
+    line-height: inherit;
+}
+
+.hoc-section-studio {
+    width: 50%;
+    align-items: center;
+}
+
+.hoc-section-studio-img {
+    float: left;
+}
+
+.hoc-section-studio-info-header {
+    margin: 8px 0;
+    width: 200px;
+    color: $ui-blue;
+    font-weight: 500;
+}
+
+.hoc-section-studio-info-header:hover {
+    color: darken($ui-blue, 15);
+}
+
+.hoc-section-logos {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.hoc-section-logos-img {
+    margin: 20px;
+    max-width: 150px;
+    max-height: 55px;
+    vertical-align: middle;
+}
+
+.hoc-section-trademark {
+    margin-top: 20px;
+}
+
+@media only screen and (max-width: $mobile - 1) {
+    .hoc-section-studio {
+        display: inline-block;
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .hoc-section.mod-title-banner {
+        max-width: $mobile;
     }
 
-    .flex-row {
-        .card {
-            margin: 10px;
-            border-radius: 7px;
-            background-color: $active-gray;
-            padding: 2px;
+    .hoc-section-studio {
+        display: inline-block;
+    }
+}
 
-            width: 30%;
-            min-width: 200px;
-            max-width: 230px;
-
-            .card-info {
-                border-radius: 5px;
-                background-color: $base-bg;
-                width: 100%;
-                height: 100%;
-
-
-                button,
-                img {
-                    width: calc(100% - 20px);
-                }
-
-                img {
-                    margin: 10px 10px 5px 10px;
-                    border-radius: 5px;
-                }
-
-                button {
-                    margin: 0 10px 10px 10px;
-                }
-            }
-
-            //8 columns
-            @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-                margin: 2px;
-                min-width: 175px;
-
-                button {
-                    font-size: .7em;
-                }
-            }
-
-        }
+//8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .flex-row-card {
+        margin: 2px;
+        min-width: 175px;
     }
 
-    section {
-        display: flex;
+    .button.flex-row-card-info-button {
+        font-size: .7em;
+    }
+
+    .hoc-section-resource,
+    .hoc-section-studio {
+        display: block;
+        width: 30%;
+        min-width: 180px;
+        text-align: center;
+    }
+
+    .hoc-section-resource-img,
+    .hoc-section-studio-img {
         margin: 0 auto;
-        border-bottom: 1px solid $ui-border;
-        padding: 50px 0;
-        width: 95%;
-
-        justify-content: center;
-        flex-wrap: wrap;
-        align-items: center;
-
-        p {
-            margin: 10px auto 20px;
-            max-width: 600px;
-        }
-
-        &:last-child {
-            border-bottom: 0;
-        }
-
-        &.one-up {
-            text-align: center;
-
-            .column {
-                width: 100%;
-            }
-        }
-
-        &.two-up {
-            .column {
-                min-width: 200px;
-                max-width: 40%;
-                text-align: left;
-
-                img {
-                    border-radius: 5px;
-                    width: 100%;
-                }
-            }
-        }
     }
 
-    .resource,
-    .studio {
-        display: flex;
-        margin: 10px 0;
-        min-width: 200px;
-
-        text-align: left;
-        justify-content: center;
-        align-items: center;
-
-        img {
-            margin-right: 15px;
-        }
-
-        a {
-            h5 {
-                margin: 8px 0;
-                color: $ui-blue;
-                font-weight: 500;
-
-                &:hover {
-                    color: darken($ui-blue, 15);
-                }
-            }
-        }
-
-        //8 columns
-        @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-            display: block;
-            width: 30%;
-            min-width: 180px;
-            text-align: center;
-
-            img {
-                margin: 0 auto;
-            }
-        }
+    .hoc-section-studio-img {
+        float: none;
     }
 
-    .resource {
-        width: 33%;
-
-        a {
-            display: block;
-            margin: 5px 0;
-            font-size: .8em;
-        }
-
-        .resource-info {
-            h5 {
-                margin: 0;
-                line-height: inherit;
-            }
-        }
-    }
-
-    .studio {
-        width: 50%;
-
-        h5 {
-            width: 200px;
-        }
-
-        img {
-            float: left;
-        }
-
-        @media only screen and (max-width: $mobile - 1) {
-            display: inline-block;
-        }
-
-        @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-            display: inline-block;
-        }
-
-        //8 columns
-        @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-            h5 {
-                width: 100%;
-            }
-
-            img {
-                float: none;
-            }
-        }
-    }
-
-    .logos {
-        margin: 20px 0;
+    .hoc-section-studio-info-header {
         width: 100%;
-
-        img {
-            margin: 20px;
-            max-width: 150px;
-            max-height: 55px;
-            vertical-align: middle;
-        }
-    }
-
-    .trademark {
-        margin-top: 20px;
     }
 }
