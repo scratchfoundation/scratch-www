@@ -97,6 +97,20 @@ var Developers = React.createClass({
 
                             <img className="sidebar column" src="/images/developers/www-sketch.png" alt="www" />
                         </FlexRow>
+                        <FlexRow className="sidebar-row">
+                            <div className="body-copy column">
+                                <h3>ScratchJr</h3>
+                                <p>
+                                    ScratchJr is an introductory programming language{' '}
+                                    that enables young children (ages 5-7) to create{' '}
+                                    their own interactive stories and games. For more{' '}
+                                    information, visit the{' '}
+                                    <a href="https://www.scratchjr.org/">ScratchJr website</a>{' '}
+                                    or access the code and documentation{' '}
+                                    <a href="https://github.com/LLK/scratchjr">here</a>.
+                                </p>
+                            </div>
+                        </FlexRow>
                     </section>
 
                     <section id="principles">
