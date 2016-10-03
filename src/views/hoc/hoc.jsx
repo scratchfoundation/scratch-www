@@ -56,7 +56,7 @@ var Hoc = React.createClass({
                                 <a href="/projects/editor/?tip_bar=fly">
                                     <div className="flex-row-card-info">
                                         <img className="flex-row-card-info-img"
-                                             src="/images/hoc/make-it-fly-tutorial.png"
+                                             src="/images/hoc/make-it-fly-tutorial.jpg"
                                              alt="" />
                                         <Button className="flex-row-card-info-button">
                                             <FormattedMessage id='hoc.tipsMakeItFlyTitle' />
