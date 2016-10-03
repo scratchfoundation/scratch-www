@@ -114,7 +114,7 @@ var Privacypolicy = React.createClass({
                             <li>
                                 Parents and guardians who register their under-13 year olds for
                                  Scratch may also receive additional updates from the{' '}
-                                 <a href="http://www.codetolearn.org/">Scratch Foundation</a>,
+                                 <a href="http://www.scratchfoundation.org/">Scratch Foundation</a>,
                                  a non-profit that supports Scratch educational initiatives.
                                  The Scratch Foundation will never sell or share your email
                                  address without your permission. You can unsubscribe from these
@@ -203,6 +203,7 @@ var Privacypolicy = React.createClass({
                              Policy on a regular basis.
                         </p>
                     </section>
+                    <p><b>The Scratch Privacy Policy was last updated: October 2016</b></p>
                 </div>
                 <nav>
                     <ol>
