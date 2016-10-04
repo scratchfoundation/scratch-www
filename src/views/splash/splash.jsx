@@ -4,6 +4,7 @@ var omit = require('lodash.omit');
 var React = require('react');
 
 var api = require('../../lib/api');
+var log = require('../../lib/log');
 var render = require('../../lib/render.jsx');
 var sessionActions = require('../../redux/session.js');
 var shuffle = require('../../lib/shuffle.js').shuffle;
@@ -94,35 +95,40 @@ var Splash = injectIntl(React.createClass({
         api({
             uri: '/proxy/users/' + this.props.session.session.user.username + '/activity?limit=5'
         }, function (err, body) {
-            if (!err) this.setState({activity: body});
+            if (!body) return log.error('No response body');
+            if (!err) return this.setState({activity: body});
         }.bind(this));
     },
     getFeaturedGlobal: function () {
         api({
             uri: '/proxy/featured'
         }, function (err, body) {
-            if (!err) this.setState({featuredGlobal: body});
+            if (!body) return log.error('No response body');
+            if (!err) return this.setState({featuredGlobal: body});
         }.bind(this));
     },
     getFeaturedCustom: function () {
         api({
             uri: '/proxy/users/' + this.props.session.session.user.id + '/featured'
         }, function (err, body) {
-            if (!err) this.setState({featuredCustom: body});
+            if (!body) return log.error('No response body');
+            if (!err) return this.setState({featuredCustom: body});
         }.bind(this));
     },
     getNews: function () {
         api({
             uri: '/news?limit=3'
         }, function (err, body) {
-            if (!err) this.setState({news: body});
+            if (!body) return log.error('No response body');
+            if (!err) return this.setState({news: body});
         }.bind(this));
     },
     getProjectCount: function () {
         api({
             uri: '/projects/count/all'
         }, function (err, body) {
-            if (!err) this.setState({projectCount: body.count});
+            if (!body) return log.error('No response body');
+            if (!err) return this.setState({projectCount: body.count});
         }.bind(this));
     },
     refreshHomepageCache: function () {
@@ -133,6 +139,7 @@ var Splash = injectIntl(React.createClass({
             useCsrf: true
         }, function (err, body) {
             if (err) return this.setState({refreshCacheStatus: 'fail'});
+            if (!body) return log.error('No response body');
             if (!body.success) return this.setState({refreshCacheStatus: 'inprogress'});
             return this.setState({refreshCacheStatus: 'pass'});
         }.bind(this));

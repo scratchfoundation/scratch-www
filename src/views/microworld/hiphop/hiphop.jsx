@@ -1,6 +1,8 @@
+var React = require('react'); // eslint-disable-line
 var render = require('../../../lib/render.jsx');
 var Microworld = require('../../../components/microworld/microworld.jsx');
+var Page = require('../../../components/page/www/page.jsx');
 
-var microworldData = require('./microworld_hiphop.json');
+var microworldData = require('./hiphop.json');
 
-render(<Microworld microworldData={microworldData} />, document.getElementById('view'));
+render(<Page><Microworld microworldData={microworldData} /></Page>, document.getElementById('app'));

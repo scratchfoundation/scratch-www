@@ -91,6 +91,13 @@ module.exports = {
         },
         validateUsername: function (username, callback) {
             callback = callback || function () {};
+            if (!username) {
+                this.refs.form.refs.formsy.updateInputsWithError({
+                    'user.username': formatMessage({id: 'teacherRegistration.validationRequired'})
+                });
+                return callback(false);
+            }
+
             api({
                 host: '',
                 uri: '/accounts/check_username/' + username + '/'
@@ -734,8 +741,15 @@ module.exports = {
                                         required /> :
                                 []
                             }
-                            <Input label={formatMessage({id: 'teacherRegistration.zipCode'})}
-                                   type="text"
+                            <b className="row-label">
+                                <intl.FormattedMessage id="teacherRegistration.zipCode" />
+                            </b>
+                            {this.state.countryChoice !== 'us' ?
+                                <p className="help-text">
+                                    <intl.FormattedMessage id="teacherRegistration.notRequired" />
+                                </p> : []
+                            }
+                            <Input type="text"
                                    name="address.zip"
                                    validations={{
                                        maxLength: 10
@@ -745,7 +759,7 @@ module.exports = {
                                            id: 'registration.validationMaxLength'
                                        })
                                    }}
-                                   required />
+                                   required={(this.state.countryChoice === 'us') ? true : 'isFalse'} />
                             <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
                                             text={<intl.FormattedMessage id="registration.nextStep" />} />

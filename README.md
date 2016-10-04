@@ -19,7 +19,7 @@ We’re currently building Scratch using [React](https://facebook.github.io/reac
 
 
 ### Before Getting Started
-* make sure you have node and npm [installed](https://docs.npmjs.com/getting-started/installing-node)
+* Make sure you have node (v4.2 or higher) and npm [installed](https://docs.npmjs.com/getting-started/installing-node)
 
 ### To Build
 ```bash

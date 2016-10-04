@@ -30,8 +30,9 @@ var ConferenceSplash = React.createClass({
                     </p>
                     <p className="sub-button">
                         <b>
-                            <a href="http://bit.ly/scratchmit2016-live" target="_blank">
-                                Watch the keynote live
+                            <a href="https://youtu.be/alsfSTVn2es?list=PLpfxVARjkP-8chnTrjtDeo88Pcz6-xf_B"
+                                target="_blank">
+                                Watch videos of the keynote sessions
                             </a>
                         </b>
                     </p>
