@@ -81,11 +81,6 @@ var Credits = React.createClass({
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/5721684_170x170.png" alt="Randy Avatar" />
-                        <span className="name">Randy Jou</span>
-                    </li>
-
-                    <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/10866958_170x170.png" alt="Colby Avatar" />
                         <span className="name">Colby Gutierrez-Kraybill</span>
                     </li>
@@ -198,7 +193,7 @@ var Credits = React.createClass({
                     Amos Blanton, Champika Fernando, Shane Clements, Abdulrahman idlbi, Evelyn Eastmond,
                     Amon Millner, Eric Rosenbaum, Jay Silver, Karen Brennan, Leo Burd, Oren Zuckerman, Gaia Carini,
                     Michelle Chung, Margarita Dekoli, Dave Feinberg, Megan Haddadi, Chris Graves, Tony Hwang, Di Liu,
-                    Tammy Stern, Lis Sylvan, Claudia Urrea, Ben Berg, Hannah Cole, and Andrea Saxman.
+                    Tammy Stern, Lis Sylvan, Claudia Urrea, Ben Berg, Hannah Cole, Andrea Saxman, and Randy Jou.
                 </p>
 
                 <h2>Design and Development Partners</h2>

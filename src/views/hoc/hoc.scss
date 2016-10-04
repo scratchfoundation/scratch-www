@@ -126,8 +126,11 @@ $base-bg: $ui-white;
     line-height: inherit;
 }
 
+.flex-row.mod-studio {
+    justify-content: space-between;
+}
+
 .hoc-section-studio {
-    width: 50%;
     align-items: center;
 }
 
@@ -137,7 +140,7 @@ $base-bg: $ui-white;
 
 .hoc-section-studio-info-header {
     margin: 8px 0;
-    width: 200px;
+    width: 150px;
     color: $ui-blue;
     font-weight: 500;
 }

@@ -56,7 +56,7 @@ var Hoc = React.createClass({
                                 <a href="/projects/editor/?tip_bar=fly">
                                     <div className="flex-row-card-info">
                                         <img className="flex-row-card-info-img"
-                                             src="/images/hoc/make-it-fly-tutorial.png"
+                                             src="/images/hoc/make-it-fly-tutorial.jpg"
                                              alt="" />
                                         <Button className="flex-row-card-info-button">
                                             <FormattedMessage id='hoc.tipsMakeItFlyTitle' />
@@ -217,7 +217,7 @@ var Hoc = React.createClass({
                                 </div>
 
                                 <div className="flex-row-card">
-                                    <a href="//projects/editor/?tip_bar=dance">
+                                    <a href="/projects/editor/?tip_bar=dance">
                                         <div className="flex-row-card-info">
                                             <img className="flex-row-card-info-img"
                                                  src="/images/hoc/dance-tutorial.jpg"
@@ -241,7 +241,7 @@ var Hoc = React.createClass({
                                  </p>
                             </div>
 
-                            <FlexRow>
+                            <FlexRow className="mod-studio">
                                 <div className="hoc-section-studio">
                                     <img className="hoc-section-studio-img"
                                          src="/svgs/studio.svg"
@@ -255,22 +255,6 @@ var Hoc = React.createClass({
                                     </div>
                                 </div>
 
-                            
-                                <div className="hoc-section-studio">
-                                    <img className="hoc-section-studio-img"
-                                         src="/svgs/studio.svg"
-                                         alt="" />
-                                    <div className="hoc-section-studio-info">
-                                        <a href="/studios/1672166/">
-                                            <h5 className="hoc-section-studio-info-header">
-                                                <FormattedMessage id='hoc.studioWeBareBears' />
-                                            </h5>
-                                        </a>
-                                    </div>
-                                </div>
-                            </FlexRow>
-
-                            <FlexRow>
                                 <div className="hoc-section-studio">
                                     <img className="hoc-section-studio-img"
                                          src="/svgs/studio.svg"
@@ -289,9 +273,9 @@ var Hoc = React.createClass({
                                          src="/svgs/studio.svg"
                                          alt="" />
                                     <div className="hoc-section-studio-info">
-                                        <a href="/studios/1672164/">
+                                        <a href="/studios/2050750/">
                                             <h5 className="hoc-section-studio-info-header">
-                                                <FormattedMessage id='hoc.studioAlice' />
+                                                <FormattedMessage id='hoc.tipsMakeItFlyTitle' />
                                             </h5>
                                         </a>
                                     </div>
