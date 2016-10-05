@@ -741,8 +741,15 @@ module.exports = {
                                         required /> :
                                 []
                             }
-                            <Input label={formatMessage({id: 'teacherRegistration.zipCode'})}
-                                   type="text"
+                            <b className="row-label">
+                                <intl.FormattedMessage id="teacherRegistration.zipCode" />
+                            </b>
+                            {this.state.countryChoice !== 'us' ?
+                                <p className="help-text">
+                                    <intl.FormattedMessage id="teacherRegistration.notRequired" />
+                                </p> : []
+                            }
+                            <Input type="text"
                                    name="address.zip"
                                    validations={{
                                        maxLength: 10
@@ -752,7 +759,7 @@ module.exports = {
                                            id: 'registration.validationMaxLength'
                                        })
                                    }}
-                                   required={(this.state.countryChoice === 'us')} />
+                                   required={(this.state.countryChoice === 'us') ? true : 'isFalse'} />
                             <GeneralError name="all" />
                             <NextStepButton waiting={this.props.waiting || this.state.waiting}
                                             text={<intl.FormattedMessage id="registration.nextStep" />} />
