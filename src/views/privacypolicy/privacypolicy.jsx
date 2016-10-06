@@ -203,7 +203,7 @@ var Privacypolicy = React.createClass({
                              Policy on a regular basis.
                         </p>
                     </section>
-                    <p><b>The Scratch Privacy Policy was last updated: October 2016</b></p>
+                    <p>The Scratch Privacy Policy was last updated: October 2016</p>
                 </div>
                 <nav>
                     <ol>
