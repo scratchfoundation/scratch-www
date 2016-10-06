@@ -273,7 +273,8 @@ var Credits = React.createClass({
                     <a href="https://saucelabs.com/"> SauceLabs</a>,
                     <a href="https://screenhero.com/"> Screenhero</a>,
                     <a href="https://getsentry.com/welcome/"> Sentry</a>,
-                    and <a href="http://www.git-tower.com/"> Tower</a>.
+                    <a href="http://www.git-tower.com/"> Tower</a>,
+                    and <a href="https://travis-ci.org/"> Travis-CI</a>.
                 </p>
 
                 <p>
