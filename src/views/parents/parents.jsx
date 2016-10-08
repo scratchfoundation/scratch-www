@@ -81,9 +81,21 @@ var Parents = React.createClass({
                         <li>
                             <h3><FormattedMessage id='parents.parentsSaying' /></h3>
                             <p><FormattedHTMLMessage id='parents.parentsSayingDescription' /></p>
-                            <p><b>"I just want to thank you all for making Scratch, and for providing it for free.</b> My kids are doing amazing things that they see as fun yet I know is educational, valuable, and worthwhile. Thank you so much!!!"</p>
-                            <p><b>"My very shy but technical minded daughter has found this to be a fantastic, safe outlet for her creativity.</b> She spends her free time creating ever more difficult animations and sharing them with the scratch community. The forums provide her with a group of like-minded individuals with which she can hold on a conversation... She now feels that computers, graphic design and animation are something she would like to pursue in the future. Your program has opened a whole new world to her in so many ways, and I thank you wholeheartedly. "</p>
-                            <p><b>"My son is learning more than I can imagine from your tool.</b> He is not a natural logical thinker but loves LEGO. Your LEGO-like building block structure has moved him forward by light-years in his logical thinking skills...He can snap things together and begin to see the logic reinforced by immediate feedback. Of course we work on some things together--instant father and son time. This is just incredible. Just a big thanks to you and MIT."</p>
+                            <p><b>"I just want to thank you all for making Scratch, and for providing it for free.</b>{' '}
+                               My kids are doing amazing things that they see as fun yet I know is educational, valuable,{' '}
+                               and worthwhile. Thank you so much!!!"</p>
+                            <p><b>"My very shy but technical minded daughter has found this to be a fantastic, safe{' '}
+                               outlet for her creativity.</b> She spends her free time creating ever more difficult{' '}
+                               animations and sharing them with the scratch community. The forums provide her with a{' '}
+                               group of like-minded individuals with which she can hold on a conversation... She now feels{' '}
+                               that computers, graphic design and animation are something she would like to pursue in the{' '}
+                               future. Your program has opened a whole new world to her in so many ways, and I thank you{' '}
+                               wholeheartedly. "</p>
+                            <p><b>"My son is learning more than I can imagine from your tool.</b> He is not a natural{' '}
+                               logical thinker but loves LEGO. Your LEGO-like building block structure has moved him{' '}
+                               forward by light-years in his logical thinking skills...He can snap things together and{' '}
+                               begin to see the logic reinforced by immediate feedback. Of course we work on some things{' '}
+                               together--instant father and son time. This is just incredible. Just a big thanks to you and MIT."</p>
                         </li>
 
                         <li>
