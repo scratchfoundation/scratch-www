@@ -5,7 +5,7 @@ var render = require('../../lib/render.jsx');
 
 var Page = require('../../components/page/www/page.jsx');
 
-require('./about.scss');
+require('./parents.scss');
 
 var Parents = React.createClass({
     type: 'Parents',
