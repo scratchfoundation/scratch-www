@@ -11,9 +11,9 @@ tap.test('buildLocalesMergeTranslations', function (t) {
         'Isn\'t it ironic? No.': 'Es irónico? No.'
     };
     var md5map = {
-        'c21ce5ceefe167028182032d4255a384': 'test.test1',
-        '9c40648034e467e16f8d6ae24bd610ab': 'test.test2',
-        '6885a345adafb3a9dd43d9f549430c88': 'test.test3'
+        'c21ce5ceefe167028182032d4255a384': ['test.test1'],
+        '9c40648034e467e16f8d6ae24bd610ab': ['test.test2'],
+        '6885a345adafb3a9dd43d9f549430c88': ['test.test3']
     };
 
     var mergedTranslations = buildLocales.mergeNewTranslations(existingTranslations, newTranslations, {}, md5map);

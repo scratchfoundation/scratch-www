@@ -6,7 +6,7 @@ var crypto = require('crypto');
 var fs = require('fs');
 var path = require('path');
 var po2icu = require('po2icu');
-var isArray = require('lodash.isArray');
+var isArray = require('lodash.isarray');
 
 var Helpers = {};
 
