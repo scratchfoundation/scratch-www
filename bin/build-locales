@@ -86,7 +86,7 @@ for (var v in routes) {
     if (typeof routes[v].redirect !== 'undefined') {
         continue;
     }
-    
+
     views.push(routes[v].name);
     try {
         var subdir = routes[v].view.split('/');
@@ -97,7 +97,8 @@ for (var v in routes) {
             en: ids
         };
         idsWithICU = merge(idsWithICU, localeCompare.idToICUMap(routes[v].name, ids));
-        icuWithIds = merge(icuWithIds, localeCompare.icuToIdMap(routes[v].name, ids));
+        // Note: if lodash.merge gets updated to 4.0 or higher this needs to be mergeWith instead
+        icuWithIds = merge(icuWithIds, localeCompare.icuToIdMap(routes[v].name, ids), localeCompare.customMerge);
     } catch (err) {
         if (err.code !== 'MODULE_NOT_FOUND') {
             throw err;
