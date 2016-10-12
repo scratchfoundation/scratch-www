@@ -4,7 +4,7 @@ var api = require('./api');
 module.exports = function smartyStreetApi (params, callback) {
     defaults(params, {
         'auth-id': process.env.SMARTY_STREETS_API_KEY,
-        'match': 'range'
+        'match': 'invalid'
     });
     api({
         host: 'https://api.smartystreets.com',
