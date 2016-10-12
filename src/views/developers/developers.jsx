@@ -20,7 +20,7 @@ var Developers = React.createClass({
                     <div className="inner">
                         <h1><FormattedMessage id='developers.title' /></h1>
                         <p className="intro">
-                            <FormattedMessage id='developers.intro' />
+                            <FormattedHTMLMessage id='developers.intro' />
                         </p>
                     </div>
                     <div className="band">
@@ -89,7 +89,7 @@ var Developers = React.createClass({
                         <span className="nav-spacer"></span>
                         <h2><FormattedMessage id='developers.principlesTitle' /></h2>
                         <p className="intro">
-                            <FormattedMessage id='developers.principlesIntro' />
+                            <FormattedHTMLMessage id='developers.principlesIntro' />
                         </p>
 
                         <FlexRow className="sidebar-row">
