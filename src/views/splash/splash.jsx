@@ -215,11 +215,11 @@ var Splash = injectIntl(React.createClass({
                 <Box
                         key="curator_top_projects"
                         title={
-                            'Projects Curated by ' +
+                            formatMessage({id: 'splash.projectsCuratedBy'}) +
                             this.state.featuredGlobal.curator_top_projects[0].curator_name}
-                        moreTitle={formatMessage({id: 'general.learnMore', defaultMessage: 'Learn More'})}
+                        moreTitle={formatMessage({id: 'general.learnMore'})}
                         moreHref="/studios/386359/">
-                    
+
                     <Carousel items={this.state.featuredGlobal.curator_top_projects} />
                 </Box>
             );
@@ -234,9 +234,9 @@ var Splash = injectIntl(React.createClass({
                         title={
                             formatMessage({id: 'splash.scratchDesignStudioTitle'})
                             + ' - ' + this.state.featuredGlobal.scratch_design_studio[0].gallery_title}
-                        moreTitle={formatMessage({id: 'splash.visitTheStudio', defaultMessage: 'Visit the studio'})}
+                        moreTitle={formatMessage({id: 'splash.visitTheStudio'})}
                         moreHref={'/studios/' + this.state.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}>
-                    
+
                     <Carousel items={this.state.featuredGlobal.scratch_design_studio} />
                 </Box>
             );
@@ -260,7 +260,7 @@ var Splash = injectIntl(React.createClass({
             rows.push(
                 <Box title={formatMessage({id: 'splash.projectsByScratchersFollowing'})}
                      key="custom_projects_by_following">
-                    
+
                     <Carousel items={this.state.featuredCustom.custom_projects_by_following} />
                 </Box>
             );
@@ -271,7 +271,7 @@ var Splash = injectIntl(React.createClass({
             rows.push(
                 <Box title={formatMessage({id: 'splash.projectsLovedByScratchersFollowing'})}
                      key="custom_projects_loved_by_following">
-                    
+
                     <Carousel items={this.state.featuredCustom.custom_projects_loved_by_following} />
                 </Box>
             );
@@ -283,7 +283,7 @@ var Splash = injectIntl(React.createClass({
             rows.push(
                 <Box title={formatMessage({id:'splash.projectsInStudiosFollowing'})}
                      key="custom_projects_in_studios_following">
-                    
+
                     <Carousel items={this.state.featuredCustom.custom_projects_in_studios_following} />
                 </Box>
             );
