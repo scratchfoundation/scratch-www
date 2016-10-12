@@ -217,7 +217,7 @@ var Splash = injectIntl(React.createClass({
                         title={
                             formatMessage({id: 'splash.projectsCuratedBy'}) +
                             this.state.featuredGlobal.curator_top_projects[0].curator_name}
-                        moreTitle={formatMessage({id: 'general.learnMore', defaultMessage: 'Learn More'})}
+                        moreTitle={formatMessage({id: 'general.learnMore'})}
                         moreHref="/studios/386359/">
 
                     <Carousel items={this.state.featuredGlobal.curator_top_projects} />
@@ -234,7 +234,7 @@ var Splash = injectIntl(React.createClass({
                         title={
                             formatMessage({id: 'splash.scratchDesignStudioTitle'})
                             + ' - ' + this.state.featuredGlobal.scratch_design_studio[0].gallery_title}
-                        moreTitle={formatMessage({id: 'splash.visitTheStudio', defaultMessage: 'Visit the studio'})}
+                        moreTitle={formatMessage({id: 'splash.visitTheStudio'})}
                         moreHref={'/studios/' + this.state.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}>
 
                     <Carousel items={this.state.featuredGlobal.scratch_design_studio} />
