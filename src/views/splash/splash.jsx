@@ -215,7 +215,7 @@ var Splash = injectIntl(React.createClass({
                 <Box
                         key="curator_top_projects"
                         title={
-                            formatMessage({id: 'splash.projectsCuratedBy'}) + " " +
+                            formatMessage({id: 'splash.projectsCuratedBy'}) + ' ' +
                             this.state.featuredGlobal.curator_top_projects[0].curator_name}
                         moreTitle={formatMessage({id: 'general.learnMore'})}
                         moreHref="/studios/386359/">
