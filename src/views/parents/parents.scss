@@ -39,13 +39,13 @@
     .bodyMain {
         display: inline-block;
         position: relative;
+        float: left;
+        margin: 20px 0 0;
         border: 1px solid $ui-gray;
         border-radius: 10px;
         background: $ui-white;
-        margin: 20px 0 0;
         padding: 26px 40px 6px;
         width: calc(60% - 80px);
-        float: left;
 
         ul {
             display: flex;
@@ -66,9 +66,9 @@
     .bodySide {
         display: inline-block;
         position: relative;
-        width: calc(45% - 80px);
-        margin: 20px 0 0;
         float: right;
+        margin: 20px 0 0;
+        width: calc(45% - 80px);
          
         ul {
             display: flex;
