@@ -1,7 +1,8 @@
 var React = require('react');
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
-var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
+var FormattedMessage = require('react-intl').FormattedMessage;
+var FlexRow = require('../../components/flex-row/flex-row.jsx');
+var Box = require('../../components/box/box.jsx');
 
 var Page = require('../../components/page/www/page.jsx');
 
@@ -35,81 +36,89 @@ var Parents = React.createClass({
                             allowFullScreen />
                     </div>
                 </div>
+                
+                <div className="bodyMain">
+                    <FlexRow>
+                        <ul>
+                            <li>
+                                <h3><FormattedMessage id='parents.ageRange' /></h3>
+                                <p><FormattedMessage id='parents.ageRangeDescription' /></p>
+                            </li>
 
-                <div className="body">
-                    <ul>
-                      <li>
-                            <h3><FormattedMessage id='parents.learning' /></h3>
-                            <p><FormattedHTMLMessage id='parents.learningDescription' /></p>
-                        </li>
-                      
-                      <li>
-                            <h3><FormattedMessage id='parents.community' /></h3>
-                            <p><FormattedHTMLMessage id='parents.communityDescription' /></p>
-                        </li>
-                      
-                        <li>
-                            <h3><FormattedMessage id='parents.ageRange' /></h3>
-                            <p><FormattedHTMLMessage id='parents.ageRangeDescription' /></p>
-                        </li>
+                            <li>
+                                <h3><FormattedMessage id='parents.resources' /></h3>
+                                <p><FormattedMessage id='parents.resourcesDescription' /></p>
+                            </li>
 
-                        <li>
-                            <h3><FormattedMessage id='parents.resources' /></h3>
-                            <p><FormattedHTMLMessage id='parents.resourcesDescription' /></p>
-                        </li>
+                            <li>
+                                <h3><FormattedMessage id='parents.onlineCommunity' /></h3>
+                                <p><FormattedMessage id='parents.onlineCommunityDescription' /></p>
+                            </li>
 
-                        <li>
-                            <h3><FormattedMessage id='parents.onlineCommunity' /></h3>
-                            <p><FormattedHTMLMessage id='parents.onlineCommunityDescription' /></p>
-                        </li>
+                            <li>
+                                <h3><FormattedMessage id='parents.guidelines' /></h3>
+                                <p><FormattedMessage id='parents.guidelinesDescription' /></p>
+                            </li>
 
-                        <li>
-                            <h3><FormattedMessage id='parents.guidelines' /></h3>
-                            <p><FormattedHTMLMessage id='parents.guidelinesDescription' /></p>
-                        </li>
+                            <li>
+                                <h3><FormattedMessage id='parents.privacyPolicy' /></h3>
+                                <p><FormattedMessage id='parents.privacyPolicyDescription' /></p>
+                            </li>
 
-                        <li>
-                            <h3><FormattedMessage id='parents.privacyPolicy' /></h3>
-                            <p><FormattedHTMLMessage id='parents.privacyPolicyDescription' /></p>
-                        </li>
+                            <li>
+                                <h3><FormattedMessage id='parents.noOnline' /></h3>
+                                <p><FormattedMessage id='parents.noOnlineDescription' /></p>
+                            </li>
 
-                        <li>
-                            <h3><FormattedMessage id='parents.noOnline' /></h3>
-                            <p><FormattedHTMLMessage id='parents.noOnlineDescription' /></p>
-                        </li>
-                      
-                        <li>
-                            <h3><FormattedMessage id='parents.parentsSaying' /></h3>
-                            <p><FormattedHTMLMessage id='parents.parentsSayingDescription' /></p>
-                            <p><b>"I just want to thank you all for making Scratch, and{' '}
-                               for providing it for free.</b> My kids are doing amazing{' '}
-                               things that they see as fun yet I know is educational,{' '}
-                               valuable, and worthwhile. Thank you so much!!!"</p>
-                            <p><b>"My very shy but technical minded daughter has found{' '}
-                               this to be a fantastic, safeoutlet for her creativity.</b>{' '}
-                               She spends her free time creating ever more difficult{' '}
-                               animations and sharing them with the scratch community.{' '}
-                               The forums provide her with a group of like-minded{' '}
-                               individuals with which she can hold on a conversation...{' '}
-                               She now feels that computers, graphic design and{' '}
-                               animation are something she would like to pursue in the{' '}
-                               future. Your program has opened a whole new world to her{' '}
-                               in so many ways, and I thank you wholeheartedly. "</p>
-                            <p><b>"My son is learning more than I can imagine from your{' '}
-                               tool.</b> He is not a natural logical thinker but loves{' '}
-                               LEGO. Your LEGO-like building block structure has moved him{' '}
-                               forward by light-years in his logical thinking skills...He{' '}
-                               can snap things together and begin to see the logic{' '}
-                               reinforced by immediate feedback. Of course we work on{' '}
-                               some things together--instant father and son time. This{' '}
-                               is just incredible. Just a big thanks to you and MIT."</p>
-                        </li>
+                            <li>
+                                <h3><FormattedMessage id='parents.parentsSaying' /></h3>
+                                <p><FormattedMessage id='parents.parentsSayingDescription' /></p>
+                                <p><b>"I just want to thank you all for making Scratch, and{' '}
+                                   for providing it for free.</b> My kids are doing amazing{' '}
+                                   things that they see as fun yet I know is educational,{' '}
+                                   valuable, and worthwhile. Thank you so much!!!"</p>
+                                <p><b>"My very shy but technical minded daughter has found{' '}
+                                   this to be a fantastic, safeoutlet for her creativity.</b>{' '}
+                                   She spends her free time creating ever more difficult{' '}
+                                   animations and sharing them with the scratch community.{' '}
+                                   The forums provide her with a group of like-minded{' '}
+                                   individuals with which she can hold on a conversation...{' '}
+                                   She now feels that computers, graphic design and{' '}
+                                   animation are something she would like to pursue in the{' '}
+                                   future. Your program has opened a whole new world to her{' '}
+                                   in so many ways, and I thank you wholeheartedly. "</p>
+                                <p><b>"My son is learning more than I can imagine from your{' '}
+                                   tool.</b> He is not a natural logical thinker but loves{' '}
+                                   LEGO. Your LEGO-like building block structure has moved him{' '}
+                                   forward by light-years in his logical thinking skills...He{' '}
+                                   can snap things together and begin to see the logic{' '}
+                                   reinforced by immediate feedback. Of course we work on{' '}
+                                   some things together--instant father and son time. This{' '}
+                                   is just incredible. Just a big thanks to you and MIT."</p>
+                            </li>
+                        </ul>
+                    </FlexRow>
+                </div>
+                
+                <div className="bodySide">
+                    <FlexRow>
+                        <Box title={''}>
+                            <li>
+                                <h3><FormattedMessage id='parents.learning' /></h3>
+                                <p><FormattedMessage id='parents.learningDescription' /></p>
+                            </li>
 
-                        <li>
-                            <h3><FormattedMessage id='parents.Questions' /></h3>
-                            <p><FormattedHTMLMessage id='parents.QuestionsDescription' /></p>
-                        </li>
-                    </ul>
+                            <li>
+                                <h3><FormattedMessage id='parents.community' /></h3>
+                                <p><FormattedMessage id='parents.communityDescription' /></p>
+                            </li>
+
+                            <li>
+                                <h3><FormattedMessage id='parents.Questions' /></h3>
+                                <p><FormattedMessage id='parents.QuestionsDescription' /></p>
+                            </li>
+                        </Box>
+                    </FlexRow>
                 </div>
             </div>
         );
