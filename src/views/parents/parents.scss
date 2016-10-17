@@ -36,14 +36,16 @@
         }
     }
 
-    .body {
+    .bodyMain {
+        display: inline-block;
         position: relative;
-        margin: 20px 0 0;
         border: 1px solid $ui-gray;
         border-radius: 10px;
         background: $ui-white;
+        margin: 20px 0 0;
         padding: 26px 40px 6px;
-        width: calc(100% - 80px);
+        width: calc(60% - 80px);
+        float: left;
 
         ul {
             display: flex;
@@ -59,14 +61,28 @@
             margin-bottom: 20px;
             width: calc(384px + 5px + 5px);
         }
+    }
+    
+    .bodySide {
+        display: inline-block;
+        position: relative;
+        width: calc(45% - 80px);
+        margin: 20px 0 0;
+        float: right;
+         
+        ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
 
-        img,
-        iframe {
-            display: block;
-            border: 1px solid $ui-gray;
-            padding: 5px;
-            width: 396px;
-            height: 222px;
+        li {
+            display: inline-block;
+            margin-bottom: 20px;
+            width: calc(384px + 5px + 5px);
         }
     }
 }
