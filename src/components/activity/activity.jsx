@@ -11,8 +11,7 @@ require('./activity.scss');
 
 var defaultMessages = defineMessages({
     whatsHappening: {
-        id: 'general.whatsHappening',
-        defaultMessage: 'What\'s Happening?'
+        id: 'general.whatsHappening'
     }
 });
 

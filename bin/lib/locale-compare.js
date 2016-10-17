@@ -6,6 +6,7 @@ var crypto = require('crypto');
 var fs = require('fs');
 var path = require('path');
 var po2icu = require('po2icu');
+var isArray = require('lodash.isarray');
 
 var Helpers = {};
 
@@ -18,6 +19,21 @@ var Helpers = {};
 Helpers.getMD5 = function (string) {
     var cleanedString = string.replace(/\s+/g, '');
     return crypto.createHash('md5').update(cleanedString, 'utf8').digest('hex');
+};
+
+/**
+ * Customizer for icuWithIds merge.
+ * If icu key already has an id value, concatenate additional ids instead
+ * of replacing.
+ *
+ * @param {array} objVal current value
+ * @param {string} srcVal new value
+ * @return {array} objVal with srcVal concatenated
+ */
+Helpers.customMerge = function (objVal, srcVal) {
+    if (isArray(objVal)) {
+        return objVal.concat(srcVal);
+    }
 };
 
 /*
@@ -33,7 +49,9 @@ Helpers.mergeNewTranslations = function (existingTranslations, newTranslations, 
     for (var id in newTranslations) {
         var md5 = Helpers.getMD5(id);
         if (md5Map.hasOwnProperty(md5) && newTranslations[id].length > 0) {
-            existingTranslations[md5Map[md5]] = newTranslations[id];
+            md5Map[md5].forEach(function (msgId) {
+                existingTranslations[msgId] = newTranslations[id];
+            });
         }
     }
 
@@ -103,7 +121,7 @@ Helpers.getTranslationsForLanguage = function (lang, idsWithICU, md5WithIds, sep
             throw err;
         }
     }
-    
+
     var translationsByView = {};
     for (var id in translations) {
         var ids = id.split(separator); // [viewName, stringId]
@@ -132,7 +150,7 @@ Helpers.writeTranslationsToJS = function (outputDir, viewName, translationObject
 Helpers.idToICUMap = function (viewName, ids, separator) {
     var idsToICU = {};
     separator = separator || ':';
-    
+
     for (var id in ids) {
         idsToICU[viewName + separator + id] = ids[id];
     }
@@ -146,7 +164,7 @@ Helpers.icuToIdMap = function (viewName, ids, separator) {
     separator = separator || ':';
 
     for (var id in ids) {
-        icuToIds[ids[id]] = viewName + separator + id;
+        icuToIds[ids[id]] = [viewName + separator + id];
     }
     return icuToIds;
 };
