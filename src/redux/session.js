@@ -10,7 +10,7 @@ var Types = keyMirror({
     SET_STATUS: null
 });
 
-const BAN_WHITELIST_PATHS = [
+var banWhitelistPaths = [
     '/accounts/banned-response/',
     '/community_guidelines/'
 ];
@@ -76,7 +76,7 @@ module.exports.refreshSession = function () {
             if (
                     body.user &&
                     body.user.banned &&
-                    BAN_WHITELIST_PATHS.indexOf(window.location.pathname) === -1) {
+                    banWhitelistPaths.indexOf(window.location.pathname) === -1) {
                 return window.location = '/accounts/banned-response/';
             } else if (
                     body.flags &&
