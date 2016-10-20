@@ -75,11 +75,7 @@ var Search = injectIntl(React.createClass({
         }.bind(this));
     },
     onSearchSubmit: function (formData) {
-        if (!formData.q){
-            window.location.href = '/search/projects?q=' + this.props.searchTerm;
-        } else {
-            window.location.href = '/search/projects?q=' + formData.q;
-        }
+        window.location.href = '/search/projects?q=' + formData.q;
     },
     getTab: function (type) {
         var term = this.props.searchTerm.split(' ').join('+');
@@ -114,7 +110,7 @@ var Search = injectIntl(React.createClass({
                                         <Input type="text"
                                                aria-label={formatMessage({id: 'general.search'})}
                                                placeholder={formatMessage({id: 'general.search'})}
-                                               defaultValue={decodeURI(this.props.searchTerm)}
+                                               value={decodeURI(this.props.searchTerm)}
                                                name="q" />
                                     </Form>
                                 </div>
