@@ -110,7 +110,7 @@ var Search = injectIntl(React.createClass({
                                         <Input type="text"
                                                aria-label={formatMessage({id: 'general.search'})}
                                                placeholder={formatMessage({id: 'general.search'})}
-                                               defaultValue={decodeURI(this.props.searchTerm)}
+                                               value={decodeURI(this.props.searchTerm)}
                                                name="q" />
                                     </Form>
                                 </div>
