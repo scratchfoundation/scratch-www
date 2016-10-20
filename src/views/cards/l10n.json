@@ -6,8 +6,14 @@
     "cards.viewCard": "View Cards",
     "cards.starter": "Starter Cards",
     "cards.name": "Animate Your Name",
+    "cards.fly": "Make It Fly",
+    "cards.race": "Race to the Finish",
+    "cards.music": "Make Music",
+    "cards.hide": "Hide and Seek",
+    "cards.story": "Create a Story",
+    "cards.dressup": "Dress-Up Game",
     "cards.pong": "Create a Pong Game",
-    "cards.story": "Animate a Story",
-    "cards.dance": "Dance, Dance, Dance",
-    "cards.hide": "Hide and Seek"
+    "cards.dance": "Let's Dance",
+    "cards.catch": "Catch Game",
+    "cards.pet": "Virtual Pet"
 }

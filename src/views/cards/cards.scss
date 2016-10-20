@@ -1,57 +1,47 @@
 @import "../../colors";
 @import "../../frameless";
 
-.cards {
-    // type-specific margins
-    h4 {
-        margin: 1.5em 0 .3em;
-    }
-
-    h1 {
-        margin: .75em 0 .3em;
-    }
-
-    p {
-        margin: .25em 0 1em;
-    }
-
-    .cards-intro {
-        display: flex;
-        margin: 1em 0;
-        align-items: center;
-        justify-content: center;
-
-        .intro-content {
-            float: left;
-            width: 45%;
-        }
-
-        img {
-            width: 45%;
-        }
-    }
-
-    .cards-container {
-        text-align: center;
-
-        .flex-row {
-            div {
-                padding: .5em;
-
-                a {
-                    display: block;
-
-                    .pdf-icon {
-                        margin-right: .2em;
-                        width: 1em;
-                    }
-                }
-            }
-
-            @media only screen and (max-width: $desktop - 1) {
-                flex-direction: column;
-                justify-content: center;
-            }
-        }
+// Page header
+.cards-intro {
+    display: flex;
+    margin: 1rem 0;
+    align-items: center;
+    justify-content: space-between;
 }
+
+.cards-intro-content {
+    float: left;
+    width: 45%;
+}
+
+.cards-intro-content-header {
+    margin: .75rem 0 .5rem;
+}
+
+.cards-intro-content-body {
+    margin: .25rem 0 1rem;
+}
+
+.cards-intro-img {
+    width: 45%;
+}
+
+// Cards and Card Container
+.cards-container {
+    text-align: center;
+}
+
+.flex-row-card {
+    margin: 1.5rem 0;
+    padding: .5rem;
+}
+
+.flex-row-card-link {
+    display: block;
+    margin-top: .5rem;
+}
+
+.flex-row-card-link-icon {
+    margin-right: .2rem;
+    width: 1rem;
 }
