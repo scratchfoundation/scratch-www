@@ -12,6 +12,7 @@ var Input = require('../../components/forms/input.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var Grid = require('../../components/grid/grid.jsx');
+var Navigation = require('../../redux/navigation.js');
 
 require('./search.scss');
 
