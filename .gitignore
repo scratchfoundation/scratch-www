@@ -18,3 +18,7 @@ npm-*
 !.elasticbeanstalk/*.global.yml
 deploy.zip
 ENV
+
+# Test
+/.nyc_output
+/coverage

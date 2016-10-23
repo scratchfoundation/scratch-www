@@ -52,13 +52,7 @@ start:
 test:
 	@make lint
 	@make build
-	@echo ""
-	@make unit
-	@echo ""
-	@make functional
-	@echo ""
-	@make localization
-	@echo ""
+	@make coverage
 
 lint:
 	$(ESLINT) . --ext .js,.jsx,.json
@@ -66,17 +60,20 @@ lint:
 	$(SASSLINT) ./src/**/*.scss
 
 unit:
-	$(TAP) ./test/unit/*.js
+	$(TAP) --coverage ./test/unit/*.js
 
 functional:
-	$(TAP) ./test/functional/*.js
+	$(TAP) --coverage ./test/functional/*.js
 
 integration:
-	$(TAP) ./test/integration/*.js
+	$(TAP) --coverage ./test/integration/*.js
 
 localization:
-	$(TAP) ./test/localization/*.js
+	$(TAP) --coverage ./test/localization/*.js
+
+coverage:
+	$(TAP) --coverage ./test/{unit,functional,localization}/*.js
 
 # ------------------------------------
 
-.PHONY: build clean deploy translations webpack stop start test lint unit functional integration localization
+.PHONY: build clean deploy translations webpack stop start test lint unit functional integration localization coverage
