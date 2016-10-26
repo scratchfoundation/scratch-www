@@ -12,7 +12,8 @@ var Input = require('../../components/forms/input.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var Grid = require('../../components/grid/grid.jsx');
-var Navigation = require('../../redux/navigation.js');
+
+var navigationDetails = require('../../../redux/navigation.js');
 
 require('./search.scss');
 
@@ -95,6 +96,9 @@ var Search = injectIntl(React.createClass({
                     </a>;
         }
         return allTab;
+    },
+    setSearchTerm: function (searchTerm) {
+        this.props.searchTerm = searchTerm;
     },
     render: function () {
         var formatMessage = this.props.intl.formatMessage;
