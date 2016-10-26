@@ -455,7 +455,11 @@ module.exports = {
             };
         },
         onValidSubmit: function (formData, reset, invalidate) {
-            if (!formData.phone || formData.phone.national_number === '+') {
+            if (!formData.phone) {
+                return invalidate({
+                    'phone': this.props.intl.formatMessage({id: 'teacherRegistration.validationRequired'})
+                });
+            } else if (formData.phone.national_number === '+') {
                 return invalidate({
                     'phone': this.props.intl.formatMessage({id: 'teacherRegistration.validationPhoneNumber'})
                 });
