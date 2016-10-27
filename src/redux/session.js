@@ -12,7 +12,8 @@ var Types = keyMirror({
 
 var banWhitelistPaths = [
     '/accounts/banned-response/',
-    '/community_guidelines/'
+    '/community_guidelines/',
+    '/community_guidelines'
 ];
 
 module.exports.Status = keyMirror({
