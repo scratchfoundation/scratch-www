@@ -39,24 +39,8 @@ var Jobs = React.createClass({
                                 </span>
                             </li>
                             <li>
-                                <a href="http://media.mit.edu/about/opportunities/senior-frontend-engineer-scratch">
-                                    Senior Front-end Engineer
-                                </a>
-                                <span>
-                                    (MIT Media Lab, Cambridge, MA)
-                                </span>
-                            </li>
-                            <li>
                                 <a href="http://media.mit.edu/about/opportunities/senior-backend-engineer-scratch">
                                     Senior Back-end Engineer
-                                </a>
-                                <span>
-                                    (MIT Media Lab, Cambridge, MA)
-                                </span>
-                            </li>
-                            <li>
-                                <a href="http://media.mit.edu/about/opportunities/web-designer-scratch">
-                                    Web Designer
                                 </a>
                                 <span>
                                     (MIT Media Lab, Cambridge, MA)
