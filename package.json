@@ -65,7 +65,6 @@
     "lodash.range": "3.0.1",
     "minilog": "2.0.8",
     "node-sass": "3.3.3",
-    "nyc": "8.3.2",
     "pako": "0.2.8",
     "po2icu": "0.0.2",
     "postcss-loader": "0.8.2",
