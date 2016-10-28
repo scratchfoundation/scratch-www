@@ -32,7 +32,7 @@ var Jobs = React.createClass({
                         <ul>
                             <li>
                                 <a href="http://bit.ly/24B9aEz">
-                                    Community Manager
+                                    Trust &amp; Safety Manager
                                 </a>
                                 <span>
                                     (MIT Media Lab, Cambridge, MA)
