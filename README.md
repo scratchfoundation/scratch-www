@@ -9,7 +9,7 @@
 ### Where am I?
 Physically? No idea.
 
-Digitally? You’re at Scratch’s open source web client! 
+Digitally? You’re at Scratch’s open source web client!
 
 We’re working to update the [Scratch website](https://scratch.mit.edu) to use a new codebase, contained in this repository.
 
@@ -22,6 +22,54 @@ We’re currently building Scratch using [React](https://facebook.github.io/reac
 
 
 ### Before Getting Started
+
+#### Docker Development Environment
+* You first need some basic understanding of how Docker works and have a working [Docker installation](https://docs.docker.com/engine/installation/).
+* We will be running a container with the scratch-www application served by webpack-dev-middleware
+* The application code will be linked in a volume so that you can develop and edit it using your
+  favorite editor or IDE and those changes will be reflected in the running environment.
+
+##### Building the containerized dev server image locally and tagging it.
+Note that its Dockfile is here at the repo root.
+```bash
+docker build -t scratch-www .
+```
+
+##### Once this is finished, you will be able to see your image listed by docker with:
+```bash
+docker images
+```
+
+##### Running the application image in development mode:
+* Run your built image named "scrach-www" and port 8333 mapped through locally.
+  The default command is "make start".
+* Note that in the command below, you must substitute "<local-path>" with an
+  absolute path to this folder, such as "~/repos/llk/scratch-www".
+  Symbols such as "~" are allowed, but relative references such as "." are not.
+* This uses a volume mount so that you can edit the files locally.
+* Also override the NODE_ENV value, setting it to 'development' so that
+  the application source files will be watched.
+* Now you will be able to access the application in your local browser at the url http://localhost:8333
+```bash
+docker run --rm -it -p 8333:8333 -e NODE_ENV=development -v <local-path>:/home/app/scratch-www scratch-www
+```
+* To start up in a bash shell, override the "make start" command with "/bin/bash".
+```bash
+docker run --rm -it -p 8333:8333 -e NODE_ENV=development -v <local-path>:/home/app/scratch-www scratch-www /bin/bash
+```
+##### Running the application image in production mode:
+* This will serve the static files from the build directory
+```bash
+docker run --rm -it -p 8333:8333 scratch-www
+```
+
+#### Delete all running and stopped containers
+```bash
+docker down
+docker rm -f $(docker ps -aq)
+```
+
+#### Local Development Environment
 * Make sure you have node (v4.2 or higher) and npm [installed](https://docs.npmjs.com/getting-started/installing-node)
 
 ### To Build
@@ -58,7 +106,7 @@ When running `npm start`, here are some important log messages to keep an eye ou
 Once running, open `http://localhost:8333` in your browser. If you wish to have the server reload automatically, you can install either [nodemon](https://github.com/remy/nodemon) or [forever](https://github.com/foreverjs/forever).
 
 ### To stop
-Use `^C` to stop the node process `npm start` starts. 
+Use `^C` to stop the node process `npm start` starts.
 
 #### Configuration
 
