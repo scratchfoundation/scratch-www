@@ -98,7 +98,7 @@ var Search = injectIntl(React.createClass({
         return allTab;
     },
     setSearchTerm: function (searchTerm) {
-        this.props.searchTerm = searchTerm;
+        this.props.dispatch(navigationDetails.setSearchTerm(searchTerm));
     },
     render: function () {
         var formatMessage = this.props.intl.formatMessage;
@@ -143,4 +143,12 @@ var Search = injectIntl(React.createClass({
     }
 }));
 
-render(<Page><Search /></Page>, document.getElementById('app'));
+var mapStateToProps = function (state) {
+    return {
+        navigationDetails: state.navigationDetails
+    };
+};
+
+var ConnectedDetails = connect(mapStateToProps)(NavigationDetails);
+
+render(<Page><ConnectedDetails /></Page>, document.getElementById('app'));

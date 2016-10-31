@@ -5,12 +5,12 @@ var Types = keyMirror({
 });
 
 module.exports.navigationReducer = function (state, action) {
-    if(typeof state = 'undefined') {
+    if(typeof state === 'undefined') {
         state = '';
     }
     switch (action.type) {
         case Types.SET_SEARCH_TERM:
-            return action.setSearchTerm;
+            return searchTerm;
         default:
             return state;
     }
