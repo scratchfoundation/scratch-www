@@ -1,11 +1,17 @@
 {
     "en": {
-        "cards.starterLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/Scratch2Cards.pdf",
-        "cards.nameLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/AnimateYourNameCards.pdf",
-        "cards.pongLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/PongCards.pdf",
-        "cards.storyLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/StoryCards.pdf",
-        "cards.danceLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/DanceCards.pdf",
-        "cards.hideLink": "//scratch.mit.edu/scratchr2/static/pdfs/help/Hide-and-Seek-Cards.pdf"
+        "cards.starterLink": "/pdfs/cards/Scratch2Cards.pdf",
+        "cards.nameLink": "/pdfs/cards/AnimateYourNameCards.pdf",
+        "cards.flyLink": "/pdfs/cards/FlyCards.pdf",
+        "cards.raceLink": "/pdfs/cards/RaceGameCards.pdf",
+        "cards.musicLink": "/pdfs/cards/MusicCards.pdf",
+        "cards.hideLink": "/pdfs/cards/Hide-and-Seek-Cards.pdf",
+        "cards.storyLink": "/pdfs/cards/StoryCards.pdf",
+        "cards.dressupLink": "/pdfs/cards/DressupCards.pdf",
+        "cards.pongLink": "/pdfs/cards/PongCards.pdf",
+        "cards.danceLink": "/pdfs/cards/DanceCards.pdf",
+        "cards.catchLink": "/pdfs/cards/CatchCards.pdf",
+        "cards.petLink": "/pdfs/cards/PetCards.pdf"
     },
     "ar": {
         "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ar/Scratch2Cards.pdf"

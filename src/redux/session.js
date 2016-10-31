@@ -10,6 +10,12 @@ var Types = keyMirror({
     SET_STATUS: null
 });
 
+var banWhitelistPaths = [
+    '/accounts/banned-response/',
+    '/community_guidelines/',
+    '/community_guidelines'
+];
+
 module.exports.Status = keyMirror({
     FETCHED: null,
     NOT_FETCHED: null,
@@ -71,7 +77,7 @@ module.exports.refreshSession = function () {
             if (
                     body.user &&
                     body.user.banned &&
-                    window.location.pathname !== '/accounts/banned-response/') {
+                    banWhitelistPaths.indexOf(window.location.pathname) === -1) {
                 return window.location = '/accounts/banned-response/';
             } else if (
                     body.flags &&
