@@ -1,6 +1,7 @@
 var injectIntl = require('react-intl').injectIntl;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
+var connect = require('react-redux').connect;
 var render = require('../../lib/render.jsx');
 
 var api = require('../../lib/api');
@@ -149,6 +150,6 @@ var mapStateToProps = function (state) {
     };
 };
 
-var ConnectedDetails = connect(mapStateToProps)(NavigationDetails);
+var ConnectedDetails = connect(mapStateToProps)(Search);
 
 render(<Page><ConnectedDetails /></Page>, document.getElementById('app'));

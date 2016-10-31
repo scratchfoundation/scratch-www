@@ -9,10 +9,10 @@ module.exports.navigationReducer = function (state, action) {
         state = '';
     }
     switch (action.type) {
-        case Types.SET_SEARCH_TERM:
-            return searchTerm;
-        default:
-            return state;
+    case Types.SET_SEARCH_TERM:
+        return action.searchTerm;
+    default:
+        return state;
     }
 };
 

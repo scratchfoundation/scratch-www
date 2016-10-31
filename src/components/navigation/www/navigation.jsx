@@ -38,7 +38,8 @@ var Navigation = React.createClass({
     },
     getDefaultProps: function () {
         return {
-            session: {}
+            session: {},
+            searchTerm: ''
         };
     },
     componentDidMount: function () {
@@ -223,6 +224,7 @@ var Navigation = React.createClass({
                         <Form onSubmit={this.onSearchSubmit}>
                             <Button type="submit" className="btn-search" />
                             <Input type="text"
+                                   value={this.props.searchTerm}
                                    aria-label={formatMessage({id: 'general.search'})}
                                    placeholder={formatMessage({id: 'general.search'})}
                                    name="q" />
@@ -347,7 +349,8 @@ var Navigation = React.createClass({
 var mapStateToProps = function (state) {
     return {
         session: state.session,
-        permissions: state.permissions
+        permissions: state.permissions,
+        searchTerm: state.searchTerm
     };
 };
 
