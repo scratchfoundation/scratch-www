@@ -121,8 +121,8 @@
     },
     {
         "name": "hoc",
-        "pattern": "^/hoc/?$",
-        "routeAlias": "/hoc/?$",
+        "pattern": "^/hoc/?(\\?.*)?$",
+        "routeAlias": "/hoc/?\\??",
         "view": "hoc/hoc",
         "title": "Hour of Code"
     },
