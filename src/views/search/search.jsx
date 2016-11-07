@@ -55,7 +55,7 @@ var Search = injectIntl(React.createClass({
     },
     componentDidMount: function () {
         this.getSearchMore();
-        this.props.dispatch(navigationActions.setSearchTerm(this.props.searchTerm);
+        this.props.dispatch(navigationActions.setSearchTerm(this.props.searchTerm));
     },
     getSearchMore: function () {
         var termText = '';
