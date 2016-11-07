@@ -1,0 +1,113 @@
+@import "../../colors";
+@import "../../frameless";
+
+.ttt-tile {
+    display: inline-block;
+    // work-around chrome bug with columns support - 1 px of next column ends up
+    // at the bottom of the previous column.
+    margin-top: 1px;
+    margin-bottom: calc(1.25rem - 1px);
+
+    border-radius: 1rem;
+    box-shadow: 0 0 0 1px $active-gray;
+    // cols4 is not working - calculate width instead
+    width: calc(4 * ($column + $gutter) - $gutter);
+}
+
+.ttt-tile-tutorial {
+    display: inline-block;
+    position: relative;
+}
+
+.ttt-tile-tutorial:hover {
+
+    .ttt-tile-img-container {
+        .ttt-try-it {
+            display: inline-block;
+        }
+
+        .ttt-tile-img {
+            opacity: .5;
+        }
+    }
+}
+
+.ttt-tile-img {
+    display: block;
+    border-radius: 1rem 1rem 0 0;
+    width: 100%;
+}
+
+.ttt-tile-img-container {
+    border-radius: 1rem 1rem 0 0;
+    background: $ui-blue;
+    width: 100%;
+}
+
+.ttt-try-it {
+    display: none;
+    position: absolute;
+    top: 3rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    text-align: center;
+    color: $ui-white;
+}
+
+.ttt-try-it-button {
+    border: 1px solid $ui-white;
+    border-radius: .5rem;
+    padding: .75rem 1.5rem;
+}
+
+.ttt-tile-info {
+    position: relative;
+    cursor: pointer;
+    padding: 1rem 0;
+}
+
+.ttt-tile-button {
+    display: inline-block;
+    position: absolute;
+    top: -1rem;
+    left: 1rem;
+    margin: 0;
+    border: 0;
+    border-radius: 1rem;
+    background-color: $ui-blue;
+    padding: .25rem 1rem;
+
+    color: $type-white;
+
+    font-size: .75rem;
+    font-weight: bold;
+
+
+
+
+
+}
+
+.ttt-tile-description {
+    margin: auto;
+    width: calc(100% - 2rem);
+    font-size: .875rem;
+
+}
+
+.ttt-tile-guides {
+    margin: auto;
+    border-top: 1px dashed $ui-border;
+    border-radius: 0 0 1rem 1rem;
+    cursor: pointer;
+    padding: 1.25rem 0;
+    color: $link-blue;
+
+    font-size: .75rem;
+    font-weight: 500;
+
+
+    &:hover {
+        background-color: lighten($link-blue, 40%);
+    }
+}

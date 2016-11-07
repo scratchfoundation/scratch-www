@@ -1,0 +1,39 @@
+@import "../../frameless";
+$tile-width: ( 4 * ($column + $gutter) - $gutter);
+
+.masonry {
+    column-gap: $gutter;
+    column-width: $tile-width;
+    -webkit-perspective: 1;
+}
+
+// working around Firefox issue that requires column-count, using explicit -moz-column-count
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+
+    .masonry {
+        -moz-column-count: 1;
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .masonry {
+        -moz-column-count: 1;
+    }
+}
+
+
+//8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .masonry {
+        -moz-column-count: 2;
+    }
+}
+
+// 12 columns
+@media only screen and (min-width: $desktop) {
+    .masonry {
+        -moz-column-count: 3;
+    }
+}
