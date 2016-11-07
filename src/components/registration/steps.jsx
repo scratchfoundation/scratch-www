@@ -457,7 +457,7 @@ module.exports = {
         onValidSubmit: function (formData, reset, invalidate) {
             if (!formData.phone || formData.phone.national_number === '+') {
                 return invalidate({
-                    'phone': this.props.intl.formatMessage({id: 'teacherRegistration.validationPhoneNumber'})
+                    'phone': this.props.intl.formatMessage({id: 'teacherRegistration.validationRequired'})
                 });
             }
             return this.props.onNextStep(formData);
