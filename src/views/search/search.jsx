@@ -13,8 +13,7 @@ var Input = require('../../components/forms/input.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var Grid = require('../../components/grid/grid.jsx');
-
-var navigationDetails = require('../../../redux/navigation.js');
+var navigationActions = require('../../../redux/navigation.js');
 
 require('./search.scss');
 
@@ -56,6 +55,7 @@ var Search = injectIntl(React.createClass({
     },
     componentDidMount: function () {
         this.getSearchMore();
+        this.props.dispatch(navigationDetails.setSearchTerm(searchTerm));
     },
     getSearchMore: function () {
         var termText = '';
@@ -97,9 +97,6 @@ var Search = injectIntl(React.createClass({
                     </a>;
         }
         return allTab;
-    },
-    setSearchTerm: function (searchTerm) {
-        this.props.dispatch(navigationDetails.setSearchTerm(searchTerm));
     },
     render: function () {
         var formatMessage = this.props.intl.formatMessage;
@@ -146,10 +143,10 @@ var Search = injectIntl(React.createClass({
 
 var mapStateToProps = function (state) {
     return {
-        navigationDetails: state.navigationDetails
+        searchTerm: state.searchTerm
     };
 };
 
-var ConnectedDetails = connect(mapStateToProps)(Search);
+var ConnectedSearch = connect(mapStateToProps)(Search);
 
-render(<Page><ConnectedDetails /></Page>, document.getElementById('app'));
+render(<Page><ConnectedSearch /></Page>, document.getElementById('app'));
