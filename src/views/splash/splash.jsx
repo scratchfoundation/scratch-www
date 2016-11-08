@@ -1,6 +1,5 @@
 var connect = require('react-redux').connect;
 var injectIntl = require('react-intl').injectIntl;
-var omit = require('lodash.omit');
 var React = require('react');
 
 var api = require('../../lib/api');
@@ -16,7 +15,7 @@ var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var Intro = require('../../components/intro/intro.jsx');
-var Modal = require('../../components/modal/modal.jsx');
+var IframeModal = require('../../components/modal/iframe/modal.jsx');
 var News = require('../../components/news/news.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
@@ -308,7 +307,6 @@ var Splash = injectIntl(React.createClass({
     },
     render: function () {
         var featured = this.renderHomepageRows();
-        var emailConfirmationStyle = {width: 500, height: 330, padding: 1};
         var homepageCacheState = this.getHomepageRefreshStatus();
 
         var formatHTMLMessage = this.props.intl.formatHTMLMessage;
@@ -344,21 +342,23 @@ var Splash = injectIntl(React.createClass({
         return (
             <div className="splash">
                 {this.shouldShowEmailConfirmation() ? [
-                    <DropdownBanner key="confirmedEmail"
-                            className="warning"
-                            onRequestDismiss={this.handleDismiss.bind(this, 'confirmed_email')}>
+                    <DropdownBanner
+                        key="confirmedEmail"
+                        className="warning"
+                        onRequestDismiss={this.handleDismiss.bind(this, 'confirmed_email')}
+                    >
                         <a href="#" onClick={this.showEmailConfirmationModal}>Confirm your email</a>
                         {' '}to enable sharing.{' '}
                         <a href="/info/faq/#accounts">Having trouble?</a>
                     </DropdownBanner>,
-                    <Modal key="emailConfirmationModal"
-                           isOpen={this.state.emailConfirmationModalOpen}
-                           onRequestClose={this.hideEmailConfirmationModal}
-                           style={{content: emailConfirmationStyle}}>
-                        <iframe ref="emailConfirmationiFrame"
-                                src="/accounts/email_resend_standalone/"
-                                {...omit(emailConfirmationStyle, 'padding')} />
-                    </Modal>
+                    <IframeModal
+                        componentKey="emailConfirmationModal"
+                        isOpen={this.state.emailConfirmationModalOpen}
+                        onRequestClose={this.hideEmailConfirmationModal}
+                        className="mod-confirmation"
+                        componentRef="emailConfirmationiFrame"
+                        src="/accounts/email_resend_standalone/"
+                    />
                 ] : []}
                 {this.props.permissions.educator ? [
                     <TeacherBanner key="teacherbanner" messages={messages} />
