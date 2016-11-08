@@ -1,9 +1,7 @@
 var React = require('react');
-var Modal = require('../modal/modal.jsx');
+var IframeModal = require('../modal/iframe/modal.jsx');
 
 require('./registration.scss');
-
-Modal.setAppElement(document.getElementById('view'));
 
 var Registration = React.createClass({
     propTypes: {
@@ -36,18 +34,14 @@ var Registration = React.createClass({
         this.toggleMessageListener(false);
     },
     render: function () {
-        var frameProps = {
-            width: 610,
-            height: 438
-        };
         return (
-            <Modal
-                    isOpen={this.props.isOpen}
-                    onRequestClose={this.props.onRequestClose}
-                    className="registration"
-                    style={{content:frameProps}}>
-                <iframe ref="registrationIframe" src="/accounts/standalone-registration/" {...frameProps} />
-            </Modal>
+            <IframeModal
+                isOpen={this.props.isOpen}
+                onRequestClose={this.props.onRequestClose}
+                className="mod-registration"
+                componentRef="registrationIframe"
+                src="/accounts/standalone-registration/"
+            />
         );
     }
 });
