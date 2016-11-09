@@ -1,102 +1,101 @@
-{
-    "MakeItFly": {
-        "title": "ttt.MakeItFlyTitle",
-        "description": "ttt.MakeItFlyDescription",
-        "thumbURL": "/images/ttt/make-it-fly.jpg",
-        "bannerURL": "/images/ttt/getting-started-tutorial.jpg",
-        "tutorialLoc": "ttt.MakeItFlyTutorialLoc",
-        "activityLoc": "ttt.MakeItFlyCardsLoc",
-        "guideLoc": "ttt.MakeItFlyGuidesLoc"
-    },
-    "AnimateYourName": {
+[
+    {
         "title": "ttt.AnimateYourNameTitle",
         "description": "ttt.AnimateYourNameDescription",
-        "thumbURL": "/images/ttt/animate-your-name.jpg",
-        "bannerURL": "/images/ttt/getting-started-tutorial.jpg",
+        "thumbUrl": "/images/ttt/animate-your-name.jpg",
+        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
         "tutorialLoc": "ttt.AnimateYourNameTutorialLoc",
         "activityLoc": "ttt.MakeItFlyCardsLoc",
         "guideLoc": "ttt.MakeItFlyGuidesLoc"
     },
-    "Race": {
-        "title": "ttt.RaceTitle",
-        "description": "ttt.RaceDescription",
-        "thumbURL": "/images/ttt/race-to-the-finish.jpg",
-        "bannerURL": "/images/ttt/getting-started-tutorial.jpg",
-        "tutorialLoc": "ttt.RaceTutorialLoc",
-        "activityLoc": "ttt.RaceCardsLoc",
-        "guideLoc": "ttt.RaceGuidesLoc"
-    }
-    ,
-    "MakeMusic": {
+    {
+        "title": "ttt.MakeItFlyTitle",
+        "description": "ttt.MakeItFlyDescription",
+        "thumbUrl": "/images/ttt/make-it-fly.jpg",
+        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "tutorialLoc": "ttt.MakeItFlyTutorialLoc",
+        "activityLoc": "ttt.MakeItFlyCardsLoc",
+        "guideLoc": "ttt.MakeItFlyGuidesLoc"
+    },
+    {
         "title": "ttt.MakeMusicTitle",
         "description": "ttt.MakeMusicDescription",
-        "thumbURL": "/images/ttt/make-music.jpg",
-        "bannerURL": "/images/ttt/getting-started-tutorial.jpg",
+        "thumbUrl": "/images/ttt/make-music.jpg",
+        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
         "tutorialLoc": "ttt.MakeMusicTutorialLoc",
         "activityLoc": "ttt.MakeMusicCardsLoc",
         "guideLoc": "ttt.MakeMusicGuidesLoc"
     },
-    "HideAndSeek": {
+    {
+        "title": "ttt.RaceTitle",
+        "description": "ttt.RaceDescription",
+        "thumbUrl": "/images/ttt/race-to-the-finish.jpg",
+        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "tutorialLoc": "ttt.RaceTutorialLoc",
+        "activityLoc": "ttt.RaceCardsLoc",
+        "guideLoc": "ttt.RaceGuidesLoc"
+    },
+    {
         "title": "ttt.HideAndSeekTitle",
         "description": "ttt.HideAndSeekDescription",
-        "thumbURL": "/images/ttt/hide-and-seek.jpg",
-        "bannerURL": "/images/ttt/getting-started-tutorial.jpg",
+        "thumbUrl": "/images/ttt/hide-and-seek.jpg",
+        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
         "tutorialLoc": "ttt.HideAndSeekTutorialLoc",
         "activityLoc": "ttt.HideAndSeekCardsLoc",
         "guideLoc": "ttt.HideAndSeekGuidesLoc"
     },
-    "Story": {
+    {
         "title": "ttt.StoryTitle",
         "description": "ttt.StoryDescription",
-        "thumbURL": "/images/ttt/create-a-story.jpg",
-        "bannerURL": "/images/ttt/getting-started-tutorial.jpg",
+        "thumbUrl": "/images/ttt/create-a-story.jpg",
+        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
         "tutorialLoc": "ttt.StoryTutorialLoc",
         "activityLoc": "ttt.StoryCardsLoc",
         "guideLoc": "ttt.StoryGuidesLoc"
     },
-    "Fashion": {
+    {
         "title": "ttt.FashionTitle",
         "description": "ttt.FashionDescription",
-        "thumbURL": "/images/ttt/fashion-game.jpg",
-        "bannerURL": "/images/ttt/getting-started-tutorial.jpg",
+        "thumbUrl": "/images/ttt/fashion-game.jpg",
+        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
         "tutorialLoc": "ttt.FashionTutorialLoc",
         "activityLoc": "ttt.FashionCardsLoc",
         "guideLoc": "ttt.FashionGuidesLoc"
     },
-    "Pong": {
+    {
         "title": "ttt.PongTitle",
         "description": "ttt.PongDescription",
-        "thumbURL": "/images/ttt/pong-game.jpg",
-        "bannerURL": "/images/ttt/getting-started-tutorial.jpg",
+        "thumbUrl": "/images/ttt/pong-game.jpg",
+        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
         "tutorialLoc": "ttt.PongTutorialLoc",
         "activityLoc": "ttt.PongCardsLoc",
         "guideLoc": "ttt.PongGuidesLoc"
     },
-    "Dance": {
+    {
         "title": "ttt.DanceTitle",
         "description": "ttt.DanceDescription",
-        "thumbURL": "/images/ttt/lets-dance.jpg",
-        "bannerURL": "/images/ttt/getting-started-tutorial.jpg",
+        "thumbUrl": "/images/ttt/lets-dance.jpg",
+        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
         "tutorialLoc": "ttt.DanceTutorialLoc",
         "activityLoc": "ttt.DanceCardsLoc",
         "guideLoc": "ttt.DanceGuidesLoc"
     },
-    "Catch": {
+    {
         "title": "ttt.CatchTitle",
         "description": "ttt.CatchDescription",
-        "thumbURL": "/images/ttt/catch-game.jpg",
-        "bannerURL": "/images/ttt/getting-started-tutorial.jpg",
+        "thumbUrl": "/images/ttt/catch-game.jpg",
+        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
         "tutorialLoc": "ttt.CatchTutorialLoc",
         "activityLoc": "ttt.CatchCardsLoc",
         "guideLoc": "ttt.CatchGuidesLoc"
     },
-    "VirtualPet": {
+    {
         "title": "ttt.VirtualPetTitle",
         "description": "ttt.VirtualPetDescription",
-        "thumbURL": "/images/ttt/virtual-pet.jpg",
-        "bannerURL": "/images/ttt/getting-started-tutorial.jpg",
+        "thumbUrl": "/images/ttt/virtual-pet.jpg",
+        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
         "tutorialLoc": "ttt.VirtualPetTutorialLoc",
         "activityLoc": "ttt.VirtualPetCardsLoc",
         "guideLoc": "ttt.VirtualPetGuidesLoc"
     }
-}
+]

@@ -1,5 +1,6 @@
 @import "../../colors";
 @import "../../frameless";
+$tile-width: 18.75rem;
 
 .ttt-tile {
     display: inline-block;
@@ -9,9 +10,9 @@
     margin-bottom: calc(1.25rem - 1px);
 
     border-radius: 1rem;
-    box-shadow: 0 0 0 1px $active-gray;
+    box-shadow: 0 0 0 1px $box-shadow-gray;
     // cols4 is not working - calculate width instead
-    width: calc(4 * ($column + $gutter) - $gutter);
+    width: $tile-width;
 }
 
 .ttt-tile-tutorial {
@@ -19,32 +20,35 @@
     position: relative;
 }
 
+// nesting is required (not just name-spacing) because we want the image
+// and tile box to change style on hover of the parent component.
 .ttt-tile-tutorial:hover {
 
-    .ttt-tile-img-container {
-        .ttt-try-it {
-            display: inline-block;
+    .ttt-tile-image {
+        .ttt-tile-image-img {
+            opacity: .5;
         }
 
-        .ttt-tile-img {
-            opacity: .5;
+        .ttt-tile-image-try {
+            display: inline-block;
         }
     }
 }
 
-.ttt-tile-img {
-    display: block;
-    border-radius: 1rem 1rem 0 0;
-    width: 100%;
-}
-
-.ttt-tile-img-container {
+.ttt-tile-image {
     border-radius: 1rem 1rem 0 0;
     background: $ui-blue;
     width: 100%;
 }
 
-.ttt-try-it {
+.ttt-tile-image-img {
+    display: block;
+    border-radius: 1rem 1rem 0 0;
+    width: 100%;
+}
+
+// wrapper for try button to get position correct
+.ttt-tile-image-try {
     display: none;
     position: absolute;
     top: 3rem;
@@ -54,10 +58,9 @@
     color: $ui-white;
 }
 
-.ttt-try-it-button {
+.mod-ttt-tile-image-try-button {
     border: 1px solid $ui-white;
-    border-radius: .5rem;
-    padding: .75rem 1.5rem;
+    background-color: transparent;
 }
 
 .ttt-tile-info {
@@ -66,26 +69,12 @@
     padding: 1rem 0;
 }
 
-.ttt-tile-button {
-    display: inline-block;
+.mod-ttt-tile-button {
     position: absolute;
     top: -1rem;
     left: 1rem;
-    margin: 0;
-    border: 0;
     border-radius: 1rem;
-    background-color: $ui-blue;
     padding: .25rem 1rem;
-
-    color: $type-white;
-
-    font-size: .75rem;
-    font-weight: bold;
-
-
-
-
-
 }
 
 .ttt-tile-description {
