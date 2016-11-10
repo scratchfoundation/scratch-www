@@ -75,7 +75,7 @@ var TTTModal = React.createClass({
                             </p>
                         </div>
                         <a
-                            href={this.props.tutorialLoc}
+                            href={this.props.activityLoc}
                             className="button white mod-ttt-item"
                         >
                             <FormattedMessage id="ttt.download" />
@@ -96,7 +96,7 @@ var TTTModal = React.createClass({
                             </p>
                         </div>
                         <a
-                            href={this.props.tutorialLoc}
+                            href={this.props.guideLoc}
                             className="button white mod-ttt-item"
                         >
                             <FormattedMessage id="ttt.download" />
