@@ -21,8 +21,6 @@ var Registration = require('../../registration/registration.jsx');
 
 require('./navigation.scss');
 
-Modal.setAppElement(document.getElementById('view'));
-
 var Navigation = React.createClass({
     type: 'Navigation',
     getInitialState: function () {

@@ -81,7 +81,7 @@ var Splash = injectIntl(React.createClass({
     },
     onMessage: function (e) {
         if (e.origin != window.location.origin) return;
-        if (e.source != this.refs.emailConfirmationiFrame.contentWindow) return;
+        if (e.source != this.emailConfirmationiFrame.contentWindow) return;
         if (e.data == 'resend-done') {
             this.hideEmailConfirmationModal();
         } else {
@@ -356,26 +356,17 @@ var Splash = injectIntl(React.createClass({
                         isOpen={this.state.emailConfirmationModalOpen}
                         onRequestClose={this.hideEmailConfirmationModal}
                         className="mod-confirmation"
-                        componentRef="emailConfirmationiFrame"
+                        componentRef={
+                            function (iframe) {
+                                this.emailConfirmationiFrame = iframe;
+                            }.bind(this)
+                        }
                         src="/accounts/email_resend_standalone/"
                     />
                 ] : []}
                 {this.props.permissions.educator ? [
                     <TeacherBanner key="teacherbanner" messages={messages} />
                 ] : []}
-                <TTTModal
-                    title="Make it Fly"
-                    description="Animate the Scratch Cat, the Powerpuff Girls, or even a taco!"
-                    tutorialLoc="/"
-                    activityLoc="/pdfs/cards/Scratch2Cards.pdf"
-                    guideLoc="/pdfs/cards/Scratch2Cards.pdf"
-                    bannerUrl="/images/ttt/make-it-fly-banner.jpg"
-                    thumbUrl=""
-                    modalProps={{
-                        isOpen: true,
-                        ref: 'tttModal'
-                    }}
-                />
                 <div key="inner" className="inner">
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.session.user ? [
