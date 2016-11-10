@@ -9,18 +9,11 @@ Modal.setAppElement(document.getElementById('view'));
 
 var IframeModal = React.createClass({
     propTypes: {
-        componentKey: React.PropTypes.string,
         isOpen: React.PropTypes.bool,
         onRequestClose: React.PropTypes.func,
         className: React.PropTypes.string,
         componentRef: React.PropTypes.string,
         src: React.PropTypes.string
-    },
-    getDefaultProps: function () {
-        return {
-            className: '',
-            iframeClassName: ''
-        };
     },
     render: function () {
         var iframeClasses = classNames(
@@ -29,7 +22,6 @@ var IframeModal = React.createClass({
         );
         return (
             <Modal
-                key={this.props.componentKey}
                 isOpen={this.props.isOpen}
                 onRequestClose={this.props.onRequestClose}
                 className={this.props.className}
