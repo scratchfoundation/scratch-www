@@ -19,6 +19,7 @@ var IframeModal = require('../../components/modal/iframe/modal.jsx');
 var News = require('../../components/news/news.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
+var TTTModal = require('../../components/modal/ttt/modal.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
 var MediaQuery = require('react-responsive');
@@ -35,7 +36,7 @@ var Splash = injectIntl(React.createClass({
             news: [], // gets news posts from the scratch Tumblr
             featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
             featuredGlobal: {}, // global homepage rows, such as "Featured Projects"
-            showEmailConfirmationModal: false, // flag that determines whether to show banner to request email conf.
+            showEmailConfirmationModal: true, // flag that determines whether to show banner to request email conf.
             refreshCacheStatus: 'notrequested'
         };
     },
@@ -352,7 +353,6 @@ var Splash = injectIntl(React.createClass({
                         <a href="/info/faq/#accounts">Having trouble?</a>
                     </DropdownBanner>,
                     <IframeModal
-                        componentKey="emailConfirmationModal"
                         isOpen={this.state.emailConfirmationModalOpen}
                         onRequestClose={this.hideEmailConfirmationModal}
                         className="mod-confirmation"
@@ -363,6 +363,19 @@ var Splash = injectIntl(React.createClass({
                 {this.props.permissions.educator ? [
                     <TeacherBanner key="teacherbanner" messages={messages} />
                 ] : []}
+                <TTTModal
+                    title="Make it Fly"
+                    description="Animate the Scratch Cat, the Powerpuff Girls, or even a taco!"
+                    tutorialLoc="/"
+                    activityLoc="/pdfs/cards/Scratch2Cards.pdf"
+                    guideLoc="/pdfs/cards/Scratch2Cards.pdf"
+                    bannerUrl="/images/ttt/make-it-fly-banner.jpg"
+                    thumbUrl=""
+                    modalProps={{
+                        isOpen: true,
+                        ref: 'tttModal'
+                    }}
+                />
                 <div key="inner" className="inner">
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.session.user ? [

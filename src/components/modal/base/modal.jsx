@@ -17,12 +17,6 @@ var Modal = React.createClass({
         className: React.PropTypes.string,
         overlayClassName: React.PropTypes.string
     },
-    getDefaultProps: function () {
-        return {
-            className: '',
-            overlayClassName: ''
-        };
-    },
     requestClose: function () {
         return this.refs.modal.portal.requestClose();
     },
