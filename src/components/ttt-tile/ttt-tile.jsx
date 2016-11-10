@@ -10,7 +10,7 @@ var TTTTile = React.createClass({
     propTypes: {
         title: React.PropTypes.string.isRequired,
         description: React.PropTypes.string.isRequired,
-        imageUrl: React.PropTypes.string.isRequired,
+        thumbUrl: React.PropTypes.string.isRequired,
         tutorialLoc: React.PropTypes.string.isRequired
     },
     handleClick: function () {
@@ -26,7 +26,7 @@ var TTTTile = React.createClass({
                 <a href={this.props.tutorialLoc}>
                     <div className="ttt-tile-tutorial">
                         <div className="ttt-tile-image">
-                            <img className="ttt-tile-image-img" src={this.props.imageUrl} alt="" />
+                            <img className="ttt-tile-image-img" src={this.props.thumbUrl} alt="" />
                             <div className="ttt-tile-image-try">
                                 <div className="button mod-ttt-tile-image-try-button">
                                     Try it
@@ -35,7 +35,7 @@ var TTTTile = React.createClass({
                         </div>
                         <div className="ttt-tile-info">
 
-                            <div className="button mod-ttt-tile-button">
+                            <div className="ttt-tile-tag">
                                 <FormattedMessage id='tile.tutorial' defaultMessage='Tutorial'/>
                             </div>
                             <h4 className="ttt-tile-title">{this.props.title}</h4>
@@ -48,7 +48,7 @@ var TTTTile = React.createClass({
                 </a>
                 <div className="ttt-tile-guides" onClick={this.handleClick}>
                     <FormattedMessage id='tile.guides' defaultMessage='See Cards and Guides'/>
-                    &nbsp;<img src="/svgs/ttt/see-more.svg" />
+                    <img className="ttt-tile-see-more" src="/svgs/ttt/see-more.svg" />
                 </div>
             </div>
         );

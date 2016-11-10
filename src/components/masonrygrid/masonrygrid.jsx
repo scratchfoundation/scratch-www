@@ -18,16 +18,16 @@ var MasonryGrid = React.createClass({
         var a3 = [];
         var i = 0;
         //only implemented for 2 and 3 columns so far - easy to extend if needed
-        if (cols >1 && cols < 4) {
+        if (cols > 1 && cols < 4) {
             for (i=0;i<items.length;i++){
                 var col = (i+cols)%cols;
-                if (col==0) {
+                if (col === 0) {
                     a1.push(items[i]);
                 }
-                else if (col==1) {
+                else if (col === 1) {
                     a2.push(items[i]);
                 }
-                else if (col==2) {
+                else if (col === 2) {
                     a3.push(items[i]);
                 }
             }

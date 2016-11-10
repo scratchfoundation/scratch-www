@@ -1,6 +1,5 @@
 @import "../../colors";
 @import "../../frameless";
-$tile-width: 18.75rem;
 
 .ttt-tile {
     display: inline-block;
@@ -10,9 +9,9 @@ $tile-width: 18.75rem;
     margin-bottom: calc(1.25rem - 1px);
 
     border-radius: 1rem;
-    box-shadow: 0 0 0 1px $box-shadow-gray;
-    // cols4 is not working - calculate width instead
-    width: $tile-width;
+    box-shadow: 0 0 0 1px $active-gray;
+    width: $cols4;
+    text-align: center;
 }
 
 .ttt-tile-tutorial {
@@ -51,7 +50,7 @@ $tile-width: 18.75rem;
 .ttt-tile-image-try {
     display: none;
     position: absolute;
-    top: 3rem;
+    top: 4rem;
     left: 50%;
     transform: translate(-50%, 0);
     text-align: center;
@@ -69,19 +68,30 @@ $tile-width: 18.75rem;
     padding: 1rem 0;
 }
 
-.mod-ttt-tile-button {
+.ttt-tile-tag {
+    display: inline-block;
     position: absolute;
     top: -1rem;
     left: 1rem;
+    margin: .5em 0;
+    border: 0;
     border-radius: 1rem;
+    background-color: $ui-blue;
     padding: .25rem 1rem;
+    color: $type-white;
+    font-size: .8rem;
+    font-weight: bold;
+}
+
+.ttt-tile-title {
+    margin: .5rem auto;
+    width: calc(100% - 3rem);
 }
 
 .ttt-tile-description {
     margin: auto;
-    width: calc(100% - 2rem);
+    width: calc(100% - 3rem);
     font-size: .875rem;
-
 }
 
 .ttt-tile-guides {
@@ -99,4 +109,10 @@ $tile-width: 18.75rem;
     &:hover {
         background-color: lighten($link-blue, 40%);
     }
+}
+
+.ttt-tile-see-more {
+    display: inline-block;
+    padding: 0 .25rem;
+    vertical-align: middle;
 }

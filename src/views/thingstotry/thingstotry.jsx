@@ -30,21 +30,20 @@ var ThingsToTry = injectIntl(React.createClass({
 
         return (
             <div className="ttt">
-                <TitleBanner className="masthead">
-                    <section className="ttt-section mod-title-banner">
-                        <img src="/svgs/ttt/resources.svg" />
+                <TitleBanner className="masthead mod-ttt">
+                    <section className="ttt-section">
+                        <img className="ttt-banner-image" src="/svgs/ttt/resources.svg" alt=""/>
                     </section>
                     <h1>
-                        <FormattedMessage id='ttt.title' />
+                        <FormattedMessage id="ttt.title" />
                     </h1>
-                        <p>
-                            <FormattedHTMLMessage id='ttt.subTitle' />
-                        </p>
+                    <p className="intro">
+                        <FormattedHTMLMessage id="ttt.subTitle" />
+                    </p>
                 </TitleBanner>
 
                 <div className="inner">
                     <section className="ttt-section">
-
                         <MasonryGrid >
                             {Tiles.map(function (tile) {
                                 return (
@@ -52,15 +51,15 @@ var ThingsToTry = injectIntl(React.createClass({
                                         key={tile.title}
                                         title={formatMessage({id: tile.title})}
                                         description={formatMessage({id: tile.description})}
-                                        imageUrl={tile.thumbUrl}
+                                        thumbUrl={tile.thumbUrl}
                                         tutorialLoc={formatMessage({id: tile.tutorialLoc})}
                                     />
                                 );
                             })}
 
-                    </MasonryGrid>
-
+                        </MasonryGrid>
                     </section>
+
                 </div>
             </div>
         );

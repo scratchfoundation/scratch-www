@@ -1,10 +1,10 @@
 @import "../../frameless";
-$tile-width: 18.75rem;
 
 .masonry {
     column-gap: $gutter;
-    column-width: $tile-width;
+    column-width: $cols4;
     -webkit-perspective: 1;
+    padding-bottom: 50px;
 }
 
 // working around Firefox issue that requires column-count, using explicit -moz-column-count
