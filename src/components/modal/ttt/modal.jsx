@@ -1,5 +1,6 @@
 var FormattedMessage = require('react-intl').FormattedMessage;
 var MediaQuery = require('react-responsive');
+var omit = require('lodash.omit');
 var React = require('react');
 
 var FlexRow = require('../../flex-row/flex-row.jsx');
@@ -10,8 +11,6 @@ var TitleBanner = require('../../title-banner/title-banner.jsx');
 require('../../forms/button.scss');
 require('./modal.scss');
 
-Modal.setAppElement(document.getElementById('view'));
-
 var TTTModal = React.createClass({
     propTypes: {
         title: React.PropTypes.string.isRequired,
@@ -21,11 +20,22 @@ var TTTModal = React.createClass({
         guideLoc: React.PropTypes.string.isRequired,
         thumbUrl: React.PropTypes.string.isRequired,
         bannerUrl: React.PropTypes.string.isRequired,
-        modalProps: React.PropTypes.object
     },
     render: function () {
+        var modalOmit = [
+            'title',
+            'description',
+            'tutorialLoc',
+            'activityLoc',
+            'guideLoc',
+            'thumbUrl',
+            'bannerUrl'
+        ];
         return (
-            <Modal className="mod-ttt" {...this.props.modalProps}>
+            <Modal
+                className="mod-ttt"
+                {...omit(this.props, modalOmit)}
+            >
                 <TitleBanner className="mod-ttt">
                     <MediaQuery minWidth={frameless.mobile}>
                         <img className="mod-ttt-img" src={this.props.bannerUrl} alt="" />

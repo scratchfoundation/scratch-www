@@ -11,10 +11,10 @@ var Registration = React.createClass({
     },
     onMessage: function (e) {
         if (e.origin != window.location.origin) return;
-        if (e.source != this.refs.registrationIframe.contentWindow) return;
+        if (e.source != this.registrationIframe.contentWindow) return;
         if (e.data == 'registration-done') this.props.onRegistrationDone();
         if (e.data == 'registration-relaunch') {
-            this.refs.registrationIframe.contentWindow.location.reload();
+            this.registrationIframe.contentWindow.location.reload();
         }
     },
     toggleMessageListener: function (present) {
@@ -39,7 +39,11 @@ var Registration = React.createClass({
                 isOpen={this.props.isOpen}
                 onRequestClose={this.props.onRequestClose}
                 className="mod-registration"
-                componentRef="registrationIframe"
+                componentRef={
+                    function (iframe) {
+                        this.registrationIframe = iframe;
+                    }.bind(this)
+                }
                 src="/accounts/standalone-registration/"
             />
         );

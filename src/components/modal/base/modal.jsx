@@ -5,20 +5,19 @@ var ReactModal = require('react-modal');
 
 require('./modal.scss');
 
+ReactModal.setAppElement(document.getElementById('view'));
+
 /**
  * Container for pop up windows (See: registration window)
  */
 var Modal = React.createClass({
     type: 'Modal',
-    statics: {
-        setAppElement: ReactModal.setAppElement
-    },
     propTypes: {
         className: React.PropTypes.string,
         overlayClassName: React.PropTypes.string
     },
     requestClose: function () {
-        return this.refs.modal.portal.requestClose();
+        return this.modal.portal.requestClose();
     },
     render: function () {
         var modalClasses = classNames(
@@ -29,9 +28,15 @@ var Modal = React.createClass({
             'modal-overlay',
             this.props.overlayClassName
         );
+        ReactModal.setAppElement(document.getElementById(this.props.appElementId));
+        
         return (
             <ReactModal
-                ref="modal"
+                ref={
+                    function (component) {
+                        this.modal = component;
+                    }.bind(this)
+                }
                 className={modalClasses}
                 overlayClassName={overlayClasses}
                 {...omit(this.props, ['className', 'overlayClassName'])}
