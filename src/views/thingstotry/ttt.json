@@ -3,7 +3,7 @@
         "title": "ttt.AnimateYourNameTitle",
         "description": "ttt.AnimateYourNameDescription",
         "thumbUrl": "/images/ttt/animate-your-name.jpg",
-        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "bannerUrl": "/images/ttt/animate-your-name-banner.jpg",
         "tutorialLoc": "ttt.AnimateYourNameTutorialLoc",
         "activityLoc": "ttt.MakeItFlyCardsLoc",
         "guideLoc": "ttt.MakeItFlyGuidesLoc"
@@ -12,7 +12,7 @@
         "title": "ttt.MakeItFlyTitle",
         "description": "ttt.MakeItFlyDescription",
         "thumbUrl": "/images/ttt/make-it-fly.jpg",
-        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "bannerUrl": "/images/ttt/make-it-fly-banner.jpg",
         "tutorialLoc": "ttt.MakeItFlyTutorialLoc",
         "activityLoc": "ttt.MakeItFlyCardsLoc",
         "guideLoc": "ttt.MakeItFlyGuidesLoc"
@@ -21,7 +21,7 @@
         "title": "ttt.MakeMusicTitle",
         "description": "ttt.MakeMusicDescription",
         "thumbUrl": "/images/ttt/make-music.jpg",
-        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "bannerUrl": "/images/ttt/make-music-banner.jpg",
         "tutorialLoc": "ttt.MakeMusicTutorialLoc",
         "activityLoc": "ttt.MakeMusicCardsLoc",
         "guideLoc": "ttt.MakeMusicGuidesLoc"
@@ -30,7 +30,7 @@
         "title": "ttt.RaceTitle",
         "description": "ttt.RaceDescription",
         "thumbUrl": "/images/ttt/race-to-the-finish.jpg",
-        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "bannerUrl": "/images/ttt/race-to-the-finish-banner.jpg",
         "tutorialLoc": "ttt.RaceTutorialLoc",
         "activityLoc": "ttt.RaceCardsLoc",
         "guideLoc": "ttt.RaceGuidesLoc"
@@ -39,7 +39,7 @@
         "title": "ttt.HideAndSeekTitle",
         "description": "ttt.HideAndSeekDescription",
         "thumbUrl": "/images/ttt/hide-and-seek.jpg",
-        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "bannerUrl": "/images/ttt/hide-and-seek-banner.jpg",
         "tutorialLoc": "ttt.HideAndSeekTutorialLoc",
         "activityLoc": "ttt.HideAndSeekCardsLoc",
         "guideLoc": "ttt.HideAndSeekGuidesLoc"
@@ -48,7 +48,7 @@
         "title": "ttt.StoryTitle",
         "description": "ttt.StoryDescription",
         "thumbUrl": "/images/ttt/create-a-story.jpg",
-        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "bannerUrl": "/images/ttt/create-a-story-banner.jpg",
         "tutorialLoc": "ttt.StoryTutorialLoc",
         "activityLoc": "ttt.StoryCardsLoc",
         "guideLoc": "ttt.StoryGuidesLoc"
@@ -57,7 +57,7 @@
         "title": "ttt.FashionTitle",
         "description": "ttt.FashionDescription",
         "thumbUrl": "/images/ttt/fashion-game.jpg",
-        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "bannerUrl": "/images/ttt/fashion-game-banner.jpg",
         "tutorialLoc": "ttt.FashionTutorialLoc",
         "activityLoc": "ttt.FashionCardsLoc",
         "guideLoc": "ttt.FashionGuidesLoc"
@@ -66,7 +66,7 @@
         "title": "ttt.PongTitle",
         "description": "ttt.PongDescription",
         "thumbUrl": "/images/ttt/pong-game.jpg",
-        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "bannerUrl": "/images/ttt/pong-game-banner.jpg",
         "tutorialLoc": "ttt.PongTutorialLoc",
         "activityLoc": "ttt.PongCardsLoc",
         "guideLoc": "ttt.PongGuidesLoc"
@@ -75,7 +75,7 @@
         "title": "ttt.DanceTitle",
         "description": "ttt.DanceDescription",
         "thumbUrl": "/images/ttt/lets-dance.jpg",
-        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "bannerUrl": "/images/ttt/lets-dance-banner.jpg",
         "tutorialLoc": "ttt.DanceTutorialLoc",
         "activityLoc": "ttt.DanceCardsLoc",
         "guideLoc": "ttt.DanceGuidesLoc"
@@ -84,7 +84,7 @@
         "title": "ttt.CatchTitle",
         "description": "ttt.CatchDescription",
         "thumbUrl": "/images/ttt/catch-game.jpg",
-        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "bannerUrl": "/images/ttt/catch-game-banner.jpg",
         "tutorialLoc": "ttt.CatchTutorialLoc",
         "activityLoc": "ttt.CatchCardsLoc",
         "guideLoc": "ttt.CatchGuidesLoc"
@@ -93,7 +93,7 @@
         "title": "ttt.VirtualPetTitle",
         "description": "ttt.VirtualPetDescription",
         "thumbUrl": "/images/ttt/virtual-pet.jpg",
-        "bannerUrl": "/images/ttt/getting-started-tutorial.jpg",
+        "bannerUrl": "/images/ttt/virtual-pet-banner.jpg",
         "tutorialLoc": "ttt.VirtualPetTutorialLoc",
         "activityLoc": "ttt.VirtualPetCardsLoc",
         "guideLoc": "ttt.VirtualPetGuidesLoc"
