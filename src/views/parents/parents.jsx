@@ -1,6 +1,7 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
 var FormattedMessage = require('react-intl').FormattedMessage;
+var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FlexRow = require('../../components/flex-row/flex-row.jsx');
 var Box = require('../../components/box/box.jsx');
 
@@ -37,42 +38,42 @@ var Parents = React.createClass({
                     </div>
                 </div>
                 
-                <div className="bodyMain">
-                    <FlexRow>
+                <FlexRow className="uneven">
+                    <div className="long">
                         <ul>
                             <li>
                                 <h3><FormattedMessage id='parents.ageRange' /></h3>
-                                <p><FormattedMessage id='parents.ageRangeDescription' /></p>
+                                <p><FormattedHTMLMessage id='parents.ageRangeDescription' /></p>
                             </li>
 
                             <li>
                                 <h3><FormattedMessage id='parents.resources' /></h3>
-                                <p><FormattedMessage id='parents.resourcesDescription' /></p>
+                                <p><FormattedHTMLMessage id='parents.resourcesDescription' /></p>
                             </li>
 
                             <li>
                                 <h3><FormattedMessage id='parents.onlineCommunity' /></h3>
-                                <p><FormattedMessage id='parents.onlineCommunityDescription' /></p>
+                                <p><FormattedHTMLMessage id='parents.onlineCommunityDescription' /></p>
                             </li>
 
                             <li>
                                 <h3><FormattedMessage id='parents.guidelines' /></h3>
-                                <p><FormattedMessage id='parents.guidelinesDescription' /></p>
+                                <p><FormattedHTMLMessage id='parents.guidelinesDescription' /></p>
                             </li>
 
                             <li>
                                 <h3><FormattedMessage id='parents.privacyPolicy' /></h3>
-                                <p><FormattedMessage id='parents.privacyPolicyDescription' /></p>
+                                <p><FormattedHTMLMessage id='parents.privacyPolicyDescription' /></p>
                             </li>
 
                             <li>
                                 <h3><FormattedMessage id='parents.noOnline' /></h3>
-                                <p><FormattedMessage id='parents.noOnlineDescription' /></p>
+                                <p><FormattedHTMLMessage id='parents.noOnlineDescription' /></p>
                             </li>
 
                             <li>
                                 <h3><FormattedMessage id='parents.parentsSaying' /></h3>
-                                <p><FormattedMessage id='parents.parentsSayingDescription' /></p>
+                                <p><FormattedHTMLMessage id='parents.parentsSayingDescription' /></p>
                                 <p><b>"I just want to thank you all for making Scratch, and{' '}
                                    for providing it for free.</b> My kids are doing amazing{' '}
                                    things that they see as fun yet I know is educational,{' '}
@@ -97,29 +98,27 @@ var Parents = React.createClass({
                                    is just incredible. Just a big thanks to you and MIT."</p>
                             </li>
                         </ul>
-                    </FlexRow>
-                </div>
+                    </div>
                 
-                <div className="bodySide">
-                    <FlexRow>
+                    <div className="short">
                         <Box title={''}>
                             <li>
                                 <h3><FormattedMessage id='parents.learning' /></h3>
-                                <p><FormattedMessage id='parents.learningDescription' /></p>
+                                <p><FormattedHTMLMessage id='parents.learningDescription' /></p>
                             </li>
 
                             <li>
                                 <h3><FormattedMessage id='parents.community' /></h3>
-                                <p><FormattedMessage id='parents.communityDescription' /></p>
+                                <p><FormattedHTMLMessage id='parents.communityDescription' /></p>
                             </li>
 
                             <li>
                                 <h3><FormattedMessage id='parents.Questions' /></h3>
-                                <p><FormattedMessage id='parents.QuestionsDescription' /></p>
+                                <p><FormattedHTMLMessage id='parents.QuestionsDescription' /></p>
                             </li>
                         </Box>
-                    </FlexRow>
-                </div>
+                    </div>
+                </FlexRow>
             </div>
         );
     }
