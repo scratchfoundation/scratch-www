@@ -1,9 +1,7 @@
 var React = require('react');
-var Modal = require('../modal/modal.jsx');
+var IframeModal = require('../modal/iframe/modal.jsx');
 
 require('./registration.scss');
-
-Modal.setAppElement(document.getElementById('view'));
 
 var Registration = React.createClass({
     propTypes: {
@@ -13,10 +11,10 @@ var Registration = React.createClass({
     },
     onMessage: function (e) {
         if (e.origin != window.location.origin) return;
-        if (e.source != this.refs.registrationIframe.contentWindow) return;
+        if (e.source != this.registrationIframe.contentWindow) return;
         if (e.data == 'registration-done') this.props.onRegistrationDone();
         if (e.data == 'registration-relaunch') {
-            this.refs.registrationIframe.contentWindow.location.reload();
+            this.registrationIframe.contentWindow.location.reload();
         }
     },
     toggleMessageListener: function (present) {
@@ -36,18 +34,18 @@ var Registration = React.createClass({
         this.toggleMessageListener(false);
     },
     render: function () {
-        var frameProps = {
-            width: 610,
-            height: 438
-        };
         return (
-            <Modal
-                    isOpen={this.props.isOpen}
-                    onRequestClose={this.props.onRequestClose}
-                    className="registration"
-                    style={{content:frameProps}}>
-                <iframe ref="registrationIframe" src="/accounts/standalone-registration/" {...frameProps} />
-            </Modal>
+            <IframeModal
+                isOpen={this.props.isOpen}
+                onRequestClose={this.props.onRequestClose}
+                className="mod-registration"
+                componentRef={
+                    function (iframe) {
+                        this.registrationIframe = iframe;
+                    }.bind(this)
+                }
+                src="/accounts/standalone-registration/"
+            />
         );
     }
 });
