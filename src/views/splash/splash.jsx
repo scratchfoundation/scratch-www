@@ -19,7 +19,6 @@ var IframeModal = require('../../components/modal/iframe/modal.jsx');
 var News = require('../../components/news/news.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
-var TTTModal = require('../../components/modal/ttt/modal.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
 var MediaQuery = require('react-responsive');

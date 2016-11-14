@@ -19,7 +19,7 @@ var TTTModal = React.createClass({
         activityLoc: React.PropTypes.string.isRequired,
         guideLoc: React.PropTypes.string.isRequired,
         thumbUrl: React.PropTypes.string.isRequired,
-        bannerUrl: React.PropTypes.string.isRequired,
+        bannerUrl: React.PropTypes.string.isRequired
     },
     render: function () {
         var modalOmit = [
