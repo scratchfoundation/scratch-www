@@ -28,7 +28,6 @@ var Modal = React.createClass({
             'modal-overlay',
             this.props.overlayClassName
         );
-        ReactModal.setAppElement(document.getElementById(this.props.appElementId));
         
         return (
             <ReactModal
