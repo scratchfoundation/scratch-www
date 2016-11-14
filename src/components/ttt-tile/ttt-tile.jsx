@@ -11,10 +11,8 @@ var TTTTile = React.createClass({
         title: React.PropTypes.string.isRequired,
         description: React.PropTypes.string.isRequired,
         thumbUrl: React.PropTypes.string.isRequired,
-        tutorialLoc: React.PropTypes.string.isRequired
-    },
-    handleClick: function () {
-        alert('show Modal');
+        tutorialLoc: React.PropTypes.string.isRequired,
+        onGuideClick: React.PropTypes.func.isRequired
     },
     render: function () {
         var classes = classNames(
@@ -29,7 +27,7 @@ var TTTTile = React.createClass({
                             <img className="ttt-tile-image-img" src={this.props.thumbUrl} alt="" />
                             <div className="ttt-tile-image-try">
                                 <div className="button mod-ttt-tile-image-try-button">
-                                    Try it
+                                    <FormattedMessage id="ttt.tryIt" />
                                 </div>
                             </div>
                         </div>
@@ -46,7 +44,7 @@ var TTTTile = React.createClass({
                     </div>
 
                 </a>
-                <div className="ttt-tile-guides" onClick={this.handleClick}>
+                <div className="ttt-tile-guides" onClick={this.props.onGuideClick}>
                     <FormattedMessage id='tile.guides' defaultMessage='See Cards and Guides'/>
                     <img className="ttt-tile-see-more" src="/svgs/ttt/see-more.svg" />
                 </div>

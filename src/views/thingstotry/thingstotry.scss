@@ -7,7 +7,8 @@ $base-bg: $ui-white;
     padding: 0;
 }
 
-.title-banner.mod-ttt {
+// .mod-ttt-title, to avoid collision with .title-banner.mod-tt in ttt modal
+.title-banner.mod-ttt-title {
     background-color: $ui-blue;
 }
 
@@ -29,7 +30,7 @@ $base-bg: $ui-white;
 
     .title-banner {
         &.masthead {
-            padding-bottom: 2rem;
+            padding-bottom: 1.25rem;
 
             p {
                 max-width: $cols4;
@@ -80,7 +81,7 @@ $base-bg: $ui-white;
 @media only screen and (min-width: $desktop) {
     .title-banner {
         &.masthead {
-            padding-bottom: 2rem;
+            padding-bottom: 1.25rem;
 
             p {
                 max-width: $cols8;
