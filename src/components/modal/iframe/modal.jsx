@@ -20,7 +20,7 @@ var IframeModal = React.createClass({
             this.props.className
         );
         return (
-            <Modal {...omit(this.props, ['ref', 'src'])}>
+            <Modal {...omit(this.props, ['src'])}>
                 <iframe
                     ref={this.props.componentRef}
                     src={this.props.src}
