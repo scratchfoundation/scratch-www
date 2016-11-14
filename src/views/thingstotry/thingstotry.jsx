@@ -34,7 +34,7 @@ var ThingsToTry = injectIntl(React.createClass({
         var translatedTiles = [];
         var translatedTile = {};
 
-        Tiles.map(function (tile) {
+        Tiles.map(function (tile, key) {
             translatedTile = {
                 title: formatMessage({id: tile.title}),
                 description: formatMessage({id: tile.description}),
@@ -46,7 +46,7 @@ var ThingsToTry = injectIntl(React.createClass({
             };
             translatedTiles.push(
                 <TTTTile
-                    key={tile.title}
+                    key={key}
                     onGuideClick={this.showTTTModal.bind(this, translatedTile)}
                     {...translatedTile}
                 />
