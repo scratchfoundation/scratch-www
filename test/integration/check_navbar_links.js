@@ -7,9 +7,10 @@
 var tap=require('tap');
 var seleniumWebdriver = require('selenium-webdriver');
 
-//Passing in the driver as a variable?
-var driver = process.env.DRIVER || seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
-//var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
+//Chrome driver
+var driver = new seleniumWebdriver.Builder()
+                .withCapabilities(seleniumWebdriver.Capabilities.chrome())
+                .build();
 //open the address for the server to test in a new instance of the browser
 var serverToTest = process.env.TEST_DOMAIN || 'https://scratch.mit.edu';
 driver.get(serverToTest);
