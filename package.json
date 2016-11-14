@@ -82,7 +82,6 @@
     "sass-lint": "1.5.1",
     "sass-loader": "2.0.1",
     "scratchr2_translations": "git://github.com/LLK/scratchr2_translations.git#master",
-    "selenium-webdriver": "2.44.0",
     "slick-carousel": "1.5.8",
     "source-map-support": "0.3.2",
     "style-loader": "0.12.3",
