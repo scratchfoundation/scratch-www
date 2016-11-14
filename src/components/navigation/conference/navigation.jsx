@@ -1,6 +1,6 @@
 var React = require('react');
 
-var NavigationBox = require('../container/navigation.jsx');
+var NavigationBox = require('../base/navigation.jsx');
 
 require('./navigation.scss');
 

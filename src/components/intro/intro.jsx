@@ -1,15 +1,12 @@
 var connect = require('react-redux').connect;
-var omit = require('lodash.omit');
 var React = require('react');
 
 var sessionActions = require('../../redux/session.js');
 
-var Modal = require('../modal/modal.jsx');
+var IframeModal = require('../modal/iframe/modal.jsx');
 var Registration = require('../registration/registration.jsx');
 
 require('./intro.scss');
-
-Modal.setAppElement(document.getElementById('view'));
 
 var Intro = React.createClass({
     type: 'Intro',
@@ -52,11 +49,6 @@ var Intro = React.createClass({
         this.closeRegistration();
     },
     render: function () {
-        var frameProps = {
-            width: 570,
-            height: 357,
-            padding: 15
-        };
         return (
             <div className="intro">
                 <div className="content">
@@ -130,15 +122,12 @@ var Intro = React.createClass({
                     <img src="//cdn.scratch.mit.edu/scratchr2/static/images/hp-video-screenshot.png"
                          alt="Intro Video" />
                 </div>
-                <Modal
-                        className="video-modal"
-                        isOpen={this.state.videoOpen}
-                        onRequestClose={this.closeVideo}
-                        style={{content:frameProps}}>
-                    <iframe
-                        src="//player.vimeo.com/video/65583694?title=0&amp;byline=0&amp;portrait=0"
-                        {...omit(frameProps, 'padding')} />
-                </Modal>
+                <IframeModal
+                    className="mod-intro-video"
+                    isOpen={this.state.videoOpen}
+                    onRequestClose={this.closeVideo}
+                    src="//player.vimeo.com/video/65583694?title=0&amp;byline=0&amp;portrait=0"
+                />
             </div>
         );
     }

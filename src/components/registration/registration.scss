@@ -1,3 +1,22 @@
-.registration {
+@import "../../frameless";
+
+.modal-content.mod-registration {
+    width: 38.125rem;
     overflow: hidden;
+}
+
+.modal-content-iframe.mod-registration {
+    width: 38.125rem;
+    min-height: 27.375rem;
+}
+
+@media only screen and (max-width: $desktop - 1) {
+    .modal-content.mod-registration {
+        width: 100%;
+        overflow: scroll;
+    }
+
+    .modal-content-iframe.mod-registration {
+        height: 27.375rem;
+    }
 }

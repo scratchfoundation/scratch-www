@@ -4,7 +4,7 @@ require('./microworld.scss');
 
 var Box = require('../box/box.jsx');
 var Carousel = require('../carousel/carousel.jsx');
-var Modal = require('../modal/modal.jsx');
+var IframeModal = require('../modal/iframe/modal.jsx');
 var NestedCarousel = require('../nestedcarousel/nestedcarousel.jsx');
 
 var Microworld = React.createClass({
@@ -50,11 +50,6 @@ var Microworld = React.createClass({
         );
     },
     renderVideo: function (video, key) {
-        var frameProps = {
-            width: 570,
-            height: 357,
-            padding: 15
-        };
         return (
             <div>
                 <div className="video">
@@ -62,14 +57,12 @@ var Microworld = React.createClass({
                     </div>
                     <img src={video.image} />
                 </div>
-                <Modal
-                    className="video-modal"
+                <IframeModal
+                    className="mod-microworld-video"
                     isOpen={this.state.videoOpen[key]}
                     onRequestClose={this.markVideoClosed.bind(this, key)}
-                    style={{content:frameProps}}>
-                    <iframe src={video.link} width="560" height="315" frameBorder="0"
-                            webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                </Modal>
+                    src={video.link}
+                />
             </div>
         );
     },
