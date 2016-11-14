@@ -3,8 +3,8 @@
 .masonry {
     column-gap: $gutter;
     column-width: $cols4;
-    -webkit-perspective: 1;
     padding-bottom: 50px;
+    -webkit-perspective: 1;
 }
 
 // working around Firefox issue that requires column-count, using explicit -moz-column-count
