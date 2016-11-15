@@ -17,8 +17,8 @@
     "ttt.HideAndSeekGuideLoc": "/pdfs/guides/Hide-and-Seek-Guide.pdf",
     "ttt.VirtualPetActivityLoc": "/pdfs/cards/PetCards.pdf",
     "ttt.VirtualPetGuideLoc": "/pdfs/guides/PetGuide.pdf",
-    "ttt.FashionActivityLoc": "/pdfs/cards/DressupCards.pdf",
-    "ttt.FashionGuideLoc": "/pdfs/guides/DressupGuide.pdf",
+    "ttt.FashionActivityLoc": "/pdfs/cards/FashionCards.pdf",
+    "ttt.FashionGuideLoc": "/pdfs/guides/FashionGuide.pdf",
     "ttt.StoryActivityLoc": "/pdfs/cards/StoryCards.pdf",
     "ttt.StoryGuideLoc": "/pdfs/guides/StoryGuide.pdf"
 }
