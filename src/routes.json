@@ -134,6 +134,13 @@
         "title": "Cards"
     },
     {
+        "name": "things-to-try",
+        "pattern": "^/go/?$",
+        "routeAlias": "/go/?$",
+        "view": "thingstotry/thingstotry",
+        "title": "Things to Try"
+    },
+    {
         "name": "communityblocks-interviews",
         "pattern": "^/info/communityblocks-interviews/?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",

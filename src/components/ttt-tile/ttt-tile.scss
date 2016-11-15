@@ -1,0 +1,118 @@
+@import "../../colors";
+@import "../../frameless";
+
+.ttt-tile {
+    display: inline-block;
+    // work-around chrome bug with columns support - 1 px of next column ends up
+    // at the bottom of the previous column.
+    margin-top: 1px;
+    margin-bottom: calc(1.25rem - 1px);
+
+    border-radius: 1rem;
+    box-shadow: 0 0 0 1px $active-gray;
+    width: $cols4;
+    text-align: center;
+}
+
+.ttt-tile-tutorial {
+    display: inline-block;
+    position: relative;
+}
+
+// nesting is required (not just name-spacing) because we want the image
+// and tile box to change style on hover of the parent component.
+.ttt-tile-tutorial:hover {
+
+    .ttt-tile-image {
+        .ttt-tile-image-img {
+            opacity: .5;
+        }
+
+        .ttt-tile-image-try {
+            display: inline-block;
+        }
+    }
+}
+
+.ttt-tile-image {
+    border-radius: 1rem 1rem 0 0;
+    background: $ui-blue;
+    width: 100%;
+}
+
+.ttt-tile-image-img {
+    display: block;
+    border-radius: 1rem 1rem 0 0;
+    width: 100%;
+}
+
+// wrapper for try button to get position correct
+.ttt-tile-image-try {
+    display: none;
+    position: absolute;
+    top: 4rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    text-align: center;
+    color: $ui-white;
+}
+
+.mod-ttt-tile-image-try-button {
+    border: 1px solid $ui-white;
+    background-color: transparent;
+}
+
+.ttt-tile-info {
+    position: relative;
+    cursor: pointer;
+    padding: 1rem 0;
+}
+
+.ttt-tile-tag {
+    display: inline-block;
+    position: absolute;
+    top: -1rem;
+    left: 1rem;
+    margin: .5em 0;
+    border: 0;
+    border-radius: 1rem;
+    background-color: $ui-blue;
+    padding: .25rem 1rem;
+    color: $type-white;
+    font-size: .8rem;
+    font-weight: bold;
+}
+
+.ttt-tile-title {
+    margin: .5rem auto;
+    width: calc(100% - 3rem);
+}
+
+.ttt-tile-description {
+    margin: auto;
+    width: calc(100% - 3rem);
+    font-size: .875rem;
+}
+
+.ttt-tile-guides {
+    margin: auto;
+    border-top: 1px dashed $ui-border;
+    border-radius: 0 0 1rem 1rem;
+    cursor: pointer;
+    padding: 1.25rem 0;
+    color: $link-blue;
+
+    font-size: .75rem;
+    font-weight: 500;
+
+
+    &:hover {
+        background-color: lighten($link-blue, 40%);
+    }
+}
+
+.ttt-tile-see-more {
+    display: inline-block;
+    padding: 0 .25rem;
+    vertical-align: middle;
+}
