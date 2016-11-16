@@ -39,7 +39,10 @@ var TeacherBanner = React.createClass({
                                     {this.props.messages['teacherbanner.greeting']},{' '}
                                     {this.props.session.session.user.username}
                                 </h3>,
-                                <p key="subgreeting">
+                                <p
+                                    key="subgreeting"
+                                    className="title-banner-p"
+                                >
                                     {this.props.messages['teacherbanner.subgreeting']}
                                 </p>
                             ] : []

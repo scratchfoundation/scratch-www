@@ -29,10 +29,10 @@ var Hoc = React.createClass({
         return (
             <div className="hoc">
                 <TitleBanner className={this.state.bgClass}>
-                    <h1>
+                    <h1 className="title-banner-h1">
                         <FormattedMessage id='hoc.title' />
                     </h1>
-                    <p>
+                    <p className="title-banner-p">
                         <FormattedMessage id='hoc.subTitle' />
                     </p>
 
