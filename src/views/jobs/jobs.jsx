@@ -31,7 +31,7 @@ var Jobs = React.createClass({
                         <h3><FormattedMessage id='jobs.openings' /></h3>
                         <ul>
                             <li>
-                                <a href="http://bit.ly/24B9aEz">
+                                <a href="http://media.mit.edu/about/opportunities/trust-and-safety-manager-scratch-lifelong-kindergarten">
                                     Trust &amp; Safety Manager
                                 </a>
                                 <span>
