@@ -7,6 +7,10 @@
         "locale": "an",
         "parentLocale": "ca"
     },
+    "be": {
+        "locale": "be",
+        "parentLocale": "ru"
+    },
     "cat": {
         "locale": "cat",
         "parentLocale": "en"
