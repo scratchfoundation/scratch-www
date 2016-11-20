@@ -1,7 +1,7 @@
 {
     "ttt.placeholder": "Placeholder text",
     "ttt.title": "Things to Try",
-    "ttt.subTitle": "You can get started with Scratch in a variety of ways. Click a picture to try a <b>Tutorial</b>. You can also download a set of <b>Activity Cards</b> and <b>Educator Guide</b> for each theme.",
+    "ttt.subTitle": "You can get started with Scratch in a variety of ways. Click a picture to try the <strong>Tutorial</strong>. You can also download a set of <strong>Activity Cards</strong> and <strong>Educator Guide</strong> for each theme.",
     "tile.tutorial": "Tutorial",
     "tile.guides": "See Cards and Guides",
     "ttt.tutorialTitle": "Tutorial",
@@ -20,7 +20,7 @@
     "ttt.RaceDescription": "Make a game where two characters race each other.",
     "ttt.MakeMusicTitle": "Make Music",
     "ttt.MakeMusicDescription": "Choose instruments, add sounds, and press keys to play music.",
-    "ttt.HideAndSeekTitle": "Hide-and-Seek Game",
+    "ttt.HideAndSeekTitle": "Hide and Seek",
     "ttt.HideAndSeekDescription": "Make a hide-and-seek game with characters that appear and disappear.",
     "ttt.StoryTitle": "Create a Story",
     "ttt.StoryDescription": "Choose characters, add conversation, and bring your story to life.",
