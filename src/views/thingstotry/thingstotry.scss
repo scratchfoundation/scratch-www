@@ -1,0 +1,91 @@
+@import "../../colors";
+@import "../../frameless";
+
+$base-bg: $ui-white;
+
+#view {
+    padding: 0;
+}
+
+// .mod-ttt-title, to avoid collision with .title-banner.mod-tt in ttt modal
+.title-banner.mod-ttt-title {
+    background-color: $ui-blue;
+}
+
+.ttt-section {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.ttt-banner-image {
+    max-width: calc(100% - 2rem);
+}
+
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+
+    .title-banner {
+        &.masthead {
+            padding-bottom: 1.25rem;
+
+            p {
+                max-width: $cols4;
+            }
+        }
+    }
+
+    .ttt-section.mod-title-banner {
+        max-width: $mobile;
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .title-banner {
+        &.masthead {
+
+            p {
+                max-width: $cols6;
+            }
+        }
+    }
+
+    .ttt-section.mod-title-banner {
+        max-width: $mobile;
+    }
+}
+
+
+//8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .title-banner {
+        &.masthead {
+            padding-bottom: 2rem;
+
+            p {
+                max-width: $cols8;
+            }
+        }
+    }
+
+    .ttt-section.mod-title-banner {
+        max-width: $tablet;
+    }
+}
+
+// 12 columns
+@media only screen and (min-width: $desktop) {
+    .title-banner {
+        &.masthead {
+            padding-bottom: 1.25rem;
+
+            p {
+                max-width: $cols8;
+            }
+        }
+    }
+}

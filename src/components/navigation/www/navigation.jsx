@@ -15,13 +15,11 @@ var Form = require('../../forms/form.jsx');
 var Input = require('../../forms/input.jsx');
 var log = require('../../../lib/log.js');
 var Login = require('../../login/login.jsx');
-var Modal = require('../../modal/modal.jsx');
-var NavigationBox = require('../container/navigation.jsx');
+var Modal = require('../../modal/base/modal.jsx');
+var NavigationBox = require('../base/navigation.jsx');
 var Registration = require('../../registration/registration.jsx');
 
 require('./navigation.scss');
-
-Modal.setAppElement(document.getElementById('view'));
 
 var Navigation = React.createClass({
     type: 'Navigation',

@@ -1,0 +1,94 @@
+@import "../../../colors";
+
+#navigation {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    border-bottom: 1px solid $active-gray;
+
+    box-shadow: 0 0 3px $box-shadow-gray;
+    background-color: $ui-blue;
+
+    &.staging {
+        background-color: $ui-orange;
+    }
+
+
+    width: 100%;
+    /* NOTE: Height should match offset settings in main.scss file */
+    height: 50px;
+
+    .ie9 & {
+        display: table;
+        table-layout: fixed;
+    }
+
+    .inner > ul {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        height: 50px;
+        list-style: none;
+
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        .ie9 & {
+            display: table-row;
+        }
+
+
+        > li {
+            display: inline-block;
+            position: relative;
+            float: left;
+            margin: 0;
+            height: 100%;
+            align-self: flex-start;
+
+            &.right {
+                float: right;
+                margin-left: auto;
+                align-self: flex-end;
+
+                .ie9 & {
+                    float: none;
+                }
+
+                a {
+                    &:hover {
+                        background-color: $active-gray;
+                    }
+                }
+            }
+
+            .ie9 & {
+                display: table-cell;
+                float: none;
+                height: 50px;
+                vertical-align: bottom;
+            }
+        }
+    }
+
+    .link {
+        > a {
+            display: block;
+            padding: 13px 15px 4px 15px;
+            height: 33px;
+
+            text-decoration: none;
+            white-space: nowrap;
+            color: $type-white;
+            font-size: .85rem;
+            font-weight: bold;
+
+            &:hover {
+                background-color: $active-gray;
+            }
+        }
+    }
+}

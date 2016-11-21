@@ -1,0 +1,38 @@
+@import "../../frameless";
+
+.masonry {
+    column-gap: $gutter;
+    column-width: $cols4;
+    padding-bottom: 50px;
+    -webkit-perspective: 1;
+}
+
+// column-count required for Firefox, IE and Edge
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    .masonry {
+        column-count: 1;
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .masonry {
+        column-count: 1;
+    }
+}
+
+
+//8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .masonry {
+        column-count: 2;
+    }
+}
+
+// 12 columns
+@media only screen and (min-width: $desktop) {
+    .masonry {
+        column-count: 3;
+    }
+}

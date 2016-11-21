@@ -8,6 +8,19 @@ $base-bg: $ui-white;
     padding: 0;
 }
 
+.modal-content.mod-microworld-video,
+.modal-content-iframe.mod-microworld-video {
+    width: 35.625rem;
+}
+
+.modal-content.mod-microworld-video {
+    padding: 2.5rem;
+}
+
+.modal-content-iframe.mod-microworld-video {
+    height: 22.3125rem;
+}
+
 .microworld {
     .sectionheader {
         margin: 0 auto;
