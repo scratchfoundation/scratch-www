@@ -88,7 +88,7 @@ var TTTModal = React.createClass({
                             href={this.props.activityLoc}
                             className="button white mod-ttt-item"
                         >
-                            <FormattedMessage id="ttt.download" />
+                            <FormattedMessage id="ttt.open" />
                         </a>
                     </FlexRow>
                     <FlexRow as="li" className="mod-ttt-item">
@@ -109,7 +109,7 @@ var TTTModal = React.createClass({
                             href={this.props.guideLoc}
                             className="button white mod-ttt-item"
                         >
-                            <FormattedMessage id="ttt.download" />
+                            <FormattedMessage id="ttt.open" />
                         </a>
                     </FlexRow>
                 </ul>
