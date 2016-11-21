@@ -120,11 +120,12 @@ for (var v in routes) {
         localizedAssetUrls[routes[v].name] = {};
 
         var assetUrls = require(l10nStatic);
-        for (var lang in localizedUrls) {
+        for (var lang in languages) {
             localizedAssetUrls[routes[v].name][lang] = {};
+            var langUrls = localizedUrls[lang] || {};
             for (var key in assetUrls) {
-                if (localizedUrls[lang].hasOwnProperty(key)) {
-                    localizedAssetUrls[routes[v].name][lang][key] = localizedUrls[lang][key];
+                if (langUrls.hasOwnProperty(key)) {
+                    localizedAssetUrls[routes[v].name][lang][key] = langUrls[key];
                 } else {
                     localizedAssetUrls[routes[v].name][lang][key] = assetUrls[key];
                 }
