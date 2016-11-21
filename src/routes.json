@@ -121,10 +121,9 @@
     },
     {
         "name": "hoc",
-        "pattern": "^/hoc/?$",
+        "pattern": "^/hoc/?(\\?.*)?$",
         "routeAlias": "/hoc/?\\??",
-        "view": "hoc/hoc",
-        "title": "Hour of Code"
+        "redirect": "/go"
     },
     {
         "name": "cards",
