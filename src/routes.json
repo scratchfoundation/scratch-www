@@ -134,8 +134,8 @@
     },
     {
         "name": "things-to-try",
-        "pattern": "^/go/?$",
-        "routeAlias": "/go/?$",
+        "pattern": "^/go/?(\\?.*)?$",
+        "routeAlias": "/go/?\\??",
         "view": "thingstotry/thingstotry",
         "title": "Things to Try"
     },
