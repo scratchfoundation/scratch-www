@@ -9,16 +9,16 @@
     background-size: cover;
     padding: 20px 0;
     width: 100%;
+}
 
-    h1, 
-    p {
-        margin: 0 auto;
-        padding: 5px 0;
-        text-align: center;
-        color: $type-white;        
-    }
+.title-banner-h1, 
+.title-banner-p {
+    margin: 0 auto;
+    padding: 5px 0;
+    text-align: center;
+    color: $type-white;        
+}
 
-    p {
-        max-width: 500px;
-    }
+.title-banner-p {
+    max-width: 500px;
 }
