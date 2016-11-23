@@ -19,9 +19,11 @@ var Landing = injectIntl(React.createClass({
             <div className="educators">
                 <TitleBanner className="masthead">
                     <div className="inner">
-                        <h1><FormattedMessage id="teacherlanding.title" /></h1>
+                        <h1 className="title-banner-h1">
+                            <FormattedMessage id="teacherlanding.title" />
+                        </h1>
                         <FlexRow className="masthead-info">
-                            <p className="intro">
+                            <p className="title-banner-p intro">
                                 <FormattedMessage id="teacherlanding.intro" />
                             </p>
                             <div className="ted-talk">

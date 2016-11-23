@@ -14,6 +14,7 @@ var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
+var HocBanner = require('./hoc-banner/hoc-banner.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var IframeModal = require('../../components/modal/iframe/modal.jsx');
 var News = require('../../components/news/news.jsx');
@@ -366,7 +367,8 @@ var Splash = injectIntl(React.createClass({
                 {this.props.permissions.educator ? [
                     <TeacherBanner key="teacherbanner" messages={messages} />
                 ] : []}
-                <div key="inner" className="inner">
+                <HocBanner />
+                <div key="inner" className="inner mod-splash">
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.session.user ? [
                             <div key="header" className="splash-header">

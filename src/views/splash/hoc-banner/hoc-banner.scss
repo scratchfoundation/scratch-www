@@ -1,0 +1,28 @@
+@import "../../../colors";
+
+.title-banner.mod-splash-hoc {
+    background: url("/images/blocks-pattern.png");
+    background-color: $ui-blue;
+    background-repeat: repeat;
+    background-size: 180px 180px;
+}
+
+.hoc-banner-header {
+    justify-content: space-between;
+}
+
+.hoc-banner-header-h1 {
+    margin-bottom: 1.25rem;
+    color: $type-white;
+}
+
+.mod-ttt-try-button:link,
+.mod-ttt-try-button:visited,
+.mod-ttt-try-button:active
+.mod-ttt-try-button:hover {
+    color: $type-white;
+}
+
+.ttt-tile.mod-banner {
+    background-color: $background-color;
+}
