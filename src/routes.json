@@ -121,10 +121,9 @@
     },
     {
         "name": "hoc",
-        "pattern": "^/hoc/?$",
+        "pattern": "^/hoc/?(\\?.*)?$",
         "routeAlias": "/hoc/?\\??",
-        "view": "hoc/hoc",
-        "title": "Hour of Code"
+        "redirect": "/go"
     },
     {
         "name": "cards",
@@ -135,8 +134,8 @@
     },
     {
         "name": "things-to-try",
-        "pattern": "^/go/?$",
-        "routeAlias": "/go/?$",
+        "pattern": "^/go/?(\\?.*)?$",
+        "routeAlias": "/go/?\\??",
         "view": "thingstotry/thingstotry",
         "title": "Things to Try"
     },
