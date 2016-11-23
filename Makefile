@@ -19,7 +19,6 @@ clean:
 	mkdir -p build
 	mkdir -p intl
 
-
 deploy:
 	@make build
 	@make sync
@@ -52,13 +51,7 @@ start:
 test:
 	@make lint
 	@make build
-	@echo ""
-	@make unit
-	@echo ""
-	@make functional
-	@echo ""
-	@make localization
-	@echo ""
+	@make tap
 
 lint:
 	$(ESLINT) . --ext .js,.jsx,.json
@@ -77,6 +70,12 @@ integration:
 localization:
 	$(TAP) ./test/localization/*.js
 
+tap:
+	$(TAP) ./test/{unit,functional,localization}/*.js
+
+coverage:
+	$(TAP) ./test/{unit,functional,localization}/*.js --coverage --coverage-report=lcov
+
 # ------------------------------------
 
-.PHONY: build clean deploy translations webpack stop start test lint unit functional integration localization
+.PHONY: build clean deploy translations webpack start test lint unit functional integration localization tap coverage

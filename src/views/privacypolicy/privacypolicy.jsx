@@ -125,7 +125,7 @@ var Privacypolicy = React.createClass({
                                 If we detect repeated abusive behavior from your account, IP address,
                                  or email address, we may share your account name, IP address, and the
                                  time and content of the abusive behavior with the IP address owner
-                                 (such as a school or internet service provided).
+                                 (such as a school or internet service provider).
                             </li>
                             <li>
                                 We may use de-identified location, age, gender, and usage data
@@ -155,6 +155,12 @@ var Privacypolicy = React.createClass({
                                          data on our servers to another location or organization.
                                     </li>
                                 </ul>
+                            </li>
+                            <li>
+                                Scratch reserves the right to share user information with the
+                                 appropriate authorities (including schools, school districts,
+                                 and law enforcement, when necessary) for the purposes of protecting
+                                 the safety of users, other individuals, or the security of the site.
                             </li>
                         </ul>
                     </section>
@@ -203,7 +209,7 @@ var Privacypolicy = React.createClass({
                              Policy on a regular basis.
                         </p>
                     </section>
-                    <p>The Scratch Privacy Policy was last updated: October 2016</p>
+                    <p>The Scratch Privacy Policy was last updated: November 2016</p>
                 </div>
                 <nav>
                     <ol>
