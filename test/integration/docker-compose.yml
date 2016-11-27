@@ -1,0 +1,23 @@
+version: '2'
+services:
+  scratch-www:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    user: app
+    container_name: scratch-www
+    ports:
+      - "8333:8333"
+  selenium:
+    image: selenium/standalone-firefox
+    container_name: selenium
+    ports:
+      - "4444:4444"
+  scratch-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: test
+    depends_on:
+      - scratch-www
+      - selenium

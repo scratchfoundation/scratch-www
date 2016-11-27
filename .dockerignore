@@ -7,5 +7,7 @@
 build/
 intl/
 node_modules/
+reports/
+screenshots/
 Dockerfile
 README.md

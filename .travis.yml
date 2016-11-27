@@ -60,6 +60,10 @@ env:
 install:
   - sudo -H pip install -r requirements.txt
   - npm --production=false install
+services:
+  - docker
+script:
+  - npm test && make integration
 deploy:
 - provider: script
   skip_cleanup: $SKIP_CLEANUP

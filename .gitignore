@@ -2,7 +2,7 @@
 .DS_Store
 
 # NPM
-/node_modules
+node_modules/
 npm-*
 
 # Build
@@ -22,3 +22,5 @@ ENV
 # Test
 /.nyc_output
 /coverage
+reports/
+screenshots/
