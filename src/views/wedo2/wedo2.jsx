@@ -49,7 +49,7 @@ var Wedo2 = React.createClass({
                                         <FormattedMessage id='wedo2.downloadMac' />
                                     </a>
                                     <br />
-                                    <a href="/">
+                                    <a href="https://downloads.scratch.mit.edu/device-manager/ScratchDeviceManager-1.1.0.exe">
                                         <FormattedMessage id='wedo2.downloadWin' />
                                     </a>
                                 </p>
