@@ -88,7 +88,7 @@ var HocBanner = injectIntl(React.createClass({
         return (
             <TitleBanner className="mod-splash-hoc">
                 <div className="hoc-banner inner">
-                    <FlexRow className="hoc-banner-header">
+                    <FlexRow className="mod-hoc-banner-header">
                         <h1 className="hoc-banner-header-h1">
                             <FormattedMessage id="hoc-banner.header" />
                         </h1>
@@ -97,7 +97,7 @@ var HocBanner = injectIntl(React.createClass({
                         </a>
                     </FlexRow>
                     <MediaQuery minWidth={frameless.desktop}>
-                        <FlexRow className="hoc-banner-tiles">
+                        <FlexRow className="mod-hoc-banner-tiles">
                             {this.renderTTTTiles()}
                         </FlexRow>
                         <TTTModal

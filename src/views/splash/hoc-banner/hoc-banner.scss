@@ -7,7 +7,8 @@
     background-size: 180px 180px;
 }
 
-.hoc-banner-header {
+.flex-row.mod-hoc-banner-header,
+.flex-row.mod-hoc-banner-tiles {
     justify-content: space-between;
 }
 
@@ -16,10 +17,19 @@
     color: $type-white;
 }
 
-.mod-ttt-try-button:link,
-.mod-ttt-try-button:visited,
-.mod-ttt-try-button:active
-.mod-ttt-try-button:hover {
+.button.mod-ttt-try-button {
+    padding: .75rem 2rem;
+}
+
+.button.mod-ttt-try-button,
+.button.mod-ttt-try-button:hover {
+    box-shadow: none;
+}
+
+.button.mod-ttt-try-button:link,
+.button.mod-ttt-try-button:visited,
+.button.mod-ttt-try-button:active
+.button.mod-ttt-try-button:hover {
     color: $type-white;
 }
 
