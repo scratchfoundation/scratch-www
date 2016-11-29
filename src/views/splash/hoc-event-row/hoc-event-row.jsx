@@ -30,7 +30,7 @@ var HocEventRow = React.createClass({
                         <h1 className="hoc-event-studio-h1">
                             <FormattedMessage id="hocevent.title" />
                         </h1>
-                        <a href="/" className="button white mod-hoc-event">
+                        <a href="/studios/3600717/" className="button white mod-hoc-event">
                             <FormattedMessage id="hocevent.studioLink" />
                         </a>
                     </div>
@@ -38,7 +38,7 @@ var HocEventRow = React.createClass({
                         <iframe
                             className="hoc-event-video-iframe"
                             title="Design a Character Studio"
-                            src=""
+                            src="https://www.youtube.com/embed/y0Z5_wipT2o"
                             frameborder="0"
                             webkitAllowFullScreen
                             mozallowfullscreen
