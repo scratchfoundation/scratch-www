@@ -1,4 +1,5 @@
 @import "../../../colors";
+@import "../../../frameless";
 
 .title-banner.mod-splash-hoc {
     background: url("/images/blocks-pattern.png");
@@ -35,4 +36,10 @@
 
 .ttt-tile.mod-banner {
     background-color: $background-color;
+}
+
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .flex-row.mod-hoc-banner-header {
+        flex-direction: column;
+    }
 }
