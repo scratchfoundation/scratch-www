@@ -44,6 +44,14 @@ var Wedo2 = React.createClass({
                                 </h4>
                                 <p>
                                     <FormattedHTMLMessage id='wedo2.installText' />
+                                    <br />
+                                    <a href="https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1084869222&mt=12">
+                                        <FormattedMessage id='wedo2.downloadMac' />
+                                    </a>
+                                    <br />
+                                    <a href="/">
+                                        <FormattedMessage id='wedo2.downloadWin' />
+                                    </a>
                                 </p>
                             </div>
                             <div className="column">
