@@ -38,7 +38,7 @@ var HocEventRow = React.createClass({
                         <iframe
                             className="hoc-event-video-iframe"
                             title="Design a Character Studio"
-                            src="https://www.youtube.com/embed/y0Z5_wipT2o"
+                            src="https://www.youtube.com/embed/_srMcH7oB3Y"
                             frameborder="0"
                             webkitAllowFullScreen
                             mozallowfullscreen
