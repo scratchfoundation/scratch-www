@@ -13,8 +13,11 @@
     justify-content: space-between;
 }
 
-.hoc-banner-header-h1 {
+.flex-row.mod-hoc-banner-header {
     margin-bottom: 1.25rem;
+}
+
+.hoc-banner-header-h1 {
     color: $type-white;
 }
 
