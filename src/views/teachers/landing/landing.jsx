@@ -19,9 +19,11 @@ var Landing = injectIntl(React.createClass({
             <div className="educators">
                 <TitleBanner className="masthead">
                     <div className="inner">
-                        <h1><FormattedMessage id="teacherlanding.title" /></h1>
+                        <h1 className="title-banner-h1">
+                            <FormattedMessage id="teacherlanding.title" />
+                        </h1>
                         <FlexRow className="masthead-info">
-                            <p className="intro">
+                            <p className="title-banner-p intro">
                                 <FormattedMessage id="teacherlanding.intro" />
                             </p>
                             <div className="ted-talk">
@@ -82,11 +84,11 @@ var Landing = injectIntl(React.createClass({
                         <h3 id="guides-header"><FormattedMessage id="teacherlanding.guidesTitle" /></h3>
                         <FlexRow className="guides-and-tutorials">
                             <div>
-                                <a href="/help">
+                                <a href="/go">
                                     <img src="/svgs/teachers/resources.svg" alt="resources icon" />
                                 </a>
                                 <p>
-                                    <FormattedHTMLMessage id="teacherlanding.helpPage" />
+                                    <FormattedHTMLMessage id="teacherlanding.tttPage" />
                                 </p>
                             </div>
                             <div>

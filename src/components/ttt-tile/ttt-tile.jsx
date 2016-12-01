@@ -26,7 +26,7 @@ var TTTTile = React.createClass({
                         <div className="ttt-tile-image">
                             <img className="ttt-tile-image-img" src={this.props.thumbUrl} alt="" />
                             <div className="ttt-tile-image-try">
-                                <div className="button mod-ttt-tile-image-try-button">
+                                <div className="button mod-ttt-try-button">
                                     <FormattedMessage id="ttt.tryIt" />
                                 </div>
                             </div>

@@ -1,7 +1,7 @@
 {
     "ttt.placeholder": "Placeholder text",
     "ttt.title": "Things to Try",
-    "ttt.subTitle": "You can get started with Scratch in a variety of ways. Click a picture to try the <strong>Tutorial</strong>. You can also download a set of <strong>Activity Cards</strong> and <strong>Educator Guide</strong> for each theme.",
+    "ttt.subTitle": "You can get started with Scratch in a variety of ways. Click a picture to try the <strong className=\"title-banner-strong\">Tutorial</strong>. You can also download a set of <strong className=\"title-banner-strong\">Activity Cards</strong> and <strong className=\"title-banner-strong\">Educator Guide</strong> for each theme.",
     "tile.tutorial": "Tutorial",
     "tile.guides": "See Cards and Guides",
     "ttt.tutorialTitle": "Tutorial",
