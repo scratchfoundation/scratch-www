@@ -34,15 +34,6 @@ var HocBanner = injectIntl(React.createClass({
         var formatMessage = this.props.intl.formatMessage;
         
         var tileObjects = {
-            flyTile: {
-                title: formatMessage({id: tiles[1].title}),
-                description: formatMessage({id: tiles[1].description}),
-                tutorialLoc: tiles[1].tutorialLoc,
-                activityLoc: formatMessage({id: tiles[1].activityLoc}),
-                guideLoc: formatMessage({id: tiles[1].guideLoc}),
-                thumbUrl: tiles[1].thumbUrl,
-                bannerUrl: tiles[1].bannerUrl
-            },
             nameTile: {
                 title: formatMessage({id: tiles[0].title}),
                 description: formatMessage({id: tiles[0].description}),
@@ -51,6 +42,15 @@ var HocBanner = injectIntl(React.createClass({
                 guideLoc: formatMessage({id: tiles[0].guideLoc}),
                 thumbUrl: tiles[0].thumbUrl,
                 bannerUrl: tiles[0].bannerUrl
+            },
+            flyTile: {
+                title: formatMessage({id: tiles[1].title}),
+                description: formatMessage({id: tiles[1].description}),
+                tutorialLoc: tiles[1].tutorialLoc,
+                activityLoc: formatMessage({id: tiles[1].activityLoc}),
+                guideLoc: formatMessage({id: tiles[1].guideLoc}),
+                thumbUrl: tiles[1].thumbUrl,
+                bannerUrl: tiles[1].bannerUrl
             },
             musicTile: {
                 title: formatMessage({id: tiles[2].title}),
@@ -65,16 +65,16 @@ var HocBanner = injectIntl(React.createClass({
         
         return [
             <TTTTile
-                key={1}
-                className="mod-banner"
-                onGuideClick={this.showTTTModal.bind(this, tileObjects.flyTile)}
-                {...tileObjects.flyTile}
-            />,
-            <TTTTile
                 key={0}
                 className="mod-banner"
                 onGuideClick={this.showTTTModal.bind(this, tileObjects.nameTile)}
                 {...tileObjects.nameTile}
+            />,
+            <TTTTile
+                key={1}
+                className="mod-banner"
+                onGuideClick={this.showTTTModal.bind(this, tileObjects.flyTile)}
+                {...tileObjects.flyTile}
             />,
             <TTTTile
                 key={2}
