@@ -137,7 +137,7 @@ var Explore = injectIntl(React.createClass({
                 <div className='outer'>
                     <TitleBanner className="masthead">
                         <div className="inner">
-                            <h1><FormattedMessage id='general.explore' /></h1>
+                            <h1 className="title-banner-h1"><FormattedMessage id='general.explore' /></h1>
                         </div>
                     </TitleBanner>
                     <Tabs>

@@ -103,7 +103,7 @@ var Search = injectIntl(React.createClass({
                 <div className='outer'>
                         <TitleBanner className="masthead">
                             <div className="inner">
-                                <h1><FormattedMessage id="general.search" /></h1>
+                                <h1 className="title-banner-h1"><FormattedMessage id="general.search" /></h1>
                                 <div className="search">
                                     <Form onSubmit={this.onSearchSubmit}>
                                         <Button type="submit" className="btn-search" />

@@ -1,0 +1,127 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.hoc-event {
+    position: relative;
+    opacity: .9;
+    margin: 0 auto 20px;
+    border-radius: 1rem;
+    background-color: $ui-blue;
+    width: $cols12;
+}
+
+.hoc-event:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: .5;
+    z-index: -1;
+    border-radius: 1rem;
+    background: url("/images/splash/hoc-event-bg.jpg");
+    background-size: cover;
+    content: "";
+}
+
+.flex-row.mod-hoc-event {
+    padding: 3rem 5rem;
+}
+
+.button.mod-hoc-event-dismiss {
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    margin: 0;
+    border: 1px solid $type-white;
+    border-radius: 2rem;
+    box-shadow: none;
+    background-color: transparent;
+    padding: .25rem .75rem;
+    color: $type-white;
+    font-weight: 300;
+}
+
+.hoc-event-dismiss-icon {
+    margin-left: .25rem;
+    width: .8rem;
+    vertical-align: middle;
+}
+
+.hoc-event-studio-h1 {
+    margin-bottom: 1.5rem;
+    line-height: 2.5rem;
+    color: $type-white;
+}
+
+.button.mod-hoc-event {
+    padding: .75rem 1.75rem;
+}
+
+.hoc-event-studio,
+.hoc-event-video-iframe {
+    width: 23.75rem;
+}
+
+.hoc-event-video-iframe {
+    border: 3px solid $ui-border;
+    border-radius: 5px;
+    height: 13.75rem;
+}
+
+@media only screen and (max-width: $mobile - 1) {
+    .hoc-event {
+        width: $cols4;
+    }
+
+    .flex-row.mod-hoc-event {
+        padding: 3rem 2rem 2rem;
+    }
+
+    .hoc-event-studio,
+    .hoc-event-video-iframe {
+        width: 13.75rem;
+    }
+
+    .hoc-event-studio {
+        margin-bottom: 1rem;
+    }
+
+    .hoc-event-video-iframe {
+        height: 8.75rem;
+    }
+}
+
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .hoc-event {
+        width: $cols6;
+    }
+
+    .flex-row.mod-hoc-event {
+        padding: 2.5rem 2.5rem 1.5rem;
+    }
+
+    .hoc-event-studio {
+        margin-bottom: 1rem;
+    }
+}
+
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .hoc-event {
+        width: $cols8;
+    }
+
+    .flex-row.mod-hoc-event {
+        padding: 1.875rem;
+    }
+
+    .hoc-event-studio {
+        width: 14.625rem;
+        text-align: left;
+    }
+
+    .hoc-event-video-iframe {
+        width: 18.375rem;
+        height: 10rem;
+    }
+}
