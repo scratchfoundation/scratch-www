@@ -195,6 +195,8 @@ var Faq = injectIntl(React.createClass({
                             <dd><FormattedHTMLMessage id='faq.edBody' /></dd>
                             <dt><FormattedMessage id='faq.dataTitle' /></dt>
                             <dd><FormattedMessage id='faq.dataBody' /></dd>
+                            <dt><FormattedMessage id='faq.lawComplianceTitle' /></dt>
+                            <dd><FormattedMessage id='faq.lawComplianceBody' /></dd>
                         </dl>
                         <i><FormattedHTMLMessage id='faq.schoolsMoreInfo' /></i>
                     </section>
