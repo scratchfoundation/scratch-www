@@ -360,24 +360,24 @@ module.exports = {
                                         options={[
                                             {value: 'female', label: formatMessage({id: 'general.female'})},
                                             {value: 'male', label: formatMessage({id: 'general.male'})},
-                                            {value: 'other', label: ''}
+                                            {value: 'other', label: <Input
+                                                className="demographics-step-input-other"
+                                                name="user.genderOther"
+                                                type="text"
+                                                validations={{
+                                                    maxLength: 25
+                                                }}
+                                                validationErrors={{
+                                                    maxLength: formatMessage({
+                                                        id: 'registration.validationMaxLength'
+                                                    })
+                                                }}
+                                                disabled={this.state.otherDisabled}
+                                                required={!this.state.otherDisabled}
+                                                help={null}
+                                            />}
                                         ]}
                                         required />
-                            <div className="gender-input">
-                                <Input name="user.genderOther"
-                                       type="text"
-                                       validations={{
-                                           maxLength: 25
-                                       }}
-                                       validationErrors={{
-                                           maxLength: formatMessage({
-                                               id: 'registration.validationMaxLength'
-                                           })
-                                       }}
-                                       disabled={this.state.otherDisabled}
-                                       required={!this.state.otherDisabled}
-                                       help={null} />
-                            </div>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="user.country"
                                     options={getCountryOptions(this.props.intl, DEFAULT_COUNTRY)}
