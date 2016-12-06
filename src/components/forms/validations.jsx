@@ -45,5 +45,5 @@ module.exports.validationHOCFactory = function (defaultValidationErrors) {
 };
 
 module.exports.defaultValidationHOC = module.exports.validationHOCFactory({
-    isDefaultRequiredValue: <intl.FormattedMessage id="teacherRegistration.validationRequired" />
+    isDefaultRequiredValue: <intl.FormattedMessage id="form.validationRequired" />
 });
