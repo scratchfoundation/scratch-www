@@ -93,6 +93,8 @@
     "footer.help": "Help Page",
     "footer.scratchFamily": "Scratch Family",
 
+    "form.validationRequired": "This field is required",
+
     "login.forgotPassword": "Forgot Password?",
 
     "navigation.signOut": "Sign out",
