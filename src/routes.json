@@ -1,10 +1,16 @@
 [
     {
         "name": "splash",
-        "pattern": "^/{1,2}?$",
+        "pattern": "^/?$",
         "routeAlias": "/?$",
         "view": "splash/splash",
         "title": "Imagine, Program, Share"
+    },
+    {
+        "name": "splash-redirect",
+        "pattern": "^//?$",
+        "routeAlias": "/?$",
+        "redirect": "/"
     },
     {
         "name": "about",
