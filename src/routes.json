@@ -8,7 +8,7 @@
     },
     {
         "name": "splash-redirect",
-        "pattern": "^//?$",
+        "pattern": "^///?$",
         "routeAlias": "/?$",
         "redirect": "/"
     },
