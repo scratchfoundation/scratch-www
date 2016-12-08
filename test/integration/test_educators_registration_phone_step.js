@@ -13,7 +13,7 @@ var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.
 var fillUsernameSlide = function () {
     var passwordInput = driver.findElement(seleniumWebdriver.By.name('user.password'));
     var usernameInput = driver.findElement(seleniumWebdriver.By.name('user.username'));
-    var usernamePromise = usernameInput.sendKeys('ladybug');
+    var usernamePromise = usernameInput.sendKeys('clipspringer');
     var passwordPromise = passwordInput.sendKeys('educators');
     var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath('//button[span[contains(text(),'
         + '"Next Step")]]'));
