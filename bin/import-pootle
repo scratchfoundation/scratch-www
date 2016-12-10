@@ -1,0 +1,51 @@
+#!/usr/bin/env node
+ /*
+    Generate language json files corresponding to l10n files to import from
+    pootle into transifex.
+
+    For example, extract the strings corresponding to splash ids from pootle.
+    For each language, in translations/splash create
+    fr.json =>
+    {
+        'splash.welcome' : 'Bienvenue',
+        ...
+    }
+    etc.
+ */
+
+var fs = require('fs');
+var path = require('path');
+var routes = require('../src/routes.json');
+var languages = require('../languages.json');
+var localeCompare = require('./lib/locale-compare');
+
+var outputDir = path.resolve(__dirname, '../translations');
+try {
+    fs.accessSync(outputDir, fs.F_OK);
+} catch (err) {
+    // Doesn't exist - create it.
+    fs.mkdirSync(outputDir);
+}
+
+// general is a special case, do it first
+var l10n = path.resolve(__dirname, '../src/l10n.json');
+localeCompare.writeTranslations('general', l10n, languages);
+
+for (var v in routes) {
+    if (typeof routes[v].redirect !== 'undefined') {
+        continue;
+    }
+    var subdir = routes[v].view.split('/');
+    subdir.pop();
+    l10n = path.resolve(__dirname, '../src/views/' + subdir.join('/') + '/l10n.json');
+    var name = routes[v].name;
+    try {
+        // only import if there is an l10n file
+        fs.accessSync(l10n);
+    } catch (err) {
+        // skip views without l10n files
+        process.stdout.write(`Skipping ${name}, no l10n\n`);
+        continue;
+    }
+    localeCompare.writeTranslations(name, l10n, languages);
+}
