@@ -143,7 +143,7 @@ var Search = injectIntl(React.createClass({
 
 var mapStateToProps = function (state) {
     return {
-        searchTerm: state.searchTerm
+        navigation: state.searchTerm
     };
 };
 
