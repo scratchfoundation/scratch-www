@@ -7,6 +7,12 @@
         "title": "Imagine, Program, Share"
     },
     {
+        "name": "splash-redirect",
+        "pattern": "^///?$",
+        "routeAlias": "/?$",
+        "redirect": "/"
+    },
+    {
         "name": "about",
         "pattern": "^/about/?$",
         "routeAlias": "/about/?$",
