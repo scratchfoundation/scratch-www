@@ -348,7 +348,7 @@ var mapStateToProps = function (state) {
     return {
         session: state.session,
         permissions: state.permissions,
-        searchTerm: state.searchTerm
+        searchTerm: state.navigation
     };
 };
 
