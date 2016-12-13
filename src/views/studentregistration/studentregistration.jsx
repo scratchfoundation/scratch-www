@@ -78,11 +78,15 @@ var StudentRegistration = intl.injectIntl(React.createClass({
                 classroom_id: this.props.classroomId,
                 classroom_token: this.props.classroomToken
             }
-        }, function (err, res) {
+        }, function (err, body, res) {
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
-            if (res[0].success) return this.advanceStep(formData);
-            this.setState({registrationError: res[0].msg});
+            if (body[0].success) return this.advanceStep(formData);
+            this.setState({
+                registrationError:
+                    body[0].msg ||
+                    this.props.intl.formatMessage({id: 'registration.generalError'}) + ' (' + res.statusCode + ')'
+            });
         }.bind(this));
     },
     goToClass: function () {
