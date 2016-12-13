@@ -86,11 +86,18 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
             method: 'post',
             useCsrf: true,
             formData: submittedData
-        }, function (err, body) {
+        }, function (err, body, res) {
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
             if (body.success) return this.advanceStep(formData);
-            this.setState({registrationErrors: body.errors});
+            this.setState({
+                registrationErrors:
+                    body.errors || {
+                        __all__:
+                            this.props.intl.formatMessage({id: 'registration.generalError'}) +
+                            ' (' + res.statusCode + ')'
+                    }
+            });
         }.bind(this));
     },
     goToClass: function () {

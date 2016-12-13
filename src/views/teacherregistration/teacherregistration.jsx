@@ -66,14 +66,18 @@ var TeacherRegistration = React.createClass({
                 address_zip: this.state.formData.address.zip,
                 how_use_scratch: this.state.formData.useScratch
             }
-        }, function (err, res) {
+        }, function (err, body, res) {
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
-            if (res[0].success) {
+            if (body[0].success) {
                 this.props.dispatch(sessionActions.refreshSession());
                 return this.advanceStep(formData);
             }
-            this.setState({registrationError: res[0].msg});
+            this.setState({
+                registrationError:
+                    body[0].msg ||
+                    this.props.intl.formatMessage({id: 'registration.generalError'}) + ' (' + res.statusCode + ')'
+            });
         }.bind(this));
 
     },
