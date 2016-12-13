@@ -62,10 +62,10 @@
     &.demographics-step {
         .radio {
             margin: 1.5rem 1.5rem 0 0;
+        }
 
-            input {
-                margin-right: 1rem;
-            }
+        input[type="radio"] {
+            margin-right: 1rem;
         }
 
         .demographics-step-input-other {
