@@ -246,5 +246,12 @@
         "routeAlias": "/microworlds",
         "view": "microworld/soccer/soccer",
         "title": "Soccer"
+    },
+    {
+        "name": "microworlds-homepage",
+        "pattern": "^/microworlds/go/?(\\?.*)?$",
+        "routeAlias": "microworlds/go/?\\??",
+        "view": "microworldshomepage/microworldshomepage",
+        "title": "Microworlds"
     }
 ]
