@@ -7,6 +7,8 @@ require('chromedriver');
 var seleniumWebdriver = require('selenium-webdriver');
 var tap = require('tap');
 
+var constants = require('./educator_registration_utils.js').constants;
+
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 
@@ -15,8 +17,7 @@ var fillUsernameSlide = function () {
     var usernameInput = driver.findElement(seleniumWebdriver.By.name('user.username'));
     var usernamePromise = usernameInput.sendKeys('clipspringer');
     var passwordPromise = passwordInput.sendKeys('educators');
-    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath('//button[span[contains(text(),'
-        + '"Next Step")]]'));
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
     return Promise.all([usernamePromise, passwordPromise]).then(function () {
         nextStepButton.click().then(function () {
             driver.wait(seleniumWebdriver.until
@@ -30,8 +31,7 @@ var fillDemographicsSlide = function () {
         ' and @type="radio"]')).click();
     var selectCountry = driver.findElement(seleniumWebdriver.By.xpath('//select[@name="user.country"]' +
         '/option[2]')).click();
-    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath('//button[span[contains(text(),'
-        + '"Next Step")]]'));
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
     return Promise.all([clickMaleInput, selectCountry]).then(function () {
         nextStepButton.click().then(function () {
             driver.wait(seleniumWebdriver.until
@@ -40,7 +40,7 @@ var fillDemographicsSlide = function () {
     });
 };
 
-tap.plan(1);
+tap.plan(2);
 
 tap.tearDown(function () {
     driver.quit();
@@ -52,16 +52,30 @@ tap.beforeEach(function () {
 });
 
 //attempts to advance the slide without inputting either name, checks that both give the correct error
-tap.test('checkBothNamesRequired', function (t) {
-    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath('//button[span[contains(text(),'
-        + '"Next Step")]]'));
-    var errorMessage = 'This field is required';
-    var errorMessageXPath = '//span[@class="help-block validation-message" and contains(text(),"'
-    + errorMessage + '")]';
+tap.test('checkFirstNameRequired', function (t) {
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
+    var errorMessageXPath = '//input[@name="user.name.first"]/following-sibling::'
+        + 'span[@class="help-block validation-message" and contains(text(),'
+        + '"This field is required")]';
     nextStepButton.click().then(function () {
         driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
             .then(function (validationMessages) {
-                t.equal(validationMessages.length, 2);
+                t.equal(validationMessages.length, 1);
+                t.end();
+            });
+    });
+});
+
+//attempts to advance the slide without inputting either name, checks that both give the correct error
+tap.test('checkLastNameRequired', function (t) {
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
+    var errorMessageXPath = '//input[@name="user.name.last"]/following-sibling::'
+        + 'span[@class="help-block validation-message" and contains(text(),'
+        + '"This field is required")]';
+    nextStepButton.click().then(function () {
+        driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
+            .then(function (validationMessages) {
+                t.equal(validationMessages.length, 1);
                 t.end();
             });
     });
