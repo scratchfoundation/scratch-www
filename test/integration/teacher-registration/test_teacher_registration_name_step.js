@@ -7,7 +7,7 @@ require('chromedriver');
 var seleniumWebdriver = require('selenium-webdriver');
 var tap = require('tap');
 
-var constants = require('./educator_registration_utils.js').constants;
+var constants = require('./teacher_registration_utils.js').constants;
 
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();

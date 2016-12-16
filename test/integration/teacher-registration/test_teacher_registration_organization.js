@@ -7,7 +7,7 @@ require('chromedriver');
 var seleniumWebdriver = require('selenium-webdriver');
 var tap = require('tap');
 
-var constants = require('./educator_registration_utils.js').constants;
+var constants = require('./teacher_registration_utils.js').constants;
 
 //Set test url through environment variable
 //var rootUrl = process.ENV.ROOT_URL || 'http://localhost:8333';
