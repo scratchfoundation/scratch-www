@@ -1,36 +1,36 @@
 [
     {
-        "title": "ttt.HipHopTitle",
+        "title": "microworlds.HipHopTitle",
         "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5050.png",
         "tutorialLoc": "/pathways/hiphop"
     },
     {
-        "title": "ttt.MakeMusicTitle",
+        "title": "microworlds.MakeMusicTitle",
         "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5393.png",
         "tutorialLoc": "/projects/embed-editor/133865393/?isMicroworld=true"
     },
     {
-        "title": "ttt.SoccerTitle",
+        "title": "microworlds.SoccerTitle",
         "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5271.png",
         "tutorialLoc": "/projects/embed-editor/133865271/?isMicroworld=true"
     },
     {
-        "title": "ttt.FashionTitle",
+        "title": "microworlds.FashionTitle",
         "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5474.png",
         "tutorialLoc": "/pathways/fashion"
     },
     {
-        "title": "ttt.ArtTitle",
+        "title": "microworlds.ArtTitle",
         "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5435.png",
         "tutorialLoc": "/projects/embed-editor/133865435/?isMicroworld=true"
     },
     {
-        "title": "ttt.JokeTitle",
-        "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5327.png", 
+        "title": "microworlds.JokeTitle",
+        "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13386/5327.png",
         "tutorialLoc": "/projects/embed-editor/133865327/?isMicroworld=true"
     },
     {
-        "title": "ttt.HouseTitle",
+        "title": "microworlds.HouseTitle",
         "thumbUrl": "//cdn.scratch.mit.edu/static/site/projects/thumbnails/13383/5490.png",
         "tutorialLoc": "/projects/embed-editor/133835490/?isMicroworld=true"
     }

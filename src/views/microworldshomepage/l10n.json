@@ -1,15 +1,14 @@
 {
-    "ttt.placeholder": "Placeholder text",
-    "ttt.title": "Scratch Microworlds",
-    "ttt.subTitle": "You can get started with Scratch in a variety of ways. Click a picture to try one.",
     "tile.tutorial": "Microworld",
     "ttt.tryIt": "Try It",
     "ttt.open": "Open",
-    "ttt.HipHopTitle": "Hip Hop Dance",
-    "ttt.FashionTitle": "Fashion",
-    "ttt.HouseTitle": "Interactive House",
-    "ttt.MakeMusicTitle": "Make Music",
-    "ttt.SoccerTitle": "Soccer",
-    "ttt.JokeTitle": "Make a Joke",
-    "ttt.ArtTitle": "Make Art"
+    "microworlds.title": "Scratch Microworlds",
+    "microworlds.subTitle": "You can get started with Scratch in a variety of ways. Click a picture to try one.",
+    "microworlds.HipHopTitle": "Hip Hop Dance",
+    "microworlds.FashionTitle": "Fashion",
+    "microworlds.HouseTitle": "Interactive House",
+    "microworlds.MakeMusicTitle": "Make Music",
+    "microworlds.SoccerTitle": "Soccer",
+    "microworlds.JokeTitle": "Make a Joke",
+    "microworlds.ArtTitle": "Make Art"
 }

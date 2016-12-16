@@ -250,7 +250,7 @@
     {
         "name": "microworlds-homepage",
         "pattern": "^/microworlds/go/?(\\?.*)?$",
-        "routeAlias": "microworlds/go/?\\??",
+        "routeAlias": "microworlds",
         "view": "microworldshomepage/microworldshomepage",
         "title": "Microworlds"
     }

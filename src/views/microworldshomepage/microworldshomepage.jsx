@@ -8,19 +8,12 @@ var MasonryGrid = require('../../components/masonrygrid/masonrygrid.jsx');
 var Page = require('../../components/page/www/page.jsx');
 var TitleBanner = require('../../components/title-banner/title-banner.jsx');
 var TTTTile = require('../../components/ttt-tile/ttt-tile.jsx');
-var Tiles = require('./ttt.json');
+var Tiles = require('./microworlds.json');
 
-var classNames = require('classnames');
-
-require('../thingstotry/thingstotry.scss');
+require('./microworldshomepage.scss');
 
 var MicroworldsHomepage = injectIntl(React.createClass({
     type: 'MicroworldsHomepage',
-    getInitialState: function () {
-        return {
-            currentTile: Tiles[0]
-        };
-    },
     renderTTTTiles: function () {
         var formatMessage = this.props.intl.formatMessage;
         var translatedTiles = [];
@@ -44,25 +37,19 @@ var MicroworldsHomepage = injectIntl(React.createClass({
     },
     render: function () {
         return (
-            <div className="ttt">
-                <TitleBanner className="masthead mod-ttt-title">
-                    <section className="ttt-section">
-                    </section>
+            <div className="microworlds">
+                <TitleBanner className="masthead mod-blue-bg">
                     <h1 className="title-banner-h1">
-                        <FormattedMessage id="ttt.title" />
+                        <FormattedMessage id="microworlds.title" />
                     </h1>
                     <p className="intro title-banner-p">
-                        <FormattedHTMLMessage id="ttt.subTitle" />
+                        <FormattedHTMLMessage id="microworlds.subTitle" />
                     </p>
                 </TitleBanner>
-
                 <div className="inner">
-                    <section className="ttt-section">
-                        <MasonryGrid >
-                            {this.renderTTTTiles()}
-                        </MasonryGrid>
-                    </section>
-
+                    <MasonryGrid >
+                        {this.renderTTTTiles()}
+                    </MasonryGrid>
                 </div>
             </div>
         );
