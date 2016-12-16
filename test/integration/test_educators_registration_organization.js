@@ -9,6 +9,9 @@ var tap = require('tap');
 
 var constants = require('./educator_registration_utils.js').constants;
 
+//Set test url through environment variable
+//var rootUrl = process.ENV.ROOT_URL || 'http://localhost:8333';
+
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 
@@ -52,7 +55,21 @@ var fillNameSlide = function () {
     });
 };
 
-tap.plan(1);
+var fillPhoneSlide = function () {
+    var phoneInput = driver.findElement(seleniumWebdriver.By.xpath('//input[@type="tel"]'));
+    var consentCheckbox = driver.findElement(seleniumWebdriver.By.name('phoneConsent'));
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
+    var phoneNumberPromise = phoneInput.sendKeys('6172535960');
+    var consentPromise =  consentCheckbox.click();
+    return Promise.all([phoneNumberPromise, consentPromise]).then(function () {
+        nextStepButton.click().then(function () {
+            driver.wait(seleniumWebdriver.until
+                .elementLocated(seleniumWebdriver.By.className('organization-step')));
+        });
+    });
+};
+
+tap.plan(3);
 
 tap.tearDown(function () {
     driver.quit();
@@ -62,16 +79,31 @@ tap.beforeEach(function () {
     driver.get('https://scratch.mit.edu/educators/register');
     return fillUsernameSlide()
         .then(fillDemographicsSlide)
-        .then(fillNameSlide);
+        .then(fillNameSlide)
+        .then(fillPhoneSlide);
 });
 
-//inputs an invalid phone number and checks that the correct error message appears
-tap.test('validatePhoneNumber', function (t) {
-    var phoneInput = driver.findElement(seleniumWebdriver.By.xpath('//input[@type="tel"]'));
-    var errorMessage = 'Please enter a valid phone number';
-    var errorMessageXPath = '//span[@class="help-block validation-message"]/span[contains(text(),"'
-    + errorMessage + '")]';
-    phoneInput.sendKeys(1234567890).then(function () {
+tap.test('otherFieldRequiredIfChecked', function (t) {
+    var otherCheckbox = driver.findElement(seleniumWebdriver.By.xpath('//input[@type="checkbox" and @value="8"]'));
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
+    var errorMessageXPath = '//div[@class="other-input"]' + constants.generalErrorMessageXpath;
+    otherCheckbox.click().then(function () {
+        nextStepButton.click().then(function () {
+            driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
+                .then(function (validationMessages) {
+                    t.equal(validationMessages.length, 1);
+                    t.end();
+                });
+        });
+    });
+});
+
+tap.test('checkOrganizationFieldRequired', function (t) {
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
+    var errorMessageXPath = '//input[@name="organization.name"]/following-sibling::'
+        + 'span[@class="help-block validation-message" and contains(text(),'
+        + '"This field is required")]';
+    nextStepButton.click().then(function () {
         driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
             .then(function (validationMessages) {
                 t.equal(validationMessages.length, 1);
@@ -80,3 +112,16 @@ tap.test('validatePhoneNumber', function (t) {
     });
 });
 
+tap.test('checkRoleFieldRequired', function (t) {
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
+    var errorMessageXPath = '//input[@name="organization.title"]/following-sibling::'
+        + 'span[@class="help-block validation-message" and contains(text(),'
+        + '"This field is required")]';
+    nextStepButton.click().then(function () {
+        driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
+            .then(function (validationMessages) {
+                t.equal(validationMessages.length, 1);
+                t.end();
+            });
+    });
+});

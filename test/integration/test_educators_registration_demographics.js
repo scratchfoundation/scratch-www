@@ -7,6 +7,8 @@ require('chromedriver');
 var seleniumWebdriver = require('selenium-webdriver');
 var tap = require('tap');
 
+var constants = require('./educator_registration_utils.js').constants;
+
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 
@@ -61,14 +63,10 @@ tap.test('checkOtherGenderInput', function (t) {
 //the user must select a gender
 //tries to advance the slide without selecting a gender
 tap.test('checkNoGenderInput', function (t) {
-    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath('//button[span[contains(text(),'
-        + '"Next Step")]]'));
-    var errorMessage = 'This field is required';
-    var errorMessageXPath = '//span[@class="help-block validation-message" and contains(text(),"'
-    + errorMessage + '")]';
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
     driver.findElement(seleniumWebdriver.By.xpath('//select[@name="user.country"]/option[2]')).click();
     nextStepButton.click().then(function () {
-            driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
+            driver.findElements(seleniumWebdriver.By.xpath(constants.generalErrorMessageXpath))
             .then(function (validationMessages) {
                 t.equal(validationMessages.length, 1);
                 t.end();
