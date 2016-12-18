@@ -7,49 +7,21 @@ require('chromedriver');
 var seleniumWebdriver = require('selenium-webdriver');
 var tap = require('tap');
 
-var constants = require('./teacher_registration_utils.js').constants;
+var utils = require('./teacher_registration_utils.js');
 
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 
 var fillUsernameSlide = function () {
-    var passwordInput = driver.findElement(seleniumWebdriver.By.name('user.password'));
-    var usernameInput = driver.findElement(seleniumWebdriver.By.name('user.username'));
-    var usernamePromise = usernameInput.sendKeys('clipspringer');
-    var passwordPromise = passwordInput.sendKeys('educators');
-    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
-    return Promise.all([usernamePromise, passwordPromise]).then(function () {
-        nextStepButton.click().then(function () {
-            driver.wait(seleniumWebdriver.until
-                .elementLocated(seleniumWebdriver.By.className('demographics-step')));
-        });
-    });
+    return utils.fillUsernameSlide(driver, seleniumWebdriver);
 };
 
 var fillDemographicsSlide = function () {
-    var clickMaleInput = driver.findElement(seleniumWebdriver.By.xpath('//input[@value="male"' +
-        'and @type="radio"]')).click();
-    var selectCountry = driver.findElement(seleniumWebdriver.By.xpath('//select[@name="user.country"]' +
-        '/option[2]')).click();
-    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
-    return Promise.all([clickMaleInput, selectCountry]).then(function () {
-        nextStepButton.click().then(function () {
-            driver.wait(seleniumWebdriver.until
-                .elementLocated(seleniumWebdriver.By.className('name-step')));
-        });
-    });
+    return utils.fillDemographicsSlide(driver, seleniumWebdriver);
 };
 
 var fillNameSlide = function () {
-    var firstNamePromise = driver.findElement(seleniumWebdriver.By.name('user.name.first')).sendKeys('first');
-    var lastNamePromise = driver.findElement(seleniumWebdriver.By.name('user.name.last')).sendKeys('surname');
-    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
-    return Promise.all([firstNamePromise, lastNamePromise]).then(function () {
-        nextStepButton.click().then(function () {
-            driver.wait(seleniumWebdriver.until
-                .elementLocated(seleniumWebdriver.By.className('phone-step')));
-        });
-    });
+    return utils.fillNameSlide(driver, seleniumWebdriver);
 };
 
 tap.plan(1);

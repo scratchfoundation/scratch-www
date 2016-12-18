@@ -7,25 +7,11 @@ require('chromedriver');
 var seleniumWebdriver = require('selenium-webdriver');
 var tap = require('tap');
 
-var constants = require('./teacher_registration_utils.js').constants;
+var utils = require('./teacher_registration_utils.js');
+var constants = utils.constants;
 
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
-
-var fillUsernameSlide = function () {
-    var passwordInput = driver.findElement(seleniumWebdriver.By.name('user.password'));
-    var usernameInput = driver.findElement(seleniumWebdriver.By.name('user.username'));
-    var usernamePromise = usernameInput.sendKeys('clipspringer');
-    var passwordPromise = passwordInput.sendKeys('educators');
-    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath('//button[span[contains(text(),'
-        + '"Next Step")]]'));
-    return Promise.all([usernamePromise, passwordPromise]).then(function () {
-        nextStepButton.click().then(function () {
-            driver.wait(seleniumWebdriver.until
-                .elementLocated(seleniumWebdriver.By.className('demographics-step')));
-        });
-    });
-};
 
 tap.plan(2);
 
@@ -35,7 +21,7 @@ tap.tearDown(function () {
 
 tap.beforeEach(function () {
     driver.get('https://scratch.mit.edu/educators/register');
-    return fillUsernameSlide();
+    return utils.fillUsernameSlide(driver, seleniumWebdriver);
 });
 
 //if the user selects the other gender option, they must input a gender
