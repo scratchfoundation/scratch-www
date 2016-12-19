@@ -53,12 +53,14 @@ tap.beforeEach(function () {
 
 //Selects Vatican City as the country, and checks that the state dropdown disappears
 tap.test('checkStateDropdownOnlyPresentWhenNeeded', function (t) {
-    var selectCountry = driver.findElement(seleniumWebdriver.By.xpath('//select[@name="address.country"]' +
-        '/option[@value="va"]')).click();
-    driver.findElements(seleniumWebdriver.By.name('address.state'))
-        .then(function (stateDropdown) {
-            t.equal(stateDropdown.length, 0);
-            t.end();
+    driver.findElement(seleniumWebdriver.By.xpath('//select[@name="address.country"]' +
+        '/option[@value="va"]')).click() //select Vatican City as the country
+        .then(function () {
+            driver.findElements(seleniumWebdriver.By.name('address.state'))
+                .then(function (stateDropdown) {
+                    t.equal(stateDropdown.length, 0);
+                    t.end();
+                });
         });
 });
 
