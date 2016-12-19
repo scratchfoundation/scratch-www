@@ -1,5 +1,5 @@
 /*
- * Checks the behavior of the phone number step in the educators registration process
+ * Checks the behavior of the organization step in the educators registration process
  *
  * Test cases: https://github.com/LLK/scratch-www/wiki/Testing-Scratch-www#All_Test_Cases_Teacher_Join_Flow
  */
@@ -32,7 +32,7 @@ var fillPhoneSlide = function () {
     return utils.fillPhoneSlide(driver, seleniumWebdriver);
 };
 
-tap.plan(3);
+tap.plan(4);
 
 tap.tearDown(function () {
     driver.quit();
@@ -78,6 +78,20 @@ tap.test('checkOrganizationFieldRequired', function (t) {
 tap.test('checkRoleFieldRequired', function (t) {
     var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
     var errorMessageXPath = '//input[@name="organization.title"]/following-sibling::'
+        + 'span[@class="help-block validation-message" and contains(text(),'
+        + '"This field is required")]';
+    nextStepButton.click().then(function () {
+        driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
+            .then(function (validationMessages) {
+                t.equal(validationMessages.length, 1);
+                t.end();
+            });
+    });
+});
+
+tap.test('checkOrganizationTypeRequired', function (t) {
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
+    var errorMessageXPath = '//div[@class="checkbox"]/following-sibling::'
         + 'span[@class="help-block validation-message" and contains(text(),'
         + '"This field is required")]';
     nextStepButton.click().then(function () {
