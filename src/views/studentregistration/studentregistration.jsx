@@ -81,7 +81,7 @@ var StudentRegistration = intl.injectIntl(React.createClass({
         }, function (err, body, res) {
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
-            if (body[0].success) return this.advanceStep(formData);
+            if (body[0] && body[0].success) return this.advanceStep(formData);
             this.setState({
                 registrationError:
                     body[0].msg ||

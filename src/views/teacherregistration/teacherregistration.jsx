@@ -69,7 +69,7 @@ var TeacherRegistration = React.createClass({
         }, function (err, body, res) {
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
-            if (body[0].success) {
+            if (body[0] && body[0].success) {
                 this.props.dispatch(sessionActions.refreshSession());
                 return this.advanceStep(formData);
             }
