@@ -84,7 +84,7 @@ var StudentRegistration = intl.injectIntl(React.createClass({
             if (body[0] && body[0].success) return this.advanceStep(formData);
             this.setState({
                 registrationError:
-                    body[0].msg ||
+                    (body[0] && body[0].msg) ||
                     this.props.intl.formatMessage({id: 'registration.generalError'}) + ' (' + res.statusCode + ')'
             });
         }.bind(this));
