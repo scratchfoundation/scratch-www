@@ -4,6 +4,7 @@ var React = require('react');
 var render = require('../../lib/render.jsx');
 
 var api = require('../../lib/api');
+var intl = require('../../lib/intl.jsx');
 var sessionActions = require('../../redux/session.js');
 
 var Deck = require('../../components/deck/deck.jsx');
@@ -13,7 +14,7 @@ var Steps = require('../../components/registration/steps.jsx');
 require('./teacherregistration.scss');
 
 
-var TeacherRegistration = React.createClass({
+var TeacherRegistration = intl.injectIntl(React.createClass({
     type: 'TeacherRegistration',
     getInitialState: function () {
         return {
@@ -79,7 +80,6 @@ var TeacherRegistration = React.createClass({
                     this.props.intl.formatMessage({id: 'registration.generalError'}) + ' (' + res.statusCode + ')'
             });
         }.bind(this));
-
     },
     render: function () {
         var permissions = this.props.session.permissions || {};
@@ -122,7 +122,7 @@ var TeacherRegistration = React.createClass({
             </Deck>
         );
     }
-});
+}));
 
 var mapStateToProps = function (state) {
     return {
