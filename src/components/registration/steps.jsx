@@ -93,7 +93,7 @@ module.exports = {
             callback = callback || function () {};
             if (!username) {
                 this.refs.form.refs.formsy.updateInputsWithError({
-                    'user.username': formatMessage({id: 'teacherRegistration.validationRequired'})
+                    'user.username': this.props.intl.formatMessage({id: 'form.validationRequired'})
                 });
                 return callback(false);
             }
@@ -457,7 +457,7 @@ module.exports = {
         onValidSubmit: function (formData, reset, invalidate) {
             if (!formData.phone || formData.phone.national_number === '+') {
                 return invalidate({
-                    'phone': this.props.intl.formatMessage({id: 'teacherRegistration.validationRequired'})
+                    'phone': this.props.intl.formatMessage({id: 'form.validationRequired'})
                 });
             }
             return this.props.onNextStep(formData);
@@ -582,7 +582,7 @@ module.exports = {
                                                }}
                                                validationErrors={{
                                                    minLength: formatMessage({
-                                                       id: 'teacherRegistration.validationRequired'
+                                                       id: 'form.validationRequired'
                                                    })
                                                }}
                                                required />
