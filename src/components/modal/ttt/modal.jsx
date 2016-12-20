@@ -67,7 +67,7 @@ var TTTModal = React.createClass({
                             href={this.props.tutorialLoc}
                             className="button white mod-ttt-item"
                         >
-                            <FormattedMessage id="ttt.tryIt" />
+                            <FormattedMessage id="tile.tryIt" />
                         </a>
                     </FlexRow>
                     <FlexRow as="li" className="mod-ttt-item">
