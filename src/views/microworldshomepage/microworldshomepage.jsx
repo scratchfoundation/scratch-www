@@ -14,27 +14,6 @@ require('./microworldshomepage.scss');
 
 var MicroworldsHomepage = injectIntl(React.createClass({
     type: 'MicroworldsHomepage',
-    renderTTTTiles: function () {
-        var formatMessage = this.props.intl.formatMessage;
-        var translatedTiles = [];
-        var translatedTile = {};
-
-        Tiles.map(function (tile, key) {
-            translatedTile = {
-                title: formatMessage({id: tile.title}),
-                tutorialLoc: tile.tutorialLoc,
-                thumbUrl: tile.thumbUrl,
-                bannerUrl: tile.bannerUrl
-            };
-            translatedTiles.push(
-                <TTTTile
-                    key={key}
-                    {...translatedTile}
-                />
-            );
-        }, this); // don't forget to pass 'this' into map function
-        return translatedTiles;
-    },
     render: function () {
         return (
             <div className="microworlds">
@@ -48,7 +27,17 @@ var MicroworldsHomepage = injectIntl(React.createClass({
                 </TitleBanner>
                 <div className="inner">
                     <MasonryGrid >
-                        {this.renderTTTTiles()}
+                        {Tiles.map(
+                            function (tile, key) {
+                                return <TTTTile
+                                    key={key}
+                                    title={this.props.intl.formatMessage({id: tile.title})}
+                                    tutorialLoc={tile.tutorialLoc}
+                                    thumbUrl={tile.thumbUrl}
+                                    bannerUrl={tile.bannerUrl}
+                                    />;
+                            }, this)
+                        }
                     </MasonryGrid>
                 </div>
             </div>

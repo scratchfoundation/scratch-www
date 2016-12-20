@@ -14,16 +14,6 @@ var TTTTile = React.createClass({
         tutorialLoc: React.PropTypes.string.isRequired,
         onGuideClick: React.PropTypes.func.isRequired
     },
-    tileGuidesIfExists: function () {
-        if (this.props.onGuideClick) {
-            return (
-                <div className="ttt-tile-guides" onClick={this.props.onGuideClick}>
-                    <FormattedMessage id='tile.guides' defaultMessage='See Cards and Guides'/>
-                    <img className="ttt-tile-see-more" src="/svgs/ttt/see-more.svg" />
-                </div>
-            );
-        }
-    },
     render: function () {
         var classes = classNames(
             'ttt-tile',
@@ -54,7 +44,12 @@ var TTTTile = React.createClass({
                     </div>
 
                 </a>
-                {this.tileGuidesIfExists()}
+                {this.props.onGuideClick && (
+                    <div className="ttt-tile-guides" onClick={this.props.onGuideClick}>
+                        <FormattedMessage id='tile.guides' defaultMessage='See Cards and Guides'/>
+                        <img className="ttt-tile-see-more" src="/svgs/ttt/see-more.svg" />
+                    </div>
+                )}
             </div>
         );
     }
