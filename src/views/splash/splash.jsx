@@ -14,6 +14,7 @@ var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
+var HocEventRow = require('./hoc-event-row/hoc-event-row.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var IframeModal = require('../../components/modal/iframe/modal.jsx');
 var News = require('../../components/news/news.jsx');
@@ -207,6 +208,14 @@ var Splash = injectIntl(React.createClass({
             </Box>
         ];
 
+        if (this.props.session.session.user && this.props.session.session.flags.show_hoc_studio) {
+            rows.push(
+                <HocEventRow
+                    onDismiss={this.handleDismiss.bind(this, 'show_hoc_studio')}
+                />
+            );
+        }
+
         if (this.state.featuredGlobal.curator_top_projects &&
             this.state.featuredGlobal.curator_top_projects.length > 4) {
 
@@ -366,7 +375,7 @@ var Splash = injectIntl(React.createClass({
                 {this.props.permissions.educator ? [
                     <TeacherBanner key="teacherbanner" messages={messages} />
                 ] : []}
-                <div key="inner" className="inner">
+                <div key="inner" className="inner mod-splash">
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.session.user ? [
                             <div key="header" className="splash-header">

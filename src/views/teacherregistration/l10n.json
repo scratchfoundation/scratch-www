@@ -39,6 +39,5 @@
     "teacherRegistration.howUseScratch": "How do you plan to use Scratch at your organization?",
     "teacherRegistration.emailStepTitle": "Email Address",
     "teacherRegistration.emailStepDescription": "We will send you a confirmation email that will allow you to access your Scratch Teacher Account.",
-    "teacherRegistration.validationEmailMatch": "The emails do not match",
-    "teacherRegistration.validationRequired": "This field is required"
+    "teacherRegistration.validationEmailMatch": "The emails do not match"
 }

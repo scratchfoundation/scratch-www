@@ -1,4 +1,5 @@
 var defaults = require('lodash.defaultsdeep');
+var intl = require('../../lib/intl.jsx');
 var libphonenumber = require('google-libphonenumber');
 var phoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
 var React = require('react');
@@ -44,5 +45,5 @@ module.exports.validationHOCFactory = function (defaultValidationErrors) {
 };
 
 module.exports.defaultValidationHOC = module.exports.validationHOCFactory({
-    isDefaultRequiredValue: 'This field is required'
+    isDefaultRequiredValue: <intl.FormattedMessage id="form.validationRequired" />
 });

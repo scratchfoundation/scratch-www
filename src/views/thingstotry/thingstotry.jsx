@@ -61,10 +61,10 @@ var ThingsToTry = injectIntl(React.createClass({
                     <section className="ttt-section">
                         <img className="ttt-banner-image" src="/svgs/ttt/resources.svg" alt=""/>
                     </section>
-                    <h1>
+                    <h1 className="title-banner-h1">
                         <FormattedMessage id="ttt.title" />
                     </h1>
-                    <p className="intro">
+                    <p className="intro title-banner-p">
                         <FormattedHTMLMessage id="ttt.subTitle" />
                     </p>
                 </TitleBanner>

@@ -18,8 +18,10 @@ var Developers = React.createClass({
             <div className="developers">
                 <TitleBanner className="masthead">
                     <div className="inner">
-                        <h1><FormattedMessage id='developers.title' /></h1>
-                        <p className="intro">
+                        <h1 className="title-banner-h1">
+                            <FormattedMessage id='developers.title' />
+                        </h1>
+                        <p className="title-banner-p intro">
                             <FormattedHTMLMessage id='developers.intro' />
                         </p>
                     </div>
