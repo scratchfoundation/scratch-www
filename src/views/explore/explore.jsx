@@ -137,7 +137,7 @@ var Explore = injectIntl(React.createClass({
                 <div className='outer'>
                     <TitleBanner className="masthead">
                         <div className="inner">
-                            <h1 className="title-banner-h1">Explore</h1>
+                            <h1 className="title-banner-h1"><FormattedMessage id='general.explore' /></h1>
                         </div>
                     </TitleBanner>
                     <Tabs>
@@ -156,9 +156,9 @@ var Explore = injectIntl(React.createClass({
                         <Form className='sort-mode'>
                             <Select name="sort"
                                     options={[
-                                        {value: 'trending', label: 'Trending'},
-                                        {value: 'popular', label: 'Popular'},
-                                        {value: 'recent', label: 'Recent'}
+                                        {value: 'trending', label: <FormattedMessage id='explore.trending' />},
+                                        {value: 'popular', label: <FormattedMessage id='explore.popular' />},
+                                        {value: 'recent', label: <FormattedMessage id='explore.recent' />}
                                     ]}
                                     value={this.props.mode}
                                     onChange={this.changeSortMode}/>

@@ -58,6 +58,10 @@ var TeacherFaq = injectIntl(React.createClass({
                             <dd><FormattedHTMLMessage id='teacherfaq.studentMultipleBody' /></dd>
                             <dt><FormattedMessage id='teacherfaq.studentDiscussTitle' /></dt>
                             <dd><FormattedHTMLMessage id='teacherfaq.studentDiscussBody' /></dd>
+                            <dt><FormattedMessage id='teacherfaq.studentDataTitle' /></dt>
+                            <dd><FormattedMessage id='teacherfaq.studentDataBody' /></dd>
+                            <dt><FormattedMessage id='teacherfaq.studentPrivacyLawsTitle' /></dt>
+                            <dd><FormattedMessage id='teacherfaq.studentPrivacyLawsBody' /></dd>
                         </dl>
                     </section>
                     <section id="community">

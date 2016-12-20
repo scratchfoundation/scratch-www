@@ -13,7 +13,6 @@
         border-radius: 8px;
     }
 
-    .gender-input,
     .other-input {
         float: right;
         width: 90%;
@@ -61,16 +60,19 @@
     }
 
     &.demographics-step {
-        .gender-input {
-            margin-top: -5.5rem;
+        .radio {
+            margin: 1.5rem 1.5rem 0 0;
         }
 
-        .radio {
-            margin-right: 2.5rem;
-            line-height: 3rem;
+        input[type="radio"] {
+            margin-right: 1rem;
+        }
 
-            input {
-                margin-right: 1rem;
+        .demographics-step-input-other {
+            display: inline-block;
+
+            .col-sm-9 {
+                display: inline-block;
             }
         }
     }

@@ -93,6 +93,8 @@
     "footer.help": "Help Page",
     "footer.scratchFamily": "Scratch Family",
 
+    "form.validationRequired": "This field is required",
+
     "login.forgotPassword": "Forgot Password?",
 
     "navigation.signOut": "Sign out",
@@ -108,6 +110,7 @@
     "registration.choosePasswordStepTitle": "Create a password",
     "registration.choosePasswordStepTooltip": "Don't use your name or anything that's easy for someone else to guess.",
     "registration.classroomApiGeneralError": "Sorry, we could not find the registration information for this class",
+    "registration.generalError": "Sorry, an unexpected error occurred.",
     "registration.classroomInviteExistingStudentStepDescription": "you have been invited to join the class:",
     "registration.classroomInviteNewStudentStepDescription": "has invited you to join the class:",
     "registration.confirmYourEmail": "Confirm Your Email",
