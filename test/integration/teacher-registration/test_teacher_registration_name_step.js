@@ -10,16 +10,11 @@ var tap = require('tap');
 var utils = require('./teacher_registration_utils.js');
 var constants = utils.constants;
 
+//Set test url through environment variable
+var rootUrl = process.env.ROOT_URL || 'http://localhost:8333';
+
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
-
-var fillUsernameSlide = function () {
-    return utils.fillUsernameSlide(driver, seleniumWebdriver);
-};
-
-var fillDemographicsSlide = function () {
-    return utils.fillDemographicsSlide(driver, seleniumWebdriver);
-};
 
 tap.plan(2);
 
@@ -28,16 +23,16 @@ tap.tearDown(function () {
 });
 
 tap.beforeEach(function () {
-    driver.get('https://scratch.mit.edu/educators/register');
-    return fillUsernameSlide()
-        .then(fillDemographicsSlide);
+    driver.get(rootUrl + '/educators/register');
+    return utils.fillUsernameSlide(driver, seleniumWebdriver)
+        .then(utils.fillDemographicsSlide.bind(this, driver, seleniumWebdriver));
 });
 
 //attempts to advance the slide without inputting either name, checks that both give the correct error
 tap.test('checkFirstNameRequired', function (t) {
     var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
     var errorMessageXPath = '//input[@name="user.name.first"]/following-sibling::'
-        + 'span[@class="help-block validation-message" and contains(text(),'
+        + 'span[@class="help-block validation-message"]/span[contains(text(),'
         + '"This field is required")]';
     nextStepButton.click().then(function () {
         driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
@@ -52,7 +47,7 @@ tap.test('checkFirstNameRequired', function (t) {
 tap.test('checkLastNameRequired', function (t) {
     var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
     var errorMessageXPath = '//input[@name="user.name.last"]/following-sibling::'
-        + 'span[@class="help-block validation-message" and contains(text(),'
+        + 'span[@class="help-block validation-message"]/span[contains(text(),'
         + '"This field is required")]';
     nextStepButton.click().then(function () {
         driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))

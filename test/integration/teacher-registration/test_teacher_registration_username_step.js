@@ -8,6 +8,9 @@ require('chromedriver');
 var seleniumWebdriver = require('selenium-webdriver');
 var tap = require('tap');
 
+//Set test url through environment variable
+var rootUrl = process.env.ROOT_URL || 'http://localhost:8333';
+
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 
@@ -18,7 +21,7 @@ tap.tearDown(function () {
 });
 
 tap.beforeEach(function () {
-    return driver.get('https://scratch.mit.edu/educators/register');
+    return driver.get(rootUrl + '/educators/register');
 });
 
 //an error message should appear for a username less than 3 characters long

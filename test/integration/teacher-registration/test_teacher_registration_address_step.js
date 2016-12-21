@@ -11,30 +11,10 @@ var utils = require('./teacher_registration_utils.js');
 var constants = utils.constants;
 
 //Set test url through environment variable
-//var rootUrl = process.ENV.ROOT_URL || 'http://localhost:8333';
+var rootUrl = process.env.ROOT_URL || 'http://localhost:8333';
 
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
-
-var fillUsernameSlide = function () {
-    return utils.fillUsernameSlide(driver, seleniumWebdriver);
-};
-
-var fillDemographicsSlide = function () {
-    return utils.fillDemographicsSlide(driver, seleniumWebdriver);
-};
-
-var fillNameSlide = function () {
-    return utils.fillNameSlide(driver, seleniumWebdriver);
-};
-
-var fillPhoneSlide = function () {
-    return utils.fillPhoneSlide(driver, seleniumWebdriver);
-};
-
-var fillOrganizationSlide = function () {
-    return utils.fillOrganizationSlide(driver, seleniumWebdriver);
-};
 
 tap.plan(2);
 
@@ -43,12 +23,12 @@ tap.tearDown(function () {
 });
 
 tap.beforeEach(function () {
-    driver.get('https://scratch.mit.edu/educators/register');
-    return fillUsernameSlide()
-        .then(fillDemographicsSlide)
-        .then(fillNameSlide)
-        .then(fillPhoneSlide)
-        .then(fillOrganizationSlide);
+    driver.get(rootUrl + '/educators/register');
+    return utils.fillUsernameSlide(driver, seleniumWebdriver)
+        .then(utils.fillDemographicsSlide.bind(this, driver, seleniumWebdriver))
+        .then(utils.fillNameSlide.bind(this, driver, seleniumWebdriver))
+        .then(utils.fillPhoneSlide.bind(this, driver, seleniumWebdriver))
+        .then(utils.fillOrganizationSlide.bind(this, driver, seleniumWebdriver));
 });
 
 //Selects Vatican City as the country, and checks that the state dropdown disappears

@@ -11,7 +11,7 @@ var utils = require('./teacher_registration_utils.js');
 var constants = utils.constants;
 
 //Set test url through environment variable
-//var rootUrl = process.ENV.ROOT_URL || 'http://localhost:8333';
+var rootUrl = process.env.ROOT_URL || 'http://localhost:8333';
 
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
@@ -23,11 +23,11 @@ tap.tearDown(function () {
 });
 
 tap.beforeEach(function () {
-    driver.get('https://scratch.mit.edu/educators/register');
+    driver.get(rootUrl + '/educators/register');
     return utils.fillUsernameSlide(driver, seleniumWebdriver)
-        .then(function () { utils.fillDemographicsSlide(driver, seleniumWebdriver); })
-        .then(function () { utils.fillNameSlide(driver, seleniumWebdriver); })
-        .then(function () { utils.fillPhoneSlide(driver, seleniumWebdriver); });
+        .then(utils.fillDemographicsSlide.bind(this, driver, seleniumWebdriver))
+        .then(utils.fillNameSlide.bind(this, driver, seleniumWebdriver))
+        .then(utils.fillPhoneSlide.bind(this, driver, seleniumWebdriver));
 });
 
 tap.test('otherFieldRequiredIfChecked', function (t) {
