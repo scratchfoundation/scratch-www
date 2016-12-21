@@ -29,15 +29,11 @@ tap.beforeEach(function () {
 tap.test('checkOtherGenderInput', function (t) {
     var otherGenderRadio = driver.findElement(seleniumWebdriver.By.xpath('//input[@value="other"' +
         'and @type="radio"]'));
-    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath('//button[span[contains(text(),'
-        + '"Next Step")]]'));
-    var errorMessage = 'This field is required';
-    var errorMessageXPath = '//span[@class="help-block validation-message" and contains(text(),"'
-    + errorMessage + '")]';
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
     driver.findElement(seleniumWebdriver.By.xpath('//select[@name="user.country"]/option[2]')).click();
     otherGenderRadio.click().then(function () {
         nextStepButton.click().then(function () {
-            driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
+            driver.findElements(seleniumWebdriver.By.xpath(constants.generalErrorMessageXPath))
             .then(function (validationMessages) {
                 t.equal(validationMessages.length, 1);
                 t.end();

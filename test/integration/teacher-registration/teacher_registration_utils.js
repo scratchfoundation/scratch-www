@@ -13,8 +13,7 @@ module.exports.fillUsernameSlide = function (driver, seleniumWebdriver) {
     var usernameInput = driver.findElement(seleniumWebdriver.By.name('user.username'));
     var usernamePromise = usernameInput.sendKeys('clipspringer');
     var passwordPromise = passwordInput.sendKeys('educators');
-    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath('//button[span[contains(text(),'
-        + '"Next Step")]]'));
+    var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(module.exports.constants.nextStepXpath));
     return Promise.all([usernamePromise, passwordPromise]).then(function () {
         nextStepButton.click().then(function () {
             driver.wait(seleniumWebdriver.until
