@@ -48,7 +48,7 @@ tap.test('otherFieldRequiredIfChecked', function (t) {
 tap.test('checkOrganizationFieldRequired', function (t) {
     var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
     var errorMessageXPath = '//input[@name="organization.name"]/following-sibling::'
-        + 'span[@class="help-block validation-message" and contains(text(),'
+        + 'span[@class="help-block validation-message"]/span[contains(text(),'
         + '"This field is required")]';
     nextStepButton.click().then(function () {
         driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
@@ -62,7 +62,7 @@ tap.test('checkOrganizationFieldRequired', function (t) {
 tap.test('checkRoleFieldRequired', function (t) {
     var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
     var errorMessageXPath = '//input[@name="organization.title"]/following-sibling::'
-        + 'span[@class="help-block validation-message" and contains(text(),'
+        + 'span[@class="help-block validation-message"]/span[contains(text(),'
         + '"This field is required")]';
     nextStepButton.click().then(function () {
         driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))

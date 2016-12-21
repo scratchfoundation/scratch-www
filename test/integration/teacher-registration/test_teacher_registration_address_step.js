@@ -47,7 +47,7 @@ tap.test('checkStateDropdownOnlyPresentWhenNeeded', function (t) {
 tap.test('checkZipCodeRequired', function (t) {
     var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
     var errorMessageXPath = '//input[@name="address.zip"]/following-sibling::'
-        + 'span[@class="help-block validation-message" and contains(text(),'
+        + 'span[@class="help-block validation-message"]/span[contains(text(),'
         + '"This field is required")]';
     nextStepButton.click().then(function () {
         driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
