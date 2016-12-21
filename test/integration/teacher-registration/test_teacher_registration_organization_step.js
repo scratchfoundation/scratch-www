@@ -16,22 +16,6 @@ var constants = utils.constants;
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 
-var fillUsernameSlide = function () {
-    return utils.fillUsernameSlide(driver, seleniumWebdriver);
-};
-
-var fillDemographicsSlide = function () {
-    return utils.fillDemographicsSlide(driver, seleniumWebdriver);
-};
-
-var fillNameSlide = function () {
-    return utils.fillNameSlide(driver, seleniumWebdriver);
-};
-
-var fillPhoneSlide = function () {
-    return utils.fillPhoneSlide(driver, seleniumWebdriver);
-};
-
 tap.plan(4);
 
 tap.tearDown(function () {
@@ -40,10 +24,10 @@ tap.tearDown(function () {
 
 tap.beforeEach(function () {
     driver.get('https://scratch.mit.edu/educators/register');
-    return fillUsernameSlide()
-        .then(fillDemographicsSlide)
-        .then(fillNameSlide)
-        .then(fillPhoneSlide);
+    return utils.fillUsernameSlide(driver, seleniumWebdriver)
+        .then(function () { utils.fillDemographicsSlide(driver, seleniumWebdriver); })
+        .then(function () { utils.fillNameSlide(driver, seleniumWebdriver); })
+        .then(function () { utils.fillPhoneSlide(driver, seleniumWebdriver); });
 });
 
 tap.test('otherFieldRequiredIfChecked', function (t) {
