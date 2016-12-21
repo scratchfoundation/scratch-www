@@ -1,6 +1,6 @@
 module.exports.constants = {
     'nextStepXpath': '//button[span[contains(text(), "Next Step")]]',
-    'generalErrorMessageXpath': '//span[@class="help-block validation-message" and contains(text(),'
+    'generalErrorMessageXpath': '//span[@class="help-block validation-message"]/span[contains(text(),'
         + '"This field is required")]',
     'loremIpsumTextLong': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur viverra'
      + 'nec mauris efficitur tincidunt. Vestibulum ut diam odio. Cum sociis natoque penatibus et magnis dis'
