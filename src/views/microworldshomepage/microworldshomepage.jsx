@@ -34,7 +34,6 @@ var MicroworldsHomepage = injectIntl(React.createClass({
                                     title={this.props.intl.formatMessage({id: tile.title})}
                                     tutorialLoc={tile.tutorialLoc}
                                     thumbUrl={tile.thumbUrl}
-                                    bannerUrl={tile.bannerUrl}
                                     />;
                             }, this)
                         }
