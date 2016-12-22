@@ -7,11 +7,6 @@ $base-bg: $ui-white;
     padding: 0;
 }
 
-// .mod-ttt-title, to avoid collision with .title-banner.mod-tt in ttt modal
-.title-banner.mod-ttt-title {
-    background-color: $ui-blue;
-}
-
 .ttt-section {
     display: flex;
     margin: 0 auto;

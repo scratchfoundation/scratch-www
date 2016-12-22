@@ -9,10 +9,10 @@ var TTTTile = React.createClass({
     type: 'TTTTile',
     propTypes: {
         title: React.PropTypes.string.isRequired,
-        description: React.PropTypes.string.isRequired,
+        description: React.PropTypes.string,
         thumbUrl: React.PropTypes.string.isRequired,
         tutorialLoc: React.PropTypes.string.isRequired,
-        onGuideClick: React.PropTypes.func.isRequired
+        onGuideClick: React.PropTypes.func
     },
     render: function () {
         var classes = classNames(
@@ -27,7 +27,7 @@ var TTTTile = React.createClass({
                             <img className="ttt-tile-image-img" src={this.props.thumbUrl} alt="" />
                             <div className="ttt-tile-image-try">
                                 <div className="button mod-ttt-try-button">
-                                    <FormattedMessage id="ttt.tryIt" />
+                                    <FormattedMessage id="tile.tryIt" />
                                 </div>
                             </div>
                         </div>
@@ -44,10 +44,12 @@ var TTTTile = React.createClass({
                     </div>
 
                 </a>
-                <div className="ttt-tile-guides" onClick={this.props.onGuideClick}>
-                    <FormattedMessage id='tile.guides' defaultMessage='See Cards and Guides'/>
-                    <img className="ttt-tile-see-more" src="/svgs/ttt/see-more.svg" />
-                </div>
+                {this.props.onGuideClick && (
+                    <div className="ttt-tile-guides" onClick={this.props.onGuideClick}>
+                        <FormattedMessage id='tile.guides' defaultMessage='See Cards and Guides'/>
+                        <img className="ttt-tile-see-more" src="/svgs/ttt/see-more.svg" />
+                    </div>
+                )}
             </div>
         );
     }
