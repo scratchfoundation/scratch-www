@@ -185,7 +185,6 @@ module.exports = {
                                 <Input className={this.state.validUsername}
                                        type="text"
                                        name="user.username"
-                                       ref="thing"
                                        onBlur={this.onUsernameBlur}
                                        validations={{
                                            matchRegexp: /^[\w-]*$/,
