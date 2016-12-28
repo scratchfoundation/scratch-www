@@ -136,7 +136,9 @@ module.exports = {
             }.bind(this));
         },
         onUsernameBlur: function (event) {
-            this.validateUsername(event.currentTarget.value);
+            if (this.refs.form.refs.formsy.inputs[0].isValidValue(event.currentTarget.value)) {
+                this.validateUsername(event.currentTarget.value);
+            }
         },
         onValidSubmit: function (formData) {
             this.setState({waiting: true});
@@ -183,6 +185,7 @@ module.exports = {
                                 <Input className={this.state.validUsername}
                                        type="text"
                                        name="user.username"
+                                       ref="thing"
                                        onBlur={this.onUsernameBlur}
                                        validations={{
                                            matchRegexp: /^[\w-]*$/,
