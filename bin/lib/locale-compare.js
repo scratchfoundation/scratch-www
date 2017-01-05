@@ -250,7 +250,7 @@ Helpers.writeTranslations = function (name, l10n, languages) {
     var icuWithIds = Helpers.icuToIdMap(name, ids);
     var md5WithIds = Helpers.getMD5Map(icuWithIds);
     var isoCodes = Object.keys(languages);
-    var outputDir = path.resolve(__dirname, '../../translations/', name);
+    var outputDir = path.resolve(__dirname, '../../localizations/', name);
     try {
         fs.accessSync(outputDir, fs.F_OK);
     } catch (err) {

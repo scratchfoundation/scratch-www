@@ -4,7 +4,7 @@
     pootle into transifex.
 
     For example, extract the strings corresponding to splash ids from pootle.
-    For each language, in translations/splash create
+    For each language, in localizations/splash create
     fr.json =>
     {
         'splash.welcome' : 'Bienvenue',
@@ -19,7 +19,7 @@ var routes = require('../src/routes.json');
 var languages = require('../languages.json');
 var localeCompare = require('./lib/locale-compare');
 
-var outputDir = path.resolve(__dirname, '../translations');
+var outputDir = path.resolve(__dirname, '../localizations');
 try {
     fs.accessSync(outputDir, fs.F_OK);
 } catch (err) {

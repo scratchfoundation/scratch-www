@@ -11,7 +11,7 @@ npm-*
 # Locales
 /locales
 /intl
-/translations
+/localizations
 
 
 # Elastic Beanstalk Files

@@ -2,91 +2,91 @@
 host = https://www.transifex.com
 
 [scratch-website.explore-l10njson]
-file_filter = translations/explore/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/explore/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.general-l10njson]
-file_filter = translations/general/<lang>.json
+file_filter = localizations/general/<lang>.json
 source_file = src/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.wedo2-l10njson]
-file_filter = translations/wedo2/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/wedo2/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.cards-l10njson]
-file_filter = translations/cards/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/cards/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.teacherregistration-l10njson]
-file_filter = translations/teacherregistration/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/teacherregistration/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.dmca-l10njson]
-file_filter = translations/dmca/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/dmca/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.jobs-l10njson]
-file_filter = translations/jobs/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/jobs/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.faq-l10njson]
-file_filter = translations/faq/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/faq/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.about-l10njson]
-file_filter = translations/about/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/about/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.teacher-faq-l10njson]
-file_filter = translations/teacher-faq/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/teachers/faq/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.developers-l10njson]
-file_filter = translations/developers/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/developers/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.things-to-try-l10njson]
-file_filter = translations/things-to-try/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/thingstotry/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.guidelines-l10njson]
-file_filter = translations/guidelines/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/guidelines/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.educator-landing-l10njson]
-file_filter = translations/educator-landing/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/teachers/landing/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.splash-l10njson]
-file_filter = translations/splash/<lang>.json
+file_filter = localizations/${name}/<lang>.json
 source_file = src/views/splash/l10n.json
 source_lang = en
 type = KEYVALUEJSON
