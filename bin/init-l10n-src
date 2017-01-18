@@ -1,0 +1,89 @@
+#!/usr/bin/env node
+
+/* Initialize transifex resources from src l10n files
+needs to run in the project root directory, where .tx folder is located
+add parameter 'execute' to run the tx command, otherwise transifex just
+shows what would run
+TBD: replace this with a node transifex module
+*/
+/*
+Don't use template strings (backticks) until scratch-www is switched over
+to ES6. Leaving template string versions as comments.
+ */
+
+// Unfortunately need to execute Synchronously, or tx set gets errors when
+// updating the .tx/config file
+var execSync = require('child_process').execSync;
+var fs = require('fs');
+var path = require('path');
+var routes = require('../src/routes.json');
+
+var cmd = '';
+var execute = '';
+
+// make sure .tx folder exists with config file
+try {
+    //
+    fs.accessSync(path.resolve(process.cwd() + '/.tx/config'));
+} catch (err) {
+    process.stdout.write('Run the script from the directory with .tx folder\n');
+    process.exit(1);
+}
+
+var args = process.argv.slice(2);
+if (args[0] === 'execute') {
+    process.stdout.write('executing tx initializtion\n');
+    execute = '--execute';
+} else {
+    process.stdout.write('Dry run: pass "execute" as a parameter to add --execute switch to commands\n');
+}
+
+
+// set up l10n resources for the scratch-website project as
+// [scratch-website.<view>_l10njson]
+// use 'general' for the root l10n.json
+
+// general is a special case, do that first
+// TODO: ES6
+// cmd = 'tx set --auto-local --source-lang en --type KEYVALUEJSON -r ' +
+//     'scratch-website.general-l10njson \'localizations/general/<lang>.json\' ' +
+//     `--source-file src/l10n.json ${execute}`;
+cmd = 'tx set --auto-local --source-lang en --type KEYVALUEJSON -r ' +
+    'scratch-website.general-l10njson \'localizations/general/<lang>.json\' ' +
+    '--source-file src/l10n.json ' + execute;
+process.stdout.write('Adding general l10n\n');
+execSync(cmd, {stdio:[0,1,2]});
+
+for (var v in routes) {
+    if (typeof routes[v].redirect !== 'undefined') {
+        continue;
+    }
+    var subdir = routes[v].view.split('/');
+    subdir.pop();
+    var l10n = 'src/views/' + subdir.join('/') + '/l10n.json';
+    var name = routes[v].name;
+    try {
+        // only Initialize if there is an l10n file
+        fs.accessSync(l10n);
+        // TODO: ES6
+        // var tx_resource = `scratch-website.${name}-l10njson`;
+        // cmd = `tx set --auto-local --source-lang en --type KEYVALUEJSON -r ${tx_resource}` +
+        // ` \'localizations/${name}/<lang>.json\' --source-file ${l10n} ${execute}`;
+        // process.stdout.write(`Adding ${name} l10n\n`);
+        var tx_resource = 'scratch-website.' + name +'-l10njson';
+        cmd = 'tx set --auto-local --source-lang en --type KEYVALUEJSON -r ' + tx_resource +
+            ' \'localizations/${name}/<lang>.json\' --source-file '+ l10n + ' ' + execute;
+        process.stdout.write('Adding ' + name + ' l10n\n');
+        execSync(cmd, {stdio:'inherit'});
+    } catch (err) {
+        // skip views without l10n files
+        // TODO: ES6
+        // process.stdout.write(`Skipping ${name}, no l10n\n`);
+        process.stdout.write('Skipping ' + name+ ', no l10n\n');
+    }
+}
+
+if (execute === '--execute') {
+    // push all the source files to transifex - force update
+    execSync('tx push -s -f --no-interactive', {stdio:'inherit'});
+}
