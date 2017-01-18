@@ -34,7 +34,7 @@ var TTTTile = React.createClass({
                         <div className="ttt-tile-info">
 
                             <div className="ttt-tile-tag">
-                                <FormattedMessage id='tile.tutorial' defaultMessage='Tutorial'/>
+                                <FormattedMessage id='ttt.tutorial' defaultMessage='Tutorial'/>
                             </div>
                             <h4 className="ttt-tile-title">{this.props.title}</h4>
                             <p className="ttt-tile-description">

@@ -36,7 +36,7 @@ var Landing = injectIntl(React.createClass({
                         <SubNavigation className="inner">
                             <a href="#in-practice">
                                 <li>
-                                    <FormattedMessage id="teacherlanding.inPracticeAnchor" />
+                                    <FormattedMessage id="teacherlanding.inPracticeTitle" />
                                 </li>
                             </a>
                             <a href="#resources">

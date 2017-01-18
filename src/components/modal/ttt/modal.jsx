@@ -57,7 +57,7 @@ var TTTModal = React.createClass({
                                     src="/svgs/ttt/tutorial.svg"
                                     alt="tutorial-icon"
                                 />
-                                <FormattedMessage id="ttt.tutorialTitle" />
+                                <FormattedMessage id="ttt.tutorial" />
                             </div>
                             <p className="modal-content-ttt-subtitle">
                                 <FormattedMessage id="ttt.tutorialSubtitle" />

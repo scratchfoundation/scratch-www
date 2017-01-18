@@ -467,7 +467,7 @@ module.exports = {
             return (
                 <Slide className="registration-step phone-step">
                     <h2>
-                        <intl.FormattedMessage id="teacherRegistration.phoneStepTitle" />
+                        <intl.FormattedMessage id="teacherRegistration.phoneNumber" />
                     </h2>
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.phoneStepDescription" />
@@ -535,7 +535,7 @@ module.exports = {
             return (
                 <Slide className="registration-step organization-step">
                     <h2>
-                        <intl.FormattedMessage id="teacherRegistration.orgStepTitle" />
+                        <intl.FormattedMessage id="teacherRegistration.organization" />
                     </h2>
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.orgStepDescription" />
@@ -790,7 +790,7 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             var textAreaClass = (this.state.characterCount > this.props.maxCharacters) ? 'fail' : '';
-            
+
             return (
                 <Slide className="registration-step usescratch-step">
                     <h2>
