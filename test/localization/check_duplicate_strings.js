@@ -2,7 +2,7 @@
 * Check that there are no duplicate strings in any individual l10n json file.
  */
 var path = require('path');
-//var fs = require('fs');
+var fs = require('fs');
 var tap = require('tap');
 
 var routes = require('../../src/routes.json');
@@ -35,14 +35,18 @@ for (var v in routes) {
     var subdir = routes[v].view.split('/');
     subdir.pop();
     var name = routes[v].name;
+    var uri = path.resolve(__dirname, '../../src/views/' + subdir.join('/') +'/l10n.json');
     try {
-        var ids = require(path.resolve(__dirname, '../../src/views/' + subdir.join('/') +'/l10n.json'));
+        var file = fs.readFileSync(uri, 'utf8');
+        var ids = JSON.parse(file);
         tap.test(name + 'CheckForDuplicates', function (t) {
             noDuplicateValues(ids, name);
             t.end();
         });
     } catch (err) {
-     // skip views without l10n files
-        continue;
+        if (err.code !== 'ENOENT') {
+            // ignore if ENOENT for routes with no l10n file, throw error for anything else
+            throw err;
+        }
     }
 }
