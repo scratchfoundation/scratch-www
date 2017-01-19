@@ -14,7 +14,6 @@
   "developers.wwwIntro": "Scratch-www is a standalone web client for the Scratch Community, built using React and Redux. Access the code and documentation <a href=\"https://github.com/LLK/scratch-www\">here</a>.",
   "developers.principlesIntro": "We created Scratch to empower young people to think creatively, reason systematically, and work collaboratively. We are guided by a set of <b>Learning Principles</b> and <b>Design Principles</b> that we hope you will follow as you develop new tools and technologies with Scratch Blocks.",
   "developers.learningPrinciplesTitle": "Learning Principles",
-  "developers.learningPrinciplesProjectsTitle": "Projects",
   "developers.learningPrinciplesProjectsBody": "People learn best when they are actively working on projects — generating new ideas, designing prototypes, making improvements and creating final products.",
   "developers.learningPrinciplesPassionTitle": "Passion",
   "developers.learningPrinciplesPassionBody": "When people focus on things they care about, they work longer and harder, persist in the face of challenges, and learn more in the process.",

@@ -95,7 +95,7 @@ var StudentRegistration = intl.injectIntl(React.createClass({
     render: function () {
         var demographicsDescription = this.props.intl.formatMessage({
             id: 'registration.studentPersonalStepDescription'});
-        var usernameTitle = this.props.intl.formatMessage({id: 'registration.studentUsernameStepTitle'});
+        var usernameTitle = this.props.intl.formatMessage({id: 'registration.usernameStepTitleScratcher'});
         var usernameHelp = this.props.intl.formatMessage({id: 'registration.studentUsernameFieldHelpText'});
         var usernameDescription = (
             this.props.intl.formatMessage({id: 'registration.studentUsernameStepDescription'}) + ' ' +
