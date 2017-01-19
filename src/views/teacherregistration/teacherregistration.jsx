@@ -50,6 +50,7 @@ var TeacherRegistration = intl.injectIntl(React.createClass({
                     this.state.formData.user.gender
                 ),
                 country: this.state.formData.user.country,
+                subscribe: formData.subscribe,
                 is_robot: this.state.formData.user.isRobot,
                 first_name: this.state.formData.user.name.first,
                 last_name: this.state.formData.user.name.last,
