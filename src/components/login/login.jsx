@@ -54,7 +54,7 @@ var Login = React.createClass({
                         </Button>
                     ]}
                     <a className="right" href="/accounts/password_reset/" key="passwordResetLink">
-                        <FormattedMessage id='login.forgotPassword' />
+                        <FormattedMessage id='login.needHelp' />
                     </a>
                     {error}
                 </Form>
