@@ -136,7 +136,9 @@ module.exports = {
             }.bind(this));
         },
         onUsernameBlur: function (event) {
-            this.validateUsername(event.currentTarget.value);
+            if (this.refs.form.refs.formsy.inputs[0].isValidValue(event.currentTarget.value)) {
+                this.validateUsername(event.currentTarget.value);
+            }
         },
         onValidSubmit: function (formData) {
             this.setState({waiting: true});
