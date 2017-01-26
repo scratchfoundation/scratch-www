@@ -28,7 +28,7 @@ var Explore = injectIntl(React.createClass({
             games: 'games',
             music: 'music',
             stories: 'stories',
-            tutorials: 'tutorials'
+            tutorials: 'tutorial'
         };
         var typeOptions = ['projects','studios'];
         var modeOptions = ['trending', 'popular', 'recent', ''];
