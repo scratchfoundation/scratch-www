@@ -324,7 +324,7 @@ module.exports = {
         },
         getYearOptions: function () {
             return Array.apply(null, Array(100)).map(function (v, id) {
-                var year = 2017 - id;
+                var year = new Date().getFullYear() - id;
                 return {value: year, label: year};
             });
         },
