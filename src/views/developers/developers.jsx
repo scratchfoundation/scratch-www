@@ -165,7 +165,7 @@ var Developers = React.createClass({
                     <section id="join">
                         <span className="nav-spacer"></span>
                         <h2><FormattedMessage id='developers.joinTitle' /></h2>
-                        <p><FormattedMessage id='developers.joinBody' /></p>
+                        <p><FormattedHTMLMessage id='developers.joinBody' /></p>
                     </section>
 
                     <section id="donate">
