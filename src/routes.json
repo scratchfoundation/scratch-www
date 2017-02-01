@@ -187,6 +187,12 @@
         "title": "Search"
     },
     {
+        "name": "search-redirect",
+        "pattern": "^/search/?$",
+        "routeAlias": "/search(?!/ajax)",
+        "redirect": "/search/projects",
+    },
+    {
         "name": "terms",
         "pattern": "^/terms_of_use/?$",
         "routeAlias": "/terms_of_use/?$",
