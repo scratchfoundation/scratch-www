@@ -136,7 +136,9 @@ module.exports = {
             }.bind(this));
         },
         onUsernameBlur: function (event) {
-            this.validateUsername(event.currentTarget.value);
+            if (this.refs.form.refs.formsy.inputs[0].isValidValue(event.currentTarget.value)) {
+                this.validateUsername(event.currentTarget.value);
+            }
         },
         onValidSubmit: function (formData) {
             this.setState({waiting: true});
@@ -322,7 +324,7 @@ module.exports = {
         },
         getYearOptions: function () {
             return Array.apply(null, Array(100)).map(function (v, id) {
-                var year = 2016 - id;
+                var year = new Date().getFullYear() - id;
                 return {value: year, label: year};
             });
         },
@@ -467,7 +469,7 @@ module.exports = {
             return (
                 <Slide className="registration-step phone-step">
                     <h2>
-                        <intl.FormattedMessage id="teacherRegistration.phoneStepTitle" />
+                        <intl.FormattedMessage id="teacherRegistration.phoneNumber" />
                     </h2>
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.phoneStepDescription" />
@@ -535,7 +537,7 @@ module.exports = {
             return (
                 <Slide className="registration-step organization-step">
                     <h2>
-                        <intl.FormattedMessage id="teacherRegistration.orgStepTitle" />
+                        <intl.FormattedMessage id="teacherRegistration.organization" />
                     </h2>
                     <p className="description">
                         <intl.FormattedMessage id="teacherRegistration.orgStepDescription" />
@@ -790,7 +792,7 @@ module.exports = {
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             var textAreaClass = (this.state.characterCount > this.props.maxCharacters) ? 'fail' : '';
-            
+
             return (
                 <Slide className="registration-step usescratch-step">
                     <h2>
