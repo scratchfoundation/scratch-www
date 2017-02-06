@@ -189,7 +189,7 @@
     {
         "name": "search-redirect",
         "pattern": "^/search/?$",
-        "routeAlias": "/search(?!/ajax)",
+        "routeAlias": "/search",
         "redirect": "/search/projects"
     },
     {
