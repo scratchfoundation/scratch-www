@@ -76,7 +76,7 @@ var Footer = React.createClass({
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/developers">
+                                <a href="/developers/">
                                     <FormattedMessage id='general.forDevelopers' />
                                 </a>
                             </dd>
