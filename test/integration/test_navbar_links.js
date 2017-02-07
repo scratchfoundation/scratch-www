@@ -1,17 +1,33 @@
 /*
  * Checks that the links in the navbar on the homepage have the right URLs to redirect to
  *
- * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows#Create_should_take_you_to_the_editor
+ * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows
  */
 
-var tap=require('tap');
+require('chromedriver');
 var seleniumWebdriver = require('selenium-webdriver');
+var tap = require('tap');
+
+//Set test url through environment variable
+//var rootUrl = process.env.ROOT_URL || 'http://localhost:8333';
+var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
-//open scratch.ly in a new instance of the browser
-driver.get('https://scratch.ly');
 
+//tap.plan(2);
+
+tap.tearDown(function () {
+    driver.quit();
+});
+
+tap.beforeEach(function () {
+    driver.get(rootUrl);
+});
+
+/*
+ * Test case: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows#Create_should_take_you_to_the_editor
+ */
 //find the create link within the navbar
 //the create link depends on whether the user is signed in or not (tips window opens)
 tap.test('checkCreateLinkWhenSignedOut', function (t) {
@@ -26,8 +42,4 @@ tap.test('checkCreateLinkWhenSignedOut', function (t) {
         t.end();
     });
 });
- 
-
-// close the instance of the browser
-driver.quit();
 
