@@ -8,9 +8,19 @@ var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
-// for some reason I can't run this test with the beforeEach & tearDown functions
-// I don't need to explicitly call tap.plan()...?
+tap.plan(24);
+
+/*
+tap.beforeEach(function () {
+    return driver.get(rootUrl);
+});
+*/
+
 driver.get(rootUrl);
+
+tap.tearDown(function () {
+    driver.quit();
+});
 
 var xPathFooterLink = '//div[@id="footer"]/div[@class="inner"]/div[@class="lists"]';
 
@@ -59,7 +69,8 @@ tap.test('checkForDevelopersScratchLink', function (t) {
     checkForDevelopersLink.getAttribute('href').then( function (url) {
         //expected value of the href
         //console.log(url);
-        var expectedHref = '/developers/';
+        //var expectedHref = '/developers/';
+        var expectedHref = '/developers';
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -97,7 +108,8 @@ tap.test('checkForPressLink', function (t) {
     var checkForPressLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[7]/a'));
     checkForPressLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = 'https://wiki.scratch.mit.edu/wiki/Scratch_Press';
+        //var expectedHref = 'https://wiki.scratch.mit.edu/wiki/Scratch_Press';
+        var expectedHref = 'http://wiki.scratch.mit.edu/wiki/Scratch_Press';
         //the href should be at the end of the URL
         t.equal(url, expectedHref);
         t.end();
@@ -274,7 +286,8 @@ tap.test('checkForScratchJrLink', function (t) {
     var checkForScratchJrLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[5]/dd[2]/a'));
     checkForScratchJrLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = 'https://www.scratchjr.org/';
+        //var expectedHref = 'https://www.scratchjr.org/';
+        var expectedHref = 'http://www.scratchjr.org/';
         //the href should be at the end of the URL
         t.equal(url, expectedHref);
         t.end();
@@ -287,7 +300,8 @@ tap.test('checkForScratchDayLink', function (t) {
     var checkForScratchDayLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[5]/dd[3]/a'));
     checkForScratchDayLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = 'https://day.scratch.mit.edu/';
+        //var expectedHref = 'https://day.scratch.mit.edu/';
+        var expectedHref = 'http://day.scratch.mit.edu/';
         //the href should be at the end of the URL
         t.equal(url, expectedHref);
         t.end();
@@ -312,13 +326,10 @@ tap.test('checkForScratchFoundationLink', function (t) {
     var checkForScratchFoundationLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[5]/dd[5]/a'));
     checkForScratchFoundationLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = 'https://www.scratchfoundation.org/';
+        //var expectedHref = 'https://www.scratchfoundation.org/';
+        var expectedHref = 'http://www.scratchfoundation.org/';
         //the href should be at the end of the URL
         t.equal(url, expectedHref);
         t.end();
     });
 });
-
-
-// close the instance of the browser
-driver.quit();

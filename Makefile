@@ -53,6 +53,9 @@ test:
 	@make build
 	@make tap
 
+smoke:
+	@make integration
+
 lint:
 	$(ESLINT) . --ext .js,.jsx,.json
 	$(SASSLINT) ./src/*.scss

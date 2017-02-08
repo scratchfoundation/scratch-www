@@ -15,15 +15,11 @@ var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 
-//tap.plan(2);
+//number of tests in the plan
+tap.plan(1);
 
-tap.tearDown(function () {
-    driver.quit();
-});
-
-tap.beforeEach(function () {
-    driver.get(rootUrl);
-});
+//load the page with the driver
+driver.get(rootUrl);
 
 /*
  * Test case: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows#Create_should_take_you_to_the_editor
@@ -42,4 +38,7 @@ tap.test('checkCreateLinkWhenSignedOut', function (t) {
         t.end();
     });
 });
+
+//quit the instance of the driver
+driver.quit();
 
