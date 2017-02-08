@@ -203,13 +203,64 @@ var Credits = React.createClass({
 
                 <h2><FormattedMessage id='credits.supportersTitle' /></h2>
                 <p><FormattedMessage id='credits.supportersFinancialHeader' /></p>
-                <p><FormattedHTMLMessage id='credits.supportersFinancialBody' /></p>
+                <p>
+                    <a href="http://www.nsf.gov/">National Science Foundation</a>,
+                    <a href="http://www.scratchfoundation.org/"> Scratch Foundation</a>,
+                    <a href="http://www.google.org/"> Google</a>,
+                    <a href="http://www.legofoundation.com/"> LEGO Foundation</a>,
+                    <a href="http://www.intel.com/"> Intel</a>,
+                    <a href="http://www.turner.com/company/"> Cartoon Network</a>,
+                    <a href="http://www.fundacaolemann.org.br/lemann-foundation/"> Lemann Foundation</a>,
+                    <a href="https://www.macfound.org/"> MacArthur Foundation</a>.
+                </p>
                 
                 <p><FormattedMessage id='credits.supportersServicesHeader' /></p>
-                <p><FormattedHTMLMessage id='credits.supportersServicesBody' /></p>
+                <p>
+                    <a href="http://www.advancedinstaller.com/"> Advanced Installer</a>,
+                    <a href="http://aws.amazon.com/"> Amazon Web Services</a>,
+                    <a href="https://codetree.com/"> Codetree</a>,
+                    <a href="https://www.fastly.com/"> Fastly</a>,
+                    <a href="https://www.geckoboard.com"> Geckoboard</a>,
+                    <a href="https://github.com/"> Github</a>,
+                    <a href="https://www.inversoft.com/"> Inversoft</a>,
+                    <a href="http://mailchimp.com/"> MailChimp</a>,
+                    <a href="http://mandrill.com/">  Mandrill</a>,
+                    <a href="http://newrelic.com/"> New Relic</a>,
+                    <a href="https://www.pagerduty.com/"> PagerDuty</a>,
+                    <a href="https://www.pingdom.com/"> Pingdom</a>,
+                    <a href="https://www.rallydev.com/"> Rally</a>,
+                    <a href="https://saucelabs.com/"> SauceLabs</a>,
+                    <a href="https://screenhero.com/"> Screenhero</a>,
+                    <a href="https://getsentry.com/welcome/"> Sentry</a>,
+                    <a href="http://www.git-tower.com/"> Tower</a>,
+                    and <a href="https://travis-ci.org/"> Travis-CI</a>.
+                </p>
                 
                 <p><FormattedMessage id='credits.supportersOpenHeader' /></p>
-                <p><FormattedHTMLMessage id='credits.supportersOpenBody' /></p>
+                <p>
+                    <a href="https://www.djangoproject.com/"> Django</a>,
+                    <a href="http://djangobb.org/"> DjangoBB</a>,
+                    <a href="https://www.docker.com/"> Docker</a>,
+                    <a href="https://www.elastic.co/"> Elasticsearch</a>,
+                    <a href="http://ganglia.sourceforge.net/"> Ganglia</a>,
+                    <a href="gunicorn.org"> Gunicorn</a>,
+                    <a href="https://jenkins-ci.org/"> Jenkins</a>,
+                    <a href="http://www.linux.org/"> Linux</a>,
+                    <a href="http://memcached.org/"> Memcached</a>,
+                    <a href="https://www.mediawiki.org/wiki/MediaWiki"> MediaWiki</a>,
+                    <a href="http://www.mysql.com/"> MySQL</a>,
+                    <a href="https://www.nagios.org/"> Nagios</a>,
+                    <a href="https://www.nginx.com/resources/wiki/"> Nginx</a>,
+                    <a href="https://nodejs.org/en/"> Node.js</a>,
+                    <a href="http://pootle.translatehouse.org/"> Pootle</a>,
+                    <a href="http://www.postgresql.org/"> PostgreSQL</a>,
+                    <a href="https://www.python.org/"> Python</a>,
+                    <a href="http://redis.io/"> Redis</a>,
+                    <a href="http://saltstack.com/"> SaltStack</a>,
+                    <a href="https://github.com/etsy/statsd/"> StatsD</a>,
+                    <a href="http://www.ubuntu.com/"> Ubuntu</a>,
+                    and <a href="https://www.varnish-cache.org/"> Varnish</a>.
+                </p>
             </div>
         );
     }
