@@ -1,18 +1,15 @@
 #!/usr/bin/env node
 
 /*
-    Converts the existing .po translation files in the module to JSON files.
-    Requires po2json in order to work. Takes as input a directory
-    in which to store the resulting json translation files.
+    Generates javascript translation files for each view from the individual language
+    json files downloaded from Transifex for each view. Each view also includes the
+    general translations.
 
-    Takes in as an argument an output directory to put translation files.
-    Searches for files named `l10n.json` in the `src/views/` directory to get
-    template english strings (as well as the general template at `src/l10n.json`).
+    Expects two inputs, the directory for the input json files, and an output
+    to put the generated js files into.
 
-    It compiles the template strings into a flat object that is compared against the
-    translations in the .po files from the `scratchr2_translations` dependency, using
-    an md5 of the template string without whitespace, and an md5 of the .po msgid string
-    without whitespace.
+    The input directory is to have subfolders for each view, with json files named by
+    langage code. E.g., localizations/about/fr.json
 
     The output files are javascript files that declare objects by locale. Each locale
     has a sub-object with FormattedMessage ids as keys, and translated strings as
@@ -36,26 +33,54 @@
     '''
 */
 var fs = require('fs');
-var merge = require('lodash.merge');
 var path = require('path');
-
+var merge = require('lodash.merge');
+var async = require('async');
 var languages = require('../languages.json');
-var localeCompare = require('./lib/locale-compare');
 var localizedUrls = require('./lib/localized-urls');
 var routes = require('../src/routes.json');
+
+// -----------------------------------------------------------------------------
+// Utility function
+// -----------------------------------------------------------------------------
+
+var writeIntlFile = function (outputDir, view, translations, callback) {
+    var fileString = 'window._messages = ' + JSON.stringify(translations) + ';';
+    var fileName = outputDir + '/' + view + '.intl.js';
+    fs.writeFile(fileName, fileString, 'utf8', function (err) {
+        if (err) {
+            callback(err);
+        } else {
+            callback();
+        }
+    });
+};
 
 // -----------------------------------------------------------------------------
 // Main script
 // -----------------------------------------------------------------------------
 
-
 var args = process.argv.slice(2);
 
 if (!args.length) {
-    process.stdout.write('A destination directory must be specified.');
+    process.stdout.write('A localizations directory must be specified.\n');
     process.exit(1);
 }
 
+var localesDir = path.resolve(__dirname, '../', args.shift());
+
+try {
+    fs.accessSync(localesDir, fs.F_OK);
+} catch (err) {
+    // Doesn't exist - create it.
+    process.stdout.write('Fatal error: No localizations directory.\n');
+    process.exit(1);
+}
+
+if (!args.length) {
+    process.stdout.write('A destination directory must be specified.\n');
+    process.exit(1);
+}
 var outputDir = path.resolve(__dirname, '../', args[0]);
 try {
     fs.accessSync(outputDir, fs.F_OK);
@@ -66,22 +91,32 @@ try {
 
 // get global locale strings first.
 var globalTemplateFile = path.resolve(__dirname, '../src/l10n.json');
-var ids = require(globalTemplateFile);
-// var ids = JSON.parse(fs.readFileSync(globalTemplateFile, 'utf8'));
 
-// message key with english string values (i.e. default values)
-var viewLocales = {
-    general: {
-        en: ids
+// generate object with all translations of general strings;
+// every view includes these strings
+var generalLocales = {'en': JSON.parse(fs.readFileSync(globalTemplateFile, 'utf8'))};
+for ( var l in languages ) {
+    try {
+        var langTranslations = path.resolve(__dirname, '../', localesDir, 'general', l + '.json');
+        fs.accessSync(langTranslations);
+        generalLocales[l] = JSON.parse(fs.readFileSync(langTranslations, 'utf8'));
+    } catch (err) {
+        // just use english
+        generalLocales[l] = generalLocales['en'];
     }
-};
-var idsWithICU = localeCompare.idToICUMap('general', ids);
-var icuWithIds = localeCompare.icuToIdMap('general', ids);
+}
 
+// default strings (en), for all views
+var defaultLocales = {
+    //e.g.
+    // 'explore: {'explore.recent': 'recent'}
+    // 'about': {'about.title': 'about Scratch'}
+    // ... etc
+};
 var views = [];
 var localizedAssetUrls = {};
 
-// start with all views, and remove localized ones as they are iterated over
+// start with english default for all views
 for (var v in routes) {
     if (typeof routes[v].redirect !== 'undefined') {
         continue;
@@ -92,15 +127,10 @@ for (var v in routes) {
         var subdir = routes[v].view.split('/');
         subdir.pop();
         var l10n = path.resolve(__dirname, '../src/views/' + subdir.join('/') + '/l10n.json');
-        ids = require(l10n);
-        viewLocales[routes[v].name] = {
-            en: ids
-        };
-        idsWithICU = merge(idsWithICU, localeCompare.idToICUMap(routes[v].name, ids));
-        // Note: if lodash.merge gets updated to 4.0 or higher this needs to be mergeWith instead
-        icuWithIds = merge(icuWithIds, localeCompare.icuToIdMap(routes[v].name, ids), localeCompare.customMerge);
+        var viewIds = JSON.parse(fs.readFileSync(l10n, 'utf8'));
+        defaultLocales[routes[v].name] = viewIds;
     } catch (err) {
-        if (err.code !== 'MODULE_NOT_FOUND') {
+        if (err.code !== 'ENOENT') {
             throw err;
         }
 
@@ -120,6 +150,7 @@ for (var v in routes) {
         localizedAssetUrls[routes[v].name] = {};
 
         var assetUrls = require(l10nStatic);
+        localizedAssetUrls[routes[v].name]['en'] = assetUrls;
         for (var lang in languages) {
             localizedAssetUrls[routes[v].name][lang] = {};
             var langUrls = localizedUrls[lang] || {};
@@ -145,26 +176,61 @@ for (var v in routes) {
     }
 }
 
-// md5 of english strings with message key as the value for searching po files.
-// Sample structure: { 'sdfas43534sdfasdf': 'general-general.blah', 'lkjfasdf4t342asdfa': 'about-about.blah' }
-var md5WithIds = localeCompare.getMD5Map(icuWithIds);
+var allLangs = Object.keys(languages);
 
-// Get ui localization strings first
-var isoCodes = Object.keys(languages);
-for (var isoCode in isoCodes) {
-    var translations = localeCompare.getTranslationsForLanguage(isoCodes[isoCode], idsWithICU, md5WithIds);
-    for (var messageId in translations) {
-        viewLocales[messageId] = merge(viewLocales[messageId], translations[messageId]);
-    }
-}
+async.forEachLimit(views, 5, function (view, cb) {
+    //start with localizedAssets, merge the view translations
+    var viewLocales = {};
+    viewLocales['en'] = merge({}, generalLocales['en'], defaultLocales[view]);
 
-for (var view in views) {
-    var viewTranslations = viewLocales['general'];
-    if (views[view] in viewLocales) {
-        viewTranslations = merge(viewLocales[views[view]], viewTranslations);
+    if ( defaultLocales.hasOwnProperty(view) ) {
+        // merge view specific english strings, first then other languages
+        process.stdout.write('Merging translations for ' + view + '\n');
+        async.forEach(allLangs, function (isoCode, cb) {
+            var translationsFile = path.resolve(__dirname, '../', localesDir, view, isoCode + '.json');
+            fs.readFile(translationsFile, 'utf8', function (err, data) {
+                if (err) {
+                    if (err.code === 'ENOENT') {
+                        if (isoCode !== 'en') {
+                            process.stdout.write('No translations for ' + view + isoCode + ', using english\n');
+                            viewLocales[isoCode] = merge({}, generalLocales[isoCode], defaultLocales[view]);
+                        }
+                        return cb();
+                    } else {
+                        return cb(err);
+                    }
+                }
+                try {
+                    viewLocales[isoCode] = merge({}, generalLocales[isoCode], JSON.parse(data));
+                } catch (e) {
+                    return cb(e);
+                }
+                cb();
+            });
+        }, function (err) {
+            if (err) process.stdout.write('Error merging translations for view: ' + view + '\n' + err + '\n');
+            var viewTranslations = merge({}, viewLocales, localizedAssetUrls[view]);
+            writeIntlFile(outputDir, view, viewTranslations, function (err) {
+                if (err) {
+                    process.stdout.write('Failed to save: ' + view + '\n');
+                    return cb(err);
+                }
+            });
+        });
+
+    } else {
+        var viewTranslations = merge({}, viewLocales, localizedAssetUrls[view]);
+        writeIntlFile(outputDir, view, viewTranslations, function (err) {
+            if (err) {
+                process.stdout.write('Failed to save: ' + view + '\n');
+                return cb(err);
+            }
+        });
     }
-    if (views[view] in localizedAssetUrls) {
-        viewTranslations = merge(viewTranslations, localizedAssetUrls[[views[view]]]);
+    cb();
+}, function (err) {
+    if (err) {
+        process.stdout.write('Writing intl files completed with errors\n');
     }
-    localeCompare.writeTranslationsToJS(outputDir, views[view], viewTranslations);
-}
+    return;
+});

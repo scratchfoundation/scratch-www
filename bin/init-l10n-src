@@ -72,7 +72,7 @@ for (var v in routes) {
         // process.stdout.write(`Adding ${name} l10n\n`);
         var tx_resource = 'scratch-website.' + name +'-l10njson';
         cmd = 'tx set --auto-local --source-lang en --type KEYVALUEJSON -r ' + tx_resource +
-            ' \'localizations/${name}/<lang>.json\' --source-file '+ l10n + ' ' + execute;
+            ' \'localizations/' + name + '/<lang>.json\' --source-file '+ l10n + ' ' + execute;
         process.stdout.write('Adding ' + name + ' l10n\n');
         execSync(cmd, {stdio:'inherit'});
     } catch (err) {
