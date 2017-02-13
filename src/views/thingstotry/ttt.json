@@ -45,6 +45,24 @@
         "guideLoc": "ttt.HideAndSeekGuideLoc"
     },
     {
+        "title": "ttt.FashionTitle",
+        "description": "ttt.FashionDescription",
+        "thumbUrl": "/images/ttt/fashion-game.jpg",
+        "bannerUrl": "/images/ttt/fashion-game-banner.jpg",
+        "tutorialLoc": "/projects/editor/?tip_bar=fashion",
+        "activityLoc": "ttt.FashionActivityLoc",
+        "guideLoc": "ttt.FashionGuideLoc"
+    },
+    {
+        "title": "ttt.StoryTitle",
+        "description": "ttt.StoryDescription",
+        "thumbUrl": "/images/ttt/create-a-story.jpg",
+        "bannerUrl": "/images/ttt/create-a-story-banner.jpg",
+        "tutorialLoc": "/projects/editor/?tip_bar=story",
+        "activityLoc": "ttt.StoryActivityLoc",
+        "guideLoc": "ttt.StoryGuideLoc"
+    },
+    {
         "title": "ttt.PongTitle",
         "description": "ttt.PongDescription",
         "thumbUrl": "/images/ttt/pong-game.jpg",
