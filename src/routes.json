@@ -264,5 +264,23 @@
         "routeAlias": "/microworlds",
         "view": "microworldshomepage/microworldshomepage",
         "title": "Microworlds"
+    },
+    {
+        "name": "story-redirect",
+        "pattern": "^/story?$",
+        "routeAlias": "/story",
+        "redirect": "/projects/editor/?tip_bar=story"
+    },
+    {
+        "name": "fashion-redirect",
+        "pattern": "^/fashion?$",
+        "routeAlias": "/fashion",
+        "redirect": "/projects/editor/?tip_bar=fashion"
+    },
+    {
+        "name": "dressup-redirect",
+        "pattern": "^/dressup?$",
+        "routeAlias": "/dressup",
+        "redirect": "/projects/editor/?tip_bar=fashion"
     }
 ]
