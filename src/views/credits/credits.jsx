@@ -13,7 +13,7 @@ var Credits = React.createClass({
         return (
             <div className="inner credits">
                 <h1><FormattedMessage id='credits.title' /></h1>
-                <h2><FormattedMessage id='credits.mitst' /></h2>
+                <h2>MIT Scratch Team</h2>
                 <p><FormattedMessage id='credits.developers' /></p>
 
                 <ul>
