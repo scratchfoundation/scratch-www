@@ -1,26 +1,22 @@
+/*
+ * Checks that the links in the footer on the homepage have the right URLs to redirect to
+ *
+ * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows
+ */
 
 var tap=require('tap');
 var seleniumWebdriver = require('selenium-webdriver');
 
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
-//open scratch.ly in a new instance of the browser
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
+//number of tests in the plan
 tap.plan(24);
 
-/*
-tap.beforeEach(function () {
-    return driver.get(rootUrl);
-});
-*/
-
+//load the page with the driver
 driver.get(rootUrl);
-
-tap.tearDown(function () {
-    driver.quit();
-});
 
 var xPathFooterLink = '//div[@id="footer"]/div[@class="inner"]/div[@class="lists"]';
 
@@ -333,3 +329,6 @@ tap.test('checkForScratchFoundationLink', function (t) {
         t.end();
     });
 });
+
+//quit the instance of the driver
+driver.quit();
