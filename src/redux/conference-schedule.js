@@ -103,7 +103,7 @@ module.exports.getDaySchedule = function (day) {
                             cleanedRow[columns[i]] = cur[i];
                         }
                     }
-                    cleanedRow['uri'] = '/conference/' + cleanedRow.rowid + '/details';
+                    cleanedRow['uri'] = '/conference/2016/' + cleanedRow.rowid + '/details';
                     var timeSlot = cleanedRow.Chunk + cleanedRow.Start;
                     if (typeof prev.timeSlots[timeSlot] === 'undefined') {
                         prev.timeSlots[timeSlot] = [cleanedRow];
