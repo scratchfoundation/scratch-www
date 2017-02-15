@@ -418,7 +418,6 @@ var ConferenceSplash = React.createClass({
                         </table>
                         <a className='button mod-2017-panel' href='mailto:jovi.tong@uniamber.com'>
                             <FormattedMessage id='conference-2017.contact' />
-                            <div className='button-contact-extra'>{'(Jovi Tongyuzhou)'}</div>
                         </a>
                     </section>
                     <section className='conf2017-panel mod-costarica mod-last'>
