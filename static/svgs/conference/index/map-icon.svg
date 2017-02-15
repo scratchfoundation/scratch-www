@@ -1,0 +1,20 @@
+<svg width="17" height="21" viewBox="0 0 17 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>MapIcon</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(18380 7219)" figma:type="canvas">
+<g id="MapIcon" style="mix-blend-mode:normal;" figma:type="frame">
+<g id="Group" style="mix-blend-mode:normal;" figma:type="frame">
+<g id="Vector" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path0_stroke" transform="translate(-18379 -7217.75)" fill="#46A6F3" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Vector" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path1_stroke" transform="translate(-18374.6 -7212.77)" fill="#46A6F3" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_stroke" d="M 12.6627 12.675L 13.1931 13.2054L 13.2022 13.1959L 12.6627 12.675ZM 7.46266 17.875L 6.93233 18.4053L 7.46266 18.9357L 7.99299 18.4053L 7.46266 17.875ZM 2.26266 12.675L 2.79307 12.1446L 2.78393 12.1358L 2.26266 12.675ZM 12.6627 2.175L 13.2023 1.65397L 13.193 1.64467L 12.6627 2.175ZM 12.1323 12.1447L 6.93233 17.3447L 7.99299 18.4053L 13.193 13.2053L 12.1323 12.1447ZM 7.99299 17.3447L 2.79299 12.1447L 1.73233 13.2053L 6.93233 18.4053L 7.99299 17.3447ZM 2.78393 12.1358C 0.0872568 9.52898 0.0874853 5.31083 2.69299 2.70533L 1.63233 1.64467C -1.56217 4.83917 -1.56194 10.021 1.74139 13.2142L 2.78393 12.1358ZM 2.69299 2.70533C 5.3001 0.0982234 9.52522 0.0982234 12.1323 2.70533L 13.193 1.64467C 10.0001 -1.54822 4.82522 -1.54822 1.63233 1.64467L 2.69299 2.70533ZM 12.1231 2.69595C 14.6425 5.30533 14.6425 9.54467 12.1231 12.1541L 13.2022 13.1959C 16.2828 10.0053 16.2828 4.84467 13.2022 1.65405L 12.1231 2.69595Z"/>
+<path id="path1_stroke" d="M 5.25 3C 5.25 4.24264 4.24264 5.25 3 5.25L 3 6.75C 5.07107 6.75 6.75 5.07107 6.75 3L 5.25 3ZM 3 5.25C 1.75736 5.25 0.75 4.24264 0.75 3L -0.75 3C -0.75 5.07107 0.928933 6.75 3 6.75L 3 5.25ZM 0.75 3C 0.75 1.75736 1.75736 0.75 3 0.75L 3 -0.75C 0.928933 -0.75 -0.75 0.928932 -0.75 3L 0.75 3ZM 3 0.75C 4.24264 0.75 5.25 1.75736 5.25 3L 6.75 3C 6.75 0.928932 5.07107 -0.75 3 -0.75L 3 0.75Z"/>
+</defs>
+</svg>

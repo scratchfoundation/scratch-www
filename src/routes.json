@@ -43,7 +43,7 @@
         "name": "conference-index",
         "pattern": "^/conference/?$",
         "routeAlias": "/conference(?!/201[4-5])",
-        "view": "conference/index/index",
+        "view": "conference/2017/index/index",
         "title": "Scratch Conference",
         "viewportWidth": "device-width"
     },
