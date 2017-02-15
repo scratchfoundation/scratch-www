@@ -21,13 +21,25 @@ require('./search.scss');
 var Search = injectIntl(React.createClass({
     type: 'Search',
     getDefaultProps: function () {
-        var query = window.location.search;
         var pathname = window.location.pathname.toLowerCase();
         if (pathname[pathname.length - 1] === '/') {
             pathname = pathname.substring(0, pathname.length - 1);
         }
         var start = pathname.lastIndexOf('/');
         var type = pathname.substring(start + 1, pathname.length);
+        return {
+            tab: type,
+            loadNumber: 16
+        };
+    },
+    getInitialState: function () {
+        return {
+            loaded: [],
+            offset: 0
+        };
+    },
+    componentDidMount: function () {
+        var query = window.location.search;
         var q = query.lastIndexOf('q=');
         var term = '';
         if (q !== -1) {
@@ -40,22 +52,8 @@ var Search = injectIntl(React.createClass({
             term = term.substring(0, term.indexOf('&'));
         }
         term = term.split('+').join(' ');
-
-        return {
-            tab: type,
-            searchTerm: term,
-            loadNumber: 16
-        };
-    },
-    getInitialState: function () {
-        return {
-            loaded: [],
-            offset: 0
-        };
-    },
-    componentDidMount: function () {
         this.getSearchMore();
-        this.props.dispatch(navigationActions.setSearchTerm(this.props.searchTerm));
+        this.props.dispatch(navigationActions.setSearchTerm(decodeURI(term)));
     },
     getSearchMore: function () {
         var termText = '';
@@ -113,7 +111,7 @@ var Search = injectIntl(React.createClass({
                                         <Input type="text"
                                                aria-label={formatMessage({id: 'general.search'})}
                                                placeholder={formatMessage({id: 'general.search'})}
-                                               value={decodeURI(this.props.searchTerm)}
+                                               value={this.props.searchTerm}
                                                name="q" />
                                     </Form>
                                 </div>
@@ -143,7 +141,7 @@ var Search = injectIntl(React.createClass({
 
 var mapStateToProps = function (state) {
     return {
-        navigation: state.searchTerm
+        searchTerm: state.navigation
     };
 };
 
