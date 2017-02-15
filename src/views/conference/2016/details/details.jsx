@@ -1,11 +1,11 @@
 var classNames = require('classnames');
 var connect = require('react-redux').connect;
 var React = require('react');
-var render = require('../../../lib/render.jsx');
+var render = require('../../../../lib/render.jsx');
 
-var detailsActions = require('../../../redux/conference-details.js');
+var detailsActions = require('../../../../redux/conference-details.js');
 
-var Page = require('../../../components/page/conference/page.jsx');
+var Page = require('../../../../components/page/conference/2016/page.jsx');
 
 require('./details.scss');
 
@@ -25,7 +25,7 @@ var ConferenceDetails = React.createClass({
         this.props.dispatch(detailsActions.startGetDetails(detailsId));
     },
     render: function () {
-        var backUri = '/conference/schedule';
+        var backUri = '/conference/2016/schedule';
         if (!this.props.conferenceDetails.error && !this.props.conferenceDetails.fetching) {
             backUri = backUri + '#' + this.props.conferenceDetails.Day;
         }

@@ -1,5 +1,5 @@
-@import "../../../colors";
-@import "../../../frameless";
+@import "../../../../colors";
+@import "../../../../frameless";
 
 #view {
     background-color: $ui-light-gray;
@@ -9,7 +9,7 @@
 .index {
     .title-banner {
         margin-bottom: 0;
-        background-image: url("/images/conference/index/title-banner.jpg");
+        background-image: url("/images/conference/index/2016/title-banner.jpg");
         padding: 48px 0;
 
         h1,

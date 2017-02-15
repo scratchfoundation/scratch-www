@@ -1,9 +1,9 @@
 var React = require('react');
-var render = require('../../../lib/render.jsx');
+var render = require('../../../../lib/render.jsx');
 
-var FlexRow = require('../../../components/flex-row/flex-row.jsx');
-var Page = require('../../../components/page/conference/page.jsx');
-var TitleBanner = require('../../../components/title-banner/title-banner.jsx');
+var FlexRow = require('../../../../components/flex-row/flex-row.jsx');
+var Page = require('../../../../components/page/conference/2016/page.jsx');
+var TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
 
 require('./expect.scss');
 
@@ -11,7 +11,7 @@ var ConferenceExpectations = React.createClass({
     render: function () {
         return (
             <div className="expect">
-                <TitleBanner>
+                <TitleBanner className="mod-conference">
                     <h1>
                         What to Expect
                     </h1>

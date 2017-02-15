@@ -1,14 +1,14 @@
 var classNames = require('classnames');
 var connect = require('react-redux').connect;
 var React = require('react');
-var render = require('../../../lib/render.jsx');
+var render = require('../../../../lib/render.jsx');
 
-var scheduleActions = require('../../../redux/conference-schedule.js');
+var scheduleActions = require('../../../../redux/conference-schedule.js');
 
-var FlexRow = require('../../../components/flex-row/flex-row.jsx');
-var Page = require('../../../components/page/conference/page.jsx');
-var SubNavigation = require('../../../components/subnavigation/subnavigation.jsx');
-var TitleBanner = require('../../../components/title-banner/title-banner.jsx');
+var FlexRow = require('../../../../components/flex-row/flex-row.jsx');
+var Page = require('../../../../components/page/conference/2016/page.jsx');
+var SubNavigation = require('../../../../components/subnavigation/subnavigation.jsx');
+var TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
 
 require('./schedule.scss');
 
@@ -83,7 +83,7 @@ var ConferenceSchedule = React.createClass({
         };
         return (
             <div className="schedule">
-                <TitleBanner>
+                <TitleBanner className="mod-conference">
                     <h1>
                         Schedule
                     </h1>

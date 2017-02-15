@@ -1,10 +1,10 @@
 var React = require('react');
-var render = require('../../../lib/render.jsx');
+var render = require('../../../../lib/render.jsx');
 
-var Button = require('../../../components/forms/button.jsx');
-var FlexRow = require('../../../components/flex-row/flex-row.jsx');
-var Page = require('../../../components/page/conference/page.jsx');
-var TitleBanner = require('../../../components/title-banner/title-banner.jsx');
+var Button = require('../../../../components/forms/button.jsx');
+var FlexRow = require('../../../../components/flex-row/flex-row.jsx');
+var Page = require('../../../../components/page/conference/2016/page.jsx');
+var TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
 
 require('./index.scss');
 
@@ -13,8 +13,8 @@ var ConferenceSplash = React.createClass({
 
     render: function () {
         return (
-            <div className="index">
-                <TitleBanner>
+            <div className="index mod-2016">
+                <TitleBanner className="mod-conference">
                     <h1>
                         Many Paths, Many Styles
                     </h1>
@@ -22,7 +22,7 @@ var ConferenceSplash = React.createClass({
                         August 4 - 6, 2016 | Cambridge, MA, USA
                     </h3>
                     <p>
-                        <a href="/conference/schedule">
+                        <a href="/conference/2016/schedule">
                             <Button>
                                 See the Schedule
                             </Button>
@@ -41,7 +41,7 @@ var ConferenceSplash = React.createClass({
                     <FlexRow>
                         <div>
                             <h3>
-                                <a href="/conference/expect">
+                                <a href="/conference/2016/expect">
                                     <img src="/images/conference/expect/what-to-expect.png" alt="expect-image" />
                                     What to Expect
                                 </a>
@@ -52,7 +52,7 @@ var ConferenceSplash = React.createClass({
                         </div>
                         <div>
                             <h3>
-                                <a href="/conference/plan">
+                                <a href="/conference/2016/plan">
                                     <img src="/images/conference/plan/plan-your-visit.png" alt="plan-image" />
                                     Plan Your Visit
                                 </a>
@@ -63,7 +63,7 @@ var ConferenceSplash = React.createClass({
                         </div>
                         <div>
                             <h3>
-                                <a href="/conference/schedule">
+                                <a href="/conference/2016/schedule">
                                     <img src="/images/conference/schedule/schedule.png" alt="schedule" />
                                     Schedule
                                 </a>

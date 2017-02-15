@@ -1,10 +1,10 @@
 var React = require('react');
-var render = require('../../../lib/render.jsx');
+var render = require('../../../../lib/render.jsx');
 
-var Button = require('../../../components/forms/button.jsx');
-var FlexRow = require('../../../components/flex-row/flex-row.jsx');
-var Page = require('../../../components/page/conference/page.jsx');
-var TitleBanner = require('../../../components/title-banner/title-banner.jsx');
+var Button = require('../../../../components/forms/button.jsx');
+var FlexRow = require('../../../../components/flex-row/flex-row.jsx');
+var Page = require('../../../../components/page/conference/2016/page.jsx');
+var TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
 
 require('./plan.scss');
 
@@ -21,7 +21,7 @@ var ConferencePlan = React.createClass({
     render: function () {
         return (
             <div className="plan">
-                <TitleBanner>
+                <TitleBanner className="mod-conference">
                     <h1>
                         Plan Your Visit
                     </h1>
