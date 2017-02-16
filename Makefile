@@ -24,7 +24,8 @@ deploy:
 	@make sync
 
 translations:
-	./bin/build-locales intl
+	./bin/tx-import localizations
+	./bin/build-locales localizations intl
 
 webpack:
 	$(WEBPACK) --bail
