@@ -55,13 +55,17 @@
     margin: 2rem 0;
 }
 
-.conf2017-panel-row > td {
+td {
     padding: .75rem 1.25rem;
     vertical-align: top;
 }
 
 .conf2017-panel-row-icon {
-    width: 1.25rem;
+    padding: .375rem 1.25rem;
+}
+
+.conf2017-panel-row-icon-image {
+    width: 1.75rem;
 }
 
 .button.mod-2017-panel {
