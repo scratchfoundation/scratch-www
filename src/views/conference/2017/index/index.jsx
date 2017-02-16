@@ -47,9 +47,9 @@ var ConferenceSplash = React.createClass({
                         <table className='conf2017-panel-details'>
                             <tbody>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/calendar-icon.svg'
                                             alt='Calendar Icon'
                                         />
@@ -72,9 +72,9 @@ var ConferenceSplash = React.createClass({
                                     </td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/map-icon.svg'
                                             alt='Map Icon'
                                         />
@@ -83,9 +83,9 @@ var ConferenceSplash = React.createClass({
                                     <td>{'Bordeaux, France'}</td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/audience-icon.svg'
                                             alt='Audience Icon'
                                         />
@@ -94,9 +94,9 @@ var ConferenceSplash = React.createClass({
                                     <td><FormattedMessage id='conference-2017.franceAudience' /></td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/language-icon.svg'
                                             alt='Language Icon'
                                         />
@@ -127,9 +127,9 @@ var ConferenceSplash = React.createClass({
                         <table className='conf2017-panel-details'>
                             <tbody>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/calendar-icon.svg'
                                             alt='Calendar Icon'
                                         />
@@ -152,9 +152,9 @@ var ConferenceSplash = React.createClass({
                                     </td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/map-icon.svg'
                                             alt='Map Icon'
                                         />
@@ -163,9 +163,9 @@ var ConferenceSplash = React.createClass({
                                     <td>{'São Paulo, Brasil'}</td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/audience-icon.svg'
                                             alt='Audience Icon'
                                         />
@@ -174,9 +174,9 @@ var ConferenceSplash = React.createClass({
                                     <td><FormattedMessage id='conference-2017.brasilAudience' /></td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/language-icon.svg'
                                             alt='Language Icon'
                                         />
@@ -207,9 +207,9 @@ var ConferenceSplash = React.createClass({
                         <table className='conf2017-panel-details'>
                             <tbody>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/calendar-icon.svg'
                                             alt='Calendar Icon'
                                         />
@@ -232,9 +232,9 @@ var ConferenceSplash = React.createClass({
                                     </td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/map-icon.svg'
                                             alt='Map Icon'
                                         />
@@ -243,9 +243,9 @@ var ConferenceSplash = React.createClass({
                                     <td>{'Budapest, Hungary'}</td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/audience-icon.svg'
                                             alt='Audience Icon'
                                         />
@@ -254,9 +254,9 @@ var ConferenceSplash = React.createClass({
                                     <td><FormattedMessage id='conference-2017.hungaryAudience' /></td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/language-icon.svg'
                                             alt='Language Icon'
                                         />
@@ -288,9 +288,9 @@ var ConferenceSplash = React.createClass({
                         <table className='conf2017-panel-details'>
                             <tbody>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/calendar-icon.svg'
                                             alt='Calendar Icon'
                                         />
@@ -313,9 +313,9 @@ var ConferenceSplash = React.createClass({
                                     </td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/map-icon.svg'
                                             alt='Map Icon'
                                         />
@@ -324,9 +324,9 @@ var ConferenceSplash = React.createClass({
                                     <td>{'Santiago, Chile'}</td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/audience-icon.svg'
                                             alt='Audience Icon'
                                         />
@@ -335,9 +335,9 @@ var ConferenceSplash = React.createClass({
                                     <td><FormattedMessage id='conference-2017.chileAudience' /></td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/language-icon.svg'
                                             alt='Language Icon'
                                         />
@@ -369,9 +369,9 @@ var ConferenceSplash = React.createClass({
                         <table className='conf2017-panel-details'>
                             <tbody>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/calendar-icon.svg'
                                             alt='Calendar Icon'
                                         />
@@ -382,9 +382,9 @@ var ConferenceSplash = React.createClass({
                                     </td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/map-icon.svg'
                                             alt='Map Icon'
                                         />
@@ -393,9 +393,9 @@ var ConferenceSplash = React.createClass({
                                     <td>{'Shanghai, China'}</td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/audience-icon.svg'
                                             alt='Audience Icon'
                                         />
@@ -404,9 +404,9 @@ var ConferenceSplash = React.createClass({
                                     <td><FormattedMessage id='conference-2017.chinaAudience' /></td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/language-icon.svg'
                                             alt='Language Icon'
                                         />
@@ -438,9 +438,9 @@ var ConferenceSplash = React.createClass({
                         <table className='conf2017-panel-details'>
                             <tbody>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/calendar-icon.svg'
                                             alt='Calendar Icon'
                                         />
@@ -463,9 +463,9 @@ var ConferenceSplash = React.createClass({
                                     </td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/map-icon.svg'
                                             alt='Map Icon'
                                         />
@@ -474,9 +474,9 @@ var ConferenceSplash = React.createClass({
                                     <td>{'San José, Costa Rica'}</td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/audience-icon.svg'
                                             alt='Audience Icon'
                                         />
@@ -485,9 +485,9 @@ var ConferenceSplash = React.createClass({
                                     <td><FormattedMessage id='conference-2017.costaricaAudience' /></td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
-                                    <td>
+                                    <td className='conf2017-panel-row-icon'>
                                         <img
-                                            className='conf2017-panel-row-icon'
+                                            className='conf2017-panel-row-icon-image'
                                             src='/svgs/conference/index/language-icon.svg'
                                             alt='Language Icon'
                                         />
