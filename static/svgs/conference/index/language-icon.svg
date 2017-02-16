@@ -1,0 +1,28 @@
+<svg width="26" height="19" viewBox="0 0 26 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>LanguageIcon</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(18382 7129)" figma:type="canvas">
+<g id="LanguageIcon" style="mix-blend-mode:normal;" figma:type="frame">
+<g id="Vector" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path0_stroke" transform="translate(-18381.2 -7127.95)" fill="#51ABF4" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Group" style="mix-blend-mode:normal;" figma:type="frame">
+<g id="Vector" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path1_stroke" transform="translate(-18376.8 -7123.35)" fill="#51ABF4" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Vector" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path2_stroke" transform="translate(-18376.8 -7119.65)" fill="#51ABF4" style="mix-blend-mode:normal;"/>
+</g>
+<g id="Vector" style="mix-blend-mode:normal;" figma:type="vector">
+<use xlink:href="#path3_stroke" transform="translate(-18376.8 -7115.95)" fill="#51ABF4" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_stroke" d="M 18.1 6.5L 17.35 6.5C 17.35 6.7162 17.4433 6.92188 17.606 7.06429C 17.7686 7.2067 17.9848 7.27199 18.1991 7.24342L 18.1 6.5ZM 18.1 11.1L 17.5983 10.5425C 17.4402 10.6848 17.35 10.8874 17.35 11.1L 18.1 11.1ZM 24.1 5.7L 24.6017 6.25747C 24.8461 6.03751 24.9188 5.68402 24.7809 5.38552C 24.643 5.08702 24.3268 4.91312 24.0009 4.95658L 24.1 5.7ZM 18.85 6.5L 18.85 2.2L 17.35 2.2L 17.35 6.5L 18.85 6.5ZM 18.85 2.2C 18.85 0.585787 17.5142 -0.75 15.9 -0.75L 15.9 0.75C 16.6858 0.75 17.35 1.41421 17.35 2.2L 18.85 2.2ZM 15.9 -0.75L 2.2 -0.75L 2.2 0.75L 15.9 0.75L 15.9 -0.75ZM 2.2 -0.75C 0.585786 -0.75 -0.75 0.585786 -0.75 2.2L 0.75 2.2C 0.75 1.41421 1.41421 0.75 2.2 0.75L 2.2 -0.75ZM -0.75 2.2L -0.75 14.5L 0.75 14.5L 0.75 2.2L -0.75 2.2ZM -0.75 14.5C -0.75 16.1142 0.585786 17.45 2.2 17.45L 2.2 15.95C 1.41421 15.95 0.75 15.2858 0.75 14.5L -0.75 14.5ZM 2.2 17.45L 15.9 17.45L 15.9 15.95L 2.2 15.95L 2.2 17.45ZM 15.9 17.45C 17.5142 17.45 18.85 16.1142 18.85 14.5L 17.35 14.5C 17.35 15.2858 16.6858 15.95 15.9 15.95L 15.9 17.45ZM 18.85 14.5L 18.85 11.1L 17.35 11.1L 17.35 14.5L 18.85 14.5ZM 18.6017 11.6575L 24.6017 6.25747L 23.5983 5.14253L 17.5983 10.5425L 18.6017 11.6575ZM 24.0009 4.95658L 18.0009 5.75658L 18.1991 7.24342L 24.1991 6.44342L 24.0009 4.95658Z"/>
+<path id="path1_stroke" d="M -1.90735e-07 -0.75C -0.414214 -0.75 -0.75 -0.414213 -0.75 9.53674e-08C -0.75 0.414214 -0.414214 0.75 -1.90735e-07 0.75L -1.90735e-07 -0.75ZM 9.2 0.75C 9.61421 0.75 9.95 0.414214 9.95 9.53674e-08C 9.95 -0.414213 9.61421 -0.75 9.2 -0.75L 9.2 0.75ZM -1.90735e-07 0.75L 9.2 0.75L 9.2 -0.75L -1.90735e-07 -0.75L -1.90735e-07 0.75Z"/>
+<path id="path2_stroke" d="M -1.90735e-07 -0.75C -0.414214 -0.75 -0.75 -0.414213 -0.75 3.8147e-07C -0.75 0.414214 -0.414214 0.75 -1.90735e-07 0.75L -1.90735e-07 -0.75ZM 9.2 0.75C 9.61421 0.75 9.95 0.414214 9.95 3.8147e-07C 9.95 -0.414213 9.61421 -0.75 9.2 -0.75L 9.2 0.75ZM -1.90735e-07 0.75L 9.2 0.75L 9.2 -0.75L -1.90735e-07 -0.75L -1.90735e-07 0.75Z"/>
+<path id="path3_stroke" d="M -1.90735e-07 -0.75C -0.414214 -0.75 -0.75 -0.414213 -0.75 1.90735e-07C -0.75 0.414214 -0.414214 0.75 -1.90735e-07 0.75L -1.90735e-07 -0.75ZM 9.2 0.75C 9.61421 0.75 9.95 0.414214 9.95 1.90735e-07C 9.95 -0.414213 9.61421 -0.75 9.2 -0.75L 9.2 0.75ZM -1.90735e-07 0.75L 9.2 0.75L 9.2 -0.75L -1.90735e-07 -0.75L -1.90735e-07 0.75Z"/>
+</defs>
+</svg>
