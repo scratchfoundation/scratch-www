@@ -360,7 +360,6 @@ var ConferenceSplash = React.createClass({
                             />
                             <div className='conf2017-panel-title-text'>
                                 <h3><FormattedMessage id='conference-2017.chinaTitle' /></h3>
-                                <h4><FormattedMessage id='conference-2017.chinaSubTitle' /></h4>
                             </div>
                         </FlexRow>
                         <p className='conf2017-panel-desc'>
@@ -378,7 +377,7 @@ var ConferenceSplash = React.createClass({
                                     </td>
                                     <td><FormattedMessage id='conference-2017.date' /></td>
                                     <td>
-                                        {'Middle of May'}
+                                        {'Middle of May, 2017'}
                                     </td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
