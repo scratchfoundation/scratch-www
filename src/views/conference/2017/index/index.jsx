@@ -106,7 +106,7 @@ var ConferenceSplash = React.createClass({
                                 </tr>
                             </tbody>
                         </table>
-                        <a className='button mod-2017-panel' href='http://scratch201bdx.org'>
+                        <a className='button mod-2017-panel' href='http://scratch2017bdx.org'>
                             <FormattedMessage id='conference-2017.website' />
                         </a>
                     </section>
@@ -343,7 +343,7 @@ var ConferenceSplash = React.createClass({
                                         />
                                     </td>
                                     <td><FormattedMessage id='conference-2017.language' /></td>
-                                    <td>{'Español (Spanish - simultaneous translation during plenary sessions'}</td>
+                                    <td>{'Español (Spanish) - simultaneous translation during plenary sessions'}</td>
                                 </tr>
                             </tbody>
                         </table>
