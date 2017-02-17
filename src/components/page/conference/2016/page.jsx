@@ -1,7 +1,7 @@
 var React = require('react');
 
 var Navigation = require('../../../navigation/conference/2016/navigation.jsx');
-var Footer = require('../../../footer/conference/footer.jsx');
+var Footer = require('../../../footer/conference/2016/footer.jsx');
 
 require('../page.scss');
 

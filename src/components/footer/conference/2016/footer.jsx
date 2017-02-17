@@ -1,9 +1,9 @@
 var React = require('react');
 
-var FlexRow = require('../../flex-row/flex-row.jsx');
-var FooterBox = require('../container/footer.jsx');
+var FlexRow = require('../../../flex-row/flex-row.jsx');
+var FooterBox = require('../../container/footer.jsx');
 
-require('./footer.scss');
+require('../footer.scss');
 
 var ConferenceFooter = React.createClass({
     type: 'ConferenceFooter',
