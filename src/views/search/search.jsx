@@ -76,7 +76,7 @@ var Search = injectIntl(React.createClass({
         }.bind(this));
     },
     onSearchSubmit: function (formData) {
-        window.location.href = '/search/projects?q=' + formData.q;
+        window.location.href = '/search/projects?q=' + encodeURIComponent(formData.q);
     },
     getTab: function (type) {
         var term = this.props.searchTerm.split(' ').join('+');
