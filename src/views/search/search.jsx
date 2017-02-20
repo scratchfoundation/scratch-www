@@ -51,14 +51,16 @@ var Search = injectIntl(React.createClass({
         while (term.indexOf('&') > -1) {
             term = term.substring(0, term.indexOf('&'));
         }
-        term = term.split('+').join(' ');
-        this.getSearchMore();
-        this.props.dispatch(navigationActions.setSearchTerm(decodeURI(term)));
+        term = decodeURI(term.split('+').join(' '));
+        this.props.dispatch(navigationActions.setSearchTerm(term));
+    },
+    componentDidUpdate: function (nextProps) {
+        if (this.props.searchTerm !== nextProps.searchTerm) this.getSearchMore();
     },
     getSearchMore: function () {
         var termText = '';
         if (this.props.searchTerm !== '') {
-            termText = '&q=' + this.props.searchTerm;
+            termText = '&q=' + encodeURIComponent(this.props.searchTerm.split(' ').join('+'));
         }
         api({
             uri: '/search/' + this.props.tab +
