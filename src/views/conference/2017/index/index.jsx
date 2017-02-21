@@ -25,9 +25,9 @@ var ConferenceSplash = React.createClass({
                         <FormattedMessage id='conference-2017.desc' />
                     </h3>
                 </TitleBanner>
-                <div className='conf2017-title-band'>
+                <h3 className='conf2017-title-band'>
                     <FormattedMessage id='conference-2017.seeBelow' />
-                </div>
+                </h3>
                 <div className='inner'>
                     <section className='conf2017-panel mod-france'>
                         <FlexRow className='conf2017-panel-title'>
@@ -110,86 +110,6 @@ var ConferenceSplash = React.createClass({
                             <FormattedMessage id='conference-2017.website' />
                         </a>
                     </section>
-                    <section className='conf2017-panel mod-brasil'>
-                        <FlexRow className='conf2017-panel-title'>
-                            <img
-                                className='conf2017-panel-flag'
-                                src='/svgs/conference/flags/br.svg'
-                                alt='Brasil Flag'
-                            />
-                            <div className='conf2017-panel-title-text'>
-                                <h3><FormattedMessage id='conference-2017.brasilTitle' /></h3>
-                            </div>
-                        </FlexRow>
-                        <p className='conf2017-panel-desc'>
-                            <FormattedMessage id='conference-2017.brasilDesc' />
-                        </p>
-                        <table className='conf2017-panel-details'>
-                            <tbody>
-                                <tr className='conf2017-panel-row'>
-                                    <td className='conf2017-panel-row-icon'>
-                                        <img
-                                            className='conf2017-panel-row-icon-image'
-                                            src='/svgs/conference/index/calendar-icon.svg'
-                                            alt='Calendar Icon'
-                                        />
-                                    </td>
-                                    <td><FormattedMessage id='conference-2017.date' /></td>
-                                    <td>
-                                        <FormattedDate
-                                            value={new Date(2017, 8, 28)}
-                                            year='numeric'
-                                            month='long'
-                                            day='2-digit'
-                                        />
-                                        {' - '}
-                                        <FormattedDate
-                                            value={new Date(2017, 8, 30)}
-                                            year='numeric'
-                                            month='long'
-                                            day='2-digit'
-                                        />
-                                    </td>
-                                </tr>
-                                <tr className='conf2017-panel-row'>
-                                    <td className='conf2017-panel-row-icon'>
-                                        <img
-                                            className='conf2017-panel-row-icon-image'
-                                            src='/svgs/conference/index/map-icon.svg'
-                                            alt='Map Icon'
-                                        />
-                                    </td>
-                                    <td><FormattedMessage id='conference-2017.location' /></td>
-                                    <td>{'São Paulo, Brasil'}</td>
-                                </tr>
-                                <tr className='conf2017-panel-row'>
-                                    <td className='conf2017-panel-row-icon'>
-                                        <img
-                                            className='conf2017-panel-row-icon-image'
-                                            src='/svgs/conference/index/audience-icon.svg'
-                                            alt='Audience Icon'
-                                        />
-                                    </td>
-                                    <td><FormattedMessage id='conference-2017.audience' /></td>
-                                    <td><FormattedMessage id='conference-2017.brasilAudience' /></td>
-                                </tr>
-                                <tr className='conf2017-panel-row'>
-                                    <td className='conf2017-panel-row-icon'>
-                                        <img
-                                            className='conf2017-panel-row-icon-image'
-                                            src='/svgs/conference/index/language-icon.svg'
-                                            alt='Language Icon'
-                                        />
-                                    </td>
-                                    <td><FormattedMessage id='conference-2017.language' /></td>
-                                    <td>{'Português (Portuguese)'}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a className='button mod-2017-panel' href='http://scratchbrasil.org/'>
-                            <FormattedMessage id='conference-2017.website' />
-                        </a>
-                    </section>
                     <section className='conf2017-panel mod-hungary'>
                         <FlexRow className='conf2017-panel-title'>
                             <img
@@ -267,6 +187,87 @@ var ConferenceSplash = React.createClass({
                             </tbody>
                         </table>
                         <a className='button mod-2017-panel' href='https://events.epam.com/events/scratch-2017'>
+                            <FormattedMessage id='conference-2017.website' />
+                        </a>
+                    </section>
+                    <section className='conf2017-panel mod-costarica'>
+                        <FlexRow className='conf2017-panel-title'>
+                            <img
+                                className='conf2017-panel-flag'
+                                src='/svgs/conference/flags/cr.svg'
+                                alt='Costa Rica Flag'
+                            />
+                            <div className='conf2017-panel-title-text'>
+                                <h3><FormattedMessage id='conference-2017.costaricaTitle' /></h3>
+                                <h4><FormattedMessage id='conference-2017.costaricaSubTitle' /></h4>
+                            </div>
+                        </FlexRow>
+                        <p className='conf2017-panel-desc'>
+                            <FormattedMessage id='conference-2017.costaricaDesc' />
+                        </p>
+                        <table className='conf2017-panel-details'>
+                            <tbody>
+                                <tr className='conf2017-panel-row'>
+                                    <td className='conf2017-panel-row-icon'>
+                                        <img
+                                            className='conf2017-panel-row-icon-image'
+                                            src='/svgs/conference/index/calendar-icon.svg'
+                                            alt='Calendar Icon'
+                                        />
+                                    </td>
+                                    <td><FormattedMessage id='conference-2017.date' /></td>
+                                    <td>
+                                        <FormattedDate
+                                            value={new Date(2017, 10, 13)}
+                                            year='numeric'
+                                            month='long'
+                                            day='2-digit'
+                                        />
+                                        {' - '}
+                                        <FormattedDate
+                                            value={new Date(2017, 10, 15)}
+                                            year='numeric'
+                                            month='long'
+                                            day='2-digit'
+                                        />
+                                    </td>
+                                </tr>
+                                <tr className='conf2017-panel-row'>
+                                    <td className='conf2017-panel-row-icon'>
+                                        <img
+                                            className='conf2017-panel-row-icon-image'
+                                            src='/svgs/conference/index/map-icon.svg'
+                                            alt='Map Icon'
+                                        />
+                                    </td>
+                                    <td><FormattedMessage id='conference-2017.location' /></td>
+                                    <td>{'San José, Costa Rica'}</td>
+                                </tr>
+                                <tr className='conf2017-panel-row'>
+                                    <td className='conf2017-panel-row-icon'>
+                                        <img
+                                            className='conf2017-panel-row-icon-image'
+                                            src='/svgs/conference/index/audience-icon.svg'
+                                            alt='Audience Icon'
+                                        />
+                                    </td>
+                                    <td><FormattedMessage id='conference-2017.audience' /></td>
+                                    <td><FormattedMessage id='conference-2017.costaricaAudience' /></td>
+                                </tr>
+                                <tr className='conf2017-panel-row'>
+                                    <td className='conf2017-panel-row-icon'>
+                                        <img
+                                            className='conf2017-panel-row-icon-image'
+                                            src='/svgs/conference/index/language-icon.svg'
+                                            alt='Language Icon'
+                                        />
+                                    </td>
+                                    <td><FormattedMessage id='conference-2017.language' /></td>
+                                    <td>{'Español (Spanish)'}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a className='button mod-2017-panel' href='http://www.scratchcostarica.com'>
                             <FormattedMessage id='conference-2017.website' />
                         </a>
                     </section>
@@ -351,7 +352,87 @@ var ConferenceSplash = React.createClass({
                             <FormattedMessage id='conference-2017.website' />
                         </a>
                     </section>
-                    <section className='conf2017-panel mod-china'>
+                    <section className='conf2017-panel mod-brasil'>
+                        <FlexRow className='conf2017-panel-title'>
+                            <img
+                                className='conf2017-panel-flag'
+                                src='/svgs/conference/flags/br.svg'
+                                alt='Brasil Flag'
+                            />
+                            <div className='conf2017-panel-title-text'>
+                                <h3><FormattedMessage id='conference-2017.brasilTitle' /></h3>
+                            </div>
+                        </FlexRow>
+                        <p className='conf2017-panel-desc'>
+                            <FormattedMessage id='conference-2017.brasilDesc' />
+                        </p>
+                        <table className='conf2017-panel-details'>
+                            <tbody>
+                                <tr className='conf2017-panel-row'>
+                                    <td className='conf2017-panel-row-icon'>
+                                        <img
+                                            className='conf2017-panel-row-icon-image'
+                                            src='/svgs/conference/index/calendar-icon.svg'
+                                            alt='Calendar Icon'
+                                        />
+                                    </td>
+                                    <td><FormattedMessage id='conference-2017.date' /></td>
+                                    <td>
+                                        <FormattedDate
+                                            value={new Date(2017, 8, 28)}
+                                            year='numeric'
+                                            month='long'
+                                            day='2-digit'
+                                        />
+                                        {' - '}
+                                        <FormattedDate
+                                            value={new Date(2017, 8, 30)}
+                                            year='numeric'
+                                            month='long'
+                                            day='2-digit'
+                                        />
+                                    </td>
+                                </tr>
+                                <tr className='conf2017-panel-row'>
+                                    <td className='conf2017-panel-row-icon'>
+                                        <img
+                                            className='conf2017-panel-row-icon-image'
+                                            src='/svgs/conference/index/map-icon.svg'
+                                            alt='Map Icon'
+                                        />
+                                    </td>
+                                    <td><FormattedMessage id='conference-2017.location' /></td>
+                                    <td>{'São Paulo, Brasil'}</td>
+                                </tr>
+                                <tr className='conf2017-panel-row'>
+                                    <td className='conf2017-panel-row-icon'>
+                                        <img
+                                            className='conf2017-panel-row-icon-image'
+                                            src='/svgs/conference/index/audience-icon.svg'
+                                            alt='Audience Icon'
+                                        />
+                                    </td>
+                                    <td><FormattedMessage id='conference-2017.audience' /></td>
+                                    <td><FormattedMessage id='conference-2017.brasilAudience' /></td>
+                                </tr>
+                                <tr className='conf2017-panel-row'>
+                                    <td className='conf2017-panel-row-icon'>
+                                        <img
+                                            className='conf2017-panel-row-icon-image'
+                                            src='/svgs/conference/index/language-icon.svg'
+                                            alt='Language Icon'
+                                        />
+                                    </td>
+                                    <td><FormattedMessage id='conference-2017.language' /></td>
+                                    <td>{'Português (Portuguese)'}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a className='button mod-2017-panel' href='http://scratchbrasil.org/'>
+                            <FormattedMessage id='conference-2017.website' />
+                        </a>
+                    </section>
+                    <section className='conf2017-panel mod-china mod-last'>
                         <FlexRow className='conf2017-panel-title'>
                             <img
                                 className='conf2017-panel-flag'
@@ -417,87 +498,6 @@ var ConferenceSplash = React.createClass({
                         </table>
                         <a className='button mod-2017-panel' href='mailto:jovi.tong@uniamber.com'>
                             <FormattedMessage id='conference-2017.contact' />
-                        </a>
-                    </section>
-                    <section className='conf2017-panel mod-costarica mod-last'>
-                        <FlexRow className='conf2017-panel-title'>
-                            <img
-                                className='conf2017-panel-flag'
-                                src='/svgs/conference/flags/cr.svg'
-                                alt='Costa Rica Flag'
-                            />
-                            <div className='conf2017-panel-title-text'>
-                                <h3><FormattedMessage id='conference-2017.costaricaTitle' /></h3>
-                                <h4><FormattedMessage id='conference-2017.costaricaSubTitle' /></h4>
-                            </div>
-                        </FlexRow>
-                        <p className='conf2017-panel-desc'>
-                            <FormattedMessage id='conference-2017.costaricaDesc' />
-                        </p>
-                        <table className='conf2017-panel-details'>
-                            <tbody>
-                                <tr className='conf2017-panel-row'>
-                                    <td className='conf2017-panel-row-icon'>
-                                        <img
-                                            className='conf2017-panel-row-icon-image'
-                                            src='/svgs/conference/index/calendar-icon.svg'
-                                            alt='Calendar Icon'
-                                        />
-                                    </td>
-                                    <td><FormattedMessage id='conference-2017.date' /></td>
-                                    <td>
-                                        <FormattedDate
-                                            value={new Date(2017, 10, 13)}
-                                            year='numeric'
-                                            month='long'
-                                            day='2-digit'
-                                        />
-                                        {' - '}
-                                        <FormattedDate
-                                            value={new Date(2017, 10, 15)}
-                                            year='numeric'
-                                            month='long'
-                                            day='2-digit'
-                                        />
-                                    </td>
-                                </tr>
-                                <tr className='conf2017-panel-row'>
-                                    <td className='conf2017-panel-row-icon'>
-                                        <img
-                                            className='conf2017-panel-row-icon-image'
-                                            src='/svgs/conference/index/map-icon.svg'
-                                            alt='Map Icon'
-                                        />
-                                    </td>
-                                    <td><FormattedMessage id='conference-2017.location' /></td>
-                                    <td>{'San José, Costa Rica'}</td>
-                                </tr>
-                                <tr className='conf2017-panel-row'>
-                                    <td className='conf2017-panel-row-icon'>
-                                        <img
-                                            className='conf2017-panel-row-icon-image'
-                                            src='/svgs/conference/index/audience-icon.svg'
-                                            alt='Audience Icon'
-                                        />
-                                    </td>
-                                    <td><FormattedMessage id='conference-2017.audience' /></td>
-                                    <td><FormattedMessage id='conference-2017.costaricaAudience' /></td>
-                                </tr>
-                                <tr className='conf2017-panel-row'>
-                                    <td className='conf2017-panel-row-icon'>
-                                        <img
-                                            className='conf2017-panel-row-icon-image'
-                                            src='/svgs/conference/index/language-icon.svg'
-                                            alt='Language Icon'
-                                        />
-                                    </td>
-                                    <td><FormattedMessage id='conference-2017.language' /></td>
-                                    <td>{'Español (Spanish)'}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a className='button mod-2017-panel' href='http://www.scratchcostarica.com'>
-                            <FormattedMessage id='conference-2017.website' />
                         </a>
                     </section>
                 </div>
