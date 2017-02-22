@@ -17,7 +17,7 @@ var Navigation = React.createClass({
                                 alt="Scratch Logo"
                                 className="logo-a-image"
                             />
-                            <p className="logo-a-title">Conference</p>
+                            <p className="logo-a-title">Conferences</p>
                         </a>
                     </li>
                 </ul>
