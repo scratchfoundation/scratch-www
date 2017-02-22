@@ -1,7 +1,12 @@
 var React = require('react');
+var ReactIntl = require('react-intl');
+
+var injectIntl = ReactIntl.injectIntl;
+var FormattedMessage = ReactIntl.FormattedMessage;
 
 var FlexRow = require('../../../flex-row/flex-row.jsx');
 var FooterBox = require('../../container/footer.jsx');
+var LanguageChooser = require('../../../languagechooser/languagechooser.jsx');
 
 require('../footer.scss');
 
@@ -12,7 +17,7 @@ var ConferenceFooter = React.createClass({
             <FooterBox>
                 <FlexRow className="scratch-links">
                     <div className="family">
-                        <h4>Scratch Family</h4>
+                        <h4><FormattedMessage id='footer.scratchFamily' /></h4>
                         <FlexRow>
                             <FlexRow as="ul" className="column">
                                 <li>
@@ -37,7 +42,7 @@ var ConferenceFooter = React.createClass({
                             </FlexRow>
                         </FlexRow>
                         <p className="legal">
-                            Scratch is a project of the Lifelong Kindergarten Group at the MIT Media Lab.
+                            <FormattedMessage id='general.copyright' />
                         </p>
                     </div>
                     <div className="media">
@@ -70,9 +75,10 @@ var ConferenceFooter = React.createClass({
                         </div>
                     </div>
                 </FlexRow>
+                <LanguageChooser locale={this.props.intl.locale} />
             </FooterBox>
         );
     }
 });
 
-module.exports = ConferenceFooter;
+module.exports = injectIntl(ConferenceFooter);
