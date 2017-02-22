@@ -117,7 +117,7 @@ var Developers = React.createClass({
                             <div className="body-copy column">
                                 <h3><FormattedMessage id='developers.learningPrinciplesTitle' /></h3>
                                 <dl>
-                                    <dt><FormattedMessage id='developers.ProjectsTitle' /></dt>
+                                    <dt><FormattedMessage id='developers.projectsTitle' /></dt>
                                     <dd>
                                         <FormattedMessage id='developers.learningPrinciplesProjectsBody' />
                                     </dd>
