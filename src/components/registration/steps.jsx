@@ -516,11 +516,10 @@ module.exports = {
             'orgChoiceAfterschool',
             'orgChoiceMuseum',
             'orgChoiceLibrary',
-            'orgChoiceCamp',
-            'orgChoiceOther'
+            'orgChoiceCamp'
         ],
         getOrganizationOptions: function () {
-            return this.organizationL10nStems.map(function (choice, id) {
+            var options = this.organizationL10nStems.map(function (choice, id) {
                 return {
                     value: id,
                     label: this.props.intl.formatMessage({
@@ -528,6 +527,12 @@ module.exports = {
                     })
                 };
             }.bind(this));
+            
+            // Add "Other" option with empty string, since input field is used
+            var otherId = options.length;
+            options.push({value: otherId, label: ' '});
+            
+            return options;
         },
         onChooseOrganization: function (name, values) {
             this.setState({otherDisabled: values.indexOf(this.organizationL10nStems.indexOf('orgChoiceOther')) === -1});
