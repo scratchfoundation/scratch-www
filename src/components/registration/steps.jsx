@@ -535,7 +535,7 @@ module.exports = {
             return options;
         },
         onChooseOrganization: function (name, values) {
-            this.setState({otherDisabled: values.indexOf(this.organizationL10nStems.indexOf('orgChoiceOther')) === -1});
+            this.setState({otherDisabled: values.indexOf(this.organizationL10nStems.length) === -1});
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
