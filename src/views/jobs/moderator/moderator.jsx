@@ -22,7 +22,6 @@ var Moderator = React.createClass({
                          gain valuable experience working online with youth in a
                          creative, interest driven setting.
                     </p>
-                    <a href="https://twitter.com/share">Tweet</a>
                     <h3>Responsibilities:</h3>
                     <ul>
                         <li>
@@ -86,7 +85,6 @@ var Moderator = React.createClass({
                              it on the Scratch website, and send us a link.
                         </i>
                     </p>
-                    <a href="https://twitter.com/share">Tweet</a>
                 </div>
             </InformationPage>
         );
