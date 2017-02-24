@@ -24,8 +24,7 @@ deploy:
 	@make sync
 
 translations:
-	./bin/tx-import localizations
-	./bin/build-locales localizations intl
+	./bin/build-locales node_modules/scratchr2_translations/www/translations intl
 
 webpack:
 	$(WEBPACK) --bail
