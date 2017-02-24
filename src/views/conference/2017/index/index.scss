@@ -48,6 +48,9 @@
 
 .conf2017-panel-flag {
     margin-right: 6.25rem;
+    border: 1px solid $ui-border;
+    border-radius: 1px;
+    background-color: $ui-border;
     width: 3.75rem;
 }
 
@@ -60,12 +63,10 @@ td {
     vertical-align: top;
 }
 
-.conf2017-panel-row-icon {
-    padding: .375rem 1.25rem;
-}
-
 .conf2017-panel-row-icon-image {
-    width: 1.75rem;
+    margin-top: .125rem;
+    width: 1rem;
+    height: 1rem;
 }
 
 .button.mod-2017-panel {
@@ -118,11 +119,7 @@ td {
     }
 
     .conf2017-panel-row > td {
-        padding: .75rem .25rem;
-    }
-
-    .button.mod-2017-panel {
-        width: 5.75rem;
+        padding: .75rem .375rem .75rem 0;
     }
 }
 
