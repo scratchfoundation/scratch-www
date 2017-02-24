@@ -37,6 +37,11 @@ var Developers = React.createClass({
                                     <FormattedMessage id='developers.principlesTitle' />
                                 </li>
                             </a>
+                            <a href="#join">
+                                <li>
+                                    <FormattedMessage id='developers.joinTitle' />
+                                </li>
+                            </a>
                             <a href="#donate">
                                 <li>
                                     <FormattedMessage id='developers.donateTitle' />
@@ -112,7 +117,7 @@ var Developers = React.createClass({
                             <div className="body-copy column">
                                 <h3><FormattedMessage id='developers.learningPrinciplesTitle' /></h3>
                                 <dl>
-                                    <dt><FormattedMessage id='developers.ProjectsTitle' /></dt>
+                                    <dt><FormattedMessage id='developers.projectsTitle' /></dt>
                                     <dd>
                                         <FormattedMessage id='developers.learningPrinciplesProjectsBody' />
                                     </dd>
@@ -155,6 +160,12 @@ var Developers = React.createClass({
                                 </dl>
                             </div>
                         </FlexRow>
+                    </section>
+
+                    <section id="join">
+                        <span className="nav-spacer"></span>
+                        <h2><FormattedMessage id='developers.joinTitle' /></h2>
+                        <p><FormattedHTMLMessage id='developers.joinBody' /></p>
                     </section>
 
                     <section id="donate">

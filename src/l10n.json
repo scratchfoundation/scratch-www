@@ -83,8 +83,9 @@
     "general.art": "Art",
     "general.games": "Games",
     "general.music": "Music",
-    "general.stories": "Stories",
     "general.results": "Results",
+    "general.stories": "Stories",
+    "general.tutorials": "Tutorials",
 
     "general.teacherAccounts": "Teacher Accounts",
 
@@ -130,7 +131,7 @@
     "registration.selectCountry": "select country",
     "registration.studentPersonalStepDescription": "This information will not appear on the Scratch website.",
     "registration.showPassword": "Show password",
-    "registration.usernameStepDescription": "Fill in the following forms to request an account. The approval process may take up to 24 hours.",
+    "registration.usernameStepDescription": "Fill in the following forms to request an account. The approval process may take up to one day.",
     "registration.studentUsernameStepDescription": "You can make games, animations, and stories using Scratch. Setting up an account is easy and it's free. Fill in the form below to get started.",
     "registration.studentUsernameStepHelpText": "Already have a Scratch account?",
     "registration.studentUsernameStepTooltip": "You'll need to create a new Scratch account to join this class.",

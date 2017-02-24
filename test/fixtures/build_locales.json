@@ -1,4 +1,0 @@
-{
-    "<p> <img src=\"{STATIC_URL}/images/help/ask-and-wait.png\" /> asks a question and stores the keyboard input in  <img src=\"{STATIC_URL}/images/help/answer.png\" />. The answer is shared by all sprites. </p><p>If you want to save the current answer, you can store it in a variable or list. For example, <img src=\"{STATIC_URL}/images/help/answer-ex2.png\"/> </p><p>To view the value of answer, click the checkbox next to the answer block.<br><img src=\"{STATIC_URL}/images/help/answer-checkbox.png\" /></p>": "test.id1",
-    "<p> <img src=\"{STATIC_URL}/images/help/ask-and-wait.png\" /> asks a question and stores the keyboard input in  <img src=\"{STATIC_URL}/images/help/answer.png\" />. The question appears in a voice balloon on the screen. The program waits as the user types in a response, until the Enter key is pressed or the check mark is clicked. </p>": "test.id2"
-}

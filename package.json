@@ -96,8 +96,8 @@
   },
   "nyc": {
     "include": [
-        "bin/**/*.js",
-        "src/**/*.js"
+      "bin/**/*.js",
+      "src/**/*.js"
     ],
     "all": true
   }
