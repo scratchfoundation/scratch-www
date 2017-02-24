@@ -97,7 +97,13 @@ var globalTemplateFile = path.resolve(__dirname, '../src/l10n.json');
 var generalLocales = {'en': JSON.parse(fs.readFileSync(globalTemplateFile, 'utf8'))};
 for ( var l in languages ) {
     try {
-        var langTranslations = path.resolve(__dirname, '../', localesDir, 'general', l + '.json');
+        var langTranslations = path.resolve(
+            __dirname,
+            '../',
+            localesDir,
+            'scratch-website.general-l10njson',
+            l + '.json'
+        );
         fs.accessSync(langTranslations);
         generalLocales[l] = JSON.parse(fs.readFileSync(langTranslations, 'utf8'));
     } catch (err) {
@@ -187,7 +193,13 @@ async.forEachLimit(views, 5, function (view, cb) {
         // merge view specific english strings, first then other languages
         process.stdout.write('Merging translations for ' + view + '\n');
         async.forEach(allLangs, function (isoCode, cb) {
-            var translationsFile = path.resolve(__dirname, '../', localesDir, view, isoCode + '.json');
+            var translationsFile = path.resolve(
+                __dirname,
+                '../',
+                localesDir,
+                'scratch-website.' + view + '-l10njson',
+                isoCode + '.json'
+            );
             fs.readFile(translationsFile, 'utf8', function (err, data) {
                 if (err) {
                     if (err.code === 'ENOENT') {
