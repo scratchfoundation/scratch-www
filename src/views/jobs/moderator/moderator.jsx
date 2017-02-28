@@ -71,7 +71,7 @@ var Moderator = React.createClass({
                          All candidates must be at least 18 years old and have
                          authorization to work in the United States.
                     </p>
-                    <p><b>MIT Media Lab, Cambridge, MA (or Remote)</b></p>
+                    <p><b>(MIT Media Lab, Cambridge, MA or Remote)</b></p>
                     <p>
                         Send a copy of your resume, links to one or more of your online
                          presences, and cover letter to{' '}
