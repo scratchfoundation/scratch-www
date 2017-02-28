@@ -30,7 +30,7 @@ var Footer = React.createClass({
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/contact-us">
+                                <a href="/contact-us/">
                                     <FormattedMessage id='general.contactUs' />
                                 </a>
                             </dd>
@@ -66,7 +66,7 @@ var Footer = React.createClass({
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/parents">
+                                <a href="/parents/">
                                     <FormattedMessage id='general.forParents' />
                                 </a>
                             </dd>
@@ -91,7 +91,7 @@ var Footer = React.createClass({
                                 </a>
                             </dd>
                             <dd>
-                                <a href="http://wiki.scratch.mit.edu/wiki/Scratch_Press/">
+                                <a href="http://wiki.scratch.mit.edu/wiki/Scratch_Press">
                                     <FormattedMessage id='general.press' />
                                 </a>
                             </dd>
@@ -106,7 +106,7 @@ var Footer = React.createClass({
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/discuss">
+                                <a href="/discuss/">
                                     <FormattedMessage id='footer.discuss' />
                                 </a>
                             </dd>
@@ -116,7 +116,7 @@ var Footer = React.createClass({
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/statistics">
+                                <a href="/statistics/">
                                     <FormattedMessage id='general.statistics' />
                                 </a>
                             </dd>
@@ -127,7 +127,7 @@ var Footer = React.createClass({
                                 <FormattedMessage id='general.support' />
                             </dt>
                             <dd>
-                                <a href="/help">
+                                <a href="/help/">
                                     <FormattedMessage id='footer.help' />
                                 </a>
                             </dd>
@@ -137,12 +137,12 @@ var Footer = React.createClass({
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/scratch2download">
+                                <a href="/scratch2download/">
                                     <FormattedMessage id='general.offlineEditor' />
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/contact-us">
+                                <a href="/contact-us/">
                                     <FormattedMessage id='general.contactUs' />
                                 </a>
                             </dd>
