@@ -182,7 +182,7 @@
     },
     {
         "name": "jobs-moderator",
-        "pattern": "^jobs/moderator/?$",
+        "pattern": "^/jobs/moderator/?$",
         "routeAlias": "/jobs",
         "view": "jobs/moderator/moderator",
         "title": "Community Moderator"
