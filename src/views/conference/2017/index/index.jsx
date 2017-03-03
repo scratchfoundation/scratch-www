@@ -458,7 +458,19 @@ var ConferenceSplash = React.createClass({
                                     </td>
                                     <td><FormattedMessage id='conference-2017.date' /></td>
                                     <td>
-                                        {'Middle of May, 2017'}
+                                        <FormattedDate
+                                            value={new Date(2017, 5, 20)}
+                                            year='numeric'
+                                            month='long'
+                                            day='2-digit'
+                                        />
+                                        {' - '}
+                                        <FormattedDate
+                                            value={new Date(2017, 5, 21)}
+                                            year='numeric'
+                                            month='long'
+                                            day='2-digit'
+                                        />
                                     </td>
                                 </tr>
                                 <tr className='conf2017-panel-row'>
@@ -496,8 +508,8 @@ var ConferenceSplash = React.createClass({
                                 </tr>
                             </tbody>
                         </table>
-                        <a className='button mod-2017-panel' href='mailto:jovi.tong@uniamber.com'>
-                            <FormattedMessage id='conference-2017.contact' />
+                        <a className='button mod-2017-panel' href='http://scratchconference2017.sxl.cn/'>
+                            <FormattedMessage id='conference-2017.website' />
                         </a>
                     </section>
                 </div>
