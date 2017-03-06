@@ -23,6 +23,10 @@
         "locale": "la",
         "parentLocale": "it"
     },
+    "sc": {
+        "locale": "sc",
+        "parentLocale": "it"
+    },
     "yum": {
         "locale": "yum",
         "parentLocale": "en"
