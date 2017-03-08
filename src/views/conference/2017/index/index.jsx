@@ -225,7 +225,7 @@ var ConferenceSplash = React.createClass({
                                         />
                                         {' - '}
                                         <FormattedDate
-                                            value={new Date(2017, 10, 15)}
+                                            value={new Date(2017, 10, 12)}
                                             year='numeric'
                                             month='long'
                                             day='2-digit'
