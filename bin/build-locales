@@ -233,7 +233,8 @@ async.forEachLimit(views, 5, function (view, cb) {
     cb();
 }, function (err) {
     if (err) {
-        process.stdout.write('Writing intl files completed with errors\n');
+        process.stdout.write('Writing intl files no haz successes\n');
+        process.exit(1);
     }
     return;
 });
