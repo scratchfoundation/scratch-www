@@ -77,6 +77,8 @@ tap.test('checkFeaturedStudiosRowLinkWhenSignedOut', function (t) {
 
 // We are not checking for any other homepage rows
 // besides Featured Projects & Featured Studios, so we don't need these for now
+// but we might want them if we have a fixture db
+// or some other source of "user activity"
 /*
 //checks that the title of the 3rd row starts with Projects Curated by
 tap.test('checkProjectsCuratedByRowWhenSignedOut', function (t) {
