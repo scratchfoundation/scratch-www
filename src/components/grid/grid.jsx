@@ -27,12 +27,12 @@ var Grid = React.createClass({
         return (
             <div className={classes}>
                 <FlexRow>
-                    {this.props.items.map(function (item) {
+                    {this.props.items.map(function (item, key) {
                         var href = '/' + this.props.itemType + '/' + item.id + '/';
 
                         if (this.props.itemType == 'projects') {
                             return (
-                                <Thumbnail key={item.id}
+                                <Thumbnail key={key}
                                            showLoves={this.props.showLoves}
                                            showFavorites={this.props.showFavorites}
                                            showRemixes={this.props.showRemixes}
@@ -53,7 +53,7 @@ var Grid = React.createClass({
                         }
                         else {
                             return (
-                                <Thumbnail key={item.id}
+                                <Thumbnail key={key}
                                            type={'gallery'}
                                            href={href}
                                            title={item.title}

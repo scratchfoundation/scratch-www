@@ -171,7 +171,7 @@ var Navigation = React.createClass({
         this.closeRegistration();
     },
     onSearchSubmit: function (formData) {
-        window.location.href = '/search/projects?q=' + formData.q;
+        window.location.href = '/search/projects?q=' + encodeURIComponent(formData.q);
     },
     render: function () {
         var classes = classNames({

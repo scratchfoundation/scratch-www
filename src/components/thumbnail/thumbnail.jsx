@@ -75,10 +75,12 @@ var Thumbnail = React.createClass({
         }
         var imgElement,titleElement,avatarElement;
         if (this.props.linkTitle) {
-            imgElement = <a className="thumbnail-image" href={this.props.href}>
+            imgElement = <a className="thumbnail-image" href={this.props.href} key="imgElement">
                              <img src={this.props.src} alt={this.props.alt} />
                          </a>;
-            titleElement =  <a href={this.props.href}>{this.props.title}</a>;
+            titleElement =  <a href={this.props.href} key="titleElement">
+                                {this.props.title}
+                            </a>;
         } else {
             imgElement = <img src={this.props.src} />;
             titleElement = this.props.title;

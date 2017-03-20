@@ -516,11 +516,10 @@ module.exports = {
             'orgChoiceAfterschool',
             'orgChoiceMuseum',
             'orgChoiceLibrary',
-            'orgChoiceCamp',
-            'orgChoiceOther'
+            'orgChoiceCamp'
         ],
         getOrganizationOptions: function () {
-            return this.organizationL10nStems.map(function (choice, id) {
+            var options = this.organizationL10nStems.map(function (choice, id) {
                 return {
                     value: id,
                     label: this.props.intl.formatMessage({
@@ -528,9 +527,15 @@ module.exports = {
                     })
                 };
             }.bind(this));
+            
+            // Add "Other" option with empty string, since input field is used
+            var otherId = options.length;
+            options.push({value: otherId, label: ' '});
+            
+            return options;
         },
         onChooseOrganization: function (name, values) {
-            this.setState({otherDisabled: values.indexOf(this.organizationL10nStems.indexOf('orgChoiceOther')) === -1});
+            this.setState({otherDisabled: values.indexOf(this.organizationL10nStems.length) === -1});
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
@@ -872,23 +877,35 @@ module.exports = {
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
-                            <Input label={formatMessage({id: 'general.emailAddress'})}
-                                   type="text"
-                                   name="user.email"
-                                   validations="isEmail"
-                                   validationError={formatMessage({id: 'general.validationEmail'})}
-                                   required />
-                            <Input label={formatMessage({id: 'general.confirmEmail'})}
-                                   type="text"
-                                   name="confirmEmail"
-                                   validations="equalsField:user.email"
-                                   validationErrors={{
-                                       equalsField: formatMessage({id: 'general.validationEmailMatch'})
-                                   }}
-                                   required />
+                            <Input
+                                label={formatMessage({id: 'general.emailAddress'})}
+                                type="text"
+                                name="user.email"
+                                validations="isEmail"
+                                validationError={formatMessage({id: 'general.validationEmail'})}
+                                required
+                            />
+                            <Input
+                                label={formatMessage({id: 'general.confirmEmail'})}
+                                type="text"
+                                name="confirmEmail"
+                                validations="equalsField:user.email"
+                                validationErrors={{
+                                    equalsField: formatMessage({id: 'general.validationEmailMatch'})
+                                }}
+                                required
+                            />
+                            <Checkbox
+                                label={formatMessage({id: 'registration.optIn'})}
+                                value={true}
+                                help={null}
+                                name="subscribe"
+                            />
                             <GeneralError name="all" />
-                            <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
+                            <NextStepButton
+                                waiting={this.props.waiting}
+                                text={<intl.FormattedMessage id="registration.nextStep" />}
+                            />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />

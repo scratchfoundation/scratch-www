@@ -27,7 +27,8 @@ var Explore = injectIntl(React.createClass({
             art: 'art',
             games: 'games',
             music: 'music',
-            stories: 'stories'
+            stories: 'stories',
+            tutorials: 'tutorial'
         };
         var typeOptions = ['projects','studios'];
         var modeOptions = ['trending', 'popular', 'recent', ''];
@@ -152,6 +153,7 @@ var Explore = injectIntl(React.createClass({
                             {this.getBubble('games')}
                             {this.getBubble('music')}
                             {this.getBubble('stories')}
+                            {this.getBubble('tutorials')}
                         </SubNavigation>
                         <Form className='sort-mode'>
                             <Select name="sort"
