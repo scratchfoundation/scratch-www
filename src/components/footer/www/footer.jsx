@@ -190,7 +190,7 @@ var Footer = React.createClass({
                             </dd>
                             <dd>
                                 <a href="http://day.scratch.mit.edu/">
-                                    <FormattedMessage id='general.scratchday' />
+                                    Scratch Day
                                 </a>
                             </dd>
                             <dd>
