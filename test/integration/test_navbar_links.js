@@ -87,13 +87,16 @@ tap.test('checkHelpLinkWhenSignedOut', function (t) {
 
 // ==== Search bar ====
 
+
 tap.test('checkSearchBar', function (t) {
     var xPathLink = '//input[@id="frc-q-1088"]';
     // search bar should exist
     // if it isn't found, it will throw an error, which tap will treat as a failure
     var checkSearchBar = driver.findElement(seleniumWebdriver.By.xpath(xPathLink));
+    t.ok(checkSearchBar);
     t.end();
 });
+
 
 
 // ==== Join Scratch & Sign In ====
@@ -136,4 +139,3 @@ tap.test('checkSignInLinkWhenSignedOut', function (t) {
 
 //quit the instance of the driver
 driver.quit();
-

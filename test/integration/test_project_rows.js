@@ -8,8 +8,6 @@ require('chromedriver');
 var seleniumWebdriver = require('selenium-webdriver');
 var tap = require('tap');
 
-//Set test url through environment variable
-//var rootUrl = process.env.ROOT_URL || 'http://localhost:8333';
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
 //chrome driver
@@ -20,12 +18,6 @@ tap.plan(4);
 
 //load the page with the driver
 driver.get(rootUrl);
-
-//'//div[@id="footer"]/div[@class="inner"]/div[@class="lists"]'
-////li[contains(@class, "link") and contains(@class, "create")]/a
-//not working
-// /div[@class="slick-initialized"]/div[@class="slick-list"]/div[@class="slick-track"]/div[@class="thumbnail"]/a[@class="thumbnail-image"]'
-
 
 //checks that the title of the first row is Featured Projects
 tap.test('checkFeaturedProjectsRowTitleWhenSignedOut', function (t) {
@@ -41,11 +33,15 @@ tap.test('checkFeaturedProjectsRowTitleWhenSignedOut', function (t) {
 
 //checks that the link for a project makes sense
 tap.test('checkFeaturedProjectsRowLinkWhenSignedOut', function (t) {
-    var xPathLink = '//div[contains(@class, "thumbnail") and contains(@class, "project") and contains(@class, "slick-slide") and contains(@class, "slick-active")]/a[@class="thumbnail-image"]';
+    var xPathLink = '//div[contains(@class, "thumbnail") ' +
+        'and contains(@class, "project") and contains(@class, "slick-slide") ' +
+        'and contains(@class, "slick-active") ' +
+        'and contains(@class, "slick-center")]/a[@class="thumbnail-image"]';
     var checkFeaturedProjectsRowLinkWhenSignedOut = driver.findElement(seleniumWebdriver.By.xpath(xPathLink));
     checkFeaturedProjectsRowLinkWhenSignedOut.getAttribute('href').then( function (url) {
         //expected pattern for the project URL
-        //since I don't know the length of the project ID number, I can't use url.substr(-expectedHref.length), expectedHref);
+        //since I don't know the length of the project ID number,
+        //I can't use url.substr(-expectedHref.length), expectedHref);
         var expectedUrlRegExp = new RegExp('/projects/.*[0-9].*/?');
         t.match(url, expectedUrlRegExp);
         t.end();
@@ -66,18 +62,21 @@ tap.test('checkFeaturedStudiosRowWhenSignedOut', function (t) {
 
 //checks that the link for a studio makes sense
 tap.test('checkFeaturedStudiosRowLinkWhenSignedOut', function (t) {
-    var xPathLink = '//div[contains(@class, "thumbnail") and contains(@class, "gallery") and contains(@class, "slick-slide") and contains(@class, "slick-active")]/a[@class="thumbnail-image"]';
+    var xPathLink = '//div[contains(@class, "thumbnail") and contains(@class, "gallery") ' +
+        'and contains(@class, "slick-slide") and contains(@class, "slick-active")]/a[@class="thumbnail-image"]';
     var checkFeaturedStudiosRowLinkWhenSignedOut = driver.findElement(seleniumWebdriver.By.xpath(xPathLink));
     checkFeaturedStudiosRowLinkWhenSignedOut.getAttribute('href').then( function (url) {
         //expected pattern for the project URL
-        //since I don't know the length of the project ID number, I can't use url.substr(-expectedHref.length), expectedHref);
+        //since I don't know the length of the project ID number,
+        // I can't use url.substr(-expectedHref.length), expectedHref);
         var expectedUrlRegExp = new RegExp('/studios/.*[0-9].*/?');
         t.match(url, expectedUrlRegExp);
         t.end();
     });
 });
 
-
+// We are not checking for any other homepage rows
+// besides Featured Projects & Featured Studios, so we don't need these for now
 /*
 //checks that the title of the 3rd row starts with Projects Curated by
 tap.test('checkProjectsCuratedByRowWhenSignedOut', function (t) {

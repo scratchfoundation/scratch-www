@@ -27,7 +27,7 @@ tap.test('checkAboutScratchLink', function (t) {
     var checkAboutScratchLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd/a'));
     checkAboutScratchLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = '/about/';
+        var expectedHref = '/about';
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -51,7 +51,7 @@ tap.test('checkForEducatorsLink', function (t) {
     var checkForEducatorsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[3]/a'));
     checkForEducatorsLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = '/educators/';
+        var expectedHref = '/educators';
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -78,7 +78,7 @@ tap.test('checkForCreditsLink', function (t) {
     var checkForCreditsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[5]/a'));
     checkForCreditsLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = '/info/credits/';
+        var expectedHref = '/info/credits';
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -90,7 +90,7 @@ tap.test('checkForJobsLink', function (t) {
     var checkForJobsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[6]/a'));
     checkForJobsLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = '/jobs/';
+        var expectedHref = '/jobs';
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -116,10 +116,13 @@ tap.test('checkForPressLink', function (t) {
 
 // COMMUNITY GUIDELINES
 tap.test('checkForCommunityGuidelinesLink', function (t) {
-    var checkForCommunityGuidelinesLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[2]/dd/a'));
-    checkForCommunityGuidelinesLink.getAttribute('href').then( function (url) {
+    var CGLink = '/dl[2]/dd/a';
+    var checkForCommunityGuidelinesLink = driver.findElement(
+        seleniumWebdriver.By.xpath(xPathFooterLink + CGLink)
+    );
+    checkForCommunityGuidelinesLink.getAttribute('href').then(function (url) {
         //expected value of the href
-        var expectedHref = '/community_guidelines/';
+        var expectedHref = '/community_guidelines';
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -128,7 +131,9 @@ tap.test('checkForCommunityGuidelinesLink', function (t) {
 
 // DISCUSSION FORUMS
 tap.test('checkForDiscussionForumsLink', function (t) {
-    var checkForDiscussionForumsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[2]/dd[2]/a'));
+    var checkForDiscussionForumsLink = driver.findElement(
+        seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[2]/dd[2]/a')
+    );
     checkForDiscussionForumsLink.getAttribute('href').then( function (url) {
         //expected value of the href
         var expectedHref = '/discuss/';
@@ -181,7 +186,7 @@ tap.test('checkForFAQLink', function (t) {
     var checkForFAQLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[3]/dd[2]/a'));
     checkForFAQLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = '/info/faq/';
+        var expectedHref = '/info/faq';
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -231,7 +236,7 @@ tap.test('checkForTermsOfUseLink', function (t) {
     var checkForTermsOfUseLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[4]/dd/a'));
     checkForTermsOfUseLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = '/terms_of_use/';
+        var expectedHref = '/terms_of_use';
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -243,7 +248,7 @@ tap.test('checkForPrivacyPolicyLink', function (t) {
     var checkForPrivacyPolicyLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[4]/dd[2]/a'));
     checkForPrivacyPolicyLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = '/privacy_policy/';
+        var expectedHref = '/privacy_policy';
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -255,7 +260,7 @@ tap.test('checkForDMCALink', function (t) {
     var checkForDMCALink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[4]/dd[3]/a'));
     checkForDMCALink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = '/DMCA/';
+        var expectedHref = '/DMCA';
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -309,7 +314,7 @@ tap.test('checkForScratchConferenceLink', function (t) {
     var checkForScratchDayLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[5]/dd[4]/a'));
     checkForScratchDayLink.getAttribute('href').then( function (url) {
         //expected value of the href
-        var expectedHref = '/conference/';
+        var expectedHref = '/conference';
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -317,9 +322,10 @@ tap.test('checkForScratchConferenceLink', function (t) {
 });
 
 // SCRATCH FOUNDATION
-// fails because it's http but should be https
 tap.test('checkForScratchFoundationLink', function (t) {
-    var checkForScratchFoundationLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[5]/dd[5]/a'));
+    var checkForScratchFoundationLink = driver.findElement(
+        seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[5]/dd[5]/a')
+        );
     checkForScratchFoundationLink.getAttribute('href').then( function (url) {
         //expected value of the href
         //var expectedHref = 'https://www.scratchfoundation.org/';

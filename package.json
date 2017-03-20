@@ -26,7 +26,6 @@
     "compression": "1.6.1",
     "express": "4.13.4",
     "express-http-proxy": "0.6.0",
-    "lodash": "4.17.4",
     "lodash.defaults": "4.0.1",
     "newrelic": "1.25.4",
     "raven": "0.10.0"
