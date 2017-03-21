@@ -35,8 +35,7 @@ tap.test('checkFeaturedProjectsRowTitleWhenSignedOut', function (t) {
 tap.test('checkFeaturedProjectsRowLinkWhenSignedOut', function (t) {
     var xPathLink = '//div[contains(@class, "thumbnail") ' +
         'and contains(@class, "project") and contains(@class, "slick-slide") ' +
-        'and contains(@class, "slick-active") ' +
-        'and contains(@class, "slick-center")]/a[@class="thumbnail-image"]';
+        'and contains(@class, "slick-active")]/a[@class="thumbnail-image"]';
     var checkFeaturedProjectsRowLinkWhenSignedOut = driver.findElement(seleniumWebdriver.By.xpath(xPathLink));
     checkFeaturedProjectsRowLinkWhenSignedOut.getAttribute('href').then( function (url) {
         //expected pattern for the project URL
