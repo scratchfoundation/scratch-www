@@ -189,48 +189,39 @@ async.forEachLimit(views, 5, function (view, cb) {
     var viewLocales = {};
     viewLocales['en'] = merge({}, generalLocales['en'], defaultLocales[view]);
 
-    if ( defaultLocales.hasOwnProperty(view) ) {
-        // merge view specific english strings, first then other languages
-        process.stdout.write('Merging translations for ' + view + '\n');
-        async.forEach(allLangs, function (isoCode, cb) {
-            var translationsFile = path.resolve(
-                __dirname,
-                '../',
-                localesDir,
-                'scratch-website.' + view + '-l10njson',
-                isoCode + '.json'
-            );
-            fs.readFile(translationsFile, 'utf8', function (err, data) {
-                if (err) {
-                    if (err.code === 'ENOENT') {
-                        if (isoCode !== 'en') {
+    // merge view specific english strings, first then other languages
+    process.stdout.write('Merging translations for ' + view + '\n');
+    async.forEach(allLangs, function (isoCode, cb) {
+        var translationsFile = path.resolve(
+            __dirname,
+            '../',
+            localesDir,
+            'scratch-website.' + view + '-l10njson',
+            isoCode + '.json'
+        );
+        fs.readFile(translationsFile, 'utf8', function (err, data) {
+            if (err) {
+                if (err.code === 'ENOENT') {
+                    if (isoCode !== 'en') {
+                        if (defaultLocales.hasOwnProperty(view)) {
                             process.stdout.write('No translations for ' + view + isoCode + ', using english\n');
-                            viewLocales[isoCode] = merge({}, generalLocales[isoCode], defaultLocales[view]);
                         }
-                        return cb();
-                    } else {
-                        return cb(err);
+                        viewLocales[isoCode] = merge({}, generalLocales[isoCode], defaultLocales[view]);
                     }
-                }
-                try {
-                    viewLocales[isoCode] = merge({}, generalLocales[isoCode], JSON.parse(data));
-                } catch (e) {
-                    return cb(e);
-                }
-                cb();
-            });
-        }, function (err) {
-            if (err) process.stdout.write('Error merging translations for view: ' + view + '\n' + err + '\n');
-            var viewTranslations = merge({}, viewLocales, localizedAssetUrls[view]);
-            writeIntlFile(outputDir, view, viewTranslations, function (err) {
-                if (err) {
-                    process.stdout.write('Failed to save: ' + view + '\n');
+                    return cb();
+                } else {
                     return cb(err);
                 }
-            });
+            }
+            try {
+                viewLocales[isoCode] = merge({}, generalLocales[isoCode], JSON.parse(data));
+            } catch (e) {
+                return cb(e);
+            }
+            cb();
         });
-
-    } else {
+    }, function (err) {
+        if (err) process.stdout.write('Error merging translations for view: ' + view + '\n' + err + '\n');
         var viewTranslations = merge({}, viewLocales, localizedAssetUrls[view]);
         writeIntlFile(outputDir, view, viewTranslations, function (err) {
             if (err) {
@@ -238,11 +229,12 @@ async.forEachLimit(views, 5, function (view, cb) {
                 return cb(err);
             }
         });
-    }
+    });
     cb();
 }, function (err) {
     if (err) {
-        process.stdout.write('Writing intl files completed with errors\n');
+        process.stdout.write('Writing intl files no haz successes\n');
+        process.exit(1);
     }
     return;
 });
