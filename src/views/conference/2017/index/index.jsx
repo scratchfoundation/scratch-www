@@ -218,14 +218,14 @@ var ConferenceSplash = React.createClass({
                                     <td><FormattedMessage id='conference-2017.date' /></td>
                                     <td>
                                         <FormattedDate
-                                            value={new Date(2017, 10, 13)}
+                                            value={new Date(2017, 10, 10)}
                                             year='numeric'
                                             month='long'
                                             day='2-digit'
                                         />
                                         {' - '}
                                         <FormattedDate
-                                            value={new Date(2017, 10, 15)}
+                                            value={new Date(2017, 10, 12)}
                                             year='numeric'
                                             month='long'
                                             day='2-digit'
@@ -459,14 +459,14 @@ var ConferenceSplash = React.createClass({
                                     <td><FormattedMessage id='conference-2017.date' /></td>
                                     <td>
                                         <FormattedDate
-                                            value={new Date(2017, 5, 20)}
+                                            value={new Date(2017, 4, 20)}
                                             year='numeric'
                                             month='long'
                                             day='2-digit'
                                         />
                                         {' - '}
                                         <FormattedDate
-                                            value={new Date(2017, 5, 21)}
+                                            value={new Date(2017, 4, 21)}
                                             year='numeric'
                                             month='long'
                                             day='2-digit'
