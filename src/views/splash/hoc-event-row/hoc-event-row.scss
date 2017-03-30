@@ -3,11 +3,21 @@
 
 .hoc-event {
     position: relative;
+    transition: min-height 1s;
     opacity: .9;
     margin: 0 auto 20px;
     border-radius: 1rem;
     background-color: $ui-blue;
     width: $cols12;
+    min-height: 18rem;
+}
+
+.hoc-event.mod-1 {
+    min-height: 25rem;
+}
+
+.hoc-event.mod-2 {
+    min-height: 32rem;
 }
 
 .hoc-event:after {
@@ -19,13 +29,14 @@
     opacity: .5;
     z-index: -1;
     border-radius: 1rem;
-    background: url("/images/splash/hoc-event-bg.jpg");
-    background-size: cover;
+    background: url("/images/splash/xl--no-ui.png") no-repeat;
     content: "";
 }
 
 .flex-row.mod-hoc-event {
-    padding: 3rem 5rem;
+    padding: 3rem 5rem 2.5rem;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .button.mod-hoc-event-dismiss {
@@ -49,13 +60,14 @@
 }
 
 .hoc-event-studio-h1 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 9rem;
     line-height: 2.5rem;
     color: $type-white;
 }
 
 .button.mod-hoc-event {
     padding: .75rem 1.75rem;
+    color: $type-white;
 }
 
 .hoc-event-studio,
@@ -63,19 +75,26 @@
     width: 23.75rem;
 }
 
-.hoc-event-video-iframe {
-    border: 3px solid $ui-border;
-    border-radius: 5px;
-    height: 13.75rem;
-}
-
 @media only screen and (max-width: $mobile - 1) {
     .hoc-event {
         width: $cols4;
+        min-height: 30rem;
+    }
+
+    .hoc-event.mod-1 {
+        min-height: 26rem;
+    }
+
+    .hoc-event.mod-2 {
+        min-height: 24rem;
+    }
+
+    .hoc-event:after {
+        background: url("/images/splash/sm--no-ui.png") no-repeat;
     }
 
     .flex-row.mod-hoc-event {
-        padding: 3rem 2rem 2rem;
+        padding: 3.5rem 2rem 2rem;
     }
 
     .hoc-event-studio,
@@ -87,22 +106,39 @@
         margin-bottom: 1rem;
     }
 
-    .hoc-event-video-iframe {
-        height: 8.75rem;
+    .hoc-event-studio-h1 {
+        margin-bottom: 8rem;
     }
 }
 
 @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
     .hoc-event {
         width: $cols6;
+        min-height: 28rem;
+    }
+
+    .hoc-event.mod-1 {
+        min-height: 24rem;
+    }
+
+    .hoc-event.mod-2 {
+        min-height: 22rem;
+    }
+
+    .hoc-event:after {
+        background: url("/images/splash/md--no-ui.png") no-repeat;
     }
 
     .flex-row.mod-hoc-event {
-        padding: 2.5rem 2.5rem 1.5rem;
+        padding: 3.5rem 2.5rem 1.5rem;
     }
 
     .hoc-event-studio {
         margin-bottom: 1rem;
+    }
+
+    .hoc-event-studio-h1 {
+        margin-bottom: 10rem;
     }
 }
 
@@ -111,8 +147,8 @@
         width: $cols8;
     }
 
-    .flex-row.mod-hoc-event {
-        padding: 1.875rem;
+    .hoc-event:after {
+        background: url("/images/splash/lg--no-ui.png") no-repeat;
     }
 
     .hoc-event-studio {

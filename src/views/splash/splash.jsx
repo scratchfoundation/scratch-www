@@ -37,7 +37,9 @@ var Splash = injectIntl(React.createClass({
             featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
             featuredGlobal: {}, // global homepage rows, such as "Featured Projects"
             showEmailConfirmationModal: true, // flag that determines whether to show banner to request email conf.
-            refreshCacheStatus: 'notrequested'
+            refreshCacheStatus: 'notrequested',
+            numCloseTries: 0,
+            bannerHeightClass: 'mod-0'
         };
     },
     getDefaultProps: function () {
@@ -169,15 +171,26 @@ var Splash = injectIntl(React.createClass({
         this.setState({emailConfirmationModalOpen: false});
     },
     handleDismiss: function (cue) {
-        api({
-            host: '',
-            uri: '/site-api/users/set-template-cue/',
-            method: 'post',
-            useCsrf: true,
-            json: {cue: cue, value: false}
-        }, function (err) {
-            if (!err) this.props.dispatch(sessionActions.refreshSession());
-        }.bind(this));
+        var newNumTries = this.state.numCloseTries + 1;
+        if (newNumTries > 2) {
+            return;
+        }
+
+        this.setState({
+            numCloseTries: newNumTries,
+            bannerHeightClass: 'mod-' + newNumTries
+        });
+        if (newNumTries > 1) {
+            api({
+                host: '',
+                uri: '/site-api/users/set-template-cue/',
+                method: 'post',
+                useCsrf: true,
+                json: {cue: cue, value: false}
+            }, function (err) {
+                if (!err) this.props.dispatch(sessionActions.refreshSession());
+            }.bind(this));
+        }
     },
     shouldShowWelcome: function () {
         if (!this.props.session.session.user || !this.props.session.session.flags.show_welcome) return false;
@@ -208,10 +221,11 @@ var Splash = injectIntl(React.createClass({
             </Box>
         ];
 
-        if (this.props.session.session.user && this.props.session.session.flags.show_hoc_studio) {
+        if (this.props.session.session.user && this.props.session.session.flags.show_april_fools) {
             rows.push(
                 <HocEventRow
-                    onDismiss={this.handleDismiss.bind(this, 'show_hoc_studio')}
+                    onDismiss={this.handleDismiss.bind(this, 'show_april_fools')}
+                    className={this.state.bannerHeightClass}
                 />
             );
         }
