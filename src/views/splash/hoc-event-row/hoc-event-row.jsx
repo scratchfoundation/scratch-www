@@ -1,3 +1,4 @@
+var classNames = require('classnames');
 var FormattedMessage = require('react-intl').FormattedMessage;
 var React = require('react');
 
@@ -12,8 +13,17 @@ var HocEventRow = React.createClass({
         onDismiss: React.PropTypes.func
     },
     render: function () {
+        var classes = classNames(
+            'hoc-event',
+            this.props.className
+        );
         return (
-            <div className="hoc-event">
+            <div
+                className={classes}
+                style={{
+                    minHeight: this.props.minHeight
+                }}
+            >
                 <Button
                     className="mod-hoc-event-dismiss"
                     onClick={this.props.onDismiss}
@@ -26,25 +36,12 @@ var HocEventRow = React.createClass({
                     />
                 </Button>
                 <FlexRow className="mod-hoc-event">
-                    <div className="hoc-event-studio">
-                        <h1 className="hoc-event-studio-h1">
-                            <FormattedMessage id="hocevent.title" />
-                        </h1>
-                        <a href="/studios/3600717/" className="button white mod-hoc-event">
-                            <FormattedMessage id="hocevent.studioLink" />
-                        </a>
-                    </div>
-                    <div className="hoc-event-video">
-                        <iframe
-                            className="hoc-event-video-iframe"
-                            title="Design a Character Studio"
-                            src="https://www.youtube-nocookie.com/embed/_srMcH7oB3Y?rel=0"
-                            frameborder="0"
-                            webkitAllowFullScreen
-                            mozallowfullscreen
-                            allowFullScreen
-                        />
-                    </div>
+                    <h1 className="hoc-event-studio-h1">
+                        <FormattedMessage id="hocevent.title" />
+                    </h1>
+                    <a href="/studios/3910789/" className="button mod-aqua mod-hoc-event">
+                        <FormattedMessage id="hocevent.studioLink" />
+                    </a>
                 </FlexRow>
             </div>
         );
