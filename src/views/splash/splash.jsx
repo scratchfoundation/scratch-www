@@ -174,15 +174,17 @@ var Splash = injectIntl(React.createClass({
     },
     handleDismiss: function (cue) {
         var newNumTries = this.state.numCloseTries + 1;
-        if (newNumTries > 2) {
-            return;
-        }
+        if (cue === 'show_april_fools') {
+            if (newNumTries > 2) {
+                return;
+            }
 
-        this.setState({
-            numCloseTries: newNumTries,
-            bannerHeightClass: 'mod-' + newNumTries
-        });
-        if (newNumTries > 1) {
+            this.setState({
+                numCloseTries: newNumTries,
+                bannerHeightClass: 'mod-' + newNumTries
+            });
+        }
+        if (newNumTries > 1 || cue !== 'show_april_fools') {
             api({
                 host: '',
                 uri: '/site-api/users/set-template-cue/',
