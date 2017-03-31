@@ -54,6 +54,8 @@ var Splash = injectIntl(React.createClass({
                 this.getActivity();
                 this.getFeaturedCustom();
                 this.getNews();
+                this.setState({numCloseTries: 0});
+                this.setState({bannerHeightClass: 'mod-0'});
             } else {
                 this.setState({featuredCustom: []});
                 this.setState({activity: []});
