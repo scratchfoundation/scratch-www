@@ -167,6 +167,13 @@
         "title": "Credits"
     },
     {
+        "name": "download",
+        "pattern": "^/scratch2download/",
+        "routeAlias": "/scratch2download/?$",
+        "view": "download/download",
+        "title": "Scratch Offline Editor"
+    },
+    {
         "name": "faq",
         "pattern": "^/info/faq/?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",

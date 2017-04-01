@@ -1,0 +1,52 @@
+@import "../../colors";
+@import "../../frameless";
+
+$developer-spot: $ui-yellow;
+
+#view {
+    padding: 0;
+}
+
+.download {
+    .title-banner {
+        &.masthead {
+            background-color: $developer-spot;
+            padding-bottom: 0;
+
+            h1 {
+                margin: 0 0 2rem 0;
+                text-align: left;
+                color: $ui-white;
+            }
+
+            p {
+                margin: 0;
+                width: $cols6;
+                text-align: left;
+                color: $ui-white;
+
+                a {
+                    border-bottom: 1px solid $ui-white;
+                    color: $ui-white;
+                }
+            }
+
+            .band {
+                $band-color: hsla(55, 100, 70, .15);
+                
+                margin-top: 2rem;
+                background-color: $band-color;
+                padding: 1rem 0;
+            }
+
+            .sub-nav {
+                text-align: left;
+                justify-content: flex-start;
+
+                li {
+                    margin: 0 .5rem 0 0;
+                }
+            }
+        }
+    }
+}
