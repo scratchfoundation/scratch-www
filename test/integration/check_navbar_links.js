@@ -7,10 +7,13 @@
 var tap=require('tap');
 var seleniumWebdriver = require('selenium-webdriver');
 
-//chrome driver
-var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
-//open scratch.ly in a new instance of the browser
-driver.get('https://scratch.ly');
+//Chrome driver
+var driver = new seleniumWebdriver.Builder()
+                .withCapabilities(seleniumWebdriver.Capabilities.chrome())
+                .build();
+//open the address for the server to test in a new instance of the browser
+var serverToTest = process.env.TEST_DOMAIN || 'https://scratch.mit.edu';
+driver.get(serverToTest);
 
 //find the create link within the navbar
 //the create link depends on whether the user is signed in or not (tips window opens)
