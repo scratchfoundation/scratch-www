@@ -164,6 +164,6 @@ var Download = React.createClass({
             </div>
         );
     }
-})
+});
 
 render(<Page><Download /></Page>, document.getElementById('app'));
