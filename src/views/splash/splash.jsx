@@ -14,7 +14,6 @@ var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
-var HocEventRow = require('./hoc-event-row/hoc-event-row.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var IframeModal = require('../../components/modal/iframe/modal.jsx');
 var News = require('../../components/news/news.jsx');
@@ -37,9 +36,7 @@ var Splash = injectIntl(React.createClass({
             featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
             featuredGlobal: {}, // global homepage rows, such as "Featured Projects"
             showEmailConfirmationModal: true, // flag that determines whether to show banner to request email conf.
-            refreshCacheStatus: 'notrequested',
-            numCloseTries: 0,
-            bannerHeightClass: 'mod-0'
+            refreshCacheStatus: 'notrequested'
         };
     },
     getDefaultProps: function () {
@@ -54,8 +51,6 @@ var Splash = injectIntl(React.createClass({
                 this.getActivity();
                 this.getFeaturedCustom();
                 this.getNews();
-                this.setState({numCloseTries: 0});
-                this.setState({bannerHeightClass: 'mod-0'});
             } else {
                 this.setState({featuredCustom: []});
                 this.setState({activity: []});
@@ -173,28 +168,15 @@ var Splash = injectIntl(React.createClass({
         this.setState({emailConfirmationModalOpen: false});
     },
     handleDismiss: function (cue) {
-        var newNumTries = this.state.numCloseTries + 1;
-        if (cue === 'show_april_fools') {
-            if (newNumTries > 2) {
-                return;
-            }
-
-            this.setState({
-                numCloseTries: newNumTries,
-                bannerHeightClass: 'mod-' + newNumTries
-            });
-        }
-        if (newNumTries > 1 || cue !== 'show_april_fools') {
-            api({
-                host: '',
-                uri: '/site-api/users/set-template-cue/',
-                method: 'post',
-                useCsrf: true,
-                json: {cue: cue, value: false}
-            }, function (err) {
-                if (!err) this.props.dispatch(sessionActions.refreshSession());
-            }.bind(this));
-        }
+        api({
+            host: '',
+            uri: '/site-api/users/set-template-cue/',
+            method: 'post',
+            useCsrf: true,
+            json: {cue: cue, value: false}
+        }, function (err) {
+            if (!err) this.props.dispatch(sessionActions.refreshSession());
+        }.bind(this));
     },
     shouldShowWelcome: function () {
         if (!this.props.session.session.user || !this.props.session.session.flags.show_welcome) return false;
@@ -224,15 +206,6 @@ var Splash = injectIntl(React.createClass({
                           settings={{slidesToShow: 4, slidesToScroll: 4, lazyLoad: false}} />
             </Box>
         ];
-
-        if (this.props.session.session.user && this.props.session.session.flags.show_april_fools) {
-            rows.push(
-                <HocEventRow
-                    onDismiss={this.handleDismiss.bind(this, 'show_april_fools')}
-                    className={this.state.bannerHeightClass}
-                />
-            );
-        }
 
         if (this.state.featuredGlobal.curator_top_projects &&
             this.state.featuredGlobal.curator_top_projects.length > 4) {
