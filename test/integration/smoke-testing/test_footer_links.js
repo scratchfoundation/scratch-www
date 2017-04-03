@@ -4,7 +4,7 @@
  * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows
  */
 
-var tap=require('tap');
+var tap = require('tap');
 var seleniumWebdriver = require('selenium-webdriver');
 
 //chrome driver

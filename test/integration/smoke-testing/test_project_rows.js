@@ -36,14 +36,18 @@ tap.test('checkFeaturedProjectsRowLinkWhenSignedOut', function (t) {
     var xPathLink = '//div[contains(@class, "thumbnail") ' +
         'and contains(@class, "project") and contains(@class, "slick-slide") ' +
         'and contains(@class, "slick-active")]/a[@class="thumbnail-image"]';
-    var checkFeaturedProjectsRowLinkWhenSignedOut = driver.findElement(seleniumWebdriver.By.xpath(xPathLink));
-    checkFeaturedProjectsRowLinkWhenSignedOut.getAttribute('href').then( function (url) {
-        //expected pattern for the project URL
-        //since I don't know the length of the project ID number,
-        //I can't use url.substr(-expectedHref.length), expectedHref);
-        var expectedUrlRegExp = new RegExp('/projects/.*[0-9].*/?');
-        t.match(url, expectedUrlRegExp);
-        t.end();
+    //var checkFeaturedProjectsRowLinkWhenSignedOut = driver.findElement(seleniumWebdriver.By.xpath(xPathLink));
+    var checkFeaturedProjectsRowLinkWhenSignedOut = driver.wait(seleniumWebdriver.until
+        .elementLocated(seleniumWebdriver.By.xpath(xPathLink)));
+    checkFeaturedProjectsRowLinkWhenSignedOut.then( function (element) {
+        element.getAttribute('href').then( function (url) {
+            //expected pattern for the project URL
+            //since I don't know the length of the project ID number,
+            //I can't use url.substr(-expectedHref.length), expectedHref);
+            var expectedUrlRegExp = new RegExp('/projects/.*[0-9].*/?');
+            t.match(url, expectedUrlRegExp);
+            t.end();
+        });
     });
 });
 
@@ -64,6 +68,8 @@ tap.test('checkFeaturedStudiosRowLinkWhenSignedOut', function (t) {
     var xPathLink = '//div[contains(@class, "thumbnail") and contains(@class, "gallery") ' +
         'and contains(@class, "slick-slide") and contains(@class, "slick-active")]/a[@class="thumbnail-image"]';
     var checkFeaturedStudiosRowLinkWhenSignedOut = driver.findElement(seleniumWebdriver.By.xpath(xPathLink));
+    //var checkFeaturedStudiosRowLinkWhenSignedOut = driver.wait(seleniumWebdriver.until
+        //.elementLocated(seleniumWebdriver.By.xpath(xPathLink)));
     checkFeaturedStudiosRowLinkWhenSignedOut.getAttribute('href').then( function (url) {
         //expected pattern for the project URL
         //since I don't know the length of the project ID number,

@@ -53,9 +53,6 @@ test:
 	@make build
 	@make tap
 
-smoke:
-	@make integration
-
 lint:
 	$(ESLINT) . --ext .js,.jsx,.json
 	$(SASSLINT) ./src/*.scss
@@ -69,6 +66,9 @@ functional:
 
 integration:
 	$(TAP) ./test/integration/*.js
+
+smoke:
+	$(TAP) ./test/integration/smoke-testing/*.js
 
 localization:
 	$(TAP) ./test/localization/*.js
