@@ -877,23 +877,35 @@ module.exports = {
                     </p>
                     <Card>
                         <Form onValidSubmit={this.onValidSubmit}>
-                            <Input label={formatMessage({id: 'general.emailAddress'})}
-                                   type="text"
-                                   name="user.email"
-                                   validations="isEmail"
-                                   validationError={formatMessage({id: 'general.validationEmail'})}
-                                   required />
-                            <Input label={formatMessage({id: 'general.confirmEmail'})}
-                                   type="text"
-                                   name="confirmEmail"
-                                   validations="equalsField:user.email"
-                                   validationErrors={{
-                                       equalsField: formatMessage({id: 'general.validationEmailMatch'})
-                                   }}
-                                   required />
+                            <Input
+                                label={formatMessage({id: 'general.emailAddress'})}
+                                type="text"
+                                name="user.email"
+                                validations="isEmail"
+                                validationError={formatMessage({id: 'general.validationEmail'})}
+                                required
+                            />
+                            <Input
+                                label={formatMessage({id: 'general.confirmEmail'})}
+                                type="text"
+                                name="confirmEmail"
+                                validations="equalsField:user.email"
+                                validationErrors={{
+                                    equalsField: formatMessage({id: 'general.validationEmailMatch'})
+                                }}
+                                required
+                            />
+                            <Checkbox
+                                label={formatMessage({id: 'registration.optIn'})}
+                                value={true}
+                                help={null}
+                                name="subscribe"
+                            />
                             <GeneralError name="all" />
-                            <NextStepButton waiting={this.props.waiting}
-                                            text={<intl.FormattedMessage id="registration.nextStep" />} />
+                            <NextStepButton
+                                waiting={this.props.waiting}
+                                text={<intl.FormattedMessage id="registration.nextStep" />}
+                            />
                         </Form>
                     </Card>
                     <StepNavigation steps={this.props.totalSteps - 1} active={this.props.activeStep} />
