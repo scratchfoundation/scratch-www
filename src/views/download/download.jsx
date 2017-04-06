@@ -7,7 +7,9 @@ var FormattedMessage = require('react-intl').FormattedMessage;
 var Page = require('../../../components/page/www/page.jsx');
 var TitleBanner = require('../../components/title-banner/title-banner.jsx');
 var FlexRow = require('../../components/flex-row/flex-row.jsx');
-var TitleBanner = require('../../components/title-banner/title-banner.jsx');
+var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+
+require('./download.scss');
 
 var Download = React.createClass({
     type: 'Download',
@@ -57,7 +59,7 @@ var Download = React.createClass({
                         <FlexRow className="three-col-row">
                             <div class="installation column">
                                 <h3><FormattedMessage id='download.airTitle' /></h3>
-                                <p><FormattedMessage id='download.airBody' /></p>
+                                <p><FormattedHTMLMessage id='download.airBody' /></p>
                                 <p>
                                     <FormattedMessage id='download.macOSX' /> -
                                     {' '}<a href="http://get.adobe.com/air/">
