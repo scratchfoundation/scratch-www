@@ -4,9 +4,10 @@
  * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows
  */
 
- /*
 var tap = require('tap');
 var seleniumWebdriver = require('selenium-webdriver');
+
+seleniumWebdriver.SELENIUM_PROMISE_MANAGER=0;
 
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
@@ -15,94 +16,132 @@ var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
 //number of tests in the plan
 //tap.plan(24);
+tap.plan(6);
 
-//load the page with the driver
-driver.get(rootUrl);
-
+//the xpath for the footer area of the page
 var xPathFooterLink = '//div[@id="footer"]/div[@class="inner"]/div[@class="lists"]';
 
-// ==== ABOUT column ====
-
-// ABOUT SCRATCH
-tap.test('checkAboutScratchLink', function (t) {
-    var checkAboutScratchLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd/a'));
-    checkAboutScratchLink.getAttribute('href').click();
+tap.tearDown(function () {
+    //quit the instance of the browser
+    driver.quit();
 });
 
-tap.test('checkAboutScratchLink', function (t) {
-    var checkAboutScratchLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd/a'));
-    checkAboutScratchLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/about';
-        //the href should be at the end of the URL
-        checkAboutScratchLink.click();
-        t.equal(url.substr(-expectedHref.length), expectedHref);
+tap.beforeEach(function () {
+    //load the page with the driver
+    return driver.get(rootUrl);
+});
+
+// Function clicks the link and returns the title of the resulting page
+function clickFooterLinks ( linkText, xpathToTitle ) {
+    return driver.wait(seleniumWebdriver.until.elementLocated(seleniumWebdriver.By
+                    .xpath(xPathFooterLink)))
+                .then( function () {
+                    return driver.findElement(seleniumWebdriver.By.linkText(linkText)); })
+                .then( function (element) { //console.log('found link');
+                    return element.click(); })
+                .then(function () { //console.log('clicked link');
+                    return driver.wait(seleniumWebdriver.until
+                        .elementLocated(seleniumWebdriver.By
+                        .xpath(xpathToTitle))); })
+                .then( function (element) {
+                    return element.getText();
+                });
+}
+
+// ABOUT SCRATCH
+tap.test('clickAboutScratchLink', function (t) {
+    var expectedPageTitle = 'About Scratch';
+    var linkText = 'About Scratch';
+    var xpathToTitle = '//div[contains(@class, "inner") and contains(@class, "about")]/h1/span';
+    clickFooterLinks(linkText, xpathToTitle).then( function (title) {
+        //console.log(title);
+        t.equal(title, expectedPageTitle);
         t.end();
     });
 });
 
 // FOR PARENTS
-tap.test('checkForParentsLink', function (t) {
-    var checkForParentsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[2]/a'));
-    checkForParentsLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/parents/';
-        //the href should be at the end of the URL
-        t.equal(url.substr(-expectedHref.length), expectedHref);
+tap.test('clickForParentsLink', function (t) {
+    var expectedPageTitle = 'For Parents';
+    var linkText = 'For Parents';
+    var xpathToTitle = '//div[contains(@class, "parents")]/div[contains(@class, "intro")]/h1/span';
+    clickFooterLinks(linkText, xpathToTitle).then( function (title) {
+        //console.log(title);
+        t.equal(title, expectedPageTitle);
         t.end();
     });
 });
 
 // FOR EDUCATORS
-tap.test('checkForEducatorsLink', function (t) {
-    var checkForEducatorsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[3]/a'));
-    checkForEducatorsLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/educators';
-        //the href should be at the end of the URL
-        t.equal(url.substr(-expectedHref.length), expectedHref);
+tap.test('clickForEducatorsLink', function (t) {
+    var expectedPageTitle = 'Scratch for Educators';
+    var linkText = 'For Educators';
+    var xpathToTitle = '//div[contains(@class, "educators")]' +
+                        '/div[contains(@class, "title-banner")]' +
+                        '/div[contains(@class, "inner")]/h1/span';
+    clickFooterLinks(linkText, xpathToTitle).then( function (title) {
+        //console.log(title);
+        t.equal(title, expectedPageTitle);
         t.end();
     });
 });
 
 // FOR DEVELOPERS
-// this fails b/c the developers link breaks with convention and is `/developers`
-tap.test('checkForDevelopersScratchLink', function (t) {
-    var checkForDevelopersLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[4]/a'));
-    checkForDevelopersLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        //console.log(url);
-        //var expectedHref = '/developers/';
-        var expectedHref = '/developers';
-        //the href should be at the end of the URL
-        t.equal(url.substr(-expectedHref.length), expectedHref);
+tap.test('clickForDevelopersScratchLink', function (t) {
+    var expectedPageTitle = 'Scratch for Developers';
+    var linkText = 'For Developers';
+    var xpathToTitle = '//div[contains(@class, "developers")]' +
+                        '/div[contains(@class, "title-banner")]' +
+                        '/div[contains(@class, "inner")]/h1/span';
+    clickFooterLinks(linkText, xpathToTitle).then( function (title) {
+        //console.log(title);
+        t.equal(title, expectedPageTitle);
         t.end();
     });
 });
 
 // CREDITS
-tap.test('checkForCreditsLink', function (t) {
-    var checkForCreditsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[5]/a'));
-    checkForCreditsLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/info/credits';
-        //the href should be at the end of the URL
-        t.equal(url.substr(-expectedHref.length), expectedHref);
+tap.test('clickCreditsLink', function (t) {
+    var expectedPageTitle = 'Scratch Credits and Contributors';
+    var linkText = 'Credits';
+    var xpathToTitle = '//div[contains(@class, "credits") and contains(@class, "inner")]' +
+                        '/h1/span';
+    clickFooterLinks(linkText, xpathToTitle).then( function (title) {
+        //console.log(title);
+        t.equal(title, expectedPageTitle);
         t.end();
     });
 });
 
 // JOBS
-tap.test('checkForJobsLink', function (t) {
-    var checkForJobsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[6]/a'));
-    checkForJobsLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/jobs';
-        //the href should be at the end of the URL
-        t.equal(url.substr(-expectedHref.length), expectedHref);
+tap.test('checkJobsLink', function (t) {
+    var expectedPageTitle = 'Want to work on an innovative project that is transforming the'
+                            + ' ways young people create, share, and learn?';
+    var linkText = 'Jobs';
+    var xpathToTitle = '//div[contains(@class, "jobs")]/div[contains(@class, "top")]' +
+                        '/div[contains(@class, "inner")]/h2/span';
+    clickFooterLinks(linkText, xpathToTitle).then( function (title) {
+        //console.log(title);
+        t.equal(title, expectedPageTitle);
         t.end();
     });
 });
+
+// PRESS
+tap.test('checkPressLink', function (t) {
+    var expectedPageTitle = 'Want to work on an innovative project that is transforming the'
+                            + ' ways young people create, share, and learn?';
+    var linkText = 'Jobs';
+    var xpathToTitle = '//div[contains(@class, "jobs")]/div[contains(@class, "top")]' +
+                        '/div[contains(@class, "inner")]/h2/span';
+    clickFooterLinks(linkText, xpathToTitle).then( function (title) {
+        //console.log(title);
+        t.equal(title, expectedPageTitle);
+        t.end();
+    });
+});
+
+/*
 
 // PRESS
 // how should the test work for external links? staging doesn't have it's own wiki, it just goes to production...

@@ -23,30 +23,21 @@ var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu';
 driver.get(rootUrl + '/statistics');
 
 tap.test('activityChartShouldExist', function (t) {
-
-	driver.wait(seleniumWebdriver.until.elementLocated(seleniumWebdriver.By.className('nv-legend-symbol')));
-
-
-    var newCommentsData = driver.findElements(seleniumWebdriver.By.className('nv-legend-symbol'));
-    newCommentsData.then(function(elements){
-    	console.log('========');
-    	console.log('========');    	
-    	console.log(elements[0].click());
-    	console.log('========')    	
+    driver.wait(function () {
+        return driver.findElements(seleniumWebdriver.By.className('nv-legend-text'))
+            .filter(function (element){
+                return element.getText().then(function (text) {
+                        if (text == 'New Comments') {
+                            return true;
+                        }
+                        return false;
+                    });
+                });
+                
+            }).then(function (elements) {
+                return elements.length > 0;
+            });
     });
-
-    //stroke-width: 2; fill: rgb(255, 127, 14); stroke: rgb(255, 127, 14);
-    //class for g element goes between class="nv-series nv-disabled" and class="nv-series"
-    //var visibleCommentsData = driver.findElement(By.cssSelector(".nv-series"));
-    //var disableCommentsData = driver.findElement(By.cssSelector(".nv-series.nv-disabled"));
-
-    
-    // newCommentsData.click().then( function () {
-    //     driver.wait(seleniumWebdriver.until
-    //         .elementLocated(seleniumWebdriver.By.cssSelector('.nv-series.nv-disabled')));
-    //     t.end();
-    // });
-});
 
 driver.quit();
 
