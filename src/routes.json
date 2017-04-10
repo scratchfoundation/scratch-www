@@ -181,6 +181,13 @@
         "title": "Jobs"
     },
     {
+        "name": "jobs-moderator",
+        "pattern": "^/jobs/moderator/?$",
+        "routeAlias": "/jobs/?$",
+        "view": "jobs/moderator/moderator",
+        "title": "Community Moderator"
+    },
+    {
         "name": "privacypolicy",
         "pattern": "^/privacy_policy/?$",
         "routeAlias": "/privacy_policy/?$",

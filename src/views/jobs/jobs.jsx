@@ -31,16 +31,16 @@ var Jobs = React.createClass({
                         <h3><FormattedMessage id='jobs.openings' /></h3>
                         <ul>
                             <li>
-                                <a href="http://bit.ly/2f5hABE">
-                                    Trust &amp; Safety Manager
+                                <a href="/jobs/moderator">
+                                    Community Moderator
                                 </a>
                                 <span>
-                                    (MIT Media Lab, Cambridge, MA)
+                                    MIT Media Lab, Cambridge, MA (or Remote)
                                 </span>
                             </li>
                             <li>
-                                <a href="http://media.mit.edu/about/opportunities/senior-backend-engineer-scratch">
-                                    Senior Back-end Engineer
+                                <a href="http://bit.ly/2f5hABE">
+                                    Trust &amp; Safety Manager
                                 </a>
                                 <span>
                                     (MIT Media Lab, Cambridge, MA)
