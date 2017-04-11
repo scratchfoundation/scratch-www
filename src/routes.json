@@ -176,14 +176,14 @@
     {
         "name": "jobs",
         "pattern": "^/jobs/?$",
-        "routeAlias": "/jobs/?$",
+        "routeAlias": "/jobs(/moderator)?/?$",
         "view": "jobs/jobs",
         "title": "Jobs"
     },
     {
         "name": "jobs-moderator",
         "pattern": "^/jobs/moderator/?$",
-        "routeAlias": "/jobs/?$",
+        "routeAlias": "/jobs(/moderator)?/?$",
         "view": "jobs/moderator/moderator",
         "title": "Community Moderator"
     },
