@@ -36,5 +36,6 @@
     "teacherRegistration.howUseScratch": "How do you plan to use Scratch at your organization?",
     "teacherRegistration.emailStepTitle": "Email Address",
     "teacherRegistration.emailStepDescription": "We will send you a confirmation email that will allow you to access your Scratch Teacher Account.",
-    "teacherRegistration.validationEmailMatch": "The emails do not match"
+    "teacherRegistration.validationEmailMatch": "The emails do not match",
+    "teacherRegistration.validationAge": "Sorry, teachers must be over 13 years old"
 }
