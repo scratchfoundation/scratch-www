@@ -306,7 +306,8 @@ module.exports = {
         getDefaultProps: function () {
             return {
                 waiting: false,
-                description: null
+                description: null,
+                birthOffset: 0
             };
         },
         getInitialState: function () {
@@ -324,9 +325,9 @@ module.exports = {
         },
         getYearOptions: function () {
             return Array.apply(null, Array(100)).map(function (v, id) {
-                var year = new Date().getFullYear() - (id + 13);
+                var year = new Date().getFullYear() - (id + this.props.birthOffset);
                 return {value: year, label: year};
-            });
+            }.bind(this));
         },
         onChooseGender: function (name, gender) {
             this.setState({otherDisabled: gender !== 'other'});
