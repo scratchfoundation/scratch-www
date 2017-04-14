@@ -107,16 +107,6 @@ var Search = injectIntl(React.createClass({
                         <TitleBanner className="masthead">
                             <div className="inner">
                                 <h1 className="title-banner-h1"><FormattedMessage id="general.search" /></h1>
-                                <div className="search">
-                                    <Form onSubmit={this.onSearchSubmit}>
-                                        <Button type="submit" className="btn-search" />
-                                        <Input type="text"
-                                               aria-label={formatMessage({id: 'general.search'})}
-                                               placeholder={formatMessage({id: 'general.search'})}
-                                               value={this.props.searchTerm}
-                                               name="q" />
-                                    </Form>
-                                </div>
                             </div>
                         </TitleBanner>
                         <Tabs>
