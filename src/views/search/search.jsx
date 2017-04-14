@@ -8,8 +8,6 @@ var api = require('../../lib/api');
 
 var Page = require('../../components/page/www/page.jsx');
 var TitleBanner = require('../../components/title-banner/title-banner.jsx');
-var Form = require('../../components/forms/form.jsx');
-var Input = require('../../components/forms/input.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Tabs = require('../../components/tabs/tabs.jsx');
 var Grid = require('../../components/grid/grid.jsx');
@@ -99,8 +97,6 @@ var Search = injectIntl(React.createClass({
         return allTab;
     },
     render: function () {
-        var formatMessage = this.props.intl.formatMessage;
-
         return (
             <div>
                 <div className='outer'>
