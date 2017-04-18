@@ -68,7 +68,7 @@ integration:
 	$(TAP) ./test/integration/*.js
 
 smoke:
-	$(TAP) ./test/integration/smoke-testing/*.js
+	$(TAP) ./test/integration/smoke-testing/*.js --timeout=3600
 
 localization:
 	$(TAP) ./test/localization/*.js

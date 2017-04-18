@@ -3,31 +3,59 @@
  *
  * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows
  */
-
+ 
+require('chromedriver');
 var tap = require('tap');
 var seleniumWebdriver = require('selenium-webdriver');
+
+// Selenium's promise driver will be deprecated, so we should not rely on it
+seleniumWebdriver.SELENIUM_PROMISE_MANAGER=0;
 
 //chrome driver
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
+//timeout for each test; timeout for suite set at command line level
+var options = { timeout: 20000 };
+
 //number of tests in the plan
 tap.plan(24);
 
-//load the page with the driver
-driver.get(rootUrl);
+tap.tearDown(function () {
+    //quit the instance of the browser
+    driver.quit();
+});
 
-var xPathFooterLink = '//div[@id="footer"]/div[@class="inner"]/div[@class="lists"]';
+tap.beforeEach(function () {
+    //load the page with the driver
+    return driver.get(rootUrl);
+});
 
-// ==== ABOUT column ====
+// Function clicks the link and returns the url of the resulting page
+function clickFooterLinks ( linkText ) {
+    // Not sure if I need this first wait - maybe it solved intermittent initial failure problem?
+    return driver.wait(seleniumWebdriver.until.elementLocated(seleniumWebdriver.By.id('view')))
+        .then( function () {
+            return driver.wait(seleniumWebdriver.until.elementLocated(seleniumWebdriver.By
+                    .id('footer')))
+                .then( function () {
+                    return driver.findElement(seleniumWebdriver.By.linkText(linkText)); })
+                .then( function (element) {
+                    return element.click(); })
+                .then(function () {
+                    return driver.getCurrentUrl();
+                });
+        });
+}
+
+// ==== ABOUT SCRATCH column ====
 
 // ABOUT SCRATCH
-tap.test('checkAboutScratchLink', function (t) {
-    var checkAboutScratchLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd/a'));
-    checkAboutScratchLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/about';
+tap.test('clickAboutScratchLink', options, function (t) {
+    var linkText = 'About Scratch';
+    var expectedHref = '/about';
+    clickFooterLinks(linkText).then( function (url) {
         //the href should be at the end of the URL
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -35,78 +63,60 @@ tap.test('checkAboutScratchLink', function (t) {
 });
 
 // FOR PARENTS
-tap.test('checkForParentsLink', function (t) {
-    var checkForParentsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[2]/a'));
-    checkForParentsLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/parents/';
-        //the href should be at the end of the URL
+tap.test('clickForParentsLink', options, function (t) {
+    var linkText = 'For Parents';
+    var expectedHref = '/parents/';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // FOR EDUCATORS
-tap.test('checkForEducatorsLink', function (t) {
-    var checkForEducatorsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[3]/a'));
-    checkForEducatorsLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/educators';
-        //the href should be at the end of the URL
+tap.test('clickForEducatorsLink', options, function (t) {
+    var linkText = 'For Educators';
+    var expectedHref = '/educators';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // FOR DEVELOPERS
-// this fails b/c the developers link breaks with convention and is `/developers`
-tap.test('checkForDevelopersScratchLink', function (t) {
-    var checkForDevelopersLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[4]/a'));
-    checkForDevelopersLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        //console.log(url);
-        //var expectedHref = '/developers/';
-        var expectedHref = '/developers';
-        //the href should be at the end of the URL
+tap.test('clickForDevelopersScratchLink', options, function (t) {
+    var linkText = 'For Developers';
+    var expectedHref = '/developers';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // CREDITS
-tap.test('checkCreditsLink', function (t) {
-    var checkCreditsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[5]/a'));
-    checkCreditsLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/info/credits';
-        //the href should be at the end of the URL
+tap.test('clickCreditsLink', options, function (t) {
+    var linkText = 'Credits';
+    var expectedHref = '/info/credits';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // JOBS
-tap.test('checkJobsLink', function (t) {
-    var checkJobsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[6]/a'));
-    checkJobsLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/jobs';
-        //the href should be at the end of the URL
+tap.test('clickJobsLink', options, function (t) {
+    var linkText = 'Jobs';
+    var expectedHref = '/jobs';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // PRESS
-// how should the test work for external links? staging doesn't have it's own wiki, it just goes to production...
-// this fails b/c the link is currently http rather than https
-tap.test('checkPressLink', function (t) {
-    var checkPressLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl/dd[7]/a'));
-    checkPressLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        //var expectedHref = 'https://wiki.scratch.mit.edu/wiki/Scratch_Press';
-        var expectedHref = 'http://wiki.scratch.mit.edu/wiki/Scratch_Press';
-        //the href should be at the end of the URL
+tap.test('clickPressLink', options, function (t) {
+    var linkText = 'Press';
+    var expectedHref = 'https://wiki.scratch.mit.edu/wiki/Scratch_Press';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url, expectedHref);
         t.end();
     });
@@ -115,53 +125,40 @@ tap.test('checkPressLink', function (t) {
 // ==== COMMUNITY column ====
 
 // COMMUNITY GUIDELINES
-tap.test('checkCommunityGuidelinesLink', function (t) {
-    var CGLink = '/dl[2]/dd/a';
-    var checkCommunityGuidelinesLink = driver.findElement(
-        seleniumWebdriver.By.xpath(xPathFooterLink + CGLink)
-    );
-    checkCommunityGuidelinesLink.getAttribute('href').then(function (url) {
-        //expected value of the href
-        var expectedHref = '/community_guidelines';
-        //the href should be at the end of the URL
+tap.test('clickCommunityGuidelinesLink', options, function (t) {
+    var linkText = 'Community Guidelines';
+    var expectedHref = '/community_guidelines';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // DISCUSSION FORUMS
-tap.test('checkDiscussionForumsLink', function (t) {
-    var checkDiscussionForumsLink = driver.findElement(
-        seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[2]/dd[2]/a')
-    );
-    checkDiscussionForumsLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/discuss/';
-        //the href should be at the end of the URL
+tap.test('clickDiscussionForumsLink', options, function (t) {
+    var linkText = 'Discussion Forums';
+    var expectedHref = '/discuss/';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // SCRATCH WIKI
-tap.test('checkScratchWikiLink', function (t) {
-    var checkScratchWikiLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[2]/dd[3]/a'));
-    checkScratchWikiLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = 'https://wiki.scratch.mit.edu/';
-        //the href should be at the end of the URL
-        t.equal(url.substr(-expectedHref.length), expectedHref);
+tap.test('clickScratchWikiLink', options, function (t) {
+    var linkText = 'Scratch Wiki';
+    var expectedHref = 'https://wiki.scratch.mit.edu/wiki/Scratch_Wiki_Home';
+    clickFooterLinks(linkText).then( function (url) {
+        t.equal(url, expectedHref);
         t.end();
     });
 });
 
 // STATISTICS
-tap.test('checkStatisticsLink', function (t) {
-    var checkStatisticsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[2]/dd[4]/a'));
-    checkStatisticsLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/statistics/';
-        //the href should be at the end of the URL
+tap.test('clickStatisticsLink', options, function (t) {
+    var linkText = 'Statistics';
+    var expectedHref = '/statistics/';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
@@ -170,60 +167,50 @@ tap.test('checkStatisticsLink', function (t) {
 // ==== SUPPORT column ====
 
 // HELP PAGE
-tap.test('checkHelpPageLink', function (t) {
-    var checkHelpPageLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[3]/dd/a'));
-    checkHelpPageLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/help/';
-        //the href should be at the end of the URL
+tap.test('clickHelpPageLink', options, function (t) {
+    var linkText = 'Help Page';
+    var expectedHref = '/help/';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // FAQ
-tap.test('checkFAQLink', function (t) {
-    var checkFAQLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[3]/dd[2]/a'));
-    checkFAQLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/info/faq';
-        //the href should be at the end of the URL
+tap.test('clickFAQLink', options, function (t) {
+    var linkText = 'FAQ';
+    var expectedHref = '/info/faq';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // OFFLINE EDITOR
-tap.test('checkOfflineEditorLink', function (t) {
-    var checkOfflineEditorLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[3]/dd[3]/a'));
-    checkOfflineEditorLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/scratch2download/';
-        //the href should be at the end of the URL
+tap.test('clickOfflineEditorLink', options, function (t) {
+    var linkText = 'Offline Editor';
+    var expectedHref = '/scratch2download/';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // CONTACT US
-tap.test('checkContactUsLink', function (t) {
-    var checkContactUsLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[3]/dd[4]/a'));
-    checkContactUsLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/contact-us/';
-        //the href should be at the end of the URL
+tap.test('clickContactUsLink', options, function (t) {
+    var linkText = 'Contact Us';
+    var expectedHref = '/contact-us/';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // DONATE
-tap.test('checkDonateLink', function (t) {
-    var checkDonateLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[3]/dd[5]/a'));
-    checkDonateLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = 'https://secure.donationpay.org/scratchfoundation/';
-        //the href should be at the end of the URL
+tap.test('clickDonateLink', options, function (t) {
+    var linkText = 'Donate';
+    var expectedHref = 'https://secure.donationpay.org/scratchfoundation/';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
@@ -232,36 +219,30 @@ tap.test('checkDonateLink', function (t) {
 // ==== LEGAL column ====
 
 // TERMS OF USE
-tap.test('checkTermsOfUseLink', function (t) {
-    var checkTermsOfUseLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[4]/dd/a'));
-    checkTermsOfUseLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/terms_of_use';
-        //the href should be at the end of the URL
+tap.test('clickTermsOfUseLink', options, function (t) {
+    var linkText = 'Terms of Use';
+    var expectedHref = '/terms_of_use';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // PRIVACY POLICY
-tap.test('checkPrivacyPolicyLink', function (t) {
-    var checkPrivacyPolicyLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[4]/dd[2]/a'));
-    checkPrivacyPolicyLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/privacy_policy';
-        //the href should be at the end of the URL
+tap.test('clickPrivacyPolicyLink', options, function (t) {
+    var linkText = 'Privacy Policy';
+    var expectedHref = '/privacy_policy';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // DMCA
-tap.test('checkDMCALink', function (t) {
-    var checkDMCALink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[4]/dd[3]/a'));
-    checkDMCALink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/DMCA';
-        //the href should be at the end of the URL
+tap.test('clickDMCALink', options, function (t) {
+    var linkText = 'DMCA';
+    var expectedHref = '/DMCA';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
@@ -270,71 +251,51 @@ tap.test('checkDMCALink', function (t) {
 // ==== SCRATCH FAMILY column ====
 
 // SCRATCH ED (SCRATCHED)
-tap.test('checkScratchEdLink', function (t) {
-    var checkScratchEdLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[5]/dd/a'));
-    checkScratchEdLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = 'http://scratched.gse.harvard.edu/';
-        //the href should be at the end of the URL
+tap.test('clickScratchEdLink', options, function (t) {
+    var linkText = 'ScratchEd';
+    var expectedHref = 'http://scratched.gse.harvard.edu/';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url, expectedHref);
         t.end();
     });
 });
 
 // SCRATCH JR (SCRATCHJR)
-// fails because it's http but should be https
-tap.test('checkScratchJrLink', function (t) {
-    var checkScratchJrLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[5]/dd[2]/a'));
-    checkScratchJrLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        //var expectedHref = 'https://www.scratchjr.org/';
-        var expectedHref = 'http://www.scratchjr.org/';
-        //the href should be at the end of the URL
+tap.test('clickScratchJrLink', options, function (t) {
+    var linkText = 'ScratchJr';
+    var expectedHref = 'http://www.scratchjr.org/';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url, expectedHref);
         t.end();
     });
 });
 
 // SCRATCH DAY
-// fails because it's http but should be https
-tap.test('checkScratchDayLink', function (t) {
-    var checkScratchDayLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[5]/dd[3]/a'));
-    checkScratchDayLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        //var expectedHref = 'https://day.scratch.mit.edu/';
-        var expectedHref = 'http://day.scratch.mit.edu/';
-        //the href should be at the end of the URL
+tap.test('clickScratchDayLink', options, function (t) {
+    var linkText = 'Scratch Day';
+    var expectedHref = 'https://day.scratch.mit.edu/';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url, expectedHref);
         t.end();
     });
 });
 
 // SCRATCH CONFERENCE
-tap.test('checkScratchConferenceLink', function (t) {
-    var checkScratchConferenceLink = driver.findElement(seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[5]/dd[4]/a'));
-    checkScratchConferenceLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        var expectedHref = '/conference';
-        //the href should be at the end of the URL
+tap.test('clickScratchConferenceLink', options, function (t) {
+    var linkText = 'Scratch Conference';
+    var expectedHref = '/conference';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
     });
 });
 
 // SCRATCH FOUNDATION
-tap.test('checkScratchFoundationLink', function (t) {
-    var checkScratchFoundationLink = driver.findElement(
-        seleniumWebdriver.By.xpath(xPathFooterLink + '/dl[5]/dd[5]/a')
-        );
-    checkScratchFoundationLink.getAttribute('href').then( function (url) {
-        //expected value of the href
-        //var expectedHref = 'https://www.scratchfoundation.org/';
-        var expectedHref = 'http://www.scratchfoundation.org/';
-        //the href should be at the end of the URL
+tap.test('clickScratchFoundationLink', options, function (t) {
+    var linkText = 'Scratch Foundation';
+    var expectedHref = 'https://www.scratchfoundation.org/';
+    clickFooterLinks(linkText).then( function (url) {
         t.equal(url, expectedHref);
         t.end();
     });
 });
-
-//quit the instance of the driver
-driver.quit();
