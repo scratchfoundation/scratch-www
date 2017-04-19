@@ -6,6 +6,7 @@
     "start": "make start",
     "stop": "make stop",
     "test": "make test",
+    "smoke": "make smoke",
     "watch": "make watch",
     "build": "make build",
     "dev": "make watch && make start &"
