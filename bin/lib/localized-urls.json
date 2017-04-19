@@ -30,8 +30,8 @@
     	"ttt.HideAndSeekGuideLoc": "/pdfs/guides/Hide-and-Seek-Guide.pdf",
     	"ttt.VirtualPetActivityLoc": "/pdfs/cards/PetCards.pdf",
     	"ttt.VirtualPetGuideLoc": "/pdfs/guides/PetGuide.pdf",
-    	"ttt.FashionActivityLoc": "/pdfs/cards/FashionCards.pdf",
-    	"ttt.FashionGuideLoc": "/pdfs/guides/FashionGuide.pdf",
+    	"ttt.DressupActivityLoc": "/pdfs/cards/DressupCards.pdf",
+    	"ttt.DressupGuideLoc": "/pdfs/guides/DressupGuide.pdf",
     	"ttt.StoryActivityLoc": "/pdfs/cards/StoryCards.pdf",
     	"ttt.StoryGuideLoc": "/pdfs/guides/StoryGuide.pdf"
     },
@@ -43,7 +43,7 @@
         "cards.nameLink": "/pdfs/cards/ca/AnimateYourNameCards.pdf",
         "cards.catchLink": "/pdfs/cards/ca/CatchCards.pdf",
         "cards.danceLink": "/pdfs/cards/ca/DanceCards.pdf",
-        "cards.fashionLink": "/pdfs/cards/ca/DrcasupCards.pdf",
+        "cards.dressupLink": "/pdfs/cards/ca/DressupCards.pdf",
         "cards.flyLink": "/pdfs/cards/ca/FlyCards.pdf",
         "cards.hideLink": "/pdfs/cards/ca/Hide-and-Seek-Cards.pdf",
         "cards.musicLink": "/pdfs/cards/ca/MusicCards.pdf",
@@ -61,7 +61,7 @@
     	"ttt.CatchActivityLoc": "/pdfs/cards/ca/CatchCards.pdf",
     	"ttt.HideAndSeekActivityLoc": "/pdfs/cards/ca/Hide-and-Seek-Cards.pdf",
     	"ttt.VirtualPetActivityLoc": "/pdfs/cards/ca/PetCards.pdf",
-    	"ttt.FashionActivityLoc": "/pdfs/cards/ca/FashionCards.pdf",
+    	"ttt.DressupActivityLoc": "/pdfs/cards/ca/DressupCards.pdf",
     	"ttt.StoryActivityLoc": "/pdfs/cards/ca/StoryCards.pdf"
     },
     "cs": {
@@ -74,7 +74,7 @@
         "cards.nameLink": "/pdfs/cards/es/AnimateYourNameCards.pdf",
         "cards.catchLink": "/pdfs/cards/es/CatchCards.pdf",
         "cards.danceLink": "/pdfs/cards/es/DanceCards.pdf",
-        "cards.fashionLink": "/pdfs/cards/es/DressupCards.pdf",
+        "cards.dressupLink": "/pdfs/cards/es/DressupCards.pdf",
         "cards.flyLink": "/pdfs/cards/es/FlyCards.pdf",
         "cards.hideLink": "/pdfs/cards/es/Hide-and-Seek-Cards.pdf",
         "cards.musicLink": "/pdfs/cards/es/MusicCards.pdf",
@@ -92,7 +92,7 @@
     	"ttt.CatchActivityLoc": "/pdfs/cards/es/CatchCards.pdf",
     	"ttt.HideAndSeekActivityLoc": "/pdfs/cards/es/Hide-and-Seek-Cards.pdf",
     	"ttt.VirtualPetActivityLoc": "/pdfs/cards/es/PetCards.pdf",
-    	"ttt.FashionActivityLoc": "/pdfs/cards/es/FashionCards.pdf",
+    	"ttt.DressupActivityLoc": "/pdfs/cards/es/DressupCards.pdf",
     	"ttt.StoryActivityLoc": "/pdfs/cards/es/StoryCards.pdf"
     },
     "fr": {
@@ -124,5 +124,31 @@
     },
     "sv": {
         "cards.starterLink": "/pdfs/cards/sv/Scratch2Cards.pdf"
+    },
+    "zh-tw": {
+        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/zh-tw/Scratch2Cards.pdf",
+        "cards.nameLink": "/pdfs/cards/zh-tw/AnimateYourNameCards.pdf",
+        "cards.catchLink": "/pdfs/cards/zh-tw/CatchCards.pdf",
+        "cards.danceLink": "/pdfs/cards/zh-tw/DanceCards.pdf",
+        "cards.dressupLink": "/pdfs/cards/zh-tw/DressupCards.pdf",
+        "cards.flyLink": "/pdfs/cards/zh-tw/FlyCards.pdf",
+        "cards.hideLink": "/pdfs/cards/zh-tw/Hide-and-Seek-Cards.pdf",
+        "cards.musicLink": "/pdfs/cards/zh-tw/MusicCards.pdf",
+        "cards.petLink": "/pdfs/cards/zh-tw/PetCards.pdf",
+        "cards.pongLink": "/pdfs/cards/zh-tw/PongCards.pdf",
+        "cards.raceLink": "/pdfs/cards/zh-tw/RaceGameCards.pdf",
+        "cards.starterLink": "/pdfs/cards/zh-tw/Scratch2Cards.pdf",
+        "cards.storyLink": "/pdfs/cards/zh-tw/StoryCards.pdf",
+	"ttt.MakeItFlyActivityLoc": "/pdfs/cards/zh-tw/FlyCards.pdf",
+    	"ttt.AnimateYourNameActivityLoc": "/pdfs/cards/zh-tw/AnimateYourNameCards.pdf",
+    	"ttt.MakeMusicActivityLoc": "/pdfs/cards/zh-tw/MusicCards.pdf",
+    	"ttt.RaceActivityLoc": "/pdfs/cards/zh-tw/RaceGameCards.pdf",
+    	"ttt.DanceActivityLoc": "/pdfs/cards/zh-tw/DanceCards.pdf",
+    	"ttt.PongActivityLoc": "/pdfs/cards/zh-tw/PongCards.pdf",
+    	"ttt.CatchActivityLoc": "/pdfs/cards/zh-tw/CatchCards.pdf",
+    	"ttt.HideAndSeekActivityLoc": "/pdfs/cards/zh-tw/Hide-and-Seek-Cards.pdf",
+    	"ttt.VirtualPetActivityLoc": "/pdfs/cards/zh-tw/PetCards.pdf",
+    	"ttt.DressupActivityLoc": "/pdfs/cards/zh-tw/DressupCards.pdf",
+    	"ttt.StoryActivityLoc": "/pdfs/cards/zh-tw/StoryCards.pdf"
     }
 }
