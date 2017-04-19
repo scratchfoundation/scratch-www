@@ -39,7 +39,6 @@
         "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ar/Scratch2Cards.pdf"
     },
     "ca": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ca/Scratch2Cards.pdf",
         "cards.nameLink": "/pdfs/cards/ca/AnimateYourNameCards.pdf",
         "cards.catchLink": "/pdfs/cards/ca/CatchCards.pdf",
         "cards.danceLink": "/pdfs/cards/ca/DanceCards.pdf",
@@ -126,7 +125,6 @@
         "cards.starterLink": "/pdfs/cards/sv/Scratch2Cards.pdf"
     },
     "zh-tw": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/zh-tw/Scratch2Cards.pdf",
         "cards.nameLink": "/pdfs/cards/zh-tw/AnimateYourNameCards.pdf",
         "cards.catchLink": "/pdfs/cards/zh-tw/CatchCards.pdf",
         "cards.danceLink": "/pdfs/cards/zh-tw/DanceCards.pdf",
@@ -137,7 +135,6 @@
         "cards.petLink": "/pdfs/cards/zh-tw/PetCards.pdf",
         "cards.pongLink": "/pdfs/cards/zh-tw/PongCards.pdf",
         "cards.raceLink": "/pdfs/cards/zh-tw/RaceGameCards.pdf",
-        "cards.starterLink": "/pdfs/cards/zh-tw/Scratch2Cards.pdf",
         "cards.storyLink": "/pdfs/cards/zh-tw/StoryCards.pdf",
 	"ttt.MakeItFlyActivityLoc": "/pdfs/cards/zh-tw/FlyCards.pdf",
     	"ttt.AnimateYourNameActivityLoc": "/pdfs/cards/zh-tw/AnimateYourNameCards.pdf",
