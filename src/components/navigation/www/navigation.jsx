@@ -202,19 +202,14 @@ var Navigation = React.createClass({
                             <FormattedMessage id="general.explore" />
                         </a>
                     </li>
-                    <li className="link discuss">
-                        <a href="/discuss">
-                            <FormattedMessage id="general.discuss" />
+                    <li className="link tips">
+                        <a href="/tips">
+                            <FormattedMessage id="general.tips" />
                         </a>
                     </li>
                     <li className="link about">
                         <a href="/about">
                             <FormattedMessage id="general.about" />
-                        </a>
-                    </li>
-                    <li className="link help">
-                        <a href="/help">
-                            <FormattedMessage id="general.help" />
                         </a>
                     </li>
 
