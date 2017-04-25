@@ -8,9 +8,6 @@ var route_json = require('../src/routes.json');
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
 
-const PASS_REQUEST_CONDITION_NAME = 'Pass';
-const NOT_PASS_REQUEST_CONDITION_NAME = '!(Pass)';
-const PASS_CACHE_CONDITION_NAME = 'Cache Pass';
 const BUCKET_NAME_HEADER_NAME = 'Bucket name';
 
 var fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY_SERVICE_ID);
@@ -121,15 +118,35 @@ async.auto({
             }
         });
     },
-    notPassRequestCondition: ['version', function (cb, results) {
-        var statement = getAppRouteCondition('../build/*', routes, extraAppRoutes);
-        var condition = {
-            name: NOT_PASS_REQUEST_CONDITION_NAME,
-            statement: statement,
-            type: 'REQUEST',
-            priority: 10
-        };
-        fastly.setCondition(results.version, condition, cb);
+    recvCustomVCL: ['version', function (cb, results) {
+        // For all the routes in routes.json, construct a varnish-style regex that matches
+        // on any of those route conditions.
+        var notPassStatement = getAppRouteCondition('../build/*', routes, extraAppRoutes);
+        
+        // For all the routes in routes.json, construct a varnish-style regex that matches
+        // only if NONE of those routes are matched.
+        var passStatement = negateConditionStatement(notPassStatement);
+        
+        // For a non-pass condition, point backend at s3
+        var backendCondition = fastly.setBackend(
+            'F_s3',
+            S3_BUCKET_NAME,
+            notPassStatement
+        );
+        // For a pass condition, set forwarding headers
+        var forwardCondition = fastly.setForwardHeaders(passStatement);
+
+        fastly.setCustomVCL(
+            results.version,
+            'recv-condition',
+            backendCondition + forwardCondition,
+            cb
+        );
+    }],
+    fetchCustomVCL: ['version', function (cb, results) {
+        var passStatement = negateConditionStatement(getAppRouteCondition('../build/*', routes, extraAppRoutes));
+        var ttlCondition = fastly.setResponseTTL(passStatement);
+        fastly.setCustomVCL(results.version, 'fetch-condition', ttlCondition, cb);
     }],
     setBucketNameHeader: ['version', 'notPassRequestCondition', function (cb, results) {
         var header = {
@@ -143,48 +160,6 @@ async.auto({
             priority: 1
         };
         fastly.setFastlyHeader(results.version, header, cb);
-    }],
-    passRequestCondition: ['version', 'notPassRequestCondition', function (cb, results) {
-        var condition = {
-            name: PASS_REQUEST_CONDITION_NAME,
-            statement: negateConditionStatement(results.notPassRequestCondition.statement),
-            type: 'REQUEST',
-            priority: 10
-        };
-        fastly.setCondition(results.version, condition, cb);
-    }],
-    passRequestSettingsCondition: ['version', 'passRequestCondition', function (cb, results) {
-        fastly.request(
-            'PUT',
-            fastly.getFastlyAPIPrefix(FASTLY_SERVICE_ID, results.version) + '/request_settings/Pass',
-            {request_condition: results.passRequestCondition.name},
-            cb
-        );
-    }],
-    backendCondition: ['version', 'notPassRequestCondition', function (cb, results) {
-        fastly.request(
-            'PUT',
-            fastly.getFastlyAPIPrefix(FASTLY_SERVICE_ID, results.version) + '/backend/s3',
-            {request_condition: results.notPassRequestCondition.name},
-            cb
-        );
-    }],
-    passCacheCondition: ['version', 'passRequestCondition', function (cb, results) {
-        var condition = {
-            name: PASS_CACHE_CONDITION_NAME,
-            type: 'CACHE',
-            statement: results.passRequestCondition.statement,
-            priority: results.passRequestCondition.priority
-        };
-        fastly.setCondition(results.version, condition, cb);
-    }],
-    passCacheSettingsCondition: ['version', 'passCacheCondition', function (cb, results) {
-        fastly.request(
-            'PUT',
-            fastly.getFastlyAPIPrefix(FASTLY_SERVICE_ID, results.version) + '/cache_settings/Pass',
-            {cache_condition: results.passCacheCondition.name},
-            cb
-        );
     }],
     appRouteRequestConditions: ['version', function (cb, results) {
         var conditions = {};

@@ -166,5 +166,94 @@ module.exports = function (apiKey, serviceId) {
         this.request('PUT', url, cb);
     };
 
+    /**
+     * Upsert a custom vcl file. Attempts a PUT, and falls back
+     * to POST if not there already.
+     *
+     * @param {number}   version current version number for fastly service
+     * @param {string}   name    name of the custom vcl file to be upserted
+     * @param {string}   vcl     stringified custom vcl to be uploaded
+     * @param {Function} cb      function that takes in two args: err, response
+     */
+    fastly.setCustomVCL = function (version, name, vcl, cb) {
+        if (!this.serviceId) {
+            return cb('Failed to set response object. No serviceId configured');
+        }
+
+        var url = this.getFastlyAPIPrefix(this.serviceId, version) + '/vcl/' + name;
+        var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/vcl';
+        var content = {content: vcl};
+        return this.request('PUT', url, content, function (err, response) {
+            if (err && err.statusCode === 404) {
+                content.name = name;
+                this.request('POST', postUrl, content, function (err, response) {
+                    if (err) {
+                        return cb('Failed while adding custom vcl \"' + name + '\": ' + err);
+                    }
+                    return cb(null, response);
+                });
+                return;
+            }
+            if (err) {
+                return cb('Failed to update custom vcl \"' + name + '\": ' + err);
+            }
+            return cb(null, response);
+        }.bind(this));
+    };
+
+    /**
+     * Returns custom vcl configuration as a string for setting the backend
+     * of a request to the given backend/host.
+     *
+     * @param {string} backend   name of the backend declared in fastly
+     * @param {string} host      name of the s3 bucket to be set as the host
+     * @param {string} condition condition under which backend should be set
+     */
+    fastly.setBackend = function (backend, host, condition) {
+        return '' +
+            'if (' + condition + ') {\n' +
+            '    set req.backend = ' + backend + ';\n' +
+            '    set req.http.host = \"' + host + '\";\n' +
+            '}\n';
+    };
+
+    /**
+     * Returns custom vcl configuration as a string for headers that
+     * should be added for the condition in which a request is forwarded.
+     *
+     * @param {string} condition condition under which to set pass headers
+     */
+    fastly.setForwardHeaders = function (condition) {
+        return '' +
+            'if (' + condition + ') {\n' +
+            '    if (!req.http.Fastly-FF) {\n' +
+            '        if (req.http.X-Forwarded-For) {\n' +
+            '            set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For \", \" client.ip;\n' +
+            '        } else {\n' +
+            '            set req.http.Fastly-Temp-XFF = client.ip;\n' +
+            '        }\n' +
+            '    } else {\n' +
+            '        set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For;\n' +
+            '    }\n' +
+            '    set req.grace = 60s;\n' +
+            '    return(pass);\n' +
+            '}\n';
+    };
+
+    /**
+     * Returns custom vcl configuration as a string that sets the varnish
+     * Time to Live (TTL) for responses that come from s3.
+     *
+     * @param {string} condition condition under which the response should be set
+     */
+    fastly.setResponseTTL = function (condition) {
+        return '' +
+            'if (' + condition + ') {\n' +
+            '    set beresp.ttl = 0s;\n' +
+            '    set beresp.grace = 0s;\n' +
+            '    return(pass);\n' +
+            '}\n';
+    };
+
     return fastly;
 };
