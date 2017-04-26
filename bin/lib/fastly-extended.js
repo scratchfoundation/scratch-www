@@ -166,5 +166,40 @@ module.exports = function (apiKey, serviceId) {
         this.request('PUT', url, cb);
     };
 
+    /**
+     * Upsert a custom vcl file. Attempts a PUT, and falls back
+     * to POST if not there already.
+     *
+     * @param {number}   version current version number for fastly service
+     * @param {string}   name    name of the custom vcl file to be upserted
+     * @param {string}   vcl     stringified custom vcl to be uploaded
+     * @param {Function} cb      function that takes in two args: err, response
+     */
+    fastly.setCustomVCL = function (version, name, vcl, cb) {
+        if (!this.serviceId) {
+            return cb('Failed to set response object. No serviceId configured');
+        }
+
+        var url = this.getFastlyAPIPrefix(this.serviceId, version) + '/vcl/' + name;
+        var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/vcl';
+        var content = {content: vcl};
+        return this.request('PUT', url, content, function (err, response) {
+            if (err && err.statusCode === 404) {
+                content.name = name;
+                this.request('POST', postUrl, content, function (err, response) {
+                    if (err) {
+                        return cb('Failed while adding custom vcl \"' + name + '\": ' + err);
+                    }
+                    return cb(null, response);
+                });
+                return;
+            }
+            if (err) {
+                return cb('Failed to update custom vcl \"' + name + '\": ' + err);
+            }
+            return cb(null, response);
+        }.bind(this));
+    };
+
     return fastly;
 };

@@ -1,16 +1,11 @@
 var async = require('async');
 var defaults = require('lodash.defaults');
-var glob = require('glob');
-var path = require('path');
+var fastlyConfig = require('./lib/fastly-config-methods');
 
 var route_json = require('../src/routes.json');
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
-
-const PASS_REQUEST_CONDITION_NAME = 'Pass';
-const NOT_PASS_REQUEST_CONDITION_NAME = '!(Pass)';
-const PASS_CACHE_CONDITION_NAME = 'Cache Pass';
 const BUCKET_NAME_HEADER_NAME = 'Bucket name';
 
 var fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY_SERVICE_ID);
@@ -23,87 +18,8 @@ var extraAppRoutes = [
     '/[^\/]*\.html$'
 ];
 
-/*
- * Given the relative path to the static directory, return an array of
- * patterns matching the files and directories there.
- */
-var getStaticPaths = function (pathToStatic) {
-    var staticPaths = glob.sync(path.resolve(__dirname, pathToStatic));
-    return staticPaths.filter(function (pathName) {
-        // Exclude view html, resolve everything else in the build
-        return path.extname(pathName) !== '.html';
-    }).map(function (pathName) {
-        // Reduce absolute path to relative paths like '/js'
-        var base = path.dirname(path.resolve(__dirname, pathToStatic));
-        return pathName.replace(base, '') + (path.extname(pathName) ? '' : '/');
-    });
-};
-
-/*
- * Given a list of express routes, return a list of patterns to match
- * the express route and a static view file associated with the route
- */
-var getViewPaths = function (routes) {
-    return routes.reduce(function (paths, route) {
-        var path = route.routeAlias || route.pattern;
-        if (paths.indexOf(path) === -1) {
-            paths.push(path);
-        }
-        return paths;
-    }, []);
-};
-
-/*
- * Translate an express-style pattern e.g. /path/:arg/ to a regex
- * all :arguments become .+?
- */
-var expressPatternToRegex = function (pattern) {
-    return pattern.replace(/(:[^/]+)/gi, '.+?');
-};
-
-/*
- * Given a list of patterns for paths, OR all of them together into one
- * string suitable for a Fastly condition
- */
-var pathsToCondition = function (paths) {
-    return 'req.url~"^(' + paths.reduce(function (conditionString, pattern) {
-        return conditionString + (conditionString ? '|' : '') + pattern;
-    }, '') + ')"';
-};
-
-/*
- * Helper method to NOT a condition statement
- */
-var negateConditionStatement = function (statement) {
-    return '!(' + statement + ')';
-};
-
-/*
- * Combine static paths, routes, and any additional paths to a single
- * fastly condition to match req.url
- */
-var getAppRouteCondition = function (pathToStatic, routes, additionalPaths) {
-    var staticPaths = getStaticPaths(pathToStatic);
-    var viewPaths = getViewPaths(routes);
-    var allPaths = [].concat(staticPaths, viewPaths, additionalPaths);
-    return pathsToCondition(allPaths);
-};
-
-var getConditionNameForRoute = function (route, type) {
-    return 'routes/' + route.pattern + ' (' + type + ')';
-};
-
-var getHeaderNameForRoute = function (route) {
-    if (route.name) return 'rewrites/' + route.name;
-    if (route.redirect) return 'redirects/' + route.pattern;
-};
-
-var getResponseNameForRoute = function (route) {
-    return 'redirects/' + route.pattern;
-};
-
 var routes = route_json.map(function (route) {
-    return defaults({}, {pattern: expressPatternToRegex(route.pattern)}, route);
+    return defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route);
 });
 
 async.auto({
@@ -121,15 +37,37 @@ async.auto({
             }
         });
     },
-    notPassRequestCondition: ['version', function (cb, results) {
-        var statement = getAppRouteCondition('../build/*', routes, extraAppRoutes);
-        var condition = {
-            name: NOT_PASS_REQUEST_CONDITION_NAME,
-            statement: statement,
-            type: 'REQUEST',
-            priority: 10
-        };
-        fastly.setCondition(results.version, condition, cb);
+    recvCustomVCL: ['version', function (cb, results) {
+        // For all the routes in routes.json, construct a varnish-style regex that matches
+        // on any of those route conditions.
+        var notPassStatement = fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname);
+        
+        // For all the routes in routes.json, construct a varnish-style regex that matches
+        // only if NONE of those routes are matched.
+        var passStatement = fastlyConfig.negateConditionStatement(notPassStatement);
+        
+        // For a non-pass condition, point backend at s3
+        var backendCondition = fastlyConfig.setBackend(
+            'F_s3',
+            S3_BUCKET_NAME,
+            notPassStatement
+        );
+        // For a pass condition, set forwarding headers
+        var forwardCondition = fastlyConfig.setForwardHeaders(passStatement);
+
+        fastly.setCustomVCL(
+            results.version,
+            'recv-condition',
+            backendCondition + forwardCondition,
+            cb
+        );
+    }],
+    fetchCustomVCL: ['version', function (cb, results) {
+        var passStatement = fastlyConfig.negateConditionStatement(
+            fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname)
+        );
+        var ttlCondition = fastlyConfig.setResponseTTL(passStatement);
+        fastly.setCustomVCL(results.version, 'fetch-condition', ttlCondition, cb);
     }],
     setBucketNameHeader: ['version', 'notPassRequestCondition', function (cb, results) {
         var header = {
@@ -144,53 +82,11 @@ async.auto({
         };
         fastly.setFastlyHeader(results.version, header, cb);
     }],
-    passRequestCondition: ['version', 'notPassRequestCondition', function (cb, results) {
-        var condition = {
-            name: PASS_REQUEST_CONDITION_NAME,
-            statement: negateConditionStatement(results.notPassRequestCondition.statement),
-            type: 'REQUEST',
-            priority: 10
-        };
-        fastly.setCondition(results.version, condition, cb);
-    }],
-    passRequestSettingsCondition: ['version', 'passRequestCondition', function (cb, results) {
-        fastly.request(
-            'PUT',
-            fastly.getFastlyAPIPrefix(FASTLY_SERVICE_ID, results.version) + '/request_settings/Pass',
-            {request_condition: results.passRequestCondition.name},
-            cb
-        );
-    }],
-    backendCondition: ['version', 'notPassRequestCondition', function (cb, results) {
-        fastly.request(
-            'PUT',
-            fastly.getFastlyAPIPrefix(FASTLY_SERVICE_ID, results.version) + '/backend/s3',
-            {request_condition: results.notPassRequestCondition.name},
-            cb
-        );
-    }],
-    passCacheCondition: ['version', 'passRequestCondition', function (cb, results) {
-        var condition = {
-            name: PASS_CACHE_CONDITION_NAME,
-            type: 'CACHE',
-            statement: results.passRequestCondition.statement,
-            priority: results.passRequestCondition.priority
-        };
-        fastly.setCondition(results.version, condition, cb);
-    }],
-    passCacheSettingsCondition: ['version', 'passCacheCondition', function (cb, results) {
-        fastly.request(
-            'PUT',
-            fastly.getFastlyAPIPrefix(FASTLY_SERVICE_ID, results.version) + '/cache_settings/Pass',
-            {cache_condition: results.passCacheCondition.name},
-            cb
-        );
-    }],
     appRouteRequestConditions: ['version', function (cb, results) {
         var conditions = {};
         async.forEachOf(routes, function (route, id, cb2) {
             var condition = {
-                name: getConditionNameForRoute(route, 'request'),
+                name: fastlyConfig.getConditionNameForRoute(route, 'request'),
                 statement: 'req.url ~ "' + route.pattern + '"',
                 type: 'REQUEST',
                 // Priority needs to be > 1 to not interact with http->https redirect
@@ -213,7 +109,7 @@ async.auto({
                 async.auto({
                     responseCondition: function (cb3) {
                         var condition = {
-                            name: getConditionNameForRoute(route, 'response'),
+                            name: fastlyConfig.getConditionNameForRoute(route, 'response'),
                             statement: 'req.url ~ "' + route.pattern + '"',
                             type: 'RESPONSE',
                             priority: id
@@ -222,16 +118,16 @@ async.auto({
                     },
                     responseObject: function (cb3) {
                         var responseObject = {
-                            name: getResponseNameForRoute(route),
+                            name: fastlyConfig.getResponseNameForRoute(route),
                             status: 301,
                             response: 'Moved Permanently',
-                            request_condition: getConditionNameForRoute(route, 'request')
+                            request_condition: fastlyConfig.getConditionNameForRoute(route, 'request')
                         };
                         fastly.setResponseObject(results.version, responseObject, cb3);
                     },
                     redirectHeader: ['responseCondition', function (cb3, redirectResults) {
                         var header = {
-                            name: getHeaderNameForRoute(route),
+                            name: fastlyConfig.getHeaderNameForRoute(route),
                             action: 'set',
                             ignore_if_set: 0,
                             type: 'RESPONSE',
@@ -248,7 +144,7 @@ async.auto({
                 });
             } else {
                 var header = {
-                    name: getHeaderNameForRoute(route, 'request'),
+                    name: fastlyConfig.getHeaderNameForRoute(route, 'request'),
                     action: 'set',
                     ignore_if_set: 0,
                     type: 'REQUEST',
