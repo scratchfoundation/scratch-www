@@ -69,19 +69,6 @@ async.auto({
         var ttlCondition = fastlyConfig.setResponseTTL(passStatement);
         fastly.setCustomVCL(results.version, 'fetch-condition', ttlCondition, cb);
     }],
-    setBucketNameHeader: ['version', 'notPassRequestCondition', function (cb, results) {
-        var header = {
-            name: BUCKET_NAME_HEADER_NAME,
-            action: 'set',
-            ignore_if_set: 0,
-            type: 'REQUEST',
-            dst: 'http.host',
-            src: '"' + S3_BUCKET_NAME + '"',
-            request_condition: results.notPassRequestCondition.name,
-            priority: 1
-        };
-        fastly.setFastlyHeader(results.version, header, cb);
-    }],
     appRouteRequestConditions: ['version', function (cb, results) {
         var conditions = {};
         async.forEachOf(routes, function (route, id, cb2) {
