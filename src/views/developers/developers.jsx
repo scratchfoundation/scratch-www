@@ -12,7 +12,7 @@ var TitleBanner = require('../../components/title-banner/title-banner.jsx');
 require('./developers.scss');
 
 var Developers = React.createClass({
-    type: 'About',
+    type: 'Developers',
     render: function () {
         return (
             <div className="developers">

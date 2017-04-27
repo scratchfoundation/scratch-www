@@ -306,7 +306,8 @@ module.exports = {
         getDefaultProps: function () {
             return {
                 waiting: false,
-                description: null
+                description: null,
+                birthOffset: 0
             };
         },
         getInitialState: function () {
@@ -324,12 +325,25 @@ module.exports = {
         },
         getYearOptions: function () {
             return Array.apply(null, Array(100)).map(function (v, id) {
-                var year = new Date().getFullYear() - id;
+                var year = new Date().getFullYear() - (id + this.props.birthOffset);
                 return {value: year, label: year};
-            });
+            }.bind(this));
         },
         onChooseGender: function (name, gender) {
             this.setState({otherDisabled: gender !== 'other'});
+        },
+        onValidSubmit: function (formData, reset, invalidate) {
+            var birthdate = new Date(
+              formData.user.birth.year,
+              formData.user.birth.month - 1,
+              1
+            );
+            if (((Date.now() - birthdate) / (24*3600*1000*365.25)) < this.props.birthOffset) {
+                return invalidate({
+                    'user.birth.year': this.props.intl.formatMessage({id: 'teacherRegistration.validationAge'})
+                });
+            }
+            return this.props.onNextStep(formData);
         },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
@@ -348,7 +362,7 @@ module.exports = {
                                  tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.props.onNextStep}>
+                        <Form onValidSubmit={this.onValidSubmit}>
                             <Select label={formatMessage({id: 'general.birthMonth'})}
                                     name="user.birth.month"
                                     options={this.getMonthOptions()}
