@@ -338,9 +338,9 @@ module.exports = {
               formData.user.birth.month - 1,
               1
             );
-            if (((Date.now() - birthdate) / (24*3600*1000*365.25)) < 13) {
+            if (((Date.now() - birthdate) / (24*3600*1000*365.25)) < this.props.birthOffset) {
                 return invalidate({
-                    'user.birth.month': this.props.intl.formatMessage({id: 'teacherRegistration.validationAge'})
+                    'user.birth.year': this.props.intl.formatMessage({id: 'teacherRegistration.validationAge'})
                 });
             }
             return this.props.onNextStep(formData);
