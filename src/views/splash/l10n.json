@@ -31,5 +31,10 @@
     "welcome.welcomeToScratch": "Welcome to Scratch!",
     "welcome.learn": "Learn how to make a project in Scratch",
     "welcome.tryOut": "Try out starter projects",
-    "welcome.connect": "Connect with other Scratchers"
+    "welcome.connect": "Connect with other Scratchers",
+
+    "splash.birthdayHeader": "Happy Birthday, Scratch!",
+    "splash.birthdayMessage": "Scratch is ten years old! Join the celebration by making a birthday card.",
+    "splash.examples": "See Examples",
+    "splash.makeCard": "Make a Card"
 }
