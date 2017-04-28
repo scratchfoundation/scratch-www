@@ -19,7 +19,7 @@ var AnniversaryBanner = injectIntl(React.createClass({
                             <p className="p mod-white"><FormattedMessage id='splash.birthdayMessage' /></p>
                         </div>
                         <FlexRow className="banner-tenth-content-buttons">
-                            <a href="#" className="button white mod-tenth-banner">
+                            <a href="/studios/3959153/" className="button white mod-tenth-banner">
                                 <FormattedMessage id='splash.examples' />
                             </a>
                             <a href="#" className="button white mod-tenth-banner">
