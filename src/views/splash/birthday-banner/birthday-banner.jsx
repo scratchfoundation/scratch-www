@@ -22,7 +22,7 @@ var AnniversaryBanner = injectIntl(React.createClass({
                             <a href="/studios/3959153/" className="button white mod-tenth-banner">
                                 <FormattedMessage id='splash.examples' />
                             </a>
-                            <a href="#" className="button white mod-tenth-banner">
+                            <a href="/projects/editor/?tip_bar=card" className="button white mod-tenth-banner">
                                 <FormattedMessage id='splash.makeCard' />
                             </a>
                         </FlexRow>
