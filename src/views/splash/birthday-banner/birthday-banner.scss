@@ -1,0 +1,101 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.flex-row.banner-tenth {
+    justify-content: space-between;
+}
+
+.h2.mod-white,
+.p.mod-white {
+    color: $type-white;
+}
+
+.banner-tenth-content,
+.banner-image.mod-tenth {
+    width: 28.75rem; // 6-col
+}
+
+.banner-tenth-content {
+    text-align: left;
+    justify-content: space-between;
+}
+
+.banner-tenth-content-buttons,
+.banner-tenth-content-text {
+    width: 100%;
+}
+
+.banner-tenth-content-buttons {
+    justify-content: flex-start;
+}
+
+.button.mod-tenth-banner {
+    margin: 0 1.25rem 0 0; // 1-gutter
+    padding: .75rem 1rem;
+    width: 6.75rem; // 2-col (minus padding)
+    text-align: center;
+}
+
+@media only screen and (max-width: $mobile - 1) {
+    .banner-tenth-content,
+    .banner-image.mod-tenth {
+        width: 18.75rem; // 6-col
+    }
+
+    .flex-row.banner-tenth {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .banner-tenth-content {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .banner-tenth-content-buttons {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .button.mod-tenth-banner {
+        margin: 0;
+    }
+}
+
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .flex-row.banner-tenth {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .banner-tenth-content {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .p.mod-white {
+        margin: 1rem auto;
+        width: 18.75rem; // 4-col
+    }
+
+    .banner-tenth-content-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .flex-row.banner-tenth {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .banner-tenth-content {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .banner-tenth-content-buttons {
+        justify-content: center;
+    }
+}
