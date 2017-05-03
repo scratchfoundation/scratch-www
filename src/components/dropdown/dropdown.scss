@@ -84,8 +84,8 @@
             content: "";
         }
     }
-}
-
-@media only screen and (max-width: $mobile - 1) {
-    min-width: 160px;
+    
+    @media only screen and (max-width: $mobile - 1) {
+        min-width: 160px;
+    }
 }
