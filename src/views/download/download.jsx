@@ -1,15 +1,16 @@
 var React = require('react');
-var render = require('../../../lib/render.jsx');
+var render = require('../../lib/render.jsx');
 
 var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 
-var Page = require('../../../components/page/www/page.jsx');
+var Page = require('../../components/page/www/page.jsx');
 var TitleBanner = require('../../components/title-banner/title-banner.jsx');
 var FlexRow = require('../../components/flex-row/flex-row.jsx');
 var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 
 require('./download.scss');
+require('../../components/forms/button.scss');
 
 var Download = React.createClass({
     type: 'Download',
@@ -60,30 +61,32 @@ var Download = React.createClass({
                             <div class="installation column">
                                 <h3><FormattedMessage id='download.airTitle' /></h3>
                                 <p><FormattedHTMLMessage id='download.airBody' /></p>
-                                <p>
-                                    <FormattedMessage id='download.macOSX' /> -
-                                    {' '}<a href="http://get.adobe.com/air/">
-                                        <FormattedMessage id='download.download' />
-                                    </a>
-                                </p>
-                                <p>
-                                    <FormattedMessage id='download.macOlder' /> -
-                                    {' '}<a href="http://airdownload.adobe.com/air/mac/download/2.6/AdobeAIR.zip">
-                                        <FormattedMessage id='download.download' />
-                                    </a>
-                                </p>
-                                <p>
-                                    <FormattedMessage id='download.windows' /> -
-                                    {' '}<a href="http://get.adobe.com/air/">
-                                        <FormattedMessage id='download.download' />
-                                    </a>
-                                </p>
-                                <p>
-                                    <FormattedMessage id='download.linux' /> -
-                                    {' '}<a href="http://airdownload.adobe.com/air/lin/download/2.6/AdobeAIRInstaller.bin">
-                                        <FormattedMessage id='download.download' />
-                                    </a>
-                                </p>
+                                <ul class="installation-downloads">
+                                    <li className="installation-downloads-item">
+                                        <FormattedMessage id='download.macOSX' /> -
+                                        {' '}<a href="http://get.adobe.com/air/">
+                                            <FormattedMessage id='download.download' />
+                                        </a>
+                                    </li>
+                                    <li className="installation-downloads-item">
+                                        <FormattedMessage id='download.macOlder' /> -
+                                        {' '}<a href="http://airdownload.adobe.com/air/mac/download/2.6/AdobeAIR.zip">
+                                            <FormattedMessage id='download.download' />
+                                        </a>
+                                    </li>
+                                    <li className="installation-downloads-item">
+                                        <FormattedMessage id='download.windows' /> -
+                                        {' '}<a href="http://get.adobe.com/air/">
+                                            <FormattedMessage id='download.download' />
+                                        </a>
+                                    </li>
+                                    <li className="installation-downloads-item">
+                                        <FormattedMessage id='download.linux' /> -
+                                        {' '}<a href="http://airdownload.adobe.com/air/lin/download/2.6/AdobeAIRInstaller.bin">
+                                            <FormattedMessage id='download.download' />
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                             <div class="installation column">
                                 <h3><FormattedMessage id='download.offlineEditorTitle' /></h3>
@@ -158,7 +161,7 @@ var Download = React.createClass({
                         <p><FormattedMessage id='download.knownIssuesOne' /></p>
                         <p><FormattedMessage id='download.knownIssuesTwo' /></p>
                         <p><FormattedHTMLMessage id='download.knownIssuesThree' /></p>
-                        <a href="https://scratch.mit.edu/discuss/3/">
+                        <a href="https://scratch.mit.edu/discuss/3/" className='button'>
                             <FormattedMessage id='download.reportBugs' />
                         </a>
                     </section>

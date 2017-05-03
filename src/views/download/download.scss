@@ -50,12 +50,24 @@ $developer-spot: $ui-yellow;
         }
     }
     .inner {
-        border-bottom: 1px solid $ui-border;
         padding-bottom: 2rem;
-        #installation {
+        
+        .installation {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
+            justify-content: space-between;
+        }
+        
+        .installation .column {
+            max-width: $cols4;
+        }
+    }
+    @media only screen and (max-width: $mobile - 1) {
+        .inner {
+            .installation .column {
+                max-width: $cols2;
+            }
         }
     }
 }
