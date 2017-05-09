@@ -50,7 +50,7 @@ var Splash = injectIntl(React.createClass({
         if (this.props.session.session.user != prevProps.session.session.user) {
             if (this.props.session.session.user) {
                 this.getActivity();
-                this.getFeaturedCustom();
+                // this.getFeaturedCustom();
                 this.getNews();
             } else {
                 this.setState({featuredCustom: []});
@@ -69,7 +69,7 @@ var Splash = injectIntl(React.createClass({
         this.getFeaturedGlobal();
         if (this.props.session.session.user) {
             this.getActivity();
-            this.getFeaturedCustom();
+            // this.getFeaturedCustom();
             this.getNews();
         } else {
             this.getProjectCount();
