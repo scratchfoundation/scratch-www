@@ -10,7 +10,6 @@ var shuffle = require('../../lib/shuffle.js').shuffle;
 
 var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
-var AnniversaryBanner = require('./birthday-banner/birthday-banner.jsx');
 var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
@@ -367,7 +366,6 @@ var Splash = injectIntl(React.createClass({
                 {this.props.permissions.educator ? [
                     <TeacherBanner key="teacherbanner" messages={messages} />
                 ] : []}
-                <AnniversaryBanner />
                 <div key="inner" className="inner mod-splash">
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.session.user ? [
