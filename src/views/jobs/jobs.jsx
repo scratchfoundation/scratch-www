@@ -38,14 +38,6 @@ var Jobs = React.createClass({
                                     MIT Media Lab, Cambridge, MA (or Remote)
                                 </span>
                             </li>
-                            <li>
-                                <a href="http://bit.ly/2f5hABE">
-                                    Trust &amp; Safety Manager
-                                </a>
-                                <span>
-                                    (MIT Media Lab, Cambridge, MA)
-                                </span>
-                            </li>
                         </ul>
                     </div>
                 </div>
