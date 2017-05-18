@@ -37,7 +37,8 @@ var FastlyConfigMethods = {
      * all :arguments become .+?
      */
     expressPatternToRegex: function (pattern) {
-        return pattern.replace(/(:[^/]+)/gi, '.+?');
+        pattern = pattern.replace(/(:\w+)(\([^\)]+\))/gi, '$2');
+        return pattern.replace(/(:\w+)/gi, '.+?');
     },
 
     /*
