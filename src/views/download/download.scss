@@ -49,23 +49,34 @@ $developer-spot: $ui-yellow;
             }
         }
     }
-    .inner {
+    
+    .download-content {
         padding-bottom: 2rem;
-        
-        .installation {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .installation .column {
-            max-width: $cols4;
-        }
     }
+    
+    .installation {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+        
+    .installation-column {
+        max-width: $cols4;
+    }
+    
+    .installation-downloads {
+        list-style: none;
+    }
+    
+    .installation-downloads-item {
+        padding: 0;
+        margin: 0.25rem;
+    }
+    
     @media only screen and (max-width: $mobile - 1) {
         .inner {
-            .installation .column {
+            .installation-column {
                 max-width: $cols2;
             }
         }
