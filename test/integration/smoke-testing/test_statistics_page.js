@@ -31,21 +31,26 @@ tap.test('activityTrendsChartShouldExist', function (t) {
     driver.wait(seleniumWebdriver.until.elementLocated(seleniumWebdriver.By
         .css('div.box-head h3')))
         .then( function (element) {
-            return element.getText('h3');})
+            return element.getText('h3');
+        })
         .then( function (text) {
-            t.equal(text, chartTitle);})
+            t.equal(text, chartTitle);
+        })
         .then( function () {
             driver.findElement(seleniumWebdriver.By.css('g.nv-series'))
                 .then( function (element) {
-                    return element.getText('text');})
+                    return element.getText('text');
+                })
                 .then( function (text) {
-                    t.equal(text, chartLegendLabel);})
+                    t.equal(text, chartLegendLabel);
+                })
                 .then( function () {
                     driver.findElement(seleniumWebdriver.By.xpath('//div[@id="activity_chart"]/*[name()="svg"]' +
                     '/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]' +
                     '/*[name()="g"]'))
                         .then( function (element) {
-                            return element.getText('text');})
+                            return element.getText('text');
+                        })
                         .then( function (text) {
                             t.equal(text, chartXLabel);
                             t.end();
@@ -64,23 +69,28 @@ tap.test('activeUsersChartShouldExist', function (t) {
         .css('div.box-head h3'))
         .then( function (elements) {
             var element = elements[1];
-            return element.getText('h3');})
+            return element.getText('h3');
+        })
         .then( function (text) {
-            t.equal(text, chartTitle);})
+            t.equal(text, chartTitle);
+        })
         .then( function () {
             driver.findElements(seleniumWebdriver.By.css('g.nv-series'))
                 .then( function (elements) {
                     // the 3 labels in the first chart's legend are elements 0 - 2 in this list
                     var element = elements[3];
-                    return element.getText('text');})
+                    return element.getText('text');
+                })
                 .then( function (text) {
-                    t.equal(text, chartLegendLabel);})
+                    t.equal(text, chartLegendLabel);
+                })
                 .then( function () {
                     driver.findElement(seleniumWebdriver.By.xpath('//div[@id="active_user_chart"]/*[name()="svg"]' +
                     '/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]' +
                     '/*[name()="g"]'))
                         .then( function (element) {
-                            return element.getText('text');})
+                            return element.getText('text');
+                        })
                         .then( function (text) {
                             t.equal(text, chartXLabel);
                             t.end();
@@ -99,23 +109,28 @@ tap.test('commentActivityChartShouldExist', function (t) {
         .css('div.box-head h3'))
         .then( function (elements) {
             var element = elements[5];
-            return element.getText('h3');})
+            return element.getText('h3');
+        })
         .then( function (text) {
-            t.equal(text, chartTitle);})
+            t.equal(text, chartTitle);
+        })
         .then( function () {
             driver.findElements(seleniumWebdriver.By.css('g.nv-series'))
                 .then( function (elements) {
                     // the labels from previous charts are elements 0 - 6 in this list
                     var element = elements[7];
-                    return element.getText('text');})
+                    return element.getText('text');
+                })
                 .then( function (text) {
-                    t.equal(text, chartLegendLabel);})
+                    t.equal(text, chartLegendLabel);
+                })
                 .then( function () {
                     driver.findElement(seleniumWebdriver.By.xpath('//div[@id="comment_chart"]/*[name()="svg"]' +
                     '/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]' +
                     '/*[name()="g"]'))
                         .then( function (element) {
-                            return element.getText('text');})
+                            return element.getText('text');
+                        })
                         .then( function (text) {
                             t.equal(text, chartXLabel);
                             t.end();
