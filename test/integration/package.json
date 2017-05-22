@@ -1,5 +1,6 @@
 {
     "testDependencies": {
-        "selenium-webdriver": "2.44.0"
+        "selenium-webdriver": "2.44.0",
+        "chromedriver": "2.27.0"
     }
 }
