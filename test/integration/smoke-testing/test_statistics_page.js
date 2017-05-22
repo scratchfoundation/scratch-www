@@ -4,26 +4,30 @@ var seleniumWebdriver = require('selenium-webdriver');
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
-//chrome driver
+/**
+ * Chrome driver
+ */
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 
 seleniumWebdriver.SELENIUM_PROMISE_MANAGER=0;
 
-//number of tests in the plan
+/**
+ * Number of tests in the plan
+ */
 tap.plan(3);
 
 tap.tearDown(function () {
-    //quit the instance of the browser
     driver.quit();
 });
 
 tap.beforeEach(function () {
-    //load the page with the driver
     return driver.get(rootUrl + '/statistics');
 });
 
-// to verify the Monthly Activity Trends Chart's presence, checks the title,
-// a label on the X axis, and a label in the legend
+/**
+ * To verify the Monthly Activity Trends Chart's presence, checks the title,
+ * a label on the X axis, and a label in the legend
+ */
 tap.test('activityTrendsChartShouldExist', function (t) {
     var chartTitle = 'Monthly Activity Trends';
     var chartLegendLabel = 'New Projects';
@@ -59,8 +63,10 @@ tap.test('activityTrendsChartShouldExist', function (t) {
         });
 });
 
-// to verify the Active Users Chart's presence, checks the title,
-// a label on the X axis, and a label in the legend
+/**
+ * To verify the Active Users Chart's presence, checks the title,
+ * a label on the X axis, and a label in the legend
+ */
 tap.test('activeUsersChartShouldExist', function (t) {
     var chartTitle = 'Monthly Active Users';
     var chartLegendLabel = 'Project Creators';
@@ -77,7 +83,9 @@ tap.test('activeUsersChartShouldExist', function (t) {
         .then( function () {
             driver.findElements(seleniumWebdriver.By.css('g.nv-series'))
                 .then( function (elements) {
-                    // the 3 labels in the first chart's legend are elements 0 - 2 in this list
+                    /**
+                     * The 3 labels in the first chart's legend are elements 0 - 2 in this list
+                     */
                     var element = elements[3];
                     return element.getText('text');
                 })
@@ -99,8 +107,10 @@ tap.test('activeUsersChartShouldExist', function (t) {
         });
 });
 
-// to verify the Comment Activity Chart's presence, checks the title,
-// a label on the X axis, and a label in the legend
+/**
+ * To verify the Comment Activity Chart's presence, checks the title,
+ * a label on the X axis, and a label in the legend
+ */
 tap.test('commentActivityChartShouldExist', function (t) {
     var chartTitle = 'Monthly Comment Activity';
     var chartLegendLabel = 'Stacked';
@@ -117,7 +127,9 @@ tap.test('commentActivityChartShouldExist', function (t) {
         .then( function () {
             driver.findElements(seleniumWebdriver.By.css('g.nv-series'))
                 .then( function (elements) {
-                    // the labels from previous charts are elements 0 - 6 in this list
+                    /**
+                     * The labels from previous charts are elements 0 - 6 in this list
+                     */
                     var element = elements[7];
                     return element.getText('text');
                 })
