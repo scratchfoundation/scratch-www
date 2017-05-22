@@ -1,0 +1,5 @@
+{
+    "testDependencies": {
+        "selenium-webdriver": "2.44.0"
+    }
+}
