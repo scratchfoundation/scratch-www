@@ -5,6 +5,7 @@ S3CMD=s3cmd sync -P --delete-removed --add-header=Cache-Control:no-cache,public,
 TAP=./node_modules/.bin/tap
 WATCH=./node_modules/.bin/watch
 WEBPACK=./node_modules/.bin/webpack
+COMPOSE_FILE=test/integration/docker-compose.yml
 
 # ------------------------------------
 
@@ -65,7 +66,7 @@ functional:
 	$(TAP) ./test/functional/*.js
 
 integration:
-	$(TAP) ./test/integration/*.js
+	docker-compose --file $(COMPOSE_FILE) run --rm scratch-test make test
 
 smoke:
 	$(TAP) ./test/integration/smoke-testing/*.js --timeout=3600

@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+    "nightwatch": "^0.9.9"
+  }
+}

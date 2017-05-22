@@ -20,13 +20,20 @@ routes.forEach(route => {
     app.get(route.pattern, handler(route));
 });
 
-app.use(webpackDevMiddleware(compiler));
+if (process.env.NODE_ENV !== 'production') {
+    // serve the content using webpack
+    app.use(webpackDevMiddleware(compiler));
 
-var proxyHost = process.env.FALLBACK || '';
-if (proxyHost !== '') {
-    // Fall back to scratchr2 in development
-    // This proxy middleware must come last
-    app.use('/', proxy(proxyHost));
+    var proxyHost = process.env.FALLBACK || '';
+    if (proxyHost !== '') {
+        // Fall back to scratchr2 in development
+        // This proxy middleware must come last
+        app.use('/', proxy(proxyHost));
+    }
+
+} else {
+    // serve the content using static directory
+    app.use(express.static('./build'));
 }
 
 // Start listening

@@ -1,0 +1,13 @@
+.DS_Store
+.dockerignore
+.eslintignore
+.eslintrc
+.sass-lint.yml
+.travis.yml
+build/
+intl/
+node_modules/
+reports/
+screenshots/
+Dockerfile
+README.md

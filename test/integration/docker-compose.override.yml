@@ -1,0 +1,9 @@
+version: '2'
+services:
+  scratch-test:
+    depends_on:
+      - scratch-www
+      - selenium
+    command: /bin/bash
+    volumes:
+      - .:/home/test/integration
