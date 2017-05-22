@@ -2,7 +2,7 @@ require('chromedriver');
 var tap = require('tap');
 var seleniumWebdriver = require('selenium-webdriver');
 
-var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
+var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu';
 
 /**
  * Chrome driver
@@ -71,8 +71,8 @@ tap.test('activeUsersChartShouldExist', function (t) {
     var chartTitle = 'Monthly Active Users';
     var chartLegendLabel = 'Project Creators';
     var chartXLabel = '01/2008';
-    driver.findElements(seleniumWebdriver.By
-        .css('div.box-head h3'))
+    driver.wait(seleniumWebdriver.until.elementsLocated(seleniumWebdriver.By
+        .css('div.box-head h3')))
         .then( function (elements) {
             var element = elements[1];
             return element.getText('h3');
@@ -115,8 +115,8 @@ tap.test('commentActivityChartShouldExist', function (t) {
     var chartTitle = 'Monthly Comment Activity';
     var chartLegendLabel = 'Stacked';
     var chartXLabel = '01/2008';
-    driver.findElements(seleniumWebdriver.By
-        .css('div.box-head h3'))
+    driver.wait(seleniumWebdriver.until.elementsLocated(seleniumWebdriver.By
+        .css('div.box-head h3')))
         .then( function (elements) {
             var element = elements[5];
             return element.getText('h3');
