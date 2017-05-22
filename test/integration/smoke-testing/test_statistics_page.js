@@ -2,7 +2,7 @@ require('chromedriver');
 var tap = require('tap');
 var seleniumWebdriver = require('selenium-webdriver');
 
-var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu';
+var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
 /**
  * Chrome driver
