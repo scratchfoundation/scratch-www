@@ -193,6 +193,13 @@
         "title": "Microworlds"
     },
     {
+        "name": "parents",
+        "pattern": "^/parents?$",
+        "routeAlias": "/parents",
+        "view": "parents/parents",
+        "title": "For Parents"
+    },
+    {
         "name": "privacypolicy",
         "pattern": "^/privacy_policy/?$",
         "routeAlias": "/privacy_policy/?$",
