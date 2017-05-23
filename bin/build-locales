@@ -208,6 +208,7 @@ async.forEachLimit(views, 5, function (view, cb) {
                             process.stdout.write('No translations for ' + view + isoCode + ', using english\n');
                         }
                         viewLocales[isoCode] = merge({}, generalLocales[isoCode], defaultLocales[view]);
+                        defaults(viewLocales[isoCode], generalLocales['en']);
                     }
                     return cb();
                 } else {
