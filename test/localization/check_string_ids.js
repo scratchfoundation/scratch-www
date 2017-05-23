@@ -1,3 +1,14 @@
+/**
+ * Tests whether any page in www has any languages which are missing string IDs
+ * - checks every language against the list of english IDs for that page
+ * - test fails if the length of the list of languages missing any IDs is not 0
+ * - if the test fails, you can see which pages/ languages/ IDs are causing the failure:
+ *   - Object.keys(pagesWithLanguagesMissingIds) gives you a list
+ *     of the pages which had languages with missing IDs
+ *   - pagesWithLanguagesMissingIds['pageName.intl.js'] gives you an object
+ *     with languages as keys and the missing IDs as values
+ */
+
 var path = require('path');
 var fs = require('fs');
 var tap = require('tap');
@@ -9,6 +20,13 @@ var tap = require('tap');
 var intlDirPath = path.resolve(__dirname, '../../intl/');
 var intlFiles = fs.readdirSync(intlDirPath);
 
+/**
+ * Tells tap whether the test should pass or fail for a given file.
+ * @param {string} file
+ * @param {Object} messageIdNotInLanguage
+ * @param {Object} pagesWithLanguagesMissingIds
+ * @returns {Object} pagesWithLanguagesMissingIds
+ */
 function noMissingStrings (file, messageIdNotInLanguage, pagesWithLanguagesMissingIds) {
     if (Object.keys(messageIdNotInLanguage).length == 0) {
         tap.pass();
