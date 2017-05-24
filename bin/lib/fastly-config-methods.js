@@ -33,8 +33,10 @@ var FastlyConfigMethods = {
     },
 
     /*
-     * Translate an express-style pattern e.g. /path/:arg/ to a regex
-     * all :arguments become .+?
+     * Translate an express-style pattern to regex one in two ways:
+     *
+     * 1. /path/:arg/ – all :arg's become .+?
+     * 2. /path/:arg([regex]) – :arg is removed, leaving just /path/([regex])
      */
     expressPatternToRegex: function (pattern) {
         pattern = pattern.replace(/(:\w+)(\([^\)]+\))/gi, '$2');
