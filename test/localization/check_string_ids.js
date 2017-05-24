@@ -22,21 +22,19 @@ var intlFiles = fs.readdirSync(intlDirPath);
 
 /**
  * Tells tap whether the test should pass or fail for a given file.
- * @param {string} file
- * @param {Object} messageIdNotInLanguage
- * @param {Object} pagesWithLanguagesMissingIds
- * @returns {Object} pagesWithLanguagesMissingIds
+ * @param {string} fileName
+ * @param {Object} missingMessageId
+ * @param {Object} pagesMissingIds
  */
-function noMissingStrings (file, messageIdNotInLanguage, pagesWithLanguagesMissingIds) {
-    if (Object.keys(messageIdNotInLanguage).length == 0) {
+function noMissingStrings (fileName, missingMessageId, pagesMissingIds) {
+    if (Object.keys(missingMessageId).length == 0) {
         tap.pass();
     }
     else {
-        tap.fail(file + ' is missing string IDs');
-        pagesWithLanguagesMissingIds[file] = [];
-        pagesWithLanguagesMissingIds[file].push(messageIdNotInLanguage);
+        tap.fail(fileName + ' is missing string IDs');
+        pagesMissingIds[fileName] = [];
+        pagesMissingIds[fileName].push(missingMessageId);
     }
-    return pagesWithLanguagesMissingIds;
 }
 
 var pagesWithLanguagesMissingIds = {};
@@ -71,5 +69,5 @@ for (var i in intlFiles) {
             }
         }
     }
-    pagesWithLanguagesMissingIds = noMissingStrings(file, messageIdNotInLanguage, pagesWithLanguagesMissingIds);
+    noMissingStrings(file, messageIdNotInLanguage, pagesWithLanguagesMissingIds);
 }
