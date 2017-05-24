@@ -379,14 +379,14 @@ var ConferenceSplash = React.createClass({
                                     <td><FormattedMessage id='conference-2017.date' /></td>
                                     <td>
                                         <FormattedDate
-                                            value={new Date(2017, 8, 28)}
+                                            value={new Date(2017, 9, 5)}
                                             year='numeric'
                                             month='long'
                                             day='2-digit'
                                         />
                                         {' - '}
                                         <FormattedDate
-                                            value={new Date(2017, 8, 30)}
+                                            value={new Date(2017, 9, 7)}
                                             year='numeric'
                                             month='long'
                                             day='2-digit'
