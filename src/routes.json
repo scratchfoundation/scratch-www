@@ -196,7 +196,7 @@
     },
     {
         "name": "search",
-        "pattern": "^/search/:projects?$/?$",
+        "pattern": "^/search/:projects/?$",
         "routeAlias": "/search",
         "view": "search/search",
         "title": "Search"
