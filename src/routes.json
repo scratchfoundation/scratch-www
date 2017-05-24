@@ -127,7 +127,7 @@
     },
     {
         "name": "explore",
-        "pattern": "^/explore/:projects/:all/?$",
+        "pattern": "^/explore/:projects(projects|studios)/:all/?$",
         "routeAlias": "/explore(?!/ajax)",
         "view": "explore/explore",
         "title": "Explore"
