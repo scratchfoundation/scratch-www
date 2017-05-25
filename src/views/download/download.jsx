@@ -166,7 +166,7 @@ var Download = React.createClass({
                             <p><FormattedMessage id='download.knownIssuesOne' /></p>
                             <p><FormattedMessage id='download.knownIssuesTwo' /></p>
                             <p><FormattedHTMLMessage id='download.knownIssuesThree' /></p>
-                            <a href="https://scratch.mit.edu/discuss/3/" className='button'>
+                            <a href="https://scratch.mit.edu/discuss/3/" className='button mod-link'>
                                 <FormattedMessage id='download.reportBugs' />
                             </a>
                         </section>

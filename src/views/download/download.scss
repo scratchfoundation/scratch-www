@@ -1,7 +1,7 @@
 @import "../../colors";
 @import "../../frameless";
 
-$developer-spot: $ui-yellow;
+$developer-spot: $splash-blue;
 
 #view {
     padding: 0;
@@ -32,7 +32,7 @@ $developer-spot: $ui-yellow;
             }
 
             .band {
-                $band-color: hsla(55, 100, 70, .15);
+                $band-color: #3baddd;
                 
                 margin-top: 2rem;
                 background-color: $band-color;
@@ -67,6 +67,7 @@ $developer-spot: $ui-yellow;
     
     .installation-downloads {
         list-style: none;
+        padding-left: 0;
     }
     
     .installation-downloads-item {
@@ -74,10 +75,21 @@ $developer-spot: $ui-yellow;
         padding: 0;
     }
     
+    section {
+        margin-bottom: 2rem;
+    }
+    
+    .mod-link {
+        color: $ui-white;
+    }
+    
     @media only screen and (max-width: $mobile - 1) {
+        p {
+            width: $cols3;
+        }
         .inner {
             .installation-column {
-                max-width: $cols2;
+                max-width: 100%;
             }
         }
     }
