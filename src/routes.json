@@ -19,6 +19,13 @@
         "title": "About"
     },
     {
+        "name": "parents",
+        "pattern": "^/parents/?$",
+        "routeAlias": "/parents/?$",
+        "view": "parents/parents",
+        "title": "For Parents"
+    },
+    {
         "name": "guidelines",
         "pattern": "^/community_guidelines/?$",
         "routeAlias": "/community_guidelines/?$",
