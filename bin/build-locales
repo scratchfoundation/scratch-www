@@ -32,12 +32,13 @@
     }
     '''
 */
-var fs = require('fs');
-var path = require('path');
-var merge = require('lodash.merge');
 var async = require('async');
+var fs = require('fs');
 var languages = require('../languages.json');
 var localizedUrls = require('./lib/localized-urls');
+var merge = require('lodash.merge');
+var defaults = require('lodash.defaults');
+var path = require('path');
 var routes = require('../src/routes.json');
 
 // -----------------------------------------------------------------------------
@@ -207,6 +208,7 @@ async.forEachLimit(views, 5, function (view, cb) {
                             process.stdout.write('No translations for ' + view + isoCode + ', using english\n');
                         }
                         viewLocales[isoCode] = merge({}, generalLocales[isoCode], defaultLocales[view]);
+                        defaults(viewLocales[isoCode], generalLocales['en']);
                     }
                     return cb();
                 } else {
@@ -215,6 +217,7 @@ async.forEachLimit(views, 5, function (view, cb) {
             }
             try {
                 viewLocales[isoCode] = merge({}, generalLocales[isoCode], JSON.parse(data));
+                defaults(viewLocales[isoCode], viewLocales['en']);
             } catch (e) {
                 return cb(e);
             }
