@@ -54,6 +54,10 @@ $developer-spot: $splash-blue;
         padding-bottom: 2rem;
     }
     
+    .three-col-row {
+        align-items: flex-start;
+    }
+    
     .installation {
         display: flex;
         flex-wrap: wrap;
@@ -84,9 +88,6 @@ $developer-spot: $splash-blue;
     }
     
     @media only screen and (max-width: $mobile - 1) {
-        p {
-            width: $cols3;
-        }
         .inner {
             .installation-column {
                 max-width: 100%;
