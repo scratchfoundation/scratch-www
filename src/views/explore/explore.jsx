@@ -70,7 +70,7 @@ var Explore = injectIntl(React.createClass({
         var qText = '&q=' + this.props.acceptableTabs[this.props.category] || '*';
 
         api({
-            uri: '/search/' + this.props.itemType +
+            uri: '/explore/' + this.props.itemType +
                  '?limit=' + this.props.loadNumber +
                  '&offset=' + this.state.offset +
                  '&language=' + this.props.intl.locale +
