@@ -1,152 +1,69 @@
-require('chromedriver');
 var tap = require('tap');
-var seleniumWebdriver = require('selenium-webdriver');
+const test = tap.test;
+const webdriver = require('selenium-webdriver');
+const By = webdriver.By;
+const until = webdriver.until;
 
-var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
+const driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
 
-/**
- * Chrome driver
- */
-var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
+const findByXpath = (xpath) => {
+    return driver.wait(until.elementLocated(By.xpath(xpath), 1000 * 5));
+};
 
-seleniumWebdriver.SELENIUM_PROMISE_MANAGER=0;
+const findByCss = (css) => {
+    return driver.wait(until.elementLocated(By.css(css), 1000 * 5));
+};
 
-/**
- * Number of tests in the plan
- */
-tap.plan(3);
+const clickXpath = (xpath) => {
+    return findByXpath(xpath).then(el => el.click());
+};
+
+const clickText = (text) => {
+    return clickXpath(`//*[contains(text(), '${text}')]`);
+};
+
+tap.plan(2);
 
 tap.tearDown(function () {
+    //quit the instance of the browser
     driver.quit();
 });
 
 tap.beforeEach(function () {
-    return driver.get(rootUrl + '/statistics');
+    //load the page with the driver
+    return driver.get('https://scratch.mit.edu/statistics');
 });
 
-/**
- * To verify the Monthly Activity Trends Chart's presence, checks the title,
- * a label on the X axis, and a label in the legend
- */
-tap.test('activityTrendsChartShouldExist', function (t) {
+test('check that Monthly Activity Trends title is present & correct', t => {
     var chartTitle = 'Monthly Activity Trends';
-    var chartLegendLabel = 'New Projects';
-    var chartXLabel = '01/2008';
-    driver.wait(seleniumWebdriver.until.elementLocated(seleniumWebdriver.By
-        .css('div.box-head h3')))
-        .then( function (element) {
-            return element.getText('h3');
-        })
-        .then( function (text) {
-            t.equal(text, chartTitle);
-        })
-        .then( function () {
-            driver.findElement(seleniumWebdriver.By.css('g.nv-series'))
-                .then( function (element) {
-                    return element.getText('text');
-                })
-                .then( function (text) {
-                    t.equal(text, chartLegendLabel);
-                })
-                .then( function () {
-                    driver.findElement(seleniumWebdriver.By.xpath('//div[@id="activity_chart"]/*[name()="svg"]' +
-                    '/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]' +
-                    '/*[name()="g"]'))
-                        .then( function (element) {
-                            return element.getText('text');
-                        })
-                        .then( function (text) {
-                            t.equal(text, chartXLabel);
-                            t.end();
-                        });
-                });
-        });
+    findByCss('div.box-head h3')
+    .then( function (element) {
+        return element.getText('h3');
+    })
+    .then( function (text) {
+        t.equal(text, chartTitle);
+    })
+    .then(() => t.end());
 });
 
-/**
- * To verify the Active Users Chart's presence, checks the title,
- * a label on the X axis, and a label in the legend
- */
-tap.test('activeUsersChartShouldExist', function (t) {
-    var chartTitle = 'Monthly Active Users';
-    var chartLegendLabel = 'Project Creators';
-    var chartXLabel = '01/2008';
-    driver.wait(seleniumWebdriver.until.elementsLocated(seleniumWebdriver.By
-        .css('div.box-head h3')))
-        .then( function (elements) {
-            var element = elements[1];
-            return element.getText('h3');
-        })
-        .then( function (text) {
-            t.equal(text, chartTitle);
-        })
-        .then( function () {
-            driver.findElements(seleniumWebdriver.By.css('g.nv-series'))
-                .then( function (elements) {
-                    /**
-                     * The 3 labels in the first chart's legend are elements 0 - 2 in this list
-                     */
-                    var element = elements[3];
-                    return element.getText('text');
-                })
-                .then( function (text) {
-                    t.equal(text, chartLegendLabel);
-                })
-                .then( function () {
-                    driver.findElement(seleniumWebdriver.By.xpath('//div[@id="active_user_chart"]/*[name()="svg"]' +
-                    '/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]' +
-                    '/*[name()="g"]'))
-                        .then( function (element) {
-                            return element.getText('text');
-                        })
-                        .then( function (text) {
-                            t.equal(text, chartXLabel);
-                            t.end();
-                        });
-                });
-        });
+test('check that Monthly Activity Trends chart > New Projects label is toggleable', t => {
+    findByXpath(`//div[@id="activity_chart"]/*[contains(@class, nv-series)]`)
+    .then( function (element) {
+        t.ok(element);
+    })
+    .then(() => clickText('New Projects'))
+    .then(() => findByXpath(`//div[@id="activity_chart"]/*[contains(@class, nv-series)`
+        + `and contains(@class, nv-disabled)]`))
+    .then( function (element) {
+        t.ok(element);
+    })
+    .then(() => clickText('New Projects'))
+    .then(() => findByXpath(`//div[@id="activity_chart"]/*[contains(@class, nv-series)]`))
+    .then( function (element) {
+        t.ok(element);
+    })
+    .then(() => t.end());
 });
 
-/**
- * To verify the Comment Activity Chart's presence, checks the title,
- * a label on the X axis, and a label in the legend
- */
-tap.test('commentActivityChartShouldExist', function (t) {
-    var chartTitle = 'Monthly Comment Activity';
-    var chartLegendLabel = 'Stacked';
-    var chartXLabel = '01/2008';
-    driver.wait(seleniumWebdriver.until.elementsLocated(seleniumWebdriver.By
-        .css('div.box-head h3')))
-        .then( function (elements) {
-            var element = elements[5];
-            return element.getText('h3');
-        })
-        .then( function (text) {
-            t.equal(text, chartTitle);
-        })
-        .then( function () {
-            driver.findElements(seleniumWebdriver.By.css('g.nv-series'))
-                .then( function (elements) {
-                    /**
-                     * The labels from previous charts are elements 0 - 6 in this list
-                     */
-                    var element = elements[7];
-                    return element.getText('text');
-                })
-                .then( function (text) {
-                    t.equal(text, chartLegendLabel);
-                })
-                .then( function () {
-                    driver.findElement(seleniumWebdriver.By.xpath('//div[@id="comment_chart"]/*[name()="svg"]' +
-                    '/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]/*[name()="g"]' +
-                    '/*[name()="g"]'))
-                        .then( function (element) {
-                            return element.getText('text');
-                        })
-                        .then( function (text) {
-                            t.equal(text, chartXLabel);
-                            t.end();
-                        });
-                });
-        });
-});
