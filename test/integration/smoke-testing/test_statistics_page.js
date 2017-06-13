@@ -52,6 +52,10 @@ test('check that Monthly Activity Trends chart > New Projects label is toggleabl
     findByXpath(`//div[@id="activity_chart"]/*[contains(@class, nv-series)]`)
     .then( function (element) {
         t.ok(element);
+        return element.getAttribute("class");
+    })
+    .then( function (classtext) {
+        console.log(classtext);
     })
     .then(() => clickText('New Projects'))
     .then(() => findByXpath(`//div[@id="activity_chart"]/*[contains(@class, nv-series)`
