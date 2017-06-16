@@ -4,6 +4,7 @@ var render = require('../../lib/render.jsx');
 var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 
+var api = require('../../lib/api');
 var Page = require('../../components/page/www/page.jsx');
 var TitleBanner = require('../../components/title-banner/title-banner.jsx');
 var FlexRow = require('../../components/flex-row/flex-row.jsx');
@@ -14,7 +15,33 @@ require('../../components/forms/button.scss');
 
 var Download = React.createClass({
     type: 'Download',
+    getInitialState: function () {
+        return {
+            swfVersion: '456.0.3'
+        };
+    },
+    componentDidMount: function () {
+        api({
+            host: '',
+            uri: '/scratchr2/static/sa/version.xml',
+            responseType: 'string'
+        }, function (err, body) {
+            if (err) return;
+
+            var doc = new DOMParser().parseFromString(body, 'text/xml');
+            return this.setState({
+                swfVersion: doc.getElementsByTagName('versionNumber')[0].childNodes[0].nodeValue
+            });
+        }.bind(this));
+    },
     render: function () {
+        var downloadUrls = {
+            mac: '/scratchr2/static/sa/Scratch-'+ this.state.swfVersion + '.dmg',
+            mac105: '/scratchr2/static/sa/Scratch-'+ this.state.swfVersion + '.air',
+            windows: '/scratchr2/static/sa/Scratch-'+ this.state.swfVersion + '.exe',
+            linux: '/scratchr2/static/sa/Scratch-'+ this.state.swfVersion + '.air'
+        };
+
         return (
             <div className="download">
                 <TitleBanner className="masthead">
@@ -95,25 +122,25 @@ var Download = React.createClass({
                                     <ul className="installation-downloads">
                                         <li className="installation-downloads-item">
                                             <FormattedMessage id='download.macOSX' /> -
-                                            {' '}<a href="http://get.adobe.com/air/">
+                                            {' '}<a href={downloadUrls.mac}>
                                                 <FormattedMessage id='download.download' />
                                             </a>
                                         </li>
                                         <li className="installation-downloads-item">
                                             <FormattedMessage id='download.macOlder' /> -
-                                            {' '}<a href="http://airdownload.adobe.com/air/mac/download/2.6/AdobeAIR.zip">
+                                            {' '}<a href={downloadUrls.mac105}>
                                                 <FormattedMessage id='download.download' />
                                             </a>
                                         </li>
                                         <li className="installation-downloads-item">
                                             <FormattedMessage id='download.windows' /> -
-                                            {' '}<a href="http://get.adobe.com/air/">
+                                            {' '}<a href={downloadUrls.windows}>
                                                 <FormattedMessage id='download.download' />
                                             </a>
                                         </li>
                                         <li className="installation-downloads-item">
                                             <FormattedMessage id='download.linux' /> -
-                                            {' '}<a href="http://airdownload.adobe.com/air/lin/download/2.6/AdobeAIRInstaller.bin">
+                                            {' '}<a href={downloadUrls.linux}>
                                                 <FormattedMessage id='download.download' />
                                             </a>
                                         </li>
@@ -150,7 +177,14 @@ var Download = React.createClass({
                             <span className="nav-spacer"></span>
                             <h2><FormattedMessage id='download.updatesTitle' /></h2>
                             <p><FormattedMessage id='download.updatesBody' /></p>
-                            <p><FormattedMessage id='download.currentVersion' /></p>
+                            <p>
+                                <FormattedMessage
+                                    id='download.currentVersion'
+                                    values={{
+                                        version: this.state.swfVersion
+                                    }}
+                                />
+                            </p>
                         </section>
 
                         <section id="other">

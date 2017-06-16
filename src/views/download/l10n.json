@@ -19,7 +19,7 @@
   "download.scratchCards": "Scratch Cards",
   "download.updatesTitle": "Updates",
   "download.updatesBody": "The Offline Editor can update itself (with user permission). It will check for updates at startup or you can use the \"Check for updates\" command in the file menu.",
-  "download.currentVersion": "The current version is 454.",
+  "download.currentVersion": "The current version is {version}.",
   "download.otherVersionsTitle": "Other Versions of Scratch",
   "download.otherVersionsOlder": "If you have an older computer, or cannot install the Scratch 2.0 offline editor, you can try installing <a href=\"http://scratch.mit.edu/scratch_1.4/\">Scratch 1.4</a>.",
   "download.otherVersionsAdmin": "If you are a network administrator: a Scratch 2.0 MSI has been created and maintained by a member of the community and hosted for public download <a href=\"http://llk.github.io/scratch-msi/\">here</a>.",
