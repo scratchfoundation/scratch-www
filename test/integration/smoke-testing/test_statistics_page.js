@@ -10,6 +10,7 @@ const driver = new webdriver.Builder()
 
 const findByXpath = (xpath) => {
     return driver.wait(until.elementLocated(By.xpath(xpath), 1000 * 5));
+    //return driver.findElement(By.xpath(xpath));
 };
 
 const findByCss = (css) => {
@@ -49,24 +50,30 @@ test('check that Monthly Activity Trends title is present & correct', t => {
 });
 
 test('check that Monthly Activity Trends chart > New Projects label is toggleable', t => {
-    findByXpath(`//div[@id="activity_chart"]/*[contains(@class, nv-series)]`)
+    var classXpath = `(//div[@id="activity_chart"]/*[name()='svg']/*[name()='g']/*[name()='g']/*`
+        + `[name()='g'])[4]/*[name()='g']/*[name()='g']/*[name()='g']`;
+    findByXpath(classXpath)
     .then( function (element) {
-        t.ok(element);
-        return element.getAttribute("class");
+        return element.getAttribute('class');
     })
     .then( function (classtext) {
-        console.log(classtext);
+        t.equal(classtext, 'nv-series');
     })
     .then(() => clickText('New Projects'))
-    .then(() => findByXpath(`//div[@id="activity_chart"]/*[contains(@class, nv-series)`
-        + `and contains(@class, nv-disabled)]`))
+    .then(() => findByXpath(classXpath))
     .then( function (element) {
-        t.ok(element);
+        return element.getAttribute('class');
+    })
+    .then( function (classtext) {
+        t.equal(classtext, 'nv-series nv-disabled');
     })
     .then(() => clickText('New Projects'))
-    .then(() => findByXpath(`//div[@id="activity_chart"]/*[contains(@class, nv-series)]`))
+    .then(() => findByXpath(classXpath))
     .then( function (element) {
-        t.ok(element);
+        return element.getAttribute('class');
+    })
+    .then( function (classtext) {
+        t.equal(classtext, 'nv-series');
     })
     .then(() => t.end());
 });
