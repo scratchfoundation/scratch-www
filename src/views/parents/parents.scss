@@ -1,0 +1,113 @@
+@import "../../colors";
+@import "../../frameless";
+
+$parent-spot: #ace11b;
+$story-width: $cols3;
+
+#view {
+    padding: 0;
+}
+
+.parents {
+    .intro {
+        margin: 0;
+    }
+
+    b {
+        font-weight: bold;
+    }
+
+    a {
+        white-space: normal;
+    }
+
+    .title-banner {
+        &.masthead {
+            background-color: $parent-spot;
+            padding-bottom: 0;
+
+            h1 {
+                margin: 0;
+                color: $ui-white;
+            }
+
+
+            .masthead-info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                p {
+                    margin: 0;
+                    max-width: $cols6;
+                    text-align: left;
+                    color: $ui-white;
+                }
+            }
+
+            .ted-talk {
+                position: relative;
+                margin-bottom: $gutter;
+                border: 2px solid $ui-border;
+                border-radius: 10px;
+                width: $cols4;
+                height: $cols4 * .5625;
+                overflow: hidden;
+
+                iframe {
+                    border: 0;
+                    width: inherit;
+                    height: inherit;
+                }
+            }
+        }
+    }
+    
+    section {
+        margin-bottom: 3rem;
+    }
+}
+
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    $story-width: $cols4;
+
+    .title-banner {
+        &.masthead {
+            padding-bottom: 2rem;
+        }
+    }
+}
+
+//8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    $story-width: $cols4;
+
+    .masthead {
+        h1 {
+            text-align: center;
+        }
+    }
+
+    .masthead-info {
+        p {
+            width: $cols4;
+        }
+
+        iframe {
+            width: $cols4;
+            box-sizing: border-box;
+        }
+    }
+}
+
+// 12 columns
+@media only screen and (min-width: $desktop) {
+    $story-width: $cols3;
+
+    .masthead {
+        h1 {
+            text-align: left;
+        }
+    }
+}

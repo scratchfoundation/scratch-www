@@ -1,17 +1,5 @@
 [
     {
-        "name": "splash",
-        "pattern": "^/?$",
-        "routeAlias": "/?$",
-        "view": "splash/splash",
-        "title": "Imagine, Program, Share"
-    },
-    {
-        "name": "splash-redirect",
-        "pattern": "^///?$",
-        "redirect": "/"
-    },
-    {
         "name": "about",
         "pattern": "^/about/?$",
         "routeAlias": "/about/?$",
@@ -19,25 +7,32 @@
         "title": "About"
     },
     {
-        "name": "guidelines",
-        "pattern": "^/community_guidelines/?$",
-        "routeAlias": "/community_guidelines/?$",
-        "view": "guidelines/guidelines",
-        "title": "Scratch Community Guidelines"
+        "name": "cards",
+        "pattern": "^/info/cards/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
+        "view": "cards/cards",
+        "title": "Cards"
     },
     {
-        "name": "student-complete-registration",
-        "pattern": "^/classes/complete_registration",
-        "routeAlias": "/classes/(complete_registration|.+/register/.+)",
-        "view": "studentcompleteregistration/studentcompleteregistration",
-        "title": "Complete your Registration"
+        "name": "communityblocks-interviews",
+        "pattern": "^/info/communityblocks-interviews/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "view": "communityblocks-interviews/communityblocks-interviews",
+        "title": "Community Blocks Beta Tester Interviews"
     },
     {
-        "name": "student-registration",
-        "pattern": "^/classes/:id/register/:token",
-        "routeAlias": "/classes/(complete_registration|.+/register/.+)",
-        "view": "studentregistration/studentregistration",
-        "title": "Class Registration"
+        "name": "conference-details-2016",
+        "pattern": "^/conference/2016/:id/details/?$",
+        "routeAlias": "/conference(?!/201[4-5])",
+        "view": "conference/2016/details/details",
+        "title": "Event Details"
+    },
+    {
+        "name": "conference-expectations-2016",
+        "pattern": "^/conference/2016/expect/?$",
+        "routeAlias": "/conference(?!/201[4-5])",
+        "view": "conference/2016/expect/expect",
+        "title": "What to Expect"
     },
     {
         "name": "conference-index",
@@ -63,13 +58,6 @@
         "title": "Plan Your Visit"
     },
     {
-        "name": "conference-expectations-2016",
-        "pattern": "^/conference/2016/expect/?$",
-        "routeAlias": "/conference(?!/201[4-5])",
-        "view": "conference/2016/expect/expect",
-        "title": "What to Expect"
-    },
-    {
         "name": "conference-schedule-2016",
         "pattern": "^/conference/2016/schedule/?$",
         "routeAlias": "/conference(?!/201[4-5])",
@@ -77,11 +65,11 @@
         "title": "Conference Schedule"
     },
     {
-        "name": "conference-details-2016",
-        "pattern": "^/conference/2016/:id/details/?$",
-        "routeAlias": "/conference(?!/201[4-5])",
-        "view": "conference/2016/details/details",
-        "title": "Event Details"
+        "name": "credits",
+        "pattern": "^/info/credits/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
+        "view": "credits/credits",
+        "title": "Credits"
     },
     {
         "name": "developers",
@@ -98,11 +86,171 @@
         "title": "DMCA"
     },
     {
+        "name": "donate",
+        "pattern": "^/info/donate/?",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "redirect": "https://secure.donationpay.org/scratchfoundation/"
+    },
+    {
         "name": "educator-landing",
         "pattern": "^/educators/?$",
         "routeAlias": "/educators(?:/(faq|register|waiting))?/?$",
         "view": "teachers/landing/landing",
         "title": "Educators"
+    },
+    {
+        "name": "explore",
+        "pattern": "^/explore/:projects(projects|studios)/:all/?$",
+        "routeAlias": "/explore(?!/ajax)",
+        "view": "explore/explore",
+        "title": "Explore"
+    },
+    {
+        "name": "explore-projects-redirect",
+        "pattern": "^/explore/projects/?$",
+        "routeAlias": "/explore(?!/ajax)",
+        "redirect": "/explore/projects/all"
+    },
+    {
+        "name": "explore-redirect",
+        "pattern": "^/explore/?$",
+        "routeAlias": "/explore(?!/ajax)",
+        "redirect": "/explore/projects/all"
+    },
+    {
+        "name": "explore-studios-redirect",
+        "pattern": "^/explore/studios/?$",
+        "routeAlias": "/explore(?!/ajax)",
+        "redirect": "/explore/studios/all"
+    },
+    {
+        "name": "download",
+        "pattern": "^/scratch2download/",
+        "routeAlias": "/scratch2download/?$",
+        "view": "download/download",
+        "title": "Scratch Offline Editor"
+    },
+    {
+        "name": "faq",
+        "pattern": "^/info/faq/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
+        "view": "faq/faq",
+        "title": "FAQ"
+    },
+    {
+        "name": "guidelines",
+        "pattern": "^/community_guidelines/?$",
+        "routeAlias": "/community_guidelines/?$",
+        "view": "guidelines/guidelines",
+        "title": "Scratch Community Guidelines"
+    },
+    {
+        "name": "hoc",
+        "pattern": "^/hoc/?(\\?.*)?$",
+        "routeAlias": "/hoc/?\\??",
+        "redirect": "/go"
+    },
+    {
+        "name": "jobs",
+        "pattern": "^/jobs/?$",
+        "routeAlias": "/jobs(/moderator)?/?$",
+        "view": "jobs/jobs",
+        "title": "Jobs"
+    },
+    {
+        "name": "jobs-moderator",
+        "pattern": "^/jobs/moderator/?$",
+        "routeAlias": "/jobs(/moderator)?/?$",
+        "view": "jobs/moderator/moderator",
+        "title": "Community Moderator"
+    },
+    {
+        "name": "microworld-art",
+        "pattern": "^/microworlds/art",
+        "routeAlias": "/microworlds",
+        "view": "microworld/art/art",
+        "title": "Art"
+    },
+    {
+        "name": "microworld-fashion",
+        "pattern": "^/microworlds/fashion",
+        "routeAlias": "/microworlds",
+        "view": "microworld/fashion/fashion",
+        "title": "Fashion"
+    },
+    {
+        "name": "microworld-hiphop",
+        "pattern": "^/microworlds/hiphop",
+        "routeAlias": "/microworlds",
+        "view": "microworld/hiphop/hiphop",
+        "title": "Hip Hop Dance"
+    },
+    {
+        "name": "microworld-soccer",
+        "pattern": "^/microworlds/soccer",
+        "routeAlias": "/microworlds",
+        "view": "microworld/soccer/soccer",
+        "title": "Soccer"
+    },
+    {
+        "name": "microworlds-homepage",
+        "pattern": "^/microworlds/go/?(\\?.*)?$",
+        "routeAlias": "/microworlds",
+        "view": "microworldshomepage/microworldshomepage",
+        "title": "Microworlds"
+    },
+    {
+        "name": "parents",
+        "pattern": "^/parents?$",
+        "routeAlias": "/parents",
+        "view": "parents/parents",
+        "title": "For Parents"
+    },
+    {
+        "name": "privacypolicy",
+        "pattern": "^/privacy_policy/?$",
+        "routeAlias": "/privacy_policy/?$",
+        "view": "privacypolicy/privacypolicy",
+        "title": "Privacy Policy"
+    },
+    {
+        "name": "search",
+        "pattern": "^/search/:projects/?$",
+        "routeAlias": "/search",
+        "view": "search/search",
+        "title": "Search"
+    },
+    {
+        "name": "search-redirect",
+        "pattern": "^/search/?$",
+        "routeAlias": "/search",
+        "redirect": "/search/projects"
+    },
+    {
+        "name": "splash",
+        "pattern": "^/?$",
+        "routeAlias": "/?$",
+        "view": "splash/splash",
+        "title": "Imagine, Program, Share"
+    },
+    {
+        "name": "splash-redirect",
+        "pattern": "^///?$",
+        "redirect": "/"
+    },
+    {
+        "name": "student-complete-registration",
+        "pattern": "^/classes/complete_registration",
+        "routeAlias": "/classes/(complete_registration|.+/register/.+)",
+        "view": "studentcompleteregistration/studentcompleteregistration",
+        "title": "Complete your Registration"
+    },
+    {
+        "name": "student-registration",
+        "pattern": "^/classes/:id/register/:token",
+        "routeAlias": "/classes/(complete_registration|.+/register/.+)",
+        "view": "studentregistration/studentregistration",
+        "title": "Class Registration"
     },
     {
         "name": "teacher-faq",
@@ -126,24 +274,11 @@
         "title": "Thank you for requesting a Scratch Teacher Account"
     },
     {
-        "name": "explore",
-        "pattern": "^/explore/:projects(projects|studios)/:all/?$",
-        "routeAlias": "/explore(?!/ajax)",
-        "view": "explore/explore",
-        "title": "Explore"
-    },
-    {
-        "name": "hoc",
-        "pattern": "^/hoc/?(\\?.*)?$",
-        "routeAlias": "/hoc/?\\??",
-        "redirect": "/go"
-    },
-    {
-        "name": "cards",
-        "pattern": "^/info/cards/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
-        "view": "cards/cards",
-        "title": "Cards"
+        "name": "terms",
+        "pattern": "^/terms_of_use/?$",
+        "routeAlias": "/terms_of_use/?$",
+        "view": "terms/terms",
+        "title": "Scratch Terms of Use"
     },
     {
         "name": "things-to-try",
@@ -153,138 +288,10 @@
         "title": "Things to Try"
     },
     {
-        "name": "communityblocks-interviews",
-        "pattern": "^/info/communityblocks-interviews/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
-        "view": "communityblocks-interviews/communityblocks-interviews",
-        "title": "Community Blocks Beta Tester Interviews"
-    },
-    {
-        "name": "credits",
-        "pattern": "^/info/credits/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
-        "view": "credits/credits",
-        "title": "Credits"
-    },
-    {
-        "name": "download",
-        "pattern": "^/scratch2download/",
-        "routeAlias": "/scratch2download/?$",
-        "view": "download/download",
-        "title": "Scratch Offline Editor"
-    },
-    {
-        "name": "faq",
-        "pattern": "^/info/faq/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
-        "view": "faq/faq",
-        "title": "FAQ"
-    },
-    {
-        "name": "jobs",
-        "pattern": "^/jobs/?$",
-        "routeAlias": "/jobs(/moderator)?/?$",
-        "view": "jobs/jobs",
-        "title": "Jobs"
-    },
-    {
-        "name": "jobs-moderator",
-        "pattern": "^/jobs/moderator/?$",
-        "routeAlias": "/jobs(/moderator)?/?$",
-        "view": "jobs/moderator/moderator",
-        "title": "Community Moderator"
-    },
-    {
-        "name": "privacypolicy",
-        "pattern": "^/privacy_policy/?$",
-        "routeAlias": "/privacy_policy/?$",
-        "view": "privacypolicy/privacypolicy",
-        "title": "Privacy Policy"
-    },
-    {
-        "name": "search",
-        "pattern": "^/search/:projects/?$",
-        "routeAlias": "/search",
-        "view": "search/search",
-        "title": "Search"
-    },
-    {
-        "name": "search-redirect",
-        "pattern": "^/search/?$",
-        "routeAlias": "/search",
-        "redirect": "/search/projects"
-    },
-    {
-        "name": "terms",
-        "pattern": "^/terms_of_use/?$",
-        "routeAlias": "/terms_of_use/?$",
-        "view": "terms/terms",
-        "title": "Scratch Terms of Use"
-    },
-    {
         "name": "wedo2",
         "pattern": "^/wedo/?$",
         "routeAlias": "/wedo/?$",
         "view": "wedo2/wedo2",
         "title": "LEGO WeDo 2.0"
-    },
-    {
-        "name": "donate",
-        "pattern": "^/info/donate/?",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
-        "redirect": "https://secure.donationpay.org/scratchfoundation/"
-    },
-    {
-        "name": "explore-redirect",
-        "pattern": "^/explore/?$",
-        "routeAlias": "/explore(?!/ajax)",
-        "redirect": "/explore/projects/all"
-    },
-    {
-        "name": "explore-projects-redirect",
-        "pattern": "^/explore/projects/?$",
-        "routeAlias": "/explore(?!/ajax)",
-        "redirect": "/explore/projects/all"
-    },
-    {
-        "name": "explore-studios-redirect",
-        "pattern": "^/explore/studios/?$",
-        "routeAlias": "/explore(?!/ajax)",
-        "redirect": "/explore/studios/all"
-    },
-    {
-        "name": "microworld-art",
-        "pattern": "^/microworlds/art",
-        "routeAlias": "/microworlds",
-        "view": "microworld/art/art",
-        "title": "Art"
-    },
-    {
-        "name": "microworld-hiphop",
-        "pattern": "^/microworlds/hiphop",
-        "routeAlias": "/microworlds",
-        "view": "microworld/hiphop/hiphop",
-        "title": "Hip Hop Dance"
-    },
-    {
-        "name": "microworld-fashion",
-        "pattern": "^/microworlds/fashion",
-        "routeAlias": "/microworlds",
-        "view": "microworld/fashion/fashion",
-        "title": "Fashion"
-    },
-    {
-        "name": "microworld-soccer",
-        "pattern": "^/microworlds/soccer",
-        "routeAlias": "/microworlds",
-        "view": "microworld/soccer/soccer",
-        "title": "Soccer"
-    },
-    {
-        "name": "microworlds-homepage",
-        "pattern": "^/microworlds/go/?(\\?.*)?$",
-        "routeAlias": "/microworlds",
-        "view": "microworldshomepage/microworldshomepage",
-        "title": "Microworlds"
     }
 ]
