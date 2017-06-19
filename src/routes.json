@@ -256,7 +256,7 @@
         "name": "download-redirect",
         "pattern": "^/scratch2download/?$",
         "routeAlias": "/scratch2download",
-        "view": "/download"
+        "redirect": "/download"
     },
     {
         "name": "microworld-art",
