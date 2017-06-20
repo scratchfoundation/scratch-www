@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+/*
+Get localized-urls.json from resources.scratch.mit.edu
+ */
+
+var https = require('https');
+var fs = require('fs');
+var path = require('path');
+var urlData = '';
+
+var args = process.argv.slice(2);
+
+if (!args.length) {
+    process.stdout.write('A output filename must be specified.\n');
+    process.exit(1);
+}
+var filename = path.resolve(__dirname, 'lib', args.shift());
+
+https.get('https://resources.scratch.mit.edu/localized-urls.json', (res) => {
+    var statusCode = res && res.statusCode;
+
+    var error;
+    if (statusCode !== 200) {
+        error = new Error('Request Failed.\n' +
+                        `Status Code: ${statusCode}`);
+    }
+    if (error) {
+        console.error(error.message);
+        // consume response data to free up memory
+        res.resume();
+        return;
+    }
+    res.setEncoding('utf8');
+    res.on('data', (chunk) => { urlData += chunk; });
+    res.on('end', () => {
+        try {
+            fs.writeFile(filename, urlData);
+        } catch (e) {
+            console.error(e.message);
+        }
+    });
+}).on('error', (e) => {
+  console.error(`Got error: ${e.message}`);
+});

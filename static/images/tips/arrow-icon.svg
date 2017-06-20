@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="13px" height="10px" viewBox="0 0 13 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>arrow-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="12-col" transform="translate(-530.000000, -2482.000000)" stroke="#FFFFFF" stroke-width="2">
+            <g id="Addtional-Resources" transform="translate(0.000000, 2187.000000)">
+                <g id="Activity-Cards" transform="translate(170.000000, 35.000000)">
+                    <g id="text" transform="translate(0.000000, 36.000000)">
+                        <g id="purchase" transform="translate(170.000000, 204.000000)">
+                            <g id="arrow-icon" transform="translate(191.000000, 21.000000)">
+                                <path d="M0.5,4 L10.5,4" id="Line"></path>
+                                <polyline id="Rectangle-10" transform="translate(6.949747, 3.949747) rotate(-45.000000) translate(-6.949747, -3.949747) " points="9.44974747 1.44974747 9.44974747 6.44974747 4.44974747 6.44974747"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

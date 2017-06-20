@@ -153,6 +153,13 @@
         "title": "Things to Try"
     },
     {
+        "name": "tips",
+        "pattern": "^/tips/?(\\?.*)?$",
+        "routeAlias": "/tips/?\\??",
+        "view": "tips/tips",
+        "title": "Tips"
+    },
+    {
         "name": "communityblocks-interviews",
         "pattern": "^/info/communityblocks-interviews/?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",

@@ -30,4 +30,11 @@
 
 .title-banner.mod-blue-bg {
     background-color: $ui-blue;
+    // override link color if background in ui-blue
+    a {
+        color: $ui-white;
+        &.mod-underline {
+            text-decoration: underline;
+        }
+    }
 }
