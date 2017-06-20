@@ -25,18 +25,16 @@ var Tips = injectIntl(React.createClass({
     },
     showTTTModal: function (tile) {
         // expects translated tile
-        this.setState({currentTile: tile});
-        this.setState({TTTModalOpen: true});
+        this.setState({currentTile: tile, TTTModalOpen: true});
     },
     hideTTTModal: function () {
         this.setState({TTTModalOpen: false});
     },
     renderTTTTiles: function () {
         var formatMessage = this.props.intl.formatMessage;
-        var translatedTiles = [];
         var translatedTile = {};
 
-        Tiles.map(function (tile, key) {
+        return Tiles.map(function (tile, key) {
             translatedTile = {
                 title: formatMessage({id: tile.title}),
                 description: formatMessage({id: tile.description}),
@@ -46,7 +44,7 @@ var Tips = injectIntl(React.createClass({
                 thumbUrl: tile.thumbUrl,
                 bannerUrl: tile.bannerUrl
             };
-            translatedTiles.push(
+            return(
                 <TTTTile
                     key={key}
                     onGuideClick={this.showTTTModal.bind(this, translatedTile)}
@@ -54,7 +52,6 @@ var Tips = injectIntl(React.createClass({
                 />
             );
         }, this); // don't forget to pass 'this' into map function
-        return translatedTiles;
     },
     render: function () {
         var formatMessage = this.props.intl.formatMessage;
