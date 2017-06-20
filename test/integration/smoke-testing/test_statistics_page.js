@@ -10,7 +10,6 @@ const driver = new webdriver.Builder()
 
 const findByXpath = (xpath) => {
     return driver.wait(until.elementLocated(By.xpath(xpath), 1000 * 5));
-    //return driver.findElement(By.xpath(xpath));
 };
 
 const findByCss = (css) => {
@@ -28,13 +27,20 @@ const clickText = (text) => {
 tap.plan(2);
 
 tap.tearDown(function () {
-    //quit the instance of the browser
     driver.quit();
 });
 
 tap.beforeEach(function () {
-    //load the page with the driver
-    return driver.get('https://scratch.mit.edu/statistics');
+    /*
+     * load the page with the driver
+     * note that for now this is not testable on Staging,
+     * so I left it pointing to Production -
+     * we can at least use it post-deploy.
+     *
+     * var stagingURL = 'https://scratch.ly/statistics';
+     */
+    var productionURL = 'https://scratch.mit.edu/statistics';
+    return driver.get(productionURL);
 });
 
 test('check that Monthly Activity Trends title is present & correct', t => {
