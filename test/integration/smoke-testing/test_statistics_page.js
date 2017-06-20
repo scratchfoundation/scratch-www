@@ -50,7 +50,7 @@ test('check that Monthly Activity Trends title is present & correct', t => {
         return element.getText('h3');
     })
     .then( function (text) {
-        t.equal(text, chartTitle);
+        t.equal(text, chartTitle, 'chart title should be Monthly Activity Trends');
     })
     .then(() => t.end());
 });
@@ -63,7 +63,7 @@ test('check that Monthly Activity Trends chart > New Projects label is toggleabl
         return element.getAttribute('class');
     })
     .then( function (classtext) {
-        t.equal(classtext, 'nv-series');
+        t.equal(classtext, 'nv-series', 'by default, New Projects should be enabled');
     })
     .then(() => clickText('New Projects'))
     .then(() => findByXpath(classXpath))
@@ -71,7 +71,7 @@ test('check that Monthly Activity Trends chart > New Projects label is toggleabl
         return element.getAttribute('class');
     })
     .then( function (classtext) {
-        t.equal(classtext, 'nv-series nv-disabled');
+        t.equal(classtext, 'nv-series nv-disabled', 'when clicked, New Projects should be disabled');
     })
     .then(() => clickText('New Projects'))
     .then(() => findByXpath(classXpath))
@@ -79,8 +79,7 @@ test('check that Monthly Activity Trends chart > New Projects label is toggleabl
         return element.getAttribute('class');
     })
     .then( function (classtext) {
-        t.equal(classtext, 'nv-series');
+        t.equal(classtext, 'nv-series', 'when clicked again, New Projects should be disabled');
     })
     .then(() => t.end());
 });
-
