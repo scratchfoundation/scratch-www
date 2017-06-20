@@ -35,7 +35,8 @@ https.get('https://resources.scratch.mit.edu/localized-urls.json', (res) => {
     res.on('data', (chunk) => { urlData += chunk; });
     res.on('end', () => {
         try {
-            fs.writeFile(filename, urlData);
+            var urlJson = JSON.parse(urlData);
+            fs.writeFile(filename, JSON.stringify(urlJson, null, '  '));
         } catch (e) {
             console.error(e.message);
         }
