@@ -168,8 +168,8 @@
     },
     {
         "name": "download",
-        "pattern": "^/scratch2download/",
-        "routeAlias": "/scratch2download/?$",
+        "pattern": "^/download/",
+        "routeAlias": "/download/?$",
         "view": "download/download",
         "title": "Scratch Offline Editor"
     },
@@ -251,6 +251,12 @@
         "pattern": "^/explore/studios/?$",
         "routeAlias": "/explore(?!/ajax)",
         "redirect": "/explore/studios/all"
+    },
+    {
+        "name": "download-redirect",
+        "pattern": "^/scratch2download/?$",
+        "routeAlias": "/scratch2download",
+        "redirect": "/download"
     },
     {
         "name": "microworld-art",

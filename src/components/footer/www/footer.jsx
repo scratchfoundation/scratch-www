@@ -137,7 +137,7 @@ var Footer = React.createClass({
                                 </a>
                             </dd>
                             <dd>
-                                <a href="/scratch2download/">
+                                <a href="/download">
                                     <FormattedMessage id='general.offlineEditor' />
                                 </a>
                             </dd>
