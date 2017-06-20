@@ -114,7 +114,7 @@ var Tips = injectIntl(React.createClass({
                                     </p>
                                     <p>
                                         <Button className="tips-button">
-                                            <a href="/">
+                                            <a href={formatMessage({id: 'cards.ScratchCardsAllLink'})}>
                                                 <FormattedMessage id="tips.cardsDownload" />
                                             </a>
                                         </Button>

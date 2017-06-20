@@ -1,14 +1,15 @@
 {
-    "cards.starterLink": "/pdfs/cards/Scratch2Cards.pdf",
-    "cards.nameLink": "/pdfs/cards/AnimateYourNameCards.pdf",
-    "cards.flyLink": "/pdfs/cards/FlyCards.pdf",
-    "cards.raceLink": "/pdfs/cards/RaceGameCards.pdf",
-    "cards.musicLink": "/pdfs/cards/MusicCards.pdf",
-    "cards.hideLink": "/pdfs/cards/Hide-and-Seek-Cards.pdf",
-    "cards.storyLink": "/pdfs/cards/StoryCards.pdf",
-    "cards.dressupLink": "/pdfs/cards/DressupCards.pdf",
-    "cards.pongLink": "/pdfs/cards/PongCards.pdf",
-    "cards.danceLink": "/pdfs/cards/DanceCards.pdf",
-    "cards.catchLink": "/pdfs/cards/CatchCards.pdf",
-    "cards.petLink": "/pdfs/cards/PetCards.pdf"
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/en/Scratch2Cards.pdf",
+    "cards.catchCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/catchCards.pdf",
+    "cards.danceCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/danceCards.pdf",
+    "cards.dressupCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/dressupCards.pdf",
+    "cards.fashionCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/fashionCards.pdf",
+    "cards.flyCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/flyCards.pdf",
+    "cards.hide-seekCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/hide-seekCards.pdf",
+    "cards.musicCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/musicCards.pdf",
+    "cards.nameCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/nameCards.pdf",
+    "cards.petCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/petCards.pdf",
+    "cards.pongCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/pongCards.pdf",
+    "cards.raceCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/raceCards.pdf",
+    "cards.storyCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/storyCards.pdf"
 }
