@@ -46,12 +46,8 @@ tap.beforeEach(function () {
 test('check that Monthly Activity Trends title is present & correct', t => {
     var chartTitle = 'Monthly Activity Trends';
     findByCss('div.box-head h3')
-    .then( function (element) {
-        return element.getText('h3');
-    })
-    .then( function (text) {
-        t.equal(text, chartTitle, 'chart title should be Monthly Activity Trends');
-    })
+    .then((element) => element.getText('h3'))
+    .then((text) => t.equal(text, chartTitle, 'chart title should be Monthly Activity Trends'))
     .then(() => t.end());
 });
 
@@ -59,27 +55,15 @@ test('check that Monthly Activity Trends chart > New Projects label is toggleabl
     var classXpath = `(//div[@id="activity_chart"]/*[name()='svg']/*[name()='g']/*[name()='g']/*`
         + `[name()='g'])[4]/*[name()='g']/*[name()='g']/*[name()='g']`;
     findByXpath(classXpath)
-    .then( function (element) {
-        return element.getAttribute('class');
-    })
-    .then( function (classtext) {
-        t.equal(classtext, 'nv-series', 'by default, New Projects should be enabled');
-    })
+    .then((element) => element.getAttribute('class'))
+    .then((classtext) => t.equal(classtext, 'nv-series', 'by default, New Projects should be enabled'))
     .then(() => clickText('New Projects'))
     .then(() => findByXpath(classXpath))
-    .then( function (element) {
-        return element.getAttribute('class');
-    })
-    .then( function (classtext) {
-        t.equal(classtext, 'nv-series nv-disabled', 'when clicked, New Projects should be disabled');
-    })
+    .then((element) => element.getAttribute('class'))
+    .then((classtext) => t.equal(classtext, 'nv-series nv-disabled', 'when clicked, New Projects should be disabled'))
     .then(() => clickText('New Projects'))
     .then(() => findByXpath(classXpath))
-    .then( function (element) {
-        return element.getAttribute('class');
-    })
-    .then( function (classtext) {
-        t.equal(classtext, 'nv-series', 'when clicked again, New Projects should be disabled');
-    })
+    .then((element) => element.getAttribute('class'))
+    .then((classtext) => t.equal(classtext, 'nv-series', 'when clicked again, New Projects should be enabled'))
     .then(() => t.end());
 });
