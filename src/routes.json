@@ -228,6 +228,12 @@
         "redirect": "https://secure.donationpay.org/scratchfoundation/"
     },
     {
+        "name": "store",
+        "pattern": "^/store/?$",
+        "routeAlias": "/store",
+        "redirect": "https://scratch-foundation.myshopify.com"
+    },
+    {
         "name": "explore-redirect",
         "pattern": "^/explore/?$",
         "routeAlias": "/explore(?!/ajax)",
