@@ -26,7 +26,7 @@ https.get('https://resources.scratch.mit.edu/localized-urls.json', (res) => {
                         `Status Code: ${statusCode}`);
     }
     if (error) {
-        console.error(error.message);
+        process.stdout.write(`${error.message}\n`);
         // consume response data to free up memory
         res.resume();
         return;
@@ -38,9 +38,11 @@ https.get('https://resources.scratch.mit.edu/localized-urls.json', (res) => {
             var urlJson = JSON.parse(urlData);
             fs.writeFile(filename, JSON.stringify(urlJson, null, '  '));
         } catch (e) {
-            console.error(e.message);
+            process.stdout.write(`Failed parsing url data: ${e.message}\n`);
+            process.exit(1);
         }
     });
 }).on('error', (e) => {
-  console.error(`Got error: ${e.message}`);
+    process.stdout.write(`Got error: ${e.message}\n`);
+    process.exit(1);
 });
