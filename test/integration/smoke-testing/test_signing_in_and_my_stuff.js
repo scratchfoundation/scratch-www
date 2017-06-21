@@ -3,6 +3,10 @@
  *
  * https://github.com/LLK/scratchr2/wiki/Smoke-Testing-Test-Cases
  *
+ * Note that I am using a user with at least 1 project and at least 1 studio
+ *  - I'm not sure how to handle this more elegantly... b/c I don't want to commit a password?
+ *  - I could supply a password for a Staging user I guess... but then people may want to test
+ *  - on a variety of instances (local, staging, prod)?
  */
 
 var path = require('path');
@@ -25,22 +29,12 @@ const driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
 
-/*
-const clickScriptsTab = () => driver.findElement(By.id('react-tabs-0')).click();
-const clickCostumeTab = () => driver.findElement(By.id('react-tabs-2')).click();
-const clickSoundsTab = () => driver.findElement(By.id('react-tabs-4')).click();
-*/
-
 const findByXpath = (xpath) => {
     return driver.wait(until.elementLocated(By.xpath(xpath), 5 * 1000));
 };
 
 const findByCss = (css) => {
     return driver.wait(until.elementLocated(By.css(css), 1000 * 5));
-};
-
-const findByText = (text) => {
-    return findByXpath(`//*[contains(text(), '${text}')]`);
 };
 
 const clickXpath = (xpath) => {
@@ -55,67 +49,80 @@ const clickButton = (text) => {
     return clickXpath(`//button[contains(text(), '${text}')]`);
 };
 
-var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu/users/anyuser/';
+var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu/users/anyuser';
 
-tap.plan(1);
+tap.plan(5);
 
 tap.tearDown(function () {
-    //quit the instance of the browser
     driver.quit();
 });
 
 tap.beforeEach(function () {
-    //load the page with the driver
     return driver.get(rootUrl);
 });
 
-test('Sign in to Scratch & verify My Stuff contents', t => {
+test('Sign in to Scratch using scratchr2 navbar', t => {
     clickText('Sign in')
     .then(() => findByXpath('//input[@id="login_dropdown_username"]'))
     .then((element) => element.sendKeys(username))
     .then(() => findByXpath('//input[@name="password"]'))
     .then((element) => element.sendKeys(password))
     .then(() => clickButton('Sign in'))
-    .then(() => findByXpath('//a[@class="mystuff-icon"]'))
-    .then((element) => element.click())
-    .then(() => findByXpath('//div[@class="box-head"]/h2'))
-    .then( function (element) {
-        return element.getText('h2');
-    })
-    .then( function (text) {
-        t.equal('My Stuff', text, 'Title should be My Stuff');
-    })
-    /*
-    //.then(() => clickText('Create'))
-    .then( function () {
-    	return clickText(username);
-    })
-    .then( function (element) {
-        console.log(element);
-    })
-    .then(() => clickCostumeTab())
-    .then(() => clickText('Add Costume'))
-    .then(() => findByXpath("//input[@placeholder='what are you looking for?']"))
-    .then((el) => el.sendKeys('abb'))
-    .then(() => clickText('abby-a')) // Should close the modal, then click the costumes in the selector
-    .then(() => clickText('costume1'))
-    .then(() => clickText('abby-a'))
-
-    .then(() => clickSoundsTab())
-    .then(() => clickText('Add Sound'))
-    .then(() => findByXpath("//input[@id='login_dropdown_username']"))
-    .then((el) => el.sendKeys('chom'))
-    .then(() => clickText('chomp')) // Should close the modal, then click the sounds in the selector
-    .then(() => clickText('meow'))
-    .then(() => clickText('chomp'))
-
-    .then(() => clickScriptsTab())
-    .then(() => clickText('Data'))
-    .then(() => clickText('Create variable...'))
-    .then(() => findByXpath("//input[@placeholder='']"))
-    .then((el) => el.sendKeys('score'))
-    .then(() => clickButton('OK'))
-    */
-
+    .then(() => findByXpath('//li[contains(@class, "logged-in-user")' 
+        + 'and contains(@class, "dropdown")]/span'))
+    .then((element) => element.getText('span'))
+    .then((text) => t.match(text.toLowerCase(), username.substring(0,10).toLowerCase(),
+            'first part of username should be displayed in navbar'))
     .then(() => t.end());
 });
+
+test('Sign in to Scratch & verify My Stuff structure (tabs, title)', t => {
+    findByXpath('//a[@class="mystuff-icon"]')
+    .then((element) => element.click())
+    .then(() => findByXpath('//div[@class="box-head"]/h2'))
+    .then((element) => element.getText('h2'))
+    .then((text) => t.equal('My Stuff', text, 'title should be My Stuff'))
+    .then(() => findByXpath('//li[@data-tab="projects"]/a'))
+    .then((element) => element.getText('a'))
+    .then((text) => t.match(text, 'All Projects', 'All Projects tab should be present'))
+    .then(() => findByXpath('//li[@data-tab="shared"]/a'))
+    .then((element) => element.getText('a'))
+    .then((text) => t.match(text, 'Shared Projects', 'Shared Projects tab should be present'))
+    .then(() => findByXpath('//li[@data-tab="unshared"]/a'))
+    .then((element) => element.getText('a'))
+    .then((text) => t.match(text, 'Unshared Projects', 'Unshared Projects tab should be present'))
+    .then(() => findByXpath('//li[@data-tab="galleries"]/a'))
+    .then((element) => element.getText('a'))
+    .then((text) => t.match(text, 'My Studios', 'My Studios tab should be present'))
+    .then(() => findByXpath('//li[@data-tab="trash"]/a'))
+    .then((element) => element.getText('a'))
+    .then((text) => t.match(text, 'Trash', 'Trash tab should be present'))
+    .then(() => t.end());
+});
+
+test('clicking See Inside should take you to the editor', t => {
+    findByXpath('//a[@class="mystuff-icon"]')
+    .then((element) => element.click())
+    .then(() => findByXpath('//a[@data-control="edit"]'))
+    .then((element) => element.getText('span'))
+    .then((text) => t.equal(text, 'See inside', 'there should be a "See inside" button'))
+    .then(() => findByXpath('//a[@data-control="edit"]'))
+    .then((element) => element.click())
+    .then(() => driver.getCurrentUrl())
+    .then( function (url) {
+        var expectedUrl = '/#editor';
+        t.equal(url.substr(-expectedUrl.length), expectedUrl, 'after clicking, the URL should end in #editor');
+    })
+    .then(() => t.end());
+});
+
+test('clicking a project title should take you to the project page', t => {
+    t.pass();
+    t.end();
+});
+
+test('Add To button should bring up a list of studios', t => {
+    t.pass();
+    t.end();
+});
+    
