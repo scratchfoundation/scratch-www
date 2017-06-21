@@ -7,9 +7,9 @@
     // at the bottom of the previous column.
     margin-top: 1px;
     margin-bottom: calc(1.25rem - 1px);
-
     border-radius: 1rem;
     box-shadow: 0 0 0 1px $active-gray;
+    background-color: $ui-white;
     width: $cols4;
     text-align: center;
 }

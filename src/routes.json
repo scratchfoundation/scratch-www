@@ -136,7 +136,7 @@
         "name": "hoc",
         "pattern": "^/hoc/?(\\?.*)?$",
         "routeAlias": "/hoc/?\\??",
-        "redirect": "/go"
+        "redirect": "/tips"
     },
     {
         "name": "cards",
@@ -149,8 +149,14 @@
         "name": "things-to-try",
         "pattern": "^/go/?(\\?.*)?$",
         "routeAlias": "/go/?\\??",
-        "view": "thingstotry/thingstotry",
-        "title": "Things to Try"
+        "redirect": "/tips"
+    },
+    {
+        "name": "tips",
+        "pattern": "^/tips/?(\\?.*)?$",
+        "routeAlias": "/tips/?\\??",
+        "view": "tips/tips",
+        "title": "Tips"
     },
     {
         "name": "communityblocks-interviews",

@@ -21,32 +21,32 @@ var Cards = injectIntl(React.createClass({
         var locale = this.props.intl.locale || 'en';
         var formatMessage = this.props.intl.formatMessage;
         var englishLinks = {
-            'cards.starterLink': '/pdfs/cards/Scratch2Cards.pdf',
-            'cards.nameLink': '/pdfs/cards/AnimateYourNameCards.pdf',
-            'cards.flyLink': '/pdfs/cards/FlyCards.pdf',
-            'cards.raceLink': '/pdfs/cards/RaceGameCards.pdf',
-            'cards.musicLink': '/pdfs/cards/MusicCards.pdf',
-            'cards.hideLink': '/pdfs/cards/Hide-and-Seek-Cards.pdf',
-            'cards.storyLink': '/pdfs/cards/StoryCards.pdf',
-            'cards.dressupLink': '/pdfs/cards/DressupCards.pdf',
-            'cards.pongLink': '/pdfs/cards/PongCards.pdf',
-            'cards.danceLink': '/pdfs/cards/DanceCards.pdf',
-            'cards.catchLink': '/pdfs/cards/CatchCards.pdf',
-            'cards.petLink': '/pdfs/cards/PetCards.pdf'
+            'cards.starterLink': 'https://resources.scratch.mit.edu/www/cards/en/Scratch2Cards.pdf',
+            'cards.nameLink': 'https://resources.scratch.mit.edu/www/cards/en/nameCards.pdf',
+            'cards.flyLink': 'https://resources.scratch.mit.edu/www/cards/en/flyCards.pdf',
+            'cards.raceLink': 'https://resources.scratch.mit.edu/www/cards/en/raceCards.pdf',
+            'cards.musicLink': 'https://resources.scratch.mit.edu/www/cards/en/musicCards.pdf',
+            'cards.hideLink': 'https://resources.scratch.mit.edu/www/cards/en/hide-seekCards.pdf',
+            'cards.storyLink': 'https://resources.scratch.mit.edu/www/cards/en/storyCards.pdf',
+            'cards.dressupLink': 'https://resources.scratch.mit.edu/www/cards/en/fashionCards.pdf',
+            'cards.pongLink': 'https://resources.scratch.mit.edu/www/cards/en/pongCards.pdf',
+            'cards.danceLink': 'https://resources.scratch.mit.edu/www/cards/en/danceCards.pdf',
+            'cards.catchLink': 'https://resources.scratch.mit.edu/www/cards/en/catchCards.pdf',
+            'cards.petLink': 'https://resources.scratch.mit.edu/www/cards/en/petCards.pdf'
         };
         var formattedLinks = {
-            'cards.starterLink': formatMessage({id: 'cards.starterLink'}),
-            'cards.nameLink': formatMessage({id: 'cards.nameLink'}),
-            'cards.flyLink': formatMessage({id: 'cards.flyLink'}),
-            'cards.raceLink': formatMessage({id: 'cards.raceLink'}),
-            'cards.musicLink': formatMessage({id: 'cards.musicLink'}),
-            'cards.hideLink': formatMessage({id: 'cards.hideLink'}),
-            'cards.storyLink': formatMessage({id: 'cards.storyLink'}),
-            'cards.dressupLink': formatMessage({id: 'cards.dressupLink'}),
-            'cards.pongLink': formatMessage({id: 'cards.pongLink'}),
-            'cards.danceLink': formatMessage({id: 'cards.danceLink'}),
-            'cards.catchLink': formatMessage({id: 'cards.catchLink'}),
-            'cards.petLink': formatMessage({id: 'cards.petLink'})
+            'cards.starterLink': formatMessage({id: 'cards.Scratch2CardsLink'}),
+            'cards.nameLink': formatMessage({id: 'cards.nameCardsLink'}),
+            'cards.flyLink': formatMessage({id: 'cards.flyCardsLink'}),
+            'cards.raceLink': formatMessage({id: 'cards.raceCardsLink'}),
+            'cards.musicLink': formatMessage({id: 'cards.musicCardsLink'}),
+            'cards.hideLink': formatMessage({id: 'cards.hide-seekCardsLink'}),
+            'cards.storyLink': formatMessage({id: 'cards.storyCardsLink'}),
+            'cards.dressupLink': formatMessage({id: 'cards.fashionCardsLink'}),
+            'cards.pongLink': formatMessage({id: 'cards.pongCardsLink'}),
+            'cards.danceLink': formatMessage({id: 'cards.danceCardsLink'}),
+            'cards.catchLink': formatMessage({id: 'cards.catchCardsLink'}),
+            'cards.petLink': formatMessage({id: 'cards.petCardsLink'})
         };
         return (
             <div className="inner cards">

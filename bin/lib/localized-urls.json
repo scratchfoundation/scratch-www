@@ -1,151 +1,113 @@
 {
-    "en": {
-	"cards.starterLink": "/pdfs/cards/Scratch2Cards.pdf",
-	"cards.nameLink": "/pdfs/cards/AnimateYourNameCards.pdf",
-   	"cards.flyLink": "/pdfs/cards/FlyCards.pdf",
-    	"cards.raceLink": "/pdfs/cards/RaceGameCards.pdf",
-    	"cards.musicLink": "/pdfs/cards/MusicCards.pdf",
-    	"cards.hideLink": "/pdfs/cards/Hide-and-Seek-Cards.pdf",
-    	"cards.storyLink": "/pdfs/cards/StoryCards.pdf",
-    	"cards.dressupLink": "/pdfs/cards/DressupCards.pdf",
-    	"cards.pongLink": "/pdfs/cards/PongCards.pdf",
-    	"cards.danceLink": "/pdfs/cards/DanceCards.pdf",
-    	"cards.catchLink": "/pdfs/cards/CatchCards.pdf",
-    	"cards.petLink": "/pdfs/cards/PetCards.pdf",
-	"ttt.MakeItFlyActivityLoc": "/pdfs/cards/FlyCards.pdf",
-    	"ttt.MakeItFlyGuideLoc": "/pdfs/guides/FlyGuide.pdf",
-    	"ttt.AnimateYourNameActivityLoc": "/pdfs/cards/AnimateYourNameCards.pdf",
-    	"ttt.AnimateYourNameGuideLoc": "/pdfs/guides/NameGuide.pdf",
-    	"ttt.MakeMusicActivityLoc": "/pdfs/cards/MusicCards.pdf",
-    	"ttt.MakeMusicGuideLoc": "/pdfs/guides/MusicGuide.pdf",
-    	"ttt.RaceActivityLoc": "/pdfs/cards/RaceGameCards.pdf",
-    	"ttt.RaceGuideLoc": "/pdfs/guides/RaceGuide.pdf",
-    	"ttt.DanceActivityLoc": "/pdfs/cards/DanceCards.pdf",
-    	"ttt.DanceGuideLoc": "/pdfs/guides/DanceGuide.pdf",
-    	"ttt.PongActivityLoc": "/pdfs/cards/PongCards.pdf",
-    	"ttt.PongGuideLoc": "/pdfs/guides/PongGuide.pdf",
-    	"ttt.CatchActivityLoc": "/pdfs/cards/CatchCards.pdf",
-    	"ttt.CatchGuideLoc": "/pdfs/guides/CatchGuide.pdf",
-    	"ttt.HideAndSeekActivityLoc": "/pdfs/cards/Hide-and-Seek-Cards.pdf",
-    	"ttt.HideAndSeekGuideLoc": "/pdfs/guides/Hide-and-Seek-Guide.pdf",
-    	"ttt.VirtualPetActivityLoc": "/pdfs/cards/PetCards.pdf",
-    	"ttt.VirtualPetGuideLoc": "/pdfs/guides/PetGuide.pdf",
-    	"ttt.DressupActivityLoc": "/pdfs/cards/DressupCards.pdf",
-    	"ttt.DressupGuideLoc": "/pdfs/guides/DressupGuide.pdf",
-    	"ttt.StoryActivityLoc": "/pdfs/cards/StoryCards.pdf",
-    	"ttt.StoryGuideLoc": "/pdfs/guides/StoryGuide.pdf"
-    },
-    "ar": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ar/Scratch2Cards.pdf"
-    },
-    "ca": {
-        "cards.nameLink": "/pdfs/cards/ca/AnimateYourNameCards.pdf",
-        "cards.catchLink": "/pdfs/cards/ca/CatchCards.pdf",
-        "cards.danceLink": "/pdfs/cards/ca/DanceCards.pdf",
-        "cards.dressupLink": "/pdfs/cards/ca/DressupCards.pdf",
-        "cards.flyLink": "/pdfs/cards/ca/FlyCards.pdf",
-        "cards.hideLink": "/pdfs/cards/ca/Hide-and-Seek-Cards.pdf",
-        "cards.musicLink": "/pdfs/cards/ca/MusicCards.pdf",
-        "cards.petLink": "/pdfs/cards/ca/PetCards.pdf",
-        "cards.pongLink": "/pdfs/cards/ca/PongCards.pdf",
-        "cards.raceLink": "/pdfs/cards/ca/RaceGameCards.pdf",
-        "cards.starterLink": "/pdfs/cards/ca/Scratch2Cards.pdf",
-        "cards.storyLink": "/pdfs/cards/ca/StoryCards.pdf",
-	"ttt.MakeItFlyActivityLoc": "/pdfs/cards/ca/FlyCards.pdf",
-    	"ttt.AnimateYourNameActivityLoc": "/pdfs/cards/ca/AnimateYourNameCards.pdf",
-    	"ttt.MakeMusicActivityLoc": "/pdfs/cards/ca/MusicCards.pdf",
-    	"ttt.RaceActivityLoc": "/pdfs/cards/ca/RaceGameCards.pdf",
-    	"ttt.DanceActivityLoc": "/pdfs/cards/ca/DanceCards.pdf",
-    	"ttt.PongActivityLoc": "/pdfs/cards/ca/PongCards.pdf",
-    	"ttt.CatchActivityLoc": "/pdfs/cards/ca/CatchCards.pdf",
-    	"ttt.HideAndSeekActivityLoc": "/pdfs/cards/ca/Hide-and-Seek-Cards.pdf",
-    	"ttt.VirtualPetActivityLoc": "/pdfs/cards/ca/PetCards.pdf",
-    	"ttt.DressupActivityLoc": "/pdfs/cards/ca/DressupCards.pdf",
-    	"ttt.StoryActivityLoc": "/pdfs/cards/ca/StoryCards.pdf"
-    },
-    "cs": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/cs/Scratch2Cards.pdf"
-    },
-    "de": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/de/Scratch2Cards.pdf"
-    },
-    "es": {
-        "cards.nameLink": "/pdfs/cards/es/AnimateYourNameCards.pdf",
-        "cards.catchLink": "/pdfs/cards/es/CatchCards.pdf",
-        "cards.danceLink": "/pdfs/cards/es/DanceCards.pdf",
-        "cards.dressupLink": "/pdfs/cards/es/DressupCards.pdf",
-        "cards.flyLink": "/pdfs/cards/es/FlyCards.pdf",
-        "cards.hideLink": "/pdfs/cards/es/Hide-and-Seek-Cards.pdf",
-        "cards.musicLink": "/pdfs/cards/es/MusicCards.pdf",
-        "cards.petLink": "/pdfs/cards/es/PetCards.pdf",
-        "cards.pongLink": "/pdfs/cards/es/PongCards.pdf",
-        "cards.raceLink": "/pdfs/cards/es/RaceGameCards.pdf",
-        "cards.starterLink": "/pdfs/cards/es/Scratch2Cards.pdf",
-        "cards.storyLink": "/pdfs/cards/es/StoryCards.pdf",
-	"ttt.MakeItFlyActivityLoc": "/pdfs/cards/es/FlyCards.pdf",
-    	"ttt.AnimateYourNameActivityLoc": "/pdfs/cards/es/AnimateYourNameCards.pdf",
-    	"ttt.MakeMusicActivityLoc": "/pdfs/cards/es/MusicCards.pdf",
-    	"ttt.RaceActivityLoc": "/pdfs/cards/es/RaceGameCards.pdf",
-    	"ttt.DanceActivityLoc": "/pdfs/cards/es/DanceCards.pdf",
-    	"ttt.PongActivityLoc": "/pdfs/cards/es/PongCards.pdf",
-    	"ttt.CatchActivityLoc": "/pdfs/cards/es/CatchCards.pdf",
-    	"ttt.HideAndSeekActivityLoc": "/pdfs/cards/es/Hide-and-Seek-Cards.pdf",
-    	"ttt.VirtualPetActivityLoc": "/pdfs/cards/es/PetCards.pdf",
-    	"ttt.DressupActivityLoc": "/pdfs/cards/es/DressupCards.pdf",
-    	"ttt.StoryActivityLoc": "/pdfs/cards/es/StoryCards.pdf"
-    },
-    "fr": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/fr/Scratch2Cards.pdf"
-    },
-    "hr": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/hr/Scratch2Cards.pdf"
-    },
-    "it": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/it/Scratch2Cards.pdf"
-    },
-    "ja": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ja/Scratch2Cards.pdf"
-    },
-    "ja-hr": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ja-hr/Scratch2Cards.pdf"
-    },
-    "ko": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/ko/Scratch2Cards.pdf"
-    },
-    "nl": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/nl/Scratch2Cards.pdf"
-    },
-    "pt-br": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/pt-br/Scratch2Cards.pdf"
-    },
-    "sl": {
-        "cards.starterLink": "//cdn.scratch.mit.edu/scratchr2/static/pdfs/help/sl/Scratch2Cards.pdf"
-    },
-    "sv": {
-        "cards.starterLink": "/pdfs/cards/sv/Scratch2Cards.pdf"
-    },
-    "zh-tw": {
-        "cards.nameLink": "/pdfs/cards/zh-tw/AnimateYourNameCards.pdf",
-        "cards.catchLink": "/pdfs/cards/zh-tw/CatchCards.pdf",
-        "cards.danceLink": "/pdfs/cards/zh-tw/DanceCards.pdf",
-        "cards.dressupLink": "/pdfs/cards/zh-tw/DressupCards.pdf",
-        "cards.flyLink": "/pdfs/cards/zh-tw/FlyCards.pdf",
-        "cards.hideLink": "/pdfs/cards/zh-tw/Hide-and-Seek-Cards.pdf",
-        "cards.musicLink": "/pdfs/cards/zh-tw/MusicCards.pdf",
-        "cards.petLink": "/pdfs/cards/zh-tw/PetCards.pdf",
-        "cards.pongLink": "/pdfs/cards/zh-tw/PongCards.pdf",
-        "cards.raceLink": "/pdfs/cards/zh-tw/RaceGameCards.pdf",
-        "cards.storyLink": "/pdfs/cards/zh-tw/StoryCards.pdf",
-	"ttt.MakeItFlyActivityLoc": "/pdfs/cards/zh-tw/FlyCards.pdf",
-    	"ttt.AnimateYourNameActivityLoc": "/pdfs/cards/zh-tw/AnimateYourNameCards.pdf",
-    	"ttt.MakeMusicActivityLoc": "/pdfs/cards/zh-tw/MusicCards.pdf",
-    	"ttt.RaceActivityLoc": "/pdfs/cards/zh-tw/RaceGameCards.pdf",
-    	"ttt.DanceActivityLoc": "/pdfs/cards/zh-tw/DanceCards.pdf",
-    	"ttt.PongActivityLoc": "/pdfs/cards/zh-tw/PongCards.pdf",
-    	"ttt.CatchActivityLoc": "/pdfs/cards/zh-tw/CatchCards.pdf",
-    	"ttt.HideAndSeekActivityLoc": "/pdfs/cards/zh-tw/Hide-and-Seek-Cards.pdf",
-    	"ttt.VirtualPetActivityLoc": "/pdfs/cards/zh-tw/PetCards.pdf",
-    	"ttt.DressupActivityLoc": "/pdfs/cards/zh-tw/DressupCards.pdf",
-    	"ttt.StoryActivityLoc": "/pdfs/cards/zh-tw/StoryCards.pdf"
-    }
+  "ar": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/ar/Scratch2Cards.pdf"
+  },
+  "ca": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/Scratch2Cards.pdf",
+    "cards.ScratchCardsAllLink": "https:/resources.scratch.mit.edu/www/cards/ca/ScratchCardsAll.pdf",
+    "cards.catchCardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/catchCards.pdf",
+    "cards.danceCardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/danceCards.pdf",
+    "cards.fashionCardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/fashionCards.pdf",
+    "cards.flyCardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/flyCards.pdf",
+    "cards.hide-seekCardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/hide-seekCards.pdf",
+    "cards.musicCardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/musicCards.pdf",
+    "cards.nameCardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/nameCards.pdf",
+    "cards.petCardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/petCards.pdf",
+    "cards.pongCardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/pongCards.pdf",
+    "cards.raceCardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/raceCards.pdf",
+    "cards.storyCardsLink": "https:/resources.scratch.mit.edu/www/cards/ca/storyCards.pdf"
+  },
+  "cs": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/cs/Scratch2Cards.pdf"
+  },
+  "de": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/de/Scratch2Cards.pdf"
+  },
+  "en": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/en/Scratch2Cards.pdf",
+    "cards.ScratchCardsAllLink": "https:/resources.scratch.mit.edu/www/cards/en/ScratchCardsAll.pdf",
+    "cards.catchCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/catchCards.pdf",
+    "cards.danceCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/danceCards.pdf",
+    "cards.dressupCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/dressupCards.pdf",
+    "cards.fashionCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/fashionCards.pdf",
+    "cards.flyCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/flyCards.pdf",
+    "cards.hide-seekCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/hide-seekCards.pdf",
+    "cards.musicCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/musicCards.pdf",
+    "cards.nameCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/nameCards.pdf",
+    "cards.petCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/petCards.pdf",
+    "cards.pongCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/pongCards.pdf",
+    "cards.raceCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/raceCards.pdf",
+    "cards.storyCardsLink": "https:/resources.scratch.mit.edu/www/cards/en/storyCards.pdf",
+    "guides.AnimateYourNameGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/AnimateYourNameGuide.pdf",
+    "guides.CatchGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/CatchGuide.pdf",
+    "guides.DanceGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/DanceGuide.pdf",
+    "guides.FashionGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/FashionGuide.pdf",
+    "guides.FlyGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/FlyGuide.pdf",
+    "guides.Getting-Started-Guide-Scratch2Link": "https:/resources.scratch.mit.edu/www/guides/en/Getting-Started-Guide-Scratch2.pdf",
+    "guides.HideandSeekGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/HideandSeekGuide.pdf",
+    "guides.MusicGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/MusicGuide.pdf",
+    "guides.NameGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/NameGuide.pdf",
+    "guides.PetGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/PetGuide.pdf",
+    "guides.PongGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/PongGuide.pdf",
+    "guides.RaceGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/RaceGuide.pdf",
+    "guides.StoryGuideLink": "https:/resources.scratch.mit.edu/www/guides/en/StoryGuide.pdf"
+  },
+  "es": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/es/Scratch2Cards.pdf",
+    "cards.catchCardsLink": "https:/resources.scratch.mit.edu/www/cards/es/catchCards.pdf",
+    "cards.danceCardsLink": "https:/resources.scratch.mit.edu/www/cards/es/danceCards.pdf",
+    "cards.fashionCardsLink": "https:/resources.scratch.mit.edu/www/cards/es/fashionCards.pdf",
+    "cards.flyCardsLink": "https:/resources.scratch.mit.edu/www/cards/es/flyCards.pdf",
+    "cards.hide-seekCardsLink": "https:/resources.scratch.mit.edu/www/cards/es/hide-seekCards.pdf",
+    "cards.musicCardsLink": "https:/resources.scratch.mit.edu/www/cards/es/musicCards.pdf",
+    "cards.nameCardsLink": "https:/resources.scratch.mit.edu/www/cards/es/nameCards.pdf",
+    "cards.petCardsLink": "https:/resources.scratch.mit.edu/www/cards/es/petCards.pdf",
+    "cards.pongCardsLink": "https:/resources.scratch.mit.edu/www/cards/es/pongCards.pdf",
+    "cards.raceCardsLink": "https:/resources.scratch.mit.edu/www/cards/es/raceCards.pdf",
+    "cards.storyCardsLink": "https:/resources.scratch.mit.edu/www/cards/es/storyCards.pdf"
+  },
+  "fr": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/fr/Scratch2Cards.pdf"
+  },
+  "hr": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/hr/Scratch2Cards.pdf"
+  },
+  "it": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/it/Scratch2Cards.pdf"
+  },
+  "ja": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/ja/Scratch2Cards.pdf"
+  },
+  "ja-hr": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/ja-hr/Scratch2Cards.pdf"
+  },
+  "ko": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/ko/Scratch2Cards.pdf"
+  },
+  "nl": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/nl/Scratch2Cards.pdf"
+  },
+  "pt-br": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/pt-br/Scratch2Cards.pdf"
+  },
+  "sl": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/sl/Scratch2Cards.pdf"
+  },
+  "sv": {
+    "cards.Scratch2CardsLink": "https:/resources.scratch.mit.edu/www/cards/sv/Scratch2Cards.pdf"
+  },
+  "zh-tw": {
+    "cards.ScratchCardsAllLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/ScratchCardsAll.pdf",
+    "cards.catchCardsLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/catchCards.pdf",
+    "cards.danceCardsLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/danceCards.pdf",
+    "cards.fashionCardsLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/fashionCards.pdf",
+    "cards.flyCardsLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/flyCards.pdf",
+    "cards.hide-seekCardsLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/hide-seekCards.pdf",
+    "cards.musicCardsLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/musicCards.pdf",
+    "cards.nameCardsLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/nameCards.pdf",
+    "cards.petCardsLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/petCards.pdf",
+    "cards.pongCardsLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/pongCards.pdf",
+    "cards.raceCardsLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/raceCards.pdf",
+    "cards.storyCardsLink": "https:/resources.scratch.mit.edu/www/cards/zh-tw/storyCards.pdf"
+  }
 }
