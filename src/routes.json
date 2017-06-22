@@ -174,8 +174,8 @@
     },
     {
         "name": "download",
-        "pattern": "^/download/",
-        "routeAlias": "/download/?$",
+        "pattern": "^/download/?$",
+        "routeAlias": "/download",
         "view": "download/download",
         "title": "Scratch Offline Editor"
     },
