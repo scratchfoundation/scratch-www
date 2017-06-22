@@ -152,6 +152,12 @@
         "redirect": "/tips"
     },
     {
+        "name": "help",
+        "pattern": "^/help/?(\\?.*)?$",
+        "routeAlias": "/help/?\\??",
+        "redirect": "/tips"
+    },
+    {
         "name": "tips",
         "pattern": "^/tips/?(\\?.*)?$",
         "routeAlias": "/tips/?\\??",
