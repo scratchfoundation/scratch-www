@@ -117,12 +117,32 @@ test('clicking See Inside should take you to the editor', t => {
 });
 
 test('clicking a project title should take you to the project page', t => {
-    t.pass();
-    t.end();
+    findByXpath('//a[@class="mystuff-icon"]')
+    .then((element) => element.click())
+    .then(() => findByXpath('//a[@data-control="edit"]'))
+    .then((element) => element.click())
+    .then(() => driver.getCurrentUrl())
+    .then( function (url) {
+        var expectedUrlRegExp = new RegExp('/projects/.*[0-9].*/?');
+        t.match(url, expectedUrlRegExp, 'after clicking, the URL should end in projects/PROJECT_ID/');
+    })
+    .then(() => t.end());
 });
 
 test('Add To button should bring up a list of studios', t => {
-    t.pass();
-    t.end();
+    findByXpath('//a[@class="mystuff-icon"]')
+    .then((element) => element.click())
+    .then(() => findByXpath('//a[@data-control="edit"]'))
+    .then((element) => element.getText('span'))
+    .then((text) => t.equal(text, 'Add to', 'there should be a "Add to" button'))
+    .then(() => findByXpath('//a[@data-control="edit"]'))
+    //there should be stuff in the dropdown, there should be a dropdown
+    .then((element) => element.click())
+    .then(() => driver.getCurrentUrl())
+    .then( function (url) {
+        var expectedUrl = '/#editor';
+        t.equal(url.substr(-expectedUrl.length), expectedUrl, 'after clicking, the URL should end in #editor');
+    })
+    .then(() => t.end());
 });
     
