@@ -153,8 +153,8 @@
     },
     {
         "name": "help",
-        "pattern": "^/help/?(\\?.*)?$",
-        "routeAlias": "/help/?\\??",
+        "pattern": "^/help/?$",
+        "routeAlias": "/help",
         "redirect": "/tips"
     },
     {
