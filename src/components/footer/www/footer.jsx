@@ -127,8 +127,8 @@ var Footer = React.createClass({
                                 <FormattedMessage id='general.support' />
                             </dt>
                             <dd>
-                                <a href="/help/">
-                                    <FormattedMessage id='footer.help' />
+                                <a href="/tips">
+                                    <FormattedMessage id='general.tips' />
                                 </a>
                             </dd>
                             <dd>
