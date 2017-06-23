@@ -50,6 +50,10 @@ $developer-spot: $splash-blue;
         }
     }
 
+    .sub-nav-item {
+        margin: .5rem;
+    }
+
     .download-content {
         padding-bottom: 2rem;
     }
@@ -65,6 +69,23 @@ $developer-spot: $splash-blue;
 
     .installation-column {
         max-width: $cols4;
+        text-align: center;
+    }
+
+    .installation-column-number {
+        margin: 2rem auto;
+        border: 2px solid $active-gray;
+        border-radius: 2rem;
+        box-shadow: 0 0 0 .5rem lighten($ui-blue, 35);
+        background-color: $ui-blue;
+        width: 3.75rem;
+        height: 3.75rem;
+    }
+
+    .installation-column-number-text {
+        text-align: center;
+        line-height: 1.8em;
+        color: $type-white;
     }
 
     .installation-downloads {
@@ -75,6 +96,7 @@ $developer-spot: $splash-blue;
     .installation-downloads-item {
         margin: .25rem;
         padding: 0;
+        text-align: center;
     }
 
     section {
@@ -91,8 +113,11 @@ $developer-spot: $splash-blue;
                 max-width: 100%;
             }
         }
+    }
 
+    @media only screen and (max-width: $desktop - 1) {
         .three-col-row {
+            flex-direction: column;
             align-items: center;
         }
     }
