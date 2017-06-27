@@ -74,6 +74,15 @@ $darken-button: rgba(0, 0, 0, .1);
     text-align: left;
 }
 
+.tips-cards-buttons {
+    a {
+        white-space: normal;
+    }
+}
+
+img.tips-icon {
+    height: 1.75rem;
+}
 //4 columns
 @media only screen and (max-width: $mobile - 1) {
 
@@ -169,6 +178,10 @@ $darken-button: rgba(0, 0, 0, .1);
     
     .tips-info-body {
         max-width: $cols4;
+    }
+    
+    .tips-button {
+        width: 100%;
     }
     
     img.mod-flow-left {
