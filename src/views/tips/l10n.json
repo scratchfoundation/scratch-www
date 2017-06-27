@@ -1,6 +1,6 @@
 {
     "tips.title": "Getting Started",
-    "tips.subTitle": "Start making projects in Scratch by trying the <a href=\"//projects/editor/?tip_bar=getStarted\" class=\"mod-underline\">online tutorial</a> or dowloading the <a href=\"{GettingStartedPDF}\" class=\"mod-underline\">PDF Guide.",
+    "tips.subTitle": "Start making projects in Scratch by trying the <a href=\"/projects/editor/?tip_bar=getStarted\" class=\"mod-underline\">online tutorial</a> or downloading the <a href=\"{GettingStartedPDF}\" class=\"mod-underline\">PDF Guide.",
     "tips.tryGettingStarted": "Try the Getting Started tutorial",
     "tips.tttHeader": "Things to Try",
     "tips.tttBody": "What do you want to make with Scratch? For each activity, you can try the <strong>Tutorial</strong>, download a set of <strong>Activity Cards</strong>, or view the <strong>Educator Guide</strong>.",
