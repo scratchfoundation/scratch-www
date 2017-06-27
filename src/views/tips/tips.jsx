@@ -102,7 +102,7 @@ var Tips = injectIntl(React.createClass({
                                 <p>
                                     <FormattedHTMLMessage id="tips.cardsBody"/>
                                 </p>
-                                <p>
+                                <p className="tips-cards-buttons">
                                     <a href={formatMessage({id: 'cards.ScratchCardsAllLink'})}>
                                         <Button className="tips-button">
                                             <FormattedMessage id="tips.cardsDownload"/>
@@ -157,7 +157,10 @@ var Tips = injectIntl(React.createClass({
                             className="tips-info-section mod-align-top"
                         >
                             <div className="tips-info-body mod-narrow">
-                                <img src="/images/tips/download-icon.svg"/>
+                                <img
+                                    src="/images/tips/download-icon.svg"
+                                    className="tips-icon"
+                                />
                                 <h3>
                                     <FormattedMessage id="tips.offlineEditorHeader"/>
                                 </h3>
@@ -166,7 +169,10 @@ var Tips = injectIntl(React.createClass({
                                 </p>
                             </div>
                             <div className="tips-info-body mod-narrow">
-                                <img src="/images/tips/question-icon.svg"/>
+                                <img
+                                    src="/images/tips/question-icon.svg"
+                                    className="tips-icon"
+                                />
                                 <h3>
                                     <FormattedMessage id="tips.questionsHeader"/>
                                 </h3>
