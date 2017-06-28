@@ -158,6 +158,12 @@
         "redirect": "/tips"
     },
     {
+        "name": "info-redirect",
+        "pattern": "^/info/?$",
+        "routeAlias": "/info",
+        "redirect": "/tips"
+    },
+    {
         "name": "tips",
         "pattern": "^/tips/?(\\?.*)?$",
         "routeAlias": "/tips/?\\??",
