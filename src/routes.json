@@ -154,13 +154,13 @@
     {
         "name": "help",
         "pattern": "^/help/?(\\?.*)?$",
-        "routeAlias": "^/help/?(\\?.*)?$",
+        "routeAlias": "/help/?(\\?.*)?$",
         "redirect": "/tips"
     },
     {
         "name": "info-redirect",
         "pattern": "^/info/?(\\?.*)?$",
-        "routeAlias": "^/info/?(\\?.*)?$",
+        "routeAlias": "/info/?(\\?.*)?$",
         "redirect": "/tips"
     },
     {
