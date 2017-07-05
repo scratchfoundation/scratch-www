@@ -152,6 +152,18 @@
         "redirect": "/tips"
     },
     {
+        "name": "help",
+        "pattern": "^/help/?(\\?.*)?$",
+        "routeAlias": "/help/?(\\?.*)?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "info-redirect",
+        "pattern": "^/info/?(\\?.*)?$",
+        "routeAlias": "/info/?(\\?.*)?$",
+        "redirect": "/tips"
+    },
+    {
         "name": "tips",
         "pattern": "^/tips/?(\\?.*)?$",
         "routeAlias": "/tips/?\\??",
@@ -168,7 +180,7 @@
     {
         "name": "credits",
         "pattern": "^/info/credits/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
         "view": "credits/credits",
         "title": "Credits"
     },
