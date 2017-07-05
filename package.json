@@ -65,6 +65,7 @@
     "lodash.omit": "3.1.0",
     "lodash.range": "3.0.1",
     "minilog": "2.0.8",
+    "node-dir": "0.1.16",
     "node-sass": "3.3.3",
     "pako": "0.2.8",
     "po2icu": "0.0.2",

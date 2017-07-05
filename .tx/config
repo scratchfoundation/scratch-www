@@ -68,12 +68,6 @@ source_file = src/views/developers/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
-[scratch-website.things-to-try-l10njson]
-file_filter = localizations/things-to-try/<lang>.json
-source_file = src/views/thingstotry/l10n.json
-source_lang = en
-type = KEYVALUEJSON
-
 [scratch-website.guidelines-l10njson]
 file_filter = localizations/guidelines/<lang>.json
 source_file = src/views/guidelines/l10n.json
@@ -110,3 +104,14 @@ source_file = src/views/credits/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
+[scratch-website.tips-l10njson]
+file_filter = localizations/tips/<lang>.json
+source_file = src/views/tips/l10n.json
+source_lang = en
+type = KEYVALUEJSON
+
+[scratch-website.download-l10njson]
+file_filter = localizations/download/<lang>.json
+source_file = src/views/download/l10n.json
+source_lang = en
+type = KEYVALUEJSON

@@ -136,7 +136,7 @@
         "name": "hoc",
         "pattern": "^/hoc/?(\\?.*)?$",
         "routeAlias": "/hoc/?\\??",
-        "redirect": "/go"
+        "redirect": "/tips"
     },
     {
         "name": "cards",
@@ -149,8 +149,26 @@
         "name": "things-to-try",
         "pattern": "^/go/?(\\?.*)?$",
         "routeAlias": "/go/?\\??",
-        "view": "thingstotry/thingstotry",
-        "title": "Things to Try"
+        "redirect": "/tips"
+    },
+    {
+        "name": "help",
+        "pattern": "^/help/?(\\?.*)?$",
+        "routeAlias": "/help/?(\\?.*)?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "info-redirect",
+        "pattern": "^/info/?(\\?.*)?$",
+        "routeAlias": "/info/?(\\?.*)?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "tips",
+        "pattern": "^/tips/?(\\?.*)?$",
+        "routeAlias": "/tips/?\\??",
+        "view": "tips/tips",
+        "title": "Tips"
     },
     {
         "name": "communityblocks-interviews",
@@ -162,9 +180,16 @@
     {
         "name": "credits",
         "pattern": "^/info/credits/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
         "view": "credits/credits",
         "title": "Credits"
+    },
+    {
+        "name": "download",
+        "pattern": "^/download/?$",
+        "routeAlias": "/download",
+        "view": "download/download",
+        "title": "Scratch Offline Editor"
     },
     {
         "name": "faq",
@@ -250,6 +275,12 @@
         "pattern": "^/explore/studios/?$",
         "routeAlias": "/explore(?!/ajax)",
         "redirect": "/explore/studios/all"
+    },
+    {
+        "name": "download-redirect",
+        "pattern": "^/scratch2download/?$",
+        "routeAlias": "/scratch2download",
+        "redirect": "/download"
     },
     {
         "name": "microworld-art",

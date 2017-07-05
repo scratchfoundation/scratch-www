@@ -55,7 +55,7 @@ var Privacypolicy = React.createClass({
                                  Scratch Team is responsible for moderation, we have access to all
                                  content stored on the Scratch website, including unshared projects.
                                  If you prefer to work on projects in complete privacy, you can use
-                                 either the <a href="/scratch2download">Scratch 2 offline editor</a>{' '}
+                                 either the <a href="/download">Scratch 2 offline editor</a>{' '}
                                  or <a href="/scratch_1.4">Scratch 1.4</a>.
                             </dd>
                             <dt>Usage Information: </dt>

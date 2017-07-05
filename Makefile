@@ -24,6 +24,7 @@ deploy:
 	@make sync
 
 translations:
+	./bin/get-localized-urls localized-urls.json
 	./bin/build-locales node_modules/scratchr2_translations/www/translations intl
 
 webpack:

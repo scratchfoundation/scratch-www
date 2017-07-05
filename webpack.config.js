@@ -105,11 +105,11 @@ module.exports = {
     ].concat(routes
         .filter(function (route) {return !route.redirect;})
         .map(function (route) {
-            return new HtmlWebpackPlugin(defaults({}, require('./src/template-config.js'), {
+            return new HtmlWebpackPlugin(defaults({}, {
                 title: route.title,
                 filename: route.name + '.html',
                 route: route
-            }));
+            }, require('./src/template-config.js')));
         })
     ).concat([
         new CopyWebpackPlugin([
