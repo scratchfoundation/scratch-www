@@ -192,7 +192,6 @@ async.forEachLimit(views, 5, function (view, cb) {
     viewLocales['en'] = merge({}, generalLocales['en'], defaultLocales[view]);
 
     // merge view specific english strings, first then other languages
-    process.stdout.write('Merging translations for ' + view + '\n');
     async.forEach(allLangs, function (isoCode, cb) {
         var translationsFile = path.resolve(
             __dirname,
@@ -225,7 +224,10 @@ async.forEachLimit(views, 5, function (view, cb) {
             cb();
         });
     }, function (err) {
-        if (err) process.stdout.write('Error merging translations for view: ' + view + '\n' + err + '\n');
+        if (err) {
+            process.stdout.write('Error merging translations for view: ' + view + '\n' + err + '\n');
+            process.exit(1);
+        }
         var viewTranslations = merge({}, viewLocales, localizedAssetUrls[view]);
         writeIntlFile(outputDir, view, viewTranslations, function (err) {
             if (err) {
