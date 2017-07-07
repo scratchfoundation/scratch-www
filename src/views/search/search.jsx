@@ -33,7 +33,8 @@ var Search = injectIntl(React.createClass({
     getInitialState: function () {
         return {
             loaded: [],
-            offset: 0
+            offset: 0,
+            loadMore: false
         };
     },
     componentDidMount: function () {
@@ -70,9 +71,9 @@ var Search = injectIntl(React.createClass({
         }, function (err, body) {
             var loadedSoFar = this.state.loaded;
             Array.prototype.push.apply(loadedSoFar, body);
-            this.setState({loaded: loadedSoFar});
             var currentOffset = this.state.offset + this.props.loadNumber;
-            this.setState({offset: currentOffset});
+            var willLoadMore = body.length === this.props.loadNumber;
+            this.setState({loaded: loadedSoFar, offset: currentOffset, loadMore: willLoadMore});
         }.bind(this));
     },
     onSearchSubmit: function (formData) {
@@ -96,6 +97,31 @@ var Search = injectIntl(React.createClass({
         }
         return allTab;
     },
+    getProjectBox: function () {
+        var results = <Grid
+            items={this.state.loaded}
+            itemType={this.props.tab}
+            cards={true}
+            showAvatar={true}
+            showLoves={false}
+            showFavorites={false}
+            showViews={false}
+        />;
+        var searchAction = null;
+        if (this.state.loaded.length === 0 && this.state.offset !== 0) {
+            searchAction = <h2 className="search-prompt"><FormattedMessage id="general.searchEmpty" /></h2>;
+        } else if (this.state.loadMore) {
+            searchAction = <Button onClick={this.getSearchMore} className="white">
+                              <FormattedMessage id='general.loadMore' />
+                            </Button>;
+        }
+        return (
+          <div id='projectBox' key='projectBox'>
+            {results}
+            {searchAction}
+          </div>
+        );
+    },
     render: function () {
         return (
             <div>
@@ -109,18 +135,7 @@ var Search = injectIntl(React.createClass({
                             {this.getTab('projects')}
                             {this.getTab('studios')}
                         </Tabs>
-                        <div id='projectBox' key='projectBox'>
-                        <Grid items={this.state.loaded}
-                              itemType={this.props.tab}
-                              cards={true}
-                              showAvatar={true}
-                              showLoves={false}
-                              showFavorites={false}
-                              showViews={false} />
-                         <Button onClick={this.getSearchMore} className="white">
-                            <FormattedMessage id='general.loadMore' />
-                        </Button>
-                        </div>
+                        {this.getProjectBox()}
                 </div>
             </div>
         );
