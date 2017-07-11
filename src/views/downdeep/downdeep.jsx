@@ -1,6 +1,5 @@
 var React = require('react');
 var injectIntl = require('react-intl').injectIntl;
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var render = require('../../lib/render.jsx');
 var TitleBanner = require('../../components/title-banner/title-banner.jsx');
@@ -13,7 +12,6 @@ require('./downdeep.scss');
 var Downdeep = injectIntl(React.createClass({
     type: 'Downdeep',
     render: function () {
-        var formatMessage = this.props.intl.formatMessage;
         return (
             <div>
                 <TitleBanner className="masthead mod-blue-bg">
@@ -40,7 +38,9 @@ var Downdeep = injectIntl(React.createClass({
                                 </p>
                             </center>
                             <center><img src="/images/downdeep/fish-divider.svg" alt="FishDivider" className="fishDivider"/></center>
-                            <h2><center><FormattedMessage id='downdeep.part1Dates' /></center></h2>
+                            <h2>
+                                <center><FormattedMessage id='downdeep.part1Dates' /></center>
+                            </h2>
                             <center>
                             <FlexRow className="sidebar-row">
                                 <div className="body-copy column">
@@ -56,8 +56,12 @@ var Downdeep = injectIntl(React.createClass({
                                     </p>
                                 </div>
                             </FlexRow>
-                            <center><img src="/images/downdeep/fish-divider2.svg" alt="FishDivider2" className="fishDivider"/></center>
-                            <h2><center><FormattedMessage id='downdeep.part2Dates' /></center></h2>
+                            <center>
+                                <img src="/images/downdeep/fish-divider2.svg" alt="FishDivider2" className="fishDivider"/>
+                            </center>
+                            <h2>
+                                <center><FormattedMessage id='downdeep.part2Dates' /></center>
+                            </h2>
                             <FlexRow className="sidebar-row">
                                 <div className="body-copy column">
                                     <h3><FormattedMessage id='downdeep.part2DetailsTitle' /></h3>
