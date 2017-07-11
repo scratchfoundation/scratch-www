@@ -36,7 +36,7 @@ h3 {
 }
 #info {
     h2, p {
-        color: white;
+        color: $ui-white;
     }
 }
 .info-content {
@@ -62,9 +62,9 @@ h3 {
 }
 .gradient1 {
     position: relative;
-    background: rgb(37, 175, 247); /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(rgb(37, 175, 247), rgb(12, 59, 75)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgb(37, 175, 247), rgb(12, 59, 75)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgb(37, 175, 247), rgb(12, 59, 75)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgb(37, 175, 247), rgb(12, 59, 75));
+    background: $ui-blue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient($ui-blue, $dd-darkblue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgb($ui-blue, $dd-darkblue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgb($ui-blue, $dd-darkblue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgb($ui-blue, $dd-darkblue);
 }
