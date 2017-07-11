@@ -37,7 +37,9 @@ var Downdeep = injectIntl(React.createClass({
                                     <h2><FormattedMessage id='downdeep.welcomeIntro' /></h2>
                                 </p>
                             </center>
-                            <center><img src="/images/downdeep/fish-divider.svg" alt="FishDivider" className="fishDivider"/></center>
+                            <center>
+                                <img src="/images/downdeep/fish-divider.svg" alt="FishDivider" />
+                            </center>
                             <h2>
                                 <center><FormattedMessage id='downdeep.part1Dates' /></center>
                             </h2>
@@ -57,7 +59,7 @@ var Downdeep = injectIntl(React.createClass({
                                 </div>
                             </FlexRow>
                             <center>
-                                <img src="/images/downdeep/fish-divider2.svg" alt="FishDivider2" className="fishDivider"/>
+                                <img src="/images/downdeep/fish-divider2.svg" alt="FishDivider2" />
                             </center>
                             <h2>
                                 <center><FormattedMessage id='downdeep.part2Dates' /></center>
@@ -76,7 +78,9 @@ var Downdeep = injectIntl(React.createClass({
                                     </p>
                                 </div>
                             </FlexRow>
-                            <center><img src="/images/downdeep/fish-divider.svg" alt="FishDivider" className="fishDivider"/></center>
+                            <center>
+                                <img src="/images/downdeep/fish-divider.svg" alt="FishDivider" />
+                            </center>
                             <h2><center><FormattedMessage id='downdeep.part3Dates' /></center></h2>
                             <FlexRow className="sidebar-row">
                                 <div className="body-copy column">
