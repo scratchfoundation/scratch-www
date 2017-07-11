@@ -46,13 +46,13 @@ var Downdeep = injectIntl(React.createClass({
                             <center>
                             <FlexRow className="sidebar-row">
                                 <div className="body-copy column">
-                                    <h3><FormattedMessage id='downdeep.part1DetailsTitle' /></h3>
+                                    <h3><FormattedMessage id='downdeep.detailsTitle' /></h3>
                                     <p>
                                         <FormattedMessage id='downdeep.part1Details' />
                                     </p>
                                 </div>
                                 <div className="sidebar column">
-                                    <h3><FormattedMessage id='downdeep.part1ParticpateTitle' /></h3>
+                                    <h3><FormattedMessage id='downdeep.particpateTitle' /></h3>
                                     <p>
                                         <FormattedMessage id='downdeep.part1Particpate' />
                                     </p>
@@ -66,13 +66,13 @@ var Downdeep = injectIntl(React.createClass({
                             </h2>
                             <FlexRow className="sidebar-row">
                                 <div className="body-copy column">
-                                    <h3><FormattedMessage id='downdeep.part2DetailsTitle' /></h3>
+                                    <h3><FormattedMessage id='downdeep.detailsTitle' /></h3>
                                     <p>
                                         <FormattedMessage id='downdeep.part2Details' />
                                     </p>
                                 </div>
                                 <div className="sidebar column">
-                                    <h3><FormattedMessage id='downdeep.part2ParticpateTitle' /></h3>
+                                    <h3><FormattedMessage id='downdeep.particpateTitle' /></h3>
                                     <p>
                                         <FormattedMessage id='downdeep.part2Particpate' />
                                     </p>
@@ -84,13 +84,13 @@ var Downdeep = injectIntl(React.createClass({
                             <h2><center><FormattedMessage id='downdeep.part3Dates' /></center></h2>
                             <FlexRow className="sidebar-row">
                                 <div className="body-copy column">
-                                    <h3><FormattedMessage id='downdeep.part3DetailsTitle' /></h3>
+                                    <h3><FormattedMessage id='downdeep.detailsTitle' /></h3>
                                     <p>
                                         <FormattedMessage id='downdeep.part3Details' />
                                     </p>
                                 </div>
                                 <div className="sidebar column">
-                                    <h3><FormattedMessage id='downdeep.part3ParticpateTitle' /></h3>
+                                    <h3><FormattedMessage id='downdeep.particpateTitle' /></h3>
                                     <p>
                                         <FormattedMessage id='downdeep.part3Particpate' />
                                     </p>
