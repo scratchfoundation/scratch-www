@@ -32,12 +32,13 @@
     }
     '''
 */
-var fs = require('fs');
-var path = require('path');
-var merge = require('lodash.merge');
 var async = require('async');
+var fs = require('fs');
 var languages = require('../languages.json');
 var localizedUrls = require('./lib/localized-urls');
+var merge = require('lodash.merge');
+var defaults = require('lodash.defaults');
+var path = require('path');
 var routes = require('../src/routes.json');
 
 // -----------------------------------------------------------------------------
@@ -155,16 +156,17 @@ for (var v in routes) {
         var l10nStatic = path.resolve(__dirname, '../src/views/' + subdir.join('/') + '/l10n-static.json');
         localizedAssetUrls[routes[v].name] = {};
 
-        var assetUrls = require(l10nStatic);
-        localizedAssetUrls[routes[v].name]['en'] = assetUrls;
+        var viewUrls = require(l10nStatic);
+        localizedAssetUrls[routes[v].name]['en'] = viewUrls; 
+        var defaultUrls = localizedUrls['en'];
         for (var lang in languages) {
             localizedAssetUrls[routes[v].name][lang] = {};
             var langUrls = localizedUrls[lang] || {};
-            for (var key in assetUrls) {
+            for (var key in viewUrls) {
                 if (langUrls.hasOwnProperty(key)) {
                     localizedAssetUrls[routes[v].name][lang][key] = langUrls[key];
                 } else {
-                    localizedAssetUrls[routes[v].name][lang][key] = assetUrls[key];
+                    localizedAssetUrls[routes[v].name][lang][key] = defaultUrls[key];
                 }
             }
         }
@@ -204,9 +206,10 @@ async.forEachLimit(views, 5, function (view, cb) {
                 if (err.code === 'ENOENT') {
                     if (isoCode !== 'en') {
                         if (defaultLocales.hasOwnProperty(view)) {
-                            process.stdout.write('No translations for ' + view + isoCode + ', using english\n');
+                            process.stdout.write('No translations for ' + view + ' ' + isoCode + ', using english\n');
                         }
                         viewLocales[isoCode] = merge({}, generalLocales[isoCode], defaultLocales[view]);
+                        defaults(viewLocales[isoCode], generalLocales['en']);
                     }
                     return cb();
                 } else {
@@ -215,6 +218,7 @@ async.forEachLimit(views, 5, function (view, cb) {
             }
             try {
                 viewLocales[isoCode] = merge({}, generalLocales[isoCode], JSON.parse(data));
+                defaults(viewLocales[isoCode], viewLocales['en']);
             } catch (e) {
                 return cb(e);
             }

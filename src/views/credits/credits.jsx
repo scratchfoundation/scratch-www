@@ -33,6 +33,11 @@ var Credits = React.createClass({
                     </li>
                     
                     <li>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/24137617_170x170.png" alt="Mark Avatar" />
+                        <span className="name">Mark Ferrell</span>
+                    </li>
+                    
+                    <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/1494_170x170.png" alt="Chris Avatar" />
                         <span className="name">Chris Garrity</span>
                     </li>
@@ -50,6 +55,11 @@ var Credits = React.createClass({
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/2752403_170x170.png" alt="Saskia Avatar" />
                         <span className="name">Saskia Leggett</span>
+                    </li>
+                                        
+                    <li>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/527836_170x170.png" alt="DD Avatar" />
+                        <span className="name">DD Liu</span>
                     </li>
                     
                     <li>
@@ -137,11 +147,6 @@ var Credits = React.createClass({
                     </li>
                     
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/4836354_170x170.png" alt="Christina Avatar" />
-                        <span className="name">Christina Huang</span>
-                    </li>
-                    
-                    <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/36977_170x170.png" alt="Connor Avatar" />
                         <span className="name">Connor Hudson</span>
                     </li>
@@ -223,6 +228,7 @@ var Credits = React.createClass({
                     <a href="https://screenhero.com/"> Screenhero</a>,
                     <a href="https://getsentry.com/welcome/"> Sentry</a>,
                     <a href="http://www.git-tower.com/"> Tower</a>,
+                    <a href="https://www.transifex.com/"> Transifex</a>,
                     and <a href="https://travis-ci.org/"> Travis-CI</a>.
                 </p>
                 
@@ -242,7 +248,6 @@ var Credits = React.createClass({
                     <a href="https://www.nagios.org/"> Nagios</a>,
                     <a href="https://www.nginx.com/resources/wiki/"> Nginx</a>,
                     <a href="https://nodejs.org/en/"> Node.js</a>,
-                    <a href="http://pootle.translatehouse.org/"> Pootle</a>,
                     <a href="http://www.postgresql.org/"> PostgreSQL</a>,
                     <a href="https://www.python.org/"> Python</a>,
                     <a href="http://redis.io/"> Redis</a>,

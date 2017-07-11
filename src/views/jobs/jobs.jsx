@@ -39,11 +39,11 @@ var Jobs = React.createClass({
                                 </span>
                             </li>
                             <li>
-                                <a href="http://bit.ly/2f5hABE">
-                                    Trust &amp; Safety Manager
+                                <a href="https://www.media.mit.edu/about/job-opportunities/junior-web-designer-scratch/">
+                                    Junior Designer
                                 </a>
                                 <span>
-                                    (MIT Media Lab, Cambridge, MA)
+                                    MIT Media Lab, Cambridge, MA
                                 </span>
                             </li>
                         </ul>
