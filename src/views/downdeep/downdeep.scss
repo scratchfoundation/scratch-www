@@ -1,0 +1,70 @@
+@import "../../colors";
+@import "../../frameless";
+
+.topImg {
+    margin-top: -25px;
+    padding: 0px;
+    width: 100%;
+}
+.bubbles {
+    display: block;
+    margin: 0 auto;
+    width: 45%;
+}
+h3 {
+    border-bottom: 1px solid $ui-border;
+}
+.flex-row {
+        &.sidebar-row {
+            align-items: flex-start;
+
+            .body-copy {
+                width: $cols6;
+            }
+
+            .sidebar {
+                width: $cols6;
+            }
+        }
+    }
+#particpate {
+    position: relative;
+    
+    h2, h3, p {
+        color: white;
+    }
+}
+#info {
+    h2, p {
+        color: white;
+    }
+}
+.info-content {
+        div {
+            max-width: $cols4;
+            text-align: center;
+        }
+    }
+.infoImg {
+    -webkit-transform: scale(0.8); /* Saf3.1+, Chrome */
+    -moz-transform: scale(0.8); /* FF3.5+ */
+    -ms-transform: scale(0.8); /* IE9 */
+    -o-transform: scale(0.8); /* Opera 10.5+ */
+    transform: scale(0.8);
+}
+.bottomImg {
+    bottom: 0;
+    width: 100%;
+}
+.title-banner {
+    padding: 0px;
+    margin: 0px;
+}
+.gradient1 {
+    position: relative;
+    background: rgb(37,175,247); /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(rgb(37,175,247), rgb(12,59,75)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgb(37,175,247), rgb(12,59,75)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgb(37,175,247), rgb(12,59,75)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgb(37,175,247), rgb(12,59,75));
+}
