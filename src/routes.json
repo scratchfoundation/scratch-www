@@ -98,6 +98,13 @@
         "title": "DMCA"
     },
     {
+        "name": "down-deep",
+        "pattern": "^/down_deep/?$",
+        "routeAlias": "/down_deep/?$",
+        "view": "downdeep/downdeep",
+        "title": "Down Deep"
+    },
+    {
         "name": "educator-landing",
         "pattern": "^/educators/?$",
         "routeAlias": "/educators(?:/(faq|register|waiting))?/?$",
