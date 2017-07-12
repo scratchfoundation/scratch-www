@@ -9,6 +9,7 @@
 .bubbles {
     display: block;
     margin: 0 auto;
+    margin-top: .938em;
     width: 45%;
 }
 h3 {
@@ -19,11 +20,11 @@ h3 {
         align-items: flex-start;
 
         .body-copy {
-            width: $cols6;
+            width: $cols5;
         }
 
         .sidebar {
-            width: $cols6;
+            width: $cols5;
         }
     }
 }
@@ -60,6 +61,9 @@ h3 {
     margin: 0;
     padding: 0;
 }
+.fishDivider {
+    margin: .625em 0;
+}
 .gradient1 {
     position: relative;
     background: $ui-blue; /* For browsers that do not support gradients */
@@ -67,4 +71,7 @@ h3 {
     background: -o-linear-gradient($ui-blue, $dd-darkblue); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient($ui-blue, $dd-darkblue); /* For Firefox 3.6 to 15 */
     background: linear-gradient($ui-blue, $dd-darkblue);
+    #intro {
+        max-width: $cols9
+    }
 }
