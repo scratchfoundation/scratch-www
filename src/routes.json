@@ -98,10 +98,10 @@
         "title": "DMCA"
     },
     {
-        "name": "down-deep",
-        "pattern": "^/down_deep/?$",
-        "routeAlias": "/down_deep/?$",
-        "view": "downdeep/downdeep",
+        "name": "camp",
+        "pattern": "^/camp/?$",
+        "routeAlias": "/camp/?$",
+        "view": "camp/camp",
         "title": "Down Deep"
     },
     {
