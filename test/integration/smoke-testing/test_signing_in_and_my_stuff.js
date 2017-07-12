@@ -49,7 +49,8 @@ const clickButton = (text) => {
     return clickXpath(`//button[contains(text(), '${text}')]`);
 };
 
-var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu/users/anyuser';
+var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
+var url = rootUrl + '/users/anyuser';
 
 tap.plan(5);
 
@@ -58,7 +59,7 @@ tap.tearDown(function () {
 });
 
 tap.beforeEach(function () {
-    return driver.get(rootUrl);
+    return driver.get(url);
 });
 
 test('Sign in to Scratch using scratchr2 navbar', t => {
@@ -77,8 +78,7 @@ test('Sign in to Scratch using scratchr2 navbar', t => {
 });
 
 test('Sign in to Scratch & verify My Stuff structure (tabs, title)', t => {
-    findByXpath('//a[@class="mystuff-icon"]')
-    .then((element) => element.click())
+    clickXpath('//a[@class="mystuff-icon"]')
     .then(() => findByXpath('//div[@class="box-head"]/h2'))
     .then((element) => element.getText('h2'))
     .then((text) => t.equal('My Stuff', text, 'title should be My Stuff'))
@@ -101,13 +101,11 @@ test('Sign in to Scratch & verify My Stuff structure (tabs, title)', t => {
 });
 
 test('clicking See Inside should take you to the editor', t => {
-    findByXpath('//a[@class="mystuff-icon"]')
-    .then((element) => element.click())
+    clickXpath('//a[@class="mystuff-icon"]')
     .then(() => findByXpath('//a[@data-control="edit"]'))
     .then((element) => element.getText('span'))
     .then((text) => t.equal(text, 'See inside', 'there should be a "See inside" button'))
-    .then(() => findByXpath('//a[@data-control="edit"]'))
-    .then((element) => element.click())
+    .then(() => clickXpath('//a[@data-control="edit"]'))
     .then(() => driver.getCurrentUrl())
     .then( function (url) {
         var expectedUrl = '/#editor';
@@ -117,10 +115,8 @@ test('clicking See Inside should take you to the editor', t => {
 });
 
 test('clicking a project title should take you to the project page', t => {
-    findByXpath('//a[@class="mystuff-icon"]')
-    .then((element) => element.click())
-    .then(() => findByXpath('//a[@data-control="edit"]'))
-    .then((element) => element.click())
+    clickXpath('//a[@class="mystuff-icon"]')
+    .then(() => clickXpath('//a[@data-control="edit"]'))
     .then(() => driver.getCurrentUrl())
     .then( function (url) {
         var expectedUrlRegExp = new RegExp('/projects/.*[0-9].*/?');
@@ -130,18 +126,16 @@ test('clicking a project title should take you to the project page', t => {
 });
 
 test('Add To button should bring up a list of studios', t => {
-    findByXpath('//a[@class="mystuff-icon"]')
-    .then((element) => element.click())
-    .then(() => findByXpath('//a[@data-control="edit"]'))
+    clickXpath('//a[@class="mystuff-icon"]')
+    .then(() => findByXpath('//div[@data-control="add-to"]'))
     .then((element) => element.getText('span'))
-    .then((text) => t.equal(text, 'Add to', 'there should be a "Add to" button'))
-    .then(() => findByXpath('//a[@data-control="edit"]'))
-    //there should be stuff in the dropdown, there should be a dropdown
-    .then((element) => element.click())
-    .then(() => driver.getCurrentUrl())
-    .then( function (url) {
-        var expectedUrl = '/#editor';
-        t.equal(url.substr(-expectedUrl.length), expectedUrl, 'after clicking, the URL should end in #editor');
+    .then((text) => t.equal(text, 'Add to', 'there should be an "Add to" button'))
+    .then(() => clickXpath('//div[@data-control="add-to"]'))
+    .then(() => findByXpath('//div[@class="dropdown-menu"]/ul/li'))
+    .then((element) => element.getText('span'))
+    .then( function (text) {
+        var expectedRegExp = new RegExp('.+');
+        t.match(text, expectedRegExp, 'the dropdown menu should have at least 1 text item in it');
     })
     .then(() => t.end());
 });

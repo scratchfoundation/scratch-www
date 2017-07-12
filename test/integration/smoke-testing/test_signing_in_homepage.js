@@ -38,9 +38,9 @@ const clickButton = (text) => {
     return clickXpath(`//button[contains(text(), '${text}')]`);
 };
 
-var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu/users/anyuser';
+var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu';
 
-tap.plan(5);
+tap.plan(1);
 
 tap.tearDown(function () {
     driver.quit();
@@ -52,14 +52,14 @@ tap.beforeEach(function () {
 
 test('Sign in to Scratch using scratch-www navbar', t => {
     clickText('Sign in')
-    .then(() => findByXpath('//input[@id="login_dropdown_username"]'))
+    .then(() => findByXpath('//input[@id="frc-username-1088"]'))
     .then((element) => element.sendKeys(username))
-    .then(() => findByXpath('//input[@name="password"]'))
+    .then(() => findByXpath('//input[@id="frc-password-1088"]'))
     .then((element) => element.sendKeys(password))
-    .then(() => clickButton('Sign in'))
-    .then(() => findByXpath('//li[contains(@class, "logged-in-user")'
-        + 'and contains(@class, "dropdown")]/span'))
-    .then((element) => element.getText('span'))
+    .then(() => clickXpath('//button[contains(@class, "button") and '
+        + 'contains(@class, "submit-button") and contains(@class, "white")]'))
+    .then(() => findByXpath('//span[@class="profile-name"]'))
+    .then((element) => element.getText())
     .then((text) => t.match(text.toLowerCase(), username.substring(0,10).toLowerCase(),
             'first part of username should be displayed in navbar'))
     .then(() => t.end());
