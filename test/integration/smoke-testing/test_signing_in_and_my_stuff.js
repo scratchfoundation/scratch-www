@@ -33,10 +33,6 @@ const findByXpath = (xpath) => {
     return driver.wait(until.elementLocated(By.xpath(xpath), 5 * 1000));
 };
 
-const findByCss = (css) => {
-    return driver.wait(until.elementLocated(By.css(css), 1000 * 5));
-};
-
 const clickXpath = (xpath) => {
     return findByXpath(xpath).then(el => el.click());
 };
@@ -139,4 +135,4 @@ test('Add To button should bring up a list of studios', t => {
     })
     .then(() => t.end());
 });
-    
+   

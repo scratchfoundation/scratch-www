@@ -22,10 +22,6 @@ const findByXpath = (xpath) => {
     return driver.wait(until.elementLocated(By.xpath(xpath), 5 * 1000));
 };
 
-const findByCss = (css) => {
-    return driver.wait(until.elementLocated(By.css(css), 1000 * 5));
-};
-
 const clickXpath = (xpath) => {
     return findByXpath(xpath).then(el => el.click());
 };
@@ -34,11 +30,7 @@ const clickText = (text) => {
     return clickXpath(`//*[contains(text(), '${text}')]`);
 };
 
-const clickButton = (text) => {
-    return clickXpath(`//button[contains(text(), '${text}')]`);
-};
-
-var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu';
+var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
 tap.plan(1);
 
