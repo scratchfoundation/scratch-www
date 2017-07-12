@@ -7,7 +7,7 @@ var FlexRow = require('../../components/flex-row/flex-row.jsx');
 
 var Page = require('../../components/page/www/page.jsx');
 
-require('./downdeep.scss');
+require('./camp.scss');
 
 var Downdeep = injectIntl(React.createClass({
     type: 'Downdeep',
