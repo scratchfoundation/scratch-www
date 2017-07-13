@@ -33,7 +33,9 @@ var Splash = injectIntl(React.createClass({
             projectCount: 14000000, // gets the shared project count
             activity: [], // recent social actions taken by users someone is following
             news: [], // gets news posts from the scratch Tumblr
-            featuredCustom: {}, // custom homepage rows, such as "Projects by Scratchers I'm Following"
+            sharedByFollowing: [], // "Projects by Scratchers I'm Following"
+            lovedByFollowing: [], // "Projects Loved by Scratchers I'm Following"
+            inStudiosFollowing: [], // "Projects in Studios I'm Following"
             featuredGlobal: {}, // global homepage rows, such as "Featured Projects"
             showEmailConfirmationModal: true, // flag that determines whether to show banner to request email conf.
             refreshCacheStatus: 'notrequested'
@@ -49,10 +51,14 @@ var Splash = injectIntl(React.createClass({
         if (this.props.session.session.user != prevProps.session.session.user) {
             if (this.props.session.session.user) {
                 this.getActivity();
-                this.getFeaturedCustom();
+                this.getSharedByFollowing();
+                this.getInStudiosFollowing();
+                this.getLovedByFollowing();
                 this.getNews();
             } else {
-                this.setState({featuredCustom: []});
+                this.setState({sharedByFollowing: []});
+                this.setState({lovedByFollowing: []});
+                this.setState({inStudiosFollowing: []});
                 this.setState({activity: []});
                 this.setState({news: []});
                 this.getProjectCount();
@@ -68,7 +74,9 @@ var Splash = injectIntl(React.createClass({
         this.getFeaturedGlobal();
         if (this.props.session.session.user) {
             this.getActivity();
-            this.getFeaturedCustom();
+            this.getSharedByFollowing();
+            this.getInStudiosFollowing();
+            this.getLovedByFollowing();
             this.getNews();
         } else {
             this.getProjectCount();
@@ -106,12 +114,33 @@ var Splash = injectIntl(React.createClass({
             if (!err) return this.setState({featuredGlobal: body});
         }.bind(this));
     },
-    getFeaturedCustom: function () {
+    getSharedByFollowing: function () {
+        api({
+            uri: '/projects/following/users',
+            authentication: this.props.session.session.user.token
+        }, function (err, body) {
+            if (!body) return log.error('No response body');
+            if (!err) return this.setState({sharedByFollowing: body});
+        }.bind(this));
+    },
+    getInStudiosFollowing: function () {
+        api({
+            uri: '/projects/following/studios',
+            authentication: this.props.session.session.user.token
+        }, function (err, body) {
+            if (!body) return log.error('No response body');
+            if (!err) return this.setState({inStudiosFollowing: body});
+        }.bind(this));
+    },
+    getLovedByFollowing: function () {
         api({
             uri: '/proxy/users/' + this.props.session.session.user.id + '/featured'
         }, function (err, body) {
-            if (!body) return log.error('No response body');
-            if (!err) return this.setState({featuredCustom: body});
+            if (err) return log.error(err);
+            
+            return this.setState({
+                lovedByFollowing: (body.custom_projects_loved_by_following || [])
+            });
         }.bind(this));
     },
     getNews: function () {
@@ -195,15 +224,19 @@ var Splash = injectIntl(React.createClass({
 
         var rows = [
             <Box
-                    title={formatMessage({id: 'splash.featuredProjects'})}
-                    key="community_featured_projects">
+                title={formatMessage({id: 'splash.featuredProjects'})}
+                key="community_featured_projects"
+            >
                 <Carousel items={this.state.featuredGlobal.community_featured_projects} />
             </Box>,
             <Box
-                    title={formatMessage({id: 'splash.featuredStudios'})}
-                    key="community_featured_studios">
-                <Carousel items={this.state.featuredGlobal.community_featured_studios}
-                          settings={{slidesToShow: 4, slidesToScroll: 4, lazyLoad: false}} />
+                title={formatMessage({id: 'splash.featuredStudios'})}
+                key="community_featured_studios"
+            >
+                <Carousel
+                    items={this.state.featuredGlobal.community_featured_studios}
+                    settings={{slidesToShow: 4, slidesToScroll: 4, lazyLoad: false}}
+                />
             </Box>
         ];
 
@@ -212,13 +245,13 @@ var Splash = injectIntl(React.createClass({
 
             rows.push(
                 <Box
-                        key="curator_top_projects"
-                        title={
-                            formatMessage({id: 'splash.projectsCuratedBy'}) + ' ' +
-                            this.state.featuredGlobal.curator_top_projects[0].curator_name}
-                        moreTitle={formatMessage({id: 'general.learnMore'})}
-                        moreHref="/studios/386359/">
-
+                    key="curator_top_projects"
+                    title={
+                        formatMessage({id: 'splash.projectsCuratedBy'}) + ' ' +
+                        this.state.featuredGlobal.curator_top_projects[0].curator_name}
+                    moreTitle={formatMessage({id: 'general.learnMore'})}
+                    moreHref="/studios/386359/"
+                >
                     <Carousel items={this.state.featuredGlobal.curator_top_projects} />
                 </Box>
             );
@@ -229,13 +262,13 @@ var Splash = injectIntl(React.createClass({
 
             rows.push(
                 <Box
-                        key="scratch_design_studio"
-                        title={
-                            formatMessage({id: 'splash.scratchDesignStudioTitle'})
-                            + ' - ' + this.state.featuredGlobal.scratch_design_studio[0].gallery_title}
-                        moreTitle={formatMessage({id: 'splash.visitTheStudio'})}
-                        moreHref={'/studios/' + this.state.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}>
-
+                    key="scratch_design_studio"
+                    title={
+                        formatMessage({id: 'splash.scratchDesignStudioTitle'})
+                        + ' - ' + this.state.featuredGlobal.scratch_design_studio[0].gallery_title}
+                    moreTitle={formatMessage({id: 'splash.visitTheStudio'})}
+                    moreHref={'/studios/' + this.state.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}
+                >
                     <Carousel items={this.state.featuredGlobal.scratch_design_studio} />
                 </Box>
             );
@@ -246,60 +279,66 @@ var Splash = injectIntl(React.createClass({
             this.state.featuredGlobal.community_newest_projects.length > 0) {
 
             rows.push(
-                <Box title={formatMessage({id: 'splash.recentlySharedProjects'})}
-                     key="community_newest_projects">
+                <Box
+                    title={formatMessage({id: 'splash.recentlySharedProjects'})}
+                    key="community_newest_projects"
+                >
                     <Carousel items={this.state.featuredGlobal.community_newest_projects} />
                 </Box>
             );
         }
 
-        if (this.state.featuredCustom.custom_projects_by_following &&
-            this.state.featuredCustom.custom_projects_by_following.length > 0) {
-
+        if (this.state.sharedByFollowing && this.state.sharedByFollowing.length > 0) {
             rows.push(
-                <Box title={formatMessage({id: 'splash.projectsByScratchersFollowing'})}
-                     key="custom_projects_by_following">
-
-                    <Carousel items={this.state.featuredCustom.custom_projects_by_following} />
-                </Box>
-            );
-        }
-        if (this.state.featuredCustom.custom_projects_loved_by_following &&
-            this.state.featuredCustom.custom_projects_loved_by_following.length > 0) {
-
-            rows.push(
-                <Box title={formatMessage({id: 'splash.projectsLovedByScratchersFollowing'})}
-                     key="custom_projects_loved_by_following">
-
-                    <Carousel items={this.state.featuredCustom.custom_projects_loved_by_following} />
+                <Box
+                    title={formatMessage({id: 'splash.projectsByScratchersFollowing'})}
+                    key="custom_projects_by_following"
+                >
+                    <Carousel items={this.state.sharedByFollowing} />
                 </Box>
             );
         }
 
-        if (this.state.featuredCustom.custom_projects_in_studios_following &&
-            this.state.featuredCustom.custom_projects_in_studios_following.length > 0) {
-
+        if (this.state.lovedByFollowing && this.state.lovedByFollowing.length > 0) {
             rows.push(
-                <Box title={formatMessage({id:'splash.projectsInStudiosFollowing'})}
-                     key="custom_projects_in_studios_following">
+                <Box
+                    title={formatMessage({id: 'splash.projectsLovedByScratchersFollowing'})}
+                    key="custom_projects_loved_by_following"
+                >
+                    <Carousel items={this.state.lovedByFollowing} />
+                </Box>
+            );
+        }
 
-                    <Carousel items={this.state.featuredCustom.custom_projects_in_studios_following} />
+        if (this.state.inStudiosFollowing && this.state.inStudiosFollowing.length > 0) {
+            rows.push(
+                <Box
+                    title={formatMessage({id:'splash.projectsInStudiosFollowing'})}
+                    key="custom_projects_in_studios_following"
+                >
+                    <Carousel items={this.state.inStudiosFollowing} />
                 </Box>
             );
         }
 
         rows.push(
-            <Box title={formatMessage({id: 'splash.communityRemixing'})}
-                 key="community_most_remixed_projects">
-
-                <Carousel items={shuffle(this.state.featuredGlobal.community_most_remixed_projects)}
-                          showRemixes={true} />
+            <Box
+                title={formatMessage({id: 'splash.communityRemixing'})}
+                key="community_most_remixed_projects"
+            >
+                <Carousel
+                    items={shuffle(this.state.featuredGlobal.community_most_remixed_projects)}
+                    showRemixes={true}
+                />
             </Box>,
-            <Box title={formatMessage({id: 'splash.communityLoving'})}
-                 key="community_most_loved_projects">
-
-                <Carousel items={shuffle(this.state.featuredGlobal.community_most_loved_projects)}
-                          showLoves={true} />
+            <Box
+                title={formatMessage({id: 'splash.communityLoving'})}
+                key="community_most_loved_projects"
+            >
+                <Carousel
+                    items={shuffle(this.state.featuredGlobal.community_most_loved_projects)}
+                    showLoves={true}
+                />
             </Box>
         );
 
