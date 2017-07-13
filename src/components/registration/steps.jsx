@@ -3,8 +3,6 @@ var React = require('react');
 var api = require('../../lib/api');
 var countryData = require('../../lib/country-data');
 var intl = require('../../lib/intl.jsx');
-var log = require('../../lib/log');
-var smartyStreets = require('../../lib/smarty-streets');
 
 var Avatar = require('../../components/avatar/avatar.jsx');
 var Button = require('../../components/forms/button.jsx');
@@ -667,36 +665,6 @@ module.exports = {
         onChangeCountry: function (field, choice) {
             this.setState({countryChoice: choice});
         },
-        onValidSubmit: function (formData, reset, invalidate) {
-            if (formData.address.country !== 'us') {
-                return this.props.onNextStep(formData);
-            }
-            this.setState({waiting: true});
-            var address = {
-                street: formData.address.line1,
-                secondary: formData.address.line2 || '',
-                city: formData.address.city,
-                state: formData.address.state,
-                zipcode: formData.address.zip
-            };
-            smartyStreets(address, function (err, res) {
-                this.setState({waiting: false});
-                if (err) {
-                    // We don't want to prevent registration because
-                    // address validation isn't working. Log it and
-                    // move on.
-                    log.error(err);
-                    return this.props.onNextStep(formData);
-                }
-                if (res && res.length > 0) {
-                    return this.props.onNextStep(formData);
-                } else {
-                    return invalidate({
-                        'all': this.props.intl.formatMessage({id: 'teacherRegistration.addressValidationError'})
-                    });
-                }
-            }.bind(this));
-        },
         render: function () {
             var formatMessage = this.props.intl.formatMessage;
             var stateOptions = countryData.subdivisionOptions[this.state.countryChoice];
@@ -712,7 +680,7 @@ module.exports = {
                                  tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
                     <Card>
-                        <Form onValidSubmit={this.onValidSubmit}>
+                        <Form onValidSubmit={this.props.onNextStep}>
                             <Select label={formatMessage({id: 'general.country'})}
                                     name="address.country"
                                     options={getCountryOptions(this.props.intl)}
