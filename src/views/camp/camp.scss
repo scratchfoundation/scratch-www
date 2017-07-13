@@ -54,9 +54,9 @@ h3 {
     -o-transform: scale(.8); /* Opera 10.5+ */
 }
 .bottomImg {
+    position: absolute;
     bottom: 0;
     width: 100%;
-    position: absolute;
 }
 .title-banner {
     margin: 0;
