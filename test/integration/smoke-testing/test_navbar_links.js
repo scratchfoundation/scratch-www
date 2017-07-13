@@ -18,7 +18,7 @@ var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 
 //number of tests in the plan
-tap.plan(8);
+tap.plan(7);
 
 tap.tearDown(function () {
     //quit the instance of the browser
@@ -57,9 +57,9 @@ tap.test('checkExploreLinkWhenSignedOut', function (t) {
         });
 });
 
-tap.test('checkDiscussLinkWhenSignedOut', function (t) {
-    var xPathLink = '//li[contains(@class, "link") and contains(@class, "discuss")]/a';
-    var expectedHref = '/discuss';
+tap.test('checkTipsLinkWhenSignedOut', function (t) {
+    var xPathLink = '//li[contains(@class, "link") and contains(@class, "tips")]/a';
+    var expectedHref = '/tips';
     driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
         .then( function (element) {
             return element.getAttribute('href');})
@@ -72,18 +72,6 @@ tap.test('checkDiscussLinkWhenSignedOut', function (t) {
 tap.test('checkAboutLinkWhenSignedOut', function (t) {
     var xPathLink = '//li[contains(@class, "link") and contains(@class, "about")]/a';
     var expectedHref = '/about';
-    driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
-    .then( function (element) {
-        return element.getAttribute('href');})
-    .then( function (url) {
-        t.equal(url.substr(-expectedHref.length), expectedHref);
-        t.end();
-    });
-});
-
-tap.test('checkHelpLinkWhenSignedOut', function (t) {
-    var xPathLink = '//li[contains(@class, "link") and contains(@class, "help")]/a';
-    var expectedHref = '/help';
     driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
     .then( function (element) {
         return element.getAttribute('href');})
