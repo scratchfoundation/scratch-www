@@ -9,22 +9,22 @@ var Page = require('../../components/page/www/page.jsx');
 
 require('./camp.scss');
 
-var Downdeep = injectIntl(React.createClass({
-    type: 'Downdeep',
+var Camp = injectIntl(React.createClass({
+    type: 'Camp',
     render: function () {
         return (
             <div>
                 <TitleBanner className="masthead mod-blue-bg">
-                    <img src="/images/downdeep/ocean-top.svg" alt="Top" className="topImg"/>
+                    <img src="/images/camp/ocean-top.svg" alt="Top" className="topImg"/>
                     <div className="inner">
                         <div className="title-content">
                             <h1 className="title-banner-h1">
-                                <FormattedMessage id='downdeep.title' />
+                                <FormattedMessage id='camp.title' />
                             </h1>
                             <h4 className="intro title-banner-p">
-                                <FormattedMessage id='downdeep.dates' />
+                                <FormattedMessage id='camp.dates' />
                             </h4>
-                            <img src="/images/downdeep/bubbles.svg" alt="Bubbles" className="bubbles"/>
+                            <img src="/images/camp/bubbles.svg" alt="Bubbles" className="bubbles"/>
                         </div>
                     </div>
                 </TitleBanner>
@@ -32,106 +32,106 @@ var Downdeep = injectIntl(React.createClass({
                     <section id="particpate">
                         <div className="inner">
                             <center>
-                                <h2><FormattedMessage id='downdeep.welcome' /></h2>
+                                <h2><FormattedMessage id='camp.welcome' /></h2>
                                 <p id="intro">
-                                    <h2><FormattedMessage id='downdeep.welcomeIntro' /></h2>
+                                    <h2><FormattedMessage id='camp.welcomeIntro' /></h2>
                                 </p>
                             </center>
                             <center>
-                                <img src="/images/downdeep/fish-divider.svg" className="fishDivider" />
+                                <img src="/images/camp/fish-divider.svg" className="fishDivider" />
                             </center>
                             <h2>
-                                <center><FormattedMessage id='downdeep.part1Dates' /></center>
+                                <center><FormattedMessage id='camp.part1Dates' /></center>
                             </h2>
                             <center>
                             <FlexRow className="sidebar-row">
                                 <div className="body-copy column">
-                                    <h3><FormattedMessage id='downdeep.detailsTitle' /></h3>
+                                    <h3><FormattedMessage id='camp.detailsTitle' /></h3>
                                     <p>
-                                        <FormattedMessage id='downdeep.part1Details' />
+                                        <FormattedMessage id='camp.part1Details' />
                                     </p>
                                 </div>
                                 <div className="sidebar column">
-                                    <h3><FormattedMessage id='downdeep.particpateTitle' /></h3>
+                                    <h3><FormattedMessage id='camp.particpateTitle' /></h3>
                                     <p>
-                                        <FormattedMessage id='downdeep.part1Particpate' />
+                                        <FormattedMessage id='camp.part1Particpate' />
                                     </p>
                                 </div>
                             </FlexRow>
                             <center>
-                                <img src="/images/downdeep/fish-divider2.svg" className="fishDivider" />
+                                <img src="/images/camp/fish-divider2.svg" className="fishDivider" />
                             </center>
                             <h2>
-                                <center><FormattedMessage id='downdeep.part2Dates' /></center>
+                                <center><FormattedMessage id='camp.part2Dates' /></center>
                             </h2>
                             <FlexRow className="sidebar-row">
                                 <div className="body-copy column">
-                                    <h3><FormattedMessage id='downdeep.detailsTitle' /></h3>
+                                    <h3><FormattedMessage id='camp.detailsTitle' /></h3>
                                     <p>
-                                        <FormattedMessage id='downdeep.part2Details' />
+                                        <FormattedMessage id='camp.part2Details' />
                                     </p>
                                 </div>
                                 <div className="sidebar column">
-                                    <h3><FormattedMessage id='downdeep.particpateTitle' /></h3>
+                                    <h3><FormattedMessage id='camp.particpateTitle' /></h3>
                                     <p>
-                                        <FormattedMessage id='downdeep.part2Particpate' />
+                                        <FormattedMessage id='camp.part2Particpate' />
                                     </p>
                                 </div>
                             </FlexRow>
                             <center>
-                                <img src="/images/downdeep/fish-divider.svg" className="fishDivider" />
+                                <img src="/images/camp/fish-divider.svg" className="fishDivider" />
                             </center>
                             <h2>
-                                <center><FormattedMessage id='downdeep.part3Dates' /></center>
+                                <center><FormattedMessage id='camp.part3Dates' /></center>
                             </h2>
                             <FlexRow className="sidebar-row">
                                 <div className="body-copy column">
-                                    <h3><FormattedMessage id='downdeep.detailsTitle' /></h3>
+                                    <h3><FormattedMessage id='camp.detailsTitle' /></h3>
                                     <p>
-                                        <FormattedMessage id='downdeep.part3Details' />
+                                        <FormattedMessage id='camp.part3Details' />
                                     </p>
                                 </div>
                                 <div className="sidebar column">
-                                    <h3><FormattedMessage id='downdeep.particpateTitle' /></h3>
+                                    <h3><FormattedMessage id='camp.particpateTitle' /></h3>
                                     <p>
-                                        <FormattedMessage id='downdeep.part3Particpate' />
+                                        <FormattedMessage id='camp.part3Particpate' />
                                     </p>
                                 </div>
                             </FlexRow>
                             </center>
                         </div>
                     </section>
-                    <img src="/images/downdeep/bubbles.svg" alt="Bubbles" className="bubbles"/>
+                    <img src="/images/camp/bubbles.svg" alt="Bubbles" className="bubbles"/>
                     <section id="info">
                         <div className="inner">
-                        <center><h2><FormattedMessage id='downdeep.helpfulInfo' /></h2></center>
+                        <center><h2><FormattedMessage id='camp.helpfulInfo' /></h2></center>
                             <FlexRow className="info-content">
                                 <div>
-                                    <img src="/images/downdeep/dolphin.svg" alt="Dolphin" className="infoImg" />
+                                    <img src="/images/camp/dolphin.svg" alt="Dolphin" className="infoImg" />
                                     <p>
-                                        <FormattedMessage id='downdeep.infoCounselors' />
+                                        <FormattedMessage id='camp.infoCounselors' />
                                     </p>
                                 </div>
                                 <div>
-                                    <img src="/images/downdeep/treasure.svg" className="infoImg" />
+                                    <img src="/images/camp/treasure.svg" className="infoImg" />
                                     <p>
-                                        <FormattedMessage id='downdeep.infoPart3' />
+                                        <FormattedMessage id='camp.infoPart3' />
                                     </p>
                                 </div>
                                 <div>
-                                    <img src="/images/downdeep/map.svg" className="infoImg" />
+                                    <img src="/images/camp/map.svg" className="infoImg" />
                                     <p>
-                                        <FormattedMessage id='downdeep.infoTime' />
+                                        <FormattedMessage id='camp.infoTime' />
                                     </p>
                                 </div>
                             </FlexRow>
                         </div>
                     </section>
-                    <img src="/images/downdeep/ocean-bottom.svg" alt="Top" className="bottomImg"/>
+                    <img src="/images/camp/ocean-bottom.svg" alt="Top" className="bottomImg"/>
                 </div>
             </div>
         );
     }
 }));
 
-render(<Page><Downdeep /></Page>, document.getElementById('app'));
+render(<Page><Camp /></Page>, document.getElementById('app'));
