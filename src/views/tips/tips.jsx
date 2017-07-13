@@ -109,7 +109,7 @@ var Tips = injectIntl(React.createClass({
                                         </Button>
                                     </a>
                                     <a
-                                        href="https://www.amazon.com/Scratch-Coding-Cards-Creative-Activities/dp/1593277741/ref=sr_1_1?ie=UTF8&qid=1494450316&sr=8-1&keywords=scratch+cards"
+                                        href="https://scratch-foundation.myshopify.com/collections/all-products/products/scratch-coding-cards-creative-coding-activities-for-kids"
                                         target="_blank">
                                         <Button className="tips-button purchase-button">
                                             <FormattedMessage id="tips.cardsPurchase"/>
