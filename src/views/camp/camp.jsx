@@ -1,6 +1,7 @@
 var React = require('react');
 var injectIntl = require('react-intl').injectIntl;
 var FormattedMessage = require('react-intl').FormattedMessage;
+var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var render = require('../../lib/render.jsx');
 var TitleBanner = require('../../components/title-banner/title-banner.jsx');
 var FlexRow = require('../../components/flex-row/flex-row.jsx');
@@ -34,7 +35,7 @@ var Camp = injectIntl(React.createClass({
                             <center>
                                 <h2><FormattedMessage id='camp.welcome' /></h2>
                                 <p id="intro">
-                                    <h2><FormattedMessage id='camp.welcomeIntro' /></h2>
+                                    <h2><FormattedHTMLMessage id='camp.welcomeIntro' /></h2>
                                 </p>
                             </center>
                             <center>
@@ -54,7 +55,7 @@ var Camp = injectIntl(React.createClass({
                                 <div className="sidebar column">
                                     <h3><FormattedMessage id='camp.particpateTitle' /></h3>
                                     <p>
-                                        <FormattedMessage id='camp.part1Particpate' />
+                                        <FormattedHTMLMessage id='camp.part1Particpate' />
                                     </p>
                                 </div>
                             </FlexRow>
@@ -74,7 +75,7 @@ var Camp = injectIntl(React.createClass({
                                 <div className="sidebar column">
                                     <h3><FormattedMessage id='camp.particpateTitle' /></h3>
                                     <p>
-                                        <FormattedMessage id='camp.part2Particpate' />
+                                        <FormattedHTMLMessage id='camp.part2Particpate' />
                                     </p>
                                 </div>
                             </FlexRow>
@@ -94,7 +95,7 @@ var Camp = injectIntl(React.createClass({
                                 <div className="sidebar column">
                                     <h3><FormattedMessage id='camp.particpateTitle' /></h3>
                                     <p>
-                                        <FormattedMessage id='camp.part3Particpate' />
+                                        <FormattedHTMLMessage id='camp.part3Particpate' />
                                     </p>
                                 </div>
                             </FlexRow>
@@ -109,7 +110,7 @@ var Camp = injectIntl(React.createClass({
                                 <div>
                                     <img src="/images/camp/dolphin.svg" alt="Dolphin" className="infoImg" />
                                     <p>
-                                        <FormattedMessage id='camp.infoCounselors' />
+                                        <FormattedHTMLMessage id='camp.infoCounselors' />
                                     </p>
                                 </div>
                                 <div>
