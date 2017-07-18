@@ -38,7 +38,7 @@ const clickButton = (text) => {
     return clickXpath(`//button[contains(text(), '${text}')]`);
 };
 
-var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu';
+var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 var url = rootUrl + '/users/anyuser';
 
 tap.plan(5);

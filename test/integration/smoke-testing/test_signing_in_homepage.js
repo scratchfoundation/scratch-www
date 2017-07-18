@@ -23,7 +23,7 @@ const clickText = (text) => {
     return clickXpath(`//*[contains(text(), '${text}')]`);
 };
 
-var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu';
+var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
 tap.plan(1);
 
