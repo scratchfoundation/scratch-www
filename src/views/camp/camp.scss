@@ -15,6 +15,12 @@
     margin-top: .938em;
     width: 45%;
 }
+.inner a {
+    color: $dd-lightsand;
+}
+.inner a:hover {
+    color: $dd-darksand;
+}
 h3 {
     border-bottom: 1px solid $ui-border;
 }
@@ -50,6 +56,7 @@ h3 {
     }
 }
 .infoImg {
+    height: 120px;
     transform: scale(.8);
     -webkit-transform: scale(.8); /* Saf3.1+, Chrome */
     -moz-transform: scale(.8); /* FF3.5+ */
