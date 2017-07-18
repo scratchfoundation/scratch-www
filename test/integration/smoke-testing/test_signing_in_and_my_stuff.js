@@ -3,14 +3,10 @@
  *
  * https://github.com/LLK/scratchr2/wiki/Smoke-Testing-Test-Cases
  *
- * Note that I am using a user with at least 1 project and at least 1 studio
- *  - I'm not sure how to handle this more elegantly... b/c I don't want to commit a password?
- *  - I could supply a password for a Staging user I guess... but then people may want to test
- *  - on a variety of instances (local, staging, prod)?
  */
 
-var username = process.env.USERNAME;
-var password = process.env.PASSWORD;
+var username = process.env.SMOKE_USERNAME;
+var password = process.env.SMOKE_PASSWORD;
 
 var tap = require('tap');
 const test = tap.test;

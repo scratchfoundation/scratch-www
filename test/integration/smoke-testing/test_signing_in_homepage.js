@@ -1,5 +1,5 @@
-var username = process.env.USERNAME;
-var password = process.env.PASSWORD;
+var username = process.env.SMOKE_USERNAME;
+var password = process.env.SMOKE_PASSWORD;
 
 var tap = require('tap');
 const test = tap.test;
