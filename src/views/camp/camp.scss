@@ -56,12 +56,12 @@ h3 {
     }
 }
 .infoImg {
-    height: 120px;
     transform: scale(.8);
     -webkit-transform: scale(.8); /* Saf3.1+, Chrome */
     -moz-transform: scale(.8); /* FF3.5+ */
     -ms-transform: scale(.8); /* IE9 */
     -o-transform: scale(.8); /* Opera 10.5+ */
+    height: 120px;
 }
 .bottomImg {
     margin-bottom: -5px;
