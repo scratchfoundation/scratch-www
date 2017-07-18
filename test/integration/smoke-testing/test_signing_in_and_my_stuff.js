@@ -9,15 +9,8 @@
  *  - on a variety of instances (local, staging, prod)?
  */
 
-var path = require('path');
-var fs = require('fs');
-
-var dirPath = path.resolve(__dirname, '../not-tracked/');
-var filePath = dirPath + '/credentials.js';
-var credentials = fs.readFileSync(filePath,'utf8');
-
-var window = {};
-var credentials = eval(credentials);
+var username = process.env.USERNAME;
+var password = process.env.PASSWORD;
 
 var tap = require('tap');
 const test = tap.test;
@@ -45,7 +38,7 @@ const clickButton = (text) => {
     return clickXpath(`//button[contains(text(), '${text}')]`);
 };
 
-var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
+var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu';
 var url = rootUrl + '/users/anyuser';
 
 tap.plan(5);
@@ -65,7 +58,7 @@ test('Sign in to Scratch using scratchr2 navbar', t => {
     .then(() => findByXpath('//input[@name="password"]'))
     .then((element) => element.sendKeys(password))
     .then(() => clickButton('Sign in'))
-    .then(() => findByXpath('//li[contains(@class, "logged-in-user")' 
+    .then(() => findByXpath('//li[contains(@class, "logged-in-user")'
         + 'and contains(@class, "dropdown")]/span'))
     .then((element) => element.getText('span'))
     .then((text) => t.match(text.toLowerCase(), username.substring(0,10).toLowerCase(),
@@ -135,4 +128,3 @@ test('Add To button should bring up a list of studios', t => {
     })
     .then(() => t.end());
 });
-   

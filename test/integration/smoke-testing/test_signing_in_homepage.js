@@ -1,12 +1,5 @@
-var path = require('path');
-var fs = require('fs');
-
-var dirPath = path.resolve(__dirname, '../not-tracked/');
-var filePath = dirPath + '/credentials.js';
-var credentials = fs.readFileSync(filePath,'utf8');
-
-var window = {};
-var credentials = eval(credentials);
+var username = process.env.USERNAME;
+var password = process.env.PASSWORD;
 
 var tap = require('tap');
 const test = tap.test;
@@ -30,7 +23,7 @@ const clickText = (text) => {
     return clickXpath(`//*[contains(text(), '${text}')]`);
 };
 
-var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
+var rootUrl = process.env.ROOT_URL || 'https://scratch.mit.edu';
 
 tap.plan(1);
 
