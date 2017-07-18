@@ -35,7 +35,7 @@ var Camp = injectIntl(React.createClass({
                             <center>
                                 <h2><FormattedMessage id='camp.welcome' /></h2>
                                 <p id="intro">
-                                    <h2><FormattedHTMLMessage id='camp.welcomeIntro' /></h2>
+                                    <FormattedHTMLMessage id='camp.welcomeIntro' />
                                 </p>
                             </center>
                             <center>
