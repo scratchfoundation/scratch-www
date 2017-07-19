@@ -1,0 +1,90 @@
+@import "../../colors";
+@import "../../frameless";
+
+#view {
+    padding: 0;
+}
+.topImg {
+    margin-top: -10px;
+    padding: 0;
+    width: 100%;
+}
+.bubbles {
+    display: block;
+    margin: 0 auto;
+    margin-top: .938em;
+    width: 45%;
+}
+.inner a {
+    text-decoration: underline;
+}
+.inner a:hover {
+    text-decoration: underline;
+    color: $ui-light-gray;
+}
+h3 {
+    border-bottom: 1px solid $ui-border;
+}
+.flex-row {
+    &.sidebar-row {
+        align-items: flex-start;
+
+        .body-copy {
+            width: $cols5;
+        }
+
+        .sidebar {
+            width: $cols5;
+        }
+    }
+}
+#particpate {
+    position: relative;
+    
+    h2, h3, p {
+        color: $ui-white;
+    }
+}
+#info {
+    h2, p {
+        color: $ui-white;
+    }
+}
+.info-content {
+    div {
+        max-width: $cols4;
+        text-align: center;
+    }
+}
+.infoImg {
+    transform: scale(.8);
+    height: 120px;
+    -webkit-transform: scale(.8); /* Saf3.1+, Chrome */
+    -moz-transform: scale(.8); /* FF3.5+ */
+    -ms-transform: scale(.8); /* IE9 */
+    -o-transform: scale(.8); /* Opera 10.5+ */
+}
+.bottomImg {
+    margin-bottom: -5px;
+    margin-left: -4px;
+    padding: 0;
+    width: 102%;
+}
+.title-banner {
+    margin: 0;
+    padding: 0;
+}
+.fishDivider {
+    margin: .875em 0;
+}
+.gradient1 {
+    position: relative;
+    background: $ui-blue; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient($ui-blue, $dd-darkblue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($ui-blue, $dd-darkblue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($ui-blue, $dd-darkblue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($ui-blue, $dd-darkblue);
+    .intro {
+        max-width: $cols9;
+    }
+}
