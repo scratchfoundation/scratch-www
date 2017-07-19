@@ -16,10 +16,11 @@
     width: 45%;
 }
 .inner a {
-    color: $dd-lightsand;
+    text-decoration: underline;
 }
 .inner a:hover {
-    color: $dd-darksand;
+    color: $ui-light-gray;
+    text-decoration: underline;
 }
 h3 {
     border-bottom: 1px solid $ui-border;
