@@ -40,7 +40,7 @@ var Splash = injectIntl(React.createClass({
                 this.getActivity(this.props.user.username);
                 this.getSharedByFollowing(this.props.user.token);
                 this.getInStudiosFollowing(this.props.user.token);
-                this.getLovedByFollowing(this.props.user.id);
+                this.getLovedByFollowing(this.props.user.token);
                 this.getNews();
             } else {
                 this.setState({sharedByFollowing: []});
@@ -63,7 +63,7 @@ var Splash = injectIntl(React.createClass({
             this.getActivity(this.props.user.username);
             this.getSharedByFollowing(this.props.user.token);
             this.getInStudiosFollowing(this.props.user.token);
-            this.getLovedByFollowing(this.props.user.id);
+            this.getLovedByFollowing(this.props.user.token);
             this.getNews();
         } else {
             this.getProjectCount();
@@ -103,15 +103,13 @@ var Splash = injectIntl(React.createClass({
             if (!err) return this.setState({inStudiosFollowing: body});
         }.bind(this));
     },
-    getLovedByFollowing: function (userId) {
+    getLovedByFollowing: function (token) {
         api({
-            uri: '/proxy/users/' + userId + '/featured'
+            uri: '/projects/following/loves',
+            authentication: token
         }, function (err, body) {
-            if (err) return log.error(err);
-            
-            return this.setState({
-                lovedByFollowing: (body.custom_projects_loved_by_following || [])
-            });
+            if (!body) return log.error('No response body');
+            if (!err) return this.setState({lovedByFollowing: body});
         }.bind(this));
     },
     getNews: function () {
