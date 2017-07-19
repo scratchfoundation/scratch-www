@@ -15,5 +15,12 @@
 * To run a single file from the command-line: `$ node_modules/.bin/tap ./test/integration/smoke-testing/filename.js --timeout=3600`
   * The timeout var is for the length of the entire tap test-suite; if you are getting a timeout error, you may need to adjust this value (some of the Selenium tests take a while to run)
 
+### Configuration
+
+| Variable      		| Default               | Description                                 			    |
+| ---------------------	| --------------------- | --------------------------------------------------------- |
+| `SMOKE_USERNAME`    	| `None` 				| Username for Scratch user you're signing in with to test 	|
+| `SMOKE_PASSWORD`  	| `None`                | Password for Scratch user you're signing in with to test  |
+
 ## Using sauce
 * We're still working on setting this up; more info coming shortly
