@@ -20,7 +20,7 @@ var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 var options = { timeout: 20000 };
 
 //number of tests in the plan
-tap.plan(24);
+tap.plan(25);
 
 tap.tearDown(function () {
     //quit the instance of the browser
@@ -115,9 +115,9 @@ tap.test('clickJobsLink', options, function (t) {
 // PRESS
 tap.test('clickPressLink', options, function (t) {
     var linkText = 'Press';
-    var expectedHref = 'https://wiki.scratch.mit.edu/wiki/Scratch_Press';
+    var expectedUrl = 'https://wiki.scratch.mit.edu/wiki/Scratch_Press';
     clickFooterLinks(linkText).then( function (url) {
-        t.equal(url, expectedHref);
+        t.equal(url, expectedUrl);
         t.end();
     });
 });
@@ -147,9 +147,9 @@ tap.test('clickDiscussionForumsLink', options, function (t) {
 // SCRATCH WIKI
 tap.test('clickScratchWikiLink', options, function (t) {
     var linkText = 'Scratch Wiki';
-    var expectedHref = 'https://wiki.scratch.mit.edu/wiki/Scratch_Wiki_Home';
+    var expectedUrl = 'https://wiki.scratch.mit.edu/wiki/Scratch_Wiki_Home';
     clickFooterLinks(linkText).then( function (url) {
-        t.equal(url, expectedHref);
+        t.equal(url, expectedUrl);
         t.end();
     });
 });
@@ -166,10 +166,10 @@ tap.test('clickStatisticsLink', options, function (t) {
 
 // ==== SUPPORT column ====
 
-// HELP PAGE
-tap.test('clickHelpPageLink', options, function (t) {
-    var linkText = 'Help Page';
-    var expectedHref = '/help/';
+// TIPS PAGE
+tap.test('clickTipsPageLink', options, function (t) {
+    var linkText = 'Tips';
+    var expectedHref = '/tips';
     clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -189,7 +189,7 @@ tap.test('clickFAQLink', options, function (t) {
 // OFFLINE EDITOR
 tap.test('clickOfflineEditorLink', options, function (t) {
     var linkText = 'Offline Editor';
-    var expectedHref = '/scratch2download/';
+    var expectedHref = '/download';
     clickFooterLinks(linkText).then( function (url) {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -206,12 +206,22 @@ tap.test('clickContactUsLink', options, function (t) {
     });
 });
 
+// SCRATCH STORE
+tap.test('clickScratchStoreLink', options, function (t) {
+    var linkText = 'Scratch Store';
+    var expectedUrl = 'https://scratch-foundation.myshopify.com/';
+    clickFooterLinks(linkText).then( function (url) {
+        t.equal(url, expectedUrl);
+        t.end();
+    });
+});
+
 // DONATE
 tap.test('clickDonateLink', options, function (t) {
     var linkText = 'Donate';
-    var expectedHref = 'https://secure.donationpay.org/scratchfoundation/';
+    var expectedUrl = 'https://secure.donationpay.org/scratchfoundation/';
     clickFooterLinks(linkText).then( function (url) {
-        t.equal(url.substr(-expectedHref.length), expectedHref);
+        t.equal(url, expectedUrl);
         t.end();
     });
 });
@@ -253,9 +263,9 @@ tap.test('clickDMCALink', options, function (t) {
 // SCRATCH ED (SCRATCHED)
 tap.test('clickScratchEdLink', options, function (t) {
     var linkText = 'ScratchEd';
-    var expectedHref = 'http://scratched.gse.harvard.edu/';
+    var expectedUrl = 'http://scratched.gse.harvard.edu/';
     clickFooterLinks(linkText).then( function (url) {
-        t.equal(url, expectedHref);
+        t.equal(url, expectedUrl);
         t.end();
     });
 });
@@ -263,9 +273,9 @@ tap.test('clickScratchEdLink', options, function (t) {
 // SCRATCH JR (SCRATCHJR)
 tap.test('clickScratchJrLink', options, function (t) {
     var linkText = 'ScratchJr';
-    var expectedHref = 'http://www.scratchjr.org/';
+    var expectedUrl = 'http://www.scratchjr.org/';
     clickFooterLinks(linkText).then( function (url) {
-        t.equal(url, expectedHref);
+        t.equal(url, expectedUrl);
         t.end();
     });
 });
@@ -273,9 +283,9 @@ tap.test('clickScratchJrLink', options, function (t) {
 // SCRATCH DAY
 tap.test('clickScratchDayLink', options, function (t) {
     var linkText = 'Scratch Day';
-    var expectedHref = 'https://day.scratch.mit.edu/';
+    var expectedUrl = 'https://day.scratch.mit.edu/';
     clickFooterLinks(linkText).then( function (url) {
-        t.equal(url, expectedHref);
+        t.equal(url, expectedUrl);
         t.end();
     });
 });
@@ -293,9 +303,9 @@ tap.test('clickScratchConferenceLink', options, function (t) {
 // SCRATCH FOUNDATION
 tap.test('clickScratchFoundationLink', options, function (t) {
     var linkText = 'Scratch Foundation';
-    var expectedHref = 'https://www.scratchfoundation.org/';
+    var expectedUrl = 'https://www.scratchfoundation.org/';
     clickFooterLinks(linkText).then( function (url) {
-        t.equal(url, expectedHref);
+        t.equal(url, expectedUrl);
         t.end();
     });
 });
