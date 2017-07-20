@@ -17,8 +17,8 @@ require('./carousel.scss');
 /**
  * Displays content in horizontal scrolling box. Example usage: splash page rows.
  */
-var Carousel = React.createClass({
-    type: 'Carousel',
+var LegacyCarousel = React.createClass({
+    type: 'LegacyCarousel',
     propTypes: {
         items: React.PropTypes.array
     },
@@ -94,4 +94,4 @@ var Carousel = React.createClass({
     }
 });
 
-module.exports = Carousel;
+module.exports = LegacyCarousel;
