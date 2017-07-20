@@ -36,7 +36,7 @@ var Splash = injectIntl(React.createClass({
     },
     componentDidUpdate: function (prevProps) {
         if (this.props.user != prevProps.user) {
-            if (this.props.user) {
+            if (this.props.user.username) {
                 this.getActivity(this.props.user.username);
                 this.getSharedByFollowing(this.props.user.token);
                 this.getInStudiosFollowing(this.props.user.token);
@@ -59,7 +59,7 @@ var Splash = injectIntl(React.createClass({
     },
     componentDidMount: function () {
         this.getFeaturedGlobal();
-        if (this.props.user) {
+        if (this.props.user.username) {
             this.getActivity(this.props.user.username);
             this.getSharedByFollowing(this.props.user.token);
             this.getInStudiosFollowing(this.props.user.token);
