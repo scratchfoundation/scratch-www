@@ -10,6 +10,7 @@ var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
 var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
+var LegacyCarousel = require('../../components/carousel/legacy-carousel.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var IframeModal = require('../../components/modal/iframe/modal.jsx');
 var News = require('../../components/news/news.jsx');
@@ -74,13 +75,13 @@ var SplashPresentation = injectIntl(React.createClass({
                 title={formatMessage({id: 'splash.featuredProjects'})}
                 key="community_featured_projects"
             >
-                <Carousel items={this.props.featuredGlobal.community_featured_projects} />
+                <LegacyCarousel items={this.props.featuredGlobal.community_featured_projects} />
             </Box>,
             <Box
                 title={formatMessage({id: 'splash.featuredStudios'})}
                 key="community_featured_studios"
             >
-                <Carousel
+                <LegacyCarousel
                     items={this.props.featuredGlobal.community_featured_studios}
                     settings={{slidesToShow: 4, slidesToScroll: 4, lazyLoad: false}}
                 />
@@ -99,7 +100,7 @@ var SplashPresentation = injectIntl(React.createClass({
                     moreTitle={formatMessage({id: 'general.learnMore'})}
                     moreHref="/studios/386359/"
                 >
-                    <Carousel items={this.props.featuredGlobal.curator_top_projects} />
+                    <LegacyCarousel items={this.props.featuredGlobal.curator_top_projects} />
                 </Box>
             );
         }
@@ -116,7 +117,7 @@ var SplashPresentation = injectIntl(React.createClass({
                     moreTitle={formatMessage({id: 'splash.visitTheStudio'})}
                     moreHref={'/studios/' + this.props.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}
                 >
-                    <Carousel items={this.props.featuredGlobal.scratch_design_studio} />
+                    <LegacyCarousel items={this.props.featuredGlobal.scratch_design_studio} />
                 </Box>
             );
         }
@@ -130,7 +131,7 @@ var SplashPresentation = injectIntl(React.createClass({
                     title={formatMessage({id: 'splash.recentlySharedProjects'})}
                     key="community_newest_projects"
                 >
-                    <Carousel items={this.props.featuredGlobal.community_newest_projects} />
+                    <LegacyCarousel items={this.props.featuredGlobal.community_newest_projects} />
                 </Box>
             );
         }
@@ -173,7 +174,7 @@ var SplashPresentation = injectIntl(React.createClass({
                 title={formatMessage({id: 'splash.communityRemixing'})}
                 key="community_most_remixed_projects"
             >
-                <Carousel
+                <LegacyCarousel
                     items={shuffle(this.props.featuredGlobal.community_most_remixed_projects)}
                     showRemixes={true}
                 />
@@ -182,7 +183,7 @@ var SplashPresentation = injectIntl(React.createClass({
                 title={formatMessage({id: 'splash.communityLoving'})}
                 key="community_most_loved_projects"
             >
-                <Carousel
+                <LegacyCarousel
                     items={shuffle(this.props.featuredGlobal.community_most_loved_projects)}
                     showLoves={true}
                 />
