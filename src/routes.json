@@ -98,6 +98,13 @@
         "title": "DMCA"
     },
     {
+        "name": "camp",
+        "pattern": "^/camp/?$",
+        "routeAlias": "/camp/?$",
+        "view": "camp/camp",
+        "title": "Down Deep"
+    },
+    {
         "name": "educator-landing",
         "pattern": "^/educators/?$",
         "routeAlias": "/educators(?:/(faq|register|waiting))?/?$",
