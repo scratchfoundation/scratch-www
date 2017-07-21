@@ -134,18 +134,6 @@
         "title": "Scratch Community Guidelines"
     },
     {
-        "name": "help",
-        "pattern": "^/help/?(\\?.*)?$",
-        "routeAlias": "/help/?(\\?.*)?$",
-        "redirect": "/tips"
-    },
-    {
-        "name": "hoc",
-        "pattern": "^/hoc/?(\\?.*)?$",
-        "routeAlias": "/hoc/?\\??",
-        "redirect": "/tips"
-    },
-    {
         "name": "jobs",
         "pattern": "^/jobs/?$",
         "routeAlias": "/jobs(/moderator)?/?$",
@@ -258,12 +246,6 @@
         "title": "Scratch Terms of Use"
     },
     {
-        "name": "things-to-try",
-        "pattern": "^/go/?(\\?.*)?$",
-        "routeAlias": "/go/?\\??",
-        "redirect": "/tips"
-    },
-    {
         "name": "tips",
         "pattern": "^/tips/?(\\?.*)?$",
         "routeAlias": "/tips/?\\??",
@@ -302,6 +284,18 @@
         "redirect": "/explore/studios/all"
     },
     {
+        "name": "help-redirect",
+        "pattern": "^/help/?(\\?.*)?$",
+        "routeAlias": "/help/?(\\?.*)?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "hoc-redirect",
+        "pattern": "^/hoc/?(\\?.*)?$",
+        "routeAlias": "/hoc/?\\??",
+        "redirect": "/tips"
+    },
+    {
         "name": "info-redirect",
         "pattern": "^/info/?(\\?.*)?$",
         "routeAlias": "/info/?(\\?.*)?$",
@@ -323,5 +317,11 @@
         "pattern": "^/store/?$",
         "routeAlias": "/store",
         "redirect": "https://scratch-foundation.myshopify.com"
+    },
+    {
+        "name": "things-to-try-redirect",
+        "pattern": "^/go/?(\\?.*)?$",
+        "routeAlias": "/go/?\\??",
+        "redirect": "/tips"
     }
 ]
