@@ -93,12 +93,6 @@
         "title": "DMCA"
     },
     {
-        "name": "donate",
-        "pattern": "^/info/donate/?",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
-        "redirect": "https://secure.donationpay.org/scratchfoundation/"
-    },
-    {
         "name": "download",
         "pattern": "^/download/?$",
         "routeAlias": "/download",
@@ -258,6 +252,12 @@
         "routeAlias": "/wedo/?$",
         "view": "wedo2/wedo2",
         "title": "LEGO WeDo 2.0"
+    },
+    {
+        "name": "donate-redirect",
+        "pattern": "^/info/donate/?",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "redirect": "https://secure.donationpay.org/scratchfoundation/"
     },
     {
         "name": "download-redirect",
