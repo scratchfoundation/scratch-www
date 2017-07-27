@@ -3,7 +3,7 @@ var React = require('react');
 require('./microworld.scss');
 
 var Box = require('../box/box.jsx');
-var Carousel = require('../carousel/carousel.jsx');
+var LegacyCarousel = require('../carousel/legacy-carousel.jsx');
 var IframeModal = require('../modal/iframe/modal.jsx');
 var NestedCarousel = require('../nestedcarousel/nestedcarousel.jsx');
 
@@ -109,7 +109,7 @@ var Microworld = React.createClass({
                 <Box
                     title="More Starter Projects"
                     key="starter_projects">
-                    <Carousel items={starterProjects} />
+                    <LegacyCarousel items={starterProjects} />
                 </Box>
             </div>
         );
@@ -129,7 +129,7 @@ var Microworld = React.createClass({
                 <Box
                     title="Featured Community Projects"
                     key="community_featured_projects">
-                    <Carousel items={featured} />
+                    <LegacyCarousel items={featured} />
                </Box>
             );
         }
@@ -138,7 +138,7 @@ var Microworld = React.createClass({
                 <Box
                      title="All Community Projects"
                      key="community_all_projects">
-                     <Carousel items={all} />
+                     <LegacyCarousel items={all} />
                </Box>
             );
         }
@@ -187,9 +187,9 @@ var Microworld = React.createClass({
                              moreHref={studioHref ? studioHref : null}>
                             {/* The two carousels are used to show two rows of projects, one above the
                                 other. This should be probably be changed, to allow better scrolling. */}
-                            <Carousel settings={{slidesToShow:2,slidesToScroll:2}}
+                            <LegacyCarousel settings={{slidesToShow:2,slidesToScroll:2}}
                                       items={this.props.microworldData.design_challenge.studio1} />
-                            <Carousel settings={{slidesToShow:2,slidesToScroll:2}}
+                            <LegacyCarousel settings={{slidesToShow:2,slidesToScroll:2}}
                                       items={this.props.microworldData.design_challenge.studio2} />
                         </Box>
                     </div>
@@ -204,7 +204,7 @@ var Microworld = React.createClass({
                         key="scratch_design_studio"
                         moreTitle={studioHref ? 'Visit the studio' : null}
                         moreHref={studioHref ? studioHref : null}>
-                        <Carousel items={this.props.microworldData.design_challenge.studio1.concat(
+                        <LegacyCarousel items={this.props.microworldData.design_challenge.studio1.concat(
                             this.props.microworldData.design_challenge.studio2)} />
                    </Box>
                 </div>

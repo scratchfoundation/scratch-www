@@ -1,3 +1,6 @@
+// This component handles json returned via proxy from a django server,
+// or directly from a django server, and the model structure that system
+// has.
 var classNames = require('classnames');
 var defaults = require('lodash.defaults');
 var React = require('react');
@@ -14,8 +17,8 @@ require('./carousel.scss');
 /**
  * Displays content in horizontal scrolling box. Example usage: splash page rows.
  */
-var Carousel = React.createClass({
-    type: 'Carousel',
+var LegacyCarousel = React.createClass({
+    type: 'LegacyCarousel',
     propTypes: {
         items: React.PropTypes.array
     },
@@ -23,8 +26,7 @@ var Carousel = React.createClass({
         return {
             items: require('./carousel.json'),
             showRemixes: false,
-            showLoves: false,
-            type: 'project'
+            showLoves: false
         };
     },
     render: function () {
@@ -63,7 +65,7 @@ var Carousel = React.createClass({
             <Slider className={classes} arrows={arrows} {... settings}>
                 {this.props.items.map(function (item) {
                     var href = '';
-                    switch (this.props.type) {
+                    switch (item.type) {
                     case 'gallery':
                         href = '/studios/' + item.id + '/';
                         break;
@@ -78,13 +80,13 @@ var Carousel = React.createClass({
                         <Thumbnail key={[this.key, item.id].join('.')}
                                    showLoves={this.props.showLoves}
                                    showRemixes={this.props.showRemixes}
-                                   type={this.props.type}
+                                   type={item.type}
                                    href={href}
                                    title={item.title}
-                                   src={item.image}
-                                   creator={item.author.username}
-                                   remixes={item.stats.remixes}
-                                   loves={item.stats.loves} />
+                                   src={item.thumbnail_url}
+                                   creator={item.creator}
+                                   remixes={item.remixers_count}
+                                   loves={item.love_count} />
                     );
                 }.bind(this))}
             </Slider>
@@ -92,4 +94,4 @@ var Carousel = React.createClass({
     }
 });
 
-module.exports = Carousel;
+module.exports = LegacyCarousel;
