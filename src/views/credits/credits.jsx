@@ -228,6 +228,7 @@ var Credits = React.createClass({
                     <a href="https://screenhero.com/"> Screenhero</a>,
                     <a href="https://getsentry.com/welcome/"> Sentry</a>,
                     <a href="http://www.git-tower.com/"> Tower</a>,
+                    <a href="https://www.transifex.com/"> Transifex</a>,
                     and <a href="https://travis-ci.org/"> Travis-CI</a>.
                 </p>
                 
@@ -247,7 +248,6 @@ var Credits = React.createClass({
                     <a href="https://www.nagios.org/"> Nagios</a>,
                     <a href="https://www.nginx.com/resources/wiki/"> Nginx</a>,
                     <a href="https://nodejs.org/en/"> Node.js</a>,
-                    <a href="http://pootle.translatehouse.org/"> Pootle</a>,
                     <a href="http://www.postgresql.org/"> PostgreSQL</a>,
                     <a href="https://www.python.org/"> Python</a>,
                     <a href="http://redis.io/"> Redis</a>,

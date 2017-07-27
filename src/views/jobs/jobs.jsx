@@ -38,6 +38,14 @@ var Jobs = React.createClass({
                                     MIT Media Lab, Cambridge, MA (or Remote)
                                 </span>
                             </li>
+                            <li>
+                                <a href="https://www.media.mit.edu/about/job-opportunities/junior-web-designer-scratch/">
+                                    Junior Designer
+                                </a>
+                                <span>
+                                    MIT Media Lab, Cambridge, MA
+                                </span>
+                            </li>
                         </ul>
                     </div>
                 </div>
