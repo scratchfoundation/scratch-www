@@ -28,11 +28,6 @@ var Credits = React.createClass({
                     </li>
                     
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/4598206_170x170.png" alt="Kasia Avatar" />
-                        <span className="name">Kasia Chmielinski</span>
-                    </li>
-                    
-                    <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/24137617_170x170.png" alt="Mark Avatar" />
                         <span className="name">Mark Ferrell</span>
                     </li>
@@ -53,8 +48,8 @@ var Credits = React.createClass({
                     </li>
                     
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/2752403_170x170.png" alt="Saskia Avatar" />
-                        <span className="name">Saskia Leggett</span>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/2752403_170x170.png" alt="Champika Avatar" />
+                        <span className="name">Champika Fernando</span>
                     </li>
                                         
                     <li>
@@ -196,16 +191,6 @@ var Credits = React.createClass({
                 <p><FormattedMessage id='credits.acknowledgementsCommunity' /></p>
                 <p><FormattedMessage id='credits.acknowledgementsInfluencers' /></p>
 
-                <h2><FormattedMessage id='credits.supportersTitle' /></h2>
-                <p><FormattedMessage id='credits.supportersFinancialHeader' /></p>
-                <p>
-                    <a href="http://www.nsf.gov/">National Science Foundation</a>,
-                    <a href="http://www.scratchfoundation.org/"> Scratch Foundation</a>,
-                    <a href="http://www.google.org/"> Google</a>,
-                    <a href="http://www.legofoundation.com/"> LEGO Foundation</a>,
-                    <a href="http://www.intel.com/"> Intel</a>,
-                    <a href="http://www.turner.com/company/"> Cartoon Network</a>,
-                    <a href="http://www.fundacaolemann.org.br/lemann-foundation/"> Lemann Foundation</a>,
                     <a href="https://www.macfound.org/"> MacArthur Foundation</a>.
                 </p>
                 
