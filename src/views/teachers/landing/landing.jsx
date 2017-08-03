@@ -84,7 +84,7 @@ var Landing = injectIntl(React.createClass({
                         <h3 id="guides-header"><FormattedMessage id="teacherlanding.guidesTitle" /></h3>
                         <FlexRow className="guides-and-tutorials">
                             <div>
-                                <a href="/go">
+                                <a href="/tips">
                                     <img src="/svgs/teachers/v2-cards.svg" alt="cards icon" />
                                 </a>
                                 <p>
