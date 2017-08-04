@@ -190,7 +190,6 @@ var Credits = React.createClass({
                 <p><FormattedHTMLMessage id='credits.acknowledgementsContributors' /></p>
                 <p><FormattedMessage id='credits.acknowledgementsCommunity' /></p>
                 <p><FormattedMessage id='credits.acknowledgementsInfluencers' /></p>
-                
                 <h2><FormattedMessage id='credits.supportersTitle' /></h2>
                 <p><FormattedMessage id='credits.supportersFinancialHeader' /></p>
                 <p>
