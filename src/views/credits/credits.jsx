@@ -28,8 +28,8 @@ var Credits = React.createClass({
                     </li>
                     
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/4598206_170x170.png" alt="Kasia Avatar" />
-                        <span className="name">Kasia Chmielinski</span>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/900283_170x170.png" alt="Champika Avatar" />
+                        <span className="name">Champika Fernando</span>
                     </li>
                     
                     <li>
@@ -50,11 +50,6 @@ var Credits = React.createClass({
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/21986973_170x170.png" alt="Paul Avatar" />
                         <span className="name">Paul Kaplan</span>
-                    </li>
-                    
-                    <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/2752403_170x170.png" alt="Saskia Avatar" />
-                        <span className="name">Saskia Leggett</span>
                     </li>
                                         
                     <li>
@@ -195,7 +190,6 @@ var Credits = React.createClass({
                 <p><FormattedHTMLMessage id='credits.acknowledgementsContributors' /></p>
                 <p><FormattedMessage id='credits.acknowledgementsCommunity' /></p>
                 <p><FormattedMessage id='credits.acknowledgementsInfluencers' /></p>
-
                 <h2><FormattedMessage id='credits.supportersTitle' /></h2>
                 <p><FormattedMessage id='credits.supportersFinancialHeader' /></p>
                 <p>
