@@ -5,12 +5,13 @@
  *
  */
 
-var selenium_helpers = require('../../helpers/selenium-helpers.js');
-const clickText = selenium_helpers.clickText;
-const clickXpath = selenium_helpers.clickXpath;
-const findByXpath = selenium_helpers.findByXpath;
-const clickButton = selenium_helpers.clickButton;
-const driver = selenium_helpers.driver;
+const {
+    clickText,
+    findByXpath,
+    clickXpath,
+    clickButton,
+    driver
+} = require('../../helpers/selenium-helpers.js');
 
 var username = process.env.SMOKE_USERNAME;
 var password = process.env.SMOKE_PASSWORD;

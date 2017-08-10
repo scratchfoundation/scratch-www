@@ -5,11 +5,12 @@
  *
  */
 
-var selenium_helpers = require('../../helpers/selenium-helpers.js');
-const clickText = selenium_helpers.clickText;
-const findByXpath = selenium_helpers.findByXpath;
-const findByCss = selenium_helpers.findByCss;
-const driver = selenium_helpers.driver;
+const {
+    clickText,
+    findByXpath,
+    findByCss,
+    driver
+} = require('../../helpers/selenium-helpers.js');
 
 var tap = require('tap');
 const test = tap.test;
