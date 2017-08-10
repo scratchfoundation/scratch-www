@@ -36,11 +36,11 @@ const getLogs = (whitelist) => {
                 for (let i = 0; i < whitelist.length; i++) {
                     if (message.indexOf(whitelist[i]) !== -1) {
                         // eslint-disable-next-line no-console
-                        console.warn('Ignoring whitelisted error: ' + whitelist[i]);
+                        // console.warn('Ignoring whitelisted error: ' + whitelist[i]);
                         return false;
                     } else if (entry.level !== 'SEVERE') {
                         // eslint-disable-next-line no-console
-                        console.warn('Ignoring non-SEVERE entry: ' + message);
+                        // console.warn('Ignoring non-SEVERE entry: ' + message);
                         return false;
                     }
                     return true;
