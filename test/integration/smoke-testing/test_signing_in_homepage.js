@@ -1,27 +1,22 @@
+/*
+ * Tests signing in according to smoke-tests at:
+ *
+ * https://github.com/LLK/scratchr2/wiki/Smoke-Testing-Test-Cases
+ *
+ */
+
+const {
+    clickText,
+    findByXpath,
+    clickXpath,
+    driver
+} = require('../../helpers/selenium-helpers.js');
+
 var username = process.env.SMOKE_USERNAME;
 var password = process.env.SMOKE_PASSWORD;
 
 var tap = require('tap');
 const test = tap.test;
-const webdriver = require('selenium-webdriver');
-const By = webdriver.By;
-const until = webdriver.until;
-
-const driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
-
-const findByXpath = (xpath) => {
-    return driver.wait(until.elementLocated(By.xpath(xpath), 5 * 1000));
-};
-
-const clickXpath = (xpath) => {
-    return findByXpath(xpath).then(el => el.click());
-};
-
-const clickText = (text) => {
-    return clickXpath(`//*[contains(text(), '${text}')]`);
-};
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 

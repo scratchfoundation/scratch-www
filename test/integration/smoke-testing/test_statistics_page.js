@@ -1,28 +1,19 @@
+/*
+ * Tests stats page according to smoke-tests at:
+ *
+ * https://github.com/LLK/scratchr2/wiki/Smoke-Testing-Test-Cases
+ *
+ */
+
+const {
+    clickText,
+    findByXpath,
+    findByCss,
+    driver
+} = require('../../helpers/selenium-helpers.js');
+
 var tap = require('tap');
 const test = tap.test;
-const webdriver = require('selenium-webdriver');
-const By = webdriver.By;
-const until = webdriver.until;
-
-const driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
-
-const findByXpath = (xpath) => {
-    return driver.wait(until.elementLocated(By.xpath(xpath), 1000 * 5));
-};
-
-const findByCss = (css) => {
-    return driver.wait(until.elementLocated(By.css(css), 1000 * 5));
-};
-
-const clickXpath = (xpath) => {
-    return findByXpath(xpath).then(el => el.click());
-};
-
-const clickText = (text) => {
-    return clickXpath(`//*[contains(text(), '${text}')]`);
-};
 
 tap.plan(2);
 
