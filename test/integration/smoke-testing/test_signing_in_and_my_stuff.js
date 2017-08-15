@@ -6,7 +6,6 @@
  */
 
 const {
-    //webdriver,
     clickText,
     findByXpath,
     clickXpath,
@@ -26,7 +25,7 @@ const test = tap.test;
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 var url = rootUrl + '/users/anyuser';
 
-tap.plan(10);
+tap.plan(11);
 
 tap.tearDown(function () {
     driver.quit();
@@ -37,7 +36,10 @@ tap.beforeEach(function () {
 });
 
 /*
- * TODO: This test fails sometimes because blank username eventually triggers the captcha page
+ * This test fails sometimes because blank username eventually
+ * triggers the captcha page, which is a bug:
+ * https://github.com/LLK/scratchr2/issues/4762
+ */
 test('Trying to sign in with no username using scratchr2 navbar', t => {
     clickText('Sign in')
     .then(() => findByXpath('//input[@name="password"]'))
@@ -53,7 +55,6 @@ test('Trying to sign in with no username using scratchr2 navbar', t => {
         '"This field is required" error should be displayed'))
     .then(() => t.end());
 });
-*/
 
 test('Trying to sign in with no password using scratchr2 navbar', t => {
     var nonsenseusername = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
