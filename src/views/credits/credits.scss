@@ -5,6 +5,7 @@
         line-height: 1.5rem;
 
         a {
+            white-space: normal;
             word-wrap: break-word; /* Overrides: https://github.com/LLK/scratch-www/blob/develop/src/main.scss#L43-L47 */
         }
     }
