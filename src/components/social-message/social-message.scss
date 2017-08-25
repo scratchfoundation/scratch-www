@@ -1,0 +1,66 @@
+@import "../../colors";
+@import "../../frameless";
+
+.social-message {
+    margin: 0;
+    border-bottom: 1px solid $ui-border;
+    padding: 1rem;
+    list-style-type: none;
+}
+
+.social-message.mod-unread {
+    background-color: $ui-gray;
+}
+
+.flex-row.mod-social-message {
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.social-message-content {
+    max-width: 60%;
+}
+
+a.social-messages-profile-link {
+    color: $type-gray;
+
+    &:hover {
+        color: darken($type-gray, 10);
+    }
+}
+
+.flex-row.mod-comment-message {
+    justify-content: flex-start;
+}
+
+.comment-text {
+    margin-left: 1.5rem;
+}
+
+@media only screen and (max-width: $mobile - 1) {
+    .social-message {
+        text-align: left;
+    }
+
+    .social-message-date {
+        align-self: flex-end;
+    }
+
+    .social-message-content {
+        max-width: 100%;
+    }
+}
+
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .social-message {
+        text-align: left;
+    }
+
+    .social-message-date {
+        align-self: flex-end;
+    }
+
+    .social-message-content {
+        max-width: 100%;
+    }
+}

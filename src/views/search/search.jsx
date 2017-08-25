@@ -135,4 +135,8 @@ var mapStateToProps = function (state) {
 
 var ConnectedSearch = connect(mapStateToProps)(Search);
 
-render(<Page><ConnectedSearch /></Page>, document.getElementById('app'));
+render(
+    <Page><ConnectedSearch /></Page>,
+    document.getElementById('app'),
+    {navigation: navigationActions.navigationReducer}
+);

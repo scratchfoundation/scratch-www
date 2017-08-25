@@ -44,11 +44,13 @@ module.exports = function (opts, callback) {
         if (opts.host !== '') {
             // For IE < 10, we must use XDR for cross-domain requests. XDR does not support
             // custom headers.
-            defaults(opts, {useXDR: true});
-            if (opts.useXDR) {
+            if ('withCredentials' in new XMLHttpRequest()) {
+                opts.useXDR = false;
+            } else {
+                opts.useXDR = true;
                 delete opts.headers;
             }
-            if (opts.authentication) {
+            if (opts.authentication && opts.useXDR) {
                 var authenticationParams = ['x-token=' + opts.authentication];
                 var parts = opts.uri.split('?');
                 var qs = (parts[1] || '').split('&').concat(authenticationParams).join('&');

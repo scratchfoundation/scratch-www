@@ -12,12 +12,7 @@ var reducer = require('../redux/reducer.js');
 
 require('../main.scss');
 
-var store = redux.createStore(
-    reducer,
-    redux.applyMiddleware(thunk)
-);
-
-var render = function (jsx, element) {
+var render = function (jsx, element, reducers) {
     // Get locale and messages from global namespace (see "init.js")
     var locale = window._locale || 'en';
     var messages = {};
@@ -32,6 +27,12 @@ var render = function (jsx, element) {
         }
         messages = window._messages[locale];
     }
+
+    var allReducers = reducer(reducers);
+    var store = redux.createStore(
+        allReducers,
+        redux.applyMiddleware(thunk)
+    );
 
     // Render view component
     ReactDOM.render(

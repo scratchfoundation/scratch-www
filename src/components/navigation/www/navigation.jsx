@@ -5,6 +5,7 @@ var ReactIntl = require('react-intl');
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
 
+var messageCountActions = require('../../../redux/message-count.js');
 var sessionActions = require('../../../redux/session.js');
 
 var api = require('../../../lib/api');
@@ -30,20 +31,21 @@ var Navigation = React.createClass({
             loginOpen: false,
             loginError: null,
             registrationOpen: false,
-            unreadMessageCount: 0, // bubble number to display how many notifications someone has.
             messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
         };
     },
     getDefaultProps: function () {
         return {
             session: {},
+            unreadMessageCount: 0, // bubble number to display how many notifications someone has.
             searchTerm: ''
         };
     },
     componentDidMount: function () {
         if (this.props.session.session.user) {
-            this.getMessageCount();
-            var intervalId = setInterval(this.getMessageCount, 120000); // check for new messages every 2 mins.
+            var intervalId = setInterval(
+                this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username), 120000)
+            ); // check for new messages every 2 mins.
             this.setState({'messageCountIntervalId': intervalId});
         }
     },
@@ -54,14 +56,15 @@ var Navigation = React.createClass({
                 'accountNavOpen': false
             });
             if (this.props.session.session.user) {
-                this.getMessageCount();
-                var intervalId = setInterval(this.getMessageCount, 120000);
+                var intervalId = setInterval(
+                    this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username), 120000)
+                ); // check for new messages every 2 mins.
                 this.setState({'messageCountIntervalId': intervalId});
             } else {
                 // clear message count check, and set to default id.
                 clearInterval(this.state.messageCountIntervalId);
+                this.props.dispatch(messageCountActions.setCount(0));
                 this.setState({
-                    'unreadMessageCount': 0,
                     'messageCountIntervalId': -1
                 });
             }
@@ -71,8 +74,8 @@ var Navigation = React.createClass({
         // clear message interval if it exists
         if (this.state.messageCountIntervalId != -1) {
             clearInterval(this.state.messageCountIntervalId);
+            this.props.dispatch(messageCountActions.setCount(0));
             this.setState({
-                'unreadMessageCount': 0,
                 'messageCountIntervalId': -1
             });
         }
@@ -80,18 +83,6 @@ var Navigation = React.createClass({
     getProfileUrl: function () {
         if (!this.props.session.session.user) return;
         return '/users/' + this.props.session.session.user.username + '/';
-    },
-    getMessageCount: function () {
-        api({
-            method: 'get',
-            uri: '/users/' + this.props.session.session.user.username + '/messages/count'
-        }, function (err, body) {
-            if (err) return this.setState({'unreadMessageCount': 0});
-            if (body) {
-                var count = parseInt(body.count, 10);
-                return this.setState({'unreadMessageCount': count});
-            }
-        }.bind(this));
     },
     handleJoinClick: function (e) {
         e.preventDefault();
@@ -179,7 +170,7 @@ var Navigation = React.createClass({
         });
         var messageClasses = classNames({
             'message-count': true,
-            'show': this.state.unreadMessageCount > 0
+            'show': this.props.unreadMessageCount > 0
         });
         var dropdownClasses = classNames({
             'user-info': true,
@@ -230,7 +221,7 @@ var Navigation = React.createClass({
                                     href="/messages/"
                                     title={formatMessage({id: 'general.messages'})}>
 
-                                    <span className={messageClasses}>{this.state.unreadMessageCount}</span>
+                                    <span className={messageClasses}>{this.props.unreadMessageCount}</span>
                                     <FormattedMessage id="general.messages" />
                                 </a>
                             </li>,
@@ -343,6 +334,7 @@ var mapStateToProps = function (state) {
     return {
         session: state.session,
         permissions: state.permissions,
+        unreadMessageCount: state.messageCount.messageCount,
         searchTerm: state.navigation
     };
 };
