@@ -27,25 +27,18 @@ var UserJoinMessage = require('./message-rows/user-join.jsx');
 
 require('./messages.scss');
 
-var MessagesPresentation = injectIntl(React.createClass({
-    type: 'MessagesPresentation',
+var SocialMessagesList = React.createClass({
+    type: 'SocialMessagesList',
     propTypes: {
-        sessionStatus: React.PropTypes.string.isRequired,
-        user: React.PropTypes.object.isRequired,
+        loadStatus: React.PropTypes.string.isRequired,
         messages: React.PropTypes.array.isRequired,
-        adminMessages: React.PropTypes.array.isRequired,
-        scratcherInvite: React.PropTypes.object.isRequired,
         numNewMessages: React.PropTypes.number,
-        handleFilterClick: React.PropTypes.func.isRequired,
-        handleAdminDismiss: React.PropTypes.func.isRequired,
         loadMore: React.PropTypes.bool.isRequired,
-        loadMoreMethod: React.PropTypes.func,
-        requestStatus: React.PropTypes.object.isRequired
+        loadMoreMethod: React.PropTypes.func
     },
     getDefaultProps: function () {
         return {
-            numNewMessages: 2,
-            filterOpen: false
+            numNewMessages: 0
         };
     },
     getComponentForMessage: function (message, unread) {
@@ -166,6 +159,62 @@ var MessagesPresentation = injectIntl(React.createClass({
         return null;
     },
     render: function () {
+        if (this.props.loadStatus === messageStatuses.MESSAGES_ERROR) {
+            return (
+                <section className="messages-social">
+                    <div className="messages-social-title">
+                        <h4>
+                            <FormattedMessage id='messages.messageTitle' />
+                        </h4>
+                    </div>
+                    <p><FormattedMessage id='messages.requestError' /></p>
+                </section>
+            );
+        }
+
+        return (
+            <section className="messages-social">
+                {this.props.messages.length > 0 ? [
+                    <div className="messages-social-title">
+                        <h4>
+                            <FormattedMessage id='messages.messageTitle' />
+                            <span className="messages-social-title-unread">
+                                <FormattedNumber value={this.props.numNewMessages} />
+                            </span>
+                        </h4>
+                    </div>,
+                    <ul className="messages-social-list">
+                        {this.renderSocialMessages(this.props.messages, (this.props.numNewMessages - 1))}
+                    </ul>,
+                    this.renderLoadMore(this.props.loadMore)
+                ] : []}
+            </section>
+        );
+    }
+});
+
+var MessagesPresentation = injectIntl(React.createClass({
+    type: 'MessagesPresentation',
+    propTypes: {
+        sessionStatus: React.PropTypes.string.isRequired,
+        user: React.PropTypes.object.isRequired,
+        messages: React.PropTypes.array.isRequired,
+        adminMessages: React.PropTypes.array.isRequired,
+        scratcherInvite: React.PropTypes.object.isRequired,
+        numNewMessages: React.PropTypes.number,
+        handleFilterClick: React.PropTypes.func.isRequired,
+        handleAdminDismiss: React.PropTypes.func.isRequired,
+        loadMore: React.PropTypes.bool.isRequired,
+        loadMoreMethod: React.PropTypes.func,
+        requestStatus: React.PropTypes.object.isRequired
+    },
+    getDefaultProps: function () {
+        return {
+            numNewMessages: 0,
+            filterOpen: false
+        };
+    },
+    render: function () {
         var adminMessageLength = this.props.adminMessages.length;
         if (Object.keys(this.props.scratcherInvite).length > 0) {
             adminMessageLength = adminMessageLength + 1;
@@ -251,30 +300,13 @@ var MessagesPresentation = injectIntl(React.createClass({
                             <p><FormattedMessage id='messages.requestError' /></p>
                         </section>
                     ] : []}
-                    <section className="messages-social">
-                        {this.props.messages.length > 0 ? [
-                            <div className="messages-social-title">
-                                <h4>
-                                    <FormattedMessage id='messages.messageTitle' />
-                                    <span className="messages-social-title-unread">
-                                        <FormattedNumber value={this.props.numNewMessages} />
-                                    </span>
-                                </h4>
-                            </div>,
-                            <ul className="messages-social-list">
-                                {this.renderSocialMessages(this.props.messages, (this.props.numNewMessages - 1))}
-                            </ul>,
-                            this.renderLoadMore(this.props.loadMore)
-                        ] : []}
-                        {this.props.requestStatus.messages === messageStatuses.MESSAGES_ERROR ? [
-                            <div className="messages-social-title">
-                                <h4>
-                                    <FormattedMessage id='messages.messageTitle' />
-                                </h4>
-                            </div>,
-                            <p><FormattedMessage id='messages.requestError' /></p>
-                        ] : []}
-                    </section>
+                    <SocialMessagesList
+                        loadStatus={this.props.requestStatus.messages}
+                        messages={this.props.messages}
+                        numNewMessages={this.props.numNewMessages}
+                        loadMore={this.props.loadMore}
+                        loadMoreMethod={this.props.loadMoreMethod}
+                    />
                 </div>
             </div>
         );

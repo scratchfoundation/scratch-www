@@ -7,12 +7,11 @@ var EmojiText = React.createClass({
     type: 'EmojiText',
     propTyes: {
         text: React.PropTypes.string.isRequired,
-        imgClass: React.PropTypes.string
+        className: React.PropTypes.string
     },
     getDefaultProps: function () {
         return {
-            as: 'p',
-            imgClass: 'emoji'
+            as: 'p'
         };
     },
     render: function () {
