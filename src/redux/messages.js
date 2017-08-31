@@ -117,7 +117,8 @@ module.exports.clearMessageCount = function () {
         api({
             host: '',
             uri: '/site-api/messages/messages-clear/',
-            method: 'POST'
+            method: 'POST',
+            useCsrf: true
         }, function (err, body) {
             if (err) {
                 dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.CLEAR_ERROR));
@@ -141,6 +142,7 @@ module.exports.clearAdminMessage = function (messageType, messageId, adminMessag
             host: '',
             uri: '/site-api/messages/messages-delete/',
             method: 'POST',
+            useCsrf: true,
             body: {
                 alertType: messageType,
                 alertId: messageId
