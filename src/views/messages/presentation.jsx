@@ -224,6 +224,7 @@ var MessagesPresentation = injectIntl(React.createClass({
         if (Object.keys(this.props.scratcherInvite).length > 0) {
             adminMessageLength = adminMessageLength + 1;
         }
+        var numNewSocialMessages = this.props.numNewMessages - adminMessageLength;
 
         return (
             <div className="messages">
@@ -308,7 +309,7 @@ var MessagesPresentation = injectIntl(React.createClass({
                     <SocialMessagesList
                         loadStatus={this.props.requestStatus.messages}
                         messages={this.props.messages}
-                        numNewMessages={this.props.numNewMessages}
+                        numNewMessages={numNewSocialMessages}
                         loadMore={this.props.loadMore}
                         loadMoreMethod={this.props.loadMoreMethod}
                     />
