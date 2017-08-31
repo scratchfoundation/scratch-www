@@ -42,18 +42,19 @@ module.exports = function (opts, callback) {
 
     var apiRequest = function (opts) {
         if (opts.host !== '') {
-            // For IE < 10, we must use XDR for cross-domain requests. XDR does not support
-            // custom headers.
-            defaults(opts, {useXDR: true});
-            if (opts.useXDR) {
+            if ('withCredentials' in new XMLHttpRequest()) {
+                opts.useXDR = false;
+            } else {
+                // For IE < 10, we must use XDR for cross-domain requests. XDR does not support
+                // custom headers.
+                opts.useXDR = true;
                 delete opts.headers;
-            }
-            if (opts.authentication) {
-                var authenticationParams = ['x-token=' + opts.authentication];
-                var parts = opts.uri.split('?');
-                var qs = (parts[1] || '').split('&').concat(authenticationParams).join('&');
-                opts.uri = parts[0] + '?' + qs;
-
+                if (opts.authentication) {
+                    var authenticationParams = ['x-token=' + opts.authentication];
+                    var parts = opts.uri.split('?');
+                    var qs = (parts[1] || '').split('&').concat(authenticationParams).join('&');
+                    opts.uri = parts[0] + '?' + qs;
+                }
             }
         }
         xhr(opts, function (err, res, body) {

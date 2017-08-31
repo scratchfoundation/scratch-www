@@ -38,9 +38,9 @@ var Splash = injectIntl(React.createClass({
         if (this.props.user != prevProps.user) {
             if (this.props.user.username) {
                 this.getActivity(this.props.user.username);
-                this.getSharedByFollowing(this.props.user.token);
-                this.getInStudiosFollowing(this.props.user.token);
-                this.getLovedByFollowing(this.props.user.token);
+                this.getSharedByFollowing(this.props.user.username, this.props.user.token);
+                this.getInStudiosFollowing(this.props.user.username, this.props.user.token);
+                this.getLovedByFollowing(this.props.user.username, this.props.user.token);
                 this.getNews();
             } else {
                 this.setState({sharedByFollowing: []});
@@ -61,9 +61,9 @@ var Splash = injectIntl(React.createClass({
         this.getFeaturedGlobal();
         if (this.props.user.username) {
             this.getActivity(this.props.user.username);
-            this.getSharedByFollowing(this.props.user.token);
-            this.getInStudiosFollowing(this.props.user.token);
-            this.getLovedByFollowing(this.props.user.token);
+            this.getSharedByFollowing(this.props.user.username, this.props.user.token);
+            this.getInStudiosFollowing(this.props.user.username, this.props.user.token);
+            this.getLovedByFollowing(this.props.user.username, this.props.user.token);
             this.getNews();
         } else {
             this.getProjectCount();
@@ -85,27 +85,27 @@ var Splash = injectIntl(React.createClass({
             if (!err) return this.setState({featuredGlobal: body});
         }.bind(this));
     },
-    getSharedByFollowing: function (token) {
+    getSharedByFollowing: function (username, token) {
         api({
-            uri: '/projects/following/users',
+            uri: '/users/' + username + '/following/users/projects',
             authentication: token
         }, function (err, body) {
             if (!body) return log.error('No response body');
             if (!err) return this.setState({sharedByFollowing: body});
         }.bind(this));
     },
-    getInStudiosFollowing: function (token) {
+    getInStudiosFollowing: function (username, token) {
         api({
-            uri: '/projects/following/studios',
+            uri: '/users/' + username + '/following/studios/projects',
             authentication: token
         }, function (err, body) {
             if (!body) return log.error('No response body');
             if (!err) return this.setState({inStudiosFollowing: body});
         }.bind(this));
     },
-    getLovedByFollowing: function (token) {
+    getLovedByFollowing: function (username, token) {
         api({
-            uri: '/projects/following/loves',
+            uri: '/users/' + username + '/following/users/loves',
             authentication: token
         }, function (err, body) {
             if (!body) return log.error('No response body');
