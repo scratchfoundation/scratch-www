@@ -30,7 +30,7 @@ require('./messages.scss');
 var SocialMessagesList = React.createClass({
     type: 'SocialMessagesList',
     propTypes: {
-        loadStatus: React.PropTypes.string.isRequired,
+        loadStatus: React.PropTypes.string,
         messages: React.PropTypes.array.isRequired,
         numNewMessages: React.PropTypes.number,
         loadMore: React.PropTypes.bool.isRequired,
@@ -38,6 +38,7 @@ var SocialMessagesList = React.createClass({
     },
     getDefaultProps: function () {
         return {
+            loadStatus: messageStatuses.FETCHING,
             numNewMessages: 0
         };
     },
@@ -152,7 +153,11 @@ var SocialMessagesList = React.createClass({
     },
     renderLoadMore: function (loadMore) {
         if (loadMore) {
-            return <Button onClick={this.props.loadMoreMethod} className="messages-social-loadmore white">
+            return <Button
+                onClick={this.props.loadMoreMethod}
+                className="messages-social-loadmore white"
+                key="load-more"
+            >
                 <FormattedMessage id='general.loadMore' />
             </Button>;
         }
@@ -175,7 +180,7 @@ var SocialMessagesList = React.createClass({
         return (
             <section className="messages-social">
                 {this.props.messages.length > 0 ? [
-                    <div className="messages-social-title">
+                    <div className="messages-social-title" key="messages-social-title">
                         <h4>
                             <FormattedMessage id='messages.messageTitle' />
                             <span className="messages-social-title-unread">
@@ -183,7 +188,7 @@ var SocialMessagesList = React.createClass({
                             </span>
                         </h4>
                     </div>,
-                    <ul className="messages-social-list">
+                    <ul className="messages-social-list" key="messages-social-list">
                         {this.renderSocialMessages(this.props.messages, (this.props.numNewMessages - 1))}
                     </ul>,
                     this.renderLoadMore(this.props.loadMore)
