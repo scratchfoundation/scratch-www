@@ -5,39 +5,27 @@
  *
  */
 
+const {
+    clickText,
+    findByXpath,
+    clickXpath,
+    clickButton,
+    driver,
+    until,
+    By
+} = require('../../helpers/selenium-helpers.js');
+
 var username = process.env.SMOKE_USERNAME;
 var password = process.env.SMOKE_PASSWORD;
 
+
 var tap = require('tap');
 const test = tap.test;
-const webdriver = require('selenium-webdriver');
-const By = webdriver.By;
-const until = webdriver.until;
-
-const driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
-
-const findByXpath = (xpath) => {
-    return driver.wait(until.elementLocated(By.xpath(xpath), 5 * 1000));
-};
-
-const clickXpath = (xpath) => {
-    return findByXpath(xpath).then(el => el.click());
-};
-
-const clickText = (text) => {
-    return clickXpath(`//*[contains(text(), '${text}')]`);
-};
-
-const clickButton = (text) => {
-    return clickXpath(`//button[contains(text(), '${text}')]`);
-};
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 var url = rootUrl + '/users/anyuser';
 
-tap.plan(5);
+tap.plan(12);
 
 tap.tearDown(function () {
     driver.quit();
@@ -45,6 +33,100 @@ tap.tearDown(function () {
 
 tap.beforeEach(function () {
     return driver.get(url);
+});
+
+/*
+ * This test fails sometimes because blank username eventually
+ * triggers the captcha page, which is a bug:
+ * https://github.com/LLK/scratchr2/issues/4762
+ */
+test('Trying to sign in with no username and no password using scratchr2 navbar', t => {
+    clickText('Sign in')
+    .then(() => clickButton('Sign in'))
+    .then(() => driver.wait(until
+        .elementLocated(By.xpath('//form[@id="login"]/button[@type="submit"]'))))
+    .then(() => driver.wait(until
+        .elementLocated(By.xpath('//form[@id="login"]/div[@class="error"]'))))
+    .then(() => findByXpath('//form/div[@class="error"]'))
+    .then((element) => element.getText())
+    .then((text) => t.match(text, 'This field is required.',
+        '"This field is required" error should be displayed'))
+    .then(() => t.end());
+});
+
+/*
+ * This test fails sometimes because blank username eventually
+ * triggers the captcha page, which is a bug:
+ * https://github.com/LLK/scratchr2/issues/4762
+ */
+test('Trying to sign in with no username using scratchr2 navbar', t => {
+    clickText('Sign in')
+    .then(() => findByXpath('//input[@name="password"]'))
+    .then((element) => element.sendKeys(password))
+    .then(() => clickButton('Sign in'))
+    .then(() => driver.wait(until
+        .elementLocated(By.xpath('//form[@id="login"]/button[@type="submit"]'))))
+    .then(() => driver.wait(until
+        .elementLocated(By.xpath('//form[@id="login"]/div[@class="error"]'))))
+    .then(() => findByXpath('//form/div[@class="error"]'))
+    .then((element) => element.getText())
+    .then((text) => t.match(text, 'This field is required.',
+        '"This field is required" error should be displayed'))
+    .then(() => t.end());
+});
+
+test('Trying to sign in with no password using scratchr2 navbar', t => {
+    var nonsenseusername = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+    clickText('Sign in')
+    .then(() => findByXpath('//input[@id="login_dropdown_username"]'))
+    .then((element) => element.sendKeys(nonsenseusername))
+    .then(() => clickButton('Sign in'))
+    .then(() => driver.wait(until
+        .elementLocated(By.xpath('//form[@id="login"]/button[@type="submit"]'))))
+    .then(() => driver.wait(until
+        .elementLocated(By.xpath('//form[@id="login"]/div[@class="error"]'))))
+    .then(() => findByXpath('//form/div[@class="error"]'))
+    .then((element) => element.getText())
+    .then((text) => t.match(text, 'This field is required.',
+        '"This field is required" error should be displayed'))
+    .then(() => t.end());
+});
+
+test('Trying to sign in with the wrong username using scratchr2 navbar', t => {
+    var nonsenseusername = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+    clickText('Sign in')
+    .then(() => findByXpath('//input[@id="login_dropdown_username"]'))
+    .then((element) => element.sendKeys(nonsenseusername))
+    .then(() => findByXpath('//input[@name="password"]'))
+    .then((element) => element.sendKeys(password))
+    .then(() => clickButton('Sign in'))
+    .then(() => driver.wait(until
+        .elementLocated(By.xpath('//form[@id="login"]/button[@type="submit"]'))))
+    .then(() => driver.wait(until
+        .elementLocated(By.xpath('//form[@id="login"]/div[@class="error"]'))))
+    .then(() => findByXpath('//form/div[@class="error"]'))
+    .then((element) => element.getText())
+    .then((text) => t.match(text, 'Incorrect username or password.',
+        '"Incorrect username or password" error should be displayed'))
+    .then(() => t.end());
+});
+
+test('Trying to sign in with the wrong password using scratchr2 navbar', t => {
+    clickText('Sign in')
+    .then(() => findByXpath('//input[@id="login_dropdown_username"]'))
+    .then((element) => element.sendKeys(username))
+    .then(() => findByXpath('//input[@name="password"]'))
+    .then((element) => element.sendKeys('nonsensepassword'))
+    .then(() => clickButton('Sign in'))
+    .then(() => driver.wait(until
+        .elementLocated(By.xpath('//form[@id="login"]/button[@type="submit"]'))))
+    .then(() => driver.wait(until
+        .elementLocated(By.xpath('//form[@id="login"]/div[@class="error"]'))))
+    .then(() => findByXpath('//form/div[@class="error"]'))
+    .then((element) => element.getText())
+    .then((text) => t.match(text, 'Incorrect username or password.',
+        '"Incorrect username or password" error should be displayed'))
+    .then(() => t.end());
 });
 
 test('Sign in to Scratch using scratchr2 navbar', t => {
@@ -121,6 +203,33 @@ test('Add To button should bring up a list of studios', t => {
     .then( function (text) {
         var expectedRegExp = new RegExp('.+');
         t.match(text, expectedRegExp, 'the dropdown menu should have at least 1 text item in it');
+    })
+    .then(() => t.end());
+});
+
+test('+ New Studio button should take you to the studio page', t => {
+    clickXpath('//a[@class="mystuff-icon"]')
+    .then(() => clickXpath('//form[@id="new_studio"]/button[@type="submit"]'))
+    .then(() => findByXpath('//div[@id="show-add-project"]'))
+    .then((element) => element.getText('span'))
+    .then((text) => t.equal(text, 'Add projects', 'there should be an "Add projects" button'))
+    .then(() => driver.getCurrentUrl())
+    .then( function (url) {
+        var expectedUrlRegExp = new RegExp('/studios/.*[0-9].*/?');
+        t.match(url, expectedUrlRegExp,
+            'after clicking the + New Studio, the URL should end in studios/STUDIO_ID');
+    })
+    .then(() => t.end());
+});
+
+test('+ New Project button should open the editor', t => {
+    clickXpath('//a[@class="mystuff-icon"]')
+    .then(() => clickText('+ New Project'))
+    .then(() => driver.getCurrentUrl())
+    .then( function (url) {
+        var expectedUrlRegExp = new RegExp('/projects/editor');
+        t.match(url, expectedUrlRegExp,
+            'after clicking, the URL should end in projects/editor');
     })
     .then(() => t.end());
 });
