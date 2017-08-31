@@ -143,6 +143,7 @@ module.exports.clearAdminMessage = function (messageType, messageId, adminMessag
             uri: '/site-api/messages/messages-delete/',
             method: 'POST',
             useCsrf: true,
+            json: true,
             body: {
                 alertType: messageType,
                 alertId: messageId
