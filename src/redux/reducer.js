@@ -1,5 +1,4 @@
 var combineReducers = require('redux').combineReducers;
-var defaultsDeep = require('lodash.defaultsdeep');
 
 var messageCountReducer = require('./message-count.js').messageCountReducer;
 var permissionsReducer = require('./permissions.js').permissionsReducer;
@@ -17,9 +16,9 @@ var sessionReducer = require('./session.js').sessionReducer;
  */
 module.exports = function (opts) {
     opts = opts || {};
-    return combineReducers(defaultsDeep({
+    return combineReducers(Object.assign(opts, {
         session: sessionReducer,
         permissions: permissionsReducer,
         messageCount: messageCountReducer
-    }, opts));
+    }));
 };
