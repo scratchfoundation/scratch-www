@@ -39,6 +39,20 @@
     list-style-type: none;
 }
 
+.messages-header {
+    display: flex;
+    align-items: center;
+}
+
+.messages-header-unread {
+    margin-left: 1rem;
+    border-radius: 1rem;
+    background-color: $ui-orange;
+    padding: .25rem .5rem;
+    line-height: 1rem;
+    color: $type-white;
+}
+
 .admin-message {
     border: 1px solid darken($ui-gray, 10);
     border-radius: 5px;
@@ -49,6 +63,10 @@
 .admin-message-header {
     justify-content: space-between;
     align-items: center;
+}
+
+.admin-message-icon {
+    vertical-align: middle;
 }
 
 .admin-message-content {
@@ -68,14 +86,6 @@
     &:hover {
         box-shadow: none;
     }
-}
-
-.messages-social-title-unread {
-    margin-left: 1rem;
-    border-radius: 1rem;
-    background-color: $ui-orange;
-    padding: .25rem .5rem;
-    color: $type-white;
 }
 
 .messages-social-list {

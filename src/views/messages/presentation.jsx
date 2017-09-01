@@ -181,11 +181,11 @@ var SocialMessagesList = React.createClass({
             <section className="messages-social">
                 {this.props.messages.length > 0 ? [
                     <div className="messages-social-title" key="messages-social-title">
-                        <h4>
+                        <h4 className="messages-header">
                             <FormattedMessage id='messages.messageTitle' />
-                            <span className="messages-social-title-unread">
+                            <div className="messages-header-unread">
                                 <FormattedNumber value={this.props.numNewMessages} />
-                            </span>
+                            </div>
                         </h4>
                     </div>,
                     <ul className="messages-social-list" key="messages-social-list">
@@ -270,11 +270,11 @@ var MessagesPresentation = injectIntl(React.createClass({
                     {this.props.adminMessages.length > 0 || Object.keys(this.props.scratcherInvite).length > 0 ? [
                         <section className="messages-admin">
                             <div className="messages-admin-title">
-                                <h4>
+                                <h4 className="messages-header">
                                     <FormattedMessage id='messages.scratchTeamTitle' />
-                                    <span className="messages-social-title-unread">
+                                    <div className="messages-header-unread">
                                         <FormattedNumber value={adminMessageLength} />
-                                    </span>
+                                    </div>
                                 </h4>
                             </div>
                             <ul className="messages-admin-list">
@@ -283,7 +283,9 @@ var MessagesPresentation = injectIntl(React.createClass({
                                         id={this.props.scratcherInvite.id}
                                         username={this.props.user.username}
                                         datetimeCreated={this.props.scratcherInvite.datetime_created}
-                                        onDismiss={this.props.handleAdminDismiss}
+                                        onDismiss={function () {
+                                            this.props.handleAdminDismiss('invite', this.props.scratcherInvite.id);
+                                        }.bind(this)}
                                     />
                                 ] : []}
                                 {this.props.adminMessages.map(function (item) {
@@ -292,11 +294,9 @@ var MessagesPresentation = injectIntl(React.createClass({
                                         id={item.id}
                                         message={item.message}
                                         datetimeCreated={item.datetime_created}
-                                        onDismiss={
-                                            function () {
-                                                this.props.handleAdminDismiss('notification', item.id);
-                                            }.bind(this)
-                                        }
+                                        onDismiss={function () {
+                                            this.props.handleAdminDismiss('notification', item.id);
+                                        }.bind(this)}
                                     />;
                                 }.bind(this))}
                             </ul>
