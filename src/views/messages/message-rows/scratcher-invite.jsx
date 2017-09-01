@@ -25,7 +25,11 @@ var AdminMessage = injectIntl(React.createClass({
                     </span>
                     <Button
                         className="mod-scratcher-invite-dismiss"
-                        onClick={this.props.onDismiss.bind(this, 'invite', this.props.id)}
+                        onClick={
+                            function () {
+                                this.props.onDismiss('invite', this.props.id);
+                            }.bind(this)
+                        }
                     >
                         <img
                             className="mod-scratcher-invite-icon"

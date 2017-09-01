@@ -292,7 +292,11 @@ var MessagesPresentation = injectIntl(React.createClass({
                                         id={item.id}
                                         message={item.message}
                                         datetimeCreated={item.datetime_created}
-                                        onDismiss={this.props.handleAdminDismiss.bind('notification', item.id)}
+                                        onDismiss={
+                                            function () {
+                                                this.props.handleAdminDismiss('notification', item.id);
+                                            }.bind(this)
+                                        }
                                     />;
                                 }.bind(this))}
                             </ul>
