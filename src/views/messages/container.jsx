@@ -95,7 +95,9 @@ var Messages = React.createClass({
             adminMessages = this.props.adminMessages;
         }
         this.props.dispatch(
-            messageActions.clearAdminMessage(messageType, messageId, adminMessages)
+            messageActions.clearAdminMessage(
+                messageType, messageId, this.props.numNewMessages, adminMessages
+            )
         );
     },
     handleLoadMoreMessages: function () {

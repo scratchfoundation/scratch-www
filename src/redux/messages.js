@@ -3,6 +3,7 @@ var keyMirror = require('keymirror');
 
 var api = require('../lib/api');
 var log = require('../lib/log');
+var messageCountActions = require('./message-count.js');
 
 module.exports.Status = keyMirror({
     FETCHED: null,
@@ -135,7 +136,7 @@ module.exports.clearMessageCount = function () {
     };
 };
 
-module.exports.clearAdminMessage = function (messageType, messageId, adminMessages) {
+module.exports.clearAdminMessage = function (messageType, messageId, messageCount, adminMessages) {
     return function (dispatch) {
         dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.FETCHING));
         api({
@@ -156,6 +157,7 @@ module.exports.clearAdminMessage = function (messageType, messageId, adminMessag
             if (!body.success) {
                 dispatch(module.exports.setStatus('DELETE_STATUS', module.exports.Status.DELETE_ERROR));
                 dispatch(module.exports.setMessagesError('messages not cleared'));
+                return;
             }
 
             if (messageType === 'invite') {
@@ -173,6 +175,7 @@ module.exports.clearAdminMessage = function (messageType, messageId, adminMessag
                 adminMessages.splice(toRemove, 1);
                 dispatch(module.exports.setAdminMessages(adminMessages));
             }
+            dispatch(messageCountActions.setCount(messageCount - 1));
             dispatch(module.exports.setStatus('DELETE_STATUS', module.exports.Status.FETCHED));
         });
     };
