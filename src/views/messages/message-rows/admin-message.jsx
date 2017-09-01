@@ -21,10 +21,10 @@ var AdminMessage = React.createClass({
                     </span>
                     <Button
                         className="mod-admin-message-dismiss"
-                        onClick={this.props.onDismiss.bind(this, 'notification', this.props.id)}
+                        onClick={this.props.onDismiss}
                     >
                         <img
-                            className="mod-admin-message-icon"
+                            className="admin-message-icon"
                             src="/svgs/modal/close-x.svg"
                             alt="close-icon"
                         />
