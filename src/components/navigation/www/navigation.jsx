@@ -138,7 +138,7 @@ var Navigation = React.createClass({
         }, function (err) {
             if (err) log.error(err);
             this.closeLogin();
-            this.props.dispatch(sessionActions.refreshSession());
+            window.location = '/';
         }.bind(this));
     },
     handleAccountNavClick: function (e) {
