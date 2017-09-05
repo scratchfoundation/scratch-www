@@ -1,4 +1,5 @@
 var classNames = require('classnames');
+var connect = require('react-redux').connect;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var injectIntl = require('react-intl').injectIntl;
 var React = require('react');
@@ -55,16 +56,16 @@ var CommentMessage = injectIntl(React.createClass({
             if (typeof commentee !== 'undefined' && commentee === this.props.user.username) {
                 // is a profile comment, and is a reply
                 if (this.props.objectTitle === this.props.user.username) {
-                    linkText = this.props.intl.formatMessage({
-                        id: 'messages.profileSelf'
-                    });
+                    linkText = <FormattedMessage
+                        id='messages.profileSelf'
+                    />;
                 } else {
-                    linkText = this.props.intl.formatMessage({
-                        id: 'messages.profileOther',
-                        values: {
+                    linkText = <FormattedMessage
+                        id='messages.profileOther'
+                        values={{
                             username: this.props.objectTitle
-                        }
-                    });
+                        }}
+                    />;
                 }
                 return <FormattedMessage
                     id='messages.commentReply'
@@ -158,4 +159,11 @@ var CommentMessage = injectIntl(React.createClass({
     }
 }));
 
-module.exports = CommentMessage;
+var mapStateToProps = function (state) {
+    return {
+        user: state.session.session.user
+    };
+};
+
+var ConnectedCommentMessage = connect(mapStateToProps)(CommentMessage);
+module.exports = ConnectedCommentMessage;
