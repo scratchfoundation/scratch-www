@@ -12,7 +12,7 @@
     position: absolute;
     top: -1px;
     left: -13px;
-    border-top: 12px solid $ui-border;
+    border-bottom: 12px solid $ui-border;
     border-left: 13px solid $ui-border;
     border-radius: 0 0 0 13px;
     width: 0;
@@ -24,7 +24,7 @@
     position: absolute;
     top: 0;
     left: -12px;
-    border-top: 10px solid $ui-white;
+    border-bottom: 10px solid $ui-white;
     border-left: 12px solid $ui-white;
     border-radius: 0 0 0 12px;
     width: 0;
