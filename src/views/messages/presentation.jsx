@@ -84,7 +84,7 @@ var SocialMessagesList = React.createClass({
                 commentText={message.comment_fragment}
                 commentDateTime={message.datetime_created}
                 objectTitle={message.comment_obj_title}
-                commentee={message.commentee}
+                commentee={message.commentee_username}
             />;
         case 'curatorinvite':
             return <CuratorInviteMessage

@@ -62,7 +62,7 @@ var CommentMessage = injectIntl(React.createClass({
                     linkText = this.props.intl.formatMessage({
                         id: 'messages.profileOther',
                         values: {
-                            username: this.props.objectId
+                            username: this.props.objectTitle
                         }
                     });
                 }
