@@ -50,7 +50,7 @@ var CommentMessage = injectIntl(React.createClass({
                 />;
             }
         } else if (objectType === 1) {
-            var profileLink = '/users/' + this.props.objectId + '/#comments-' + this.props.commentId;
+            var profileLink = '/users/' + this.props.objectTitle + '/#comments-' + this.props.commentId;
             var linkText = '';
             if (typeof commentee !== 'undefined' && commentee === this.props.user.username) {
                 // is a profile comment, and is a reply
