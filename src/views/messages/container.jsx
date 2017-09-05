@@ -44,6 +44,12 @@ var Messages = React.createClass({
                 this.props.dispatch(
                     messageActions.getScratcherInvite(this.props.user.username, this.props.user.token)
                 );
+            } else {
+                // user is logged out, empty messages
+                this.props.dispatch(messageActions.setMessages([]));
+                this.props.dispatch(messageActions.setAdminMessages([]));
+                this.props.dispatch(messageActions.setScratcherInvite({}));
+                this.props.dispatch(messageActions.setMessagesOffset(0));
             }
         }
     },
