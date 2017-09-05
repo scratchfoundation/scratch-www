@@ -225,6 +225,9 @@ var MessagesPresentation = injectIntl(React.createClass({
             adminMessageLength = adminMessageLength + 1;
         }
         var numNewSocialMessages = this.props.numNewMessages - adminMessageLength;
+        if (numNewSocialMessages < 0) {
+            numNewSocialMessages = 0;
+        }
 
         return (
             <div className="messages">
