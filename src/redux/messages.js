@@ -130,7 +130,7 @@ module.exports.clearMessageCount = function () {
                 dispatch(module.exports.setMessagesError(err));
                 return;
             }
-            if (!body.success) {
+            if (typeof body !== 'undefined' && !body.success) {
                 dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.CLEAR_ERROR));
                 dispatch(module.exports.setMessagesError('messages not cleared'));
                 return;
