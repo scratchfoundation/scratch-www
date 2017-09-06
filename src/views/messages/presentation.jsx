@@ -163,6 +163,14 @@ var SocialMessagesList = React.createClass({
         }
         return null;
     },
+    renderMessageCounter: function (numNewMessages) {
+        if (numNewMessages > 0) {
+            return <div className="messages-header-unread">
+                <FormattedNumber value={numNewMessages} />
+            </div>;
+        }
+        return null;
+    },
     render: function () {
         if (this.props.loadStatus === messageStatuses.MESSAGES_ERROR) {
             return (
@@ -183,9 +191,7 @@ var SocialMessagesList = React.createClass({
                     <div className="messages-social-title" key="messages-social-title">
                         <h4 className="messages-header">
                             <FormattedMessage id='messages.messageTitle' />
-                            <div className="messages-header-unread">
-                                <FormattedNumber value={this.props.numNewMessages} />
-                            </div>
+                            {this.renderMessageCounter(this.props.numNewMessages)}
                         </h4>
                     </div>,
                     <ul className="messages-social-list" key="messages-social-list">
