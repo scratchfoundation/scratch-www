@@ -27,7 +27,7 @@ module.exports.getInitialState = function () {
         messages: {
             admin: [],
             social: [],
-            invite: []
+            invite: [{}]
         }
     };
 };
