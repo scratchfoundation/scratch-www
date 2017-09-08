@@ -27,7 +27,7 @@ module.exports.getInitialState = function () {
         messages: {
             admin: [],
             social: [],
-            invite: [{}]
+            invite: {}
         }
     };
 };
@@ -51,9 +51,8 @@ module.exports.messagesReducer = function (state, action) {
             messages: {socialOffset: action.offset}
         }, state);
     case 'SET_SCRATCHER_INVITE':
-        return defaultsDeep({
-            messages: {invite: [action.invite]}
-        }, state);
+        state.messages.invite = action.invite;
+        return state;
     case 'ADMIN_STATUS':
         return defaultsDeep({status: {admin: action.status}}, state);
     case 'MESSAGE_STATUS':
