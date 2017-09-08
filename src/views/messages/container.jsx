@@ -162,7 +162,7 @@ var mapStateToProps = function (state) {
         numNewMessages: state.messageCount.messageCount,
         messages: state.messages.messages.social,
         adminMessages: state.messages.messages.admin,
-        invite: state.messages.messages.invite,
+        invite: state.messages.messages.invite[0],
         messageOffset: state.messages.messages.socialOffset,
         requestStatus: state.messages.status
     };
