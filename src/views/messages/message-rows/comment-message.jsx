@@ -142,6 +142,8 @@ var CommentMessage = injectIntl(React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.commentDateTime}
+                iconSrc="/svgs/messages/comment.svg"
+                iconAlt="comment notification image"
             >
                 <p className="comment-message-info">{messageText}</p>
                 <FlexRow className="mod-comment-message">

@@ -21,6 +21,8 @@ var FollowUserMessage = React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.followDateTime}
+                iconSrc="/svgs/messages/follow.svg"
+                iconAlt="follow notification image"
             >
                 <FormattedMessage
                     id='messages.followText'

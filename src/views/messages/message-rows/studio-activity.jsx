@@ -22,6 +22,8 @@ var StudioActivityMessage = React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.datetimeCreated}
+                iconSrc="/svgs/messages/studio-activity.svg"
+                iconAlt="studio activity notification image"
             >
                 <FormattedMessage
                     id='messages.studioActivityText'

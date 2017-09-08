@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>studio activity</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="studio-activity" fill="#0FBD8C">
+            <path d="M2,6.99703014 C2,6.4463856 2.44266033,6 2.99895656,6 L5,6 L5,9.49983513 C5,10.3283533 5.67432225,11 6.50016487,11 L10,11 L10,13.0010434 C10,13.5527519 9.54696369,14 9.00296986,14 L2.99703014,14 C2.4463856,14 2,13.5469637 2,13.0029699 L2,6.99703014 Z M6,2.99703014 C6,2.4463856 6.45303631,2 6.99703014,2 L13.0029699,2 C13.5536144,2 14,2.45303631 14,2.99703014 L14,9.00296986 C14,9.5536144 13.5469637,10 13.0029699,10 L6.99703014,10 C6.4463856,10 6,9.54696369 6,9.00296986 L6,2.99703014 Z" id="Combined-Shape" transform="translate(8.000000, 8.000000) rotate(-180.000000) translate(-8.000000, -8.000000) "></path>
+        </g>
+    </g>
+</svg>

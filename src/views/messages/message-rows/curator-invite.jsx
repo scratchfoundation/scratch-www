@@ -27,6 +27,8 @@ var CuratorInviteMessage = injectIntl(React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.datetimePromoted}
+                iconSrc="/svgs/messages/curator-invite.svg"
+                iconAlt="curator invite notification image"
             >
                 <FormattedMessage
                     id='messages.curatorInviteText'

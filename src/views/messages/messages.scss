@@ -101,7 +101,7 @@
 
 .comment-text {
     background-color: $ui-white;
-    max-width: 32.25rem;
+    max-width: 30.25rem;
 }
 
 .flex-row.mod-comment-message {
@@ -134,7 +134,7 @@
     }
 
     .comment-text {
-        max-width: 11.75rem;
+        max-width: 9.75rem;
     }
 }
 
@@ -145,12 +145,12 @@
     }
 
     .comment-text {
-        max-width: 21.5rem;
+        max-width: 19.5rem;
     }
 }
 
 @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
     .comment-text {
-        max-width: 25.75rem;
+        max-width: 23.75rem;
     }
 }

@@ -23,6 +23,8 @@ var ForumPostMessage = React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.datetimeCreated}
+                iconSrc="/svgs/messages/forum-activity.svg"
+                iconAlt="forum activity notification image"
             >
                 <FormattedMessage
                     id='messages.forumPostText'
