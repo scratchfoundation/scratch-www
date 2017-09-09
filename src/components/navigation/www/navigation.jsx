@@ -43,9 +43,10 @@ var Navigation = React.createClass({
     },
     componentDidMount: function () {
         if (this.props.session.session.user) {
-            var intervalId = setInterval(
-                this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username)), 120000
-            ); // check for new messages every 2 mins.
+            var intervalId = setInterval(function () {
+                this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username));
+                console.log('did things');
+            }.bind(this), 120000); // check for new messages every 2 mins.
             this.setState({'messageCountIntervalId': intervalId});
         }
     },
@@ -56,9 +57,10 @@ var Navigation = React.createClass({
                 'accountNavOpen': false
             });
             if (this.props.session.session.user) {
-                var intervalId = setInterval(
-                    this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username)), 120000
-                ); // check for new messages every 2 mins.
+                var intervalId = setInterval(function () {
+                    this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username));
+                    console.log('did things');
+                }.bind(this), 120000); // check for new messages every 2 mins.
                 this.setState({'messageCountIntervalId': intervalId});
             } else {
                 // clear message count check, and set to default id.
