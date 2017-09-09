@@ -45,7 +45,6 @@ var Navigation = React.createClass({
         if (this.props.session.session.user) {
             var intervalId = setInterval(function () {
                 this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username));
-                console.log('did things');
             }.bind(this), 120000); // check for new messages every 2 mins.
             this.setState({'messageCountIntervalId': intervalId});
         }
@@ -59,7 +58,6 @@ var Navigation = React.createClass({
             if (this.props.session.session.user) {
                 var intervalId = setInterval(function () {
                     this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username));
-                    console.log('did things');
                 }.bind(this), 120000); // check for new messages every 2 mins.
                 this.setState({'messageCountIntervalId': intervalId});
             } else {
