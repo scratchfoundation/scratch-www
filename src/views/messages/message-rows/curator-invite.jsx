@@ -15,6 +15,7 @@ var CuratorInviteMessage = injectIntl(React.createClass({
     },
     render: function () {
         var studioLink = '/studios/' + this.props.studioId + '/';
+        var tabLink = '/studios/' + this.props.studioId + '/curators/';
         var actorLink = '/users/' + this.props.actorUsername + '/';
         var tabText = this.props.intl.formatMessage({id: 'messages.curatorTabText'});
         
@@ -26,6 +27,8 @@ var CuratorInviteMessage = injectIntl(React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.datetimePromoted}
+                iconSrc="/svgs/messages/curator-invite.svg"
+                iconAlt="curator invite notification image"
             >
                 <FormattedMessage
                     id='messages.curatorInviteText'
@@ -37,7 +40,7 @@ var CuratorInviteMessage = injectIntl(React.createClass({
                             {this.props.actorUsername}
                         </a>,
                         studioLink: <a href={studioLink}>{this.props.studioTitle}</a>,
-                        tabLink: <a href={studioLink}>{tabText}</a>
+                        tabLink: <a href={tabLink}>{tabText}</a>
                     }}
                 />
             </SocialMessage>

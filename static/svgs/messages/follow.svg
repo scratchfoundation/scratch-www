@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>follow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="follow" stroke="#4C97FF" stroke-width="0.5" fill="#4C97FF">
+            <path d="M6.38456232,6.86401962 C4.68473095,7.67346313 3.5,9.57197608 3.5,11.7869079 C3.5,14.7376974 12.8527518,14.7376974 12.8527518,11.7869079 C12.8527518,11.6838878 12.8527518,11.5808677 12.8380346,11.4778476 C12.7865246,10.3667024 12.4333129,9.34386019 11.874061,8.51969952 C11.3810428,7.79856846 10.7261402,7.22460506 9.96821949,6.8640339 C10.5716664,6.36363636 10.9395953,5.61306147 10.9395953,4.76682508 C10.9395953,3.23624099 9.70335428,2 8.18012878,2 C6.64954469,2 5.41330369,3.23624099 5.41330369,4.76682508 C5.41330369,5.60567961 5.78857031,6.36359429 6.38458627,6.86397796 Z" id="follow-icon"></path>
+        </g>
+    </g>
+</svg>

@@ -8,8 +8,12 @@
     list-style-type: none;
 }
 
-.social-message.mod-unread {
-    background-color: $ui-gray;
+.social-message-icon {
+    opacity: .25;
+}
+
+.social-message.mod-unread .social-message-icon {
+    opacity: 1;
 }
 
 .flex-row.mod-social-message {
@@ -18,7 +22,15 @@
 }
 
 .social-message-content {
-    max-width: 60%;
+    display: flex;
+    max-width: 38.75rem;
+    text-align: left;
+    align-items: flex-start;
+}
+
+.social-message-icon {
+    margin: .2rem 1rem 0 0;
+    min-width: 1.25rem;
 }
 
 a.social-messages-profile-link {

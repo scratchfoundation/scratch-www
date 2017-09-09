@@ -36,12 +36,18 @@ var Activity = React.createClass({
                     <ul key="activity-ul">
                         {this.props.items.map(function (item) {
                             if (item.message.replace(/\s/g, '')) {
-                                var actorProfileUrl = '/users/' + item.actor.username + '/';
-                                var actionDate = new Date(item.datetime_created + 'Z');
+                                var username = '';
+                                if (item.type === 22) {
+                                    username = item.recipient_username;
+                                } else {
+                                    username = item.actor.username;
+                                }
+                                var actorProfileUrl = '/users/' + username + '/';
                                 var activityMessageHTML = (
-                                    '<a href=' + actorProfileUrl + '>' + item.actor.username + '</a>' +
+                                    '<a href=' + actorProfileUrl + '>' + username + '</a>' +
                                     item.message
                                 );
+                                var actionDate = new Date(item.datetime_created + 'Z');
                                 return (
                                     <li key={item.pk}>
                                         <a href={actorProfileUrl}>

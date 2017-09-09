@@ -1,4 +1,5 @@
 var classNames = require('classnames');
+var connect = require('react-redux').connect;
 var FormattedMessage = require('react-intl').FormattedMessage;
 var injectIntl = require('react-intl').injectIntl;
 var React = require('react');
@@ -50,21 +51,21 @@ var CommentMessage = injectIntl(React.createClass({
                 />;
             }
         } else if (objectType === 1) {
-            var profileLink = '/users/' + this.props.objectId + '/#comments-' + this.props.commentId;
+            var profileLink = '/users/' + this.props.objectTitle + '/#comments-' + this.props.commentId;
             var linkText = '';
             if (typeof commentee !== 'undefined' && commentee === this.props.user.username) {
                 // is a profile comment, and is a reply
                 if (this.props.objectTitle === this.props.user.username) {
-                    linkText = this.props.intl.formatMessage({
-                        id: 'messages.profileSelf'
-                    });
+                    linkText = <FormattedMessage
+                        id='messages.profileSelf'
+                    />;
                 } else {
-                    linkText = this.props.intl.formatMessage({
-                        id: 'messages.profileOther',
-                        values: {
-                            username: this.props.objectId
-                        }
-                    });
+                    linkText = <FormattedMessage
+                        id='messages.profileOther'
+                        values={{
+                            username: this.props.objectTitle
+                        }}
+                    />;
                 }
                 return <FormattedMessage
                     id='messages.commentReply'
@@ -141,6 +142,8 @@ var CommentMessage = injectIntl(React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.commentDateTime}
+                iconSrc="/svgs/messages/comment.svg"
+                iconAlt="comment notification image"
             >
                 <p className="comment-message-info">{messageText}</p>
                 <FlexRow className="mod-comment-message">
@@ -158,4 +161,11 @@ var CommentMessage = injectIntl(React.createClass({
     }
 }));
 
-module.exports = CommentMessage;
+var mapStateToProps = function (state) {
+    return {
+        user: state.session.session.user
+    };
+};
+
+var ConnectedCommentMessage = connect(mapStateToProps)(CommentMessage);
+module.exports = ConnectedCommentMessage;
