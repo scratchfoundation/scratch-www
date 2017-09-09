@@ -2,6 +2,7 @@ var keyMirror = require('keymirror');
 var defaults = require('lodash.defaults');
 
 var api = require('../lib/api');
+var messageCountActions = require('./message-count.js');
 var permissionsActions = require('./permissions.js');
 
 var Types = keyMirror({
@@ -96,6 +97,9 @@ module.exports.refreshSession = function () {
 
                 // get the permissions from the updated session
                 dispatch(permissionsActions.storePermissions(body.permissions));
+                if (typeof body.user !== 'undefined') {
+                    dispatch(messageCountActions.getCount(body.user.username));
+                }
                 return;
             }
         });

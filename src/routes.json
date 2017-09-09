@@ -142,6 +142,13 @@
         "title": "Community Moderator"
     },
     {
+        "name": "messages",
+        "pattern": "^/messages/?$",
+        "routeAlias": "/messages(?!/ajax)",
+        "view": "messages/container",
+        "title": "Messages"
+    },
+    {
         "name": "microworld-art",
         "pattern": "^/microworlds/art",
         "routeAlias": "/microworlds",
