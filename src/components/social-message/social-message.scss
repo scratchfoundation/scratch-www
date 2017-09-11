@@ -12,6 +12,10 @@
     opacity: .25;
 }
 
+.social-message.mod-unread {
+    background-color: lighten($ui-blue, 40);
+}
+
 .social-message.mod-unread .social-message-icon {
     opacity: 1;
 }
