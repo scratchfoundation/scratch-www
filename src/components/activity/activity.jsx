@@ -51,7 +51,7 @@ var Activity = React.createClass({
                                 return (
                                     <li key={item.pk}>
                                         <a href={actorProfileUrl}>
-                                            <img src={item.actor.thumbnail_url} width="34" height="34" alt="" />
+                                            <img src={item.recipient.thumbnail_url} width="34" height="34" alt="" />
                                             <p dangerouslySetInnerHTML={{__html: activityMessageHTML}}></p>
                                             <p>
                                                 <span className="stamp">
