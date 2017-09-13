@@ -36,11 +36,11 @@ var Activity = React.createClass({
                     <ul key="activity-ul">
                         {this.props.items.map(function (item) {
                             if (item.message.replace(/\s/g, '')) {
-                                var username = '';
+                                var username = item.actor.username;
+                                var thumbnailUrl = item.actor.thumbnail_url;
                                 if (item.type === 22) {
                                     username = item.recipient_username;
-                                } else {
-                                    username = item.actor.username;
+                                    thumbnailUrl = item.recipient.thumbnail_url;
                                 }
                                 var actorProfileUrl = '/users/' + username + '/';
                                 var activityMessageHTML = (
@@ -51,7 +51,7 @@ var Activity = React.createClass({
                                 return (
                                     <li key={item.pk}>
                                         <a href={actorProfileUrl}>
-                                            <img src={item.actor.thumbnail_url} width="34" height="34" alt="" />
+                                            <img src={thumbnailUrl} width="34" height="34" alt="" />
                                             <p dangerouslySetInnerHTML={{__html: activityMessageHTML}}></p>
                                             <p>
                                                 <span className="stamp">
