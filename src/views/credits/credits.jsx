@@ -189,7 +189,7 @@ var Credits = React.createClass({
 
                 <h2><FormattedMessage id='credits.previousTitle' /></h2>
                 <p><FormattedMessage id='credits.previousBody' />
-                &nbsp
+                &nbsp;
                 Ben Berg,
                 Amos Blanton,
                 Karen Brennan,
@@ -231,7 +231,19 @@ var Credits = React.createClass({
                 <h2><FormattedMessage id='credits.acknowledgementsTitle' /></h2>
                 <p>
                   <FormattedHTMLMessage id='credits.acknowledgementsContributors' />
-                  Susan Abend, Robbie Berg, Lauren Bessen, Keith Braadfladt, Susan Carillo, Will Denton, Nathan Dinsmore, Catherine Feldman, Jodi Finch, Ioana Fineberg, JT Galla, Rachel Garber, Chris Garrity, Cassy Gibbs, Brian Harvey, Roland Hebert, Tracy Ho, Benjamin Howe, Kapaya Katongo, Evan Karatzas, Christine Kim, Joren Lauwers, Mike Lee, Jeff Lieberman, Mark Loughridge, Kelly Liu, Anthony Lu, Danny Lutz, David Malan, Wayne Marshall, John McIntosh, Paul Medlock-Walton, Dongfang (Tian) Mi, Ximena Miranda, Jens Moenig, Evan Moore, Geetha Narayanan, Kate Nazemi, Liddy Nevile, Wing Ngan, Derek O'Connell, Tim Radvan, Karen Randall, Ian Reynolds, Miriam Ruiz, Chinua Shaw, Ed Shems, Cynthia Solomon, Daniel Strimpel, Kilmer Sweazy, John Henry Thompson, Ubong Ukoh, Vladimir Vuksan, Han Xu.
+                    &nbsp;
+                    Susan Abend, Robbie Berg, Lauren Bessen, Keith Braadfladt, Susan Carillo,
+                    Will Denton, Nathan Dinsmore, Catherine Feldman, Jodi Finch, Ioana Fineberg,
+                    JT Galla, Rachel Garber, Chris Garrity, Cassy Gibbs, Brian Harvey,
+                    Roland Hebert, Tracy Ho, Benjamin Howe, Kapaya Katongo, Evan Karatzas,
+                    Christine Kim, Joren Lauwers, Mike Lee, Jeff Lieberman, Mark Loughridge,
+                    Kelly Liu, Anthony Lu, Danny Lutz, David Malan, Wayne Marshall,
+                    John McIntosh, Paul Medlock-Walton, Dongfang (Tian) Mi, Ximena Miranda,
+                    Jens Moenig, Evan Moore, Geetha Narayanan, Kate Nazemi, Liddy Nevile,
+                    Wing Ngan, Derek O'Connell, Tim Radvan, Karen Randall, Ian Reynolds,
+                    Miriam Ruiz, Chinua Shaw, Ed Shems, Cynthia Solomon, Daniel Strimpel,
+                    Kilmer Sweazy, John Henry Thompson, Ubong Ukoh, Vladimir Vuksan, Han Xu.
+                    &nbsp;
                   <FormattedHTMLMessage id='credits.acknowledgementsTranslators' />
                 </p>
                 <p><FormattedMessage id='credits.acknowledgementsCommunity' /></p>
