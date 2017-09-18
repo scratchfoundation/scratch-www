@@ -71,6 +71,7 @@ var Jar = {
         });
     },
     set: function (name, value, opts) {
+        opts = opts || {};
         defaults(opts, {
             expires: new Date(new Date().setYear(new Date().getFullYear() + 1))
         });
