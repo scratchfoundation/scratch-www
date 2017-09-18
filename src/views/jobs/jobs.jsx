@@ -47,6 +47,14 @@ var Jobs = React.createClass({
                                 </span>
                             </li>
                             <li>
+                                <a href="https://www.media.mit.edu/about/job-opportunities/qa-engineer-scratch/">
+                                    QA Engineer
+                                </a>
+                                <span>
+                                    MIT Media Lab, Cambridge, MA
+                                </span>
+                            </li>
+                            <li>
                                 <a href="https://www.media.mit.edu/about/job-opportunities/senior-backend-engineer-scratch-1/">
                                     Senior Backend Engineer
                                 </a>
