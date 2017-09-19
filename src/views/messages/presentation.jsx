@@ -43,7 +43,7 @@ var SocialMessagesList = React.createClass({
         };
     },
     getComponentForMessage: function (message) {
-        var className = (message.unread) ? 'mod-unread' : '';
+        var className = (message.unread === true) ? 'mod-unread' : '';
         var key = message.type + '_' + message.id;
 
         switch (message.type) {

@@ -118,19 +118,21 @@ var Messages = React.createClass({
     },
     filterMessages: function (messages, typesAllowed, unreadCount) {
         var filteredMessages = [];
-        for (var i in messages) {
-            // check to see if the position of the message in the list is earlier
-            // than the unread count. If it is, then the message is totally unread.
-            messages[i].unread = false;
-            if (i < unreadCount) messages[i].unread = true;
+        if (typesAllowed.length > 0) {
+            for (var i in messages) {
+                // check to see if the position of the message in the list is earlier
+                // than the unread count. If it is, then the message is totally unread.
+                messages[i].unread = false;
+                if (i < unreadCount) messages[i].unread = true;
 
-            if (typesAllowed.length > 0) {
                 if (typesAllowed.indexOf(messages[i].type) > -1) {
                     filteredMessages.push(messages[i]);
                 }
-            } else {
-                // if empty, then we're looking at all messages, so just like add the message
-                filteredMessages.push(messages[i]);
+            }
+        } else {
+            filteredMessages = messages;
+            for (var j = 0; j < unreadCount; j++) {
+                filteredMessages[j].unread = true;
             }
         }
         return filteredMessages;
