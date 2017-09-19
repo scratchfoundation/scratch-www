@@ -42,8 +42,8 @@ var SocialMessagesList = React.createClass({
             numNewMessages: 0
         };
     },
-    getComponentForMessage: function (message, unread) {
-        var className = (unread) ? 'mod-unread' : '';
+    getComponentForMessage: function (message) {
+        var className = (message.unread === true) ? 'mod-unread' : '';
         var key = message.type + '_' + message.id;
 
         switch (message.type) {
@@ -140,14 +140,10 @@ var SocialMessagesList = React.createClass({
             />;
         }
     },
-    renderSocialMessages: function (messages, unreadCount) {
+    renderSocialMessages: function (messages) {
         var messageList = [];
         for (var i in messages) {
-            if (i <= unreadCount) {
-                messageList.push(this.getComponentForMessage(messages[i], true));
-            } else {
-                messageList.push(this.getComponentForMessage(messages[i], false));
-            }
+            messageList.push(this.getComponentForMessage(messages[i]));
         }
         return messageList;
     },
@@ -195,7 +191,7 @@ var SocialMessagesList = React.createClass({
                         </h4>
                     </div>,
                     <ul className="messages-social-list" key="messages-social-list">
-                        {this.renderSocialMessages(this.props.messages, (this.props.numNewMessages - 1))}
+                        {this.renderSocialMessages(this.props.messages)}
                     </ul>,
                     this.renderLoadMore(this.props.loadMore)
                 ] : []}

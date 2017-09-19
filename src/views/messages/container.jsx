@@ -116,11 +116,23 @@ var Messages = React.createClass({
             )
         );
     },
-    filterMessages: function (messages, typesAllowed) {
+    filterMessages: function (messages, typesAllowed, unreadCount) {
         var filteredMessages = [];
-        for (var i in messages) {
-            if (typesAllowed.indexOf(messages[i].type) > -1) {
-                filteredMessages.push(messages[i]);
+        if (typesAllowed.length > 0) {
+            for (var i in messages) {
+                // check to see if the position of the message in the list is earlier
+                // than the unread count. If it is, then the message is totally unread.
+                messages[i].unread = false;
+                if (i < unreadCount) messages[i].unread = true;
+
+                if (typesAllowed.indexOf(messages[i].type) > -1) {
+                    filteredMessages.push(messages[i]);
+                }
+            }
+        } else {
+            filteredMessages = messages;
+            for (var j = 0; j < unreadCount; j++) {
+                filteredMessages[j].unread = true;
             }
         }
         return filteredMessages;
@@ -131,10 +143,11 @@ var Messages = React.createClass({
             loadMore = false;
         }
 
-        var messages = this.props.messages;
-        if (this.state.filterValues.length > 0) {
-            messages = this.filterMessages(messages, this.state.filterValues);
-        }
+        var messages = this.filterMessages(
+            this.props.messages,
+            this.state.filterValues,
+            this.props.numNewMessages
+        );
 
         return(
             <MessagesPresentation
