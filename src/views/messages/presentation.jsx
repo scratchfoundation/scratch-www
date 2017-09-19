@@ -196,9 +196,9 @@ var SocialMessagesList = React.createClass({
                     </div>,
                     <ul className="messages-social-list" key="messages-social-list">
                         {this.renderSocialMessages(this.props.messages, (this.props.numNewMessages - 1))}
-                    </ul>,
-                    this.renderLoadMore(this.props.loadMore)
+                    </ul>
                 ] : []}
+                {this.renderLoadMore(this.props.loadMore)}
             </section>
         );
     }
