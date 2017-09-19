@@ -14,7 +14,7 @@ var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 require('./download.scss');
 require('../../components/forms/button.scss');
 
-var Download = React.createClass({
+var Download = injectIntl(React.createClass({
     type: 'Download',
     getInitialState: function () {
         return {
@@ -240,7 +240,6 @@ var Download = React.createClass({
             </div>
         );
     }
-});
+}));
 
-var IntlDownload = injectIntl(Download);
-render(<Page><IntlDownload /></Page>, document.getElementById('app'));
+render(<Page><Download /></Page>, document.getElementById('app'));
