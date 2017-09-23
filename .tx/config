@@ -121,3 +121,9 @@ file_filter = localizations/camp/<lang>.json
 source_file = src/views/camp/l10n.json
 source_lang = en
 type = KEYVALUEJSON
+
+[scratch-website.messages-l10njson]
+file_filter = localizations/messages/<lang>.json
+source_file = src/views/messages/l10n.json
+source_lang = en
+type = KEYVALUEJSON

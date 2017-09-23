@@ -1,0 +1,82 @@
+@import "../../colors";
+@import "../../frameless";
+
+.social-message {
+    margin: 0;
+    border-bottom: 1px solid $ui-border;
+    padding: 1rem;
+    list-style-type: none;
+}
+
+.social-message-icon {
+    opacity: .25;
+}
+
+.social-message.mod-unread {
+    background-color: lighten($ui-blue, 40);
+}
+
+.social-message.mod-unread .social-message-icon {
+    opacity: 1;
+}
+
+.flex-row.mod-social-message {
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.social-message-content {
+    display: flex;
+    max-width: 38.75rem;
+    text-align: left;
+    align-items: flex-start;
+}
+
+.social-message-icon {
+    margin: .2rem 1rem 0 0;
+    min-width: 1.25rem;
+}
+
+a.social-messages-profile-link {
+    color: $type-gray;
+
+    &:hover {
+        color: darken($type-gray, 10);
+    }
+}
+
+.flex-row.mod-comment-message {
+    justify-content: flex-start;
+}
+
+.comment-text {
+    margin-left: 1.5rem;
+}
+
+@media only screen and (max-width: $mobile - 1) {
+    .social-message {
+        text-align: left;
+    }
+
+    .social-message-date {
+        align-self: flex-end;
+    }
+
+    .social-message-content {
+        max-width: 100%;
+    }
+}
+
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .social-message {
+        text-align: left;
+    }
+
+    .social-message-date {
+        align-self: flex-end;
+    }
+
+    .social-message-content {
+        max-width: 100%;
+    }
+}

@@ -36,16 +36,22 @@ var Activity = React.createClass({
                     <ul key="activity-ul">
                         {this.props.items.map(function (item) {
                             if (item.message.replace(/\s/g, '')) {
-                                var actorProfileUrl = '/users/' + item.actor.username + '/';
-                                var actionDate = new Date(item.datetime_created + 'Z');
+                                var username = item.actor.username;
+                                var thumbnailUrl = item.actor.thumbnail_url;
+                                if (item.type === 22) {
+                                    username = item.recipient_username;
+                                    thumbnailUrl = item.recipient.thumbnail_url;
+                                }
+                                var actorProfileUrl = '/users/' + username + '/';
                                 var activityMessageHTML = (
-                                    '<a href=' + actorProfileUrl + '>' + item.actor.username + '</a>' +
+                                    '<a href=' + actorProfileUrl + '>' + username + '</a>' +
                                     item.message
                                 );
+                                var actionDate = new Date(item.datetime_created + 'Z');
                                 return (
                                     <li key={item.pk}>
                                         <a href={actorProfileUrl}>
-                                            <img src={item.actor.thumbnail_url} width="34" height="34" alt="" />
+                                            <img src={thumbnailUrl} width="34" height="34" alt="" />
                                             <p dangerouslySetInnerHTML={{__html: activityMessageHTML}}></p>
                                             <p>
                                                 <span className="stamp">

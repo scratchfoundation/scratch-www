@@ -91,4 +91,8 @@ var mapStateToProps = function (state) {
 
 var ConnectedDetails = connect(mapStateToProps)(ConferenceDetails);
 
-render(<Page><ConnectedDetails /></Page>, document.getElementById('app'));
+render(
+    <Page><ConnectedDetails /></Page>,
+    document.getElementById('app'),
+    {conferenceDetails: detailsActions.detailsReducer}
+);

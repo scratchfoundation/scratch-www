@@ -110,7 +110,7 @@
     "registration.classroomApiGeneralError": "Sorry, we could not find the registration information for this class",
     "registration.generalError": "Sorry, an unexpected error occurred.",
     "registration.classroomInviteExistingStudentStepDescription": "you have been invited to join the class:",
-    "registration.classroomInviteNewStudentStepDescription": "has invited you to join the class:",
+    "registration.classroomInviteNewStudentStepDescription": "Your teacher has invited you to join a class:",
     "registration.confirmYourEmail": "Confirm Your Email",
     "registration.confirmYourEmailDescription": "If you haven't already, please click the link in the confirmation email sent to:",
     "registration.createUsername": "Create a Username",

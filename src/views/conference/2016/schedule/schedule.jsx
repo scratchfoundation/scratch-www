@@ -128,4 +128,8 @@ var mapStateToProps = function (state) {
 
 var ConnectedSchedule = connect(mapStateToProps)(ConferenceSchedule);
 
-render(<Page><ConnectedSchedule /></Page>, document.getElementById('app'));
+render(
+    <Page><ConnectedSchedule /></Page>,
+    document.getElementById('app'),
+    {conferenceSchedule: scheduleActions.scheduleReducer}
+);

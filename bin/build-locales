@@ -157,7 +157,7 @@ for (var v in routes) {
         localizedAssetUrls[routes[v].name] = {};
 
         var viewUrls = require(l10nStatic);
-        localizedAssetUrls[routes[v].name]['en'] = viewUrls; 
+        localizedAssetUrls[routes[v].name]['en'] = viewUrls;
         var defaultUrls = localizedUrls['en'];
         for (var lang in languages) {
             localizedAssetUrls[routes[v].name][lang] = {};
@@ -192,7 +192,6 @@ async.forEachLimit(views, 5, function (view, cb) {
     viewLocales['en'] = merge({}, generalLocales['en'], defaultLocales[view]);
 
     // merge view specific english strings, first then other languages
-    process.stdout.write('Merging translations for ' + view + '\n');
     async.forEach(allLangs, function (isoCode, cb) {
         var translationsFile = path.resolve(
             __dirname,
@@ -204,8 +203,9 @@ async.forEachLimit(views, 5, function (view, cb) {
         fs.readFile(translationsFile, 'utf8', function (err, data) {
             if (err) {
                 if (err.code === 'ENOENT') {
+                    // ignore missing files for english, Meow, and Edible Scratch
                     if (isoCode !== 'en') {
-                        if (defaultLocales.hasOwnProperty(view)) {
+                        if (isoCode !== 'cat' && isoCode !== 'yum'  && defaultLocales.hasOwnProperty(view)) {
                             process.stdout.write('No translations for ' + view + ' ' + isoCode + ', using english\n');
                         }
                         viewLocales[isoCode] = merge({}, generalLocales[isoCode], defaultLocales[view]);
@@ -224,8 +224,8 @@ async.forEachLimit(views, 5, function (view, cb) {
             }
             cb();
         });
-    }, function (err) {
-        if (err) process.stdout.write('Error merging translations for view: ' + view + '\n' + err + '\n');
+    }, function (err) {  // eslint-disable-line no-unused-vars
+        // ignore translation file errors, just keep going.
         var viewTranslations = merge({}, viewLocales, localizedAssetUrls[view]);
         writeIntlFile(outputDir, view, viewTranslations, function (err) {
             if (err) {

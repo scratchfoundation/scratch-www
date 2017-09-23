@@ -66,6 +66,11 @@
 
         input[type="radio"] {
             margin-right: 1rem;
+
+            &:focus {
+                transition: all .5s ease;
+                border: 1px solid $ui-blue;
+            }
         }
 
         .demographics-step-input-other {
