@@ -49,7 +49,7 @@ These currently exist in static/js/lib
 npm start
 ```
 
-During development, `npm start` watches any update you make to files in either `./static` or `./src` and triggers a rebuild of the project.  In development the build is stored in memory, and not served from the `./build` directory.
+During development, `npm start` watches any update you make to files in either `./static` or `./src` and triggers a rebuild of the project.  In development, the build is stored in memory, and not served from the `./build` directory.
 
 When running `npm start`, here are some important log messages to keep an eye out for:
 * `webpack: bundle is now VALID.` – the bundle has been loaded into memory and is now viewable in the browser. This will show up both once `npm start` has completed its setup, and also once updates you make to files have been re-compiled for viewing in the browser.
@@ -105,7 +105,7 @@ We're currently in the process of transitioning into this web client from Scratc
 #### FALLBACK
 On top of migrating to using this as our web client, Scratch is also transitioning into using a new API backend, Scratch REST API. As that is also currently in development and incomplete, we are set up to fall back to using existing Scratch endpoints if an API endpoint does not exist – which is where the `FALLBACK` comes in.
 
-Most of the issues we have currently revolve around the use of `FALLBACK`. This variable is used to specify what url to fall back onto should a request fail within the context of this webclient, or when using the `API_HOST`. If not specified in the process, it will not be used, and any request that is not made through the web client or the API will be unreachable.
+Most of the issues we have currently revolve around the use of `FALLBACK`. This variable is used to specify what URL to fall back onto should a request fail within the context of this web client, or when using the `API_HOST`. If not specified in the process, it will not be used, and any request that is not made through the web client or the API will be unreachable.
 
 Setting `FALLBACK=https://scratch.mit.edu` allows the web client to retrieve data from the Scratch website in your development environment. However, because of security concerns, trying to send data to Scratch through your development environment won't work. This means the following things will be broken for the time being:
 * Login on the splash page (*In the process of being fixed*)
