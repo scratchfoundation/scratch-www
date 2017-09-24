@@ -11,7 +11,7 @@ We are always excited to have people join us in working to make Scratch a wonder
 * [README](https://github.com/LLK/scratch-www/blob/develop/README.md) (if you’re to read only one me in this repo, make it this one – it has all of the necessary information for getting a local Scratch UI running on your machine!)
 * [Community Guidelines](https://github.com/LLK/scratch-www/wiki/Community-Guidelines) (we find it important to maintain a constructive and welcoming community, just like on Scratch)
 * [Issues](https://github.com/LLK/scratch-www/issues) – where we keep track of all the things that need fixin’ on the website
-Road map
+Roadmap
 
 Beyond this repo, there are also some other resources that you might want to take a look at:
 [Scratch](https://scratch.mit.edu/) (the thing we work on)
