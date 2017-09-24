@@ -6,7 +6,7 @@ Here are some ways you can contribute:
 * [Work on bugs and make pull requests](https://github.com/LLK/scratch-www/wiki/Workflow-for-Repo-Contributions)
   * Make sure to check out how to [assign yourself bugs](https://github.com/LLK/scratch-www/wiki/Assigning-Yourself-Bugs) too.
 
-We are always excited to have people join us in working to make Scratch a wonderful place for people of all ages to make projects together. If you’re new here and looking to jump into our wonderful community, we have some resources for you to take a look at:
+We are always excited to have people join us in working to make Scratch a wonderful place for people of all ages to make projects together. If you’re new here, and looking to jump into our wonderful community, we have some resources for you to take a look at:
 
 * [README](https://github.com/LLK/scratch-www/blob/develop/README.md) (if you’re to read only one me in this repo, make it this one – it has all of the necessary information for getting a local Scratch UI running on your machine!)
 * [Community Guidelines](https://github.com/LLK/scratch-www/wiki/Community-Guidelines) (we find it important to maintain a constructive and welcoming community, just like on Scratch)
