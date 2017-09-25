@@ -172,6 +172,11 @@ var Credits = React.createClass({
                     </li>
 
                     <li>
+                        <img src="//cdn2.scratch.mit.edu/get_image/user/default_170x170.png" alt="Tina Avatar" />
+                        <span className="name">Tina Quach</span>
+                    </li>
+                    
+                    <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/17618638_170x170.png" alt="Hanako Avatar" />
                         <span className="name">Hanako Tjia</span>
                     </li>
