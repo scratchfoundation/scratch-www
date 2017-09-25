@@ -29,7 +29,7 @@ var FollowUserMessage = React.createClass({
                     values={{
                         profileLink: <a
                             href={profileLink}
-                            class="social-messages-profile-link"
+                            className="social-messages-profile-link"
                         >
                             {this.props.followerUsername}
                         </a>
