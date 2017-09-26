@@ -94,25 +94,30 @@ var CommentMessage = injectIntl(React.createClass({
                             {this.props.actorUsername}
                         </a>,
                         commentLink: <a href={profileLink}>{linkText}</a>
+
                     }}
                 />;
             }
         } else {
             var projectLink = '/projects/' + this.props.objectId + '/#comments-' + this.props.commentId;
+
             // must be a project comment, since it's not the other two, and the strict prop type reqs
             if (typeof commentee !== 'undefined' && commentee === this.props.user.username) {
                 return <FormattedMessage
                     id='messages.commentReply'
-                    values={{
+
+                           values={{
                         profileLink: <a
                             href={actorLink}
                             className="social-messages-profile-link"
-                        >
+
+                                         >
                             {this.props.actorUsername}
                         </a>,
                         commentLink: <a href={projectLink}>{this.props.objectTitle}</a>
                     }}
-                />;
+
+                           />;
             } else {
                 return <FormattedMessage
                     id='messages.projectComment'
@@ -133,6 +138,7 @@ var CommentMessage = injectIntl(React.createClass({
         var messageText = this.getMessageText(this.props.objectType, this.props.commentee);
         var commentorAvatar = 'https://cdn2.scratch.mit.edu/get_image/user/' + this.props.actorId + '_32x32.png';
         var commentorAvatarAlt = this.props.actorUsername + '\'s avatar';
+        var url = "/users/" + this.props.actorUsername;
 
         var classes = classNames(
             'mod-comment-message',
@@ -147,11 +153,13 @@ var CommentMessage = injectIntl(React.createClass({
             >
                 <p className="comment-message-info">{messageText}</p>
                 <FlexRow className="mod-comment-message">
+                <a href={url}>
                     <img
                         className="comment-message-info-img"
                         src={commentorAvatar}
                         alt={commentorAvatarAlt}
                     />
+                    </a>
                     <Comment
                         comment={this.props.commentText}
                     />
