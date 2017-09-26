@@ -94,7 +94,6 @@ var CommentMessage = injectIntl(React.createClass({
                             {this.props.actorUsername}
                         </a>,
                         commentLink: <a href={profileLink}>{linkText}</a>
-
                     }}
                 />;
             }
@@ -105,13 +104,10 @@ var CommentMessage = injectIntl(React.createClass({
             if (typeof commentee !== 'undefined' && commentee === this.props.user.username) {
                 return <FormattedMessage
                     id='messages.commentReply'
-
-                           values={{
+                    values={{
                         profileLink: <a
                             href={actorLink}
-                            className="social-messages-profile-link"
-
-                                         >
+                            className="social-messages-profile-link">
                             {this.props.actorUsername}
                         </a>,
                         commentLink: <a href={projectLink}>{this.props.objectTitle}</a>
