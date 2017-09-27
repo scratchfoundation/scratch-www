@@ -154,7 +154,7 @@ var CommentMessage = injectIntl(React.createClass({
                         src={commentorAvatar}
                         alt={commentorAvatarAlt}
                     />
-                    </a>
+                </a>
                     <Comment
                         comment={this.props.commentText}
                     />
