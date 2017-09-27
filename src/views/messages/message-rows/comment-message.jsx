@@ -99,7 +99,6 @@ var CommentMessage = injectIntl(React.createClass({
             }
         } else {
             var projectLink = '/projects/' + this.props.objectId + '/#comments-' + this.props.commentId;
-
             // must be a project comment, since it's not the other two, and the strict prop type reqs
             if (typeof commentee !== 'undefined' && commentee === this.props.user.username) {
                 return <FormattedMessage
@@ -107,7 +106,8 @@ var CommentMessage = injectIntl(React.createClass({
                     values={{
                         profileLink: <a
                             href={actorLink}
-                            className="social-messages-profile-link">
+                            className="social-messages-profile-link"
+                        >
                             {this.props.actorUsername}
                         </a>,
                         commentLink: <a href={projectLink}>{this.props.objectTitle}</a>
