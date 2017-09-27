@@ -112,8 +112,7 @@ var CommentMessage = injectIntl(React.createClass({
                         </a>,
                         commentLink: <a href={projectLink}>{this.props.objectTitle}</a>
                     }}
-
-                           />;
+                 />;
             } else {
                 return <FormattedMessage
                     id='messages.projectComment'
