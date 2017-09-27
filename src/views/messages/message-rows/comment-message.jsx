@@ -112,7 +112,7 @@ var CommentMessage = injectIntl(React.createClass({
                         </a>,
                         commentLink: <a href={projectLink}>{this.props.objectTitle}</a>
                     }}
-                 />;
+                />;
             } else {
                 return <FormattedMessage
                     id='messages.projectComment'
@@ -148,13 +148,13 @@ var CommentMessage = injectIntl(React.createClass({
             >
                 <p className="comment-message-info">{messageText}</p>
                 <FlexRow className="mod-comment-message">
-                <a href={url}>
-                    <img
-                        className="comment-message-info-img"
-                        src={commentorAvatar}
-                        alt={commentorAvatarAlt}
-                    />
-                </a>
+                    <a href={url}>
+                        <img
+                            className="comment-message-info-img"
+                            src={commentorAvatar}
+                            alt={commentorAvatarAlt}
+                        />
+                    </a>
                     <Comment
                         comment={this.props.commentText}
                     />
