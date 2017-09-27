@@ -74,6 +74,8 @@ var SplashPresentation = injectIntl(React.createClass({
             <Box
                 title={formatMessage({id: 'splash.featuredProjects'})}
                 key="community_featured_projects"
+                moreTitle={formatMessage({id: 'general.learnMore'})}
+                moreHref="/studios/4228481/"
             >
                 <LegacyCarousel items={this.props.featuredGlobal.community_featured_projects} />
             </Box>,
