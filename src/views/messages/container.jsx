@@ -132,7 +132,9 @@ var Messages = React.createClass({
         } else {
             filteredMessages = messages;
             for (var j = 0; j < unreadCount; j++) {
-                filteredMessages[j].unread = true;
+                if (typeof filteredMessages[j] !== 'undefined') {
+                    filteredMessages[j].unread = true;
+                }
             }
         }
         return filteredMessages;
