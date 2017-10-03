@@ -56,14 +56,14 @@ module.exports.getCount = function (username) {
     return function (dispatch) {
         api({
             method: 'get',
-            uri: '/proxy/users/' + username + '/activity/count'
+            uri: '/users/' + username + '/messages/count'
         }, function (err, body) {
             if (err) {
                 dispatch(module.exports.setCount(0));
                 dispatch(module.exports.setSessionError(err));
                 return;
             }
-            var count = parseInt(body.msg_count, 10);
+            var count = parseInt(body.count, 10);
             dispatch(module.exports.setCount(count));
         });
     };
