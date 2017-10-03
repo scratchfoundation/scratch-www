@@ -116,11 +116,25 @@ var Messages = React.createClass({
             )
         );
     },
-    filterMessages: function (messages, typesAllowed) {
+    filterMessages: function (messages, typesAllowed, unreadCount) {
         var filteredMessages = [];
-        for (var i in messages) {
-            if (typesAllowed.indexOf(messages[i].type) > -1) {
-                filteredMessages.push(messages[i]);
+        if (typesAllowed.length > 0) {
+            for (var i in messages) {
+                // check to see if the position of the message in the list is earlier
+                // than the unread count. If it is, then the message is totally unread.
+                messages[i].unread = false;
+                if (i < unreadCount) messages[i].unread = true;
+
+                if (typesAllowed.indexOf(messages[i].type) > -1) {
+                    filteredMessages.push(messages[i]);
+                }
+            }
+        } else {
+            filteredMessages = messages;
+            for (var j = 0; j < unreadCount; j++) {
+                if (typeof filteredMessages[j] !== 'undefined') {
+                    filteredMessages[j].unread = true;
+                }
             }
         }
         return filteredMessages;
@@ -131,10 +145,19 @@ var Messages = React.createClass({
             loadMore = false;
         }
 
-        var messages = this.props.messages;
-        if (this.state.filterValues.length > 0) {
-            messages = this.filterMessages(messages, this.state.filterValues);
+        var adminMessagesLength = this.props.adminMessages.length;
+        if (Object.keys(this.props.invite).length > 0) {
+            adminMessagesLength = adminMessagesLength + 1;
         }
+        var numNewSocialMessages = this.props.numNewMessages - adminMessagesLength;
+        if (numNewSocialMessages < 0) {
+            numNewSocialMessages = 0;
+        }
+        var messages = this.filterMessages(
+            this.props.messages,
+            this.state.filterValues,
+            numNewSocialMessages
+        );
 
         return(
             <MessagesPresentation
@@ -143,7 +166,8 @@ var Messages = React.createClass({
                 messages={messages}
                 adminMessages={this.props.adminMessages}
                 scratcherInvite={this.props.invite}
-                numNewMessages={this.props.numNewMessages}
+                numNewMessages={numNewSocialMessages}
+                adminMessagesLength={adminMessagesLength}
                 handleFilterClick={this.handleFilterClick}
                 handleAdminDismiss={this.handleMessageDismiss}
                 loadMore={loadMore}

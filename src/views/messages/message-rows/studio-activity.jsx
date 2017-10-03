@@ -12,7 +12,7 @@ var StudioActivityMessage = React.createClass({
         datetimeCreated: React.PropTypes.string.isRequired
     },
     render: function () {
-        var studioLink = '/studios/' + this.props.studioId;
+        var studioLink = '/studios/' + this.props.studioId + '/activity';
 
         var classes = classNames(
             'mod-studio-activity',

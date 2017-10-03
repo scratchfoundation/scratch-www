@@ -16,7 +16,7 @@ var ForumPostMessage = React.createClass({
         var topicLink = '/discuss/topic/' + this.props.topicId + '/unread/';
 
         var classes = classNames(
-            'mod-studio-activity',
+            'mod-forum-activity',
             this.props.className
         );
         return (

@@ -71,10 +71,11 @@ var Jar = {
         });
     },
     set: function (name, value, opts) {
+        opts = opts || {};
         defaults(opts, {
-            expires: new Date(new Date().setYear(new Date().getFullYear() + 1)),
-            path: '/'
+            expires: new Date(new Date().setYear(new Date().getFullYear() + 1))
         });
+        opts.path = '/';
         var obj = cookie.serialize(name, value, opts);
         document.cookie = obj;
     },
