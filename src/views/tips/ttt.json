@@ -6,7 +6,7 @@
         "bannerUrl": "/images/ttt/animate-your-name-banner.jpg",
         "tutorialLoc": "/projects/editor/?tip_bar=name",
         "activityLoc": "cards.nameCardsLink",
-        "guideLoc": "guides.AnimateYourNameGuideLink"
+        "guideLoc": "guides.NameGuideLink"
     },
     {
         "title": "ttt.MakeItFlyTitle",

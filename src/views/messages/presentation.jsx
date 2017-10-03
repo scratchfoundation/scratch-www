@@ -209,6 +209,7 @@ var MessagesPresentation = injectIntl(React.createClass({
         adminMessages: React.PropTypes.array.isRequired,
         scratcherInvite: React.PropTypes.object.isRequired,
         numNewMessages: React.PropTypes.number,
+        adminMessagesLength: React.PropTypes.number,
         handleFilterClick: React.PropTypes.func.isRequired,
         handleAdminDismiss: React.PropTypes.func.isRequired,
         loadMore: React.PropTypes.bool.isRequired,
@@ -218,19 +219,11 @@ var MessagesPresentation = injectIntl(React.createClass({
     getDefaultProps: function () {
         return {
             numNewMessages: 0,
+            adminMessagesLength: 0,
             filterOpen: false
         };
     },
     render: function () {
-        var adminMessageLength = this.props.adminMessages.length;
-        if (Object.keys(this.props.scratcherInvite).length > 0) {
-            adminMessageLength = adminMessageLength + 1;
-        }
-        var numNewSocialMessages = this.props.numNewMessages - adminMessageLength;
-        if (numNewSocialMessages < 0) {
-            numNewSocialMessages = 0;
-        }
-
         return (
             <div className="messages">
                 <TitleBanner className="mod-messages">
@@ -278,7 +271,7 @@ var MessagesPresentation = injectIntl(React.createClass({
                                 <h4 className="messages-header">
                                     <FormattedMessage id='messages.scratchTeamTitle' />
                                     <div className="messages-header-unread">
-                                        <FormattedNumber value={adminMessageLength} />
+                                        <FormattedNumber value={this.props.adminMessagesLength} />
                                     </div>
                                 </h4>
                             </div>
@@ -318,7 +311,7 @@ var MessagesPresentation = injectIntl(React.createClass({
                     <SocialMessagesList
                         loadStatus={this.props.requestStatus.messages}
                         messages={this.props.messages}
-                        numNewMessages={numNewSocialMessages}
+                        numNewMessages={this.props.numNewMessages}
                         loadMore={this.props.loadMore}
                         loadMoreMethod={this.props.loadMoreMethod}
                     />
