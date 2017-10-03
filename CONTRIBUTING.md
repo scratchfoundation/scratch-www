@@ -17,6 +17,6 @@ Beyond this repo, there are also some other resources that you might want to tak
 [Scratch](https://scratch.mit.edu/) (the thing we work on)
 [Open Source forum](https://scratch.mit.edu/discuss/49/) on Scratch (talk about the thing we work on on the thing we work on. so meta.)
 [Bugs & Glitches forum](https://scratch.mit.edu/discuss/3/) on Scratch (where mosquitoes and dei ex machina congregate)
-[Advanced Topics forum](https://scratch.mit.edu/discuss/31/) on Scratch (like Topics, but more complex-y)
+[Advanced Topics forum](https://scratch.mit.edu/discuss/31/) on Scratch (like Topics, but more complex-y).
 
 
