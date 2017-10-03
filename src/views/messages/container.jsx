@@ -145,10 +145,18 @@ var Messages = React.createClass({
             loadMore = false;
         }
 
+        var adminMessagesLength = this.props.adminMessages.length;
+        if (Object.keys(this.props.invite).length > 0) {
+            adminMessagesLength = adminMessagesLength + 1;
+        }
+        var numNewSocialMessages = this.props.numNewMessages - adminMessagesLength;
+        if (numNewSocialMessages < 0) {
+            numNewSocialMessages = 0;
+        }
         var messages = this.filterMessages(
             this.props.messages,
             this.state.filterValues,
-            this.props.numNewMessages
+            numNewSocialMessages
         );
 
         return(
@@ -158,7 +166,8 @@ var Messages = React.createClass({
                 messages={messages}
                 adminMessages={this.props.adminMessages}
                 scratcherInvite={this.props.invite}
-                numNewMessages={this.props.numNewMessages}
+                numNewMessages={numNewSocialMessages}
+                adminMessagesLength={adminMessagesLength}
                 handleFilterClick={this.handleFilterClick}
                 handleAdminDismiss={this.handleMessageDismiss}
                 loadMore={loadMore}
