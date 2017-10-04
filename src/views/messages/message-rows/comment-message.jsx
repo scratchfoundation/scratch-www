@@ -133,6 +133,7 @@ var CommentMessage = injectIntl(React.createClass({
         var messageText = this.getMessageText(this.props.objectType, this.props.commentee);
         var commentorAvatar = 'https://cdn2.scratch.mit.edu/get_image/user/' + this.props.actorId + '_32x32.png';
         var commentorAvatarAlt = this.props.actorUsername + '\'s avatar';
+        var url = '/users/' + this.props.actorUsername;
 
         var classes = classNames(
             'mod-comment-message',
@@ -147,11 +148,13 @@ var CommentMessage = injectIntl(React.createClass({
             >
                 <p className="comment-message-info">{messageText}</p>
                 <FlexRow className="mod-comment-message">
-                    <img
-                        className="comment-message-info-img"
-                        src={commentorAvatar}
-                        alt={commentorAvatarAlt}
-                    />
+                    <a href={url}>
+                        <img
+                            className="comment-message-info-img"
+                            src={commentorAvatar}
+                            alt={commentorAvatarAlt}
+                        />
+                    </a>
                     <Comment
                         comment={this.props.commentText}
                     />
