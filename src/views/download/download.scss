@@ -40,12 +40,17 @@ $developer-spot: $splash-blue;
             }
 
             .sub-nav {
-                text-align: left;
+                text-align: center;
                 justify-content: flex-start;
+                display: block;
 
                 li {
                     margin: 0 .5rem 0 0;
                 }
+            }
+            
+            .title-banner-h1, .title-banner-p {
+                text-align: center;
             }
         }
     }
