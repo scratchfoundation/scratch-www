@@ -46,7 +46,7 @@ var Moderator = React.createClass({
                     <ul>
                         <li>
                             Active participation in online communities, forums, or
-                             other webbased media
+                             other web-based media
                         </li>
                         <li>
                             Excellent writing and communication skills
