@@ -40,9 +40,9 @@ $developer-spot: $splash-blue;
             }
 
             .sub-nav {
+                display: block;
                 text-align: center;
                 justify-content: flex-start;
-                display: block;
 
                 li {
                     margin: 0 .5rem 0 0;
