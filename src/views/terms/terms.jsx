@@ -274,7 +274,7 @@ var Terms = React.createClass({
                             5.4 The Scratch name, Scratch logo, Scratch Day logo, Scratch Cat, and Gobo
                              are Trademarks owned by the Scratch Team. The MIT name and logo are Trademarks
                              owned by the Massachusetts Institute of Technology. Unless you are licensed by
-                             Scratch under a specific licensing program or agreement, you many not use
+                             Scratch under a specific licensing program or agreement, you may not use
                              these logos to label, promote, or endorse any product or service. You may use
                              the Scratch Logo to refer to the Scratch website and programming language.
                         </p>
