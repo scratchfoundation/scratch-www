@@ -8,7 +8,7 @@
     "teacherfaq.teacherWaitBody": "The Scratch Team uses this time to manually review account creation submissions to verify the account creator is an educator.",
     "teacherfaq.teacherPersonalTitle": "Why do you need to know my personal information during registration?",
     "teacherfaq.teacherPersonalBody": "We use this information to verify the account creator is an educator. We will not share this information with anyone else, and it will not be shared publicly on the site.",
-    "teacherfaq.teacherGoogleTitle": "Are teacher accounts integrated with Google Classroom or any other classroom managment service?",
+    "teacherfaq.teacherGoogleTitle": "Are teacher accounts integrated with Google Classroom or any other classroom management service?",
     "teacherfaq.teacherGoogleBody": "Scratch Teacher accounts are not integrated with any classroom management services.",
     "teacherfaq.teacherEdTitle": "Are Scratch Teacher accounts linked to ScratchEd accounts?",
     "teacherfaq.teacherEdBody": "No, Scratch Teacher accounts are not linked to <a href=\"http://scratched.gse.harvard.edu/\">ScratchEd</a> accounts.",
@@ -43,7 +43,7 @@
     "teacherfaq.commHiddenTitle": "Can I create a hidden class?",
     "teacherfaq.commHiddenBody": "No. All content shared within your class will be accessible to the Scratch community.",
     "teacherfaq.commWhoTitle": "Who can my students interact with on Scratch?",
-    "teacherfaq.commWhoBody": "Student accounts have the same community privileges as a regular Scratch account, such as sharing projects, commenting, creating studios, and the like. As a teacher, you can see all of your students activity and perform light moderation actions within your class.",
+    "teacherfaq.commWhoBody": "Student accounts have the same community privileges as a regular Scratch account, such as sharing projects, commenting, creating studios, and the like. As a teacher, you can see all of your students' activity and perform light moderation actions within your class.",
     "teacherfaq.commInappropriateTitle": "What can I do if I see something inappropriate?",
     "teacherfaq.commInappropriateBody": "You can manually remove inappropriate comments and projects created by your students. If you find inappropriate content created by non-students, please notify the Scratch Team by clicking the report button or sending a message to <a href=\"/contact-us\">Contact Us</a>."
 }
