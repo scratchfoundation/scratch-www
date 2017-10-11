@@ -218,7 +218,7 @@ var Credits = React.createClass({
                 Lis Sylvan,
                 Hanako Tjia
                 Claudia Urrea,
-                Oren Zuckerman,
+                Oren Zuckerman
                 </p>
 
                 <h2><FormattedMessage id='credits.partnersTitle' /></h2>
