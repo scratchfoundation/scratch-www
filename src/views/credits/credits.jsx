@@ -214,7 +214,11 @@ var Credits = React.createClass({
                 Tammy Stern,
                 Lis Sylvan,
                 Claudia Urrea,
-                Oren Zuckerman
+                Oren Zuckerman,
+                Connor Hudson,
+                Lily Kim,
+                Tauntaun Kim,
+                Hanako Tjia
                 </p>
 
                 <h2><FormattedMessage id='credits.partnersTitle' /></h2>
