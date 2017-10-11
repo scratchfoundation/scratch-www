@@ -155,11 +155,6 @@ var Credits = React.createClass({
                         <img src="//cdn.scratch.mit.edu/get_image/user/49156_170x170.png" alt="Mark Avatar" />
                         <span className="name">Mark Goff</span>
                     </li>
-
-                    <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/373646_170x170.png" alt="Dalton Avatar" />
-                        <span className="name">Dalton Miner</span>
-                    </li>
                     
                     <li>
                         <img src="//cdn2.scratch.mit.edu/get_image/user/default_60x60.png" alt="Joel Avatar" />
@@ -169,6 +164,11 @@ var Credits = React.createClass({
                     <li>
                         <img src="//cdn2.scratch.mit.edu/get_image/user/5311910_60x60.png" alt="Carolina Avatar" />
                         <span className="name">Carolina Kaufman</span>
+                    </li>
+
+                    <li>
+                        <img src="//cdn.scratch.mit.edu/get_image/user/373646_170x170.png" alt="Dalton Avatar" />
+                        <span className="name">Dalton Miner</span>
                     </li>
 
                     <li>
@@ -201,10 +201,13 @@ var Credits = React.createClass({
                 Dave Feinberg,
                 Chris Graves,
                 Megan Haddadi,
+                Connor Hudson,
                 Christina Huang,
                 Tony Hwang,
                 Abdulrahman Idlbi,
                 Randy Jou,
+                Lily Kim,
+                Tauntaun Kim,                
                 Saskia Leggett,
                 Tim Mickel,
                 Amon Millner,
@@ -213,12 +216,9 @@ var Credits = React.createClass({
                 Jay Silver,
                 Tammy Stern,
                 Lis Sylvan,
+                Hanako Tjia
                 Claudia Urrea,
                 Oren Zuckerman,
-                Connor Hudson,
-                Lily Kim,
-                Tauntaun Kim,
-                Hanako Tjia
                 </p>
 
                 <h2><FormattedMessage id='credits.partnersTitle' /></h2>
