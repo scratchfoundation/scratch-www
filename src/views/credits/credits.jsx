@@ -207,7 +207,7 @@ var Credits = React.createClass({
                 Abdulrahman Idlbi,
                 Randy Jou,
                 Lily Kim,
-                Tauntaun Kim,  
+                Tauntaun Kim,
                 Saskia Leggett,
                 Tim Mickel,
                 Amon Millner,
