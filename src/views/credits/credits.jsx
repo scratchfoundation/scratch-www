@@ -111,9 +111,9 @@ var Credits = React.createClass({
                         <img src="//cdn.scratch.mit.edu/get_image/user/18417774_170x170.png" alt="Tracy Avatar" />
                         <span className="name">Tracy Tang</span>
                     </li>
-
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/4373707_170x170.png" alt="Matthew Avatar" />
+
                         <span className="name">Matthew Taylor</span>
                     </li>
 
@@ -121,6 +121,8 @@ var Credits = React.createClass({
                         <img src="//cdn.scratch.mit.edu/get_image/user/2678986_170x170.png" alt="Moran Avatar" />
                         <span className="name">Moran Tsur</span>
                     </li>
+
+                    
 
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/3532363_170x170.png" alt="Chris Avatar" />
@@ -130,6 +132,7 @@ var Credits = React.createClass({
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/2796185_170x170.png" alt="Julia Avatar" />
                         <span className="name">Julia Zimmerman</span>
+
                     </li>
                 </ul>
 
@@ -156,6 +159,11 @@ var Credits = React.createClass({
                         <span className="name">Mark Goff</span>
                     </li>
 
+                    <li>
+                        <img src="//cdn2.scratch.mit.edu/get_image/user/default_170x170.png" alt="Joel Avatar" />
+                        <span className="name">Joel Gritter</span>
+                    </li>
+                    
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/36977_170x170.png" alt="Connor Avatar" />
                         <span className="name">Connor Hudson</span>
