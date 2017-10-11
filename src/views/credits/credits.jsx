@@ -154,7 +154,7 @@ var Credits = React.createClass({
 
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/49156_170x170.png" alt="Mark Avatar" />
-                        <span className="name">Mark Goff</span>
+>                        <span className="name">Mark Goff</span>
                     </li>
 
                     <li>
@@ -168,7 +168,7 @@ var Credits = React.createClass({
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/373646_170x170.png" alt="Dalton Avatar" /
+                        <img src="//cdn.scratch.mit.edu/get_image/user/373646_170x170.png" alt="Dalton Avatar" />
                         <span className="name">Dalton Miner</span>
                     </li>
 
