@@ -166,15 +166,9 @@ var Credits = React.createClass({
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/373646_170x170.png" alt="Dalton Avatar" />
+                        <img src="//cdn.scratch.mit.edu/get_image/user/373646_170x170.png" alt="Dalton Avatar" /
                         <span className="name">Dalton Miner</span>
                     </li>
-
-                    <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/17618638_170x170.png" alt="Hanako Avatar" />
-                        <span className="name">Hanako Tjia</span>
-                    </li>
-
 
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/159139_170x170.png" alt="Franchette Avatar" />
@@ -211,6 +205,8 @@ var Credits = React.createClass({
                 Tony Hwang,
                 Abdulrahman Idlbi,
                 Randy Jou,
+                Lily Kim,
+                Tauntaun Kim,            
                 Saskia Leggett,
                 Tim Mickel,
                 Amon Millner,
@@ -219,6 +215,7 @@ var Credits = React.createClass({
                 Jay Silver,
                 Tammy Stern,
                 Lis Sylvan,
+                Hanako Tjia,
                 Claudia Urrea,
                 Oren Zuckerman
                 </p>
