@@ -216,7 +216,7 @@ var Credits = React.createClass({
                 Jay Silver,
                 Tammy Stern,
                 Lis Sylvan,
-                Hanako Tjia
+                Hanako Tjia,
                 Claudia Urrea,
                 Oren Zuckerman
                 </p>
