@@ -208,6 +208,7 @@ var SplashPresentation = injectIntl(React.createClass({
             'intro.aboutScratch': formatMessage({id: 'intro.aboutScratch'}),
             'intro.forEducators': formatMessage({id: 'intro.forEducators'}),
             'intro.forParents': formatMessage({id: 'intro.forParents'}),
+            'intro.itsFree': formatMessage({id: 'intro.itsFree'}),
             'intro.joinScratch': formatMessage({id: 'intro.joinScratch'}),
             'intro.seeExamples': formatMessage({id: 'intro.seeExamples'}),
             'intro.tagLine': formatHTMLMessage({id: 'intro.tagLine'}),
