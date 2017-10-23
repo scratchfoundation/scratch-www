@@ -16,6 +16,7 @@ var Intro = React.createClass({
                 'intro.aboutScratch': 'ABOUT SCRATCH',
                 'intro.forEducators': 'FOR EDUCATORS',
                 'intro.forParents': 'FOR PARENTS',
+                'intro.itsFree': 'it\'s free!',
                 'intro.joinScratch': 'JOIN SCRATCH',
                 'intro.seeExamples': 'SEE EXAMPLES',
                 'intro.tagLine': 'Create stories, games, and animations<br /> Share with others around the world',
@@ -96,7 +97,7 @@ var Intro = React.createClass({
                             <div className="text">
                                 {this.props.messages['intro.joinScratch']}
                             </div>
-                            <div className="text subtext">( it&rsquo;s free )</div>
+                            <div className="text subtext">{this.props.messages['intro.itsFree']}</div>
                         </a>
                         <Registration key="registration"
                                       isOpen={this.state.registrationOpen}
