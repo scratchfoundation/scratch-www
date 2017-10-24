@@ -4,16 +4,15 @@
  * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows
  */
  
-require('chromedriver');
 var tap = require('tap');
-var seleniumWebdriver = require('selenium-webdriver');
-
-// Selenium's promise driver will be deprecated, so we should not rely on it
-seleniumWebdriver.SELENIUM_PROMISE_MANAGER=0;
 
 const {
-    driver
+    driver,
+    webdriver
 } = require('../../helpers/selenium-helpers.js');
+
+// Selenium's promise driver will be deprecated, so we should not rely on it
+webdriver.SELENIUM_PROMISE_MANAGER=0;
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
@@ -36,9 +35,9 @@ tap.beforeEach(function () {
 // Function clicks the link and returns the url of the resulting page
 
 function clickFooterLinks (linkText) {
-    return driver.wait(seleniumWebdriver.until.elementLocated(seleniumWebdriver.By.id('footer')))
+    return driver.wait(webdriver.until.elementLocated(webdriver.By.id('footer')))
     .then( function (element) {
-        return element.findElement(seleniumWebdriver.By.linkText(linkText)); })
+        return element.findElement(webdriver.By.linkText(linkText)); })
     .then( function (element) {
         return element.click(); })
     .then(function () {
