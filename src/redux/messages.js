@@ -1,3 +1,4 @@
+var defaults = require('lodash.defaults');
 var defaultsDeep = require('lodash.defaultsdeep');
 var keyMirror = require('keymirror');
 
@@ -39,13 +40,11 @@ module.exports.messagesReducer = function (state, action) {
 
     switch (action.type) {
     case 'SET_MESSAGES':
-        return defaultsDeep({
-            messages: {social: action.messages}
-        }, state);
+        state.messages.social = action.messages;
+        return state;
     case 'SET_ADMIN_MESSAGES':
-        return defaultsDeep({
-            messages: {admin: action.messages}
-        }, state);
+        state.messages.admin = action.messages;
+        return state;
     case 'SET_MESSAGES_OFFSET':
         return defaultsDeep({
             messages: {socialOffset: action.offset}
@@ -194,17 +193,31 @@ module.exports.clearAdminMessage = function (messageType, messageId, messageCoun
 
 /**
  * Gets a user's messages to be displayed on the /messages page
- * @param  {string}   username username of the user for whom the messages should be gotten
- * @param  {string}   token    the user's unique token for auth
- * @param  {object[]} messages an array of existing messages on the page, if there are any
- * @param  {number}   offset   offset of messages to get, based on the number retrieved already
- * @return {null}              returns nothing
+ * @param  {string}   username           username of the user for whom the messages should be gotten
+ * @param  {string}   token              the user's unique token for auth
+ * @param  {object}   opts               optional args for the method
+ * @param  {object[]} [opts.messages]    an array of existing messages on the page, if there are any
+ * @param  {number}   [opts.offset]      offset of messages to get, based on the number retrieved already
+ * @param  {string}   [opts.filter]      type of messages to return
+ * @return {null}                     returns nothing
  */
-module.exports.getMessages = function (username, token, messages, offset) {
+module.exports.getMessages = function (username, token, opts) {
+    opts = defaults(opts, {
+        messages: [],
+        offset: 0,
+        filter: '',
+        clearCount: true
+    });
+
+    var filterArg = '';
+    if (opts.filter.length > 0) {
+        filterArg = '&filter=' + opts.filter;
+    }
+
     return function (dispatch) {
         dispatch(module.exports.setStatus('MESSAGE_STATUS', module.exports.Status.FETCHING));
         api({
-            uri: '/users/' + username + '/messages?limit=40&offset=' + offset,
+            uri: '/users/' + username + '/messages?limit=40&offset=' + opts.offset + filterArg,
             authentication: token
         }, function (err, body) {
             if (err) {
@@ -218,9 +231,11 @@ module.exports.getMessages = function (username, token, messages, offset) {
                 return;
             }
             dispatch(module.exports.setStatus('MESSAGE_STATUS', module.exports.Status.FETCHED));
-            dispatch(module.exports.setMessages(messages.concat(body)));
-            dispatch(module.exports.setMessagesOffset(offset + 40));
-            dispatch(module.exports.clearMessageCount(token)); // clear count once messages loaded
+            dispatch(module.exports.setMessages(opts.messages.concat(body)));
+            dispatch(module.exports.setMessagesOffset(opts.offset + 40));
+            if (opts.clearCount) {
+                dispatch(module.exports.clearMessageCount(token)); // clear count once messages loaded
+            }
         });
     };
 };

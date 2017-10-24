@@ -217,12 +217,14 @@ var MessagesPresentation = injectIntl(React.createClass({
         handleAdminDismiss: React.PropTypes.func.isRequired,
         loadMore: React.PropTypes.bool.isRequired,
         loadMoreMethod: React.PropTypes.func,
-        requestStatus: React.PropTypes.object.isRequired
+        requestStatus: React.PropTypes.object.isRequired,
+        filter: React.PropTypes.string
     },
     getDefaultProps: function () {
         return {
             numNewMessages: 0,
-            filterOpen: false
+            filterOpen: false,
+            filter: ''
         };
     },
     render: function () {
@@ -270,6 +272,7 @@ var MessagesPresentation = injectIntl(React.createClass({
                                             value: 'forums'
                                         }
                                     ]}
+                                    value={this.props.filter}
                                 />
                             </Form>
                         </div>
