@@ -64,7 +64,7 @@ var Developers = React.createClass({
                 <div className="inner">
                     <section id="projects">
                         <span className="nav-spacer"></span>
-                        <h2>Projects</h2>
+                        <h2><FormattedMessage id='developers.projectsTitle' /></h2>
                         <p className="intro">
                             <FormattedMessage id='developers.projectsIntro' />
                         </p>
@@ -92,15 +92,9 @@ var Developers = React.createClass({
                         </FlexRow>
                         <FlexRow className="sidebar-row">
                             <div className="body-copy column">
-                                <h3>ScratchJr</h3>
+                                <h3><FormattedMessage id='developers.jrTitle' /></h3>
                                 <p>
-                                    ScratchJr is an introductory programming language{' '}
-                                    that enables young children (ages 5-7) to create{' '}
-                                    their own interactive stories and games. For more{' '}
-                                    information, visit the{' '}
-                                    <a href="https://www.scratchjr.org/">ScratchJr website</a>{' '}
-                                    or access the code and documentation{' '}
-                                    <a href="https://github.com/LLK/scratchjr">here</a>.
+                                    <FormattedHTMLMessage id='developers.jrBody' />
                                 </p>
                             </div>
                         </FlexRow>
