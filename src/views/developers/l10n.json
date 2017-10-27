@@ -14,6 +14,8 @@
   "developers.wwwTitle": "Scratch WWW",
   "developers.wwwIntro": "Scratch-www is a standalone web client for the Scratch Community, built using React and Redux. Access the code and documentation through Github <a href=\"https://github.com/LLK/scratch-www\">here</a>.",
   "developers.principlesIntro": "We created Scratch to empower young people to think creatively, reason systematically, and work collaboratively. We are guided by a set of <b>Learning Principles</b> and <b>Design Principles</b> that we hope you will follow as you develop new tools and technologies with Scratch Blocks.",
+  "developers.jrTitle": "ScratchJr",
+  "developers.jrBody": "ScratchJr is an introductory programming language that enables young children (ages 5-7) to create their own interactive stories and games. For more information, visit the <a href=\"https://www.scratchjr.org/\">ScratchJr website</a> or access the code and documentation <a href=\"https://github.com/LLK/scratchjr\">here</a>.",
   "developers.learningPrinciplesTitle": "Learning Principles",
   "developers.learningPrinciplesProjectsBody": "People learn best when they are actively working on projects — generating new ideas, designing prototypes, making improvements and creating final products.",
   "developers.learningPrinciplesPassionTitle": "Passion",
