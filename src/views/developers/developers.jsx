@@ -92,7 +92,7 @@ var Developers = React.createClass({
                         </FlexRow>
                         <FlexRow className="sidebar-row">
                             <div className="body-copy column">
-                                <h3><FormattedMessage id='developers.jrTitle' /></h3>
+                                <h3>ScratchJr</h3>
                                 <p>
                                     <FormattedHTMLMessage id='developers.jrBody' />
                                 </p>
