@@ -27,6 +27,7 @@
   "download.knownIssuesOne": "If your offline editor is crashing directly after Scratch is opened, install the Scratch 2 offline editor again (see step 2 above). This issue is due to a bug introduced in Adobe Air version 14 (released April 2014).",
   "download.knownIssuesTwo": "Graphic effects blocks (in \"Looks\") may slow down projects due to a known Flash bug.",
   "download.knownIssuesThree": "The <b>backpack</b> is not yet available.",
+  "download.knownIssuesFour": "On a Mac you may see a prompt indicating that \"Scratch 2 is trying to install a new helper tool\" and asking for your user name and password. We are currently investigating a solution to this problem."
   "download.reportBugs": "Report Bugs and Glitches",
   "download.notAvailable": "Hmm, editor downloads are not available right now - please refresh the page to try again."
 }
