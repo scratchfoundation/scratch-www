@@ -261,7 +261,7 @@ var ConferenceSplash = React.createClass({
                             </tbody>
                         </table>
                         <a className='button mod-2017-panel' href='https://scratchcostarica.com/'>
-                            <FormattedMessage id='conference-2017.contact' />
+                            <FormattedMessage id='conference-2017.website' />
                         </a>
                     </section>
                     <section className='conf2017-panel mod-chile'>
