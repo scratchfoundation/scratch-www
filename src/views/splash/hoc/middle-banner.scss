@@ -1,0 +1,49 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.title-banner.mod-splash-middle {
+    background: url("/images/blocks-pattern.png");
+    background-color: $ui-purple;
+    background-repeat: repeat;
+    background-size: 180px 180px;
+}
+
+.middle-banner-header {
+    margin-bottom: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.middle-banner-header-h1 {
+    color: $type-white;
+}
+
+.mod-ttt-try-button {
+    &:link,
+    &:visited,
+    &:active
+    &:hover {
+        color: $type-white;
+    }
+}
+
+.ttt-tile.mod-banner {
+    background-color: $background-color;
+}
+
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .mod-last-tile {
+        display: none;
+    }
+    
+    .middle-banner-header {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: $tablet - 1) {
+    .title-banner.mod-splash-middle {
+        display: none;
+    }
+}
