@@ -90,10 +90,10 @@ var MiddleBanner = injectIntl(React.createClass({
                 <div className="middle-banner inner">
                     <FlexRow className="middle-banner-header">
                         <h1 className="middle-banner-header-h1">
-                            <FormattedMessage id="middle-banner.header" />
+                            <FormattedMessage id="middleBanner.header" />
                         </h1>
                         <a href="/tips" className="button mod-ttt-try-button">
-                            <FormattedMessage id="middle-banner.ttt" />
+                            <FormattedMessage id="middleBanner.ttt" />
                         </a>
                     </FlexRow>
                     <MediaQuery minWidth={frameless.tablet}>

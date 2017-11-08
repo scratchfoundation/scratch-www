@@ -21,6 +21,9 @@ var nameTile = {
 
 var TopBanner = injectIntl(React.createClass({
     type: 'TopBanner',
+    propTypes: {
+        loggedIn: React.PropTypes.bool.isRequired
+    },
     getInitialState: function () {
         // use translated tile
         var formatMessage = this.props.intl.formatMessage;
@@ -46,47 +49,51 @@ var TopBanner = injectIntl(React.createClass({
         return (
             <TitleBanner className="mod-splash-top">
                 <FlexRow className="banner-top inner">
-                    <FlexRow className="top-animation">
-                        <img
-                            src="/images/hoc/s.png"
-                            alt=""
-                            className="top-animation-letter mod-letter-s"
-                        />
-                        <img
-                            src="/images/hoc/c1.png"
-                            alt=""
-                            className="top-animation-letter mod-letter-c1"
-                        />
-                        <img
-                            src="/images/hoc/r.png"
-                            alt=""
-                            className="top-animation-letter mod-letter-r"
-                        />
-                        <img
-                            src="/images/hoc/a.png"
-                            alt=""
-                            className="top-animation-letter mod-letter-a"
-                        />
-                        <img
-                            src="/images/hoc/t.png"
-                            alt=""
-                            className="top-animation-letter mod-letter-t"
-                        />
-                        <img
-                            src="/images/hoc/c2.png"
-                            alt=""
-                            className="top-animation-letter mod-letter-c2"
-                        />
-                        <img
-                            src="/images/hoc/h.png"
-                            alt=""
-                            className="top-animation-letter mod-letter-h"
-                        />
-                    </FlexRow>
-                    
+                    <a href="/projects/editor/?tip_bar=name">
+                        <FlexRow className="top-animation">
+                            <img
+                                src="/images/hoc/s.png"
+                                alt=""
+                                className="top-animation-letter mod-letter-s"
+                            />
+                            <img
+                                src="/images/hoc/c1.png"
+                                alt=""
+                                className="top-animation-letter mod-letter-c1"
+                            />
+                            <img
+                                src="/images/hoc/r.png"
+                                alt=""
+                                className="top-animation-letter mod-letter-r"
+                            />
+                            <img
+                                src="/images/hoc/a.png"
+                                alt=""
+                                className="top-animation-letter mod-letter-a"
+                            />
+                            <img
+                                src="/images/hoc/t.png"
+                                alt=""
+                                className="top-animation-letter mod-letter-t"
+                            />
+                            <img
+                                src="/images/hoc/c2.png"
+                                alt=""
+                                className="top-animation-letter mod-letter-c2"
+                            />
+                            <img
+                                src="/images/hoc/h.png"
+                                alt=""
+                                className="top-animation-letter mod-letter-h"
+                            />
+                        </FlexRow>
+                    </a>
                     <div className="top-links">
                         <a href="/projects/editor/?tip_bar=name" className="button mod-top-button">
-                            <FormattedMessage id="ttt.AnimateYourNameTitle" />
+                            { this.props.loggedIn ?
+                                <FormattedMessage id="ttt.AnimateYourNameTitle" /> :
+                                <FormattedMessage id="topBanner.getStarted" />
+                            }
                         </a>
                         <div className="mod-guides-link" onClick={this.showTTTModal}>
                             &nbsp;&nbsp;

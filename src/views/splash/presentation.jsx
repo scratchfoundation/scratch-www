@@ -255,7 +255,8 @@ var SplashPresentation = injectIntl(React.createClass({
                 {this.props.isEducator ? [
                     <TeacherBanner key="teacherbanner" messages={messages} />
                 ] : []}
-                <TopBanner />
+                <TopBanner loggedIn={this.props.sessionStatus === sessionActions.Status.FETCHED
+                    && Object.keys(this.props.user).length !== 0}/>
                 <div key="inner" className="inner mod-splash">
                     {this.props.sessionStatus === sessionActions.Status.FETCHED ? (
                         Object.keys(this.props.user).length !== 0 ? [
