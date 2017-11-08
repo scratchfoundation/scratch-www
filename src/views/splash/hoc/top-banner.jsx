@@ -49,37 +49,37 @@ var TopBanner = injectIntl(React.createClass({
                     <FlexRow className="top-animation">
                         <img
                             src="/images/hoc/s.png"
-                            alt="C"
+                            alt=""
                             className="top-animation-letter mod-letter-s"
                         />
                         <img
                             src="/images/hoc/c1.png"
-                            alt="C"
+                            alt=""
                             className="top-animation-letter mod-letter-c1"
                         />
                         <img
                             src="/images/hoc/r.png"
-                            alt="R"
+                            alt=""
                             className="top-animation-letter mod-letter-r"
                         />
                         <img
                             src="/images/hoc/a.png"
-                            alt="A"
+                            alt=""
                             className="top-animation-letter mod-letter-a"
                         />
                         <img
                             src="/images/hoc/t.png"
-                            alt="T"
+                            alt=""
                             className="top-animation-letter mod-letter-t"
                         />
                         <img
                             src="/images/hoc/c2.png"
-                            alt="C"
+                            alt=""
                             className="top-animation-letter mod-letter-c2"
                         />
                         <img
                             src="/images/hoc/h.png"
-                            alt="H"
+                            alt=""
                             className="top-animation-letter mod-letter-h"
                         />
                     </FlexRow>
