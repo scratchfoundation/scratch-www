@@ -29,8 +29,9 @@
     "teacherbanner.classesButton": "My Classes",
     "teacherbanner.faqButton": "Teacher Account FAQ",
     
-    "middle-banner.header": "Get Creative with Coding",
-    "middle-banner.ttt": "See more activities",
+    "middleBanner.header": "Get Creative with Coding",
+    "middleBanner.ttt": "See more activities",
+    "topBanner.getStarted": "Get Started with Coding!",
     "ttt.tutorial": "Tutorial",
     "ttt.open": "Open",
     "ttt.tutorialSubtitle": "Find out how to make this project using a step-by-step tutorial in Scratch.",
