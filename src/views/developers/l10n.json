@@ -38,7 +38,7 @@
   "developers.donateThanks": "Thanks for supporting Scratch!",
   "developers.partnersIntro": "The creation and maintenance of this open source code would not be possible without generous technical and financial support from our partners:",
   "developers.faqAboutTitle": "Where can I learn more about Scratch?",
-  "developers.faqAboutBody": "Scratch is a free programming language and online community where young people can create their own interactive stories, games, and animations. Scratch is a project of the <a href=\"https://llk.media.mit.edu/\">Lifelong Kindergarten</a> Group at the <a href=\"http://media.mit.edu/\">MIT Media Lab</a>. You can learn more about Scratch <a href=\"/about\">here</a>.",
+  "developers.faqAboutBody": "Scratch is a free programming language and online community where young people can create their own interactive stories, games, and animations. Scratch is a project of the <a href=\"https://www.media.mit.edu/groups/lifelong-kindergarten/overview\">Lifelong Kindergarten</a> Group at the <a href=\"http://media.mit.edu/\">MIT Media Lab</a>. You can learn more about Scratch <a href=\"/about\">here</a>.",
   "developers.faqRulesTitle": "Are there rules to using this code in my application?",
   "developers.faqRulesBody": "You may use this code in accordance with the license which governs each project. We also strongly encourage you to consider the learning and design principles (above, on this page) when building creative learning experiences for kids of all ages.",
   "developers.faqNameTitle": "Am I allowed to use the name \"Scratch Blocks\" in the description of my app and other public messaging?",
