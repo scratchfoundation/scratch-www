@@ -1,3 +1,4 @@
+@import "../../colors";
 @import "../../frameless";
 
 #view {
@@ -54,6 +55,44 @@
     border-radius: 1rem;
     width: 31.25rem;
     min-height: 20.625rem;
+}
+
+.activity-ul {
+    margin: 0;
+    padding: 0;
+}
+
+.activity-li {
+    display: flex;
+    margin: .75rem 0;
+    list-style: none;
+    align-items: center;
+}
+
+.flex-row.mod-social-message {
+    line-height: 1.25rem;
+    flex-direction: column;
+}
+
+.social-message {
+    border: 0;
+    padding: 0;
+}
+
+.activity-img {
+    padding-right: .825rem;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: middle;
+}
+
+.social-message-content {
+    font-size: .9rem;
+}
+
+.social-message-date {
+    color: $ui-dark-gray;
+    font-size: .65rem;
 }
 
 //4 columns
