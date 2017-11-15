@@ -36,7 +36,9 @@ https.get('https://resources.scratch.mit.edu/localized-urls.json', (res) => {
     res.on('end', () => {
         try {
             var urlJson = JSON.parse(urlData);
-            fs.writeFile(filename, JSON.stringify(urlJson, null, '  '));
+            fs.writeFile(filename, JSON.stringify(urlJson, null, '  '), (err) => {
+                if (err) process.stdout.write(`Failed writing file: ${err.message}\n`);
+            });
         } catch (e) {
             process.stdout.write(`Failed parsing url data: ${e.message}\n`);
             process.exit(1);
