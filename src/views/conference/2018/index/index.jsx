@@ -20,7 +20,7 @@ var ConferenceSplash = React.createClass({
                     <div className='title-banner-image mod-2018'></div>
                     <h1 className='title-banner-h1 mod-2018'>
                         <center>
-                          <FormattedMessage id='conference-2018.title' />
+                          <FormattedHTMLMessage id='conference-2018.title' />
                         </center>
                     </h1>
                     <h3 className='title-banner-h3 mod-2018'>
