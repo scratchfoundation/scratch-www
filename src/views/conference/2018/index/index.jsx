@@ -1,5 +1,5 @@
 var FormattedDate = require('react-intl').FormattedDate;
-var FormattedMessage = require('react-intl').FormattedMessage;
+var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var React = require('react');
 var render = require('../../../../lib/render.jsx');
 
@@ -19,7 +19,9 @@ var ConferenceSplash = React.createClass({
                 <TitleBanner className='mod-conference mod-2018'>
                     <div className='title-banner-image mod-2018'></div>
                     <h1 className='title-banner-h1 mod-2018'>
-                        <FormattedMessage id='conference-2018.title' />
+                        <center>
+                          <FormattedMessage id='conference-2018.title' />
+                        </center>
                     </h1>
                     <h3 className='title-banner-h3 mod-2018'>
                         <FormattedMessage id='conference-2018.dateDesc' />
@@ -28,7 +30,7 @@ var ConferenceSplash = React.createClass({
                 <div className='inner'>
                     <section className='conf2018-panel mod-desc'>
                         <p className='conf2018-panel-desc'>
-                            <FormattedMessage id='conference-2018.desc' />
+                            <FormattedHTMLMessage id='conference-2018.desc' />
                         </p>
                         <table className='conf2018-panel-details'>
                             <tbody>
@@ -55,7 +57,7 @@ var ConferenceSplash = React.createClass({
                                             month='long'
                                             day='2-digit'
                                         />
-                                        {' (with opening reception the evening of July 25)'}
+                                        <FormattedMessage id='conference-2018.dateDescMore' />
                                     </td>
                                 </tr>
                                 <tr className='conf2018-panel-row'>
@@ -67,7 +69,7 @@ var ConferenceSplash = React.createClass({
                                         />
                                     </td>
                                     <td><FormattedMessage id='conference-2018.location' /></td>
-                                    <td>{'MIT Media Lab, Cambridge, MA'}</td>
+                                    <td><FormattedMessage id='conference-2018.locationDetails' /></td>
                                 </tr>
                             </tbody>
                         </table>
