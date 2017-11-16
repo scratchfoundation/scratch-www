@@ -76,7 +76,7 @@ var ConferenceSplash = React.createClass({
                     </section>
                     <section className='conf2018-panel'>
                         <p className='conf2018-panel-desc'>
-                            <FormattedMessage id='conference-2018.sessionDesc' />
+                            <FormattedHTMLMessage id='conference-2018.sessionDesc' />
                         </p>
                         <p className='conf2018-panel-session'>
                             <FormattedMessage id='conference-2018.sessionItem1' />
@@ -96,12 +96,13 @@ var ConferenceSplash = React.createClass({
                         </FlexRow>
                         <p className='conf2018-panel-desc'>
                             <FormattedMessage id='conference-2018.registrationEarly' />
+                            <br/>
                             <FormattedMessage id='conference-2018.registrationStandard' />
                         </p>
                     </section>
                     <section className='conf2018-panel mod-questions'>
                         <p className='conf2018-panel-desc'>
-                            <FormattedMessage id='conference-2018.questions' />
+                            <FormattedHTMLMessage id='conference-2018.questions' />
                         </p>
                     </section>
                 </div>
