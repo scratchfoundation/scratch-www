@@ -1,4 +1,5 @@
 var FormattedDate = require('react-intl').FormattedDate;
+var FormattedMessage = require('react-intl').FormattedMessage;
 var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var React = require('react');
 var render = require('../../../../lib/render.jsx');
