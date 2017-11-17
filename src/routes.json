@@ -58,6 +58,14 @@
         "viewportWidth": "device-width"
     },
     {
+        "name": "conference-index-2016",
+        "pattern": "^/conference/2016/?$",
+        "routeAlias": "/conference(?!/201[4-5])",
+        "view": "conference/2016/index/index",
+        "title": "Scratch Conference",
+        "viewportWidth": "device-width"
+    },
+    {
         "name": "conference-plan-2016",
         "pattern": "^/conference/2016/plan/?$",
         "routeAlias": "/conference(?!/201[4-5])",
