@@ -1,0 +1,28 @@
+{
+    "conference-2018.title": "Scratch Conference 2018 <br/> The Next Generation",
+    "conference-2018.dateDesc": "July 26-28, 2018 | Cambridge, MA, USA",
+    "conference-2018.dateDescMore": " (with opening reception the evening of July 25)",
+    "conference-2018.locationDetails": "MIT Media Lab, Cambridge, MA",
+    "conference-2018.seeBelow": "Learn more about conference dates and locations below.",
+
+    "conference-2018.date": "When:",
+    "conference-2018.location": "Where:",
+
+    "conference-2018.desc": "Join us for the Scratch@MIT conference, a playful gathering of educators, researchers, developers, and other members of the worldwide Scratch community.<br /> <br />We're planning a very participatory conference, with an entire day of hands-on workshops and lots of opportunities for peer-to-peer discussion and collaboration.",
+
+    "conference-2018.sessionDesc": "Interested in offering a session? We invite four types of proposals:",
+    "conference-2018.sessionItem1": "<b>Poster/demonstration (90 minutes)</b>. Show off your project in an exhibition setting, alongside other presenters. You will be provided with display space for a poster and table space for a computer or handouts.",
+    "conference-2018.sessionItem2": "<b>Hands-on workshop (90 minutes)</b>. Engage participants in hands-on activities, highlighting new ways of creating and collaborating with Scratch.",
+    "conference-2018.sessionItem3": "<b>Interactive panel (60 minutes)</b>. Discuss a Scratch-related topic in a panel with three or more people. Your proposal should describe how you will engage the audience during the session.",
+    "conference-2018.sessionItem4": "<b>Ignite talk (5 minutes)</b>. Share what you've been doing in a short, lively presentation.",
+
+    "conference-2018.proposal": " Submit Your Proposal",
+    "conference-2018.proposalDeadline": "Deadline for proposals: February 5",
+    "conference-2018.proposalAccept": "Notification of acceptance: March 1",
+
+    "conference-2018.registrationTitle": "Registration:",
+    "conference-2018.registrationEarly": "Early Bird Registration (March 1-May 1): $200",
+    "conference-2018.registrationStandard": "Standard Registration (after May 1): $300",
+
+    "conference-2018.questions": "Questions? Contact the Scratch Team at <a href='mailto:conference@scratch.mit.edu'>conference@scratch.mit.edu</a>"
+}
