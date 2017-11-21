@@ -92,8 +92,8 @@ source_file = src/views/microworldshomepage/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
-[scratch-website.conference-index-l10njson]
-file_filter = localizations/conference-index/<lang>.json
+[scratch-website.conference-index-2017-l10njson]
+file_filter = localizations/conference-index-2017/<lang>.json
 source_file = src/views/conference/2017/index/l10n.json
 source_lang = en
 type = KEYVALUEJSON
@@ -125,5 +125,11 @@ type = KEYVALUEJSON
 [scratch-website.messages-l10njson]
 file_filter = localizations/messages/<lang>.json
 source_file = src/views/messages/l10n.json
+source_lang = en
+type = KEYVALUEJSON
+
+[scratch-website.conference-index-l10njson]
+file_filter = localizations/conference-index/<lang>.json
+source_file = src/views/conference/2018/index/l10n.json
 source_lang = en
 type = KEYVALUEJSON
