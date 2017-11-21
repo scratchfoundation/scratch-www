@@ -1,6 +1,5 @@
 var FormattedDate = require('react-intl').FormattedDate;
 var FormattedMessage = require('react-intl').FormattedMessage;
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var React = require('react');
 var render = require('../../../../lib/render.jsx');
 
@@ -21,7 +20,9 @@ var ConferenceSplash = React.createClass({
                     <div className='title-banner-image mod-2018'></div>
                     <h1 className='title-banner-h1 mod-2018'>
                         <center>
-                          <FormattedHTMLMessage id='conference-2018.title' />
+                            <FormattedMessage id='conference-2018.title' />
+                            <br />
+                            <FormattedMessage id='conference-2018.subtitle' />
                         </center>
                     </h1>
                     <h3 className='title-banner-h3 mod-2018'>
@@ -31,7 +32,10 @@ var ConferenceSplash = React.createClass({
                 <div className='inner'>
                     <section className='conf2018-panel mod-desc'>
                         <p className='conf2018-panel-desc'>
-                            <FormattedHTMLMessage id='conference-2018.desc' />
+                            <FormattedMessage id='conference-2018.desc1' />
+                            <br />
+                            <br />
+                            <FormattedMessage id='conference-2018.desc2' />
                         </p>
                         <table className='conf2018-panel-details'>
                             <tbody>
@@ -77,20 +81,31 @@ var ConferenceSplash = React.createClass({
                     </section>
                     <section className='conf2018-panel'>
                         <p className='conf2018-panel-desc'>
-                            <FormattedHTMLMessage id='conference-2018.sessionDesc' />
+                            <FormattedMessage id='conference-2018.sessionDesc' />
                         </p>
                         <p className='conf2018-panel-session'>
                             <p className='conf2018-panel-session'>
-                                <FormattedHTMLMessage id='conference-2018.sessionItem1' />
+                                <b>
+                                    <FormattedMessage id='conference-2018.sessionItem1Title' />
+                                </b>{' '}
+                                <FormattedMessage id='conference-2018.sessionItem1Desc' />
                             </p>
                             <p className='conf2018-panel-session'>
-                                <FormattedHTMLMessage id='conference-2018.sessionItem2' />
+                                <b>
+                                    <FormattedMessage id='conference-2018.sessionItem2Title' />
+                                </b>{' '}
+                                <FormattedMessage id='conference-2018.sessionItem2Desc' />
                             </p>
                             <p className='conf2018-panel-session'>
-                                <FormattedHTMLMessage id='conference-2018.sessionItem3' />
-                            </p>
+                                <b>
+                                    <FormattedMessage id='conference-2018.sessionItem3Title' />
+                                </b>{' '}
+                                <FormattedMessage id='conference-2018.sessionItem3Desc' />                            </p>
                             <p className='conf2018-panel-session'>
-                                <FormattedHTMLMessage id='conference-2018.sessionItem4' />
+                                <b>
+                                    <FormattedMessage id='conference-2018.sessionItem4Title' />
+                                </b>{' '}
+                                <FormattedMessage id='conference-2018.sessionItem4Desc' />
                             </p>
                         </p>
                         <a className='button mod-2018-panel' href='https://docs.google.com/forms/d/e/1FAIpQLSd7SkuQ-dfW-P3aArSQokK9GkKAUKufTVBHod_ElNIiFE9iBQ/viewform?usp=sf_link'>
@@ -111,7 +126,14 @@ var ConferenceSplash = React.createClass({
                     </section>
                     <section className='conf2018-panel mod-questions'>
                         <p className='conf2018-panel-desc'>
-                            <FormattedHTMLMessage id='conference-2018.questions' />
+                            <FormattedMessage
+                                id='conference-2018.questions'
+                                values={{
+                                    emailLink: <a href='mailto:conference@scratch.mit.edu'>
+                                        conference@scratch.mit.edu
+                                    </a>
+                                }}
+                            />
                         </p>
                     </section>
                 </div>
