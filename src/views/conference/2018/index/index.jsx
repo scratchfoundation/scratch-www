@@ -100,7 +100,8 @@ var ConferenceSplash = React.createClass({
                                 <b>
                                     <FormattedMessage id='conference-2018.sessionItem3Title' />
                                 </b>{' '}
-                                <FormattedMessage id='conference-2018.sessionItem3Desc' />                            </p>
+                                <FormattedMessage id='conference-2018.sessionItem3Desc' />
+                            </p>
                             <p className='conf2018-panel-session'>
                                 <b>
                                     <FormattedMessage id='conference-2018.sessionItem4Title' />
