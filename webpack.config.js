@@ -1,4 +1,3 @@
-var autoprefixer = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var defaults = require('lodash.defaults');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
