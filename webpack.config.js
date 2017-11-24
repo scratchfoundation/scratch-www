@@ -7,7 +7,7 @@ var webpack = require('webpack');
 
 var routes = require('./src/routes.json');
 
-var __PRODUCTION__ = process.env.NODE_ENV === "production";
+var __PRODUCTION__ = process.env.NODE_ENV === 'production';
 
 if (!__PRODUCTION__) {
     routes = routes.concat(require('./src/routes-dev.json'));
