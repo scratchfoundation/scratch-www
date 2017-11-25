@@ -123,7 +123,24 @@ module.exports = {
             return new HtmlWebpackPlugin(defaults({}, {
                 title: route.title,
                 filename: route.name + '.html',
-                route: route
+                route: route,
+                minify: __PRODUCTION__ ? {
+                    collapseBooleanAttributes: true,
+                    collapseWhitespace: true,
+                    conservativeCollapse: true,
+                    decodeEntities: true,
+                    minifyCSS: true,
+                    minifyJS: true,
+                    removeAttributeQuotes: true,
+                    removeOptionalTags: true,
+                    removeComments: true,
+                    removeRedundantAttributes: true,
+                    removeScriptTypeAttributes: true,
+                    removeStyleLinkTypeAttributes: true,
+                    sortAttributes: true,
+                    sortClassName: true,
+                    useShortDoctype: true
+                } : false
             }, require('./src/template-config.js')));
         })
     ).concat([
