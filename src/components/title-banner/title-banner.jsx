@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./title-banner.scss');
 
@@ -18,4 +18,4 @@ var TitleBanner = React.createClass({
     }
 });
 
-module.exports = TitleBanner;
+export default TitleBanner;

@@ -1,5 +1,5 @@
-var jar = require('./lib/jar');
-var Raven = require('raven-js');
+import jar from './lib/jar';
+import Raven from 'raven-js';
 
 /**
  * -----------------------------------------------------------------------------

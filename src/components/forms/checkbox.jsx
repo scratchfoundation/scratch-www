@@ -1,8 +1,8 @@
-var classNames = require('classnames');
-var FRCCheckbox = require('formsy-react-components').Checkbox;
-var React = require('react');
-var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
-var inputHOC = require('./input-hoc.jsx');
+import classNames from 'classnames';
+import {Checkbox as FRCCheckbox} from 'formsy-react-components';
+import React from 'react';
+import {defaultValidationHOC} from './validations.jsx';
+import inputHOC from './input-hoc.jsx';
 
 require('./row.scss');
 require('./checkbox.scss');
@@ -20,4 +20,4 @@ var Checkbox = React.createClass({
     }
 });
 
-module.exports = inputHOC(defaultValidationHOC(Checkbox));
+export default inputHOC(defaultValidationHOC(Checkbox));

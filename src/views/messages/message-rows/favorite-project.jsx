@@ -1,8 +1,8 @@
-var classNames = require('classnames');
-var FormattedMessage = require('react-intl').FormattedMessage;
-var React = require('react');
+import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
+import React from 'react';
 
-var SocialMessage = require('../../../components/social-message/social-message.jsx');
+import SocialMessage from '../../../components/social-message/social-message.jsx';
 
 var FavoriteProjectMessage = React.createClass({
     type: 'FavoriteProjectMessage',
@@ -44,4 +44,4 @@ var FavoriteProjectMessage = React.createClass({
     }
 });
 
-module.exports = FavoriteProjectMessage;
+export default FavoriteProjectMessage;

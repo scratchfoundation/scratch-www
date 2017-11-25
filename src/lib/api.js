@@ -1,9 +1,9 @@
-var defaults = require('lodash.defaults');
-var xhr = require('xhr');
+import defaults from 'lodash.defaults';
+import xhr from 'xhr';
 
-var jar  = require('./jar');
-var log = require('./log');
-var urlParams = require('./url-params');
+import jar from './jar';
+import log from './log';
+import urlParams from './url-params';
 
 /**
  * Helper method that constructs requests to the scratch api.
@@ -14,7 +14,7 @@ var urlParams = require('./url-params');
  * It also takes in other arguments specified in the xhr library spec.
  */
 
-module.exports = function (opts, callback) {
+export default function (opts, callback) {
     defaults(opts, {
         host: process.env.API_HOST,
         headers: {},

@@ -1,10 +1,10 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
-var jar  = require('../../lib/jar.js');
-var languages = require('../../../languages.json');
-var Form = require('../forms/form.jsx');
-var Select = require('../forms/select.jsx');
+import jar from '../../lib/jar.js';
+import languages from '../../../languages.json';
+import Form from '../forms/form.jsx';
+import Select from '../forms/select.jsx';
 
 require('./languagechooser.scss');
 
@@ -43,4 +43,4 @@ var LanguageChooser = React.createClass({
     }
 });
 
-module.exports = LanguageChooser;
+export default LanguageChooser;

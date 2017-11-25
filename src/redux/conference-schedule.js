@@ -1,5 +1,5 @@
-var keyMirror = require('keymirror');
-var api = require('../lib/api');
+import keyMirror from 'keymirror';
+import api from '../lib/api';
 
 var Types = keyMirror({
     SET_SCHEDULE: null,
@@ -7,7 +7,7 @@ var Types = keyMirror({
     SET_SCHEDULE_ERROR: null
 });
 
-module.exports.scheduleReducer = function (state, action) {
+export function scheduleReducer(state, action) {
     if (typeof state === 'undefined') {
         state = {
             timeSlots: [],
@@ -24,38 +24,38 @@ module.exports.scheduleReducer = function (state, action) {
     default:
         return state;
     }
-};
+}
 
-module.exports.setSchedule = function (schedule) {
+export function setSchedule(schedule) {
     return {
         type: Types.SET_SCHEDULE,
         schedule: schedule
     };
-};
+}
 
-module.exports.setScheduleFetching = function () {
+export function setScheduleFetching() {
     return {
         type: Types.SET_SCHEDULE_FETCHING,
         fetching: true
     };
-};
+}
 
-module.exports.setScheduleError = function (error) {
+export function setScheduleError(error) {
     return {
         type: Types.SET_SCHEDULE_ERROR,
         error: error
     };
-};
+}
 
-module.exports.startGetSchedule = function (day) {
+export function startGetSchedule(day) {
     return function (dispatch) {
         dispatch(module.exports.setScheduleFetching());
         dispatch(module.exports.getDaySchedule(day));
     };
-};
+}
 
 // group periods of time by start time
-module.exports.sortTimeSlots = function (timeSlot1, timeSlot2) {
+export function sortTimeSlots(timeSlot1, timeSlot2) {
     var timeSlot1Am = (timeSlot1.time.substr(timeSlot1.time.length - 1, timeSlot1.time.length) === 'a') ? true : false;
     var timeSlot2Am = (timeSlot2.time.substr(timeSlot2.time.length - 1, timeSlot2.time.length) === 'a') ? true : false;
     var timeSlot1Time = parseInt(timeSlot1.time.substr(0, timeSlot1.time.length - 1));
@@ -74,7 +74,7 @@ module.exports.sortTimeSlots = function (timeSlot1, timeSlot2) {
     } else {
         return 1;
     }
-};
+}
 
 /**
  * Gets the schedule for the given day from the api
@@ -82,7 +82,7 @@ module.exports.sortTimeSlots = function (timeSlot1, timeSlot2) {
  *
  *  @return {Object}     Schedule for the day, broken into chunks
  */
-module.exports.getDaySchedule = function (day) {
+export function getDaySchedule(day) {
     return function (dispatch) {
         api({
             uri: '/conference/schedule/' + day
@@ -135,4 +135,4 @@ module.exports.getDaySchedule = function (day) {
             }
         });
     };
-};
+}

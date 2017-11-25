@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var Box = require('../box/box.jsx');
+import Box from '../box/box.jsx';
 
 require('./welcome.scss');
 
@@ -66,4 +66,4 @@ var Welcome = React.createClass({
     }
 });
 
-module.exports = Welcome;
+export default Welcome;

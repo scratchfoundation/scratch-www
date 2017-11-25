@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./charcount.scss');
 
@@ -25,4 +25,4 @@ var CharCount = React.createClass({
     }
 });
 
-module.exports = CharCount;
+export default CharCount;

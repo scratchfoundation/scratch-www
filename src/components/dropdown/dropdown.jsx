@@ -1,5 +1,5 @@
-var React = require('react');
-var classNames = require('classnames');
+import React from 'react';
+import classNames from 'classnames';
 
 require('./dropdown.scss');
 
@@ -37,4 +37,4 @@ var Dropdown = React.createClass({
     }
 });
 
-module.exports = Dropdown;
+export default Dropdown;

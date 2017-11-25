@@ -1,9 +1,9 @@
-var React = require('react');
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var render = require('../../lib/render.jsx');
+import React from 'react';
+import {FormattedHTMLMessage} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
+import render from '../../lib/render.jsx';
 
-var Page = require('../../components/page/www/page.jsx');
+import Page from '../../components/page/www/page.jsx';
 
 require('./about.scss');
 

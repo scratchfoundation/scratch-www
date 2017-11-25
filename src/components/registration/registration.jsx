@@ -1,5 +1,5 @@
-var React = require('react');
-var IframeModal = require('../modal/iframe/modal.jsx');
+import React from 'react';
+import IframeModal from '../modal/iframe/modal.jsx';
 
 require('./registration.scss');
 
@@ -50,4 +50,4 @@ var Registration = React.createClass({
     }
 });
 
-module.exports = Registration;
+export default Registration;

@@ -1,7 +1,7 @@
-var classNames = require('classnames');
-var React = require('react');
-var MediaQuery = require('react-responsive');
-var frameless = require('../../lib/frameless');
+import classNames from 'classnames';
+import React from 'react';
+import MediaQuery from 'react-responsive';
+import frameless from '../../lib/frameless';
 
 require('./masonrygrid.scss');
 
@@ -57,4 +57,4 @@ var MasonryGrid = React.createClass({
     }
 });
 
-module.exports = MasonryGrid;
+export default MasonryGrid;

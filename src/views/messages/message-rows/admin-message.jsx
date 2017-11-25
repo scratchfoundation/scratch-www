@@ -1,8 +1,8 @@
-var FormattedDate = require('react-intl').FormattedDate;
-var React = require('react');
+import {FormattedDate} from 'react-intl';
+import React from 'react';
 
-var Button = require('../../../components/forms/button.jsx');
-var FlexRow = require('../../../components/flex-row/flex-row.jsx');
+import Button from '../../../components/forms/button.jsx';
+import FlexRow from '../../../components/flex-row/flex-row.jsx';
 
 var AdminMessage = React.createClass({
     type: 'AdminMessage',
@@ -39,4 +39,4 @@ var AdminMessage = React.createClass({
     }
 });
 
-module.exports = AdminMessage;
+export default AdminMessage;

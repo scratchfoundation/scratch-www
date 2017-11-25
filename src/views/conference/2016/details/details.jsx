@@ -1,11 +1,11 @@
-var classNames = require('classnames');
-var connect = require('react-redux').connect;
-var React = require('react');
-var render = require('../../../../lib/render.jsx');
+import classNames from 'classnames';
+import {connect} from 'react-redux';
+import React from 'react';
+import render from '../../../../lib/render.jsx';
 
-var detailsActions = require('../../../../redux/conference-details.js');
+import detailsActions from '../../../../redux/conference-details.js';
 
-var Page = require('../../../../components/page/conference/2016/page.jsx');
+import Page from '../../../../components/page/conference/2016/page.jsx';
 
 require('./details.scss');
 

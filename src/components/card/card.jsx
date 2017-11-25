@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./card.scss');
 
@@ -14,4 +14,4 @@ var Card = React.createClass({
     }
 });
 
-module.exports = Card;
+export default Card;

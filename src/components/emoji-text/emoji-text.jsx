@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./emoji-text.scss');
 
@@ -30,4 +30,4 @@ var EmojiText = React.createClass({
     }
 });
 
-module.exports = EmojiText;
+export default EmojiText;

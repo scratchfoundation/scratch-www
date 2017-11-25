@@ -1,17 +1,17 @@
-var injectIntl = require('react-intl').injectIntl;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var React = require('react');
-var connect = require('react-redux').connect;
-var render = require('../../lib/render.jsx');
+import {injectIntl} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
+import React from 'react';
+import {connect} from 'react-redux';
+import render from '../../lib/render.jsx';
 
-var api = require('../../lib/api');
+import api from '../../lib/api';
 
-var Page = require('../../components/page/www/page.jsx');
-var TitleBanner = require('../../components/title-banner/title-banner.jsx');
-var Button = require('../../components/forms/button.jsx');
-var Tabs = require('../../components/tabs/tabs.jsx');
-var Grid = require('../../components/grid/grid.jsx');
-var navigationActions = require('../../redux/navigation.js');
+import Page from '../../components/page/www/page.jsx';
+import TitleBanner from '../../components/title-banner/title-banner.jsx';
+import Button from '../../components/forms/button.jsx';
+import Tabs from '../../components/tabs/tabs.jsx';
+import Grid from '../../components/grid/grid.jsx';
+import navigationActions from '../../redux/navigation.js';
 
 require('./search.scss');
 

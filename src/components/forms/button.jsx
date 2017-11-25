@@ -1,5 +1,5 @@
-var React = require('react');
-var classNames = require('classnames');
+import React from 'react';
+import classNames from 'classnames';
 
 require('./button.scss');
 
@@ -19,4 +19,4 @@ var Button = React.createClass({
     }
 });
 
-module.exports = Button;
+export default Button;

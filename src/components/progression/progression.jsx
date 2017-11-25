@@ -1,7 +1,7 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
-module.exports = React.createClass({
+export default React.createClass({
     displayName: 'Progression',
     propTypes: {
         step: function (props, propName, componentName) {

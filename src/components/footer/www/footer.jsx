@@ -1,13 +1,13 @@
-var React = require('react');
-var ReactIntl = require('react-intl');
+import React from 'react';
+import ReactIntl from 'react-intl';
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
 
-var FooterBox = require('../container/footer.jsx');
-var LanguageChooser = require('../../languagechooser/languagechooser.jsx');
+import FooterBox from '../container/footer.jsx';
+import LanguageChooser from '../../languagechooser/languagechooser.jsx';
 
-var MediaQuery = require('react-responsive');
-var frameless = require('../../../lib/frameless');
+import MediaQuery from 'react-responsive';
+import frameless from '../../../lib/frameless';
 
 require('./footer.scss');
 
@@ -223,4 +223,4 @@ var Footer = React.createClass({
     }
 });
 
-module.exports = injectIntl(Footer);
+export default injectIntl(Footer);

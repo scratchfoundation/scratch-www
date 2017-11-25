@@ -1,26 +1,26 @@
-var injectIntl = require('react-intl').injectIntl;
-var React = require('react');
+import {injectIntl} from 'react-intl';
+import React from 'react';
 
-var sessionActions = require('../../redux/session.js');
-var shuffle = require('../../lib/shuffle.js').shuffle;
+import sessionActions from '../../redux/session.js';
+import {shuffle} from '../../lib/shuffle.js';
 
-var Activity = require('../../components/activity/activity.jsx');
-var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
-var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
-var Box = require('../../components/box/box.jsx');
-var Button = require('../../components/forms/button.jsx');
-var Carousel = require('../../components/carousel/carousel.jsx');
-var LegacyCarousel = require('../../components/carousel/legacy-carousel.jsx');
-var TopBanner = require('./hoc/top-banner.jsx');
-var MiddleBanner = require('./hoc/middle-banner.jsx');
-var Intro = require('../../components/intro/intro.jsx');
-var IframeModal = require('../../components/modal/iframe/modal.jsx');
-var News = require('../../components/news/news.jsx');
-var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
-var Welcome = require('../../components/welcome/welcome.jsx');
+import Activity from '../../components/activity/activity.jsx';
+import AdminPanel from '../../components/adminpanel/adminpanel.jsx';
+import DropdownBanner from '../../components/dropdown-banner/banner.jsx';
+import Box from '../../components/box/box.jsx';
+import Button from '../../components/forms/button.jsx';
+import Carousel from '../../components/carousel/carousel.jsx';
+import LegacyCarousel from '../../components/carousel/legacy-carousel.jsx';
+import TopBanner from './hoc/top-banner.jsx';
+import MiddleBanner from './hoc/middle-banner.jsx';
+import Intro from '../../components/intro/intro.jsx';
+import IframeModal from '../../components/modal/iframe/modal.jsx';
+import News from '../../components/news/news.jsx';
+import TeacherBanner from '../../components/teacher-banner/teacher-banner.jsx';
+import Welcome from '../../components/welcome/welcome.jsx';
 
-var MediaQuery = require('react-responsive');
-var frameless = require('../../lib/frameless');
+import MediaQuery from 'react-responsive';
+import frameless from '../../lib/frameless';
 
 require('./splash.scss');
 
@@ -324,4 +324,4 @@ var SplashPresentation = injectIntl(React.createClass({
     }
 }));
 
-module.exports = SplashPresentation;
+export default SplashPresentation;

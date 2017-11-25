@@ -1,8 +1,7 @@
-var classNames = require('classnames');
-var omit = require('lodash.omit');
-var React = require('react');
-
-var Modal = require('../base/modal.jsx');
+import classNames from 'classnames';
+import omit from 'lodash.omit';
+import React from 'react';
+import Modal from '../base/modal.jsx';
 
 require('./modal.scss');
 
@@ -31,4 +30,4 @@ var IframeModal = React.createClass({
     }
 });
 
-module.exports = IframeModal;
+export default IframeModal;

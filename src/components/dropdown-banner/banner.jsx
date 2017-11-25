@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./banner.scss');
 
@@ -30,4 +30,4 @@ var Banner = React.createClass({
     }
 });
 
-module.exports = Banner;
+export default Banner;

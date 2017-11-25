@@ -1,26 +1,26 @@
-var React = require('react');
+import React from 'react';
 
-var api = require('../../lib/api');
-var countryData = require('../../lib/country-data');
-var intl = require('../../lib/intl.jsx');
+import api from '../../lib/api';
+import countryData from '../../lib/country-data';
+import intl from '../../lib/intl.jsx';
 
-var Avatar = require('../../components/avatar/avatar.jsx');
-var Button = require('../../components/forms/button.jsx');
-var Card = require('../../components/card/card.jsx');
-var CharCount = require('../../components/forms/charcount.jsx');
-var Checkbox = require('../../components/forms/checkbox.jsx');
-var CheckboxGroup = require('../../components/forms/checkbox-group.jsx');
-var Form = require('../../components/forms/form.jsx');
-var GeneralError = require('../../components/forms/general-error.jsx');
-var Input = require('../../components/forms/input.jsx');
-var PhoneInput = require('../../components/forms/phone-input.jsx');
-var RadioGroup = require('../../components/forms/radio-group.jsx');
-var Select = require('../../components/forms/select.jsx');
-var Slide = require('../../components/slide/slide.jsx');
-var Spinner = require('../../components/spinner/spinner.jsx');
-var StepNavigation = require('../../components/stepnavigation/stepnavigation.jsx');
-var TextArea = require('../../components/forms/textarea.jsx');
-var Tooltip = require('../../components/tooltip/tooltip.jsx');
+import Avatar from '../../components/avatar/avatar.jsx';
+import Button from '../../components/forms/button.jsx';
+import Card from '../../components/card/card.jsx';
+import CharCount from '../../components/forms/charcount.jsx';
+import Checkbox from '../../components/forms/checkbox.jsx';
+import CheckboxGroup from '../../components/forms/checkbox-group.jsx';
+import Form from '../../components/forms/form.jsx';
+import GeneralError from '../../components/forms/general-error.jsx';
+import Input from '../../components/forms/input.jsx';
+import PhoneInput from '../../components/forms/phone-input.jsx';
+import RadioGroup from '../../components/forms/radio-group.jsx';
+import Select from '../../components/forms/select.jsx';
+import Slide from '../../components/slide/slide.jsx';
+import Spinner from '../../components/spinner/spinner.jsx';
+import StepNavigation from '../../components/stepnavigation/stepnavigation.jsx';
+import TextArea from '../../components/forms/textarea.jsx';
+import Tooltip from '../../components/tooltip/tooltip.jsx';
 
 require('./steps.scss');
 
@@ -69,7 +69,8 @@ var NextStepButton = React.createClass({
     }
 });
 
-module.exports = {
+// TODO: cleanup from lebab
+export default {
     UsernameStep: intl.injectIntl(React.createClass({
         getDefaultProps: function () {
             return {

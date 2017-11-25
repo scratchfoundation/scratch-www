@@ -1,12 +1,12 @@
-var React = require('react');
-var ReactIntl = require('react-intl');
+import React from 'react';
+import ReactIntl from 'react-intl';
 
 var injectIntl = ReactIntl.injectIntl;
 var FormattedMessage = ReactIntl.FormattedMessage;
 
-var FlexRow = require('../../../flex-row/flex-row.jsx');
-var FooterBox = require('../../container/footer.jsx');
-var LanguageChooser = require('../../../languagechooser/languagechooser.jsx');
+import FlexRow from '../../../flex-row/flex-row.jsx';
+import FooterBox from '../../container/footer.jsx';
+import LanguageChooser from '../../../languagechooser/languagechooser.jsx';
 
 require('../footer.scss');
 
@@ -81,4 +81,4 @@ var ConferenceFooter = React.createClass({
     }
 });
 
-module.exports = injectIntl(ConferenceFooter);
+export default injectIntl(ConferenceFooter);

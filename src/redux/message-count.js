@@ -1,7 +1,6 @@
-var keyMirror = require('keymirror');
-var defaults = require('lodash.defaults');
-
-var api = require('../lib/api');
+import keyMirror from 'keymirror';
+import defaults from 'lodash.defaults';
+import api from '../lib/api';
 
 var Types = keyMirror({
     SET_MESSAGE_COUNT: null,
@@ -9,11 +8,11 @@ var Types = keyMirror({
     SET_STATUS: null
 });
 
-module.exports.getInitialState = function (){
+export function getInitialState() {
     return {messageCount: 0};
-};
+}
 
-module.exports.messageCountReducer = function (state, action) {
+export function messageCountReducer(state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
         state = module.exports.getInitialState();
@@ -29,30 +28,30 @@ module.exports.messageCountReducer = function (state, action) {
     default:
         return state;
     }
-};
+}
 
-module.exports.setSessionError = function (error) {
+export function setSessionError(error) {
     return {
         type: Types.SET_MESSAGE_COUNT_ERROR,
         error: error
     };
-};
+}
 
-module.exports.setCount = function (count) {
+export function setCount(count) {
     return {
         type: Types.SET_MESSAGE_COUNT,
         count: count
     };
-};
+}
 
-module.exports.setStatus = function (status){
+export function setStatus(status) {
     return {
         type: Types.SET_STATUS,
         status: status
     };
-};
+}
 
-module.exports.getCount = function (username) {
+export function getCount(username) {
     return function (dispatch) {
         api({
             method: 'get',
@@ -67,4 +66,4 @@ module.exports.getCount = function (username) {
             dispatch(module.exports.setCount(count));
         });
     };
-};
+}

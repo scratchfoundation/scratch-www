@@ -1,8 +1,8 @@
-var classNames = require('classnames');
-var FormattedRelative = require('react-intl').FormattedRelative;
-var React = require('react');
+import classNames from 'classnames';
+import {FormattedRelative} from 'react-intl';
+import React from 'react';
 
-var EmojiText = require('../emoji-text/emoji-text.jsx');
+import EmojiText from '../emoji-text/emoji-text.jsx';
 
 require('./comment.scss');
 
@@ -31,4 +31,4 @@ var CommentText = React.createClass({
     }
 });
 
-module.exports = CommentText;
+export default CommentText;

@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var Box = require('../box/box.jsx');
+import Box from '../box/box.jsx';
 
 require('./news.scss');
 
@@ -51,4 +51,4 @@ var News = React.createClass({
     }
 });
 
-module.exports = News;
+export default News;

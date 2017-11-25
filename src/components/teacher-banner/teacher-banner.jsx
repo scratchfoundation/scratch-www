@@ -1,12 +1,12 @@
-var classNames = require('classnames');
-var connect = require('react-redux').connect;
-var React = require('react');
+import classNames from 'classnames';
+import {connect} from 'react-redux';
+import React from 'react';
 
-var sessionActions = require('../../redux/session.js');
+import sessionActions from '../../redux/session.js';
 
-var TitleBanner = require('../title-banner/title-banner.jsx');
-var Button = require('../forms/button.jsx');
-var FlexRow = require('../flex-row/flex-row.jsx');
+import TitleBanner from '../title-banner/title-banner.jsx';
+import Button from '../forms/button.jsx';
+import FlexRow from '../flex-row/flex-row.jsx';
 
 require('./teacher-banner.scss');
 
@@ -83,4 +83,4 @@ var mapStateToProps = function (state) {
 
 var ConnectedTeacherBanner = connect(mapStateToProps)(TeacherBanner);
 
-module.exports = ConnectedTeacherBanner;
+export default ConnectedTeacherBanner;

@@ -1,14 +1,14 @@
-var connect = require('react-redux').connect;
-var injectIntl = require('react-intl').injectIntl;
-var React = require('react');
+import {connect} from 'react-redux';
+import {injectIntl} from 'react-intl';
+import React from 'react';
 
-var api = require('../../lib/api');
-var log = require('../../lib/log');
-var render = require('../../lib/render.jsx');
-var sessionActions = require('../../redux/session.js');
+import api from '../../lib/api';
+import log from '../../lib/log';
+import render from '../../lib/render.jsx';
+import sessionActions from '../../redux/session.js';
 
-var Page = require('../../components/page/www/page.jsx');
-var SplashPresentation = require('./presentation.jsx');
+import Page from '../../components/page/www/page.jsx';
+import SplashPresentation from './presentation.jsx';
 
 var Splash = injectIntl(React.createClass({
     type: 'Splash',

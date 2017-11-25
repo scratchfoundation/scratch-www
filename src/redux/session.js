@@ -1,9 +1,9 @@
-var keyMirror = require('keymirror');
-var defaults = require('lodash.defaults');
+import keyMirror from 'keymirror';
+import defaults from 'lodash.defaults';
 
-var api = require('../lib/api');
-var messageCountActions = require('./message-count.js');
-var permissionsActions = require('./permissions.js');
+import api from '../lib/api';
+import messageCountActions from './message-count.js';
+import permissionsActions from './permissions.js';
 
 var Types = keyMirror({
     SET_SESSION: null,
@@ -17,17 +17,17 @@ var banWhitelistPaths = [
     '/community_guidelines'
 ];
 
-module.exports.Status = keyMirror({
+export var Status = keyMirror({
     FETCHED: null,
     NOT_FETCHED: null,
     FETCHING: null
 });
 
-module.exports.getInitialState = function (){
+export function getInitialState() {
     return {status: module.exports.Status.NOT_FETCHED, session:{}};
-};
+}
 
-module.exports.sessionReducer = function (state, action) {
+export function sessionReducer(state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
         state = module.exports.getInitialState();
@@ -43,30 +43,30 @@ module.exports.sessionReducer = function (state, action) {
     default:
         return state;
     }
-};
+}
 
-module.exports.setSessionError = function (error) {
+export function setSessionError(error) {
     return {
         type: Types.SET_SESSION_ERROR,
         error: error
     };
-};
+}
 
-module.exports.setSession = function (session) {
+export function setSession(session) {
     return {
         type: Types.SET_SESSION,
         session: session
     };
-};
+}
 
-module.exports.setStatus = function (status){
+export function setStatus(status) {
     return {
         type: Types.SET_STATUS,
         status: status
     };
-};
+}
 
-module.exports.refreshSession = function () {
+export function refreshSession() {
     return function (dispatch) {
         dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
         api({
@@ -104,4 +104,4 @@ module.exports.refreshSession = function () {
             }
         });
     };
-};
+}

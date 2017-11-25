@@ -1,8 +1,8 @@
-var classNames = require('classnames');
-var FRCTextarea = require('formsy-react-components').Textarea;
-var React = require('react');
-var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
-var inputHOC = require('./input-hoc.jsx');
+import classNames from 'classnames';
+import {Textarea as FRCTextarea} from 'formsy-react-components';
+import React from 'react';
+import {defaultValidationHOC} from './validations.jsx';
+import inputHOC from './input-hoc.jsx';
 
 require('./row.scss');
 require('./textarea.scss');
@@ -22,4 +22,4 @@ var TextArea = React.createClass({
     }
 });
 
-module.exports = inputHOC(defaultValidationHOC(TextArea));
+export default inputHOC(defaultValidationHOC(TextArea));

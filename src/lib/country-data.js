@@ -1,14 +1,14 @@
-module.exports = {};
-var countries = module.exports.data = require('iso-3166-2').data;
+import {_data} from 'iso-3166-2';
+export var data = _data;
+var countries = data;
 
-module.exports.countryOptions = Object.keys(countries).map(function (code) {
+export var countryOptions = Object.keys(countries).map(function (code) {
     return {value: code.toLowerCase(), label: countries[code].name};
 }).sort(function (a, b) {
     return a.label < b.label ? -1 : 1;
 });
 
-module.exports.subdivisionOptions =
-Object.keys(countries).reduce(function (subByCountry, code) {
+export var subdivisionOptions = Object.keys(countries).reduce(function (subByCountry, code) {
     subByCountry[code.toLowerCase()] = Object.keys(countries[code].sub).map(function (subCode) {
         return {
             value: subCode.toLowerCase(),

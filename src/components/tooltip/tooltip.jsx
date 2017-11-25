@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./tooltip.scss');
 
@@ -30,4 +30,4 @@ var Tooltip = React.createClass({
     }
 });
 
-module.exports = Tooltip;
+export default Tooltip;

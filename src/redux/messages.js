@@ -1,12 +1,12 @@
-var defaults = require('lodash.defaults');
-var defaultsDeep = require('lodash.defaultsdeep');
-var keyMirror = require('keymirror');
+import defaults from 'lodash.defaults';
+import defaultsDeep from 'lodash.defaultsdeep';
+import keyMirror from 'keymirror';
 
-var api = require('../lib/api');
-var log = require('../lib/log');
-var messageCountActions = require('./message-count.js');
+import api from '../lib/api';
+import log from '../lib/log';
+import messageCountActions from './message-count.js';
 
-module.exports.Status = keyMirror({
+export var Status = keyMirror({
     FETCHED: null,
     NOT_FETCHED: null,
     FETCHING: null,
@@ -17,7 +17,7 @@ module.exports.Status = keyMirror({
     DELETE_ERROR: null
 });
 
-module.exports.getInitialState = function () {
+export function getInitialState() {
     return {
         status: {
             admin: module.exports.Status.NOT_FETCHED,
@@ -31,9 +31,9 @@ module.exports.getInitialState = function () {
             invite: {}
         }
     };
-};
+}
 
-module.exports.messagesReducer = function (state, action) {
+export function messagesReducer(state, action) {
     if (typeof state === 'undefined') {
         state = module.exports.getInitialState();
     }
@@ -66,55 +66,55 @@ module.exports.messagesReducer = function (state, action) {
     default:
         return state;
     }
-};
+}
 
-module.exports.setMessagesError = function (error) {
+export function setMessagesError(error) {
     return {
         type: 'ERROR',
         error: error
     };
-};
+}
 
-module.exports.setMessages = function (messages) {
+export function setMessages(messages) {
     return {
         type: 'SET_MESSAGES',
         messages: messages
     };
-};
+}
 
-module.exports.setMessagesOffset = function (offset) {
+export function setMessagesOffset(offset) {
     return {
         type: 'SET_MESSAGES_OFFSET',
         offset: offset
     };
-};
+}
 
-module.exports.setAdminMessages = function (messages) {
+export function setAdminMessages(messages) {
     return {
         type: 'SET_ADMIN_MESSAGES',
         messages: messages
     };
-};
+}
 
-module.exports.setScratcherInvite = function (invite) {
+export function setScratcherInvite(invite) {
     return {
         type: 'SET_SCRATCHER_INVITE',
         invite: invite
     };
-};
+}
 
-module.exports.setStatus = function (type, status){
+export function setStatus(type, status) {
     return {
         type: type,
         status: status
     };
-};
+}
 
 /**
  * Sends a request to mark one's unread messages count as cleared.
  * @return {null} returns nothing
  */
-module.exports.clearMessageCount = function () {
+export function clearMessageCount() {
     return function (dispatch) {
         dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.FETCHING));
         api({
@@ -136,7 +136,7 @@ module.exports.clearMessageCount = function () {
             dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.FETCHED));
         });
     };
-};
+}
 
 /**
  * Marks an admin message as read, dismissing it from the page
@@ -146,7 +146,7 @@ module.exports.clearMessageCount = function () {
  * @param  {object[]} adminMessages current list of admin messages retrieved
  * @return {null}                   returns nothing
  */
-module.exports.clearAdminMessage = function (messageType, messageId, messageCount, adminMessages) {
+export function clearAdminMessage(messageType, messageId, messageCount, adminMessages) {
     return function (dispatch) {
         dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.FETCHING));
         api({
@@ -189,7 +189,7 @@ module.exports.clearAdminMessage = function (messageType, messageId, messageCoun
             dispatch(module.exports.setStatus('DELETE_STATUS', module.exports.Status.FETCHED));
         });
     };
-};
+}
 
 /**
  * Gets a user's messages to be displayed on the /messages page
@@ -201,7 +201,7 @@ module.exports.clearAdminMessage = function (messageType, messageId, messageCoun
  * @param  {string}   [opts.filter]      type of messages to return
  * @return {null}                     returns nothing
  */
-module.exports.getMessages = function (username, token, opts) {
+export function getMessages(username, token, opts) {
     opts = defaults(opts, {
         messages: [],
         offset: 0,
@@ -238,7 +238,7 @@ module.exports.getMessages = function (username, token, opts) {
             }
         });
     };
-};
+}
 
 /**
  * Gets the messages from the Scratch Team for a user
@@ -246,7 +246,7 @@ module.exports.getMessages = function (username, token, opts) {
  * @param  {string} token    the user's unique token for auth
  * @return {null}            returns nothing
  */
-module.exports.getAdminMessages = function (username, token) {
+export function getAdminMessages(username, token) {
     return function (dispatch) {
         dispatch(module.exports.setStatus('ADMIN_STATUS', module.exports.Status.FETCHING));
         api({
@@ -269,7 +269,7 @@ module.exports.getAdminMessages = function (username, token) {
             dispatch(module.exports.setStatus('ADMIN_STATUS', module.exports.Status.FETCHED));
         });
     };
-};
+}
 
 /**
  * Gets the invitation to become a Scratcher for a user, if one exists
@@ -277,7 +277,7 @@ module.exports.getAdminMessages = function (username, token) {
  * @param  {string} token    the user's unique token for auth
  * @return {null}            returns nothing
  */
-module.exports.getScratcherInvite = function (username, token) {
+export function getScratcherInvite(username, token) {
     return function (dispatch) {
         api({
             uri: '/users/' + username + '/invites',
@@ -293,4 +293,4 @@ module.exports.getScratcherInvite = function (username, token) {
             dispatch(module.exports.setScratcherInvite(body));
         });
     };
-};
+}

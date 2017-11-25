@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-var NavigationBox = require('../../base/navigation.jsx');
+import NavigationBox from '../../base/navigation.jsx';
 
 require('./navigation.scss');
 
@@ -26,4 +26,4 @@ var Navigation = React.createClass({
     }
 });
 
-module.exports = Navigation;
+export default Navigation;

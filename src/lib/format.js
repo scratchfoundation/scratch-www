@@ -31,4 +31,4 @@ var Format = {
     }
 };
 
-module.exports = Format;
+export default Format;

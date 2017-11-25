@@ -1,14 +1,15 @@
-var redux = require('redux');
-var thunk = require('redux-thunk').default;
-// JSX syntax transforms to React.createElement
-var React = require('react'); // eslint-disable-line
-var ReactDOM = require('react-dom');
-var StoreProvider = require('react-redux').Provider;
+import redux from 'redux';
+import thunk from 'redux-thunk';
 
-var IntlProvider = require('./intl.jsx').IntlProvider;
-var permissionsActions = require('../redux/permissions.js');
-var sessionActions = require('../redux/session.js');
-var reducer = require('../redux/reducer.js');
+// JSX syntax transforms to React.createElement
+import React from 'react'; // eslint-disable-line
+import ReactDOM from 'react-dom';
+import {Provider as StoreProvider} from 'react-redux';
+
+import {IntlProvider} from './intl.jsx';
+import permissionsActions from '../redux/permissions.js';
+import sessionActions from '../redux/session.js';
+import reducer from '../redux/reducer.js';
 
 require('../main.scss');
 
@@ -49,4 +50,4 @@ var render = function (jsx, element, reducers) {
     store.dispatch(sessionActions.refreshSession());
 };
 
-module.exports = render;
+export default render;

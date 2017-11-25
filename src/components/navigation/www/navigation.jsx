@@ -1,24 +1,24 @@
-var classNames = require('classnames');
-var connect = require('react-redux').connect;
-var React = require('react');
-var ReactIntl = require('react-intl');
+import classNames from 'classnames';
+import {connect} from 'react-redux';
+import React from 'react';
+import ReactIntl from 'react-intl';
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
 
-var messageCountActions = require('../../../redux/message-count.js');
-var sessionActions = require('../../../redux/session.js');
+import messageCountActions from '../../../redux/message-count.js';
+import sessionActions from '../../../redux/session.js;
 
-var api = require('../../../lib/api');
-var Avatar = require('../../avatar/avatar.jsx');
-var Button = require('../../forms/button.jsx');
-var Dropdown = require('../../dropdown/dropdown.jsx');
-var Form = require('../../forms/form.jsx');
-var Input = require('../../forms/input.jsx');
-var log = require('../../../lib/log.js');
-var Login = require('../../login/login.jsx');
-var Modal = require('../../modal/base/modal.jsx');
-var NavigationBox = require('../base/navigation.jsx');
-var Registration = require('../../registration/registration.jsx');
+import api from '../../../lib/api';
+import Avatar from '../../avatar/avatar.jsx';
+import Button from '../../forms/button.jsx';
+import Dropdown from '../../dropdown/dropdown.jsx';
+import Form from '../../forms/form.jsx';
+import Input from '../../forms/input.jsx';
+import log from '../../../lib/log.js';
+import Login from '../../login/login.jsx';
+import Modal from '../../modal/base/modal.jsx';
+import NavigationBox from '../base/navigation.jsx';
+import Registration from '../../registration/registration.jsx';
 
 require('./navigation.scss');
 
@@ -341,4 +341,4 @@ var mapStateToProps = function (state) {
 
 var ConnectedNavigation = connect(mapStateToProps)(Navigation);
 
-module.exports = injectIntl(ConnectedNavigation);
+export default injectIntl(ConnectedNavigation);

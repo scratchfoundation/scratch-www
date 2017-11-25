@@ -1,8 +1,8 @@
-var classNames = require('classnames');
-var Formsy = require('formsy-react');
-var omit = require('lodash.omit');
-var React = require('react');
-var validations = require('./validations.jsx').validations;
+import classNames from 'classnames';
+import Formsy from 'formsy-react';
+import omit from 'lodash.omit';
+import React from 'react';
+import {validations} from './validations.jsx';
 
 for (var validation in validations) {
     Formsy.addValidationRule(validation, validations[validation]);
@@ -44,4 +44,4 @@ var Form = React.createClass({
     }
 });
 
-module.exports = Form;
+export default Form;

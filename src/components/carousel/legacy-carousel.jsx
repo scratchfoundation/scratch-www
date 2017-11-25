@@ -1,14 +1,15 @@
 // This component handles json returned via proxy from a django server,
 // or directly from a django server, and the model structure that system
 // has.
-var classNames = require('classnames');
-var defaults = require('lodash.defaults');
-var React = require('react');
-var Slider = require('react-slick');
+import classNames from 'classnames';
 
-var Thumbnail = require('../thumbnail/thumbnail.jsx');
+import defaults from 'lodash.defaults';
+import React from 'react';
+import Slider from 'react-slick';
 
-var frameless = require('../../lib/frameless.js');
+import Thumbnail from '../thumbnail/thumbnail.jsx';
+
+import frameless from '../../lib/frameless.js';
 
 require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
@@ -94,4 +95,4 @@ var LegacyCarousel = React.createClass({
     }
 });
 
-module.exports = LegacyCarousel;
+export default LegacyCarousel;

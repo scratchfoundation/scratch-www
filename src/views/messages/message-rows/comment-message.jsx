@@ -1,12 +1,12 @@
-var classNames = require('classnames');
-var connect = require('react-redux').connect;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var injectIntl = require('react-intl').injectIntl;
-var React = require('react');
+import classNames from 'classnames';
+import {connect} from 'react-redux';
+import {FormattedMessage} from 'react-intl';
+import {injectIntl} from 'react-intl';
+import React from 'react';
 
-var Comment = require('../../../components/comment/comment.jsx');
-var FlexRow = require('../../../components/flex-row/flex-row.jsx');
-var SocialMessage = require('../../../components/social-message/social-message.jsx');
+import Comment from '../../../components/comment/comment.jsx';
+import FlexRow from '../../../components/flex-row/flex-row.jsx';
+import SocialMessage from '../../../components/social-message/social-message.jsx';
 
 var CommentMessage = injectIntl(React.createClass({
     type: 'CommentMessage',
@@ -171,4 +171,4 @@ var mapStateToProps = function (state) {
 };
 
 var ConnectedCommentMessage = connect(mapStateToProps)(CommentMessage);
-module.exports = ConnectedCommentMessage;
+export default ConnectedCommentMessage;

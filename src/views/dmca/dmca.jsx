@@ -1,9 +1,9 @@
-var React = require('react');
-var FormattedMessage = require('react-intl').FormattedMessage;
-var render = require('../../lib/render.jsx');
+import React from 'react';
+import {FormattedMessage} from 'react-intl';
+import render from '../../lib/render.jsx';
 
-var InformationPage = require('../../components/informationpage/informationpage.jsx');
-var Page = require('../../components/page/www/page.jsx');
+import InformationPage from '../../components/informationpage/informationpage.jsx';
+import Page from '../../components/page/www/page.jsx';
 
 var Dmca = React.createClass({
     type: 'Dmca',

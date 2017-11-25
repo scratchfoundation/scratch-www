@@ -1,15 +1,15 @@
-var connect = require('react-redux').connect;
-var defaults = require('lodash.defaultsdeep');
-var React = require('react');
-var render = require('../../lib/render.jsx');
+import {connect} from 'react-redux';
+import defaults from 'lodash.defaultsdeep';
+import React from 'react';
+import render from '../../lib/render.jsx';
 
-var api = require('../../lib/api');
-var intl = require('../../lib/intl.jsx');
-var sessionActions = require('../../redux/session.js');
+import api from '../../lib/api';
+import intl from '../../lib/intl.jsx';
+import sessionActions from '../../redux/session.js';
 
-var Deck = require('../../components/deck/deck.jsx');
-var Progression = require('../../components/progression/progression.jsx');
-var Steps = require('../../components/registration/steps.jsx');
+import Deck from '../../components/deck/deck.jsx';
+import Progression from '../../components/progression/progression.jsx';
+import Steps from '../../components/registration/steps.jsx';
 
 require('./teacherregistration.scss');
 

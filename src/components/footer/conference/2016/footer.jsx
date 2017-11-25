@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var FlexRow = require('../../../flex-row/flex-row.jsx');
-var FooterBox = require('../../container/footer.jsx');
+import FlexRow from '../../../flex-row/flex-row.jsx';
+import FooterBox from '../../container/footer.jsx';
 
 require('../footer.scss');
 
@@ -122,4 +122,4 @@ var ConferenceFooter = React.createClass({
     }
 });
 
-module.exports = ConferenceFooter;
+export default ConferenceFooter;

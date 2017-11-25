@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./accordion.scss');
 
@@ -38,4 +38,4 @@ var Accordion = React.createClass({
     }
 });
 
-module.exports = Accordion;
+export default Accordion;

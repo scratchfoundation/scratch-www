@@ -1,4 +1,4 @@
-var React = require('react');
+import React from 'react';
 
 require('./footer.scss');
 
@@ -13,4 +13,4 @@ var FooterBox = React.createClass({
     }
 });
 
-module.exports = FooterBox;
+export default FooterBox;

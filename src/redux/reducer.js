@@ -1,9 +1,9 @@
-var combineReducers = require('redux').combineReducers;
-var defaults = require('lodash.defaults');
+import {combineReducers} from 'redux';
+import defaults from 'lodash.defaults';
 
-var messageCountReducer = require('./message-count.js').messageCountReducer;
-var permissionsReducer = require('./permissions.js').permissionsReducer;
-var sessionReducer = require('./session.js').sessionReducer;
+import {messageCountReducer} from './message-count.js';
+import {permissionsReducer} from './permissions.js';
+import {sessionReducer} from './session.js';
 
 /**
  * Returns a combined reducer to be used for a page in `render.jsx`.
@@ -15,7 +15,7 @@ var sessionReducer = require('./session.js').sessionReducer;
  *                       redux state, value is the reducer function.
  * @return {Object}      combined reducer to be used in the redux store
  */
-module.exports = function (opts) {
+export default function (opts) {
     opts = opts || {};
     return combineReducers(defaults(opts, {
         session: sessionReducer,
