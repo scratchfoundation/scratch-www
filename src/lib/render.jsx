@@ -6,12 +6,14 @@ import React from 'react'; // eslint-disable-line
 import ReactDOM from 'react-dom';
 import {Provider as StoreProvider} from 'react-redux';
 
-import {IntlProvider} from './intl.jsx';
-import permissionsActions from '../redux/permissions.js';
-import sessionActions from '../redux/session.js';
+import Intl from './intl.jsx';
+import {getPermissions} from '../redux/permissions.js';
+import {refreshSession} from '../redux/session.js';
 import reducer from '../redux/reducer.js';
 
 require('../main.scss');
+
+var IntlProvider = Intl.IntlProvider;
 
 var render = function (jsx, element, reducers) {
     // Get locale and messages from global namespace (see "init.js")
@@ -46,8 +48,8 @@ var render = function (jsx, element, reducers) {
     );
 
     // Get initial session & permissions
-    store.dispatch(permissionsActions.getPermissions());
-    store.dispatch(sessionActions.refreshSession());
+    store.dispatch(getPermissions());
+    store.dispatch(refreshSession());
 };
 
 export default render;

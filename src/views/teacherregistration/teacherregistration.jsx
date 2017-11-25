@@ -5,7 +5,7 @@ import render from '../../lib/render.jsx';
 
 import api from '../../lib/api';
 import intl from '../../lib/intl.jsx';
-import sessionActions from '../../redux/session.js';
+import {refreshSession} from '../../redux/session.js';
 
 import Deck from '../../components/deck/deck.jsx';
 import Progression from '../../components/progression/progression.jsx';
@@ -72,7 +72,7 @@ var TeacherRegistration = intl.injectIntl(React.createClass({
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
             if (body[0] && body[0].success) {
-                this.props.dispatch(sessionActions.refreshSession());
+                this.props.dispatch(refreshSession());
                 return this.advanceStep(formData);
             }
             this.setState({

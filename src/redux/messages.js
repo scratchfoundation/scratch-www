@@ -4,7 +4,7 @@ import keyMirror from 'keymirror';
 
 import api from '../lib/api';
 import log from '../lib/log';
-import messageCountActions from './message-count.js';
+import {setCount as setMessageCount} from './message-count.js';
 
 export var Status = keyMirror({
     FETCHED: null,
@@ -185,7 +185,7 @@ export function clearAdminMessage(messageType, messageId, messageCount, adminMes
                 adminMessages.splice(toRemove, 1);
                 dispatch(module.exports.setAdminMessages(adminMessages));
             }
-            dispatch(messageCountActions.setCount(messageCount - 1));
+            dispatch(setMessageCount(messageCount - 1));
             dispatch(module.exports.setStatus('DELETE_STATUS', module.exports.Status.FETCHED));
         });
     };

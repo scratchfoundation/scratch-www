@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import React from 'react';
 
-import sessionActions from '../../redux/session.js';
+import {refreshSession} from '../../redux/session.js';
 
 import IframeModal from '../modal/iframe/modal.jsx';
 import Registration from '../registration/registration.jsx';
@@ -46,7 +46,7 @@ var Intro = React.createClass({
         this.setState({'registrationOpen': false});
     },
     completeRegistration: function () {
-        this.props.dispatch(sessionActions.refreshSession());
+        this.props.dispatch(refreshSession());
         this.closeRegistration();
     },
     render: function () {

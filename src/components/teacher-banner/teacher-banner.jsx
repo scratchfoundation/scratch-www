@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import {connect} from 'react-redux';
 import React from 'react';
 
-import sessionActions from '../../redux/session.js';
+import {Status} from '../../redux/session.js';
 
 import TitleBanner from '../title-banner/title-banner.jsx';
 import Button from '../forms/button.jsx';
@@ -33,7 +33,7 @@ var TeacherBanner = React.createClass({
             <TitleBanner className={classes}>
                 <FlexRow className="inner">
                     <div className="welcome">
-                        {this.props.session.status === sessionActions.Status.FETCHED ? (
+                        {this.props.session.status === Status.FETCHED ? (
                             this.props.session.session.user ? [
                                 <h3 key="greeting">
                                     {this.props.messages['teacherbanner.greeting']},{' '}
@@ -49,7 +49,7 @@ var TeacherBanner = React.createClass({
                         ): []}
                     </div>
                     <FlexRow className="quick-links">
-                        {this.props.session.status === sessionActions.Status.FETCHED ? (
+                        {this.props.session.status === Status.FETCHED ? (
                             this.props.session.session.user ? [
                                 <a href="/educators/classes" key="classes-button">
                                     <Button>

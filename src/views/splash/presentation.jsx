@@ -1,7 +1,7 @@
 import {injectIntl} from 'react-intl';
 import React from 'react';
 
-import sessionActions from '../../redux/session.js';
+import {Status} from '../../redux/session.js';
 import {shuffle} from '../../lib/shuffle.js';
 
 import Activity from '../../components/activity/activity.jsx';

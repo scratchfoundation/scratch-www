@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import React from 'react';
 import render from '../../../../lib/render.jsx';
 
-import scheduleActions from '../../../../redux/conference-schedule.js';
+import {startGetSchedule, scheduleReducer} from '../../../../redux/conference-schedule.js';
 
 import FlexRow from '../../../../components/flex-row/flex-row.jsx';
 import Page from '../../../../components/page/conference/2016/page.jsx';
@@ -23,7 +23,7 @@ var ConferenceSchedule = React.createClass({
     },
     handleScheduleChange: function (day) {
         window.history.replaceState(history.state, '', '#' + day);
-        this.props.dispatch(scheduleActions.startGetSchedule(day));
+        this.props.dispatch(startGetSchedule(day));
     },
     renderChunkItems: function (timeSlot) {
         return timeSlot.map(function (item) {
@@ -131,5 +131,5 @@ var ConnectedSchedule = connect(mapStateToProps)(ConferenceSchedule);
 render(
     <Page><ConnectedSchedule /></Page>,
     document.getElementById('app'),
-    {conferenceSchedule: scheduleActions.scheduleReducer}
+    {conferenceSchedule: scheduleReducer}
 );

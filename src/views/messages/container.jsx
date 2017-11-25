@@ -1,9 +1,9 @@
 import {connect} from 'react-redux';
 import React from 'react';
 
-import messageActions from '../../redux/messages.js';
+import {getMessages, getAdminMessages, getScratcherInvite, setMessages, setAdminMessages, setScratcherInvite, setMessagesOffset, clearAdminMessage, messagesReducer} from '../../redux/messages.js';
 import render from '../../lib/render.jsx';
-import sessionActions from '../../redux/session.js';
+import {Status} from '../../redux/session.js';
 
 import Page from '../../components/page/www/page.jsx';
 import MessagesPresentation from './presentation.jsx';
@@ -17,7 +17,7 @@ var Messages = React.createClass({
     },
     getDefaultProps: function () {
         return {
-            sessionStatus: sessionActions.Status.NOT_FETCHED,
+            sessionStatus: Status.NOT_FETCHED,
             user: {},
             flags: {},
             messageOffset: 0,
@@ -28,7 +28,7 @@ var Messages = React.createClass({
         if (this.props.user.username !== prevProps.user.username) {
             if (this.props.user.token) {
                 this.props.dispatch(
-                    messageActions.getMessages(
+                    getMessages(
                         this.props.user.username,
                         this.props.user.token,
                         {
@@ -39,26 +39,26 @@ var Messages = React.createClass({
                     )
                 );
                 this.props.dispatch(
-                    messageActions.getAdminMessages(
+                    getAdminMessages(
                         this.props.user.username, this.props.user.token, this.props.messageOffset
                     )
                 );
                 this.props.dispatch(
-                    messageActions.getScratcherInvite(this.props.user.username, this.props.user.token)
+                    getScratcherInvite(this.props.user.username, this.props.user.token)
                 );
             } else {
                 // user is logged out, empty messages
-                this.props.dispatch(messageActions.setMessages([]));
-                this.props.dispatch(messageActions.setAdminMessages([]));
-                this.props.dispatch(messageActions.setScratcherInvite({}));
-                this.props.dispatch(messageActions.setMessagesOffset(0));
+                this.props.dispatch(setMessages([]));
+                this.props.dispatch(setAdminMessages([]));
+                this.props.dispatch(setScratcherInvite({}));
+                this.props.dispatch(setMessagesOffset(0));
             }
         }
     },
     componentDidMount: function () {
         if (this.props.user.token) {
             this.props.dispatch(
-                messageActions.getMessages(
+                getMessages(
                     this.props.user.username,
                     this.props.user.token,
                     {
@@ -69,19 +69,19 @@ var Messages = React.createClass({
                 )
             );
             this.props.dispatch(
-                messageActions.getAdminMessages(
+                getAdminMessages(
                     this.props.user.username, this.props.user.token, this.props.messageOffset
                 )
             );
             this.props.dispatch(
-                messageActions.getScractherInvite(this.props.user.username, this.props.user.token)
+                getScratcherInvite(this.props.user.username, this.props.user.token)
             );
         }
     },
     handleFilterClick: function (field, choice) {
         if (this.props.user.token) {
             this.props.dispatch(
-                messageActions.getMessages(
+                getMessages(
                     this.props.user.username,
                     this.props.user.token,
                     {
@@ -99,14 +99,14 @@ var Messages = React.createClass({
             adminMessages = this.props.adminMessages;
         }
         this.props.dispatch(
-            messageActions.clearAdminMessage(
+            clearAdminMessage(
                 messageType, messageId, this.props.numNewMessages, adminMessages
             )
         );
     },
     handleLoadMoreMessages: function () {
         this.props.dispatch(
-            messageActions.getMessages(
+            getMessages(
                 this.props.user.username,
                 this.props.user.token,
                 {
@@ -161,5 +161,5 @@ var ConnectedMessages = connect(mapStateToProps)(Messages);
 render(
     <Page><ConnectedMessages /></Page>,
     document.getElementById('app'),
-    {messages: messageActions.messagesReducer}
+    {messages: messagesReducer}
 );

@@ -2,8 +2,8 @@ import keyMirror from 'keymirror';
 import defaults from 'lodash.defaults';
 
 import api from '../lib/api';
-import messageCountActions from './message-count.js';
-import permissionsActions from './permissions.js';
+import {getCount as getMessageCount} from './message-count.js';
+import {storePermissions} from './permissions.js';
 
 var Types = keyMirror({
     SET_SESSION: null,
@@ -96,9 +96,9 @@ export function refreshSession() {
                 dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
 
                 // get the permissions from the updated session
-                dispatch(permissionsActions.storePermissions(body.permissions));
+                dispatch(storePermissions(body.permissions));
                 if (typeof body.user !== 'undefined') {
-                    dispatch(messageCountActions.getCount(body.user.username));
+                    dispatch(getMessageCount(body.user.username));
                 }
                 return;
             }

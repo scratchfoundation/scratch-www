@@ -11,7 +11,7 @@ import TitleBanner from '../../components/title-banner/title-banner.jsx';
 import Button from '../../components/forms/button.jsx';
 import Tabs from '../../components/tabs/tabs.jsx';
 import Grid from '../../components/grid/grid.jsx';
-import navigationActions from '../../redux/navigation.js';
+import {setSearchTerm, navigationReducer} from '../../redux/navigation.js';
 
 require('./search.scss');
 
@@ -50,7 +50,7 @@ var Search = injectIntl(React.createClass({
             term = term.substring(0, term.indexOf('&'));
         }
         term = decodeURI(term.split('+').join(' '));
-        this.props.dispatch(navigationActions.setSearchTerm(term));
+        this.props.dispatch(setSearchTerm(term));
     },
     componentDidUpdate: function (prevProps) {
         if (this.props.searchTerm !== prevProps.searchTerm) this.getSearchMore();
@@ -138,5 +138,5 @@ var ConnectedSearch = connect(mapStateToProps)(Search);
 render(
     <Page><ConnectedSearch /></Page>,
     document.getElementById('app'),
-    {navigation: navigationActions.navigationReducer}
+    {navigation: navigationReducer}
 );

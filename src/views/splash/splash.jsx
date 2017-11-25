@@ -5,7 +5,7 @@ import React from 'react';
 import api from '../../lib/api';
 import log from '../../lib/log';
 import render from '../../lib/render.jsx';
-import sessionActions from '../../redux/session.js';
+import {Status, refreshSession} from '../../redux/session.js';
 
 import Page from '../../components/page/www/page.jsx';
 import SplashPresentation from './presentation.jsx';
@@ -27,7 +27,7 @@ var Splash = injectIntl(React.createClass({
     },
     getDefaultProps: function () {
         return {
-            sessionStatus: sessionActions.Status.NOT_FETCHED,
+            sessionStatus: Status.NOT_FETCHED,
             user: {},
             flags: {},
             isEducator: false,
@@ -173,7 +173,7 @@ var Splash = injectIntl(React.createClass({
             useCsrf: true,
             json: {cue: cue, value: false}
         }, function (err) {
-            if (!err) this.props.dispatch(sessionActions.refreshSession());
+            if (!err) this.props.dispatch(refreshSession());
         }.bind(this));
     },
     shouldShowWelcome: function () {
