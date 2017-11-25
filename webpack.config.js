@@ -4,6 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var gitsha = require('git-bundle-sha');
 var path = require('path');
 var webpack = require('webpack');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var routes = require('./src/routes.json');
 
@@ -114,7 +115,8 @@ module.exports = {
         fs: 'empty'
     },
     plugins: [
-        new VersionPlugin({length: 5})
+        new VersionPlugin({length: 5}),
+        // new BundleAnalyzerPlugin()
     ].concat(routes
         .filter(function (route) {return !route.redirect;})
         .map(function (route) {
@@ -135,7 +137,14 @@ module.exports = {
             'process.env.API_HOST': '"' + (process.env.API_HOST || 'https://api.scratch.mit.edu') + '"',
             'process.env.SCRATCH_ENV': '"'+ (process.env.SCRATCH_ENV || 'development') + '"'
         }),
-        new webpack.optimize.CommonsChunkPlugin({name: 'common', filename: 'js/common.bundle.js'})
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'common', 
+            filename: 'js/common.bundle.js',
+            minChunks: function (module, count) {
+                // Include in common if more than 70% of chunks use it
+                return count / Object.keys(entry).length > 0.7;
+            }
+        })
     ]).concat(__PRODUCTION__ ? [
         new webpack.optimize.UglifyJsPlugin({
             compress: {
