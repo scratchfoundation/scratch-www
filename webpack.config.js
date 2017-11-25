@@ -144,6 +144,9 @@ module.exports = {
                 // Include in common if more than 70% of chunks use it
                 return count / Object.keys(entry).length > 0.7;
             }
+        }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: __PRODUCTION__
         })
     ]).concat(__PRODUCTION__ ? [
         new webpack.optimize.UglifyJsPlugin({
