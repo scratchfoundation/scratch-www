@@ -46,8 +46,8 @@ export function setDetailsFetching() {
 
 export function startGetDetails(id) {
     return function (dispatch) {
-        dispatch(module.exports.setDetailsFetching());
-        dispatch(module.exports.getDetails(id));
+        dispatch(setDetailsFetching());
+        dispatch(getDetails(id));
     };
 }
 
@@ -57,7 +57,7 @@ export function getDetails(id) {
             uri: '/conference/' + id + '/details'
         }, function (err, body) {
             if (err) {
-                dispatch(module.exports.setDetailsError(err));
+                dispatch(setDetailsError(err));
                 return;
             }
 
@@ -69,13 +69,13 @@ export function getDetails(id) {
                         prev[columns[index]] = cur;
                         return prev;
                     }, {});
-                    dispatch(module.exports.setDetails(detailsObject));
+                    dispatch(setDetails(detailsObject));
                 } else {
-                    dispatch(module.exports.setDetailsError('Not Found'));
+                    dispatch(setDetailsError('Not Found'));
                 }
                 return;
             } else {
-                dispatch(module.exports.setDetailsError('An unexpected error occurred'));
+                dispatch(setDetailsError('An unexpected error occurred'));
                 return;
             }
         });

@@ -117,7 +117,7 @@ module.exports = {
     },
     plugins: [
         new VersionPlugin({length: 5}),
-        new BundleAnalyzerPlugin()
+        // new BundleAnalyzerPlugin()
     ].concat(routes
         .filter(function (route) {return !route.redirect;})
         .map(function (route) {
@@ -167,6 +167,7 @@ module.exports = {
             minimize: __PRODUCTION__
         })
     ]).concat(__PRODUCTION__ ? [
+        new webpack.optimize.ModuleConcatenationPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false

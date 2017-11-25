@@ -1,4 +1,4 @@
-import redux from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 
 // JSX syntax transforms to React.createElement
@@ -32,9 +32,9 @@ var render = function (jsx, element, reducers) {
     }
 
     var allReducers = reducer(reducers);
-    var store = redux.createStore(
+    var store = createStore(
         allReducers,
-        redux.applyMiddleware(thunk)
+        applyMiddleware(thunk)
     );
 
     // Render view component

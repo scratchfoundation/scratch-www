@@ -28,21 +28,21 @@ export function storePermissions(permissions) {
                 return encodeURIComponent(JSON.stringify(value));
             }
         });
-        return dispatch(module.exports.setPermissions(permissions));
+        return dispatch(setPermissions(permissions));
     };
 }
 
 export function getPermissions() {
     return function (dispatch) {
         jar.get('permissions', function (err, value) {
-            if (err) return dispatch(module.exports.setPermissionsError(err));
+            if (err) return dispatch(setPermissionsError(err));
 
             try {
                 value = JSON.parse(decodeURIComponent(value)) || {};
             } catch (e) {
                 value = {};
             }
-            return dispatch(module.exports.setPermissions(value));
+            return dispatch(setPermissions(value));
         });
     };
 }

@@ -15,7 +15,7 @@ export function getInitialState() {
 export function messageCountReducer(state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
-        state = module.exports.getInitialState();
+        state = getInitialState();
     }
     switch (action.type) {
     case Types.SET_MESSAGE_COUNT:
@@ -58,12 +58,12 @@ export function getCount(username) {
             uri: '/users/' + username + '/messages/count'
         }, function (err, body) {
             if (err) {
-                dispatch(module.exports.setCount(0));
-                dispatch(module.exports.setSessionError(err));
+                dispatch(setCount(0));
+                dispatch(setSessionError(err));
                 return;
             }
             var count = parseInt(body.count, 10);
-            dispatch(module.exports.setCount(count));
+            dispatch(setCount(count));
         });
     };
 }

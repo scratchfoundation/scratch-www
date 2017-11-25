@@ -49,8 +49,8 @@ export function setScheduleError(error) {
 
 export function startGetSchedule(day) {
     return function (dispatch) {
-        dispatch(module.exports.setScheduleFetching());
-        dispatch(module.exports.getDaySchedule(day));
+        dispatch(setScheduleFetching());
+        dispatch(getDaySchedule(day));
     };
 }
 
@@ -88,7 +88,7 @@ export function getDaySchedule(day) {
             uri: '/conference/schedule/' + day
         }, function (err, body) {
             if (err) {
-                dispatch(module.exports.setScheduleError(err));
+                dispatch(setScheduleError(err));
                 return;
             }
 
@@ -117,20 +117,20 @@ export function getDaySchedule(day) {
                     return prev;
                 }, {timeSlots: [], info: []});
 
-                scheduleByTimeSlot.info.sort(module.exports.sortTimeSlots);
+                scheduleByTimeSlot.info.sort(sortTimeSlots);
                 var schedule = scheduleByTimeSlot.info.map(function (timeSlot) {
                     return {
                         info: timeSlot,
                         items: scheduleByTimeSlot.timeSlots[timeSlot.name + timeSlot.time]
                     };
                 });
-                dispatch(module.exports.setSchedule({
+                dispatch(setSchedule({
                     timeSlots: schedule,
                     day: day
                 }));
                 return;
             } else {
-                dispatch(module.exports.setScheduleError('An unexpected error occurred'));
+                dispatch(setScheduleError('An unexpected error occurred'));
                 return;
             }
         });

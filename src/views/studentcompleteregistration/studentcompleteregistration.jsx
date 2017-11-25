@@ -11,7 +11,7 @@ import log from '../../lib/log.js';
 import Deck from '../../components/deck/deck.jsx';
 import Progression from '../../components/progression/progression.jsx';
 import Spinner from '../../components/spinner/spinner.jsx';
-import Steps from '../../components/registration/steps.jsx';
+import * as Steps from '../../components/registration/steps.jsx';
 
 require('./studentcompleteregistration.scss');
 

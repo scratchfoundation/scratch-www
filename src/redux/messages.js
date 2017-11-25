@@ -20,10 +20,10 @@ export var Status = keyMirror({
 export function getInitialState() {
     return {
         status: {
-            admin: module.exports.Status.NOT_FETCHED,
-            message: module.exports.Status.NOT_FETCHED,
-            clear: module.exports.Status.NOT_FETCHED,
-            delete: module.exports.Status.NOT_FETCHED
+            admin: Status.NOT_FETCHED,
+            message: Status.NOT_FETCHED,
+            clear: Status.NOT_FETCHED,
+            delete: Status.NOT_FETCHED
         },
         messages: {
             admin: [],
@@ -35,7 +35,7 @@ export function getInitialState() {
 
 export function messagesReducer(state, action) {
     if (typeof state === 'undefined') {
-        state = module.exports.getInitialState();
+        state = getInitialState();
     }
 
     switch (action.type) {
@@ -116,7 +116,7 @@ export function setStatus(type, status) {
  */
 export function clearMessageCount() {
     return function (dispatch) {
-        dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.FETCHING));
+        dispatch(setStatus('CLEAR_STATUS', Status.FETCHING));
         api({
             host: '',
             uri: '/site-api/messages/messages-clear/',
@@ -124,16 +124,16 @@ export function clearMessageCount() {
             useCsrf: true
         }, function (err, body) {
             if (err) {
-                dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.CLEAR_ERROR));
-                dispatch(module.exports.setMessagesError(err));
+                dispatch(setStatus('CLEAR_STATUS', Status.CLEAR_ERROR));
+                dispatch(setMessagesError(err));
                 return;
             }
             if (typeof body !== 'undefined' && !body.success) {
-                dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.CLEAR_ERROR));
-                dispatch(module.exports.setMessagesError('messages not cleared'));
+                dispatch(setStatus('CLEAR_STATUS', Status.CLEAR_ERROR));
+                dispatch(setMessagesError('messages not cleared'));
                 return;
             }
-            dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.FETCHED));
+            dispatch(setStatus('CLEAR_STATUS', Status.FETCHED));
         });
     };
 }
@@ -148,7 +148,7 @@ export function clearMessageCount() {
  */
 export function clearAdminMessage(messageType, messageId, messageCount, adminMessages) {
     return function (dispatch) {
-        dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.FETCHING));
+        dispatch(setStatus('CLEAR_STATUS', Status.FETCHING));
         api({
             host: '',
             uri: '/site-api/messages/messages-delete/',
@@ -160,19 +160,19 @@ export function clearAdminMessage(messageType, messageId, messageCount, adminMes
             }
         }, function (err, body) {
             if (err) {
-                dispatch(module.exports.setStatus('DELETE_STATUS', module.exports.Status.DELETE_ERROR));
-                dispatch(module.exports.setMessagesError(err));
+                dispatch(setStatus('DELETE_STATUS', Status.DELETE_ERROR));
+                dispatch(setMessagesError(err));
                 return;
             }
             if (!body.success) {
-                dispatch(module.exports.setStatus('DELETE_STATUS', module.exports.Status.DELETE_ERROR));
-                dispatch(module.exports.setMessagesError('messages not cleared'));
+                dispatch(setStatus('DELETE_STATUS', Status.DELETE_ERROR));
+                dispatch(setMessagesError('messages not cleared'));
                 return;
             }
 
             if (messageType === 'invite') {
                 // invite cleared, so set the invite prop to an empty object
-                dispatch(module.exports.setScratcherInvite({}));
+                dispatch(setScratcherInvite({}));
             } else {
                 // find the admin message and remove it
                 var toRemove = -1;
@@ -183,10 +183,10 @@ export function clearAdminMessage(messageType, messageId, messageCount, adminMes
                     }
                 }
                 adminMessages.splice(toRemove, 1);
-                dispatch(module.exports.setAdminMessages(adminMessages));
+                dispatch(setAdminMessages(adminMessages));
             }
             dispatch(setMessageCount(messageCount - 1));
-            dispatch(module.exports.setStatus('DELETE_STATUS', module.exports.Status.FETCHED));
+            dispatch(setStatus('DELETE_STATUS', Status.FETCHED));
         });
     };
 }
@@ -215,26 +215,26 @@ export function getMessages(username, token, opts) {
     }
 
     return function (dispatch) {
-        dispatch(module.exports.setStatus('MESSAGE_STATUS', module.exports.Status.FETCHING));
+        dispatch(setStatus('MESSAGE_STATUS', Status.FETCHING));
         api({
             uri: '/users/' + username + '/messages?limit=40&offset=' + opts.offset + filterArg,
             authentication: token
         }, function (err, body) {
             if (err) {
-                dispatch(module.exports.setStatus('MESSAGE_STATUS', module.exports.Status.MESSAGES_ERROR));
-                dispatch(module.exports.setMessagesError(err));
+                dispatch(setStatus('MESSAGE_STATUS', Status.MESSAGES_ERROR));
+                dispatch(setMessagesError(err));
                 return;
             }
             if (typeof body === 'undefined') {
-                dispatch(module.exports.setStatus('MESSAGE_STATUS', module.exports.Status.MESSAGES_ERROR));
-                dispatch(module.exports.setMessagesError('No session content'));
+                dispatch(setStatus('MESSAGE_STATUS', Status.MESSAGES_ERROR));
+                dispatch(setMessagesError('No session content'));
                 return;
             }
-            dispatch(module.exports.setStatus('MESSAGE_STATUS', module.exports.Status.FETCHED));
-            dispatch(module.exports.setMessages(opts.messages.concat(body)));
-            dispatch(module.exports.setMessagesOffset(opts.offset + 40));
+            dispatch(setStatus('MESSAGE_STATUS', Status.FETCHED));
+            dispatch(setMessages(opts.messages.concat(body)));
+            dispatch(setMessagesOffset(opts.offset + 40));
             if (opts.clearCount) {
-                dispatch(module.exports.clearMessageCount(token)); // clear count once messages loaded
+                dispatch(clearMessageCount(token)); // clear count once messages loaded
             }
         });
     };
@@ -248,25 +248,25 @@ export function getMessages(username, token, opts) {
  */
 export function getAdminMessages(username, token) {
     return function (dispatch) {
-        dispatch(module.exports.setStatus('ADMIN_STATUS', module.exports.Status.FETCHING));
+        dispatch(setStatus('ADMIN_STATUS', Status.FETCHING));
         api({
             uri: '/users/' + username + '/messages/admin',
             authentication: token
         }, function (err, body) {
             if (err) {
-                dispatch(module.exports.setStatus('ADMIN_STATUS', module.exports.Status.ADMIN_ERROR));
-                dispatch(module.exports.setMessagesError(err));
-                dispatch(module.exports.setAdminMessages([]));
+                dispatch(setStatus('ADMIN_STATUS', Status.ADMIN_ERROR));
+                dispatch(setMessagesError(err));
+                dispatch(setAdminMessages([]));
                 return;
             }
             if (typeof body === 'undefined') {
-                dispatch(module.exports.setStatus('ADMIN_STATUS', module.exports.Status.ADMIN_ERROR));
-                dispatch(module.exports.setMessagesError('No session content'));
-                dispatch(module.exports.setAdminMessages([]));
+                dispatch(setStatus('ADMIN_STATUS', Status.ADMIN_ERROR));
+                dispatch(setMessagesError('No session content'));
+                dispatch(setAdminMessages([]));
                 return;
             }
-            dispatch(module.exports.setAdminMessages(body));
-            dispatch(module.exports.setStatus('ADMIN_STATUS', module.exports.Status.FETCHED));
+            dispatch(setAdminMessages(body));
+            dispatch(setStatus('ADMIN_STATUS', Status.FETCHED));
         });
     };
 }
@@ -284,13 +284,13 @@ export function getScratcherInvite(username, token) {
             authentication: token
         }, function (err, body) {
             if (err) {
-                dispatch(module.exports.setStatus('ADMIN_STATUS', module.exports.Status.INVITE_ERROR));
-                dispatch(module.exports.setMessagesError(err));
-                dispatch(module.exports.setScratcherInvite({}));
+                dispatch(setStatus('ADMIN_STATUS', Status.INVITE_ERROR));
+                dispatch(setMessagesError(err));
+                dispatch(setScratcherInvite({}));
                 return;
             }
-            if (typeof body === 'undefined') return dispatch(module.exports.setMessagesError('No session content'));
-            dispatch(module.exports.setScratcherInvite(body));
+            if (typeof body === 'undefined') return dispatch(setMessagesError('No session content'));
+            dispatch(setScratcherInvite(body));
         });
     };
 }

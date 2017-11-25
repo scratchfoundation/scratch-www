@@ -24,13 +24,13 @@ export var Status = keyMirror({
 });
 
 export function getInitialState() {
-    return {status: module.exports.Status.NOT_FETCHED, session:{}};
+    return {status: Status.NOT_FETCHED, session:{}};
 }
 
 export function sessionReducer(state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
-        state = module.exports.getInitialState();
+        state = getInitialState();
     }
     switch (action.type) {
     case Types.SET_SESSION:
@@ -68,13 +68,13 @@ export function setStatus(status) {
 
 export function refreshSession() {
     return function (dispatch) {
-        dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
+        dispatch(setStatus(Status.FETCHING));
         api({
             host: '',
             uri: '/session/'
         }, function (err, body) {
-            if (err) return dispatch(module.exports.setSessionError(err));
-            if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
+            if (err) return dispatch(setSessionError(err));
+            if (typeof body === 'undefined') return dispatch(setSessionError('No session content'));
             if (
                     body.user &&
                     body.user.banned &&
@@ -92,8 +92,8 @@ export function refreshSession() {
                     window.location.pathname !== '/classes/student_password_reset/') {
                 return window.location = '/classes/student_password_reset/';
             } else {
-                dispatch(module.exports.setSession(body));
-                dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
+                dispatch(setSession(body));
+                dispatch(setStatus(Status.FETCHED));
 
                 // get the permissions from the updated session
                 dispatch(storePermissions(body.permissions));

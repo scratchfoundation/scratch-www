@@ -9,7 +9,7 @@ import {refreshSession} from '../../redux/session.js';
 
 import Deck from '../../components/deck/deck.jsx';
 import Progression from '../../components/progression/progression.jsx';
-import Steps from '../../components/registration/steps.jsx';
+import * as Steps from '../../components/registration/steps.jsx';
 
 require('./teacherregistration.scss');
 
