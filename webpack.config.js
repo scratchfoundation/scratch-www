@@ -61,7 +61,7 @@ routes.forEach(function (route) {
 // Config
 module.exports = {
     entry: entry,
-    devtool: __PRODUCTION__ ? 'source-map' : 'eval',
+    devtool: __PRODUCTION__ ? 'none' : 'eval',
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'js/[name].bundle.js'
