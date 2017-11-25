@@ -1,9 +1,9 @@
-var classNames = require('classnames');
-var defaults = require('lodash.defaults');
-var React = require('react');
-var Slider = require('react-slick');
+import classNames from 'classnames';
+import defaults from 'lodash.defaults';
+import React from 'react';
+import Slider from 'react-slick';
 
-var Thumbnail = require('../thumbnail/thumbnail.jsx');
+import Thumbnail from '../thumbnail/thumbnail.jsx';
 
 require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
@@ -72,4 +72,4 @@ var NestedCarousel = React.createClass({
     }
 });
 
-module.exports = NestedCarousel;
+export default NestedCarousel;

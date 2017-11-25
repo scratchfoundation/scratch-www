@@ -1,13 +1,13 @@
-var React = require('react');
-var render = require('../../lib/render.jsx');
+import React from 'react';
+import render from '../../lib/render.jsx';
 
-var Activity = require('../../components/activity/activity.jsx');
-var Page = require('../../components/page/www/page.jsx');
-var Box = require('../../components/box/box.jsx');
-var Button = require('../../components/forms/button.jsx');
-var Carousel = require('../../components/carousel/carousel.jsx');
-var Input = require('../../components/forms/input.jsx');
-var Spinner = require('../../components/spinner/spinner.jsx');
+import Activity from '../../components/activity/activity.jsx';
+import Page from '../../components/page/www/page.jsx';
+import Box from '../../components/box/box.jsx';
+import Button from '../../components/forms/button.jsx';
+import Carousel from '../../components/carousel/carousel.jsx';
+import Input from '../../components/forms/input.jsx';
+import Spinner from '../../components/spinner/spinner.jsx';
 
 require('./components.scss');
 

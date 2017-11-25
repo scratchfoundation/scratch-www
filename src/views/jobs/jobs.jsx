@@ -1,8 +1,8 @@
-var React = require('react');
-var render = require('../../lib/render.jsx');
-var FormattedMessage = require('react-intl').FormattedMessage;
+import React from 'react';
+import render from '../../lib/render.jsx';
+import {FormattedMessage} from 'react-intl';
 
-var Page = require('../../components/page/www/page.jsx');
+import Page from '../../components/page/www/page.jsx';
 
 require('./jobs.scss');
 

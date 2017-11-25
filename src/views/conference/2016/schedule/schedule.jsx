@@ -1,14 +1,14 @@
-var classNames = require('classnames');
-var connect = require('react-redux').connect;
-var React = require('react');
-var render = require('../../../../lib/render.jsx');
+import classNames from 'classnames';
+import {connect} from 'react-redux';
+import React from 'react';
+import render from '../../../../lib/render.jsx';
 
-var scheduleActions = require('../../../../redux/conference-schedule.js');
+import {startGetSchedule, scheduleReducer} from '../../../../redux/conference-schedule.js';
 
-var FlexRow = require('../../../../components/flex-row/flex-row.jsx');
-var Page = require('../../../../components/page/conference/2016/page.jsx');
-var SubNavigation = require('../../../../components/subnavigation/subnavigation.jsx');
-var TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
+import FlexRow from '../../../../components/flex-row/flex-row.jsx';
+import Page from '../../../../components/page/conference/2016/page.jsx';
+import SubNavigation from '../../../../components/subnavigation/subnavigation.jsx';
+import TitleBanner from '../../../../components/title-banner/title-banner.jsx';
 
 require('./schedule.scss');
 
@@ -23,7 +23,7 @@ var ConferenceSchedule = React.createClass({
     },
     handleScheduleChange: function (day) {
         window.history.replaceState(history.state, '', '#' + day);
-        this.props.dispatch(scheduleActions.startGetSchedule(day));
+        this.props.dispatch(startGetSchedule(day));
     },
     renderChunkItems: function (timeSlot) {
         return timeSlot.map(function (item) {
@@ -131,5 +131,5 @@ var ConnectedSchedule = connect(mapStateToProps)(ConferenceSchedule);
 render(
     <Page><ConnectedSchedule /></Page>,
     document.getElementById('app'),
-    {conferenceSchedule: scheduleActions.scheduleReducer}
+    {conferenceSchedule: scheduleReducer}
 );

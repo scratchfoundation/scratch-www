@@ -1,8 +1,8 @@
-var React = require('react');
-var classNames = require('classnames');
+import React from 'react';
+import classNames from 'classnames';
 
-var Navigation = require('../../navigation/www/navigation.jsx');
-var Footer = require('../../footer/www/footer.jsx');
+import Navigation from '../../navigation/www/navigation.jsx';
+import Footer from '../../footer/www/footer.jsx';
 
 var Page = React.createClass({
     type: 'Page',
@@ -26,4 +26,4 @@ var Page = React.createClass({
     }
 });
 
-module.exports = Page;
+export default Page;

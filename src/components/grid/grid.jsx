@@ -1,8 +1,8 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
-var Thumbnail = require('../thumbnail/thumbnail.jsx');
-var FlexRow = require('../flex-row/flex-row.jsx');
+import Thumbnail from '../thumbnail/thumbnail.jsx';
+import FlexRow from '../flex-row/flex-row.jsx';
 
 require('./grid.scss');
 
@@ -68,4 +68,4 @@ var Grid = React.createClass({
     }
 });
 
-module.exports = Grid;
+export default Grid;

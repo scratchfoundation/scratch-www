@@ -1,17 +1,17 @@
-var connect = require('react-redux').connect;
-var defaults = require('lodash.defaultsdeep');
-var React = require('react');
-var render = require('../../lib/render.jsx');
+import {connect} from 'react-redux';
+import defaults from 'lodash.defaultsdeep';
+import React from 'react';
+import render from '../../lib/render.jsx';
 
-var sessionStatus = require('../../redux/session').Status;
-var api = require('../../lib/api');
-var intl = require('../../lib/intl.jsx');
-var log = require('../../lib/log.js');
+import {Status as sessionStatus} from '../../redux/session';
+import api from '../../lib/api';
+import intl from '../../lib/intl.jsx';
+import log from '../../lib/log.js';
 
-var Deck = require('../../components/deck/deck.jsx');
-var Progression = require('../../components/progression/progression.jsx');
-var Spinner = require('../../components/spinner/spinner.jsx');
-var Steps = require('../../components/registration/steps.jsx');
+import Deck from '../../components/deck/deck.jsx';
+import Progression from '../../components/progression/progression.jsx';
+import Spinner from '../../components/spinner/spinner.jsx';
+import * as Steps from '../../components/registration/steps.jsx';
 
 require('./studentcompleteregistration.scss');
 

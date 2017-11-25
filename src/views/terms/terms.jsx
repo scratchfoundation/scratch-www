@@ -1,8 +1,8 @@
-var React = require('react');
-var render = require('../../lib/render.jsx');
+import React from 'react';
+import render from '../../lib/render.jsx';
 
-var Page = require('../../components/page/www/page.jsx');
-var InformationPage = require('../../components/informationpage/informationpage.jsx');
+import Page from '../../components/page/www/page.jsx';
+import InformationPage from '../../components/informationpage/informationpage.jsx';
 
 var Terms = React.createClass({
     type: 'Terms',

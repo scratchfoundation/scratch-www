@@ -1,12 +1,12 @@
-var React = require('react');
-var FormattedMessage = require('react-intl').FormattedMessage;
+import React from 'react';
+import {FormattedMessage} from 'react-intl';
 
-var log = require('../../lib/log.js');
+import log from '../../lib/log.js';
 
-var Form = require('../forms/form.jsx');
-var Input = require('../forms/input.jsx');
-var Button = require('../forms/button.jsx');
-var Spinner = require('../spinner/spinner.jsx');
+import Form from '../forms/form.jsx';
+import Input from '../forms/input.jsx';
+import Button from '../forms/button.jsx';
+import Spinner from '../spinner/spinner.jsx';
 
 require('./login.scss');
 
@@ -63,4 +63,4 @@ var Login = React.createClass({
     }
 });
 
-module.exports = Login;
+export default Login;

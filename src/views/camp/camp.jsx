@@ -1,12 +1,12 @@
-var React = require('react');
-var injectIntl = require('react-intl').injectIntl;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
-var render = require('../../lib/render.jsx');
-var TitleBanner = require('../../components/title-banner/title-banner.jsx');
-var FlexRow = require('../../components/flex-row/flex-row.jsx');
+import React from 'react';
+import {injectIntl} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
+import {FormattedHTMLMessage} from 'react-intl';
+import render from '../../lib/render.jsx';
+import TitleBanner from '../../components/title-banner/title-banner.jsx';
+import FlexRow from '../../components/flex-row/flex-row.jsx';
 
-var Page = require('../../components/page/www/page.jsx');
+import Page from '../../components/page/www/page.jsx';
 
 require('./camp.scss');
 

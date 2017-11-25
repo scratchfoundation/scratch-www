@@ -1,11 +1,11 @@
-var React = require('react');
-var ReactIntl = require('react-intl');
+import React from 'react';
+import ReactIntl from 'react-intl';
 var defineMessages = ReactIntl.defineMessages;
 var FormattedMessage = ReactIntl.FormattedMessage;
 var FormattedRelative = ReactIntl.FormattedRelative;
 var injectIntl = ReactIntl.injectIntl;
 
-var Box = require('../box/box.jsx');
+import Box from '../box/box.jsx';
 
 require('./activity.scss');
 
@@ -83,4 +83,4 @@ var Activity = React.createClass({
     }
 });
 
-module.exports = injectIntl(Activity);
+export default injectIntl(Activity);

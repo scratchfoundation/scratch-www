@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./slide.scss');
 
@@ -14,4 +14,4 @@ var Slide = React.createClass({
     }
 });
 
-module.exports = Slide;
+export default Slide;

@@ -2,7 +2,7 @@
  * All units are in px, as per _frameless.scss and the MediaQuery default arguments.
  */
 
-module.exports = {
+export default {
     desktop: 942,
     tablet: 640,
     mobile: 480

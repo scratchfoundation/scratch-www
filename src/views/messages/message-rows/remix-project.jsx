@@ -1,8 +1,8 @@
-var classNames = require('classnames');
-var FormattedMessage = require('react-intl').FormattedMessage;
-var React = require('react');
+import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
+import React from 'react';
 
-var SocialMessage = require('../../../components/social-message/social-message.jsx');
+import SocialMessage from '../../../components/social-message/social-message.jsx';
 
 var RemixProjectMessage = React.createClass({
     type: 'RemixProjectMessage',
@@ -48,4 +48,4 @@ var RemixProjectMessage = React.createClass({
     }
 });
 
-module.exports = RemixProjectMessage;
+export default RemixProjectMessage;

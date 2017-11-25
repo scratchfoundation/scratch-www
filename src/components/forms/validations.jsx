@@ -1,12 +1,10 @@
-var defaults = require('lodash.defaultsdeep');
-var intl = require('../../lib/intl.jsx');
-var libphonenumber = require('google-libphonenumber');
+import defaults from 'lodash.defaultsdeep';
+import intl from '../../lib/intl.jsx';
+import libphonenumber from 'google-libphonenumber';
 var phoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
-var React = require('react');
+import React from 'react';
 
-module.exports = {};
-
-module.exports.validations = {
+export var validations = {
     notEquals: function (values, value, neq) {
         return value !== neq;
     },
@@ -24,9 +22,10 @@ module.exports.validations = {
         return phoneNumberUtil.isValidNumber(parsed);
     }
 };
-module.exports.validations.notEqualsUsername = module.exports.validations.notEquals;
 
-module.exports.validationHOCFactory = function (defaultValidationErrors) {
+validations.notEqualsUsername = validations.notEquals;
+
+export function validationHOCFactory (defaultValidationErrors) {
     return function (Component) {
         var ValidatedComponent = React.createClass({
             render: function () {
@@ -42,8 +41,8 @@ module.exports.validationHOCFactory = function (defaultValidationErrors) {
         });
         return ValidatedComponent;
     };
-};
+}
 
-module.exports.defaultValidationHOC = module.exports.validationHOCFactory({
+export var defaultValidationHOC = validationHOCFactory({
     isDefaultRequiredValue: <intl.FormattedMessage id="form.validationRequired" />
 });

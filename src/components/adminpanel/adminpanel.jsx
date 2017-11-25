@@ -1,7 +1,7 @@
-var React = require('react');
-var connect = require('react-redux').connect;
+import React from 'react';
+import {connect} from 'react-redux';
 
-var Button = require('../forms/button.jsx');
+import Button from '../forms/button.jsx';
 
 require('./adminpanel.scss');
 
@@ -83,4 +83,4 @@ var mapStateToProps = function (state) {
 
 var ConnectedAdminPanel = connect(mapStateToProps)(AdminPanel);
 
-module.exports = ConnectedAdminPanel;
+export default ConnectedAdminPanel;

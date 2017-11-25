@@ -1,5 +1,5 @@
-var range = require('lodash.range');
-var React = require('react');
+import range from 'lodash.range';
+import React from 'react';
 
 require('./spinner.scss');
 
@@ -17,4 +17,4 @@ var Spinner = React.createClass({
     }
 });
 
-module.exports = Spinner;
+export default Spinner;

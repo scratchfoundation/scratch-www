@@ -1,10 +1,10 @@
-var classNames = require('classnames');
-var connect = require('react-redux').connect;
-var React = require('react');
-var render = require('../../lib/render.jsx');
+import classNames from 'classnames';
+import {connect} from 'react-redux';
+import React from 'react';
+import render from '../../lib/render.jsx';
 
-var Deck = require ('../../components/deck/deck.jsx');
-var TeacherApprovalStep = require('../../components/registration/steps.jsx').TeacherApprovalStep;
+import Deck from '../../components/deck/deck.jsx';
+import {TeacherApprovalStep} from '../../components/registration/steps.jsx';
 
 require('./teacherwaitingroom.scss');
 

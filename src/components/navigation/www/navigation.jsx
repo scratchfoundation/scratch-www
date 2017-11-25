@@ -1,24 +1,24 @@
-var classNames = require('classnames');
-var connect = require('react-redux').connect;
-var React = require('react');
-var ReactIntl = require('react-intl');
+import classNames from 'classnames';
+import {connect} from 'react-redux';
+import React from 'react';
+import ReactIntl from 'react-intl';
 var FormattedMessage = ReactIntl.FormattedMessage;
 var injectIntl = ReactIntl.injectIntl;
 
-var messageCountActions = require('../../../redux/message-count.js');
-var sessionActions = require('../../../redux/session.js');
+import {getCount as getMessageCount, setCount as setMessageCount} from '../../../redux/message-count.js';
+import {refreshSession, Status} from '../../../redux/session.js';
 
-var api = require('../../../lib/api');
-var Avatar = require('../../avatar/avatar.jsx');
-var Button = require('../../forms/button.jsx');
-var Dropdown = require('../../dropdown/dropdown.jsx');
-var Form = require('../../forms/form.jsx');
-var Input = require('../../forms/input.jsx');
-var log = require('../../../lib/log.js');
-var Login = require('../../login/login.jsx');
-var Modal = require('../../modal/base/modal.jsx');
-var NavigationBox = require('../base/navigation.jsx');
-var Registration = require('../../registration/registration.jsx');
+import api from '../../../lib/api';
+import Avatar from '../../avatar/avatar.jsx';
+import Button from '../../forms/button.jsx';
+import Dropdown from '../../dropdown/dropdown.jsx';
+import Form from '../../forms/form.jsx';
+import Input from '../../forms/input.jsx';
+import log from '../../../lib/log.js';
+import Login from '../../login/login.jsx';
+import Modal from '../../modal/base/modal.jsx';
+import NavigationBox from '../base/navigation.jsx';
+import Registration from '../../registration/registration.jsx';
 
 require('./navigation.scss');
 
@@ -44,7 +44,7 @@ var Navigation = React.createClass({
     componentDidMount: function () {
         if (this.props.session.session.user) {
             var intervalId = setInterval(function () {
-                this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username));
+                this.props.dispatch(getMessageCount(this.props.session.session.user.username));
             }.bind(this), 120000); // check for new messages every 2 mins.
             this.setState({'messageCountIntervalId': intervalId});
         }
@@ -57,13 +57,13 @@ var Navigation = React.createClass({
             });
             if (this.props.session.session.user) {
                 var intervalId = setInterval(function () {
-                    this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username));
+                    this.props.dispatch(getMessageCount(this.props.session.session.user.username));
                 }.bind(this), 120000); // check for new messages every 2 mins.
                 this.setState({'messageCountIntervalId': intervalId});
             } else {
                 // clear message count check, and set to default id.
                 clearInterval(this.state.messageCountIntervalId);
-                this.props.dispatch(messageCountActions.setCount(0));
+                this.props.dispatch(setMessageCount(0));
                 this.setState({
                     'messageCountIntervalId': -1
                 });
@@ -74,7 +74,7 @@ var Navigation = React.createClass({
         // clear message interval if it exists
         if (this.state.messageCountIntervalId != -1) {
             clearInterval(this.state.messageCountIntervalId);
-            this.props.dispatch(messageCountActions.setCount(0));
+            this.props.dispatch(setMessageCount(0));
             this.setState({
                 'messageCountIntervalId': -1
             });
@@ -121,7 +121,7 @@ var Navigation = React.createClass({
                             this.showCanceledDeletion();
                         }
                     }.bind(this));
-                    this.props.dispatch(sessionActions.refreshSession());
+                    this.props.dispatch(refreshSession());
                 }
             }
             // JS error already logged by api mixin
@@ -158,7 +158,7 @@ var Navigation = React.createClass({
         this.setState({'registrationOpen': false});
     },
     completeRegistration: function () {
-        this.props.dispatch(sessionActions.refreshSession());
+        this.props.dispatch(refreshSession());
         this.closeRegistration();
     },
     onSearchSubmit: function (formData) {
@@ -214,7 +214,7 @@ var Navigation = React.createClass({
                                    name="q" />
                         </Form>
                     </li>
-                    {this.props.session.status === sessionActions.Status.FETCHED ? (
+                    {this.props.session.status === Status.FETCHED ? (
                         this.props.session.session.user ? [
                             <li className="link right messages" key="messages">
                                 <a
@@ -341,4 +341,4 @@ var mapStateToProps = function (state) {
 
 var ConnectedNavigation = connect(mapStateToProps)(Navigation);
 
-module.exports = injectIntl(ConnectedNavigation);
+export default injectIntl(ConnectedNavigation);

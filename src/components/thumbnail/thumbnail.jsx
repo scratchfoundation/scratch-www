@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./thumbnail.scss');
 
@@ -117,4 +117,4 @@ var Thumbnail = React.createClass({
     }
 });
 
-module.exports = Thumbnail;
+export default Thumbnail;

@@ -1,8 +1,8 @@
-var React = require('react'); // eslint-disable-line
-var render = require('../../../lib/render.jsx');
-var Microworld = require('../../../components/microworld/microworld.jsx');
-var Page = require('../../../components/page/www/page.jsx');
+import React from 'react'; // eslint-disable-line
+import render from '../../../lib/render.jsx';
+import Microworld from '../../../components/microworld/microworld.jsx';
+import Page from '../../../components/page/www/page.jsx';
 
-var microworldData = require('./art.json');
+import microworldData from './art.json';
 
 render(<Page><Microworld microworldData={microworldData} /></Page>, document.getElementById('app'));

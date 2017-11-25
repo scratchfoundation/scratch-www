@@ -1,12 +1,12 @@
-var classNames = require('classnames');
-var connect = require('react-redux').connect;
-var React = require('react');
+import classNames from 'classnames';
+import {connect} from 'react-redux';
+import React from 'react';
 
-var sessionActions = require('../../redux/session.js');
+import {Status} from '../../redux/session.js';
 
-var TitleBanner = require('../title-banner/title-banner.jsx');
-var Button = require('../forms/button.jsx');
-var FlexRow = require('../flex-row/flex-row.jsx');
+import TitleBanner from '../title-banner/title-banner.jsx';
+import Button from '../forms/button.jsx';
+import FlexRow from '../flex-row/flex-row.jsx';
 
 require('./teacher-banner.scss');
 
@@ -33,7 +33,7 @@ var TeacherBanner = React.createClass({
             <TitleBanner className={classes}>
                 <FlexRow className="inner">
                     <div className="welcome">
-                        {this.props.session.status === sessionActions.Status.FETCHED ? (
+                        {this.props.session.status === Status.FETCHED ? (
                             this.props.session.session.user ? [
                                 <h3 key="greeting">
                                     {this.props.messages['teacherbanner.greeting']},{' '}
@@ -49,7 +49,7 @@ var TeacherBanner = React.createClass({
                         ): []}
                     </div>
                     <FlexRow className="quick-links">
-                        {this.props.session.status === sessionActions.Status.FETCHED ? (
+                        {this.props.session.status === Status.FETCHED ? (
                             this.props.session.session.user ? [
                                 <a href="/educators/classes" key="classes-button">
                                     <Button>
@@ -83,4 +83,4 @@ var mapStateToProps = function (state) {
 
 var ConnectedTeacherBanner = connect(mapStateToProps)(TeacherBanner);
 
-module.exports = ConnectedTeacherBanner;
+export default ConnectedTeacherBanner;

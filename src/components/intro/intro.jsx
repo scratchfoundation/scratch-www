@@ -1,10 +1,10 @@
-var connect = require('react-redux').connect;
-var React = require('react');
+import {connect} from 'react-redux';
+import React from 'react';
 
-var sessionActions = require('../../redux/session.js');
+import {refreshSession} from '../../redux/session.js';
 
-var IframeModal = require('../modal/iframe/modal.jsx');
-var Registration = require('../registration/registration.jsx');
+import IframeModal from '../modal/iframe/modal.jsx';
+import Registration from '../registration/registration.jsx';
 
 require('./intro.scss');
 
@@ -46,7 +46,7 @@ var Intro = React.createClass({
         this.setState({'registrationOpen': false});
     },
     completeRegistration: function () {
-        this.props.dispatch(sessionActions.refreshSession());
+        this.props.dispatch(refreshSession());
         this.closeRegistration();
     },
     render: function () {
@@ -142,4 +142,4 @@ var mapStateToProps = function (state) {
 
 var ConnectedIntro = connect(mapStateToProps)(Intro);
 
-module.exports = ConnectedIntro;
+export default ConnectedIntro;

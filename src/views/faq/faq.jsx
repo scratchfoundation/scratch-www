@@ -1,11 +1,11 @@
-var React = require('react');
-var injectIntl = require('react-intl').injectIntl;
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var render = require('../../lib/render.jsx');
+import React from 'react';
+import {injectIntl} from 'react-intl';
+import {FormattedHTMLMessage} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
+import render from '../../lib/render.jsx';
 
-var Page = require('../../components/page/www/page.jsx');
-var InformationPage = require('../../components/informationpage/informationpage.jsx');
+import Page from '../../components/page/www/page.jsx';
+import InformationPage from '../../components/informationpage/informationpage.jsx';
 
 var Faq = injectIntl(React.createClass({
     type: 'Faq',

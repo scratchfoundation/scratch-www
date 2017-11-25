@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./flex-row.scss');
 
@@ -23,4 +23,4 @@ var FlexRow = React.createClass({
     }
 });
 
-module.exports = FlexRow;
+export default FlexRow;

@@ -1,9 +1,9 @@
-var React = require('react');
-var FormattedMessage = require('react-intl').FormattedMessage;
+import React from 'react';
+import {FormattedMessage} from 'react-intl';
 
-var render = require('../../lib/render.jsx');
-var Page = require('../../components/page/www/page.jsx');
-var Box = require('../../components/box/box.jsx');
+import render from '../../lib/render.jsx';
+import Page from '../../components/page/www/page.jsx';
+import Box from '../../components/box/box.jsx';
 
 require('./guidelines.scss');
 

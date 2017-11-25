@@ -1,10 +1,10 @@
-var React = require('react');
-var render = require('../../../../lib/render.jsx');
+import React from 'react';
+import render from '../../../../lib/render.jsx';
 
-var Button = require('../../../../components/forms/button.jsx');
-var FlexRow = require('../../../../components/flex-row/flex-row.jsx');
-var Page = require('../../../../components/page/conference/2016/page.jsx');
-var TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
+import Button from '../../../../components/forms/button.jsx';
+import FlexRow from '../../../../components/flex-row/flex-row.jsx';
+import Page from '../../../../components/page/conference/2016/page.jsx';
+import TitleBanner from '../../../../components/title-banner/title-banner.jsx';
 
 require('./plan.scss');
 

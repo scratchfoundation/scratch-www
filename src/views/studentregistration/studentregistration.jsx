@@ -1,13 +1,16 @@
-var defaults = require('lodash.defaultsdeep');
-var React = require('react');
-var render = require('../../lib/render.jsx');
+import defaults from 'lodash.defaultsdeep';
+import React from 'react';
+import render from '../../lib/render.jsx';
 
-var api = require('../../lib/api');
-var intl = require('../../lib/intl.jsx');
+import api from '../../lib/api';
+import intl from '../../lib/intl.jsx';
 
-var Deck = require('../../components/deck/deck.jsx');
-var Progression = require('../../components/progression/progression.jsx');
-var Steps = require('../../components/registration/steps.jsx');
+import Deck from '../../components/deck/deck.jsx';
+import Progression from '../../components/progression/progression.jsx';
+import {
+    RegistrationError, ClassInviteNewStudentStep,
+    UsernameStep, DemographicsStep, ClassWelcomeStep
+} from '../../components/registration/steps.jsx';
 
 require('./studentregistration.scss');
 
@@ -105,24 +108,24 @@ var StudentRegistration = intl.injectIntl(React.createClass({
         return (
             <Deck className="student-registration">
                 {this.state.registrationError ?
-                    <Steps.RegistrationError>
+                    <RegistrationError>
                         {this.state.registrationError}
-                    </Steps.RegistrationError>
+                    </RegistrationError>
                 :
                     <Progression {... this.state}>
-                        <Steps.ClassInviteNewStudentStep classroom={this.state.classroom}
+                        <ClassInviteNewStudentStep classroom={this.state.classroom}
                                                          onNextStep={this.advanceStep}
                                                          waiting={this.state.waiting || !this.state.classroom} />
-                        <Steps.UsernameStep onNextStep={this.advanceStep}
+                        <UsernameStep onNextStep={this.advanceStep}
                                             title={usernameTitle}
                                             description={usernameDescription}
                                             tooltip={usernameTooltip}
                                             usernameHelp={usernameHelp}
                                             waiting={this.state.waiting} />
-                        <Steps.DemographicsStep description={demographicsDescription}
+                        <DemographicsStep description={demographicsDescription}
                                                 onNextStep={this.register}
                                                 waiting={this.state.waiting} />
-                        <Steps.ClassWelcomeStep classroom={this.state.classroom}
+                        <ClassWelcomeStep classroom={this.state.classroom}
                                                 onNextStep={this.goToClass}
                                                 waiting={this.state.waiting || !this.state.classroom} />
                     </Progression>

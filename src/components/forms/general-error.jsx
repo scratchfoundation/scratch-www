@@ -1,5 +1,5 @@
-var Formsy = require('formsy-react');
-var React = require('react');
+import Formsy from 'formsy-react';
+import React from 'react';
 
 require('./general-error.scss');
 
@@ -10,7 +10,7 @@ require('./general-error.scss');
  * give it a name, and apply your validation error to
  * the name of the GeneralError component.
  */
-module.exports = Formsy.HOC(React.createClass({
+export default Formsy.HOC(React.createClass({
     render: function () {
         if (!this.props.showError()) return null;
         return (

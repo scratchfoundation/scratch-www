@@ -2,7 +2,7 @@
 * Function that shuffles an array using a Fisher-Yates shuffle.
 */
 
-module.exports.shuffle = function (arr) {
+export function shuffle (arr) {
     var i, j = 0;
     var temp = null;
     if (arr) {
@@ -18,4 +18,4 @@ module.exports.shuffle = function (arr) {
         tempArray[j] = temp;
     }
     return tempArray;
-};
+}

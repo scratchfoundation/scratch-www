@@ -1,14 +1,14 @@
-var connect = require('react-redux').connect;
-var injectIntl = require('react-intl').injectIntl;
-var React = require('react');
+import {connect} from 'react-redux';
+import {injectIntl} from 'react-intl';
+import React from 'react';
 
-var api = require('../../lib/api');
-var log = require('../../lib/log');
-var render = require('../../lib/render.jsx');
-var sessionActions = require('../../redux/session.js');
+import api from '../../lib/api';
+import log from '../../lib/log';
+import render from '../../lib/render.jsx';
+import {Status, refreshSession} from '../../redux/session.js';
 
-var Page = require('../../components/page/www/page.jsx');
-var SplashPresentation = require('./presentation.jsx');
+import Page from '../../components/page/www/page.jsx';
+import SplashPresentation from './presentation.jsx';
 
 var Splash = injectIntl(React.createClass({
     type: 'Splash',
@@ -27,7 +27,7 @@ var Splash = injectIntl(React.createClass({
     },
     getDefaultProps: function () {
         return {
-            sessionStatus: sessionActions.Status.NOT_FETCHED,
+            sessionStatus: Status.NOT_FETCHED,
             user: {},
             flags: {},
             isEducator: false,
@@ -173,7 +173,7 @@ var Splash = injectIntl(React.createClass({
             useCsrf: true,
             json: {cue: cue, value: false}
         }, function (err) {
-            if (!err) this.props.dispatch(sessionActions.refreshSession());
+            if (!err) this.props.dispatch(refreshSession());
         }.bind(this));
     },
     shouldShowWelcome: function () {

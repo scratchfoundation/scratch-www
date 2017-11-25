@@ -1,14 +1,14 @@
-var React = require('react');
-var injectIntl = require('react-intl').injectIntl;
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var render = require('../../lib/render.jsx');
+import React from 'react';
+import {injectIntl} from 'react-intl';
+import {FormattedHTMLMessage} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
+import render from '../../lib/render.jsx';
 
-var MasonryGrid = require('../../components/masonrygrid/masonrygrid.jsx');
-var Page = require('../../components/page/www/page.jsx');
-var TitleBanner = require('../../components/title-banner/title-banner.jsx');
-var TTTTile = require('../../components/ttt-tile/ttt-tile.jsx');
-var Tiles = require('./microworlds.json');
+import MasonryGrid from '../../components/masonrygrid/masonrygrid.jsx';
+import Page from '../../components/page/www/page.jsx';
+import TitleBanner from '../../components/title-banner/title-banner.jsx';
+import TTTTile from '../../components/ttt-tile/ttt-tile.jsx';
+import Tiles from './microworlds.json';
 
 require('./microworldshomepage.scss');
 

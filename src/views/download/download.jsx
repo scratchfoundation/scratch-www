@@ -1,15 +1,15 @@
-var React = require('react');
-var render = require('../../lib/render.jsx');
+import React from 'react';
+import render from '../../lib/render.jsx';
 
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var injectIntl = require('react-intl').injectIntl;
+import {FormattedHTMLMessage} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
+import {injectIntl} from 'react-intl';
 
-var api = require('../../lib/api');
-var Page = require('../../components/page/www/page.jsx');
-var TitleBanner = require('../../components/title-banner/title-banner.jsx');
-var FlexRow = require('../../components/flex-row/flex-row.jsx');
-var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+import api from '../../lib/api';
+import Page from '../../components/page/www/page.jsx';
+import TitleBanner from '../../components/title-banner/title-banner.jsx';
+import FlexRow from '../../components/flex-row/flex-row.jsx';
+import SubNavigation from '../../components/subnavigation/subnavigation.jsx';
 
 require('./download.scss');
 require('../../components/forms/button.scss');

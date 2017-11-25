@@ -1,5 +1,5 @@
-var React = require('react');
-var classNames = require('classnames');
+import React from 'react';
+import classNames from 'classnames';
 
 var Avatar = React.createClass({
     type: 'Avatar',
@@ -20,4 +20,4 @@ var Avatar = React.createClass({
     }
 });
 
-module.exports = Avatar;
+export default Avatar;

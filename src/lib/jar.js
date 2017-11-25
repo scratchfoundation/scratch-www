@@ -1,7 +1,7 @@
-var cookie = require('cookie');
-var defaults = require('lodash.defaults');
-var xhr = require('xhr');
-var pako = require('pako');
+import cookie from 'cookie';
+import defaults from 'lodash.defaults';
+import xhr from 'xhr';
+import pako from 'pako';
 
 /**
  * Module that handles coookie interactions.
@@ -99,4 +99,4 @@ var Jar = {
     }
 };
 
-module.exports = Jar;
+export default Jar;

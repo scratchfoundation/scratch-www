@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./deck.scss');
 
@@ -19,4 +19,4 @@ var Deck = React.createClass({
     }
 });
 
-module.exports = Deck;
+export default Deck;

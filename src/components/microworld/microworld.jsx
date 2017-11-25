@@ -1,11 +1,11 @@
-var React = require('react');
+import React from 'react';
 
 require('./microworld.scss');
 
-var Box = require('../box/box.jsx');
-var LegacyCarousel = require('../carousel/legacy-carousel.jsx');
-var IframeModal = require('../modal/iframe/modal.jsx');
-var NestedCarousel = require('../nestedcarousel/nestedcarousel.jsx');
+import Box from '../box/box.jsx';
+import LegacyCarousel from '../carousel/legacy-carousel.jsx';
+import IframeModal from '../modal/iframe/modal.jsx';
+import NestedCarousel from '../nestedcarousel/nestedcarousel.jsx';
 
 var Microworld = React.createClass({
     type: 'Microworld',
@@ -233,4 +233,4 @@ var Microworld = React.createClass({
     }
 });
 
-module.exports = Microworld;
+export default Microworld;

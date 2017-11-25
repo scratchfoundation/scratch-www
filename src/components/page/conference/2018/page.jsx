@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var Navigation = require('../../../navigation/conference/2018/navigation.jsx');
-var Footer = require('../../../footer/conference/2018/footer.jsx');
+import Navigation from '../../../navigation/conference/2018/navigation.jsx';
+import Footer from '../../../footer/conference/2018/footer.jsx';
 
 require('../page.scss');
 
@@ -24,4 +24,4 @@ var Page = React.createClass({
     }
 });
 
-module.exports = Page;
+export default Page;

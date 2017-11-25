@@ -1,10 +1,10 @@
-var FormattedMessage = require('react-intl').FormattedMessage;
-var injectIntl = require('react-intl').injectIntl;
-var React = require('react');
+import {FormattedMessage} from 'react-intl';
+import {injectIntl} from 'react-intl';
+import React from 'react';
 
-var FlexRow = require('../../../components/flex-row/flex-row.jsx');
-var TitleBanner = require('../../../components/title-banner/title-banner.jsx');
-var TTTModal = require('../../../components/modal/ttt/modal.jsx');
+import FlexRow from '../../../components/flex-row/flex-row.jsx';
+import TitleBanner from '../../../components/title-banner/title-banner.jsx';
+import TTTModal from '../../../components/modal/ttt/modal.jsx';
 
 require('../../../components/forms/button.scss');
 require('./top-banner.scss');
@@ -111,5 +111,5 @@ var TopBanner = injectIntl(React.createClass({
     }
 }));
 
-module.exports = TopBanner;
+export default TopBanner;
 

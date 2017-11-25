@@ -1,12 +1,12 @@
-var keyMirror = require('keymirror');
-var jar = require('../lib/jar.js');
+import keyMirror from 'keymirror';
+import jar from '../lib/jar.js';
 
 var Types = keyMirror({
     SET_PERMISSIONS: null,
     SET_PERMISSIONS_ERROR: null
 });
 
-module.exports.permissionsReducer = function (state, action) {
+export function permissionsReducer (state, action) {
     if (typeof state === 'undefined') {
         state = '';
     }
@@ -18,9 +18,9 @@ module.exports.permissionsReducer = function (state, action) {
     default:
         return state;
     }
-};
+}
 
-module.exports.storePermissions = function (permissions) {
+export function storePermissions (permissions) {
     permissions = permissions || {};
     return function (dispatch) {
         jar.set('permissions', permissions, {
@@ -28,35 +28,35 @@ module.exports.storePermissions = function (permissions) {
                 return encodeURIComponent(JSON.stringify(value));
             }
         });
-        return dispatch(module.exports.setPermissions(permissions));
+        return dispatch(setPermissions(permissions));
     };
-};
+}
 
-module.exports.getPermissions = function () {
+export function getPermissions () {
     return function (dispatch) {
         jar.get('permissions', function (err, value) {
-            if (err) return dispatch(module.exports.setPermissionsError(err));
+            if (err) return dispatch(setPermissionsError(err));
 
             try {
                 value = JSON.parse(decodeURIComponent(value)) || {};
             } catch (e) {
                 value = {};
             }
-            return dispatch(module.exports.setPermissions(value));
+            return dispatch(setPermissions(value));
         });
     };
-};
+}
 
-module.exports.setPermissions = function (permissions) {
+export function setPermissions (permissions) {
     return {
         type: Types.SET_PERMISSIONS,
         permissions: permissions
     };
-};
+}
 
-module.exports.setPermissionsError = function (error) {
+export function setPermissionsError (error) {
     return {
         type: Types.SET_PERMISSIONS_ERROR,
         error: error
     };
-};
+}

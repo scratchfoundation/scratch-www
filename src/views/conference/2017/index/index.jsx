@@ -1,11 +1,11 @@
-var FormattedDate = require('react-intl').FormattedDate;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var React = require('react');
-var render = require('../../../../lib/render.jsx');
+import {FormattedDate} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
+import React from 'react';
+import render from '../../../../lib/render.jsx';
 
-var FlexRow = require('../../../../components/flex-row/flex-row.jsx');
-var Page = require('../../../../components/page/conference/2017/page.jsx');
-var TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
+import FlexRow from '../../../../components/flex-row/flex-row.jsx';
+import Page from '../../../../components/page/conference/2017/page.jsx';
+import TitleBanner from '../../../../components/title-banner/title-banner.jsx';
 
 require('../../../../components/forms/button.scss');
 require('./index.scss');

@@ -1,9 +1,9 @@
-var classNames = require('classnames');
-var FormattedMessage = require('react-intl').FormattedMessage;
-var injectIntl = require('react-intl').injectIntl;
-var React = require('react');
+import classNames from 'classnames';
+import {FormattedMessage} from 'react-intl';
+import {injectIntl} from 'react-intl';
+import React from 'react';
 
-var SocialMessage = require('../../../components/social-message/social-message.jsx');
+import SocialMessage from '../../../components/social-message/social-message.jsx';
 
 var CuratorInviteMessage = injectIntl(React.createClass({
     type: 'CuratorInviteMessage',
@@ -48,4 +48,4 @@ var CuratorInviteMessage = injectIntl(React.createClass({
     }
 }));
 
-module.exports = CuratorInviteMessage;
+export default CuratorInviteMessage;

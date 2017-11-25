@@ -1,11 +1,11 @@
-var classNames = require('classnames');
-var connect = require('react-redux').connect;
-var React = require('react');
-var render = require('../../../../lib/render.jsx');
+import classNames from 'classnames';
+import {connect} from 'react-redux';
+import React from 'react';
+import render from '../../../../lib/render.jsx';
 
-var detailsActions = require('../../../../redux/conference-details.js');
+import {startGetDetails, detailsReducer} from '../../../../redux/conference-details.js';
 
-var Page = require('../../../../components/page/conference/2016/page.jsx');
+import Page from '../../../../components/page/conference/2016/page.jsx';
 
 require('./details.scss');
 
@@ -22,7 +22,7 @@ var ConferenceDetails = React.createClass({
         }
         var path = pathname.split('/');
         var detailsId = path[path.length - 2];
-        this.props.dispatch(detailsActions.startGetDetails(detailsId));
+        this.props.dispatch(startGetDetails(detailsId));
     },
     render: function () {
         var backUri = '/conference/2016/schedule';
@@ -94,5 +94,5 @@ var ConnectedDetails = connect(mapStateToProps)(ConferenceDetails);
 render(
     <Page><ConnectedDetails /></Page>,
     document.getElementById('app'),
-    {conferenceDetails: detailsActions.detailsReducer}
+    {conferenceDetails: detailsReducer}
 );

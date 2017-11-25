@@ -1,11 +1,11 @@
-var classNames = require('classnames');
-var defaults = require('lodash.defaults');
-var React = require('react');
-var Slider = require('react-slick');
+import classNames from 'classnames';
+import defaults from 'lodash.defaults';
+import React from 'react';
+import Slider from 'react-slick';
 
-var Thumbnail = require('../thumbnail/thumbnail.jsx');
+import Thumbnail from '../thumbnail/thumbnail.jsx';
 
-var frameless = require('../../lib/frameless.js');
+import frameless from '../../lib/frameless.js';
 
 require('slick-carousel/slick/slick.scss');
 require('slick-carousel/slick/slick-theme.scss');
@@ -92,4 +92,4 @@ var Carousel = React.createClass({
     }
 });
 
-module.exports = Carousel;
+export default Carousel;

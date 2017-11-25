@@ -1,14 +1,16 @@
-var autoprefixer = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var defaults = require('lodash.defaults');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var gitsha = require('git-bundle-sha');
 var path = require('path');
 var webpack = require('webpack');
+// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var routes = require('./src/routes.json');
 
-if (process.env.NODE_ENV !== 'production') {
+var __PRODUCTION__ = process.env.NODE_ENV === 'production';
+
+if (!__PRODUCTION__) {
     routes = routes.concat(require('./src/routes-dev.json'));
 }
 
@@ -60,32 +62,48 @@ routes.forEach(function (route) {
 // Config
 module.exports = {
     entry: entry,
-    devtool: 'eval',
+    devtool: __PRODUCTION__ ? 'none' : 'cheap-eval-source-map',
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'js/[name].bundle.js'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.jsx$/,
-                loader: 'babel',
-                query: {
-                    presets: ['es2015','react']
-                },
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [['es2015', { modules: false }],'react'],
+                            plugins: ['transform-runtime'],
+                            env: {
+                                production: {
+                                    presets: ['react-optimize']
+                                }
+                            },
+                            cacheDirectory: true
+                        }
+                    }
+                ],
                 include: path.resolve(__dirname, 'src')
             },
             {
-                test: /\.json$/,
-                loader: 'json-loader'
-            },
-            {
                 test: /\.scss$/,
-                loader: 'style!css!postcss-loader!sass'
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader',
+                    'sass-loader'
+                ]
             },
             {
                 test: /\.css$/,
-                loader: 'style!css!postcss-loader'
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader'
+                ]
             },
             {
                 test: /\.(png|jpg|gif|eot|svg|ttf|woff)$/,
@@ -94,21 +112,36 @@ module.exports = {
         ],
         noParse: /node_modules\/google-libphonenumber\/dist/
     },
-    postcss: function () {
-        return [autoprefixer({browsers: ['last 3 versions', 'Safari >= 8', 'iOS >= 8']})];
-    },
     node: {
         fs: 'empty'
     },
     plugins: [
         new VersionPlugin({length: 5})
+        // new BundleAnalyzerPlugin()
     ].concat(routes
         .filter(function (route) {return !route.redirect;})
         .map(function (route) {
             return new HtmlWebpackPlugin(defaults({}, {
                 title: route.title,
                 filename: route.name + '.html',
-                route: route
+                route: route,
+                minify: __PRODUCTION__ ? {
+                    collapseBooleanAttributes: true,
+                    collapseWhitespace: true,
+                    conservativeCollapse: true,
+                    decodeEntities: true,
+                    minifyCSS: true,
+                    minifyJS: true,
+                    removeAttributeQuotes: true,
+                    removeOptionalTags: true,
+                    removeComments: true,
+                    removeRedundantAttributes: true,
+                    removeScriptTypeAttributes: true,
+                    removeStyleLinkTypeAttributes: true,
+                    sortAttributes: true,
+                    sortClassName: true,
+                    useShortDoctype: true
+                } : false
             }, require('./src/template-config.js')));
         })
     ).concat([
@@ -116,18 +149,30 @@ module.exports = {
             {from: 'static'},
             {from: 'intl', to: 'js'}
         ]),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"' + (process.env.NODE_ENV || 'development') + '"',
             'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"',
             'process.env.API_HOST': '"' + (process.env.API_HOST || 'https://api.scratch.mit.edu') + '"',
             'process.env.SCRATCH_ENV': '"'+ (process.env.SCRATCH_ENV || 'development') + '"'
         }),
-        new webpack.optimize.CommonsChunkPlugin('common', 'js/common.bundle.js'),
-        new webpack.optimize.OccurenceOrderPlugin()
-    ])
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'common',
+            filename: 'js/common.bundle.js',
+            minChunks: function (module, count) {
+                // Include in common if more than 70% of chunks use it
+                return count / Object.keys(entry).length > 0.7;
+            }
+        }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: __PRODUCTION__
+        })
+    ]).concat(__PRODUCTION__ ? [
+        new webpack.optimize.ModuleConcatenationPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            sourceMap: true
+        })
+    ] : [])
 };

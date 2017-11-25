@@ -2,7 +2,7 @@
  * urlParams({a: 1, b: 2, c: 3})
  * // a=1&b=2&c=3
  */
-module.exports = function urlParams (values) {
+export default function urlParams (values) {
     return Object
         .keys(values)
         .map(function (key) {
@@ -19,4 +19,4 @@ module.exports = function urlParams (values) {
             }
         })
         .join('&');
-};
+}

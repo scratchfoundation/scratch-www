@@ -1,10 +1,10 @@
-var FormattedDate = require('react-intl').FormattedDate;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var injectIntl = require('react-intl').injectIntl;
-var React = require('react');
+import {FormattedDate} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
+import {injectIntl} from 'react-intl';
+import React from 'react';
 
-var Button = require('../../../components/forms/button.jsx');
-var FlexRow = require('../../../components/flex-row/flex-row.jsx');
+import Button from '../../../components/forms/button.jsx';
+import FlexRow from '../../../components/flex-row/flex-row.jsx';
 
 var AdminMessage = injectIntl(React.createClass({
     type: 'AdminMessage',
@@ -47,4 +47,4 @@ var AdminMessage = injectIntl(React.createClass({
     }
 }));
 
-module.exports = AdminMessage;
+export default AdminMessage;

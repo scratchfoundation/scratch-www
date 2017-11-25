@@ -1,7 +1,7 @@
-var classNames = require('classnames');
-var omit = require('lodash.omit');
-var React = require('react');
-var ReactModal = require('react-modal');
+import classNames from 'classnames';
+import omit from 'lodash.omit';
+import React from 'react';
+import ReactModal from 'react-modal';
 
 require('./modal.scss');
 
@@ -53,4 +53,4 @@ var Modal = React.createClass({
     }
 });
 
-module.exports = Modal;
+export default Modal;

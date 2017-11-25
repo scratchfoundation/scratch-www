@@ -1,29 +1,29 @@
-var FormattedMessage = require('react-intl').FormattedMessage;
-var FormattedNumber = require('react-intl').FormattedNumber;
-var injectIntl = require('react-intl').injectIntl;
-var React = require('react');
+import {FormattedMessage} from 'react-intl';
+import {FormattedNumber} from 'react-intl';
+import {injectIntl} from 'react-intl';
+import React from 'react';
 
-var Button = require('../../components/forms/button.jsx');
-var FlexRow = require('../../components/flex-row/flex-row.jsx');
-var Form = require('../../components/forms/form.jsx');
-var Select = require('../../components/forms/select.jsx');
-var TitleBanner = require('../../components/title-banner/title-banner.jsx');
+import Button from '../../components/forms/button.jsx';
+import FlexRow from '../../components/flex-row/flex-row.jsx';
+import Form from '../../components/forms/form.jsx';
+import Select from '../../components/forms/select.jsx';
+import TitleBanner from '../../components/title-banner/title-banner.jsx';
 
-var messageStatuses = require('../../redux/messages').Status;
+import {Status as messageStatuses} from '../../redux/messages';
 
 // Message Components
-var AdminMessage = require('./message-rows/admin-message.jsx');
-var BecomeManagerMessage = require('./message-rows/become-manager.jsx');
-var CommentMessage = require('./message-rows/comment-message.jsx');
-var CuratorInviteMessage = require('./message-rows/curator-invite.jsx');
-var FavoriteProjectMessage = require('./message-rows/favorite-project.jsx');
-var FollowUserMessage = require('./message-rows/follow-user.jsx');
-var ForumPostMessage= require('./message-rows/forum-topic-post.jsx');
-var LoveProjectMessage = require('./message-rows/love-project.jsx');
-var RemixProjectMessage = require('./message-rows/remix-project.jsx');
-var ScratcherInvite = require('./message-rows/scratcher-invite.jsx');
-var StudioActivityMessage = require('./message-rows/studio-activity.jsx');
-var UserJoinMessage = require('./message-rows/user-join.jsx');
+import AdminMessage from './message-rows/admin-message.jsx';
+import BecomeManagerMessage from './message-rows/become-manager.jsx';
+import CommentMessage from './message-rows/comment-message.jsx';
+import CuratorInviteMessage from './message-rows/curator-invite.jsx';
+import FavoriteProjectMessage from './message-rows/favorite-project.jsx';
+import FollowUserMessage from './message-rows/follow-user.jsx';
+import ForumPostMessage from './message-rows/forum-topic-post.jsx';
+import LoveProjectMessage from './message-rows/love-project.jsx';
+import RemixProjectMessage from './message-rows/remix-project.jsx';
+import ScratcherInvite from './message-rows/scratcher-invite.jsx';
+import StudioActivityMessage from './message-rows/studio-activity.jsx';
+import UserJoinMessage from './message-rows/user-join.jsx';
 
 require('./messages.scss');
 
@@ -335,4 +335,4 @@ var MessagesPresentation = injectIntl(React.createClass({
     }
 }));
 
-module.exports = MessagesPresentation;
+export default MessagesPresentation;

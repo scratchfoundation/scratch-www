@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./box.scss');
 
@@ -37,4 +37,4 @@ var Box = React.createClass({
     }
 });
 
-module.exports = Box;
+export default Box;

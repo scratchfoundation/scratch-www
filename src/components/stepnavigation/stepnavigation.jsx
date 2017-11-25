@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./stepnavigation.scss');
 
@@ -25,4 +25,4 @@ var StepNavigation = React.createClass({
     }
 });
 
-module.exports = StepNavigation;
+export default StepNavigation;

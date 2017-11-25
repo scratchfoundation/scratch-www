@@ -1,6 +1,6 @@
-var classNames = require('classnames');
-var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
-var React = require('react');
+import classNames from 'classnames';
+import SubNavigation from '../../components/subnavigation/subnavigation.jsx';
+import React from 'react';
 
 require('./tabs.scss');
 
@@ -25,4 +25,4 @@ var Tabs = React.createClass({
     }
 });
 
-module.exports = Tabs;
+export default Tabs;

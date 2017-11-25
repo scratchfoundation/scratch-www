@@ -1,6 +1,6 @@
-var classNames = require('classnames');
-var React = require('react');
-var TitleBanner = require('../../components/title-banner/title-banner.jsx');
+import classNames from 'classnames';
+import React from 'react';
+import TitleBanner from '../../components/title-banner/title-banner.jsx';
 
 require('./informationpage.scss');
 
@@ -36,4 +36,4 @@ var InformationPage = React.createClass({
     }
 });
 
-module.exports = InformationPage;
+export default InformationPage;

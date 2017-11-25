@@ -1,5 +1,5 @@
-var classNames = require('classnames');
-var React = require('react');
+import classNames from 'classnames';
+import React from 'react';
 
 require('./navigation.scss');
 
@@ -18,4 +18,4 @@ var NavigationBox = React.createClass({
     }
 });
 
-module.exports = NavigationBox;
+export default NavigationBox;

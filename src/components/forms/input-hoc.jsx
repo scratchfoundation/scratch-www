@@ -1,6 +1,6 @@
-var React = require('react');
+import React from 'react';
 
-module.exports = function InputComponentMixin (Component) {
+export default function InputComponentMixin (Component) {
     var InputComponent = React.createClass({
         getDefaultProps: function () {
             return {
@@ -17,4 +17,4 @@ module.exports = function InputComponentMixin (Component) {
         }
     });
     return InputComponent;
-};
+}

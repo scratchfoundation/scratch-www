@@ -1,6 +1,6 @@
-var classNames = require('classnames');
-var React = require('react');
-var FormattedMessage = require('react-intl').FormattedMessage;
+import classNames from 'classnames';
+import React from 'react';
+import {FormattedMessage} from 'react-intl';
 
 require('../forms/button.scss');
 require('./ttt-tile.scss');
@@ -55,4 +55,4 @@ var TTTTile = React.createClass({
     }
 });
 
-module.exports = TTTTile;
+export default TTTTile;

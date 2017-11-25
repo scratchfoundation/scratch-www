@@ -1,12 +1,12 @@
-var FormattedMessage = require('react-intl').FormattedMessage;
-var MediaQuery = require('react-responsive');
-var omit = require('lodash.omit');
-var React = require('react');
+import {FormattedMessage} from 'react-intl';
+import MediaQuery from 'react-responsive';
+import omit from 'lodash.omit';
+import React from 'react';
 
-var FlexRow = require('../../flex-row/flex-row.jsx');
-var frameless = require('../../../lib/frameless');
-var Modal = require('../base/modal.jsx');
-var TitleBanner = require('../../title-banner/title-banner.jsx');
+import FlexRow from '../../flex-row/flex-row.jsx';
+import frameless from '../../../lib/frameless';
+import Modal from '../base/modal.jsx';
+import TitleBanner from '../../title-banner/title-banner.jsx';
 
 require('../../forms/button.scss');
 require('./modal.scss');
@@ -118,4 +118,4 @@ var TTTModal = React.createClass({
     }
 });
 
-module.exports = TTTModal;
+export default TTTModal;

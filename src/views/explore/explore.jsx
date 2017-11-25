@@ -1,19 +1,19 @@
-var classNames = require('classnames');
-var injectIntl = require('react-intl').injectIntl;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var React = require('react');
-var render = require('../../lib/render.jsx');
+import classNames from 'classnames';
+import {injectIntl} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
+import React from 'react';
+import render from '../../lib/render.jsx';
 
-var api = require('../../lib/api');
+import api from '../../lib/api';
 
-var Page = require('../../components/page/www/page.jsx');
-var Tabs = require('../../components/tabs/tabs.jsx');
-var TitleBanner = require('../../components/title-banner/title-banner.jsx');
-var Button = require('../../components/forms/button.jsx');
-var Form = require('../../components/forms/form.jsx');
-var Select = require('../../components/forms/select.jsx');
-var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
-var Grid = require('../../components/grid/grid.jsx');
+import Page from '../../components/page/www/page.jsx';
+import Tabs from '../../components/tabs/tabs.jsx';
+import TitleBanner from '../../components/title-banner/title-banner.jsx';
+import Button from '../../components/forms/button.jsx';
+import Form from '../../components/forms/form.jsx';
+import Select from '../../components/forms/select.jsx';
+import SubNavigation from '../../components/subnavigation/subnavigation.jsx';
+import Grid from '../../components/grid/grid.jsx';
 
 require('./explore.scss');
 

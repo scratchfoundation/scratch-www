@@ -1,11 +1,11 @@
-var React = require('react');
-var injectIntl = require('react-intl').injectIntl;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var render = require('../../lib/render.jsx');
+import React from 'react';
+import {injectIntl} from 'react-intl';
+import {FormattedMessage} from 'react-intl';
+import render from '../../lib/render.jsx';
 
-var Box = require('../../components/box/box.jsx');
-var FlexRow = require('../../components/flex-row/flex-row.jsx');
-var Page = require('../../components/page/www/page.jsx');
+import Box from '../../components/box/box.jsx';
+import FlexRow from '../../components/flex-row/flex-row.jsx';
+import Page from '../../components/page/www/page.jsx';
 
 require('./cards.scss');
 

@@ -1,8 +1,8 @@
-var classNames = require('classnames');
-var FormattedRelative = require('react-intl').FormattedRelative;
-var React = require('react');
+import classNames from 'classnames';
+import {FormattedRelative} from 'react-intl';
+import React from 'react';
 
-var FlexRow = require('../flex-row/flex-row.jsx');
+import FlexRow from '../flex-row/flex-row.jsx';
 
 require('./social-message.scss');
 
@@ -54,4 +54,4 @@ var SocialMessage = React.createClass({
     }
 });
 
-module.exports = SocialMessage;
+export default SocialMessage;

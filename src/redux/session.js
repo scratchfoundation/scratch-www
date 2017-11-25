@@ -1,9 +1,9 @@
-var keyMirror = require('keymirror');
-var defaults = require('lodash.defaults');
+import keyMirror from 'keymirror';
+import defaults from 'lodash.defaults';
 
-var api = require('../lib/api');
-var messageCountActions = require('./message-count.js');
-var permissionsActions = require('./permissions.js');
+import api from '../lib/api';
+import {getCount as getMessageCount} from './message-count.js';
+import {storePermissions} from './permissions.js';
 
 var Types = keyMirror({
     SET_SESSION: null,
@@ -17,20 +17,20 @@ var banWhitelistPaths = [
     '/community_guidelines'
 ];
 
-module.exports.Status = keyMirror({
+export var Status = keyMirror({
     FETCHED: null,
     NOT_FETCHED: null,
     FETCHING: null
 });
 
-module.exports.getInitialState = function (){
-    return {status: module.exports.Status.NOT_FETCHED, session:{}};
-};
+export function getInitialState () {
+    return {status: Status.NOT_FETCHED, session:{}};
+}
 
-module.exports.sessionReducer = function (state, action) {
+export function sessionReducer (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
-        state = module.exports.getInitialState();
+        state = getInitialState();
     }
     switch (action.type) {
     case Types.SET_SESSION:
@@ -43,38 +43,38 @@ module.exports.sessionReducer = function (state, action) {
     default:
         return state;
     }
-};
+}
 
-module.exports.setSessionError = function (error) {
+export function setSessionError (error) {
     return {
         type: Types.SET_SESSION_ERROR,
         error: error
     };
-};
+}
 
-module.exports.setSession = function (session) {
+export function setSession (session) {
     return {
         type: Types.SET_SESSION,
         session: session
     };
-};
+}
 
-module.exports.setStatus = function (status){
+export function setStatus (status) {
     return {
         type: Types.SET_STATUS,
         status: status
     };
-};
+}
 
-module.exports.refreshSession = function () {
+export function refreshSession () {
     return function (dispatch) {
-        dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
+        dispatch(setStatus(Status.FETCHING));
         api({
             host: '',
             uri: '/session/'
         }, function (err, body) {
-            if (err) return dispatch(module.exports.setSessionError(err));
-            if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
+            if (err) return dispatch(setSessionError(err));
+            if (typeof body === 'undefined') return dispatch(setSessionError('No session content'));
             if (
                     body.user &&
                     body.user.banned &&
@@ -92,16 +92,16 @@ module.exports.refreshSession = function () {
                     window.location.pathname !== '/classes/student_password_reset/') {
                 return window.location = '/classes/student_password_reset/';
             } else {
-                dispatch(module.exports.setSession(body));
-                dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
+                dispatch(setSession(body));
+                dispatch(setStatus(Status.FETCHED));
 
                 // get the permissions from the updated session
-                dispatch(permissionsActions.storePermissions(body.permissions));
+                dispatch(storePermissions(body.permissions));
                 if (typeof body.user !== 'undefined') {
-                    dispatch(messageCountActions.getCount(body.user.username));
+                    dispatch(getMessageCount(body.user.username));
                 }
                 return;
             }
         });
     };
-};
+}
