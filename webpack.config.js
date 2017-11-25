@@ -62,7 +62,7 @@ routes.forEach(function (route) {
 // Config
 module.exports = {
     entry: entry,
-    devtool: __PRODUCTION__ ? 'none' : 'eval',
+    devtool: __PRODUCTION__ ? 'none' : 'cheap-eval-source-map',
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'js/[name].bundle.js'
