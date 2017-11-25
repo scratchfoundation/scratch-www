@@ -23,11 +23,11 @@ export var Status = keyMirror({
     FETCHING: null
 });
 
-export function getInitialState() {
+export function getInitialState () {
     return {status: Status.NOT_FETCHED, session:{}};
 }
 
-export function sessionReducer(state, action) {
+export function sessionReducer (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
         state = getInitialState();
@@ -45,28 +45,28 @@ export function sessionReducer(state, action) {
     }
 }
 
-export function setSessionError(error) {
+export function setSessionError (error) {
     return {
         type: Types.SET_SESSION_ERROR,
         error: error
     };
 }
 
-export function setSession(session) {
+export function setSession (session) {
     return {
         type: Types.SET_SESSION,
         session: session
     };
 }
 
-export function setStatus(status) {
+export function setStatus (status) {
     return {
         type: Types.SET_STATUS,
         status: status
     };
 }
 
-export function refreshSession() {
+export function refreshSession () {
     return function (dispatch) {
         dispatch(setStatus(Status.FETCHING));
         api({

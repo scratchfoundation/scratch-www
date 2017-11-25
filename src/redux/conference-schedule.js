@@ -7,7 +7,7 @@ var Types = keyMirror({
     SET_SCHEDULE_ERROR: null
 });
 
-export function scheduleReducer(state, action) {
+export function scheduleReducer (state, action) {
     if (typeof state === 'undefined') {
         state = {
             timeSlots: [],
@@ -26,28 +26,28 @@ export function scheduleReducer(state, action) {
     }
 }
 
-export function setSchedule(schedule) {
+export function setSchedule (schedule) {
     return {
         type: Types.SET_SCHEDULE,
         schedule: schedule
     };
 }
 
-export function setScheduleFetching() {
+export function setScheduleFetching () {
     return {
         type: Types.SET_SCHEDULE_FETCHING,
         fetching: true
     };
 }
 
-export function setScheduleError(error) {
+export function setScheduleError (error) {
     return {
         type: Types.SET_SCHEDULE_ERROR,
         error: error
     };
 }
 
-export function startGetSchedule(day) {
+export function startGetSchedule (day) {
     return function (dispatch) {
         dispatch(setScheduleFetching());
         dispatch(getDaySchedule(day));
@@ -55,7 +55,7 @@ export function startGetSchedule(day) {
 }
 
 // group periods of time by start time
-export function sortTimeSlots(timeSlot1, timeSlot2) {
+export function sortTimeSlots (timeSlot1, timeSlot2) {
     var timeSlot1Am = (timeSlot1.time.substr(timeSlot1.time.length - 1, timeSlot1.time.length) === 'a') ? true : false;
     var timeSlot2Am = (timeSlot2.time.substr(timeSlot2.time.length - 1, timeSlot2.time.length) === 'a') ? true : false;
     var timeSlot1Time = parseInt(timeSlot1.time.substr(0, timeSlot1.time.length - 1));
@@ -82,7 +82,7 @@ export function sortTimeSlots(timeSlot1, timeSlot2) {
  *
  *  @return {Object}     Schedule for the day, broken into chunks
  */
-export function getDaySchedule(day) {
+export function getDaySchedule (day) {
     return function (dispatch) {
         api({
             uri: '/conference/schedule/' + day

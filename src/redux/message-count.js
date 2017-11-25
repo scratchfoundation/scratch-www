@@ -8,11 +8,11 @@ var Types = keyMirror({
     SET_STATUS: null
 });
 
-export function getInitialState() {
+export function getInitialState () {
     return {messageCount: 0};
 }
 
-export function messageCountReducer(state, action) {
+export function messageCountReducer (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
         state = getInitialState();
@@ -30,28 +30,28 @@ export function messageCountReducer(state, action) {
     }
 }
 
-export function setSessionError(error) {
+export function setSessionError (error) {
     return {
         type: Types.SET_MESSAGE_COUNT_ERROR,
         error: error
     };
 }
 
-export function setCount(count) {
+export function setCount (count) {
     return {
         type: Types.SET_MESSAGE_COUNT,
         count: count
     };
 }
 
-export function setStatus(status) {
+export function setStatus (status) {
     return {
         type: Types.SET_STATUS,
         status: status
     };
 }
 
-export function getCount(username) {
+export function getCount (username) {
     return function (dispatch) {
         api({
             method: 'get',

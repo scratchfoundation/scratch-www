@@ -7,7 +7,7 @@ var Types = keyMirror({
     SET_DETAILS_ERROR: null
 });
 
-export function detailsReducer(state, action) {
+export function detailsReducer (state, action) {
     if (typeof state === 'undefined') {
         state = {};
     }
@@ -23,35 +23,35 @@ export function detailsReducer(state, action) {
     }
 }
 
-export function setDetailsError(error) {
+export function setDetailsError (error) {
     return {
         type: Types.SET_DETAILS_ERROR,
         error: error
     };
 }
 
-export function setDetails(details) {
+export function setDetails (details) {
     return {
         type: Types.SET_DETAILS,
         details: details
     };
 }
 
-export function setDetailsFetching() {
+export function setDetailsFetching () {
     return {
         type: Types.SET_DETAILS_FETCHING,
         fetching: true
     };
 }
 
-export function startGetDetails(id) {
+export function startGetDetails (id) {
     return function (dispatch) {
         dispatch(setDetailsFetching());
         dispatch(getDetails(id));
     };
 }
 
-export function getDetails(id) {
+export function getDetails (id) {
     return function (dispatch) {
         api({
             uri: '/conference/' + id + '/details'

@@ -1,7 +1,11 @@
 import {connect} from 'react-redux';
 import React from 'react';
 
-import {getMessages, getAdminMessages, getScratcherInvite, setMessages, setAdminMessages, setScratcherInvite, setMessagesOffset, clearAdminMessage, messagesReducer} from '../../redux/messages.js';
+import {
+    getMessages, getAdminMessages, getScratcherInvite,
+    setMessages, setAdminMessages, setScratcherInvite, setMessagesOffset,
+    clearAdminMessage, messagesReducer
+} from '../../redux/messages.js';
 import render from '../../lib/render.jsx';
 import {Status} from '../../redux/session.js';
 

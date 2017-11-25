@@ -22,4 +22,4 @@ export default function (opts) {
         permissions: permissionsReducer,
         messageCount: messageCountReducer
     }));
-};
+}

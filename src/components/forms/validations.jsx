@@ -25,7 +25,7 @@ export var validations = {
 
 validations.notEqualsUsername = validations.notEquals;
 
-export function validationHOCFactory(defaultValidationErrors) {
+export function validationHOCFactory (defaultValidationErrors) {
     return function (Component) {
         var ValidatedComponent = React.createClass({
             render: function () {

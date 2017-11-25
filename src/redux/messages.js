@@ -17,7 +17,7 @@ export var Status = keyMirror({
     DELETE_ERROR: null
 });
 
-export function getInitialState() {
+export function getInitialState () {
     return {
         status: {
             admin: Status.NOT_FETCHED,
@@ -33,7 +33,7 @@ export function getInitialState() {
     };
 }
 
-export function messagesReducer(state, action) {
+export function messagesReducer (state, action) {
     if (typeof state === 'undefined') {
         state = getInitialState();
     }
@@ -68,42 +68,42 @@ export function messagesReducer(state, action) {
     }
 }
 
-export function setMessagesError(error) {
+export function setMessagesError (error) {
     return {
         type: 'ERROR',
         error: error
     };
 }
 
-export function setMessages(messages) {
+export function setMessages (messages) {
     return {
         type: 'SET_MESSAGES',
         messages: messages
     };
 }
 
-export function setMessagesOffset(offset) {
+export function setMessagesOffset (offset) {
     return {
         type: 'SET_MESSAGES_OFFSET',
         offset: offset
     };
 }
 
-export function setAdminMessages(messages) {
+export function setAdminMessages (messages) {
     return {
         type: 'SET_ADMIN_MESSAGES',
         messages: messages
     };
 }
 
-export function setScratcherInvite(invite) {
+export function setScratcherInvite (invite) {
     return {
         type: 'SET_SCRATCHER_INVITE',
         invite: invite
     };
 }
 
-export function setStatus(type, status) {
+export function setStatus (type, status) {
     return {
         type: type,
         status: status
@@ -114,7 +114,7 @@ export function setStatus(type, status) {
  * Sends a request to mark one's unread messages count as cleared.
  * @return {null} returns nothing
  */
-export function clearMessageCount() {
+export function clearMessageCount () {
     return function (dispatch) {
         dispatch(setStatus('CLEAR_STATUS', Status.FETCHING));
         api({
@@ -146,7 +146,7 @@ export function clearMessageCount() {
  * @param  {object[]} adminMessages current list of admin messages retrieved
  * @return {null}                   returns nothing
  */
-export function clearAdminMessage(messageType, messageId, messageCount, adminMessages) {
+export function clearAdminMessage (messageType, messageId, messageCount, adminMessages) {
     return function (dispatch) {
         dispatch(setStatus('CLEAR_STATUS', Status.FETCHING));
         api({
@@ -201,7 +201,7 @@ export function clearAdminMessage(messageType, messageId, messageCount, adminMes
  * @param  {string}   [opts.filter]      type of messages to return
  * @return {null}                     returns nothing
  */
-export function getMessages(username, token, opts) {
+export function getMessages (username, token, opts) {
     opts = defaults(opts, {
         messages: [],
         offset: 0,
@@ -246,7 +246,7 @@ export function getMessages(username, token, opts) {
  * @param  {string} token    the user's unique token for auth
  * @return {null}            returns nothing
  */
-export function getAdminMessages(username, token) {
+export function getAdminMessages (username, token) {
     return function (dispatch) {
         dispatch(setStatus('ADMIN_STATUS', Status.FETCHING));
         api({
@@ -277,7 +277,7 @@ export function getAdminMessages(username, token) {
  * @param  {string} token    the user's unique token for auth
  * @return {null}            returns nothing
  */
-export function getScratcherInvite(username, token) {
+export function getScratcherInvite (username, token) {
     return function (dispatch) {
         api({
             uri: '/users/' + username + '/invites',

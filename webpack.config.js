@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var gitsha = require('git-bundle-sha');
 var path = require('path');
 var webpack = require('webpack');
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 var routes = require('./src/routes.json');
 
@@ -116,7 +116,7 @@ module.exports = {
         fs: 'empty'
     },
     plugins: [
-        new VersionPlugin({length: 5}),
+        new VersionPlugin({length: 5})
         // new BundleAnalyzerPlugin()
     ].concat(routes
         .filter(function (route) {return !route.redirect;})
@@ -156,7 +156,7 @@ module.exports = {
             'process.env.SCRATCH_ENV': '"'+ (process.env.SCRATCH_ENV || 'development') + '"'
         }),
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'common', 
+            name: 'common',
             filename: 'js/common.bundle.js',
             minChunks: function (module, count) {
                 // Include in common if more than 70% of chunks use it

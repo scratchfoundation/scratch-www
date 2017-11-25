@@ -7,7 +7,10 @@ import intl from '../../lib/intl.jsx';
 
 import Deck from '../../components/deck/deck.jsx';
 import Progression from '../../components/progression/progression.jsx';
-import {RegistrationError, ClassInviteNewStudentStep, UsernameStep, DemographicsStep, ClassWelcomeStep} from '../../components/registration/steps.jsx';
+import {
+    RegistrationError, ClassInviteNewStudentStep,
+    UsernameStep, DemographicsStep, ClassWelcomeStep
+} from '../../components/registration/steps.jsx';
 
 require('./studentregistration.scss');
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import api from '../../lib/api';
-import {countryOptions} from '../../lib/country-data';
+import {countryOptions, countryData} from '../../lib/country-data';
 import intl from '../../lib/intl.jsx';
 
 import Avatar from '../../components/avatar/avatar.jsx';

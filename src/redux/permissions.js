@@ -6,7 +6,7 @@ var Types = keyMirror({
     SET_PERMISSIONS_ERROR: null
 });
 
-export function permissionsReducer(state, action) {
+export function permissionsReducer (state, action) {
     if (typeof state === 'undefined') {
         state = '';
     }
@@ -20,7 +20,7 @@ export function permissionsReducer(state, action) {
     }
 }
 
-export function storePermissions(permissions) {
+export function storePermissions (permissions) {
     permissions = permissions || {};
     return function (dispatch) {
         jar.set('permissions', permissions, {
@@ -32,7 +32,7 @@ export function storePermissions(permissions) {
     };
 }
 
-export function getPermissions() {
+export function getPermissions () {
     return function (dispatch) {
         jar.get('permissions', function (err, value) {
             if (err) return dispatch(setPermissionsError(err));
@@ -47,14 +47,14 @@ export function getPermissions() {
     };
 }
 
-export function setPermissions(permissions) {
+export function setPermissions (permissions) {
     return {
         type: Types.SET_PERMISSIONS,
         permissions: permissions
     };
 }
 
-export function setPermissionsError(error) {
+export function setPermissionsError (error) {
     return {
         type: Types.SET_PERMISSIONS_ERROR,
         error: error
