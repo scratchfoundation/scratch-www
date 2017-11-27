@@ -38,16 +38,20 @@ var FollowMessage = React.createClass({
                 <FormattedMessage
                     id='messages.followText'
                     values={{
-                        profileLink: <a
-                            href={profileLink}
-                        >
-                            {this.props.followerUsername}
-                        </a>,
-                        followeeLink: <a
-                            href={followeeLink}
-                        >
-                            {followeeTitle}
-                        </a>
+                        profileLink: (
+                            <a
+                                href={profileLink}
+                            >
+                                {this.props.followerUsername}
+                            </a>
+                        ),
+                        followeeLink: (
+                            <a
+                                href={followeeLink}
+                            >
+                                {followeeTitle}
+                            </a>
+                        )
                     }}
                 />
             </SocialMessage>

@@ -29,12 +29,16 @@ var BecomeCuratorMessage = React.createClass({
                 <FormattedMessage
                     id='messages.becomeCuratorText'
                     values={{
-                        username: <a
-                            href={actorUri}
-                        >
-                            {this.props.actorUsername}
-                        </a>,
-                        studio: <a href={studioUri}>{this.props.studioTitle}</a>
+                        username: (
+                            <a
+                                href={actorUri}
+                            >
+                                {this.props.actorUsername}
+                            </a>
+                        ),
+                        studio: (
+                            <a href={studioUri}>{this.props.studioTitle}</a>
+                        )
                     }}
                 />
             </SocialMessage>

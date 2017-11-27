@@ -29,12 +29,16 @@ var ShareProjectMessage = React.createClass({
                 <FormattedMessage
                     id='messages.shareText'
                     values={{
-                        profileLink: <a
-                            href={profileLink}
-                        >
-                            {this.props.actorUsername}
-                        </a>,
-                        projectLink: <a href={projectLink}>{this.props.projectTitle}</a>
+                        profileLink: (
+                            <a
+                                href={profileLink}
+                            >
+                                {this.props.actorUsername}
+                            </a>
+                        ),
+                        projectLink: (
+                            <a href={projectLink}>{this.props.projectTitle}</a>
+                        )
                     }}
                 />
             </SocialMessage>

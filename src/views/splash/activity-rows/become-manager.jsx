@@ -29,12 +29,16 @@ var BecomeManagerMessage = React.createClass({
                 <FormattedMessage
                     id='messages.becomeManagerText'
                     values={{
-                        username: <a
-                            href={recipientUri}
-                        >
-                            {this.props.recipientUsername}
-                        </a>,
-                        studio: <a href={studioUri}>{this.props.studioTitle}</a>
+                        username: (
+                            <a
+                                href={recipientUri}
+                            >
+                                {this.props.recipientUsername}
+                            </a>
+                        ),
+                        studio: (
+                            <a href={studioUri}>{this.props.studioTitle}</a>
+                        )
                     }}
                 />
             </SocialMessage>

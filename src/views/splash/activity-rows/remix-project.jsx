@@ -32,13 +32,19 @@ var RemixProjectMessage = React.createClass({
                 <FormattedMessage
                     id='messages.remixText'
                     values={{
-                        profileLink: <a
-                            href={profileLink}
-                        >
-                            {this.props.actorUsername}
-                        </a>,
-                        projectLink: <a href={projectLink}>{this.props.projectTitle}</a>,
-                        remixedProjectLink: <a href={remixedProjectLink}>{this.props.parentTitle}</a>
+                        profileLink: (
+                            <a
+                                href={profileLink}
+                            >
+                                {this.props.actorUsername}
+                            </a>
+                        ),
+                        projectLink: (
+                            <a href={projectLink}>{this.props.projectTitle}</a>
+                        ),
+                        remixedProjectLink: (
+                            <a href={remixedProjectLink}>{this.props.parentTitle}</a>
+                        )
                     }}
                 />
             </SocialMessage>
