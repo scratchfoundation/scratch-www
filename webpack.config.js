@@ -127,7 +127,14 @@ module.exports = {
             'process.env.API_HOST': '"' + (process.env.API_HOST || 'https://api.scratch.mit.edu') + '"',
             'process.env.SCRATCH_ENV': '"'+ (process.env.SCRATCH_ENV || 'development') + '"'
         }),
-        new webpack.optimize.CommonsChunkPlugin('common', 'js/common.bundle.js'),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'common',
+            filename: 'js/common.bundle.js',
+            minChunks: function (module, count) {
+                // Include in common if more than 70% of chunks use it
+                return count / Object.keys(entry).length > 0.7;
+            }
+        }),
         new webpack.optimize.OccurenceOrderPlugin()
     ])
 };
