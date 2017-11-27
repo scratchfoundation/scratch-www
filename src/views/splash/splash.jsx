@@ -33,28 +33,16 @@ var Splash = injectIntl(React.createClass({
     componentDidUpdate: function (prevProps) {
         if (this.props.user != prevProps.user) {
             if (this.props.user.username) {
-                this.props.dispatch(splashActions.getActivity(
-                    this.props.user.username,
-                    this.props.user.token
-                ));
-                this.props.dispatch(splashActions.getSharedByFollowing(
-                    this.props.user.username,
-                    this.props.user.token
-                ));
-                this.props.dispatch(splashActions.getInStudiosFollowing(
-                    this.props.user.username,
-                    this.props.user.token
-                ));
-                this.props.dispatch(splashActions.getLovedByFollowing(
-                    this.props.user.username,
-                    this.props.user.token
-                ));
+                this.props.getActivity(this.props.user.username, this.props.user.token);
+                this.props.getSharedByFollowing(this.props.user.username, this.props.user.token);
+                this.props.getInStudiosFollowing(this.props.user.username, this.props.user.token);
+                this.props.getLovedByFollowing(this.props.user.username, this.props.user.token);
                 this.getNews();
             } else {
-                this.props.dispatch(splashActions.setRows('shared', []));
-                this.props.dispatch(splashActions.setRows('loved', []));
-                this.props.dispatch(splashActions.setRows('studios', []));
-                this.props.dispatch(splashActions.setRows('activity', []));
+                this.props.setRows('shared', []);
+                this.props.setRows('loved', []);
+                this.props.setRows('studios', []);
+                this.props.setRows('activity', []);
                 this.setState({news: []});
                 this.getProjectCount();
             }
@@ -66,24 +54,12 @@ var Splash = injectIntl(React.createClass({
         }
     },
     componentDidMount: function () {
-        this.props.dispatch(splashActions.getFeaturedGlobal());
+        this.props.getFeaturedGlobal();
         if (this.props.user.username) {
-            this.props.dispatch(splashActions.getActivity(
-                this.props.user.username,
-                this.props.user.token
-            ));
-            this.props.dispatch(splashActions.getSharedByFollowing(
-                this.props.user.username,
-                this.props.user.token
-            ));
-            this.props.dispatch(splashActions.getInStudiosFollowing(
-                this.props.user.username,
-                this.props.user.token
-            ));
-            this.props.dispatch(splashActions.getLovedByFollowing(
-                this.props.user.username,
-                this.props.user.token
-            ));
+            this.props.getActivity(this.props.user.username, this.props.user.token);
+            this.props.getSharedByFollowing(this.props.user.username, this.props.user.token);
+            this.props.getInStudiosFollowing(this.props.user.username, this.props.user.token);
+            this.props.getLovedByFollowing(this.props.user.username, this.props.user.token);
             this.getNews();
         } else {
             this.getProjectCount();
@@ -211,7 +187,33 @@ var mapStateToProps = function (state) {
     };
 };
 
-var ConnectedSplash = connect(mapStateToProps)(Splash);
+var mapDispatchToProps = function (dispatch) {
+    return {
+        getFeaturedGlobal: function () {
+            dispatch(splashActions.getFeaturedGlobal());
+        },
+        getActivity: function (username, token) {
+            dispatch(splashActions.getActivity(username, token));
+        },
+        getSharedByFollowing: function (username, token) {
+            dispatch(splashActions.getSharedByFollowing(username, token));
+        },
+        getInStudiosFollowing: function (username, token) {
+            dispatch(splashActions.getInStudiosFollowing(username, token));
+        },
+        getLovedByFollowing: function (username, token) {
+            dispatch(splashActions.getLovedByFollowing(username, token));
+        },
+        setRows: function (type, rows) {
+            dispatch(splashActions.setRows(type, rows));
+        }
+    };
+};
+
+var ConnectedSplash = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Splash);
 
 render(
     <Page><ConnectedSplash /></Page>,
