@@ -64,6 +64,7 @@ var Grid = React.createClass({
                                     href={href}
                                     title={item.title}
                                     src={item.image}
+                                    srcDefault={'https://uploads.scratch.mit.edu/galleries/thumbnails/default.png'}
                                     owner={item.owner}
                                 />
                             );
