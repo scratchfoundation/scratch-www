@@ -8,12 +8,20 @@ var Thumbnail = React.createClass({
     propTypes: {
         src: React.PropTypes.string
     },
+    getInitialState: function () {
+        return {
+            srcFallback: false,
+            avatarFallback: false
+        };
+    },
     getDefaultProps: function () {
         return {
             href: '#',
             title: 'Project',
             src: '',
+            srcDefault: 'https://uploads.scratch.mit.edu/projects/thumbnails/default.png',
             avatar: '',
+            avatarDefault: 'https://uploads.scratch.mit.edu/users/avatars/default.png',
             type: 'project',
             showLoves: false,
             showFavorites: false,
@@ -23,6 +31,12 @@ var Thumbnail = React.createClass({
             linkTitle: true,
             alt: ''
         };
+    },
+    handleSrcError: function () {
+        this.setState({srcFallback: true});
+    },
+    handleAvatarError: function () {
+        this.setState({avatarFallback: true});
     },
     render: function () {
         var classes = classNames(
@@ -58,7 +72,8 @@ var Thumbnail = React.createClass({
                 <div
                     key="remixes"
                     className="thumbnail-remixes"
-                    title={this.props.remixes + ' remixes'}>
+                    title={this.props.remixes + ' remixes'}
+                >
                     {this.props.remixes}
                 </div>
             );
@@ -68,19 +83,48 @@ var Thumbnail = React.createClass({
                 <div
                     key="views"
                     className="thumbnail-views"
-                    title={this.props.views + ' views'}>
+                    title={this.props.views + ' views'}
+                >
                     {this.props.views}
                 </div>
             );
         }
-        var imgElement,titleElement,avatarElement;
+
+        var imgElement, titleElement, avatarElement;
         if (this.props.linkTitle) {
-            imgElement = <a className="thumbnail-image" href={this.props.href} key="imgElement">
-                             <img src={this.props.src} alt={this.props.alt} />
-                         </a>;
-            titleElement =  <a href={this.props.href} key="titleElement">
-                                {this.props.title}
-                            </a>;
+            if (this.state.srcFallback) {
+                imgElement = (
+                    <a
+                        className="thumbnail-image"
+                        href={this.props.href}
+                        key="imgElement"
+                    >
+                        <img
+                            alt={this.props.alt}
+                            src={this.props.srcDefault}
+                        />
+                    </a>
+                );
+            } else {
+                imgElement = (
+                    <a
+                        className="thumbnail-image"
+                        href={this.props.href}
+                        key="imgElement"
+                    >
+                        <img
+                            alt={this.props.alt}
+                            src={this.props.src}
+                            onError={this.handleSrcError}
+                        />
+                    </a>
+                );
+            }
+            titleElement = (
+                <a href={this.props.href} key="titleElement">
+                    {this.props.title}
+                </a>
+            );
         } else {
             imgElement = <img src={this.props.src} />;
             titleElement = this.props.title;
@@ -97,10 +141,32 @@ var Thumbnail = React.createClass({
         }
 
         if (this.props.avatar && this.props.showAvatar) {
-            avatarElement =
-                <a className="creator-image" href={'/users/' + this.props.creator + '/'}>
-                    <img src={this.props.avatar} alt={this.props.creator} />
-                </a>;
+            if (this.state.avatarFallback) {
+                avatarElement = (
+                    <a
+                        className="creator-image"
+                        href={'/users/' + this.props.creator + '/'}
+                    >
+                        <img
+                            alt={this.props.creator}
+                            src={this.props.avatarDefault}
+                        />
+                    </a>
+                );
+            } else {
+                avatarElement = (
+                    <a
+                        className="creator-image"
+                        href={'/users/' + this.props.creator + '/'}
+                    >
+                        <img
+                            alt={this.props.creator}
+                            src={this.props.avatar}
+                            onError={this.handleAvatarError}
+                        />
+                    </a>
+                );
+            }
         }
         return (
             <div className={classes} >

@@ -32,33 +32,41 @@ var Grid = React.createClass({
 
                         if (this.props.itemType == 'projects') {
                             return (
-                                <Thumbnail key={key}
-                                           showLoves={this.props.showLoves}
-                                           showFavorites={this.props.showFavorites}
-                                           showRemixes={this.props.showRemixes}
-                                           showViews={this.props.showViews}
-                                           showAvatar={this.props.showAvatar}
-                                           type={'project'}
-                                           href={href}
-                                           title={item.title}
-                                           src={item.image}
-                                           avatar={'https://cdn2.scratch.mit.edu/get_image/user/'
-                                               + item.author.id + '_32x32.png'}
-                                           creator={item.author.username}
-                                           loves={item.stats.loves}
-                                           favorites={item.stats.favorites}
-                                           remixes={item.stats.remixes}
-                                           views={item.stats.views}  />
+                                <Thumbnail
+                                    key={key}
+                                    showLoves={this.props.showLoves}
+                                    showFavorites={this.props.showFavorites}
+                                    showRemixes={this.props.showRemixes}
+                                    showViews={this.props.showViews}
+                                    showAvatar={this.props.showAvatar}
+                                    type={'project'}
+                                    href={href}
+                                    title={item.title}
+                                    src={item.image}
+                                    avatar={
+                                       'https://uploads.scratch.mit.edu/users/avatars/' +
+                                       item.author.id +
+                                       '.png'
+                                    }
+                                    creator={item.author.username}
+                                    loves={item.stats.loves}
+                                    favorites={item.stats.favorites}
+                                    remixes={item.stats.remixes}
+                                    views={item.stats.views}
+                                />
                             );
                         }
                         else {
                             return (
-                                <Thumbnail key={key}
-                                           type={'gallery'}
-                                           href={href}
-                                           title={item.title}
-                                           src={item.image}
-                                           owner={item.owner}  />
+                                <Thumbnail
+                                    key={key}
+                                    type={'gallery'}
+                                    href={href}
+                                    title={item.title}
+                                    src={item.image}
+                                    srcDefault={'https://uploads.scratch.mit.edu/galleries/thumbnails/default.png'}
+                                    owner={item.owner}
+                                />
                             );
                         }
                     }.bind(this))}
