@@ -99,7 +99,7 @@ var FastlyConfigMethods = {
             '        set beresp.ttl = 0s;\n' +
             '        set beresp.grace = 0s;\n' +
             '        return(pass);\n' +
-            '    }\n';
+            '    }\n' +
             '}\n';
     }
 };
