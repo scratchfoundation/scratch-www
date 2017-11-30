@@ -85,45 +85,6 @@ var FastlyConfigMethods = {
     },
 
     /**
-     * Returns custom vcl configuration as a string for setting the backend
-     * of a request to the given backend/host.
-     *
-     * @param {string} backend   name of the backend declared in fastly
-     * @param {string} host      name of the s3 bucket to be set as the host
-     * @param {string} condition condition under which backend should be set
-     */
-    setBackend: function (backend, host, condition) {
-        return '' +
-            'if (' + condition + ') {\n' +
-            '    set req.backend = ' + backend + ';\n' +
-            '    set req.http.host = \"' + host + '\";\n' +
-            '}\n';
-    },
-
-    /**
-     * Returns custom vcl configuration as a string for headers that
-     * should be added for the condition in which a request is forwarded.
-     *
-     * @param {string} condition condition under which to set pass headers
-     */
-    setForwardHeaders: function (condition) {
-        return '' +
-            'if (' + condition + ') {\n' +
-            '    if (!req.http.Fastly-FF) {\n' +
-            '        if (req.http.X-Forwarded-For) {\n' +
-            '            set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For \", \" client.ip;\n' +
-            '        } else {\n' +
-            '            set req.http.Fastly-Temp-XFF = client.ip;\n' +
-            '        }\n' +
-            '    } else {\n' +
-            '        set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For;\n' +
-            '    }\n' +
-            '    set req.grace = 60s;\n' +
-            '    return(pass);\n' +
-            '}\n';
-    },
-
-    /**
      * Returns custom vcl configuration as a string that sets the varnish
      * Time to Live (TTL) for responses that come from s3.
      *
@@ -132,9 +93,13 @@ var FastlyConfigMethods = {
     setResponseTTL: function (condition) {
         return '' +
             'if (' + condition + ') {\n' +
-            '    set beresp.ttl = 0s;\n' +
-            '    set beresp.grace = 0s;\n' +
-            '    return(pass);\n' +
+            '    if (req.url ~ "^/projects/" && !req.http.Cookie:scratchsessionid) {\n' +
+            '        set beresp.http.Vary = "Accept-Encoding, Accept-Language";\n' +
+            '    } else {\n' +
+            '        set beresp.ttl = 0s;\n' +
+            '        set beresp.grace = 0s;\n' +
+            '        return(pass);\n' +
+            '    }\n' +
             '}\n';
     }
 };

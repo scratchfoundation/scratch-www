@@ -1,6 +1,7 @@
 var async = require('async');
 var defaults = require('lodash.defaults');
 var fastlyConfig = require('./lib/fastly-config-methods');
+const languages = require('./languages.json');
 
 var route_json = require('../src/routes.json');
 
@@ -41,23 +42,43 @@ async.auto({
         // on any of those route conditions.
         var notPassStatement = fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname);
         
-        // For all the routes in routes.json, construct a varnish-style regex that matches
-        // only if NONE of those routes are matched.
-        var passStatement = fastlyConfig.negateConditionStatement(notPassStatement);
-        
         // For a non-pass condition, point backend at s3
-        var backendCondition = fastlyConfig.setBackend(
-            'F_s3',
-            S3_BUCKET_NAME,
-            notPassStatement
-        );
-        // For a pass condition, set forwarding headers
-        var forwardCondition = fastlyConfig.setForwardHeaders(passStatement);
+        var recvCondition = '' +
+            'if (' + notPassStatement + ') {\n' +
+            '    set req.backend = F_s3;\n' +
+            '    set req.http.host = \"' + S3_BUCKET_NAME + '\";\n' +
+            '} else {\n' +
+            '    if (!req.http.Fastly-FF) {\n' +
+            '        if (req.http.X-Forwarded-For) {\n' +
+            '            set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For \", \" client.ip;\n' +
+            '        } else {\n' +
+            '            set req.http.Fastly-Temp-XFF = client.ip;\n' +
+            '        }\n' +
+            '    } else {\n' +
+            '        set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For;\n' +
+            '    }\n' +
+            '    set req.grace = 60s;\n' +
+            '    if (req.http.Cookie:scratchlanguage) {\n' +
+            '        set req.http.Accept-Language = req.http.Cookie:scratchlanguage;\n' +
+            '    } else {\n' +
+            '        set req.http.Accept-Language = accept.language_lookup("' +
+                         Object.keys(languages).join(':') + '", ' +
+                         '"en", ' +
+                         'std.tolower(req.http.Accept-Language)' +
+                     ');\n' +
+            '    }\n' +
+            '    if (req.url ~ "^/projects/" && !req.http.Cookie:scratchsessionid) {\n' +
+            '        set req.http.Cookie = req.http.Cookie:scratchlanguage;\n' +
+            '    } else {\n' +
+            '        return(pass);\n' +
+            '    }\n' +
+            '}\n';
+ 
 
         fastly.setCustomVCL(
             results.version,
             'recv-condition',
-            backendCondition + forwardCondition,
+            recvCondition,
             cb
         );
     }],
