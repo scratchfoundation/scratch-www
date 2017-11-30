@@ -18,6 +18,10 @@ const clickText = (text) => {
     return clickXpath(`//*[contains(text(), '${text}')]`);
 };
 
+const findText = (text) => {
+    return driver.wait(until.elementLocated(By.xpath(`//*[contains(text(), '${text}')]`), 5 * 1000));
+};
+
 const clickButton = (text) => {
     return clickXpath(`//button[contains(text(), '${text}')]`);
 };
@@ -57,6 +61,7 @@ module.exports = {
     clickXpath,
     findByXpath,
     clickText,
+    findText,
     clickButton,
     findByCss,
     getLogs

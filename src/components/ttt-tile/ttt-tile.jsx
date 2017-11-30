@@ -47,7 +47,7 @@ var TTTTile = React.createClass({
                 {this.props.onGuideClick && (
                     <div className="ttt-tile-guides" onClick={this.props.onGuideClick}>
                         <FormattedMessage id='tile.guides' defaultMessage='See Cards and Guides'/>
-                        <img className="ttt-tile-see-more" src="/svgs/ttt/see-more.svg" />
+                        <img className="ttt-tile-open-modal" src="/svgs/modal/open-blue.svg" />
                     </div>
                 )}
             </div>

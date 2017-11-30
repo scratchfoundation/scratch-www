@@ -11,7 +11,7 @@ var Navigation = React.createClass({
             <NavigationBox>
                 <ul className="ul mod-2018">
                     <li className="li-left mod-logo mod-2018">
-                        <a href="/conference" className="logo-a">
+                        <a href="/" className="logo-a">
                             <img
                                 src="/images/logo_sm.png"
                                 alt="Scratch Logo"

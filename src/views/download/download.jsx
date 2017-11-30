@@ -231,6 +231,7 @@ var Download = injectIntl(React.createClass({
                             <p><FormattedMessage id='download.knownIssuesOne' /></p>
                             <p><FormattedMessage id='download.knownIssuesTwo' /></p>
                             <p><FormattedHTMLMessage id='download.knownIssuesThree' /></p>
+                            <p><FormattedMessage id='download.knownIssuesFour' /></p>
                             <a href="https://scratch.mit.edu/discuss/3/" className='button mod-link'>
                                 <FormattedMessage id='download.reportBugs' />
                             </a>
