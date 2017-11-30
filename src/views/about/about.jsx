@@ -60,6 +60,14 @@ var About = React.createClass({
                             <h3><FormattedMessage id='about.aroundTheWorld' /></h3>
                             <img src="/images/about/around-the-world.png" alt="" />
                             <p><FormattedHTMLMessage id='about.aroundTheWorldDescription' /></p>
+                            values={{
+        translationLinkText: 'translation',
+        quotesLinkText: (
+            <a href='//scratch.mit.edu/info/quotes'>
+                <FormattedMessage id='about.quotesLinkText'/>
+            </a>
+        )
+    }}
                         </li>
 
                         <li>
@@ -72,12 +80,28 @@ var About = React.createClass({
                             <h3><FormattedMessage id='about.quotes' /></h3>
                             <img src="/images/about/quotes.gif" alt="Quotes about Scratch" />
                             <p><FormattedHTMLMessage id='about.quotesDescription' /></p>
+                            values={{
+        quotesLinkText: (
+            <a href='http://wiki.scratch.mit.edu/wiki/How_to_Translate_Scratch\'>
+                <FormattedMessage id='about.quotesLinkText'/>
+            </a>
+        )
+    }}
                         </li>
 
                         <li>
                             <h3><FormattedMessage id='about.research' /></h3>
                             <img src="/images/about/research-remix.png" alt="" />
                             <p><FormattedHTMLMessage id='about.researchDescription' /></p>
+                           values={{
+        spfaLinkText: (
+            <a href='http://web.media.mit.edu/~mres/papers/Scratch-CACM-final.pdf\'>
+                <FormattedMessage id='about.spfaLinkText'/>
+                    <FormattedMessage id='about.spfaLinkText'/>
+            </a>
+        ) </a>
+        )
+    }}
                         </li>
 
                         <li>
@@ -103,7 +127,25 @@ var About = React.createClass({
                         <li>
                             <h3><FormattedMessage id='about.support' /></h3>
                             <p><FormattedHTMLMessage id='about.supportDescription' /></p>
-                        </li>
+                            values={{
+        supportersList: 'National Science Foundation, Scratch Foundation, Siegel Family Endowment, Google, LEGO Foundation, Intel, Cartoon Network, Lemann Foundation, MacArthur Foundation',
+        creditslink: (
+            <a href='//scratch.mit.edu/info/credits'>
+                <FormattedMessage id='about.creditsLinkText'/>
+            </a>
+        ),
+        donateLink: (
+            <a href='//secure.donationpay.org/scratchfoundation/'>
+                <FormattedMessage id='about.donateLinkText'/>
+            </a>
+        ),
+        donateemail: (
+            <a href='mailto:donate@scratch.mit.edu'>
+                donate@scratch.mit.edu
+            </a>
+        )
+    }}
+                         </li>
                     </ul>
                 </div>
             </div>
