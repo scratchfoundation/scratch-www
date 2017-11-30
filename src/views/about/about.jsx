@@ -93,13 +93,21 @@ var About = React.createClass({
                             <h3><FormattedMessage id='about.research' /></h3>
                             <img src="/images/about/research-remix.png" alt="" />
                             <p><FormattedHTMLMessage id='about.researchDescription' /></p>
-                           values={{
-        spfaLinkText: (
-            <a href='http://web.media.mit.edu/~mres/papers/Scratch-CACM-final.pdf\'>
-                <FormattedMessage id='about.spfaLinkText'/>
-                    <FormattedMessage id='about.spfaLinkText'/>
+                            values={{
+        researchLinkText: (
+            <a href='/info/research'>
+                <FormattedMessage id='about.researchLinkText'/>
             </a>
-        ) </a>
+        ),
+        spfaLinkText: (
+            <a href='http://web.media.mit.edu/~mres/papers/Scratch-CACM-final.pdf'>
+                <FormattedMessage id='about.spfaLinkText'/>
+            </a>
+        ),
+        statisticsLinkText: (
+            <a href='/statistics'>
+                <FormattedMessage id='about.statisticsLinkText'/>
+            </a>
         )
     }}
                         </li>
