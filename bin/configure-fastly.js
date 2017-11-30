@@ -42,10 +42,6 @@ async.auto({
         // on any of those route conditions.
         var notPassStatement = fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname);
         
-        // For all the routes in routes.json, construct a varnish-style regex that matches
-        // only if NONE of those routes are matched.
-        var passStatement = fastlyConfig.negateConditionStatement(notPassStatement);
-        
         // For a non-pass condition, point backend at s3
         var recvCondition = '' +
             'if (' + notPassStatement + ') {\n' +
@@ -63,13 +59,13 @@ async.auto({
             '    }\n' +
             '    set req.grace = 60s;\n' +
             '    if (req.http.Cookie:scratchlanguage) {\n' +
-            '        set req.http.Accept-Language = req.http.Cookie:scratchlanguage;\n' + 
+            '        set req.http.Accept-Language = req.http.Cookie:scratchlanguage;\n' +
             '    } else {\n' +
             '        set req.http.Accept-Language = accept.language_lookup("' +
-                         Object.keys(languages).join(':') + '", ' + 
+                         Object.keys(languages).join(':') + '", ' +
                          '"en", ' +
                          'std.tolower(req.http.Accept-Language)' +
-                     ');\n' + 
+                     ');\n' +
             '    }\n' +
             '    if (req.url ~ "^/projects/" && !req.http.Cookie:scratchsessionid) {\n' +
             '        set req.http.Cookie = req.http.Cookie:scratchlanguage;\n' +
