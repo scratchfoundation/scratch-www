@@ -119,7 +119,11 @@ var FastlyConfigMethods = {
             '        set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For;\n' +
             '    }\n' +
             '    set req.grace = 60s;\n' +
-            '    return(pass);\n' +
+            '    if (req.url ~ "^/projects/" && !req.http.Cookie:scratchsessionid) {\n' +
+            '        set req.http.Cookie = req.http.Cookie:scratchlanguage;\n' +
+            '    } else {\n' +
+            '        return(pass);\n' +
+            '    }\n' +
             '}\n';
     },
 
@@ -132,9 +136,13 @@ var FastlyConfigMethods = {
     setResponseTTL: function (condition) {
         return '' +
             'if (' + condition + ') {\n' +
-            '    set beresp.ttl = 0s;\n' +
-            '    set beresp.grace = 0s;\n' +
-            '    return(pass);\n' +
+            '    if (req.url ~ "^/projects/" && !req.http.Cookie:scratchsessionid) {\n' +
+            '        set beresp.http.Vary = "Accept-Encoding, Accept-Language";\n' +
+            '    } else {\n' +
+            '        set beresp.ttl = 0s;\n' +
+            '        set beresp.grace = 0s;\n' +
+            '        return(pass);\n' +
+            '    }\n';
             '}\n';
     }
 };
