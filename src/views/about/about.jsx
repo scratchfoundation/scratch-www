@@ -61,12 +61,12 @@ var About = React.createClass({
                             <img src="/images/about/around-the-world.png" alt="" />
                             <p><FormattedMessage id='about.aroundTheWorldDescription' /></p>
                             values={{
-    translationLink: (
+                                     translationLink: (
         <a href='http://wiki.scratch.mit.edu/wiki/How_to_Translate_Scratch\'>
             <FormattedMessage id='about.translationLinkText' />
         </a>
     )
-}}
+                            }}
                         </li>
 
                         <li>
