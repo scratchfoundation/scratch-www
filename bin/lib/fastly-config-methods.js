@@ -93,7 +93,7 @@ var FastlyConfigMethods = {
     setResponseTTL: function (condition) {
         return '' +
             'if (' + condition + ') {\n' +
-            '    if (req.url ~ "^/projects/" && !req.http.Cookie:scratchsessionid) {\n' +
+            '    if (req.url ~ "^/projects/" && !req.http.Cookie:scratchsessionsid) {\n' +
             '        set beresp.http.Vary = "Accept-Encoding, Accept-Language";\n' +
             '    } else {\n' +
             '        set beresp.ttl = 0s;\n' +
