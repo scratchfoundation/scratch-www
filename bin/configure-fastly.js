@@ -67,7 +67,8 @@ async.auto({
                          'std.tolower(req.http.Accept-Language)' +
                      ');\n' +
             '    }\n' +
-            '    if (req.url ~ "^/projects/" && !req.http.Cookie:scratchsessionsid) {\n' +
+            '    if (req.url ~ "^(/projects/|/fragment/account-nav.json|/session/)" && ' +
+            '!req.http.Cookie:scratchsessionsid) {\n' +
             '        set req.http.Cookie = "scratchlanguage=" req.http.Cookie:scratchlanguage;\n' +
             '    } else {\n' +
             '        return(pass);\n' +
