@@ -11,6 +11,8 @@ var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var LegacyCarousel = require('../../components/carousel/legacy-carousel.jsx');
+var TopBanner = require('./hoc/top-banner.jsx');
+var MiddleBanner = require('./hoc/middle-banner.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var IframeModal = require('../../components/modal/iframe/modal.jsx');
 var News = require('../../components/news/news.jsx');
@@ -253,6 +255,8 @@ var SplashPresentation = injectIntl(React.createClass({
                 {this.props.isEducator ? [
                     <TeacherBanner key="teacherbanner" messages={messages} />
                 ] : []}
+                <TopBanner loggedIn={this.props.sessionStatus === sessionActions.Status.FETCHED
+                    && Object.keys(this.props.user).length !== 0}/>
                 <div key="inner" className="inner mod-splash">
                     {this.props.sessionStatus === sessionActions.Status.FETCHED ? (
                         Object.keys(this.props.user).length !== 0 ? [
@@ -273,6 +277,12 @@ var SplashPresentation = injectIntl(React.createClass({
                         ]) : []
                     }
 
+                    {featured.shift()}
+                    {featured.shift()}
+                </div>
+                <MiddleBanner />
+                <div key="inner2" className="inner mod-splash">
+                    
                     {featured}
 
                     {this.props.isAdmin ? [
