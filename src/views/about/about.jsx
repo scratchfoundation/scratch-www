@@ -61,7 +61,7 @@ var About = React.createClass({
                             <img src="/images/about/around-the-world.png" alt="" />
                             <p><FormattedMessage id='about.aroundTheWorldDescription'
                             values={{
-                                     translationLink: (
+                                translationLink: (
         <a href='http://wiki.scratch.mit.edu/wiki/How_to_Translate_Scratch\'>
             <FormattedMessage id='about.translationLinkText' />
         </a>
@@ -83,12 +83,12 @@ var About = React.createClass({
                             <img src="/images/about/quotes.gif" alt="Quotes about Scratch" />
                             <p><FormattedMessage id='about.quotesDescription'
                             values={{
-        quotesLinkText: (
+                                quotesLinkText: (
             <a href='http://wiki.scratch.mit.edu/wiki/How_to_Translate_Scratch\'>
                 <FormattedMessage id='about.quotesLinkText'/>
             </a>
         )
-    }}
+                            }}
  />
 </p>
                         </li>
@@ -98,22 +98,22 @@ var About = React.createClass({
                             <img src="/images/about/research-remix.png" alt="" />
                             <p><FormattedMessage id='about.researchDescription'
                             values={{
-        researchLinkText: (
+                                researchLinkText: (
             <a href='/info/research'>
                 <FormattedMessage id='about.researchLinkText'/>
             </a>
         ),
-        spfaLinkText: (
+                                spfaLinkText: (
             <a href='http://web.media.mit.edu/~mres/papers/Scratch-CACM-final.pdf'>
                 <FormattedMessage id='about.spfaLinkText'/>
             </a>
         ),
-        statisticsLinkText: (
+                                statisticsLinkText: (
             <a href='/statistics'>
                 <FormattedMessage id='about.statisticsLinkText'/>
             </a>
         )
-    }}
+                            }}
  />
 </p>
                         </li>
@@ -143,22 +143,22 @@ var About = React.createClass({
                             <p><FormattedMessage id='about.supportDescription'
                             values={{
  // eslint-disable-next-line max-len supportersList: 'National Science Foundation, Scratch Foundation, Siegel Family Endowment, Google, LEGO Foundation, Intel, Cartoon Network, Lemann Foundation, MacArthur Foundation',
-        creditslink: (
+                                creditslink: (
             <a href='//scratch.mit.edu/info/credits'>
                 <FormattedMessage id='about.creditsLinkText'/>
             </a>
         ),
-        donateLink: (
+                                donateLink: (
             <a href='//secure.donationpay.org/scratchfoundation/'>
                 <FormattedMessage id='about.donateLinkText'/>
             </a>
         ),
-        donateemail: (
+                                donateemail: (
             <a href='mailto:donate@scratch.mit.edu'>
                 donate@scratch.mit.edu
             </a>
         )
-    }}
+                            }}
   />
 </p>
                          </li>
