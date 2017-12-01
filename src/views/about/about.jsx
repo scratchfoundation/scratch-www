@@ -135,7 +135,7 @@ var About = React.createClass({
                             <h3><FormattedMessage id='about.support' /></h3>
                             <p><FormattedMessage id='about.supportDescription' /></p>
                             values={{
-        supportersList: 'National Science Foundation, Scratch Foundation, Siegel Family Endowment, Google, LEGO Foundation, Intel, Cartoon Network, Lemann Foundation, MacArthur Foundation',
+ // eslint-disable-next-line max-len supportersList: 'National Science Foundation, Scratch Foundation, Siegel Family Endowment, Google, LEGO Foundation, Intel, Cartoon Network, Lemann Foundation, MacArthur Foundation',
         creditslink: (
             <a href='//scratch.mit.edu/info/credits'>
                 <FormattedMessage id='about.creditsLinkText'/>
