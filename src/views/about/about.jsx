@@ -59,7 +59,7 @@ var About = React.createClass({
                         <li>
                             <h3><FormattedMessage id='about.aroundTheWorld' /></h3>
                             <img src="/images/about/around-the-world.png" alt="" />
-                            <p><FormattedMessage id='about.aroundTheWorldDescription' /></p>
+                            <p><FormattedMessage id='about.aroundTheWorldDescription'
                             values={{
                                      translationLink: (
         <a href='http://wiki.scratch.mit.edu/wiki/How_to_Translate_Scratch\'>
@@ -67,6 +67,9 @@ var About = React.createClass({
         </a>
     )
                             }}
+                            />
+                            </p>
+
                         </li>
 
                         <li>
@@ -86,12 +89,14 @@ var About = React.createClass({
             </a>
         )
     }}
+ />
+</p>
                         </li>
 
                         <li>
                             <h3><FormattedMessage id='about.research' /></h3>
                             <img src="/images/about/research-remix.png" alt="" />
-                            <p><FormattedMessage id='about.researchDescription' /></p>
+                            <p><FormattedMessage id='about.researchDescription'
                             values={{
         researchLinkText: (
             <a href='/info/research'>
@@ -109,6 +114,8 @@ var About = React.createClass({
             </a>
         )
     }}
+ />
+</p>
                         </li>
 
                         <li>
@@ -133,7 +140,7 @@ var About = React.createClass({
 
                         <li>
                             <h3><FormattedMessage id='about.support' /></h3>
-                            <p><FormattedMessage id='about.supportDescription' /></p>
+                            <p><FormattedMessage id='about.supportDescription'
                             values={{
  // eslint-disable-next-line max-len supportersList: 'National Science Foundation, Scratch Foundation, Siegel Family Endowment, Google, LEGO Foundation, Intel, Cartoon Network, Lemann Foundation, MacArthur Foundation',
         creditslink: (
@@ -152,6 +159,8 @@ var About = React.createClass({
             </a>
         )
     }}
+  />
+</p>
                          </li>
                     </ul>
                 </div>
