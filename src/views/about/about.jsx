@@ -81,7 +81,7 @@ var About = React.createClass({
                         <li>
                             <h3><FormattedMessage id='about.quotes' /></h3>
                             <img src="/images/about/quotes.gif" alt="Quotes about Scratch" />
-                            <p><FormattedMessage id='about.quotesDescription' /></p>
+                            <p><FormattedMessage id='about.quotesDescription'
                             values={{
         quotesLinkText: (
             <a href='http://wiki.scratch.mit.edu/wiki/How_to_Translate_Scratch\'>
