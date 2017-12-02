@@ -9,8 +9,8 @@
     "about.aroundTheWorld": "Around the World",
     "about.aroundTheWorldDescription": "Scratch is used in more than 150 different countries and available in more than 40 languages. To change languages, click the menu at the bottom of the page. Or, in the Project Editor, click the globe at the top of the page. To add or improve a translation, see the {translationLink} page.",
     "about.translationLinkText": "translation",
-    "about.quotes": "quotes",
-    "about.quotesDescription": "The Scratch Team has received many emails from youth, parents, and educators expressing thanks for Scratch. Want to see what people are saying? You can read a collection of the {quotesLink} we&#39;ve received.",
+    "about.quotes": "Quotes",
+    "about.quotesDescription": "The Scratch Team has received many emails from youth, parents, and educators expressing thanks for Scratch. Want to see what people are saying? You can read a collection of the {quotesLink} we've received.",
     "about.quotesLinkText": "quotes",
     "about.learnMore": "Learn More About Scratch",
     "about.learnMoreHelp": "Tips Page",
@@ -28,8 +28,7 @@
     "about.researchLinkText": "research",
     "about.statisticsLinkText": "statistics",
     "about.support": "Support and Funding",
-    "about.supportDescription": "The Scratch project has received financial support from the following organizations: {supportersList}. See the {creditsLink} for more information. If you&#39;d like to support Scratch, please see the Scratch Foundation {donateLink}, or contact us at {donateemail}.",
-    "about.supportersListText": "National Science Foundation, Scratch Foundation, Siegel Family Endowment, Google, LEGO Foundation, Intel, Cartoon Network, Lemann Foundation, MacArthur Foundation",
+    "about.supportDescription": "The Scratch project has received financial support from the following organizations: {supportersList}. See the {creditsLink} for more information. If you'd like to support Scratch, please see the Scratch Foundation {donateLink}, or contact us at {donateemail}.",
     "about.donateLinkText": "donations page",
     "about.creditsLinkText": "credits page"
 }
