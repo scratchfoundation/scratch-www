@@ -311,6 +311,12 @@
         "redirect": "/tips"
     },
     {
+        "name": "hoc2014-redirect",
+        "pattern": "^/hoc2014/?(\\?.*)?$",
+        "routeAlias": "/hoc2014/?\\??",
+        "redirect": "/tips"
+    },
+    {
         "name": "info-redirect",
         "pattern": "^/info/?(\\?.*)?$",
         "routeAlias": "/info/?(\\?.*)?$",
