@@ -131,6 +131,11 @@ var Credits = React.createClass({
                         <img src="//cdn.scratch.mit.edu/get_image/user/2796185_170x170.png" alt="Julia Avatar" />
                         <span className="name">Julia Zimmerman</span>
                     </li>
+                    
+                     <li>
+                         <img src="//cdn2.scratch.mit.edu/get_image/user/27383273_60x60.png" alt="Karishma Avatar" />
+                         <span className="name">Karishma Chadhat</span>
+                     </li>
                 </ul>
 
                 <p><FormattedMessage id='credits.moderators' /></p>
