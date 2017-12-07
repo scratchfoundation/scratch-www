@@ -21,7 +21,6 @@ var ConferenceSplash = React.createClass({
                     <h1 className='title-banner-h1 mod-2018'>
                         <center>
                             <FormattedMessage id='conference-2018.title' />
-                            <br />
                             <FormattedMessage id='conference-2018.subtitle' />
                         </center>
                     </h1>
