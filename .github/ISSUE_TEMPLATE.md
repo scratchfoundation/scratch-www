@@ -5,7 +5,7 @@ helpful to include screenshots or animated gifs of the problem._
 ### Steps to Reproduce
 
 _Explain what someone needs to do in order to see what's described above. The 
-more detailed and eplicit the steps are the better._
+more detailed and explicit the steps are the better._
 
 ### Operating System and Browser
 
