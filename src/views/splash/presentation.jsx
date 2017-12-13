@@ -11,6 +11,8 @@ var Box = require('../../components/box/box.jsx');
 var Button = require('../../components/forms/button.jsx');
 var Carousel = require('../../components/carousel/carousel.jsx');
 var LegacyCarousel = require('../../components/carousel/legacy-carousel.jsx');
+var TopBanner = require('./hoc/top-banner.jsx');
+var MiddleBanner = require('./hoc/middle-banner.jsx');
 var Intro = require('../../components/intro/intro.jsx');
 var IframeModal = require('../../components/modal/iframe/modal.jsx');
 var News = require('../../components/news/news.jsx');
@@ -88,23 +90,6 @@ var SplashPresentation = injectIntl(React.createClass({
             </Box>
         ];
 
-        if (this.props.featuredGlobal.curator_top_projects &&
-            this.props.featuredGlobal.curator_top_projects.length > 4) {
-
-            rows.push(
-                <Box
-                    key="curator_top_projects"
-                    title={
-                        formatMessage({id: 'splash.projectsCuratedBy'}) + ' ' +
-                        this.props.featuredGlobal.curator_top_projects[0].curator_name}
-                    moreTitle={formatMessage({id: 'general.learnMore'})}
-                    moreHref="/studios/386359/"
-                >
-                    <LegacyCarousel items={this.props.featuredGlobal.curator_top_projects} />
-                </Box>
-            );
-        }
-
         if (this.props.featuredGlobal.scratch_design_studio &&
             this.props.featuredGlobal.scratch_design_studio.length > 4) {
 
@@ -118,20 +103,6 @@ var SplashPresentation = injectIntl(React.createClass({
                     moreHref={'/studios/' + this.props.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.scratch_design_studio} />
-                </Box>
-            );
-        }
-
-        if (this.props.user &&
-            this.props.featuredGlobal.community_newest_projects &&
-            this.props.featuredGlobal.community_newest_projects.length > 0) {
-
-            rows.push(
-                <Box
-                    title={formatMessage({id: 'splash.recentlySharedProjects'})}
-                    key="community_newest_projects"
-                >
-                    <LegacyCarousel items={this.props.featuredGlobal.community_newest_projects} />
                 </Box>
             );
         }
@@ -208,6 +179,7 @@ var SplashPresentation = injectIntl(React.createClass({
             'intro.aboutScratch': formatMessage({id: 'intro.aboutScratch'}),
             'intro.forEducators': formatMessage({id: 'intro.forEducators'}),
             'intro.forParents': formatMessage({id: 'intro.forParents'}),
+            'intro.itsFree': formatMessage({id: 'intro.itsFree'}),
             'intro.joinScratch': formatMessage({id: 'intro.joinScratch'}),
             'intro.seeExamples': formatMessage({id: 'intro.seeExamples'}),
             'intro.tagLine': formatHTMLMessage({id: 'intro.tagLine'}),
@@ -252,6 +224,8 @@ var SplashPresentation = injectIntl(React.createClass({
                 {this.props.isEducator ? [
                     <TeacherBanner key="teacherbanner" messages={messages} />
                 ] : []}
+                <TopBanner loggedIn={this.props.sessionStatus === sessionActions.Status.FETCHED
+                    && Object.keys(this.props.user).length !== 0}/>
                 <div key="inner" className="inner mod-splash">
                     {this.props.sessionStatus === sessionActions.Status.FETCHED ? (
                         Object.keys(this.props.user).length !== 0 ? [
@@ -272,6 +246,12 @@ var SplashPresentation = injectIntl(React.createClass({
                         ]) : []
                     }
 
+                    {featured.shift()}
+                    {featured.shift()}
+                </div>
+                <MiddleBanner />
+                <div key="inner2" className="inner mod-splash">
+                    
                     {featured}
 
                     {this.props.isAdmin ? [

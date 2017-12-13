@@ -59,44 +59,20 @@ tap.test('getAppRouteCondition', function (t) {
     t.end();
 });
 
-tap.test('testSetBackend', function (t) {
-    var backend = fastlyConfig.setBackend('wemust', 'goback', 'marty');
-    t.equal(backend, '' +
-        'if (marty) {\n' +
-        '    set req.backend = wemust;\n' +
-        '    set req.http.host = \"goback\";\n' +
-        '}\n'
-    );
-    t.end();
-});
-
-tap.test('testSetForward', function (t) {
-    var forward = fastlyConfig.setForwardHeaders('alwaysforward');
-    t.equal(forward, '' +
-        'if (alwaysforward) {\n' +
-        '    if (!req.http.Fastly-FF) {\n' +
-        '        if (req.http.X-Forwarded-For) {\n' +
-        '            set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For ", " client.ip;\n' +
-        '        } else {\n' +
-        '            set req.http.Fastly-Temp-XFF = client.ip;\n' +
-        '        }\n' +
-        '    } else {\n' +
-        '        set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For;\n' +
-        '    }\n' +
-        '    set req.grace = 60s;\n' +
-        '    return(pass);\n' +
-        '}\n'
-    );
-    t.end();
-});
-
 tap.test('testSetTTL', function (t) {
     var ttl = fastlyConfig.setResponseTTL('itsactuallyttyl');
     t.equal(ttl, '' +
         'if (itsactuallyttyl) {\n' +
-        '    set beresp.ttl = 0s;\n' +
-        '    set beresp.grace = 0s;\n' +
-        '    return(pass);\n' +
+        '    if (req.url ~ "^(/projects/|/fragment/account-nav.json|/session/)" && ' +
+        '!req.http.Cookie:scratchsessionsid) {\n' +
+        '        set beresp.http.Vary = "Accept-Encoding, Accept-Language";\n' +
+        '        unset beresp.http.set-cookie;\n' +
+        '        return(deliver);\n' +
+        '    } else {\n' +
+        '        set beresp.ttl = 0s;\n' +
+        '        set beresp.grace = 0s;\n' +
+        '        return(pass);\n' +
+        '    }\n' +
         '}\n'
     );
     t.end();

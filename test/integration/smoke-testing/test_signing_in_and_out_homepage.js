@@ -1,5 +1,5 @@
 /*
- * Tests signing in according to smoke-tests at:
+ * Tests from:
  *
  * https://github.com/LLK/scratchr2/wiki/Smoke-Testing-Test-Cases
  *
@@ -7,6 +7,7 @@
 
 const {
     clickText,
+    findText,
     findByXpath,
     clickXpath,
     driver
@@ -20,7 +21,7 @@ const test = tap.test;
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
-tap.plan(1);
+tap.plan(2);
 
 tap.tearDown(function () {
     driver.quit();
@@ -44,3 +45,14 @@ test('Sign in to Scratch using scratch-www navbar', t => {
             'first part of username should be displayed in navbar'))
     .then(() => t.end());
 });
+
+test('Sign out of Scratch using scratch-www navbar', t => {
+    clickXpath('//a[@class="user-info"]')
+    .then(() => clickText('Sign out'))
+    .then(() => findText('Sign in'))
+    .then((element) => t.ok(element, 'Sign in reappeared on the page after signing out'))
+    .then(() => t.end());
+});
+
+
+

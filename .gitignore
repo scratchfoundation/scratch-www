@@ -22,3 +22,4 @@ ENV
 # Test
 /.nyc_output
 /coverage
+/bin/lib/localized-urls.json

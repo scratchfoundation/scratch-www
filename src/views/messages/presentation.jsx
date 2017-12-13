@@ -42,8 +42,8 @@ var SocialMessagesList = React.createClass({
             numNewMessages: 0
         };
     },
-    getComponentForMessage: function (message) {
-        var className = (message.unread === true) ? 'mod-unread' : '';
+    getComponentForMessage: function (message, unread) {
+        var className = (unread) ? 'mod-unread' : '';
         var key = message.type + '_' + message.id;
 
         switch (message.type) {
@@ -140,10 +140,14 @@ var SocialMessagesList = React.createClass({
             />;
         }
     },
-    renderSocialMessages: function (messages) {
+    renderSocialMessages: function (messages, unreadCount) {
         var messageList = [];
         for (var i in messages) {
-            messageList.push(this.getComponentForMessage(messages[i]));
+            if (i <= unreadCount) {
+                messageList.push(this.getComponentForMessage(messages[i], true));
+            } else {
+                messageList.push(this.getComponentForMessage(messages[i], false));
+            }
         }
         return messageList;
     },
@@ -191,10 +195,10 @@ var SocialMessagesList = React.createClass({
                         </h4>
                     </div>,
                     <ul className="messages-social-list" key="messages-social-list">
-                        {this.renderSocialMessages(this.props.messages)}
-                    </ul>,
-                    this.renderLoadMore(this.props.loadMore)
+                        {this.renderSocialMessages(this.props.messages, (this.props.numNewMessages - 1))}
+                    </ul>
                 ] : []}
+                {this.renderLoadMore(this.props.loadMore)}
             </section>
         );
     }
@@ -213,12 +217,14 @@ var MessagesPresentation = injectIntl(React.createClass({
         handleAdminDismiss: React.PropTypes.func.isRequired,
         loadMore: React.PropTypes.bool.isRequired,
         loadMoreMethod: React.PropTypes.func,
-        requestStatus: React.PropTypes.object.isRequired
+        requestStatus: React.PropTypes.object.isRequired,
+        filter: React.PropTypes.string
     },
     getDefaultProps: function () {
         return {
             numNewMessages: 0,
-            filterOpen: false
+            filterOpen: false,
+            filter: ''
         };
     },
     render: function () {
@@ -266,6 +272,7 @@ var MessagesPresentation = injectIntl(React.createClass({
                                             value: 'forums'
                                         }
                                     ]}
+                                    value={this.props.filter}
                                 />
                             </Form>
                         </div>

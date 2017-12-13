@@ -26,6 +26,11 @@ var Credits = React.createClass({
                         <img src="//cdn.scratch.mit.edu/get_image/user/3581881_170x170.png" alt="Carl Avatar" />
                         <span className="name">Carl Bowman</span>
                     </li>
+                                        
+                    <li>
+                        <img src="//cdn2.scratch.mit.edu/get_image/user/27383273_60x60.png" alt="Karishma Avatar" />
+                        <span className="name">Karishma Chadha</span>
+                    </li>
 
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/900283_170x170.png" alt="Champika Avatar" />
@@ -70,6 +75,11 @@ var Credits = React.createClass({
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/2286560_170x170.png" alt="Carmelo Avatar" />
                         <span className="name">Carmelo Presicce</span>
+                    </li>
+
+                    <li>
+                         <img src="//cdn2.scratch.mit.edu/get_image/user/25500116_170x170.png" alt="Tina Avatar" />
+                         <span className="name">Tina Quach</span>
                     </li>
 
                     <li>
@@ -152,28 +162,18 @@ var Credits = React.createClass({
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/36977_170x170.png" alt="Connor Avatar" />
-                        <span className="name">Connor Hudson</span>
+                        <img src="//cdn2.scratch.mit.edu/get_image/user/26249744_60x60.png" alt="Joel Avatar" />
+                        <span className="name">Joel Gritter</span>
                     </li>
 
                     <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/14110644_170x170.png" alt="Lily Avatar" />
-                        <span className="name">Lily Kim</span>
-                    </li>
-
-                    <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/13639421_170x170.png" alt="Tauntaun Avatar" />
-                        <span className="name">Tauntaun Kim</span>
+                        <img src="//cdn2.scratch.mit.edu/get_image/user/5311910_60x60.png" alt="Carolina Avatar" />
+                        <span className="name">Carolina Kaufman</span>
                     </li>
 
                     <li>
                         <img src="//cdn.scratch.mit.edu/get_image/user/373646_170x170.png" alt="Dalton Avatar" />
                         <span className="name">Dalton Miner</span>
-                    </li>
-
-                    <li>
-                        <img src="//cdn.scratch.mit.edu/get_image/user/17618638_170x170.png" alt="Hanako Avatar" />
-                        <span className="name">Hanako Tjia</span>
                     </li>
 
                     <li>
@@ -206,10 +206,13 @@ var Credits = React.createClass({
                 Dave Feinberg,
                 Chris Graves,
                 Megan Haddadi,
+                Connor Hudson,
                 Christina Huang,
                 Tony Hwang,
                 Abdulrahman Idlbi,
                 Randy Jou,
+                Lily Kim,
+                Tauntaun Kim,
                 Saskia Leggett,
                 Tim Mickel,
                 Amon Millner,
@@ -218,6 +221,7 @@ var Credits = React.createClass({
                 Jay Silver,
                 Tammy Stern,
                 Lis Sylvan,
+                Hanako Tjia,
                 Claudia Urrea,
                 Oren Zuckerman
                 </p>
