@@ -8,4 +8,4 @@ _Describe what this Pull Request does. Be sure to include a brief description of
 
 ### Test Coverage:
 
-_Please show how you have added tests to cover your changes or describe how you have tested the changes (include a screenshot if possible).._
+_Please show how you have added tests to cover your changes or describe how you have tested the changes (include a screenshot if possible)._
