@@ -4,7 +4,7 @@
   * See this directory's package.json
 * TAP
   * In the scratch-www repo's package.json
-* Currently, we also require that you download [Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/), but this will be replaced by Saucelabs eventually
+* [Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/)
 
 # Running the tests
 
@@ -22,6 +22,3 @@
 | `ROOT_URL`			| `scratch.ly`			| Location you want to run the tests against
 | `SMOKE_USERNAME`    	| `None` 				| Username for Scratch user you're signing in with to test 	|
 | `SMOKE_PASSWORD`  	| `None`                | Password for Scratch user you're signing in with to test  |
-
-## Using sauce
-* Not yet set up
