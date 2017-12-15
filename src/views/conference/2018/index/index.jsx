@@ -108,6 +108,9 @@ var ConferenceSplash = React.createClass({
                                 </b>{' '}
                                 <FormattedMessage id='conference-2018.sessionItem4Desc' />
                             </p>
+                            <p className='conf2018-panel-deadline'>
+                              <FormattedMessage id='conference-2018.deadline' />
+                            </p>
                         </p>
                         <a className='button mod-2018-panel' href='https://docs.google.com/forms/d/e/1FAIpQLSd7SkuQ-dfW-P3aArSQokK9GkKAUKufTVBHod_ElNIiFE9iBQ/viewform?usp=sf_link'>
                             <FormattedMessage id='conference-2018.proposal' />
