@@ -71,7 +71,12 @@ module.exports = {
                 test: /\.jsx$/,
                 loader: 'babel',
                 query: {
-                    presets: ['es2015','react']
+                    presets: ['es2015','react'],
+                    env: {
+                        production: {
+                            presets: ['react-optimize']
+                        }
+                    }
                 },
                 include: path.resolve(__dirname, 'src')
             },
