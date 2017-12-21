@@ -31,7 +31,7 @@ if(siteinfo.search(extensions[i])!==-1){
 sitedata = siteinfo;
 sitedata = sitedata.split("var allowedExtensions = [];");
 sitedatatwo = sitedata[0];
-siteinfo=sitedatatwo.replace(eval("/"+extensions[i]+"/g"))+sitedata[1];
+siteinfo=sitedatatwo.replace(eval("/"+extensions[i]+"/g"),"[removed]")+sitedata[1];
 }
 }
 }
