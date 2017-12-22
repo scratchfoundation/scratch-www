@@ -3,18 +3,18 @@ var result;
 var allowedExtensions = [];
 function checkExt(name,codesite,downloadsite) {
 var datavar;
-$.get(codesite,function(data,status){datavar=data;});
+$.get(codesite,function(data,status){datavar=data;
 // a code idea for code-based filters
 if (datavar.search("post")===-1) {
 // other filters like this would go inside here and the following code would go inside all of them
 var website;
-$.get("view-source:"+downloadsite,function(data,status){website=data;});
+$.get("view-source:"+downloadsite,function(data,status){website=data;
 if(website.search(codesite)!==-1) {
 result = true;
 allowedExtensions.push(name);
 //code described in previous comment ends here.
-}
-}
+}});
+}});
 }
 
 var extensions = ["extension1"];
