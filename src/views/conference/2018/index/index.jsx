@@ -78,6 +78,7 @@ var ConferenceSplash = React.createClass({
                                 </tr>
                             </tbody>
                         </table>
+                        <FormattedMessage id='conference-2018.registrationDate' />
                     </section>
                     <section className='conf2018-panel'>
                         <p className='conf2018-panel-desc'>
