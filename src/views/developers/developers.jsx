@@ -229,7 +229,7 @@ var Developers = React.createClass({
                                     ),
                                     emailLink: (
                                         <a href="mailto:jobs+developers@scratch.mit.edu">
-                                            <FormattedMessage id='developers.joinBodyEmailLinkText' />
+                                            jobs+developers@scratch.mit.edu
                                         </a>
                                     )
                                 }}
@@ -340,13 +340,11 @@ var Developers = React.createClass({
                                             id='developers.faqCollabBody'
                                             values={{
                                                 githubLink: (
-                                                    <a href="https://github.com/LLK/">
-                                                        <FormattedMessage id='developers.faqCollabBodyGitHubLinkText' />
-                                                    </a>
+                                                    <a href="https://github.com/LLK/">GitHub</a>
                                                 ),
                                                 emailLink: (
                                                     <a href="mailto:help@scratch.mit.edu">
-                                                        <FormattedMessage id='developers.faqCollabBodyEmailLinkText' />
+                                                        help@scratch.mit.edu
                                                     </a>
                                                 )
                                             }}
