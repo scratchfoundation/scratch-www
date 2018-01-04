@@ -1,7 +1,6 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 
 var Page = require('../../components/page/www/page.jsx');
@@ -86,12 +85,16 @@ var Developers = React.createClass({
                                         values={{
                                             blocklyLink: (
                                                 <a href="https://developers.google.com/blockly/">
-                                                    <FormattedMessage id='developers.scratchBlocksIntroBlocklyLinkText' />
+                                                    <FormattedMessage
+                                                        id='developers.scratchBlocksIntroBlocklyLinkText'
+                                                    />
                                                 </a>
                                             ),
                                             githubLink: (
                                                 <a href="https://github.com/LLK/scratch-blocks">
-                                                    <FormattedMessage id='developers.scratchBlocksIntroGitHubLinkText' />
+                                                    <FormattedMessage
+                                                        id='developers.scratchBlocksIntroGitHubLinkText'
+                                                    />
                                                 </a>
                                             )
                                         }}
@@ -217,8 +220,8 @@ var Developers = React.createClass({
                         <h2><FormattedMessage id='developers.joinTitle' /></h2>
                         <p>
                             <FormattedMessage
-                               id='developers.joinBody'
-                               values={{
+                                id='developers.joinBody'
+                                values={{
                                     jobsPageLink: (
                                         <a href="/jobs">
                                             <FormattedMessage id='developers.joinBodyJobsLinkText' />
