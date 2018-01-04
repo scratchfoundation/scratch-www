@@ -93,7 +93,7 @@ var Developers = React.createClass({
                                             githubLink: (
                                                 <a href="https://github.com/LLK/scratch-blocks">
                                                     <FormattedMessage
-                                                        id='developers.scratchBlocksIntroGitHubLinkText'
+                                                        id='developers.hereLinkText'
                                                     />
                                                 </a>
                                             )
@@ -115,7 +115,7 @@ var Developers = React.createClass({
                                         values={{
                                             wwwIntroLink: (
                                                 <a href="https://github.com/LLK/scratch-www">
-                                                    <FormattedMessage id='developers.wwwIntroLinkText' />
+                                                    GitHub
                                                 </a>
                                             )
                                         }}
@@ -139,7 +139,7 @@ var Developers = React.createClass({
                                             ),
                                             githubLink: (
                                                 <a href="https://github.com/LLK/scratchjr">
-                                                    <FormattedMessage id='developers.jrBodyGitHubLinkText' />
+                                                    GitHub
                                                 </a>
                                             )
                                         }}
@@ -157,10 +157,10 @@ var Developers = React.createClass({
                                 id='developers.principlesIntro'
                                 values={{
                                     learningPrinciples: (
-                                        <b><FormattedMessage id='developers.principlesIntroLearningPrinciples' /></b>
+                                        <b><FormattedMessage id='developers.LearningPrinciples' /></b>
                                     ),
                                     designPrinciples: (
-                                        <b><FormattedMessage id='developers.principlesIntroDesignPrinciples' /></b>
+                                        <b><FormattedMessage id='developers.DesignPrinciples' /></b>
                                     )
                                 }}
                             />
@@ -168,7 +168,7 @@ var Developers = React.createClass({
 
                         <FlexRow className="sidebar-row">
                             <div className="body-copy column">
-                                <h3><FormattedMessage id='developers.learningPrinciplesTitle' /></h3>
+                                <h3><FormattedMessage id='developers.LearningPrinciples' /></h3>
                                 <dl>
                                     <dt><FormattedMessage id='developers.projectsTitle' /></dt>
                                     <dd>
@@ -192,7 +192,7 @@ var Developers = React.createClass({
 
                         <FlexRow className="sidebar-row">
                             <div className="body-copy column">
-                                <h3><FormattedMessage id='developers.designPrinciplesTitle' /></h3>
+                                <h3><FormattedMessage id='developers.DesignPrinciples' /></h3>
                                 <dl>
                                     <dt><FormattedMessage id='developers.designPrinciplesRoomTitle' /></dt>
                                     <dd>
@@ -300,7 +300,7 @@ var Developers = React.createClass({
                                                 ),
                                                 aboutLink: (
                                                     <a href="/about">
-                                                        <FormattedMessage id='developers.faqAboutBodyAboutLinkText' />
+                                                        <FormattedMessage id='developers.hereLinkText' />
                                                     </a>
                                                 )
                                             }}
