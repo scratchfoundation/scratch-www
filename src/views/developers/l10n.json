@@ -48,5 +48,5 @@
   "developers.faqDifferencesTitle": "What’s the difference between Blockly and Scratch Blocks?",
   "developers.faqDifferencesBody": "Scratch Blocks builds upon the Blockly code base, and is specifically designed with our principles in mind to support creative learning experiences.",
   "developers.faqCollabTitle": "I’d like to collaborate. How do I get in touch?",
-  "developers.faqCollabBody": "You can reach us over on <a href=\"https://github.com/LLK/\">github</a> or you can send an email to <a href=\"mailto:help@scratch.mit.edu\">help@scratch.mit.edu.</a> We look forward to hearing from you!"
+  "developers.faqCollabBody": "You can reach us over on <a href=\"https://github.com/LLK/\">github</a> or you can send an email to <a href=\"mailto:help@scratch.mit.edu\">help@scratch.mit.edu</a>. We look forward to hearing from you!"
 }
