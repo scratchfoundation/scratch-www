@@ -41,7 +41,6 @@
   "developers.designPrinciplesTinkerTitle": "Design for Tinkerability",
   "developers.designPrinciplesTinkerBody": "We believe that the learning process is inherently iterative. Tinkerers start by exploring and experimenting, then revising and refining their goals and creations. To support this style of interaction, we design our interfaces to encourage quick experimentation and rapid cycles of iteration.",
   "developers.joinBodyJobsLinkText": "Jobs Page",
-  "developers.joinBodyEmailLinkText": "jobs+developers@scratch.mit.edu",
   "developers.joinBody": "We're a diverse group of educators, designers, and engineers, who work together in a playful, creative environment full of LEGO bricks, craft materials, and maker tools. We strongly value diversity, collaboration, and respect in the workplace. If you're interested in joining us, take a look at our open positions on our {jobsPageLink}, or send us an email at {emailLink}.",
   "developers.donateIntroLinkText": "making a donation to support Scratch",
   "developers.donateIntro": "We are pleased to provide Scratch free of charge. If you enjoy using Scratch, please consider {donateLink}. Donations of any size are appreciated.",
@@ -62,7 +61,5 @@
   "developers.faqDifferencesTitle": "What’s the difference between Blockly and Scratch Blocks?",
   "developers.faqDifferencesBody": "Scratch Blocks builds upon the Blockly code base, and is specifically designed with our principles in mind to support creative learning experiences.",
   "developers.faqCollabTitle": "I’d like to collaborate. How do I get in touch?",
-  "developers.faqCollabBodyGitHubLinkText": "GitHub",
-  "developers.faqCollabBodyEmailLinkText": "help@scratch.mit.edu",
   "developers.faqCollabBody": "You can reach us over on {githubLink} or you can send an email to {emailLink}. We look forward to hearing from you!"
 }
