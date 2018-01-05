@@ -7,7 +7,7 @@
     }
 
     select {
-        transition: all .5s ease;
+        transition: border .5s ease;
         margin-bottom: .75rem;
         border: 1px solid $active-gray;
         border-radius: 5px;
@@ -30,7 +30,6 @@
         }
 
         &:focus {
-            transition: all .5s ease;
             outline: none;
             border: 1px solid $ui-blue;
         }
