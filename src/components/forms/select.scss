@@ -12,6 +12,7 @@
         border: 1px solid $active-gray;
         border-radius: 5px;
         background: $ui-light-gray url("../../../static/svgs/forms/carot.svg") no-repeat right center;
+        color: $type-gray;
         padding-right: 4rem;
         width: 100%;
         height: 3rem;
@@ -32,6 +33,11 @@
         &:focus {
             outline: none;
             border: 1px solid $ui-blue;
+        }
+
+        &:-moz-focusring {
+            color: transparent;
+            text-shadow: 0 0 0 $type-gray;
         }
 
         &:focus,
