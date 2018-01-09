@@ -160,12 +160,12 @@ var Splash = injectIntl(React.createClass({
                 hideEmailConfirmationModal={this.hideEmailConfirmationModal}
                 shouldShowWelcome={showWelcome}
                 projectCount={this.state.projectCount}
-                activity={this.props.activity.rows}
+                activity={this.props.activity}
                 news={this.state.news}
-                sharedByFollowing={this.props.shared.rows}
-                lovedByFollowing={this.props.loved.rows}
-                inStudiosFollowing={this.props.studios.rows}
-                featuredGlobal={this.props.featured.rows}
+                sharedByFollowing={this.props.shared}
+                lovedByFollowing={this.props.loved}
+                inStudiosFollowing={this.props.studios}
+                featuredGlobal={this.props.featured}
                 refreshCacheStatus={homepageRefreshStatus}
             />
         );
@@ -179,11 +179,11 @@ var mapStateToProps = function (state) {
         flags: state.session.session.flags,
         isEducator: state.permissions.educator,
         isAdmin: state.permissions.admin,
-        activity: state.splash.activity,
-        featured: state.splash.featured,
-        shared: state.splash.shared,
-        loved: state.splash.loved,
-        studios: state.splash.studios
+        activity: state.splash.activity.rows,
+        featured: state.splash.featured.rows,
+        shared: state.splash.shared.rows,
+        loved: state.splash.loved.rows,
+        studios: state.splash.studios.rows
     };
 };
 
