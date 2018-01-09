@@ -1,36 +1,14 @@
-@import "../../frameless";
-
 #view {
     padding: 0;
 }
 
-.box > .box-content {
-    padding: 0;
+.preview-faq {
+    margin-bottom: 5rem;
 }
 
-.preview-faq-iframe {
-    border: none;
-    width: $cols12; // for the box padding
-    height: 450px;
-}
-
-//4 columns
-@media only screen and (max-width: $mobile - 1) {
-    .preview-faq-iframe {
-        width: $cols4;
-    }
-}
-
-//6 columns
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-    .preview-faq-iframe {
-        width: $cols6;
-    }
-}
-
-//8 columns
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-    .preview-faq-iframe {
-        width: $cols8;
-    }
+h1 {
+    line-height: 1.7em !important;
+    font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif !important;
+    font-size: 2.5rem !important;
+    font-weight: 900 !important;
 }
