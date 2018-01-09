@@ -18,7 +18,7 @@ var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx'
 var Welcome = require('../../components/welcome/welcome.jsx');
 
 // Activity Components
-var BecomeCuratorMessage = require('./activity-rows/become-manager.jsx');
+var BecomeCuratorMessage = require('./activity-rows/become-curator.jsx');
 var BecomeManagerMessage = require('./activity-rows/become-manager.jsx');
 var FavoriteProjectMessage = require('./activity-rows/favorite-project.jsx');
 var FollowMessage = require('./activity-rows/follow.jsx');
