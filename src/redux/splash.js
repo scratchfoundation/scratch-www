@@ -42,9 +42,11 @@ module.exports.splashReducer = function (state, action) {
 
     switch (action.type) {
     case 'SET_ROWS':
+        state = JSON.parse(JSON.stringify(state));
         state[action.rowType].rows = action.rows;
         return state;
     case 'SET_FETCH_STATUS':
+        state = JSON.parse(JSON.stringify(state));
         state[action.rowType].status = action.status;
         return state;
     case 'ERROR':
