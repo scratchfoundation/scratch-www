@@ -1,10 +1,10 @@
+var FormattedMessage = require('react-intl').FormattedMessage;
 var injectIntl = require('react-intl').injectIntl;
 var React = require('react');
 
 var sessionActions = require('../../redux/session.js');
 var shuffle = require('../../lib/shuffle.js').shuffle;
 
-var Activity = require('../../components/activity/activity.jsx');
 var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
 var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
 var Box = require('../../components/box/box.jsx');
@@ -17,10 +17,149 @@ var News = require('../../components/news/news.jsx');
 var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
 var Welcome = require('../../components/welcome/welcome.jsx');
 
+// Activity Components
+var BecomeCuratorMessage = require('./activity-rows/become-curator.jsx');
+var BecomeManagerMessage = require('./activity-rows/become-manager.jsx');
+var FavoriteProjectMessage = require('./activity-rows/favorite-project.jsx');
+var FollowMessage = require('./activity-rows/follow.jsx');
+var LoveProjectMessage = require('./activity-rows/love-project.jsx');
+var RemixProjectMessage = require('./activity-rows/remix-project.jsx');
+var ShareProjectMessage = require('./activity-rows/share-project.jsx');
+
 var MediaQuery = require('react-responsive');
 var frameless = require('../../lib/frameless');
 
 require('./splash.scss');
+
+var ActivityList = injectIntl(React.createClass({
+    propTypes: {
+        items: React.PropTypes.array
+    },
+    getComponentForMessage: function (message) {
+        var key = message.type + '_' + message.id;
+
+        switch (message.type) {
+        case 'followuser':
+            return <FollowMessage
+                key={key}
+                followerUsername={message.actor_username}
+                followeeId={message.followed_username}
+                followDateTime={message.datetime_created}
+            />;
+        case 'followstudio':
+            return <FollowMessage
+                key={key}
+                followerUsername={message.actor_username}
+                followeeId={message.gallery_id}
+                followeeTitle={message.title}
+                followDateTime={message.datetime_created}
+            />;
+        case 'loveproject':
+            return <LoveProjectMessage
+                key={key}
+                actorUsername={message.actor_username}
+                projectId={message.project_id}
+                projectTitle={message.title}
+                loveDateTime={message.datetime_created}
+            />;
+        case 'favoriteproject':
+            return <FavoriteProjectMessage
+                key={key}
+                actorUsername={message.actor_username}
+                projectId={message.project_id}
+                projectTitle={message.project_title}
+                favoriteDateTime={message.datetime_created}
+            />;
+        case 'remixproject':
+            return <RemixProjectMessage
+                key={key}
+                actorUsername={message.actor_username}
+                projectId={message.project_id}
+                projectTitle={message.title}
+                parentId={message.parent_id}
+                parentTitle={message.parent_title}
+                remixDate={message.datetime_created}
+            />;
+        case 'becomecurator':
+            return <BecomeCuratorMessage
+                key={key}
+                actorUsername={message.actor_username}
+                studioId={message.gallery_id}
+                studioTitle={message.title}
+                datetimePromoted={message.datetime_created}
+            />;
+        case 'becomeownerstudio':
+            return <BecomeManagerMessage
+                key={key}
+                recipientUsername={message.recipient_username}
+                studioId={message.gallery_id}
+                studioTitle={message.gallery_title}
+                datetimePromoted={message.datetime_created}
+            />;
+        case 'shareproject':
+            return <ShareProjectMessage
+                key={key}
+                actorUsername={message.actor_username}
+                projectId={message.project_id}
+                projectTitle={message.title}
+                loveDateTime={message.datetime_created}
+            />;
+        }
+    },
+    render: function () {
+        var formatMessage = this.props.intl.formatMessage;
+        return (
+            <Box
+                className="activity"
+                title={formatMessage({id: 'general.whatsHappening'})}
+            >
+                {this.props.items && this.props.items.length > 0 ? [
+                    <ul
+                        className="activity-ul"
+                        key="activity-ul"
+                    >
+                        {this.props.items.map(function (item) {
+                            var profileLink = '/users/' + item.actor_username; + '/';
+                            var profileThumbUrl = '//uploads.scratch.mit.edu/users/avatars/' + item.actor_id + '.png';
+                            if (item.type === 'becomeownerstudio') {
+                                profileLink = '/users/' + item.recipient_username; + '/';
+                                profileThumbUrl = '//uploads.scratch.mit.edu/users/avatars/'
+                                    + item.recipient_id
+                                    + '.png';
+                            }
+
+                            return (
+                                <li className="activity-li">
+                                    <a href={profileLink}>
+                                        <img
+                                            alt=""
+                                            className="activity-img"
+                                            src={profileThumbUrl}
+                                        />
+                                    </a>
+                                    {this.getComponentForMessage(item)}
+                                </li>
+                            );
+                        }.bind(this))}
+                    </ul>
+                ] : [
+                    <div className="empty" key="activity-empty">
+                        <h4>
+                            <FormattedMessage
+                                id="activity.seeUpdates"
+                                defaultMessage="This is where you will see updates from Scratchers you follow" />
+                        </h4>
+                        <a href="/studios/146521/">
+                            <FormattedMessage
+                                id="activity.checkOutScratchers"
+                                defaultMessage="Check out some Scratchers you might like to follow" />
+                        </a>
+                    </div>
+                ]}
+            </Box>
+        );
+    }
+}));
 
 var SplashPresentation = injectIntl(React.createClass({
     type: 'Splash',
@@ -69,7 +208,6 @@ var SplashPresentation = injectIntl(React.createClass({
     },
     renderHomepageRows: function () {
         var formatMessage = this.props.intl.formatMessage;
-
         var rows = [
             <Box
                 title={formatMessage({id: 'splash.featuredProjects'})}
@@ -88,23 +226,6 @@ var SplashPresentation = injectIntl(React.createClass({
             </Box>
         ];
 
-        if (this.props.featuredGlobal.curator_top_projects &&
-            this.props.featuredGlobal.curator_top_projects.length > 4) {
-
-            rows.push(
-                <Box
-                    key="curator_top_projects"
-                    title={
-                        formatMessage({id: 'splash.projectsCuratedBy'}) + ' ' +
-                        this.props.featuredGlobal.curator_top_projects[0].curator_name}
-                    moreTitle={formatMessage({id: 'general.learnMore'})}
-                    moreHref="/studios/386359/"
-                >
-                    <LegacyCarousel items={this.props.featuredGlobal.curator_top_projects} />
-                </Box>
-            );
-        }
-
         if (this.props.featuredGlobal.scratch_design_studio &&
             this.props.featuredGlobal.scratch_design_studio.length > 4) {
 
@@ -118,20 +239,6 @@ var SplashPresentation = injectIntl(React.createClass({
                     moreHref={'/studios/' + this.props.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.scratch_design_studio} />
-                </Box>
-            );
-        }
-
-        if (this.props.user &&
-            this.props.featuredGlobal.community_newest_projects &&
-            this.props.featuredGlobal.community_newest_projects.length > 0) {
-
-            rows.push(
-                <Box
-                    title={formatMessage({id: 'splash.recentlySharedProjects'})}
-                    key="community_newest_projects"
-                >
-                    <LegacyCarousel items={this.props.featuredGlobal.community_newest_projects} />
                 </Box>
             );
         }
@@ -258,11 +365,13 @@ var SplashPresentation = injectIntl(React.createClass({
                         Object.keys(this.props.user).length !== 0 ? [
                             <div key="header" className="splash-header">
                                 {this.props.shouldShowWelcome ? [
-                                    <Welcome key="welcome"
-                                             onDismiss={this.props.handleDismiss.bind(this, 'welcome')}
-                                             messages={messages} />
+                                    <Welcome
+                                        key="welcome"
+                                        onDismiss={this.props.handleDismiss.bind(this, 'welcome')}
+                                        messages={messages}
+                                    />
                                 ] : [
-                                    <Activity key="activity" items={this.props.activity} />
+                                    <ActivityList key="activity" items={this.props.activity} />
                                 ]}
                                 <News items={this.props.news} messages={messages} />
                             </div>

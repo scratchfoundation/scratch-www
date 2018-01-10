@@ -4,20 +4,20 @@
  * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows
  */
  
-require('chromedriver');
 var tap = require('tap');
-var seleniumWebdriver = require('selenium-webdriver');
+
+const {
+    driver,
+    webdriver
+} = require('../../helpers/selenium-helpers.js');
 
 // Selenium's promise driver will be deprecated, so we should not rely on it
-seleniumWebdriver.SELENIUM_PROMISE_MANAGER=0;
-
-//chrome driver
-var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
+webdriver.SELENIUM_PROMISE_MANAGER=0;
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
 //timeout for each test; timeout for suite set at command line level
-var options = { timeout: 20000 };
+var options = { timeout: 30000 };
 
 //number of tests in the plan
 tap.plan(25);
@@ -33,20 +33,16 @@ tap.beforeEach(function () {
 });
 
 // Function clicks the link and returns the url of the resulting page
-function clickFooterLinks ( linkText ) {
-    // Not sure if I need this first wait - maybe it solved intermittent initial failure problem?
-    return driver.wait(seleniumWebdriver.until.elementLocated(seleniumWebdriver.By.id('view')))
-        .then( function () {
-            return driver.wait(seleniumWebdriver.until.elementLocated(seleniumWebdriver.By
-                    .id('footer')))
-                .then( function () {
-                    return driver.findElement(seleniumWebdriver.By.linkText(linkText)); })
-                .then( function (element) {
-                    return element.click(); })
-                .then(function () {
-                    return driver.getCurrentUrl();
-                });
-        });
+
+function clickFooterLinks (linkText) {
+    return driver.wait(webdriver.until.elementLocated(webdriver.By.id('footer')))
+    .then( function (element) {
+        return element.findElement(webdriver.By.linkText(linkText)); })
+    .then( function (element) {
+        return element.click(); })
+    .then(function () {
+        return driver.getCurrentUrl();
+    });
 }
 
 // ==== ABOUT SCRATCH column ====
