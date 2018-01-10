@@ -226,6 +226,23 @@ var SplashPresentation = injectIntl(React.createClass({
             </Box>
         ];
 
+        if (this.props.featuredGlobal.curator_top_projects &&
+            this.props.featuredGlobal.curator_top_projects.length > 4) {
+
+            rows.push(
+                <Box
+                    key="curator_top_projects"
+                    title={
+                        formatMessage({id: 'splash.projectsCuratedBy'}) + ' ' +
+                        this.props.featuredGlobal.curator_top_projects[0].curator_name}
+                    moreTitle={formatMessage({id: 'general.learnMore'})}
+                    moreHref="/studios/386359/"
+                >
+                    <LegacyCarousel items={this.props.featuredGlobal.curator_top_projects} />
+                </Box>
+            );
+        }
+
         if (this.props.featuredGlobal.scratch_design_studio &&
             this.props.featuredGlobal.scratch_design_studio.length > 4) {
 
@@ -239,6 +256,20 @@ var SplashPresentation = injectIntl(React.createClass({
                     moreHref={'/studios/' + this.props.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.scratch_design_studio} />
+                </Box>
+            );
+        }
+
+        if (this.props.user &&
+            this.props.featuredGlobal.community_newest_projects &&
+            this.props.featuredGlobal.community_newest_projects.length > 0) {
+
+            rows.push(
+                <Box
+                    title={formatMessage({id: 'splash.recentlySharedProjects'})}
+                    key="community_newest_projects"
+                >
+                    <LegacyCarousel items={this.props.featuredGlobal.community_newest_projects} />
                 </Box>
             );
         }
