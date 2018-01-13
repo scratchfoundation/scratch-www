@@ -1,7 +1,6 @@
 var React = require('react');
 var render = require('../../lib/render.jsx');
 
-var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
 
 var Page = require('../../components/page/www/page.jsx');
@@ -22,7 +21,16 @@ var Developers = React.createClass({
                             <FormattedMessage id='developers.title' />
                         </h1>
                         <p className="title-banner-p intro">
-                            <FormattedHTMLMessage id='developers.intro' />
+                            <FormattedMessage
+                                id='developers.intro'
+                                values={{
+                                    introLink: (
+                                        <a href="/info/credits">
+                                            <FormattedMessage id='developers.introLinkText' />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                     <div className="band">
@@ -72,7 +80,25 @@ var Developers = React.createClass({
                             <div className="body-copy column">
                                 <h3><FormattedMessage id='developers.scratchBlocksTitle' /></h3>
                                 <p>
-                                    <FormattedHTMLMessage id='developers.scratchBlocksIntro' />
+                                    <FormattedMessage
+                                        id='developers.scratchBlocksIntro'
+                                        values={{
+                                            blocklyLink: (
+                                                <a href="https://developers.google.com/blockly/">
+                                                    <FormattedMessage
+                                                        id='developers.scratchBlocksIntroBlocklyLinkText'
+                                                    />
+                                                </a>
+                                            ),
+                                            githubLink: (
+                                                <a href="https://github.com/LLK/scratch-blocks">
+                                                    <FormattedMessage
+                                                        id='developers.hereLinkText'
+                                                    />
+                                                </a>
+                                            )
+                                        }}
+                                    />
                                 </p>
                                 <p>
                                     <FormattedMessage id='developers.scratchBlocksBody' />
@@ -84,7 +110,16 @@ var Developers = React.createClass({
                             <div className="body-copy column">
                                 <h3><FormattedMessage id='developers.wwwTitle' /></h3>
                                 <p>
-                                    <FormattedHTMLMessage id='developers.wwwIntro' />
+                                    <FormattedMessage
+                                        id='developers.wwwIntro'
+                                        values={{
+                                            wwwIntroLink: (
+                                                <a href="https://github.com/LLK/scratch-www">
+                                                    GitHub
+                                                </a>
+                                            )
+                                        }}
+                                    />
                                 </p>
                             </div>
 
@@ -94,7 +129,21 @@ var Developers = React.createClass({
                             <div className="body-copy column">
                                 <h3>ScratchJr</h3>
                                 <p>
-                                    <FormattedHTMLMessage id='developers.jrBody' />
+                                    <FormattedMessage
+                                        id='developers.jrBody'
+                                        values={{
+                                            websiteLink: (
+                                                <a href="https://www.scratchjr.org">
+                                                    <FormattedMessage id='developers.jrBodyWebsiteLinkText' />
+                                                </a>
+                                            ),
+                                            githubLink: (
+                                                <a href="https://github.com/LLK/scratchjr">
+                                                    GitHub
+                                                </a>
+                                            )
+                                        }}
+                                    />
                                 </p>
                             </div>
                         </FlexRow>
@@ -104,12 +153,22 @@ var Developers = React.createClass({
                         <span className="nav-spacer"></span>
                         <h2><FormattedMessage id='developers.principlesTitle' /></h2>
                         <p className="intro">
-                            <FormattedHTMLMessage id='developers.principlesIntro' />
+                            <FormattedMessage
+                                id='developers.principlesIntro'
+                                values={{
+                                    learningPrinciples: (
+                                        <b><FormattedMessage id='developers.LearningPrinciples' /></b>
+                                    ),
+                                    designPrinciples: (
+                                        <b><FormattedMessage id='developers.DesignPrinciples' /></b>
+                                    )
+                                }}
+                            />
                         </p>
 
                         <FlexRow className="sidebar-row">
                             <div className="body-copy column">
-                                <h3><FormattedMessage id='developers.learningPrinciplesTitle' /></h3>
+                                <h3><FormattedMessage id='developers.LearningPrinciples' /></h3>
                                 <dl>
                                     <dt><FormattedMessage id='developers.projectsTitle' /></dt>
                                     <dd>
@@ -133,7 +192,7 @@ var Developers = React.createClass({
 
                         <FlexRow className="sidebar-row">
                             <div className="body-copy column">
-                                <h3><FormattedMessage id='developers.designPrinciplesTitle' /></h3>
+                                <h3><FormattedMessage id='developers.DesignPrinciples' /></h3>
                                 <dl>
                                     <dt><FormattedMessage id='developers.designPrinciplesRoomTitle' /></dt>
                                     <dd>
@@ -159,14 +218,39 @@ var Developers = React.createClass({
                     <section id="join">
                         <span className="nav-spacer"></span>
                         <h2><FormattedMessage id='developers.joinTitle' /></h2>
-                        <p><FormattedHTMLMessage id='developers.joinBody' /></p>
+                        <p>
+                            <FormattedMessage
+                                id='developers.joinBody'
+                                values={{
+                                    jobsPageLink: (
+                                        <a href="/jobs">
+                                            <FormattedMessage id='developers.joinBodyJobsLinkText' />
+                                        </a>
+                                    ),
+                                    emailLink: (
+                                        <a href="mailto:jobs+developers@scratch.mit.edu">
+                                            jobs+developers@scratch.mit.edu
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
                     </section>
 
                     <section id="donate">
                         <span className="nav-spacer"></span>
                         <h2><FormattedMessage id='developers.donateTitle' /></h2>
                         <p>
-                            <FormattedHTMLMessage id='developers.donateIntro' />
+                            <FormattedMessage
+                                id='developers.donateIntro'
+                                values={{
+                                    donateLink: (
+                                        <a href="https://secure.donationpay.org/scratchfoundation/">
+                                            <FormattedMessage id='developers.donateIntroLinkText' />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                         <p>
                             <FormattedMessage id='developers.donateBody' />
@@ -201,7 +285,26 @@ var Developers = React.createClass({
                                 <div className="faq column">
                                     <h4><FormattedMessage id='developers.faqAboutTitle' /></h4>
                                     <p>
-                                        <FormattedHTMLMessage id='developers.faqAboutBody' />
+                                        <FormattedMessage
+                                            id='developers.faqAboutBody'
+                                            values={{
+                                                llkLink: (
+                                                    <a href="https://www.media.mit.edu/groups/lifelong-kindergarten/overview">
+                                                        <FormattedMessage id='developers.faqAboutBodyLLKLinkText' />
+                                                    </a>
+                                                ),
+                                                mitLink: (
+                                                    <a href="http://media.mit.edu/">
+                                                        <FormattedMessage id='developers.faqAboutBodyMITLinkText' />
+                                                    </a>
+                                                ),
+                                                aboutLink: (
+                                                    <a href="/about">
+                                                        <FormattedMessage id='developers.hereLinkText' />
+                                                    </a>
+                                                )
+                                            }}
+                                        />
                                     </p>
                                 </div>
                                 <div className="faq column">
@@ -233,7 +336,19 @@ var Developers = React.createClass({
                                 <div className="faq column">
                                     <h4><FormattedMessage id='developers.faqCollabTitle' /></h4>
                                     <p>
-                                        <FormattedHTMLMessage id='developers.faqCollabBody' />
+                                        <FormattedMessage
+                                            id='developers.faqCollabBody'
+                                            values={{
+                                                githubLink: (
+                                                    <a href="https://github.com/LLK/">GitHub</a>
+                                                ),
+                                                emailLink: (
+                                                    <a href="mailto:help@scratch.mit.edu">
+                                                        help@scratch.mit.edu
+                                                    </a>
+                                                )
+                                            }}
+                                        />
                                     </p>
                                 </div>
                             </FlexRow>
