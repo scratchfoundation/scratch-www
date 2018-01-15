@@ -24,6 +24,8 @@ var BecomeManagerMessage = React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.datetimePromoted}
+                iconSrc="/svgs/messages/owner-invite.svg"
+                iconAlt="become owner notification image"
             >
                 <FormattedMessage
                     id='messages.becomeManagerText'

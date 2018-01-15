@@ -12,8 +12,7 @@ var Messages = React.createClass({
     type: 'ConnectedMessages',
     getInitialState: function () {
         return {
-            filterValues: [],
-            displayedMessages: []
+            filter: ''
         };
     },
     getDefaultProps: function () {
@@ -26,14 +25,17 @@ var Messages = React.createClass({
         };
     },
     componentDidUpdate: function (prevProps) {
-        if (this.props.user != prevProps.user) {
+        if (this.props.user.username !== prevProps.user.username) {
             if (this.props.user.token) {
                 this.props.dispatch(
                     messageActions.getMessages(
                         this.props.user.username,
                         this.props.user.token,
-                        this.props.messages,
-                        this.props.messageOffset
+                        {
+                            messages: this.props.messages,
+                            offset: this.props.messageOffset,
+                            filter: this.state.filter
+                        }
                     )
                 );
                 this.props.dispatch(
@@ -44,6 +46,12 @@ var Messages = React.createClass({
                 this.props.dispatch(
                     messageActions.getScratcherInvite(this.props.user.username, this.props.user.token)
                 );
+            } else {
+                // user is logged out, empty messages
+                this.props.dispatch(messageActions.setMessages([]));
+                this.props.dispatch(messageActions.setAdminMessages([]));
+                this.props.dispatch(messageActions.setScratcherInvite({}));
+                this.props.dispatch(messageActions.setMessagesOffset(0));
             }
         }
     },
@@ -53,8 +61,11 @@ var Messages = React.createClass({
                 messageActions.getMessages(
                     this.props.user.username,
                     this.props.user.token,
-                    this.props.messages,
-                    this.props.messageOffset
+                    {
+                        messages: this.props.messages,
+                        offset: this.props.messageOffset,
+                        filter: this.state.filter
+                    }
                 )
             );
             this.props.dispatch(
@@ -68,26 +79,19 @@ var Messages = React.createClass({
         }
     },
     handleFilterClick: function (field, choice) {
-        switch (choice) {
-        case 'comments':
-            return this.setState({filterValues: ['addcomment']});
-        case 'projects':
-            return this.setState({filterValues: [
-                'loveproject',
-                'favoriteproject',
-                'remixproject'
-            ]});
-        case 'studios':
-            return this.setState({filterValues: [
-                'curatorinvite',
-                'studioactivity',
-                'becomeownerstudio'
-            ]});
-        case 'forums':
-            return this.setState({filterValues: ['forumpost']});
-        default:
-            return this.setState({filterValues: []});
+        if (this.props.user.token) {
+            this.props.dispatch(
+                messageActions.getMessages(
+                    this.props.user.username,
+                    this.props.user.token,
+                    {
+                        filter: choice,
+                        clearCount: false
+                    }
+                )
+            );
         }
+        this.setState({filter: choice});
     },
     handleMessageDismiss: function (messageType, messageId) {
         var adminMessages = null;
@@ -105,19 +109,14 @@ var Messages = React.createClass({
             messageActions.getMessages(
                 this.props.user.username,
                 this.props.user.token,
-                this.props.messages,
-                this.props.messageOffset
+                {
+                    messages: this.props.messages,
+                    offset: this.props.messageOffset,
+                    filter: this.state.filter,
+                    clearCount: false
+                }
             )
         );
-    },
-    filterMessages: function (messages, typesAllowed) {
-        var filteredMessages = [];
-        for (var i in messages) {
-            if (typesAllowed.indexOf(messages[i].type) > -1) {
-                filteredMessages.push(messages[i]);
-            }
-        }
-        return filteredMessages;
     },
     render: function () {
         var loadMore = true;
@@ -125,16 +124,11 @@ var Messages = React.createClass({
             loadMore = false;
         }
 
-        var messages = this.props.messages;
-        if (this.state.filterValues.length > 0) {
-            messages = this.filterMessages(messages, this.state.filterValues);
-        }
-
         return(
             <MessagesPresentation
                 sessionStatus={this.props.sessionStatus}
                 user={this.props.user}
-                messages={messages}
+                messages={this.props.messages}
                 adminMessages={this.props.adminMessages}
                 scratcherInvite={this.props.invite}
                 numNewMessages={this.props.numNewMessages}
@@ -143,6 +137,7 @@ var Messages = React.createClass({
                 loadMore={loadMore}
                 loadMoreMethod={this.handleLoadMoreMessages}
                 requestStatus={this.props.requestStatus}
+                filter={this.props.filter}
             />
         );
     }

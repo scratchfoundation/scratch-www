@@ -24,8 +24,8 @@
   "dependencies": {
     "bunyan": "1.7.1",
     "compression": "1.6.1",
-    "express": "4.13.4",
-    "express-http-proxy": "0.6.0",
+    "express": "4.16.1",
+    "express-http-proxy": "1.1.0",
     "lodash.defaults": "4.0.1",
     "newrelic": "1.25.4",
     "raven": "0.10.0"
@@ -38,6 +38,7 @@
     "babel-loader": "6.2.4",
     "babel-preset-es2015": "6.9.0",
     "babel-preset-react": "6.11.1",
+    "cheerio": "1.0.0-rc.2",
     "classnames": "2.1.3",
     "cookie": "0.2.2",
     "copy-webpack-plugin": "0.2.0",
@@ -66,7 +67,7 @@
     "lodash.range": "3.0.1",
     "minilog": "2.0.8",
     "node-dir": "0.1.16",
-    "node-sass": "3.3.3",
+    "node-sass": "4.6.1",
     "pako": "0.2.8",
     "po2icu": "0.0.2",
     "postcss-loader": "0.8.2",

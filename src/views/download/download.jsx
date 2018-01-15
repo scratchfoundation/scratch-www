@@ -3,6 +3,7 @@ var render = require('../../lib/render.jsx');
 
 var FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 var FormattedMessage = require('react-intl').FormattedMessage;
+var injectIntl = require('react-intl').injectIntl;
 
 var api = require('../../lib/api');
 var Page = require('../../components/page/www/page.jsx');
@@ -13,7 +14,7 @@ var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
 require('./download.scss');
 require('../../components/forms/button.scss');
 
-var Download = React.createClass({
+var Download = injectIntl(React.createClass({
     type: 'Download',
     getInitialState: function () {
         return {
@@ -21,9 +22,13 @@ var Download = React.createClass({
         };
     },
     componentDidMount: function () {
+        var uri = '/scratchr2/static/sa/version.xml';
+        if (this.props.intl.locale === 'pt-br') {
+            uri = '/scratchr2/static/sa/pt-br/version.xml';
+        }
         api({
             host: '',
-            uri: '/scratchr2/static/sa/version.xml',
+            uri: uri,
             responseType: 'string'
         }, function (err, body, res) {
             if (err || res.statusCode >= 400) {
@@ -39,12 +44,16 @@ var Download = React.createClass({
         }.bind(this));
     },
     render: function () {
+        var downloadPath = '/scratchr2/static/sa/Scratch-';
+        if (this.props.intl.locale === 'pt-br') {
+            downloadPath = '/scratchr2/static/sa/pt-br/Scratch-';
+        }
         if (this.state.swfVersion.length > 0 && this.state.swfVersion !== -1) {
             var downloadUrls = {
-                mac: '/scratchr2/static/sa/Scratch-'+ this.state.swfVersion + '.dmg',
-                mac105: '/scratchr2/static/sa/Scratch-'+ this.state.swfVersion + '.air',
-                windows: '/scratchr2/static/sa/Scratch-'+ this.state.swfVersion + '.exe',
-                linux: '/scratchr2/static/sa/Scratch-'+ this.state.swfVersion + '.air'
+                mac: downloadPath + this.state.swfVersion + '.dmg',
+                mac105: downloadPath + this.state.swfVersion + '.air',
+                windows: downloadPath + this.state.swfVersion + '.exe',
+                linux: downloadPath + this.state.swfVersion + '.air'
             };
         }
 
@@ -222,6 +231,7 @@ var Download = React.createClass({
                             <p><FormattedMessage id='download.knownIssuesOne' /></p>
                             <p><FormattedMessage id='download.knownIssuesTwo' /></p>
                             <p><FormattedHTMLMessage id='download.knownIssuesThree' /></p>
+                            <p><FormattedMessage id='download.knownIssuesFour' /></p>
                             <a href="https://scratch.mit.edu/discuss/3/" className='button mod-link'>
                                 <FormattedMessage id='download.reportBugs' />
                             </a>
@@ -231,6 +241,6 @@ var Download = React.createClass({
             </div>
         );
     }
-});
+}));
 
 render(<Page><Download /></Page>, document.getElementById('app'));

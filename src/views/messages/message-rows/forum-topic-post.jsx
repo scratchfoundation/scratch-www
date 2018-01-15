@@ -16,13 +16,15 @@ var ForumPostMessage = React.createClass({
         var topicLink = '/discuss/topic/' + this.props.topicId + '/unread/';
 
         var classes = classNames(
-            'mod-studio-activity',
+            'mod-forum-activity',
             this.props.className
         );
         return (
             <SocialMessage
                 className={classes}
                 datetime={this.props.datetimeCreated}
+                iconSrc="/svgs/messages/forum-activity.svg"
+                iconAlt="forum activity notification image"
             >
                 <FormattedMessage
                     id='messages.forumPostText'

@@ -27,6 +27,8 @@ var RemixProjectMessage = React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.remixDate}
+                iconSrc="/svgs/messages/remix.svg"
+                iconAlt="remix notification image"
             >
                 <FormattedMessage
                     id='messages.remixText'

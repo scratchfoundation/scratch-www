@@ -1,3 +1,4 @@
+var defaults = require('lodash.defaults');
 var defaultsDeep = require('lodash.defaultsdeep');
 var keyMirror = require('keymirror');
 
@@ -39,21 +40,18 @@ module.exports.messagesReducer = function (state, action) {
 
     switch (action.type) {
     case 'SET_MESSAGES':
-        return defaultsDeep({
-            messages: {social: action.messages}
-        }, state);
+        state.messages.social = action.messages;
+        return state;
     case 'SET_ADMIN_MESSAGES':
-        return defaultsDeep({
-            messages: {admin: action.messages}
-        }, state);
+        state.messages.admin = action.messages;
+        return state;
     case 'SET_MESSAGES_OFFSET':
         return defaultsDeep({
             messages: {socialOffset: action.offset}
         }, state);
     case 'SET_SCRATCHER_INVITE':
-        return defaultsDeep({
-            messages: {invite: action.invite}
-        }, state);
+        state.messages.invite = action.invite;
+        return state;
     case 'ADMIN_STATUS':
         return defaultsDeep({status: {admin: action.status}}, state);
     case 'MESSAGE_STATUS':
@@ -112,6 +110,10 @@ module.exports.setStatus = function (type, status){
     };
 };
 
+/**
+ * Sends a request to mark one's unread messages count as cleared.
+ * @return {null} returns nothing
+ */
 module.exports.clearMessageCount = function () {
     return function (dispatch) {
         dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.FETCHING));
@@ -126,7 +128,7 @@ module.exports.clearMessageCount = function () {
                 dispatch(module.exports.setMessagesError(err));
                 return;
             }
-            if (!body.success) {
+            if (typeof body !== 'undefined' && !body.success) {
                 dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.CLEAR_ERROR));
                 dispatch(module.exports.setMessagesError('messages not cleared'));
                 return;
@@ -136,6 +138,14 @@ module.exports.clearMessageCount = function () {
     };
 };
 
+/**
+ * Marks an admin message as read, dismissing it from the page
+ * @param  {string}   messageType   type of message to delete (invite or notification)
+ * @param  {number}   messageId     id of the message to delete
+ * @param  {number}   messageCount  current number of unread notifications
+ * @param  {object[]} adminMessages current list of admin messages retrieved
+ * @return {null}                   returns nothing
+ */
 module.exports.clearAdminMessage = function (messageType, messageId, messageCount, adminMessages) {
     return function (dispatch) {
         dispatch(module.exports.setStatus('CLEAR_STATUS', module.exports.Status.FETCHING));
@@ -181,11 +191,33 @@ module.exports.clearAdminMessage = function (messageType, messageId, messageCoun
     };
 };
 
-module.exports.getMessages = function (username, token, messages, offset) {
+/**
+ * Gets a user's messages to be displayed on the /messages page
+ * @param  {string}   username           username of the user for whom the messages should be gotten
+ * @param  {string}   token              the user's unique token for auth
+ * @param  {object}   opts               optional args for the method
+ * @param  {object[]} [opts.messages]    an array of existing messages on the page, if there are any
+ * @param  {number}   [opts.offset]      offset of messages to get, based on the number retrieved already
+ * @param  {string}   [opts.filter]      type of messages to return
+ * @return {null}                     returns nothing
+ */
+module.exports.getMessages = function (username, token, opts) {
+    opts = defaults(opts, {
+        messages: [],
+        offset: 0,
+        filter: '',
+        clearCount: true
+    });
+
+    var filterArg = '';
+    if (opts.filter.length > 0) {
+        filterArg = '&filter=' + opts.filter;
+    }
+
     return function (dispatch) {
         dispatch(module.exports.setStatus('MESSAGE_STATUS', module.exports.Status.FETCHING));
         api({
-            uri: '/users/' + username + '/messages?limit=40&offset=' + offset,
+            uri: '/users/' + username + '/messages?limit=40&offset=' + opts.offset + filterArg,
             authentication: token
         }, function (err, body) {
             if (err) {
@@ -199,13 +231,21 @@ module.exports.getMessages = function (username, token, messages, offset) {
                 return;
             }
             dispatch(module.exports.setStatus('MESSAGE_STATUS', module.exports.Status.FETCHED));
-            dispatch(module.exports.setMessages(messages.concat(body)));
-            dispatch(module.exports.setMessagesOffset(offset + 40));
-            dispatch(module.exports.clearMessageCount(token)); // clear count once messages loaded
+            dispatch(module.exports.setMessages(opts.messages.concat(body)));
+            dispatch(module.exports.setMessagesOffset(opts.offset + 40));
+            if (opts.clearCount) {
+                dispatch(module.exports.clearMessageCount(token)); // clear count once messages loaded
+            }
         });
     };
 };
 
+/**
+ * Gets the messages from the Scratch Team for a user
+ * @param  {string} username user's username for whom to get the admin messages
+ * @param  {string} token    the user's unique token for auth
+ * @return {null}            returns nothing
+ */
 module.exports.getAdminMessages = function (username, token) {
     return function (dispatch) {
         dispatch(module.exports.setStatus('ADMIN_STATUS', module.exports.Status.FETCHING));
@@ -231,6 +271,12 @@ module.exports.getAdminMessages = function (username, token) {
     };
 };
 
+/**
+ * Gets the invitation to become a Scratcher for a user, if one exists
+ * @param  {string} username user's username for whom to get the invite
+ * @param  {string} token    the user's unique token for auth
+ * @return {null}            returns nothing
+ */
 module.exports.getScratcherInvite = function (username, token) {
     return function (dispatch) {
         api({

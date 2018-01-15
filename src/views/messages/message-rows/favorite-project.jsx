@@ -24,6 +24,8 @@ var FavoriteProjectMessage = React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.favoriteDateTime}
+                iconSrc="/svgs/messages/favorite.svg"
+                iconAlt="favorite notification image"
             >
                 <FormattedMessage
                     id='messages.favoriteText'

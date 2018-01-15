@@ -97,15 +97,21 @@
 
 .comment-message-info {
     margin-top: 0;
+    line-height: 1.5rem;
 }
 
 .comment-text {
     background-color: $ui-white;
+    max-width: 30.25rem;
 }
 
 .flex-row.mod-comment-message {
     margin-bottom: .25rem;
     align-items: flex-start;
+}
+
+.comment-message-info {
+    text-align: left;
 }
 
 .comment-message-info-img {
@@ -118,6 +124,10 @@
     margin: 1rem auto;
 }
 
+.emoji-text.mod-comment {
+    word-wrap: break-word;
+}
+
 @media only screen and (max-width: $mobile - 1) {
     .flex-row.admin-message-header,
     .flex-row.mod-comment-message {
@@ -125,7 +135,7 @@
     }
 
     .comment-text {
-        max-width: 60%;
+        max-width: 9.75rem;
     }
 }
 
@@ -133,5 +143,15 @@
     .flex-row.admin-message-header,
     .flex-row.mod-comment-message {
         flex-direction: row;
+    }
+
+    .comment-text {
+        max-width: 19.5rem;
+    }
+}
+
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .comment-text {
+        max-width: 23.75rem;
     }
 }

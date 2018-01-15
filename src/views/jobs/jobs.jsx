@@ -31,16 +31,16 @@ var Jobs = React.createClass({
                         <h3><FormattedMessage id='jobs.openings' /></h3>
                         <ul>
                             <li>
-                                <a href="/jobs/moderator">
-                                    Community Moderator (Remote)
+                                <a href="https://www.media.mit.edu/about/job-opportunities/web-designer-scratch/">
+                                    Designer
                                 </a>
                                 <span>
-                                    MIT Media Lab, Cambridge, MA (or Remote)
+                                    MIT Media Lab, Cambridge, MA
                                 </span>
                             </li>
                             <li>
-                                <a href="https://www.media.mit.edu/about/job-opportunities/junior-web-designer-scratch/">
-                                    Junior Designer
+                                <a href="https://www.media.mit.edu/about/job-opportunities/qa-engineer-scratch/">
+                                    QA Engineer
                                 </a>
                                 <span>
                                     MIT Media Lab, Cambridge, MA
@@ -49,6 +49,14 @@ var Jobs = React.createClass({
                             <li>
                                 <a href="https://www.media.mit.edu/about/job-opportunities/senior-backend-engineer-scratch-1/">
                                     Senior Backend Engineer
+                                </a>
+                                <span>
+                                    MIT Media Lab, Cambridge, MA
+                                </span>
+                            </li>
+                            <li>
+                                <a href="https://www.media.mit.edu/about/job-opportunities/learning-resources/">
+                                    Learning Resource Designer
                                 </a>
                                 <span>
                                     MIT Media Lab, Cambridge, MA

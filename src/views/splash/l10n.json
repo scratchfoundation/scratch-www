@@ -11,9 +11,18 @@
     "splash.communityRemixing": "What the Community is Remixing",
     "splash.communityLoving": "What the Community is Loving",
 
+    "messages.becomeCuratorText": "{username} became a curator of {studio}",
+    "messages.becomeManagerText": "{username} was promoted to manager of {studio}",
+    "messages.favoriteText": "{profileLink} favorited {projectLink}",
+    "messages.followText": "{profileLink} is now following {followeeLink}",
+    "messages.loveText": "{profileLink} loved {projectLink}",
+    "messages.remixText": "{profileLink} remixed {remixedProjectLink} as {projectLink}",
+    "messages.shareText": "{profileLink} shared the project {projectLink}",
+
     "intro.aboutScratch": "ABOUT SCRATCH",
     "intro.forEducators": "FOR EDUCATORS",
     "intro.forParents": "FOR PARENTS",
+    "intro.itsFree": "it's free!",
     "intro.joinScratch": "JOIN SCRATCH",
     "intro.seeExamples": "SEE EXAMPLES",
     "intro.tagLine": "Create stories, games, and animations<br /> Share with others around the world",

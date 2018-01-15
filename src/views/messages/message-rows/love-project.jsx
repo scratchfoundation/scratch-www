@@ -24,6 +24,8 @@ var LoveProjectMessage = React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.loveDateTime}
+                iconSrc="/svgs/messages/love.svg"
+                iconAlt="love notification image"
             >
                 <FormattedMessage
                     id='messages.loveText'

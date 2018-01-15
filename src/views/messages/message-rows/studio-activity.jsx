@@ -12,7 +12,7 @@ var StudioActivityMessage = React.createClass({
         datetimeCreated: React.PropTypes.string.isRequired
     },
     render: function () {
-        var studioLink = '/studios/' + this.props.studioId;
+        var studioLink = '/studios/' + this.props.studioId + '/activity';
 
         var classes = classNames(
             'mod-studio-activity',
@@ -22,6 +22,8 @@ var StudioActivityMessage = React.createClass({
             <SocialMessage
                 className={classes}
                 datetime={this.props.datetimeCreated}
+                iconSrc="/svgs/messages/studio-activity.svg"
+                iconAlt="studio activity notification image"
             >
                 <FormattedMessage
                     id='messages.studioActivityText'

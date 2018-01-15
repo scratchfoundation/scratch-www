@@ -43,7 +43,15 @@
     },
     {
         "name": "conference-index",
-        "pattern": "^/conference/?$",
+        "pattern": "^/conference/?(\\?.*)?$",
+        "routeAlias": "/conference(?!/201[4-5])",
+        "view": "conference/2018/index/index",
+        "title": "Scratch Conference",
+        "viewportWidth": "device-width"
+    },
+    {
+        "name": "conference-index-2017",
+        "pattern": "^/conference/2017/?$",
         "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/2017/index/index",
         "title": "Scratch Conference",
@@ -144,7 +152,7 @@
     {
         "name": "messages",
         "pattern": "^/messages/?$",
-        "routeAlias": "/messages",
+        "routeAlias": "/messages(?!/ajax)",
         "view": "messages/container",
         "title": "Messages"
     },
@@ -182,6 +190,13 @@
         "routeAlias": "/microworlds",
         "view": "microworldshomepage/microworldshomepage",
         "title": "Microworlds"
+    },
+    {
+        "name": "preview-faq",
+        "pattern": "^/preview-faq/?$",
+        "routeAlias": "/preview-faq/?$",
+        "view": "preview-faq/preview-faq",
+        "title": "Scratch 3.0 Preview FAQ"
     },
     {
         "name": "privacypolicy",
@@ -300,6 +315,12 @@
         "name": "hoc-redirect",
         "pattern": "^/hoc/?(\\?.*)?$",
         "routeAlias": "/hoc/?\\??",
+        "redirect": "/tips"
+    },
+    {
+        "name": "hoc2014-redirect",
+        "pattern": "^/hoc2014/?(\\?.*)?$",
+        "routeAlias": "/hoc2014/?\\??",
         "redirect": "/tips"
     },
     {

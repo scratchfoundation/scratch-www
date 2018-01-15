@@ -6,6 +6,7 @@ var api = require('../../lib/api');
 var log = require('../../lib/log');
 var render = require('../../lib/render.jsx');
 var sessionActions = require('../../redux/session.js');
+var splashActions = require('../../redux/splash.js');
 
 var Page = require('../../components/page/www/page.jsx');
 var SplashPresentation = require('./presentation.jsx');
@@ -15,12 +16,7 @@ var Splash = injectIntl(React.createClass({
     getInitialState: function () {
         return {
             projectCount: 20000000, // gets the shared project count
-            activity: [], // recent social actions taken by users someone is following
             news: [], // gets news posts from the scratch Tumblr
-            sharedByFollowing: [], // "Projects by Scratchers I'm Following"
-            lovedByFollowing: [], // "Projects Loved by Scratchers I'm Following"
-            inStudiosFollowing: [], // "Projects in Studios I'm Following"
-            featuredGlobal: {}, // global homepage rows, such as "Featured Projects"
             emailConfirmationModalOpen: false, // flag that determines whether to show banner to request email conf.
             refreshCacheStatus: 'notrequested'
         };
@@ -37,16 +33,16 @@ var Splash = injectIntl(React.createClass({
     componentDidUpdate: function (prevProps) {
         if (this.props.user != prevProps.user) {
             if (this.props.user.username) {
-                this.getActivity(this.props.user.username);
-                this.getSharedByFollowing(this.props.user.username, this.props.user.token);
-                this.getInStudiosFollowing(this.props.user.username, this.props.user.token);
-                this.getLovedByFollowing(this.props.user.username, this.props.user.token);
+                this.props.getActivity(this.props.user.username, this.props.user.token);
+                this.props.getSharedByFollowing(this.props.user.username, this.props.user.token);
+                this.props.getInStudiosFollowing(this.props.user.username, this.props.user.token);
+                this.props.getLovedByFollowing(this.props.user.username, this.props.user.token);
                 this.getNews();
             } else {
-                this.setState({sharedByFollowing: []});
-                this.setState({lovedByFollowing: []});
-                this.setState({inStudiosFollowing: []});
-                this.setState({activity: []});
+                this.props.setRows('shared', []);
+                this.props.setRows('loved', []);
+                this.props.setRows('studios', []);
+                this.props.setRows('activity', []);
                 this.setState({news: []});
                 this.getProjectCount();
             }
@@ -58,59 +54,16 @@ var Splash = injectIntl(React.createClass({
         }
     },
     componentDidMount: function () {
-        this.getFeaturedGlobal();
+        this.props.getFeaturedGlobal();
         if (this.props.user.username) {
-            this.getActivity(this.props.user.username);
-            this.getSharedByFollowing(this.props.user.username, this.props.user.token);
-            this.getInStudiosFollowing(this.props.user.username, this.props.user.token);
-            this.getLovedByFollowing(this.props.user.username, this.props.user.token);
+            this.props.getActivity(this.props.user.username, this.props.user.token);
+            this.props.getSharedByFollowing(this.props.user.username, this.props.user.token);
+            this.props.getInStudiosFollowing(this.props.user.username, this.props.user.token);
+            this.props.getLovedByFollowing(this.props.user.username, this.props.user.token);
             this.getNews();
         } else {
             this.getProjectCount();
         }
-    },
-    getActivity: function (username) {
-        api({
-            uri: '/proxy/users/' + username + '/activity?limit=5'
-        }, function (err, body) {
-            if (!body) return log.error('No response body');
-            if (!err) return this.setState({activity: body});
-        }.bind(this));
-    },
-    getFeaturedGlobal: function () {
-        api({
-            uri: '/proxy/featured'
-        }, function (err, body) {
-            if (!body) return log.error('No response body');
-            if (!err) return this.setState({featuredGlobal: body});
-        }.bind(this));
-    },
-    getSharedByFollowing: function (username, token) {
-        api({
-            uri: '/users/' + username + '/following/users/projects',
-            authentication: token
-        }, function (err, body) {
-            if (!body) return log.error('No response body');
-            if (!err) return this.setState({sharedByFollowing: body});
-        }.bind(this));
-    },
-    getInStudiosFollowing: function (username, token) {
-        api({
-            uri: '/users/' + username + '/following/studios/projects',
-            authentication: token
-        }, function (err, body) {
-            if (!body) return log.error('No response body');
-            if (!err) return this.setState({inStudiosFollowing: body});
-        }.bind(this));
-    },
-    getLovedByFollowing: function (username, token) {
-        api({
-            uri: '/users/' + username + '/following/users/loves',
-            authentication: token
-        }, function (err, body) {
-            if (!body) return log.error('No response body');
-            if (!err) return this.setState({lovedByFollowing: body});
-        }.bind(this));
     },
     getNews: function () {
         api({
@@ -207,12 +160,12 @@ var Splash = injectIntl(React.createClass({
                 hideEmailConfirmationModal={this.hideEmailConfirmationModal}
                 shouldShowWelcome={showWelcome}
                 projectCount={this.state.projectCount}
-                activity={this.state.activity}
+                activity={this.props.activity}
                 news={this.state.news}
-                sharedByFollowing={this.state.sharedByFollowing}
-                lovedByFollowing={this.state.lovedByFollowing}
-                inStudiosFollowing={this.state.inStudiosFollowing}
-                featuredGlobal={this.state.featuredGlobal}
+                sharedByFollowing={this.props.shared}
+                lovedByFollowing={this.props.loved}
+                inStudiosFollowing={this.props.studios}
+                featuredGlobal={this.props.featured}
                 refreshCacheStatus={homepageRefreshStatus}
             />
         );
@@ -225,10 +178,45 @@ var mapStateToProps = function (state) {
         user: state.session.session.user,
         flags: state.session.session.flags,
         isEducator: state.permissions.educator,
-        isAdmin: state.permissions.admin
+        isAdmin: state.permissions.admin,
+        activity: state.splash.activity.rows,
+        featured: state.splash.featured.rows,
+        shared: state.splash.shared.rows,
+        loved: state.splash.loved.rows,
+        studios: state.splash.studios.rows
     };
 };
 
-var ConnectedSplash = connect(mapStateToProps)(Splash);
+var mapDispatchToProps = function (dispatch) {
+    return {
+        getFeaturedGlobal: function () {
+            dispatch(splashActions.getFeaturedGlobal());
+        },
+        getActivity: function (username, token) {
+            dispatch(splashActions.getActivity(username, token));
+        },
+        getSharedByFollowing: function (username, token) {
+            dispatch(splashActions.getSharedByFollowing(username, token));
+        },
+        getInStudiosFollowing: function (username, token) {
+            dispatch(splashActions.getInStudiosFollowing(username, token));
+        },
+        getLovedByFollowing: function (username, token) {
+            dispatch(splashActions.getLovedByFollowing(username, token));
+        },
+        setRows: function (type, rows) {
+            dispatch(splashActions.setRows(type, rows));
+        }
+    };
+};
 
-render(<Page><ConnectedSplash /></Page>, document.getElementById('app'));
+var ConnectedSplash = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Splash);
+
+render(
+    <Page><ConnectedSplash /></Page>,
+    document.getElementById('app'),
+    {splash: splashActions.splashReducer}
+);
