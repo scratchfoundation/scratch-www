@@ -1,33 +1,35 @@
-var classNames = require('classnames');
-var React = require('react');
+const bindAll = require('lodash.bindall');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const React = require('react');
 
 require('./accordion.scss');
 
-var Accordion = React.createClass({
-    type: 'Accordion',
-    getDefaultProps: function () {
-        return {
-            titleAs: 'div',
-            contentAs: 'div'
-        };
-    },
-    getInitialState: function () {
-        return {
+class Accordion extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'handleClick'
+        ]);
+        this.state = {
             isOpen: false
         };
-    },
-    toggleContent: function () {
+    }
+    handleClick (e) {
+        e.preventDefault();
         this.setState({isOpen: !this.state.isOpen});
-    },
-    render: function () {
-        var classes = classNames({
-            'content': true,
-            'open': this.state.isOpen
+    }
+    render () {
+        const classes = classNames({
+            content: true,
+            open: this.state.isOpen
         });
         return (
             <div className="accordion">
-                <this.props.titleAs className="title"
-                     onClick={this.toggleContent}>
+                <this.props.titleAs
+                    className="title"
+                    onClick={this.handleClick}
+                >
                     {this.props.title}
                 </this.props.titleAs>
                 <this.props.contentAs className={classes}>
@@ -36,6 +38,16 @@ var Accordion = React.createClass({
             </div>
         );
     }
-});
+}
+
+Accordion.propTypes = {
+    content: PropTypes.node,
+    title: PropTypes.string
+};
+
+Accordion.defaultProps = {
+    contentAs: 'div',
+    titleAs: 'div'
+};
 
 module.exports = Accordion;

@@ -1,45 +1,39 @@
-var injectIntl = require('react-intl').injectIntl;
-var FormattedMessage = require('react-intl').FormattedMessage;
-var React = require('react');
-var connect = require('react-redux').connect;
-var render = require('../../lib/render.jsx');
+const bindAll = require('lodash.bindall');
+const connect = require('react-redux').connect;
+const FormattedMessage = require('react-intl').FormattedMessage;
+const injectIntl = require('react-intl').injectIntl;
+const intlShape = require('react-intl').intlShape;
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var api = require('../../lib/api');
+const api = require('../../lib/api');
+const Button = require('../../components/forms/button.jsx');
+const Grid = require('../../components/grid/grid.jsx');
+const navigationActions = require('../../redux/navigation.js');
+const TitleBanner = require('../../components/title-banner/title-banner.jsx');
+const Tabs = require('../../components/tabs/tabs.jsx');
 
-var Page = require('../../components/page/www/page.jsx');
-var TitleBanner = require('../../components/title-banner/title-banner.jsx');
-var Button = require('../../components/forms/button.jsx');
-var Tabs = require('../../components/tabs/tabs.jsx');
-var Grid = require('../../components/grid/grid.jsx');
-var navigationActions = require('../../redux/navigation.js');
+const Page = require('../../components/page/www/page.jsx');
+const render = require('../../lib/render.jsx');
 
 require('./search.scss');
 
-// @todo migrate to React-Router once available
-var Search = injectIntl(React.createClass({
-    type: 'Search',
-    getDefaultProps: function () {
-        var pathname = window.location.pathname.toLowerCase();
-        if (pathname[pathname.length - 1] === '/') {
-            pathname = pathname.substring(0, pathname.length - 1);
-        }
-        var start = pathname.lastIndexOf('/');
-        var type = pathname.substring(start + 1, pathname.length);
-        return {
-            tab: type,
-            loadNumber: 16
-        };
-    },
-    getInitialState: function () {
-        return {
-            loaded: [],
-            offset: 0
-        };
-    },
-    componentDidMount: function () {
-        var query = window.location.search;
-        var q = query.lastIndexOf('q=');
-        var term = '';
+class Search extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'getSearchState',
+            'handleGetSearchMore',
+            'getTab'
+        ]);
+        this.state = this.getSearchState();
+        this.state.loaded = [];
+        this.state.loadNumber = 16;
+    }
+    componentDidMount () {
+        const query = window.location.search;
+        const q = query.lastIndexOf('q=');
+        let term = '';
         if (q !== -1) {
             term = query.substring(q + 2, query.length).toLowerCase();
         }
@@ -51,89 +45,130 @@ var Search = injectIntl(React.createClass({
         }
         term = decodeURI(term.split('+').join(' '));
         this.props.dispatch(navigationActions.setSearchTerm(term));
-    },
-    componentDidUpdate: function (prevProps) {
-        if (this.props.searchTerm !== prevProps.searchTerm) this.getSearchMore();
-    },
-    getSearchMore: function () {
-        var termText = '';
-        if (this.props.searchTerm !== '') {
-            termText = '&q=' + encodeURIComponent(this.props.searchTerm.split(' ').join('+'));
+    }
+    componentDidUpdate (prevProps) {
+        if (this.props.searchTerm !== prevProps.searchTerm) {
+            this.getSearchMore();
         }
+    }
+    getSearchState () {
+        let pathname = window.location.pathname.toLowerCase();
+        if (pathname[pathname.length - 1] === '/') {
+            pathname = pathname.substring(0, pathname.length - 1);
+        }
+        const start = pathname.lastIndexOf('/');
+        const type = pathname.substring(start + 1, pathname.length);
+        return {
+            tab: type,
+            loadNumber: 16
+        };
+    }
+    handleGetSearchMore () {
+        let termText = '';
+        if (this.props.searchTerm !== '') {
+            termText = `&q=${encodeURIComponent(this.props.searchTerm.split(' ').join('+'))}`;
+        }
+        const locale = this.props.intl.locale;
+        const loadNumber = this.props.loadNumber;
+        const offset = this.state.offset;
+        const queryString = `limit=${loadNumber}&offset=${offset}&language=${locale}&mode=popular${termText}`;
+
         api({
-            uri: '/search/' + this.props.tab +
-                 '?limit=' + this.props.loadNumber +
-                 '&offset=' + this.state.offset +
-                 '&language=' + this.props.intl.locale +
-                 '&mode=popular' +
-                 termText
-        }, function (err, body) {
-            var loadedSoFar = this.state.loaded;
+            uri: `/search/${this.props.tab}?${queryString}`
+        }, (err, body) => {
+            const loadedSoFar = this.state.loaded;
             Array.prototype.push.apply(loadedSoFar, body);
-            this.setState({loaded: loadedSoFar});
-            var currentOffset = this.state.offset + this.props.loadNumber;
-            this.setState({offset: currentOffset});
-        }.bind(this));
-    },
-    onSearchSubmit: function (formData) {
-        window.location.href = '/search/projects?q=' + encodeURIComponent(formData.q);
-    },
-    getTab: function (type) {
-        var term = this.props.searchTerm.split(' ').join('+');
-        var allTab = <a href={'/search/' + type + '?q=' + term + '/'}>
-                        <li>
-                            <img src={'/svgs/tabs/' + type + '-inactive.svg'} className={'tab-icon ' + type} />
-                            <FormattedMessage id={'general.' + type} />
-                        </li>
-                    </a>;
-        if (this.props.tab == type) {
-            allTab = <a href={'/search/' + type + '?q=' + term + '/'}>
-                        <li className='active'>
-                            <img src={'/svgs/tabs/' + type + '-active.svg'} className={'tab-icon ' + type} />
-                            <FormattedMessage id={'general.' + type} />
-                        </li>
-                    </a>;
+            const currentOffset = this.state.offset + this.props.loadNumber;
+
+            this.setState({
+                loaded: loadedSoFar,
+                offset: currentOffset
+            });
+        });
+    }
+    getTab (type) {
+        const term = this.props.searchTerm.split(' ').join('+');
+        let allTab = (
+            <a href={`/search/${type}?q=${term}/`}>
+                <li>
+                    <img
+                        className={`tab-icon ${type}`}
+                        src={`/svgs/tabs/${type}-inactive.svg`}
+                    />
+                    <FormattedMessage id={`general.${type}`} />
+                </li>
+            </a>
+        );
+        if (this.props.tab === type) {
+            allTab = (
+                <a href={`/search/${type}?q=${term}/`}>
+                    <li className="active">
+                        <img
+                            className={`tab-icon ${type}`}
+                            src={`/svgs/tabs/${type}-active.svg`}
+                        />
+                        <FormattedMessage id={`general.${type}`} />
+                    </li>
+                </a>
+            );
         }
         return allTab;
-    },
-    render: function () {
+    }
+    render () {
         return (
             <div>
-                <div className='outer'>
-                        <TitleBanner className="masthead">
-                            <div className="inner">
-                                <h1 className="title-banner-h1"><FormattedMessage id="general.search" /></h1>
-                            </div>
-                        </TitleBanner>
-                        <Tabs>
-                            {this.getTab('projects')}
-                            {this.getTab('studios')}
-                        </Tabs>
-                        <div id='projectBox' key='projectBox'>
-                        <Grid items={this.state.loaded}
-                              itemType={this.props.tab}
-                              cards={true}
-                              showAvatar={true}
-                              showLoves={false}
-                              showFavorites={false}
-                              showViews={false} />
-                         <Button onClick={this.getSearchMore} className="white">
-                            <FormattedMessage id='general.loadMore' />
-                        </Button>
+                <div className="outer">
+                    <TitleBanner className="masthead">
+                        <div className="inner">
+                            <h1 className="title-banner-h1">
+                                <FormattedMessage id="general.search" />
+                            </h1>
                         </div>
+                    </TitleBanner>
+                    <Tabs>
+                        {this.getTab('projects')}
+                        {this.getTab('studios')}
+                    </Tabs>
+                    <div
+                        id="projectBox"
+                        key="projectBox"
+                    >
+                        <Grid
+                            cards
+                            showAvatar
+                            itemType={this.props.tab}
+                            items={this.state.loaded}
+                            showFavorites={false}
+                            showLoves={false}
+                            showViews={false}
+                        />
+                        <Button
+                            className="white"
+                            onClick={this.handleGetSearchMore}
+                        >
+                            <FormattedMessage id="general.loadMore" />
+                        </Button>
+                    </div>
                 </div>
             </div>
         );
     }
-}));
+}
 
-var mapStateToProps = function (state) {
-    return {
-        searchTerm: state.navigation
-    };
+Search.propTypes = {
+    dispatch: PropTypes.func,
+    intl: intlShape,
+    loadNumber: PropTypes.number,
+    searchTerm: PropTypes.string,
+    tab: PropTypes.string
 };
 
-var ConnectedSearch = connect(mapStateToProps)(Search);
+const mapStateToProps = state => ({
+    searchTerm: state.navigation
+});
+
+const WrappedSearch = injectIntl(Search);
+const ConnectedSearch = connect(mapStateToProps)(WrappedSearch);
 
 render(
     <Page><ConnectedSearch /></Page>,

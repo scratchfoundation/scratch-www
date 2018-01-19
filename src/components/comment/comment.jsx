@@ -1,34 +1,33 @@
-var classNames = require('classnames');
-var FormattedRelative = require('react-intl').FormattedRelative;
-var React = require('react');
+const classNames = require('classnames');
+const FormattedRelative = require('react-intl').FormattedRelative;
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var EmojiText = require('../emoji-text/emoji-text.jsx');
+const EmojiText = require('../emoji-text/emoji-text.jsx');
 
 require('./comment.scss');
 
-var CommentText = React.createClass({
-    type: 'CommentText',
-    propTypes: {
-        comment: React.PropTypes.string.isRequired,
-        datetimeCreated: React.PropTypes.string,
-        className: React.PropTypes.string
-    },
-    render: function () {
-        var classes = classNames(
-            'comment-text',
-            this.props.class
-        );
-        return (
-            <div className={classes}>
-                <EmojiText className="mod-comment" text={this.props.comment} />
-                {typeof this.props.datetimeCreated !== 'undefined' ? [
-                    <p className="comment-text-timestamp">
-                        <FormattedRelative value={new Date(this.props.datetimeCreated)} />
-                    </p>
-                ] : []}
-            </div>
-        );
-    }
-});
+const CommentText = props => (
+    <div className={classNames('comment-text', props.className)}>
+        <EmojiText
+            className="mod-comment"
+            text={props.comment}
+        />
+        {typeof props.datetimeCreated === 'undefined' ? [] : [
+            <p
+                className="comment-text-timestamp"
+                key="comment-text-timestamp"
+            >
+                <FormattedRelative value={new Date(props.datetimeCreated)} />
+            </p>
+        ]}
+    </div>
+);
+
+CommentText.propTypes = {
+    className: PropTypes.string,
+    comment: PropTypes.string.isRequired,
+    datetimeCreated: PropTypes.string
+};
 
 module.exports = CommentText;

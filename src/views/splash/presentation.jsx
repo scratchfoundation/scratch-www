@@ -1,135 +1,158 @@
-var FormattedMessage = require('react-intl').FormattedMessage;
-var injectIntl = require('react-intl').injectIntl;
-var React = require('react');
+const bindAll = require('lodash.bindall');
+const FormattedMessage = require('react-intl').FormattedMessage;
+const injectIntl = require('react-intl').injectIntl;
+const intlShape = require('react-intl').intlShape;
+const MediaQuery = require('react-responsive').default;
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var sessionActions = require('../../redux/session.js');
-var shuffle = require('../../lib/shuffle.js').shuffle;
+const frameless = require('../../lib/frameless');
+const sessionActions = require('../../redux/session.js');
+const shuffle = require('../../lib/shuffle.js').shuffle;
 
-var AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
-var DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
-var Box = require('../../components/box/box.jsx');
-var Button = require('../../components/forms/button.jsx');
-var Carousel = require('../../components/carousel/carousel.jsx');
-var LegacyCarousel = require('../../components/carousel/legacy-carousel.jsx');
-var Intro = require('../../components/intro/intro.jsx');
-var IframeModal = require('../../components/modal/iframe/modal.jsx');
-var News = require('../../components/news/news.jsx');
-var TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
-var Welcome = require('../../components/welcome/welcome.jsx');
+const AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
+const Box = require('../../components/box/box.jsx');
+const Button = require('../../components/forms/button.jsx');
+const Carousel = require('../../components/carousel/carousel.jsx');
+const DropdownBanner = require('../../components/dropdown-banner/banner.jsx');
+const IframeModal = require('../../components/modal/iframe/modal.jsx');
+const Intro = require('../../components/intro/intro.jsx');
+const LegacyCarousel = require('../../components/carousel/legacy-carousel.jsx');
+const News = require('../../components/news/news.jsx');
+const TeacherBanner = require('../../components/teacher-banner/teacher-banner.jsx');
+const Welcome = require('../../components/welcome/welcome.jsx');
 
 // Activity Components
-var BecomeCuratorMessage = require('./activity-rows/become-curator.jsx');
-var BecomeManagerMessage = require('./activity-rows/become-manager.jsx');
-var FavoriteProjectMessage = require('./activity-rows/favorite-project.jsx');
-var FollowMessage = require('./activity-rows/follow.jsx');
-var LoveProjectMessage = require('./activity-rows/love-project.jsx');
-var RemixProjectMessage = require('./activity-rows/remix-project.jsx');
-var ShareProjectMessage = require('./activity-rows/share-project.jsx');
-
-var MediaQuery = require('react-responsive');
-var frameless = require('../../lib/frameless');
+const BecomeCuratorMessage = require('./activity-rows/become-curator.jsx');
+const BecomeManagerMessage = require('./activity-rows/become-manager.jsx');
+const FavoriteProjectMessage = require('./activity-rows/favorite-project.jsx');
+const FollowMessage = require('./activity-rows/follow.jsx');
+const LoveProjectMessage = require('./activity-rows/love-project.jsx');
+const RemixProjectMessage = require('./activity-rows/remix-project.jsx');
+const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 
 require('./splash.scss');
 
-var ActivityList = injectIntl(React.createClass({
-    propTypes: {
-        items: React.PropTypes.array
-    },
-    getComponentForMessage: function (message) {
-        var key = message.type + '_' + message.id;
+class ActivityList extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'getComponentForMessage'
+        ]);
+    }
+    getComponentForMessage (message) {
+        const key = `${message.type}_${message.datetime_created}`;
 
         switch (message.type) {
         case 'followuser':
-            return <FollowMessage
-                key={key}
-                followerUsername={message.actor_username}
-                followeeId={message.followed_username}
-                followDateTime={message.datetime_created}
-            />;
+            return (
+                <FollowMessage
+                    followDateTime={message.datetime_created}
+                    followeeId={message.followed_username}
+                    followerUsername={message.actor_username}
+                    key={key}
+                />
+            );
         case 'followstudio':
-            return <FollowMessage
-                key={key}
-                followerUsername={message.actor_username}
-                followeeId={message.gallery_id}
-                followeeTitle={message.title}
-                followDateTime={message.datetime_created}
-            />;
+            return (
+                <FollowMessage
+                    followDateTime={message.datetime_created}
+                    followeeId={message.gallery_id}
+                    followeeTitle={message.title}
+                    followerUsername={message.actor_username}
+                    key={key}
+                />
+            );
         case 'loveproject':
-            return <LoveProjectMessage
-                key={key}
-                actorUsername={message.actor_username}
-                projectId={message.project_id}
-                projectTitle={message.title}
-                loveDateTime={message.datetime_created}
-            />;
+            return (
+                <LoveProjectMessage
+                    actorUsername={message.actor_username}
+                    key={key}
+                    loveDateTime={message.datetime_created}
+                    projectId={message.project_id}
+                    projectTitle={message.title}
+                />
+            );
         case 'favoriteproject':
-            return <FavoriteProjectMessage
-                key={key}
-                actorUsername={message.actor_username}
-                projectId={message.project_id}
-                projectTitle={message.project_title}
-                favoriteDateTime={message.datetime_created}
-            />;
+            return (
+                <FavoriteProjectMessage
+                    actorUsername={message.actor_username}
+                    favoriteDateTime={message.datetime_created}
+                    key={key}
+                    projectId={message.project_id}
+                    projectTitle={message.project_title}
+                />
+            );
         case 'remixproject':
-            return <RemixProjectMessage
-                key={key}
-                actorUsername={message.actor_username}
-                projectId={message.project_id}
-                projectTitle={message.title}
-                parentId={message.parent_id}
-                parentTitle={message.parent_title}
-                remixDate={message.datetime_created}
-            />;
+            return (
+                <RemixProjectMessage
+                    actorUsername={message.actor_username}
+                    key={key}
+                    parentId={message.parent_id}
+                    parentTitle={message.parent_title}
+                    projectId={message.project_id}
+                    projectTitle={message.title}
+                    remixDate={message.datetime_created}
+                />
+            );
         case 'becomecurator':
-            return <BecomeCuratorMessage
-                key={key}
-                actorUsername={message.actor_username}
-                studioId={message.gallery_id}
-                studioTitle={message.title}
-                datetimePromoted={message.datetime_created}
-            />;
+            return (
+                <BecomeCuratorMessage
+                    actorUsername={message.actor_username}
+                    datetimePromoted={message.datetime_created}
+                    key={key}
+                    studioId={message.gallery_id}
+                    studioTitle={message.title}
+                />
+            );
         case 'becomeownerstudio':
-            return <BecomeManagerMessage
-                key={key}
-                recipientUsername={message.recipient_username}
-                studioId={message.gallery_id}
-                studioTitle={message.gallery_title}
-                datetimePromoted={message.datetime_created}
-            />;
+            return (
+                <BecomeManagerMessage
+                    datetimePromoted={message.datetime_created}
+                    key={key}
+                    recipientUsername={message.recipient_username}
+                    studioId={message.gallery_id}
+                    studioTitle={message.gallery_title}
+                />
+            );
         case 'shareproject':
-            return <ShareProjectMessage
-                key={key}
-                actorUsername={message.actor_username}
-                projectId={message.project_id}
-                projectTitle={message.title}
-                loveDateTime={message.datetime_created}
-            />;
+            return (
+                <ShareProjectMessage
+                    actorUsername={message.actor_username}
+                    key={key}
+                    loveDateTime={message.datetime_created}
+                    projectId={message.project_id}
+                    projectTitle={message.title}
+                />
+            );
         }
-    },
-    render: function () {
-        var formatMessage = this.props.intl.formatMessage;
+    }
+    render () {
         return (
             <Box
                 className="activity"
-                title={formatMessage({id: 'general.whatsHappening'})}
+                title={this.props.intl.formatMessage({
+                    id: 'general.whatsHappening'
+                })}
             >
                 {this.props.items && this.props.items.length > 0 ? [
                     <ul
                         className="activity-ul"
                         key="activity-ul"
                     >
-                        {this.props.items.map(function (item) {
-                            var profileLink = '/users/' + item.actor_username; + '/';
-                            var profileThumbUrl = '//uploads.scratch.mit.edu/users/avatars/' + item.actor_id + '.png';
+                        {this.props.items.map(item => {
+                            let profileLink = `/users/${item.actor_username}/`;
+                            let profileThumbUrl = `//uploads.scratch.mit.edu/users/avatars/${item.actor_id}.png`;
                             if (item.type === 'becomeownerstudio') {
-                                profileLink = '/users/' + item.recipient_username; + '/';
-                                profileThumbUrl = '//uploads.scratch.mit.edu/users/avatars/'
-                                    + item.recipient_id
-                                    + '.png';
+                                profileLink = `/users/${item.recipient_username}/`;
+                                profileThumbUrl = `//uploads.scratch.mit.edu/users/avatars/${item.recipient_id}.png`;
                             }
 
                             return (
-                                <li className="activity-li">
+                                <li
+                                    className="activity-li"
+                                    key={`${item.type}_${item.datetime_created}`}
+                                >
                                     <a href={profileLink}>
                                         <img
                                             alt=""
@@ -140,88 +163,89 @@ var ActivityList = injectIntl(React.createClass({
                                     {this.getComponentForMessage(item)}
                                 </li>
                             );
-                        }.bind(this))}
+                        })}
                     </ul>
                 ] : [
-                    <div className="empty" key="activity-empty">
+                    <div
+                        className="empty"
+                        key="activity-empty"
+                    >
                         <h4>
                             <FormattedMessage
+                                defaultMessage="This is where you will see updates from Scratchers you follow"
                                 id="activity.seeUpdates"
-                                defaultMessage="This is where you will see updates from Scratchers you follow" />
+                            />
                         </h4>
                         <a href="/studios/146521/">
                             <FormattedMessage
+                                defaultMessage="Check out some Scratchers you might like to follow"
                                 id="activity.checkOutScratchers"
-                                defaultMessage="Check out some Scratchers you might like to follow" />
+                            />
                         </a>
                     </div>
                 ]}
             </Box>
         );
     }
-}));
+}
 
-var SplashPresentation = injectIntl(React.createClass({
-    type: 'Splash',
-    propTypes: {
-        sessionStatus: React.PropTypes.string.isRequired,
-        user: React.PropTypes.object.isRequired,
-        isEducator: React.PropTypes.bool.isRequired,
-        isAdmin: React.PropTypes.bool.isRequired,
-        handleDismiss: React.PropTypes.func.isRequired,
-        refreshHomepageCache: React.PropTypes.func.isRequired,
-        shouldShowEmailConfirmation: React.PropTypes.bool.isRequired,
-        emailConfirmationModalOpen: React.PropTypes.bool.isRequired,
-        showEmailConfirmationModal: React.PropTypes.func.isRequired,
-        hideEmailConfirmationModal: React.PropTypes.func.isRequired,
-        shouldShowWelcome: React.PropTypes.bool.isRequired,
-        refreshCacheStatus: React.PropTypes.object.isRequired
-    },
-    getDefaultProps: function () {
-        return {
-            projectCount: 20000000, // gets the shared project count
-            activity: [], // recent social actions taken by users someone is following
-            news: [], // gets news posts from the scratch Tumblr
-            sharedByFollowing: [], // "Projects by Scratchers I'm Following"
-            lovedByFollowing: [], // "Projects Loved by Scratchers I'm Following"
-            inStudiosFollowing: [], // "Projects in Studios I'm Following"
-            featuredGlobal: {} // global homepage rows, such as "Featured Projects"
-        };
-    },
-    componentDidMount: function () {
-        if (this.props.shouldShowEmailConfirmation) window.addEventListener('message', this.onMessage);
-    },
-    componentWillUnmount: function () {
-        window.removeEventListener('message', this.onMessage);
-    },
-    onMessage: function (e) {
-        if (e.origin != window.location.origin) return;
-        if (e.source != this.emailConfirmationiFrame.contentWindow) return;
-        if (e.data == 'resend-done') {
-            this.hideEmailConfirmationModal();
+ActivityList.propTypes = {
+    intl: intlShape,
+    items: PropTypes.arrayOf(PropTypes.object)
+};
+
+const WrappedActivityList = injectIntl(ActivityList);
+
+// Splash page
+class SplashPresentation extends React.Component { // eslint-disable-line react/no-multi-comp
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'handleMessage',
+            'renderHomepageRows'
+        ]);
+    }
+    componentDidMount () {
+        if (this.props.shouldShowEmailConfirmation) window.addEventListener('message', this.handleMessage);
+    }
+    componentWillUnmount () {
+        window.removeEventListener('message', this.handleMessage);
+    }
+    handleMessage (e) {
+        if (e.origin !== window.location.origin) return;
+        if (e.source !== this.emailConfirmationiFrame.contentWindow) return;
+        if (e.data === 'resend-done') {
+            this.props.onHideEmailConfirmationModal();
         } else {
-            var data = JSON.parse(e.data);
-            if (data['action'] === 'leave-page') {
-                window.location.href = data['uri'];
+            const data = JSON.parse(e.data);
+            if (data.action === 'leave-page') {
+                window.location.href = data.uri;
             }
         }
-    },
-    renderHomepageRows: function () {
-        var formatMessage = this.props.intl.formatMessage;
-        var rows = [
+    }
+    renderHomepageRows () {
+        const rows = [
             <Box
-                title={formatMessage({id: 'splash.featuredProjects'})}
                 key="community_featured_projects"
+                title={this.props.intl.formatMessage({
+                    id: 'splash.featuredProjects'
+                })}
             >
                 <LegacyCarousel items={this.props.featuredGlobal.community_featured_projects} />
             </Box>,
             <Box
-                title={formatMessage({id: 'splash.featuredStudios'})}
                 key="community_featured_studios"
+                title={this.props.intl.formatMessage({
+                    id: 'splash.featuredStudios'
+                })}
             >
                 <LegacyCarousel
                     items={this.props.featuredGlobal.community_featured_studios}
-                    settings={{slidesToShow: 4, slidesToScroll: 4, lazyLoad: false}}
+                    settings={{
+                        slidesToShow: 4,
+                        slidesToScroll: 4,
+                        lazyLoad: false
+                    }}
                 />
             </Box>
         ];
@@ -229,14 +253,17 @@ var SplashPresentation = injectIntl(React.createClass({
         if (this.props.featuredGlobal.curator_top_projects &&
             this.props.featuredGlobal.curator_top_projects.length > 4) {
 
+            const curatorName = this.props.featuredGlobal.curator_top_projects[0].curator_name;
             rows.push(
                 <Box
                     key="curator_top_projects"
-                    title={
-                        formatMessage({id: 'splash.projectsCuratedBy'}) + ' ' +
-                        this.props.featuredGlobal.curator_top_projects[0].curator_name}
-                    moreTitle={formatMessage({id: 'general.learnMore'})}
                     moreHref="/studios/386359/"
+                    moreTitle={this.props.intl.formatMessage({
+                        id: 'general.learnMore'
+                    })}
+                    title={
+                        `${this.props.intl.formatMessage({id: 'splash.projectsCuratedBy'})}' '${curatorName}`
+                    }
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.curator_top_projects} />
                 </Box>
@@ -246,14 +273,15 @@ var SplashPresentation = injectIntl(React.createClass({
         if (this.props.featuredGlobal.scratch_design_studio &&
             this.props.featuredGlobal.scratch_design_studio.length > 4) {
 
+            const galleryTitle = this.props.featuredGlobal.scratch_design_studio[0].gallery_title;
             rows.push(
                 <Box
                     key="scratch_design_studio"
+                    moreHref={`/studios/${this.props.featuredGlobal.scratch_design_studio[0].gallery_id}/`}
+                    moreTitle={this.props.intl.formatMessage({id: 'splash.visitTheStudio'})}
                     title={
-                        formatMessage({id: 'splash.scratchDesignStudioTitle'})
-                        + ' - ' + this.props.featuredGlobal.scratch_design_studio[0].gallery_title}
-                    moreTitle={formatMessage({id: 'splash.visitTheStudio'})}
-                    moreHref={'/studios/' + this.props.featuredGlobal.scratch_design_studio[0].gallery_id + '/'}
+                        `${this.props.intl.formatMessage({id: 'splash.scratchDesignStudioTitle'})} - ${galleryTitle}`
+                    }
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.scratch_design_studio} />
                 </Box>
@@ -266,8 +294,8 @@ var SplashPresentation = injectIntl(React.createClass({
 
             rows.push(
                 <Box
-                    title={formatMessage({id: 'splash.recentlySharedProjects'})}
                     key="community_newest_projects"
+                    title={this.props.intl.formatMessage({id: 'splash.recentlySharedProjects'})}
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.community_newest_projects} />
                 </Box>
@@ -277,8 +305,8 @@ var SplashPresentation = injectIntl(React.createClass({
         if (this.props.sharedByFollowing && this.props.sharedByFollowing.length > 0) {
             rows.push(
                 <Box
-                    title={formatMessage({id: 'splash.projectsByScratchersFollowing'})}
                     key="custom_projects_by_following"
+                    title={this.props.intl.formatMessage({id: 'splash.projectsByScratchersFollowing'})}
                 >
                     <Carousel items={this.props.sharedByFollowing} />
                 </Box>
@@ -288,8 +316,8 @@ var SplashPresentation = injectIntl(React.createClass({
         if (this.props.lovedByFollowing && this.props.lovedByFollowing.length > 0) {
             rows.push(
                 <Box
-                    title={formatMessage({id: 'splash.projectsLovedByScratchersFollowing'})}
                     key="custom_projects_loved_by_following"
+                    title={this.props.intl.formatMessage({id: 'splash.projectsLovedByScratchersFollowing'})}
                 >
                     <Carousel items={this.props.lovedByFollowing} />
                 </Box>
@@ -299,8 +327,8 @@ var SplashPresentation = injectIntl(React.createClass({
         if (this.props.inStudiosFollowing && this.props.inStudiosFollowing.length > 0) {
             rows.push(
                 <Box
-                    title={formatMessage({id:'splash.projectsInStudiosFollowing'})}
                     key="custom_projects_in_studios_following"
+                    title={this.props.intl.formatMessage({id: 'splash.projectsInStudiosFollowing'})}
                 >
                     <Carousel items={this.props.inStudiosFollowing} />
                 </Box>
@@ -309,34 +337,34 @@ var SplashPresentation = injectIntl(React.createClass({
 
         rows.push(
             <Box
-                title={formatMessage({id: 'splash.communityRemixing'})}
                 key="community_most_remixed_projects"
+                title={this.props.intl.formatMessage({id: 'splash.communityRemixing'})}
             >
                 <LegacyCarousel
+                    showRemixes
                     items={shuffle(this.props.featuredGlobal.community_most_remixed_projects)}
-                    showRemixes={true}
                 />
             </Box>,
             <Box
-                title={formatMessage({id: 'splash.communityLoving'})}
                 key="community_most_loved_projects"
+                title={this.props.intl.formatMessage({id: 'splash.communityLoving'})}
             >
                 <LegacyCarousel
+                    showLoves
                     items={shuffle(this.props.featuredGlobal.community_most_loved_projects)}
-                    showLoves={true}
                 />
             </Box>
         );
 
         return rows;
-    },
-    render: function () {
-        var featured = this.renderHomepageRows();
+    }
+    render () {
+        const featured = this.renderHomepageRows();
 
-        var formatHTMLMessage = this.props.intl.formatHTMLMessage;
-        var formatNumber = this.props.intl.formatNumber;
-        var formatMessage = this.props.intl.formatMessage;
-        var messages = {
+        const formatHTMLMessage = this.props.intl.formatHTMLMessage;
+        const formatNumber = this.props.intl.formatNumber;
+        const formatMessage = this.props.intl.formatMessage;
+        const messages = {
             'general.viewAll': formatMessage({id: 'general.viewAll'}),
             'news.scratchNews': formatMessage({id: 'news.scratchNews'}),
             'welcome.welcomeToScratch': formatMessage({id: 'welcome.welcomeToScratch'}),
@@ -360,7 +388,7 @@ var SplashPresentation = injectIntl(React.createClass({
         if (this.props.projectCount === 20000000) {
             messages['intro.description'] = formatHTMLMessage({id: 'intro.defaultDescription'});
         } else {
-            var count = formatNumber(this.props.projectCount);
+            const count = formatNumber(this.props.projectCount);
             messages['intro.description'] = formatHTMLMessage({id: 'intro.description'}, {value: count});
         }
 
@@ -368,47 +396,78 @@ var SplashPresentation = injectIntl(React.createClass({
             <div className="splash">
                 {this.props.shouldShowEmailConfirmation ? [
                     <DropdownBanner
-                        key="confirmedEmail"
                         className="warning"
-                        onRequestDismiss={this.props.handleDismiss.bind(this, 'confirmed_email')}
+                        key="confirmedEmail"
+                        onRequestDismiss={() => { // eslint-disable-line react/jsx-no-bind
+                            this.props.onDismiss('confirmed_email');
+                        }}
                     >
-                        <a href="#" onClick={this.props.showEmailConfirmationModal}>Confirm your email</a>
-                        {' '}to enable sharing.{' '}
-                        <a href="/info/faq/#accounts">Having trouble?</a>
+                        <a
+                            href="#"
+                            onClick={this.props.onShowEmailConfirmationModal}
+                        >
+                            Confirm your email
+                        </a>{' '}to enable sharing.{' '}
+                        <a href="/info/faq/#accounts">
+                            Having trouble?
+                        </a>
                     </DropdownBanner>,
                     <IframeModal
-                        isOpen={this.props.emailConfirmationModalOpen}
-                        onRequestClose={this.props.hideEmailConfirmationModal}
                         className="mod-confirmation"
-                        componentRef={
-                            function (iframe) {
-                                this.emailConfirmationiFrame = iframe;
-                            }.bind(this)
-                        }
+                        componentRef={iframe => { // eslint-disable-line react/jsx-no-bind
+                            this.emailConfirmationiFrame = iframe;
+                        }}
+                        isOpen={this.props.emailConfirmationModalOpen}
+                        key="iframe-modal"
                         src="/accounts/email_resend_standalone/"
+                        onRequestClose={this.props.onHideEmailConfirmationModal}
                     />
                 ] : []}
                 {this.props.isEducator ? [
-                    <TeacherBanner key="teacherbanner" messages={messages} />
+                    <TeacherBanner
+                        key="teacherbanner"
+                        messages={messages}
+                    />
                 ] : []}
-                <div key="inner" className="inner mod-splash">
+                <div
+                    className="inner mod-splash"
+                    key="inner"
+                >
                     {this.props.sessionStatus === sessionActions.Status.FETCHED ? (
-                        Object.keys(this.props.user).length !== 0 ? [
-                            <div key="header" className="splash-header">
+                        Object.keys(this.props.user).length > 0 ? [
+                            <div
+                                className="splash-header"
+                                key="header"
+                            >
                                 {this.props.shouldShowWelcome ? [
                                     <Welcome
                                         key="welcome"
-                                        onDismiss={this.props.handleDismiss.bind(this, 'welcome')}
                                         messages={messages}
+                                        onDismiss={() => { // eslint-disable-line react/jsx-no-bind
+                                            this.props.onDismiss('welcome');
+                                        }}
                                     />
                                 ] : [
-                                    <ActivityList key="activity" items={this.props.activity} />
+                                    <WrappedActivityList
+                                        items={this.props.activity}
+                                        key="activity"
+                                    />
                                 ]}
-                                <News items={this.props.news} messages={messages} />
+                                <News
+                                    items={this.props.news}
+                                    messages={messages}
+                                />
                             </div>
                         ] : [
-                            <MediaQuery minWidth={frameless.desktop}>
-                                <Intro projectCount={this.props.projectCount} messages={messages} key="intro"/>
+                            <MediaQuery
+                                key="frameless-desktop"
+                                minWidth={frameless.desktop}
+                            >
+                                <Intro
+                                    key="intro"
+                                    messages={messages}
+                                    projectCount={this.props.projectCount}
+                                />
                             </MediaQuery>
                         ]) : []
                     }
@@ -416,7 +475,7 @@ var SplashPresentation = injectIntl(React.createClass({
                     {featured}
 
                     {this.props.isAdmin ? [
-                        <AdminPanel>
+                        <AdminPanel key="admin-panel">
                             <dt>Tools</dt>
                             <dd>
                                 <ul>
@@ -437,9 +496,11 @@ var SplashPresentation = injectIntl(React.createClass({
                                     <li>
                                         <div className="button-row">
                                             <span>Refresh row data:</span>
-                                            <Button onClick={this.props.refreshHomepageCache}
-                                                    className={this.props.refreshCacheStatus.status}
-                                                    disabled={this.props.refreshCacheStatus.disabled}>
+                                            <Button
+                                                className={this.props.refreshCacheStatus.status}
+                                                disabled={this.props.refreshCacheStatus.disabled}
+                                                onClick={this.props.onRefreshHomepageCache}
+                                            >
                                                 <span>{this.props.refreshCacheStatus.content}</span>
                                             </Button>
                                         </div>
@@ -452,6 +513,47 @@ var SplashPresentation = injectIntl(React.createClass({
             </div>
         );
     }
-}));
+}
 
-module.exports = SplashPresentation;
+SplashPresentation.propTypes = {
+    activity: PropTypes.arrayOf(PropTypes.object),
+    emailConfirmationModalOpen: PropTypes.bool.isRequired,
+    featuredGlobal: PropTypes.shape({
+        community_featured_projects: PropTypes.array,
+        community_featured_studios: PropTypes.array,
+        curator_top_projects: PropTypes.array,
+        scratch_design_studio: PropTypes.array,
+        community_newest_projects: PropTypes.array,
+        community_most_remixed_projects: PropTypes.array,
+        community_most_loved_projects: PropTypes.array
+    }),
+    inStudiosFollowing: PropTypes.arrayOf(PropTypes.object),
+    intl: intlShape,
+    isAdmin: PropTypes.bool.isRequired,
+    isEducator: PropTypes.bool.isRequired,
+    lovedByFollowing: PropTypes.arrayOf(PropTypes.object),
+    news: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    onDismiss: PropTypes.func.isRequired,
+    onHideEmailConfirmationModal: PropTypes.func.isRequired,
+    onRefreshHomepageCache: PropTypes.func.isRequired,
+    onShowEmailConfirmationModal: PropTypes.func.isRequired,
+    projectCount: PropTypes.number,
+    refreshCacheStatus: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    sessionStatus: PropTypes.string.isRequired,
+    sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
+    shouldShowEmailConfirmation: PropTypes.bool.isRequired,
+    shouldShowWelcome: PropTypes.bool.isRequired,
+    user: PropTypes.object.isRequired // eslint-disable-line react/forbid-prop-types
+};
+
+SplashPresentation.defaultProps = {
+    activity: [], // recent social actions taken by users someone is following
+    featuredGlobal: {}, // global homepage rows, such as "Featured Projects"
+    inStudiosFollowing: [], // "Projects in Studios I'm Following"
+    lovedByFollowing: [], // "Projects Loved by Scratchers I'm Following"
+    news: [], // gets news posts from the scratch Tumblr
+    projectCount: 20000000, // gets the shared project count
+    sharedByFollowing: [] // "Projects by Scratchers I'm Following"
+};
+
+module.exports = injectIntl(SplashPresentation);

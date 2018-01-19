@@ -1,14 +1,14 @@
-var keyMirror = require('keymirror');
-var jar = require('../lib/jar.js');
+const keyMirror = require('keymirror');
+const jar = require('../lib/jar.js');
 
-var Types = keyMirror({
+const Types = keyMirror({
     SET_PERMISSIONS: null,
     SET_PERMISSIONS_ERROR: null
 });
 
-module.exports.permissionsReducer = function (state, action) {
+module.exports.permissionsReducer = (state, action) => {
     if (typeof state === 'undefined') {
-        state = '';
+        state = {};
     }
     switch (action.type) {
     case Types.SET_PERMISSIONS:
@@ -20,43 +20,37 @@ module.exports.permissionsReducer = function (state, action) {
     }
 };
 
-module.exports.storePermissions = function (permissions) {
+module.exports.storePermissions = permissions => {
     permissions = permissions || {};
-    return function (dispatch) {
+    return dispatch => {
         jar.set('permissions', permissions, {
-            encode: function (value) {
-                return encodeURIComponent(JSON.stringify(value));
-            }
+            encode: value => (
+                encodeURIComponent(JSON.stringify(value))
+            )
         });
         return dispatch(module.exports.setPermissions(permissions));
     };
 };
 
-module.exports.getPermissions = function () {
-    return function (dispatch) {
-        jar.get('permissions', function (err, value) {
-            if (err) return dispatch(module.exports.setPermissionsError(err));
+module.exports.getPermissions = () => (dispatch => {
+    jar.get('permissions', (err, value) => {
+        if (err) return dispatch(module.exports.setPermissionsError(err));
 
-            try {
-                value = JSON.parse(decodeURIComponent(value)) || {};
-            } catch (e) {
-                value = {};
-            }
-            return dispatch(module.exports.setPermissions(value));
-        });
-    };
-};
+        try {
+            value = JSON.parse(decodeURIComponent(value)) || {};
+        } catch (e) {
+            value = {};
+        }
+        return dispatch(module.exports.setPermissions(value));
+    });
+});
 
-module.exports.setPermissions = function (permissions) {
-    return {
-        type: Types.SET_PERMISSIONS,
-        permissions: permissions
-    };
-};
+module.exports.setPermissions = permissions => ({
+    type: Types.SET_PERMISSIONS,
+    permissions: permissions
+});
 
-module.exports.setPermissionsError = function (error) {
-    return {
-        type: Types.SET_PERMISSIONS_ERROR,
-        error: error
-    };
-};
+module.exports.setPermissionsError = error => ({
+    type: Types.SET_PERMISSIONS_ERROR,
+    error: error
+});

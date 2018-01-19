@@ -1,56 +1,65 @@
-var classNames = require('classnames');
-var omit = require('lodash.omit');
-var React = require('react');
-var ReactModal = require('react-modal');
+const bindAll = require('lodash.bindall');
+const classNames = require('classnames');
+const omit = require('lodash.omit');
+const PropTypes = require('prop-types');
+const React = require('react');
+const ReactModal = require('react-modal');
 
 require('./modal.scss');
-
-ReactModal.setAppElement(document.getElementById('view'));
 
 /**
  * Container for pop up windows (See: registration window)
  */
-var Modal = React.createClass({
-    type: 'Modal',
-    propTypes: {
-        className: React.PropTypes.string,
-        overlayClassName: React.PropTypes.string
-    },
-    requestClose: function () {
+class Modal extends React.Component {
+    constructor (props) {
+        super(props);
+        // ReactModal.setAppElement(document.getElementById('view'));
+        bindAll(this, [
+            'handleRequestClose'
+        ]);
+    }
+    handleRequestClose () {
         return this.modal.portal.requestClose();
-    },
-    render: function () {
-        var modalClasses = classNames(
-            'modal-content',
-            this.props.className
-        );
-        var overlayClasses = classNames(
-            'modal-overlay',
-            this.props.overlayClassName
-        );
-        
+    }
+    render () {
         return (
             <ReactModal
-                ref={
-                    function (component) {
-                        this.modal = component;
-                    }.bind(this)
-                }
-                className={modalClasses}
-                overlayClassName={overlayClasses}
+                appElement={document.getElementById('view')}
+                className={{
+                    base: classNames('modal-content', this.props.className),
+                    afterOpen: classNames('modal-content', this.props.className),
+                    beforeClose: classNames('modal-content', this.props.className)
+                }}
+                overlayClassName={{
+                    base: classNames('modal-overlay', this.props.overlayClassName),
+                    afterOpen: classNames('modal-overlay', this.props.overlayClassName),
+                    beforeClose: classNames('modal-overlay', this.props.overlayClassName)
+                }}
+                ref={component => {
+                    this.modal = component;
+                }}
                 {...omit(this.props, ['className', 'overlayClassName'])}
             >
-                <div className="modal-content-close" onClick={this.requestClose}>
+                <div
+                    className="modal-content-close"
+                    onClick={this.handleRequestClose}
+                >
                     <img
+                        alt="close-icon"
                         className="modal-content-close-img"
                         src="/svgs/modal/close-x.svg"
-                        alt="close-icon"
                     />
                 </div>
                 {this.props.children}
             </ReactModal>
         );
     }
-});
+}
+
+Modal.propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    overlayClassName: PropTypes.string
+};
 
 module.exports = Modal;

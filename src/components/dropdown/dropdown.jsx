@@ -1,40 +1,46 @@
-var React = require('react');
-var classNames = require('classnames');
+const bindAll = require('lodash.bindall');
+const classNames = require('classnames');
+const onClickOutside = require('react-onclickoutside').default;
+const PropTypes = require('prop-types');
+const React = require('react');
 
 require('./dropdown.scss');
 
-var Dropdown = React.createClass({
-    type: 'Dropdown',
-    mixins: [
-        require('react-onclickoutside')
-    ],
-    propTypes: {
-        onRequestClose: React.PropTypes.func,
-        isOpen: React.PropTypes.bool
-    },
-    getDefaultProps: function () {
-        return {
-            as: 'div',
-            isOpen: false
-        };
-    },
-    handleClickOutside: function () {
+class Dropdown extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'handleClickOutside'
+        ]);
+    }
+    handleClickOutside () {
         if (this.props.isOpen) {
             this.props.onRequestClose();
         }
-    },
-    render: function () {
-        var classes = classNames(
-            'dropdown',
-            this.props.className,
-            {open: this.props.isOpen}
-        );
+    }
+    render () {
         return (
-            <this.props.as className={classes}>
+            <this.props.as
+                className={classNames('dropdown', this.props.className, {
+                    [open]: this.props.isOpen
+                })}
+            >
                 {this.props.children}
             </this.props.as>
         );
     }
-});
+}
 
-module.exports = Dropdown;
+Dropdown.propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    isOpen: PropTypes.bool,
+    onRequestClose: PropTypes.func.isRequired
+};
+
+Dropdown.defaultProps = {
+    as: 'div',
+    isOpen: false
+};
+
+module.exports = onClickOutside(Dropdown);

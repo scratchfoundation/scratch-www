@@ -1,24 +1,29 @@
-var React = require('react');
-var render = require('../../../../lib/render.jsx');
+const bindAll = require('lodash.bindall');
+const React = require('react');
 
-var Button = require('../../../../components/forms/button.jsx');
-var FlexRow = require('../../../../components/flex-row/flex-row.jsx');
-var Page = require('../../../../components/page/conference/2016/page.jsx');
-var TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
+const Button = require('../../../../components/forms/button.jsx');
+const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
+const TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
+
+const Page = require('../../../../components/page/conference/2016/page.jsx');
+const render = require('../../../../lib/render.jsx');
 
 require('./plan.scss');
 
-var ConferencePlan = React.createClass({
-    type: 'ConferencePlan',
-    getInitialState: function () {
-        return {
+class ConferencePlan extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'toggleQuestion'
+        ]);
+        this.state = {
             dorm: false
         };
-    },
-    toggleQuestion: function (element) {
+    }
+    toggleQuestion (element) {
         this.setState({element: !this.state[element]});
-    },
-    render: function () {
+    }
+    render () {
         return (
             <div className="plan">
                 <TitleBanner className="mod-conference">
@@ -26,7 +31,10 @@ var ConferencePlan = React.createClass({
                         Plan Your Visit
                     </h1>
                     <div className="title-icon">
-                        <img src="/images/conference/plan/plan-your-visit.png" alt="plan-image" />
+                        <img
+                            alt="plan-image"
+                            src="/images/conference/plan/plan-your-visit.png"
+                        />
                     </div>
                 </TitleBanner>
                 <div className="inner">
@@ -73,7 +81,7 @@ var ConferencePlan = React.createClass({
                                 </FlexRow>
                                 <p>
                                     To reserve a room, <b>call the hotel and request the{' '}
-                                    "MIT discount"</b> (subject to availability).
+                                    &#34;MIT discount&#34;</b> (subject to availability).
                                 </p>
                                 <p>
                                     We also suggest the{' '}
@@ -104,7 +112,10 @@ var ConferencePlan = React.createClass({
                                 </p>
                             </div>
                             <div className="short">
-                                <img src="/images/conference/plan/lodging.png" alt="Lodging Illustration" />
+                                <img
+                                    alt="Lodging Illustration"
+                                    src="/images/conference/plan/lodging.png"
+                                />
                             </div>
                         </FlexRow>
                     </section>
@@ -134,8 +145,10 @@ var ConferencePlan = React.createClass({
                                 </p>
                             </div>
                             <div className="short">
-                                <img src="/images/conference/plan/transportation.png"
-                                     alt="Transportation Illustration" />
+                                <img
+                                    alt="Transportation Illustration"
+                                    src="/images/conference/plan/transportation.png"
+                                />
                             </div>
                         </FlexRow>
                     </section>
@@ -159,7 +172,7 @@ var ConferencePlan = React.createClass({
                                 </li>
                                 <li>
                                     <a href="http://www.bostonteapartyship.com/">
-                                        Boston Tea Party Ship & Museum
+                                        Boston Tea Party Ship &amp; Museum
                                     </a>
                                 </li>
                                 <li>
@@ -189,7 +202,7 @@ var ConferencePlan = React.createClass({
                                 </li>
                                 <li>
                                     <a href="http://www.jfklibrary.org/">
-                                        John F. Kennedy Library & Museum
+                                        John F. Kennedy Library &amp; Museum
                                     </a>
                                 </li>
                                 <li>
@@ -320,7 +333,7 @@ var ConferencePlan = React.createClass({
                                     </dt>
                                     <dd>
                                         Contact us at a conference@scratch.mit.edu with your registration number,{' '}
-                                        and we'll take care of it for you.
+                                        and we&#39;ll take care of it for you.
                                     </dd>
                                 </dl>
                             </div>
@@ -336,6 +349,6 @@ var ConferencePlan = React.createClass({
             </div>
         );
     }
-});
+}
 
 render(<Page><ConferencePlan /></Page>, document.getElementById('app'));
