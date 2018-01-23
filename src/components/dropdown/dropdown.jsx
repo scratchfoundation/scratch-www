@@ -22,7 +22,7 @@ class Dropdown extends React.Component {
         return (
             <this.props.as
                 className={classNames('dropdown', this.props.className, {
-                    [open]: this.props.isOpen
+                    open: this.props.isOpen
                 })}
             >
                 {this.props.children}
