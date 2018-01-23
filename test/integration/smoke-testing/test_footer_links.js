@@ -261,7 +261,7 @@ tap.test('clickDMCALink', options, t => {
 // SCRATCH ED (SCRATCHED)
 tap.test('clickScratchEdLink', options, t => {
     const linkText = 'ScratchEd';
-    const expectedUrl = 'http://scratched.gse.harconstd.edu/';
+    const expectedUrl = 'http://scratched.gse.harvard.edu/';
     clickFooterLinks(linkText).then(url => {
         t.equal(url, expectedUrl);
         t.end();
