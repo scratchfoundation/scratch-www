@@ -101,7 +101,7 @@ const About = () => (
                         id="about.quotesDescription"
                         values={{
                             quotesLink: (
-                                <a href="http://wiki.scratch.mit.edu/wiki/How_to_Translate_Scratch">
+                                <a href="/info/quotes">
                                     <FormattedMessage id="about.quotesLinkText" />
                                 </a>
                             )
