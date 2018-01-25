@@ -28,7 +28,7 @@ class TeacherRegistration extends React.Component {
         this.state = {
             formData: {},
             registrationError: null,
-            step: 6,
+            step: 0,
             waiting: false
         };
     }
