@@ -4,10 +4,10 @@ const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 const React = require('react');
 
-const InformationPage = require('../../components/informationpage/informationpage.jsx');
-
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
+
+const InformationPage = require('../../components/informationpage/informationpage.jsx');
 
 const Faq = injectIntl(props => (
     <InformationPage title={props.intl.formatMessage({id: 'faq.title'})}>
