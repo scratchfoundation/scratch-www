@@ -59,7 +59,7 @@ const Carousel = props => {
         >
             {props.items.map(item => {
                 let href = '';
-                switch (props.type) {
+                switch (item.type) {
                 case 'gallery':
                     href = `/studios/${item.id}/`;
                     break;
