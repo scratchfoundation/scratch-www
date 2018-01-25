@@ -7,13 +7,14 @@ const ReactModal = require('react-modal');
 
 require('./modal.scss');
 
+ReactModal.setAppElement(document.getElementById('view'));
+
 /**
  * Container for pop up windows (See: registration window)
  */
 class Modal extends React.Component {
     constructor (props) {
         super(props);
-        // ReactModal.setAppElement(document.getElementById('view'));
         bindAll(this, [
             'handleRequestClose'
         ]);

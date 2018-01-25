@@ -26,7 +26,7 @@ class Registration extends React.Component {
     handleMessage (e) {
         if (e.origin !== window.location.origin) return;
         if (e.source !== this.registrationIframe.contentWindow) return;
-        if (e.data === 'registration-done') this.props.handleRegistrationDone();
+        if (e.data === 'registration-done') this.props.onRegistrationDone();
         if (e.data === 'registration-relaunch') {
             this.registrationIframe.contentWindow.location.reload();
         }
@@ -47,16 +47,16 @@ class Registration extends React.Component {
                 }}
                 isOpen={this.props.isOpen}
                 src="/accounts/standalone-registration/"
-                onRequestClose={this.props.handleRequestClose}
+                onRequestClose={this.props.onRequestClose}
             />
         );
     }
 }
 
 Registration.propTypes = {
-    handleRegistrationDone: PropTypes.func,
-    handleRequestClose: PropTypes.func,
-    isOpen: PropTypes.bool
+    isOpen: PropTypes.bool,
+    onRegistrationDone: PropTypes.func,
+    onRequestClose: PropTypes.func
 };
 
 module.exports = Registration;
