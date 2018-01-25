@@ -3,13 +3,13 @@ const connect = require('react-redux').connect;
 const PropTypes = require('prop-types');
 const React = require('react');
 
+const Page = require('../../components/page/www/page.jsx');
+const render = require('../../lib/render.jsx');
+
 const MessagesPresentation = require('./presentation.jsx');
 
 const messageActions = require('../../redux/messages.js');
 const sessionActions = require('../../redux/session.js');
-
-const Page = require('../../components/page/www/page.jsx');
-const render = require('../../lib/render.jsx');
 
 class Messages extends React.Component {
     constructor (props) {
