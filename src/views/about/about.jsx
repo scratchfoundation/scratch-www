@@ -90,7 +90,7 @@ var About = React.createClass({
                                 id='about.quotesDescription'
                                 values={{
                                     quotesLink: (
-                                        <a href='http://wiki.scratch.mit.edu/wiki/How_to_Translate_Scratch'>
+                                        <a href='https://scratch.mit.edu/info/quotes/'>
                                             <FormattedMessage id='about.quotesLinkText'/>
                                         </a>
                                     )
