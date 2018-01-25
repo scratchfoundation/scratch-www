@@ -1,10 +1,10 @@
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
-const InformationPage = require('../../components/informationpage/informationpage.jsx');
-
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
+
+const InformationPage = require('../../components/informationpage/informationpage.jsx');
 
 const Dmca = () => (
     <InformationPage title={'DMCA'}>
