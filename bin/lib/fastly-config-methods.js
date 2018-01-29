@@ -24,9 +24,9 @@ var FastlyConfigMethods = {
      */
     getViewPaths: function (routes) {
         return routes.reduce(function (paths, route) {
-            var path = route.routeAlias || route.pattern;
-            if (paths.indexOf(path) === -1) {
-                paths.push(path);
+            var p = route.routeAlias || route.pattern;
+            if (paths.indexOf(p) === -1) {
+                paths.push(p);
             }
             return paths;
         }, []);
@@ -39,7 +39,7 @@ var FastlyConfigMethods = {
      * 2. /path/:arg([regex]) – :arg is removed, leaving just /path/([regex])
      */
     expressPatternToRegex: function (pattern) {
-        pattern = pattern.replace(/(:\w+)(\([^\)]+\))/gi, '$2');
+        pattern = pattern.replace(/(:\w+)(\([^)]+\))/gi, '$2');
         return pattern.replace(/(:\w+)/gi, '.+?');
     },
 
@@ -84,7 +84,7 @@ var FastlyConfigMethods = {
         return 'redirects/' + route.pattern;
     },
 
-    /**
+    /*
      * Returns custom vcl configuration as a string that sets the varnish
      * Time to Live (TTL) for responses that come from s3.
      *

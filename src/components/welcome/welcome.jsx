@@ -1,69 +1,81 @@
-var React = require('react');
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var Box = require('../box/box.jsx');
+const Box = require('../box/box.jsx');
 
 require('./welcome.scss');
 
-var Welcome = React.createClass({
-    type: 'Welcome',
-    propTypes: {
-        onDismiss: React.PropTypes.func
-    },
-    getDefaultProps: function () {
-        return {
-            messages: {
-                'welcome.welcomeToScratch': 'Welcome to Scratch!',
-                'welcome.learn': 'Learn how to make a project in Scratch',
-                'welcome.tryOut': 'Try out starter projects',
-                'welcome.connect': 'Connect with other Scratchers'
-            }
-        };
-    },
-    render: function () {
-        return (
-            <Box title={this.props.messages['welcome.welcomeToScratch']}
-                 className="welcome"
-                 moreTitle="x"
-                 moreHref="#"
-                 moreProps={{
-                     className: 'close',
-                     title: 'Dismiss',
-                     onClick: this.props.onDismiss
-                 }}>
+const Welcome = props => (
+    <Box
+        className="welcome"
+        moreHref="#"
+        moreProps={{
+            className: 'close',
+            title: 'Dismiss',
+            onClick: props.onDismiss
+        }}
+        moreTitle="x"
+        title={props.messages['welcome.welcomeToScratch']}
+    >
+        <div className="welcome-col blue">
+            <h4>
+                <a href="/projects/editor/?tip_bar=getStarted">
+                    {props.messages['welcome.learn']}
+                </a>
+            </h4>
+            <a href="/projects/editor/?tip_bar=getStarted">
+                <img
+                    alt="Get Started"
+                    src="/images/welcome-learn.png"
+                />
+            </a>
+        </div>
+        <div className="welcome-col green">
+            <h4>
+                <a href="/starter_projects/">
+                    {props.messages['welcome.tryOut']}
+                </a>
+            </h4>
+            <a href="/starter_projects/">
+                <img
+                    alt="Starter Projects"
+                    src="/images/welcome-try.png"
+                />
+            </a>
+        </div>
+        <div className="welcome-col pink">
+            <h4>
+                <a href="/studios/146521/">
+                    {props.messages['welcome.connect']}
+                </a>
+            </h4>
+            <a href="/studios/146521/">
+                <img
+                    alt="Connect"
+                    src="/images/welcome-connect.png"
+                />
+            </a>
+        </div>
+    </Box>
+);
 
-                <div className="welcome-col blue">
-                    <h4>
-                        <a href="/projects/editor/?tip_bar=getStarted">
-                            {this.props.messages['welcome.learn']}
-                        </a>
-                    </h4>
-                    <a href="/projects/editor/?tip_bar=getStarted">
-                        <img src="/images/welcome-learn.png" alt="Get Started" />
-                    </a>
-                </div>
-                <div className="welcome-col green">
-                    <h4>
-                        <a href="/starter_projects/">
-                            {this.props.messages['welcome.tryOut']}
-                        </a>
-                    </h4>
-                    <a href="/starter_projects/">
-                        <img src="/images/welcome-try.png" alt="Starter Projects" />
-                    </a>
-                </div>
-                <div className="welcome-col pink">
-                    <h4>
-                        <a href="/studios/146521/">
-                            {this.props.messages['welcome.connect']}
-                        </a>
-                    </h4>
-                    <a href="/studios/146521/">
-                        <img src="/images/welcome-connect.png" alt="Connect" />
-                    </a>
-                </div>
-            </Box>
-        );
+Welcome.propTypes = {
+    messages: PropTypes.shape({
+        'welcome.welcomeToScratch': PropTypes.string,
+        'welcome.learn': PropTypes.string,
+        'welcome.tryOut': PropTypes.string,
+        'welcome.connect': PropTypes.string
+    }),
+    onDismiss: PropTypes.func
+};
+
+Welcome.defaultProps = {
+    messages: {
+        'welcome.welcomeToScratch': 'Welcome to Scratch!',
+        'welcome.learn': 'Learn how to make a project in Scratch',
+        'welcome.tryOut': 'Try out starter projects',
+        'welcome.connect': 'Connect with other Scratchers'
     }
-});
+};
 
 module.exports = Welcome;
