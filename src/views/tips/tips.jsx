@@ -45,10 +45,9 @@ class Tips extends React.Component {
         });
     }
     renderTTTTiles () {
-        let translatedTile = {};
 
         return Tiles.map((tile, key) => {
-            translatedTile = {
+            const translatedTile = {
                 activityLoc: this.props.intl.formatMessage({id: tile.activityLoc}),
                 bannerUrl: tile.bannerUrl,
                 description: this.props.intl.formatMessage({id: tile.description}),
@@ -66,7 +65,7 @@ class Tips extends React.Component {
                     {...translatedTile}
                 />
             );
-        }); // don't forget to pass 'this' into map function
+        });
     }
     render () {
         return (
