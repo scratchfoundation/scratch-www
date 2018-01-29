@@ -1332,45 +1332,58 @@ const IntlTeacherApprovalStep = injectIntl(TeacherApprovalStep);
 /*
  * CLASS INVITE NEW STUDENT STEP
  */
-const ClassInviteNewStudentStep = props => (
-    <Slide className="registration-step class-invite-step">
-        {props.waiting ? [
-            <Spinner key="spinner" />
-        ] : [
-            <Avatar
-                className="invite-avatar"
-                key="avatar"
-                src={props.classroom.educator.profile.images['50x50']}
-            />,
-            <h2 key="username">{props.classroom.educator.username}</h2>,
-            <p
-                className="description"
-                key="description"
-            >
-                {props.intl.formatMessage({id: 'registration.classroomInviteNewStudentStepDescription'})}
-            </p>,
-            <Card key="card">
-                <div className="contents">
-                    <h3>{props.classroom.title}</h3>
-                    <img
-                        className="class-image"
-                        src={props.classroom.images['250x150']}
+class ClassInviteNewStudentStep extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'handleNextStep'
+        ]);
+    }
+    handleNextStep () {
+        return this.props.onNextStep();
+    }
+    render () {
+        return (
+            <Slide className="registration-step class-invite-step">
+                {this.props.waiting ? [
+                    <Spinner key="spinner" />
+                ] : [
+                    <Avatar
+                        className="invite-avatar"
+                        key="avatar"
+                        src={this.props.classroom.educator.profile.images['50x50']}
+                    />,
+                    <h2 key="username">{this.props.classroom.educator.username}</h2>,
+                    <p
+                        className="description"
+                        key="description"
+                    >
+                        {this.props.intl.formatMessage({id: 'registration.classroomInviteNewStudentStepDescription'})}
+                    </p>,
+                    <Card key="card">
+                        <div className="contents">
+                            <h3>{this.props.classroom.title}</h3>
+                            <img
+                                className="class-image"
+                                src={this.props.classroom.images['250x150']}
+                            />
+                        </div>
+                        <NextStepButton
+                            text={this.props.intl.formatMessage({id: 'general.getStarted'})}
+                            waiting={this.props.waiting}
+                            onClick={this.handleNextStep}
+                        />
+                    </Card>,
+                    <StepNavigation
+                        active={this.props.activeStep}
+                        key="step"
+                        steps={this.props.totalSteps - 1}
                     />
-                </div>
-                <NextStepButton
-                    text={props.intl.formatMessage({id: 'general.getStarted'})}
-                    waiting={props.waiting}
-                    onClick={props.onNextStep}
-                />
-            </Card>,
-            <StepNavigation
-                active={props.activeStep}
-                key="step"
-                steps={props.totalSteps - 1}
-            />
-        ]}
-    </Slide>
-);
+                ]}
+            </Slide>
+        );
+    }
+}
 
 ClassInviteNewStudentStep.propTypes = {
     activeStep: PropTypes.number,
@@ -1398,47 +1411,62 @@ const IntlClassInviteNewStudentStep = injectIntl(ClassInviteNewStudentStep);
 /*
  * CLASS INVITE EXISTING STUDENT STEP
  */
-const ClassInviteExistingStudentStep = props => (
-    <Slide className="registration-step class-invite-step">
-        {props.waiting ? [
-            <Spinner key="spinner" />
-        ] : [
-            <h2 key="username">{props.studentUsername}</h2>,
-            <p
-                className="description"
-                key="description"
-            >
-                {props.intl.formatMessage({id: 'registration.classroomInviteExistingStudentStepDescription'})}
-            </p>,
-            <Card key="card">
-                <div className="contents">
-                    <h3>{props.classroom.title}</h3>
-                    <img
-                        className="class-image"
-                        src={props.classroom.images['250x150']}
+class ClassInviteExistingStudentStep extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'handleNextStep'
+        ]);
+    }
+    handleNextStep () {
+        return this.props.onNextStep();
+    }
+    render () {
+        return (
+            <Slide className="registration-step class-invite-step">
+                {this.props.waiting ? [
+                    <Spinner key="spinner" />
+                ] : [
+                    <h2 key="username">{this.props.studentUsername}</h2>,
+                    <p
+                        className="description"
+                        key="description"
+                    >
+                        {this.props.intl.formatMessage({
+                            id: 'registration.classroomInviteExistingStudentStepDescription'
+                        })}
+                    </p>,
+                    <Card key="card">
+                        <div className="contents">
+                            <h3>{this.props.classroom.title}</h3>
+                            <img
+                                className="class-image"
+                                src={this.props.classroom.images['250x150']}
+                            />
+                            <p>{this.props.intl.formatMessage({id: 'registration.invitedBy'})}</p>
+                            <p><strong>{this.props.classroom.educator.username}</strong></p>
+                        </div>
+                        <NextStepButton
+                            text={this.props.intl.formatMessage({id: 'general.getStarted'})}
+                            waiting={this.props.waiting}
+                            onClick={this.handleNextStep}
+                        />
+                    </Card>,
+                    <p key="logout">
+                        <a onClick={this.props.onHandleLogOut}>
+                            {this.props.intl.formatMessage({id: 'registration.notYou'})}
+                        </a>
+                    </p>,
+                    <StepNavigation
+                        active={this.props.activeStep}
+                        key="step"
+                        steps={this.props.totalSteps - 1}
                     />
-                    <p>{props.intl.formatMessage({id: 'registration.invitedBy'})}</p>
-                    <p><strong>{props.classroom.educator.username}</strong></p>
-                </div>
-                <NextStepButton
-                    text={props.intl.formatMessage({id: 'general.getStarted'})}
-                    waiting={props.waiting}
-                    onClick={props.onNextStep}
-                />
-            </Card>,
-            <p key="logout">
-                <a onClick={props.onHandleLogOut}>
-                    {props.intl.formatMessage({id: 'registration.notYou'})}
-                </a>
-            </p>,
-            <StepNavigation
-                active={props.activeStep}
-                key="step"
-                steps={props.totalSteps - 1}
-            />
-        ]}
-    </Slide>
-);
+                ]}
+            </Slide>
+        );
+    }
+}
 
 ClassInviteExistingStudentStep.propTypes = {
     activeStep: PropTypes.number,
