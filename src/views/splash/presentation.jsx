@@ -261,9 +261,10 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     moreTitle={this.props.intl.formatMessage({
                         id: 'general.learnMore'
                     })}
-                    title={
-                        `${this.props.intl.formatMessage({id: 'splash.projectsCuratedBy'})}' '${curatorName}`
-                    }
+                    title={this.props.intl.formatMessage(
+                        {id: 'splash.projectsCuratedBy'},
+                        {curatorId: curatorName}
+                    )}
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.curator_top_projects} />
                 </Box>
