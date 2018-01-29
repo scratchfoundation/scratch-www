@@ -29,6 +29,7 @@ class Search extends React.Component {
         this.state = this.getSearchState();
         this.state.loaded = [];
         this.state.loadNumber = 16;
+        this.state.offset = 0;
     }
     componentDidMount () {
         const query = window.location.search;
@@ -48,7 +49,7 @@ class Search extends React.Component {
     }
     componentDidUpdate (prevProps) {
         if (this.props.searchTerm !== prevProps.searchTerm) {
-            this.getSearchMore();
+            this.handleGetSearchMore();
         }
     }
     getSearchState () {
@@ -69,12 +70,12 @@ class Search extends React.Component {
             termText = `&q=${encodeURIComponent(this.props.searchTerm.split(' ').join('+'))}`;
         }
         const locale = this.props.intl.locale;
-        const loadNumber = this.props.loadNumber;
+        const loadNumber = this.state.loadNumber;
         const offset = this.state.offset;
         const queryString = `limit=${loadNumber}&offset=${offset}&language=${locale}&mode=popular${termText}`;
 
         api({
-            uri: `/search/${this.props.tab}?${queryString}`
+            uri: `/search/${this.state.tab}?${queryString}`
         }, (err, body) => {
             const loadedSoFar = this.state.loaded;
             Array.prototype.push.apply(loadedSoFar, body);
