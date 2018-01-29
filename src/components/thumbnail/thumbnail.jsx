@@ -1,186 +1,168 @@
-var classNames = require('classnames');
-var React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const React = require('react');
 
 require('./thumbnail.scss');
 
-var Thumbnail = React.createClass({
-    type: 'Thumbnail',
-    propTypes: {
-        src: React.PropTypes.string
-    },
-    getInitialState: function () {
-        return {
-            srcFallback: false,
-            avatarFallback: false
-        };
-    },
-    getDefaultProps: function () {
-        return {
-            href: '#',
-            title: 'Project',
-            src: '',
-            srcDefault: 'https://uploads.scratch.mit.edu/projects/thumbnails/default.png',
-            avatar: '',
-            avatarDefault: 'https://uploads.scratch.mit.edu/users/avatars/default.png',
-            type: 'project',
-            showLoves: false,
-            showFavorites: false,
-            showRemixes: false,
-            showViews: false,
-            showAvatar: false,
-            linkTitle: true,
-            alt: ''
-        };
-    },
-    handleSrcError: function () {
-        this.setState({srcFallback: true});
-    },
-    handleAvatarError: function () {
-        this.setState({avatarFallback: true});
-    },
-    render: function () {
-        var classes = classNames(
-            'thumbnail',
-            this.props.type,
-            this.props.className
-        );
-        var extra = [];
-        var info = [];
+const Thumbnail = props => {
+    const extra = [];
+    const info = [];
 
-        if (this.props.loves && this.props.showLoves) {
-            extra.push(
-                <div
-                    key="loves"
-                    className="thumbnail-loves"
-                    title={this.props.loves + ' loves'}>
-                    {this.props.loves}
-                </div>
-            );
-        }
-        if (this.props.favorites && this.props.showFavorites) {
-            extra.push(
-                <div
-                    key="favorites"
-                    className="thumbnail-favorites"
-                    title={this.favorites + ' favorites'}>
-                    {this.props.favorites}
-                </div>
-            );
-        }
-        if (this.props.remixes && this.props.showRemixes) {
-            extra.push(
-                <div
-                    key="remixes"
-                    className="thumbnail-remixes"
-                    title={this.props.remixes + ' remixes'}
-                >
-                    {this.props.remixes}
-                </div>
-            );
-        }
-        if (this.props.views && this.props.showViews) {
-            extra.push(
-                <div
-                    key="views"
-                    className="thumbnail-views"
-                    title={this.props.views + ' views'}
-                >
-                    {this.props.views}
-                </div>
-            );
-        }
-
-        var imgElement, titleElement, avatarElement;
-        if (this.props.linkTitle) {
-            if (this.state.srcFallback) {
-                imgElement = (
-                    <a
-                        className="thumbnail-image"
-                        href={this.props.href}
-                        key="imgElement"
-                    >
-                        <img
-                            alt={this.props.alt}
-                            src={this.props.srcDefault}
-                        />
-                    </a>
-                );
-            } else {
-                imgElement = (
-                    <a
-                        className="thumbnail-image"
-                        href={this.props.href}
-                        key="imgElement"
-                    >
-                        <img
-                            alt={this.props.alt}
-                            src={this.props.src}
-                            onError={this.handleSrcError}
-                        />
-                    </a>
-                );
-            }
-            titleElement = (
-                <a href={this.props.href} key="titleElement">
-                    {this.props.title}
-                </a>
-            );
-        } else {
-            imgElement = <img src={this.props.src} />;
-            titleElement = this.props.title;
-        }
-
-        info.push(titleElement);
-
-        if (this.props.creator) {
-            info.push(
-                <div key="creator" className="thumbnail-creator">
-                    <a href={'/users/' + this.props.creator + '/'}>{this.props.creator}</a>
-                </div>
-            );
-        }
-
-        if (this.props.avatar && this.props.showAvatar) {
-            if (this.state.avatarFallback) {
-                avatarElement = (
-                    <a
-                        className="creator-image"
-                        href={'/users/' + this.props.creator + '/'}
-                    >
-                        <img
-                            alt={this.props.creator}
-                            src={this.props.avatarDefault}
-                        />
-                    </a>
-                );
-            } else {
-                avatarElement = (
-                    <a
-                        className="creator-image"
-                        href={'/users/' + this.props.creator + '/'}
-                    >
-                        <img
-                            alt={this.props.creator}
-                            src={this.props.avatar}
-                            onError={this.handleAvatarError}
-                        />
-                    </a>
-                );
-            }
-        }
-        return (
-            <div className={classes} >
-                {imgElement}
-                <div className="thumbnail-info">
-                    {avatarElement}
-                    <div className="thumbnail-title">
-                        {info}
-                    </div>
-                </div>
-                {extra}
+    if (props.loves && props.showLoves) {
+        extra.push(
+            <div
+                className="thumbnail-loves"
+                key="loves"
+                title={`${props.loves} loves`}
+            >
+                {props.loves}
             </div>
         );
     }
-});
+    if (props.favorites && props.showFavorites) {
+        extra.push(
+            <div
+                className="thumbnail-favorites"
+                key="favorites"
+                title={`${props.favorites} favorites`}
+            >
+                {props.favorites}
+            </div>
+        );
+    }
+    if (props.remixes && props.showRemixes) {
+        extra.push(
+            <div
+                className="thumbnail-remixes"
+                key="remixes"
+                title={`${props.remixes} remixes`}
+            >
+                {props.remixes}
+            </div>
+        );
+    }
+    if (props.views && props.showViews) {
+        extra.push(
+            <div
+                className="thumbnail-views"
+                key="views"
+                title={`${props.views} views`}
+            >
+                {props.views}
+            </div>
+        );
+    }
+
+    let imgElement;
+    let titleElement;
+    let avatarElement;
+
+    if (props.linkTitle) {
+        imgElement = (
+            <a
+                className="thumbnail-image"
+                href={props.href}
+                key="imgElement"
+            >
+                <img
+                    alt={props.alt}
+                    src={props.src}
+                />
+            </a>
+        );
+        titleElement = (
+            <a
+                href={props.href}
+                key="titleElement"
+            >
+                {props.title}
+            </a>
+        );
+    } else {
+        imgElement = <img src={props.src} />;
+        titleElement = props.title;
+    }
+
+    info.push(titleElement);
+
+    if (props.creator) {
+        info.push(
+            <div
+                className="thumbnail-creator"
+                key="creator"
+            >
+                <a href={`/users/${props.creator}/`}>{props.creator}</a>
+            </div>
+        );
+    }
+
+    if (props.avatar && props.showAvatar) {
+        avatarElement = (
+            <a
+                className="creator-image"
+                href={`/users/${props.creator}/`}
+            >
+                <img
+                    alt={props.creator}
+                    src={props.avatar}
+                />
+            </a>
+        );
+    }
+    return (
+        <div
+            className={classNames(
+                'thumbnail',
+                props.type,
+                props.className
+            )}
+        >
+            {imgElement}
+            <div className="thumbnail-info">
+                {avatarElement}
+                <div className="thumbnail-title">
+                    {info}
+                </div>
+            </div>
+            {extra}
+        </div>
+    );
+};
+
+Thumbnail.propTypes = {
+    alt: PropTypes.string,
+    avatar: PropTypes.string,
+    className: PropTypes.string,
+    creator: PropTypes.string,
+    favorites: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    href: PropTypes.string,
+    linkTitle: PropTypes.bool,
+    loves: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    remixes: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    showAvatar: PropTypes.bool,
+    showFavorites: PropTypes.bool,
+    showLoves: PropTypes.bool,
+    showRemixes: PropTypes.bool,
+    showViews: PropTypes.bool,
+    src: PropTypes.string,
+    title: PropTypes.string,
+    type: PropTypes.string,
+    views: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+};
+
+Thumbnail.defaultProps = {
+    alt: '',
+    avatar: '',
+    href: '#',
+    linkTitle: true,
+    showAvatar: false,
+    showFavorites: false,
+    showLoves: false,
+    showRemixes: false,
+    showViews: false,
+    src: '',
+    title: 'Project',
+    type: 'project'
+};
 
 module.exports = Thumbnail;

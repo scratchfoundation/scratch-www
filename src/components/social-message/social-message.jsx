@@ -1,57 +1,47 @@
-var classNames = require('classnames');
-var FormattedRelative = require('react-intl').FormattedRelative;
-var React = require('react');
+const classNames = require('classnames');
+const FormattedRelative = require('react-intl').FormattedRelative;
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var FlexRow = require('../flex-row/flex-row.jsx');
+const FlexRow = require('../flex-row/flex-row.jsx');
 
 require('./social-message.scss');
 
-var SocialMessage = React.createClass({
-    type: 'SocialMessage',
-    propTypes: {
-        as: React.PropTypes.string,
-        datetime: React.PropTypes.string.isRequired,
-        iconSrc: React.PropTypes.string,
-        iconAlt: React.PropTypes.string,
-        imgClassName: React.PropTypes.string
-    },
-    getDefaultProps: function () {
-        return {
-            as: 'li'
-        };
-    },
-    render: function () {
-        var classes = classNames(
-            'social-message',
-            this.props.className
-        );
-        var imgClass = classNames(
-            'social-message-icon',
-            this.props.imgClassName
-        );
-        return (
-            <this.props.as className={classes}>
-                <FlexRow className="mod-social-message">
-                    <div className="social-message-content">
-                        {typeof this.props.iconSrc !== 'undefined' ? [
-                            <img
-                                key="social-message-icon"
-                                className={imgClass}
-                                src={this.props.iconSrc}
-                                alt={this.props.iconAlt}
-                            />
-                        ] : []}
-                        <div>
-                            {this.props.children}
-                        </div>
-                    </div>
-                    <span className="social-message-date">
-                        <FormattedRelative value={new Date(this.props.datetime)} />
-                    </span>
-                </FlexRow>
-            </this.props.as>
-        );
-    }
-});
+const SocialMessage = props => (
+    <props.as className={classNames('social-message', props.className)}>
+        <FlexRow className="mod-social-message">
+            <div className="social-message-content">
+                {typeof props.iconSrc === 'undefined' ? [] : [
+                    <img
+                        alt={props.iconAlt}
+                        className={classNames('social-message-icon', props.imgClassName)}
+                        key="social-message-icon"
+                        src={props.iconSrc}
+                    />
+                ]}
+                <div>
+                    {props.children}
+                </div>
+            </div>
+            <span className="social-message-date">
+                <FormattedRelative value={new Date(props.datetime)} />
+            </span>
+        </FlexRow>
+    </props.as>
+);
+
+SocialMessage.propTypes = {
+    as: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    children: PropTypes.node,
+    className: PropTypes.string,
+    datetime: PropTypes.string.isRequired,
+    iconAlt: PropTypes.string,
+    iconSrc: PropTypes.string,
+    imgClassName: PropTypes.string
+};
+
+SocialMessage.defaultProps = {
+    as: 'li'
+};
 
 module.exports = SocialMessage;

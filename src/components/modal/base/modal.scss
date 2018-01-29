@@ -21,7 +21,7 @@
     background-color: transparentize($ui-blue, .3);
 }
 
-.ReactModal__Content:focus {
+.modal-content:focus {
     outline: none;
 }
 

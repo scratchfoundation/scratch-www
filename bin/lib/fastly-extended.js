@@ -19,8 +19,8 @@ module.exports = function (apiKey, serviceId) {
      *
      * @return {string}
      */
-    fastly.getFastlyAPIPrefix = function (serviceId, version) {
-        return '/service/' + encodeURIComponent(serviceId) + '/version/' + version;
+    fastly.getFastlyAPIPrefix = function (servId, version) {
+        return '/service/' + encodeURIComponent(servId) + '/version/' + version;
     };
 
     /*
@@ -32,15 +32,15 @@ module.exports = function (apiKey, serviceId) {
         if (!this.serviceId) {
             return cb('Failed to get latest version. No serviceId configured');
         }
-        var url = '/service/'+ encodeURIComponent(this.serviceId) +'/version';
+        var url = '/service/' + encodeURIComponent(this.serviceId) + '/version';
         this.request('GET', url, function (err, versions) {
             if (err) {
                 return cb('Failed to fetch versions: ' + err);
             }
-            var latestVersion = versions.reduce(function (latestVersion, version) {
-                if (!latestVersion) return version;
-                if (version.number > latestVersion.number) return version;
-                return latestVersion;
+            var latestVersion = versions.reduce(function (lateVersion, version) {
+                if (!lateVersion) return version;
+                if (version.number > lateVersion.number) return version;
+                return lateVersion;
             });
             return cb(null, latestVersion);
         });
@@ -63,16 +63,16 @@ module.exports = function (apiKey, serviceId) {
         var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/condition';
         return this.request('PUT', putUrl, condition, function (err, response) {
             if (err && err.statusCode === 404) {
-                this.request('POST', postUrl, condition, function (err, response) {
-                    if (err) {
-                        return cb('Failed while inserting condition \"' + condition.statement + '\": ' + err);
+                this.request('POST', postUrl, condition, function (e, resp) {
+                    if (e) {
+                        return cb('Failed while inserting condition "' + condition.statement + '": ' + e);
                     }
-                    return cb(null, response);
+                    return cb(null, resp);
                 });
                 return;
             }
             if (err) {
-                return cb('Failed to update condition \"' + condition.statement + '\": ' + err);
+                return cb('Failed to update condition "' + condition.statement + '": ' + err);
             }
             return cb(null, response);
         }.bind(this));
@@ -95,11 +95,11 @@ module.exports = function (apiKey, serviceId) {
         var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/header';
         return this.request('PUT', putUrl, header, function (err, response) {
             if (err && err.statusCode === 404) {
-                this.request('POST', postUrl, header, function (err, response) {
-                    if (err) {
-                        return cb('Failed to insert header: ' + err);
+                this.request('POST', postUrl, header, function (e, resp) {
+                    if (e) {
+                        return cb('Failed to insert header: ' + e);
                     }
-                    return cb(null, response);
+                    return cb(null, resp);
                 });
                 return;
             }
@@ -127,11 +127,11 @@ module.exports = function (apiKey, serviceId) {
         var postUrl = this.getFastlyAPIPrefix(this.serviceId, version) + '/response_object';
         return this.request('PUT', putUrl, responseObj, function (err, response) {
             if (err && err.statusCode === 404) {
-                this.request('POST', postUrl, responseObj, function (err, response) {
-                    if (err) {
-                        return cb('Failed to insert response object: ' + err);
+                this.request('POST', postUrl, responseObj, function (e, resp) {
+                    if (e) {
+                        return cb('Failed to insert response object: ' + e);
                     }
-                    return cb(null, response);
+                    return cb(null, resp);
                 });
                 return;
             }
@@ -166,7 +166,7 @@ module.exports = function (apiKey, serviceId) {
         this.request('PUT', url, cb);
     };
 
-    /**
+    /*
      * Upsert a custom vcl file. Attempts a PUT, and falls back
      * to POST if not there already.
      *
@@ -186,16 +186,16 @@ module.exports = function (apiKey, serviceId) {
         return this.request('PUT', url, content, function (err, response) {
             if (err && err.statusCode === 404) {
                 content.name = name;
-                this.request('POST', postUrl, content, function (err, response) {
-                    if (err) {
-                        return cb('Failed while adding custom vcl \"' + name + '\": ' + err);
+                this.request('POST', postUrl, content, function (e, resp) {
+                    if (e) {
+                        return cb('Failed while adding custom vcl "' + name + '": ' + e);
                     }
-                    return cb(null, response);
+                    return cb(null, resp);
                 });
                 return;
             }
             if (err) {
-                return cb('Failed to update custom vcl \"' + name + '\": ' + err);
+                return cb('Failed to update custom vcl "' + name + '": ' + err);
             }
             return cb(null, response);
         }.bind(this));
