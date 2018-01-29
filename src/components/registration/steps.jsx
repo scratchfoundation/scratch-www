@@ -1,3 +1,4 @@
+/* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
@@ -306,7 +307,7 @@ const IntlUsernameStep = injectIntl(UsernameStep);
 /*
  * PASSWORD STEP
  */
-class ChoosePasswordStep extends React.Component { // eslint-disable-line react/no-multi-comp
+class ChoosePasswordStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
@@ -407,7 +408,7 @@ const IntlChoosePasswordStep = injectIntl(ChoosePasswordStep);
 /*
  * DEMOGRAPHICS STEP
  */
-class DemographicsStep extends React.Component { // eslint-disable-line react/no-multi-comp
+class DemographicsStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
@@ -651,7 +652,7 @@ const IntlNameStep = injectIntl(NameStep);
 /*
  * PHONE NUMBER STEP
  */
-class PhoneNumberStep extends React.Component { // eslint-disable-line react/no-multi-comp
+class PhoneNumberStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
@@ -749,7 +750,7 @@ const ORGANIZATION_L10N_STEMS = [
     'orgChoiceCamp'
 ];
 
-class OrganizationStep extends React.Component { // eslint-disable-line react/no-multi-comp
+class OrganizationStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
@@ -920,7 +921,7 @@ const IntlOrganizationStep = injectIntl(OrganizationStep);
 /*
  * ADDRESS STEP
  */
-class AddressStep extends React.Component { // eslint-disable-line react/no-multi-comp
+class AddressStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
@@ -1076,7 +1077,7 @@ const IntlAddressStep = injectIntl(AddressStep);
 /*
  * USE SCRATCH STEP
  */
-class UseScratchStep extends React.Component { // eslint-disable-line react/no-multi-comp
+class UseScratchStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
@@ -1165,7 +1166,7 @@ const IntlUseScratchStep = injectIntl(UseScratchStep);
 /*
  * EMAIL STEP
  */
-class EmailStep extends React.Component { // eslint-disable-line react/no-multi-comp
+class EmailStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
