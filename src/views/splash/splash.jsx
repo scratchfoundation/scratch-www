@@ -129,7 +129,7 @@ class Splash extends React.Component {
             useCsrf: true,
             json: {cue: cue, value: false}
         }, err => {
-            if (!err) this.props.dispatch(sessionActions.refreshSession());
+            if (!err) this.props.refreshSession();
         });
     }
     shouldShowWelcome () {
@@ -178,7 +178,6 @@ class Splash extends React.Component {
 
 Splash.propTypes = {
     activity: PropTypes.arrayOf(PropTypes.object).isRequired,
-    dispatch: PropTypes.func,
     featured: PropTypes.shape({
         community_featured_projects: PropTypes.array,
         community_featured_studios: PropTypes.array,
@@ -204,6 +203,7 @@ Splash.propTypes = {
     isAdmin: PropTypes.bool,
     isEducator: PropTypes.bool,
     loved: PropTypes.arrayOf(PropTypes.object).isRequired,
+    refreshSession: PropTypes.func.isRequired,
     sessionStatus: PropTypes.string,
     setRows: PropTypes.func.isRequired,
     shared: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -256,6 +256,9 @@ const mapDispatchToProps = dispatch => ({
     },
     getLovedByFollowing: (username, token) => {
         dispatch(splashActions.getLovedByFollowing(username, token));
+    },
+    refreshSession: () => {
+        dispatch(sessionActions.refreshSession());
     },
     setRows: (type, rows) => {
         dispatch(splashActions.setRows(type, rows));
