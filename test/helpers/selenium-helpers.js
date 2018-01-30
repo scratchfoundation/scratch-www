@@ -49,7 +49,6 @@ const getLogs = (whitelist) => {
                     }
                     return true;
                 }
-                return true;
             });
         });
 };

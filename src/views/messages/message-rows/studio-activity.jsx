@@ -1,38 +1,39 @@
-const classNames = require('classnames');
-const FormattedMessage = require('react-intl').FormattedMessage;
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var FormattedMessage = require('react-intl').FormattedMessage;
+var React = require('react');
 
-const SocialMessage = require('../../../components/social-message/social-message.jsx');
+var SocialMessage = require('../../../components/social-message/social-message.jsx');
 
-const StudioActivityMessage = props => (
-    <SocialMessage
-        className={classNames(
+var StudioActivityMessage = React.createClass({
+    type: 'StudioActivityMessage',
+    propTypes: {
+        studioId: React.PropTypes.number.isRequired,
+        studioTitle: React.PropTypes.string.isRequired,
+        datetimeCreated: React.PropTypes.string.isRequired
+    },
+    render: function () {
+        var studioLink = '/studios/' + this.props.studioId + '/activity';
+
+        var classes = classNames(
             'mod-studio-activity',
-            props.className
-        )}
-        datetime={props.datetimeCreated}
-        iconAlt="studio activity notification image"
-        iconSrc="/svgs/messages/studio-activity.svg"
-    >
-        <FormattedMessage
-            id="messages.studioActivityText"
-            values={{
-                studioLink: (
-                    <a href={`/studios/${props.studioId}/activity`}>
-                        {props.studioTitle}
-                    </a>
-                )
-            }}
-        />
-    </SocialMessage>
-);
-
-StudioActivityMessage.propTypes = {
-    className: PropTypes.string,
-    datetimeCreated: PropTypes.string.isRequired,
-    studioId: PropTypes.number.isRequired,
-    studioTitle: PropTypes.string.isRequired
-};
+            this.props.className
+        );
+        return (
+            <SocialMessage
+                className={classes}
+                datetime={this.props.datetimeCreated}
+                iconSrc="/svgs/messages/studio-activity.svg"
+                iconAlt="studio activity notification image"
+            >
+                <FormattedMessage
+                    id='messages.studioActivityText'
+                    values={{
+                        studioLink: <a href={studioLink}>{this.props.studioTitle}</a>
+                    }}
+                />
+            </SocialMessage>
+        );
+    }
+});
 
 module.exports = StudioActivityMessage;

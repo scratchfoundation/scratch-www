@@ -1,26 +1,28 @@
-const classNames = require('classnames');
-const PropTypes = require('prop-types');
-const React = require('react');
-
-const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+var classNames = require('classnames');
+var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+var React = require('react');
 
 require('./tabs.scss');
 
-/*
+/**
  * Container for a custom, horizontal list of navigation elements
  * that can be displayed within a view or component.
  */
-const Tabs = props => (
-    <div className="tab-background">
-        <SubNavigation className={classNames('tabs', props.className)}>
-            {props.children}
-        </SubNavigation>
-    </div>
-);
-
-Tabs.propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string
-};
+var Tabs = React.createClass({
+    type: 'Tabs',
+    render: function () {
+        var classes = classNames(
+            'tabs',
+            this.props.className
+        );
+        return (
+            <div className='tab-background'>
+                <SubNavigation className={classes}>
+                    {this.props.children}
+                </SubNavigation>
+            </div>
+        );
+    }
+});
 
 module.exports = Tabs;

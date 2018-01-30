@@ -1,29 +1,24 @@
-const bindAll = require('lodash.bindall');
-const React = require('react');
+var React = require('react');
+var render = require('../../../../lib/render.jsx');
 
-const Button = require('../../../../components/forms/button.jsx');
-const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
-const TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
-
-const Page = require('../../../../components/page/conference/2016/page.jsx');
-const render = require('../../../../lib/render.jsx');
+var Button = require('../../../../components/forms/button.jsx');
+var FlexRow = require('../../../../components/flex-row/flex-row.jsx');
+var Page = require('../../../../components/page/conference/2016/page.jsx');
+var TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
 
 require('./plan.scss');
 
-class ConferencePlan extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'toggleQuestion'
-        ]);
-        this.state = {
+var ConferencePlan = React.createClass({
+    type: 'ConferencePlan',
+    getInitialState: function () {
+        return {
             dorm: false
         };
-    }
-    toggleQuestion (element) {
+    },
+    toggleQuestion: function (element) {
         this.setState({element: !this.state[element]});
-    }
-    render () {
+    },
+    render: function () {
         return (
             <div className="plan">
                 <TitleBanner className="mod-conference">
@@ -31,10 +26,7 @@ class ConferencePlan extends React.Component {
                         Plan Your Visit
                     </h1>
                     <div className="title-icon">
-                        <img
-                            alt="plan-image"
-                            src="/images/conference/plan/plan-your-visit.png"
-                        />
+                        <img src="/images/conference/plan/plan-your-visit.png" alt="plan-image" />
                     </div>
                 </TitleBanner>
                 <div className="inner">
@@ -81,7 +73,7 @@ class ConferencePlan extends React.Component {
                                 </FlexRow>
                                 <p>
                                     To reserve a room, <b>call the hotel and request the{' '}
-                                    &#34;MIT discount&#34;</b> (subject to availability).
+                                    "MIT discount"</b> (subject to availability).
                                 </p>
                                 <p>
                                     We also suggest the{' '}
@@ -112,10 +104,7 @@ class ConferencePlan extends React.Component {
                                 </p>
                             </div>
                             <div className="short">
-                                <img
-                                    alt="Lodging Illustration"
-                                    src="/images/conference/plan/lodging.png"
-                                />
+                                <img src="/images/conference/plan/lodging.png" alt="Lodging Illustration" />
                             </div>
                         </FlexRow>
                     </section>
@@ -145,10 +134,8 @@ class ConferencePlan extends React.Component {
                                 </p>
                             </div>
                             <div className="short">
-                                <img
-                                    alt="Transportation Illustration"
-                                    src="/images/conference/plan/transportation.png"
-                                />
+                                <img src="/images/conference/plan/transportation.png"
+                                     alt="Transportation Illustration" />
                             </div>
                         </FlexRow>
                     </section>
@@ -172,7 +159,7 @@ class ConferencePlan extends React.Component {
                                 </li>
                                 <li>
                                     <a href="http://www.bostonteapartyship.com/">
-                                        Boston Tea Party Ship &amp; Museum
+                                        Boston Tea Party Ship & Museum
                                     </a>
                                 </li>
                                 <li>
@@ -202,7 +189,7 @@ class ConferencePlan extends React.Component {
                                 </li>
                                 <li>
                                     <a href="http://www.jfklibrary.org/">
-                                        John F. Kennedy Library &amp; Museum
+                                        John F. Kennedy Library & Museum
                                     </a>
                                 </li>
                                 <li>
@@ -333,7 +320,7 @@ class ConferencePlan extends React.Component {
                                     </dt>
                                     <dd>
                                         Contact us at a conference@scratch.mit.edu with your registration number,{' '}
-                                        and we&#39;ll take care of it for you.
+                                        and we'll take care of it for you.
                                     </dd>
                                 </dl>
                             </div>
@@ -349,6 +336,6 @@ class ConferencePlan extends React.Component {
             </div>
         );
     }
-}
+});
 
 render(<Page><ConferencePlan /></Page>, document.getElementById('app'));

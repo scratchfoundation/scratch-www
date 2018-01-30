@@ -3,7 +3,7 @@ var defaults = require('lodash.defaults');
 var fastlyConfig = require('./lib/fastly-config-methods');
 const languages = require('../languages.json');
 
-var routeJson = require('../src/routes.json');
+var route_json = require('../src/routes.json');
 
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
@@ -15,10 +15,10 @@ var extraAppRoutes = [
     // TODO: Should this be added for every route?
     '/\\?',
     // View html
-    '/[^/]*.html$'
+    '/[^\/]*\.html$'
 ];
 
-var routes = routeJson.map(function (route) {
+var routes = route_json.map(function (route) {
     return defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route);
 });
 
@@ -28,9 +28,9 @@ async.auto({
             if (err) return cb(err);
             // Validate latest version before continuing
             if (response.active || response.locked) {
-                fastly.cloneVersion(response.number, function (e, resp) {
-                    if (e) return cb('Failed to clone latest version: ' + e);
-                    cb(null, resp.number);
+                fastly.cloneVersion(response.number, function (err, response) {
+                    if (err) return cb('Failed to clone latest version: ' + err);
+                    cb(null, response.number);
                 });
             } else {
                 cb(null, response.number);
@@ -46,11 +46,11 @@ async.auto({
         var recvCondition = '' +
             'if (' + notPassStatement + ') {\n' +
             '    set req.backend = F_s3;\n' +
-            '    set req.http.host = "' + S3_BUCKET_NAME + '";\n' +
+            '    set req.http.host = \"' + S3_BUCKET_NAME + '\";\n' +
             '} else {\n' +
             '    if (!req.http.Fastly-FF) {\n' +
             '        if (req.http.X-Forwarded-For) {\n' +
-            '            set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For ", " client.ip;\n' +
+            '            set req.http.Fastly-Temp-XFF = req.http.X-Forwarded-For \", \" client.ip;\n' +
             '        } else {\n' +
             '            set req.http.Fastly-Temp-XFF = client.ip;\n' +
             '        }\n' +
@@ -171,19 +171,20 @@ async.auto({
             if (err) return cb(err);
             cb(null, headers);
         });
-    }]
-}, function (err, results) {
-    if (err) throw new Error(err);
-    if (process.env.FASTLY_ACTIVATE_CHANGES) {
-        fastly.activateVersion(results.version, function (e, resp) {
-            if (err) throw new Error(e);
-            process.stdout.write('Successfully configured and activated version ' + resp.number + '\n');
-            if (process.env.FASTLY_PURGE_ALL) {
-                fastly.purgeAll(FASTLY_SERVICE_ID, function (error) {
-                    if (error) throw new Error(error);
-                    process.stdout.write('Purged all.\n');
-                });
-            }
-        });
+    }]},
+    function (err, results) {
+        if (err) throw new Error(err);
+        if (process.env.FASTLY_ACTIVATE_CHANGES) {
+            fastly.activateVersion(results.version, function (err, response) {
+                if (err) throw new Error(err);
+                process.stdout.write('Successfully configured and activated version ' + response.number + '\n');
+                if (process.env.FASTLY_PURGE_ALL) {
+                    fastly.purgeAll(FASTLY_SERVICE_ID, function (err) {
+                        if (err) throw new Error(err);
+                        process.stdout.write('Purged all.\n');
+                    });
+                }
+            });
+        }
     }
-});
+);

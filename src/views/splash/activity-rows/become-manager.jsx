@@ -1,43 +1,49 @@
-const classNames = require('classnames');
-const FormattedMessage = require('react-intl').FormattedMessage;
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var FormattedMessage = require('react-intl').FormattedMessage;
+var React = require('react');
 
-const SocialMessage = require('../../../components/social-message/social-message.jsx');
+var SocialMessage = require('../../../components/social-message/social-message.jsx');
 
-const BecomeManagerMessage = props => (
-    <SocialMessage
-        as="div"
-        className={classNames(
+var BecomeManagerMessage = React.createClass({
+    type: 'BecomeManagerMessage',
+    propTypes: {
+        recipientUsername: React.PropTypes.string.isRequired,
+        studioId: React.PropTypes.number.isRequired,
+        studioTitle: React.PropTypes.string.isRequired,
+        datetimePromoted: React.PropTypes.string.isRequired
+    },
+    render: function () {
+        var recipientUri = '/users/' + this.props.recipientUsername + '/';
+        var studioUri = '/studios/' + this.props.studioId + '/';
+
+        var classes = classNames(
             'mod-become-manager',
-            props.className
-        )}
-        datetime={props.datetimePromoted}
-    >
-        <FormattedMessage
-            id="messages.becomeManagerText"
-            values={{
-                username: (
-                    <a href={`/users/${props.recipientUsername}/`}>
-                        {props.recipientUsername}
-                    </a>
-                ),
-                studio: (
-                    <a href={`/studios/${props.studioId}/`}>
-                        {props.studioTitle}
-                    </a>
-                )
-            }}
-        />
-    </SocialMessage>
-);
-
-BecomeManagerMessage.propTypes = {
-    className: PropTypes.string,
-    datetimePromoted: PropTypes.string.isRequired,
-    recipientUsername: PropTypes.string.isRequired,
-    studioId: PropTypes.number.isRequired,
-    studioTitle: PropTypes.string.isRequired
-};
+            this.props.className
+        );
+        return (
+            <SocialMessage
+                as="div"
+                className={classes}
+                datetime={this.props.datetimePromoted}
+            >
+                <FormattedMessage
+                    id='messages.becomeManagerText'
+                    values={{
+                        username: (
+                            <a
+                                href={recipientUri}
+                            >
+                                {this.props.recipientUsername}
+                            </a>
+                        ),
+                        studio: (
+                            <a href={studioUri}>{this.props.studioTitle}</a>
+                        )
+                    }}
+                />
+            </SocialMessage>
+        );
+    }
+});
 
 module.exports = BecomeManagerMessage;

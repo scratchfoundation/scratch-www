@@ -1,13 +1,13 @@
-const keyMirror = require('keymirror');
-const api = require('../lib/api');
+var keyMirror = require('keymirror');
+var api = require('../lib/api');
 
-const Types = keyMirror({
+var Types = keyMirror({
     SET_SCHEDULE: null,
     SET_SCHEDULE_FETCHING: null,
     SET_SCHEDULE_ERROR: null
 });
 
-module.exports.scheduleReducer = (state, action) => {
+module.exports.scheduleReducer = function (state, action) {
     if (typeof state === 'undefined') {
         state = {
             timeSlots: [],
@@ -26,27 +26,40 @@ module.exports.scheduleReducer = (state, action) => {
     }
 };
 
-module.exports.setSchedule = schedule => ({
-    type: Types.SET_SCHEDULE,
-    schedule: schedule
-});
+module.exports.setSchedule = function (schedule) {
+    return {
+        type: Types.SET_SCHEDULE,
+        schedule: schedule
+    };
+};
 
-module.exports.setScheduleFetching = () => ({
-    type: Types.SET_SCHEDULE_FETCHING,
-    fetching: true
-});
+module.exports.setScheduleFetching = function () {
+    return {
+        type: Types.SET_SCHEDULE_FETCHING,
+        fetching: true
+    };
+};
 
-module.exports.setScheduleError = error => ({
-    type: Types.SET_SCHEDULE_ERROR,
-    error: error
-});
+module.exports.setScheduleError = function (error) {
+    return {
+        type: Types.SET_SCHEDULE_ERROR,
+        error: error
+    };
+};
+
+module.exports.startGetSchedule = function (day) {
+    return function (dispatch) {
+        dispatch(module.exports.setScheduleFetching());
+        dispatch(module.exports.getDaySchedule(day));
+    };
+};
 
 // group periods of time by start time
-module.exports.sortTimeSlots = (timeSlot1, timeSlot2) => {
-    const timeSlot1Am = (timeSlot1.time.substr(timeSlot1.time.length - 1, timeSlot1.time.length) === 'a');
-    const timeSlot2Am = (timeSlot2.time.substr(timeSlot2.time.length - 1, timeSlot2.time.length) === 'a');
-    let timeSlot1Time = parseInt(timeSlot1.time.substr(0, timeSlot1.time.length - 1), 10);
-    let timeSlot2Time = parseInt(timeSlot2.time.substr(0, timeSlot2.time.length - 1), 10);
+module.exports.sortTimeSlots = function (timeSlot1, timeSlot2) {
+    var timeSlot1Am = (timeSlot1.time.substr(timeSlot1.time.length - 1, timeSlot1.time.length) === 'a') ? true : false;
+    var timeSlot2Am = (timeSlot2.time.substr(timeSlot2.time.length - 1, timeSlot2.time.length) === 'a') ? true : false;
+    var timeSlot1Time = parseInt(timeSlot1.time.substr(0, timeSlot1.time.length - 1));
+    var timeSlot2Time = parseInt(timeSlot2.time.substr(0, timeSlot2.time.length - 1));
     
     // convert to 24-hour for sorting
     if (timeSlot1Time !== 12 && !timeSlot1Am) {
@@ -58,67 +71,68 @@ module.exports.sortTimeSlots = (timeSlot1, timeSlot2) => {
     
     if (timeSlot1Time < timeSlot2Time) {
         return -1;
+    } else {
+        return 1;
     }
-    return 1;
 };
 
 /**
  * Gets the schedule for the given day from the api
- * @param  {string} day  Day of the conference (Thursday, Friday or Satrurday)
+ * @param  {String} day  Day of the conference (Thursday, Friday or Satrurday)
  *
- *  @return {object}     Schedule for the day, broken into chunks
+ *  @return {Object}     Schedule for the day, broken into chunks
  */
-module.exports.getDaySchedule = day => (dispatch => {
-    api({
-        uri: `/conference/schedule/${day}`
-    }, (err, body) => {
-        if (err) {
-            dispatch(module.exports.setScheduleError(err));
-            return;
-        }
+module.exports.getDaySchedule = function (day) {
+    return function (dispatch) {
+        api({
+            uri: '/conference/schedule/' + day
+        }, function (err, body) {
+            if (err) {
+                dispatch(module.exports.setScheduleError(err));
+                return;
+            }
 
-        if (typeof body !== 'undefined') {
-            const columns = body.columns;
-            const rows = body.rows || [];
-            // Group events by the time period in which they occur (for presentation)
-            const scheduleByTimeSlot = rows.reduce((prev, cur) => {
-                const cleanedRow = {};
-                for (let i = 0; i < columns.length; i++) {
-                    if (cur[i].length > 0) {
-                        cleanedRow[columns[i]] = cur[i];
+            if (typeof body !== 'undefined') {
+                var columns = body.columns;
+                var rows = body.rows || [];
+                // Group events by the time period in which they occur (for presentation)
+                var scheduleByTimeSlot = rows.reduce(function (prev, cur) {
+                    var cleanedRow = {};
+                    for (var i = 0; i < columns.length; i++) {
+                        if (cur[i].length > 0) {
+                            cleanedRow[columns[i]] = cur[i];
+                        }
                     }
-                }
-                cleanedRow.uri = `/conference/2016/${cleanedRow.rowid}/details`;
-                const timeSlot = cleanedRow.Chunk + cleanedRow.Start;
-                if (typeof prev.timeSlots[timeSlot] === 'undefined') {
-                    prev.timeSlots[timeSlot] = [cleanedRow];
-                    prev.info.push({
-                        name: cleanedRow.Chunk,
-                        time: cleanedRow.Start
-                    });
-                } else {
-                    prev.timeSlots[timeSlot].push(cleanedRow);
-                }
-                return prev;
-            }, {timeSlots: [], info: []});
+                    cleanedRow['uri'] = '/conference/2016/' + cleanedRow.rowid + '/details';
+                    var timeSlot = cleanedRow.Chunk + cleanedRow.Start;
+                    if (typeof prev.timeSlots[timeSlot] === 'undefined') {
+                        prev.timeSlots[timeSlot] = [cleanedRow];
+                        prev.info.push({
+                            name: cleanedRow.Chunk,
+                            time: cleanedRow.Start
+                        });
+                    } else {
+                        prev.timeSlots[timeSlot].push(cleanedRow);
+                    }
+                    return prev;
+                }, {timeSlots: [], info: []});
 
-            scheduleByTimeSlot.info.sort(module.exports.sortTimeSlots);
-            const schedule = scheduleByTimeSlot.info.map(timeSlot => ({
-                info: timeSlot,
-                items: scheduleByTimeSlot.timeSlots[timeSlot.name + timeSlot.time]
-            }));
-            dispatch(module.exports.setSchedule({
-                timeSlots: schedule,
-                day: day
-            }));
-            return;
-        }
-        dispatch(module.exports.setScheduleError('An unexpected error occurred'));
-        return;
-    });
-});
-
-module.exports.startGetSchedule = day => (dispatch => {
-    dispatch(module.exports.setScheduleFetching());
-    dispatch(module.exports.getDaySchedule(day));
-});
+                scheduleByTimeSlot.info.sort(module.exports.sortTimeSlots);
+                var schedule = scheduleByTimeSlot.info.map(function (timeSlot) {
+                    return {
+                        info: timeSlot,
+                        items: scheduleByTimeSlot.timeSlots[timeSlot.name + timeSlot.time]
+                    };
+                });
+                dispatch(module.exports.setSchedule({
+                    timeSlots: schedule,
+                    day: day
+                }));
+                return;
+            } else {
+                dispatch(module.exports.setScheduleError('An unexpected error occurred'));
+                return;
+            }
+        });
+    };
+};

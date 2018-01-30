@@ -1,43 +1,49 @@
-const classNames = require('classnames');
-const FormattedMessage = require('react-intl').FormattedMessage;
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var FormattedMessage = require('react-intl').FormattedMessage;
+var React = require('react');
 
-const SocialMessage = require('../../../components/social-message/social-message.jsx');
+var SocialMessage = require('../../../components/social-message/social-message.jsx');
 
-const BecomeCuratorMessage = props => (
-    <SocialMessage
-        as="div"
-        className={classNames(
+var BecomeCuratorMessage = React.createClass({
+    type: 'BecomeCuratorMessage',
+    propTypes: {
+        actorUsername: React.PropTypes.string.isRequired,
+        studioId: React.PropTypes.number.isRequired,
+        studioTitle: React.PropTypes.string.isRequired,
+        datetimePromoted: React.PropTypes.string.isRequired
+    },
+    render: function () {
+        var actorUri = '/users/' + this.props.actorUsername + '/';
+        var studioUri = '/studios/' + this.props.studioId + '/';
+
+        var classes = classNames(
             'mod-become-curator',
-            props.className
-        )}
-        datetime={props.datetimePromoted}
-    >
-        <FormattedMessage
-            id="messages.becomeCuratorText"
-            values={{
-                username: (
-                    <a href={`/users/${props.actorUsername}/`}>
-                        {props.actorUsername}
-                    </a>
-                ),
-                studio: (
-                    <a href={`/studios/${props.studioId}/`}>
-                        {props.studioTitle}
-                    </a>
-                )
-            }}
-        />
-    </SocialMessage>
-);
-
-BecomeCuratorMessage.propTypes = {
-    actorUsername: PropTypes.string.isRequired,
-    className: PropTypes.string,
-    datetimePromoted: PropTypes.string.isRequired,
-    studioId: PropTypes.number.isRequired,
-    studioTitle: PropTypes.string.isRequired
-};
+            this.props.className
+        );
+        return (
+            <SocialMessage
+                as="div"
+                className={classes}
+                datetime={this.props.datetimePromoted}
+            >
+                <FormattedMessage
+                    id='messages.becomeCuratorText'
+                    values={{
+                        username: (
+                            <a
+                                href={actorUri}
+                            >
+                                {this.props.actorUsername}
+                            </a>
+                        ),
+                        studio: (
+                            <a href={studioUri}>{this.props.studioTitle}</a>
+                        )
+                    }}
+                />
+            </SocialMessage>
+        );
+    }
+});
 
 module.exports = BecomeCuratorMessage;

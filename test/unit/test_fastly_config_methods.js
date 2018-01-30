@@ -1,6 +1,6 @@
 var defaults = require('lodash.defaults');
 var fastlyConfig = require('../../bin/lib/fastly-config-methods');
-var routeJson = require('../../src/routes.json');
+var route_json = require('../../src/routes.json');
 var tap = require('tap');
 
 var testRoutes = [
@@ -20,7 +20,7 @@ var testRoutes = [
     }
 ];
 
-var routes = routeJson.map(function (route) {
+var routes = route_json.map(function (route) {
     return defaults({}, {pattern: fastlyConfig.expressPatternToRegex(route.pattern)}, route);
 });
 var extraAppRoutes = [
@@ -28,7 +28,7 @@ var extraAppRoutes = [
     // TODO: Should this be added for every route?
     '/\\?',
     // View html
-    '/[^/]*.html$'
+    '/[^\/]*\.html$'
 ];
 
 

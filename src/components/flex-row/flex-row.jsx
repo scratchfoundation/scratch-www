@@ -1,22 +1,26 @@
-const classNames = require('classnames');
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var React = require('react');
 
 require('./flex-row.scss');
 
-const FlexRow = props => (
-    <props.as className={classNames('flex-row', props.className)}>
-        {props.children}
-    </props.as>
-);
-
-FlexRow.propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string
-};
-
-FlexRow.defaultProps = {
-    as: 'div'
-};
+var FlexRow = React.createClass({
+    type: 'FlexRow',
+    getDefaultProps: function () {
+        return {
+            as: 'div'
+        };
+    },
+    render: function () {
+        var classes = classNames(
+            'flex-row',
+            this.props.className
+        );
+        return (
+            <this.props.as className={classes}>
+                {this.props.children}
+            </this.props.as>
+        );
+    }
+});
 
 module.exports = FlexRow;

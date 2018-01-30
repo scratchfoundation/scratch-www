@@ -1,6 +1,5 @@
-const Formsy = require('formsy-react');
-const PropTypes = require('prop-types');
-const React = require('react');
+var Formsy = require('formsy-react');
+var React = require('react');
 
 require('./general-error.scss');
 
@@ -11,18 +10,13 @@ require('./general-error.scss');
  * give it a name, and apply your validation error to
  * the name of the GeneralError component.
  */
-const GeneralError = props => {
-    if (!props.showError()) return null;
-    return (
-        <p className="general-error">
-            {props.getErrorMessage()}
-        </p>
-    );
-};
-
-GeneralError.propTypes = {
-    getErrorMessage: PropTypes.func,
-    showError: PropTypes.func
-};
-
-module.exports = Formsy.HOC(GeneralError);
+module.exports = Formsy.HOC(React.createClass({
+    render: function () {
+        if (!this.props.showError()) return null;
+        return (
+            <p className="general-error">
+                {this.props.getErrorMessage()}
+            </p>
+        );
+    }
+}));
