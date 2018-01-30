@@ -1,29 +1,31 @@
-var React = require('react');
-var classNames = require('classnames');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var Navigation = require('../../navigation/www/navigation.jsx');
-var Footer = require('../../footer/www/footer.jsx');
+const Navigation = require('../../navigation/www/navigation.jsx');
+const Footer = require('../../footer/www/footer.jsx');
 
-var Page = React.createClass({
-    type: 'Page',
-    render: function () {
-        var classes = classNames({
-            'staging': process.env.SCRATCH_ENV == 'staging'
-        });
-        return (
-            <div className="page">
-                <div id="navigation" className={classes}>
-                    <Navigation />
-                </div>
-                <div id="view">
-                    {this.props.children}
-                </div>
-                <div id="footer">
-                    <Footer />
-                </div>
-            </div>
-        );
-    }
-});
+const Page = props => (
+    <div className="page">
+        <div
+            className={classNames({
+                staging: process.env.SCRATCH_ENV === 'staging'
+            })}
+            id="navigation"
+        >
+            <Navigation />
+        </div>
+        <div id="view">
+            {props.children}
+        </div>
+        <div id="footer">
+            <Footer />
+        </div>
+    </div>
+);
+
+Page.propTypes = {
+    children: PropTypes.node
+};
 
 module.exports = Page;

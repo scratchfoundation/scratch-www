@@ -1,47 +1,47 @@
-var classNames = require('classnames');
-var FormattedMessage = require('react-intl').FormattedMessage;
-var React = require('react');
+const classNames = require('classnames');
+const FormattedMessage = require('react-intl').FormattedMessage;
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var SocialMessage = require('../../../components/social-message/social-message.jsx');
+const SocialMessage = require('../../../components/social-message/social-message.jsx');
 
-var LoveProjectMessage = React.createClass({
-    type: 'LoveProjectMessage',
-    propTypes: {
-        actorUsername: React.PropTypes.string.isRequired,
-        projectId: React.PropTypes.number.isRequired,
-        projectTitle: React.PropTypes.string.isRequired,
-        loveDateTime: React.PropTypes.string.isRequired
-    },
-    render: function () {
-        var projectLink = '/projects/' + this.props.projectId;
-        var profileLink = '/users/' + this.props.actorUsername;
-
-        var classes = classNames(
+const LoveProjectMessage = props => (
+    <SocialMessage
+        className={classNames(
             'mod-love-project',
-            this.props.className
-        );
-        return (
-            <SocialMessage
-                className={classes}
-                datetime={this.props.loveDateTime}
-                iconSrc="/svgs/messages/love.svg"
-                iconAlt="love notification image"
-            >
-                <FormattedMessage
-                    id='messages.loveText'
-                    values={{
-                        profileLink: <a
-                            href={profileLink}
-                            className="social-messages-profile-link"
-                        >
-                            {this.props.actorUsername}
-                        </a>,
-                        projectLink: <a href={projectLink}>{this.props.projectTitle}</a>
-                    }}
-                />
-            </SocialMessage>
-        );
-    }
-});
+            props.className
+        )}
+        datetime={props.loveDateTime}
+        iconAlt="love notification image"
+        iconSrc="/svgs/messages/love.svg"
+    >
+        <FormattedMessage
+            id="messages.loveText"
+            values={{
+                profileLink: (
+                    <a
+                        className="social-messages-profile-link"
+                        href={`/users/${props.actorUsername}`}
+                    >
+                        {props.actorUsername}
+                    </a>
+                ),
+                projectLink: (
+                    <a href={`/projects/${props.projectId}`}>
+                        {props.projectTitle}
+                    </a>
+                )
+            }}
+        />
+    </SocialMessage>
+);
+
+LoveProjectMessage.propTypes = {
+    actorUsername: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    loveDateTime: PropTypes.string.isRequired,
+    projectId: PropTypes.number.isRequired,
+    projectTitle: PropTypes.string.isRequired
+};
 
 module.exports = LoveProjectMessage;
