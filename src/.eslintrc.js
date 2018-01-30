@@ -6,5 +6,6 @@ module.exports = {
     },
     globals: {
         process: true
-    }
+    },
+    plugins: ['json']
 };
