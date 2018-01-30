@@ -1,23 +1,23 @@
-var classNames = require('classnames');
-var FRCRadioGroup = require('formsy-react-components').RadioGroup;
-var React = require('react');
-var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
-var inputHOC = require('./input-hoc.jsx');
+const classNames = require('classnames');
+const FRCRadioGroup = require('formsy-react-components').RadioGroup;
+const PropTypes = require('prop-types');
+const React = require('react');
+
+const defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
+const inputHOC = require('./input-hoc.jsx');
 
 require('./row.scss');
 require('./radio-group.scss');
 
-var RadioGroup = React.createClass({
-    type: 'RadioGroup',
-    render: function () {
-        var classes = classNames(
-            'radio-group',
-            this.props.className
-        );
-        return (
-            <FRCRadioGroup {... this.props} className={classes} />
-        );
-    }
-});
+const RadioGroup = props => (
+    <FRCRadioGroup
+        className={classNames('radio-group', props.className)}
+        {... props}
+    />
+);
+
+RadioGroup.propTypes = {
+    className: PropTypes.string
+};
 
 module.exports = inputHOC(defaultValidationHOC(RadioGroup));

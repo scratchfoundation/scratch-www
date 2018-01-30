@@ -1,79 +1,68 @@
-var classNames = require('classnames');
-var React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var Thumbnail = require('../thumbnail/thumbnail.jsx');
-var FlexRow = require('../flex-row/flex-row.jsx');
+const Thumbnail = require('../thumbnail/thumbnail.jsx');
+const FlexRow = require('../flex-row/flex-row.jsx');
 
 require('./grid.scss');
 
-var Grid = React.createClass({
-    type: 'Grid',
-    getDefaultProps: function () {
-        return {
-            items: require('./grid.json'),
-            itemType: 'projects',
-            showLoves: false,
-            showFavorites: false,
-            showRemixes: false,
-            showViews: false,
-            showAvatar: false
-        };
-    },
-    render: function () {
-        var classes = classNames(
-            'grid',
-            this.props.className
-        );
-        return (
-            <div className={classes}>
-                <FlexRow>
-                    {this.props.items.map(function (item, key) {
-                        var href = '/' + this.props.itemType + '/' + item.id + '/';
+const Grid = props => (
+    <div className={classNames('grid', props.className)}>
+        <FlexRow>
+            {props.items.map((item, key) => {
+                const href = `/${props.itemType}/${item.id}/`;
+                if (props.itemType === 'projects') {
+                    return (
+                        <Thumbnail
+                            avatar={`https://cdn2.scratch.mit.edu/get_image/user/${item.author.id}_32x32.png`}
+                            creator={item.author.username}
+                            favorites={item.stats.favorites}
+                            href={href}
+                            key={key}
+                            loves={item.stats.loves}
+                            remixes={item.stats.remixes}
+                            showAvatar={props.showAvatar}
+                            showFavorites={props.showFavorites}
+                            showLoves={props.showLoves}
+                            showRemixes={props.showRemixes}
+                            showViews={props.showViews}
+                            src={item.image}
+                            title={item.title}
+                            type={'project'}
+                            views={item.stats.views}
+                        />
+                    );
+                }
+                return (
+                    <Thumbnail
+                        href={href}
+                        key={key}
+                        owner={item.owner}
+                        src={item.image}
+                        title={item.title}
+                        type={'gallery'}
+                    />
+                );
+            })}
+        </FlexRow>
+    </div>
+);
 
-                        if (this.props.itemType == 'projects') {
-                            return (
-                                <Thumbnail
-                                    key={key}
-                                    showLoves={this.props.showLoves}
-                                    showFavorites={this.props.showFavorites}
-                                    showRemixes={this.props.showRemixes}
-                                    showViews={this.props.showViews}
-                                    showAvatar={this.props.showAvatar}
-                                    type={'project'}
-                                    href={href}
-                                    title={item.title}
-                                    src={item.image}
-                                    avatar={
-                                       'https://uploads.scratch.mit.edu/users/avatars/' +
-                                       item.author.id +
-                                       '.png'
-                                    }
-                                    creator={item.author.username}
-                                    loves={item.stats.loves}
-                                    favorites={item.stats.favorites}
-                                    remixes={item.stats.remixes}
-                                    views={item.stats.views}
-                                />
-                            );
-                        }
-                        else {
-                            return (
-                                <Thumbnail
-                                    key={key}
-                                    type={'gallery'}
-                                    href={href}
-                                    title={item.title}
-                                    src={item.image}
-                                    srcDefault={'https://uploads.scratch.mit.edu/galleries/thumbnails/default.png'}
-                                    owner={item.owner}
-                                />
-                            );
-                        }
-                    }.bind(this))}
-                </FlexRow>
-            </div>
-        );
-    }
-});
+Grid.propTypes = {
+    className: PropTypes.string,
+    itemType: PropTypes.string,
+    items: PropTypes.arrayOf(PropTypes.object)
+};
+
+Grid.defaultProps = {
+    items: require('./grid.json'),
+    itemType: 'projects',
+    showLoves: false,
+    showFavorites: false,
+    showRemixes: false,
+    showViews: false,
+    showAvatar: false
+};
 
 module.exports = Grid;

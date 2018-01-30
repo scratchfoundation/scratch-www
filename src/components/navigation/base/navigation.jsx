@@ -1,21 +1,18 @@
-var classNames = require('classnames');
-var React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const React = require('react');
 
 require('./navigation.scss');
 
-var NavigationBox = React.createClass({
-    type: 'NavigationBox',
-    render: function () {
-        var classes = classNames(
-            'inner',
-            this.props.className
-        );
-        return (
-            <div className={classes}>
-                {this.props.children}
-            </div>
-        );
-    }
-});
+const NavigationBox = props => (
+    <div className={classNames('inner', props.className)}>
+        {props.children}
+    </div>
+);
+
+NavigationBox.propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string
+};
 
 module.exports = NavigationBox;

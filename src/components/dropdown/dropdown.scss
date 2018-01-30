@@ -24,8 +24,12 @@
     }
 
     a {
-        background-color: transparent;
-        color: $type-white;
+        &:link,
+        &:visited,
+        &:active {
+            background-color: transparent;
+            color: $type-white;
+        }
     }
 
     input {
