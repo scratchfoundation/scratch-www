@@ -1,13 +1,13 @@
-const keyMirror = require('keymirror');
-const api = require('../lib/api');
+var keyMirror = require('keymirror');
+var api = require('../lib/api');
 
-const Types = keyMirror({
+var Types = keyMirror({
     SET_DETAILS: null,
     SET_DETAILS_FETCHING: null,
     SET_DETAILS_ERROR: null
 });
 
-module.exports.detailsReducer = (state, action) => {
+module.exports.detailsReducer = function (state, action) {
     if (typeof state === 'undefined') {
         state = {};
     }
@@ -23,50 +23,61 @@ module.exports.detailsReducer = (state, action) => {
     }
 };
 
-module.exports.setDetailsError = error => ({
-    type: Types.SET_DETAILS_ERROR,
-    error: error
-});
+module.exports.setDetailsError = function (error) {
+    return {
+        type: Types.SET_DETAILS_ERROR,
+        error: error
+    };
+};
 
-module.exports.setDetails = details => ({
-    type: Types.SET_DETAILS,
-    details: details
-});
+module.exports.setDetails = function (details) {
+    return {
+        type: Types.SET_DETAILS,
+        details: details
+    };
+};
 
-module.exports.setDetailsFetching = () => ({
-    type: Types.SET_DETAILS_FETCHING,
-    fetching: true
-});
+module.exports.setDetailsFetching = function () {
+    return {
+        type: Types.SET_DETAILS_FETCHING,
+        fetching: true
+    };
+};
 
-module.exports.getDetails = id => (dispatch => {
-    api({
-        uri: `/conference/${id}/details`
-    }, (err, body) => {
-        if (err) {
-            dispatch(module.exports.setDetailsError(err));
-            return;
-        }
+module.exports.startGetDetails = function (id) {
+    return function (dispatch) {
+        dispatch(module.exports.setDetailsFetching());
+        dispatch(module.exports.getDetails(id));
+    };
+};
 
-        if (typeof body !== 'undefined') {
-            const columns = body.columns;
-            if (body.rows) {
-                const details = body.rows[0];
-                const detailsObject = details.reduce((prev, cur, index) => {
-                    prev[columns[index]] = cur;
-                    return prev;
-                }, {});
-                dispatch(module.exports.setDetails(detailsObject));
-            } else {
-                dispatch(module.exports.setDetailsError('Not Found'));
+module.exports.getDetails = function (id) {
+    return function (dispatch) {
+        api({
+            uri: '/conference/' + id + '/details'
+        }, function (err, body) {
+            if (err) {
+                dispatch(module.exports.setDetailsError(err));
+                return;
             }
-            return;
-        }
-        dispatch(module.exports.setDetailsError('An unexpected error occurred'));
-        return;
-    });
-});
 
-module.exports.startGetDetails = id => (dispatch => {
-    dispatch(module.exports.setDetailsFetching());
-    dispatch(module.exports.getDetails(id));
-});
+            if (typeof body !== 'undefined') {
+                var columns = body.columns;
+                if (body.rows) {
+                    var details = body.rows[0];
+                    var detailsObject = details.reduce(function (prev, cur, index) {
+                        prev[columns[index]] = cur;
+                        return prev;
+                    }, {});
+                    dispatch(module.exports.setDetails(detailsObject));
+                } else {
+                    dispatch(module.exports.setDetailsError('Not Found'));
+                }
+                return;
+            } else {
+                dispatch(module.exports.setDetailsError('An unexpected error occurred'));
+                return;
+            }
+        });
+    };
+};

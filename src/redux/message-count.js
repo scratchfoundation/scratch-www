@@ -1,22 +1,22 @@
-const keyMirror = require('keymirror');
-const defaults = require('lodash.defaults');
+var keyMirror = require('keymirror');
+var defaults = require('lodash.defaults');
 
-const api = require('../lib/api');
+var api = require('../lib/api');
 
-const Types = keyMirror({
+var Types = keyMirror({
     SET_MESSAGE_COUNT: null,
     SET_MESSAGE_COUNT_ERROR: null,
     SET_STATUS: null
 });
 
-const getInitialState = () => ({
-    messageCount: 0
-});
+module.exports.getInitialState = function (){
+    return {messageCount: 0};
+};
 
-module.exports.messageCountReducer = (state, action) => {
+module.exports.messageCountReducer = function (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
-        state = getInitialState();
+        state = module.exports.getInitialState();
     }
     switch (action.type) {
     case Types.SET_MESSAGE_COUNT:
@@ -31,32 +31,40 @@ module.exports.messageCountReducer = (state, action) => {
     }
 };
 
-module.exports.setSessionError = error => ({
-    type: Types.SET_MESSAGE_COUNT_ERROR,
-    error: error
-});
+module.exports.setSessionError = function (error) {
+    return {
+        type: Types.SET_MESSAGE_COUNT_ERROR,
+        error: error
+    };
+};
 
-module.exports.setCount = count => ({
-    type: Types.SET_MESSAGE_COUNT,
-    count: count
-});
+module.exports.setCount = function (count) {
+    return {
+        type: Types.SET_MESSAGE_COUNT,
+        count: count
+    };
+};
 
-module.exports.setStatus = status => ({
-    type: Types.SET_STATUS,
-    status: status
-});
+module.exports.setStatus = function (status){
+    return {
+        type: Types.SET_STATUS,
+        status: status
+    };
+};
 
-module.exports.getCount = username => (dispatch => {
-    api({
-        method: 'get',
-        uri: `/users/${username}/messages/count`
-    }, (err, body) => {
-        if (err) {
-            dispatch(module.exports.setCount(0));
-            dispatch(module.exports.setSessionError(err));
-            return;
-        }
-        const count = parseInt(body.count, 10);
-        dispatch(module.exports.setCount(count));
-    });
-});
+module.exports.getCount = function (username) {
+    return function (dispatch) {
+        api({
+            method: 'get',
+            uri: '/users/' + username + '/messages/count'
+        }, function (err, body) {
+            if (err) {
+                dispatch(module.exports.setCount(0));
+                dispatch(module.exports.setSessionError(err));
+                return;
+            }
+            var count = parseInt(body.count, 10);
+            dispatch(module.exports.setCount(count));
+        });
+    };
+};

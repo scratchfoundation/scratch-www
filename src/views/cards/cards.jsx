@@ -1,33 +1,26 @@
-const bindAll = require('lodash.bindall');
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
-const FormattedMessage = require('react-intl').FormattedMessage;
-const React = require('react');
-const render = require('../../lib/render.jsx');
+var React = require('react');
+var injectIntl = require('react-intl').injectIntl;
+var FormattedMessage = require('react-intl').FormattedMessage;
+var render = require('../../lib/render.jsx');
 
-const Box = require('../../components/box/box.jsx');
-const FlexRow = require('../../components/flex-row/flex-row.jsx');
-const Page = require('../../components/page/www/page.jsx');
+var Box = require('../../components/box/box.jsx');
+var FlexRow = require('../../components/flex-row/flex-row.jsx');
+var Page = require('../../components/page/www/page.jsx');
 
 require('./cards.scss');
 
-class Cards extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll([
-            'pdfLocaleMismatch'
-        ]);
-    }
-    pdfLocaleMismatch (locale, pdf, englishPdf) {
+var Cards = injectIntl(React.createClass({
+    type: 'Cards',
+    pdfLocaleMismatch: function (locale, pdf, englishPdf) {
         if (pdf === englishPdf && locale.indexOf('en') !== 0) {
             return true;
         }
         return false;
-    }
-    render () {
-        const locale = this.props.intl.locale || 'en';
-        const formatMessage = this.props.intl.formatMessage;
-        const englishLinks = {
+    },
+    render: function () {
+        var locale = this.props.intl.locale || 'en';
+        var formatMessage = this.props.intl.formatMessage;
+        var englishLinks = {
             'cards.starterLink': 'https://resources.scratch.mit.edu/www/cards/en/Scratch2Cards.pdf',
             'cards.nameLink': 'https://resources.scratch.mit.edu/www/cards/en/nameCards.pdf',
             'cards.flyLink': 'https://resources.scratch.mit.edu/www/cards/en/flyCards.pdf',
@@ -41,7 +34,7 @@ class Cards extends React.Component {
             'cards.catchLink': 'https://resources.scratch.mit.edu/www/cards/en/catchCards.pdf',
             'cards.petLink': 'https://resources.scratch.mit.edu/www/cards/en/petCards.pdf'
         };
-        const formattedLinks = {
+        var formattedLinks = {
             'cards.starterLink': formatMessage({id: 'cards.Scratch2CardsLink'}),
             'cards.nameLink': formatMessage({id: 'cards.nameCardsLink'}),
             'cards.flyLink': formatMessage({id: 'cards.flyCardsLink'}),
@@ -55,411 +48,273 @@ class Cards extends React.Component {
             'cards.catchLink': formatMessage({id: 'cards.catchCardsLink'}),
             'cards.petLink': formatMessage({id: 'cards.petCardsLink'})
         };
-
-        /* eslint-disable indent */
         return (
             <div className="inner cards">
                 <div className="cards-intro">
                     <div className="cards-intro-content">
                         <h1 className="cards-intro-content-header">
-                            <FormattedMessage id="cards.introHeader" />
+                            <FormattedMessage id='cards.introHeader' />
                         </h1>
                         <p className="cards-intro-content-body">
-                            <FormattedMessage id="cards.introContent" />
+                            <FormattedMessage id='cards.introContent' />
                         </p>
                     </div>
-                    <img
-                        alt="Card Use Explanation"
-                        className="cards-intro-img"
-                        src="/images/cards/card-use-overview.png"
-                    />
+                    <img src='/images/cards/card-use-overview.png'
+                         alt="Card Use Explanation"
+                         className="cards-intro-img" />
                 </div>
                 <div className="cards-container">
                     <Box title={''}>
                         <FlexRow>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.starter" />
+                                    <FormattedMessage id='cards.starter' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.starterLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-starter.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.starterLink']}>
+                                    <img src="/images/cards/cards-starter.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.starterLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.starterLink'],
-                                        englishLinks['cards.starterLink']
-                                    )) ? [
-                                        <span key="english-cards">
-                                            <FormattedMessage id="cards.english" />
-                                        </span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.starterLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.starterLink'],
+                                            englishLinks['cards.starterLink']
+                                        )
+                                    ) ? [
+                                        <span> <FormattedMessage id='cards.english' /></span>
                                     ] : []}
                                 </a>
                             </div>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.name" />
+                                    <FormattedMessage id='cards.name' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.nameLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-name.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.nameLink']}>
+                                    <img src="/images/cards/cards-name.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.nameLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.nameLink'],
-                                        englishLinks['cards.nameLink']
-                                    )) ? [
-                                        <span key="name-link"> (<FormattedMessage id="cards.english" />)</span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.nameLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.nameLink'],
+                                            englishLinks['cards.nameLink']
+                                        )
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
                                 </a>
                             </div>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.fly" />
+                                    <FormattedMessage id='cards.fly' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.flyLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-fly.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.flyLink']}>
+                                    <img src="/images/cards/cards-fly.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.flyLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.flyLink'],
-                                        englishLinks['cards.flyLink']
-                                    )) ? [
-                                        <span key="fly-link"> (<FormattedMessage id="cards.english" />)</span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.flyLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.flyLink'],
+                                            englishLinks['cards.flyLink']
+                                        )
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
                                 </a>
                             </div>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.race" />
+                                    <FormattedMessage id='cards.race' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.raceLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-race.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.raceLink']}>
+                                    <img src="/images/cards/cards-race.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.raceLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.raceLink'],
-                                        englishLinks['cards.raceLink']
-                                    )) ? [
-                                        <span key="race-link"> (<FormattedMessage id="cards.english" />)</span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.raceLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.raceLink'],
+                                            englishLinks['cards.raceLink']
+                                        )
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
                                 </a>
                             </div>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.music" />
+                                    <FormattedMessage id='cards.music' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.musicLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-music.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.musicLink']}>
+                                    <img src="/images/cards/cards-music.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.musicLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.musicLink'],
-                                        englishLinks['cards.musicLink']
-                                    )) ? [
-                                        <span key="music-link"> (<FormattedMessage id="cards.english" />)</span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.musicLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.musicLink'],
+                                            englishLinks['cards.musicLink']
+                                        )
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
                                 </a>
                             </div>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.hide" />
+                                    <FormattedMessage id='cards.hide' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.hideLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-hide.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.hideLink']}>
+                                    <img src="/images/cards/cards-hide.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.hideLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.hideLink'],
-                                        englishLinks['cards.hideLink']
-                                    )) ? [
-                                        <span key="hide-link"> (<FormattedMessage id="cards.english" />)</span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.hideLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.hideLink'],
+                                            englishLinks['cards.hideLink']
+                                        )
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
                                 </a>
                             </div>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.story" />
+                                    <FormattedMessage id='cards.story' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.storyLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-story.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.storyLink']}>
+                                    <img src="/images/cards/cards-story.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.storyLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.storyLink'],
-                                        englishLinks['cards.storyLink']
-                                    )) ? [
-                                        <span key="story-link"> (<FormattedMessage id="cards.english" />)</span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.storyLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.storyLink'],
+                                            englishLinks['cards.storyLink']
+                                        )
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
                                 </a>
                             </div>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.dressup" />
+                                    <FormattedMessage id='cards.dressup' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.dressupLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-dressup.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.dressupLink']}>
+                                    <img src="/images/cards/cards-dressup.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.dressupLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.dressupLink'],
-                                        englishLinks['cards.dressupLink']
-                                    )) ? [
-                                        <span key="dress-link"> (<FormattedMessage id="cards.english" />)</span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.dressupLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.dressupLink'],
+                                            englishLinks['cards.dressupLink']
+                                        )
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
                                 </a>
                             </div>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.pong" />
+                                    <FormattedMessage id='cards.pong' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.pongLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-pong.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.pongLink']}>
+                                    <img src="/images/cards/cards-pong.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.pongLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.pongLink'],
-                                        englishLinks['cards.pongLink']
-                                    )) ? [
-                                        <span key="pong-link"> (<FormattedMessage id="cards.english" />)</span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.pongLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.pongLink'],
+                                            englishLinks['cards.pongLink']
+                                        )
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
                                 </a>
                             </div>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.dance" />
+                                    <FormattedMessage id='cards.dance' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.danceLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-dance.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.danceLink']}>
+                                    <img src="/images/cards/cards-dance.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.danceLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.danceLink'],
-                                        englishLinks['cards.danceLink']
-                                    )) ? [
-                                        <span key="dance-link"> (<FormattedMessage id="cards.english" />)</span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.danceLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.danceLink'],
+                                            englishLinks['cards.danceLink']
+                                        )
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
                                 </a>
                             </div>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.catch" />
+                                    <FormattedMessage id='cards.catch' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.catchLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-catch.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.catchLink']}>
+                                    <img src="/images/cards/cards-catch.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.catchLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.catchLink'],
-                                        englishLinks['cards.catchLink']
-                                    )) ? [
-                                        <span key="catch-link"> (<FormattedMessage id="cards.english" />)</span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.catchLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.catchLink'],
+                                            englishLinks['cards.catchLink']
+                                        )
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
                                 </a>
                             </div>
                             <div className="flex-row-card">
                                 <h4 className="flex-row-card-header">
-                                    <FormattedMessage id="cards.pet" />
+                                    <FormattedMessage id='cards.pet' />
                                 </h4>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.petLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        src="/images/cards/cards-pet.jpg"
-                                    />
+                                <a className="flex-row-card-link" href={formattedLinks['cards.petLink']}>
+                                    <img src="/images/cards/cards-pet.jpg" alt="" />
                                 </a>
-                                <a
-                                    className="flex-row-card-link"
-                                    href={formattedLinks['cards.petLink']}
-                                >
-                                    <img
-                                        alt=""
-                                        className="flex-row-card-link-icon"
-                                        src="/svgs/pdf-icon-ui-blue.svg"
-                                    />
-                                    <FormattedMessage id="cards.viewCard" />
-                                    {(this.pdfLocaleMismatch(
-                                        locale,
-                                        formattedLinks['cards.petLink'],
-                                        englishLinks['cards.petLink']
-                                    )) ? [
-                                        <span key="pet-link"> (<FormattedMessage id="cards.english" />)</span>
+                                <a className="flex-row-card-link" href={formattedLinks['cards.petLink']}>
+                                    <img src="/svgs/pdf-icon-ui-blue.svg" alt="" className="flex-row-card-link-icon" />
+                                    <FormattedMessage id='cards.viewCard' />
+                                    {(
+                                        this.pdfLocaleMismatch(
+                                            locale,
+                                            formattedLinks['cards.petLink'],
+                                            englishLinks['cards.petLink']
+                                        )
+                                    ) ? [
+                                        <span> (<FormattedMessage id='cards.english' />)</span>
                                     ] : []}
                                 </a>
                             </div>
@@ -469,12 +324,6 @@ class Cards extends React.Component {
             </div>
         );
     }
-}
+}));
 
-Cards.propTypes = {
-    intl: intlShape
-};
-
-const LocalizedCards = injectIntl(Cards);
-
-render(<Page><LocalizedCards /></Page>, document.getElementById('app'));
+render(<Page><Cards /></Page>, document.getElementById('app'));

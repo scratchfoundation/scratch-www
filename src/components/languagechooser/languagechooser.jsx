@@ -1,57 +1,46 @@
-const bindAll = require('lodash.bindall');
-const classNames = require('classnames');
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var React = require('react');
 
-const jar = require('../../lib/jar.js');
-const languages = require('../../../languages.json');
-const Form = require('../forms/form.jsx');
-const Select = require('../forms/select.jsx');
+var jar  = require('../../lib/jar.js');
+var languages = require('../../../languages.json');
+var Form = require('../forms/form.jsx');
+var Select = require('../forms/select.jsx');
 
 require('./languagechooser.scss');
 
 /**
  * Footer dropdown menu that allows one to change their language.
  */
-class LanguageChooser extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'handleSetLanguage'
-        ]);
-    }
-    handleSetLanguage (name, value) {
+var LanguageChooser = React.createClass({
+    type: 'LanguageChooser',
+    getDefaultProps: function () {
+        return {
+            languages: languages,
+            locale: 'en'
+        };
+    },
+    onSetLanguage: function (name, value) {
         jar.set('scratchlanguage', value);
         window.location.reload();
-    }
-    render () {
-        const languageOptions = Object.keys(this.props.languages).map(value => ({
-            value: value,
-            label: this.props.languages[value]
-        }));
+    },
+    render: function () {
+        var classes = classNames(
+            'language-chooser',
+            this.props.className
+        );
+        var languageOptions = Object.keys(this.props.languages).map(function (value) {
+            return {value: value, label: this.props.languages[value]};
+        }.bind(this));
         return (
-            <Form className={classNames('language-chooser', this.props.className)}>
-                <Select
-                    required
-                    name="language"
-                    options={languageOptions}
-                    value={this.props.locale}
-                    onChange={this.handleSetLanguage}
-                />
+            <Form className={classes}>
+                <Select name="language"
+                        options={languageOptions}
+                        value={this.props.locale}
+                        onChange={this.onSetLanguage}
+                        required />
             </Form>
         );
     }
-}
-
-LanguageChooser.propTypes = {
-    className: PropTypes.string,
-    languages: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    locale: PropTypes.string
-};
-
-LanguageChooser.defaultProps = {
-    languages: languages,
-    locale: 'en'
-};
+});
 
 module.exports = LanguageChooser;

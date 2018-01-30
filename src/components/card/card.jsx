@@ -1,18 +1,17 @@
-const classNames = require('classnames');
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var React = require('react');
 
 require('./card.scss');
 
-const Card = props => (
-    <div className={classNames(['card', props.className])}>
-        {props.children}
-    </div>
-);
-
-Card.propTypes = {
-    children: PropTypes.node,
-    className: PropTypes.string
-};
+var Card = React.createClass({
+    displayName: 'Card',
+    render: function () {
+        return (
+            <div className={classNames(['card', this.props.className])}>
+                {this.props.children}
+            </div>
+        );
+    }
+});
 
 module.exports = Card;

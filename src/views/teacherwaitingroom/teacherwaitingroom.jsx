@@ -1,38 +1,32 @@
-const classNames = require('classnames');
-const connect = require('react-redux').connect;
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var connect = require('react-redux').connect;
+var React = require('react');
+var render = require('../../lib/render.jsx');
 
-const Deck = require('../../components/deck/deck.jsx');
-const TeacherApprovalStep = require('../../components/registration/steps.jsx').TeacherApprovalStep;
-
-const render = require('../../lib/render.jsx');
+var Deck = require ('../../components/deck/deck.jsx');
+var TeacherApprovalStep = require('../../components/registration/steps.jsx').TeacherApprovalStep;
 
 require('./teacherwaitingroom.scss');
 
-class TeacherWaitingRoom extends React.Component {
-    componentWillReceiveProps (nextProps) {
+var TeacherWaitingRoom = React.createClass({
+    displayName: 'TeacherWaitingRoom',
+    componentWillReceiveProps: function (nextProps) {
         if (nextProps.approved) {
             window.location.href = '/educators/classes/';
         }
-    }
-    render () {
+    },
+    render: function () {
         return (
             <Deck className={classNames('teacher-waitingroom', this.props.className)}>
-                <TeacherApprovalStep {...this.props} />
+                <TeacherApprovalStep {... this.props} />
             </Deck>
         );
     }
-}
+});
 
-TeacherWaitingRoom.propTypes = {
-    approved: PropTypes.bool,
-    className: PropTypes.string
-};
-
-const mapStateToProps = state => {
-    const permissions = state.session.session.permissions || {};
-    const user = state.session.session.user || {};
+var mapStateToProps = function (state) {
+    var permissions = state.session.session.permissions || {};
+    var user = state.session.session.user || {};
     return {
         approved: permissions && permissions.educator && !permissions.educator_invitee && permissions.social,
         confirmed: permissions && permissions.social,
@@ -42,6 +36,6 @@ const mapStateToProps = state => {
     };
 };
 
-const ConnectedTeacherWaitingRoom = connect(mapStateToProps)(TeacherWaitingRoom);
+var ConnectedTeacherWaitingRoom = connect(mapStateToProps)(TeacherWaitingRoom);
 
 render(<ConnectedTeacherWaitingRoom />, document.getElementById('app'));

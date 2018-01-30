@@ -1,52 +1,30 @@
-const bindAll = require('lodash.bindall');
-const connect = require('react-redux').connect;
-const PropTypes = require('prop-types');
-const React = require('react');
+var connect = require('react-redux').connect;
+var React = require('react');
 
-const Page = require('../../components/page/www/page.jsx');
-const render = require('../../lib/render.jsx');
+var messageActions = require('../../redux/messages.js');
+var render = require('../../lib/render.jsx');
+var sessionActions = require('../../redux/session.js');
 
-const MessagesPresentation = require('./presentation.jsx');
+var Page = require('../../components/page/www/page.jsx');
+var MessagesPresentation = require('./presentation.jsx');
 
-const messageActions = require('../../redux/messages.js');
-const sessionActions = require('../../redux/session.js');
-
-class Messages extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'handleFilterClick',
-            'handleMessageDismiss',
-            'handleLoadMoreMessages'
-        ]);
-        this.state = {
+var Messages = React.createClass({
+    type: 'ConnectedMessages',
+    getInitialState: function () {
+        return {
             filter: ''
         };
-    }
-    componentDidMount () {
-        if (this.props.user.token) {
-            this.props.dispatch(
-                messageActions.getMessages(
-                    this.props.user.username,
-                    this.props.user.token,
-                    {
-                        messages: this.props.messages,
-                        offset: this.props.messageOffset,
-                        filter: this.state.filter
-                    }
-                )
-            );
-            this.props.dispatch(
-                messageActions.getAdminMessages(
-                    this.props.user.username, this.props.user.token, this.props.messageOffset
-                )
-            );
-            this.props.dispatch(
-                messageActions.getScractherInvite(this.props.user.username, this.props.user.token)
-            );
-        }
-    }
-    componentDidUpdate (prevProps) {
+    },
+    getDefaultProps: function () {
+        return {
+            sessionStatus: sessionActions.Status.NOT_FETCHED,
+            user: {},
+            flags: {},
+            messageOffset: 0,
+            numNewMessages: 0
+        };
+    },
+    componentDidUpdate: function (prevProps) {
         if (this.props.user.username !== prevProps.user.username) {
             if (this.props.user.token) {
                 this.props.dispatch(
@@ -76,8 +54,31 @@ class Messages extends React.Component {
                 this.props.dispatch(messageActions.setMessagesOffset(0));
             }
         }
-    }
-    handleFilterClick (field, choice) {
+    },
+    componentDidMount: function () {
+        if (this.props.user.token) {
+            this.props.dispatch(
+                messageActions.getMessages(
+                    this.props.user.username,
+                    this.props.user.token,
+                    {
+                        messages: this.props.messages,
+                        offset: this.props.messageOffset,
+                        filter: this.state.filter
+                    }
+                )
+            );
+            this.props.dispatch(
+                messageActions.getAdminMessages(
+                    this.props.user.username, this.props.user.token, this.props.messageOffset
+                )
+            );
+            this.props.dispatch(
+                messageActions.getScractherInvite(this.props.user.username, this.props.user.token)
+            );
+        }
+    },
+    handleFilterClick: function (field, choice) {
         if (this.props.user.token) {
             this.props.dispatch(
                 messageActions.getMessages(
@@ -91,9 +92,9 @@ class Messages extends React.Component {
             );
         }
         this.setState({filter: choice});
-    }
-    handleMessageDismiss (messageType, messageId) {
-        let adminMessages = null;
+    },
+    handleMessageDismiss: function (messageType, messageId) {
+        var adminMessages = null;
         if (messageType === 'notification') {
             adminMessages = this.props.adminMessages;
         }
@@ -102,8 +103,8 @@ class Messages extends React.Component {
                 messageType, messageId, this.props.numNewMessages, adminMessages
             )
         );
-    }
-    handleLoadMoreMessages () {
+    },
+    handleLoadMoreMessages: function () {
         this.props.dispatch(
             messageActions.getMessages(
                 this.props.user.username,
@@ -116,79 +117,47 @@ class Messages extends React.Component {
                 }
             )
         );
-    }
-    render () {
-        let loadMore = true;
+    },
+    render: function () {
+        var loadMore = true;
         if (this.props.messageOffset > this.props.messages.length && this.props.messageOffset > 0) {
             loadMore = false;
         }
 
-        return (
+        return(
             <MessagesPresentation
-                adminMessages={this.props.adminMessages}
-                filter={this.props.filter}
-                loadMore={loadMore}
-                messages={this.props.messages}
-                numNewMessages={this.props.numNewMessages}
-                requestStatus={this.props.requestStatus}
-                scratcherInvite={this.props.invite}
                 sessionStatus={this.props.sessionStatus}
                 user={this.props.user}
-                onAdminDismiss={this.handleMessageDismiss}
-                onFilterClick={this.handleFilterClick}
-                onLoadMoreMethod={this.handleLoadMoreMessages}
+                messages={this.props.messages}
+                adminMessages={this.props.adminMessages}
+                scratcherInvite={this.props.invite}
+                numNewMessages={this.props.numNewMessages}
+                handleFilterClick={this.handleFilterClick}
+                handleAdminDismiss={this.handleMessageDismiss}
+                loadMore={loadMore}
+                loadMoreMethod={this.handleLoadMoreMessages}
+                requestStatus={this.props.requestStatus}
+                filter={this.props.filter}
             />
         );
     }
-}
-
-Messages.propTypes = {
-    adminMessages: PropTypes.arrayOf(PropTypes.object),
-    dispatch: PropTypes.func.isRequired,
-    filter: PropTypes.string,
-    invite: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    messageOffset: PropTypes.number.isRequired,
-    messages: PropTypes.arrayOf(PropTypes.object),
-    numNewMessages: PropTypes.number.isRequired,
-    requestStatus: PropTypes.shape({
-        admin: PropTypes.string,
-        clear: PropTypes.string,
-        message: PropTypes.string,
-        delete: PropTypes.string
-    }).isRequired,
-    sessionStatus: PropTypes.string.isRequired,
-    user: PropTypes.shape({
-        id: PropTypes.number,
-        banned: PropTypes.bool,
-        username: PropTypes.string,
-        token: PropTypes.string,
-        thumbnailUrl: PropTypes.string,
-        dateJoined: PropTypes.string,
-        email: PropTypes.string,
-        classroomId: PropTypes.string
-    }).isRequired
-};
-
-Messages.defaultProps = {
-    messageOffset: 0,
-    numNewMessages: 0,
-    sessionStatus: sessionActions.Status.NOT_FETCHED,
-    user: {}
-};
-
-const mapStateToProps = state => ({
-    sessionStatus: state.session.status,
-    user: state.session.session.user,
-    numNewMessages: state.messageCount.messageCount,
-    messages: state.messages.messages.social,
-    adminMessages: state.messages.messages.admin,
-    invite: state.messages.messages.invite,
-    messageOffset: state.messages.messages.socialOffset,
-    requestStatus: state.messages.status
 });
 
-const ConnectedMessages = connect(mapStateToProps)(Messages);
+var mapStateToProps = function (state) {
+    return {
+        sessionStatus: state.session.status,
+        user: state.session.session.user,
+        flags: state.session.session.flags,
+        numNewMessages: state.messageCount.messageCount,
+        messages: state.messages.messages.social,
+        adminMessages: state.messages.messages.admin,
+        invite: state.messages.messages.invite,
+        messageOffset: state.messages.messages.socialOffset,
+        requestStatus: state.messages.status
+    };
+};
 
+var ConnectedMessages = connect(mapStateToProps)(Messages);
 render(
     <Page><ConnectedMessages /></Page>,
     document.getElementById('app'),

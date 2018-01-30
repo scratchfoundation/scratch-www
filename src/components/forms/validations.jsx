@@ -1,46 +1,48 @@
-const defaults = require('lodash.defaultsdeep');
-const intl = require('../../lib/intl.jsx');
-const libphonenumber = require('google-libphonenumber');
-const omit = require('lodash.omit');
-const phoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
-const PropTypes = require('prop-types');
-const React = require('react');
+var defaults = require('lodash.defaultsdeep');
+var intl = require('../../lib/intl.jsx');
+var libphonenumber = require('google-libphonenumber');
+var phoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
+var React = require('react');
+
+module.exports = {};
 
 module.exports.validations = {
-    notEquals: (values, value, neq) => (value !== neq),
-    notEqualsField: (values, value, field) => (value !== values[field]),
-    isPhone: (values, value) => {
+    notEquals: function (values, value, neq) {
+        return value !== neq;
+    },
+    notEqualsField: function (values, value, field) {
+        return value !== values[field];
+    },
+    isPhone: function (values, value) {
         if (typeof value === 'undefined') return true;
         if (value && value.national_number === '+') return true;
         try {
-            const parsed = phoneNumberUtil.parse(value.national_number, value.country_code.iso2);
-            return phoneNumberUtil.isValidNumber(parsed);
+            var parsed = phoneNumberUtil.parse(value.national_number, value.country_code.iso2);
         } catch (err) {
             return false;
         }
+        return phoneNumberUtil.isValidNumber(parsed);
     }
 };
-
 module.exports.validations.notEqualsUsername = module.exports.validations.notEquals;
 
-module.exports.validationHOCFactory = defaultValidationErrors => (Component => {
-    const ValidatedComponent = props => (
-        <Component
-            validationErrors={defaults(
-                {},
-                defaultValidationErrors,
-                props.validationErrors
-            )}
-            {...omit(props, ['validationErrors'])}
-        />
-    );
-
-    ValidatedComponent.propTypes = {
-        validationErrors: PropTypes.object // eslint-disable-line react/forbid-prop-types
+module.exports.validationHOCFactory = function (defaultValidationErrors) {
+    return function (Component) {
+        var ValidatedComponent = React.createClass({
+            render: function () {
+                var validationErrors = defaults(
+                    {},
+                    defaultValidationErrors,
+                    this.props.validationErrors
+                );
+                return (
+                    <Component {...this.props} validationErrors={validationErrors} />
+                );
+            }
+        });
+        return ValidatedComponent;
     };
-
-    return ValidatedComponent;
-});
+};
 
 module.exports.defaultValidationHOC = module.exports.validationHOCFactory({
     isDefaultRequiredValue: <intl.FormattedMessage id="form.validationRequired" />

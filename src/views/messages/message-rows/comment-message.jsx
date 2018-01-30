@@ -1,170 +1,158 @@
-const bindAll = require('lodash.bindall');
-const classNames = require('classnames');
-const connect = require('react-redux').connect;
-const FormattedMessage = require('react-intl').FormattedMessage;
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var connect = require('react-redux').connect;
+var FormattedMessage = require('react-intl').FormattedMessage;
+var injectIntl = require('react-intl').injectIntl;
+var React = require('react');
 
-const Comment = require('../../../components/comment/comment.jsx');
-const FlexRow = require('../../../components/flex-row/flex-row.jsx');
-const SocialMessage = require('../../../components/social-message/social-message.jsx');
+var Comment = require('../../../components/comment/comment.jsx');
+var FlexRow = require('../../../components/flex-row/flex-row.jsx');
+var SocialMessage = require('../../../components/social-message/social-message.jsx');
 
-class CommentMessage extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'getObjectLink',
-            'getMessageText'
-        ]);
-    }
-    getObjectLink (objectType, commentId, objectId) {
+var CommentMessage = injectIntl(React.createClass({
+    type: 'CommentMessage',
+    propTypes: {
+        actorUsername: React.PropTypes.string.isRequired,
+        actorId: React.PropTypes.number.isRequired,
+        objectType: React.PropTypes.oneOf([0, 1, 2]).isRequired,
+        objectId: React.PropTypes.number.isRequired,
+        commentId: React.PropTypes.number.isRequired,
+        commentText: React.PropTypes.string.isRequired,
+        commentDateTime: React.PropTypes.string.isRequired,
+        objectTitle: React.PropTypes.string,
+        commentee: React.PropTypes.string
+    },
+    getObjectLink: function (objectType, commentId, objectId) {
         switch (objectType) {
         case 0:
-            return `/projects/${objectId}/#comments-${commentId}`;
+            return '/projects/' + objectId + '/#comments-' + commentId;
         case 1:
-            return `/users/${objectId}/#comments-${commentId}`;
+            return '/users/' + objectId + '/#comments-' + commentId;
         case 2:
-            return `/studios/${objectId}/comments/#comments-${commentId}`;
+            return '/studios/' + objectId + '/comments/#comments-' + commentId;
         }
-    }
-    getMessageText (objectType, commentee) {
-        const actorLink = `/users/${this.props.actorUsername}/`;
+    },
+    getMessageText: function (objectType, commentee) {
+        var actorLink = '/users/' + this.props.actorUsername + '/';
         if (objectType === 2) {
             // studio comment notifications only occur for direct replies
             if (typeof commentee !== 'undefined' && commentee === this.props.user.username) {
-                const commentLink = `/studios/${this.props.objectId}/comments/#comments-${this.props.commentId}`;
-                return (
-                    <FormattedMessage
-                        id="messages.studioCommentReply"
-                        values={{
-                            profileLink: (
-                                <a
-                                    className="social-messages-profile-link"
-                                    href={actorLink}
-                                >
-                                    {this.props.actorUsername}
-                                </a>
-                            ),
-                            commentLink: <a href={commentLink}>{this.props.objectTitle}</a>
-                        }}
-                    />
-                );
+                var commentLink = '/studios/' + this.props.objectId + '/comments/#comments-' + this.props.commentId;
+                return <FormattedMessage
+                    id='messages.studioCommentReply'
+                    values={{
+                        profileLink: <a
+                            href={actorLink}
+                            className="social-messages-profile-link"
+                        >
+                            {this.props.actorUsername}
+                        </a>,
+                        commentLink: <a href={commentLink}>{this.props.objectTitle}</a>
+                    }}
+                />;
             }
         } else if (objectType === 1) {
-            const profileLink = `/users/${this.props.objectTitle}/#comments-${this.props.commentId}`;
-            let linkText = '';
+            var profileLink = '/users/' + this.props.objectTitle + '/#comments-' + this.props.commentId;
+            var linkText = '';
             if (typeof commentee !== 'undefined' && commentee === this.props.user.username) {
                 // is a profile comment, and is a reply
                 if (this.props.objectTitle === this.props.user.username) {
-                    linkText = (<FormattedMessage id="messages.profileSelf" />);
+                    linkText = <FormattedMessage
+                        id='messages.profileSelf'
+                    />;
                 } else {
-                    linkText = (
-                        <FormattedMessage
-                            id="messages.profileOther"
-                            values={{
-                                username: this.props.objectTitle
-                            }}
-                        />
-                    );
-                }
-                return (
-                    <FormattedMessage
-                        id="messages.commentReply"
+                    linkText = <FormattedMessage
+                        id='messages.profileOther'
                         values={{
-                            profileLink: (
-                                <a
-                                    className="social-messages-profile-link"
-                                    href={actorLink}
-                                >
-                                    {this.props.actorUsername}
-                                </a>
-                            ),
-                            commentLink: <a href={profileLink}>{linkText}</a>
+                            username: this.props.objectTitle
                         }}
-                    />
-                );
-            }
-            // is a profile comment and not a reply, must be own profile
-            linkText = this.props.intl.formatMessage({
-                id: 'messages.profileSelf'
-            });
-            return (
-                <FormattedMessage
-                    id="messages.profileComment"
+                    />;
+                }
+                return <FormattedMessage
+                    id='messages.commentReply'
                     values={{
-                        profileLink: (
-                            <a
-                                className="social-messages-profile-link"
-                                href={actorLink}
-                            >
-                                {this.props.actorUsername}
-                            </a>
-                        ),
+                        profileLink: <a
+                            href={actorLink}
+                            className="social-messages-profile-link"
+                        >
+                            {this.props.actorUsername}
+                        </a>,
                         commentLink: <a href={profileLink}>{linkText}</a>
                     }}
-                />
-            );
+                />;
+            } else {
+                // is a profile comment and not a reply, must be own profile
+                linkText = this.props.intl.formatMessage({
+                    id: 'messages.profileSelf'
+                });
+                return <FormattedMessage
+                    id='messages.profileComment'
+                    values={{
+                        profileLink: <a
+                            href={actorLink}
+                            className="social-messages-profile-link"
+                        >
+                            {this.props.actorUsername}
+                        </a>,
+                        commentLink: <a href={profileLink}>{linkText}</a>
+                    }}
+                />;
+            }
         } else {
-            const projectLink = `/projects/${this.props.objectId}/#comments-${this.props.commentId}`;
+            var projectLink = '/projects/' + this.props.objectId + '/#comments-' + this.props.commentId;
             // must be a project comment, since it's not the other two, and the strict prop type reqs
             if (typeof commentee !== 'undefined' && commentee === this.props.user.username) {
-                return (
-                    <FormattedMessage
-                        id="messages.commentReply"
-                        values={{
-                            profileLink: (
-                                <a
-                                    className="social-messages-profile-link"
-                                    href={actorLink}
-                                >
-                                    {this.props.actorUsername}
-                                </a>
-                            ),
-                            commentLink: <a href={projectLink}>{this.props.objectTitle}</a>
-                        }}
-                    />
-                );
-            }
-            return (
-                <FormattedMessage
-                    id="messages.projectComment"
+                return <FormattedMessage
+                    id='messages.commentReply'
                     values={{
-                        profileLink: (
-                            <a
-                                className="social-messages-profile-link"
-                                href={actorLink}
-                            >
-                                {this.props.actorUsername}
-                            </a>
-                        ),
+                        profileLink: <a
+                            href={actorLink}
+                            className="social-messages-profile-link"
+                        >
+                            {this.props.actorUsername}
+                        </a>,
                         commentLink: <a href={projectLink}>{this.props.objectTitle}</a>
                     }}
-                />
-            );
+                />;
+            } else {
+                return <FormattedMessage
+                    id='messages.projectComment'
+                    values={{
+                        profileLink: <a
+                            href={actorLink}
+                            className="social-messages-profile-link"
+                        >
+                            {this.props.actorUsername}
+                        </a>,
+                        commentLink: <a href={projectLink}>{this.props.objectTitle}</a>
+                    }}
+                />;
+            }
         }
-    }
-    render () {
+    },
+    render: function () {
+        var messageText = this.getMessageText(this.props.objectType, this.props.commentee);
+        var commentorAvatar = 'https://cdn2.scratch.mit.edu/get_image/user/' + this.props.actorId + '_32x32.png';
+        var commentorAvatarAlt = this.props.actorUsername + '\'s avatar';
+        var url = '/users/' + this.props.actorUsername;
+
+        var classes = classNames(
+            'mod-comment-message',
+            this.props.className
+        );
         return (
             <SocialMessage
-                className={classNames(
-                    'mod-comment-message',
-                    this.props.className
-                )}
+                className={classes}
                 datetime={this.props.commentDateTime}
-                iconAlt="comment notification image"
                 iconSrc="/svgs/messages/comment.svg"
+                iconAlt="comment notification image"
             >
-                <p className="comment-message-info">
-                    {this.getMessageText(this.props.objectType, this.props.commentee)}
-                </p>
+                <p className="comment-message-info">{messageText}</p>
                 <FlexRow className="mod-comment-message">
-                    <a href={`/users/${this.props.actorUsername}`}>
+                    <a href={url}>
                         <img
-                            alt={`${this.props.actorUsername}'s avatar`}
                             className="comment-message-info-img"
-                            src={`https://cdn2.scratch.mit.edu/get_image/user/${this.props.actorId}_32x32.png`}
+                            src={commentorAvatar}
+                            alt={commentorAvatarAlt}
                         />
                     </a>
                     <Comment
@@ -174,38 +162,13 @@ class CommentMessage extends React.Component {
             </SocialMessage>
         );
     }
-}
+}));
 
-CommentMessage.propTypes = {
-    actorId: PropTypes.number.isRequired,
-    actorUsername: PropTypes.string.isRequired,
-    className: PropTypes.string,
-    commentDateTime: PropTypes.string.isRequired,
-    commentId: PropTypes.number.isRequired,
-    commentText: PropTypes.string.isRequired,
-    commentee: PropTypes.string,
-    intl: intlShape.isRequired,
-    objectId: PropTypes.number.isRequired,
-    objectTitle: PropTypes.string,
-    objectType: PropTypes.oneOf([0, 1, 2]).isRequired,
-    user: PropTypes.shape({
-        id: PropTypes.number,
-        banned: PropTypes.bool,
-        username: PropTypes.string,
-        token: PropTypes.string,
-        thumbnailUrl: PropTypes.string,
-        dateJoined: PropTypes.string,
-        email: PropTypes.string,
-        classroomId: PropTypes.string
-    }).isRequired
+var mapStateToProps = function (state) {
+    return {
+        user: state.session.session.user
+    };
 };
 
-const WrappedCommentMessage = injectIntl(CommentMessage);
-
-const mapStateToProps = state => ({
-    user: state.session.session.user
-});
-
-const ConnectedCommentMessage = connect(mapStateToProps)(WrappedCommentMessage);
-
+var ConnectedCommentMessage = connect(mapStateToProps)(CommentMessage);
 module.exports = ConnectedCommentMessage;

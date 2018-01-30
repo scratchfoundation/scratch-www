@@ -1,55 +1,62 @@
-const classNames = require('classnames');
-const FormattedMessage = require('react-intl').FormattedMessage;
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var FormattedMessage = require('react-intl').FormattedMessage;
+var React = require('react');
 
-const SocialMessage = require('../../../components/social-message/social-message.jsx');
+var SocialMessage = require('../../../components/social-message/social-message.jsx');
 
-const FollowMessage = props => {
-    let followeeLink = '';
-    let followeeTitle = '';
-    if (typeof props.followeeTitle === 'undefined') {
-        followeeLink = `/users/${props.followeeId}`;
-        followeeTitle = props.followeeId;
-    } else {
-        followeeLink = `/studios/${props.followeeId}`;
-        followeeTitle = props.followeeTitle;
-    }
+var FollowMessage = React.createClass({
+    type: 'FollowMessage',
+    propTypes: {
+        followerUsername: React.PropTypes.string.isRequired,
+        followeeId: React.PropTypes.string.isRequired,
+        followeeTitle: React.PropTypes.string,
+        followDateTime: React.PropTypes.string.isRequired
+    },
+    render: function () {
+        var profileLink = '/users/' + this.props.followerUsername; + '/';
         
-    return (
-        <SocialMessage
-            as="div"
-            className={classNames(
-                'mod-follow-user',
-                props.className
-            )}
-            datetime={props.followDateTime}
-        >
-            <FormattedMessage
-                id="messages.followText"
-                values={{
-                    profileLink: (
-                        <a href={`/users/${props.followerUsername}/`}>
-                            {props.followerUsername}
-                        </a>
-                    ),
-                    followeeLink: (
-                        <a href={followeeLink}>
-                            {followeeTitle}
-                        </a>
-                    )
-                }}
-            />
-        </SocialMessage>
-    );
-};
-
-FollowMessage.propTypes = {
-    className: PropTypes.string,
-    followDateTime: PropTypes.string.isRequired,
-    followeeId: PropTypes.string.isRequired,
-    followeeTitle: PropTypes.string,
-    followerUsername: PropTypes.string.isRequired
-};
+        var followeeLink = '';
+        var followeeTitle = '';
+        if (typeof this.props.followeeTitle !== 'undefined') {
+            followeeLink = '/studios/' + this.props.followeeId;
+            followeeTitle = this.props.followeeTitle;
+        } else {
+            followeeLink = '/users/' + this.props.followeeId;
+            followeeTitle = this.props.followeeId;
+        }
+        
+        var classes = classNames(
+            'mod-follow-user',
+            this.props.className
+        );
+        return (
+            <SocialMessage
+                as="div"
+                className={classes}
+                datetime={this.props.followDateTime}
+            >
+                <FormattedMessage
+                    id='messages.followText'
+                    values={{
+                        profileLink: (
+                            <a
+                                href={profileLink}
+                            >
+                                {this.props.followerUsername}
+                            </a>
+                        ),
+                        followeeLink: (
+                            <a
+                                href={followeeLink}
+                            >
+                                {followeeTitle}
+                            </a>
+                        )
+                    }}
+                />
+            </SocialMessage>
+        );
+    }
+});
 
 module.exports = FollowMessage;

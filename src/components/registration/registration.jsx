@@ -1,62 +1,53 @@
-const bindAll = require('lodash.bindall');
-const PropTypes = require('prop-types');
-const React = require('react');
-
-const IframeModal = require('../modal/iframe/modal.jsx');
+var React = require('react');
+var IframeModal = require('../modal/iframe/modal.jsx');
 
 require('./registration.scss');
 
-class Registration extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'handleMessage',
-            'toggleMessageListener'
-        ]);
-    }
-    componentDidMount () {
-        if (this.props.isOpen) this.toggleMessageListener(true);
-    }
-    componentDidUpdate (prevProps) {
-        this.toggleMessageListener(this.props.isOpen && !prevProps.isOpen);
-    }
-    componentWillUnmount () {
-        this.toggleMessageListener(false);
-    }
-    handleMessage (e) {
-        if (e.origin !== window.location.origin) return;
-        if (e.source !== this.registrationIframe.contentWindow) return;
-        if (e.data === 'registration-done') this.props.onRegistrationDone();
-        if (e.data === 'registration-relaunch') {
+var Registration = React.createClass({
+    propTypes: {
+        isOpen: React.PropTypes.bool,
+        onRegistrationDone: React.PropTypes.func,
+        onRequestClose: React.PropTypes.func
+    },
+    onMessage: function (e) {
+        if (e.origin != window.location.origin) return;
+        if (e.source != this.registrationIframe.contentWindow) return;
+        if (e.data == 'registration-done') this.props.onRegistrationDone();
+        if (e.data == 'registration-relaunch') {
             this.registrationIframe.contentWindow.location.reload();
         }
-    }
-    toggleMessageListener (present) {
+    },
+    toggleMessageListener: function (present) {
         if (present) {
-            window.addEventListener('message', this.handleMessage);
+            window.addEventListener('message', this.onMessage);
         } else {
-            window.removeEventListener('message', this.handleMessage);
+            window.removeEventListener('message', this.onMessage);
         }
-    }
-    render () {
+    },
+    componentDidMount: function () {
+        if (this.props.isOpen) this.toggleMessageListener(true);
+    },
+    componentDidUpdate: function (prevProps) {
+        this.toggleMessageListener(this.props.isOpen && !prevProps.isOpen);
+    },
+    componentWillUnmount: function () {
+        this.toggleMessageListener(false);
+    },
+    render: function () {
         return (
             <IframeModal
-                className="mod-registration"
-                componentRef={iframe => { // eslint-disable-line react/jsx-no-bind
-                    this.registrationIframe = iframe;
-                }}
                 isOpen={this.props.isOpen}
-                src="/accounts/standalone-registration/"
                 onRequestClose={this.props.onRequestClose}
+                className="mod-registration"
+                componentRef={
+                    function (iframe) {
+                        this.registrationIframe = iframe;
+                    }.bind(this)
+                }
+                src="/accounts/standalone-registration/"
             />
         );
     }
-}
-
-Registration.propTypes = {
-    isOpen: PropTypes.bool,
-    onRegistrationDone: PropTypes.func,
-    onRequestClose: PropTypes.func
-};
+});
 
 module.exports = Registration;

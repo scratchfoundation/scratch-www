@@ -10,12 +10,11 @@ var tap = require('tap');
 var utils = require('./teacher_registration_utils.js');
 var constants = utils.constants;
 
-// Set test url through environment variable
+//Set test url through environment variable
 var rootUrl = process.env.ROOT_URL || 'http://localhost:8333';
 
-// chrome driver
-var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome())
-    .build();
+//chrome driver
+var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome()).build();
 
 tap.plan(2);
 
@@ -26,16 +25,16 @@ tap.tearDown(function () {
 tap.beforeEach(function () {
     driver.get(rootUrl + '/educators/register');
     return utils.fillUsernameSlide(driver, seleniumWebdriver)
-        .then(utils.fillDemographicsSlide.bind(this, driver, seleniumWebdriver)) // eslint-disable-line no-invalid-this
-        .then(utils.fillNameSlide.bind(this, driver, seleniumWebdriver)) // eslint-disable-line no-invalid-this
-        .then(utils.fillPhoneSlide.bind(this, driver, seleniumWebdriver)) // eslint-disable-line no-invalid-this
-        .then(utils.fillOrganizationSlide.bind(this, driver, seleniumWebdriver)); // eslint-disable-line no-invalid-this
+        .then(utils.fillDemographicsSlide.bind(this, driver, seleniumWebdriver))
+        .then(utils.fillNameSlide.bind(this, driver, seleniumWebdriver))
+        .then(utils.fillPhoneSlide.bind(this, driver, seleniumWebdriver))
+        .then(utils.fillOrganizationSlide.bind(this, driver, seleniumWebdriver));
 });
 
-// Selects Vatican City as the country, and checks that the state dropdown disappears
+//Selects Vatican City as the country, and checks that the state dropdown disappears
 tap.test('checkStateDropdownOnlyPresentWhenNeeded', function (t) {
     driver.findElement(seleniumWebdriver.By.xpath('//select[@name="address.country"]' +
-        '/option[@value="va"]')).click() // select Vatican City as the country
+        '/option[@value="va"]')).click() //select Vatican City as the country
         .then(function () {
             driver.findElements(seleniumWebdriver.By.name('address.state'))
                 .then(function (stateDropdown) {
@@ -47,9 +46,9 @@ tap.test('checkStateDropdownOnlyPresentWhenNeeded', function (t) {
 
 tap.test('checkZipCodeRequired', function (t) {
     var nextStepButton = driver.findElement(seleniumWebdriver.By.xpath(constants.nextStepXpath));
-    var errorMessageXPath = '//input[@name="address.zip"]/following-sibling::' +
-        'span[@class="help-block validation-message"]/span[contains(text(),' +
-        '"This field is required")]';
+    var errorMessageXPath = '//input[@name="address.zip"]/following-sibling::'
+        + 'span[@class="help-block validation-message"]/span[contains(text(),'
+        + '"This field is required")]';
     nextStepButton.click().then(function () {
         driver.findElements(seleniumWebdriver.By.xpath(errorMessageXPath))
             .then(function (validationMessages) {
@@ -58,3 +57,4 @@ tap.test('checkZipCodeRequired', function (t) {
             });
     });
 });
+
