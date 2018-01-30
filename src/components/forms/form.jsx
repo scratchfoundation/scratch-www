@@ -1,47 +1,61 @@
-var classNames = require('classnames');
-var Formsy = require('formsy-react');
-var omit = require('lodash.omit');
-var React = require('react');
-var validations = require('./validations.jsx').validations;
+const bindAll = require('lodash.bindall');
+const classNames = require('classnames');
+const Formsy = require('formsy-react');
+const omit = require('lodash.omit');
+const PropTypes = require('prop-types');
+const React = require('react');
 
-for (var validation in validations) {
+const validations = require('./validations.jsx').validations;
+
+for (const validation in validations) {
     Formsy.addValidationRule(validation, validations[validation]);
 }
 
-var Form = React.createClass({
-    getDefaultProps: function () {
-        return {
-            noValidate: true,
-            onChange: function () {}
-        };
-    },
-    getInitialState: function () {
-        return {
+class Form extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'handleChange'
+        ]);
+        this.state = {
             allValues: {}
         };
-    },
-    onChange: function (currentValues, isChanged) {
+    }
+    handleChange (currentValues, isChanged) {
         this.setState({allValues: omit(currentValues, 'all')});
         this.props.onChange(currentValues, isChanged);
-    },
-    render: function () {
-        var classes = classNames(
-            'form',
-            this.props.className
-        );
+    }
+    render () {
         return (
-            <Formsy.Form {... this.props} className={classes} ref="formsy" onChange={this.onChange}>
-                {React.Children.map(this.props.children, function (child) {
+            <Formsy.Form
+                className={classNames('form', this.props.className)}
+                ref={form => {
+                    this.formsy = form;
+                }}
+                onChange={this.handleChange}
+                {...this.props}
+            >
+                {React.Children.map(this.props.children, child => {
                     if (!child) return child;
                     if (child.props.name === 'all') {
                         return React.cloneElement(child, {value: this.state.allValues});
-                    } else {
-                        return child;
                     }
-                }.bind(this))}
+                    return child;
+                })}
             </Formsy.Form>
         );
     }
-});
+}
+
+Form.propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    onChange: PropTypes.func
+};
+
+Form.defaultProps = {
+    noValidate: true,
+    onChange: function () {}
+};
 
 module.exports = Form;
