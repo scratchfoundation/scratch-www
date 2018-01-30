@@ -55,7 +55,7 @@ test:
 	@make tap
 
 lint:
-	$(ESLINT) . --ext .js,.jsx
+	$(ESLINT) . --ext .js,.jsx,.json
 	$(SASSLINT) ./src/*.scss
 	$(SASSLINT) ./src/**/*.scss
 
