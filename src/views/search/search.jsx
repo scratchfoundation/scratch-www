@@ -79,7 +79,7 @@ class Search extends React.Component {
         }, (err, body) => {
             const loadedSoFar = this.state.loaded;
             Array.prototype.push.apply(loadedSoFar, body);
-            const currentOffset = this.state.offset + this.props.loadNumber;
+            const currentOffset = this.state.offset + this.state.loadNumber;
 
             this.setState({
                 loaded: loadedSoFar,
@@ -159,7 +159,6 @@ class Search extends React.Component {
 Search.propTypes = {
     dispatch: PropTypes.func,
     intl: intlShape,
-    loadNumber: PropTypes.number,
     searchTerm: PropTypes.string,
     tab: PropTypes.string
 };
