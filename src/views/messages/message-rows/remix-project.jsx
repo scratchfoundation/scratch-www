@@ -1,54 +1,51 @@
-const classNames = require('classnames');
-const FormattedMessage = require('react-intl').FormattedMessage;
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var FormattedMessage = require('react-intl').FormattedMessage;
+var React = require('react');
 
-const SocialMessage = require('../../../components/social-message/social-message.jsx');
+var SocialMessage = require('../../../components/social-message/social-message.jsx');
 
-const RemixProjectMessage = props => (
-    <SocialMessage
-        className={classNames(
+var RemixProjectMessage = React.createClass({
+    type: 'RemixProjectMessage',
+    propTypes: {
+        actorUsername: React.PropTypes.string.isRequired,
+        projectId: React.PropTypes.number.isRequired,
+        projectTitle: React.PropTypes.string.isRequired,
+        parentId: React.PropTypes.number.isRequired,
+        parentTitle: React.PropTypes.string.isRequired,
+        remixDate: React.PropTypes.string.isRequired
+    },
+    render: function () {
+        var projectLink = '/projects/' + this.props.projectId;
+        var profileLink = '/users/' + this.props.actorUsername;
+        var remixedProjectLink = '/projects/' + this.props.parentId;
+        
+        var classes = classNames(
             'mod-remix-project',
-            props.className
-        )}
-        datetime={props.remixDate}
-        iconAlt="remix notification image"
-        iconSrc="/svgs/messages/remix.svg"
-    >
-        <FormattedMessage
-            id="messages.remixText"
-            values={{
-                profileLink: (
-                    <a
-                        className="social-messages-profile-link"
-                        href={`/users/${props.actorUsername}`}
-                    >
-                        {props.actorUsername}
-                    </a>
-                ),
-                projectLink: (
-                    <a href={`/projects/${props.projectId}`}>
-                        {props.projectTitle}
-                    </a>
-                ),
-                remixedProjectLink: (
-                    <a href={`/projects/${props.parentId}`}>
-                        {props.parentTitle}
-                    </a>
-                )
-            }}
-        />
-    </SocialMessage>
-);
-
-RemixProjectMessage.propTypes = {
-    actorUsername: PropTypes.string.isRequired,
-    className: PropTypes.string,
-    parentId: PropTypes.number.isRequired,
-    parentTitle: PropTypes.string.isRequired,
-    projectId: PropTypes.number.isRequired,
-    projectTitle: PropTypes.string.isRequired,
-    remixDate: PropTypes.string.isRequired
-};
+            this.props.className
+        );
+        return (
+            <SocialMessage
+                className={classes}
+                datetime={this.props.remixDate}
+                iconSrc="/svgs/messages/remix.svg"
+                iconAlt="remix notification image"
+            >
+                <FormattedMessage
+                    id='messages.remixText'
+                    values={{
+                        profileLink: <a
+                            href={profileLink}
+                            className="social-messages-profile-link"
+                        >
+                            {this.props.actorUsername}
+                        </a>,
+                        projectLink: <a href={projectLink}>{this.props.projectTitle}</a>,
+                        remixedProjectLink: <a href={remixedProjectLink}>{this.props.parentTitle}</a>
+                    }}
+                />
+            </SocialMessage>
+        );
+    }
+});
 
 module.exports = RemixProjectMessage;

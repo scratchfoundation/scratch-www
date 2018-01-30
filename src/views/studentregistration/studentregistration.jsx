@@ -1,43 +1,45 @@
-const bindAll = require('lodash.bindall');
-const defaults = require('lodash.defaultsdeep');
-const PropTypes = require('prop-types');
-const React = require('react');
+var defaults = require('lodash.defaultsdeep');
+var React = require('react');
+var render = require('../../lib/render.jsx');
 
-const api = require('../../lib/api');
-const injectIntl = require('../../lib/intl.jsx').injectIntl;
-const intlShape = require('../../lib/intl.jsx').intlShape;
+var api = require('../../lib/api');
+var intl = require('../../lib/intl.jsx');
 
-const Deck = require('../../components/deck/deck.jsx');
-const Progression = require('../../components/progression/progression.jsx');
-const Steps = require('../../components/registration/steps.jsx');
-
-const render = require('../../lib/render.jsx');
+var Deck = require('../../components/deck/deck.jsx');
+var Progression = require('../../components/progression/progression.jsx');
+var Steps = require('../../components/registration/steps.jsx');
 
 require('./studentregistration.scss');
 
-class StudentRegistration extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'handleRegister',
-            'handleAdvanceStep',
-            'handleGoToClass'
-        ]);
-        this.state = {
+var StudentRegistration = intl.injectIntl(React.createClass({
+    type: 'StudentRegistration',
+    getDefaultProps: function () {
+        return {
+            classroomId: null,
+            classroomToken: null
+        };
+    },
+    getInitialState: function () {
+        return {
             formData: {},
             registrationError: null,
             step: 0,
             waiting: false
         };
-    }
-    componentDidMount () {
-        this.setState({waiting: true}); // eslint-disable-line react/no-did-mount-set-state
+    },
+    advanceStep: function (formData) {
+        formData = formData || {};
+        this.setState({
+            step: this.state.step + 1,
+            formData: defaults({}, formData, this.state.formData)
+        });
+    },
+    componentDidMount: function () {
+        this.setState({waiting: true});
         api({
-            uri: `/classrooms/${this.props.classroomId}`,
-            params: {
-                token: this.props.classroomToken
-            }
-        }, (err, body, res) => {
+            uri: '/classrooms/' + this.props.classroomId,
+            params: {token: this.props.classroomToken}
+        }, function (err, body, res) {
             this.setState({waiting: false});
             if (err) {
                 return this.setState({
@@ -48,17 +50,13 @@ class StudentRegistration extends React.Component {
             }
             if (res.statusCode === 404) {
                 // TODO: Use react-router for this
-                window.location = '/404';
+                return window.location = '/404';
             }
-            this.setState({
-                classroom: body
-            });
-        });
-    }
-    handleRegister (formData) {
-        this.setState({
-            waiting: true
-        });
+            this.setState({classroom: body});
+        }.bind(this));
+    },
+    register: function (formData) {
+        this.setState({waiting: true});
         formData = defaults({}, formData || {}, this.state.formData);
         api({
             host: '',
@@ -70,7 +68,8 @@ class StudentRegistration extends React.Component {
                 password: formData.user.password,
                 birth_month: formData.user.birth.month,
                 birth_year: formData.user.birth.year,
-                gender: (formData.user.gender === 'other' ?
+                gender: (
+                    formData.user.gender === 'other' ?
                     formData.user.genderOther :
                     formData.user.gender
                 ),
@@ -79,98 +78,66 @@ class StudentRegistration extends React.Component {
                 classroom_id: this.props.classroomId,
                 classroom_token: this.props.classroomToken
             }
-        }, (err, body, res) => {
-            this.setState({
-                waiting: false
-            });
+        }, function (err, body, res) {
+            this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
-            if (body[0] && body[0].success) return this.handleAdvanceStep(formData);
+            if (body[0] && body[0].success) return this.advanceStep(formData);
             this.setState({
                 registrationError:
                     (body[0] && body[0].msg) ||
-                    `${this.props.intl.formatMessage({id: 'registration.generalError'})} (${res.statusCode})`
+                    this.props.intl.formatMessage({id: 'registration.generalError'}) + ' (' + res.statusCode + ')'
             });
-        });
-    }
-    handleAdvanceStep (formData) {
-        formData = formData || {};
-        this.setState({
-            step: this.state.step + 1,
-            formData: defaults({}, formData, this.state.formData)
-        });
-    }
-    handleGoToClass () {
-        window.location = `/classes/${this.props.classroomId}/`;
-    }
-    render () {
-        const usernameDescription = this.props.intl.formatMessage({id: 'registration.studentUsernameStepDescription'});
-        const usernameHelp = this.props.intl.formatMessage({id: 'registration.studentUsernameStepHelpText'});
+        }.bind(this));
+    },
+    goToClass: function () {
+        window.location = '/classes/' + this.props.classroomId + '/';
+    },
+    render: function () {
+        var demographicsDescription = this.props.intl.formatMessage({
+            id: 'registration.studentPersonalStepDescription'});
+        var usernameTitle = this.props.intl.formatMessage({id: 'registration.usernameStepTitleScratcher'});
+        var usernameHelp = this.props.intl.formatMessage({id: 'registration.studentUsernameFieldHelpText'});
+        var usernameDescription = (
+            this.props.intl.formatMessage({id: 'registration.studentUsernameStepDescription'}) + ' ' +
+            this.props.intl.formatMessage({id: 'registration.studentUsernameStepHelpText'})
+        );
+        var usernameTooltip = this.props.intl.formatMessage({id: 'registration.studentUsernameStepTooltip'});
         return (
             <Deck className="student-registration">
                 {this.state.registrationError ?
                     <Steps.RegistrationError>
                         {this.state.registrationError}
-                    </Steps.RegistrationError> :
-                    <Progression {...this.state}>
-                        <Steps.ClassInviteNewStudentStep
-                            classroom={this.state.classroom}
-                            waiting={this.state.waiting || !this.state.classroom}
-                            onNextStep={this.handleAdvanceStep}
-                        />
-                        <Steps.UsernameStep
-                            description={`${usernameDescription} ${usernameHelp}`}
-                            title={this.props.intl.formatMessage({
-                                id: 'registration.usernameStepTitleScratcher'
-                            })}
-                            tooltip={this.props.intl.formatMessage({
-                                id: 'registration.studentUsernameStepTooltip'
-                            })}
-                            usernameHelp={this.props.intl.formatMessage({
-                                id: 'registration.studentUsernameFieldHelpText'
-                            })}
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleAdvanceStep}
-                        />
-                        <Steps.DemographicsStep
-                            description={this.props.intl.formatMessage({
-                                id: 'registration.studentPersonalStepDescription'
-                            })}
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleRegister}
-                        />
-                        <Steps.ClassWelcomeStep
-                            classroom={this.state.classroom}
-                            waiting={this.state.waiting || !this.state.classroom}
-                            onNextStep={this.handleGoToClass}
-                        />
+                    </Steps.RegistrationError>
+                :
+                    <Progression {... this.state}>
+                        <Steps.ClassInviteNewStudentStep classroom={this.state.classroom}
+                                                         onNextStep={this.advanceStep}
+                                                         waiting={this.state.waiting || !this.state.classroom} />
+                        <Steps.UsernameStep onNextStep={this.advanceStep}
+                                            title={usernameTitle}
+                                            description={usernameDescription}
+                                            tooltip={usernameTooltip}
+                                            usernameHelp={usernameHelp}
+                                            waiting={this.state.waiting} />
+                        <Steps.DemographicsStep description={demographicsDescription}
+                                                onNextStep={this.register}
+                                                waiting={this.state.waiting} />
+                        <Steps.ClassWelcomeStep classroom={this.state.classroom}
+                                                onNextStep={this.goToClass}
+                                                waiting={this.state.waiting || !this.state.classroom} />
                     </Progression>
                 }
             </Deck>
         );
     }
-}
+}));
 
-StudentRegistration.propTypes = {
-    classroomId: PropTypes.number.isRequired,
-    classroomToken: PropTypes.string.isRequired,
-    intl: intlShape
-};
-
-StudentRegistration.defaultProps = {
-    classroomId: null,
-    classroomToken: null
-};
-
-const IntlStudentRegistration = injectIntl(StudentRegistration);
-
-const [classroomId, _, classroomToken] = document.location.pathname.split('/').filter(p => {
-    if (p) {
-        return p;
-    }
-    return null;
-})
+var [classroomId, _, classroomToken] = document.location.pathname.split('/')
+    .filter(function (p) {
+        if (p) return p;
+    })
     .slice(-3);
 
-const props = {classroomId, classroomToken};
+var props = {classroomId, classroomToken};
 
-render(<IntlStudentRegistration {...props} />, document.getElementById('app'));
+render(<StudentRegistration {... props} />, document.getElementById('app'));

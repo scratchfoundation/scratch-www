@@ -1,45 +1,37 @@
-const bindAll = require('lodash.bindall');
-const connect = require('react-redux').connect;
-const defaults = require('lodash.defaultsdeep');
-const PropTypes = require('prop-types');
-const React = require('react');
+var connect = require('react-redux').connect;
+var defaults = require('lodash.defaultsdeep');
+var React = require('react');
+var render = require('../../lib/render.jsx');
 
-const api = require('../../lib/api');
-const injectIntl = require('../../lib/intl.jsx').injectIntl;
-const intlShape = require('../../lib/intl.jsx').intlShape;
-const sessionActions = require('../../redux/session.js');
+var api = require('../../lib/api');
+var intl = require('../../lib/intl.jsx');
+var sessionActions = require('../../redux/session.js');
 
-const Deck = require('../../components/deck/deck.jsx');
-const Progression = require('../../components/progression/progression.jsx');
-const Steps = require('../../components/registration/steps.jsx');
-
-const render = require('../../lib/render.jsx');
+var Deck = require('../../components/deck/deck.jsx');
+var Progression = require('../../components/progression/progression.jsx');
+var Steps = require('../../components/registration/steps.jsx');
 
 require('./teacherregistration.scss');
 
 
-class TeacherRegistration extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'handleAdvanceStep',
-            'handleRegister'
-        ]);
-        this.state = {
+var TeacherRegistration = intl.injectIntl(React.createClass({
+    type: 'TeacherRegistration',
+    getInitialState: function () {
+        return {
             formData: {},
             registrationError: null,
             step: 0,
             waiting: false
         };
-    }
-    handleAdvanceStep (formData) {
+    },
+    advanceStep: function (formData) {
         formData = formData || {};
         this.setState({
             step: this.state.step + 1,
             formData: defaults({}, formData, this.state.formData)
         });
-    }
-    handleRegister (formData) {
+    },
+    register: function (formData) {
         this.setState({waiting: true});
         api({
             host: '',
@@ -54,8 +46,8 @@ class TeacherRegistration extends React.Component {
                 birth_year: this.state.formData.user.birth.year,
                 gender: (
                     this.state.formData.user.gender === 'other' ?
-                        this.state.formData.user.genderOther :
-                        this.state.formData.user.gender
+                    this.state.formData.user.genderOther :
+                    this.state.formData.user.gender
                 ),
                 country: this.state.formData.user.country,
                 subscribe: formData.subscribe,
@@ -76,107 +68,70 @@ class TeacherRegistration extends React.Component {
                 address_zip: this.state.formData.address.zip,
                 how_use_scratch: this.state.formData.useScratch
             }
-        }, (err, body, res) => {
+        }, function (err, body, res) {
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
             if (body[0] && body[0].success) {
                 this.props.dispatch(sessionActions.refreshSession());
-                return this.handleAdvanceStep(formData);
+                return this.advanceStep(formData);
             }
             this.setState({
                 registrationError:
                     (body[0] && body[0].msg) ||
-                    `${this.props.intl.formatMessage({id: 'registration.generalError'})} (${res.statusCode})`
+                    this.props.intl.formatMessage({id: 'registration.generalError'}) + ' (' + res.statusCode + ')'
             });
-        });
-    }
-    render () {
-        const permissions = this.props.session.permissions || {};
-        
+        }.bind(this));
+    },
+    render: function () {
+        var permissions = this.props.session.permissions || {};
         return (
             <Deck className="teacher-registration">
                 {this.state.registrationError ?
                     <Steps.RegistrationError>
                         {this.state.registrationError}
-                    </Steps.RegistrationError> :
-                    <Progression step={this.state.step}>
-                        <Steps.UsernameStep
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleAdvanceStep}
-                        />
-                        <Steps.DemographicsStep
-                            birthOffset={13}
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleAdvanceStep}
-                        />
-                        <Steps.NameStep
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleAdvanceStep}
-                        />
-                        <Steps.PhoneNumberStep
-                            defaultCountry={
-                                this.state.formData.user && this.state.formData.user.country
-                            }
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleAdvanceStep}
-                        />
-                        <Steps.OrganizationStep
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleAdvanceStep}
-                        />
-                        <Steps.AddressStep
-                            defaultCountry={
-                                this.state.formData.user && this.state.formData.user.country
-                            }
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleAdvanceStep}
-                        />
-                        <Steps.UseScratchStep
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleAdvanceStep}
-                        />
-                        <Steps.EmailStep
-                            waiting={this.state.waiting}
-                            onNextStep={this.handleRegister}
-                        />
-                        <Steps.TeacherApprovalStep
-                            confirmed={permissions.social}
-                            educator={permissions.educator}
-                            email={this.state.formData.user && this.state.formData.user.email}
-                            invited={permissions.educator_invitee}
-                        />
+                    </Steps.RegistrationError>
+                :
+                    <Progression {... this.state}>
+                        <Steps.UsernameStep onNextStep={this.advanceStep}
+                                            waiting={this.state.waiting} />
+                        <Steps.DemographicsStep onNextStep={this.advanceStep}
+                                                waiting={this.state.waiting}
+                                                birthOffset={13} />
+                        <Steps.NameStep onNextStep={this.advanceStep}
+                                        waiting={this.state.waiting} />
+                        <Steps.PhoneNumberStep onNextStep={this.advanceStep}
+                                               waiting={this.state.waiting}
+                                               defaultCountry={
+                                                   this.state.formData.user && this.state.formData.user.country
+                                               } />
+                        <Steps.OrganizationStep onNextStep={this.advanceStep}
+                                                waiting={this.state.waiting} />
+                        <Steps.AddressStep onNextStep={this.advanceStep}
+                                           waiting={this.state.waiting}
+                                           defaultCountry={
+                                               this.state.formData.user && this.state.formData.user.country
+                                           } />
+                        <Steps.UseScratchStep onNextStep={this.advanceStep}
+                                              waiting={this.state.waiting} />
+                        <Steps.EmailStep onNextStep={this.register}
+                                         waiting={this.state.waiting} />
+                        <Steps.TeacherApprovalStep email={this.state.formData.user && this.state.formData.user.email}
+                                                   confirmed={permissions.social}
+                                                   invited={permissions.educator_invitee}
+                                                   educator={permissions.educator} />
                     </Progression>
                 }
             </Deck>
         );
     }
-}
+}));
 
-TeacherRegistration.propTypes = {
-    dispatch: PropTypes.func,
-    intl: intlShape,
-    session: PropTypes.shape({
-        user: PropTypes.shape({
-            classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-            thumbnailUrl: PropTypes.string,
-            username: PropTypes.string
-        }),
-        permissions: PropTypes.shape({
-            admin: PropTypes.bool,
-            social: PropTypes.bool,
-            educator: PropTypes.bool,
-            educator_invitee: PropTypes.bool,
-            student: PropTypes.bool
-        })
-    })
+var mapStateToProps = function (state) {
+    return {
+        session: state.session.session
+    };
 };
 
-const IntlTeacherRegistration = injectIntl(TeacherRegistration);
-
-const mapStateToProps = state => ({
-    session: state.session.session
-});
-
-const ConnectedTeacherRegistration = connect(mapStateToProps)(IntlTeacherRegistration);
+var ConnectedTeacherRegistration = connect(mapStateToProps)(TeacherRegistration);
 
 render(<ConnectedTeacherRegistration />, document.getElementById('app'));

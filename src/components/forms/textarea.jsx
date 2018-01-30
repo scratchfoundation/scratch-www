@@ -1,25 +1,25 @@
-const classNames = require('classnames');
-const FRCTextarea = require('formsy-react-components').Textarea;
-const omit = require('lodash.omit');
-const PropTypes = require('prop-types');
-const React = require('react');
-
-const defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
-const inputHOC = require('./input-hoc.jsx');
+var classNames = require('classnames');
+var FRCTextarea = require('formsy-react-components').Textarea;
+var React = require('react');
+var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
+var inputHOC = require('./input-hoc.jsx');
 
 require('./row.scss');
 require('./textarea.scss');
 
-const TextArea = props => (
-    <FRCTextarea
-        className="textarea"
-        rowClassName={classNames('textarea-row', props.className)}
-        {...omit(props, ['className'])}
-    />
-);
-
-TextArea.propTypes = {
-    className: PropTypes.string
-};
+var TextArea = React.createClass({
+    type: 'TextArea',
+    render: function () {
+        var classes = classNames(
+            'textarea-row',
+            this.props.className
+        );
+        return (
+            <FRCTextarea {... this.props}
+                         className="textarea"
+                         rowClassName={classes} />
+        );
+    }
+});
 
 module.exports = inputHOC(defaultValidationHOC(TextArea));

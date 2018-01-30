@@ -1,16 +1,16 @@
-const PropTypes = require('prop-types');
-const React = require('react');
+var React = require('react');
 
 require('./footer.scss');
 
-const FooterBox = props => (
-    <div className="inner">
-        {props.children}
-    </div>
-);
-
-FooterBox.propTypes = {
-    children: PropTypes.node
-};
+var FooterBox = React.createClass({
+    type: 'FooterBox',
+    render: function () {
+        return (
+            <div className="inner">
+                {this.props.children}
+            </div>
+        );
+    }
+});
 
 module.exports = FooterBox;

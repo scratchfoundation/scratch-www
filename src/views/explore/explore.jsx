@@ -1,45 +1,27 @@
-const bindAll = require('lodash.bindall');
-const classNames = require('classnames');
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
-const FormattedMessage = require('react-intl').FormattedMessage;
-const React = require('react');
-const render = require('../../lib/render.jsx');
+var classNames = require('classnames');
+var injectIntl = require('react-intl').injectIntl;
+var FormattedMessage = require('react-intl').FormattedMessage;
+var React = require('react');
+var render = require('../../lib/render.jsx');
 
-const api = require('../../lib/api');
+var api = require('../../lib/api');
 
-const Page = require('../../components/page/www/page.jsx');
-const Tabs = require('../../components/tabs/tabs.jsx');
-const TitleBanner = require('../../components/title-banner/title-banner.jsx');
-const Button = require('../../components/forms/button.jsx');
-const Form = require('../../components/forms/form.jsx');
-const Select = require('../../components/forms/select.jsx');
-const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
-const Grid = require('../../components/grid/grid.jsx');
+var Page = require('../../components/page/www/page.jsx');
+var Tabs = require('../../components/tabs/tabs.jsx');
+var TitleBanner = require('../../components/title-banner/title-banner.jsx');
+var Button = require('../../components/forms/button.jsx');
+var Form = require('../../components/forms/form.jsx');
+var Select = require('../../components/forms/select.jsx');
+var SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
+var Grid = require('../../components/grid/grid.jsx');
 
 require('./explore.scss');
 
-class Explore extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'getExploreState',
-            'handleGetExploreMore',
-            'changeItemType',
-            'handleChangeSortMode',
-            'getBubble',
-            'getTab'
-        ]);
-
-        this.state = this.getExploreState();
-        this.state.loaded = [];
-        this.state.offset = 0;
-    }
-    componentDidMount () {
-        this.handleGetExploreMore();
-    }
-    getExploreState () {
-        const categoryOptions = {
+// @todo migrate to React-Router once available
+var Explore = injectIntl(React.createClass({
+    type: 'Explore',
+    getDefaultProps: function () {
+        var categoryOptions = {
             all: '*',
             animations: 'animations',
             art: 'art',
@@ -48,22 +30,21 @@ class Explore extends React.Component {
             stories: 'stories',
             tutorials: 'tutorial'
         };
-        const typeOptions = ['projects', 'studios'];
-        const modeOptions = ['trending', 'popular', 'recent', ''];
+        var typeOptions = ['projects','studios'];
+        var modeOptions = ['trending', 'popular', 'recent', ''];
 
-        let pathname = window.location.pathname.toLowerCase();
+        var pathname = window.location.pathname.toLowerCase();
         if (pathname[pathname.length - 1] === '/') {
             pathname = pathname.substring(0, pathname.length - 1);
         }
-
-        const options = pathname.split('/');
-        const type = options[2];
-        const currentCategory = options[3];
-        const currentMode = options.length > 4 ? options[4] : '';
+        var options = pathname.split('/');
+        var type = options[2];
+        var currentCategory = options[3];
+        var currentMode = options.length > 4 ? options[4] : '';
         if (Object.keys(categoryOptions).indexOf(currentCategory) === -1 ||
         typeOptions.indexOf(type) === -1 ||
         modeOptions.indexOf(currentMode) === -1){
-            window.location = `${window.location.origin}/explore/projects/all/`;
+            window.location = window.location.origin + '/explore/projects/all/';
         }
 
         return {
@@ -75,88 +56,89 @@ class Explore extends React.Component {
             mode: currentMode,
             loadNumber: 16
         };
-    }
-    handleGetExploreMore () {
-        const qText = `&q=${this.state.acceptableTabs[this.state.category]}` || '*';
-        const mode = `&mode=${(this.state.mode ? this.state.mode : 'trending')}`;
-        const locale = this.props.intl.locale;
-        const queryString =
-            `limit=${this.state.loadNumber}&offset=${this.state.offset}&language=${locale}${mode}${qText}`;
+    },
+    getInitialState: function () {
+        return {
+            loaded: [],
+            offset: 0
+        };
+    },
+    componentDidMount: function () {
+        this.getExploreMore();
+    },
+    getExploreMore: function () {
+        var qText = '&q=' + this.props.acceptableTabs[this.props.category] || '*';
 
         api({
-            uri: `/explore/${this.state.itemType}?${queryString}`
-        }, (err, body) => {
+            uri: '/explore/' + this.props.itemType +
+                 '?limit=' + this.props.loadNumber +
+                 '&offset=' + this.state.offset +
+                 '&language=' + this.props.intl.locale +
+                 '&mode=' + (this.props.mode ? this.props.mode : 'trending') +
+                 qText
+        }, function (err, body) {
             if (!err) {
-                const loadedSoFar = this.state.loaded;
-                Array.prototype.push.apply(loadedSoFar, body);
+                var loadedSoFar = this.state.loaded;
+                Array.prototype.push.apply(loadedSoFar,body);
                 this.setState({loaded: loadedSoFar});
-                const currentOffset = this.state.offset + this.state.loadNumber;
+                var currentOffset = this.state.offset + this.props.loadNumber;
                 this.setState({offset: currentOffset});
             }
-        });
-    }
-    changeItemType () {
-        let newType;
-        for (const t of this.state.acceptableTypes) {
-            if (this.state.itemType !== t) {
+        }.bind(this));
+    },
+    changeItemType: function () {
+        var newType;
+        for (var t in this.props.acceptableTypes) {
+            if (this.props.itemType !== t) {
                 newType = t;
                 break;
             }
         }
-        window.location = `${window.location.origin}/explore/${newType}/${this.state.tab}/${this.state.mode}`;
-    }
-    handleChangeSortMode (name, value) {
-        if (this.state.acceptableModes.indexOf(value) !== -1) {
-            window.location =
-                `${window.location.origin}/explore/${this.state.itemType}/${this.state.category}/${value}`;
+        window.location = window.location.origin + '/explore/' + newType + '/' + this.props.tab + '/' + this.props.mode;
+    },
+    changeSortMode: function (name, value) {
+        if (this.props.acceptableModes.indexOf(value) !== -1) {
+            window.location = window.location.origin + '/explore/' +
+            this.props.itemType + '/' + this.props.category + '/' + value;
         }
-    }
-    getBubble (type) {
-        const classes = classNames({
-            active: (this.state.category === type)
+    },
+    getBubble: function (type) {
+        var classes = classNames({
+            active: (this.props.category === type)
         });
         return (
-            <a href={`/explore/${this.state.itemType}/${type}/${this.state.mode}`}>
+            <a href={'/explore/' + this.props.itemType + '/' + type + '/' + this.props.mode}>
                 <li className={classes}>
-                    <FormattedMessage id={`general.${type}`} />
+                    <FormattedMessage id={'general.' + type} />
                 </li>
             </a>
         );
-    }
-    getTab (type) {
-        const classes = classNames({
-            active: (this.state.itemType === type)
+    },
+    getTab: function (type) {
+        var classes = classNames({
+            active: (this.props.itemType === type)
         });
         return (
-            <a href={`/explore/${type}/${this.state.category}/${this.state.mode}`}>
+            <a href={'/explore/' + type + '/' + this.props.category + '/' + this.props.mode}>
                 <li className={classes}>
-                    {this.state.itemType === type ? [
-                        <img
-                            className={`tab-icon ${type}`}
-                            key={`tab-${type}`}
-                            src={`/svgs/tabs/${type}-active.svg`}
-                        />
+                    {this.props.itemType === type ? [
+                        <img src={'/svgs/tabs/' + type + '-active.svg'} className={'tab-icon ' + type} />
                     ] : [
-                        <img
-                            className={`tab-icon ${type}`}
-                            key={`tab-${type}`}
-                            src={`/svgs/tabs/${type}-inactive.svg`}
-                        />
+                        <img src={'/svgs/tabs/' + type + '-inactive.svg'} className={'tab-icon ' + type} />
                     ]}
-                    <FormattedMessage id={`general.${type}`} />
+                    <FormattedMessage id={'general.' + type} />
                 </li>
             </a>
         );
-    }
-    render () {
+    },
+    render: function () {
+
         return (
             <div>
-                <div className="outer">
+                <div className='outer'>
                     <TitleBanner className="masthead">
                         <div className="inner">
-                            <h1 className="title-banner-h1">
-                                <FormattedMessage id="general.explore" />
-                            </h1>
+                            <h1 className="title-banner-h1"><FormattedMessage id='general.explore' /></h1>
                         </div>
                     </TitleBanner>
                     <Tabs>
@@ -164,7 +146,7 @@ class Explore extends React.Component {
                         {this.getTab('studios')}
                     </Tabs>
                     <div className="sort-controls">
-                        <SubNavigation className="categories">
+                        <SubNavigation className='categories'>
                             {this.getBubble('all')}
                             {this.getBubble('animations')}
                             {this.getBubble('art')}
@@ -173,46 +155,27 @@ class Explore extends React.Component {
                             {this.getBubble('stories')}
                             {this.getBubble('tutorials')}
                         </SubNavigation>
-                        <Form className="sort-mode">
-                            <Select
-                                name="sort"
-                                options={[
-                                    {
-                                        value: 'trending',
-                                        label: this.props.intl.formatMessage({id: 'explore.trending'})
-                                    },
-                                    {
-                                        value: 'popular',
-                                        label: this.props.intl.formatMessage({id: 'explore.popular'})
-                                    },
-                                    {
-                                        value: 'recent',
-                                        label: this.props.intl.formatMessage({id: 'explore.recent'})
-                                    }
-                                ]}
-                                value={this.state.mode}
-                                onChange={this.handleChangeSortMode}
-                            />
+                        <Form className='sort-mode'>
+                            <Select name="sort"
+                                    options={[
+                                        {value: 'trending', label: <FormattedMessage id='explore.trending' />},
+                                        {value: 'popular', label: <FormattedMessage id='explore.popular' />},
+                                        {value: 'recent', label: <FormattedMessage id='explore.recent' />}
+                                    ]}
+                                    value={this.props.mode}
+                                    onChange={this.changeSortMode}/>
                         </Form>
                     </div>
-                    <div
-                        id="projectBox"
-                        key="projectBox"
-                    >
-                        <Grid
-                            cards
-                            showAvatar
-                            itemType={this.state.itemType}
-                            items={this.state.loaded}
-                            showFavorites={false}
-                            showLoves={false}
-                            showViews={false}
-                        />
-                        <Button
-                            className="white"
-                            onClick={this.handleGetExploreMore}
-                        >
-                            <FormattedMessage id="general.loadMore" />
+                    <div id='projectBox' key='projectBox'>
+                        <Grid items={this.state.loaded}
+                              itemType={this.props.itemType}
+                              cards={true}
+                              showLoves={false}
+                              showFavorites={false}
+                              showViews={false}
+                              showAvatar={true}/>
+                          <Button onClick={this.getExploreMore} className="white">
+                            <FormattedMessage id='general.loadMore' />
                         </Button>
                     </div>
                 </div>
@@ -220,12 +183,6 @@ class Explore extends React.Component {
 
         );
     }
-}
+}));
 
-Explore.propTypes = {
-    intl: intlShape
-};
-
-const WrappedExplore = injectIntl(Explore);
-
-render(<Page><WrappedExplore /></Page>, document.getElementById('app'));
+render(<Page><Explore /></Page>, document.getElementById('app'));

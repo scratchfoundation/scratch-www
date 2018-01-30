@@ -20,34 +20,35 @@ var tap = require('tap');
 var intlDirPath = path.resolve(__dirname, '../../intl/');
 var intlFiles = fs.readdirSync(intlDirPath);
 
-/*
+/**
  * Tells tap whether the test should pass or fail for a given file.
  * @param {string} fileName
  * @param {Object} missingMessageId
  * @param {Object} pagesMissingIds
  */
-const noMissingStrings = (fileName, missingMessageId, pagesMissingIds) => {
-    if (Object.keys(missingMessageId).length === 0) {
+function noMissingStrings (fileName, missingMessageId, pagesMissingIds) {
+    if (Object.keys(missingMessageId).length == 0) {
         tap.pass();
-    } else {
+    }
+    else {
         tap.fail(fileName + ' is missing string IDs');
         pagesMissingIds[fileName] = [];
         pagesMissingIds[fileName].push(missingMessageId);
     }
-};
+}
 
 var pagesWithLanguagesMissingIds = {};
 
 for (var i in intlFiles) {
     var file = intlFiles[i];
     var filePath = path.resolve(__dirname, '../../intl/' + file);
-    var pageMessagesString = fs.readFileSync(filePath, 'utf8');
+    var pageMessagesString = fs.readFileSync(filePath,'utf8');
 
     /**
      * To make the string of the file of the page.intl.js back into useable objects
      */
     var window = {};
-    var pageMessages = eval(pageMessagesString); // eslint-disable-line no-eval
+    var pageMessages = eval(pageMessagesString);
 
     /**
      * The goal is to compare the IDs for each language to the IDs for English,
@@ -60,8 +61,8 @@ for (var i in intlFiles) {
     for (var languageKey in pageMessages) {
         var currentLanguageObject = pageMessages[languageKey];
         for (var messageId in englishIdList) {
-            if (!(messageId in currentLanguageObject)) {
-                if (typeof messageIdNotInLanguage[languageKey] === 'undefined') {
+            if (! (messageId in currentLanguageObject)) {
+                if (typeof messageIdNotInLanguage[languageKey] == 'undefined') {
                     messageIdNotInLanguage[languageKey] = [];
                 }
                 messageIdNotInLanguage[languageKey].push(messageId);

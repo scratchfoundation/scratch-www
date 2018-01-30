@@ -1,48 +1,31 @@
-const bindAll = require('lodash.bindall');
-const classNames = require('classnames');
-const connect = require('react-redux').connect;
-const FormattedMessage = require('react-intl').FormattedMessage;
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var connect = require('react-redux').connect;
+var React = require('react');
+var ReactIntl = require('react-intl');
+var FormattedMessage = ReactIntl.FormattedMessage;
+var injectIntl = ReactIntl.injectIntl;
 
-const messageCountActions = require('../../../redux/message-count.js');
-const sessionActions = require('../../../redux/session.js');
+var messageCountActions = require('../../../redux/message-count.js');
+var sessionActions = require('../../../redux/session.js');
 
-const api = require('../../../lib/api');
-const Avatar = require('../../avatar/avatar.jsx');
-const Button = require('../../forms/button.jsx');
-const Dropdown = require('../../dropdown/dropdown.jsx');
-const Form = require('../../forms/form.jsx');
-const Input = require('../../forms/input.jsx');
-const log = require('../../../lib/log.js');
-const Login = require('../../login/login.jsx');
-const Modal = require('../../modal/base/modal.jsx');
-const NavigationBox = require('../base/navigation.jsx');
-const Registration = require('../../registration/registration.jsx');
+var api = require('../../../lib/api');
+var Avatar = require('../../avatar/avatar.jsx');
+var Button = require('../../forms/button.jsx');
+var Dropdown = require('../../dropdown/dropdown.jsx');
+var Form = require('../../forms/form.jsx');
+var Input = require('../../forms/input.jsx');
+var log = require('../../../lib/log.js');
+var Login = require('../../login/login.jsx');
+var Modal = require('../../modal/base/modal.jsx');
+var NavigationBox = require('../base/navigation.jsx');
+var Registration = require('../../registration/registration.jsx');
 
 require('./navigation.scss');
 
-class Navigation extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'getProfileUrl',
-            'handleJoinClick',
-            'handleLoginClick',
-            'handleCloseLogin',
-            'handleLogIn',
-            'handleLogOut',
-            'handleAccountNavClick',
-            'handleCloseAccountNav',
-            'showCanceledDeletion',
-            'handleCloseCanceledDeletion',
-            'handleCloseRegistration',
-            'handleCompleteRegistration',
-            'handleSearchSubmit'
-        ]);
-        this.state = {
+var Navigation = React.createClass({
+    type: 'Navigation',
+    getInitialState: function () {
+        return {
             accountNavOpen: false,
             canceledDeletionOpen: false,
             loginOpen: false,
@@ -50,153 +33,155 @@ class Navigation extends React.Component {
             registrationOpen: false,
             messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
         };
-    }
-    componentDidMount () {
+    },
+    getDefaultProps: function () {
+        return {
+            session: {},
+            unreadMessageCount: 0, // bubble number to display how many notifications someone has.
+            searchTerm: ''
+        };
+    },
+    componentDidMount: function () {
         if (this.props.session.session.user) {
-            const intervalId = setInterval(() => {
-                this.props.dispatch(
-                    messageCountActions.getCount(this.props.session.session.user.username)
-                );
-            }, 120000); // check for new messages every 2 mins.
-            this.setState({ // eslint-disable-line react/no-did-mount-set-state
-                messageCountIntervalId: intervalId
-            });
+            var intervalId = setInterval(function () {
+                this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username));
+            }.bind(this), 120000); // check for new messages every 2 mins.
+            this.setState({'messageCountIntervalId': intervalId});
         }
-    }
-    componentDidUpdate (prevProps) {
-        if (prevProps.session.session.user !== this.props.session.session.user) {
-            this.setState({ // eslint-disable-line react/no-did-update-set-state
-                loginOpen: false,
-                accountNavOpen: false
+    },
+    componentDidUpdate: function (prevProps) {
+        if (prevProps.session.session.user != this.props.session.session.user) {
+            this.setState({
+                'loginOpen': false,
+                'accountNavOpen': false
             });
             if (this.props.session.session.user) {
-                const intervalId = setInterval(() => {
-                    this.props.dispatch(
-                        messageCountActions.getCount(this.props.session.session.user.username)
-                    );
-                }, 120000); // check for new messages every 2 mins.
-                this.setState({ // eslint-disable-line react/no-did-update-set-state
-                    messageCountIntervalId: intervalId
-                });
+                var intervalId = setInterval(function () {
+                    this.props.dispatch(messageCountActions.getCount(this.props.session.session.user.username));
+                }.bind(this), 120000); // check for new messages every 2 mins.
+                this.setState({'messageCountIntervalId': intervalId});
             } else {
                 // clear message count check, and set to default id.
                 clearInterval(this.state.messageCountIntervalId);
                 this.props.dispatch(messageCountActions.setCount(0));
-                this.setState({ // eslint-disable-line react/no-did-update-set-state
-                    messageCountIntervalId: -1
+                this.setState({
+                    'messageCountIntervalId': -1
                 });
             }
         }
-    }
-    componentWillUnmount () {
+    },
+    componentWillUnmount: function () {
         // clear message interval if it exists
-        if (this.state.messageCountIntervalId !== -1) {
+        if (this.state.messageCountIntervalId != -1) {
             clearInterval(this.state.messageCountIntervalId);
             this.props.dispatch(messageCountActions.setCount(0));
             this.setState({
-                messageCountIntervalId: -1
+                'messageCountIntervalId': -1
             });
         }
-    }
-    getProfileUrl () {
+    },
+    getProfileUrl: function () {
         if (!this.props.session.session.user) return;
-        return `/users/${this.props.session.session.user.username}/`;
-    }
-    handleJoinClick (e) {
+        return '/users/' + this.props.session.session.user.username + '/';
+    },
+    handleJoinClick: function (e) {
         e.preventDefault();
-        this.setState({registrationOpen: true});
-    }
-    handleLoginClick (e) {
+        this.setState({'registrationOpen': true});
+    },
+    handleLoginClick: function (e) {
         e.preventDefault();
-        this.setState({loginOpen: !this.state.loginOpen});
-    }
-    handleCloseLogin () {
-        this.setState({loginOpen: false});
-    }
-    handleLogIn (formData, callback) {
-        this.setState({loginError: null});
-        formData.useMessages = true;
+        this.setState({'loginOpen': !this.state.loginOpen});
+    },
+    closeLogin: function () {
+        this.setState({'loginOpen': false});
+    },
+    handleLogIn: function (formData, callback) {
+        this.setState({'loginError': null});
+        formData['useMessages'] = true;
         api({
             method: 'post',
             host: '',
             uri: '/accounts/login/',
             json: formData,
             useCsrf: true
-        }, (err, body) => {
-            if (err) this.setState({loginError: err.message});
+        }, function (err, body) {
+            if (err) this.setState({'loginError': err.message});
             if (body) {
                 body = body[0];
-                if (body.success) {
-                    this.handleCloseLogin();
-                    body.messages.map(message => { // eslint-disable-line array-callback-return
-                        if (message.message === 'canceled-deletion') {
-                            this.showCanceledDeletion();
-                        }
-                    });
-                    this.props.dispatch(sessionActions.refreshSession());
-                } else {
+                if (!body.success) {
                     if (body.redirect) {
                         window.location = body.redirect;
                     }
                     // Update login error message to a friendlier one if it exists
-                    this.setState({loginError: body.msg});
+                    this.setState({'loginError': body.msg});
+                } else {
+                    this.closeLogin();
+                    body.messages.map(function (message) {
+                        if (message.message == 'canceled-deletion') {
+                            this.showCanceledDeletion();
+                        }
+                    }.bind(this));
+                    this.props.dispatch(sessionActions.refreshSession());
                 }
             }
             // JS error already logged by api mixin
             callback();
-        });
-    }
-    handleLogOut (e) {
+        }.bind(this));
+    },
+    handleLogOut: function (e) {
         e.preventDefault();
         api({
             host: '',
             method: 'post',
             uri: '/accounts/logout/',
             useCsrf: true
-        }, err => {
+        }, function (err) {
             if (err) log.error(err);
-            this.handleCloseLogin();
+            this.closeLogin();
             window.location = '/';
-        });
-    }
-    handleAccountNavClick (e) {
+        }.bind(this));
+    },
+    handleAccountNavClick: function (e) {
         e.preventDefault();
-        this.setState({accountNavOpen: true});
-    }
-    handleCloseAccountNav () {
-        this.setState({accountNavOpen: false});
-    }
-    showCanceledDeletion () {
-        this.setState({canceledDeletionOpen: true});
-    }
-    handleCloseCanceledDeletion () {
-        this.setState({canceledDeletionOpen: false});
-    }
-    handleCloseRegistration () {
-        this.setState({registrationOpen: false});
-    }
-    handleCompleteRegistration () {
+        this.setState({'accountNavOpen': true});
+    },
+    closeAccountNav: function () {
+        this.setState({'accountNavOpen': false});
+    },
+    showCanceledDeletion: function () {
+        this.setState({'canceledDeletionOpen': true});
+    },
+    closeCanceledDeletion: function () {
+        this.setState({'canceledDeletionOpen': false});
+    },
+    closeRegistration: function () {
+        this.setState({'registrationOpen': false});
+    },
+    completeRegistration: function () {
         this.props.dispatch(sessionActions.refreshSession());
-        this.handleCloseRegistration();
-    }
-    handleSearchSubmit (formData) {
-        window.location.href = `/search/projects?q=${encodeURIComponent(formData.q)}`;
-    }
-    render () {
-        const createLink = this.props.session.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
+        this.closeRegistration();
+    },
+    onSearchSubmit: function (formData) {
+        window.location.href = '/search/projects?q=' + encodeURIComponent(formData.q);
+    },
+    render: function () {
+        var classes = classNames({
+            'logged-in': this.props.session.session.user
+        });
+        var messageClasses = classNames({
+            'message-count': true,
+            'show': this.props.unreadMessageCount > 0
+        });
+        var dropdownClasses = classNames({
+            'user-info': true,
+            'open': this.state.accountNavOpen
+        });
+        var formatMessage = this.props.intl.formatMessage;
+        var createLink = this.props.session.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
         return (
-            <NavigationBox
-                className={classNames({
-                    'logged-in': this.props.session.session.user
-                })}
-            >
+            <NavigationBox className={classes}>
                 <ul>
-                    <li className="logo">
-                        <a
-                            aria-label="Scratch"
-                            href="/"
-                        />
-                    </li>
+                    <li className="logo"><a href="/" aria-label="Scratch"></a></li>
 
                     <li className="link create">
                         <a href={createLink}>
@@ -220,76 +205,47 @@ class Navigation extends React.Component {
                     </li>
 
                     <li className="search">
-                        <Form onSubmit={this.handleSearchSubmit}>
-                            <Button
-                                className="btn-search"
-                                type="submit"
-                            />
-                            <Input
-                                aria-label={this.props.intl.formatMessage({id: 'general.search'})}
-                                name="q"
-                                placeholder={this.props.intl.formatMessage({id: 'general.search'})}
-                                type="text"
-                                value={this.props.searchTerm}
-                            />
+                        <Form onSubmit={this.onSearchSubmit}>
+                            <Button type="submit" className="btn-search" />
+                            <Input type="text"
+                                   value={this.props.searchTerm}
+                                   aria-label={formatMessage({id: 'general.search'})}
+                                   placeholder={formatMessage({id: 'general.search'})}
+                                   name="q" />
                         </Form>
                     </li>
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
                         this.props.session.session.user ? [
-                            <li
-                                className="link right messages"
-                                key="messages"
-                            >
+                            <li className="link right messages" key="messages">
                                 <a
                                     href="/messages/"
-                                    title={this.props.intl.formatMessage({id: 'general.messages'})}
-                                >
-                                    <span
-                                        className={classNames({
-                                            'message-count': true,
-                                            'show': this.props.unreadMessageCount > 0
-                                        })}
-                                    >{this.props.unreadMessageCount}</span>
+                                    title={formatMessage({id: 'general.messages'})}>
+
+                                    <span className={messageClasses}>{this.props.unreadMessageCount}</span>
                                     <FormattedMessage id="general.messages" />
                                 </a>
                             </li>,
-                            <li
-                                className="link right mystuff"
-                                key="mystuff"
-                            >
+                            <li className="link right mystuff" key="mystuff">
                                 <a
                                     href="/mystuff/"
-                                    title={this.props.intl.formatMessage({id: 'general.myStuff'})}
-                                >
+                                    title={formatMessage({id: 'general.myStuff'})}>
+
                                     <FormattedMessage id="general.myStuff" />
                                 </a>
                             </li>,
-                            <li
-                                className="link right account-nav"
-                                key="account-nav"
-                            >
-                                <a
-                                    className={classNames({
-                                        'user-info': true,
-                                        'open': this.state.accountNavOpen
-                                    })}
-                                    href="#"
-                                    onClick={this.handleAccountNavClick}
-                                >
-                                    <Avatar
-                                        alt=""
-                                        src={this.props.session.session.user.thumbnailUrl}
-                                    />
-                                    <span className="profile-name">
+                            <li className="link right account-nav" key="account-nav">
+                                <a className={dropdownClasses}
+                                    href="#" onClick={this.handleAccountNavClick}>
+                                    <Avatar src={this.props.session.session.user.thumbnailUrl} alt="" />
+                                    <span className='profile-name'>
                                         {this.props.session.session.user.username}
                                     </span>
                                 </a>
                                 <Dropdown
-                                    as="ul"
-                                    className={process.env.SCRATCH_ENV}
-                                    isOpen={this.state.accountNavOpen}
-                                    onRequestClose={this.handleCloseAccountNav}
-                                >
+                                        as="ul"
+                                        isOpen={this.state.accountNavOpen}
+                                        onRequestClose={this.closeAccountNav}
+                                        className={process.env.SCRATCH_ENV}>
                                     <li>
                                         <a href={this.getProfileUrl()}>
                                             <FormattedMessage id="general.profile" />
@@ -308,8 +264,8 @@ class Navigation extends React.Component {
                                         </li>
                                     ] : []}
                                     {this.props.permissions.student ? [
-                                        <li key="my-class-li">
-                                            <a href={`/classes/${this.props.session.session.user.classroomId}/`}>
+                                        <li>
+                                            <a href={'/classes/' + this.props.session.session.user.classroomId + '/'}>
                                                 <FormattedMessage id="general.myClass" />
                                             </a>
                                         </li>
@@ -320,123 +276,69 @@ class Navigation extends React.Component {
                                         </a>
                                     </li>
                                     <li className="divider">
-                                        <a
-                                            href="#"
-                                            onClick={this.handleLogOut}
-                                        >
+                                        <a href="#" onClick={this.handleLogOut}>
                                             <FormattedMessage id="navigation.signOut" />
                                         </a>
                                     </li>
                                 </Dropdown>
                             </li>
                         ] : [
-                            <li
-                                className="link right join"
-                                key="join"
-                            >
-                                <a
-                                    href="#"
-                                    onClick={this.handleJoinClick}
-                                >
+                            <li className="link right join" key="join">
+                                <a href="#" onClick={this.handleJoinClick}>
                                     <FormattedMessage id="general.joinScratch" />
                                 </a>
                             </li>,
                             <Registration
-                                isOpen={this.state.registrationOpen}
-                                key="registration"
-                                onRegistrationDone={this.handleCompleteRegistration}
-                                onRequestClose={this.handleCloseRegistration}
-                            />,
-                            <li
-                                className="link right login-item"
-                                key="login"
-                            >
+                                    key="registration"
+                                    isOpen={this.state.registrationOpen}
+                                    onRequestClose={this.closeRegistration}
+                                    onRegistrationDone={this.completeRegistration} />,
+                            <li className="link right login-item" key="login">
                                 <a
-                                    className="ignore-react-onclickoutside"
                                     href="#"
-                                    key="login-link"
                                     onClick={this.handleLoginClick}
-                                >
-                                    <FormattedMessage id="general.signIn" />
-                                </a>
+                                    className="ignore-react-onclickoutside"
+                                    key="login-link">
+                                        <FormattedMessage id="general.signIn" />
+                               </a>
                                 <Dropdown
-                                    className="login-dropdown with-arrow"
-                                    isOpen={this.state.loginOpen}
-                                    key="login-dropdown"
-                                    onRequestClose={this.handleCloseLogin}
-                                >
+                                        className="login-dropdown with-arrow"
+                                        isOpen={this.state.loginOpen}
+                                        onRequestClose={this.closeLogin}
+                                        key="login-dropdown">
                                     <Login
-                                        error={this.state.loginError}
                                         onLogIn={this.handleLogIn}
-                                    />
+                                        error={this.state.loginError} />
                                 </Dropdown>
                             </li>
-                        ]) : []}
+                        ]) : [
+                        ]}
                 </ul>
-                <Modal
-                    isOpen={this.state.canceledDeletionOpen}
-                    style={{
-                        content: {
-                            padding: 15
-                        }
-                    }}
-                    onRequestClose={this.handleCloseCanceledDeletion}
-                >
+                <Modal isOpen={this.state.canceledDeletionOpen}
+                       onRequestClose={this.closeCanceledDeletion}
+                       style={{content:{padding: 15}}}>
                     <h4>Your Account Will Not Be Deleted</h4>
-                    <h4><FormattedMessage id="general.noDeletionTitle" /></h4>
                     <p>
-                        <FormattedMessage
-                            id="general.noDeletionDescription"
-                            values={{
-                                resetLink: <a href="/accounts/password_reset/">
-                                    {this.props.intl.formatMessage({id: 'general.noDeletionLink'})}
-                                </a>
-                            }}
-                        />
+                        Your account was scheduled for deletion but you logged in. Your account has been reactivated.
+                        If you didn’t request for your account to be deleted, you should
+                        {' '}<a href="/accounts/password_reset/">change your password</a>{' '}
+                        to make sure your account is secure.
                     </p>
                 </Modal>
             </NavigationBox>
         );
     }
-}
-
-Navigation.propTypes = {
-    dispatch: PropTypes.func,
-    intl: intlShape,
-    permissions: PropTypes.shape({
-        admin: PropTypes.bool,
-        social: PropTypes.bool,
-        educator: PropTypes.bool,
-        educator_invitee: PropTypes.bool,
-        student: PropTypes.bool
-    }),
-    searchTerm: PropTypes.string,
-    session: PropTypes.shape({
-        session: PropTypes.shape({
-            user: PropTypes.shape({
-                classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                thumbnailUrl: PropTypes.string,
-                username: PropTypes.string
-            })
-        }),
-        status: PropTypes.string
-    }),
-    unreadMessageCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-};
-
-Navigation.defaultProps = {
-    session: {},
-    unreadMessageCount: 0, // bubble number to display how many notifications someone has.
-    searchTerm: ''
-};
-
-const mapStateToProps = state => ({
-    session: state.session,
-    permissions: state.permissions,
-    unreadMessageCount: state.messageCount.messageCount,
-    searchTerm: state.navigation
 });
 
-const ConnectedNavigation = connect(mapStateToProps)(Navigation);
+var mapStateToProps = function (state) {
+    return {
+        session: state.session,
+        permissions: state.permissions,
+        unreadMessageCount: state.messageCount.messageCount,
+        searchTerm: state.navigation
+    };
+};
+
+var ConnectedNavigation = connect(mapStateToProps)(Navigation);
 
 module.exports = injectIntl(ConnectedNavigation);
