@@ -1,25 +1,25 @@
-var classNames = require('classnames');
-var FRCCheckboxGroup = require('formsy-react-components').CheckboxGroup;
-var React = require('react');
-var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
-var inputHOC = require('./input-hoc.jsx');
+const classNames = require('classnames');
+const FRCCheckboxGroup = require('formsy-react-components').CheckboxGroup;
+const PropTypes = require('prop-types');
+const React = require('react');
+
+const defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
+const inputHOC = require('./input-hoc.jsx');
 
 require('./row.scss');
 require('./checkbox-group.scss');
 
-var CheckboxGroup = React.createClass({
-    type: 'CheckboxGroup',
-    render: function () {
-        var classes = classNames(
-            'checkbox-group',
-            this.props.className
-        );
-        return (
-            <div className={classes}>
-                <FRCCheckboxGroup {... this.props} className={classes} />
-            </div>
-        );
-    }
-});
+const CheckboxGroup = props => (
+    <div className={classNames('checkbox-group', props.className)}>
+        <FRCCheckboxGroup
+            className={classNames('checkbox-group', props.className)}
+            {... props}
+        />
+    </div>
+);
+
+CheckboxGroup.propTypes = {
+    className: PropTypes.string
+};
 
 module.exports = inputHOC(defaultValidationHOC(CheckboxGroup));

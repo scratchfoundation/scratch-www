@@ -1,44 +1,47 @@
-var connect = require('react-redux').connect;
-var defaults = require('lodash.defaultsdeep');
-var React = require('react');
-var render = require('../../lib/render.jsx');
+const bindAll = require('lodash.bindall');
+const connect = require('react-redux').connect;
+const defaults = require('lodash.defaultsdeep');
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var sessionStatus = require('../../redux/session').Status;
-var api = require('../../lib/api');
-var intl = require('../../lib/intl.jsx');
-var log = require('../../lib/log.js');
+const api = require('../../lib/api');
+const injectIntl = require('../../lib/intl.jsx').injectIntl;
+const intlShape = require('../../lib/intl.jsx').intlShape;
+const log = require('../../lib/log.js');
+const sessionStatus = require('../../redux/session').Status;
 
-var Deck = require('../../components/deck/deck.jsx');
-var Progression = require('../../components/progression/progression.jsx');
-var Spinner = require('../../components/spinner/spinner.jsx');
-var Steps = require('../../components/registration/steps.jsx');
+const Deck = require('../../components/deck/deck.jsx');
+const Progression = require('../../components/progression/progression.jsx');
+const Spinner = require('../../components/spinner/spinner.jsx');
+const Steps = require('../../components/registration/steps.jsx');
+
+const render = require('../../lib/render.jsx');
 
 require('./studentcompleteregistration.scss');
 
-var StudentCompleteRegistration = intl.injectIntl(React.createClass({
-    type: 'StudentCompleteRegistration',
-    getInitialState: function () {
-        return {
+class StudentCompleteRegistration extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'handleAdvanceStep',
+            'handleLogOut',
+            'handleRegister',
+            'handleGoToClass'
+        ]);
+        this.state = {
             classroom: null,
             formData: {},
             registrationErrors: null,
             step: 0,
             waiting: false
         };
-    },
-    advanceStep: function (formData) {
-        formData = formData || {};
-        this.setState({
-            step: this.state.step + 1,
-            formData: defaults({}, formData, this.state.formData)
-        });
-    },
-    componentDidUpdate: function (prevProps) {
+    }
+    componentDidUpdate (prevProps) {
         if (prevProps.studentUsername !== this.props.studentUsername && this.props.newStudent) {
-            this.setState({waiting: true});
+            this.setState({waiting: true}); // eslint-disable-line react/no-did-update-set-state
             api({
-                uri: '/classrooms/' + this.props.classroomId
-            }, function (err, body, res) {
+                uri: `/classrooms/${this.props.classroomId}`
+            }, (err, body, res) => {
                 this.setState({waiting: false});
                 if (err || res.statusCode !== 200) {
                     return this.setState({
@@ -48,81 +51,90 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
                     });
                 }
                 this.setState({classroom: body});
-            }.bind(this));
+            });
         }
-    },
-    handleLogOut: function (e) {
+    }
+    handleAdvanceStep (formData) {
+        formData = formData || {};
+        this.setState({
+            step: this.state.step + 1,
+            formData: defaults({}, formData, this.state.formData)
+        });
+    }
+    handleLogOut (e) {
         e.preventDefault();
         api({
             host: '',
             method: 'post',
             uri: '/accounts/logout/',
             useCsrf: true
-        }, function (err) {
+        }, err => {
             if (err) return log.error(err);
             window.location = '/';
-        }.bind(this));
-    },
-    register: function (formData) {
+        });
+    }
+    handleRegister (formData) {
         this.setState({waiting: true});
+        
         formData = defaults({}, formData || {}, this.state.formData);
-        var submittedData = {
+        const submittedData = {
             birth_month: formData.user.birth.month,
             birth_year: formData.user.birth.year,
-            gender: (
-                formData.user.gender === 'other' ?
-                formData.user.genderOther :
-                formData.user.gender
-            ),
+            gender: (formData.user.gender === 'other' ? formData.user.genderOther : formData.user.gender),
             country: formData.user.country,
             is_robot: formData.user.isRobot
         };
         if (this.props.must_reset_password) {
             submittedData.password = formData.user.password;
         }
+        
         api({
             host: '',
             uri: '/classes/student_update_registration/',
             method: 'post',
             useCsrf: true,
             formData: submittedData
-        }, function (err, body, res) {
+        }, (err, body, res) => {
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
-            if (body.success) return this.advanceStep(formData);
+            if (body.success) return this.handleAdvanceStep(formData);
             this.setState({
-                registrationErrors:
-                    body.errors || {
-                        __all__:
-                            this.props.intl.formatMessage({id: 'registration.generalError'}) +
-                            ' (' + res.statusCode + ')'
-                    }
+                registrationErrors: body.errors || {
+                    __all__:
+                        `${this.props.intl.formatMessage({id: 'registration.generalError'})} (${res.statusCode})`
+                }
             });
-        }.bind(this));
-    },
-    goToClass: function () {
-        window.location = '/classes/' + this.state.classroom.id + '/';
-    },
-    render: function () {
-        var demographicsDescription = this.props.intl.formatMessage({
-            id: 'registration.studentPersonalStepDescription'});
-        var registrationErrors = this.state.registrationErrors;
+        });
+    }
+    handleGoToClass () {
+        window.location = `/classes/${this.state.classroom.id}/`;
+    }
+    render () {
+        const demographicsDescription = this.props.intl.formatMessage({
+            id: 'registration.studentPersonalStepDescription'
+        });
+        let registrationErrors = this.state.registrationErrors;
         if (!this.props.newStudent) {
             registrationErrors = {
                 __all__: this.props.intl.formatMessage({id: 'registration.mustBeNewStudent'})
             };
         }
+
         return (
             <Deck className="student-registration">
                 {registrationErrors ? (
                     <Steps.RegistrationError>
                         <ul>
-                            {Object.keys(registrationErrors).map(function (field) {
-                                var label = field + ': ';
+                            {Object.keys(registrationErrors).map(field => {
+                                let label = `${field}: `;
                                 if (field === '__all__') {
                                     label = '';
                                 }
-                                return (<li>{label}{registrationErrors[field]}</li>);
+                                return (
+                                    <li key={field}>
+                                        {label}{registrationErrors[field]}
+                                    </li>
+                                );
                             })}
                         </ul>
                     </Steps.RegistrationError>
@@ -131,46 +143,62 @@ var StudentCompleteRegistration = intl.injectIntl(React.createClass({
                         <Spinner />
                     ) : (
                         <Progression {... this.state}>
-                            <Steps.ClassInviteExistingStudentStep classroom={this.state.classroom}
-                                                                  onHandleLogOut={this.handleLogOut}
-                                                                  onNextStep={this.advanceStep}
-                                                                  studentUsername={this.props.studentUsername}
-                                                   waiting={this.state.waiting} />
+                            <Steps.ClassInviteExistingStudentStep
+                                classroom={this.state.classroom}
+                                studentUsername={this.props.studentUsername}
+                                waiting={this.state.waiting}
+                                onHandleLogOut={this.handleLogOut}
+                                onNextStep={this.handleAdvanceStep}
+                            />
                             {this.props.must_reset_password ?
-                                <Steps.ChoosePasswordStep onNextStep={this.advanceStep}
-                                                          showPassword={true}
-                                                          waiting={this.state.waiting}
-                                                          username={this.props.studentUsername} />
-                            :
-                                []
+                                <Steps.ChoosePasswordStep
+                                    showPassword
+                                    username={this.props.studentUsername}
+                                    waiting={this.state.waiting}
+                                    onNextStep={this.handleAdvanceStep}
+                                /> : []
                             }
-                            <Steps.DemographicsStep description={demographicsDescription}
-                                                    onNextStep={this.register}
-                                                    waiting={this.state.waiting} />
-                            <Steps.ClassWelcomeStep classroom={this.state.classroom}
-                                                    onNextStep={this.goToClass}
-                                                    waiting={this.state.waiting} />
+                            <Steps.DemographicsStep
+                                description={demographicsDescription}
+                                waiting={this.state.waiting}
+                                onNextStep={this.handleRegister}
+                            />
+                            <Steps.ClassWelcomeStep
+                                classroom={this.state.classroom}
+                                waiting={this.state.waiting}
+                                onNextStep={this.handleGoToClass}
+                            />
                         </Progression>
                     )
                 )}
             </Deck>
         );
     }
-}));
+}
 
-var mapStateToProps = function (state) {
-    return {
-        classroomId: state.session.session.user && state.session.session.user.classroomId,
-        must_reset_password: state.session.session.flags && state.session.session.flags.must_reset_password,
-        newStudent: (
-            state.session.session.permissions &&
-            state.session.session.permissions.student &&
-            state.session.session.flags.must_complete_registration),
-        sessionFetched: state.session.status === sessionStatus.FETCHED,
-        studentUsername: state.session.session.user && state.session.session.user.username
-    };
+StudentCompleteRegistration.propTypes = {
+    classroomId: PropTypes.number.isRequired,
+    intl: intlShape,
+    must_reset_password: PropTypes.bool.isRequired,
+    newStudent: PropTypes.bool.isRequired,
+    sessionFetched: PropTypes.bool.isRequired,
+    studentUsername: PropTypes.string.isRequired
 };
 
-var ConnectedStudentCompleteRegistration = connect(mapStateToProps)(StudentCompleteRegistration);
+const IntlStudentCompleteRegistration = injectIntl(StudentCompleteRegistration);
+
+const mapStateToProps = state => ({
+    classroomId: state.session.session.user && state.session.session.user.classroomId,
+    must_reset_password: state.session.session.flags && state.session.session.flags.must_reset_password,
+    newStudent: (
+        state.session.session.permissions &&
+        state.session.session.permissions.student &&
+        state.session.session.flags.must_complete_registration
+    ),
+    sessionFetched: state.session.status === sessionStatus.FETCHED,
+    studentUsername: state.session.session.user && state.session.session.user.username
+});
+
+const ConnectedStudentCompleteRegistration = connect(mapStateToProps)(IntlStudentCompleteRegistration);
 
 render(<ConnectedStudentCompleteRegistration />, document.getElementById('app'));

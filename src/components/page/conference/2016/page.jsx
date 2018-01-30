@@ -1,27 +1,27 @@
-var React = require('react');
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var Navigation = require('../../../navigation/conference/2016/navigation.jsx');
-var Footer = require('../../../footer/conference/2016/footer.jsx');
+const Navigation = require('../../../navigation/conference/2016/navigation.jsx');
+const Footer = require('../../../footer/conference/2016/footer.jsx');
 
 require('../page.scss');
 
-var Page = React.createClass({
-    type: 'Page',
-    render: function () {
-        return (
-            <div className="page mod-conference">
-                <div id="navigation">
-                    <Navigation />
-                </div>
-                <div id="view">
-                    {this.props.children}
-                </div>
-                <div id="footer">
-                    <Footer />
-                </div>
-            </div>
-        );
-    }
-});
+const Page = props => (
+    <div className="page mod-conference">
+        <div id="navigation">
+            <Navigation />
+        </div>
+        <div id="view">
+            {props.children}
+        </div>
+        <div id="footer">
+            <Footer />
+        </div>
+    </div>
+);
+
+Page.propTypes = {
+    children: PropTypes.node
+};
 
 module.exports = Page;
