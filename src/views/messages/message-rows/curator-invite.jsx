@@ -1,51 +1,55 @@
-var classNames = require('classnames');
-var FormattedMessage = require('react-intl').FormattedMessage;
-var injectIntl = require('react-intl').injectIntl;
-var React = require('react');
+const classNames = require('classnames');
+const FormattedMessage = require('react-intl').FormattedMessage;
+const injectIntl = require('react-intl').injectIntl;
+const intlShape = require('react-intl').intlShape;
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var SocialMessage = require('../../../components/social-message/social-message.jsx');
+const SocialMessage = require('../../../components/social-message/social-message.jsx');
 
-var CuratorInviteMessage = injectIntl(React.createClass({
-    type: 'CuratorInviteMessage',
-    propTypes: {
-        actorUsername: React.PropTypes.string.isRequired,
-        studioId: React.PropTypes.number.isRequired,
-        studioTitle: React.PropTypes.string.isRequired,
-        datetimePromoted: React.PropTypes.string.isRequired
-    },
-    render: function () {
-        var studioLink = '/studios/' + this.props.studioId + '/';
-        var tabLink = '/studios/' + this.props.studioId + '/curators/';
-        var actorLink = '/users/' + this.props.actorUsername + '/';
-        var tabText = this.props.intl.formatMessage({id: 'messages.curatorTabText'});
-        
-        var classes = classNames(
+const CuratorInviteMessage = props => (
+    <SocialMessage
+        className={classNames(
             'mod-curator-invite',
-            this.props.className
-        );
-        return (
-            <SocialMessage
-                className={classes}
-                datetime={this.props.datetimePromoted}
-                iconSrc="/svgs/messages/curator-invite.svg"
-                iconAlt="curator invite notification image"
-            >
-                <FormattedMessage
-                    id='messages.curatorInviteText'
-                    values={{
-                        actorLink: <a
-                            href={actorLink}
-                            className="social-messages-profile-link"
-                        >
-                            {this.props.actorUsername}
-                        </a>,
-                        studioLink: <a href={studioLink}>{this.props.studioTitle}</a>,
-                        tabLink: <a href={tabLink}>{tabText}</a>
-                    }}
-                />
-            </SocialMessage>
-        );
-    }
-}));
+            props.className
+        )}
+        datetime={props.datetimePromoted}
+        iconAlt="curator invite notification image"
+        iconSrc="/svgs/messages/curator-invite.svg"
+    >
+        <FormattedMessage
+            id="messages.curatorInviteText"
+            values={{
+                actorLink: (
+                    <a
+                        className="social-messages-profile-link"
+                        href={`/users/${props.actorUsername}/`}
+                    >
+                        {props.actorUsername}
+                    </a>
+                ),
+                studioLink: (
+                    <a href={`/studios/${props.studioId}/`}>
+                        {props.studioTitle}
+                    </a>
+                ),
+                tabLink: (
+                    <a href={`/studios/${props.studioId}/curators/`}>
+                        {props.intl.formatMessage({id: 'messages.curatorTabText'})}
+                    </a>
+                )
+            }}
+        />
+    </SocialMessage>
+);
 
-module.exports = CuratorInviteMessage;
+CuratorInviteMessage.propTypes = {
+    actorUsername: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    datetimePromoted: PropTypes.string.isRequired,
+    intl: intlShape,
+    studioId: PropTypes.number.isRequired,
+    studioTitle: PropTypes.string.isRequired
+};
+
+module.exports = injectIntl(CuratorInviteMessage);

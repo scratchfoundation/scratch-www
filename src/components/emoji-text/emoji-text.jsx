@@ -1,33 +1,25 @@
-var classNames = require('classnames');
-var React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const React = require('react');
 
 require('./emoji-text.scss');
 
-var EmojiText = React.createClass({
-    type: 'EmojiText',
-    propTyes: {
-        text: React.PropTypes.string.isRequired,
-        className: React.PropTypes.string
-    },
-    getDefaultProps: function () {
-        return {
-            as: 'p'
-        };
-    },
-    render: function () {
-        var classes = classNames(
-            'emoji-text',
-            this.props.className
-        );
-        return (
-            <this.props.as
-                className={classes}
-                dangerouslySetInnerHTML={{
-                    __html: this.props.text
-                }}
-            />
-        );
-    }
-});
+const EmojiText = props => (
+    <props.as
+        className={classNames('emoji-text', props.className)}
+        dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
+            __html: props.text
+        }}
+    />
+);
+
+EmojiText.propTypes = {
+    className: PropTypes.string,
+    text: PropTypes.string.isRequired
+};
+
+EmojiText.defaultProps = {
+    as: 'p'
+};
 
 module.exports = EmojiText;

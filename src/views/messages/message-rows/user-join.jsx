@@ -1,38 +1,42 @@
-var classNames = require('classnames');
-var FormattedMessage = require('react-intl').FormattedMessage;
-var injectIntl = require('react-intl').injectIntl;
-var React = require('react');
+const classNames = require('classnames');
+const FormattedMessage = require('react-intl').FormattedMessage;
+const injectIntl = require('react-intl').injectIntl;
+const intlShape = require('react-intl').intlShape;
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var SocialMessage = require('../../../components/social-message/social-message.jsx');
+const SocialMessage = require('../../../components/social-message/social-message.jsx');
 
-var UserJoinMessage = injectIntl(React.createClass({
-    type: 'UserJoinMessage',
-    propTypes: {
-        datetimeJoined: React.PropTypes.string.isRequired
-    },
-    render: function () {
-        var exploreText = this.props.intl.formatMessage({id: 'general.explore'});
-        var projectText = this.props.intl.formatMessage({id: 'messages.userJoinMakeProject'});
-        
-        var classes = classNames(
+const UserJoinMessage = props => (
+    <SocialMessage
+        className={classNames(
             'mod-user-join',
-            this.props.className
-        );
-        return (
-            <SocialMessage
-                className={classes}
-                datetime={this.props.datetimeJoined}
-            >
-                <FormattedMessage
-                    id='messages.userJoinText'
-                    values={{
-                        exploreLink: <a href="/explore">{exploreText}</a>,
-                        makeProjectLink: <a href="/projects/editor/?tip_bar=getStarted">{projectText}</a>
-                    }}
-                />
-            </SocialMessage>
-        );
-    }
-}));
+            props.className
+        )}
+        datetime={props.datetimeJoined}
+    >
+        <FormattedMessage
+            id="messages.userJoinText"
+            values={{
+                exploreLink: (
+                    <a href="/explore">
+                        {props.intl.formatMessage({id: 'general.explore'})}
+                    </a>
+                ),
+                makeProjectLink: (
+                    <a href="/projects/editor/?tip_bar=getStarted">
+                        {props.intl.formatMessage({id: 'messages.userJoinMakeProject'})}
+                    </a>
+                )
+            }}
+        />
+    </SocialMessage>
+);
 
-module.exports = UserJoinMessage;
+UserJoinMessage.propTypes = {
+    className: PropTypes.string,
+    datetimeJoined: PropTypes.string.isRequired,
+    intl: intlShape
+};
+
+module.exports = injectIntl(UserJoinMessage);
