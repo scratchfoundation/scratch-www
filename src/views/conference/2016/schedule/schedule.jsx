@@ -1,124 +1,86 @@
-const bindAll = require('lodash.bindall');
-const classNames = require('classnames');
-const connect = require('react-redux').connect;
-const PropTypes = require('prop-types');
-const React = require('react');
+var classNames = require('classnames');
+var connect = require('react-redux').connect;
+var React = require('react');
+var render = require('../../../../lib/render.jsx');
 
-const scheduleActions = require('../../../../redux/conference-schedule.js');
+var scheduleActions = require('../../../../redux/conference-schedule.js');
 
-const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
-const SubNavigation = require('../../../../components/subnavigation/subnavigation.jsx');
-const TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
-
-const Page = require('../../../../components/page/conference/2016/page.jsx');
-const render = require('../../../../lib/render.jsx');
+var FlexRow = require('../../../../components/flex-row/flex-row.jsx');
+var Page = require('../../../../components/page/conference/2016/page.jsx');
+var SubNavigation = require('../../../../components/subnavigation/subnavigation.jsx');
+var TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
 
 require('./schedule.scss');
 
-class ConferenceSchedule extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'handleScheduleChange',
-            'renderChunkItems'
-        ]);
-    }
-    componentDidMount () {
-        const day = window.location.hash.substr(1) || 'thursday';
+var ConferenceSchedule = React.createClass({
+    type: 'ConferenceSchedule',
+    propTypes: {
+        conferenceSchedule: React.PropTypes.object
+    },
+    componentDidMount: function () {
+        var day = window.location.hash.substr(1) || 'thursday';
         this.handleScheduleChange(day);
-    }
-    handleScheduleChange (day) {
-        window.history.replaceState(history.state, '', `#${day}`);
+    },
+    handleScheduleChange: function (day) {
+        window.history.replaceState(history.state, '', '#' + day);
         this.props.dispatch(scheduleActions.startGetSchedule(day));
-    }
-    renderChunkItems (timeSlot) {
-        return timeSlot.map(item => {
+    },
+    renderChunkItems: function (timeSlot) {
+        return timeSlot.map(function (item) {
             if (item.Presenter) {
                 return (
-                    <a
-                        className="item-url"
-                        href={item.uri}
-                    >
-                        <div
-                            className="agenda-item"
-                            key={item.rowid}
-                        >
+                    <a href={item.uri} className="item-url">
+                        <div key={item.rowid} className="agenda-item">
                             <h3>{item.Title}</h3>
                             <FlexRow>
                                 <p>
-                                    <img
-                                        alt="time icon"
-                                        src="/svgs/conference/schedule/time-icon.svg"
-                                    />
+                                    <img src="/svgs/conference/schedule/time-icon.svg" alt="time icon" />
                                     {item.Start} &ndash; {item.End}
                                 </p>
                                 <p>
-                                    <img
-                                        alt="location icon"
-                                        src="/svgs/conference/schedule/location-icon.svg"
-                                    />
+                                    <img src="/svgs/conference/schedule/location-icon.svg" alt="location icon" />
                                     {item.Location}
                                 </p>
                             </FlexRow>
                             <FlexRow>
                                 <p>
-                                    <img
-                                        alt="presenter icon"
-                                        src="/svgs/conference/schedule/presenter-icon.svg"
-                                    />
+                                    <img src="/svgs/conference/schedule/presenter-icon.svg" alt="presenter icon" />
                                     {item.Presenter}
                                 </p>
                                 <p>
-                                    <img
-                                        alt="event icon"
-                                        src="/svgs/conference/schedule/event-icon.svg"
-                                    />
+                                    <img src="/svgs/conference/schedule/event-icon.svg" alt="event icon" />
                                     {item.Type}
                                 </p>
                             </FlexRow>
                         </div>
                     </a>
                 );
+            } else {
+                return (
+                    <div key={item.rowid} className="agenda-item no-click">
+                        <h3>{item.Title}</h3>
+                        <FlexRow>
+                            <p>{item.Start} &ndash; {item.End}</p>
+                            <p>{item.Location}</p>
+                        </FlexRow>
+                    </div>
+                );
             }
-            return (
-                <div
-                    className="agenda-item no-click"
-                    key={item.rowid}
-                >
-                    <h3>{item.Title}</h3>
-                    <FlexRow>
-                        <p>{item.Start} &ndash; {item.End}</p>
-                        <p>{item.Location}</p>
-                    </FlexRow>
-                </div>
-            );
         });
-    }
-    render () {
-        const tabClasses = {
-            thursday: classNames({
-                selected: (this.props.conferenceSchedule.day === 'thursday')
+    },
+    render: function () {
+        var tabClasses = {
+            'thursday': classNames({
+                'selected': (this.props.conferenceSchedule.day === 'thursday')
             }),
-            friday: classNames({
-                selected: (this.props.conferenceSchedule.day === 'friday')
+            'friday': classNames({
+                'selected': (this.props.conferenceSchedule.day === 'friday')
             }),
-            saturday: classNames({
-                last: true,
-                selected: (this.props.conferenceSchedule.day === 'saturday')
+            'saturday': classNames({
+                'last': true,
+                'selected': (this.props.conferenceSchedule.day === 'saturday')
             })
         };
-        const handleScheduleMethods = {
-            thursday: () => {
-                this.handleScheduleChange('thursday');
-            },
-            friday: () => {
-                this.handleScheduleChange('friday');
-            },
-            saturday: () => {
-                this.handleScheduleChange('saturday');
-            }
-        };
-
         return (
             <div className="schedule">
                 <TitleBanner className="mod-conference">
@@ -127,63 +89,44 @@ class ConferenceSchedule extends React.Component {
                     </h1>
                 </TitleBanner>
                 <SubNavigation>
-                    <li
-                        className={tabClasses.thursday}
-                        onClick={handleScheduleMethods.thursday}
-                    >
-                        <img
-                            alt="August 4th Icon"
-                            src="/svgs/conference/expect/aug4-icon.svg"
-                        />
+                    <li className={tabClasses.thursday}
+                        onClick={this.handleScheduleChange.bind(this, 'thursday')}>
+                        <img src="/svgs/conference/expect/aug4-icon.svg" alt="August 4th Icon" />
                         <span>Thursday</span>
                     </li>
-                    <li
-                        className={tabClasses.friday}
-                        onClick={handleScheduleMethods.friday}
-                    >
-                        <img
-                            alt="August 5th Icon"
-                            src="/svgs/conference/expect/aug5-icon.svg"
-                        />
+                    <li className={tabClasses.friday}
+                        onClick={this.handleScheduleChange.bind(this, 'friday')}>
+                        <img src="/svgs/conference/expect/aug5-icon.svg" alt="August 5th Icon" />
                         <span>Friday</span>
                     </li>
-                    <li
-                        className={tabClasses.saturday}
-                        onClick={handleScheduleMethods.saturday}
-                    >
-                        <img
-                            alt="August 6th Icon"
-                            src="/svgs/conference/expect/aug6-icon.svg"
-                        />
+                    <li className={tabClasses.saturday}
+                        onClick={this.handleScheduleChange.bind(this, 'saturday')}>
+                        <img src="/svgs/conference/expect/aug6-icon.svg" alt="August 6th Icon" />
                         <span>Saturday</span>
                     </li>
                 </SubNavigation>
                 <div className="inner">
-                    {this.props.conferenceSchedule.timeSlots.map(timeSlot => ([
-                        <h2
-                            className="breaking-title"
-                            key={timeSlot.info.name}
-                        >
-                            <span>{timeSlot.info.name} – {timeSlot.info.time}</span>
-                        </h2>,
-                        this.renderChunkItems(timeSlot.items)
-                    ]))}
+                    {this.props.conferenceSchedule.timeSlots.map(function (timeSlot) {
+                        return ([
+                            <h2 key={timeSlot.info.name} className="breaking-title">
+                                <span>{timeSlot.info.name} – {timeSlot.info.time}</span>
+                            </h2>,
+                            this.renderChunkItems(timeSlot.items)
+                        ]);
+                    }.bind(this))}
                 </div>
             </div>
         );
     }
-}
-
-ConferenceSchedule.propTypes = {
-    conferenceSchedule: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-    dispatch: PropTypes.func
-};
-
-const mapStateToProps = state => ({
-    conferenceSchedule: state.conferenceSchedule
 });
 
-const ConnectedSchedule = connect(mapStateToProps)(ConferenceSchedule);
+var mapStateToProps = function (state) {
+    return {
+        conferenceSchedule: state.conferenceSchedule
+    };
+};
+
+var ConnectedSchedule = connect(mapStateToProps)(ConferenceSchedule);
 
 render(
     <Page><ConnectedSchedule /></Page>,

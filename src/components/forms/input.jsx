@@ -1,57 +1,46 @@
-const bindAll = require('lodash.bindall');
-const classNames = require('classnames');
-const FRCInput = require('formsy-react-components').Input;
-const omit = require('lodash.omit');
-const PropTypes = require('prop-types');
-const React = require('react');
-
-const defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
-const inputHOC = require('./input-hoc.jsx');
+var classNames = require('classnames');
+var FRCInput = require('formsy-react-components').Input;
+var React = require('react');
+var defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
+var inputHOC = require('./input-hoc.jsx');
 
 require('./input.scss');
 require('./row.scss');
 
-class Input extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'handleInvalid',
-            'handleValid'
-        ]);
-        this.state = {
+var Input = React.createClass({
+    type: 'Input',
+    getDefaultProps: function () {
+        return {};
+    },
+    getInitialState: function () {
+        return {
             status: ''
         };
-    }
-    handleValid () {
+    },
+    onValid: function () {
         this.setState({
             status: 'pass'
         });
-    }
-    handleInvalid () {
+    },
+    onInvalid: function () {
         this.setState({
             status: 'fail'
         });
-    }
-    render () {
+    },
+    render: function () {
+        var classes = classNames(
+            this.state.status,
+            this.props.className,
+            {'no-label': (typeof this.props.label === 'undefined')}
+        );
         return (
-            <FRCInput
-                className="input"
-                rowClassName={classNames(
-                    this.state.status,
-                    this.props.className,
-                    {'no-label': (typeof this.props.label === 'undefined')}
-                )}
-                onInvalid={this.handleInvalid}
-                onValid={this.handleValid}
-                {...omit(this.props, ['className'])}
-            />
+            <FRCInput {... this.props}
+                      className="input"
+                      rowClassName={classes}
+                      onValid={this.onValid}
+                      onInvalid={this.onInvalid} />
         );
     }
-}
-
-Input.propTypes = {
-    className: PropTypes.string,
-    label: PropTypes.string
-};
+});
 
 module.exports = inputHOC(defaultValidationHOC(Input));

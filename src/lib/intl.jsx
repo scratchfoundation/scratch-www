@@ -1,20 +1,20 @@
-const requireAll = require('./require-all');
-const ReactIntl = require('react-intl');
+var requireAll = require('./require-all');
+var ReactIntl = require('react-intl');
 
-const allLocaleData = requireAll(require.context('react-intl/locale-data', true, /^\.\/.*\.js$/));
-const customLocaleData = require('../../custom-locales.json');
+var allLocaleData = requireAll(require.context('react-intl/locale-data', true, /^\.\/.*\.js$/));
+var customLocaleData = require('../../custom-locales.json');
 
 /**
   * Add all locales
   */
-for (const locale in allLocaleData) {
+for (var locale in allLocaleData) {
     ReactIntl.addLocaleData(allLocaleData[locale]);
 }
 
 /**
  * Add custom locales to react-intl if it doesn't have them.
  */
-for (const customLocale in customLocaleData) {
+for (var customLocale in customLocaleData) {
     ReactIntl.addLocaleData(customLocaleData[customLocale]);
 }
 

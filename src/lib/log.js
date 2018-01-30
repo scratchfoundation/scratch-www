@@ -1,4 +1,4 @@
-const minilog = require('minilog');
+var minilog = require('minilog');
 minilog.enable();
 
 module.exports = minilog('www');

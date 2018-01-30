@@ -7,23 +7,23 @@ var tap = require('tap');
 
 var routes = require('../../src/routes.json');
 
-const noDuplicateValues = (idsToCheck, name) => {
-    let values = {};
-    for (const key in idsToCheck) {
+function noDuplicateValues (idsToCheck, name) {
+    var values = {};
+    for (var key in idsToCheck) {
         if (values.hasOwnProperty(idsToCheck[key])) {
             // duplicate values
-            // return false;
-            tap.fail(`${name}.${idsToCheck[key]} has duplicates`);
+            //return false;
+            tap.fail(name + '.' + idsToCheck[key] + ' has duplicates');
         } else {
             values[idsToCheck[key]] = key;
         }
     }
     tap.pass();
-    // return true;
-};
+    //return true;
+}
 
 tap.test('generalCheckForDuplicates', function (t) {
-    const ids = require(path.resolve(__dirname, '../../src/l10n.json')); // eslint-disable-line global-require
+    var ids = require(path.resolve(__dirname, '../../src/l10n.json'));
     noDuplicateValues(ids, 'general');
     t.end();
 });
@@ -35,11 +35,11 @@ for (var v in routes) {
     var subdir = routes[v].view.split('/');
     subdir.pop();
     var name = routes[v].name;
-    var uri = path.resolve(__dirname, '../../src/views/' + subdir.join('/') + '/l10n.json');
+    var uri = path.resolve(__dirname, '../../src/views/' + subdir.join('/') +'/l10n.json');
     try {
         var file = fs.readFileSync(uri, 'utf8');
         var ids = JSON.parse(file);
-        tap.test(name + 'CheckForDuplicates', function (t) { // eslint-disable-line no-loop-func
+        tap.test(name + 'CheckForDuplicates', function (t) {
             noDuplicateValues(ids, name);
             t.end();
         });

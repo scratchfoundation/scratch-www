@@ -1,17 +1,17 @@
-const keyMirror = require('keymirror');
-const defaults = require('lodash.defaults');
+var keyMirror = require('keymirror');
+var defaults = require('lodash.defaults');
 
-const api = require('../lib/api');
-const messageCountActions = require('./message-count.js');
-const permissionsActions = require('./permissions.js');
+var api = require('../lib/api');
+var messageCountActions = require('./message-count.js');
+var permissionsActions = require('./permissions.js');
 
-const Types = keyMirror({
+var Types = keyMirror({
     SET_SESSION: null,
     SET_SESSION_ERROR: null,
     SET_STATUS: null
 });
 
-const banWhitelistPaths = [
+var banWhitelistPaths = [
     '/accounts/banned-response/',
     '/community_guidelines/',
     '/community_guidelines'
@@ -23,12 +23,11 @@ module.exports.Status = keyMirror({
     FETCHING: null
 });
 
-module.exports.getInitialState = () => ({
-    status: module.exports.Status.NOT_FETCHED,
-    session: {}
-});
+module.exports.getInitialState = function (){
+    return {status: module.exports.Status.NOT_FETCHED, session:{}};
+};
 
-module.exports.sessionReducer = (state, action) => {
+module.exports.sessionReducer = function (state, action) {
     // Reducer for handling changes to session state
     if (typeof state === 'undefined') {
         state = module.exports.getInitialState();
@@ -46,60 +45,63 @@ module.exports.sessionReducer = (state, action) => {
     }
 };
 
-module.exports.setSessionError = error => ({
-    type: Types.SET_SESSION_ERROR,
-    error: error
-});
+module.exports.setSessionError = function (error) {
+    return {
+        type: Types.SET_SESSION_ERROR,
+        error: error
+    };
+};
 
-module.exports.setSession = session => ({
-    type: Types.SET_SESSION,
-    session: session
-});
+module.exports.setSession = function (session) {
+    return {
+        type: Types.SET_SESSION,
+        session: session
+    };
+};
 
-module.exports.setStatus = status => ({
-    type: Types.SET_STATUS,
-    status: status
-});
+module.exports.setStatus = function (status){
+    return {
+        type: Types.SET_STATUS,
+        status: status
+    };
+};
 
-module.exports.refreshSession = () => (dispatch => {
-    dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
-    api({
-        host: '',
-        uri: '/session/'
-    }, (err, body) => {
-        if (err) return dispatch(module.exports.setSessionError(err));
-        if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
-        if (
-            body.user &&
-            body.user.banned &&
-            banWhitelistPaths.indexOf(window.location.pathname) === -1
-        ) {
-            window.location = '/accounts/banned-response/';
-            return;
-        } else if (
-            body.flags &&
-            body.flags.must_complete_registration &&
-            window.location.pathname !== '/classes/complete_registration'
-        ) {
-            window.location = '/classes/complete_registration';
-            return;
-        } else if (
-            body.flags &&
-            body.flags.must_reset_password &&
-            !body.flags.must_complete_registration &&
-            window.location.pathname !== '/classes/student_password_reset/'
-        ) {
-            window.location = '/classes/student_password_reset/';
-            return;
-        }
-        dispatch(module.exports.setSession(body));
-        dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
+module.exports.refreshSession = function () {
+    return function (dispatch) {
+        dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
+        api({
+            host: '',
+            uri: '/session/'
+        }, function (err, body) {
+            if (err) return dispatch(module.exports.setSessionError(err));
+            if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
+            if (
+                    body.user &&
+                    body.user.banned &&
+                    banWhitelistPaths.indexOf(window.location.pathname) === -1) {
+                return window.location = '/accounts/banned-response/';
+            } else if (
+                    body.flags &&
+                    body.flags.must_complete_registration &&
+                    window.location.pathname !== '/classes/complete_registration') {
+                return window.location = '/classes/complete_registration';
+            } else if (
+                    body.flags &&
+                    body.flags.must_reset_password &&
+                    !body.flags.must_complete_registration &&
+                    window.location.pathname !== '/classes/student_password_reset/') {
+                return window.location = '/classes/student_password_reset/';
+            } else {
+                dispatch(module.exports.setSession(body));
+                dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
 
-        // get the permissions from the updated session
-        dispatch(permissionsActions.storePermissions(body.permissions));
-        if (typeof body.user !== 'undefined') {
-            dispatch(messageCountActions.getCount(body.user.username));
-        }
-        return;
-    });
-});
+                // get the permissions from the updated session
+                dispatch(permissionsActions.storePermissions(body.permissions));
+                if (typeof body.user !== 'undefined') {
+                    dispatch(messageCountActions.getCount(body.user.username));
+                }
+                return;
+            }
+        });
+    };
+};
