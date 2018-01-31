@@ -1,17 +1,18 @@
-var classNames = require('classnames');
-var React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const React = require('react');
 
 require('./slide.scss');
 
-var Slide = React.createClass({
-    displayName: 'Slide',
-    render: function () {
-        return (
-            <div className={classNames(['slide', this.props.className])}>
-                {this.props.children}
-            </div>
-        );
-    }
-});
+const Slide = props => (
+    <div className={classNames(['slide', props.className])}>
+        {props.children}
+    </div>
+);
+
+Slide.propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string
+};
 
 module.exports = Slide;

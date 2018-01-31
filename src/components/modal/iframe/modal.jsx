@@ -1,34 +1,28 @@
-var classNames = require('classnames');
-var omit = require('lodash.omit');
-var React = require('react');
+const classNames = require('classnames');
+const omit = require('lodash.omit');
+const PropTypes = require('prop-types');
+const React = require('react');
 
-var Modal = require('../base/modal.jsx');
+const Modal = require('../base/modal.jsx');
 
 require('./modal.scss');
 
-var IframeModal = React.createClass({
-    propTypes: {
-        isOpen: React.PropTypes.bool,
-        onRequestClose: React.PropTypes.func,
-        className: React.PropTypes.string,
-        componentRef: React.PropTypes.func,
-        src: React.PropTypes.string
-    },
-    render: function () {
-        var iframeClasses = classNames(
-            'modal-content-iframe',
-            this.props.className
-        );
-        return (
-            <Modal {...omit(this.props, ['src'])}>
-                <iframe
-                    ref={this.props.componentRef}
-                    src={this.props.src}
-                    className={iframeClasses}
-                />
-            </Modal>
-        );
-    }
-});
+const IframeModal = props => (
+    <Modal {...omit(props, ['src'])}>
+        <iframe
+            className={classNames('modal-content-iframe', props.className)}
+            ref={props.componentRef}
+            src={props.src}
+        />
+    </Modal>
+);
+
+IframeModal.propTypes = {
+    className: PropTypes.string,
+    componentRef: PropTypes.func,
+    isOpen: PropTypes.bool,
+    onRequestClose: PropTypes.func,
+    src: PropTypes.string
+};
 
 module.exports = IframeModal;
