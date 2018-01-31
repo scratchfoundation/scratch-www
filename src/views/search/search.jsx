@@ -100,7 +100,7 @@ class Search extends React.Component {
                 </li>
             </a>
         );
-        if (this.props.tab === type) {
+        if (this.state.tab === type) {
             allTab = (
                 <a href={`/search/${type}?q=${term}/`}>
                     <li className="active">
@@ -137,7 +137,7 @@ class Search extends React.Component {
                         <Grid
                             cards
                             showAvatar
-                            itemType={this.props.tab}
+                            itemType={this.state.tab}
                             items={this.state.loaded}
                             showFavorites={false}
                             showLoves={false}
@@ -159,8 +159,7 @@ class Search extends React.Component {
 Search.propTypes = {
     dispatch: PropTypes.func,
     intl: intlShape,
-    searchTerm: PropTypes.string,
-    tab: PropTypes.string
+    searchTerm: PropTypes.string
 };
 
 const mapStateToProps = state => ({
