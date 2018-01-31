@@ -557,7 +557,7 @@ module.exports = {
                         <intl.FormattedMessage id="teacherRegistration.organization" />
                     </h2>
                     <p className="description">
-                        <intl.FormattedMessage id="teacherRegistration.orgStepDescription" />
+                        <intl.FormattedMessage id="teacherRegistration.privacyDescription" />
                         <Tooltip title={'?'}
                                  tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
@@ -675,7 +675,7 @@ module.exports = {
                         <intl.FormattedMessage id="teacherRegistration.addressStepTitle" />
                     </h2>
                     <p className="description">
-                        <intl.FormattedMessage id="teacherRegistration.addressStepDescription" />
+                        <intl.FormattedMessage id="teacherRegistration.privacyDescription" />
                         <Tooltip title={'?'}
                                  tipContent={formatMessage({id: 'registration.nameStepTooltip'})} />
                     </p>
