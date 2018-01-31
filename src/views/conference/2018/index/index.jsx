@@ -12,137 +12,233 @@ require('./index.scss');
 
 const ConferenceSplash = () => (
     <div className="index mod-2018">
-        <TitleBanner className="mod-conference mod-2018">
-            <div className="title-banner-image mod-2018" />
-            <h1 className="title-banner-h1 mod-2018">
-                <center>
-                    <FormattedMessage id="conference-2018.title" />
-                    <br />
-                    <FormattedMessage id="conference-2018.subtitle" />
-                </center>
+        <TitleBanner className="mod-conference">
+            <h1>
+                <FormattedMessage id="conference-2018.title" />
+                <br />
+                <FormattedMessage id="conference-2018.subtitle" />
             </h1>
-            <h3 className="title-banner-h3 mod-2018">
+            <h3>
                 <FormattedMessage id="conference-2018.dateDesc" />
+            </h3>
+            <h3>
+                <FormattedMessage id="conference-2018.registrationDate" />
             </h3>
         </TitleBanner>
         <div className="inner">
-            <section className="conf2018-panel mod-desc">
-                <p className="conf2018-panel-desc">
-                    <FormattedMessage id="conference-2018.desc1" />
-                    <br />
-                    <br />
-                    <FormattedMessage id="conference-2018.desc2" />
-                </p>
-                <table className="conf2018-panel-details">
-                    <tbody>
-                        <tr className="conf2018-panel-row">
-                            <td className="conf2018-panel-row-icon">
-                                <img
-                                    alt="Calendar Icon"
-                                    className="conf2018-panel-row-icon-image"
-                                    src="/svgs/conference/index/calendar-icon.svg"
-                                />
-                            </td>
-                            <td><FormattedMessage id="conference-2018.date" /></td>
-                            <td>
-                                <FormattedDate
-                                    day="2-digit"
-                                    month="long"
-                                    value={new Date(2018, 6, 26)}
-                                    year="numeric"
-                                />
-                                {' - '}
-                                <FormattedDate
-                                    day="2-digit"
-                                    month="long"
-                                    value={new Date(2018, 6, 28)}
-                                    year="numeric"
-                                />
-                                <FormattedMessage id="conference-2018.dateDescMore" />
-                            </td>
-                        </tr>
-                        <tr className="conf2018-panel-row">
-                            <td className="conf2018-panel-row-icon">
-                                <img
-                                    alt="Map Icon"
-                                    className="conf2018-panel-row-icon-image"
-                                    src="/svgs/conference/index/map-icon.svg"
-                                />
-                            </td>
-                            <td><FormattedMessage id="conference-2018.location" /></td>
-                            <td><FormattedMessage id="conference-2018.locationDetails" /></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>
-                    <FormattedMessage id="conference-2018.registrationDate" />
-                </p>
-            </section>
-            <section className="conf2018-panel">
-                <p className="conf2018-panel-desc">
-                    <FormattedMessage id="conference-2018.sessionDesc" />
-                </p>
-                <p className="conf2018-panel-session">
-                    <p className="conf2018-panel-session">
-                        <b>
-                            <FormattedMessage id="conference-2018.sessionItem1Title" />
-                        </b>{' '}
-                        <FormattedMessage id="conference-2018.sessionItem1Desc" />
-                    </p>
-                    <p className="conf2018-panel-session">
-                        <b>
-                            <FormattedMessage id="conference-2018.sessionItem2Title" />
-                        </b>{' '}
-                        <FormattedMessage id="conference-2018.sessionItem2Desc" />
-                    </p>
-                    <p className="conf2018-panel-session">
-                        <b>
-                            <FormattedMessage id="conference-2018.sessionItem3Title" />
-                        </b>{' '}
-                        <FormattedMessage id="conference-2018.sessionItem3Desc" />
-                    </p>
-                    <p className="conf2018-panel-session">
-                        <b>
-                            <FormattedMessage id="conference-2018.sessionItem4Title" />
-                        </b>{' '}
-                        <FormattedMessage id="conference-2018.sessionItem4Desc" />
-                    </p>
-                    <p className="conf2018-panel-deadline">
-                        <FormattedMessage id="conference-2018.deadline" />
-                    </p>
-                </p>
-                <a
-                    className="button mod-2018-panel"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSd7SkuQ-dfW-P3aArSQokK9GkKAUKufTVBHod_ElNIiFE9iBQ/viewform?usp=sf_link"
-                >
-                    <FormattedMessage id="conference-2018.proposal" />
-                </a>
-            </section>
-            <section className="conf2018-panel mod-registration">
-                <FlexRow className="conf2018-panel-title">
-                    <div className="conf2018-panel-title-text">
-                        <h3><FormattedMessage id="conference-2018.registrationTitle" /></h3>
+            <section className="info">
+                <FlexRow className="uneven">
+                    <div className="long">
+                        <p>
+                            <FormattedMessage id="conference-2018.desc1" />
+                        </p>
+    
+                        <p>
+                            <FormattedMessage id="conference-2018.desc2" />
+                        </p>
+                    </div>
+                    <div className="short">
+                        <p>
+                            <b><FormattedMessage id="conference-2018.date" /></b>{' '}
+                            {/* eslint-disable react/jsx-sort-props */}
+                            <FormattedDate
+                                value={new Date(2018, 6, 26)}
+                                year="numeric"
+                                month="long"
+                                day="2-digit"
+                            />
+                            {' - '}
+                            <FormattedDate
+                                value={new Date(2018, 6, 28)}
+                                year="numeric"
+                                month="long"
+                                day="2-digit"
+                            />
+                            {/* eslint-enable react/jsx-sort-props */}
+                            <br />
+                            <FormattedMessage id="conference-2018.dateDescMore" />
+                            <br />
+                            <b><FormattedMessage id="conference-2018.location" /></b>{' '}
+                            <FormattedMessage id="conference-2018.locationDetails" />
+                        </p>
                     </div>
                 </FlexRow>
-                <p className="conf2018-panel-desc">
-                    <FormattedMessage id="conference-2018.registrationEarly" />
-                    <br />
-                    <FormattedMessage id="conference-2018.registrationStandard" />
-                </p>
-            </section>
-            <section className="conf2018-panel mod-questions">
-                <p className="conf2018-panel-desc">
-                    <FormattedMessage
-                        id="conference-2018.questions"
-                        values={{
-                            emailLink: (
-                                <a href="mailto:conference@scratch.mit.edu">
-                                    conference@scratch.mit.edu
-                                </a>
-                            )
-                        }}
-                    />
-                </p>
+                <FlexRow className="uneven">
+                    <div className="long">
+                        <h3 id="info"><FormattedMessage id="conference-2018.registrationTitle" /></h3>
+                        <p className="conf2018-panel-desc">
+                            <b><FormattedMessage id="conference-2018.registrationEarly" /></b>
+                            <br />
+                            <b><FormattedMessage id="conference-2018.registrationStandard" /></b>
+                        </p>
+                        <p><FormattedMessage id="conference-2018.registrationDate" /></p>
+                        <h3 id="questions"><FormattedMessage id="conference-2018.questionsTitle" /></h3>
+                        <div>
+                            <p className="conf2018-question">
+                                <FormattedMessage id="conference-2018.submissionQ" />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage id="conference-2018.submissionAns" />
+                            </p>
+                        </div>
+                        <div>
+                            <p className="conf2018-question">
+                                <FormattedMessage id="conference-2018.regQ" />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage id="conference-2018.regAns" />
+                            </p>
+                        </div>
+                        <div>
+                            <p className="conf2018-question">
+                                <FormattedMessage id="conference-2018.accommodationsQ" />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage
+                                    id="conference-2018.accommodationsAns1"
+                                    values={{
+                                        marriottLink: (
+                                            <a href="http://www.marriott.com/hotels/travel/boscb-boston-marriott-cambridge/">
+                                                Boston Marriott Cambridge
+                                            </a>
+                                        ),
+                                        holidayinnLink: (
+                                            <a href="http://www.hiexpress.com/hotels/us/en/reservation/searchresult?qAdlt=1&qBrs=6c.hi.ex.rs.ic.cp.in.sb.cw.cv.ul.vn&qChld=0&qDest=CAMBRIDGE%2CMA%2CUnited+States&qFRA=1&qGRM=0&qIta=99504425&qPSt=0&qRRSrt=rt&qRef=df&qRms=1&qRpn=1&qRpp=12&qSHp=1&qSmP=3&qSrt=sBR&qWch=0&srb_u=1&icdv=99504425&dp=true">
+                                                Holiday Inn Express and Suites
+                                            </a>
+                                        ),
+                                        residenceinnLink: (
+                                            <a href="http://www.marriott.com/hotels/travel/boscm-residence-inn-boston-cambridge/">
+                                                Residence Inn
+                                            </a>
+                                        ),
+                                        lemeridienLink: (
+                                            <a href="http://www.starwoodhotels.com/lemeridien/property/overview/index.html?propertyID=3253&language=en_US">
+                                                Le Meridien
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage
+                                    id="conference-2018.accommodationsAns2"
+                                    values={{
+                                        freepointLink: (
+                                            <a href="http://freepointhotel.com/">
+                                                Freepoint Hotel
+                                            </a>
+                                        ),
+                                        mitLink: (
+                                            <a href="http://www.media.mit.edu/contact/accommodations">
+                                                <FormattedMessage id="conference-2018.here" />
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage
+                                    id="conference-2018.accommodationsAns3"
+                                    values={{
+                                        neuLink: (
+                                            <a href="http://www.northeastern.edu/">
+                                                Northeastern University
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </p>
+                            <p className="conf2018-question">
+                                <FormattedMessage id="conference-2018.apartment" />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage id="conference-2018.single" />
+                                {' - $90.00'}
+                                <FormattedMessage id="conference-2018.pp" />
+                                <br />
+                                <FormattedMessage id="conference-2018.double" />
+                                {' - $65.00'}
+                                <FormattedMessage id="conference-2018.pp" />
+                            </p>
+                            <p className="conf2018-question">
+                                <FormattedMessage id="conference-2018.suite" />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage id="conference-2018.single" />
+                                {' - $80.00'}
+                                <FormattedMessage id="conference-2018.pp" />
+                                <br />
+                                <FormattedMessage id="conference-2018.double" />
+                                {' - $65.00'}
+                                <FormattedMessage id="conference-2018.pp" />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage
+                                    id="conference-2018.accommodationsAns4"
+                                    values={{
+                                        emailLink: (
+                                            <a href="mailto:conference@scratch.mit.edu">
+                                                conference@scratch.mit.edu
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </p>
+                        </div>
+                        <div>
+                            <p className="conf2018-question">
+                                <FormattedMessage id="conference-2018.letterQ" />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage
+                                    id="conference-2018.letterAns"
+                                    values={{
+                                        emailLink: (
+                                            <a href="mailto:conference@scratch.mit.edu">
+                                                conference@scratch.mit.edu
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </p>
+                        </div>
+                        <div>
+                            <p className="conf2018-question">
+                                <FormattedMessage id="conference-2018.preConfQ" />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage id="conference-2018.preConfAns" />
+                            </p>
+                        </div>
+                        <div>
+                            <p className="conf2018-question">
+                                <FormattedMessage id="conference-2018.bringQ" />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage id="conference-2018.bringAns" />
+                            </p>
+                        </div>
+                        <div>
+                            <p className="conf2018-question">
+                                <FormattedMessage id="conference-2018.moreQ" />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage
+                                    id="conference-2018.moreAns"
+                                    values={{
+                                        emailLink: (
+                                            <a href="mailto:conference@scratch.mit.edu">
+                                                conference@scratch.mit.edu
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </p>
+                        </div>
+                    </div>
+                    
+                </FlexRow>
             </section>
         </div>
     </div>
