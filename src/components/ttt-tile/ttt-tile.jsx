@@ -1,58 +1,68 @@
-var classNames = require('classnames');
-var React = require('react');
-var FormattedMessage = require('react-intl').FormattedMessage;
+const classNames = require('classnames');
+const FormattedMessage = require('react-intl').FormattedMessage;
+const PropTypes = require('prop-types');
+const React = require('react');
 
 require('../forms/button.scss');
 require('./ttt-tile.scss');
 
-var TTTTile = React.createClass({
-    type: 'TTTTile',
-    propTypes: {
-        title: React.PropTypes.string.isRequired,
-        description: React.PropTypes.string,
-        thumbUrl: React.PropTypes.string.isRequired,
-        tutorialLoc: React.PropTypes.string.isRequired,
-        onGuideClick: React.PropTypes.func
-    },
-    render: function () {
-        var classes = classNames(
-            'ttt-tile',
-            this.props.className
-        );
-        return (
-            <div className={classes} >
-                <a href={this.props.tutorialLoc}>
-                    <div className="ttt-tile-tutorial">
-                        <div className="ttt-tile-image">
-                            <img className="ttt-tile-image-img" src={this.props.thumbUrl} alt="" />
-                            <div className="ttt-tile-image-try">
-                                <div className="button mod-ttt-try-button">
-                                    <FormattedMessage id="tile.tryIt" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="ttt-tile-info">
-
-                            <div className="ttt-tile-tag">
-                                <FormattedMessage id='ttt.tutorial' defaultMessage='Tutorial'/>
-                            </div>
-                            <h4 className="ttt-tile-title">{this.props.title}</h4>
-                            <p className="ttt-tile-description">
-                                {this.props.description}
-                            </p>
+const TTTTile = props => (
+    <div className={classNames('ttt-tile', props.className)}>
+        <a href={props.tutorialLoc}>
+            <div className="ttt-tile-tutorial">
+                <div className="ttt-tile-image">
+                    <img
+                        alt=""
+                        className="ttt-tile-image-img"
+                        src={props.thumbUrl}
+                    />
+                    <div className="ttt-tile-image-try">
+                        <div className="button mod-ttt-try-button">
+                            <FormattedMessage id="tile.tryIt" />
                         </div>
                     </div>
+                </div>
+                <div className="ttt-tile-info">
 
-                </a>
-                {this.props.onGuideClick && (
-                    <div className="ttt-tile-guides" onClick={this.props.onGuideClick}>
-                        <FormattedMessage id='tile.guides' defaultMessage='See Cards and Guides'/>
-                        <img className="ttt-tile-open-modal" src="/svgs/modal/open-blue.svg" />
+                    <div className="ttt-tile-tag">
+                        <FormattedMessage
+                            defaultMessage="Tutorial"
+                            id="ttt.tutorial"
+                        />
                     </div>
-                )}
+                    <h4 className="ttt-tile-title">{props.title}</h4>
+                    <p className="ttt-tile-description">
+                        {props.description}
+                    </p>
+                </div>
             </div>
-        );
-    }
-});
+
+        </a>
+        {props.onGuideClick && (
+            <div
+                className="ttt-tile-guides"
+                onClick={props.onGuideClick}
+            >
+                <FormattedMessage
+                    defaultMessage="See Cards and Guides"
+                    id="tile.guides"
+                />
+                <img
+                    className="ttt-tile-open-modal"
+                    src="/svgs/modal/open-blue.svg"
+                />
+            </div>
+        )}
+    </div>
+);
+
+TTTTile.propTypes = {
+    className: PropTypes.string,
+    description: PropTypes.string,
+    onGuideClick: PropTypes.func,
+    thumbUrl: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    tutorialLoc: PropTypes.string.isRequired
+};
 
 module.exports = TTTTile;
