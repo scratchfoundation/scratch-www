@@ -318,7 +318,7 @@ var Credits = React.createClass({
         );
     }
 });
-=======
+
 const Credits = () => (
     <div className="inner credits">
         <h1><FormattedMessage id="credits.title" /></h1>
