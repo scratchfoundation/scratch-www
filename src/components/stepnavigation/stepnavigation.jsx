@@ -1,28 +1,29 @@
-var classNames = require('classnames');
-var React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const React = require('react');
 
 require('./stepnavigation.scss');
 
-var StepNavigation = React.createClass({
-    type: 'Navigation',
-    render: function () {
-        return (
-            <ul className={classNames('step-navigation', this.props.className)}>
-                {Array.apply(null, Array(this.props.steps)).map(function (v, step) {
-                    return (
-                        <li key={step}
-                            className={classNames({
-                                active: step < this.props.active,
-                                selected: step === this.props.active
-                            })}
-                        >
-                            <div className="indicator" />
-                        </li>
-                    );
-                }.bind(this))}
-            </ul>
-        );
-    }
-});
+const StepNavigation = props => (
+    <ul className={classNames('step-navigation', props.className)}>
+        {Array.apply(null, Array(props.steps)).map((v, step) => (
+            <li
+                className={classNames({
+                    active: step < props.active,
+                    selected: step === props.active
+                })}
+                key={step}
+            >
+                <div className="indicator" />
+            </li>
+        ))}
+    </ul>
+);
+
+StepNavigation.propTypes = {
+    active: PropTypes.number,
+    className: PropTypes.string,
+    steps: PropTypes.number
+};
 
 module.exports = StepNavigation;

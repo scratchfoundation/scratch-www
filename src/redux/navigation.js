@@ -1,11 +1,11 @@
-var keyMirror = require('keymirror');
+const keyMirror = require('keymirror');
 
-var Types = keyMirror({
+const Types = keyMirror({
     SET_SEARCH_TERM: null
 });
 
-module.exports.navigationReducer = function (state, action) {
-    if(typeof state === 'undefined') {
+module.exports.navigationReducer = (state, action) => {
+    if (typeof state === 'undefined') {
         state = '';
     }
     switch (action.type) {
@@ -16,9 +16,7 @@ module.exports.navigationReducer = function (state, action) {
     }
 };
 
-module.exports.setSearchTerm = function (searchTerm) {
-    return {
-        type: Types.SET_SEARCH_TERM,
-        searchTerm: searchTerm
-    };
-};
+module.exports.setSearchTerm = searchTerm => ({
+    type: Types.SET_SEARCH_TERM,
+    searchTerm: searchTerm
+});

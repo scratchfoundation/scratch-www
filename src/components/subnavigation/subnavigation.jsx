@@ -1,36 +1,38 @@
-var classNames = require('classnames');
-var React = require('react');
+const classNames = require('classnames');
+const PropTypes = require('prop-types');
+const React = require('react');
 
 require('./subnavigation.scss');
 
-/**
+/*
  * Container for a custom, horizontal list of navigation elements
  * that can be displayed within a view or component.
  */
-var SubNavigation = React.createClass({
-    type: 'SubNavigation',
-    getDefaultProps: function () {
-        return {
-            align: 'middle'
-        };
-    },
-    render: function () {
-        var classes = classNames(
+const SubNavigation = props => (
+    <div
+        className={classNames(
             [
                 'sub-nav',
-                this.props.className
+                props.className
             ],
             {
-                'sub-nav-align-left': this.props.align === 'left',
-                'sub-nav-align-right': this.props.align === 'right'
+                'sub-nav-align-left': props.align === 'left',
+                'sub-nav-align-right': props.align === 'right'
             }
-        );
-        return (
-            <div className={classes}>
-                {this.props.children}
-            </div>
-        );
-    }
-});
+        )}
+    >
+        {props.children}
+    </div>
+);
+
+SubNavigation.propTypes = {
+    align: PropTypes.string,
+    children: PropTypes.node,
+    className: PropTypes.string
+};
+
+SubNavigation.defaultProps = {
+    align: 'middle'
+};
 
 module.exports = SubNavigation;
