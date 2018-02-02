@@ -2,15 +2,23 @@
 @import "../../../../frameless";
 
 #navigation {
-    .ul.mod-2018 {
+    .ul.mod-2018,
+    .li-right-ul.mod-2018,
+    .li-left-ul.mod-2018 {
         display: flex;
         justify-content: space-between;
         flex-flow: row nowrap;
         align-items: center;
         list-style-type: none;
     }
+    
+    .li-left-ul.mod-2018 {
+        padding-left: 0;
+    }
 
-    .li-left.mod-2018 {
+    .li-left,
+    .li-right,
+    .link {
         margin-top: 0;
         margin-right: 10px;
         color: $type-white;
@@ -35,5 +43,48 @@
         color: $type-white;
         font-size: .85rem;
         font-weight: bold;
+    }
+
+    @media only screen and (max-width: $mobile - 1) {
+        .li-right-ul.mod-2018 {
+            flex-flow: row nowrap;
+        }
+
+        .link {
+            margin: 0;
+            padding: 0;
+        }
+
+        .link-a {
+            font-size: .75rem;
+        }
+    }
+
+    @media only screen and (max-width: $tablet - 1) {
+        height: 100px;
+
+        .ul.mod-2018 {
+            justify-content: center;
+            flex-flow: row wrap;
+        }
+
+        .li-left,
+        .li-right,
+        .link {
+            align-self: center;
+        }
+
+        .li-right {
+            margin-left: 0;
+            align-self: center;
+        }
+
+        .logo-a {
+            padding-top: 6px;
+        }
+
+        .logo-a-image {
+            padding-left: 15px;
+        }
     }
 }
