@@ -124,9 +124,14 @@ const ConferenceSplash = () => (
                                 <FormattedMessage
                                     id="conference-2018.accommodationsAns2"
                                     values={{
-                                        freepointLink: (
-                                            <a href="http://freepointhotel.com/">
-                                                Freepoint Hotel
+                                        acLink: (
+                                            <a href="http://www.marriott.com/meeting-event-hotels/group-corporate-travel/groupCorp.mi?resLinkData=Scratch%20Conference%5EBOSAR%60sccscca%7Csccsccb%60229%60USD%60false%604%607/25/18%607/28/18%607/4/18&app=resvlink&stop_mobi=yes">
+                                                AC Hotel Boston Cambridge
+                                            </a>
+                                        ),
+                                        hotelbostonLink: (
+                                            <a href="https://www.hotelboston.com/">
+                                                Hotel Boston
                                             </a>
                                         ),
                                         mitLink: (
