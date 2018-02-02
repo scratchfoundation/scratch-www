@@ -14,8 +14,6 @@ const ConferenceSplash = () => (
     <div className="index mod-2018">
         <TitleBanner className="mod-conference">
             <h1>
-                <FormattedMessage id="conference-2018.title" />
-                <br />
                 <FormattedMessage id="conference-2018.subtitle" />
             </h1>
             <h3>
