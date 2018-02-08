@@ -67,7 +67,7 @@ routes.forEach(function (route) {
 // Config
 module.exports = {
     entry: entry,
-    devtool: 'eval',
+    devtool: process.env.NODE_ENV === 'production' ? 'none' : 'eval',
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: 'js/[name].bundle.js'
