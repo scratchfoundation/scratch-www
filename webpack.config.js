@@ -125,7 +125,8 @@ module.exports = {
     },
     plugins: [
         new VersionPlugin({length: 5})
-    ].concat(routes
+    ]
+    .concat(routes
         .filter(function (route) {
             return !route.redirect;
         })
@@ -136,7 +137,8 @@ module.exports = {
                 route: route
             }, templateConfig));
         })
-    ).concat([
+    )
+    .concat([
         new CopyWebpackPlugin([
             {from: 'static'},
             {from: 'intl', to: 'js'}
@@ -151,7 +153,8 @@ module.exports = {
             name: 'common',
             filename: 'js/common.bundle.js'
         })
-    ]).concat(process.env.NODE_ENV === 'production' ? [
+    ])
+    .concat(process.env.NODE_ENV === 'production' ? [
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
