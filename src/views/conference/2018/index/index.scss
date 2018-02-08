@@ -1,29 +1,123 @@
 @import "../../../../colors";
 @import "../../../../frameless";
 
-.title-banner.mod-conference.mod-2018 {
-    padding-top: 0;
+.index {
+    .title-banner {
+        margin-bottom: 0;
+        background-image: url("/images/conference/index/2018/title-banner.jpg");
+        background-position: top;
+        padding: 48px 0;
+
+        h1,
+        h3,
+        h4,
+        p {
+            margin: 0 auto;
+            padding: 5px 0;
+            text-align: center;
+            color: $type-white;
+        }
+
+        p {
+            margin-top: 3rem;
+
+            &.sub-button {
+                margin-top: 1rem;
+            }
+
+            b {
+                margin-top: 2rem;
+
+                a {     
+                    text-decoration: underline;       
+                    color: $type-white;       
+                }
+            }
+
+            a {
+
+                button {
+                    background-color: $ui-white;
+                    color: $ui-blue;
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        @media only screen and (max-width: $mobile - 1) {
+            h3 {
+                display: none;
+                margin-top: 0;
+            }
+
+            p {
+                margin-top: .25rem;
+            }
+
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                margin-top: 1.5rem;
+            }
+        }
+    }
+
+    .flex-row {
+        align-items: flex-start;
+        justify-content: space-between;
+
+        &.uneven {
+            img {
+                width: 100%;
+            }
+
+            @media only screen and (max-width: $tablet - 1) {
+                img {
+                    width: 30%;
+                }
+            }
+
+            @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+                img {
+                    width: 70%;
+                }
+            }
+        }
+    }
+
+    .info {
+        text-align: left;
+        
+        .conf2018-question {
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+        
+        .conf2018-answer {
+            margin-top: 0;
+        }
+        
+        @media only screen and (max-width: $desktop - 1) {
+            .uneven {
+                .short {
+                    width: 70%;
+                }
+            }
+        }
+    }
 }
 
-.title-banner-image.mod-2018 {
-    opacity: .75;
-    margin-bottom: 1.75rem;
-    background-image: url("/images/conference/index/2017/title-banner.jpg");
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 20rem;
-}
-
-.conf2018-panel,
-.title-banner-h3.mod-2018 {
-    margin: auto;
-    width: 48.75rem;
-}
-
-.title-banner-h3.mod-2018 {
-    text-align: center;
-    color: $type-white;
+@media only screen and (max-width: $tablet - 1) {
+    .index {
+        .flex-row {
+            align-items: center;
+        }
+    }
 }
 
 .conf2018-panel {
@@ -71,10 +165,6 @@ td {
 
     .title-banner-image.mod-2018 {
         height: 10rem;
-    }
-
-    .title-banner-h1.mod-2018 {
-        line-height: 1.25em;
     }
 
     .conf2018-panel,

@@ -1,29 +1,58 @@
-var React = require('react');
+const React = require('react');
 
-var NavigationBox = require('../../base/navigation.jsx');
+const NavigationBox = require('../../base/navigation.jsx');
 
 require('./navigation.scss');
 
-var Navigation = React.createClass({
-    type: 'Navigation',
-    render: function () {
-        return (
-            <NavigationBox>
-                <ul className="ul mod-2018">
-                    <li className="li-left mod-logo mod-2018">
-                        <a href="/" className="logo-a">
+const Navigation = () => (
+    <NavigationBox>
+        <ul className="ul mod-2018">
+            <li className="li-left mod-logo mod-2018">
+                <ul className="li-left-ul mod-2018">
+                    <li>
+                        <a
+                            className="logo-a"
+                            href="/"
+                        >
                             <img
-                                src="/images/logo_sm.png"
                                 alt="Scratch Logo"
                                 className="logo-a-image"
+                                src="/images/logo_sm.png"
                             />
-                            <p className="logo-a-title">Conferences</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            className="link-a"
+                            href="/conference"
+                        >
+                            <span className="logo-a-title">Conference</span>
                         </a>
                     </li>
                 </ul>
-            </NavigationBox>
-        );
-    }
-});
+            </li>
+            <li className="li-right mod-2018">
+                <ul className="li-right-ul mod-2018">
+                    <li className="link info">
+                        <a
+                            className="link-a"
+                            href="#info"
+                        >
+                            Registration Info
+                        </a>
+                    </li>
+                    <li className="link questions">
+                        <a
+                            className="link-a"
+                            href="#questions"
+                        >
+                            Questions
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </NavigationBox>
+);
 
 module.exports = Navigation;

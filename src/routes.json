@@ -43,7 +43,7 @@
     },
     {
         "name": "conference-index",
-        "pattern": "^/conference/?$",
+        "pattern": "^/conference/?(\\?.*)?$",
         "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/2018/index/index",
         "title": "Scratch Conference",
@@ -190,6 +190,13 @@
         "routeAlias": "/microworlds",
         "view": "microworldshomepage/microworldshomepage",
         "title": "Microworlds"
+    },
+    {
+        "name": "preview-faq",
+        "pattern": "^/preview-faq/?$",
+        "routeAlias": "/preview-faq/?$",
+        "view": "preview-faq/preview-faq",
+        "title": "Scratch 3.0 Preview FAQ"
     },
     {
         "name": "privacypolicy",
