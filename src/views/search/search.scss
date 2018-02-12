@@ -132,6 +132,13 @@ $base-bg: $ui-white;
             display: block;
             margin: 0 auto;
         }
+
+        .search-prompt {
+            margin: 0 auto;
+            padding: 30px;
+            max-width: 500px;
+            text-align: center;
+        }
     }
 }
 

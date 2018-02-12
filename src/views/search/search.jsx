@@ -30,6 +30,7 @@ class Search extends React.Component {
         this.state.loaded = [];
         this.state.loadNumber = 16;
         this.state.offset = 0;
+        this.state.loadMore = false;
     }
     componentDidMount () {
         const query = window.location.search;
@@ -80,10 +81,12 @@ class Search extends React.Component {
             const loadedSoFar = this.state.loaded;
             Array.prototype.push.apply(loadedSoFar, body);
             const currentOffset = this.state.offset + this.state.loadNumber;
+            const willLoadMore = body.length === this.state.loadNumber;
 
             this.setState({
                 loaded: loadedSoFar,
-                offset: currentOffset
+                offset: currentOffset,
+                loadMore: willLoadMore
             });
         });
     }
@@ -115,6 +118,41 @@ class Search extends React.Component {
         }
         return allTab;
     }
+    getProjectBox () {
+        const results = (
+            <Grid
+                cards
+                showAvatar
+                itemType={this.state.tab}
+                items={this.state.loaded}
+                showFavorites={false}
+                showLoves={false}
+                showViews={false}
+            />
+        );
+        let searchAction = null;
+        if (this.state.loaded.length === 0 && this.state.offset !== 0) {
+            searchAction = <h2 className="search-prompt"><FormattedMessage id="general.searchEmpty" /></h2>;
+        } else if (this.state.loadMore) {
+            searchAction = (
+                <Button
+                    className="white"
+                    onClick={this.handleGetSearchMore}
+                >
+                    <FormattedMessage id="general.loadMore" />
+                </Button>
+            );
+        }
+        return (
+            <div
+                id="projectBox"
+                key="projectBox"
+            >
+                {results}
+                {searchAction}
+            </div>
+        );
+    }
     render () {
         return (
             <div>
@@ -130,26 +168,7 @@ class Search extends React.Component {
                         {this.getTab('projects')}
                         {this.getTab('studios')}
                     </Tabs>
-                    <div
-                        id="projectBox"
-                        key="projectBox"
-                    >
-                        <Grid
-                            cards
-                            showAvatar
-                            itemType={this.state.tab}
-                            items={this.state.loaded}
-                            showFavorites={false}
-                            showLoves={false}
-                            showViews={false}
-                        />
-                        <Button
-                            className="white"
-                            onClick={this.handleGetSearchMore}
-                        >
-                            <FormattedMessage id="general.loadMore" />
-                        </Button>
-                    </div>
+                    {this.getProjectBox()}
                 </div>
             </div>
         );
