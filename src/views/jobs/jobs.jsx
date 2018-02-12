@@ -36,6 +36,22 @@ const Jobs = () => (
                         </span>
                     </li>
                     <li>
+                        <a href="https://www.media.mit.edu/about/job-opportunities/full-stack-engineer-lifelong-kindergarten/">
+                            Full Stack Engineer
+                        </a>
+                        <span>
+                            MIT Media Lab, Cambridge, MA
+                        </span>
+                    </li>
+                    <li>
+                        <a href="https://www.media.mit.edu/about/job-opportunities/learning-resources/">
+                            Learning Resource Designer
+                        </a>
+                        <span>
+                            MIT Media Lab, Cambridge, MA
+                        </span>
+                    </li>
+                    <li>
                         <a href="https://www.media.mit.edu/about/job-opportunities/qa-engineer-scratch/">
                             QA Engineer
                         </a>
@@ -46,14 +62,6 @@ const Jobs = () => (
                     <li>
                         <a href="https://www.media.mit.edu/about/job-opportunities/senior-backend-engineer-scratch-1/">
                             Senior Backend Engineer
-                        </a>
-                        <span>
-                            MIT Media Lab, Cambridge, MA
-                        </span>
-                    </li>
-                    <li>
-                        <a href="https://www.media.mit.edu/about/job-opportunities/learning-resources/">
-                            Learning Resource Designer
                         </a>
                         <span>
                             MIT Media Lab, Cambridge, MA
