@@ -81,7 +81,7 @@ class Search extends React.Component {
             const loadedSoFar = this.state.loaded;
             Array.prototype.push.apply(loadedSoFar, body);
             const currentOffset = this.state.offset + this.state.loadNumber;
-            var willLoadMore = body.length === this.props.loadNumber;
+            const willLoadMore = body.length === this.state.loadNumber;
 
             this.setState({
                 loaded: loadedSoFar,
@@ -123,8 +123,8 @@ class Search extends React.Component {
             <Grid
                 cards
                 showAvatar
+                itemType={this.state.tab}
                 items={this.state.loaded}
-                itemType={this.props.tab}
                 showFavorites={false}
                 showLoves={false}
                 showViews={false}
@@ -135,8 +135,11 @@ class Search extends React.Component {
             searchAction = <h2 className="search-prompt"><FormattedMessage id="general.searchEmpty" /></h2>;
         } else if (this.state.loadMore) {
             searchAction = (
-                <Button onClick={this.getSearchMore} className="white">
-                    <FormattedMessage id='general.loadMore' />
+                <Button
+                    className="white"
+                    onClick={this.handleGetSearchMore}
+                >
+                    <FormattedMessage id="general.loadMore" />
                 </Button>
             );
         }
@@ -165,7 +168,7 @@ class Search extends React.Component {
                         {this.getTab('projects')}
                         {this.getTab('studios')}
                     </Tabs>
-                        {this.getProjectBox()}
+                    {this.getProjectBox()}
                 </div>
             </div>
         );
