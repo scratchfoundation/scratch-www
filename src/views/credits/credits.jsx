@@ -372,6 +372,7 @@ const Credits = () => (
         <p>
             <a href="http://www.nsf.gov/">National Science Foundation</a>,
             <a href="http://www.scratchfoundation.org/"> Scratch Foundation</a>,
+            <a href="http:/www.siegelendowment.org"> Siegel Family Endowment</a>,
             <a href="http://www.google.org/"> Google</a>,
             <a href="http://www.legofoundation.com/"> LEGO Foundation</a>,
             <a href="http://www.intel.com/"> Intel</a>,
@@ -429,5 +430,6 @@ const Credits = () => (
         </p>
     </div>
 );
+ 
 
 render(<Page><Credits /></Page>, document.getElementById('app'));

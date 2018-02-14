@@ -7,7 +7,7 @@
     }
 
     select {
-        transition: all .5s ease;
+        transition: border .5s ease;
         margin-bottom: .75rem;
         border: 1px solid $active-gray;
         border-radius: 5px;
@@ -16,6 +16,7 @@
         width: 100%;
         height: 3rem;
         text-indent: 1rem;
+        color: $type-gray;
         font-size: .875rem;
         appearance: none;
 
@@ -30,9 +31,13 @@
         }
 
         &:focus {
-            transition: all .5s ease;
             outline: none;
             border: 1px solid $ui-blue;
+        }
+
+        &:-moz-focusring {
+            text-shadow: 0 0 0 $type-gray;
+            color: transparent;
         }
 
         &:focus,

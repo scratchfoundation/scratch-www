@@ -787,7 +787,7 @@ class OrganizationStep extends React.Component {
                     <intl.FormattedMessage id="teacherRegistration.organization" />
                 </h2>
                 <p className="description">
-                    <intl.FormattedMessage id="teacherRegistration.orgStepDescription" />
+                    <intl.FormattedMessage id="teacherRegistration.privacyDescription" />
                     <Tooltip
                         tipContent={
                             this.props.intl.formatMessage({id: 'registration.nameStepTooltip'})
@@ -944,7 +944,7 @@ class AddressStep extends React.Component {
                     <intl.FormattedMessage id="teacherRegistration.addressStepTitle" />
                 </h2>
                 <p className="description">
-                    <intl.FormattedMessage id="teacherRegistration.addressStepDescription" />
+                    <intl.FormattedMessage id="teacherRegistration.privacyDescription" />
                     <Tooltip
                         tipContent={
                             this.props.intl.formatMessage({id: 'registration.nameStepTooltip'})
