@@ -147,7 +147,7 @@ tap.test('clickDiscussionForumsLink', options, function (t) {
 // SCRATCH WIKI
 tap.test('clickScratchWikiLink', options, function (t) {
     var linkText = 'Scratch Wiki';
-    var expectedUrl = 'https://wiki.scratch.mit.edu/wiki/Scratch_Wiki_Home';
+    var expectedUrl = 'https://en.scratch-wiki.info/wiki/Scratch_Wiki_Home';
     clickFooterLinks(linkText).then( function (url) {
         t.equal(url, expectedUrl);
         t.end();
