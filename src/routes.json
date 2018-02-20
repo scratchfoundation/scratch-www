@@ -192,6 +192,13 @@
         "title": "Microworlds"
     },
     {
+        "name": "preview",
+        "pattern": "^/preview/?$",
+        "routeAlias": "/preview/?$",
+        "view": "preview/preview",
+        "title": "Scratch 3.0 Preview"
+    },
+    {
         "name": "preview-faq",
         "pattern": "^/preview-faq/?$",
         "routeAlias": "/preview-faq/?$",
