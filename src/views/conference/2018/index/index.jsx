@@ -3,6 +3,7 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 const render = require('../../../../lib/render.jsx');
 
+const Button = require('../../../../components/forms/button.jsx');
 const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
 const Page = require('../../../../components/page/conference/2018/page.jsx');
 const TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
@@ -19,9 +20,13 @@ const ConferenceSplash = () => (
             <h3>
                 <FormattedMessage id="conference-2018.dateDesc" />
             </h3>
-            <h3>
-                <FormattedMessage id="conference-2018.registrationDate" />
-            </h3>
+            <p>
+                <a href="https://scratch2018.eventbrite.com">
+                    <Button className="mod-register">
+                        <FormattedMessage id="conference-2018.registerNow" />
+                    </Button>
+                </a>
+            </p>
         </TitleBanner>
         <div className="inner">
             <section className="info">
@@ -69,7 +74,13 @@ const ConferenceSplash = () => (
                             <br />
                             <b><FormattedMessage id="conference-2018.registrationStandard" /></b>
                         </p>
-                        <p><FormattedMessage id="conference-2018.registrationDate" /></p>
+                        <p>
+                            <a href="https://scratch2018.eventbrite.com">
+                                <Button className="mod-register">
+                                    <FormattedMessage id="conference-2018.registerNow" />
+                                </Button>
+                            </a>
+                        </p>
                         <h3 id="questions"><FormattedMessage id="conference-2018.questionsTitle" /></h3>
                         <div>
                             <p className="conf2018-question">
@@ -127,6 +138,11 @@ const ConferenceSplash = () => (
                                                 AC Hotel Boston Cambridge
                                             </a>
                                         ),
+                                        doubletreeLink: (
+                                            <a href="https://secure3.hilton.com/en_US/dt/reservation/book.htm?inputModule=HOTEL&ctyhocn=BOSCODT&spec_plan=CDTMIT&arrival=20180725&departure=20180728&cid=OM,WW,HILTONLINK,EN,DirectLink&fromId=HILTONLINKDIRECT">
+                                                DoubleTree by Hilton Hotel Boston - Downtown
+                                            </a>
+                                        ),
                                         hotelbostonLink: (
                                             <a href="https://www.hotelboston.com/">
                                                 Hotel Boston
@@ -180,9 +196,9 @@ const ConferenceSplash = () => (
                                 <FormattedMessage
                                     id="conference-2018.accommodationsAns4"
                                     values={{
-                                        emailLink: (
-                                            <a href="mailto:conference@scratch.mit.edu">
-                                                conference@scratch.mit.edu
+                                        dormrequestLink: (
+                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8LRQyz9ZLXcpvjmYrnpAlN0_RVyYsgObUXQveI9_WpoDabw/viewform?usp=sf_link">
+                                                <FormattedMessage id="conference-2018.dormRequestText" />
                                             </a>
                                         )
                                     }}
