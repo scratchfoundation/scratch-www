@@ -11,10 +11,7 @@ class Preview extends React.Component {
     render () {
         return (
             // will need a container to set 'dir' attribute RTL if lang is rtl.
-            <GUI
-                className="gui"
-                previewInfoVisible="false"
-            />
+            <GUI className="gui" />
         );
     }
 }

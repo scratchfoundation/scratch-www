@@ -146,10 +146,6 @@ module.exports = {
             to: 'static/blocks-media'
         }]),
         new CopyWebpackPlugin([{
-            from: 'node_modules/scratch-gui/dist/static/extension-assets',
-            to: 'static/extension-assets'
-        }]),
-        new CopyWebpackPlugin([{
             from: 'node_modules/scratch-gui/dist/extension-worker.js'
         }]),
         new CopyWebpackPlugin([{
