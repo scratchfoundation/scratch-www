@@ -169,18 +169,6 @@ const ConferenceSplash = () => (
                                 />
                             </p>
                             <p className="conf2018-question">
-                                <FormattedMessage id="conference-2018.apartment" />
-                            </p>
-                            <p className="conf2018-answer">
-                                <FormattedMessage id="conference-2018.single" />
-                                {' - $90.00'}
-                                <FormattedMessage id="conference-2018.pp" />
-                                <br />
-                                <FormattedMessage id="conference-2018.double" />
-                                {' - $65.00'}
-                                <FormattedMessage id="conference-2018.pp" />
-                            </p>
-                            <p className="conf2018-question">
                                 <FormattedMessage id="conference-2018.suite" />
                             </p>
                             <p className="conf2018-answer">
