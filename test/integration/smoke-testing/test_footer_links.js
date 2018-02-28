@@ -113,7 +113,7 @@ tap.test('clickJobsLink', options, t => {
 // PRESS
 tap.test('clickPressLink', options, t => {
     const linkText = 'Press';
-    const expectedUrl = 'https://wiki.scratch.mit.edu/wiki/Scratch_Press';
+    const expectedUrl = 'https://www.scratchfoundation.org/media-kit/';
     clickFooterLinks(linkText).then(url => {
         t.equal(url, expectedUrl);
         t.end();
