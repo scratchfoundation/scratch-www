@@ -88,7 +88,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="http://wiki.scratch.mit.edu/wiki/Scratch_Press">
+                        <a href="https://www.scratchfoundation.org/media-kit/">
                             <FormattedMessage id="general.press" />
                         </a>
                     </dd>

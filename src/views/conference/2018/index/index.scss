@@ -37,9 +37,7 @@
             a {
 
                 button {
-                    background-color: $ui-white;
-                    color: $ui-blue;
-                    font-size: 1rem;
+                    
                 }
             }
         }
@@ -148,14 +146,14 @@ td {
     height: 1rem;
 }
 
-.button.mod-2018-panel {
-    display: block;
-    margin: 2rem auto 0;
-    background-color: $ui-orange;
-    padding: 1rem 0;
-    width: 13.75rem;
+
+.button.mod-register {
+    padding: .75em 3.5em;
+    
     text-align: center;
     color: $type-white;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 @media only screen and (max-width: $mobile - 1) {
@@ -221,8 +219,8 @@ td {
         max-width: 18.75rem;
     }
 
-    .button.mod-2018-panel {
-        width: 5.75rem;
+    .button.mod-register {
+        padding: .75em 2em;
     }
 }
 
@@ -245,7 +243,7 @@ td {
         font-size: 1.1rem;
     }
 
-    .button.mod-2018-panel {
-        width: 8.75rem;
+    .button.mod-register {
+        padding: .75em 1.25em;
     }
 }
