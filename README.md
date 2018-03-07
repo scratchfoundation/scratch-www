@@ -26,7 +26,7 @@ We’re currently building Scratch using [React](https://facebook.github.io/reac
 We use npm (Node Package Manager) to maintain and update packages required to build the site.  
 
 ### Update Packages
-When making changes it's important to make sure that all of the node packages are up to date. Some changes in the code are needed because of package updates, so make sure you do this. You can update the packages by running this command:
+It's important to make sure that all of the dependencies are up to date because the scratch-www code only works with specific versions of the dependencies. You can update the packages by running this command:
 
 ```bash
 npm install
