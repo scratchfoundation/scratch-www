@@ -33,12 +33,12 @@ npm install
 ```
 
 ### To Build
-To build a version of the server on your local machine you can run this command:
+To compile the source code into HTML and JavaScript bundles browsers can read, run this command:
 
 ```bash
 npm run build
 ```
-This constructs new files on your machine.  If you want the files to only be in memory for testing purposes, consider skipping to the To Run section below.
+If you want to run a server that rebuilds the files as you edit them, skip to the To Run section below.
 
 #### Warnings during npm install
 
