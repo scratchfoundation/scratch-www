@@ -1,4 +1,4 @@
-const allCountries = require('react-telephone-input/lib/country_data').allCountries;
+const allCountries = require('country-telephone-data').allCountries;
 const classNames = require('classnames');
 const ComponentMixin = require('formsy-react-components').ComponentMixin;
 const createReactClass = require('create-react-class');
