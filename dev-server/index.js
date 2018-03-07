@@ -6,7 +6,7 @@ var webpack = require('webpack');
 var compiler = webpack(require('../webpack.config.js'));
 var handler = require('./handler');
 var log = require('./log');
-var routes = require('../src/routes.json').concat(require('../src/routes-dev.json'));
+var routes = require('../src/routes.json').concat(require('../src/routes-dev.json')).filter(route => !process.env.VIEW || process.env.VIEW === route.view);
 
 // Create server
 var app = express();

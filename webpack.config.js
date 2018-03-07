@@ -13,6 +13,8 @@ if (process.env.NODE_ENV !== 'production') {
     routes = routes.concat(require('./src/routes-dev.json')); // eslint-disable-line global-require
 }
 
+routes = routes.filter(route => !process.env.VIEW || process.env.VIEW === route.view);
+
 let VersionPlugin = function (options) {
     this.options = options || {};
     return this;
