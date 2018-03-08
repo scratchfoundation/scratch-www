@@ -1,0 +1,324 @@
+@import "../../colors";
+@import "../../frameless";
+
+html, body, #app, .gui {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+/* override view padding for share banner */
+#view {
+    padding: 0 0 20px 0;
+}
+
+.gui * { box-sizing: border-box; }
+
+.preview h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.preview img.avatar {
+    border: 0;
+    border-radius: 5px;
+}
+
+.preview .title {
+    margin-left: 1rem;
+    font-size: .8rem;
+    text-align: left;
+}
+
+.preview .button {
+    margin-left: 1rem;
+}
+
+.shareButton,
+.remixButton,
+.seeInsideButton {
+    font-size: .875rem;
+    font-weight: normal;
+    
+    &:before {
+        display: inline-block;
+        margin-right: .5rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: middle;
+        content: "";
+    }
+}
+
+.shareText {
+    align-self: center;
+}
+
+.shareButton {
+    background-color: $ui-orange;
+    
+    &:before {
+        background-image: url("/svgs/favorite/favorite_type-gray.svg");
+    }
+}
+
+.remixButton {
+    background-color: $ui-green;
+    
+    &:before {
+        background-image: url("/svgs/remix/remix_type-gray.svg");
+    }
+}
+
+.seeInsideButton {
+    &:before {
+        background-image: url("/images/emoji/cool-cat.png");
+    }
+}
+.previewRow {
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 1rem;
+}
+
+.placeholder {
+    width: 480px;
+    display: inline-block;
+}
+
+.placeholder img {
+    width: 100%;
+}
+
+.projectNotes {
+    width: 45%;
+    height: 404px;
+    flex-flow: column;
+    align-items: left;
+}
+
+.shareDate {
+    height: 2.5rem;
+    vertical-align: middle;
+}
+
+.remixCredit {
+    height: 34px;
+    width: 100%;
+    margin-bottom: 1rem;
+    border: 1px solid $ui-blue-10percent;
+    border-radius: 8px;
+    background-color: $ui-blue-10percent;
+    padding: .5rem;
+}
+
+.projectDescription {
+    white-space: pre-line;
+    flex: 1;
+    width: 100%;
+    overflow-y:scroll;
+    border: 1px solid $ui-blue-10percent;
+    border-radius: 8px;
+    background-color: $ui-blue-10percent;
+    padding: .5rem;
+}
+
+.copyleft {
+    display: inline-block;
+    text-align: right;
+    margin: 0px;
+    transform: scale(-1,1);
+}
+
+.stats {
+    width: 480px;
+    justify-content: flex-start;
+}
+
+.project-loves,
+.project-favorites,
+.project-remixes,
+.project-views {
+
+    display: inline;
+    font-size: 1.25rem;
+    padding-right: 2rem;
+
+    &:before {
+        display: inline-block;
+        margin-right: .1rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: text-bottom;
+        content: "";
+    }
+}
+
+.project-loves {
+    &:before {
+        background-image: url("/svgs/love/love_type-gray.svg");
+    }
+}
+
+.project-loves.loved {
+    &:before {
+        background-image: url("/svgs/messages/love.svg");
+    }
+}
+
+.project-favorites {
+    &:before {
+        background-image: url("/svgs/favorite/favorite_type-gray.svg");
+    }
+}
+
+.project-favorites.favorited {
+    &:before {
+        background-image: url("/svgs/messages/favorite.svg");
+    }
+}
+
+.project-remixes {
+    &:before {
+        background-image: url("/svgs/remix/remix_type-gray.svg");
+    }
+}
+
+.project-views {
+    &:before {
+        background-image: url("/svgs/view/view_type-gray.svg");
+    }
+}
+
+.action-buttons {
+    display: flex;
+    width: 40%;
+    color: $type-white;
+    font-size: .8rem;
+    font-weight: 500;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    
+
+    li {
+        display: inline-block;
+        margin: 0 5px;
+        border: 1px solid $ui-blue;
+        border-radius: 50px;
+        background-color: $ui-blue;
+        padding: .5em .75em .5em 1.5em;
+        text-decoration: none;
+        color: $type-white;
+        list-style-type: none;
+
+        &:hover {
+            transition: background-color .25s ease;
+            border-color: transparent;
+            background-color: $active-gray;
+        }
+
+        &:active {
+            border: 0 solid transparent;
+            box-shadow: inset 0 0 5px $box-shadow-gray;
+            background-color: $active-dark-gray;
+            padding: calc(.75em + 1px) calc(1.5em + 1px);
+        }
+
+        &.report {
+            border: 1px solid $ui-coral;
+            background-color: $ui-coral;
+            
+            &:hover {
+                transition: background-color .25s ease;
+                border-color: transparent;
+                background-color: $active-gray;
+            }
+
+            &:active {
+                border: 0 solid transparent;
+                box-shadow: inset 0 0 5px $box-shadow-gray;
+                background-color: $active-dark-gray;
+                padding: calc(.75em + 1px) calc(1.5em + 1px);
+            }
+        }
+    }
+}
+
+.preview {
+    .title-banner {
+        &.masthead {
+            background-color: $ui-orange-25percent;
+            color: $ui-orange;
+            font-weight: bold; 
+            padding-bottom: 0;
+
+            h1 {
+                margin: 0;
+                color: $ui-white;
+            }
+
+
+            .masthead-info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                p {
+                    margin: 0;
+                    max-width: $cols6;
+                    text-align: left;
+                    color: $ui-white;
+
+                    a {
+                        border-bottom: 1px solid $ui-white;
+                        color: $ui-white;
+                    }
+                }
+            }
+
+            .ted-talk {
+                position: relative;
+                margin-bottom: $gutter;
+                border: 2px solid $ui-border;
+                border-radius: 10px;
+                width: $cols4;
+                height: $cols4 * .5625;
+                overflow: hidden;
+
+                iframe {
+                    border: 0;
+                    width: inherit;
+                    height: inherit;
+                }
+            }
+
+            .band {
+                $band-color: hsla(360, 100, 100, .15);
+
+                margin-top: 2rem;
+                background-color: $band-color;
+                padding: 1rem 0;
+            }
+
+            .sub-nav {
+                text-align: left;
+
+                li {
+                    margin: 0 .5rem 0 0;
+                }
+            }
+
+        }
+
+        &.faq-banner {
+            margin-bottom: 0;
+            background-color: $ui-gray;
+        }
+    }
+}

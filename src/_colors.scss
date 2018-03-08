@@ -16,6 +16,12 @@ $ui-white: #fff;
 
 $ui-border: hsla(0, 0, 85, 1); //#D9D9D9
 
+/* 3.0 colors */
+/* Using www naming convention for now, should be consistent with gui */
+$ui-green: hsla(163, 83, 40, 1); //#0fbd8c Pen Primary
+$ui-coral: hsla(350, 100, 70, 1); //#FF6680 More Priamry
+$ui-blue-10percent: hsla(215, 100, 65, .1);
+$ui-orange-25percent: hsla(35, 90, 55, .25);
 
 /* Overlay UI Gray Colors */
 $active-gray: hsla(0, 0, 0, .1);

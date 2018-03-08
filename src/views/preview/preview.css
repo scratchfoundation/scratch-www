@@ -1,7 +1,0 @@
-html, body, #app, .gui {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-}
-
-.gui * { box-sizing: border-box; }

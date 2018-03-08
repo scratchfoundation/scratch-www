@@ -1,0 +1,10 @@
+@import "../../colors";
+
+$navigation-height: 50px;
+
+.shareBanner {
+    background-color: $ui-orange-25percent;
+    color: $ui-orange;
+    width: 100%;
+    overflow: hidden;
+}
