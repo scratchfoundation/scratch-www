@@ -25,4 +25,4 @@ GeneralError.propTypes = {
     showError: PropTypes.func
 };
 
-module.exports = Formsy.HOC(GeneralError);
+module.exports = Formsy.withFormsy(GeneralError);
