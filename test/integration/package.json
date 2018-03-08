@@ -1,6 +1,0 @@
-{
-    "devDependencies": {
-        "selenium-webdriver": "2.45.0",
-        "chromedriver": "2.33.0"
-    }
-}
