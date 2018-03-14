@@ -14,24 +14,41 @@ html, body, #app, .gui {
 
 .gui * { box-sizing: border-box; }
 
-.preview h1 {
-    font-size: 1.5rem;
-    font-weight: 500;
-}
-
-.preview img.avatar {
-    border: 0;
-    border-radius: 5px;
-}
-
-.preview .title {
-    margin-left: 1rem;
-    font-size: .8rem;
-    text-align: left;
-}
-
-.preview .button {
-    margin-left: 1rem;
+.preview {
+    
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+    
+    img.avatar {
+        border: 0;
+        border-radius: 5px;
+        width: 3rem;
+    }
+    
+    img.avatar.remix {
+        width: 1.5rem;
+        margin-right: .5em
+    }
+    
+    .title {
+        margin-left: 1rem;
+        font-size: .8rem;
+        text-align: left;
+    }
+    
+    .button {
+        margin-left: 1rem;
+    }
+    
+    .comments-container {
+        width: 60%;
+    }
+    
+    .remix-list {
+        width: 35%;
+    }
 }
 
 .shareButton,
@@ -106,13 +123,20 @@ html, body, #app, .gui {
 }
 
 .remixCredit {
-    height: 34px;
     width: 100%;
     margin-bottom: 1rem;
     border: 1px solid $ui-blue-10percent;
     border-radius: 8px;
     background-color: $ui-blue-10percent;
     padding: .5rem;
+    
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+
+.creditText {
+    flex-shrink: 1;
+    font-size: .875rem;
 }
 
 .projectDescription {
@@ -322,3 +346,4 @@ html, body, #app, .gui {
         }
     }
 }
+

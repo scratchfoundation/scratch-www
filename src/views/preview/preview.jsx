@@ -11,16 +11,11 @@ const log = require('../../lib/log.js');
 const PreviewPresentation = require('./presentation.jsx');
 
 const sessionActions = require('../../redux/session.js');
+const previewActions = require('../../redux/preview.js');
 
 class Preview extends React.Component {
     constructor (props) {
         super(props);
-        bindAll(this, [
-            'getProjectInfo'
-        ]);
-        this.state = {
-            projectInfo: {} // project data to show
-        };
     }
     componentDidMount () {
         let pathname = window.location.pathname.toLowerCase();
@@ -29,21 +24,27 @@ class Preview extends React.Component {
         }
         const path = pathname.split('/');
         const projectId = path[path.length - 1];
-        this.getProjectInfo(projectId);
+        this.props.getProjectInfo(projectId);
+        this.props.getRemixes(projectId);
+        // get comments
+        // get studios
+
     }
-    getProjectInfo (projectId) {
-        api({
-            uri: `/projects/${projectId}`
-        }, (err, body) => {
-            if (!body) return log.error('No project info');
-            if (!err) return this.setState({projectInfo: body});
-        });
+    componentDidUpdate (prevProps) {
+        if (this.props.projectInfo.id !== prevProps.projectInfo.id && this.props.projectInfo.remix.root !== null) {
+            this.props.getCreditInfo(this.props.projectInfo.remix.root);
+        }
+
     }
     render () {
         return (
             <PreviewPresentation
-                projectInfo={this.state.projectInfo}
+                comments={this.props.comments}
+                creditInfo={this.props.credit}
+                projectInfo={this.props.projectInfo}
+                remixes={this.props.remixes}
                 sessionStatus={this.props.sessionStatus}
+                studios={this.props.studios}
             />
         );
     }
@@ -69,13 +70,34 @@ Preview.defaultProps = {
 };
 
 const mapStateToProps = state => ({
+    projectInfo: state.preview.projectInfo,
+    credit: state.preview.credit,
+    comments: state.preview.comments,
+    remixes: state.preview.remixes,
     sessionStatus: state.session.status,
+    studios: state.preview.studios,
     user: state.session.session.user
 });
 
+
 const mapDispatchToProps = dispatch => ({
+    getCreditInfo: (id) => {
+        dispatch(previewActions.getCreditInfo(id));
+    },
+    getProjectInfo: (id) => {
+        dispatch(previewActions.getProjectInfo(id));
+    },
+    getRemixes: (id) => {
+        dispatch(previewActions.getRemixes(id));
+    },
     refreshSession: () => {
         dispatch(sessionActions.refreshSession());
+    },
+    setCreditInfo: (info) => {
+        dispatch(previewActions.setCreditInfo(info));
+    },
+    setProjectInfo: (info) => {
+        dispatch(previewActions.setProjectInfo(info));
     }
 });
 
@@ -84,4 +106,8 @@ const ConnectedPreview = connect(
     mapDispatchToProps
 )(Preview);
 
-render(<Page><ConnectedPreview /></Page>, document.getElementById('app'));
+render(
+    <Page><ConnectedPreview /></Page>, 
+    document.getElementById('app'),
+    {preview: previewActions.previewReducer}
+);

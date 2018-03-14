@@ -1,0 +1,12 @@
+.remix-list {
+    flex-direction: column;
+    
+    .project {
+        margin-bottom: 1.5rem;
+    }
+    
+    .creator-image img {
+        max-height: 2rem;
+        max-width: 2rem;
+    }
+}

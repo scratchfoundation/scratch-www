@@ -12,6 +12,7 @@ const Avatar = require('../../components/avatar/avatar.jsx');
 const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const placeholder = require('./gui-placeholder.png');
 const ShareBanner = require('../../components/share-banner/share-banner.jsx');
+const RemixList = require('../../components/remixlist/remixlist.jsx');
 
 require('./preview.scss');
 
@@ -19,6 +20,8 @@ const PreviewPresentation = props => {
     const {
         intl,
         projectInfo,
+        creditInfo,
+        remixes,
         ...otherProps
     } = props;
     const formatMessage = intl.formatMessage;
@@ -39,12 +42,12 @@ const PreviewPresentation = props => {
                     </button>
                 </FlexRow>
             </ShareBanner>
-            { projectInfo && projectInfo.author && projectInfo.author.id ? [
+            { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <div className="inner">
                     <FlexRow className="previewRow">
                         <FlexRow className="projectTitle">
                             <Avatar
-                                src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_44x48.png`}
+                                src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_48x48.png`}
                             />
                             <div className="title">
                                 <h1>{projectInfo.title}</h1>
@@ -68,7 +71,7 @@ const PreviewPresentation = props => {
                             <img src={placeholder} alt="" />
                         </div>
                         <FlexRow className="projectNotes">
-                            {shareDate !== '' ? [
+                            {shareDate !== '' && (
                                 <div className="shareDate">
                                     <div className="copyleft">&copy;</div>
                                     {' '}
@@ -79,10 +82,26 @@ const PreviewPresentation = props => {
                                         day="2-digit"
                                     />
                                 </div>
-                            ] : ''}
-                            <div className="remixCredit">
-                                Remix info here
-                            </div>
+                            )}
+                            {creditInfo && creditInfo.author && creditInfo.id && (
+                                <FlexRow className="remixCredit">
+                                    <Avatar
+                                        className="remix"
+                                        src={`https://cdn2.scratch.mit.edu/get_image/user/${creditInfo.author.id}_48x48.png`}
+                                    />
+                                    <div className="creditText">
+                                        Thanks to <a
+                                            href={`/users/${creditInfo.author.username}`}
+                                        >
+                                            {creditInfo.author.username}
+                                        </a> for the original project <a
+                                            href={`/preview/${creditInfo.id}`}
+                                        >
+                                            {creditInfo.title}
+                                        </a>.
+                                    </div>
+                                </FlexRow>
+                            )}
                             <div className="projectDescription">
                                 {projectInfo.description}
                             </div>
@@ -121,15 +140,41 @@ const PreviewPresentation = props => {
                             </a>
                         </FlexRow>
                     </FlexRow>
+                    <FlexRow className="previewRow">
+                        <div className="comments-container">
+                            <h1>Comments go here</h1>
+                        </div>
+                        <RemixList items={remixes} />
+                    </FlexRow>
+                    
                 </div>
-            ] : []    
-            }
+            )}
         </div>
         
     );
 }
 
 PreviewPresentation.propTyps = {
+    creditInfo: PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        author: PropTypes.shape({id: PropTypes.number}),
+        history: PropTypes.shape({
+            created: PropTypes.string,
+            modified: PropTypes.string,
+            shared: PropTypes.string
+        }),
+        stats: PropTypes.shape({
+            views: PropTypes.number,
+            loves: PropTypes.number,
+            favorites: PropTypes.number
+        }),
+        remix: PropTypes.shape({
+            parent: PropTypes.number,
+            root: PropTypes.number
+        })
+    }),
     intl: intlShape,
     projectInfo: PropTypes.shape({
         id: PropTypes.number,
@@ -151,6 +196,7 @@ PreviewPresentation.propTyps = {
             root: PropTypes.number
         })
     }),
+    remixes: PropTypes.array,
     sessionStatus: PropTypes.string
 }
 
