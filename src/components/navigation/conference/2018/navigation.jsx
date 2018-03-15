@@ -33,14 +33,6 @@ const Navigation = () => (
             </li>
             <li className="li-right mod-2018">
                 <ul className="li-right-ul mod-2018">
-                    <li className="link info">
-                        <a
-                            className="link-a"
-                            href="#info"
-                        >
-                            Registration Info
-                        </a>
-                    </li>
                     <li className="link questions">
                         <a
                             className="link-a"
