@@ -64,17 +64,17 @@ module.exports.setError = error => ({
     error: error
 });
 
-module.exports.setProjectInfo = (info) => ({
+module.exports.setProjectInfo = info => ({
     type: 'SET_PROJECT_INFO',
     info: info
 });
 
-module.exports.setCreditInfo = (info) => ({
+module.exports.setCreditInfo = info => ({
     type: 'SET_CREDIT',
     info: info
 });
 
-module.exports.setRemixes = (items) => ({
+module.exports.setRemixes = items => ({
     type: 'SET_REMIXES',
     items: items
 });
@@ -85,7 +85,7 @@ module.exports.setFetchStatus = (type, status) => ({
     status: status
 });
 
-module.exports.getProjectInfo = (id) => (dispatch => {
+module.exports.getProjectInfo = id => (dispatch => {
     dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHING));
     api({
         uri: `/projects/${id}`
@@ -103,9 +103,9 @@ module.exports.getProjectInfo = (id) => (dispatch => {
         dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
         dispatch(module.exports.setProjectInfo(body));
     });
-})
+});
 
-module.exports.getCreditInfo = (id) => (dispatch => {
+module.exports.getCreditInfo = id => (dispatch => {
     dispatch(module.exports.setFetchStatus('credit', module.exports.Status.FETCHING));
     api({
         uri: `/projects/${id}`
@@ -123,9 +123,9 @@ module.exports.getCreditInfo = (id) => (dispatch => {
         dispatch(module.exports.setFetchStatus('credit', module.exports.Status.FETCHED));
         dispatch(module.exports.setCreditInfo(body));
     });
-})
+});
 
-module.exports.getRemixes = (id) => (dispatch => {
+module.exports.getRemixes = id => (dispatch => {
     dispatch(module.exports.setFetchStatus('remixes', module.exports.Status.FETCHING));
     api({
         uri: `/projects/${id}/remixes?limit=5`
@@ -147,4 +147,4 @@ module.exports.getRemixes = (id) => (dispatch => {
         dispatch(module.exports.setFetchStatus('remixes', module.exports.Status.FETCHED));
         dispatch(module.exports.setRemixes(body));
     });
-})
+});

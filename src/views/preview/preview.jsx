@@ -1,12 +1,8 @@
 const React = require('react');
 const PropTypes = require('prop-types');
-const bindAll = require('lodash.bindall');
 const connect = require('react-redux').connect;
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
-
-const api = require('../../lib/api');
-const log = require('../../lib/log.js');
 
 const PreviewPresentation = require('./presentation.jsx');
 
@@ -14,9 +10,6 @@ const sessionActions = require('../../redux/session.js');
 const previewActions = require('../../redux/preview.js');
 
 class Preview extends React.Component {
-    constructor (props) {
-        super(props);
-    }
     componentDidMount () {
         let pathname = window.location.pathname.toLowerCase();
         if (pathname[pathname.length - 1] === '/') {
@@ -45,13 +38,60 @@ class Preview extends React.Component {
                 remixes={this.props.remixes}
                 sessionStatus={this.props.sessionStatus}
                 studios={this.props.studios}
+                user={this.props.user}
             />
         );
     }
 }
 
 Preview.propTypes = {
+    comments: PropTypes.arrayOf(PropTypes.object),
+    credit: PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        author: PropTypes.shape({id: PropTypes.number}),
+        history: PropTypes.shape({
+            created: PropTypes.string,
+            modified: PropTypes.string,
+            shared: PropTypes.string
+        }),
+        stats: PropTypes.shape({
+            views: PropTypes.number,
+            loves: PropTypes.number,
+            favorites: PropTypes.number
+        }),
+        remix: PropTypes.shape({
+            parent: PropTypes.number,
+            root: PropTypes.number
+        })
+    }),
+    getCreditInfo: PropTypes.func.isRequired,
+    getProjectInfo: PropTypes.func.isRequired,
+    getRemixes: PropTypes.func.isRequired,
+    projectInfo: PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        author: PropTypes.shape({id: PropTypes.number}),
+        history: PropTypes.shape({
+            created: PropTypes.string,
+            modified: PropTypes.string,
+            shared: PropTypes.string
+        }),
+        stats: PropTypes.shape({
+            views: PropTypes.number,
+            loves: PropTypes.number,
+            favorites: PropTypes.number
+        }),
+        remix: PropTypes.shape({
+            parent: PropTypes.number,
+            root: PropTypes.number
+        })
+    }),
+    remixes: PropTypes.arrayOf(PropTypes.object),
     sessionStatus: PropTypes.string,
+    studios: PropTypes.arrayOf(PropTypes.object),
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,
@@ -81,22 +121,22 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    getCreditInfo: (id) => {
+    getCreditInfo: id => {
         dispatch(previewActions.getCreditInfo(id));
     },
-    getProjectInfo: (id) => {
+    getProjectInfo: id => {
         dispatch(previewActions.getProjectInfo(id));
     },
-    getRemixes: (id) => {
+    getRemixes: id => {
         dispatch(previewActions.getRemixes(id));
     },
     refreshSession: () => {
         dispatch(sessionActions.refreshSession());
     },
-    setCreditInfo: (info) => {
+    setCreditInfo: info => {
         dispatch(previewActions.setCreditInfo(info));
     },
-    setProjectInfo: (info) => {
+    setProjectInfo: info => {
         dispatch(previewActions.setProjectInfo(info));
     }
 });
@@ -107,7 +147,7 @@ const ConnectedPreview = connect(
 )(Preview);
 
 render(
-    <Page><ConnectedPreview /></Page>, 
+    <Page><ConnectedPreview /></Page>,
     document.getElementById('app'),
     {preview: previewActions.previewReducer}
 );

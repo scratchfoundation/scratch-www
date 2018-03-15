@@ -1,6 +1,3 @@
-const bindAll = require('lodash.bindall');
-const FormattedMessage = require('react-intl').FormattedMessage;
-const FormattedNumber = require('react-intl').FormattedNumber;
 const FormattedDate = require('react-intl').FormattedDate;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
@@ -21,75 +18,73 @@ const PreviewPresentation = props => {
         intl,
         projectInfo,
         creditInfo,
-        remixes,
-        ...otherProps
+        remixes
+        // ...otherProps TBD
     } = props;
-    const formatMessage = intl.formatMessage;
-    const messages = {
-        'general.viewAll': formatMessage({id: 'general.viewAll'}),
-    };
     const shareDate = (projectInfo.history && projectInfo.history.shared) ? projectInfo.history.shared : '';
     
     return (
         <div className="preview">
             <ShareBanner>
-                <FlexRow className="previewRow">
-                    <span className="shareText">
-                        This project is not shared — so only you can see it.Click share to let everyone see it!
+                <FlexRow className="preview-row">
+                    <span className="share-text">
+                        This project is not shared — so only you can see it. Click share to let everyone see it!
                     </span>
-                    <button className="button shareButton">
+                    <button className="button share-button">
                         Share
                     </button>
                 </FlexRow>
             </ShareBanner>
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <div className="inner">
-                    <FlexRow className="previewRow">
-                        <FlexRow className="projectTitle">
+                    <FlexRow className="preview-row">
+                        <FlexRow className="project-title">
                             <Avatar
                                 src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_48x48.png`}
                             />
                             <div className="title">
                                 <h1>{projectInfo.title}</h1>
-                                by{' '}
+                                {`${intl.formatMessage({id: 'thumbnail.by'})} `}
                                 <a href={`/users/${projectInfo.author.username}`}>
                                     {projectInfo.author.username}
                                 </a>
                             </div>
                         </FlexRow>
-                        <div className="projectButtons">
-                            <button className="button remixButton">
+                        <div className="project-buttons">
+                            <button className="button remix-button">
                                 Remix
                             </button>
-                            <button className="button seeInsideButton">
+                            <button className="button see-inside-button">
                                 See Inside
                             </button>
                         </div>
                     </FlexRow>
-                    <FlexRow className="previewRow">
+                    <FlexRow className="preview-row">
                         <div className="placeholder">
-                            <img src={placeholder} alt="" />
+                            <img src={placeholder} />
                         </div>
-                        <FlexRow className="projectNotes">
+                        <FlexRow className="project-notes">
                             {shareDate !== '' && (
-                                <div className="shareDate">
+                                <div className="share-date">
                                     <div className="copyleft">&copy;</div>
                                     {' '}
-                                    <FormattedDate 
+                                    {/*  eslint-disable react/jsx-sort-props */}
+                                    <FormattedDate
                                         value={Date.parse(shareDate)}
-                                        year="numeric"
-                                        month="short"
                                         day="2-digit"
+                                        month="short"
+                                        year="numeric"
                                     />
+                                    {/*  eslint-enable react/jsx-sort-props */}
                                 </div>
                             )}
                             {creditInfo && creditInfo.author && creditInfo.id && (
-                                <FlexRow className="remixCredit">
+                                <FlexRow className="remix-credit">
                                     <Avatar
                                         className="remix"
                                         src={`https://cdn2.scratch.mit.edu/get_image/user/${creditInfo.author.id}_48x48.png`}
                                     />
-                                    <div className="creditText">
+                                    <div className="credit-text">
                                         Thanks to <a
                                             href={`/users/${creditInfo.author.username}`}
                                         >
@@ -102,23 +97,35 @@ const PreviewPresentation = props => {
                                     </div>
                                 </FlexRow>
                             )}
-                            <div className="projectDescription">
+                            <div className="project-description">
                                 {projectInfo.description}
                             </div>
                         </FlexRow>
                     </FlexRow>
-                    <FlexRow className="previewRow">
+                    <FlexRow className="preview-row">
                         <FlexRow className="stats">
-                            <div key="loves" className="project-loves">
-                                <CappedNumber value={projectInfo.stats.loves} />
+                            <div
+                                className="project-loves"
+                                key="loves"
+                            >
+                                {projectInfo.stats.loves}
                             </div>
-                            <div key="favorites" className="project-favorites favorited">
-                                <CappedNumber value={projectInfo.stats.favorites} />
+                            <div
+                                className="project-favorites favorited"
+                                key="favorites"
+                            >
+                                {projectInfo.stats.favorites}
                             </div>
-                            <div key="remixes" className="project-remixes">
-                                <CappedNumber value={projectInfo.remix.count} />
+                            <div
+                                className="project-remixes"
+                                key="remixes"
+                            >
+                                {projectInfo.remix.count}
                             </div>
-                            <div key="views" className="project-views">
+                            <div
+                                className="project-views"
+                                key="views"
+                            >
                                 <CappedNumber value={projectInfo.stats.views} />
                             </div>
                         </FlexRow>
@@ -140,7 +147,7 @@ const PreviewPresentation = props => {
                             </a>
                         </FlexRow>
                     </FlexRow>
-                    <FlexRow className="previewRow">
+                    <FlexRow className="preview-row">
                         <div className="comments-container">
                             <h1>Comments go here</h1>
                         </div>
@@ -152,9 +159,9 @@ const PreviewPresentation = props => {
         </div>
         
     );
-}
+};
 
-PreviewPresentation.propTyps = {
+PreviewPresentation.propTypes = {
     creditInfo: PropTypes.shape({
         id: PropTypes.number,
         title: PropTypes.string,
@@ -196,8 +203,8 @@ PreviewPresentation.propTyps = {
             root: PropTypes.number
         })
     }),
-    remixes: PropTypes.array,
-    sessionStatus: PropTypes.string
-}
+    remixes: PropTypes.arrayOf(PropTypes.object)
+    // sessionStatus: PropTypes.string //will probably need this later
+};
 
 module.exports = injectIntl(PreviewPresentation);

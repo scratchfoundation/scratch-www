@@ -10,8 +10,8 @@ const CappedNumber = props => (
 );
 
 CappedNumber.propTypes = {
-    value: PropTypes.number.isRequired,
-    className: PropTypes.string
+    className: PropTypes.string,
+    value: PropTypes.number.isRequired
 };
 
 CappedNumber.defaultProps = {

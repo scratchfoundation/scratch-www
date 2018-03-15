@@ -10,7 +10,7 @@ require('./remixlist.scss');
 /*
  * Container for a list of project remixes
  */
-const RemixList = props => (    
+const RemixList = props => (
     <FlexRow className={classNames('remix-list', props.className)}>
         <h1>Remixes</h1>
         {props.items.length === 0 ? (
@@ -18,10 +18,9 @@ const RemixList = props => (
         ) : (
             <Column
                 cards
-                className="column"
                 showAvatar
                 itemType="preview"
-                items={props.items.slice(0,5)}
+                items={props.items.slice(0, 5)}
                 showFavorites={false}
                 showLoves={false}
                 showViews={false}
@@ -32,7 +31,7 @@ const RemixList = props => (
 
 RemixList.propTypes = {
     className: PropTypes.string,
-    items: PropTypes.array.isRequired
+    items: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 module.exports = RemixList;
