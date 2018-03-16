@@ -181,10 +181,12 @@ class UsernameStep extends React.Component {
                     {this.props.description ? (
                         this.props.description
                     ) : (
-                        <intl.FormattedMessage id="registration.usernameStepDescription" />
-                        <b>
-                          <intl.FormattedMessage id="registration.usernameStepRealName" />
-                        </b>
+                        <span>
+                          <intl.FormattedMessage id="registration.usernameStepDescription" />
+                          <b>
+                            <intl.FormattedMessage id="registration.usernameStepRealName" />
+                          </b>
+                        </span>
                     )}
                     {this.props.tooltip ? (
                         <Tooltip
