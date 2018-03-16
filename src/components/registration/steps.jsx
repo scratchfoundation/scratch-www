@@ -182,10 +182,10 @@ class UsernameStep extends React.Component {
                         this.props.description
                     ) : (
                         <span>
-                          <intl.FormattedMessage id="registration.usernameStepDescription" />
-                          <b>
-                            <intl.FormattedMessage id="registration.usernameStepRealName" />
-                          </b>
+                            <intl.FormattedMessage id="registration.usernameStepDescription" />
+                            <b>
+                                <intl.FormattedMessage id="registration.usernameStepRealName" />
+                            </b>
                         </span>
                     )}
                     {this.props.tooltip ? (
@@ -773,11 +773,9 @@ class OrganizationStep extends React.Component {
                 id: `teacherRegistration.${choice}`
             })
         }));
-
         // Add "Other" option with empty string, since input field is used
         const otherId = options.length;
         options.push({value: otherId, label: ' '});
-
         return options;
     }
     handleChooseOrganization (name, values) {
