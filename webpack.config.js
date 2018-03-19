@@ -141,9 +141,6 @@ module.exports = {
             {from: 'static'},
             {from: 'intl', to: 'js'}
         ]),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true
-        }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"' + (process.env.NODE_ENV || 'development') + '"',
             'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"',
@@ -155,4 +152,11 @@ module.exports = {
             filename: 'js/common.bundle.js'
         })
     ])
+        .concat(process.env.NODE_ENV === 'production' ? [
+            new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false
+                }
+            })
+        ] : [])
 };
