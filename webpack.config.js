@@ -141,20 +141,6 @@ module.exports = {
             {from: 'static'},
             {from: 'intl', to: 'js'}
         ]),
-        new CopyWebpackPlugin([{
-            from: 'node_modules/scratch-gui/dist/static/blocks-media',
-            to: 'static/blocks-media'
-        }]),
-        new CopyWebpackPlugin([{
-            from: 'node_modules/scratch-gui/dist/extension-worker.js'
-        }]),
-        new CopyWebpackPlugin([{
-            from: 'node_modules/scratch-gui/dist/extension-worker.js.map'
-        }]),
-        new CopyWebpackPlugin([{
-            from: 'node_modules/scratch-gui/dist/static/assets',
-            to: 'static/assets'
-        }]),
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true
         }),
