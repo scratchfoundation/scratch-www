@@ -3,18 +3,18 @@
 ### What is this?
 Cypress is an end to end testing tool that we are using to do integration tests on Scratch.
 
-It behaves in some ways like the selenium tests that we had, but it is simpler to implement and easier to read and includes features that make debugging easier.  Another advantage is that it is easier to install and get working.
+It behaves in some ways like selenium but does not use selenium at all.  Also, it is simpler to implement and easier to read and includes features that make debugging easier.  Another advantage is that it is easier to install and get working.
 
 ### Install cypress
-To install in the command line you'll need npm installed.  From this folder run:
+To install in the command line you'll need npm installed.  Navigate to this folder and run:
 
 `npm install`
 
-If you would like to install it outside of this project run this:
+If you would like to install it in other projects run this:
 
 `npm install cypress --save-dev`
 
-Cypress also has a gui client.  To get the gui you can download it from cypress.io
+Cypress also has a gui client.  To get the gui you can download it from cypress.io.
 
 ### Run tests
 To run all of the tests in chrome from the command line, enter `npm run test-all`.  To run headless enter `npm run test-all-headless`.  This will run through all of the tests in the smoke-tests folder.
@@ -24,7 +24,59 @@ To run tests directly, without using npm, enter `./node_modules/.bin/cypress run
 ### Run a single test file
 Append `-s ./path/to/test/file` (or `-spec ./path/to/test/file`) to the command to run just that one suite of tests.  If using `npm run` you must add an add an additional `--` before the arguments in order to pass them in:
 
-`npm run test-all -- -s ./cypress/smoke-tests/the-test-I-want-to-run``
+`npm run test-all -- -s ./cypress/smoke-tests/the-test-I-want-to-run`
+
+###Writing tests
+Tests are held in functions that take the following form:
+
+```
+it('name of test', function(){
+  ...
+  ...
+  });
+```
+Commands that you run in tests almost always start with a `cy` object which contains functions for going to urls, finding objects on the page, etc.  Any objects found are returned, so functions can be chained.  For preference chaining should be structured like this:
+
+```
+cy
+  .visit("");
+cy
+  .get('.logo a')
+  .click();
+```
+
+### get and visit
+`cy.visit()` is the command used for loading web pages.  It takes a url string as an argument.
+
+`cy.get()` is used to find elements on a page.  It uses jquery.
+
+This is slightly different from how Selenium does it.  For more on how to write tests see the documentation on cypress.io.  It is pretty good for the most part.
+
+### Promises
+Cypress has a built in promise manager and basically already turns every line of code into a promise for you so you can write code like it was synchronous.
+
+### Assertions
+There are a few ways to put assertions into tests but mainly we use `should()` which can be put at the end of a chain and takes objects passed in from the chain as the first element to compare.  `should()` can take two arguments, a comparison type and what to compare it to, or one argument that is a chainer similar to how it is done using Chai.
+
+For more information check out the Cypress documentation on these topics.
+
+Assertions aren't strictly necessary since a test will fail if any step in it fails.  They are useful for making sure that you have gotten to the right page.
+
+### Suites
+Tests can be organized in suites using describe:
+
+```
+describe('name of suite', function(){
+  it('test 1', function(){
+    ...
+  });
+
+  it('test 2', function(){
+    ...
+  })
+
+});
+```
 
 ### Supported Browsers
 Currently it defaults to running headless in Electron but it also supports Chrome.
@@ -36,9 +88,9 @@ Firefox is not yet supported as of March 2018 but they are working on it.
 ### Environment variables
 To pass in environment variables, such as USERNAME and PASSWORD for a test user you add them before calling cypress run by adding CYPRESS_ before the variable name.
 
-It will look like this: `CYPRESS_USERNAME=madeUpName`
+It will look like this: `CYPRESS_USERNAME=made-up-name`
 
-Alternatively you can add to the command `--env USERNAME=madeUpName`, but this is not preferred.  If following `npm run` you must add an aditional `--` before adding arguments similar to how it is described in Run a single test (above).
+Alternatively you can add to the command `--env USERNAME=made-up-name`, but this is not preferred.  If following `npm run` you must add an aditional `--` before adding arguments similar to how it is described in Run a single test (above).
 
 ### configuration (cypress.json)
 Cypress uses a configuration file `./cypress.json` which contains environment variables and other information.
@@ -62,7 +114,7 @@ Alternatively you could change it like this after calling cypress : `--config ba
 ### .only
 If you would like to only run one test in a file you can change `it(...)` to `it.only(...)` and it will run just that one test.
 
-Similarly you can run a collection of tests from a file by adding `.only` to a `describe(...)` function so it looks like this: `describe.only(...)`.  This will run all tests in that collection and no others.
+Similarly you can run a suite of tests from a file by adding `.only` to a `describe(...)` function so it looks like this: `describe.only(...)`.  This will run all tests in that suite and no others.
 
 ONLY USE ONE ONLY
 
@@ -74,6 +126,8 @@ If you would like to skip a test in a file you can cahnge the `it(...)` to `it.s
 Skip can be used on individual tests and on suites:
 
 `describe.skip(...)`
+
+You can use any number of skips.  If you skip a suite it till skip all of the tests inside.
 
 ### Cookies
 By default Cypress deletes all cookies between tests.  This means that if you want to remain signed in  you must manually keep the session data cookie by including this code in a beforeEach() function:
