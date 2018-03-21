@@ -43,7 +43,7 @@ const PreviewPresentation = props => {
                                 src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_48x48.png`}
                             />
                             <div className="title">
-                                <h1>{projectInfo.title}</h1>
+                                <div className="title-text">{projectInfo.title}</div>
                                 {`${intl.formatMessage({id: 'thumbnail.by'})} `}
                                 <a href={`/users/${projectInfo.author.username}`}>
                                     {projectInfo.author.username}
@@ -64,7 +64,7 @@ const PreviewPresentation = props => {
                             <img src={placeholder} />
                         </div>
                         <FlexRow className="project-notes">
-                            {shareDate !== '' && (
+                            {shareDate && (
                                 <div className="share-date">
                                     <div className="copyleft">&copy;</div>
                                     {' '}

@@ -2,7 +2,7 @@ const classNames = require('classnames');
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const Column = require('../../components/column/column.jsx');
+const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolumn.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
 require('./remixlist.scss');
@@ -14,9 +14,9 @@ const RemixList = props => (
     <FlexRow className={classNames('remix-list', props.className)}>
         <h1>Remixes</h1>
         {props.items.length === 0 ? (
-            <span >No remixes</span>
+            <span>No remixes</span>
         ) : (
-            <Column
+            <ThumbnailColumn
                 cards
                 showAvatar
                 itemType="preview"

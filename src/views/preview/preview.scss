@@ -19,8 +19,8 @@ body,
 
 .preview {
     
-    h1 {
-        font-size: 1.5rem;
+    .title-text {
+        font-size: 2rem;
         font-weight: 500;
     }
     
@@ -53,7 +53,7 @@ body,
     }
     
     .remix-list {
-        width: 35%;
+        width: 25%;
     }
     
     .share-button,

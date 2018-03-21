@@ -1,22 +1,18 @@
 @import "../../frameless";
 @import "../../colors";
 
-.column {
-    display: inline-block;
-    width: 100%;
+.thumbnail-column {
 
     $thumbnail-width: 220px;
     $thumbnail-inner-width: 204px;
     
     $project-height: 208px;
     $gallery-height: 164px;
-
-    .flex-row {
-        margin: 0 auto;
-        padding: 12px 0;
-        justify-content: flex-start;
-        flex-direction: column;
-    }
+    
+    margin: 0 auto;
+    padding: 12px 0;
+    justify-content: flex-start;
+    flex-direction: column;
 
     .thumbnail {
         margin: 7px;
