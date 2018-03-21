@@ -3,8 +3,7 @@
 ### What is this?
 Cypress is an end to end testing tool that we are using to do integration tests on Scratch.
 
-It behaves in some ways like selenium but does not use selenium at all.  Also, it is simpler to implement and easier to read and includes features that make debugging easier.  Another advantage is that it is easier to install and get working.
-
+It behaves in some ways like selenium but does not use selenium at all.  It is simpler to implement and easier to read and includes features that make debugging easier.
 ### Install cypress
 To install in the command line you'll need npm installed.  Navigate to this folder and run:
 
