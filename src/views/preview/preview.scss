@@ -19,8 +19,8 @@ body,
 
 .preview {
     
-    .title-text {
-        font-size: 2rem;
+    .preview-header {
+        font-size: 1.75rem;
         font-weight: 500;
     }
     
@@ -283,6 +283,24 @@ body,
                     padding: calc(.75em + 1px) calc(1.5em + 1px);
                 }
             }
+        }
+    }
+
+    .remix-list {
+        flex-direction: column;
+        
+        .project {
+            margin-bottom: 1.5rem;
+        }
+        
+        .creator-image img {
+            max-width: 2rem;
+            max-height: 2rem;
+        }
+        
+        .thumbnail-column {
+            display: inline-block;
+            width: 100%;
         }
     }
 }

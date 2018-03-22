@@ -4,12 +4,14 @@ const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 
+const sessionActions = require('../../redux/session.js');
+const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
 const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const placeholder = require('./gui-placeholder.png');
 const ShareBanner = require('../../components/share-banner/share-banner.jsx');
-const RemixList = require('../../components/remixlist/remixlist.jsx');
+const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolumn.jsx');
 
 require('./preview.scss');
 
@@ -18,7 +20,9 @@ const PreviewPresentation = props => {
         intl,
         projectInfo,
         creditInfo,
-        remixes
+        remixes,
+        sessionStatus,
+        user
         // ...otherProps TBD
     } = props;
     const shareDate = (projectInfo.history && projectInfo.history.shared) ? projectInfo.history.shared : '';
@@ -43,7 +47,7 @@ const PreviewPresentation = props => {
                                 src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_48x48.png`}
                             />
                             <div className="title">
-                                <div className="title-text">{projectInfo.title}</div>
+                                <div className="preview-header">{projectInfo.title}</div>
                                 {`${intl.formatMessage({id: 'thumbnail.by'})} `}
                                 <a href={`/users/${projectInfo.author.username}`}>
                                     {projectInfo.author.username}
@@ -51,9 +55,12 @@ const PreviewPresentation = props => {
                             </div>
                         </FlexRow>
                         <div className="project-buttons">
-                            <button className="button remix-button">
-                                Remix
-                            </button>
+                            {sessionStatus === sessionActions.Status.FETCHED &&
+                                Object.keys(user).length > 0 &&
+                                <button className="button remix-button">
+                                    Remix
+                                </button>
+                            }
                             <button className="button see-inside-button">
                                 See Inside
                             </button>
@@ -98,7 +105,7 @@ const PreviewPresentation = props => {
                                 </FlexRow>
                             )}
                             <div className="project-description">
-                                {projectInfo.description}
+                                {decorateText(projectInfo.description)}
                             </div>
                         </FlexRow>
                     </FlexRow>
@@ -149,9 +156,28 @@ const PreviewPresentation = props => {
                     </FlexRow>
                     <FlexRow className="preview-row">
                         <div className="comments-container">
-                            <h1>Comments go here</h1>
+                            <div className="preview-header">
+                                Comments go here
+                            </div>
                         </div>
-                        <RemixList items={remixes} />
+                        <FlexRow className="remix-list">
+                            <div className="preview-header">
+                                Remixes
+                            </div>
+                            {remixes === 0 ? (
+                                <span>No remixes</span>
+                            ) : (
+                                <ThumbnailColumn
+                                    cards
+                                    showAvatar
+                                    itemType="preview"
+                                    items={remixes.slice(0, 5)}
+                                    showFavorites={false}
+                                    showLoves={false}
+                                    showViews={false}
+                                />
+                            )}
+                        </FlexRow>
                     </FlexRow>
                     
                 </div>
@@ -203,8 +229,18 @@ PreviewPresentation.propTypes = {
             root: PropTypes.number
         })
     }),
-    remixes: PropTypes.arrayOf(PropTypes.object)
-    // sessionStatus: PropTypes.string //will probably need this later
+    remixes: PropTypes.arrayOf(PropTypes.object),
+    sessionStatus: PropTypes.string.isRequired,
+    user: PropTypes.shape({
+        id: PropTypes.number,
+        banned: PropTypes.bool,
+        username: PropTypes.string,
+        token: PropTypes.string,
+        thumbnailUrl: PropTypes.string,
+        dateJoined: PropTypes.string,
+        email: PropTypes.string,
+        classroomId: PropTypes.string
+    }).isRequired
 };
 
 module.exports = injectIntl(PreviewPresentation);
