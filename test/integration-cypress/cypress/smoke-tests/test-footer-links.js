@@ -1,9 +1,5 @@
 const baseUrl = Cypress.config('baseUrl');
 
-Cypress.on('uncaught:exception', (err, runnable) => {
-    return false;
-});
-
 describe('test About links in footer', function () {
     beforeEach(function (){
         cy.visit('/');
