@@ -15,6 +15,7 @@ module.exports.getInitialState = () => ({
         project: module.exports.Status.NOT_FETCHED,
         credit: module.exports.Status.NOT_FETCHED,
         comments: module.exports.Status.NOT_FETCHED,
+        loved: module.exports.Status.NOT_FETCHED,
         remixes: module.exports.Status.NOT_FETCHED,
         studios: module.exports.Status.NOT_FETCHED
     },
@@ -22,6 +23,7 @@ module.exports.getInitialState = () => ({
     remixes: [],
     credit: {},
     comments: [],
+    loved: false,
     studios: []
 });
 
@@ -47,6 +49,10 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             comments: action.items
         });
+    case 'SET_LOVED':
+        return Object.assign({}, state, {
+            loved: action.info
+        });
     case 'SET_FETCH_STATUS':
         state = JSON.parse(JSON.stringify(state));
         state.status[action.infoType] = action.status;
@@ -71,6 +77,11 @@ module.exports.setProjectInfo = info => ({
 
 module.exports.setCreditInfo = info => ({
     type: 'SET_CREDIT',
+    info: info
+});
+
+module.exports.setLoved = info => ({
+    type: 'SET_LOVED',
     info: info
 });
 
@@ -122,6 +133,27 @@ module.exports.getCreditInfo = id => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('credit', module.exports.Status.FETCHED));
         dispatch(module.exports.setCreditInfo(body));
+    });
+});
+
+module.exports.getLovedStatus = (id, username, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHING));
+    api({
+        uri: `/projects/${id}/loves/user/${username}`,
+        authentication: token
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('loved', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('loved', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No loved info'));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHED));
+        dispatch(module.exports.setLoved(body));
     });
 });
 

@@ -20,13 +20,14 @@ const PreviewPresentation = props => {
         intl,
         projectInfo,
         creditInfo,
+        loved,
         remixes,
         sessionStatus,
         user
         // ...otherProps TBD
     } = props;
     const shareDate = (projectInfo.history && projectInfo.history.shared) ? projectInfo.history.shared : '';
-    
+    const lovesClass = loved ? 'project-loves loved' : 'project-loves';
     return (
         <div className="preview">
             <ShareBanner>
@@ -112,7 +113,7 @@ const PreviewPresentation = props => {
                     <FlexRow className="preview-row">
                         <FlexRow className="stats">
                             <div
-                                className="project-loves"
+                                className={lovesClass}
                                 key="loves"
                             >
                                 {projectInfo.stats.loves}

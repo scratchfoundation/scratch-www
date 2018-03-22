@@ -19,6 +19,7 @@ class Preview extends React.Component {
         const projectId = path[path.length - 1];
         this.props.getProjectInfo(projectId);
         this.props.getRemixes(projectId);
+        
         // get comments
         // get studios
 
@@ -27,6 +28,9 @@ class Preview extends React.Component {
         if (this.props.projectInfo.id !== prevProps.projectInfo.id && this.props.projectInfo.remix.root !== null) {
             this.props.getCreditInfo(this.props.projectInfo.remix.root);
         }
+        if (Object.keys(this.props.user).length > 0 && this.props.user.username !== prevProps.user.username) {
+            this.props.getLovedStatus(this.props.projectInfo.id, this.props.user.username, this.props.user.token);
+        }
 
     }
     render () {
@@ -34,6 +38,7 @@ class Preview extends React.Component {
             <PreviewPresentation
                 comments={this.props.comments}
                 creditInfo={this.props.credit}
+                loved={this.props.loved}
                 projectInfo={this.props.projectInfo}
                 remixes={this.props.remixes}
                 sessionStatus={this.props.sessionStatus}
@@ -113,6 +118,7 @@ const mapStateToProps = state => ({
     projectInfo: state.preview.projectInfo,
     credit: state.preview.credit,
     comments: state.preview.comments,
+    loved: state.preview.loved,
     remixes: state.preview.remixes,
     sessionStatus: state.session.status,
     studios: state.preview.studios,
@@ -129,6 +135,9 @@ const mapDispatchToProps = dispatch => ({
     },
     getRemixes: id => {
         dispatch(previewActions.getRemixes(id));
+    },
+    getLovedStatus: (id, username, token) => {
+        dispatch(previewActions.getLovedStatus(id, username, token));
     },
     refreshSession: () => {
         dispatch(sessionActions.refreshSession());
