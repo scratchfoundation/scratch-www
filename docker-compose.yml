@@ -13,8 +13,8 @@ services:
     container_name: scratch-www-app
     hostname: scratch-www-app
     environment:
-      - API_HOST=scratch-api-app
-      - FALLBACK=scratchr2-app:8080
+      - API_HOST=http://localhost:8491
+      - FALLBACK=http://scratchr2-app:8080
     build:  
       context: ./
       dockerfile: Dockerfile
