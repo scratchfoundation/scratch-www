@@ -52,10 +52,6 @@ body,
         width: 60%;
     }
     
-    .remix-list {
-        width: 25%;
-    }
-    
     .share-button,
     .remix-button,
     .see-inside-button {
@@ -286,7 +282,8 @@ body,
         }
     }
 
-    .remix-list {
+    .remix-list,
+    .studio-list {
         flex-direction: column;
         
         .project {

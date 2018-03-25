@@ -11,25 +11,47 @@ const previewActions = require('../../redux/preview.js');
 
 class Preview extends React.Component {
     componentDidMount () {
+        // let pathname = window.location.pathname.toLowerCase();
+        // if (pathname[pathname.length - 1] === '/') {
+        //     pathname = pathname.substring(0, pathname.length - 1);
+        // }
+        // const path = pathname.split('/');
+        // const projectId = path[path.length - 1];
+        // if (this.props.sessionStatus === sessionActions.Status.FETCHED) {
+        //     this.props.getProjectInfo(projectId, this.props.user.token);
+        // } else {
+        //     this.props.getProjectInfo(projectId);
+        // }    
+        // this.props.getRemixes(projectId);
+        // this.props.getStudios(projectId);
+        // // get comments
+    }
+    componentDidUpdate (prevProps) {
         let pathname = window.location.pathname.toLowerCase();
         if (pathname[pathname.length - 1] === '/') {
             pathname = pathname.substring(0, pathname.length - 1);
         }
         const path = pathname.split('/');
         const projectId = path[path.length - 1];
-        this.props.getProjectInfo(projectId);
-        this.props.getRemixes(projectId);
-        
-        // get comments
-        // get studios
-
-    }
-    componentDidUpdate (prevProps) {
+        if (this.props.sessionStatus !== prevProps.sessionStatus && 
+            this.props.sessionStatus === sessionActions.Status.FETCHED) {
+            if (this.props.user) {
+                const username = this.props.user.username;
+                const token = this.props.user.token;
+                this.props.getProjectInfo(projectId, token);
+                this.props.getRemixes(projectId, token);
+                this.props.getStudios(projectId, token);
+                this.props.getFavedStatus(projectId, username, token);
+                this.props.getLovedStatus(projectId, username, token);
+            } else {
+                this.props.getProjectInfo(projectId);
+                this.props.getRemixes(projectId);
+                this.props.getStudios(projectId);
+            }
+            
+        }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id && this.props.projectInfo.remix.root !== null) {
             this.props.getCreditInfo(this.props.projectInfo.remix.root);
-        }
-        if (Object.keys(this.props.user).length > 0 && this.props.user.username !== prevProps.user.username) {
-            this.props.getLovedStatus(this.props.projectInfo.id, this.props.user.username, this.props.user.token);
         }
 
     }
@@ -38,6 +60,7 @@ class Preview extends React.Component {
             <PreviewPresentation
                 comments={this.props.comments}
                 creditInfo={this.props.credit}
+                faved={this.props.faved}
                 loved={this.props.loved}
                 projectInfo={this.props.projectInfo}
                 remixes={this.props.remixes}
@@ -71,6 +94,8 @@ Preview.propTypes = {
             root: PropTypes.number
         })
     }),
+    faved: PropTypes.bool,
+    loved: PropTypes.bool,
     getCreditInfo: PropTypes.func.isRequired,
     getProjectInfo: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
@@ -118,6 +143,7 @@ const mapStateToProps = state => ({
     projectInfo: state.preview.projectInfo,
     credit: state.preview.credit,
     comments: state.preview.comments,
+    faved: state.preview.faved,
     loved: state.preview.loved,
     remixes: state.preview.remixes,
     sessionStatus: state.session.status,
@@ -130,11 +156,17 @@ const mapDispatchToProps = dispatch => ({
     getCreditInfo: id => {
         dispatch(previewActions.getCreditInfo(id));
     },
-    getProjectInfo: id => {
-        dispatch(previewActions.getProjectInfo(id));
+    getProjectInfo: (id, token) => {
+        dispatch(previewActions.getProjectInfo(id, token));
     },
     getRemixes: id => {
         dispatch(previewActions.getRemixes(id));
+    },
+    getStudios: id => {
+        dispatch(previewActions.getStudios(id));
+    },
+    getFavedStatus: (id, username, token) => {
+        dispatch(previewActions.getFavedStatus(id, username, token));
     },
     getLovedStatus: (id, username, token) => {
         dispatch(previewActions.getLovedStatus(id, username, token));

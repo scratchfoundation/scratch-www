@@ -20,14 +20,17 @@ const PreviewPresentation = props => {
         intl,
         projectInfo,
         creditInfo,
+        faved,
         loved,
         remixes,
         sessionStatus,
+        studios,
         user
         // ...otherProps TBD
     } = props;
     const shareDate = (projectInfo.history && projectInfo.history.shared) ? projectInfo.history.shared : '';
     const lovesClass = loved ? 'project-loves loved' : 'project-loves';
+    const favesClass = faved ? 'project-favorites favorited' : 'project-favorites';
     return (
         <div className="preview">
             <ShareBanner>
@@ -58,6 +61,7 @@ const PreviewPresentation = props => {
                         <div className="project-buttons">
                             {sessionStatus === sessionActions.Status.FETCHED &&
                                 Object.keys(user).length > 0 &&
+                                user.id !== projectInfo.author.id &&
                                 <button className="button remix-button">
                                     Remix
                                 </button>
@@ -119,7 +123,7 @@ const PreviewPresentation = props => {
                                 {projectInfo.stats.loves}
                             </div>
                             <div
-                                className="project-favorites favorited"
+                                className={favesClass}
                                 key="favorites"
                             >
                                 {projectInfo.stats.favorites}
@@ -161,23 +165,43 @@ const PreviewPresentation = props => {
                                 Comments go here
                             </div>
                         </div>
-                        <FlexRow className="remix-list">
-                            <div className="preview-header">
-                                Remixes
-                            </div>
-                            {remixes === 0 ? (
-                                <span>No remixes</span>
-                            ) : (
-                                <ThumbnailColumn
-                                    cards
-                                    showAvatar
-                                    itemType="preview"
-                                    items={remixes.slice(0, 5)}
-                                    showFavorites={false}
-                                    showLoves={false}
-                                    showViews={false}
-                                />
-                            )}
+                        <FlexRow className="column">
+                            <FlexRow className="remix-list">
+                                <div className="preview-header">
+                                    Remixes
+                                </div>
+                                {remixes === 0 ? (
+                                    <span>No remixes</span>
+                                ) : (
+                                    <ThumbnailColumn
+                                        cards
+                                        showAvatar
+                                        itemType="preview"
+                                        items={remixes.slice(0, 5)}
+                                        showFavorites={false}
+                                        showLoves={false}
+                                        showViews={false}
+                                    />
+                                )}
+                            </FlexRow>
+                            <FlexRow className="studio-list">
+                                <div className="preview-header">
+                                    Studios
+                                </div>
+                                {remixes === 0 ? (
+                                    <span>No studios</span>
+                                ) : (
+                                    <ThumbnailColumn
+                                        cards
+                                        showAvatar
+                                        itemType="gallery"
+                                        items={studios.slice(0, 5)}
+                                        showFavorites={false}
+                                        showLoves={false}
+                                        showViews={false}
+                                    />
+                                )}
+                            </FlexRow>
                         </FlexRow>
                     </FlexRow>
                     
