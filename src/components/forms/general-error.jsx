@@ -11,14 +11,16 @@ require('./general-error.scss');
  * give it a name, and apply your validation error to
  * the name of the GeneralError component.
  */
-const GeneralError = props => {
-    if (!props.showError()) return null;
-    return (
-        <p className="general-error">
-            {props.getErrorMessage()}
-        </p>
-    );
-};
+class GeneralError extends React.Component {
+    render () {
+        if (!this.props.showError()) return null;
+        return (
+            <p className="general-error">
+                {this.props.getErrorMessage()}
+            </p>
+        );
+    }
+}
 
 GeneralError.propTypes = {
     getErrorMessage: PropTypes.func,

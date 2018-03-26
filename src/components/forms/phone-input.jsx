@@ -1,8 +1,8 @@
 const allCountries = require('country-telephone-data').allCountries;
 const classNames = require('classnames');
-const ComponentMixin = require('formsy-react-components').ComponentMixin;
+const formsyComponent = require('formsy-react-components/release/hoc/component').default;
 const createReactClass = require('create-react-class');
-const FormsyMixin = require('formsy-react').Mixin;
+const withFormsy = require('formsy-react').withFormsy;
 const omit = require('lodash.omit');
 const PropTypes = require('prop-types');
 const React = require('react');
@@ -28,10 +28,6 @@ const PhoneInput = createReactClass({ // eslint-disable-line react/prefer-es6-cl
         name: PropTypes.string,
         onChange: PropTypes.func
     },
-    mixins: [
-        FormsyMixin,
-        ComponentMixin
-    ],
     getDefaultProps: function () {
         return {
             validations: {
@@ -82,4 +78,12 @@ const phoneValidationHOC = validationHOCFactory({
     isPhone: <intl.FormattedMessage id="teacherRegistration.validationPhoneNumber" />
 });
 
-module.exports = inputHOC(defaultValidationHOC(phoneValidationHOC(PhoneInput)));
+const mixins = [
+    inputHOC,
+    defaultValidationHOC,
+    phoneValidationHOC,
+    formsyComponent,
+    withFormsy
+];
+
+module.exports = mixins.reduce((component, mixin) => mixin(component), PhoneInput);
