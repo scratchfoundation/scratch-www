@@ -21,7 +21,9 @@ const PreviewPresentation = props => {
         projectInfo,
         creditInfo,
         faved,
+        favoriteCount,
         loved,
+        loveCount,
         remixes,
         sessionStatus,
         studios,
@@ -123,13 +125,13 @@ const PreviewPresentation = props => {
                                 key="loves"
                                 onClick={onLoveClicked}
                             >
-                                {projectInfo.stats.loves}
+                                {loveCount}
                             </div>
                             <div
                                 className={favesClass}
                                 key="favorites"
                             >
-                                {projectInfo.stats.favorites}
+                                {favoriteCount}
                             </div>
                             <div
                                 className="project-remixes"

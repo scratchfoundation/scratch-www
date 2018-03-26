@@ -17,6 +17,10 @@ class Preview extends React.Component {
             'handleFavoriteToggle',
             'handleLoveToggle'
         ]);
+        this.state = {
+            favoriteCount: 0,
+            loveCount: 0
+        };
     }
     componentDidMount () {
         // let pathname = window.location.pathname.toLowerCase();
@@ -58,10 +62,15 @@ class Preview extends React.Component {
             }
             
         }
-        if (this.props.projectInfo.id !== prevProps.projectInfo.id && this.props.projectInfo.remix.root !== null) {
-            this.props.getCreditInfo(this.props.projectInfo.remix.root);
+        if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
+            this.setState({
+                favoriteCount: this.props.projectInfo.stats.favorites,
+                loveCount:  this.props.projectInfo.stats.loves
+            });
+            if (this.props.projectInfo.remix.root !== null) {
+                this.props.getCreditInfo(this.props.projectInfo.remix.root);
+            }
         }
-
     }
     handleLoveToggle () {
         this.props.setLovedStatus(
@@ -70,6 +79,15 @@ class Preview extends React.Component {
             this.props.user.username,
             this.props.user.token
         );
+        if (this.props.loved) {
+            this.setState(state => ({
+                loveCount: state.loveCount - 1
+            }));
+        } else {
+            this.setState(state => ({
+                loveCount: state.loveCount + 1
+            }));
+        }
     }
     handleFavoriteToggle () {
         this.props.setFavedStatus(
@@ -78,6 +96,15 @@ class Preview extends React.Component {
             this.props.user.username,
             this.props.user.token
         );
+        if (this.props.faved) {
+            this.setState(state => ({
+                favoriteCount: state.favoriteCount - 1
+            }));
+        } else {
+            this.setState(state => ({
+                favoriteCount: state.favoriteCount + 1
+            }));
+        }
     }
     render () {
         return (
@@ -85,7 +112,9 @@ class Preview extends React.Component {
                 comments={this.props.comments}
                 creditInfo={this.props.credit}
                 faved={this.props.faved}
+                favoriteCount={this.state.favoriteCount}
                 loved={this.props.loved}
+                loveCount={this.state.loveCount}
                 projectInfo={this.props.projectInfo}
                 remixes={this.props.remixes}
                 sessionStatus={this.props.sessionStatus}
