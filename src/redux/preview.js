@@ -177,8 +177,46 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
             return;
         }
         dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));
-        dispatch(module.exports.setFaved(body));
+        dispatch(module.exports.setFaved(body.userFavorite));
     });
+});
+
+module.exports.setFavedStatus = (faved, id, username, token) => (dispatch => {
+    if (faved) {
+        api({
+            uri: `/projects/${id}/favorites/user/${username}`,
+            authentication: token,
+            method: 'POST'
+        }, (err, body) => {
+            if (err) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set farotites returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setFaved(body.userFavorite));
+        });
+    } else {
+        api({
+            uri: `/projects/${id}/favorites/user/${username}`,
+            authentication: token,
+            method: 'DELETE'
+        }, (err, body) => {
+            if (err) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set favorites returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setFaved(false));
+        });
+    };
 });
 
 module.exports.getLovedStatus = (id, username, token) => (dispatch => {
@@ -200,6 +238,44 @@ module.exports.getLovedStatus = (id, username, token) => (dispatch => {
         dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHED));
         dispatch(module.exports.setLoved(body.userLove));
     });
+});
+
+module.exports.setLovedStatus = (loved, id, username, token) => (dispatch => {
+    if (loved) {
+        api({
+            uri: `/projects/${id}/loves/user/${username}`,
+            authentication: token,
+            method: 'POST'
+        }, (err, body) => {
+            if (err) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set loved returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setLoved(body.userLove));
+        });
+    } else {
+        api({
+            uri: `/projects/${id}/loves/user/${username}`,
+            authentication: token,
+            method: 'DELETE'
+        }, (err, body) => {
+            if (err) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set loved returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setLoved(body.userLove));
+        });
+    };
 });
 
 module.exports.getRemixes = id => (dispatch => {

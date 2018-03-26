@@ -188,6 +188,8 @@ body,
 
     .project-loves {
         
+        cursor: pointer;
+        
         &:before {
             background-image: url("/svgs/love/love_type-gray.svg");
         }
@@ -201,6 +203,8 @@ body,
     }
 
     .project-favorites {
+        
+        cursor: pointer;
         
         &:before {
             background-image: url("/svgs/favorite/favorite_type-gray.svg");

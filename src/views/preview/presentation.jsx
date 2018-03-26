@@ -25,7 +25,9 @@ const PreviewPresentation = props => {
         remixes,
         sessionStatus,
         studios,
-        user
+        user,
+        onFavoriteClicked,
+        onLoveClicked
         // ...otherProps TBD
     } = props;
     const shareDate = (projectInfo.history && projectInfo.history.shared) ? projectInfo.history.shared : '';
@@ -119,6 +121,7 @@ const PreviewPresentation = props => {
                             <div
                                 className={lovesClass}
                                 key="loves"
+                                onClick={onLoveClicked}
                             >
                                 {projectInfo.stats.loves}
                             </div>
@@ -170,7 +173,7 @@ const PreviewPresentation = props => {
                                 <div className="preview-header">
                                     Remixes
                                 </div>
-                                {remixes === 0 ? (
+                                {remixes && remixes.length === 0 ? (
                                     <span>No remixes</span>
                                 ) : (
                                     <ThumbnailColumn

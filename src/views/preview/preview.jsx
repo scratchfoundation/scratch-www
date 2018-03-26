@@ -1,3 +1,4 @@
+const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
@@ -10,6 +11,13 @@ const sessionActions = require('../../redux/session.js');
 const previewActions = require('../../redux/preview.js');
 
 class Preview extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'handleFavoriteToggle',
+            'handleLoveToggle'
+        ]);
+    }
     componentDidMount () {
         // let pathname = window.location.pathname.toLowerCase();
         // if (pathname[pathname.length - 1] === '/') {
@@ -55,6 +63,22 @@ class Preview extends React.Component {
         }
 
     }
+    handleLoveToggle () {
+        this.props.setLovedStatus(
+            !this.props.loved,
+            this.props.projectInfo.id,
+            this.props.user.username,
+            this.props.user.token
+        );
+    }
+    handleFavoriteToggle () {
+        this.props.setFavedStatus(
+            !this.props.faved,
+            this.props.projectInfo.id,
+            this.props.user.username,
+            this.props.user.token
+        );
+    }
     render () {
         return (
             <PreviewPresentation
@@ -67,6 +91,8 @@ class Preview extends React.Component {
                 sessionStatus={this.props.sessionStatus}
                 studios={this.props.studios}
                 user={this.props.user}
+                onFavoriteClicked={this.handleFavoriteToggle}
+                onLoveClicked={this.handleLoveToggle}
             />
         );
     }
@@ -97,8 +123,11 @@ Preview.propTypes = {
     faved: PropTypes.bool,
     loved: PropTypes.bool,
     getCreditInfo: PropTypes.func.isRequired,
+    getFavedStatus: PropTypes.func.isRequired,
+    getLovedStatus: PropTypes.func.isRequired,
     getProjectInfo: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
+    getStudios: PropTypes.func.isRequired,
     projectInfo: PropTypes.shape({
         id: PropTypes.number,
         title: PropTypes.string,
@@ -121,6 +150,8 @@ Preview.propTypes = {
     }),
     remixes: PropTypes.arrayOf(PropTypes.object),
     sessionStatus: PropTypes.string,
+    setFavedStatus: PropTypes.func.isRequired,
+    setLovedStatus: PropTypes.func.isRequired,
     studios: PropTypes.arrayOf(PropTypes.object),
     user: PropTypes.shape({
         id: PropTypes.number,
@@ -168,8 +199,14 @@ const mapDispatchToProps = dispatch => ({
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));
     },
+    setFavedStatus: (faved, id, username, token) => {
+        dispatch(previewActions.setLovedStatus(faved, id, username, token));
+    },
     getLovedStatus: (id, username, token) => {
         dispatch(previewActions.getLovedStatus(id, username, token));
+    },
+    setLovedStatus: (loved, id, username, token) => {
+        dispatch(previewActions.setLovedStatus(loved, id, username, token));
     },
     refreshSession: () => {
         dispatch(sessionActions.refreshSession());
