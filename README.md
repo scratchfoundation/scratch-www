@@ -113,5 +113,45 @@ Setting `FALLBACK=https://scratch.mit.edu` allows the web client to retrieve dat
 
 Additionally, if you set `FALLBACK=https://scratch.mit.edu`, be aware that clicking on links to parts of the website not yet migrated over (currently such as `Explore`, `Discuss`, `Profile`, etc.) will take you to the Scratch website itself.
 
+#### Docker
+
+A set of [Docker](https://www.docker.com/what-docker) related files are provided to create isolated [container](https://www.docker.com/what-container) environments suitable for development:
+
+* Dockerfile
+* docker-compose.yml
+* docker_entrypoint.sh
+
+Unless you have access to the Scratch REST API repository, this may not be very useful for you.
+
+This currently requires a version of the [Scratch GUI](https://github.com/LLK/scratch-gui) repository to be checked out in parallel to scratch-www, e.g.:
+
+```bash
+- 
+  - scratch-www/
+  - scratch-gui/
+```
+
+##### Docker Quick Start (CLI)
+
+Make sure you already have the Scratch REST API running locally in its docker environment.
+
+```
+$ docker-compose up
+```
+
+After this has launched you will be able to access a running copy of `scratch-www` on port 8333 via `http://localhost:8333`
+
+##### Docker Configuration
+
+`Dockerfile` defines how a `scratch-www` docker image is created.
+
+`docker-compose.yml` takes care of launching `scratch-www` into a development environment that is composed of other components, such as the Scratch REST API server and the legacy Scratch code. If you have not already setup the Scratch REST API in your local environment, you will need to modify `docker-compose.yml` by removing `external: true` from:
+
+```yaml
+networks:
+  scratchapi_scratch_network:
+    external: true
+```
+
 #### Windows
 Some users have experienced difficulties when trying to get our web client to work on Windows. One solution could be to use [Cygwin](https://www.cygwin.com/). If that doesn't work, you might want to use [Wubi](https://wiki.ubuntu.com/WubiGuide) (Windows XP, Vista, 7) or [Wubiuefi](https://github.com/hakuna-m/wubiuefi) (Windows 8 or higher). Wubi(uefi) is a Windows Installer for Ubuntu that allows you to have Ubuntu and Windows on one disk, without the need of an extra partition.
