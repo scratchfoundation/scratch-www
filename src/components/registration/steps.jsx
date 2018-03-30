@@ -155,9 +155,9 @@ class UsernameStep extends React.Component {
             }
         });
     }
-    handleUsernameBlur (event) {
-        if (this.form.formsy.inputs[0].isValidValue(event.currentTarget.value)) {
-            this.validateUsername(event.currentTarget.value);
+    handleUsernameBlur (name, value) {
+        if (this.form.formsy.inputs[0].isValidValue(value)) {
+            this.validateUsername(value);
         }
     }
     handleValidSubmit (formData) {
@@ -265,7 +265,7 @@ class UsernameStep extends React.Component {
                         />
                         <Checkbox
                             help={null}
-                            label={
+                            valueLabel={
                                 this.props.intl.formatMessage({id: 'registration.showPassword'})
                             }
                             name="showPassword"
@@ -369,7 +369,7 @@ class ChoosePasswordStep extends React.Component {
                         />
                         <Checkbox
                             help={null}
-                            label={
+                            valueLabel={
                                 this.props.intl.formatMessage({id: 'registration.showPassword'})
                             }
                             name="showPassword"
@@ -538,7 +538,7 @@ class DemographicsStep extends React.Component {
                         />
                         <Checkbox
                             className="demographics-checkbox-is-robot"
-                            label="I'm a robot!"
+                            valueLabel="I'm a robot!"
                             name="user.isRobot"
                         />
                         <NextStepButton
@@ -665,7 +665,7 @@ class PhoneNumberStep extends React.Component {
         ]);
     }
     handleValidSubmit (formData, reset, invalidate) {
-        if (!formData.phone || formData.phone.national_number === '+') {
+        if (!formData.phone || formData.phone === '+') {
             return invalidate({
                 phone: this.props.intl.formatMessage({id: 'form.validationRequired'})
             });
@@ -698,7 +698,7 @@ class PhoneNumberStep extends React.Component {
                             name="phone"
                         />
                         <Checkbox
-                            label={
+                            valueLabel={
                                 this.props.intl.formatMessage({id: 'teacherRegistration.phoneConsent'})
                             }
                             name="phoneConsent"
@@ -768,19 +768,19 @@ class OrganizationStep extends React.Component {
     }
     getOrganizationOptions () {
         const options = ORGANIZATION_L10N_STEMS.map((choice, id) => ({
-            value: id,
+            value: id.toString(),
             label: this.props.intl.formatMessage({
                 id: `teacherRegistration.${choice}`
             })
         }));
         // Add "Other" option with empty string, since input field is used
-        const otherId = options.length;
+        const otherId = options.length.toString();
         options.push({value: otherId, label: ' '});
         return options;
     }
     handleChooseOrganization (name, values) {
         this.setState({
-            otherDisabled: values.indexOf(ORGANIZATION_L10N_STEMS.length) === -1
+            otherDisabled: values.indexOf(ORGANIZATION_L10N_STEMS.length.toString()) === -1
         });
     }
     render () {
@@ -1116,6 +1116,7 @@ class UseScratchStep extends React.Component {
                         <TextArea
                             required
                             className={textAreaClass}
+                            changeDebounceInterval={0}
                             label={
                                 this.props.intl.formatMessage({id: 'teacherRegistration.howUseScratch'})
                             }
@@ -1242,7 +1243,7 @@ class EmailStep extends React.Component {
                         <Checkbox
                             value
                             help={null}
-                            label={
+                            valueLabel={
                                 this.props.intl.formatMessage({id: 'registration.optIn'})
                             }
                             name="subscribe"

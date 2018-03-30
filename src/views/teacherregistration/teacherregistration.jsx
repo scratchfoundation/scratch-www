@@ -62,7 +62,7 @@ class TeacherRegistration extends React.Component {
                 is_robot: this.state.formData.user.isRobot,
                 first_name: this.state.formData.user.name.first,
                 last_name: this.state.formData.user.name.last,
-                phone_number: this.state.formData.phone.national_number,
+                phone_number: this.state.formData.phone,
                 organization_name: this.state.formData.organization.name,
                 organization_title: this.state.formData.organization.title,
                 organization_type: this.state.formData.organization.type,
@@ -79,6 +79,7 @@ class TeacherRegistration extends React.Component {
         }, (err, body, res) => {
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
+            if (res.statusCode === 500) return this.setState({registrationError: err});
             if (body[0] && body[0].success) {
                 this.props.dispatch(sessionActions.refreshSession());
                 return this.handleAdvanceStep(formData);

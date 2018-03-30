@@ -1,8 +1,7 @@
+const bindAll = require('lodash.bindall');
 const allCountries = require('country-telephone-data').allCountries;
 const classNames = require('classnames');
 const formsyComponent = require('formsy-react-components/release/hoc/component').default;
-const createReactClass = require('create-react-class');
-const withFormsy = require('formsy-react').withFormsy;
 const omit = require('lodash.omit');
 const PropTypes = require('prop-types');
 const React = require('react');
@@ -19,71 +18,65 @@ const allIso2 = allCountries.map(country => (country.iso2));
 require('./row.scss');
 require('./phone-input.scss');
 
-const PhoneInput = createReactClass({ // eslint-disable-line react/prefer-es6-class
-    displayName: 'PhoneInput',
-    propTypes: {
-        className: PropTypes.string,
-        defaultCountry: PropTypes.string,
-        disabled: PropTypes.bool,
-        name: PropTypes.string,
-        onChange: PropTypes.func
-    },
-    getDefaultProps: function () {
-        return {
-            validations: {
-                isPhone: true
-            },
-            flagsImagePath: '/images/flags.png',
-            defaultCountry: 'us'
-        };
-    },
-    handleChangeInput: function (number, country) {
-        const value = {
-            national_number: number,
-            country_code: country
-        };
-        this.setValue(value);
-        this.props.onChange(this.props.name, value);
-    },
-    render: function () {
-        let defaultCountry = PhoneInput.getDefaultProps().defaultCountry;
-        if (allIso2.indexOf(this.props.defaultCountry.toLowerCase()) !== -1) {
-            defaultCountry = this.props.defaultCountry.toLowerCase();
+class PhoneInput extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this [
+            'handleChange'
+        ]);
+        this.state = {value: props.value};
+    }
+    componentWillReceiveProps (nextProps) {
+        if (nextProps.value !== this.state.value) {
+            this.setState({value: nextProps.value});
+            this.props.onSetValue(nextProps.value);
         }
+    }
+    handleChange (telNumber, country) {
+        if (this.updateOnChange) {
+            this.onSetValue(telNumber);
+        }
+    }
+    handleBlur (telNumber, country) {
+        if (this.updateOnBlur) {
+            this.onSetValue(telNumber);
+        }
+    }
+    
+    render () {
+        
         return (
             <Row
-                htmlFor={this.getId()}
+                {...this.props}
+                htmlFor={this.props.id}
                 rowClassName={classNames('phone-input', this.props.className)}
-                {...this.getRowProperties()}
             >
                 <div className="input-group">
                     <ReactPhoneInput
                         className="form-control"
-                        defaultCountry={defaultCountry}
-                        disabled={this.isFormDisabled() || this.props.disabled}
-                        id={this.getId()}
+                        defaultCountry={this.props.defaultCountry}
+                        flagsImagePath="/images/flags.png"
+                        id={this.props.id}
                         label={null}
-                        onChange={this.handleChangeInput}
-                        {...omit(this.props, ['className', 'disabled', 'onChange'])}
+                        onChange={this.handleChange}
+                        onBlur={this.handleBlur}
+                        {...omit(this.props, ['className', 'onChange', 'onBlur'])}
                     />
-                    {this.renderHelp()}
-                    {this.renderErrorMessage()}
+                    {this.props.help ? <Help help={this.props.help} /> : null}
                 </div>
             </Row>
         );
     }
-});
+}
+
+PhoneInput.defaultProps = {
+  type: 'tel',
+  value: '',
+  updateOnChange: true,
+};
 
 const phoneValidationHOC = validationHOCFactory({
     isPhone: <intl.FormattedMessage id="teacherRegistration.validationPhoneNumber" />
 });
 
-const mixins = [
-    inputHOC,
-    defaultValidationHOC,
-    phoneValidationHOC,
-    formsyComponent,
-    withFormsy
-];
-
-module.exports = mixins.reduce((component, mixin) => mixin(component), PhoneInput);
+module.exports = inputHOC(phoneValidationHOC(defaultValidationHOC(formsyComponent(PhoneInput))));
