@@ -19,6 +19,7 @@ const Grid = props => (
                             creator={item.author.username}
                             favorites={item.stats.favorites}
                             href={href}
+                            isUpsideDown={props.isUpsideDown}
                             key={key}
                             loves={item.stats.loves}
                             remixes={item.stats.remixes}
@@ -37,6 +38,7 @@ const Grid = props => (
                 return (
                     <Thumbnail
                         href={href}
+                        isUpsideDown={props.isUpsideDown}
                         key={key}
                         owner={item.owner}
                         src={item.image}
@@ -51,6 +53,7 @@ const Grid = props => (
 
 Grid.propTypes = {
     className: PropTypes.string,
+    isUpsideDown: PropTypes.bool,
     itemType: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.object)
 };

@@ -28,7 +28,9 @@
     "express-http-proxy": "1.1.0",
     "lodash.defaults": "4.0.1",
     "newrelic": "1.25.4",
-    "raven": "0.10.0"
+    "raven": "0.10.0",
+    "react-confetti": "^2.0.2",
+    "react-scroll": "^1.7.7"
   },
   "devDependencies": {
     "async": "1.5.2",

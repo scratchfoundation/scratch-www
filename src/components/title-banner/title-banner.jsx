@@ -5,6 +5,7 @@ const React = require('react');
 require('./title-banner.scss');
 
 const TitleBanner = props => (
+
     <div className={classNames('title-banner', props.className)}>
         {props.children}
     </div>

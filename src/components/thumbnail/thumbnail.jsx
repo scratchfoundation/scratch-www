@@ -109,12 +109,16 @@ const Thumbnail = props => {
             </a>
         );
     }
+
+    const surpriseClass = props.isUpsideDown ? 'upsideDown' : '';
+
     return (
         <div
             className={classNames(
                 'thumbnail',
                 props.type,
-                props.className
+                props.className,
+                surpriseClass
             )}
         >
             {imgElement}
@@ -136,6 +140,7 @@ Thumbnail.propTypes = {
     creator: PropTypes.string,
     favorites: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     href: PropTypes.string,
+    isUpsideDown: PropTypes.bool,
     linkTitle: PropTypes.bool,
     loves: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     remixes: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
