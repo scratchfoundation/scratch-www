@@ -31,6 +31,7 @@
     "raven": "0.10.0"
   },
   "devDependencies": {
+    "ajv": "5.5.2",
     "async": "1.5.2",
     "autoprefixer": "6.3.6",
     "babel-cli": "6.26.0",
