@@ -12,7 +12,6 @@ const inputHOC = require('./input-hoc.jsx');
 const intl = require('../../lib/intl.jsx');
 const validationHOCFactory = require('./validations.jsx').validationHOCFactory;
 
-
 require('./row.scss');
 require('./phone-input.scss');
 
@@ -20,7 +19,8 @@ class PhoneInput extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleChange'
+            'handleChange',
+            'handleBlur'
         ]);
         this.state = {value: props.value};
     }
@@ -30,19 +30,18 @@ class PhoneInput extends React.Component {
             this.props.onSetValue(nextProps.value);
         }
     }
-    handleChange (telNumber) {
-        if (this.updateOnChange) {
-            this.onSetValue(telNumber);
+    handleChange (number) {
+        if (this.props.updateOnChange) {
+            this.props.onSetValue(number);
         }
     }
-    handleBlur (telNumber) {
-        if (this.updateOnBlur) {
-            this.onSetValue(telNumber);
+    handleBlur (number) {
+        if (this.props.updateOnBlur) {
+            this.props.onSetValue(number);
         }
     }
     
     render () {
-        
         return (
             <Row
                 {...this.props}
@@ -54,7 +53,6 @@ class PhoneInput extends React.Component {
                         className="form-control"
                         defaultCountry={this.props.defaultCountry}
                         flagsImagePath="/images/flags.png"
-                        id={this.props.id}
                         label={null}
                         onBlur={this.handleBlur}
                         onChange={this.handleChange}
@@ -80,6 +78,8 @@ PhoneInput.propTypes = {
     name: PropTypes.string,
     onChange: PropTypes.func,
     onSetValue: PropTypes.func,
+    updateOnBlur: PropTypes.bool,
+    updateOnChange: PropTypes.bool,
     value: PropTypes.string
 };
 
