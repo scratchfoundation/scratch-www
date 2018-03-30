@@ -265,11 +265,11 @@ class UsernameStep extends React.Component {
                         />
                         <Checkbox
                             help={null}
+                            name="showPassword"
+                            value={this.state.showPassword}
                             valueLabel={
                                 this.props.intl.formatMessage({id: 'registration.showPassword'})
                             }
-                            name="showPassword"
-                            value={this.state.showPassword}
                             onChange={this.handleChangeShowPassword}
                         />
                         <GeneralError name="all" />
@@ -369,11 +369,11 @@ class ChoosePasswordStep extends React.Component {
                         />
                         <Checkbox
                             help={null}
+                            name="showPassword"
+                            value={this.state.showPassword}
                             valueLabel={
                                 this.props.intl.formatMessage({id: 'registration.showPassword'})
                             }
-                            name="showPassword"
-                            value={this.state.showPassword}
                             onChange={this.handleChangeShowPassword}
                         />
                         <NextStepButton

@@ -10,20 +10,20 @@ const inputHOC = require('./input-hoc.jsx');
 require('./input.scss');
 require('./row.scss');
 
-class Input extends React.Component {
-    render () {
-        return (
-            <FRCInput
-                className="input"
-                rowClassName={classNames(
-                    this.props.className,
-                    {'no-label': (typeof this.props.label === 'undefined')}
-                )}
-                {...omit(this.props, ['className'])}
-            />
-        );
-    }
-}
+const Input = ({
+    className,
+    label,
+    ...props
+}) => (
+    <FRCInput
+        className="input"
+        rowClassName={classNames(
+            className,
+            {'no-label': (typeof label === 'undefined')}
+        )}
+        {...omit(props, ['className'])}
+    />
+);
 
 Input.propTypes = {
     className: PropTypes.string,

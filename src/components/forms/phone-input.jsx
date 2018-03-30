@@ -1,5 +1,4 @@
 const bindAll = require('lodash.bindall');
-const allCountries = require('country-telephone-data').allCountries;
 const classNames = require('classnames');
 const formsyComponent = require('formsy-react-components/release/hoc/component').default;
 const omit = require('lodash.omit');
@@ -13,7 +12,6 @@ const inputHOC = require('./input-hoc.jsx');
 const intl = require('../../lib/intl.jsx');
 const validationHOCFactory = require('./validations.jsx').validationHOCFactory;
 
-const allIso2 = allCountries.map(country => (country.iso2));
 
 require('./row.scss');
 require('./phone-input.scss');
@@ -21,7 +19,7 @@ require('./phone-input.scss');
 class PhoneInput extends React.Component {
     constructor (props) {
         super(props);
-        bindAll(this [
+        bindAll(this, [
             'handleChange'
         ]);
         this.state = {value: props.value};
@@ -32,12 +30,12 @@ class PhoneInput extends React.Component {
             this.props.onSetValue(nextProps.value);
         }
     }
-    handleChange (telNumber, country) {
+    handleChange (telNumber) {
         if (this.updateOnChange) {
             this.onSetValue(telNumber);
         }
     }
-    handleBlur (telNumber, country) {
+    handleBlur (telNumber) {
         if (this.updateOnBlur) {
             this.onSetValue(telNumber);
         }
@@ -58,11 +56,10 @@ class PhoneInput extends React.Component {
                         flagsImagePath="/images/flags.png"
                         id={this.props.id}
                         label={null}
-                        onChange={this.handleChange}
                         onBlur={this.handleBlur}
+                        onChange={this.handleChange}
                         {...omit(this.props, ['className', 'onChange', 'onBlur'])}
                     />
-                    {this.props.help ? <Help help={this.props.help} /> : null}
                 </div>
             </Row>
         );
@@ -70,9 +67,20 @@ class PhoneInput extends React.Component {
 }
 
 PhoneInput.defaultProps = {
-  type: 'tel',
-  value: '',
-  updateOnChange: true,
+    type: 'tel',
+    value: '',
+    updateOnChange: true
+};
+
+PhoneInput.propTypes = {
+    className: PropTypes.string,
+    defaultCountry: PropTypes.string,
+    disabled: PropTypes.bool,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    onSetValue: PropTypes.func,
+    value: PropTypes.string
 };
 
 const phoneValidationHOC = validationHOCFactory({
