@@ -431,13 +431,13 @@ class DemographicsStep extends React.Component {
             'January', 'February', 'March', 'April', 'May', 'June', 'July',
             'August', 'September', 'October', 'November', 'December'
         ].map((label, id) => ({
-            value: id + 1,
+            value: (id + 1).toString(),
             label: this.props.intl.formatMessage({id: `general.month${label}`})
         }));
     }
     getYearOptions () {
         return Array.apply(null, Array(100)).map((v, id) => {
-            const year = new Date().getFullYear() - (id + this.props.birthOffset);
+            const year = (new Date().getFullYear() - (id + this.props.birthOffset)).toString();
             return {value: year, label: year};
         });
     }
