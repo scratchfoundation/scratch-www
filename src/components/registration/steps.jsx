@@ -538,8 +538,8 @@ class DemographicsStep extends React.Component {
                         />
                         <Checkbox
                             className="demographics-checkbox-is-robot"
-                            valueLabel="I'm a robot!"
                             name="user.isRobot"
+                            valueLabel="I'm a robot!"
                         />
                         <NextStepButton
                             text={<intl.FormattedMessage id="registration.nextStep" />}
@@ -698,9 +698,6 @@ class PhoneNumberStep extends React.Component {
                             name="phone"
                         />
                         <Checkbox
-                            valueLabel={
-                                this.props.intl.formatMessage({id: 'teacherRegistration.phoneConsent'})
-                            }
                             name="phoneConsent"
                             required="isFalse"
                             validationErrors={{
@@ -708,6 +705,9 @@ class PhoneNumberStep extends React.Component {
                                     id: 'teacherRegistration.validationPhoneConsent'
                                 })
                             }}
+                            valueLabel={
+                                this.props.intl.formatMessage({id: 'teacherRegistration.phoneConsent'})
+                            }
                         />
                         <NextStepButton
                             text={<intl.FormattedMessage id="registration.nextStep" />}
@@ -1115,8 +1115,8 @@ class UseScratchStep extends React.Component {
                     <Form onValidSubmit={this.props.onNextStep}>
                         <TextArea
                             required
-                            className={textAreaClass}
                             changeDebounceInterval={0}
+                            className={textAreaClass}
                             label={
                                 this.props.intl.formatMessage({id: 'teacherRegistration.howUseScratch'})
                             }
@@ -1243,10 +1243,10 @@ class EmailStep extends React.Component {
                         <Checkbox
                             value
                             help={null}
+                            name="subscribe"
                             valueLabel={
                                 this.props.intl.formatMessage({id: 'registration.optIn'})
                             }
-                            name="subscribe"
                         />
                         <GeneralError name="all" />
                         <NextStepButton
