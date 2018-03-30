@@ -6,6 +6,8 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const ReactPhoneInput = require('react-telephone-input/lib/withStyles').default;
 const Row = require('formsy-react-components').Row;
+const Help = require('formsy-react-components/release/components/help').default;
+const ErrorMessages = require('formsy-react-components/release/components/error-messages').default;
 
 const defaultValidationHOC = require('./validations.jsx').defaultValidationHOC;
 const inputHOC = require('./input-hoc.jsx');
@@ -19,25 +21,26 @@ class PhoneInput extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
+            'handleBlur',
             'handleChange',
-            'handleBlur'
+            'handleUpdate'
         ]);
-        this.state = {value: props.value};
     }
-    componentWillReceiveProps (nextProps) {
-        if (nextProps.value !== this.state.value) {
-            this.setState({value: nextProps.value});
-            this.props.onSetValue(nextProps.value);
-        }
+    handleUpdate (number, country) {
+        const value = {
+            national_number: number,
+            country_code: country
+        };
+        this.props.onSetValue(value);
     }
-    handleChange (number) {
+    handleChange (number, country) {
         if (this.props.updateOnChange) {
-            this.props.onSetValue(number);
+            this.handleUpdate(number, country);
         }
     }
-    handleBlur (number) {
+    handleBlur (number, country) {
         if (this.props.updateOnBlur) {
-            this.props.onSetValue(number);
+            this.handleUpdate(number, country);
         }
     }
     
@@ -56,9 +59,13 @@ class PhoneInput extends React.Component {
                         label={null}
                         onBlur={this.handleBlur}
                         onChange={this.handleChange}
-                        {...omit(this.props, ['className', 'onChange', 'onBlur'])}
+                        {...omit(this.props, ['className', 'isValid', 'onChange', 'onBlur', 'value'])}
                     />
                 </div>
+                {this.props.help ? <Help help={this.props.help} /> : null}
+                {this.props.showErrors ? (
+                    <ErrorMessages messages={this.props.errorMessages} />
+                ) : null}
             </Row>
         );
     }
@@ -66,7 +73,6 @@ class PhoneInput extends React.Component {
 
 PhoneInput.defaultProps = {
     type: 'tel',
-    value: '',
     updateOnChange: true
 };
 
@@ -79,12 +85,23 @@ PhoneInput.propTypes = {
     onChange: PropTypes.func,
     onSetValue: PropTypes.func,
     updateOnBlur: PropTypes.bool,
-    updateOnChange: PropTypes.bool,
-    value: PropTypes.string
+    updateOnChange: PropTypes.bool
 };
 
 const phoneValidationHOC = validationHOCFactory({
     isPhone: <intl.FormattedMessage id="teacherRegistration.validationPhoneNumber" />
 });
 
-module.exports = inputHOC(phoneValidationHOC(defaultValidationHOC(formsyComponent(PhoneInput))));
+const ValidatedPhoneInput = inputHOC(defaultValidationHOC(phoneValidationHOC(formsyComponent(PhoneInput))));
+
+ValidatedPhoneInput.defaultProps = {
+    validations: {
+        isPhone: true
+    }
+};
+
+ValidatedPhoneInput.propTypes = {
+    validations: PropTypes.objectOf(PropTypes.bool)
+};
+
+module.exports = ValidatedPhoneInput;
