@@ -79,6 +79,7 @@ class TeacherRegistration extends React.Component {
         }, (err, body, res) => {
             this.setState({waiting: false});
             if (err) return this.setState({registrationError: err});
+            if (res.statusCode === 500) return this.setState({registrationError: err});
             if (body[0] && body[0].success) {
                 this.props.dispatch(sessionActions.refreshSession());
                 return this.handleAdvanceStep(formData);

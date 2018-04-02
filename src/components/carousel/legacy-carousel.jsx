@@ -5,7 +5,7 @@ const classNames = require('classnames');
 const defaults = require('lodash.defaults');
 const PropTypes = require('prop-types');
 const React = require('react');
-const Slider = require('react-slick');
+const Slider = require('react-slick').default;
 
 const Thumbnail = require('../thumbnail/thumbnail.jsx');
 

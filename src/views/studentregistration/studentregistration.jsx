@@ -84,6 +84,7 @@ class StudentRegistration extends React.Component {
                 waiting: false
             });
             if (err) return this.setState({registrationError: err});
+            if (res.statusCode === 500) return this.setState({registrationError: err});
             if (body[0] && body[0].success) return this.handleAdvanceStep(formData);
             this.setState({
                 registrationError:
@@ -111,7 +112,7 @@ class StudentRegistration extends React.Component {
                     <Steps.RegistrationError>
                         {this.state.registrationError}
                     </Steps.RegistrationError> :
-                    <Progression {...this.state}>
+                    <Progression step={this.state.step}>
                         <Steps.ClassInviteNewStudentStep
                             classroom={this.state.classroom}
                             waiting={this.state.waiting || !this.state.classroom}
@@ -151,7 +152,7 @@ class StudentRegistration extends React.Component {
 }
 
 StudentRegistration.propTypes = {
-    classroomId: PropTypes.number.isRequired,
+    classroomId: PropTypes.string.isRequired,
     classroomToken: PropTypes.string.isRequired,
     intl: intlShape
 };
