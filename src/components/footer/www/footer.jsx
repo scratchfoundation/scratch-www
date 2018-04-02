@@ -9,8 +9,6 @@ const LanguageChooser = require('../../languagechooser/languagechooser.jsx');
 
 const frameless = require('../../../lib/frameless');
 
-const Surprise = require('./surprise.jsx');
-
 require('./footer.scss');
 
 const Footer = props => (
@@ -118,9 +116,6 @@ const Footer = props => (
                         <a href="/statistics/">
                             <FormattedMessage id="general.statistics" />
                         </a>
-                    </dd>
-                    <dd>
-                        <Surprise />
                     </dd>
                 </dl>
 

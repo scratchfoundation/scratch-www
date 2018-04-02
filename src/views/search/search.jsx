@@ -16,11 +16,6 @@ const Tabs = require('../../components/tabs/tabs.jsx');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
-const Confetti = require('react-confetti').default;
-
-const Scroll = require('react-scroll');
-const scroll = Scroll.animateScroll;
-
 require('./search.scss');
 
 class Search extends React.Component {
@@ -29,30 +24,18 @@ class Search extends React.Component {
         bindAll(this, [
             'getSearchState',
             'handleGetSearchMore',
-            'getTab',
-            'tick'
+            'getTab'
         ]);
         this.state = this.getSearchState();
         this.state.loaded = [];
         this.state.loadNumber = 16;
         this.state.offset = 0;
         this.state.loadMore = false;
-
-        this.state.isCat = false;
-        this.state.isUpsideDown = false;
-        this.state.isRainbow = false;
-        this.state.elapsed = 0;
-        this.state.isGravity = false;
-        this.state.isSecretSurprise = false;
     }
     componentDidMount () {
         const query = window.location.search;
         const q = query.lastIndexOf('q=');
         let term = '';
-
-        if (query.substring(q + 2, query.length) === '%3D%5E..%5E%3D') {
-            this.makeSurprise('isCat');
-        }
         if (q !== -1) {
             term = query.substring(q + 2, query.length).toLowerCase();
         }
@@ -63,52 +46,13 @@ class Search extends React.Component {
             term = term.substring(0, term.indexOf('&'));
         }
         term = decodeURI(term.split('+').join(' '));
-
-        if (term === 'upside down' || term === 'upsidedown') {
-            this.makeSurprise('isUpsideDown');
-        }
-
-        if (term === 'rainbow' || term === 'rainbows') {
-            this.makeSurprise('isRainbow');
-            setInterval(this.tick, 200);
-        }
-
-        if (term === 'gravity') {
-            this.makeSurprise('isGravity');
-        }
-
-        if (term === 'secret surprise' || term === 'secret surprises' ||
-            term === 'secretsurprises' || term === 'secretsurprise') {
-            this.makeSurprise('isSecretSurprise');
-        }
-
         this.props.dispatch(navigationActions.setSearchTerm(term));
     }
-
     componentDidUpdate (prevProps) {
         if (this.props.searchTerm !== prevProps.searchTerm) {
             this.handleGetSearchMore();
         }
     }
-
-    gravity () {
-        scroll.scrollToBottom({
-            duration: 1500,
-            delay: 100,
-            smooth: 'easeInQuart'
-        });
-    }
-
-    tick () {
-        this.setState(prevState => (
-            {elapsed: (prevState.elapsed + 10) % 360}
-        ));
-    }
-
-    makeSurprise (surprise) {
-        this.setState({[surprise]: true});
-    }
-
     getSearchState () {
         let pathname = window.location.pathname.toLowerCase();
         if (pathname[pathname.length - 1] === '/') {
@@ -144,8 +88,6 @@ class Search extends React.Component {
                 offset: currentOffset,
                 loadMore: willLoadMore
             });
-
-            if (this.state.isGravity) this.gravity();
         });
     }
     getTab (type) {
@@ -176,13 +118,11 @@ class Search extends React.Component {
         }
         return allTab;
     }
-
     getProjectBox () {
         const results = (
             <Grid
                 cards
                 showAvatar
-                isUpsideDown={this.state.isUpsideDown}
                 itemType={this.state.tab}
                 items={this.state.loaded}
                 showFavorites={false}
@@ -191,18 +131,6 @@ class Search extends React.Component {
             />
         );
         let searchAction = null;
-        if (this.state.isCat) {
-            searchAction = <h2 className="search-prompt">*boop*<br />=^..^=</h2>;
-
-            return (
-                <div
-                    id="projectBox"
-                    key="projectBox"
-                >
-                    {searchAction}
-                </div>
-            );
-        }
         if (this.state.loaded.length === 0 && this.state.offset !== 0) {
             searchAction = <h2 className="search-prompt"><FormattedMessage id="general.searchEmpty" /></h2>;
         } else if (this.state.loadMore) {
@@ -225,46 +153,9 @@ class Search extends React.Component {
             </div>
         );
     }
-
-    fancyStyle () {
-        if (this.state.isRainbow) {
-            return {
-                filter: `hue-rotate(${this.state.elapsed}deg) saturate(400%)`
-            };
-        }
-        
-        return {};
-    }
-
     render () {
-        const confetti = (
-            <Confetti
-                colors={[
-                    '#f44336',
-                    '#e91e63',
-                    '#9c27b0',
-                    '#673ab7',
-                    '#3f51b5',
-                    '#2196f3',
-                    '#03a9f4',
-                    '#00bcd4',
-                    '#009688',
-                    '#4CAF50',
-                    '#8BC34A',
-                    '#CDDC39',
-                    '#FFEB3B',
-                    '#FFC107',
-                    '#FF9800',
-                    '#FF5722'
-                ]}
-                height={window.innerHeight}
-                numberOfPieces={500}
-                recycle={false}
-                width={window.innerWidth}
-            />
-        );
         return (
-            <div style={this.fancyStyle()}>
+            <div>
                 <div className="outer">
                     <TitleBanner className="masthead">
                         <div className="inner">
@@ -277,10 +168,7 @@ class Search extends React.Component {
                         {this.getTab('projects')}
                         {this.getTab('studios')}
                     </Tabs>
-                    <div>
-                        {this.state.isSecretSurprise ? confetti : ''}
-                        {this.getProjectBox()}
-                    </div>
+                    {this.getProjectBox()}
                 </div>
             </div>
         );
