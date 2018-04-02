@@ -535,8 +535,8 @@ class DemographicsStep extends React.Component {
                             required
                             label={this.props.intl.formatMessage({id: 'general.country'})}
                             name="user.country"
-                            value={countryOptions[0].value}
                             options={countryOptions}
+                            value={countryOptions[0].value}
                         />
                         <Checkbox
                             className="demographics-checkbox-is-robot"
