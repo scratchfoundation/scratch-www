@@ -42,7 +42,7 @@ const getCountryOptions = (reactIntl, defaultCountry) => {
     const options = countryData.countryOptions.concat({
         label: reactIntl.formatMessage({id: 'registration.selectCountry'}),
         disabled: true,
-        selected: true
+        value: ''
     });
 
     if (typeof defaultCountry !== 'undefined') {
@@ -458,6 +458,7 @@ class DemographicsStep extends React.Component {
         return this.props.onNextStep(formData);
     }
     render () {
+        const countryOptions = getCountryOptions(this.props.intl, DEFAULT_COUNTRY);
         return (
             <Slide className="registration-step demographics-step">
                 <h2>
@@ -534,7 +535,8 @@ class DemographicsStep extends React.Component {
                             required
                             label={this.props.intl.formatMessage({id: 'general.country'})}
                             name="user.country"
-                            options={getCountryOptions(this.props.intl, DEFAULT_COUNTRY)}
+                            value={countryOptions[0].value}
+                            options={countryOptions}
                         />
                         <Checkbox
                             className="demographics-checkbox-is-robot"
