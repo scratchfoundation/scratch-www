@@ -17,6 +17,7 @@ const Input = ({
 }) => (
     <FRCInput
         className="input"
+        label={label}
         rowClassName={classNames(
             className,
             {'no-label': (typeof label === 'undefined')}

@@ -80,10 +80,13 @@ PhoneInput.propTypes = {
     className: PropTypes.string,
     defaultCountry: PropTypes.string,
     disabled: PropTypes.bool,
+    errorMessages: PropTypes.arrayOf(PropTypes.node),
+    help: PropTypes.string,
     id: PropTypes.string,
     name: PropTypes.string,
     onChange: PropTypes.func,
     onSetValue: PropTypes.func,
+    showErrors: PropTypes.bool,
     updateOnBlur: PropTypes.bool,
     updateOnChange: PropTypes.bool
 };
