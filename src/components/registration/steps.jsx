@@ -665,7 +665,7 @@ class PhoneNumberStep extends React.Component {
         ]);
     }
     handleValidSubmit (formData, reset, invalidate) {
-        if (!formData.phone || formData.phone === '+') {
+        if (!formData.phone || formData.phone.national_number === '+') {
             return invalidate({
                 phone: this.props.intl.formatMessage({id: 'form.validationRequired'})
             });

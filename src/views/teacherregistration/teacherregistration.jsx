@@ -62,7 +62,7 @@ class TeacherRegistration extends React.Component {
                 is_robot: this.state.formData.user.isRobot,
                 first_name: this.state.formData.user.name.first,
                 last_name: this.state.formData.user.name.last,
-                phone_number: this.state.formData.phone,
+                phone_number: this.state.formData.phone.national_number,
                 organization_name: this.state.formData.organization.name,
                 organization_title: this.state.formData.organization.title,
                 organization_type: this.state.formData.organization.type,
