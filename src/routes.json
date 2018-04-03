@@ -344,6 +344,12 @@
         "redirect": "/tips"
     },
     {
+        "name": "research-redirect",
+        "pattern": "^/info/research/?$",
+        "routeAlias": "/info/research",
+        "redirect": "/research"
+    },
+    {
         "name": "search-redirect",
         "pattern": "^/search/?$",
         "routeAlias": "/search",
