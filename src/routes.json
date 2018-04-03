@@ -213,6 +213,13 @@
         "title": "Privacy Policy"
     },
     {
+        "name": "research",
+        "pattern": "^/research/?$",
+        "routeAlias": "/research",
+        "view": "research/research",
+        "title": "Research"
+    },
+    {
         "name": "search",
         "pattern": "^/search/:projects/?$",
         "routeAlias": "/search",
