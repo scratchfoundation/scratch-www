@@ -4,24 +4,27 @@ const React = require('react');
 
 const Navigation = require('../../navigation/www/navigation.jsx');
 const Footer = require('../../footer/www/footer.jsx');
+const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 
 const Page = props => (
-    <div className="page">
-        <div
-            className={classNames({
-                staging: process.env.SCRATCH_ENV === 'staging'
-            })}
-            id="navigation"
-        >
-            <Navigation />
+    <ErrorBoundary>
+        <div className="page">
+            <div
+                className={classNames({
+                    staging: process.env.SCRATCH_ENV === 'staging'
+                })}
+                id="navigation"
+            >
+                <Navigation />
+            </div>
+            <div id="view">
+                {props.children}
+            </div>
+            <div id="footer">
+                <Footer />
+            </div>
         </div>
-        <div id="view">
-            {props.children}
-        </div>
-        <div id="footer">
-            <Footer />
-        </div>
-    </div>
+    </ErrorBoundary>
 );
 
 Page.propTypes = {

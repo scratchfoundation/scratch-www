@@ -35,7 +35,6 @@ class SocialMessagesList extends React.Component {
         super(props);
         bindAll(this, [
             'getComponentForMessage',
-            'renderSocialMessages',
             'renderLoadMore',
             'renderMessageCounter'
         ]);
@@ -158,19 +157,6 @@ class SocialMessagesList extends React.Component {
             );
         }
     }
-    renderSocialMessages (messages, unreadCount) {
-        const messageList = [];
-        let counter = 0;
-        for (const message of messages) {
-            if (counter <= unreadCount) {
-                messageList.push(this.getComponentForMessage(message, true));
-            } else {
-                messageList.push(this.getComponentForMessage(message, false));
-            }
-            counter++;
-        }
-        return messageList;
-    }
     renderLoadMore (loadMore) {
         if (loadMore) {
             return (
@@ -225,7 +211,12 @@ class SocialMessagesList extends React.Component {
                         className="messages-social-list"
                         key="messages-social-list"
                     >
-                        {this.renderSocialMessages(this.props.messages, (this.props.numNewMessages - 1))}
+                        {this.props.messages.map((message, messageId) => {
+                            if (messageId < this.props.numNewMessages) {
+                                return this.getComponentForMessage(message, true);
+                            }
+                            return this.getComponentForMessage(message, false);
+                        })}
                     </ul>
                 ] : []}
                 {this.renderLoadMore(this.props.loadMore)}

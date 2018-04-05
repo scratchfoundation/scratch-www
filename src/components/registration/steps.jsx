@@ -42,7 +42,7 @@ const getCountryOptions = (reactIntl, defaultCountry) => {
     const options = countryData.countryOptions.concat({
         label: reactIntl.formatMessage({id: 'registration.selectCountry'}),
         disabled: true,
-        selected: true
+        value: ''
     });
 
     if (typeof defaultCountry !== 'undefined') {
@@ -155,9 +155,9 @@ class UsernameStep extends React.Component {
             }
         });
     }
-    handleUsernameBlur (event) {
-        if (this.form.formsy.inputs[0].isValidValue(event.currentTarget.value)) {
-            this.validateUsername(event.currentTarget.value);
+    handleUsernameBlur (name, value) {
+        if (this.form.formsy.inputs[0].isValidValue(value)) {
+            this.validateUsername(value);
         }
     }
     handleValidSubmit (formData) {
@@ -265,11 +265,11 @@ class UsernameStep extends React.Component {
                         />
                         <Checkbox
                             help={null}
-                            label={
-                                this.props.intl.formatMessage({id: 'registration.showPassword'})
-                            }
                             name="showPassword"
                             value={this.state.showPassword}
+                            valueLabel={
+                                this.props.intl.formatMessage({id: 'registration.showPassword'})
+                            }
                             onChange={this.handleChangeShowPassword}
                         />
                         <GeneralError name="all" />
@@ -369,11 +369,11 @@ class ChoosePasswordStep extends React.Component {
                         />
                         <Checkbox
                             help={null}
-                            label={
-                                this.props.intl.formatMessage({id: 'registration.showPassword'})
-                            }
                             name="showPassword"
                             value={this.state.showPassword}
+                            valueLabel={
+                                this.props.intl.formatMessage({id: 'registration.showPassword'})
+                            }
                             onChange={this.handleChangeShowPassword}
                         />
                         <NextStepButton
@@ -431,13 +431,13 @@ class DemographicsStep extends React.Component {
             'January', 'February', 'March', 'April', 'May', 'June', 'July',
             'August', 'September', 'October', 'November', 'December'
         ].map((label, id) => ({
-            value: id + 1,
+            value: (id + 1).toString(),
             label: this.props.intl.formatMessage({id: `general.month${label}`})
         }));
     }
     getYearOptions () {
         return Array.apply(null, Array(100)).map((v, id) => {
-            const year = new Date().getFullYear() - (id + this.props.birthOffset);
+            const year = (new Date().getFullYear() - (id + this.props.birthOffset)).toString();
             return {value: year, label: year};
         });
     }
@@ -458,6 +458,7 @@ class DemographicsStep extends React.Component {
         return this.props.onNextStep(formData);
     }
     render () {
+        const countryOptions = getCountryOptions(this.props.intl, DEFAULT_COUNTRY);
         return (
             <Slide className="registration-step demographics-step">
                 <h2>
@@ -534,12 +535,13 @@ class DemographicsStep extends React.Component {
                             required
                             label={this.props.intl.formatMessage({id: 'general.country'})}
                             name="user.country"
-                            options={getCountryOptions(this.props.intl, DEFAULT_COUNTRY)}
+                            options={countryOptions}
+                            value={countryOptions[0].value}
                         />
                         <Checkbox
                             className="demographics-checkbox-is-robot"
-                            label="I'm a robot!"
                             name="user.isRobot"
+                            valueLabel="I'm a robot!"
                         />
                         <NextStepButton
                             text={<intl.FormattedMessage id="registration.nextStep" />}
@@ -698,9 +700,6 @@ class PhoneNumberStep extends React.Component {
                             name="phone"
                         />
                         <Checkbox
-                            label={
-                                this.props.intl.formatMessage({id: 'teacherRegistration.phoneConsent'})
-                            }
                             name="phoneConsent"
                             required="isFalse"
                             validationErrors={{
@@ -708,6 +707,9 @@ class PhoneNumberStep extends React.Component {
                                     id: 'teacherRegistration.validationPhoneConsent'
                                 })
                             }}
+                            valueLabel={
+                                this.props.intl.formatMessage({id: 'teacherRegistration.phoneConsent'})
+                            }
                         />
                         <NextStepButton
                             text={<intl.FormattedMessage id="registration.nextStep" />}
@@ -768,19 +770,19 @@ class OrganizationStep extends React.Component {
     }
     getOrganizationOptions () {
         const options = ORGANIZATION_L10N_STEMS.map((choice, id) => ({
-            value: id,
+            value: id.toString(),
             label: this.props.intl.formatMessage({
                 id: `teacherRegistration.${choice}`
             })
         }));
         // Add "Other" option with empty string, since input field is used
-        const otherId = options.length;
+        const otherId = options.length.toString();
         options.push({value: otherId, label: ' '});
         return options;
     }
     handleChooseOrganization (name, values) {
         this.setState({
-            otherDisabled: values.indexOf(ORGANIZATION_L10N_STEMS.length) === -1
+            otherDisabled: values.indexOf(ORGANIZATION_L10N_STEMS.length.toString()) === -1
         });
     }
     render () {
@@ -1115,6 +1117,7 @@ class UseScratchStep extends React.Component {
                     <Form onValidSubmit={this.props.onNextStep}>
                         <TextArea
                             required
+                            changeDebounceInterval={0}
                             className={textAreaClass}
                             label={
                                 this.props.intl.formatMessage({id: 'teacherRegistration.howUseScratch'})
@@ -1242,10 +1245,10 @@ class EmailStep extends React.Component {
                         <Checkbox
                             value
                             help={null}
-                            label={
+                            name="subscribe"
+                            valueLabel={
                                 this.props.intl.formatMessage({id: 'registration.optIn'})
                             }
-                            name="subscribe"
                         />
                         <GeneralError name="all" />
                         <NextStepButton
