@@ -1,0 +1,10 @@
+{
+  "baseUrl" : "https://scratch.ly",
+  "chromeWebSecurity" : false,
+  "integrationFolder" : "./cypress/smoke-tests",
+  "env": {
+    "USERNAME" : " ",
+    "PASSWORD" : " "
+  }
+
+}
