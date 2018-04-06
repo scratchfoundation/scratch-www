@@ -214,7 +214,7 @@ const PreviewPresentation = props => {
                                 <div className="project-title">
                                     Studios
                                 </div>
-                                {studios === 0 ? (
+                                {studios && studios.length === 0 ? (
                                     <span>No studios</span>
                                 ) : (
                                     <ThumbnailColumn
