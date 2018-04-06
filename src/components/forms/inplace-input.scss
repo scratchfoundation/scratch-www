@@ -1,0 +1,23 @@
+@import "../../colors";
+@import "../../frameless";
+
+$base-bg: $ui-light-gray;
+$pass-bg: lighten($ui-aqua, 35%);
+
+.editable {
+    border: 2px dashed $ui-dark-gray!important;
+    
+    & > input {
+        border: 0;
+        background-color: transparent;
+    }
+    
+    & > textarea {
+        border: 0;
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+

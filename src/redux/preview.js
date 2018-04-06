@@ -1,3 +1,4 @@
+const defaults = require('lodash.defaults');
 const keyMirror = require('keymirror');
 
 const api = require('../lib/api');
@@ -117,7 +118,7 @@ module.exports.setFetchStatus = (type, status) => ({
 });
 
 module.exports.getProjectInfo = (id, token) => (dispatch => {
-    let opts = {
+    const opts = {
         uri: `/projects/${id}`
     };
     if (token) {
@@ -216,7 +217,7 @@ module.exports.setFavedStatus = (faved, id, username, token) => (dispatch => {
             dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));
             dispatch(module.exports.setFaved(false));
         });
-    };
+    }
 });
 
 module.exports.getLovedStatus = (id, username, token) => (dispatch => {
@@ -275,7 +276,7 @@ module.exports.setLovedStatus = (loved, id, username, token) => (dispatch => {
             dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHED));
             dispatch(module.exports.setLoved(body.userLove));
         });
-    };
+    }
 });
 
 module.exports.getRemixes = id => (dispatch => {
@@ -303,29 +304,53 @@ module.exports.getRemixes = id => (dispatch => {
 });
 
 module.exports.getStudios = id => (dispatch => {
-    // dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHING));
-    // api({
-    //     uri: `/projects/${id}/studios?limit=5`
-    // }, (err, body) => {
-    //     if (err) {
-    //         dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
-    //         dispatch(module.exports.setError(err));
-    //         return;
-    //     }
-    //     if (typeof body === 'undefined') {
-    //         dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
-    //         dispatch(module.exports.setError('No studios info'));
-    //         return;
-    //     }
-    //     if (body.code === 'NotFound') {
-    //         // no studios found, set body to empty array
-    //         body = [];
-    //     }
-    //     dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHED));
-    //     dispatch(module.exports.setStudios(body));
-    // });
-    dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHED));
-    dispatch(module.exports.setStudios(
-        [{"id":1,"title":"Fake Data","owner":1,"description":"","image":"0/0104.png","history":{"created":"2018-02-27T20:29:22.000Z","modified":"2018-02-27T20:29:51.000Z"},"stats":{"followers":0}}]
-    ));
+    dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHING));
+    api({
+        uri: `/projects/${id}/studios?limit=5`
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No studios info'));
+            return;
+        }
+        if (body.code === 'NotFound') {
+            // no studios found, set body to empty array
+            body = [];
+        }
+        dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHED));
+        dispatch(module.exports.setStudios(body));
+    });
+});
+
+module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
+    api({
+        uri: `/projects/${id}`,
+        authentication: token,
+        method: 'PUT',
+        jsonData: jsonData
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No project info'));
+            return;
+        }
+        // TODO: figure out better checking for errors
+        if (body.code === 'InternalServer') {
+            dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('Internal Server Error'));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
+        dispatch(module.exports.setProjectInfo(body));
+    });
 });

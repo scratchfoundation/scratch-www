@@ -12,24 +12,27 @@ const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const placeholder = require('./gui-placeholder.png');
 const ShareBanner = require('../../components/share-banner/share-banner.jsx');
 const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolumn.jsx');
+const InplaceInput = require('../../components/forms/inplace-input.jsx');
 
 require('./preview.scss');
 
 const PreviewPresentation = props => {
     const {
-        intl,
-        projectInfo,
         creditInfo,
+        editable,
         faved,
         favoriteCount,
+        intl,
         loved,
         loveCount,
+        projectInfo,
         remixes,
         sessionStatus,
         studios,
         user,
         onFavoriteClicked,
-        onLoveClicked
+        onLoveClicked,
+        onUpdate
         // ...otherProps TBD
     } = props;
     const shareDate = (projectInfo.history && projectInfo.history.shared) ? projectInfo.history.shared : '';
@@ -50,12 +53,20 @@ const PreviewPresentation = props => {
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <div className="inner">
                     <FlexRow className="preview-row">
-                        <FlexRow className="project-title">
+                        <FlexRow className="project-header">
                             <Avatar
                                 src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_48x48.png`}
                             />
                             <div className="title">
-                                <div className="preview-header">{projectInfo.title}</div>
+                                {editable ?
+                                    <InplaceInput
+                                        className="project-title"
+                                        field="title"
+                                        value={projectInfo.title}
+                                        onUpdate={onUpdate}
+                                    /> :
+                                    <div className="project-title">{projectInfo.title}</div>
+                                }
                                 {`${intl.formatMessage({id: 'thumbnail.by'})} `}
                                 <a href={`/users/${projectInfo.author.username}`}>
                                     {projectInfo.author.username}
@@ -113,9 +124,18 @@ const PreviewPresentation = props => {
                                     </div>
                                 </FlexRow>
                             )}
-                            <div className="project-description">
-                                {decorateText(projectInfo.description)}
-                            </div>
+                            {editable ?
+                                <InplaceInput
+                                    className="project-description"
+                                    field="description"
+                                    type="textarea"
+                                    value={projectInfo.description}
+                                    onUpdate={onUpdate}
+                                /> :
+                                <div className="project-description">
+                                    {decorateText(projectInfo.description)}
+                                </div>
+                            }
                         </FlexRow>
                     </FlexRow>
                     <FlexRow className="preview-row">
@@ -130,6 +150,7 @@ const PreviewPresentation = props => {
                             <div
                                 className={favesClass}
                                 key="favorites"
+                                onClick={onFavoriteClicked}
                             >
                                 {favoriteCount}
                             </div>
@@ -166,13 +187,13 @@ const PreviewPresentation = props => {
                     </FlexRow>
                     <FlexRow className="preview-row">
                         <div className="comments-container">
-                            <div className="preview-header">
+                            <div className="project-title">
                                 Comments go here
                             </div>
                         </div>
                         <FlexRow className="column">
                             <FlexRow className="remix-list">
-                                <div className="preview-header">
+                                <div className="project-title">
                                     Remixes
                                 </div>
                                 {remixes && remixes.length === 0 ? (
@@ -190,10 +211,10 @@ const PreviewPresentation = props => {
                                 )}
                             </FlexRow>
                             <FlexRow className="studio-list">
-                                <div className="preview-header">
+                                <div className="project-title">
                                     Studios
                                 </div>
-                                {remixes === 0 ? (
+                                {studios === 0 ? (
                                     <span>No studios</span>
                                 ) : (
                                     <ThumbnailColumn
@@ -238,7 +259,15 @@ PreviewPresentation.propTypes = {
             root: PropTypes.number
         })
     }),
+    editable: PropTypes.bool,
+    faved: PropTypes.bool,
+    favoriteCount: PropTypes.number,
     intl: intlShape,
+    loveCount: PropTypes.number,
+    loved: PropTypes.bool,
+    onFavoriteClicked: PropTypes.func,
+    onLoveClicked: PropTypes.func,
+    onUpdate: PropTypes.func,
     projectInfo: PropTypes.shape({
         id: PropTypes.number,
         title: PropTypes.string,
@@ -261,6 +290,7 @@ PreviewPresentation.propTypes = {
     }),
     remixes: PropTypes.arrayOf(PropTypes.object),
     sessionStatus: PropTypes.string.isRequired,
+    studios: PropTypes.arrayOf(PropTypes.object),
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,

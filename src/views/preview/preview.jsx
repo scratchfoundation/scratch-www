@@ -15,28 +15,16 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'handleFavoriteToggle',
-            'handleLoveToggle'
+            'handleLoveToggle',
+            'handlePermissions',
+            'handleUpdate',
+            'initCounts'
         ]);
         this.state = {
+            editable: false,
             favoriteCount: 0,
             loveCount: 0
         };
-    }
-    componentDidMount () {
-        // let pathname = window.location.pathname.toLowerCase();
-        // if (pathname[pathname.length - 1] === '/') {
-        //     pathname = pathname.substring(0, pathname.length - 1);
-        // }
-        // const path = pathname.split('/');
-        // const projectId = path[path.length - 1];
-        // if (this.props.sessionStatus === sessionActions.Status.FETCHED) {
-        //     this.props.getProjectInfo(projectId, this.props.user.token);
-        // } else {
-        //     this.props.getProjectInfo(projectId);
-        // }    
-        // this.props.getRemixes(projectId);
-        // this.props.getStudios(projectId);
-        // // get comments
     }
     componentDidUpdate (prevProps) {
         let pathname = window.location.pathname.toLowerCase();
@@ -45,7 +33,7 @@ class Preview extends React.Component {
         }
         const path = pathname.split('/');
         const projectId = path[path.length - 1];
-        if (this.props.sessionStatus !== prevProps.sessionStatus && 
+        if (this.props.sessionStatus !== prevProps.sessionStatus &&
             this.props.sessionStatus === sessionActions.Status.FETCHED) {
             if (this.props.user) {
                 const username = this.props.user.username;
@@ -63,30 +51,11 @@ class Preview extends React.Component {
             
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
-            this.setState({
-                favoriteCount: this.props.projectInfo.stats.favorites,
-                loveCount:  this.props.projectInfo.stats.loves
-            });
+            this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
+            this.handlePermissions();
             if (this.props.projectInfo.remix.root !== null) {
                 this.props.getCreditInfo(this.props.projectInfo.remix.root);
             }
-        }
-    }
-    handleLoveToggle () {
-        this.props.setLovedStatus(
-            !this.props.loved,
-            this.props.projectInfo.id,
-            this.props.user.username,
-            this.props.user.token
-        );
-        if (this.props.loved) {
-            this.setState(state => ({
-                loveCount: state.loveCount - 1
-            }));
-        } else {
-            this.setState(state => ({
-                loveCount: state.loveCount + 1
-            }));
         }
     }
     handleFavoriteToggle () {
@@ -106,15 +75,53 @@ class Preview extends React.Component {
             }));
         }
     }
+    handleLoveToggle () {
+        this.props.setLovedStatus(
+            !this.props.loved,
+            this.props.projectInfo.id,
+            this.props.user.username,
+            this.props.user.token
+        );
+        if (this.props.loved) {
+            this.setState(state => ({
+                loveCount: state.loveCount - 1
+            }));
+        } else {
+            this.setState(state => ({
+                loveCount: state.loveCount + 1
+            }));
+        }
+    }
+    handlePermissions () {
+        // TODO: handle admins and mods 
+        if (this.props.projectInfo.author.username === this.props.user.username) {
+            this.setState({editable: true});
+        }
+    }
+    handleUpdate (formData) {
+        this.props.updateProject(
+            this.props.projectInfo.id,
+            formData,
+            this.props.user.username,
+            this.props.user.token
+        );
+    }
+    initCounts (favorites, loves) {
+        this.setState({
+            favoriteCount: favorites,
+            loveCount: loves
+        });
+    }
     render () {
         return (
             <PreviewPresentation
                 comments={this.props.comments}
                 creditInfo={this.props.credit}
+                editable={this.state.editable}
                 faved={this.props.faved}
                 favoriteCount={this.state.favoriteCount}
-                loved={this.props.loved}
                 loveCount={this.state.loveCount}
+                loved={this.props.loved}
                 projectInfo={this.props.projectInfo}
                 remixes={this.props.remixes}
                 sessionStatus={this.props.sessionStatus}
@@ -122,6 +129,7 @@ class Preview extends React.Component {
                 user={this.props.user}
                 onFavoriteClicked={this.handleFavoriteToggle}
                 onLoveClicked={this.handleLoveToggle}
+                onUpdate={this.handleUpdate}
             />
         );
     }
@@ -133,7 +141,9 @@ Preview.propTypes = {
         id: PropTypes.number,
         title: PropTypes.string,
         description: PropTypes.string,
-        author: PropTypes.shape({id: PropTypes.number}),
+        author: PropTypes.shape({
+            id: PropTypes.number
+        }),
         history: PropTypes.shape({
             created: PropTypes.string,
             modified: PropTypes.string,
@@ -150,38 +160,42 @@ Preview.propTypes = {
         })
     }),
     faved: PropTypes.bool,
-    loved: PropTypes.bool,
     getCreditInfo: PropTypes.func.isRequired,
     getFavedStatus: PropTypes.func.isRequired,
     getLovedStatus: PropTypes.func.isRequired,
     getProjectInfo: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getStudios: PropTypes.func.isRequired,
+    loved: PropTypes.bool,
     projectInfo: PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
+        author: PropTypes.shape({
+            id: PropTypes.number,
+            username: PropTypes.string
+        }),
         description: PropTypes.string,
-        author: PropTypes.shape({id: PropTypes.number}),
         history: PropTypes.shape({
             created: PropTypes.string,
             modified: PropTypes.string,
             shared: PropTypes.string
+        }),
+        id: PropTypes.number,
+        remix: PropTypes.shape({
+            parent: PropTypes.number,
+            root: PropTypes.number
         }),
         stats: PropTypes.shape({
             views: PropTypes.number,
             loves: PropTypes.number,
             favorites: PropTypes.number
         }),
-        remix: PropTypes.shape({
-            parent: PropTypes.number,
-            root: PropTypes.number
-        })
+        title: PropTypes.string
     }),
     remixes: PropTypes.arrayOf(PropTypes.object),
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
     setLovedStatus: PropTypes.func.isRequired,
     studios: PropTypes.arrayOf(PropTypes.object),
+    updateProject: PropTypes.func.isRequired,
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,
@@ -243,8 +257,8 @@ const mapDispatchToProps = dispatch => ({
     setCreditInfo: info => {
         dispatch(previewActions.setCreditInfo(info));
     },
-    setProjectInfo: info => {
-        dispatch(previewActions.setProjectInfo(info));
+    updateProject: (id, formData, username, token) => {
+        dispatch(previewActions.updateProject(id, formData, username, token));
     }
 });
 
