@@ -27,7 +27,7 @@ class Form extends React.Component {
     }
     render () {
         return (
-            <Formsy.Form
+            <Formsy.default
                 className={classNames('form', this.props.className)}
                 ref={form => {
                     this.formsy = form;
@@ -36,13 +36,13 @@ class Form extends React.Component {
                 {...this.props}
             >
                 {React.Children.map(this.props.children, child => {
-                    if (!child) return child;
+                    if (!child) return null;
                     if (child.props.name === 'all') {
                         return React.cloneElement(child, {value: this.state.allValues});
                     }
                     return child;
                 })}
-            </Formsy.Form>
+            </Formsy.default>
         );
     }
 }

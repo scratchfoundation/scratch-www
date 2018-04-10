@@ -17,7 +17,14 @@ const Checkbox = props => (
 );
 
 Checkbox.propTypes = {
-    className: PropTypes.string
+    className: PropTypes.string,
+    value: PropTypes.bool,
+    valueLabel: PropTypes.string
+};
+
+Checkbox.defaultProps = {
+    value: false,
+    valueLabel: ''
 };
 
 module.exports = inputHOC(defaultValidationHOC(Checkbox));

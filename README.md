@@ -16,19 +16,29 @@ We’re working to update the [Scratch website](https://scratch.mit.edu) to use 
 We’re currently building Scratch using [React](https://facebook.github.io/react/) and [SCSS](http://sass-lang.com/documentation/file.SASS_REFERENCE.html). Here are some resources to help you get acquainted with how we’re working on the Scratch codebase:
 
 * [Style Guide](https://github.com/LLK/scratch-www/wiki/Style-Guide)
-* [Testing Guide](https://github.com/LLK/scratch-www/wiki/Testing-Guide)
+* [Testing Guide](https://github.com/LLK/scratch-www/wiki/Testing-Guide-for-Bugfixes)
 * [Localization Guide](https://github.com/LLK/scratch-www/wiki/Localization-Guide)
 * [Map of the repository](https://github.com/LLK/scratch-www/wiki/Repo-Map)
 
 
 ### Before Getting Started
 * Make sure you have node (v4.2 or higher) and npm [installed](https://docs.npmjs.com/getting-started/installing-node)
+We use npm (Node Package Manager) to maintain and update packages required to build the site.  
 
-### To Build
+### Update Packages
+It's important to make sure that all of the dependencies are up to date because the scratch-www code only works with specific versions of the dependencies. You can update the packages by running this command:
+
 ```bash
 npm install
+```
+
+### To Build
+To compile the source code into HTML and JavaScript bundles browsers can read, run this command:
+
+```bash
 npm run build
 ```
+If you want to run a server that rebuilds the files as you edit them, skip to the To Run section below.
 
 #### Warnings during npm install
 
@@ -45,9 +55,16 @@ npm WARN react-dom@0.14.8 requires a peer of react@^0.14.8 but none was installe
 These currently exist in static/js/lib
 
 ### To Run
+If you would like to create a temporary version of the site on your machine that you can access through your web browser run the command below.  Building (see To Build above) is not necessary for this step and the temporary server can be turned off (see To Stop below).
+
+The intl directory must be built separately with the `make translations` line below in order for the text to appear properly.
+
 ```bash
+make translations
 npm start
 ```
+
+The site hosted on your local machine can now be accessed by a web browser by entering localhost:8333 into your web browser.
 
 During development, `npm start` watches any update you make to files in either `./static` or `./src` and triggers a rebuild of the project.  In development, the build is stored in memory, and not served from the `./build` directory.
 
@@ -58,7 +75,7 @@ When running `npm start`, here are some important log messages to keep an eye ou
 Once running, open `http://localhost:8333` in your browser. If you wish to have the server reload automatically, you can install either [nodemon](https://github.com/remy/nodemon) or [forever](https://github.com/foreverjs/forever).
 
 ### To stop
-Use `^C` to stop the node process `npm start` starts. 
+To stop the process that is making the site available to your web browser (created above in To Start) use `^C`.
 
 #### Configuration
 
