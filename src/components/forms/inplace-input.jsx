@@ -1,7 +1,8 @@
 const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
-// const withFormsy = require('formsy-react').withFormsy;
+const withFormsy = require('formsy-react').withFormsy;
+const formsyPropTypes = require('formsy-react').propTypes;
 const classNames = require('classnames');
 
 require('./inplace-input.scss');
@@ -20,15 +21,16 @@ class InplaceInput extends React.Component {
     }
     handleBlur (event) {
         const formData = {};
-        formData[this.state.field] = event.target.value;
-        this.props.onUpdate(formData);
+        if (this.props.isValid()) {
+            formData[this.props.name] = this.props.getValue();
+            this.props.onUpdate(formData);
+        }
     }
     handleChange (event) {
-        this.setState({value: event.target.value});
-        // this.props.setValue(event.currentTarget.value);
+        this.props.setValue(event.currentTarget.value);
     }
     render () {
-        // const errorMessage = this.props.getErrorMessage();
+        const errorMessage = this.props.getErrorMessage();
         
         return (
             <div className={classNames('editable form-group', this.props.className)}>
@@ -39,12 +41,12 @@ class InplaceInput extends React.Component {
                         onChange={this.handleChange}
                     /> :
                     <input
-                        value={this.state.value}
+                        value={this.props.getValue()}
                         onBlur={this.handleBlur}
                         onChange={this.handleChange}
                     />
                 }
-                {/* <span className='validation-error'>{errorMessage}</span> */}
+                <span className='validation-message'>{errorMessage}</span>
             </div>
         );
     }
@@ -52,10 +54,9 @@ class InplaceInput extends React.Component {
 
 InplaceInput.propTypes = {
     className: PropTypes.string,
-    field: PropTypes.string.isRequired,
     onUpdate: PropTypes.func.isRequired,
     type: PropTypes.string,
-    value: PropTypes.string
+    ...formsyPropTypes
 };
 
 InplaceInput.defaultProps = {
@@ -63,4 +64,4 @@ InplaceInput.defaultProps = {
     value: ''
 };
 
-module.exports = InplaceInput;
+module.exports = withFormsy(InplaceInput);

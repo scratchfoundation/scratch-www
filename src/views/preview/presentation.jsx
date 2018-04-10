@@ -3,6 +3,7 @@ const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
+const Formsy = require('formsy-react').default;
 
 const sessionActions = require('../../redux/session.js');
 const decorateText = require('../../lib/decorate-text.jsx');
@@ -59,12 +60,24 @@ const PreviewPresentation = props => {
                             />
                             <div className="title">
                                 {editable ?
-                                    <InplaceInput
-                                        className="project-title"
-                                        field="title"
-                                        value={projectInfo.title}
-                                        onUpdate={onUpdate}
-                                    /> :
+                                    <Formsy>
+                                        <InplaceInput
+                                            className="project-title"
+                                            name="title"
+                                            validationErrors={{
+                                                maxLength: 'Sorry title is too long'
+                                                // maxLength: props.intl.formatMessage({
+                                                //     id: 'project.titleMaxLength'
+                                                // })
+                                            }}
+                                            validations={{
+                                                // TODO: actual 100
+                                                maxLength: 40
+                                            }}
+                                            value={projectInfo.title}
+                                            onUpdate={onUpdate}
+                                        />
+                                    </Formsy> :
                                     <div className="project-title">{projectInfo.title}</div>
                                 }
                                 {`${intl.formatMessage({id: 'thumbnail.by'})} `}
@@ -125,13 +138,25 @@ const PreviewPresentation = props => {
                                 </FlexRow>
                             )}
                             {editable ?
-                                <InplaceInput
-                                    className="project-description"
-                                    field="description"
-                                    type="textarea"
-                                    value={projectInfo.description}
-                                    onUpdate={onUpdate}
-                                /> :
+                                <Formsy>
+                                    <InplaceInput
+                                        className="project-description"
+                                        name="description"
+                                        type="textarea"
+                                        validationErrors={{
+                                            maxLength: 'Sorry description is too long'
+                                            // maxLength: props.intl.formatMessage({
+                                            //     id: 'project.descriptionMaxLength'
+                                            // })
+                                        }}
+                                        validations={{
+                                            // TODO: actual 5000
+                                            maxLength: 150
+                                        }}
+                                        value={projectInfo.description}
+                                        onUpdate={onUpdate}
+                                    />
+                                </Formsy> :
                                 <div className="project-description">
                                     {decorateText(projectInfo.description)}
                                 </div>
