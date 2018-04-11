@@ -98,10 +98,10 @@ class Preview extends React.Component {
             this.setState({editable: true});
         }
     }
-    handleUpdate (formData) {
+    handleUpdate (jsonData) {
         this.props.updateProject(
             this.props.projectInfo.id,
-            formData,
+            jsonData,
             this.props.user.username,
             this.props.user.token
         );

@@ -22,6 +22,13 @@ body,
     .project-title {
         font-size: 1.75rem;
         font-weight: 500;
+        
+        &.has-error {
+            
+            .validation-message {
+                transform: translate(22rem, 0);
+            }
+        }
     }
     
     img {
@@ -42,6 +49,57 @@ body,
         margin-left: 1rem;
         text-align: left;
         font-size: .8rem;
+    }
+    
+    .validation-message {
+        $arrow-border-width: 1rem;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-left: $arrow-border-width;
+        border: 1px solid $active-gray;
+        border-radius: 5px;
+        background-color: $ui-orange;
+        padding: 1rem;
+        max-width: 18.75rem;
+        min-height: 1rem;
+        overflow: visible;
+        color: $type-white;
+        font-size: 1rem;
+
+        &:before {
+            display: block;
+            position: absolute;
+            top: 1rem;
+            left: -$arrow-border-width / 2;
+
+            transform: rotate(45deg);
+
+            border-bottom: 1px solid $active-gray;
+            border-left: 1px solid $active-gray;
+            border-radius: 5px;
+
+            background-color: $ui-orange;
+            width: $arrow-border-width;
+            height: $arrow-border-width;
+
+            content: "";
+        }
+    }
+    
+    .row {        
+
+        &.has-error {
+            .inplace-input,
+            .inplace-textarea {
+                border: 1px solid $ui-orange;
+            }
+        }
+
+        .col-sm-9 {
+            position: relative;
+        }
     }
     
     .button {
@@ -150,6 +208,19 @@ body,
         white-space: pre-line;
         overflow-y: scroll;
         flex: 1;
+        
+        &.textarea-row {
+            border: 0;
+            background-color: inherit;
+            padding: 0;
+            overflow: visible;
+        }
+        
+        &.has-error {
+            .validation-message {
+                transform: translate(26rem, 0);
+            }
+        }
     }
 
     .copyleft {

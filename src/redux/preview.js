@@ -1,4 +1,3 @@
-const defaults = require('lodash.defaults');
 const keyMirror = require('keymirror');
 
 const api = require('../lib/api');
@@ -162,7 +161,7 @@ module.exports.getCreditInfo = id => (dispatch => {
 });
 
 module.exports.getFavedStatus = (id, username, token) => (dispatch => {
-    dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHING));
+    dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHING));
     api({
         uri: `/projects/${id}/favorites/user/${username}`,
         authentication: token
@@ -194,7 +193,7 @@ module.exports.setFavedStatus = (faved, id, username, token) => (dispatch => {
                 return;
             }
             if (typeof body === 'undefined') {
-                dispatch(module.exports.setError('Set farotites returned no data'));
+                dispatch(module.exports.setError('Set favorites returned no data'));
                 return;
             }
             dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));

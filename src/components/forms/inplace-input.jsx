@@ -1,62 +1,65 @@
 const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
-const withFormsy = require('formsy-react').withFormsy;
-const formsyPropTypes = require('formsy-react').propTypes;
+const FRCInput = require('formsy-react-components').Input;
+const FRCTextarea = require('formsy-react-components').Textarea;
 const classNames = require('classnames');
 
+require('./row.scss');
 require('./inplace-input.scss');
 
 class InplaceInput extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleChange',
-            'handleBlur'
+            'handleBlur',
+            'setRef'
         ]);
-        this.state = {
-            field: props.field,
-            value: props.value
-        };
     }
-    handleBlur (event) {
-        const formData = {};
-        if (this.props.isValid()) {
-            formData[this.props.name] = this.props.getValue();
-            this.props.onUpdate(formData);
+    handleBlur (name, value) {
+        if (this.inputRef.props.errorMessages.length === 0) {
+            const jsonData = {};
+            jsonData[name] = value;
+            this.props.handleUpdate(jsonData);
         }
     }
-    handleChange (event) {
-        this.props.setValue(event.currentTarget.value);
+    setRef (input) {
+        this.inputRef = input;
     }
     render () {
-        const errorMessage = this.props.getErrorMessage();
-        
+        const {
+            className,
+            type,
+            handleUpdate, // eslint-disable-line no-unused-vars
+            ...props
+        } = this.props;
         return (
-            <div className={classNames('editable form-group', this.props.className)}>
-                {(this.props.type === 'textarea') ?
-                    <textarea
-                        value={this.state.value}
-                        onBlur={this.handleBlur}
-                        onChange={this.handleChange}
-                    /> :
-                    <input
-                        value={this.props.getValue()}
-                        onBlur={this.handleBlur}
-                        onChange={this.handleChange}
-                    />
-                }
-                <span className='validation-message'>{errorMessage}</span>
-            </div>
+            (type === 'textarea') ?
+                <FRCTextarea
+                    className="inplace-textarea"
+                    componentRef={this.setRef}
+                    rowClassName={classNames('textarea-row no-label', className)}
+                    onBlur={this.handleBlur}
+                    {...props}
+                /> :
+                <FRCInput
+                    className="inplace-input"
+                    componentRef={this.setRef}
+                    rowClassName={classNames(
+                        className,
+                        'no-label'
+                    )}
+                    onBlur={this.handleBlur}
+                    {...props}
+                />
         );
     }
 }
 
 InplaceInput.propTypes = {
     className: PropTypes.string,
-    onUpdate: PropTypes.func.isRequired,
-    type: PropTypes.string,
-    ...formsyPropTypes
+    handleUpdate: PropTypes.func.isRequired,
+    type: PropTypes.string
 };
 
 InplaceInput.defaultProps = {
@@ -64,4 +67,4 @@ InplaceInput.defaultProps = {
     value: ''
 };
 
-module.exports = withFormsy(InplaceInput);
+module.exports = InplaceInput;
