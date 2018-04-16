@@ -4,6 +4,7 @@ const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 const Formsy = require('formsy-react').default;
+const classNames = require('classnames');
 
 const sessionActions = require('../../redux/session.js');
 const decorateText = require('../../lib/decorate-text.jsx');
@@ -37,8 +38,6 @@ const PreviewPresentation = props => {
         // ...otherProps TBD
     } = props;
     const shareDate = (projectInfo.history && projectInfo.history.shared) ? projectInfo.history.shared : '';
-    const lovesClass = loved ? 'project-loves loved' : 'project-loves';
-    const favesClass = faved ? 'project-favorites favorited' : 'project-favorites';
     return (
         <div className="preview">
             <ShareBanner>
@@ -165,14 +164,14 @@ const PreviewPresentation = props => {
                         <FlexRow className="preview-row">
                             <FlexRow className="stats">
                                 <div
-                                    className={lovesClass}
+                                    className={classNames('project-loves', {loved: loved})}
                                     key="loves"
                                     onClick={onLoveClicked}
                                 >
                                     {loveCount}
                                 </div>
                                 <div
-                                    className={favesClass}
+                                    className={classNames('project-favorites', {faved: faved})}
                                     key="favorites"
                                     onClick={onFavoriteClicked}
                                 >

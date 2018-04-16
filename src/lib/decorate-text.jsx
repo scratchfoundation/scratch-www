@@ -10,20 +10,20 @@ const reactStringReplace = require('react-string-replace');
 module.exports = text => {
     let replacedText;
     
-    // Match @-mentions
-    replacedText = reactStringReplace(text, /@(\w+)/g, (match, i) => (
+    // Match @-mentions (username is alphanumeric, underscore and dash)
+    replacedText = reactStringReplace(text, /@([\w-]+)/g, (match, i) => (
         <a
             href={`/users/${match}`}
             key={match + i}
         >@{match}</a>
     ));
     
-    // Match hashtags
-    replacedText = reactStringReplace(replacedText, /#(\w+)/g, (match, i) => (
+    // Match hashtags 
+    replacedText = reactStringReplace(replacedText, /(#[\w-]+)/g, (match, i) => (
         <a
             href={`/search/projects?q=${match}`}
             key={match + i}
-        >#{match}</a>
+        >{match}</a>
     ));
     
     return replacedText;

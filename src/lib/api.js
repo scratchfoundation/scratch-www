@@ -41,11 +41,6 @@ module.exports = (opts, callback) => {
         opts.body = urlParams(opts.formData);
         opts.headers['Content-Type'] = 'application/x-www-form-urlencoded';
     }
-    
-    if (opts.jsonData) {
-        opts.body = JSON.stringify(opts.jsonData);
-        opts.headers['Content-Type'] = 'application/json';
-    }
 
     const apiRequest = options => {
         if (options.host !== '') {

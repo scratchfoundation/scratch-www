@@ -306,7 +306,7 @@ module.exports.getStudios = id => (dispatch => {
     dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHING));
     api({
         uri: `/projects/${id}/studios?limit=5`
-    }, (err, body) => {
+    }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
@@ -317,8 +317,7 @@ module.exports.getStudios = id => (dispatch => {
             dispatch(module.exports.setError('No studios info'));
             return;
         }
-        if (body.code === 'NotFound') {
-            // no studios found, set body to empty array
+        if (res.statusCode === 404) { // NotFound
             body = [];
         }
         dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHED));
@@ -331,8 +330,8 @@ module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
         uri: `/projects/${id}`,
         authentication: token,
         method: 'PUT',
-        jsonData: jsonData
-    }, (err, body) => {
+        json: jsonData
+    }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
@@ -343,10 +342,9 @@ module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
             dispatch(module.exports.setError('No project info'));
             return;
         }
-        // TODO: figure out better checking for errors
-        if (body.code === 'InternalServer') {
+        if (res.statusCode === 500) { // InternalServer
             dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
-            dispatch(module.exports.setError('Internal Server Error'));
+            dispatch(module.exports.setError('API Internal Server Error'));
             return;
         }
         dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
