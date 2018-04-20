@@ -289,20 +289,6 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             );
         }
 
-        if (this.props.user &&
-            this.props.featuredGlobal.community_newest_projects &&
-            this.props.featuredGlobal.community_newest_projects.length > 0) {
-
-            rows.push(
-                <Box
-                    key="community_newest_projects"
-                    title={this.props.intl.formatMessage({id: 'splash.recentlySharedProjects'})}
-                >
-                    <LegacyCarousel items={this.props.featuredGlobal.community_newest_projects} />
-                </Box>
-            );
-        }
-
         if (this.props.sharedByFollowing && this.props.sharedByFollowing.length > 0) {
             rows.push(
                 <Box
@@ -524,7 +510,6 @@ SplashPresentation.propTypes = {
         community_featured_studios: PropTypes.array,
         curator_top_projects: PropTypes.array,
         scratch_design_studio: PropTypes.array,
-        community_newest_projects: PropTypes.array,
         community_most_remixed_projects: PropTypes.array,
         community_most_loved_projects: PropTypes.array
     }),

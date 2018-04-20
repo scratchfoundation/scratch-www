@@ -183,7 +183,6 @@ Splash.propTypes = {
         community_featured_studios: PropTypes.array,
         curator_top_projects: PropTypes.array,
         scratch_design_studio: PropTypes.array,
-        community_newest_projects: PropTypes.array,
         community_most_remixed_projects: PropTypes.array,
         community_most_loved_projects: PropTypes.array
     }),
