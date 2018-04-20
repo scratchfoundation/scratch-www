@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test-all": "cypress run --browser chrome",
+    "test-all-headless": "cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^2.1.0"
+  }
+}

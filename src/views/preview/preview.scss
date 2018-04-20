@@ -1,0 +1,288 @@
+@import "../../colors";
+@import "../../frameless";
+
+html,
+body,
+#app,
+.gui {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* override view padding for share banner */
+#view {
+    padding: 0 0 20px 0;
+}
+
+.gui * { box-sizing: border-box; }
+
+.preview {
+    
+    .title-text {
+        font-size: 2rem;
+        font-weight: 500;
+    }
+    
+    img {
+        
+        &.avatar {
+            border: 0;
+            border-radius: 5px;
+            width: 3rem;
+            
+            &.remix {
+                margin-right: .5em;
+                width: 1.5rem;
+            }
+        }
+    }
+    
+    .title {
+        margin-left: 1rem;
+        text-align: left;
+        font-size: .8rem;
+    }
+    
+    .button {
+        margin-left: 1rem;
+    }
+    
+    .comments-container {
+        width: 60%;
+    }
+    
+    .remix-list {
+        width: 25%;
+    }
+    
+    .share-button,
+    .remix-button,
+    .see-inside-button {
+        font-size: .875rem;
+        font-weight: normal;
+        
+        &:before {
+            display: inline-block;
+            margin-right: .5rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: middle;
+            content: "";
+        }
+    }
+
+    .shareText {
+        align-self: center;
+    }
+
+    .share-button {
+        background-color: $ui-orange;
+        
+        &:before {
+            background-image: url("/svgs/favorite/favorite_type-gray.svg");
+        }
+    }
+
+    .remix-button {
+        background-color: $ui-green;
+        
+        &:before {
+            background-image: url("/svgs/remix/remix_type-gray.svg");
+        }
+    }
+
+    .see-inside-button {
+        
+        &:before {
+            background-image: url("/images/emoji/cool-cat.png");
+        }
+    }
+    
+    .preview-row {
+        margin-top: 1rem;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .placeholder {
+        display: inline-block;
+        width: 480px;
+    }
+
+    .placeholder img {
+        width: 100%;
+    }
+
+    .project-notes {
+        width: 45%;
+        height: 404px;
+        flex-flow: column;
+        align-items: left;
+    }
+
+    .share-date {
+        height: 2.5rem;
+        vertical-align: middle;
+    }
+
+    .remix-credit {
+        margin-bottom: 1rem;
+        border: 1px solid $ui-blue-10percent;
+        border-radius: 8px;
+        background-color: $ui-blue-10percent;
+        padding: .5rem;
+        width: 100%;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+    }
+
+    .credit-text {
+        font-size: .875rem;
+        flex-shrink: 1;
+    }
+
+    .project-description {
+        border: 1px solid $ui-blue-10percent;
+        border-radius: 8px;
+        background-color: $ui-blue-10percent;
+        padding: .5rem;
+        width: 100%;
+        white-space: pre-line;
+        overflow-y: scroll;
+        flex: 1;
+    }
+
+    .copyleft {
+        display: inline-block;
+        transform: scale(-1, 1);
+        margin: 0;
+        text-align: right;
+    }
+
+    .stats {
+        width: 480px;
+        justify-content: flex-start;
+    }
+
+    .project-loves,
+    .project-favorites,
+    .project-remixes,
+    .project-views {
+
+        display: inline;
+        padding-right: 2rem;
+        font-size: 1.25rem;
+
+        &:before {
+            display: inline-block;
+            margin-right: .1rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: text-bottom;
+            content: "";
+        }
+    }
+
+    .project-loves {
+        
+        &:before {
+            background-image: url("/svgs/love/love_type-gray.svg");
+        }
+    }
+
+    .project-loves.loved {
+        
+        &:before {
+            background-image: url("/svgs/messages/love.svg");
+        }
+    }
+
+    .project-favorites {
+        
+        &:before {
+            background-image: url("/svgs/favorite/favorite_type-gray.svg");
+        }
+    }
+
+    .project-favorites.favorited {
+        
+        &:before {
+            background-image: url("/svgs/messages/favorite.svg");
+        }
+    }
+
+    .project-remixes {
+        
+        &:before {
+            background-image: url("/svgs/remix/remix_type-gray.svg");
+        }
+    }
+
+    .project-views {
+        
+        &:before {
+            background-image: url("/svgs/view/view_type-gray.svg");
+        }
+    }
+
+    .action-buttons {
+        display: flex;
+        width: 40%;
+        color: $type-white;
+        font-size: .8rem;
+        font-weight: 500;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        
+
+        li {
+            display: inline-block;
+            margin: 0 5px;
+            border: 1px solid $ui-blue;
+            border-radius: 50px;
+            background-color: $ui-blue;
+            padding: .5em .75em .5em 1.5em;
+            text-decoration: none;
+            color: $type-white;
+            list-style-type: none;
+
+            &:hover {
+                transition: background-color .25s ease;
+                border-color: transparent;
+                background-color: $active-gray;
+            }
+
+            &:active {
+                border: 0 solid transparent;
+                box-shadow: inset 0 0 5px $box-shadow-gray;
+                background-color: $active-dark-gray;
+                padding: calc(.75em + 1px) calc(1.5em + 1px);
+            }
+
+            &.report {
+                border: 1px solid $ui-coral;
+                background-color: $ui-coral;
+                
+                &:hover {
+                    transition: background-color .25s ease;
+                    border-color: transparent;
+                    background-color: $active-gray;
+                }
+
+                &:active {
+                    border: 0 solid transparent;
+                    box-shadow: inset 0 0 5px $box-shadow-gray;
+                    background-color: $active-dark-gray;
+                    padding: calc(.75em + 1px) calc(1.5em + 1px);
+                }
+            }
+        }
+    }
+}

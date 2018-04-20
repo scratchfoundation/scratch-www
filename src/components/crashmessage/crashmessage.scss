@@ -1,0 +1,22 @@
+.crash-container {
+    @import "../../colors";
+    @import "../../frameless";
+    
+    margin: 3rem auto;
+    
+    border: 1px solid $ui-border;
+    border-radius: 10px;
+    background-color: $background-color;
+    width: 60%;
+    overflow: hidden;
+    text-align: center;
+    
+    img {
+        width: 100%;
+    }
+    
+    .crash-message {
+        margin: 2rem;
+    }
+
+}

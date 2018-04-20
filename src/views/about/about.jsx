@@ -25,11 +25,11 @@ const About = () => (
             <div>
                 <iframe
                     allowFullScreen
-                    mozallowfullscreen
-                    webkitAllowFullScreen
                     frameBorder="0"
+                    mozallowfullscreen={'true'}
                     src="https://player.vimeo.com/video/65583694?title=0&byline=0&portrait=0"
                     title="Scratch Overview Video"
+                    webkitallowfullscreen={'true'}
                 />
             </div>
         </div>
@@ -49,10 +49,10 @@ const About = () => (
                     <h3><FormattedMessage id="about.literacy" /></h3>
                     <iframe
                         allowFullScreen
-                        mozallowfullscreen
-                        webkitAllowFullScreen
+                        mozallowfullscreen={'true'}
                         scrolling="no"
                         src="https://embed-ssl.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code.html"
+                        webkitallowfullscreen={'true'}
                     />
                     <p><FormattedMessage id="about.literacyDescription" /></p>
                 </li>
@@ -139,22 +139,20 @@ const About = () => (
 
                 <li>
                     <h3><FormattedMessage id="about.learnMore" /></h3>
-                    <p>
-                        <ul className="list">
-                            <li>
-                                <a href="/help"><FormattedMessage id="about.learnMoreHelp" /></a>
-                            </li>
-                            <li>
-                                <a href="/info/faq"><FormattedMessage id="about.learnMoreFaq" /></a>
-                            </li>
-                            <li>
-                                <a href="/parents"><FormattedMessage id="about.learnMoreParents" /></a>
-                            </li>
-                            <li>
-                                <a href="/info/credits"><FormattedMessage id="about.learnMoreCredits" /></a>
-                            </li>
-                        </ul>
-                    </p>
+                    <ul className="list">
+                        <li>
+                            <a href="/help"><FormattedMessage id="about.learnMoreHelp" /></a>
+                        </li>
+                        <li>
+                            <a href="/info/faq"><FormattedMessage id="about.learnMoreFaq" /></a>
+                        </li>
+                        <li>
+                            <a href="/parents"><FormattedMessage id="about.learnMoreParents" /></a>
+                        </li>
+                        <li>
+                            <a href="/info/credits"><FormattedMessage id="about.learnMoreCredits" /></a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li>

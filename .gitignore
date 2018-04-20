@@ -23,3 +23,8 @@ ENV
 /.nyc_output
 /coverage
 /bin/lib/localized-urls.json
+/test/integration-cypress/node_modules
+/test/integration-cypress/cypress.env.json
+/test/integration-cypress/cypress/screenshots
+/test/integration-cypress/cypress/videos
+/test/integration-cypress/package-lock.json

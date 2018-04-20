@@ -192,6 +192,13 @@
         "title": "Microworlds"
     },
     {
+        "name": "preview",
+        "pattern": "^/preview/?(\\d+)?/?$",
+        "routeAlias": "/preview/?$",
+        "view": "preview/preview",
+        "title": "Scratch 3.0 Preview"
+    },
+    {
         "name": "preview-faq",
         "pattern": "^/preview-faq/?$",
         "routeAlias": "/preview-faq/?$",
@@ -204,6 +211,13 @@
         "routeAlias": "/privacy_policy/?$",
         "view": "privacypolicy/privacypolicy",
         "title": "Privacy Policy"
+    },
+    {
+        "name": "research",
+        "pattern": "^/research/?$",
+        "routeAlias": "/research",
+        "view": "research/research",
+        "title": "Research"
     },
     {
         "name": "search",
@@ -328,6 +342,12 @@
         "pattern": "^/info/?(\\?.*)?$",
         "routeAlias": "/info/?(\\?.*)?$",
         "redirect": "/tips"
+    },
+    {
+        "name": "research-redirect",
+        "pattern": "^/info/research/?$",
+        "routeAlias": "/info/research",
+        "redirect": "/research"
     },
     {
         "name": "search-redirect",

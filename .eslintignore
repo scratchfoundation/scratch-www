@@ -4,3 +4,4 @@ build/*
 intl/*
 locales/*
 **/*.min.js
+**/node_modules/*
