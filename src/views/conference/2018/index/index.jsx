@@ -156,42 +156,6 @@ const ConferenceSplash = () => (
                                     }}
                                 />
                             </p>
-                            <p className="conf2018-answer">
-                                <FormattedMessage
-                                    id="conference-2018.accommodationsAns3"
-                                    values={{
-                                        neuLink: (
-                                            <a href="http://www.northeastern.edu/">
-                                                Northeastern University
-                                            </a>
-                                        )
-                                    }}
-                                />
-                            </p>
-                            <p className="conf2018-question">
-                                <FormattedMessage id="conference-2018.suite" />
-                            </p>
-                            <p className="conf2018-answer">
-                                <FormattedMessage id="conference-2018.single" />
-                                {' - $80.00'}
-                                <FormattedMessage id="conference-2018.pp" />
-                                <br />
-                                <FormattedMessage id="conference-2018.double" />
-                                {' - $65.00'}
-                                <FormattedMessage id="conference-2018.pp" />
-                            </p>
-                            <p className="conf2018-answer">
-                                <FormattedMessage
-                                    id="conference-2018.accommodationsAns4"
-                                    values={{
-                                        dormrequestLink: (
-                                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8LRQyz9ZLXcpvjmYrnpAlN0_RVyYsgObUXQveI9_WpoDabw/viewform?usp=sf_link">
-                                                <FormattedMessage id="conference-2018.dormRequestText" />
-                                            </a>
-                                        )
-                                    }}
-                                />
-                            </p>
                         </div>
                         <div>
                             <p className="conf2018-question">
