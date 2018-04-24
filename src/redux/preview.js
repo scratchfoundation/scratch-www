@@ -15,6 +15,8 @@ module.exports.getInitialState = () => ({
         project: module.exports.Status.NOT_FETCHED,
         credit: module.exports.Status.NOT_FETCHED,
         comments: module.exports.Status.NOT_FETCHED,
+        faved: module.exports.Status.NOT_FETCHED,
+        loved: module.exports.Status.NOT_FETCHED,
         remixes: module.exports.Status.NOT_FETCHED,
         studios: module.exports.Status.NOT_FETCHED
     },
@@ -22,6 +24,8 @@ module.exports.getInitialState = () => ({
     remixes: [],
     credit: {},
     comments: [],
+    faved: false,
+    loved: false,
     studios: []
 });
 
@@ -39,6 +43,10 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             remixes: action.items
         });
+    case 'SET_STUDIOS':
+        return Object.assign({}, state, {
+            studios: action.items
+        });
     case 'SET_CREDIT':
         return Object.assign({}, state, {
             credit: action.info
@@ -46,6 +54,14 @@ module.exports.previewReducer = (state, action) => {
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
             comments: action.items
+        });
+    case 'SET_LOVED':
+        return Object.assign({}, state, {
+            loved: action.info
+        });
+    case 'SET_FAVED':
+        return Object.assign({}, state, {
+            faved: action.info
         });
     case 'SET_FETCH_STATUS':
         state = JSON.parse(JSON.stringify(state));
@@ -74,8 +90,23 @@ module.exports.setCreditInfo = info => ({
     info: info
 });
 
+module.exports.setFaved = info => ({
+    type: 'SET_FAVED',
+    info: info
+});
+
+module.exports.setLoved = info => ({
+    type: 'SET_LOVED',
+    info: info
+});
+
 module.exports.setRemixes = items => ({
     type: 'SET_REMIXES',
+    items: items
+});
+
+module.exports.setStudios = items => ({
+    type: 'SET_STUDIOS',
     items: items
 });
 
@@ -85,11 +116,15 @@ module.exports.setFetchStatus = (type, status) => ({
     status: status
 });
 
-module.exports.getProjectInfo = id => (dispatch => {
-    dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHING));
-    api({
+module.exports.getProjectInfo = (id, token) => (dispatch => {
+    const opts = {
         uri: `/projects/${id}`
-    }, (err, body) => {
+    };
+    if (token) {
+        Object.assign(opts, {authentication: token});
+    }
+    dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHING));
+    api(opts, (err, body) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
@@ -125,6 +160,124 @@ module.exports.getCreditInfo = id => (dispatch => {
     });
 });
 
+module.exports.getFavedStatus = (id, username, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHING));
+    api({
+        uri: `/projects/${id}/favorites/user/${username}`,
+        authentication: token
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('faved', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('faved', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No faved info'));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));
+        dispatch(module.exports.setFaved(body.userFavorite));
+    });
+});
+
+module.exports.setFavedStatus = (faved, id, username, token) => (dispatch => {
+    if (faved) {
+        api({
+            uri: `/projects/${id}/favorites/user/${username}`,
+            authentication: token,
+            method: 'POST'
+        }, (err, body) => {
+            if (err) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set favorites returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setFaved(body.userFavorite));
+        });
+    } else {
+        api({
+            uri: `/projects/${id}/favorites/user/${username}`,
+            authentication: token,
+            method: 'DELETE'
+        }, (err, body) => {
+            if (err) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set favorites returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setFaved(false));
+        });
+    }
+});
+
+module.exports.getLovedStatus = (id, username, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHING));
+    api({
+        uri: `/projects/${id}/loves/user/${username}`,
+        authentication: token
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('loved', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('loved', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No loved info'));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHED));
+        dispatch(module.exports.setLoved(body.userLove));
+    });
+});
+
+module.exports.setLovedStatus = (loved, id, username, token) => (dispatch => {
+    if (loved) {
+        api({
+            uri: `/projects/${id}/loves/user/${username}`,
+            authentication: token,
+            method: 'POST'
+        }, (err, body) => {
+            if (err) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set loved returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setLoved(body.userLove));
+        });
+    } else {
+        api({
+            uri: `/projects/${id}/loves/user/${username}`,
+            authentication: token,
+            method: 'DELETE'
+        }, (err, body) => {
+            if (err) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set loved returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setLoved(body.userLove));
+        });
+    }
+});
+
 module.exports.getRemixes = id => (dispatch => {
     dispatch(module.exports.setFetchStatus('remixes', module.exports.Status.FETCHING));
     api({
@@ -146,5 +299,55 @@ module.exports.getRemixes = id => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('remixes', module.exports.Status.FETCHED));
         dispatch(module.exports.setRemixes(body));
+    });
+});
+
+module.exports.getStudios = id => (dispatch => {
+    dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHING));
+    api({
+        uri: `/projects/${id}/studios?limit=5`
+    }, (err, body, res) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No studios info'));
+            return;
+        }
+        if (res.statusCode === 404) { // NotFound
+            body = [];
+        }
+        dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHED));
+        dispatch(module.exports.setStudios(body));
+    });
+});
+
+module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
+    api({
+        uri: `/projects/${id}`,
+        authentication: token,
+        method: 'PUT',
+        json: jsonData
+    }, (err, body, res) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No project info'));
+            return;
+        }
+        if (res.statusCode === 500) { // InternalServer
+            dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('API Internal Server Error'));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
+        dispatch(module.exports.setProjectInfo(body));
     });
 });
