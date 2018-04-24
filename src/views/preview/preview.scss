@@ -1,21 +1,21 @@
 @import "../../colors";
 @import "../../frameless";
 
-html,
-body,
-#app,
-.gui {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-}
-
 /* override view padding for share banner */
 #view {
     padding: 0 0 20px 0;
 }
 
-.gui * { box-sizing: border-box; }
+.gui {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 11;
+}
+
+// .gui * { box-sizing: border-box; }
 
 .preview {
     
@@ -162,13 +162,9 @@ body,
         align-items: flex-start;
     }
 
-    .placeholder {
+    .guiPlayer {
         display: inline-block;
         width: 480px;
-    }
-
-    .placeholder img {
-        width: 100%;
     }
 
     .project-notes {
