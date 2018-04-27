@@ -3,7 +3,6 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 const render = require('../../../../lib/render.jsx');
 
-const Button = require('../../../../components/forms/button.jsx');
 const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
 const Page = require('../../../../components/page/conference/2018/page.jsx');
 const TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
@@ -20,13 +19,12 @@ const ConferenceSplash = () => (
             <h3>
                 <FormattedMessage id="conference-2018.dateDesc" />
             </h3>
-            <p>
-                <a href="https://scratch2018.eventbrite.com">
-                    <Button className="mod-register">
-                        <FormattedMessage id="conference-2018.registerNow" />
-                    </Button>
-                </a>
-            </p>
+            <h3>
+                <FormattedMessage id="conference-2018.soldOut" />
+            </h3>
+            <h4>
+                <FormattedMessage id="conference-2018.comingSoon" />
+            </h4>
         </TitleBanner>
         <div className="inner">
             <section className="info">
@@ -68,20 +66,15 @@ const ConferenceSplash = () => (
                 </FlexRow>
                 <FlexRow className="uneven">
                     <div className="long">
-                        <h3 id="info"><FormattedMessage id="conference-2018.registrationTitle" /></h3>
-                        <p className="conf2018-panel-desc">
-                            <b><FormattedMessage id="conference-2018.registrationEarly" /></b>
-                            <br />
-                            <b><FormattedMessage id="conference-2018.registrationStandard" /></b>
-                        </p>
-                        <p>
-                            <a href="https://scratch2018.eventbrite.com">
-                                <Button className="mod-register">
-                                    <FormattedMessage id="conference-2018.registerNow" />
-                                </Button>
-                            </a>
-                        </p>
                         <h3 id="questions"><FormattedMessage id="conference-2018.questionsTitle" /></h3>
+                        <div>
+                            <p className="conf2018-question">
+                                <FormattedMessage id="conference-2018.soldoutQ" />
+                            </p>
+                            <p className="conf2018-answer">
+                                <FormattedMessage id="conference-2018.soldoutAns" />
+                            </p>
+                        </div>
                         <div>
                             <p className="conf2018-question">
                                 <FormattedMessage id="conference-2018.submissionQ" />

@@ -13,6 +13,8 @@
     "conference-2018.desc2": "We're planning a very participatory conference, with an entire day of hands-on workshops and lots of opportunities for peer-to-peer discussion and collaboration. The conference is intended primarily for adults who support young people learning Scratch.",
     "conference-2018.registrationDate": "Registration opens March 1, 2018.",
     "conference-2018.registerNow": "Register Now!",
+    "conference-2018.soldOut": "Scratch@MIT is sold out!",
+    "conference-2018.comingSoon": "Full event schedule coming soon",
     "conference-2018.sessionDesc": "Interested in offering a session? We invite four types of proposals:",
     "conference-2018.sessionItem1Title": "Poster/demonstration (90 minutes).",
     "conference-2018.sessionItem1Desc": "Show off your project in an exhibition setting, alongside other presenters. You will be provided with display space for a poster and table space for a computer or handouts.",
@@ -34,6 +36,8 @@
 
     "conference-2018.questions": "Questions? Contact the Scratch Team at {emailLink}",
     "conference-2018.questionsTitle": "Questions:",
+    "conference-2018.soldoutQ": "The conference is sold out. What can I do?",
+    "conference-2018.soldoutAns": "Scratch@MIT is sold out and at capacity. Regrettably, we are unable to add any additional guests. Please keep in mind that you must have registered on Eventbrite to attend Scratch@MIT; people who are not registered / do not have a ticket will not be able to attend the conference.",
     "conference-2018.submissionQ": "I missed the submission deadline. Can I still submit a proposal for the conference?",
     "conference-2018.submissionAns": "We are no longer accepting proposal submissions.",
     "conference-2018.regQ": "I can only attend one day of the conference. Do you offer single-day registration?",
