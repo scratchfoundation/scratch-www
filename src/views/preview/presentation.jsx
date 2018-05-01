@@ -14,7 +14,6 @@ const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
 const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
-const placeholder = require('./gui-placeholder.png');
 const ShareBanner = require('../../components/share-banner/share-banner.jsx');
 const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolumn.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
@@ -99,7 +98,7 @@ const PreviewPresentation = props => {
                                         Remix
                                     </button>
                                 }
-                                <button 
+                                <button
                                     className="button see-inside-button"
                                     onClick={onSeeInside}
                                 >
@@ -109,10 +108,10 @@ const PreviewPresentation = props => {
                         </FlexRow>
                         <FlexRow className="preview-row">
                             <IntlGUI
+                                isPlayerOnly
                                 basePath="/"
                                 className="guiPlayer"
                                 isFullScreen={isFullScreen}
-                                isPlayerOnly={true}
                                 previewInfoVisible="false"
                                 projectId={projectId}
                             />
@@ -307,6 +306,7 @@ PreviewPresentation.propTypes = {
     onLoveClicked: PropTypes.func,
     onSeeInside: PropTypes.func,
     onUpdate: PropTypes.func,
+    projectId: PropTypes.number,
     projectInfo: PropTypes.shape({
         id: PropTypes.number,
         title: PropTypes.string,
