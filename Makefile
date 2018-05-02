@@ -1,10 +1,10 @@
 ESLINT=./node_modules/.bin/eslint
-NODE=node
+NODE= NODE_OPTIONS=--max_old_space_size=8000 node
 SASSLINT=./node_modules/.bin/sass-lint -v
 S3CMD=s3cmd sync -P --delete-removed --add-header=Cache-Control:no-cache,public,max-age=3600
 TAP=./node_modules/.bin/tap
-WATCH=./node_modules/.bin/watch
-WEBPACK=./node_modules/.bin/webpack
+WATCH= NODE_OPTIONS=--max_old_space_size=8000 ./node_modules/.bin/watch
+WEBPACK= NODE_OPTIONS=--max_old_space_size=8000 ./node_modules/.bin/webpack
 
 # ------------------------------------
 

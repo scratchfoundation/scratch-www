@@ -6,12 +6,14 @@ const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
 
+const GUI = require('scratch-gui').default;
+const IntlGUI = injectIntl(GUI);
+
 const sessionActions = require('../../redux/session.js');
 const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
 const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
-const placeholder = require('./gui-placeholder.png');
 const ShareBanner = require('../../components/share-banner/share-banner.jsx');
 const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolumn.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
@@ -25,8 +27,10 @@ const PreviewPresentation = props => {
         faved,
         favoriteCount,
         intl,
+        isFullScreen,
         loved,
         loveCount,
+        projectId,
         projectInfo,
         remixes,
         sessionStatus,
@@ -34,6 +38,7 @@ const PreviewPresentation = props => {
         user,
         onFavoriteClicked,
         onLoveClicked,
+        onSeeInside,
         onUpdate
         // ...otherProps TBD
     } = props;
@@ -93,15 +98,23 @@ const PreviewPresentation = props => {
                                         Remix
                                     </button>
                                 }
-                                <button className="button see-inside-button">
+                                <button
+                                    className="button see-inside-button"
+                                    onClick={onSeeInside}
+                                >
                                     See Inside
                                 </button>
                             </div>
                         </FlexRow>
                         <FlexRow className="preview-row">
-                            <div className="placeholder">
-                                <img src={placeholder} />
-                            </div>
+                            <IntlGUI
+                                isPlayerOnly
+                                basePath="/"
+                                className="guiPlayer"
+                                isFullScreen={isFullScreen}
+                                previewInfoVisible="false"
+                                projectId={projectId}
+                            />
                             <FlexRow className="project-notes">
                                 {shareDate && (
                                     <div className="share-date">
@@ -286,11 +299,14 @@ PreviewPresentation.propTypes = {
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
     intl: intlShape,
+    isFullScreen: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
     onFavoriteClicked: PropTypes.func,
     onLoveClicked: PropTypes.func,
+    onSeeInside: PropTypes.func,
     onUpdate: PropTypes.func,
+    projectId: PropTypes.number,
     projectInfo: PropTypes.shape({
         id: PropTypes.number,
         title: PropTypes.string,
