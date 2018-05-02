@@ -54,31 +54,19 @@ class Preview extends React.Component {
         }
     }
     initState () {
-        let pathname = window.location.pathname.toLowerCase();
-        const params = {
+        const pathname = window.location.pathname.toLowerCase();
+        const parts = pathname.split('/').filter(Boolean);
+        // parts[0]: 'preview'
+        // parts[1]: either :id or 'editor'
+        // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
+        return {
             editable: false,
             favoriteCount: 0,
-            inEditor: false,
-            isFullScreen: false,
+            inEditor: parts.indexOf('editor') !== -1,
+            isFullScreen: parts.indexOf('fullscreen') !== -1,
             loveCount: 0,
-            projectId: null
+            projectId: parts[1] === 'editor' ? null : parts[1]
         };
-        if (pathname[pathname.length - 1] === '/') {
-            pathname = pathname.substring(0, pathname.length - 1);
-        }
-        const path = pathname.split('/');
-        if (path[path.length - 1] === 'editor' || path[path.length - 1] === 'preview') {
-            params.inEditor = true;
-            path.pop();
-        }
-        if (path[path.length - 1] === 'fullscreen') {
-            params.isFullScreen = true;
-            path.pop();
-        }
-        if (/^\d+$/.test(path[path.length - 1])) {
-            params.projectId = path.pop();
-        }
-        return params;
     }
     handleFavoriteToggle () {
         this.props.setFavedStatus(
