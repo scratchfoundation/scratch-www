@@ -139,3 +139,9 @@ file_filter = localizations/preview-faq/<lang>.json
 source_file = src/views/preview-faq/l10n.json
 source_lang = en
 type = KEYVALUEJSON
+
+[scratch-website.research-l10njson]
+file_filter = localizations/research/<lang>.json
+source_file = src/views/research/l10n.json
+source_lang = en
+type = KEYVALUEJSON
