@@ -5,11 +5,15 @@
  */
 
 require('chromedriver');
-var seleniumWebdriver = require('selenium-webdriver');
+
+const {
+    driver,
+    webdriver
+} = require('../selenium-helpers.js');
 var tap = require('tap');
 
 // Selenium's promise driver will be deprecated, so we should not rely on it
-seleniumWebdriver.SELENIUM_PROMISE_MANAGER = 0;
+webdriver.SELENIUM_PROMISE_MANAGER = 0;
 
 // Set test url through environment variable
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -33,7 +37,7 @@ tap.beforeEach(function () {
 tap.test('checkCreateLinkWhenSignedOut', function (t) {
     var xPathLink = '//li[contains(@class, "link") and contains(@class, "create")]/a';
     var expectedHref = '/projects/editor/?tip_bar=home';
-    driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
+    driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             return element.getAttribute('href');
         })
@@ -46,7 +50,7 @@ tap.test('checkCreateLinkWhenSignedOut', function (t) {
 tap.test('checkExploreLinkWhenSignedOut', function (t) {
     var xPathLink = '//li[contains(@class, "link") and contains(@class, "explore")]/a';
     var expectedHref = '/explore/projects/all';
-    driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
+    driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             return element.getAttribute('href');
         })
@@ -59,7 +63,7 @@ tap.test('checkExploreLinkWhenSignedOut', function (t) {
 tap.test('checkTipsLinkWhenSignedOut', function (t) {
     var xPathLink = '//li[contains(@class, "link") and contains(@class, "tips")]/a';
     var expectedHref = '/tips';
-    driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
+    driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             return element.getAttribute('href');
         })
@@ -72,7 +76,7 @@ tap.test('checkTipsLinkWhenSignedOut', function (t) {
 tap.test('checkAboutLinkWhenSignedOut', function (t) {
     var xPathLink = '//li[contains(@class, "link") and contains(@class, "about")]/a';
     var expectedHref = '/about';
-    driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
+    driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             return element.getAttribute('href');
         })
@@ -87,7 +91,7 @@ tap.test('checkAboutLinkWhenSignedOut', function (t) {
 tap.test('checkSearchBar', function (t) {
     var xPathLink = '//input[@id="frc-q-1088"]';
     // search bar should exist
-    driver.findElement(seleniumWebdriver.By.xpath(xPathLink)).then(function (element) {
+    driver.findElement(webdriver.By.xpath(xPathLink)).then(function (element) {
         t.ok(element);
         t.end();
     });
@@ -98,7 +102,7 @@ tap.test('checkSearchBar', function (t) {
 tap.test('checkJoinScratchLinkWhenSignedOut', function (t) {
     var xPathLink = '//li[contains(@class, "link") and contains(@class, "right") and contains(@class, "join")]/a';
     var expectedText = 'Join Scratch';
-    driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
+    driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             return element.getText('a');
         })
@@ -111,7 +115,7 @@ tap.test('checkJoinScratchLinkWhenSignedOut', function (t) {
 tap.test('checkSignInLinkWhenSignedOut', function (t) {
     var xPathLink = '//li[contains(@class, "link") and contains(@class, "right") and contains(@class, "login-item")]/a';
     var expectedText = 'Sign in';
-    driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
+    driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             return element.getText('a');
         })
