@@ -10,7 +10,7 @@ const {
     findByXpath,
     findByCss,
     driver
-} = require('../../helpers/selenium-helpers.js');
+} = require('../selenium-helpers.js');
 
 var tap = require('tap');
 const test = tap.test;

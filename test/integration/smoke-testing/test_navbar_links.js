@@ -14,10 +14,6 @@ seleniumWebdriver.SELENIUM_PROMISE_MANAGER = 0;
 // Set test url through environment variable
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
-// chrome driver
-var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome())
-    .build();
-
 // number of tests in the plan
 tap.plan(7);
 
