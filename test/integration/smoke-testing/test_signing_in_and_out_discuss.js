@@ -12,7 +12,7 @@ const {
     clickXpath,
     clickButton,
     driver
-} = require('../../helpers/selenium-helpers.js');
+} = require('../selenium-helpers.js');
 
 var username = process.env.SMOKE_USERNAME;
 var password = process.env.SMOKE_PASSWORD;

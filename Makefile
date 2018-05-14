@@ -70,6 +70,9 @@ integration:
 
 smoke:
 	$(TAP) ./test/integration/smoke-testing/*.js --timeout=3600
+	
+smoke-verbose:
+	$(TAP) ./test/integration/smoke-testing/*.js --timeout=3600 -R spec
 
 localization:
 	$(TAP) ./test/localization/*.js
