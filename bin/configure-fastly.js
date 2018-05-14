@@ -176,7 +176,7 @@ async.auto({
     if (err) throw new Error(err);
     if (process.env.FASTLY_ACTIVATE_CHANGES) {
         fastly.activateVersion(results.version, function (e, resp) {
-            if (err) throw new Error(e);
+            if (e) throw new Error(e);
             process.stdout.write('Successfully configured and activated version ' + resp.number + '\n');
             if (process.env.FASTLY_PURGE_ALL) {
                 fastly.purgeAll(FASTLY_SERVICE_ID, function (error) {

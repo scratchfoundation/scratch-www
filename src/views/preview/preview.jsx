@@ -2,6 +2,7 @@ const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
+const injectIntl = require('react-intl').injectIntl;
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
@@ -9,6 +10,8 @@ const PreviewPresentation = require('./presentation.jsx');
 
 const sessionActions = require('../../redux/session.js');
 const previewActions = require('../../redux/preview.js');
+const GUI = require('scratch-gui').default;
+const IntlGUI = injectIntl(GUI);
 
 class Preview extends React.Component {
     constructor (props) {
@@ -17,36 +20,28 @@ class Preview extends React.Component {
             'handleFavoriteToggle',
             'handleLoveToggle',
             'handlePermissions',
+            'handleSeeInside',
             'handleUpdate',
             'initCounts'
         ]);
-        this.state = {
-            editable: false,
-            favoriteCount: 0,
-            loveCount: 0
-        };
+        this.state = this.initState();
     }
     componentDidUpdate (prevProps) {
-        let pathname = window.location.pathname.toLowerCase();
-        if (pathname[pathname.length - 1] === '/') {
-            pathname = pathname.substring(0, pathname.length - 1);
-        }
-        const path = pathname.split('/');
-        const projectId = path[path.length - 1];
         if (this.props.sessionStatus !== prevProps.sessionStatus &&
-            this.props.sessionStatus === sessionActions.Status.FETCHED) {
+            this.props.sessionStatus === sessionActions.Status.FETCHED &&
+            this.state.projectId) {
             if (this.props.user) {
                 const username = this.props.user.username;
                 const token = this.props.user.token;
-                this.props.getProjectInfo(projectId, token);
-                this.props.getRemixes(projectId, token);
-                this.props.getStudios(projectId, token);
-                this.props.getFavedStatus(projectId, username, token);
-                this.props.getLovedStatus(projectId, username, token);
+                this.props.getProjectInfo(this.state.projectId, token);
+                this.props.getRemixes(this.state.projectId, token);
+                this.props.getStudios(this.state.projectId, token);
+                this.props.getFavedStatus(this.state.projectId, username, token);
+                this.props.getLovedStatus(this.state.projectId, username, token);
             } else {
-                this.props.getProjectInfo(projectId);
-                this.props.getRemixes(projectId);
-                this.props.getStudios(projectId);
+                this.props.getProjectInfo(this.state.projectId);
+                this.props.getRemixes(this.state.projectId);
+                this.props.getStudios(this.state.projectId);
             }
             
         }
@@ -57,6 +52,21 @@ class Preview extends React.Component {
                 this.props.getCreditInfo(this.props.projectInfo.remix.root);
             }
         }
+    }
+    initState () {
+        const pathname = window.location.pathname.toLowerCase();
+        const parts = pathname.split('/').filter(Boolean);
+        // parts[0]: 'preview'
+        // parts[1]: either :id or 'editor'
+        // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
+        return {
+            editable: false,
+            favoriteCount: 0,
+            inEditor: parts.indexOf('editor') !== -1,
+            isFullScreen: parts.indexOf('fullscreen') !== -1,
+            loveCount: 0,
+            projectId: parts[1] === 'editor' ? null : parts[1]
+        };
     }
     handleFavoriteToggle () {
         this.props.setFavedStatus(
@@ -98,6 +108,10 @@ class Preview extends React.Component {
             this.setState({editable: true});
         }
     }
+    handleSeeInside () {
+        this.setState({inEditor: true});
+        history.pushState({}, document.title, `/preview/${this.state.projectId}/editor`);
+    }
     handleUpdate (jsonData) {
         this.props.updateProject(
             this.props.projectInfo.id,
@@ -114,23 +128,35 @@ class Preview extends React.Component {
     }
     render () {
         return (
-            <PreviewPresentation
-                comments={this.props.comments}
-                creditInfo={this.props.credit}
-                editable={this.state.editable}
-                faved={this.props.faved}
-                favoriteCount={this.state.favoriteCount}
-                loveCount={this.state.loveCount}
-                loved={this.props.loved}
-                projectInfo={this.props.projectInfo}
-                remixes={this.props.remixes}
-                sessionStatus={this.props.sessionStatus}
-                studios={this.props.studios}
-                user={this.props.user}
-                onFavoriteClicked={this.handleFavoriteToggle}
-                onLoveClicked={this.handleLoveToggle}
-                onUpdate={this.handleUpdate}
-            />
+            this.state.inEditor ?
+                <IntlGUI
+                    basePath="/"
+                    className="gui"
+                    isPlayerOnly={false}
+                    projectId={this.state.projectId}
+                /> :
+                <Page>
+                    <PreviewPresentation
+                        comments={this.props.comments}
+                        creditInfo={this.props.credit}
+                        editable={this.state.editable}
+                        faved={this.props.faved}
+                        favoriteCount={this.state.favoriteCount}
+                        isFullScreen={this.state.isFullScreen}
+                        loveCount={this.state.loveCount}
+                        loved={this.props.loved}
+                        projectId={this.state.projectId}
+                        projectInfo={this.props.projectInfo}
+                        remixes={this.props.remixes}
+                        sessionStatus={this.props.sessionStatus}
+                        studios={this.props.studios}
+                        user={this.props.user}
+                        onFavoriteClicked={this.handleFavoriteToggle}
+                        onLoveClicked={this.handleLoveToggle}
+                        onSeeInside={this.handleSeeInside}
+                        onUpdate={this.handleUpdate}
+                    />
+                </Page>
         );
     }
 }
@@ -268,7 +294,7 @@ const ConnectedPreview = connect(
 )(Preview);
 
 render(
-    <Page><ConnectedPreview /></Page>,
+    <ConnectedPreview />,
     document.getElementById('app'),
     {preview: previewActions.previewReducer}
 );
