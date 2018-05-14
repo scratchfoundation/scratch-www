@@ -3,5 +3,22 @@
   "dmca.llkresponse": "The Lifelong Kindergarten Group will promptly process and investigate notices of alleged infringement and will take appropriate actions under the Digital Millennium Copyright Act (“DMCA”) and other applicable intellectual property laws. Upon receipt of notices complying or substantially complying with the DMCA, the Lifelong Kindergarten Group may act expeditiously to remove or disable access to any material claimed to be infringing. Repeat infringers of third-party copyrights are subject to termination in appropriate circumstances.",
   "dmca.assessment": "In assessing whether or not a Scratch user has violated your copyrights, please keep in mind that Scratch is an educational and not-for-profit initiative, seeking to aid children’s learning by providing the tools for them to learn and express themselves using digital technology. Please also keep in mind the “Fair Use” doctrine incorporated into the Copyright Act of 1976, 17 U.S.C. § 107.",
   "dmca.eyetoeye": "We hope you also see Scratch not only as a good way of popularizing your creations/website but also as an opportunity to do something good for children’s education.",
-  "dmca.afterfiling": "If you choose to make a copyright infringement complaint, please note that we may post your notification, with personally identifiable information redacted, to a clearinghouse such as chillingeffects.org. Please also note that you may be liable for damages (including costs and attorneys’ fees) if you materially misrepresent that an activity is infringing your copyright."
+  "dmca.afterfiling": "If you choose to make a copyright infringement complaint, please note that we may post your notification, with personally identifiable information redacted, to a clearinghouse such as chillingeffects.org. Please also note that you may be liable for damages (including costs and attorneys’ fees) if you materially misrepresent that an activity is infringing your copyright.",
+  "dmca.counternotification": "Counter-notification",
+  "dmca.ifremoved": "If your content has been removed due to a DMCA takedown notice, you believe you have a legal right to use the material, and you want to legally dispute this claim, you can file a DMCA counter-notification. You should only submit a counter-notification if the content was removed because of a mistake or misidentification and you are willing to go to court to defend your use of the material.",
+  "dmca.mailcounter": "A DMCA counter-notification can be emailed to copyright@scratch.mit.edu or mailed to:",
+  "dmca.mustinclude": "This counter-notice must include:",
+  "dmca.fullname": "Your full name",
+  "dmca.address": "Your address",
+  "dmca.phone": "Your phone number",
+  "dmca.email": "Your email address",
+  "dmca.username": "The username of your Scratch account",
+  "dmca.projecturl": "The URLs of the projects which were taken down",
+  "dmca.statementerror": "A statement made under penalty of perjury that the content was removed in error",
+  "dmca.statementjurisdiction": "A statement consenting to jurisdiction in the area which you reside",
+  "dmca.signature": "Your signature",
+  "dmca.valid": "Upon receipt of a valid DMCA counter-notice, Scratch will share the information you provide with the person who made the original claim of copyright infringement against you. They will be able to use this information to contact you or to notify you if they choose to file a lawsuit against you.",
+  "dmca.lawsuit": "If we are not notified about a lawsuit being filed ten (10) business days after providing a counter-notification to a person who has filed a DMCA takedown notice, access to the content which was taken down will be restored.",
+  "dmca.repeat": "Repeat Infringers",
+  "dmca.disableaccess": "We are required by the DMCA to disable access to our service to repeat copyright infringers. If we receive a DMCA compliant takedown notice against a person, and that person doesn’t submit a counter-notification, a strike is added to their account. After three (3) strikes have been received, accounts belonging to the person will be blocked and standard measures will be taken to block their access to Scratch. We assess strikes ten (10) business days after a DMCA takedown notice is received to ensure that no person is blocked before they have a chance to review the issue and submit a valid counter-notice."
 }
