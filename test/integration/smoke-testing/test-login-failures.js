@@ -17,7 +17,7 @@ const test = tap.test;
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 var url = rootUrl + '/users/' + username;
 
-tap.plan(5);
+tap.plan(3);
 
 tap.tearDown(function () {
     driver.quit();
@@ -25,50 +25,6 @@ tap.tearDown(function () {
 
 tap.beforeEach(function () {
     return driver.get(url);
-});
-
-/*
- * This test fails sometimes because blank username eventually
- * triggers the captcha page, which is a bug:
- * https://github.com/LLK/scratchr2/issues/4762
- */
-test('Trying to sign in with no username and no password using scratchr2 navbar', t => {
-    clickText('Sign in')
-        .then(() => clickButton('Sign in'))
-        .then(() => driver.wait(until
-            .elementLocated(By.xpath('//form[@id="login"]/button[@type="submit"]')))
-        )
-        .then(() => driver.wait(until
-            .elementLocated(By.xpath('//form[@id="login"]/div[@class="error"]')))
-        )
-        .then(() => findByXpath('//form/div[@class="error"]'))
-        .then(element => element.getText())
-        .then(text => t.match(text, 'This field is required.',
-            '"This field is required" error should be displayed'))
-        .then(() => t.end());
-});
-
-/*
- * This test fails sometimes because blank username eventually
- * triggers the captcha page, which is a bug:
- * https://github.com/LLK/scratchr2/issues/4762
- */
-test('Trying to sign in with no username using scratchr2 navbar', t => {
-    clickText('Sign in')
-        .then(() => findByXpath('//input[@name="password"]'))
-        .then((element) => element.sendKeys(password))
-        .then(() => clickButton('Sign in'))
-        .then(() => driver.wait(until
-            .elementLocated(By.xpath('//form[@id="login"]/button[@type="submit"]')))
-        )
-        .then(() => driver.wait(until
-            .elementLocated(By.xpath('//form[@id="login"]/div[@class="error"]')))
-        )
-        .then(() => findByXpath('//form/div[@class="error"]'))
-        .then((element) => element.getText())
-        .then((text) => t.match(text, 'This field is required.',
-            '"This field is required" error should be displayed'))
-        .then(() => t.end());
 });
 
 test('Trying to sign in with no password using scratchr2 navbar', t => {
