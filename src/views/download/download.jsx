@@ -55,8 +55,7 @@ class Download extends React.Component {
             downloadUrls = {
                 mac: `${downloadPath}${this.state.swfVersion}.dmg`,
                 mac105: `${downloadPath}${this.state.swfVersion}.air`,
-                windows: `${downloadPath}${this.state.swfVersion}.exe`,
-                linux: `${downloadPath}${this.state.swfVersion}.air`
+                windows: `${downloadPath}${this.state.swfVersion}.exe`
             };
         }
 
@@ -143,12 +142,6 @@ class Download extends React.Component {
                                                 <FormattedMessage id="download.download" />
                                             </a>
                                         </li>
-                                        <li className="installation-downloads-item">
-                                            <FormattedMessage id="download.linux" /> -
-                                            {' '}<a href="http://airdownload.adobe.com/air/lin/download/2.6/AdobeAIRInstaller.bin">
-                                                <FormattedMessage id="download.download" />
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                                 <div className="installation-column">
@@ -177,12 +170,6 @@ class Download extends React.Component {
                                             <li className="installation-downloads-item">
                                                 <FormattedMessage id="download.windows" /> -
                                                 {' '}<a href={downloadUrls.windows}>
-                                                    <FormattedMessage id="download.download" />
-                                                </a>
-                                            </li>
-                                            <li className="installation-downloads-item">
-                                                <FormattedMessage id="download.linux" /> -
-                                                {' '}<a href={downloadUrls.linux}>
                                                     <FormattedMessage id="download.download" />
                                                 </a>
                                             </li>
