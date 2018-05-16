@@ -1,6 +1,6 @@
 {
   "download.title": "Scratch 2.0 Offline Editor",
-  "download.intro": "You can install the Scratch 2.0 editor to work on projects without an internet connection. This version will work on Mac, Windows, and some versions of Linux (32 bit).",
+  "download.intro": "You can install the Scratch 2.0 editor to work on projects without an internet connection. This version will work on Windows and MacOS.",
   "download.introMac": "<b>Note for Mac Users:</b> the latest version of Scratch 2.0 Offline requires Adobe AIR 20. To upgrade to Adobe AIR 20 manually, go <a href=\"https://get.adobe.com/air/\">here</a>.",
   "download.installation": "Installation",
   "download.airTitle": "Adobe AIR",
@@ -8,7 +8,6 @@
   "download.macOSX": "Mac OS X",
   "download.macOlder": "Mac OS 10.5 & Older",
   "download.windows": "Windows",
-  "download.linux": "Linux",
   "download.download": "Download",
   "download.offlineEditorTitle": "Scratch Offline Editor",
   "download.offlineEditorBody": "Next download and install the Scratch 2.0 Offline Editor",
