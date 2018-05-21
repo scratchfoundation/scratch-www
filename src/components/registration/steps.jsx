@@ -1246,6 +1246,7 @@ class EmailStep extends React.Component {
                             value
                             help={null}
                             name="subscribe"
+                            value={false}
                             valueLabel={
                                 this.props.intl.formatMessage({id: 'registration.optIn'})
                             }
