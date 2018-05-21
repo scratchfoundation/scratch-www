@@ -1243,7 +1243,6 @@ class EmailStep extends React.Component {
                             validations="equalsField:user.email"
                         />
                         <Checkbox
-                            value
                             help={null}
                             name="subscribe"
                             value={false}

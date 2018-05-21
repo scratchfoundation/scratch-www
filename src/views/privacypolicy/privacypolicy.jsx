@@ -18,10 +18,10 @@ const Privacypolicy = () => (
                     Scratch understands how important privacy is to our
                     community, especially kids and parents. We wrote this
                     Privacy Policy to explain what information we collect
-                    through our website (scratch.mit.edu) (the “Site”), how we
-                    use, process, and share it, and what we're doing to keep it
-                    safe. It also tells you about your rights and choices with
-                    respect to your information, and how you can{' '}
+                    through our website (scratch.mit.edu) (the &#34;Site&#34;),
+                    how we use, process, and share it, and what we&#39;re doing
+                    to keep it safe. It also tells you about your rights and
+                    choices with respect to your information, and how you can{' '}
                     <a href="/contact-us">contact us</a> if you have any
                     questions or concerns.
                 </p>
@@ -62,8 +62,8 @@ const Privacypolicy = () => (
                         comments, you need to make an account. During account
                         creation, we ask you for a username, your country, birth
                         month and year, gender, and your email address (or your
-                        parent or guardian's email address if you are under 16
-                        years old). We ask that you select a username that does
+                        parent or guardian&#39;s email address if you are under
+                        16 years old). We ask that you select a username that does
                         not disclose your real name or other information that
                         could identify you. Other users can see your username
                         and country, but not your age, gender, or email address.
@@ -133,7 +133,7 @@ const Privacypolicy = () => (
                 <dl>
                     <span className="nav-spacer" />
                     <h3>How does the Scratch Team use my personal information?</h3>
-                    <p></p>
+                    <p />
                     <dt>Internal and Service-Related Usage</dt>
                     <dd>
                         We use Personal Information for internal and Site-related
@@ -282,7 +282,7 @@ const Privacypolicy = () => (
             <section id="rights">
                 <span className="nav-spacer" />
                 <h3>Your Rights and Choices</h3>
-                <p></p>
+                <p />
                 <dl>
                     <dt>Updating Your Information</dt>
                     <dd>
@@ -297,13 +297,13 @@ const Privacypolicy = () => (
                     <dd>
                         If you want to delete your account, login to Scratch,
                         and then click your username in the top right-hand
-                        corner. Select "Account Settings," then click the "I
-                        want to delete my account" link at the bottom of the
-                        page.  Deleting your account hides all information from
-                        public view, but does not remove all of your information
-                        from our servers.  If you want to have all of your
-                        information removed from our servers, please contact
-                        help@scratch.mit.edu for assistance.
+                        corner. Select &#34;Account Settings,&#34; then click
+                        the &#34;I want to delete my account&#34; link at the
+                        bottom of the page.  Deleting your account hides all
+                        information from public view, but does not remove all of
+                        your information from our servers.  If you want to have
+                        all of your information removed from our servers, please
+                        contact help@scratch.mit.edu for assistance.
                     </dd>
                     <dt>Marketing Communications</dt>
                     <dd>
@@ -446,10 +446,10 @@ const Privacypolicy = () => (
                     via mail at:
                 </p>
                 <p>
-                    Scratch Foundation<br/>
-                    ATTN: Privacy Policy<br/>
-                    7315 Wisconsin Ave.<br/>
-                    4th Floor West<br/>
+                    Scratch Foundation<br />
+                    ATTN: Privacy Policy<br />
+                    7315 Wisconsin Ave.<br />
+                    4th Floor West<br />
                     Bethesda, MD 20814
                 </p>
             </section>
