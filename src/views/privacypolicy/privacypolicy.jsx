@@ -441,9 +441,8 @@ const Privacypolicy = () => (
                     the entity responsible for the processing of your Personal
                     Information. If you have any questions about this Privacy
                     Policy, or if you would like to exercise your rights to your
-                    Personal Information, you may contact us at{' '}
-                    <a href="mailto:help@scratch.mit.edu">help@scratch.mit.edu</a>
-                    {' '}or via mail at:
+                    Personal Information, you may contact us at
+                    help@scratch.mit.edu or via mail at:
                 </p>
                 <p>
                     Scratch Foundation<br />
