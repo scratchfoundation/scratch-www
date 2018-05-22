@@ -109,15 +109,12 @@ const ConferenceExpectations = () => (
                         </p>
 
                         <img
-                            className="moderator"
                             alt="Karen Photo"
+                            className="moderator"
                             src="/images/conference/expect/2018/karen.jpg"
                         />
                         <p>
                             <b>Karen Brennan (moderator)</b>
-                        </p>
-                        <p>
-                            
                         </p>
                     </div>
                     <div className="card">
@@ -134,8 +131,8 @@ const ConferenceExpectations = () => (
                         </p>
 
                         <img
-                            className="moderator"
                             alt="Ricarose Photo"
+                            className="moderator"
                             src="/images/conference/expect/2018/ricarose.png"
                         />
 
@@ -146,7 +143,7 @@ const ConferenceExpectations = () => (
                         <p>
                             What is it like to grow up with Scratch? Three long-time Scratch community{' '}
                             members share how they have used Scratch to express their interests, to make{' '}
-                            friends, and to lead initiatives in their communities. 
+                            friends, and to lead initiatives in their communities.
                         </p>
                     </div>
                 </FlexRow>
