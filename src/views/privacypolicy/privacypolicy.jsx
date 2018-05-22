@@ -287,9 +287,9 @@ const Privacypolicy = () => (
                     <dt>Updating Your Information</dt>
                     <dd>
                         You can update your password, email address, and country
-                        through the <a href="/account/password_change">Account
+                        through the <a href="/accounts/settings">Account
                         Settings</a> page. You can also reset your password
-                        through the <a href="/account/password_reset">Account
+                        through the <a href="/accounts/password_change">Account
                         Reset</a> page. You cannot change your username, but you
                         can make a new account and manually copy your projects
                         to the new account.
