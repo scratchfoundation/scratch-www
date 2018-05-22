@@ -456,7 +456,7 @@ const Privacypolicy = () => (
         </div>
         <nav>
             <ol>
-                <li><a href="#collection">Collelction</a></li>
+                <li><a href="#collection">Collection</a></li>
                 <li><a href="#usage">Usage</a></li>
                 <li><a href="#share">Sharing</a></li>
                 <li><a href="#thirdparties">Third Party Services</a></li>
