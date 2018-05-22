@@ -442,8 +442,8 @@ const Privacypolicy = () => (
                     Information. If you have any questions about this Privacy
                     Policy, or if you would like to exercise your rights to your
                     Personal Information, you may contact us at{' '}
-                    <a href="help@scratch.mit.edu">help@scratch.mit.edu</a> or
-                    via mail at:
+                    <a href="mailto:help@scratch.mit.edu">help@scratch.mit.edu</a>
+                    {' '}or via mail at:
                 </p>
                 <p>
                     Scratch Foundation<br />
