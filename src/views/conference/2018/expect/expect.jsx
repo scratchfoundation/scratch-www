@@ -127,7 +127,7 @@ const ConferenceExpectations = () => (
                         <h3>Growing Up with Scratch</h3>
                         <img
                             alt="Isabella, JT, and Jocelyn Photo"
-                            src="/images/conference/expect/growing-up-with-scratch-presenters.png"
+                            src="/images/conference/expect/2018/growing-up-with-scratch-presenters.png"
                         />
                         <p>
                             <b>Isabella Bruyere, JT Galla, &amp; Jocelyn Marencik</b>
@@ -136,7 +136,7 @@ const ConferenceExpectations = () => (
                         <img
                             className="moderator"
                             alt="Ricarose Photo"
-                            src="/images/conference/expect/ricarose.png"
+                            src="/images/conference/expect/2018/ricarose.png"
                         />
 
                         <p>

@@ -66,7 +66,7 @@ const ConferenceSplash = () => (
                         <a href="/conference/2018/schedule">
                             <img
                                 alt="schedule"
-                                src="/images/conference/schedule/schedule.png"
+                                src="/images/conference/schedule/2018/schedule.png"
                             />
                             Schedule
                         </a>

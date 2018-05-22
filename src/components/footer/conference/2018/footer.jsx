@@ -201,7 +201,7 @@ const ConferenceFooter = props => (
                             >
                                 <img
                                     alt="scratch store"
-                                    src="/images/conference/footer/2018/shopify-white.svg"
+                                    src="/images/conference/footer/shopify-white.svg"
                                 />
                             </a>
                         </li>
