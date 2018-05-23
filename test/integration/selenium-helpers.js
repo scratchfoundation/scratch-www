@@ -30,6 +30,10 @@ const findByCss = (css) => {
     return driver.wait(until.elementLocated(By.css(css), 1000 * 5));
 };
 
+const clickCss = (css) => {
+    return findByCss(css).then(el => el.click());
+};
+
 const getLogs = (whitelist) => {
     return driver.manage()
         .logs()
@@ -65,5 +69,6 @@ module.exports = {
     findText,
     clickButton,
     findByCss,
+    clickCss,
     getLogs
 };

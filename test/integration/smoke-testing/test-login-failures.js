@@ -1,10 +1,8 @@
 const {
-    clickText,
-    findByXpath,
-    clickButton,
     driver,
-    until,
-    By
+    findByCss,
+    clickCss,
+    until
 } = require('../selenium-helpers.js');
 
 var username = process.env.SMOKE_USERNAME;
@@ -31,17 +29,17 @@ test('Trying to sign in with no password using scratchr2 navbar', t => {
     var nonsenseusername = Math.random().toString(36)
         .replace(/[^a-z]+/g, '')
         .substr(0, 5);
-    clickText('Sign in')
-        .then(() => findByXpath('//input[@id="login_dropdown_username"]'))
+    clickCss('.dropdown-toggle')
+        .then(() => findByCss('form#login input#login_dropdown_username'))
         .then((element) => element.sendKeys(nonsenseusername))
-        .then(() => clickButton('Sign in'))
-        .then(() => driver.wait(until
-            .elementLocated(By.xpath('//form[@id="login"]/button[@type="submit"]'))))
-        .then(() => driver.wait(until
-            .elementLocated(By.xpath('//form[@id="login"]/div[@class="error"]'))))
-        .then(() => findByXpath('//form/div[@class="error"]'))
+        .then(() => clickCss('form#login button'))
+        .then(() => findByCss('form#login .error'))
+        .then((element) => {
+            driver.wait(until.elementIsVisible(element));
+            return element;
+        })
         .then((element) => element.getText())
-        .then((text) => t.match(text, 'This field is required.',
+        .then((text) => t.match(text, 'This field is required',
             '"This field is required" error should be displayed'))
         .then(() => t.end());
 });
@@ -50,17 +48,17 @@ test('Trying to sign in with the wrong username using scratchr2 navbar', t => {
     var nonsenseusername = Math.random().toString(36)
         .replace(/[^a-z]+/g, '')
         .substr(0, 5);
-    clickText('Sign in')
-        .then(() => findByXpath('//input[@id="login_dropdown_username"]'))
+    clickCss('.dropdown-toggle')
+        .then(() => findByCss('form#login input#login_dropdown_username'))
         .then((element) => element.sendKeys(nonsenseusername))
-        .then(() => findByXpath('//input[@name="password"]'))
+        .then(() => findByCss('form#login input.wide.password'))
         .then((element) => element.sendKeys(password))
-        .then(() => clickButton('Sign in'))
-        .then(() => driver.wait(until
-            .elementLocated(By.xpath('//form[@id="login"]/button[@type="submit"]'))))
-        .then(() => driver.wait(until
-            .elementLocated(By.xpath('//form[@id="login"]/div[@class="error"]'))))
-        .then(() => findByXpath('//form/div[@class="error"]'))
+        .then(() => clickCss('form#login button'))
+        .then(() => findByCss('form#login .error'))
+        .then((element) => {
+            driver.wait(until.elementIsVisible(element));
+            return element;
+        })
         .then((element) => element.getText())
         .then((text) => t.match(text, 'Incorrect username or password.',
             '"Incorrect username or password" error should be displayed'))
@@ -68,17 +66,17 @@ test('Trying to sign in with the wrong username using scratchr2 navbar', t => {
 });
 
 test('Trying to sign in with the wrong password using scratchr2 navbar', t => {
-    clickText('Sign in')
-        .then(() => findByXpath('//input[@id="login_dropdown_username"]'))
+    clickCss('.dropdown-toggle')
+        .then(() => findByCss('form#login input#login_dropdown_username'))
         .then((element) => element.sendKeys(username))
-        .then(() => findByXpath('//input[@name="password"]'))
+        .then(() => findByCss('form#login input.wide.password'))
         .then((element) => element.sendKeys('nonsensepassword'))
-        .then(() => clickButton('Sign in'))
-        .then(() => driver.wait(until
-            .elementLocated(By.xpath('//form[@id="login"]/button[@type="submit"]'))))
-        .then(() => driver.wait(until
-            .elementLocated(By.xpath('//form[@id="login"]/div[@class="error"]'))))
-        .then(() => findByXpath('//form/div[@class="error"]'))
+        .then(() => clickCss('form#login button'))
+        .then(() => findByCss('form#login .error'))
+        .then((element) => {
+            driver.wait(until.elementIsVisible(element));
+            return element;
+        })
         .then((element) => element.getText())
         .then((text) => t.match(text, 'Incorrect username or password.',
             '"Incorrect username or password" error should be displayed'))
