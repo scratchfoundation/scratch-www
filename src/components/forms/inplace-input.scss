@@ -3,8 +3,8 @@
 
 .inplace-input {
     transition: all .5s ease;
-    border: 2px dashed $ui-dark-gray;
-    border-radius: 5px;
+    border: 2px dashed $ui-blue;
+    border-radius: 8px;
     background-color: transparent;
     padding: 0 1rem;
     color: $type-gray;
@@ -31,13 +31,12 @@
 
 .inplace-textarea {
     transition: all 1s ease;
-    margin-bottom: .75rem;
-    border: 2px dashed $ui-dark-gray;
-    border-radius: 5px;
+    box-sizing: border-box;
+    border: 2px dashed $ui-blue;
+    border-radius: 8px;
     background-color: $ui-light-gray;
     padding: .75rem 1rem;
-    width: calc(100% - 2.25rem);
-    min-height: 20rem;
+    width: 100%;
     line-height: 1.75em;
     color: $type-gray;
     font-size: .875rem;
@@ -46,7 +45,8 @@
     &:focus {
         transition: all 1s ease;
         outline: none;
-        border: 1px solid $ui-blue;
+        border: 2px solid $ui-blue;
+        box-shadow: 0 0 0 4px rgba(76,151,255,0.25);
     }
 
     &.fail {

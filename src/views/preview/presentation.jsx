@@ -12,6 +12,7 @@ const IntlGUI = injectIntl(GUI);
 const sessionActions = require('../../redux/session.js');
 const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
+const Button = require('../../components/forms/button.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
 const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const ShareBanner = require('../../components/share-banner/share-banner.jsx');
@@ -22,7 +23,6 @@ require('./preview.scss');
 
 const PreviewPresentation = props => {
     const {
-        creditInfo,
         editable,
         faved,
         favoriteCount,
@@ -30,6 +30,8 @@ const PreviewPresentation = props => {
         isFullScreen,
         loved,
         loveCount,
+        originalInfo,
+        parentInfo,
         projectId,
         projectInfo,
         remixes,
@@ -45,16 +47,19 @@ const PreviewPresentation = props => {
     const shareDate = (projectInfo.history && projectInfo.history.shared) ? projectInfo.history.shared : '';
     return (
         <div className="preview">
-            <ShareBanner>
-                <FlexRow className="preview-row">
-                    <span className="share-text">
-                        This project is not shared — so only you can see it. Click share to let everyone see it!
-                    </span>
-                    <button className="button share-button">
-                        Share
-                    </button>
-                </FlexRow>
-            </ShareBanner>
+            {projectInfo.history && shareDate === '' &&
+                <ShareBanner>
+                    <FlexRow className="preview-row">
+                        <span className="share-text">
+                            This project is not shared — so only you can see it. Click share to     let everyone see it!
+                        </span>
+                        <Button className="button share-button">
+                            Share
+                        </Button>
+                    </FlexRow>
+                </ShareBanner>
+            }
+            
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <div className="inner">
                     <Formsy>
@@ -94,84 +99,129 @@ const PreviewPresentation = props => {
                                 {sessionStatus === sessionActions.Status.FETCHED &&
                                     Object.keys(user).length > 0 &&
                                     user.id !== projectInfo.author.id &&
-                                    <button className="button remix-button">
+                                    <Button className="button remix-button">
                                         Remix
-                                    </button>
+                                    </Button>
                                 }
-                                <button
+                                <Button
                                     className="button see-inside-button"
                                     onClick={onSeeInside}
                                 >
                                     See Inside
-                                </button>
+                                </Button>
                             </div>
                         </FlexRow>
                         <FlexRow className="preview-row">
-                            <IntlGUI
-                                isPlayerOnly
-                                basePath="/"
-                                className="guiPlayer"
-                                isFullScreen={isFullScreen}
-                                previewInfoVisible="false"
-                                projectId={projectId}
-                            />
+                            <div className="guiPlayer">
+                                <IntlGUI
+                                    isPlayerOnly
+                                    basePath="/"
+                                    className="guiPlayer"
+                                    isFullScreen={isFullScreen}
+                                    previewInfoVisible="false"
+                                    projectId={projectId}
+                                />
+                            </div>
                             <FlexRow className="project-notes">
-                                {shareDate && (
-                                    <div className="share-date">
-                                        <div className="copyleft">&copy;</div>
-                                        {' '}
-                                        {/*  eslint-disable react/jsx-sort-props */}
-                                        <FormattedDate
-                                            value={Date.parse(shareDate)}
-                                            day="2-digit"
-                                            month="short"
-                                            year="numeric"
-                                        />
-                                        {/*  eslint-enable react/jsx-sort-props */}
-                                    </div>
-                                )}
-                                {creditInfo && creditInfo.author && creditInfo.id && (
+                                {parentInfo && parentInfo.author && parentInfo.id && (
                                     <FlexRow className="remix-credit">
                                         <Avatar
                                             className="remix"
-                                            src={`https://cdn2.scratch.mit.edu/get_image/user/${creditInfo.author.id}_48x48.png`}
+                                            src={`https://cdn2.scratch.mit.edu/get_image/user/${parentInfo.author.id}_48x48.png`}
                                         />
                                         <div className="credit-text">
                                             Thanks to <a
-                                                href={`/users/${creditInfo.author.username}`}
+                                                href={`/users/${parentInfo.author.username}`}
                                             >
-                                                {creditInfo.author.username}
+                                                {parentInfo.author.username}
                                             </a> for the original project <a
-                                                href={`/preview/${creditInfo.id}`}
+                                                href={`/preview/${parentInfo.id}`}
                                             >
-                                                {creditInfo.title}
+                                                {parentInfo.title}
                                             </a>.
                                         </div>
                                     </FlexRow>
-                                )
-                                }
-                                {editable ?
-                                    <InplaceInput
-                                        className="project-description"
-                                        handleUpdate={onUpdate}
-                                        name="description"
-                                        type="textarea"
-                                        validationErrors={{
-                                            maxLength: 'Sorry description is too long'
-                                            // maxLength: props.intl.formatMessage({
-                                            //     id: 'project.descriptionMaxLength'
-                                            // })
-                                        }}
-                                        validations={{
-                                            // TODO: actual 5000
-                                            maxLength: 1000
-                                        }}
-                                        value={projectInfo.description}
-                                    /> :
-                                    <div className="project-description">
-                                        {decorateText(projectInfo.description)}
+                                )}
+                                {originalInfo && originalInfo.author && originalInfo.id && (
+                                    <FlexRow className="remix-credit">
+                                        <Avatar
+                                            className="remix"
+                                            src={`https://cdn2.scratch.mit.edu/get_image/user/${originalInfo.author.id}_48x48.png`}
+                                        />
+                                        <div className="credit-text">
+                                            Thanks to <a
+                                                href={`/users/${originalInfo.author.username}`}
+                                            >
+                                                {originalInfo.author.username}
+                                            </a> for the original project <a
+                                                href={`/preview/${originalInfo.id}`}
+                                            >
+                                                {originalInfo.title}
+                                            </a>.
+                                        </div>
+                                    </FlexRow>
+                                )}
+                                
+                                <FlexRow className="description-block">
+                                    <div className="project-textlabel">
+                                        Instructions
                                     </div>
-                                }
+                                    {editable ?
+                                        <InplaceInput
+                                            className={classNames(
+                                                'project-description-edit',
+                                                {remixes: parentInfo && parentInfo.author}
+                                            )}
+                                            handleUpdate={onUpdate}
+                                            name="instructions"
+                                            type="textarea"
+                                            validationErrors={{
+                                                maxLength: 'Sorry description is too long'
+                                                // maxLength: props.intl.formatMessage({
+                                                //     id: 'project.descriptionMaxLength'
+                                                // })
+                                            }}
+                                            validations={{
+                                                // TODO: actual 5000
+                                                maxLength: 1000
+                                            }}
+                                            value={projectInfo.instructions}
+                                        /> :
+                                        <div className="project-description">
+                                            {decorateText(projectInfo.instructions)}
+                                        </div>
+                                    }
+                                </FlexRow>
+                                <FlexRow className="description-block">
+                                    <div className="project-textlabel">
+                                        Notes and Credits
+                                    </div>
+                                    {editable ?
+                                        <InplaceInput
+                                            className={classNames(
+                                                'project-description-edit',
+                                                {remixes: parentInfo && parentInfo.author}
+                                            )}
+                                            handleUpdate={onUpdate}
+                                            name="description"
+                                            type="textarea"
+                                            validationErrors={{
+                                                maxLength: 'Sorry description is too long'
+                                                // maxLength: props.intl.formatMessage({
+                                                //     id: 'project.descriptionMaxLength'
+                                                // })
+                                            }}
+                                            validations={{
+                                                // TODO: actual 5000
+                                                maxLength: 1000
+                                            }}
+                                            value={projectInfo.description}
+                                        /> :
+                                        <div className="project-description last">
+                                            {decorateText(projectInfo.description)}
+                                        </div>
+                                    }
+                                </FlexRow>
                             </FlexRow>
                         </FlexRow>
                         <FlexRow className="preview-row">
@@ -203,23 +253,36 @@ const PreviewPresentation = props => {
                                     <CappedNumber value={projectInfo.stats.views} />
                                 </div>
                             </FlexRow>
-                            <FlexRow className="action-buttons">
-                                <a href="#">
-                                    <li>
+                            <FlexRow className="subactions">
+                                <div className="share-date">
+                                    <div className="copyleft">&copy;</div>
+                                    {' '}
+                                    {/*  eslint-disable react/jsx-sort-props */}
+                                    {shareDate === null ?
+                                        'Unshared' :
+                                        <FormattedDate
+                                            value={Date.parse(shareDate)}
+                                            day="2-digit"
+                                            month="short"
+                                            year="numeric"
+                                        />
+                                    }
+                                    {/*  eslint-enable react/jsx-sort-props */}
+                                </div>
+
+                                <FlexRow className="action-buttons">
+                                    <Button className="action-button studio-button">
                                         Add to Studio
-                                    </li>
-                                </a>
-                                <a href="#">
-                                    <li>
-                                        Social
-                                    </li>
-                                </a>
-                                <a href="#">
-                                    <li className="report">
+                                    </Button>
+                                    <Button className="action-button copy-link-button">
+                                        Copy Link
+                                    </Button>
+                                    <Button className="action-button report-button">
                                         Report
-                                    </li>
-                                </a>
+                                    </Button>
+                                </FlexRow>
                             </FlexRow>
+                            
                         </FlexRow>
                         <FlexRow className="preview-row">
                             <div className="comments-container">
@@ -275,7 +338,38 @@ const PreviewPresentation = props => {
 };
 
 PreviewPresentation.propTypes = {
-    creditInfo: PropTypes.shape({
+    editable: PropTypes.bool,
+    faved: PropTypes.bool,
+    favoriteCount: PropTypes.number,
+    intl: intlShape,
+    isFullScreen: PropTypes.bool,
+    loveCount: PropTypes.number,
+    loved: PropTypes.bool,
+    onFavoriteClicked: PropTypes.func,
+    onLoveClicked: PropTypes.func,
+    onSeeInside: PropTypes.func,
+    onUpdate: PropTypes.func,
+    originalInfo: PropTypes.shape({
+        id: PropTypes.number,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        author: PropTypes.shape({id: PropTypes.number}),
+        history: PropTypes.shape({
+            created: PropTypes.string,
+            modified: PropTypes.string,
+            shared: PropTypes.string
+        }),
+        stats: PropTypes.shape({
+            views: PropTypes.number,
+            loves: PropTypes.number,
+            favorites: PropTypes.number
+        }),
+        remix: PropTypes.shape({
+            parent: PropTypes.number,
+            root: PropTypes.number
+        })
+    }),
+    parentInfo: PropTypes.shape({
         id: PropTypes.number,
         title: PropTypes.string,
         description: PropTypes.string,

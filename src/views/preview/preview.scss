@@ -1,6 +1,15 @@
 @import "../../colors";
 @import "../../frameless";
 
+/* stage size contants 
+ * this is a hack right now - stage includes padding of .5rem (8px) for alignment in gui
+ * in www the player is placed with margin -.5rem to align the edge.
+ * the height is calculated from the actual height on the page (404) - .5rem
+*/
+$gui-width: 496px;
+$stage-width: 480px;
+$stage-height: 406px;
+
 /* override view padding for share banner */
 #view {
     padding: 0 0 20px 0;
@@ -14,8 +23,6 @@
     width: 100%;
     height: 100%;
 }
-
-// .gui * { box-sizing: border-box; }
 
 .preview {
 
@@ -137,7 +144,7 @@
         background-color: $ui-orange;
         
         &:before {
-            background-image: url("/svgs/favorite/favorite_type-gray.svg");
+            background-image: url("/svgs/project/share-white.svg");
         }
     }
 
@@ -145,14 +152,14 @@
         background-color: $ui-green;
         
         &:before {
-            background-image: url("/svgs/remix/remix_type-gray.svg");
+            background-image: url("/svgs/project/remix-white.svg");
         }
     }
 
     .see-inside-button {
         
         &:before {
-            background-image: url("/images/emoji/cool-cat.png");
+            background-image: url("/svgs/project/see-inside-white.svg");
         }
     }
     
@@ -164,19 +171,30 @@
 
     .guiPlayer {
         display: inline-block;
-        width: 480px;
+        width: $gui-width;
+        margin-left: -.5rem;
     }
 
     .project-notes {
-        width: 45%;
-        height: 404px;
+        height: $stage-height;
+        flex: 1;
+        // not 1.5rem because of stage padding
+        margin-left: 1rem;
+        margin-bottom: .75rem;
         flex-flow: column;
-        align-items: left;
+        align-items: flex-start;
     }
 
     .share-date {
-        height: 2.5rem;
         vertical-align: middle;
+        font-size: .875rem;
+        color: $type-gray;
+    }
+    
+    .subactions {
+        justify-content: space-between;
+        flex: 1;
+        margin-left: 1.5rem;
     }
 
     .remix-credit {
@@ -185,7 +203,7 @@
         border-radius: 8px;
         background-color: $ui-blue-10percent;
         padding: .5rem;
-        width: 100%;
+        width: calc(100% - 1rem);
         flex-wrap: nowrap;
         align-items: flex-start;
     }
@@ -194,8 +212,37 @@
         font-size: .875rem;
         flex-shrink: 1;
     }
+    
+    .description-block {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        flex-grow: 1;
+    }
+    
+    .project-textlabel {
+        font-weight: bold;
+        margin: 0 0 .5rem 0;
+    }
 
     .project-description {
+        border: 1px solid $ui-blue-10percent;
+        border-radius: 8px;
+        background-color: $ui-blue-10percent;
+        padding: .5rem;
+        width: calc(100% - (1rem + 2px));
+        margin-bottom: .75rem;
+        white-space: pre-line;
+        overflow-y: auto;
+        // flex-grow
+        flex: 1;
+    }
+    
+    .project-description.last {
+        margin-bottom: 0;
+    }
+
+    .project-description-edit {
         border: 1px solid $ui-blue-10percent;
         border-radius: 8px;
         background-color: $ui-blue-10percent;
@@ -203,13 +250,14 @@
         width: 100%;
         white-space: pre-line;
         overflow-y: scroll;
+        // flex-grow
         flex: 1;
         
         &.textarea-row {
             border: 0;
             background-color: inherit;
             padding: 0;
-            overflow: visible;
+            overflow: hidden;
         }
         
         &.has-error {
@@ -217,6 +265,14 @@
                 transform: translate(26rem, 0);
             }
         }
+        
+        .inplace-textarea {
+            height: 172px;
+        }
+    }
+    
+    .project-description-edit.remixes .inplace-textarea {
+        height: 130px;
     }
 
     .copyleft {
@@ -227,7 +283,7 @@
     }
 
     .stats {
-        width: 480px;
+        width: $stage-width;
         justify-content: flex-start;
     }
 
@@ -258,14 +314,14 @@
         cursor: pointer;
         
         &:before {
-            background-image: url("/svgs/love/love_type-gray.svg");
+            background-image: url("/svgs/project/love-gray.svg");
         }
     }
 
     .project-loves.loved {
         
         &:before {
-            background-image: url("/svgs/messages/love.svg");
+            background-image: url("/svgs/project/love-red.svg");
         }
     }
 
@@ -274,85 +330,119 @@
         cursor: pointer;
         
         &:before {
-            background-image: url("/svgs/favorite/favorite_type-gray.svg");
+            background-image: url("/svgs/project/fav-gray.svg");
         }
     }
 
     .project-favorites.favorited {
         
         &:before {
-            background-image: url("/svgs/messages/favorite.svg");
+            background-image: url("/svgs/project/fav-yellow.svg");
         }
     }
 
     .project-remixes {
         
         &:before {
-            background-image: url("/svgs/remix/remix_type-gray.svg");
+            background-image: url("/svgs/project/remix-gray.svg");
         }
     }
 
     .project-views {
         
         &:before {
-            background-image: url("/svgs/view/view_type-gray.svg");
+            background-image: url("/svgs/project/views-gray.svg");
         }
     }
 
     .action-buttons {
         display: flex;
-        width: 40%;
         color: $type-white;
         font-size: .8rem;
         font-weight: 500;
         justify-content: flex-end;
         flex-wrap: wrap;
+    }
+
+    .action-button {
+        margin-left: .5rem;
+        height: 2rem;
+        border-radius: 19px;
+        background-color: $ui-blue;
+        padding: 0 .5rem;
+        text-decoration: none;
+        font-size: .75rem;
+        line-height: .875rem;
+        font-weight: normal;
+
         
-
-        li {
+        // &:hover {
+        //     transition: background-color .25s ease;
+        //     border-color: transparent;
+        //     background-color: $active-gray;
+        // }
+        // 
+        // &:active {
+        //     border: 0 solid transparent;
+        //     box-shadow: inset 0 0 5px $box-shadow-gray;
+        //     background-color: $active-dark-gray;
+        //     padding: calc(.75em + 1px) calc(1.5em + 1px);
+        // }
+        // 
+        // &.report {
+        //     border: 1px solid $ui-coral;
+        //     background-color: $ui-coral;
+        // 
+        //     &:hover {
+        //         transition: background-color .25s ease;
+        //         border-color: transparent;
+        //         background-color: $active-gray;
+        //     }
+        // 
+        //     &:active {
+        //         border: 0 solid transparent;
+        //         box-shadow: inset 0 0 5px $box-shadow-gray;
+        //         background-color: $active-dark-gray;
+        //         padding: calc(.75em + 1px) calc(1.5em + 1px);
+        //     }
+        // }
+    }
+    
+    .studio-button,
+    .copy-link-button,
+    .report-button {
+        &:before {
             display: inline-block;
-            margin: 0 5px;
-            border: 1px solid $ui-blue;
-            border-radius: 50px;
-            background-color: $ui-blue;
-            padding: .5em .75em .5em 1.5em;
-            text-decoration: none;
-            color: $type-white;
-            list-style-type: none;
-
-            &:hover {
-                transition: background-color .25s ease;
-                border-color: transparent;
-                background-color: $active-gray;
-            }
-
-            &:active {
-                border: 0 solid transparent;
-                box-shadow: inset 0 0 5px $box-shadow-gray;
-                background-color: $active-dark-gray;
-                padding: calc(.75em + 1px) calc(1.5em + 1px);
-            }
-
-            &.report {
-                border: 1px solid $ui-coral;
-                background-color: $ui-coral;
-                
-                &:hover {
-                    transition: background-color .25s ease;
-                    border-color: transparent;
-                    background-color: $active-gray;
-                }
-
-                &:active {
-                    border: 0 solid transparent;
-                    box-shadow: inset 0 0 5px $box-shadow-gray;
-                    background-color: $active-dark-gray;
-                    padding: calc(.75em + 1px) calc(1.5em + 1px);
-                }
-            }
+            margin-right: .125rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            width: 1rem;
+            height: 1rem;
+            vertical-align: bottom;
+            content: "";
+        }
+    }
+    .studio-button {
+        &:before {
+            background-image: url("/svgs/project/studio-add-white.svg");
         }
     }
 
+    .copy-link-button {
+        &:before {
+            background-image: url("/svgs/project/copy-link-white.svg");
+        }
+    }
+
+    .report-button {
+        background-color: $ui-coral;
+        
+        &:before {
+            background-image: url("/svgs/project/report-white.svg");
+        }
+    }
+    
     .remix-list,
     .studio-list {
         flex-direction: column;
