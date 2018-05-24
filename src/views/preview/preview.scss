@@ -462,3 +462,8 @@ $stage-height: 406px;
         }
     }
 }
+
+.report-text textarea {
+    // override min-height from default settings (for teacher registration)
+    min-height: 8rem;
+}

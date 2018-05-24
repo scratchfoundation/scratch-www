@@ -69,6 +69,19 @@ class Preview extends React.Component {
     componentWillUnmount () {
         this.removeEventListeners();
     }
+    initState () {
+        const pathname = window.location.pathname.toLowerCase();
+        const parts = pathname.split('/').filter(Boolean);
+        // parts[0]: 'preview'
+        // parts[1]: either :id or 'editor'
+        // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
+        return {
+            editable: false,
+            favoriteCount: 0,
+            loveCount: 0,
+            projectId: parts[1] === 'editor' ? 0 : parts[1]
+        };
+    }
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
     }
@@ -107,19 +120,6 @@ class Preview extends React.Component {
                 newPath
             );
         }
-    }
-    initState () {
-        const pathname = window.location.pathname.toLowerCase();
-        const parts = pathname.split('/').filter(Boolean);
-        // parts[0]: 'preview'
-        // parts[1]: either :id or 'editor'
-        // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
-        return {
-            editable: false,
-            favoriteCount: 0,
-            loveCount: 0,
-            projectId: parts[1] === 'editor' ? 0 : parts[1]
-        };
     }
     handleFavoriteToggle () {
         this.props.setFavedStatus(
@@ -269,15 +269,6 @@ Preview.propTypes = {
             root: PropTypes.number
         })
     }),
-    faved: PropTypes.bool,
-    fullScreen: PropTypes.bool,
-    getCreditInfo: PropTypes.func.isRequired,
-    getFavedStatus: PropTypes.func.isRequired,
-    getLovedStatus: PropTypes.func.isRequired,
-    getProjectInfo: PropTypes.func.isRequired,
-    getRemixes: PropTypes.func.isRequired,
-    getStudios: PropTypes.func.isRequired,
-    loved: PropTypes.bool,
     playerMode: PropTypes.bool,
     projectInfo: PropTypes.shape({
         author: PropTypes.shape({
