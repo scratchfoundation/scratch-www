@@ -17,10 +17,10 @@ require('../main.scss');
  * @param  {object} jsx       jsx component of the view
  * @param  {object} element   html element to render to on the template
  * @param  {array}  reducers  list of view-specific reducers
- * @param  {object} preload   optional initialState for store
+ * @param  {object} initialState   optional initialState for store
  * @param  {bool}   enhancer  whether or not to apply redux-throttle middleware
  */
-const render = (jsx, element, reducers, preload, enhancer) => {
+const render = (jsx, element, reducers, initialState, enhancer) => {
     // Get locale and messages from global namespace (see "init.js")
     let locale = window._locale || 'en';
     let messages = {};
@@ -47,10 +47,9 @@ const render = (jsx, element, reducers, preload, enhancer) => {
         composeEnhancers(
             redux.applyMiddleware(thunk)
         );
-    const initState = preload || {};
     const store = redux.createStore(
         allReducers,
-        initState,
+        initialState || {},
         enhancers
     );
 

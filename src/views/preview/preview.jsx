@@ -24,7 +24,6 @@ class Preview extends React.Component {
             'handlePermissions',
             'handlePopState',
             'handleSeeInside',
-            'handleSetPlayerMode',
             'handleUpdate',
             'initCounts',
             'pushHistory'
@@ -102,8 +101,6 @@ class Preview extends React.Component {
                 document.title,
                 newPath
             );
-            //  reset popEvent
-            this.setState({popEvent: false});
         }
     }
     initState () {
@@ -161,10 +158,6 @@ class Preview extends React.Component {
     }
     handleSeeInside () {
         this.props.setPlayer(false);
-    }
-    handleSetPlayerMode (setPlayerMode) {
-        // use the function passed back from GUI to enter Editor mode
-        this.setPlayerMode = setPlayerMode;
     }
     handleUpdate (jsonData) {
         this.props.updateProject(
