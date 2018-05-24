@@ -10,21 +10,26 @@ const PreviewPresentation = require('./presentation.jsx');
 
 const sessionActions = require('../../redux/session.js');
 const previewActions = require('../../redux/preview.js');
-const GUI = require('scratch-gui').default;
-const IntlGUI = injectIntl(GUI);
+
+const GUI = require('scratch-gui');
+const IntlGUI = injectIntl(GUI.default);
 
 class Preview extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
+            'addEventListeners',
             'handleFavoriteToggle',
             'handleLoveToggle',
             'handlePermissions',
+            'handlePopState',
             'handleSeeInside',
             'handleUpdate',
-            'initCounts'
+            'initCounts',
+            'pushHistory'
         ]);
         this.state = this.initState();
+        this.addEventListeners();
     }
     componentDidUpdate (prevProps) {
         if (this.props.sessionStatus !== prevProps.sessionStatus &&
@@ -52,6 +57,51 @@ class Preview extends React.Component {
                 this.props.getCreditInfo(this.props.projectInfo.remix.root);
             }
         }
+        if (this.props.playerMode !== prevProps.playerMode || this.props.fullScreen !== prevProps.fullScreen) {
+            this.pushHistory(history.state === null);
+        }
+    }
+    componentWillUnmount () {
+        this.removeEventListeners();
+    }
+    addEventListeners () {
+        window.addEventListener('popstate', this.handlePopState);
+    }
+    removeEventListeners () {
+        window.removeEventListener('popstate', this.handlePopState);
+    }
+    handlePopState () {
+        const path = window.location.pathname.toLowerCase();
+        const playerMode = path.indexOf('editor') === -1;
+        const fullScreen = path.indexOf('fullscreen') !== -1;
+        if (this.props.playerMode !== playerMode) {
+            this.props.setPlayer(playerMode);
+        }
+        if (this.props.fullScreen !== fullScreen) {
+            this.props.setFullScreen(fullScreen);
+        }
+    }
+    pushHistory (push) {
+        // update URI to match mode
+        const idPath = this.state.projectId ? `${this.state.projectId}/` : '';
+        let modePath = '';
+        if (!this.props.playerMode) modePath = 'editor/';
+        // fullscreen overrides editor
+        if (this.props.fullScreen) modePath = 'fullscreen/';
+        const newPath = `/preview/${idPath}${modePath}`;
+        if (push) {
+            history.pushState(
+                {},
+                document.title,
+                newPath
+            );
+        } else {
+            history.replaceState(
+                {},
+                document.title,
+                newPath
+            );
+        }
     }
     initState () {
         const pathname = window.location.pathname.toLowerCase();
@@ -62,10 +112,8 @@ class Preview extends React.Component {
         return {
             editable: false,
             favoriteCount: 0,
-            inEditor: parts.indexOf('editor') !== -1,
-            isFullScreen: parts.indexOf('fullscreen') !== -1,
             loveCount: 0,
-            projectId: parts[1] === 'editor' ? null : parts[1]
+            projectId: parts[1] === 'editor' ? 0 : parts[1]
         };
     }
     handleFavoriteToggle () {
@@ -109,8 +157,7 @@ class Preview extends React.Component {
         }
     }
     handleSeeInside () {
-        this.setState({inEditor: true});
-        history.pushState({}, document.title, `/preview/${this.state.projectId}/editor`);
+        this.props.setPlayer(false);
     }
     handleUpdate (jsonData) {
         this.props.updateProject(
@@ -128,13 +175,7 @@ class Preview extends React.Component {
     }
     render () {
         return (
-            this.state.inEditor ?
-                <IntlGUI
-                    basePath="/"
-                    className="gui"
-                    isPlayerOnly={false}
-                    projectId={this.state.projectId}
-                /> :
+            this.props.playerMode ?
                 <Page>
                     <PreviewPresentation
                         comments={this.props.comments}
@@ -156,7 +197,13 @@ class Preview extends React.Component {
                         onSeeInside={this.handleSeeInside}
                         onUpdate={this.handleUpdate}
                     />
-                </Page>
+                </Page> :
+                <IntlGUI
+                    enableCommunity
+                    basePath="/"
+                    className="gui"
+                    projectId={this.state.projectId}
+                />
         );
     }
 }
@@ -186,6 +233,7 @@ Preview.propTypes = {
         })
     }),
     faved: PropTypes.bool,
+    fullScreen: PropTypes.bool,
     getCreditInfo: PropTypes.func.isRequired,
     getFavedStatus: PropTypes.func.isRequired,
     getLovedStatus: PropTypes.func.isRequired,
@@ -193,6 +241,7 @@ Preview.propTypes = {
     getRemixes: PropTypes.func.isRequired,
     getStudios: PropTypes.func.isRequired,
     loved: PropTypes.bool,
+    playerMode: PropTypes.bool,
     projectInfo: PropTypes.shape({
         author: PropTypes.shape({
             id: PropTypes.number,
@@ -219,7 +268,9 @@ Preview.propTypes = {
     remixes: PropTypes.arrayOf(PropTypes.object),
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
+    setFullScreen: PropTypes.func.isRequired,
     setLovedStatus: PropTypes.func.isRequired,
+    setPlayer: PropTypes.func.isRequired,
     studios: PropTypes.arrayOf(PropTypes.object),
     updateProject: PropTypes.func.isRequired,
     user: PropTypes.shape({
@@ -248,7 +299,9 @@ const mapStateToProps = state => ({
     remixes: state.preview.remixes,
     sessionStatus: state.session.status,
     studios: state.preview.studios,
-    user: state.session.session.user
+    user: state.session.session.user,
+    playerMode: state.scratchGui.mode.isPlayerOnly,
+    fullScreen: state.scratchGui.mode.isFullScreen
 });
 
 
@@ -285,6 +338,12 @@ const mapDispatchToProps = dispatch => ({
     },
     updateProject: (id, formData, username, token) => {
         dispatch(previewActions.updateProject(id, formData, username, token));
+    },
+    setPlayer: player => {
+        dispatch(GUI.setPlayer(player));
+    },
+    setFullScreen: fullscreen => {
+        dispatch(GUI.setFullScreen(fullscreen));
     }
 });
 
@@ -293,8 +352,29 @@ const ConnectedPreview = connect(
     mapDispatchToProps
 )(Preview);
 
+GUI.setAppElement(document.getElementById('app'));
+const initGuiState = guiInitialState => {
+    const pathname = window.location.pathname.toLowerCase();
+    const parts = pathname.split('/').filter(Boolean);
+    // parts[0]: 'preview'
+    // parts[1]: either :id or 'editor'
+    // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
+    if (parts.indexOf('editor') === -1) {
+        guiInitialState = GUI.initPlayer(guiInitialState);
+    }
+    if (parts.indexOf('fullscreen') !== -1) {
+        guiInitialState = GUI.initFullScreen(guiInitialState);
+    }
+    return guiInitialState;
+};
+
 render(
     <ConnectedPreview />,
     document.getElementById('app'),
-    {preview: previewActions.previewReducer}
+    {
+        preview: previewActions.previewReducer,
+        ...GUI.guiReducers
+    },
+    {scratchGui: initGuiState(GUI.guiInitialState)},
+    GUI.guiMiddleware
 );

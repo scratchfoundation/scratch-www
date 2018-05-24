@@ -306,7 +306,7 @@ PreviewPresentation.propTypes = {
     onLoveClicked: PropTypes.func,
     onSeeInside: PropTypes.func,
     onUpdate: PropTypes.func,
-    projectId: PropTypes.number,
+    projectId: PropTypes.string,
     projectInfo: PropTypes.shape({
         id: PropTypes.number,
         title: PropTypes.string,
