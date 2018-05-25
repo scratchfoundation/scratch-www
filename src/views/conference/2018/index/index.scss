@@ -1,6 +1,11 @@
 @import "../../../../colors";
 @import "../../../../frameless";
 
+#view {
+    background-color: $ui-light-gray;
+    min-height: initial;
+}
+
 .index {
     .title-banner {
         margin-bottom: 0;
@@ -17,13 +22,13 @@
             text-align: center;
             color: $type-white;
         }
-        
-        h4 {
-            font-weight: normal;
+
+        h1 {
+            font-size: 4rem;
         }
 
         p {
-            margin-top: 3rem;
+            margin-top: 1rem;
 
             &.sub-button {
                 margin-top: 1rem;
@@ -41,7 +46,9 @@
             a {
 
                 button {
-                    
+                    background-color: $ui-white;
+                    color: $ui-blue;
+                    font-size: 1rem;
                 }
             }
         }
@@ -69,46 +76,23 @@
         }
     }
 
+
     .flex-row {
         align-items: flex-start;
-        justify-content: space-between;
 
-        &.uneven {
+        div {
+            width: 28%;
+            text-align: center;
+
             img {
-                width: 100%;
+                display: block;
+                margin: auto;
+                max-width: 125px;
             }
 
             @media only screen and (max-width: $tablet - 1) {
-                img {
-                    width: 30%;
-                }
-            }
-
-            @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-                img {
-                    width: 70%;
-                }
-            }
-        }
-    }
-
-    .info {
-        text-align: left;
-        
-        .conf2018-question {
-            margin-bottom: 0;
-            font-weight: 500;
-        }
-        
-        .conf2018-answer {
-            margin-top: 0;
-        }
-        
-        @media only screen and (max-width: $desktop - 1) {
-            .uneven {
-                .short {
-                    width: 70%;
-                }
+                margin: .5rem;
+                width: 125px;
             }
         }
     }
@@ -119,135 +103,5 @@
         .flex-row {
             align-items: center;
         }
-    }
-}
-
-.conf2018-panel {
-    border-bottom: 1px solid $ui-border;
-}
-
-.conf2018-panel.mod-last {
-    border-bottom: 0;
-}
-
-.flex-row.conf2018-panel-title {
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.conf2018-panel-desc {
-    margin: 2rem 0;
-}
-
-td {
-    padding: .75rem 1.25rem;
-    vertical-align: top;
-}
-
-.conf2018-panel-row-icon-image {
-    margin-top: .125rem;
-    width: 1rem;
-    height: 1rem;
-}
-
-
-.button.mod-register {
-    padding: .75em 3.5em;
-    
-    text-align: center;
-    color: $type-white;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-@media only screen and (max-width: $mobile - 1) {
-    .index.mod-2018 {
-        text-align: left;
-    }
-
-    .title-banner-image.mod-2018 {
-        height: 10rem;
-    }
-
-    .conf2018-panel,
-    .title-banner-h3.mod-2018 {
-        width: initial;
-    }
-
-    .conf2018-panel {
-        margin: auto .5rem;
-    }
-
-    .title-banner-h3.mod-2018 {
-        margin: 1rem .5rem .5rem;
-        font-size: 1.1rem;
-    }
-
-    .flex-row.conf2018-panel-title {
-        flex-direction: row;
-    }
-
-    .conf2018-panel-title-text {
-        max-width: 14rem;
-    }
-
-    .conf2018-panel-row > td {
-        padding: .75rem .375rem .75rem 0;
-    }
-}
-
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
-    .index.mod-2018 {
-        text-align: left;
-    }
-
-    .title-banner-image.mod-2018 {
-        height: 10rem;
-    }
-
-    .conf2018-panel,
-    .title-banner-h3.mod-2018 {
-        margin: auto .5rem ;
-        width: initial;
-    }
-
-    .title-banner-h3.mod-2018 {
-        font-size: 1.1rem;
-    }
-
-    .flex-row.conf2018-panel-title {
-        flex-direction: row;
-    }
-
-    .conf2018-panel-title-text {
-        max-width: 18.75rem;
-    }
-
-    .button.mod-register {
-        padding: .75em 2em;
-    }
-}
-
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
-    .index.mod-2018 {
-        text-align: left;
-    }
-
-    .title-banner-image.mod-2018 {
-        height: 15rem;
-    }
-
-    .conf2018-panel,
-    .title-banner-h3.mod-2018 {
-        margin: auto;
-        width: 38.75rem;
-    }
-
-    .title-banner-h3.mod-2018 {
-        font-size: 1.1rem;
-    }
-
-    .button.mod-register {
-        padding: .75em 1.25em;
     }
 }
