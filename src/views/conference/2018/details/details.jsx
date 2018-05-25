@@ -25,11 +25,11 @@ class ConferenceDetails extends React.Component {
         if (!this.props.conferenceDetails.error && !this.props.conferenceDetails.fetching) {
             backUri = `${backUri}#${this.props.conferenceDetails.Day}`;
         }
-        const classes = classNames({
-            inner: true,
-            details: true,
-            fetching: this.props.conferenceDetails.fetching
-        });
+        const classes = classNames(
+            'inner',
+            'details',
+            {fetching: this.props.conferenceDetails.fetching}
+        );
         return (
             <div className={classes}>
                 <div className="back">

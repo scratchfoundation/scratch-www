@@ -10,8 +10,9 @@ const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
 const SubNavigation = require('../../../../components/subnavigation/subnavigation.jsx');
 const TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
 
-const Page = require('../../../../components/page/conference/2018/page.jsx');
 const render = require('../../../../lib/render.jsx');
+const Page = require('../../../../components/page/conference/2018/page.jsx');
+
 
 require('./schedule.scss');
 

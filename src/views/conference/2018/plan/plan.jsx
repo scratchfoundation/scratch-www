@@ -5,8 +5,9 @@ const Button = require('../../../../components/forms/button.jsx');
 const FlexRow = require('../../../../components/flex-row/flex-row.jsx');
 const TitleBanner = require('../../../../components/title-banner/title-banner.jsx');
 
-const Page = require('../../../../components/page/conference/2018/page.jsx');
 const render = require('../../../../lib/render.jsx');
+const Page = require('../../../../components/page/conference/2018/page.jsx');
+
 
 require('./plan.scss');
 
