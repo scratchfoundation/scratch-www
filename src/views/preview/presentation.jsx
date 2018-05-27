@@ -14,18 +14,12 @@ const sessionActions = require('../../redux/session.js');
 const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
-const Form = require('../../components/forms/form.jsx');
-const Input = require('../../components/forms/input.jsx');
-const Select = require('../../components/forms/select.jsx');
-const Spinner = require('../../components/spinner/spinner.jsx');
-const TextArea = require('../../components/forms/textarea.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
 const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const ShareBanner = require('../../components/share-banner/share-banner.jsx');
 const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolumn.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
-
 
 require('./preview.scss');
 
@@ -35,13 +29,10 @@ class PreviewPresentation extends React.Component {
         bindAll(this, [
             'handleReportClick',
             'handleReportClose',
-            'handleReportReasonSelect',
             'handleReportSubmit'
         ]);
         this.state = {
-            reportOpen: false,
-            reportPrompt: 'Select a reason why above.',
-            reportReason: ''
+            reportOpen: false
         };
     }
     handleReportClick (e) {
@@ -51,22 +42,16 @@ class PreviewPresentation extends React.Component {
     handleReportClose () {
         this.setState({reportOpen: false});
     }
-    handleReportReasonSelect (name, value) {
-        const prompts = [
-            'Please provide a link to the original project',
-            'Please provide links to the uncredited content',
-            'Please say why the project is too violent or scary',
-            'Please say where the inappropriate language occurs in the project (For example: Notes & Credits, sprite name, project text, etc.)',
-            'Please say the name of the audio file with the inappropriate music',
-            'Please say where the personal contact information is shared (For example: Notes & Credits, sprite name, project text, etc.)',
-            'Please be specific about why this project does not follow our Community Guidelines',
-            'not used',
-            'Please say the name of the sprite or the backdrop with the inappropriate image'
-        ];
-        this.setState({reportPrompt: prompts[value]});
-    }
-    handleReportSubmit (formData) {
-        console.log('submit report data', formData);
+    
+    handleReportSubmit (formData, callback) {
+        const data = {
+            ...formData,
+            id: this.props.projectId,
+            username: this.props.user.username
+        };
+        console.log('submit report data', data);
+        // TODO: pass error to modal via callback.
+        callback();
         this.setState({reportOpen: false});
     }
     render () {
@@ -99,7 +84,7 @@ class PreviewPresentation extends React.Component {
                     <ShareBanner>
                         <FlexRow className="preview-row">
                             <span className="share-text">
-                                This project is not shared — so only you can see it. Click share to     let everyone see it!
+                                This project is not shared — so only you can see it. Click share to let everyone see it!
                             </span>
                             <Button className="button share-button">
                                 Share
@@ -130,8 +115,7 @@ class PreviewPresentation extends React.Component {
                                                     // })
                                                 }}
                                                 validations={{
-                                                    // TODO: actual 100
-                                                    maxLength: 40
+                                                    maxLength: 100
                                                 }}
                                                 value={projectInfo.title}
                                             /> :
@@ -337,114 +321,16 @@ class PreviewPresentation extends React.Component {
                                                     Report
                                                 </Button>,
                                                 <ReportModal
-                                                    contentLabel="Report Project"
                                                     isOpen={this.state.reportOpen}
                                                     key="report-modal"
+                                                    type="project"
+                                                    onReport={this.handleReportSubmit}
                                                     onRequestClose={this.handleReportClose}
-                                                    onSubmit={this.handleReportSubmit}
-                                                >
-                                                    From the dropdown below, please select the reason why you feel this project is disrespectful or inappropriate or otherwise breaks the Scratch Community Guidelines.
-                                                    <Form
-                                                        className="report"
-                                                        onSubmit={this.handleReportSubmit}
-                                                    >
-                                                        <Input
-                                                            name="projectId"
-                                                            type="hidden"
-                                                            value={projectId}
-                                                        />
-                                                        <Input
-                                                            name="username"
-                                                            type="hidden"
-                                                            value={user.username}
-                                                        />
-                                                        <Select
-                                                            required
-                                                            name="reason"
-                                                            options={[
-                                                                {
-                                                                    value: '',
-                                                                    label: 'Select a reason'
-                                                                },
-                                                                {
-                                                                    value: '0',
-                                                                    label: 'Exact Copy of Project'
-                                                                },
-                                                                {
-                                                                    value: '1',
-                                                                    label: 'Uses Image/Music Without Credit'
-                                                                },
-                                                                {
-                                                                    value: '2',
-                                                                    label: 'Too Violent or Scary'
-                                                                },
-                                                                {
-                                                                    value: '3',
-                                                                    label: 'Inappropriate Language'
-                                                                },
-                                                                {
-                                                                    value: '4',
-                                                                    label: 'Inappropriate Music'
-                                                                },
-                                                                {
-                                                                    value: '8',
-                                                                    label: 'Inappropriate Images'
-                                                                },
-                                                                {
-                                                                    value: '5',
-                                                                    label: 'Sharing Personal Contact Information'
-                                                                },
-                                                                {
-                                                                    value: '6',
-                                                                    label: 'Other'
-                                                                }
-                                                            ]}
-                                                            value={this.state.reportReason}
-                                                            onChange={this.handleReportReasonSelect}
-                                                        />
-                                                        <TextArea
-                                                            required
-                                                            className="report-text"
-                                                            name="reportText"
-                                                            placeholder={this.state.reportPrompt}
-                                                            validationErrors={{
-                                                                maxLength: 'That\'s too long! Please find a way to shorten your text.',
-                                                                minLength: 'That\'s too short. Please describe in detail what\'s inappropriate or disrespectful about the project.'
-                                                            }}
-                                                            validations={{
-                                                                // TODO find out max and min characters
-                                                                maxLength: 500,
-                                                                minLength: 30
-                                                            }}
-                                                        />
-                                                        {this.state.reportWaiting ? [
-                                                            <Button
-                                                                className="submit-button white"
-                                                                disabled="disabled"
-                                                                key="submitButton"
-                                                                type="submit"
-                                                            >
-                                                                <Spinner />
-                                                            </Button>
-                                                        ] : [
-                                                            <Button
-                                                                className="submit-button white"
-                                                                key="submitButton"
-                                                                type="submit"
-                                                            >
-                                                                Send
-                                                            </Button>
-                                                        ]}
-                                                    </Form>
-                                                </ReportModal>
-                                                
+                                                />
                                             ]
                                         }
-                                        
-                                        
                                     </FlexRow>
                                 </FlexRow>
-                                
                             </FlexRow>
                             <FlexRow className="preview-row">
                                 <div className="comments-container">
