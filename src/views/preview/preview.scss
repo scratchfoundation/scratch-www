@@ -4,11 +4,18 @@
 /* stage size contants 
  * this is a hack right now - stage includes padding of .5rem (8px) for alignment in gui
  * in www the player is placed with margin -.5rem to align the edge.
- * the height is calculated from the actual height on the page (404) - .5rem
+ * the height is calculated from the actual height on the page (404)
 */
 $gui-width: 496px;
 $stage-width: 480px;
-$stage-height: 406px;
+$stage-height: 404px;
+
+
+// remix credit height: 52px
+// project text label line-height + margin-bottom .5rem: 19px + 8px = 27px
+// Formsy wrapper adds 3px to the input height for
+$description-input: 172px; // $stage-height / 2 - $project-label - $wrapper
+$description-input-small: 120px; // normal $description-input - $remix-credit
 
 /* override view padding for share banner */
 #view {
@@ -184,7 +191,6 @@ $stage-height: 406px;
     }
 
     .project-notes {
-        margin-bottom: .75rem;
         // not 1.5rem because of stage padding
         margin-left: 1rem;
         height: $stage-height;
@@ -194,14 +200,16 @@ $stage-height: 406px;
     }
 
     .share-date {
+        margin-right: 2rem;
         vertical-align: middle;
+        line-height: 2rem;
         color: $type-gray;
         font-size: .875rem;
     }
     
     .subactions {
         margin-left: 1.5rem;
-        justify-content: space-between;
+        justify-content: flex-end;
         flex: 1;
     }
 
@@ -272,12 +280,12 @@ $stage-height: 406px;
         }
         
         .inplace-textarea {
-            height: 173px;
+            height: $description-input;
         }
     }
     
     .project-description-edit.remixes .inplace-textarea {
-        height: 130px;
+        height: $description-input-small;
     }
 
     .copyleft {
@@ -288,8 +296,9 @@ $stage-height: 406px;
     }
 
     .stats {
-        width: $stage-width;
+        // width: $stage-width;
         justify-content: flex-start;
+        line-height: 2rem;
     }
 
     .project-loves,
@@ -370,7 +379,7 @@ $stage-height: 406px;
     }
 
     .action-button {
-        margin-left: .5rem;
+        margin: 0 0 0 .5rem;
         border-radius: 19px;
         background-color: $ui-blue;
         padding: 0 .5rem;

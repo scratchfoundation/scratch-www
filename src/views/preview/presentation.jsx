@@ -306,7 +306,6 @@ class PreviewPresentation extends React.Component {
                                         }
                                         {/*  eslint-enable react/jsx-sort-props */}
                                     </div>
-
                                     <FlexRow className="action-buttons">
                                         <Button className="action-button studio-button">
                                             Add to Studio
