@@ -217,6 +217,7 @@ class Preview extends React.Component {
 Preview.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
+    fullScreen: PropTypes.bool,
     getFavedStatus: PropTypes.func.isRequired,
     getLovedStatus: PropTypes.func.isRequired,
     getOriginalInfo: PropTypes.func.isRequired,

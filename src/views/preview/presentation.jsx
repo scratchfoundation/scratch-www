@@ -49,7 +49,7 @@ class PreviewPresentation extends React.Component {
             id: this.props.projectId,
             username: this.props.user.username
         };
-        console.log('submit report data', data);
+        console.log('submit report data', data); // eslint-disable-line no-console
         // TODO: pass error to modal via callback.
         callback();
         this.setState({reportOpen: false});
@@ -193,7 +193,7 @@ class PreviewPresentation extends React.Component {
                                             </div>
                                         </FlexRow>
                                     )}
-                                    
+                                    {/*  eslint-disable max-len */}
                                     <FlexRow className="description-block">
                                         <div className="project-textlabel">
                                             Instructions
@@ -206,6 +206,7 @@ class PreviewPresentation extends React.Component {
                                                 )}
                                                 handleUpdate={onUpdate}
                                                 name="instructions"
+                                                placeholder="Tell people how to use your project (such as which keys to press)."
                                                 type="textarea"
                                                 validationErrors={{
                                                     maxLength: 'Sorry description is too long'
@@ -236,6 +237,7 @@ class PreviewPresentation extends React.Component {
                                                 )}
                                                 handleUpdate={onUpdate}
                                                 name="description"
+                                                placeholder="How did you make this project? Did you use ideas scripts or artwork from other people? Thank them here."
                                                 type="textarea"
                                                 validationErrors={{
                                                     maxLength: 'Sorry description is too long'
@@ -254,6 +256,7 @@ class PreviewPresentation extends React.Component {
                                             </div>
                                         }
                                     </FlexRow>
+                                    {/*  eslint-enable max-len */}
                                 </FlexRow>
                             </FlexRow>
                             <FlexRow className="preview-row">

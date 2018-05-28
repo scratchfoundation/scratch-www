@@ -7,35 +7,33 @@
 
 .mod-report {
     margin: 100px auto;
-    width: 30rem;
     outline: none;
     padding: 0;
-    user-select: none;
-
+    width: 30rem;
     overflow: hidden;
+    user-select: none;
 }
 
 .report-modal-header {
-    height: 3rem;
-    padding-top: .75rem;
-
-    box-sizing: border-box;
-    width: 100%;
-    background-color: $ui-coral;
     box-shadow: inset 0 -1px 0 0 $ui-coral-dark;
+    background-color: $ui-coral;
+    padding-top: .75rem;
+    width: 100%;
+    height: 3rem;
+    box-sizing: border-box;
 }
 
 .report-content-label {
+    text-align: center;
+    color: $type-white;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1rem;
     font-weight: bold;
-    color: $type-white;
-    text-align: center;
 }
 
 .report-modal-content {
-    width: 80%;
     margin: 1rem auto;
-    font-size: .875rem;
+    width: 80%;
     line-height: 1.5rem;
+    font-size: .875rem;
 }

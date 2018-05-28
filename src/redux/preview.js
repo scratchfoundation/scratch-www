@@ -48,7 +48,7 @@ module.exports.previewReducer = (state, action) => {
     case 'SET_ORIGINAL':
         return Object.assign({}, state, {
             original: action.info
-        });    
+        });
     case 'SET_PARENT':
         return Object.assign({}, state, {
             parent: action.info
