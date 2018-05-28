@@ -7,6 +7,7 @@ const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
 const PreviewPresentation = require('./presentation.jsx');
+const projectShape = require('./projectshape.jsx').projectShape;
 
 const sessionActions = require('../../redux/session.js');
 const previewActions = require('../../redux/preview.js');
@@ -226,74 +227,10 @@ Preview.propTypes = {
     getRemixes: PropTypes.func.isRequired,
     getStudios: PropTypes.func.isRequired,
     loved: PropTypes.bool,
-    original: PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        description: PropTypes.string,
-        author: PropTypes.shape({
-            id: PropTypes.number
-        }),
-        history: PropTypes.shape({
-            created: PropTypes.string,
-            modified: PropTypes.string,
-            shared: PropTypes.string
-        }),
-        stats: PropTypes.shape({
-            views: PropTypes.number,
-            loves: PropTypes.number,
-            favorites: PropTypes.number
-        }),
-        remix: PropTypes.shape({
-            parent: PropTypes.number,
-            root: PropTypes.number
-        })
-    }),
-    parent: PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        description: PropTypes.string,
-        author: PropTypes.shape({
-            id: PropTypes.number
-        }),
-        history: PropTypes.shape({
-            created: PropTypes.string,
-            modified: PropTypes.string,
-            shared: PropTypes.string
-        }),
-        stats: PropTypes.shape({
-            views: PropTypes.number,
-            loves: PropTypes.number,
-            favorites: PropTypes.number
-        }),
-        remix: PropTypes.shape({
-            parent: PropTypes.number,
-            root: PropTypes.number
-        })
-    }),
+    original: projectShape,
+    parent: projectShape,
     playerMode: PropTypes.bool,
-    projectInfo: PropTypes.shape({
-        author: PropTypes.shape({
-            id: PropTypes.number,
-            username: PropTypes.string
-        }),
-        description: PropTypes.string,
-        history: PropTypes.shape({
-            created: PropTypes.string,
-            modified: PropTypes.string,
-            shared: PropTypes.string
-        }),
-        id: PropTypes.number,
-        remix: PropTypes.shape({
-            parent: PropTypes.number,
-            root: PropTypes.number
-        }),
-        stats: PropTypes.shape({
-            views: PropTypes.number,
-            loves: PropTypes.number,
-            favorites: PropTypes.number
-        }),
-        title: PropTypes.string
-    }),
+    projectInfo: projectShape,
     remixes: PropTypes.arrayOf(PropTypes.object),
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,

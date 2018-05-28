@@ -6,6 +6,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
+const approx = require('approximate-number');
 
 const GUI = require('scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
@@ -21,6 +22,7 @@ const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolum
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 
+const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 class PreviewPresentation extends React.Component {
@@ -266,20 +268,20 @@ class PreviewPresentation extends React.Component {
                                         key="loves"
                                         onClick={onLoveClicked}
                                     >
-                                        {loveCount}
+                                        {approx(loveCount, {decimal: false})}
                                     </div>
                                     <div
                                         className={classNames('project-favorites', {favorited: faved})}
                                         key="favorites"
                                         onClick={onFavoriteClicked}
                                     >
-                                        {favoriteCount}
+                                        {approx(favoriteCount, {decimal: false})}
                                     </div>
                                     <div
                                         className="project-remixes"
                                         key="remixes"
                                     >
-                                        {projectInfo.remix.count}
+                                        {approx(projectInfo.stats.remixes, {decimal: false})}
                                     </div>
                                     <div
                                         className="project-views"
@@ -409,67 +411,10 @@ PreviewPresentation.propTypes = {
     onLoveClicked: PropTypes.func,
     onSeeInside: PropTypes.func,
     onUpdate: PropTypes.func,
-    originalInfo: PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        description: PropTypes.string,
-        author: PropTypes.shape({id: PropTypes.number}),
-        history: PropTypes.shape({
-            created: PropTypes.string,
-            modified: PropTypes.string,
-            shared: PropTypes.string
-        }),
-        stats: PropTypes.shape({
-            views: PropTypes.number,
-            loves: PropTypes.number,
-            favorites: PropTypes.number
-        }),
-        remix: PropTypes.shape({
-            parent: PropTypes.number,
-            root: PropTypes.number
-        })
-    }),
-    parentInfo: PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        description: PropTypes.string,
-        author: PropTypes.shape({id: PropTypes.number}),
-        history: PropTypes.shape({
-            created: PropTypes.string,
-            modified: PropTypes.string,
-            shared: PropTypes.string
-        }),
-        stats: PropTypes.shape({
-            views: PropTypes.number,
-            loves: PropTypes.number,
-            favorites: PropTypes.number
-        }),
-        remix: PropTypes.shape({
-            parent: PropTypes.number,
-            root: PropTypes.number
-        })
-    }),
+    originalInfo: projectShape,
+    parentInfo: projectShape,
     projectId: PropTypes.string,
-    projectInfo: PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
-        description: PropTypes.string,
-        author: PropTypes.shape({id: PropTypes.number}),
-        history: PropTypes.shape({
-            created: PropTypes.string,
-            modified: PropTypes.string,
-            shared: PropTypes.string
-        }),
-        stats: PropTypes.shape({
-            views: PropTypes.number,
-            loves: PropTypes.number,
-            favorites: PropTypes.number
-        }),
-        remix: PropTypes.shape({
-            parent: PropTypes.number,
-            root: PropTypes.number
-        })
-    }),
+    projectInfo: projectShape,
     remixes: PropTypes.arrayOf(PropTypes.object),
     sessionStatus: PropTypes.string.isRequired,
     studios: PropTypes.arrayOf(PropTypes.object),

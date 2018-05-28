@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "ajv": "6.4.0",
+    "approximate-number": "2.0.0",
     "async": "1.5.2",
     "autoprefixer": "6.3.6",
     "babel-cli": "6.26.0",
