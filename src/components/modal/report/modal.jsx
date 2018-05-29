@@ -128,7 +128,7 @@ class ReportModal extends React.Component {
                                     },
                                     {
                                         value: '6',
-                                        label: this.props.intl.formatMessage({id: 'report.reasonOther'})
+                                        label: this.props.intl.formatMessage({id: 'general.other'})
                                     }
                                 ]}
                                 value={this.state.reason}
