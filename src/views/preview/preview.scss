@@ -14,7 +14,7 @@ $stage-height: 404px;
 // remix credit height: 52px
 // project text label line-height + margin-bottom .5rem: 19px + 8px = 27px
 // Formsy wrapper adds 3px to the input height for
-$description-input: 172px; // $stage-height / 2 - $project-label - $wrapper
+$description-input: 166px; // $stage-height / 2 - $project-label - $wrapper - margin
 $description-input-small: 120px; // normal $description-input - $remix-credit
 
 /* override view padding for share banner */
@@ -49,6 +49,11 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
         margin-right: 2rem;
         flex-grow: 1;
         justify-content: flex-start;
+        align-items: flex-start;
+        
+        .inplace-input {
+            height: calc(3rem - 4px);
+        }
     }
     
     img {
@@ -57,10 +62,12 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
             border: 0;
             border-radius: 5px;
             width: 3rem;
+            height: 3rem;
             
             &.remix {
                 margin-right: .5em;
-                width: 1.5rem;
+                width: 2rem;
+                height: 2rem;
             }
         }
     }
@@ -144,8 +151,8 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
             background-repeat: no-repeat;
             background-position: center center;
             background-size: contain;
-            width: 1.5rem;
-            height: 1.5rem;
+            width: 1.25rem;
+            height: 1.25rem;
             vertical-align: middle;
             content: "";
         }
@@ -200,7 +207,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
     }
 
     .share-date {
-        margin-right: 2rem;
+        margin-right: .75rem;
         vertical-align: middle;
         line-height: 2rem;
         color: $type-gray;
@@ -238,6 +245,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
     
     .project-textlabel {
         margin: 0 0 .5rem 0;
+        font-size: 1rem;
         font-weight: bold;
     }
 
@@ -248,7 +256,8 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
         background-color: $ui-blue-10percent;
         padding: .5rem;
         width: calc(100% - (1rem + 2px));
-        white-space: pre-line;
+        white-space: pre-line;        
+        font-size: 1rem;
         // flex-grow
         flex: 1;
     }
@@ -258,6 +267,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
     }
 
     .project-description-edit {
+        margin-bottom: .75rem;
         border: 1px solid $ui-blue-10percent;
         border-radius: 8px;
         background-color: $ui-blue-10percent;
@@ -266,6 +276,10 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
         white-space: pre-line;
         // flex-grow
         flex: 1;
+        
+        &.last {
+            margin-bottom: 0;
+        }
         
         &.textarea-row {
             border: 0;
@@ -307,17 +321,18 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
 
         display: inline;
         padding-right: 2rem;
-        font-size: 1.25rem;
+        font-size: 1rem;
+        font-weight: bold;
 
         &:before {
             display: inline-block;
-            margin-right: .1rem;
+            margin-right: .5rem;
             background-repeat: no-repeat;
             background-position: center center;
             background-size: contain;
             width: 1.5rem;
             height: 1.5rem;
-            vertical-align: text-bottom;
+            vertical-align: -.25rem;
             content: "";
         }
     }
@@ -327,6 +342,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
         cursor: pointer;
         
         &:before {
+            opacity: .5;
             background-image: url("/svgs/project/love-gray.svg");
         }
     }
@@ -334,6 +350,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
     .project-loves.loved {
         
         &:before {
+            opacity: 1;
             background-image: url("/svgs/project/love-red.svg");
         }
     }
@@ -343,6 +360,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
         cursor: pointer;
         
         &:before {
+            opacity: .5;
             background-image: url("/svgs/project/fav-gray.svg");
         }
     }
@@ -350,6 +368,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
     .project-favorites.favorited {
         
         &:before {
+            opacity: 1;
             background-image: url("/svgs/project/fav-yellow.svg");
         }
     }
@@ -357,6 +376,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
     .project-remixes {
         
         &:before {
+            opacity: .5;
             background-image: url("/svgs/project/remix-gray.svg");
         }
     }
@@ -364,6 +384,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
     .project-views {
         
         &:before {
+            opacity: .5;
             background-image: url("/svgs/project/views-gray.svg");
         }
     }
@@ -381,7 +402,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
         margin: 0 0 0 .5rem;
         border-radius: 19px;
         background-color: $ui-blue;
-        padding: 0 .5rem;
+        padding: 0 .75rem;
         height: 2rem;
         text-decoration: none;
         line-height: .875rem;
@@ -425,12 +446,12 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
     .report-button {
         &:before {
             display: inline-block;
-            margin-right: .125rem;
+            margin-right: .25rem;
             background-repeat: no-repeat;
             background-position: center center;
             background-size: contain;
-            width: 1rem;
-            height: 1rem;
+            width: .875rem;
+            height: .875rem;
             vertical-align: bottom;
             content: "";
         }

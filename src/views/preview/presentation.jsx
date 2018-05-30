@@ -1,7 +1,6 @@
 const bindAll = require('lodash.bindall');
 const FormattedDate = require('react-intl').FormattedDate;
 const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
 const PropTypes = require('prop-types');
 const React = require('react');
 const Formsy = require('formsy-react').default;
@@ -61,7 +60,6 @@ class PreviewPresentation extends React.Component {
             editable,
             faved,
             favoriteCount,
-            intl,
             isFullScreen,
             loved,
             loveCount,
@@ -100,9 +98,12 @@ class PreviewPresentation extends React.Component {
                         <Formsy>
                             <FlexRow className="preview-row">
                                 <FlexRow className="project-header">
-                                    <Avatar
-                                        src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo. author.id}_48x48.png`}
-                                    />
+                                    <a href={`/users/${projectInfo.author.username}`}>
+                                        <Avatar
+                                            alt={projectInfo.author.username}
+                                            src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo. author.id}_48x48.png`}
+                                        />
+                                    </a>
                                     <div className="title">
                                         {editable ?
                                             
@@ -123,10 +124,6 @@ class PreviewPresentation extends React.Component {
                                             /> :
                                             <div className="project-title">{projectInfo.title}</div>
                                         }
-                                        {`${intl.formatMessage({id: 'thumbnail.by'})} `}
-                                        <a href={`/users/${projectInfo.author.username}`}>
-                                            {projectInfo.author.username}
-                                        </a>
                                     </div>
                                 </FlexRow>
                                 <div className="project-buttons">
@@ -235,6 +232,7 @@ class PreviewPresentation extends React.Component {
                                             <InplaceInput
                                                 className={classNames(
                                                     'project-description-edit',
+                                                    'last',
                                                     {remixes: parentInfo && parentInfo.author}
                                                 )}
                                                 handleUpdate={onUpdate}
@@ -402,7 +400,6 @@ PreviewPresentation.propTypes = {
     editable: PropTypes.bool,
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
-    intl: intlShape,
     isFullScreen: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,

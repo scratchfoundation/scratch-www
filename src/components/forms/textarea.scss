@@ -22,4 +22,8 @@
     &.fail {
         border: 1px solid $ui-orange;
     }
+    
+    &::placeholder {
+        font-style: italic;
+    }
 }

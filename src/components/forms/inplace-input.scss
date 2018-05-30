@@ -3,7 +3,7 @@
 
 .inplace-input {
     transition: all .5s ease;
-    border: 2px dashed $ui-blue;
+    border: 2px dashed $ui-blue-25percent;
     border-radius: 8px;
     background-color: transparent;
     padding: 0 1rem;
@@ -29,18 +29,22 @@
     &::-ms-reveal, &::-ms-clear {
         display: none;
     }
+    
+    &::placeholder {
+        font-style: italic;
+    }
 }
 
 .inplace-textarea {
     transition: all 1s ease;
-    border: 2px dashed $ui-blue;
+    border: 2px dashed $ui-blue-25percent;
     border-radius: 8px;
     background-color: $ui-light-gray;
     padding: .75rem 1rem;
     width: 100%;
     line-height: 1.75em;
     color: $type-gray;
-    font-size: .875rem;
+    font-size: 1rem;
     box-sizing: border-box;
     resize: none;
 
@@ -55,8 +59,6 @@
         border: 1px solid $ui-orange;
     }
     
-    /* styling placeholder text for project page, move this into project view
-     * stylesheet if it shouldn't be the default for all input-textareas */
     &::placeholder {
         padding-top: 1rem;
         text-align: center;
