@@ -322,7 +322,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(previewActions.getFavedStatus(id, username, token));
     },
     setFavedStatus: (faved, id, username, token) => {
-        dispatch(previewActions.setLovedStatus(faved, id, username, token));
+        dispatch(previewActions.setFavedStatus(faved, id, username, token));
     },
     getLovedStatus: (id, username, token) => {
         dispatch(previewActions.getLovedStatus(id, username, token));

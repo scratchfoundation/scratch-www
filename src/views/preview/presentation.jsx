@@ -184,7 +184,7 @@ const PreviewPresentation = props => {
                                     {loveCount}
                                 </div>
                                 <div
-                                    className={classNames('project-favorites', {faved: faved})}
+                                    className={classNames('project-favorites', {favorited: faved})}
                                     key="favorites"
                                     onClick={onFavoriteClicked}
                                 >
