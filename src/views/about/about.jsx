@@ -119,7 +119,7 @@ const About = () => (
                         id="about.researchDescription"
                         values={{
                             researchLink: (
-                                <a href="/info/research">
+                                <a href="/research">
                                     <FormattedMessage id="about.researchLinkText" />
                                 </a>
                             ),
