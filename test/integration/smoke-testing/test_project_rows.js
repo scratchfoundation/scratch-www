@@ -12,9 +12,9 @@ var seleniumWebdriver = require('selenium-webdriver');
 // Selenium's promise driver will be deprecated, so we should not rely on it
 seleniumWebdriver.SELENIUM_PROMISE_MANAGER = 0;
 
-// chrome driver
-var driver = new seleniumWebdriver.Builder().withCapabilities(seleniumWebdriver.Capabilities.chrome())
-    .build();
+const {
+    driver
+} = require('../selenium-helpers.js');
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
