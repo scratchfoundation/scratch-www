@@ -1,4 +1,3 @@
-const bindAll = require('lodash.bindall');
 const FormattedDate = require('react-intl').FormattedDate;
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
@@ -10,14 +9,15 @@ const approx = require('approximate-number');
 const GUI = require('scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
 
-const sessionActions = require('../../redux/session.js');
 const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
 const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
-const ShareBanner = require('../../components/share-banner/share-banner.jsx');
-const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolumn.jsx');
+const ShareBanner = require('./share-banner.jsx');
+const RemixCredit = require('./remix-credit.jsx');
+const RemixList = require('./remix-list.jsx');
+const StudioList = require('./studio-list.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 
@@ -25,42 +25,15 @@ const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 class PreviewPresentation extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'handleReportClick',
-            'handleReportClose',
-            'handleReportSubmit'
-        ]);
-        this.state = {
-            reportOpen: false
-        };
-    }
-    handleReportClick (e) {
-        e.preventDefault();
-        this.setState({reportOpen: true});
-    }
-    handleReportClose () {
-        this.setState({reportOpen: false});
-    }
-    
-    handleReportSubmit (formData, callback) {
-        const data = {
-            ...formData,
-            id: this.props.projectId,
-            username: this.props.user.username
-        };
-        console.log('submit report data', data); // eslint-disable-line no-console
-        // TODO: pass error to modal via callback.
-        callback();
-        this.setState({reportOpen: false});
-    }
+    userOwnsProject
     render () {
         const {
             editable,
             faved,
             favoriteCount,
             isFullScreen,
+            isReportOpen,
+            isShared,
             loved,
             loveCount,
             originalInfo,
@@ -68,30 +41,21 @@ class PreviewPresentation extends React.Component {
             projectId,
             projectInfo,
             remixes,
-            sessionStatus,
             studios,
-            user,
+            userOwnsProject,
             onFavoriteClicked,
             onLoveClicked,
+            onReportClicked,
+            onReportClose,
+            onReportSubmit,
             onSeeInside,
             onUpdate
             // ...otherProps TBD
         } = this.props;
-        const shareDate = (projectInfo.history && projectInfo.history.shared) ? projectInfo.history.shared : '';
+        const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
         return (
             <div className="preview">
-                {projectInfo.history && shareDate === '' &&
-                    <ShareBanner>
-                        <FlexRow className="preview-row">
-                            <span className="share-text">
-                                This project is not shared — so only you can see it. Click share to let everyone see it!
-                            </span>
-                            <Button className="button share-button">
-                                Share
-                            </Button>
-                        </FlexRow>
-                    </ShareBanner>
-                }
+                <ShareBanner shared={isShared} />
                 
                 { projectInfo && projectInfo.author && projectInfo.author.id && (
                     <div className="inner">
@@ -122,14 +86,19 @@ class PreviewPresentation extends React.Component {
                                                 }}
                                                 value={projectInfo.title}
                                             /> :
-                                            <div className="project-title">{projectInfo.title}</div>
+                                            <React.Fragment>
+                                                <div className="project-title">{projectInfo.title}</div>
+                                                {'by '}
+                                                <a href={`/users/${projectInfo.author.username}`}>
+                                                    {projectInfo.author.username}
+                                                </a>
+                                            </React.Fragment>
                                         }
                                     </div>
                                 </FlexRow>
                                 <div className="project-buttons">
-                                    {sessionStatus === sessionActions.Status.FETCHED &&
-                                        Object.keys(user).length > 0 &&
-                                        user.id !== projectInfo.author.id &&
+                                    {/* TODO: Hide Remix button for now until implemented */}
+                                    {(!userOwnsProject && false) &&
                                         <Button className="button remix-button">
                                             Remix
                                         </Button>
@@ -154,44 +123,8 @@ class PreviewPresentation extends React.Component {
                                     />
                                 </div>
                                 <FlexRow className="project-notes">
-                                    {parentInfo && parentInfo.author && parentInfo.id && (
-                                        <FlexRow className="remix-credit">
-                                            <Avatar
-                                                className="remix"
-                                                src={`https://cdn2.scratch.mit.edu/get_image/user/${parentInfo.author.id}_48x48.png`}
-                                            />
-                                            <div className="credit-text">
-                                                Thanks to <a
-                                                    href={`/users/${parentInfo.author.username}`}
-                                                >
-                                                    {parentInfo.author.username}
-                                                </a> for the original project <a
-                                                    href={`/preview/${parentInfo.id}`}
-                                                >
-                                                    {parentInfo.title}
-                                                </a>.
-                                            </div>
-                                        </FlexRow>
-                                    )}
-                                    {originalInfo && originalInfo.author && originalInfo.id && (
-                                        <FlexRow className="remix-credit">
-                                            <Avatar
-                                                className="remix"
-                                                src={`https://cdn2.scratch.mit.edu/get_image/user/${originalInfo.author.id}_48x48.png`}
-                                            />
-                                            <div className="credit-text">
-                                                Thanks to <a
-                                                    href={`/users/${originalInfo.author.username}`}
-                                                >
-                                                    {originalInfo.author.username}
-                                                </a> for the original project <a
-                                                    href={`/preview/${originalInfo.id}`}
-                                                >
-                                                    {originalInfo.title}
-                                                </a>.
-                                            </div>
-                                        </FlexRow>
-                                    )}
+                                    <RemixCredit projectInfo={parentInfo} />
+                                    <RemixCredit projectInfo={originalInfo} />
                                     {/*  eslint-disable max-len */}
                                     <FlexRow className="description-block">
                                         <div className="project-textlabel">
@@ -311,80 +244,34 @@ class PreviewPresentation extends React.Component {
                                         <Button className="action-button copy-link-button">
                                             Copy Link
                                         </Button>
-                                        {
-                                            sessionStatus === sessionActions.Status.FETCHED &&
-                                            Object.keys(user).length > 0 &&
-                                            user.id !== projectInfo.author.id && [
+                                        {(!userOwnsProject) &&
+                                            <React.Fragment>
                                                 <Button
                                                     className="action-button report-button"
                                                     key="report-button"
-                                                    onClick={this.handleReportClick}
+                                                    onClick={onReportClicked}
                                                 >
                                                     Report
                                                 </Button>,
                                                 <ReportModal
-                                                    isOpen={this.state.reportOpen}
+                                                    isOpen={isReportOpen}
                                                     key="report-modal"
                                                     type="project"
-                                                    onReport={this.handleReportSubmit}
-                                                    onRequestClose={this.handleReportClose}
+                                                    onReport={onReportSubmit}
+                                                    onRequestClose={onReportClose}
                                                 />
-                                            ]
+                                            </React.Fragment>
                                         }
                                     </FlexRow>
                                 </FlexRow>
                             </FlexRow>
                             <FlexRow className="preview-row">
                                 <div className="comments-container">
-                                    <div className="project-title">
-                                        Comments go here
-                                    </div>
+                                    <div className="project-title" />
                                 </div>
                                 <FlexRow className="column">
-                                    {/* hide remixes if there aren't any */}
-                                    {remixes && remixes.length !== 0 && (
-                                        <FlexRow className="remix-list">
-                                            <div className="project-title">
-                                                Remixes
-                                            </div>
-                                            {remixes && remixes.length === 0 ? (
-                                                // TODO: style remix invitation
-                                                <span>Invite user to remix</span>
-                                            ) : (
-                                                <ThumbnailColumn
-                                                    cards
-                                                    showAvatar
-                                                    itemType="preview"
-                                                    items={remixes.slice(0, 5)}
-                                                    showFavorites={false}
-                                                    showLoves={false}
-                                                    showViews={false}
-                                                />
-                                            )}
-                                        </FlexRow>
-                                    )}
-                                    {/* hide studios if there aren't any */}
-                                    {studios && studios.length !== 0 && (
-                                        <FlexRow className="studio-list">
-                                            <div className="project-title">
-                                                Studios
-                                            </div>
-                                            {studios && studios.length === 0 ? (
-                                                // TODO: invite user to add to studio?
-                                                <span>None </span>
-                                            ) : (
-                                                <ThumbnailColumn
-                                                    cards
-                                                    showAvatar
-                                                    itemType="gallery"
-                                                    items={studios.slice(0, 5)}
-                                                    showFavorites={false}
-                                                    showLoves={false}
-                                                    showViews={false}
-                                                />
-                                            )}
-                                        </FlexRow>
-                                    )}
+                                    <RemixList remixes={remixes} />
+                                    <StudioList studios={studios} />
                                 </FlexRow>
                             </FlexRow>
                         </Formsy>
@@ -401,10 +288,15 @@ PreviewPresentation.propTypes = {
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
     isFullScreen: PropTypes.bool,
+    isReportOpen: PropTypes.bool,
+    isShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
     onFavoriteClicked: PropTypes.func,
     onLoveClicked: PropTypes.func,
+    onReportClicked: PropTypes.func.isRequired,
+    onReportClose: PropTypes.func.isRequired,
+    onReportSubmit: PropTypes.func.isRequired,
     onSeeInside: PropTypes.func,
     onUpdate: PropTypes.func,
     originalInfo: projectShape,
@@ -412,18 +304,8 @@ PreviewPresentation.propTypes = {
     projectId: PropTypes.string,
     projectInfo: projectShape,
     remixes: PropTypes.arrayOf(PropTypes.object),
-    sessionStatus: PropTypes.string.isRequired,
     studios: PropTypes.arrayOf(PropTypes.object),
-    user: PropTypes.shape({
-        id: PropTypes.number,
-        banned: PropTypes.bool,
-        username: PropTypes.string,
-        token: PropTypes.string,
-        thumbnailUrl: PropTypes.string,
-        dateJoined: PropTypes.string,
-        email: PropTypes.string,
-        classroomId: PropTypes.string
-    }).isRequired
+    userOwnsProject: PropTypes.bool
 };
 
 module.exports = injectIntl(PreviewPresentation);

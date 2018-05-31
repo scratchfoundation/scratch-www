@@ -29,8 +29,7 @@
     "express-http-proxy": "1.1.0",
     "lodash.defaults": "4.0.1",
     "newrelic": "1.25.4",
-    "raven": "0.10.0",
-    "scratch-gui": "0.1.0-prerelease.20180529181946"
+    "raven": "0.10.0"
   },
   "devDependencies": {
     "ajv": "6.4.0",
@@ -97,6 +96,7 @@
     "redux-thunk": "2.0.1",
     "sass-lint": "1.5.1",
     "sass-loader": "6.0.6",
+    "scratch-gui": "0.1.0-prerelease.20180529181946",
     "scratchr2_translations": "git://github.com/LLK/scratchr2_translations.git#master",
     "slick-carousel": "1.6.0",
     "source-map-support": "0.3.2",
