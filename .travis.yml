@@ -102,4 +102,4 @@ jobs:
 stages:
 - test
 - name: smoke
-  if: branch IN (master, develop, travis) and type != pull_request
+  if: branch IN (travis) and type != pull_request
