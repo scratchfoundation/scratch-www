@@ -18,6 +18,12 @@ env:
   - API_HOST_VAR=API_HOST_$TRAVIS_BRANCH
   - API_HOST=${!API_HOST_VAR}
   - API_HOST=${API_HOST:-$API_HOST_STAGING}
+  - ROOT_URL_master=https://scratch.mit.edu
+  - ROOT_URL_STAGING=https://scratch.ly
+  - ROOT_URL_VAR=ROOT_URL_$TRAVIS_BRANCH
+  - ROOT_URL=${!ROOT_URL_VAR}
+  - ROOT_URL=${ROOT_URL:-$ROOT_URL_STAGING}
+  - PATH=$PATH:$PWD/test/integration/node_modules/chromedriver/bin
   # EB_AWS_ACCESS_KEY_ID
   - secure: A138rYuXDsOmpEwYxZ31WyXEeq5fgr9qyqsQh1nTFsjBKpFtNM+CN9e0QJQFT3PLs4wH/lWTRSyHxakxKQS1sxq828f9gHed+f15REKk/fRUplcCYIexT9xKVtU3D8CRNn/KBFWk75fZyZt20eyOVIv4h3pInKQz7y84J6PWzB1BCrAFvADrzS1X68Z3NJJLyxnz0YEurzz8mC2v4D0s/XifKTWvRtefD4QM6pE0C2iYyk+ThrLwg7i9FDHVfo0MrkgcdX7mz37SnTr7p7mHWnGXrGngi/NiDRQ+Uwwq/sr2UIww0rCwS1xsOcS//dC4NNqrrt1kUTsoC1Yt87Ny+gI0nUplsfEpdKajAkOYdANC5bJUGqPdSlOds1v9aJs9Hx48uGamWkm/3cFmoJ5uA2ZzUwbSGjTkWbnhwzT0YRvcLGhP1WE/EswaIyK5qMp522E79mP1yH6M750iUvi4N39+QW1BNX3ADkOwyAI67ArX5on5gWP83RXcJ15im7XsBpsmVn/KXi6AouWPb8jmSmKCj0QZCzfLY7ivM42IugYpK2NV7kFB38DpXQamJ5eskgwYa3elRmednIFUuwb1QDnONvJogVjk4CLmoSxssC2mJnnrUItM7l8G6As81GMI+6lTtl86hAuXBjUk60FMbgTAQDX9ll26LgpBy8jHSx8=
   # EB_AWS_SECRET_ACCESS_KEY
@@ -58,6 +64,7 @@ env:
   - NODE_ENV=production
   - WWW_VERSION=${TRAVIS_COMMIT:0:5}
 addons:
+  chrome: stable
   apt:
     sources:
       - ubuntu-toolchain-r-test
@@ -66,20 +73,33 @@ addons:
 install:
   - sudo -H pip install -r requirements.txt
   - npm --production=false install
-deploy:
-- provider: script
-  skip_cleanup: $SKIP_CLEANUP
-  script: env make sync
-  on:
-    repo: LLK/scratch-www
-    branch:
-    - develop
-    - hotfix/*
-    - release/*
-- provider: script
-  skip_cleanup: $SKIP_CLEANUP
-  script: env make sync
-  on:
-    repo: LLK/scratch-www
-    branch:
-    - master
+jobs:
+  include:
+  - stage: test
+    deploy:
+    - provider: script
+      skip_cleanup: $SKIP_CLEANUP
+      script: env make sync
+      on:
+        repo: LLK/scratch-www
+        branch:
+        - develop
+        - hotfix/*
+        - release/*
+    - provider: script
+      skip_cleanup: $SKIP_CLEANUP
+      script: env make sync
+      on:
+        repo: LLK/scratch-www
+        branch:
+        - master
+  - stage: smoke
+    install:
+    - cd test/integration
+    - npm install
+    - cd -
+    script: npm run smoke
+stages:
+- test
+- name: smoke
+  if: branch IN (travis) and type != pull_request
