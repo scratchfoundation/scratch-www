@@ -18,9 +18,11 @@ $ui-border: hsla(0, 0, 85, 1); //#D9D9D9
 
 /* 3.0 colors */
 /* Using www naming convention for now, should be consistent with gui */
-$ui-green: hsla(163, 83, 40, 1); //#0fbd8c Pen Primary
-$ui-coral: hsla(350, 100, 70, 1); //#FF6680 More Priamry
+$ui-green: hsla(163, 83, 40, 1); // #0fbd8c Pen Primary
+$ui-coral: hsla(350, 100, 70, 1); // #FF6680 More Primary
+$ui-coral-dark: hsla(350, 100, 60, 1); // #FF3355 More tertiary
 $ui-blue-10percent: hsla(215, 100, 65, .1);
+$ui-blue-25percent:  hsla(215, 100, 65, .25);
 $ui-orange-25percent: hsla(35, 90, 55, .25);
 
 /* Overlay UI Gray Colors */

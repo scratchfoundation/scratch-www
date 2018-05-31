@@ -1,6 +1,22 @@
 @import "../../colors";
 @import "../../frameless";
 
+/* stage size contants 
+ * this is a hack right now - stage includes padding of .5rem (8px) for alignment in gui
+ * in www the player is placed with margin -.5rem to align the edge.
+ * the height is calculated from the actual height on the page (404)
+*/
+$gui-width: 496px;
+$stage-width: 480px;
+$stage-height: 404px;
+
+
+// remix credit height: 52px
+// project text label line-height + margin-bottom .5rem: 19px + 8px = 27px
+// Formsy wrapper adds 3px to the input height for
+$description-input: 166px; // $stage-height / 2 - $project-label - $wrapper - margin
+$description-input-small: 120px; // normal $description-input - $remix-credit
+
 /* override view padding for share banner */
 #view {
     padding: 0 0 20px 0;
@@ -14,8 +30,6 @@
     width: 100%;
     height: 100%;
 }
-
-// .gui * { box-sizing: border-box; }
 
 .preview {
 
@@ -31,16 +45,29 @@
         }
     }
     
+    .project-header {
+        margin-right: 2rem;
+        flex-grow: 1;
+        justify-content: flex-start;
+        align-items: flex-start;
+        
+        .inplace-input {
+            height: calc(3rem - 4px);
+        }
+    }
+    
     img {
         
         &.avatar {
             border: 0;
             border-radius: 5px;
             width: 3rem;
+            height: 3rem;
             
             &.remix {
                 margin-right: .5em;
-                width: 1.5rem;
+                width: 2rem;
+                height: 2rem;
             }
         }
     }
@@ -49,6 +76,7 @@
         margin-left: 1rem;
         text-align: left;
         font-size: .8rem;
+        flex-grow: 1;
     }
     
     .validation-message {
@@ -113,6 +141,7 @@
     .share-button,
     .remix-button,
     .see-inside-button {
+        margin-top: 0;
         font-size: .875rem;
         font-weight: normal;
         
@@ -122,8 +151,8 @@
             background-repeat: no-repeat;
             background-position: center center;
             background-size: contain;
-            width: 1.5rem;
-            height: 1.5rem;
+            width: 1.25rem;
+            height: 1.25rem;
             vertical-align: middle;
             content: "";
         }
@@ -137,7 +166,7 @@
         background-color: $ui-orange;
         
         &:before {
-            background-image: url("/svgs/favorite/favorite_type-gray.svg");
+            background-image: url("/svgs/project/share-white.svg");
         }
     }
 
@@ -145,14 +174,14 @@
         background-color: $ui-green;
         
         &:before {
-            background-image: url("/svgs/remix/remix_type-gray.svg");
+            background-image: url("/svgs/project/remix-white.svg");
         }
     }
 
     .see-inside-button {
         
         &:before {
-            background-image: url("/images/emoji/cool-cat.png");
+            background-image: url("/svgs/project/see-inside-white.svg");
         }
     }
     
@@ -164,19 +193,31 @@
 
     .guiPlayer {
         display: inline-block;
-        width: 480px;
+        margin-left: -.5rem;
+        width: $gui-width;
     }
 
     .project-notes {
-        width: 45%;
-        height: 404px;
+        // not 1.5rem because of stage padding
+        margin-left: 1rem;
+        height: $stage-height;
+        align-items: flex-start;
+        flex: 1;
         flex-flow: column;
-        align-items: left;
     }
 
     .share-date {
-        height: 2.5rem;
+        margin-right: .75rem;
         vertical-align: middle;
+        line-height: 2rem;
+        color: $type-gray;
+        font-size: .875rem;
+    }
+    
+    .subactions {
+        margin-left: 1.5rem;
+        justify-content: flex-end;
+        flex: 1;
     }
 
     .remix-credit {
@@ -185,7 +226,7 @@
         border-radius: 8px;
         background-color: $ui-blue-10percent;
         padding: .5rem;
-        width: 100%;
+        width: calc(100% - 1rem);
         flex-wrap: nowrap;
         align-items: flex-start;
     }
@@ -194,22 +235,56 @@
         font-size: .875rem;
         flex-shrink: 1;
     }
+    
+    .description-block {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        flex-grow: 1;
+    }
+    
+    .project-textlabel {
+        margin: 0 0 .5rem 0;
+        font-size: 1rem;
+        font-weight: bold;
+    }
 
     .project-description {
+        margin-bottom: .75rem;
+        border: 1px solid $ui-blue-10percent;
+        border-radius: 8px;
+        background-color: $ui-blue-10percent;
+        padding: .5rem;
+        width: calc(100% - (1rem + 2px));
+        white-space: pre-line;        
+        font-size: 1rem;
+        // flex-grow
+        flex: 1;
+    }
+    
+    .project-description.last {
+        margin-bottom: 0;
+    }
+
+    .project-description-edit {
+        margin-bottom: .75rem;
         border: 1px solid $ui-blue-10percent;
         border-radius: 8px;
         background-color: $ui-blue-10percent;
         padding: .5rem;
         width: 100%;
         white-space: pre-line;
-        overflow-y: scroll;
+        // flex-grow
         flex: 1;
+        
+        &.last {
+            margin-bottom: 0;
+        }
         
         &.textarea-row {
             border: 0;
             background-color: inherit;
             padding: 0;
-            overflow: visible;
         }
         
         &.has-error {
@@ -217,6 +292,14 @@
                 transform: translate(26rem, 0);
             }
         }
+        
+        .inplace-textarea {
+            height: $description-input;
+        }
+    }
+    
+    .project-description-edit.remixes .inplace-textarea {
+        height: $description-input-small;
     }
 
     .copyleft {
@@ -227,7 +310,7 @@
     }
 
     .stats {
-        width: 480px;
+        line-height: 2rem;
         justify-content: flex-start;
     }
 
@@ -238,17 +321,18 @@
 
         display: inline;
         padding-right: 2rem;
-        font-size: 1.25rem;
+        font-size: 1rem;
+        font-weight: bold;
 
         &:before {
             display: inline-block;
-            margin-right: .1rem;
+            margin-right: .5rem;
             background-repeat: no-repeat;
             background-position: center center;
             background-size: contain;
             width: 1.5rem;
             height: 1.5rem;
-            vertical-align: text-bottom;
+            vertical-align: -.25rem;
             content: "";
         }
     }
@@ -258,14 +342,16 @@
         cursor: pointer;
         
         &:before {
-            background-image: url("/svgs/love/love_type-gray.svg");
+            opacity: .5;
+            background-image: url("/svgs/project/love-gray.svg");
         }
     }
 
     .project-loves.loved {
         
         &:before {
-            background-image: url("/svgs/messages/love.svg");
+            opacity: 1;
+            background-image: url("/svgs/project/love-red.svg");
         }
     }
 
@@ -274,85 +360,122 @@
         cursor: pointer;
         
         &:before {
-            background-image: url("/svgs/favorite/favorite_type-gray.svg");
+            opacity: .5;
+            background-image: url("/svgs/project/fav-gray.svg");
         }
     }
 
     .project-favorites.favorited {
         
         &:before {
-            background-image: url("/svgs/messages/favorite.svg");
+            opacity: 1;
+            background-image: url("/svgs/project/fav-yellow.svg");
         }
     }
 
     .project-remixes {
         
         &:before {
-            background-image: url("/svgs/remix/remix_type-gray.svg");
+            opacity: .5;
+            background-image: url("/svgs/project/remix-gray.svg");
         }
     }
 
     .project-views {
         
         &:before {
-            background-image: url("/svgs/view/view_type-gray.svg");
+            opacity: .5;
+            background-image: url("/svgs/project/views-gray.svg");
         }
     }
 
     .action-buttons {
         display: flex;
-        width: 40%;
         color: $type-white;
         font-size: .8rem;
         font-weight: 500;
         justify-content: flex-end;
         flex-wrap: wrap;
-        
+    }
 
-        li {
+    .action-button {
+        margin: 0 0 0 .5rem;
+        border-radius: 19px;
+        background-color: $ui-blue;
+        padding: 0 .75rem;
+        height: 2rem;
+        text-decoration: none;
+        line-height: .875rem;
+        font-size: .75rem;
+        font-weight: normal;
+
+        // &:hover {
+        //     transition: background-color .25s ease;
+        //     border-color: transparent;
+        //     background-color: $active-gray;
+        // }
+        // 
+        // &:active {
+        //     border: 0 solid transparent;
+        //     box-shadow: inset 0 0 5px $box-shadow-gray;
+        //     background-color: $active-dark-gray;
+        //     padding: calc(.75em + 1px) calc(1.5em + 1px);
+        // }
+        // 
+        // &.report {
+        //     border: 1px solid $ui-coral;
+        //     background-color: $ui-coral;
+        // 
+        //     &:hover {
+        //         transition: background-color .25s ease;
+        //         border-color: transparent;
+        //         background-color: $active-gray;
+        //     }
+        // 
+        //     &:active {
+        //         border: 0 solid transparent;
+        //         box-shadow: inset 0 0 5px $box-shadow-gray;
+        //         background-color: $active-dark-gray;
+        //         padding: calc(.75em + 1px) calc(1.5em + 1px);
+        //     }
+        // }
+    }
+    
+    .studio-button,
+    .copy-link-button,
+    .report-button {
+        &:before {
             display: inline-block;
-            margin: 0 5px;
-            border: 1px solid $ui-blue;
-            border-radius: 50px;
-            background-color: $ui-blue;
-            padding: .5em .75em .5em 1.5em;
-            text-decoration: none;
-            color: $type-white;
-            list-style-type: none;
-
-            &:hover {
-                transition: background-color .25s ease;
-                border-color: transparent;
-                background-color: $active-gray;
-            }
-
-            &:active {
-                border: 0 solid transparent;
-                box-shadow: inset 0 0 5px $box-shadow-gray;
-                background-color: $active-dark-gray;
-                padding: calc(.75em + 1px) calc(1.5em + 1px);
-            }
-
-            &.report {
-                border: 1px solid $ui-coral;
-                background-color: $ui-coral;
-                
-                &:hover {
-                    transition: background-color .25s ease;
-                    border-color: transparent;
-                    background-color: $active-gray;
-                }
-
-                &:active {
-                    border: 0 solid transparent;
-                    box-shadow: inset 0 0 5px $box-shadow-gray;
-                    background-color: $active-dark-gray;
-                    padding: calc(.75em + 1px) calc(1.5em + 1px);
-                }
-            }
+            margin-right: .25rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            width: .875rem;
+            height: .875rem;
+            vertical-align: bottom;
+            content: "";
+        }
+    }
+    .studio-button {
+        &:before {
+            background-image: url("/svgs/project/studio-add-white.svg");
         }
     }
 
+    .copy-link-button {
+        &:before {
+            background-image: url("/svgs/project/copy-link-white.svg");
+        }
+    }
+
+    .report-button {
+        background-color: $ui-coral;
+        
+        &:before {
+            background-image: url("/svgs/project/report-white.svg");
+        }
+    }
+    
     .remix-list,
     .studio-list {
         flex-direction: column;
@@ -371,4 +494,9 @@
             width: 100%;
         }
     }
+}
+
+.report-text textarea {
+    // override min-height from default settings (for teacher registration)
+    min-height: 8rem;
 }

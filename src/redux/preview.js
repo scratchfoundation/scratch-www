@@ -13,19 +13,21 @@ module.exports.Status = keyMirror({
 module.exports.getInitialState = () => ({
     status: {
         project: module.exports.Status.NOT_FETCHED,
-        credit: module.exports.Status.NOT_FETCHED,
         comments: module.exports.Status.NOT_FETCHED,
         faved: module.exports.Status.NOT_FETCHED,
         loved: module.exports.Status.NOT_FETCHED,
+        original: module.exports.Status.NOT_FETCHED,
+        parent: module.exports.Status.NOT_FETCHED,
         remixes: module.exports.Status.NOT_FETCHED,
         studios: module.exports.Status.NOT_FETCHED
     },
     projectInfo: {},
     remixes: [],
-    credit: {},
     comments: [],
     faved: false,
     loved: false,
+    original: {},
+    parent: {},
     studios: []
 });
 
@@ -43,13 +45,17 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             remixes: action.items
         });
+    case 'SET_ORIGINAL':
+        return Object.assign({}, state, {
+            original: action.info
+        });
+    case 'SET_PARENT':
+        return Object.assign({}, state, {
+            parent: action.info
+        });
     case 'SET_STUDIOS':
         return Object.assign({}, state, {
             studios: action.items
-        });
-    case 'SET_CREDIT':
-        return Object.assign({}, state, {
-            credit: action.info
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
@@ -85,8 +91,13 @@ module.exports.setProjectInfo = info => ({
     info: info
 });
 
-module.exports.setCreditInfo = info => ({
-    type: 'SET_CREDIT',
+module.exports.setOriginalInfo = info => ({
+    type: 'SET_ORIGINAL',
+    info: info
+});
+
+module.exports.setParentInfo = info => ({
+    type: 'SET_PARENT',
     info: info
 });
 
@@ -140,23 +151,43 @@ module.exports.getProjectInfo = (id, token) => (dispatch => {
     });
 });
 
-module.exports.getCreditInfo = id => (dispatch => {
-    dispatch(module.exports.setFetchStatus('credit', module.exports.Status.FETCHING));
+module.exports.getOriginalInfo = id => (dispatch => {
+    dispatch(module.exports.setFetchStatus('original', module.exports.Status.FETCHING));
     api({
         uri: `/projects/${id}`
     }, (err, body) => {
         if (err) {
-            dispatch(module.exports.setFetchStatus('credit', module.exports.Status.ERROR));
+            dispatch(module.exports.setFetchStatus('original', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
             return;
         }
         if (typeof body === 'undefined') {
-            dispatch(module.exports.setFetchStatus('credit', module.exports.Status.ERROR));
-            dispatch(module.exports.setError('No credit info'));
+            dispatch(module.exports.setFetchStatus('original', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No original info'));
             return;
         }
-        dispatch(module.exports.setFetchStatus('credit', module.exports.Status.FETCHED));
-        dispatch(module.exports.setCreditInfo(body));
+        dispatch(module.exports.setFetchStatus('original', module.exports.Status.FETCHED));
+        dispatch(module.exports.setOriginalInfo(body));
+    });
+});
+
+module.exports.getParentInfo = id => (dispatch => {
+    dispatch(module.exports.setFetchStatus('parent', module.exports.Status.FETCHING));
+    api({
+        uri: `/projects/${id}`
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('parent', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('parent', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No parent info'));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('parent', module.exports.Status.FETCHED));
+        dispatch(module.exports.setParentInfo(body));
     });
 });
 
