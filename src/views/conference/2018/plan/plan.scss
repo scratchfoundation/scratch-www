@@ -1,0 +1,113 @@
+@import "../../../../colors";
+@import "../../../../frameless";
+
+.plan {
+    section {
+        border-bottom: 2px solid $ui-border;
+
+        &.last {
+            border-bottom: 0;
+        }
+    }
+
+    .flex-row {
+        align-items: flex-start;
+        justify-content: space-between;
+
+        &.uneven {
+            img {
+                width: 100%;
+            }
+
+            @media only screen and (max-width: $tablet - 1) {
+                img {
+                    width: 30%;
+                }
+            }
+
+            @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+                img {
+                    width: 70%;
+                }
+            }
+        }
+    }
+
+    .lodging {
+        text-align: left;
+
+        @media only screen and (max-width: $desktop - 1) {
+            .uneven {
+                .short {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .transportation {
+        .uneven {
+            align-items: center;
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            .flex-row {
+                flex-direction: column-reverse;
+            }
+        }
+    }
+
+    .explore {
+        div {
+            margin-top: 30px;
+        }
+
+        ul {
+            display: flex;
+            max-height: 23rem;
+            flex-flow: column wrap;
+            justify-content: flex-start;
+        }
+
+        @media only screen and (max-width: $tablet - 1) {
+            ul {
+                max-height: 100%;
+            }
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            div {
+                text-align: left;
+            }
+        }
+    }
+
+    .faq {
+        dl {
+            dt {
+                font-weight: bold;
+            }
+
+            dd {
+                margin: 8px 0 32px 0;
+            }
+        }
+
+        .short {
+            margin-top: 64px;
+            border: 2px solid $ui-border;
+            border-radius: 4px;
+            background-color: $ui-white;
+            padding: 16px;
+            text-align: center;
+
+            h3 {
+                margin: 0;
+            }
+
+            @media only screen and (max-width: $tablet - 1) {
+                margin-top: 0;
+            }
+        }
+    }
+}

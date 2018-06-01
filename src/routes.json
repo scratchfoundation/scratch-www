@@ -28,20 +28,6 @@
         "title": "Community Blocks Beta Tester Interviews"
     },
     {
-        "name": "conference-details-2016",
-        "pattern": "^/conference/2016/:id/details/?$",
-        "routeAlias": "/conference(?!/201[4-5])",
-        "view": "conference/2016/details/details",
-        "title": "Event Details"
-    },
-    {
-        "name": "conference-expectations-2016",
-        "pattern": "^/conference/2016/expect/?$",
-        "routeAlias": "/conference(?!/201[4-5])",
-        "view": "conference/2016/expect/expect",
-        "title": "What to Expect"
-    },
-    {
         "name": "conference-index",
         "pattern": "^/conference/?(\\?.*)?$",
         "routeAlias": "/conference(?!/201[4-5])",
@@ -58,25 +44,39 @@
         "viewportWidth": "device-width"
     },
     {
-        "name": "conference-index-2016",
-        "pattern": "^/conference/2016/?$",
+        "name": "conference-details-2018",
+        "pattern": "^/conference/2018/:id/details/?$",
         "routeAlias": "/conference(?!/201[4-5])",
-        "view": "conference/2016/index/index",
+        "view": "conference/2018/details/details",
+        "title": "Event Details"
+    },
+    {
+        "name": "conference-expectations-2018",
+        "pattern": "^/conference/2018/expect/?$",
+        "routeAlias": "/conference(?!/201[4-5])",
+        "view": "conference/2018/expect/expect",
+        "title": "What to Expect"
+    },
+    {
+        "name": "conference-index-2018",
+        "pattern": "^/conference/2018/?$",
+        "routeAlias": "/conference(?!/201[4-5])",
+        "view": "conference/2018/index/index",
         "title": "Scratch Conference",
         "viewportWidth": "device-width"
     },
     {
-        "name": "conference-plan-2016",
-        "pattern": "^/conference/2016/plan/?$",
+        "name": "conference-plan-2018",
+        "pattern": "^/conference/2018/plan/?$",
         "routeAlias": "/conference(?!/201[4-5])",
-        "view": "conference/2016/plan/plan",
+        "view": "conference/2018/plan/plan",
         "title": "Plan Your Visit"
     },
     {
-        "name": "conference-schedule-2016",
-        "pattern": "^/conference/2016/schedule/?$",
+        "name": "conference-schedule-2018",
+        "pattern": "^/conference/2018/schedule/?$",
         "routeAlias": "/conference(?!/201[4-5])",
-        "view": "conference/2016/schedule/schedule",
+        "view": "conference/2018/schedule/schedule",
         "title": "Conference Schedule"
     },
     {
