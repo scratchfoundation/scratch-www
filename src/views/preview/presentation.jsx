@@ -32,7 +32,7 @@ class PreviewPresentation extends React.Component {
             faved,
             favoriteCount,
             isFullScreen,
-            isReportOpen,
+            isLoggedIn,
             isShared,
             loved,
             loveCount,
@@ -41,6 +41,7 @@ class PreviewPresentation extends React.Component {
             projectId,
             projectInfo,
             remixes,
+            report,
             studios,
             userOwnsProject,
             onFavoriteClicked,
@@ -244,7 +245,7 @@ class PreviewPresentation extends React.Component {
                                         <Button className="action-button copy-link-button">
                                             Copy Link
                                         </Button>
-                                        {(!userOwnsProject) &&
+                                        {(isLoggedIn && !userOwnsProject) &&
                                             <React.Fragment>
                                                 <Button
                                                     className="action-button report-button"
@@ -254,8 +255,8 @@ class PreviewPresentation extends React.Component {
                                                     Report
                                                 </Button>,
                                                 <ReportModal
-                                                    isOpen={isReportOpen}
                                                     key="report-modal"
+                                                    report={report}
                                                     type="project"
                                                     onReport={onReportSubmit}
                                                     onRequestClose={onReportClose}
@@ -288,7 +289,7 @@ PreviewPresentation.propTypes = {
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
     isFullScreen: PropTypes.bool,
-    isReportOpen: PropTypes.bool,
+    isLoggedIn: PropTypes.bool,
     isShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
@@ -304,6 +305,12 @@ PreviewPresentation.propTypes = {
     projectId: PropTypes.string,
     projectInfo: projectShape,
     remixes: PropTypes.arrayOf(PropTypes.object),
+    report: PropTypes.shape({
+        category: PropTypes.string,
+        notes: PropTypes.string,
+        open: PropTypes.bool,
+        waiting: PropTypes.bool
+    }),
     studios: PropTypes.arrayOf(PropTypes.object),
     userOwnsProject: PropTypes.bool
 };

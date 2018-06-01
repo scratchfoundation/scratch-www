@@ -44,7 +44,12 @@ class Preview extends React.Component {
             favoriteCount: 0,
             loveCount: 0,
             projectId: parts[1] === 'editor' ? 0 : parts[1],
-            reportOpen: false
+            report: {
+                category: '',
+                notes: '',
+                open: false,
+                waiting: false
+            }
         };
         this.addEventListeners();
     }
@@ -86,19 +91,6 @@ class Preview extends React.Component {
     componentWillUnmount () {
         this.removeEventListeners();
     }
-    initState () {
-        const pathname = window.location.pathname.toLowerCase();
-        const parts = pathname.split('/').filter(Boolean);
-        // parts[0]: 'preview'
-        // parts[1]: either :id or 'editor'
-        // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
-        return {
-            editable: false,
-            favoriteCount: 0,
-            loveCount: 0,
-            projectId: parts[1] === 'editor' ? 0 : parts[1]
-        };
-    }
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
     }
@@ -106,19 +98,31 @@ class Preview extends React.Component {
         window.removeEventListener('popstate', this.handlePopState);
     }
     handleReportClick () {
-        this.setState({reportOpen: true});
+        this.setState({report: {...this.state.report, open: true}});
     }
     handleReportClose () {
-        this.setState({reportOpen: false});
+        this.setState({report: {...this.state.report, open: false}});
     }
     handleReportSubmit (formData) {
+        this.setState({report: {
+            category: formData.report_category,
+            notes: formData.notes,
+            open: this.state.report.open,
+            waiting: true}
+        });
+
         const data = {
             ...formData,
             id: this.state.projectId,
-            username: this.props.user.username
+            user: this.props.user.username
         };
         console.log('submit report data', data); // eslint-disable-line no-console
-        this.setState({reportOpen: false});
+        this.setState({report: {
+            category: '',
+            notes: '',
+            open: false,
+            waiting: false}
+        });
     }
     handlePopState () {
         const path = window.location.pathname.toLowerCase();
@@ -219,10 +223,15 @@ class Preview extends React.Component {
             )
         );
     }
-    userOwnsProject () {
+    isLoggedIn () {
         return (
             this.props.sessionStatus === sessionActions.Status.FETCHED &&
-            Object.keys(this.props.user).length > 0 &&
+            Object.keys(this.props.user).length > 0
+        );
+    }
+    userOwnsProject () {
+        return (
+            this.isLoggedIn() &&
             Object.keys(this.props.projectInfo).length > 0 &&
             this.props.user.id === this.props.projectInfo.author.id
         );
@@ -237,7 +246,7 @@ class Preview extends React.Component {
                         faved={this.props.faved}
                         favoriteCount={this.state.favoriteCount}
                         isFullScreen={this.state.isFullScreen}
-                        isReportOpen={this.state.reportOpen}
+                        isLoggedIn={this.isLoggedIn()}
                         isShared={this.isShared()}
                         loveCount={this.state.loveCount}
                         loved={this.props.loved}
@@ -246,6 +255,7 @@ class Preview extends React.Component {
                         projectId={this.state.projectId}
                         projectInfo={this.props.projectInfo}
                         remixes={this.props.remixes}
+                        report={this.state.report}
                         studios={this.props.studios}
                         user={this.props.user}
                         userOwnsProject={this.userOwnsProject()}

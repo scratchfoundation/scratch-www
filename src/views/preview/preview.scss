@@ -237,9 +237,9 @@ $stage-height: 404px;
         background-color: $ui-blue-10percent;
         padding: .5rem;
         width: calc(100% - (1rem + 2px));
+        overflow: auto;
         white-space: pre-line;        
         font-size: 1rem;
-        overflow: auto;
         // flex-grow
         flex: 1;
     }
