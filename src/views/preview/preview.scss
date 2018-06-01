@@ -217,10 +217,11 @@ $stage-height: 404px;
     }
     
     .description-block {
+        display: flex;
         width: 100%;
         flex-direction: column;
         align-items: flex-start;
-        flex-grow: 1;
+        flex: 1;
     }
     
     .project-textlabel {
@@ -238,6 +239,7 @@ $stage-height: 404px;
         width: calc(100% - (1rem + 2px));
         white-space: pre-line;        
         font-size: 1rem;
+        overflow: auto;
         // flex-grow
         flex: 1;
     }
