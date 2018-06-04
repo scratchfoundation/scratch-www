@@ -67,7 +67,7 @@ const About = () => (
                         id="about.aroundTheWorldDescription"
                         values={{
                             translationLink: (
-                                <a href="http://wiki.scratch.mit.edu/wiki/How_to_Translate_Scratch">
+                                <a href="https://en.scratch-wiki.info/wiki/How_to_Translate_Scratch">
                                     <FormattedMessage id="about.translationLinkText" />
                                 </a>
                             )
