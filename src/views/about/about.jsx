@@ -141,7 +141,7 @@ const About = () => (
                     <h3><FormattedMessage id="about.learnMore" /></h3>
                     <ul className="list">
                         <li>
-                            <a href="/help"><FormattedMessage id="about.learnMoreHelp" /></a>
+                            <a href="/tips"><FormattedMessage id="about.learnMoreHelp" /></a>
                         </li>
                         <li>
                             <a href="/info/faq"><FormattedMessage id="about.learnMoreFaq" /></a>
