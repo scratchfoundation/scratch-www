@@ -123,14 +123,6 @@ A set of [Docker](https://www.docker.com/what-docker) related files are provided
 
 Unless you have access to the Scratch REST API repository, this may not be very useful for you.
 
-This currently requires a version of the [Scratch GUI](https://github.com/LLK/scratch-gui) repository to be checked out in parallel to scratch-www, e.g.:
-
-```bash
-- 
-  - scratch-www/
-  - scratch-gui/
-```
-
 ##### Docker Quick Start (CLI)
 
 Make sure you already have the Scratch REST API running locally in its docker environment.
