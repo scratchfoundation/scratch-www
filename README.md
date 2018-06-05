@@ -113,15 +113,18 @@ Setting `FALLBACK=https://scratch.mit.edu` allows the web client to retrieve dat
 
 Additionally, if you set `FALLBACK=https://scratch.mit.edu`, be aware that clicking on links to parts of the website not yet migrated over (currently such as `Explore`, `Discuss`, `Profile`, etc.) will take you to the Scratch website itself.
 
+#### Windows
+Some users have experienced difficulties when trying to get our web client to work on Windows. One solution could be to use [Cygwin](https://www.cygwin.com/). If that doesn't work, you might want to use [Wubi](https://wiki.ubuntu.com/WubiGuide) (Windows XP, Vista, 7) or [Wubiuefi](https://github.com/hakuna-m/wubiuefi) (Windows 8 or higher). Wubi(uefi) is a Windows Installer for Ubuntu that allows you to have Ubuntu and Windows on one disk, without the need of an extra partition.
+
 #### Docker
 
-A set of [Docker](https://www.docker.com/what-docker) related files are provided to create isolated [container](https://www.docker.com/what-container) environments suitable for development:
+_This section is only relevant to the Scratch Team since it requires access to private repositories, so is not usable by 3rd party contributors._
+
+A set of [Docker](https://www.docker.com/what-docker) related files are provided to create isolated [container](https://www.docker.com/what-container) environments suitable for end-to-end local development:
 
 * Dockerfile
 * docker-compose.yml
 * docker_entrypoint.sh
-
-Unless you have access to the Scratch REST API repository, this may not be very useful for you.
 
 ##### Docker Quick Start (CLI)
 
@@ -144,6 +147,3 @@ networks:
   scratchapi_scratch_network:
     external: true
 ```
-
-#### Windows
-Some users have experienced difficulties when trying to get our web client to work on Windows. One solution could be to use [Cygwin](https://www.cygwin.com/). If that doesn't work, you might want to use [Wubi](https://wiki.ubuntu.com/WubiGuide) (Windows XP, Vista, 7) or [Wubiuefi](https://github.com/hakuna-m/wubiuefi) (Windows 8 or higher). Wubi(uefi) is a Windows Installer for Ubuntu that allows you to have Ubuntu and Windows on one disk, without the need of an extra partition.
