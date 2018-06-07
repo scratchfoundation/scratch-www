@@ -7,6 +7,7 @@
     "stop": "make stop",
     "test": "make test",
     "smoke": "make smoke",
+    "smoke-verbose": "make smoke-verbose",
     "watch": "make watch",
     "build": "make build",
     "dev": "make watch && make start &"
@@ -28,10 +29,12 @@
     "express-http-proxy": "1.1.0",
     "lodash.defaults": "4.0.1",
     "newrelic": "1.25.4",
-    "raven": "0.10.0"
+    "raven": "0.10.0",
+    "scratch-gui": "0.1.0-prerelease.20180529181946"
   },
   "devDependencies": {
     "ajv": "6.4.0",
+    "approximate-number": "2.0.0",
     "async": "1.5.2",
     "autoprefixer": "6.3.6",
     "babel-cli": "6.26.0",
@@ -94,7 +97,6 @@
     "redux-thunk": "2.0.1",
     "sass-lint": "1.5.1",
     "sass-loader": "6.0.6",
-    "scratch-gui": "0.1.0-prerelease.20180427201459",
     "scratchr2_translations": "git://github.com/LLK/scratchr2_translations.git#master",
     "slick-carousel": "1.6.0",
     "source-map-support": "0.3.2",

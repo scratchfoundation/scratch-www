@@ -1,0 +1,39 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.mod-report * {
+    box-sizing: border-box;
+}
+
+.mod-report {
+    margin: 100px auto;
+    outline: none;
+    padding: 0;
+    width: 30rem;
+    overflow: hidden;
+    user-select: none;
+}
+
+.report-modal-header {
+    box-shadow: inset 0 -1px 0 0 $ui-coral-dark;
+    background-color: $ui-coral;
+    padding-top: .75rem;
+    width: 100%;
+    height: 3rem;
+    box-sizing: border-box;
+}
+
+.report-content-label {
+    text-align: center;
+    color: $type-white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.report-modal-content {
+    margin: 1rem auto;
+    width: 80%;
+    line-height: 1.5rem;
+    font-size: .875rem;
+}

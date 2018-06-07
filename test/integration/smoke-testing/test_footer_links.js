@@ -3,13 +3,13 @@
  *
  * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows
  */
- 
+
 const tap = require('tap');
 
 const {
     driver,
     webdriver
-} = require('../../helpers/selenium-helpers.js');
+} = require('../selenium-helpers.js');
 
 // Selenium's promise driver will be deprecated, so we should not rely on it
 webdriver.SELENIUM_PROMISE_MANAGER = 0;

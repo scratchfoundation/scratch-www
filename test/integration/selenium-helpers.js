@@ -1,8 +1,24 @@
-const webdriver = require('selenium-webdriver');
+var webdriver = require('selenium-webdriver');
 
-const driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
+const headless = process.env.SMOKE_HEADLESS || false;
+
+const getDriver = function () {
+    const chromeCapabilities = webdriver.Capabilities.chrome();
+    let args = [];
+    if (headless) {
+        args.push('--headless');
+        args.push('window-size=1024,1680');
+        args.push('--no-sandbox');
+    }
+    chromeCapabilities.set('chromeOptions', {args});
+    const newDriver = new webdriver.Builder()
+        .forBrowser('chrome')
+        .withCapabilities(chromeCapabilities)
+        .build();
+    return newDriver;
+};
+
+const driver = getDriver();
 
 const {By, until} = webdriver;
 
@@ -28,6 +44,10 @@ const clickButton = (text) => {
 
 const findByCss = (css) => {
     return driver.wait(until.elementLocated(By.css(css), 1000 * 5));
+};
+
+const clickCss = (css) => {
+    return findByCss(css).then(el => el.click());
 };
 
 const getLogs = (whitelist) => {
@@ -65,5 +85,7 @@ module.exports = {
     findText,
     clickButton,
     findByCss,
-    getLogs
+    clickCss,
+    getLogs,
+    getDriver
 };
