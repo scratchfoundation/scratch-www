@@ -93,7 +93,7 @@ class TeacherRegistration extends React.Component {
     }
     render () {
         const permissions = this.props.session.permissions || {};
-        
+
         return (
             <Deck className="teacher-registration">
                 {this.state.registrationError ?
@@ -106,7 +106,7 @@ class TeacherRegistration extends React.Component {
                             onNextStep={this.handleAdvanceStep}
                         />
                         <Steps.DemographicsStep
-                            birthOffset={13}
+                            birthOffset={16}
                             waiting={this.state.waiting}
                             onNextStep={this.handleAdvanceStep}
                         />
