@@ -20,6 +20,7 @@ const ShareBanner = require('../../components/share-banner/share-banner.jsx');
 const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolumn.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
+const ExtensionChip = require('./extension-chip.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -43,7 +44,7 @@ class PreviewPresentation extends React.Component {
     handleReportClose () {
         this.setState({reportOpen: false});
     }
-    
+
     handleReportSubmit (formData, callback) {
         const data = {
             ...formData,
@@ -92,7 +93,7 @@ class PreviewPresentation extends React.Component {
                         </FlexRow>
                     </ShareBanner>
                 }
-                
+
                 { projectInfo && projectInfo.author && projectInfo.author.id && (
                     <div className="inner">
                         <Formsy>
@@ -106,7 +107,7 @@ class PreviewPresentation extends React.Component {
                                     </a>
                                     <div className="title">
                                         {editable ?
-                                            
+
                                             <InplaceInput
                                                 className="project-title"
                                                 handleUpdate={onUpdate}
@@ -335,6 +336,23 @@ class PreviewPresentation extends React.Component {
                                 </FlexRow>
                             </FlexRow>
                             <FlexRow className="preview-row">
+                                <FlexRow className="extension-list">
+                                    <ExtensionChip
+                                        hasStatus
+                                        extensionName="LEGO WeDo 2.0"
+                                        iconSrc="https://01.keybase.pub/extension-icon/wedo2.svg"
+                                    />
+                                    <ExtensionChip
+                                        extensionName="Pen"
+                                        iconSrc="https://01.keybase.pub/extension-icon/pen.svg"
+                                    />
+                                    <ExtensionChip
+                                        extensionName="Google Translate"
+                                        iconSrc="https://01.keybase.pub/extension-icon/translation.svg"
+                                    />
+                                </FlexRow>
+                            </FlexRow>
+                            <FlexRow className="preview-row">
                                 <div className="comments-container">
                                     <div className="project-title">
                                         Comments go here
@@ -391,7 +409,7 @@ class PreviewPresentation extends React.Component {
                     </div>
                 )}
             </div>
-            
+
         );
     }
 }
