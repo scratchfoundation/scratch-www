@@ -475,6 +475,10 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
             background-image: url("/svgs/project/report-white.svg");
         }
     }
+
+    .extension-list {
+        justify-content: flex-start;
+    }
     
     .remix-list,
     .studio-list {
