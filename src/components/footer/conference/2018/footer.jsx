@@ -18,7 +18,7 @@ const ConferenceFooter = props => (
                     <a href="https://odl.mit.edu/">
                         <img
                             alt="MIT Office of Digital Learning"
-                            src="/images/conference/footer/2018/mit-odl.png"
+                            src="/images/conference/footer/2018/mit-ol-logo.png"
                         />
                     </a>
                 </li>
