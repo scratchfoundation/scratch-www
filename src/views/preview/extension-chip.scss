@@ -14,10 +14,25 @@
         background-color: $ui-orange-25percent;
     }
 
+    .extension-icon {
+        width: 2rem;
+        height: 2rem;
+        margin-right: 5px;
+    }
+
     .extension-content {
         display: flex;
         flex-flow: column;
         justify-content: center;
-        margin-left: 0 5px;
+        margin: 0 5px;
+        font-size: .875rem;
+    }
+
+    .extension-status{
+        font-size: .675rem;
+        text-align: center;
+        color: white;
+        border-radius: 10px;
+        background-color: $ui-orange;
     }
 }
