@@ -99,7 +99,7 @@ const ConferenceExpectations = () => (
                         <div className="date">
                             <b>Friday</b>
                         </div>
-                        <h3>Interdisciplinary Creativity</h3>
+                        <h3>Creative Is Not A Noun</h3>
                         <img
                             alt="Austin Kleon Photo"
                             src="/images/conference/expect/2018/austin_kleon.png"
@@ -116,12 +116,18 @@ const ConferenceExpectations = () => (
                         <p>
                             <b>Karen Brennan (moderator)</b>
                         </p>
+
+                        <p>
+                            Writer and artist Austin Kleon (author of the bestsellers Steal Like An Artist{' '}
+                            and Show Your Work!) discusses his practice and shares 10 principles for anyone{' '}
+                            who wants to do more creative work in a connected world.
+                        </p>
                     </div>
                     <div className="card">
                         <div className="date">
                             <b>Saturday</b>
                         </div>
-                        <h3>Growing Up with Scratch</h3>
+                        <h3>Growing Up With Scratch</h3>
                         <img
                             alt="Isabella, JT, and Jocelyn Photo"
                             src="/images/conference/expect/2018/growing-up-with-scratch-presenters.png"
