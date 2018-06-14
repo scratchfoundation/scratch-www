@@ -7,7 +7,7 @@ const ExtensionChip = props => (
     <div className={classNames('extension-chip', {'has-status': props.hasStatus})}>
         <img
             className="extension-icon"
-            src={props.iconSrc}
+            src={props.iconURI}
         />
         <div className="extension-content">
             <span>{props.extensionName}</span>
@@ -23,7 +23,7 @@ const ExtensionChip = props => (
 ExtensionChip.propTypes = {
     extensionName: PropTypes.string,
     hasStatus: PropTypes.boolean,
-    iconSrc: PropTypes.string
+    iconURI: PropTypes.string
 };
 
 
