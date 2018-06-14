@@ -15,68 +15,68 @@ const TextArea = require('../../forms/textarea.jsx');
 require('../../forms/button.scss');
 require('./modal.scss');
 
+const REPORT_OPTIONS =[
+    {
+        value: '',
+        label: {id: 'report.reasonPlaceHolder'},
+        prompt: {id: 'report.promptPlaceholder'}
+    },
+    {
+        value: '0',
+        label: {id: 'report.reasonCopy'},
+        prompt: {id: 'report.promptCopy'}
+    },
+    {
+        value: '1',
+        label: {id: 'report.reasonUncredited'},
+        prompt: {id: 'report.promptUncredited'}
+    },
+    {
+        value: '2',
+        label: {id: 'report.reasonScary'},
+        prompt: {id: 'report.promptScary'}
+    },
+    {
+        value: '3',
+        label: {id: 'report.reasonLanguage'},
+        prompt: {id: 'report.promptLanguage'}
+    },
+    {
+        value: '4',
+        label: {id: 'report.reasonMusic'},
+        prompt: {id: 'report.promptMusic'}
+    },
+    {
+        value: '8',
+        label: {id: 'report.reasonImage'},
+        prompt: {id: 'report.promptImage'}
+    },
+    {
+        value: '5',
+        label: {id: 'report.reasonPersonal'},
+        prompt: {id: 'report.promptPersonal'}
+    },
+    {
+        value: '6',
+        label: {id: 'general.other'},
+        prompt: {id: 'report.promptGuidelines'}
+    }
+];
+
 class ReportModal extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
             'handleReportCategorySelect'
         ]);
-        this.state = {
-            reportCategory: this.props.report.category,
-            options: [
-                {
-                    value: '',
-                    label: this.props.intl.formatMessage({id: 'report.reasonPlaceHolder'}),
-                    prompt: this.props.intl.formatMessage({id: 'report.promptPlaceholder'})
-                },
-                {
-                    value: '0',
-                    label: this.props.intl.formatMessage({id: 'report.reasonCopy'}),
-                    prompt: this.props.intl.formatMessage({id: 'report.promptCopy'})
-                },
-                {
-                    value: '1',
-                    label: this.props.intl.formatMessage({id: 'report.reasonUncredited'}),
-                    prompt: this.props.intl.formatMessage({id: 'report.promptUncredited'})
-                },
-                {
-                    value: '2',
-                    label: this.props.intl.formatMessage({id: 'report.reasonScary'}),
-                    prompt: this.props.intl.formatMessage({id: 'report.promptScary'})
-                },
-                {
-                    value: '3',
-                    label: this.props.intl.formatMessage({id: 'report.reasonLanguage'}),
-                    prompt: this.props.intl.formatMessage({id: 'report.promptLanguage'})
-                },
-                {
-                    value: '4',
-                    label: this.props.intl.formatMessage({id: 'report.reasonMusic'}),
-                    prompt: this.props.intl.formatMessage({id: 'report.promptMusic'})
-                },
-                {
-                    value: '8',
-                    label: this.props.intl.formatMessage({id: 'report.reasonImage'}),
-                    prompt: this.props.intl.formatMessage({id: 'report.promptImage'})
-                },
-                {
-                    value: '5',
-                    label: this.props.intl.formatMessage({id: 'report.reasonPersonal'}),
-                    prompt: this.props.intl.formatMessage({id: 'report.promptPersonal'})
-                },
-                {
-                    value: '6',
-                    label: this.props.intl.formatMessage({id: 'general.other'}),
-                    prompt: this.props.intl.formatMessage({id: 'report.promptGuidelines'})
-                }
-            ]
-        };
+        this.state = {reportCategory: this.props.report.category};
     }
     handleReportCategorySelect (name, value) {
         this.setState({reportCategory: value});
     }
     lookupPrompt (value) {
-        return this.state.options.find(item => item.value === value).prompt;
+        const prompt = REPORT_OPTIONS.find(item => item.value === value).prompt;
+        return this.props.intl.formatMessage(prompt);
     }
     render () {
         const {
@@ -121,7 +121,10 @@ class ReportModal extends React.Component {
                                 elementWrapperClassName="report-modal-field"
                                 label={null}
                                 name="report_category"
-                                options={this.state.options}
+                                options={REPORT_OPTIONS.map(option => ({
+                                    value: option.value,
+                                    label: this.props.intl.formatMessage(option.label)
+                                }))}
                                 value={this.state.reportCategory}
                                 onChange={this.handleReportCategorySelect}
                             />
