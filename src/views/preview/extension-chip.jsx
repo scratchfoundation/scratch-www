@@ -22,7 +22,7 @@ const ExtensionChip = props => (
 
 ExtensionChip.propTypes = {
     extensionName: PropTypes.string,
-    hasStatus: PropTypes.boolean,
+    hasStatus: PropTypes.bool,
     iconURI: PropTypes.string
 };
 
