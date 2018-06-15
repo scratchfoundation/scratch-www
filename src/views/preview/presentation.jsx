@@ -31,7 +31,8 @@ class PreviewPresentation extends React.Component {
         bindAll(this, [
             'handleReportClick',
             'handleReportClose',
-            'handleReportSubmit'
+            'handleReportSubmit',
+            'onExtensionAdded'
         ]);
         this.state = {
             reportOpen: false,
@@ -59,6 +60,7 @@ class PreviewPresentation extends React.Component {
     }
 
     onExtensionAdded (blockInfoList) {
+        // We only want blocks with JSON (since that's where all the relevant info is)
         const blockJSONList = blockInfoList.map(blockInfo => blockInfo.json);
         this.setState(prevState => ({
             extensionList: [...prevState.extensionList, blockJSONList[0]]
@@ -158,8 +160,7 @@ class PreviewPresentation extends React.Component {
                                         isPlayerOnly
                                         basePath="/"
                                         className="guiPlayer"
-                                        // eslint-disable-next-line react/jsx-no-bind
-                                        extensionCallback={this.onExtensionAdded.bind(this)}
+                                        extensionCallback={this.onExtensionAdded}
                                         isFullScreen={isFullScreen}
                                         previewInfoVisible="false"
                                         projectId={projectId}
