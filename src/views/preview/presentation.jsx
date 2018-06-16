@@ -19,23 +19,52 @@ const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const ShareBanner = require('../../components/share-banner/share-banner.jsx');
 const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolumn.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
+const AddToStudioModal = require('../../components/modal/addtostudio/modal.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
+const DEBUG = true; // NOTE: remove this
+
 class PreviewPresentation extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
+            'handleAddToStudioClick',
+            'handleAddToStudioClose',
+            'handleAddToStudioSubmit',
             'handleReportClick',
             'handleReportClose',
             'handleReportSubmit'
         ]);
         this.state = {
+            addToStudioOpen: false,
             reportOpen: false
         };
     }
+
+    // Add to Studio modal
+    handleAddToStudioClick (e) {
+        e.preventDefault();
+        this.setState({addToStudioOpen: true});
+    }
+    handleAddToStudioClose () {
+        this.setState({addToStudioOpen: false});
+    }
+    handleAddToStudioSubmit (formData, callback) {
+        const data = {
+            ...formData,
+            id: this.props.projectId,
+            username: this.props.user.username
+        };
+        console.log('submit addToStudio data', data); // eslint-disable-line no-console
+        // TODO: pass error to modal via callback.
+        callback();
+        this.setState({addToStudioOpen: false});
+    }
+
+    // Report Project modal
     handleReportClick (e) {
         e.preventDefault();
         this.setState({reportOpen: true});
@@ -43,7 +72,6 @@ class PreviewPresentation extends React.Component {
     handleReportClose () {
         this.setState({reportOpen: false});
     }
-    
     handleReportSubmit (formData, callback) {
         const data = {
             ...formData,
@@ -55,6 +83,8 @@ class PreviewPresentation extends React.Component {
         callback();
         this.setState({reportOpen: false});
     }
+
+    // render presentation
     render () {
         const {
             editable,
@@ -92,7 +122,7 @@ class PreviewPresentation extends React.Component {
                         </FlexRow>
                     </ShareBanner>
                 }
-                
+
                 { projectInfo && projectInfo.author && projectInfo.author.id && (
                     <div className="inner">
                         <Formsy>
@@ -106,7 +136,7 @@ class PreviewPresentation extends React.Component {
                                     </a>
                                     <div className="title">
                                         {editable ?
-                                            
+
                                             <InplaceInput
                                                 className="project-title"
                                                 handleUpdate={onUpdate}
@@ -305,9 +335,29 @@ class PreviewPresentation extends React.Component {
                                         {/*  eslint-enable react/jsx-sort-props */}
                                     </div>
                                     <FlexRow className="action-buttons">
-                                        <Button className="action-button studio-button">
-                                            Add to Studio
-                                        </Button>
+                                        {
+                                            //(DEBUG || (
+                                            sessionStatus === sessionActions.Status.FETCHED &&
+                                            Object.keys(user).length > 0 &&
+                                            user.id !== projectInfo.author.id
+                                            //))
+                                            &&
+                                            [
+                                                <Button className="action-button studio-button"
+                                                    key="add-to-studio-button"
+                                                    onClick={this.handleAddToStudioClick}
+                                                >
+                                                    Add to Studio
+                                                </Button>,
+                                                <AddToStudioModal
+                                                    isOpen={this.state.addToStudioOpen}
+                                                    key="add-to-studio-modal"
+                                                    type="project"
+                                                    onAddToStudio={this.handleAddToStudioSubmit}
+                                                    onRequestClose={this.handleAddToStudioClose}
+                                                />
+                                            ]
+                                        }
                                         <Button className="action-button copy-link-button">
                                             Copy Link
                                         </Button>
@@ -391,7 +441,7 @@ class PreviewPresentation extends React.Component {
                     </div>
                 )}
             </div>
-            
+
         );
     }
 }
