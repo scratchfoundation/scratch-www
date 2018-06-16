@@ -336,11 +336,11 @@ class PreviewPresentation extends React.Component {
                                     </div>
                                     <FlexRow className="action-buttons">
                                         {
-                                            //(DEBUG || (
+                                            (DEBUG || ( // NOTE: remove this!
                                             sessionStatus === sessionActions.Status.FETCHED &&
                                             Object.keys(user).length > 0 &&
                                             user.id !== projectInfo.author.id
-                                            //))
+                                            ))
                                             &&
                                             [
                                                 <Button className="action-button studio-button"

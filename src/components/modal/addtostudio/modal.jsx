@@ -19,8 +19,7 @@ require('./modal.scss');
 class AddToStudioModal extends React.Component {
     constructor (props) {
         super(props);
-        bindAll(this, [
-            'handleReasonSelect',
+        bindAll(this, [ // NOTE: will need to add and bind callback fn to handle addind and removing studios
             'handleSubmit'
         ]);
         this.state = {
