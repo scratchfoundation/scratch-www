@@ -1,3 +1,6 @@
+// preview view can show either project page or editor page;
+// idea is that we shouldn't require a page reload to switch back and forth
+
 const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
@@ -49,7 +52,7 @@ class Preview extends React.Component {
                 this.props.getRemixes(this.state.projectId);
                 this.props.getStudios(this.state.projectId);
             }
-            
+
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
@@ -157,7 +160,7 @@ class Preview extends React.Component {
         }
     }
     handlePermissions () {
-        // TODO: handle admins and mods 
+        // TODO: handle admins and mods
         if (this.props.projectInfo.author.username === this.props.user.username) {
             this.setState({editable: true});
         }
