@@ -274,7 +274,7 @@ const PreviewPresentation = ({
                     </Formsy>
                 </div>
             )}
-        </div>  
+        </div>
     );
 };
 

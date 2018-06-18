@@ -15,7 +15,7 @@ const TextArea = require('../../forms/textarea.jsx');
 require('../../forms/button.scss');
 require('./modal.scss');
 
-const REPORT_OPTIONS =[
+const REPORT_OPTIONS = [
     {
         value: '',
         label: {id: 'report.reasonPlaceHolder'},
