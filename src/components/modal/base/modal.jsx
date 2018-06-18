@@ -20,6 +20,7 @@ class Modal extends React.Component {
         ]);
     }
     handleRequestClose () {
+        alert("close");
         return this.modal.portal.requestClose();
     }
     render () {

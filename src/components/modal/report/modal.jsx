@@ -12,6 +12,7 @@ const Button = require('../../forms/button.jsx');
 const Select = require('../../forms/select.jsx');
 const Spinner = require('../../spinner/spinner.jsx');
 const TextArea = require('../../forms/textarea.jsx');
+const FlexRow = require('../../flex-row/flex-row.jsx');
 
 require('../../forms/button.scss');
 require('./modal.scss');
@@ -149,28 +150,30 @@ class ReportModal extends React.Component {
                                     minLength: 30
                                 }}
                             />
-                            {this.state.reportWaiting ? [
-                                <Button
-                                    className="submit-button white"
-                                    disabled="disabled"
-                                    key="submitButton"
-                                    type="submit"
-                                >
-                                    <Spinner />
-                                </Button>
-                            ] : [
-                                <Button
-                                    className="submit-button white"
-                                    key="submitButton"
-                                    type="submit"
-                                >
-                                    <FormattedMessage id="report.send" />
-                                </Button>
-                            ]}
+                            <FlexRow className="action-buttons">
+                                {this.state.reportWaiting ? [
+                                    <Button
+                                        className="submit-button"
+                                        disabled="disabled"
+                                        key="submitButton"
+                                        type="submit"
+                                    >
+                                        <Spinner />
+                                    </Button>
+                                ] : [
+                                    <Button
+                                        className="submit-button"
+                                        key="submitButton"
+                                        type="submit"
+                                    >
+                                        <FormattedMessage id="report.send" />
+                                    </Button>
+                                ]}
+                            </FlexRow>
                         </Form>
                     </div>
                 </div>
-                
+
             </Modal>
         );
     }

@@ -340,9 +340,8 @@ class PreviewPresentation extends React.Component {
                                             sessionStatus === sessionActions.Status.FETCHED &&
                                             Object.keys(user).length > 0 &&
                                             user.id !== projectInfo.author.id
-                                            ))
-                                            &&
-                                            [
+                                            )) // NOTE: remove this!
+                                            && [
                                                 <Button className="action-button studio-button"
                                                     key="add-to-studio-button"
                                                     onClick={this.handleAddToStudioClick}
@@ -362,9 +361,12 @@ class PreviewPresentation extends React.Component {
                                             Copy Link
                                         </Button>
                                         {
+                                            (DEBUG || ( // NOTE: remove this!
                                             sessionStatus === sessionActions.Status.FETCHED &&
                                             Object.keys(user).length > 0 &&
-                                            user.id !== projectInfo.author.id && [
+                                            user.id !== projectInfo.author.id
+                                            )) // NOTE: remove this!
+                                            && [
                                                 <Button
                                                     className="action-button report-button"
                                                     key="report-button"

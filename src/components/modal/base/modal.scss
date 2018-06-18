@@ -59,3 +59,15 @@ $modal-close-size: 1rem;
         position: fixed;
     }
 }
+
+/* Close button, Submit button, etc. */
+.action-buttons {
+    display: flex;
+    justify-content: flex-end !important;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+}
+
+.action-button {
+    margin: 0 0 0 .5rem;
+}

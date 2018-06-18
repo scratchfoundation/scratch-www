@@ -12,6 +12,7 @@ const Button = require('../../forms/button.jsx');
 const Select = require('../../forms/select.jsx');
 const Spinner = require('../../spinner/spinner.jsx');
 const TextArea = require('../../forms/textarea.jsx');
+const FlexRow = require('../../flex-row/flex-row.jsx');
 
 require('../../forms/button.scss');
 require('./modal.scss');
@@ -23,8 +24,6 @@ class AddToStudioModal extends React.Component {
             'handleSubmit'
         ]);
         this.state = {
-            prompt: props.intl.formatMessage({id: 'addToStudio.promptPlaceholder'}),
-            reason: '',
             waiting: false
         };
     }
@@ -33,8 +32,6 @@ class AddToStudioModal extends React.Component {
         this.props.onAddToStudio(formData, err => {
             if (err) log.error(err);
             this.setState({
-                prompt: this.props.intl.formatMessage({id: 'addToStudio.promptPlaceholder'}),
-                reason: '',
                 waiting: false
             });
         });
@@ -61,53 +58,39 @@ class AddToStudioModal extends React.Component {
                     </div>
 
                     <div className="addToStudio-modal-content">
-                        <FormattedMessage
-                            id={`addToStudio.${type}Instructions`}
-                            values={{
-                                CommunityGuidelinesLink: (
-                                    <a href="/community_guidelines">
-                                        <FormattedMessage id="addToStudio.CommunityGuidelinesLinkText" />
-                                    </a>
-                                )
-                            }}
-                        />
                         <Form
                             className="add-to-studio"
                             onSubmit={this.handleSubmit}
                         >
-                            <TextArea
-                                required
-                                className="add-to-studio-text"
-                                name="addToStudioText"
-                                placeholder={this.state.prompt}
-                                validationErrors={{
-                                    maxLength: this.props.intl.formatMessage({id: 'addToStudio.tooLongError'}),
-                                    minLength: this.props.intl.formatMessage({id: 'addToStudio.tooShortError'})
-                                }}
-                                validations={{
-                                    // TODO find out max and min characters
-                                    maxLength: 500,
-                                    minLength: 30
-                                }}
-                            />
-                            {this.state.addToStudioWaiting ? [
+                            <FlexRow className="action-buttons">
                                 <Button
-                                    className="submit-button white"
-                                    disabled="disabled"
-                                    key="submitButton"
-                                    type="submit"
+                                    className="action-button close-button white"
+                                    onClick={this.handleRequestClose}
+                                    key="closeButton"
+                                    name="closeButton"
+                                    type="button"
                                 >
-                                    <Spinner />
+                                    <FormattedMessage id="general.close" />
                                 </Button>
-                            ] : [
-                                <Button
-                                    className="submit-button white"
-                                    key="submitButton"
-                                    type="submit"
-                                >
-                                    <FormattedMessage id="addtostudio.okay" />
-                                </Button>
-                            ]}
+                                {this.state.addToStudioWaiting ? [
+                                    <Button
+                                        className="action-button submit-button"
+                                        disabled="disabled"
+                                        key="submitButton"
+                                        type="submit"
+                                    >
+                                        <Spinner />
+                                    </Button>
+                                ] : [
+                                    <Button
+                                        className="action-button submit-button"
+                                        key="submitButton"
+                                        type="submit"
+                                    >
+                                        <FormattedMessage id="general.okay" />
+                                    </Button>
+                                ]}
+                            </FlexRow>
                         </Form>
                     </div>
                 </div>
