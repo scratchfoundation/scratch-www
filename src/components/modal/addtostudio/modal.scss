@@ -15,7 +15,7 @@
 }
 
 .addToStudio-modal-header {
-    box-shadow: inset 0 -1px 0 0 $dd-darkblue;
+    box-shadow: inset 0 -1px 0 0 $ui-dark-blue;
     background-color: $ui-royal-blue;
     padding-top: .75rem;
     width: 100%;
@@ -32,8 +32,53 @@
 }
 
 .addToStudio-modal-content {
-    margin: 1rem auto;
-    width: 80%;
+    margin: 0 auto;
+    width: 100%;
     line-height: 1.5rem;
     font-size: .875rem;
+}
+
+.studio-list-outer-scrollbox {
+    background-color: $ui-blue-10percent-solid;
+    padding-top: 10px;
+}
+
+
+.studio-list-inner-scrollbox {
+    height: 15rem;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-right: 8px;
+}
+
+.studio-list-inner-scrollbox::-webkit-scrollbar {
+    width: 9px;
+    background-color: $ui-blue-10percent-solid;
+}
+.studio-list-inner-scrollbox::-webkit-scrollbar-thumb {
+    background-color: $active-dark-gray;
+    border-radius: 5px;
+}
+.studio-list-inner-scrollbox::-webkit-scrollbar-track {
+}
+
+.studio-list-container {
+    background-color: $ui-blue-10percent-solid;
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: row wrap;
+    min-height: 30rem; /* NOTE: remove this, this is just to force scrolling */
+    padding: 1rem 3rem;
+}
+
+.studio-selector-button {
+    background-color: $ui-white;
+    color: $type-gray;
+    font-weight: 800;
+    height: 2.5rem;
+    margin: 0.5rem 0.5rem;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 40%;
 }

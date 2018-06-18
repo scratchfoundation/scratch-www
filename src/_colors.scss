@@ -7,7 +7,6 @@ $ui-dark-gray: hsla(0, 0, 70, 1); //#B3B3B3
 
 $background-color: hsla(0, 0, 99, 1); //#FDFDFD
 
-
 /* UI Secondary Colors */
 $ui-aqua: hsla(170, 70, 50, 1); //#26D9BB
 $ui-purple: hsla(265, 55, 55, 1); //#824DCB
@@ -22,11 +21,13 @@ $ui-green: hsla(163, 83, 40, 1); // #0fbd8c Pen Primary
 $ui-coral: hsla(350, 100, 70, 1); // #FF6680 More Primary
 $ui-coral-dark: hsla(350, 100, 60, 1); // #FF3355 More tertiary
 $ui-blue-10percent: hsla(215, 100, 65, .1);
+$ui-blue-10percent-solid: hsla(214, 93, 94, 1); // don't blend when overlaid
 $ui-blue-25percent:  hsla(215, 100, 65, .25);
 $ui-orange-25percent: hsla(35, 90, 55, .25);
 // #4F9AFC per invision mockup; www royal blue is really #4169E1;
 // cornflower blue is #6495ED
 $ui-royal-blue: hsla(214, 97, 65, 1);
+$ui-dark-blue: hsla(214, 63, 55, 1);
 
 /* Overlay UI Gray Colors */
 $active-gray: hsla(0, 0, 0, .1);

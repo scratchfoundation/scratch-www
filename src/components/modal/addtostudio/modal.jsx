@@ -21,11 +21,17 @@ class AddToStudioModal extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [ // NOTE: will need to add and bind callback fn to handle addind and removing studios
+            'handleRequestClose',
             'handleSubmit'
         ]);
+        // NOTE: get real data
+        this.studios = [{name: 'Funny games', id: 1}, {name: 'Silly ideas', id: 2}];
         this.state = {
             waiting: false
         };
+    }
+    handleRequestClose () {
+        this.baseModal.handleRequestClose();
     }
     handleSubmit (formData) {
         this.setState({waiting: true});
@@ -44,10 +50,24 @@ class AddToStudioModal extends React.Component {
             ...modalProps
         } = this.props;
         const contentLabel = intl.formatMessage({id: `addToStudio.${type}`});
+        const studioButtons = this.studios.map((item, key) => (
+            <div className="studio-selector-button">
+              item here
+            </div>
+            // const href = `/studio/${item.id}/`;
+            // <div className="studio-selector-button">
+            // {item.name}
+            // href: {href}
+            // </div>
+        ));
+
         return (
             <Modal
                 className="mod-addToStudio"
                 contentLabel={contentLabel}
+                ref={component => { // bind to base modal, to pass handleRequestClose through
+                    this.baseModal = component;
+                }}
                 {...modalProps}
             >
                 <div>
@@ -56,8 +76,15 @@ class AddToStudioModal extends React.Component {
                             {contentLabel}
                         </div>
                     </div>
-
                     <div className="addToStudio-modal-content">
+                        <div className="studio-list-outer-scrollbox">
+                            <div className="studio-list-inner-scrollbox">
+                                <div className="studio-list-container">
+                                    {studioButtons}
+                                </div>
+                            </div>
+                        </div>
+
                         <Form
                             className="add-to-studio"
                             onSubmit={this.handleSubmit}

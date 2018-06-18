@@ -76,21 +76,21 @@ class ReportModal extends React.Component {
                         </div>
                     </div>
 
-                    <div className="report-modal-content">
-                        <FormattedMessage
-                            id={`report.${type}Instructions`}
-                            values={{
-                                CommunityGuidelinesLink: (
-                                    <a href="/community_guidelines">
-                                        <FormattedMessage id="report.CommunityGuidelinesLinkText" />
-                                    </a>
-                                )
-                            }}
-                        />
-                        <Form
-                            className="report"
-                            onSubmit={this.handleSubmit}
-                        >
+                    <Form
+                        className="report"
+                        onSubmit={this.handleSubmit}
+                    >
+                        <div className="report-modal-content">
+                            <FormattedMessage
+                                id={`report.${type}Instructions`}
+                                values={{
+                                    CommunityGuidelinesLink: (
+                                        <a href="/community_guidelines">
+                                            <FormattedMessage id="report.CommunityGuidelinesLinkText" />
+                                        </a>
+                                    )
+                                }}
+                            />
                             <Select
                                 required
                                 name="reason"
@@ -150,30 +150,29 @@ class ReportModal extends React.Component {
                                     minLength: 30
                                 }}
                             />
-                            <FlexRow className="action-buttons">
-                                {this.state.reportWaiting ? [
-                                    <Button
-                                        className="submit-button"
-                                        disabled="disabled"
-                                        key="submitButton"
-                                        type="submit"
-                                    >
-                                        <Spinner />
-                                    </Button>
-                                ] : [
-                                    <Button
-                                        className="submit-button"
-                                        key="submitButton"
-                                        type="submit"
-                                    >
-                                        <FormattedMessage id="report.send" />
-                                    </Button>
-                                ]}
-                            </FlexRow>
-                        </Form>
-                    </div>
+                        </div>
+                        <FlexRow className="action-buttons">
+                            {this.state.reportWaiting ? [
+                                <Button
+                                    className="submit-button"
+                                    disabled="disabled"
+                                    key="submitButton"
+                                    type="submit"
+                                >
+                                    <Spinner />
+                                </Button>
+                            ] : [
+                                <Button
+                                    className="submit-button"
+                                    key="submitButton"
+                                    type="submit"
+                                >
+                                    <FormattedMessage id="report.send" />
+                                </Button>
+                            ]}
+                        </FlexRow>
+                    </Form>
                 </div>
-
             </Modal>
         );
     }
