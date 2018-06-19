@@ -67,9 +67,11 @@
     display: flex;
     justify-content: flex-start;
     flex-flow: row wrap;
-    min-height: 30rem; /* NOTE: remove this, this is just to force scrolling */
     padding: 1rem 3rem;
 }
+/* NOTE: force scrolling: add to above:
+    min-height: 30rem;
+    */
 
 .studio-selector-button {
     background-color: $ui-white;
@@ -81,4 +83,26 @@
     border-radius: 0.5rem;
     box-sizing: border-box;
     width: 40%;
+}
+
+.studio-selector-button-selected {
+    background-color: $ui-green;
+    color: $ui-white;
+}
+
+.studio-status-icon {
+    background-color: $ui-blue;
+    color: $type-gray;
+    font-weight: 800;
+    height: 1.5rem;
+    margin: 0.5rem 0.5rem;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0.75rem;
+    box-sizing: border-box;
+    width: 1.5rem;
+}
+
+.studio-status-icon-selected {
+    background-color: $ui-green;
+    color: $ui-white;
 }

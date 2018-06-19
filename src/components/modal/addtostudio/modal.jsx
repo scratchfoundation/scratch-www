@@ -1,3 +1,7 @@
+// NOTE: next questions:
+// * should i make these buttons actual select/checkbox elements?
+// then i could just submit the form or something, right?
+
 const bindAll = require('lodash.bindall');
 const truncate = require('lodash.truncate');
 const PropTypes = require('prop-types');
@@ -22,6 +26,7 @@ class AddToStudioModal extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [ // NOTE: will need to add and bind callback fn to handle addind and removing studios
+            'handleToggleAdded',
             'handleRequestClose',
             'handleSubmit'
         ]);
@@ -47,16 +52,95 @@ class AddToStudioModal extends React.Component {
         // maybe i should calculate delta here? if studio was
         // left elsewhere and that status was not changed here,
         // prolly didn't want to be changed!
+
         this.state = {
-            waiting: false
+            waiting: false,
+            onOrDirty: {}
         };
     }
+
+    componentDidMount() {
+        this.updateOnOrDirty(this.props.projectStudios, this.props.myStudios);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.updateOnOrDirty(nextProps.projectStudios, nextProps.myStudios);
+    }
+
+    updateOnOrDirty(projectStudios, myStudios) {
+        // NOTE: in theory, myStudios could have dropped some studios in
+        // onOrDirty, so we should check all existing onOrDirty and drop
+        // them too; otherwise we might retain a dirty change for a studio
+        // we no longer have permission for. In theory.
+
+        let onOrDirty = this.state.onOrDirty;
+        projectStudios.forEach((studio) => {
+            onOrDirty[studio.id] = {added: true, dirty: false};
+        });
+        console.log(projectStudios);
+        console.log(myStudios);
+        console.log(onOrDirty);
+        this.setState({onOrDirty: Object.assign({}, onOrDirty)});
+    }
+
+    handleToggleAdded(studioId) {
+        let onOrDirty = this.state.onOrDirty;
+        if (studioId in onOrDirty) {
+            if (onOrDirty[studioId].added === true) {
+                if (onOrDirty[studioId].dirty === true) {
+                    // let's untrack the status of this studio, so it's
+                    // un-added, and un-dirty again
+                    delete onOrDirty[studioId];
+                } else { // it started off added, so it's dirty now
+                    onOrDirty[studioId].added = false;
+                    onOrDirty[studioId].dirty = true;
+                }
+            } else {
+                if (onOrDirty[studioId].dirty === true) {
+                    // it was previously set to unadded. so let's set it to
+                    // added, and NOT dirty. This is how it started out
+                    onOrDirty[studioId].added = true;
+                    onOrDirty[studioId].dirty = false;
+                }
+                // should never be added == false AND dirty == false
+            }
+        } else { // was not in onOrDirty; add it as added!
+            onOrDirty[studioId] = {added: true, dirty: true};
+        }
+        this.setState({onOrDirty: Object.assign({}, onOrDirty)});
+    }
+
     handleRequestClose () {
+        // NOTE that we do NOT clear onOrDirty, so we don't lose
+        // user's work from a stray click outside the modal...
+        // but maybe this should be different?
         this.baseModal.handleRequestClose();
     }
     handleSubmit (formData) {
+        // NOTE: ignoring formData for now...
         this.setState({waiting: true});
-        this.props.onAddToStudio(formData, err => {
+        const onOrDirty = this.state.onOrDirty;
+        const studiosToAdd = Object.keys(onOrDirty)
+            .reduce(function(accumulator, key) {
+                if (onOrDirty[key].dirty === true &&
+                    onOrDirty[key].added === true) {
+                    accumulator.push(key);
+                }
+                return accumulator;
+            }, []);
+        const studiosToDelete = Object.keys(onOrDirty)
+            .reduce(function(accumulator, key) {
+                if (onOrDirty[key].dirty === true &&
+                    onOrDirty[key].added === false) {
+                    accumulator.push(key);
+                }
+                return accumulator;
+            }, []);
+        // When this modal is opened, and isOpen becomes true,
+        // onOrDirty should start with a clean slate
+        // NOTE: this doesn't seem to be working
+        this.setState({onOrDirty: {}});
+        this.props.onAddToStudio(studiosToAdd, studiosToDelete, err => {
             if (err) log.error(err);
             this.setState({
                 waiting: false
@@ -72,19 +156,26 @@ class AddToStudioModal extends React.Component {
             type,
             ...modalProps
         } = this.props;
+        const onOrDirty = this.state.onOrDirty;
         const contentLabel = intl.formatMessage({id: `addToStudio.${type}`});
-        const projectStudioButtons = projectStudios.map((studio, index) => (
-            <div className="studio-selector-button" key={studio.id}>
-                {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
-                ✓
-            </div>
-        ));
-        const myStudioButtons = myStudios.map((studio, index) => (
-            <div className="studio-selector-button" key={studio.id}>
-                {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
-                +
-            </div>
-        ));
+        const studioButtons = myStudios.map((studio, index) => {
+            const isAdded = (studio.id in onOrDirty &&
+                onOrDirty[studio.id].added === true);
+            return (
+                <div className={"studio-selector-button" +
+                    (isAdded ? " studio-selector-button-selected" : "")}
+                    key={studio.id}
+                    onClick={() => this.handleToggleAdded(studio.id)}
+                >
+                    {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
+                    <div className={".studio-status-icon" +
+                        (isAdded ? " .studio-status-icon-selected" : "")}
+                    >
+                        {isAdded ? "✓" : "+"}
+                    </div>
+                </div>
+            );
+        });
 
         return (
             <Modal
@@ -105,8 +196,7 @@ class AddToStudioModal extends React.Component {
                         <div className="studio-list-outer-scrollbox">
                             <div className="studio-list-inner-scrollbox">
                                 <div className="studio-list-container">
-                                    {[...projectStudioButtons,
-                                    ...myStudioButtons]}
+                                    {studioButtons}
                                 </div>
                             </div>
                         </div>

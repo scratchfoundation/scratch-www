@@ -44,6 +44,16 @@ class PreviewPresentation extends React.Component {
         };
         this.mockedMyStudios = [
             {
+                id: 1702295,
+                description: "Real open studio",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Real open studio"
+            },
+            {
                 id: 0,
                 description: "Wow, studio A rocks",
                 history: {created: "2015-11-15T00:24:35.000Z",
@@ -84,13 +94,17 @@ class PreviewPresentation extends React.Component {
     handleAddToStudioClose () {
         this.setState({addToStudioOpen: false});
     }
-    handleAddToStudioSubmit (formData, callback) {
-        const data = {
-            ...formData,
-            id: this.props.projectId,
-            username: this.props.user.username
-        };
-        console.log('submit addToStudio data', data); // eslint-disable-line no-console
+    handleAddToStudioSubmit (studiosToAdd, studiosToDelete, callback) {
+        console.log('studios to add: ');
+        console.log(studiosToAdd);
+        console.log('studios to delete: ');
+        console.log(studiosToDelete);
+        // const data = {
+        //     ...formData,
+        //     id: this.props.projectId,
+        //     username: this.props.user.username
+        // };
+        //console.log('submit addToStudio data', data); // eslint-disable-line no-console
         // TODO: pass error to modal via callback.
         callback();
         this.setState({addToStudioOpen: false});
