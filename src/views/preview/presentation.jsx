@@ -23,6 +23,7 @@ const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolum
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
+const EXTENSION_INFO = require('../../lib/extension-info.js').default;
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -39,18 +40,6 @@ class PreviewPresentation extends React.Component {
         this.state = {
             reportOpen: false,
             extensionList: []
-        };
-
-        this.APPROVED_EXTENSIONS = {
-            pen: {
-                name: 'Pen',
-                icon: 'https://01.keybase.pub/extension-icon/pen.svg'
-            },
-            music: {
-                name: 'Music',
-                // eslint-disable-next-line max-len
-                icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2LjA5IDEyLjkzN2MuMjI4IDEuMTQxLS44MzMgMi4wNjMtMi4zNzMgMi4wNjMtMS41MzUgMC0yLjk2Mi0uOTIyLTMuMTg2LTIuMDYzLS4yMy0xLjE0Mi44MzMtMi4wNjggMi4zNzItMi4wNjguMzIzIDAgLjY0MS4wNDIuOTQ1LjExN2EzLjUgMy41IDAgMCAxIC40NjguMTUxYy40MzUtLjAxLS4wNTItMS4xNDctLjkxNy02LjExNC0xLjA2Ny02LjE1MiAxLjUzLS45MzUgNC4zODQtMS4zNzcgMi44NTQtLjQ0Mi4wMzggMi40MS0xLjgyNSAxLjkyMi0xLjg2Mi0uNDkzLTIuMzI1LTMuNTc3LjEzMiA3LjM3ek03LjQ2IDguNTYzYy0xLjg2Mi0uNDkzLTIuMzI1LTMuNTc2LjEzIDcuMzdDNy44MTYgMTcuMDczIDYuNzU0IDE4IDUuMjIgMThjLTEuNTM1IDAtMi45NjEtLjkyNi0zLjE5LTIuMDY4LS4yMjQtMS4xNDIuODM3LTIuMDY3IDIuMzc1LTIuMDY3LjUwMSAwIC45ODcuMDk4IDEuNDI3LjI3Mi40MTItLjAyOC0uMDc0LTEuMTg5LS45My02LjExNEMzLjgzNCAxLjg3IDYuNDMgNy4wODcgOS4yODIgNi42NDZjMi44NTQtLjQ0Ny4wMzggMi40MS0xLjgyMyAxLjkxN3oiIGZpbGw9IiM1NzVFNzUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg=='
-            }
         };
     }
 
@@ -79,7 +68,7 @@ class PreviewPresentation extends React.Component {
                     if (err) debugger; // eslint-disable-line no-debugger
                     const extensionSet = new Set();
                     projectData[0].targets.forEach(target => target.extensions.forEach(extension => {
-                        extensionSet.add(extension);
+                        extensionSet.add(EXTENSION_INFO[extension]);
                     }));
                     this.setState({
                         extensionList: Array.from(extensionSet)
@@ -391,9 +380,10 @@ class PreviewPresentation extends React.Component {
                                 <FlexRow className="extension-list">
                                     {this.state.extensionList.map(extension => (
                                         <ExtensionChip
-                                            extensionName={this.APPROVED_EXTENSIONS[extension].name}
-                                            iconURI={this.APPROVED_EXTENSIONS[extension].icon}
-                                            key={this.APPROVED_EXTENSIONS[extension].name}
+                                            extensionName={extension.name}
+                                            hasStatus={extension.hasStatus}
+                                            iconURI={extension.icon && `/svgs/project/${extension.icon}`}
+                                            key={extension.name}
                                         />
                                     ))}
                                 </FlexRow>
