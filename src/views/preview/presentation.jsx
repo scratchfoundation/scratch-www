@@ -23,7 +23,7 @@ const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolum
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
-const EXTENSION_INFO = require('../../lib/extension-info.js').default;
+const EXTENSION_INFO = require('../../lib/extensions.js').default;
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
