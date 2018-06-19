@@ -79,9 +79,13 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
-                include: path.resolve(__dirname, 'src'),
+                include: [path.resolve(__dirname, 'src'), /node_modules[\\/]scratch-[^\\/]+[\\/]src/],
                 options: {
-                    presets: ['es2015', 'react']
+                    babelrc: false,
+                    presets: ['es2015', 'react'],
+                    plugins: [
+                        'transform-object-rest-spread'
+                    ]
                 }
             },
             {
