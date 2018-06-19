@@ -38,6 +38,15 @@ class AddToStudioModal extends React.Component {
         //   stats: {followers: 0},
         //   title: "Studio title"
         // }, {...}]
+
+        // NOTE: need to:
+        // construct hash of inclusion status by id, populate it.
+        // replace mystudios with list of studios ordered by
+        // membership/stats/name. use that for rendering.
+        // returning: provide the hash to handlesubmit. or
+        // maybe i should calculate delta here? if studio was
+        // left elsewhere and that status was not changed here,
+        // prolly didn't want to be changed!
         this.state = {
             waiting: false
         };
@@ -67,11 +76,13 @@ class AddToStudioModal extends React.Component {
         const projectStudioButtons = projectStudios.map((studio, index) => (
             <div className="studio-selector-button" key={studio.id}>
                 {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
+                ✓
             </div>
         ));
         const myStudioButtons = myStudios.map((studio, index) => (
             <div className="studio-selector-button" key={studio.id}>
                 {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
+                +
             </div>
         ));
 
