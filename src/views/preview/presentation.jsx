@@ -42,6 +42,38 @@ class PreviewPresentation extends React.Component {
             addToStudioOpen: false,
             reportOpen: false
         };
+        this.mockedMyStudios = [
+            {
+                id: 0,
+                description: "Wow, studio A rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio A"
+            },
+            {
+                id: 1,
+                description: "Wow, studio B rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio B"
+            },
+            {
+                id: 2,
+                description: "Wow, studio C rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio C"
+            }
+        ]
     }
 
     // Add to Studio modal
@@ -352,7 +384,8 @@ class PreviewPresentation extends React.Component {
                                                     isOpen={this.state.addToStudioOpen}
                                                     key="add-to-studio-modal"
                                                     type="project"
-                                                    studios={studios}
+                                                    projectStudios={studios}
+                                                    myStudios={this.mockedMyStudios}
                                                     onAddToStudio={this.handleAddToStudioSubmit}
                                                     onRequestClose={this.handleAddToStudioClose}
                                                 />

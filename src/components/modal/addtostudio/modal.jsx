@@ -57,21 +57,22 @@ class AddToStudioModal extends React.Component {
     render () {
         const {
             intl,
-            studios,
+            projectStudios,
+            myStudios,
             onAddToStudio, // eslint-disable-line no-unused-vars
             type,
             ...modalProps
         } = this.props;
         const contentLabel = intl.formatMessage({id: `addToStudio.${type}`});
-        const studioButtons = studios.map((studio, key) => (
-            <div className="studio-selector-button">
-                {truncate(studio.description, {'length': 20, 'separator': /[,:\.;]*\s+/})}
+        const projectStudioButtons = projectStudios.map((studio, index) => (
+            <div className="studio-selector-button" key={studio.id}>
+                {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
             </div>
-            // const href = `/studio/${item.id}/`;
-            // <div className="studio-selector-button">
-            // {item.name}
-            // href: {href}
-            // </div>
+        ));
+        const myStudioButtons = myStudios.map((studio, index) => (
+            <div className="studio-selector-button" key={studio.id}>
+                {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
+            </div>
         ));
 
         return (
@@ -93,7 +94,8 @@ class AddToStudioModal extends React.Component {
                         <div className="studio-list-outer-scrollbox">
                             <div className="studio-list-inner-scrollbox">
                                 <div className="studio-list-container">
-                                    {studioButtons}
+                                    {[...projectStudioButtons,
+                                    ...myStudioButtons]}
                                 </div>
                             </div>
                         </div>
@@ -142,7 +144,8 @@ class AddToStudioModal extends React.Component {
 
 AddToStudioModal.propTypes = {
     intl: intlShape,
-    studios: PropTypes.arrayOf(PropTypes.object),
+    projectStudios: PropTypes.arrayOf(PropTypes.object),
+    myStudios: PropTypes.arrayOf(PropTypes.object),
     onAddToStudio: PropTypes.func,
     onRequestClose: PropTypes.func,
     type: PropTypes.string
