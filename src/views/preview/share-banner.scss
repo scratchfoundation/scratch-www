@@ -1,0 +1,30 @@
+@import "../../colors";
+
+$navigation-height: 50px;
+
+.shareBanner {
+    background-color: $ui-orange-25percent;
+    width: 100%;
+    overflow: hidden;
+    color: $ui-orange;
+}
+
+.share-button {
+    margin-top: 0;
+    background-color: $ui-orange;
+    font-size: .875rem;
+    font-weight: normal;
+    
+    &:before {
+        display: inline-block;
+        margin-right: .5rem;
+        background-image: url("/svgs/project/share-white.svg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+        width: 1.25rem;
+        height: 1.25rem;
+        vertical-align: middle;
+        content: "";
+    }
+}

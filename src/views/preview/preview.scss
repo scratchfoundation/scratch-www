@@ -1,7 +1,7 @@
 @import "../../colors";
 @import "../../frameless";
 
-/* stage size contants 
+/* stage size constants 
  * this is a hack right now - stage includes padding of .5rem (8px) for alignment in gui
  * in www the player is placed with margin -.5rem to align the edge.
  * the height is calculated from the actual height on the page (404)
@@ -9,13 +9,6 @@
 $gui-width: 496px;
 $stage-width: 480px;
 $stage-height: 404px;
-
-
-// remix credit height: 52px
-// project text label line-height + margin-bottom .5rem: 19px + 8px = 27px
-// Formsy wrapper adds 3px to the input height for
-$description-input: 166px; // $stage-height / 2 - $project-label - $wrapper - margin
-$description-input-small: 120px; // normal $description-input - $remix-credit
 
 /* override view padding for share banner */
 #view {
@@ -138,7 +131,6 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
         width: 60%;
     }
     
-    .share-button,
     .remix-button,
     .see-inside-button {
         margin-top: 0;
@@ -155,18 +147,6 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
             height: 1.25rem;
             vertical-align: middle;
             content: "";
-        }
-    }
-
-    .shareText {
-        align-self: center;
-    }
-
-    .share-button {
-        background-color: $ui-orange;
-        
-        &:before {
-            background-image: url("/svgs/project/share-white.svg");
         }
     }
 
@@ -189,6 +169,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
         margin-top: 1rem;
         justify-content: space-between;
         align-items: flex-start;
+        flex-wrap: nowrap;
     }
 
     .guiPlayer {
@@ -237,10 +218,11 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
     }
     
     .description-block {
+        display: flex;
         width: 100%;
         flex-direction: column;
         align-items: flex-start;
-        flex-grow: 1;
+        flex: 1;
     }
     
     .project-textlabel {
@@ -256,6 +238,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
         background-color: $ui-blue-10percent;
         padding: .5rem;
         width: calc(100% - (1rem + 2px));
+        overflow: auto;
         white-space: pre-line;        
         font-size: 1rem;
         // flex-grow
@@ -267,6 +250,7 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
     }
 
     .project-description-edit {
+        display: flex;
         margin-bottom: .75rem;
         border: 1px solid $ui-blue-10percent;
         border-radius: 8px;
@@ -293,15 +277,12 @@ $description-input-small: 120px; // normal $description-input - $remix-credit
             }
         }
         
-        .inplace-textarea {
-            height: $description-input;
+        & > .grow {
+            display: flex;
+            flex: 1;
         }
     }
     
-    .project-description-edit.remixes .inplace-textarea {
-        height: $description-input-small;
-    }
-
     .copyleft {
         display: inline-block;
         transform: scale(-1, 1);
