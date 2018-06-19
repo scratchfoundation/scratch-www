@@ -64,7 +64,6 @@ class AddToStudioModal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        debugger;
         this.updateOnOrDirty(nextProps.projectStudios, nextProps.myStudios);
     }
 
@@ -74,6 +73,7 @@ class AddToStudioModal extends React.Component {
         // them too; otherwise we might retain a dirty change for a studio
         // we no longer have permission for. In theory.
 
+        debugger;
         let onOrDirty = this.state.onOrDirty;
         projectStudios.forEach((studio) => {
             onOrDirty[studio.id] = {added: true, dirty: false};
@@ -121,7 +121,7 @@ class AddToStudioModal extends React.Component {
     handleSubmit (formData) {
         // NOTE: ignoring formData for now...
         this.setState({waiting: true});
-        const onOrDirty = this.state.onOrDirty;
+        let onOrDirty = this.state.onOrDirty;
         const studiosToAdd = Object.keys(onOrDirty)
             .reduce(function(accumulator, key) {
                 if (onOrDirty[key].dirty === true &&
@@ -138,11 +138,17 @@ class AddToStudioModal extends React.Component {
                 }
                 return accumulator;
             }, []);
+        onOrDirty = {};
+
         // When this modal is opened, and isOpen becomes true,
         // onOrDirty should start with a clean slate
-        // NOTE: this doesn't seem to be working
-        this.setState({onOrDirty: {testkey3: 'testval3'}});
+        // NOTE: this doesn't seem to be working:
+        this.setState({ onOrDirty: undefined });
+        // what's weird is, it's not an issue with "this" being invalid,
+        // because this works fine:
         this.setState({testkey: 'testval'});
+
+
         debugger;
         this.props.onAddToStudio(studiosToAdd, studiosToDelete, err => {
             if (err) log.error(err);
