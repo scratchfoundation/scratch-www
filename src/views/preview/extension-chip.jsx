@@ -5,10 +5,12 @@ require('./extension-chip.scss');
 
 const ExtensionChip = props => (
     <div className={classNames('extension-chip', {'has-status': props.hasStatus})}>
-        <img
-            className="extension-icon"
-            src={props.iconURI}
-        />
+        {props.iconURI &&
+            <img
+                className="extension-icon"
+                src={props.iconURI}
+            />
+        }
         <div className="extension-content">
             <span>{props.extensionName}</span>
             {props.hasStatus && (
