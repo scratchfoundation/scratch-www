@@ -51,7 +51,7 @@
 }
 
 .studio-list-inner-scrollbox::-webkit-scrollbar {
-    width: 9px;
+    width: 7px;
     background-color: $ui-blue-10percent-solid;
 }
 .studio-list-inner-scrollbox::-webkit-scrollbar-thumb {
@@ -83,6 +83,7 @@
         $transparent,
         $ui-blue-10percent
     );
+    /* background: linear-gradient(180deg, rgba(228,240,255,0) 0%, #E4F0FF 100%); */
     width: 100%;
     height: 2rem;
 }

@@ -62,10 +62,12 @@ class AddToStudioModal extends React.Component {
     }
 
     componentDidMount() {
+        debugger;
         this.updateOnOrDirty(this.props.projectStudios, this.props.myStudios);
     }
 
     componentWillReceiveProps(nextProps) {
+        debugger;
         this.updateOnOrDirty(nextProps.projectStudios, nextProps.myStudios);
     }
 
@@ -121,7 +123,7 @@ class AddToStudioModal extends React.Component {
     handleSubmit (formData) {
         // NOTE: ignoring formData for now...
         this.setState({waiting: true});
-        let onOrDirty = this.state.onOrDirty;
+        const onOrDirty = this.state.onOrDirty;
         const studiosToAdd = Object.keys(onOrDirty)
             .reduce(function(accumulator, key) {
                 if (onOrDirty[key].dirty === true &&
@@ -138,12 +140,12 @@ class AddToStudioModal extends React.Component {
                 }
                 return accumulator;
             }, []);
-        onOrDirty = {};
 
         // When this modal is opened, and isOpen becomes true,
         // onOrDirty should start with a clean slate
         // NOTE: this doesn't seem to be working:
         this.setState({ onOrDirty: undefined }, () => {
+            debugger;
             this.props.onAddToStudio(studiosToAdd, studiosToDelete, err => {
                 if (err) log.error(err);
                 this.setState({
