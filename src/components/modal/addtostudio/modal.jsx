@@ -82,6 +82,7 @@ class AddToStudioModal extends React.Component {
         console.log(myStudios);
         console.log(onOrDirty);
         this.setState({onOrDirty: Object.assign({}, onOrDirty)});
+        this.setState({testkey2: 'testval2'});
     }
 
     handleToggleAdded(studioId) {
@@ -140,7 +141,8 @@ class AddToStudioModal extends React.Component {
         // When this modal is opened, and isOpen becomes true,
         // onOrDirty should start with a clean slate
         // NOTE: this doesn't seem to be working
-        this.setState({onOrDirty: {}});
+        this.setState({onOrDirty: {testkey3: 'testval3'}});
+        this.setState({testkey: 'testval'});
         debugger;
         this.props.onAddToStudio(studiosToAdd, studiosToDelete, err => {
             if (err) log.error(err);
