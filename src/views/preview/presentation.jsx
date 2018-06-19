@@ -6,11 +6,13 @@ const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
 const approx = require('approximate-number');
+const parser = require('scratch-parser');
 
 const GUI = require('scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
 
 const sessionActions = require('../../redux/session.js');
+const storage = require('../../lib/storage.js').default;
 const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
@@ -32,13 +34,60 @@ class PreviewPresentation extends React.Component {
             'handleReportClick',
             'handleReportClose',
             'handleReportSubmit',
-            'onExtensionAdded'
+            'updateExtensions'
         ]);
         this.state = {
             reportOpen: false,
             extensionList: []
         };
+
+        this.APPROVED_EXTENSIONS = {
+            pen: {
+                name: 'Pen',
+                icon: 'https://01.keybase.pub/extension-icon/pen.svg'
+            },
+            music: {
+                name: 'Music',
+                // eslint-disable-next-line max-len
+                icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2LjA5IDEyLjkzN2MuMjI4IDEuMTQxLS44MzMgMi4wNjMtMi4zNzMgMi4wNjMtMS41MzUgMC0yLjk2Mi0uOTIyLTMuMTg2LTIuMDYzLS4yMy0xLjE0Mi44MzMtMi4wNjggMi4zNzItMi4wNjguMzIzIDAgLjY0MS4wNDIuOTQ1LjExN2EzLjUgMy41IDAgMCAxIC40NjguMTUxYy40MzUtLjAxLS4wNTItMS4xNDctLjkxNy02LjExNC0xLjA2Ny02LjE1MiAxLjUzLS45MzUgNC4zODQtMS4zNzcgMi44NTQtLjQ0Mi4wMzggMi40MS0xLjgyNSAxLjkyMi0xLjg2Mi0uNDkzLTIuMzI1LTMuNTc3LjEzMiA3LjM3ek03LjQ2IDguNTYzYy0xLjg2Mi0uNDkzLTIuMzI1LTMuNTc2LjEzIDcuMzdDNy44MTYgMTcuMDczIDYuNzU0IDE4IDUuMjIgMThjLTEuNTM1IDAtMi45NjEtLjkyNi0zLjE5LTIuMDY4LS4yMjQtMS4xNDIuODM3LTIuMDY3IDIuMzc1LTIuMDY3LjUwMSAwIC45ODcuMDk4IDEuNDI3LjI3Mi40MTItLjAyOC0uMDc0LTEuMTg5LS45My02LjExNEMzLjgzNCAxLjg3IDYuNDMgNy4wODcgOS4yODIgNi42NDZjMi44NTQtLjQ0Ny4wMzggMi40MS0xLjgyMyAxLjkxN3oiIGZpbGw9IiM1NzVFNzUiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg=='
+            }
+        };
     }
+
+    componentDidMount () {
+        if (this.props.projectId || this.props.projectId === 0) {
+            this.updateExtensions(this.props.projectId); // fails to unzip with error {} ????
+        }
+    }
+
+    updateExtensions (projectId) {
+        storage
+            .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
+            .then(projectAsset => {
+                let input = projectAsset.data;
+                if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
+                !ArrayBuffer.isView(input)) {
+                    // If the input is an object and not any ArrayBuffer
+                    // or an ArrayBuffer view (this includes all typed arrays and DataViews)
+                    // turn the object into a JSON string, because we suspect
+                    // this is a project.json as an object
+                    // validate expects a string or buffer as input
+                    // TODO not sure if we need to check that it also isn't a data view
+                    input = JSON.stringify(input);
+                }
+                parser(projectAsset.data, false, (err, projectData) => {
+                    if (err) debugger; // eslint-disable-line no-debugger
+                    const extensionSet = new Set();
+                    projectData[0].targets.forEach(target => target.extensions.forEach(extension => {
+                        extensionSet.add(extension);
+                    }));
+                    this.setState({
+                        extensionList: Array.from(extensionSet)
+                    });
+                });
+            });
+    }
+
     handleReportClick (e) {
         e.preventDefault();
         this.setState({reportOpen: true});
@@ -57,14 +106,6 @@ class PreviewPresentation extends React.Component {
         // TODO: pass error to modal via callback.
         callback();
         this.setState({reportOpen: false});
-    }
-
-    onExtensionAdded (blockInfoList) {
-        // We only want blocks with JSON (since that's where all the relevant info is)
-        const blockJSONList = blockInfoList.map(blockInfo => blockInfo.json);
-        this.setState(prevState => ({
-            extensionList: [...prevState.extensionList, blockJSONList[0]]
-        }));
     }
 
     render () {
@@ -160,7 +201,6 @@ class PreviewPresentation extends React.Component {
                                         isPlayerOnly
                                         basePath="/"
                                         className="guiPlayer"
-                                        extensionCallback={this.onExtensionAdded}
                                         isFullScreen={isFullScreen}
                                         previewInfoVisible="false"
                                         projectId={projectId}
@@ -349,11 +389,11 @@ class PreviewPresentation extends React.Component {
                             </FlexRow>
                             <FlexRow className="preview-row">
                                 <FlexRow className="extension-list">
-                                    {this.state.extensionList.map(blockJSON => (
+                                    {this.state.extensionList.map(extension => (
                                         <ExtensionChip
-                                            extensionName={blockJSON.category}
-                                            iconURI={blockJSON.args0[0].src}
-                                            key={blockJSON.category}
+                                            extensionName={this.APPROVED_EXTENSIONS[extension].name}
+                                            iconURI={this.APPROVED_EXTENSIONS[extension].icon}
+                                            key={this.APPROVED_EXTENSIONS[extension].name}
                                         />
                                     ))}
                                 </FlexRow>
