@@ -1,6 +1,8 @@
 // NOTE: next questions:
-// * should i make these buttons actual select/checkbox elements?
-// then i could just submit the form or something, right?
+// * should the button to submit instantly? By clicking away shouldn't effectively undo what you thought you did.
+// * should it really be pinned on the page? Isn't that something you're trying to move away from?
+// *
+// *
 
 const bindAll = require('lodash.bindall');
 const truncate = require('lodash.truncate');
@@ -202,7 +204,10 @@ class AddToStudioModal extends React.Component {
                                     {studioButtons}
                                 </div>
                             </div>
+                            <div className="studio-list-bottom-gradient">
+                            </div>
                         </div>
+
 
                         <Form
                             className="add-to-studio"
