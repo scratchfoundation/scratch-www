@@ -352,6 +352,7 @@ class PreviewPresentation extends React.Component {
                                                     isOpen={this.state.addToStudioOpen}
                                                     key="add-to-studio-modal"
                                                     type="project"
+                                                    studios={studios}
                                                     onAddToStudio={this.handleAddToStudioSubmit}
                                                     onRequestClose={this.handleAddToStudioClose}
                                                 />

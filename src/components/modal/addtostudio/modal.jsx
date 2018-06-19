@@ -1,4 +1,5 @@
 const bindAll = require('lodash.bindall');
+const truncate = require('lodash.truncate');
 const PropTypes = require('prop-types');
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
@@ -25,7 +26,18 @@ class AddToStudioModal extends React.Component {
             'handleSubmit'
         ]);
         // NOTE: get real data
-        this.studios = [{name: 'Funny games', id: 1}, {name: 'Silly ideas', id: 2}];
+        // this.studios = [{name: 'Funny games', id: 1}, {name: 'Silly ideas', id: 2}];
+        // studios data is like:
+        // [{
+        //   id: 1702295,
+        //   description: "...",
+        //   history: {created: "2015-11-15T00:24:35.000Z",
+        //   modified: "2018-05-01T00:14:48.000Z"},
+        //   image: "http....png",
+        //   owner: 10689298,
+        //   stats: {followers: 0},
+        //   title: "Studio title"
+        // }, {...}]
         this.state = {
             waiting: false
         };
@@ -45,14 +57,15 @@ class AddToStudioModal extends React.Component {
     render () {
         const {
             intl,
+            studios,
             onAddToStudio, // eslint-disable-line no-unused-vars
             type,
             ...modalProps
         } = this.props;
         const contentLabel = intl.formatMessage({id: `addToStudio.${type}`});
-        const studioButtons = this.studios.map((item, key) => (
+        const studioButtons = studios.map((studio, key) => (
             <div className="studio-selector-button">
-              item here
+                {truncate(studio.description, {'length': 20, 'separator': /[,:\.;]*\s+/})}
             </div>
             // const href = `/studio/${item.id}/`;
             // <div className="studio-selector-button">
@@ -129,6 +142,7 @@ class AddToStudioModal extends React.Component {
 
 AddToStudioModal.propTypes = {
     intl: intlShape,
+    studios: PropTypes.arrayOf(PropTypes.object),
     onAddToStudio: PropTypes.func,
     onRequestClose: PropTypes.func,
     type: PropTypes.string
