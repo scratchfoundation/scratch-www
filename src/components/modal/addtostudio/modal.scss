@@ -68,12 +68,10 @@
     justify-content: flex-start;
     flex-flow: row wrap;
     padding: 1rem 3rem;
-
-    min-height: 30rem;
 }
 /* NOTE: force scrolling: add to above:
     min-height: 30rem;
-    */
+*/
 
 .studio-selector-button {
     background-color: $ui-white;
@@ -85,6 +83,8 @@
     border-radius: 0.5rem;
     box-sizing: border-box;
     width: 40%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .studio-selector-button-selected {
@@ -94,11 +94,11 @@
 
 .studio-status-icon {
     background-color: $ui-blue;
-    color: $type-gray;
+    color: $ui-white;
     font-weight: 800;
     height: 1.5rem;
-    margin: 0.5rem 0.5rem;
-    padding: 0.5rem 0.5rem;
+    margin: 0rem 0rem;
+    padding: 0rem 0.5rem;
     border-radius: 0.75rem;
     box-sizing: border-box;
     width: 1.5rem;

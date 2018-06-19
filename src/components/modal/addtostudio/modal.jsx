@@ -73,7 +73,6 @@ class AddToStudioModal extends React.Component {
         // them too; otherwise we might retain a dirty change for a studio
         // we no longer have permission for. In theory.
 
-        debugger;
         let onOrDirty = this.state.onOrDirty;
         projectStudios.forEach((studio) => {
             onOrDirty[studio.id] = {added: true, dirty: false};
@@ -82,7 +81,6 @@ class AddToStudioModal extends React.Component {
         console.log(myStudios);
         console.log(onOrDirty);
         this.setState({onOrDirty: Object.assign({}, onOrDirty)});
-        this.setState({testkey2: 'testval2'});
     }
 
     handleToggleAdded(studioId) {
@@ -143,17 +141,12 @@ class AddToStudioModal extends React.Component {
         // When this modal is opened, and isOpen becomes true,
         // onOrDirty should start with a clean slate
         // NOTE: this doesn't seem to be working:
-        this.setState({ onOrDirty: undefined });
-        // what's weird is, it's not an issue with "this" being invalid,
-        // because this works fine:
-        this.setState({testkey: 'testval'});
-
-
-        debugger;
-        this.props.onAddToStudio(studiosToAdd, studiosToDelete, err => {
-            if (err) log.error(err);
-            this.setState({
-                waiting: false
+        this.setState({ onOrDirty: undefined }, () => {
+            this.props.onAddToStudio(studiosToAdd, studiosToDelete, err => {
+                if (err) log.error(err);
+                this.setState({
+                    waiting: false
+                });
             });
         });
     }
@@ -178,8 +171,8 @@ class AddToStudioModal extends React.Component {
                     onClick={() => this.handleToggleAdded(studio.id)}
                 >
                     {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
-                    <div className={".studio-status-icon" +
-                        (isAdded ? " .studio-status-icon-selected" : "")}
+                    <div className={"studio-status-icon" +
+                        (isAdded ? " studio-status-icon-selected" : "")}
                     >
                         {isAdded ? "✓" : "+"}
                     </div>
