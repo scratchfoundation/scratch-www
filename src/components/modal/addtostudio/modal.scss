@@ -40,9 +40,7 @@
 
 .studio-list-outer-scrollbox {
     background-color: $ui-blue-10percent-solid;
-    padding-top: 10px;
 }
-
 
 .studio-list-inner-scrollbox {
     height: 15rem;
@@ -60,6 +58,8 @@
     border-radius: 5px;
 }
 .studio-list-inner-scrollbox::-webkit-scrollbar-track {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .studio-list-container {
@@ -68,6 +68,8 @@
     justify-content: flex-start;
     flex-flow: row wrap;
     padding: 1rem 3rem;
+
+    min-height: 30rem;
 }
 /* NOTE: force scrolling: add to above:
     min-height: 30rem;

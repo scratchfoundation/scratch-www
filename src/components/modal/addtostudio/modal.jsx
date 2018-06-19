@@ -64,6 +64,7 @@ class AddToStudioModal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        debugger;
         this.updateOnOrDirty(nextProps.projectStudios, nextProps.myStudios);
     }
 
@@ -140,6 +141,7 @@ class AddToStudioModal extends React.Component {
         // onOrDirty should start with a clean slate
         // NOTE: this doesn't seem to be working
         this.setState({onOrDirty: {}});
+        debugger;
         this.props.onAddToStudio(studiosToAdd, studiosToDelete, err => {
             if (err) log.error(err);
             this.setState({
