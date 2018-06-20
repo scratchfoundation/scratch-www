@@ -1,0 +1,34 @@
+@import "../../../colors";
+
+.comment {
+    justify-content: space-between;
+    flex-grow: 1;
+
+    .comment-top-row {
+        width: 100%;
+        .username {
+            margin-right: auto;
+        }
+    }
+
+    .avatar {
+        margin-right: .3125rem;
+    }
+
+    .comment-body {
+        flex-grow: 1;
+
+        .comment-bubble {
+            background-color: $ui-white;
+            width: 100%;
+
+            &:before {
+                content: "a";
+            }
+        }
+
+        .comment-bottom-row {
+            justify-content: space-between;
+        }
+    }
+}
