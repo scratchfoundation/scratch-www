@@ -155,7 +155,7 @@ class AddToStudioModal extends React.Component {
                     }
                     return accumulator;
                 }, []);
-            const studiosToDelete = Object.keys(onOrDirty)
+            const studiosToLeave = Object.keys(onOrDirty)
                 .reduce(function(accumulator, key) {
                     if (onOrDirty[key].dirty === true &&
                         onOrDirty[key].added === false) {
@@ -164,7 +164,7 @@ class AddToStudioModal extends React.Component {
                     return accumulator;
                 }, []);
 
-            this.props.onAddToStudio(studiosToAdd, studiosToDelete, err => {
+            this.props.onAddToStudio(studiosToAdd, studiosToLeave, err => {
                 if (err) log.error(err);
                 // When this modal is opened, and isOpen becomes true,
                 // onOrDirty should start with a clean slate

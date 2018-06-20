@@ -94,7 +94,7 @@ class PreviewPresentation extends React.Component {
     handleAddToStudioClose () {
         this.setState({addToStudioOpen: false});
     }
-    handleAddToStudioSubmit (studiosToAdd, studiosToDelete, callback) {
+    handleAddToStudioSubmit (studiosToAdd, studiosToLeave, callback) {
         console.log('studios to add: ');
         console.log(studiosToAdd);
         console.log('studios to delete: ');
@@ -105,9 +105,12 @@ class PreviewPresentation extends React.Component {
         //     username: this.props.user.username
         // };
         //console.log('submit addToStudio data', data); // eslint-disable-line no-console
-        // TODO: pass error to modal via callback.
-        callback();
-        this.setState({addToStudioOpen: false});
+
+        // TODO: post to API; in that callback,
+        // pass error to modal via its callback.
+        this.setState({addToStudioOpen: false}, () => {
+            callback();
+        });
     }
 
     // Report Project modal
