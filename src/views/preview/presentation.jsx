@@ -266,7 +266,7 @@ const PreviewPresentation = ({
                         </FlexRow>
                         <FlexRow className="preview-row">
                             <FlexRow className="extension-list">
-                                {extensions.map(extension => (
+                                {extensions && extensions.map(extension => (
                                     <ExtensionChip
                                         extensionName={extension.name}
                                         hasStatus={extension.hasStatus}
