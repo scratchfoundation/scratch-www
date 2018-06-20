@@ -14,7 +14,7 @@ const ThumbnailColumn = props => (
             if (props.itemType === 'preview') {
                 return (
                     <Thumbnail
-                        avatar={`https://cdn2.scratch.mit.edu/get_image/user/${item.author.i}_32x32.png`}
+                        avatar={`https://cdn2.scratch.mit.edu/get_image/user/${item.author.id}_32x32.png`}
                         creator={item.author.username}
                         favorites={item.stats.favorites}
                         href={href}

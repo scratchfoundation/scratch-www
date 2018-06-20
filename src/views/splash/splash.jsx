@@ -27,7 +27,7 @@ class Splash extends React.Component {
             'shouldShowEmailConfirmation'
         ]);
         this.state = {
-            projectCount: 20000000, // gets the shared project count
+            projectCount: 30000000, // gets the shared project count
             news: [], // gets news posts from the scratch Tumblr
             emailConfirmationModalOpen: false, // flag that determines whether to show banner to request email conf.
             refreshCacheStatus: 'notrequested'

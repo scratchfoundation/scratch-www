@@ -9,7 +9,7 @@
 ### Where am I?
 Physically? No idea.
 
-Digitally? You’re at Scratch’s open source web client! 
+Digitally? You’re at Scratch’s open source web client!
 
 We’re working to update the [Scratch website](https://scratch.mit.edu) to use a new codebase, contained in this repository.
 
@@ -23,7 +23,7 @@ We’re currently building Scratch using [React](https://facebook.github.io/reac
 
 ### Before Getting Started
 * Make sure you have node (v4.2 or higher) and npm [installed](https://docs.npmjs.com/getting-started/installing-node)
-We use npm (Node Package Manager) to maintain and update packages required to build the site.  
+We use npm (Node Package Manager) to maintain and update packages required to build the site.
 
 ### Update Packages
 It's important to make sure that all of the dependencies are up to date because the scratch-www code only works with specific versions of the dependencies. You can update the packages by running this command:
@@ -98,6 +98,9 @@ npm test
 ```
 
 ### To Deploy
+
+Deploying to staging or production will upload code to S3 and configure Fastly.
+
 ```bash
 npm install
 virtualenv ENV
