@@ -196,7 +196,9 @@ class AddToStudioModal extends React.Component {
                     key={studio.id}
                     onClick={() => this.handleToggleAdded(studio.id)}
                 >
-                    {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
+                    <div className="studio-selector-button-text">
+                        {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
+                    </div>
                     <div className={"studio-status-icon" +
                         (isAdded ? " studio-status-icon-selected" : "")}
                     >
@@ -245,7 +247,9 @@ class AddToStudioModal extends React.Component {
                                     name="closeButton"
                                     type="button"
                                 >
-                                    <FormattedMessage id="general.close" />
+                                    <div className="action-button-text">
+                                        <FormattedMessage id="general.close" />
+                                    </div>
                                 </Button>
                                 {this.state.addToStudioWaiting ? [
                                     <Button
@@ -254,7 +258,9 @@ class AddToStudioModal extends React.Component {
                                         key="submitButton"
                                         type="submit"
                                     >
-                                        <Spinner />
+                                        <div className="action-button-text">
+                                            <Spinner />
+                                        </div>
                                     </Button>
                                 ] : [
                                     <Button
@@ -262,7 +268,9 @@ class AddToStudioModal extends React.Component {
                                         key="submitButton"
                                         type="submit"
                                     >
-                                        <FormattedMessage id="general.okay" />
+                                        <div className="action-button-text">
+                                            <FormattedMessage id="general.okay" />
+                                        </div>
                                     </Button>
                                 ]}
                             </FlexRow>
