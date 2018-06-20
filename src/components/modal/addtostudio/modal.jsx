@@ -62,30 +62,53 @@ class AddToStudioModal extends React.Component {
     }
 
     componentDidMount() {
-        debugger;
-        this.updateOnOrDirty(this.props.projectStudios, this.props.myStudios);
+        this.updateOnOrDirty(this.props.projectStudios);
     }
 
     componentWillReceiveProps(nextProps) {
-        debugger;
-        this.updateOnOrDirty(nextProps.projectStudios, nextProps.myStudios);
+        this.updateOnOrDirty(nextProps.projectStudios);
     }
 
-    updateOnOrDirty(projectStudios, myStudios) {
+    updateOnOrDirty(projectStudios) {
         // NOTE: in theory, myStudios could have dropped some studios in
         // onOrDirty, so we should check all existing onOrDirty and drop
         // them too; otherwise we might retain a dirty change for a studio
         // we no longer have permission for. In theory.
 
-        let onOrDirty = this.state.onOrDirty;
+        let onOrDirty = Object.assign({}, this.state.onOrDirty);
         projectStudios.forEach((studio) => {
             onOrDirty[studio.id] = {added: true, dirty: false};
         });
         console.log(projectStudios);
-        console.log(myStudios);
         console.log(onOrDirty);
-        this.setState({onOrDirty: Object.assign({}, onOrDirty)});
+        if (!this.deepCompare(onOrDirty, this.state.onOrDirty)) {
+            this.setState({onOrDirty: Object.assign({}, onOrDirty)});
+        }
     }
+
+    deepCompare(obj1, obj2) {
+        //Loop through properties in object 1
+        for (var p in obj1) {
+            //Check property exists on both objects
+            if (obj1.hasOwnProperty(p) !== obj2.hasOwnProperty(p)) return false;
+
+            switch (typeof (obj1[p])) {
+                //Deep compare objects
+                case 'object':
+                    if (!this.deepCompare(obj1[p], obj2[p])) return false;
+                    break;
+                //Compare values
+                default:
+                    if (obj1[p] != obj2[p]) return false;
+            }
+        }
+
+        //Check object 2 for any extra properties
+        for (var p in obj2) {
+            if (typeof (obj1[p]) == 'undefined') return false;
+        }
+        return true;
+    };
 
     handleToggleAdded(studioId) {
         let onOrDirty = this.state.onOrDirty;
@@ -122,34 +145,33 @@ class AddToStudioModal extends React.Component {
     }
     handleSubmit (formData) {
         // NOTE: ignoring formData for now...
-        this.setState({waiting: true});
-        const onOrDirty = this.state.onOrDirty;
-        const studiosToAdd = Object.keys(onOrDirty)
-            .reduce(function(accumulator, key) {
-                if (onOrDirty[key].dirty === true &&
-                    onOrDirty[key].added === true) {
-                    accumulator.push(key);
-                }
-                return accumulator;
-            }, []);
-        const studiosToDelete = Object.keys(onOrDirty)
-            .reduce(function(accumulator, key) {
-                if (onOrDirty[key].dirty === true &&
-                    onOrDirty[key].added === false) {
-                    accumulator.push(key);
-                }
-                return accumulator;
-            }, []);
+        this.setState({waiting: true}, () => {
+            const onOrDirty = this.state.onOrDirty;
+            const studiosToAdd = Object.keys(onOrDirty)
+                .reduce(function(accumulator, key) {
+                    if (onOrDirty[key].dirty === true &&
+                        onOrDirty[key].added === true) {
+                        accumulator.push(key);
+                    }
+                    return accumulator;
+                }, []);
+            const studiosToDelete = Object.keys(onOrDirty)
+                .reduce(function(accumulator, key) {
+                    if (onOrDirty[key].dirty === true &&
+                        onOrDirty[key].added === false) {
+                        accumulator.push(key);
+                    }
+                    return accumulator;
+                }, []);
 
-        // When this modal is opened, and isOpen becomes true,
-        // onOrDirty should start with a clean slate
-        // NOTE: this doesn't seem to be working:
-        this.setState({ onOrDirty: undefined }, () => {
-            debugger;
             this.props.onAddToStudio(studiosToAdd, studiosToDelete, err => {
                 if (err) log.error(err);
+                // When this modal is opened, and isOpen becomes true,
+                // onOrDirty should start with a clean slate
+                // NOTE: this doesn't seem to be working:
                 this.setState({
-                    waiting: false
+                    waiting: false,
+                    onOrDirty: {}
                 });
             });
         });
