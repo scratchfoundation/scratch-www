@@ -20,6 +20,7 @@ const RemixList = require('./remix-list.jsx');
 const StudioList = require('./studio-list.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
+const Comment = require('./comment/comment.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -50,13 +51,25 @@ const PreviewPresentation = ({
     onUpdate
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
+    const _TESTCOMMENT = {
+        id: 59186659,
+        parent_id: null,
+        content: 'how did you make this so trippy like?!',
+        datetime_created: '2016-05-10T00:59:29.000Z',
+        author: {
+            id: 24232,
+            username: 'blob8108',
+            image: 'https://cdn2.scratch.mit.edu/get_image/user/24232_60x60.png'
+        },
+        reply_count: 1
+    };
     return (
         <div className="preview">
             <ShareBanner shared={isShared} />
             
             { projectInfo && projectInfo.author && projectInfo.author.id && (
-                <div className="inner">
-                    <Formsy>
+                <Formsy>
+                    <div className="inner">
                         <FlexRow className="preview-row">
                             <FlexRow className="project-header">
                                 <a href={`/users/${projectInfo.author.username}`}>
@@ -262,17 +275,28 @@ const PreviewPresentation = ({
                                 </FlexRow>
                             </FlexRow>
                         </FlexRow>
-                        <FlexRow className="preview-row">
-                            <div className="comments-container">
-                                <div className="project-title" />
-                            </div>
-                            <FlexRow className="column">
-                                <RemixList remixes={remixes} />
-                                <StudioList studios={studios} />
+                    </div>
+                    <div className="project-lower-container">
+                        <div className="inner">
+                            <FlexRow className="preview-row">
+                                <div className="comments-container">
+                                    <FlexRow className="comments-header">
+                                        <h4>Comments</h4>
+                                        <div>comments on/off</div>
+                                    </FlexRow>
+                                    <FlexRow className="create-comment" />
+                                    <FlexRow className="comments-list">
+                                        <Comment {..._TESTCOMMENT} />
+                                    </FlexRow>
+                                </div>
+                                <FlexRow className="column">
+                                    <RemixList remixes={remixes} />
+                                    <StudioList studios={studios} />
+                                </FlexRow>
                             </FlexRow>
-                        </FlexRow>
-                    </Formsy>
-                </div>
+                        </div>
+                    </div>
+                </Formsy>
             )}
         </div>
     );

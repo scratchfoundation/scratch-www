@@ -421,6 +421,15 @@ $stage-height: 404px;
         //     }
         // }
     }
+
+    .comments-header {
+        padding: 0 0 1rem 0;
+        justify-content: space-between;
+
+        h4 {
+            font-size: 1.25rem;
+        }
+    }
     
     .studio-button,
     .copy-link-button,
@@ -455,6 +464,11 @@ $stage-height: 404px;
         &:before {
             background-image: url("/svgs/project/report-white.svg");
         }
+    }
+
+    .project-lower-container {
+        background-color: $ui-blue-10percent;
+        padding: 1rem 0;
     }
     
     .remix-list,
