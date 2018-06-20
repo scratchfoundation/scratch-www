@@ -77,7 +77,7 @@ class Preview extends React.Component {
             
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
-            this.getExtensions(this.props.projectInfo.id.toString());
+            this.getExtensions(this.state.projectId);
             this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
             this.handlePermissions();
             if (this.props.projectInfo.remix.parent !== null) {
