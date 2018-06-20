@@ -19,12 +19,11 @@
         flex-grow: 1;
 
         .comment-bubble {
+            border: 1px solid $ui-blue-25percent;
+            border-radius: .5rem;
             background-color: $ui-white;
+            padding: .625rem;
             width: 100%;
-
-            &:before {
-                content: "a";
-            }
         }
 
         .comment-bottom-row {
