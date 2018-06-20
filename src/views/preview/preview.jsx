@@ -118,6 +118,10 @@ class Preview extends React.Component {
                     input = JSON.stringify(input);
                 }
                 parser(projectAsset.data, false, (err, projectData) => {
+                    if (err) {
+                        console.log('Caught project parsing error:', err); // eslint-disable-line no-console
+                        return;
+                    }
                     const extensionSet = new Set();
                     projectData[0].targets.forEach(target => target.extensions.forEach(extension => {
                         extensionSet.add(EXTENSION_INFO[extension]);
