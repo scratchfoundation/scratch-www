@@ -3,9 +3,11 @@
 .comment {
     justify-content: space-between;
     flex-grow: 1;
+    align-items: flex-start;
 
     .comment-top-row {
         width: 100%;
+
         .username {
             margin-right: auto;
         }
