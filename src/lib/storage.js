@@ -9,7 +9,7 @@ const PROJECT_SERVER = 'https://projects.scratch.mit.edu';
 class Storage extends ScratchStorage {
     constructor () {
         super();
-        this.addWebSource( // https://github.com/babel/babel/issues/7022
+        this.addWebSource(
             [this.AssetType.Project],
             projectAsset => {
                 const [projectId, revision] = projectAsset.assetId.split('.');
