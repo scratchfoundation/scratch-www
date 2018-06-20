@@ -130,7 +130,6 @@ class Preview extends React.Component {
     }
     handleReportClick () {
         this.setState({report: {...this.state.report, open: true}});
-        this.getExtensions(5);
     }
     handleReportClose () {
         this.setState({report: {...this.state.report, open: false}});
