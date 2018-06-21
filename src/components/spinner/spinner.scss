@@ -24,7 +24,7 @@
             content: "";
 
             .white & {
-                background-color: darken($ui-blue, 8%);    
+                background-color: darken($ui-blue, 8%);
             }
         }
     }
@@ -37,7 +37,7 @@
             transform: rotate($rotation);
 
             &:before {
-                animation-delay: $delay; 
+                animation-delay: $delay;
             }
         }
 
@@ -54,5 +54,5 @@
 
     40% {
         opacity: 1;
-    } 
+    }
 }

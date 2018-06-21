@@ -144,3 +144,28 @@
 .submit-button {
     background-color: #3F9AFB;
 }
+
+.action-button-text .spinner {
+    margin: -0.125rem auto 2rem;
+    height: 30px;
+    width: 1.875rem;
+}
+
+.studio-status-icon .spinner {
+    position: unset; /* don't understand why neither relative nor absolute work */
+}
+
+.studio-status-icon .spinner .circle {
+    /* overlay spinner on circle */
+    position: absolute;
+    width: 75%; /* stay within boundaries of circle */
+    height: 75%; /* stay within boundaries of circle */
+    margin: 0.1875rem; /* stay within boundaries of circle */
+}
+
+/* for both .studio-status-icon and .action-button-text : */
+.spinner .circle:before {
+    /* make spinner come closer to center of circle; was too hard to see */
+    height: 30%;
+}
+

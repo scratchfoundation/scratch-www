@@ -1,12 +1,23 @@
 // NOTE: next questions:
+// * what is the lifecycle of the getStudios etc. requests? Are they guaranteed to be there
+//   on page load? Are they ever updated, e.g. after you join one?
+// * should we treat "waiting" to mean, user has requested the modal to be closed;
+//   that is, if you click ok and it's waiting for responses, then you click x,
+//   it closes and sets waiting to false?
+//   then in the checkForOutstandingUpdates function, we close the window
+//   iff waiting is true.
+//   that avoids the situation where you close the window while a request is
+//   outstanding, then reopen it only to have it instantly close on you.
 // * should the button to submit instantly? By clicking away shouldn't effectively undo what you thought you did.
 // * should it really be pinned on the page? Isn't that something you're trying to move away from?
+// * is it ok for me to make the spinner bigger and higher-radius-as-percent? (just for modal)
+// *
 // *
 // plan:
-// * change onOrDirty to updateQueued = {[id]: {updateType: ['join':'leave']}, ...}
+// * change joined to updateQueued = {[id]: {updateType: ['join':'leave']}, ...}
 // * also maintain second hash, joined = {[id]: true, ...}
 // in render, use joined to set color, and if queued, use spinner for icon.
-
+//
 
 const bindAll = require('lodash.bindall');
 const truncate = require('lodash.truncate');
@@ -32,7 +43,7 @@ class AddToStudioModal extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [ // NOTE: will need to add and bind callback fn to handle addind and removing studios
-            'handleToggleAdded',
+            'handleToggle',
             'handleRequestClose',
             'handleSubmit'
         ]);
@@ -60,33 +71,34 @@ class AddToStudioModal extends React.Component {
         // prolly didn't want to be changed!
 
         this.state = {
-            waiting: false,
-            onOrDirty: {}
+            waitingToClose: false,
+            joined: {},
+            updateQueued: {}
         };
     }
 
     componentDidMount() {
-        this.updateOnOrDirty(this.props.projectStudios);
+        this.updateJoined(this.props.projectStudios);
     }
 
     componentWillReceiveProps(nextProps) {
-        this.updateOnOrDirty(nextProps.projectStudios);
+        this.updateJoined(nextProps.projectStudios);
     }
 
-    updateOnOrDirty(projectStudios) {
+    updateJoined(projectStudios) {
         // NOTE: in theory, myStudios could have dropped some studios in
-        // onOrDirty, so we should check all existing onOrDirty and drop
+        // joined, so we should check all existing joined and drop
         // them too; otherwise we might retain a dirty change for a studio
         // we no longer have permission for. In theory.
 
-        let onOrDirty = Object.assign({}, this.state.onOrDirty);
+        let joined = Object.assign({}, this.state.joined);
         projectStudios.forEach((studio) => {
-            onOrDirty[studio.id] = {added: true, dirty: false};
+            joined[studio.id] = true;
         });
         console.log(projectStudios);
-        console.log(onOrDirty);
-        if (!this.deepCompare(onOrDirty, this.state.onOrDirty)) {
-            this.setState({onOrDirty: Object.assign({}, onOrDirty)});
+        console.log(joined);
+        if (!this.deepCompare(joined, this.state.joined)) {
+            this.setState({joined: Object.assign({}, joined)});
         }
     }
 
@@ -114,79 +126,58 @@ class AddToStudioModal extends React.Component {
         return true;
     };
 
-    handleToggleAdded(studioId) {
-        let onOrDirty = this.state.onOrDirty;
-        if (studioId in onOrDirty) {
-            if (onOrDirty[studioId].added === true) {
-                if (onOrDirty[studioId].dirty === true) {
-                    // let's untrack the status of this studio, so it's
-                    // un-added, and un-dirty again
-                    delete onOrDirty[studioId];
-                } else { // it started off added, so it's dirty now
-                    onOrDirty[studioId].added = false;
-                    onOrDirty[studioId].dirty = true;
-                }
-            } else {
-                if (onOrDirty[studioId].dirty === true) {
-                    // it was previously set to unadded. so let's set it to
-                    // added, and NOT dirty. This is how it started out
-                    onOrDirty[studioId].added = true;
-                    onOrDirty[studioId].dirty = false;
-                }
-                // should never be added == false AND dirty == false
+    handleToggle(studioId) {
+        const joined = this.state.joined;
+        let updateQueued = this.state.updateQueued;
+        if (studioId in joined) { // so we want to leave the studio...
+            if (studioId in updateQueued) {
+                // we've already requested it... should we request again??
+            } else { // need to request it...
+                console.log("queueing leave request from studio: " + studioId);
+                updateQueued[studioId] = {updateType: 'leave'};
+                // NOTE: this should work with regular updateQueued, not object.assign, right?
+                // test it...
+                this.setState({updateQueued: Object.assign({}, updateQueued)});
             }
-        } else { // was not in onOrDirty; add it as added!
-            onOrDirty[studioId] = {added: true, dirty: true};
+        } else { // we want to join
+            if (studioId in updateQueued) {
+                // we've already requested it... should we request again??
+            } else { // need to request it...
+                console.log("queueing join request to studio: " + studioId);
+                updateQueued[studioId] = {updateType: 'join'};
+                this.setState({updateQueued: Object.assign({}, updateQueued)});
+            }
         }
-        this.setState({onOrDirty: Object.assign({}, onOrDirty)});
+    }
+
+    // we need to separately handle
+    // server responses to our update requests,
+    // and after each one, check to see if there are no outstanding updates
+    // queued.
+    checkForOutstandingUpdates () {
+        const updateQueued = this.state.updateQueued;
+        if (Object.keys(updateQueued).length == 0) {
+            setTimeout(function() {
+                this.setState({waitingToClose: false}, () => {
+                    this.handleRequestClose();
+                });
+            }.bind(this), 3000);
+        }
     }
 
     handleRequestClose () {
-        // NOTE that we do NOT clear onOrDirty, so we don't lose
+        // NOTE that we do NOT clear joined, so we don't lose
         // user's work from a stray click outside the modal...
         // but maybe this should be different?
         this.baseModal.handleRequestClose();
     }
     handleSubmit (formData) {
-        // NOTE: ignoring formData for now...
-        this.setState({waiting: true}, () => {
-            const onOrDirty = this.state.onOrDirty;
-            const studiosToAdd = Object.keys(onOrDirty)
-                .reduce(function(accumulator, key) {
-                    if (onOrDirty[key].dirty === true &&
-                        onOrDirty[key].added === true) {
-                        accumulator.push(key);
-                    }
-                    return accumulator;
-                }, []);
-            const studiosToLeave = Object.keys(onOrDirty)
-                .reduce(function(accumulator, key) {
-                    if (onOrDirty[key].dirty === true &&
-                        onOrDirty[key].added === false) {
-                        accumulator.push(key);
-                    }
-                    return accumulator;
-                }, []);
-
-            setTimeout(function() {
-                this.props.onAddToStudio(studiosToAdd, studiosToLeave, err => {
-                    if (err) log.error(err);
-                    // When this modal is opened, and isOpen becomes true,
-                    // onOrDirty should start with a clean slate
-                    // NOTE: this doesn't seem to be working:
-                    setTimeout(function() {
-                        this.setState({
-                            waiting: false,
-                            onOrDirty: {}
-                        });
-                    }.bind(this), 3000);
-                    // this.setState({
-
-                    //     waiting: false,
-                    //     onOrDirty: {}
-                    // });
-                });
-            }.bind(this), 3000);
+        // NOTE:For this approach to work, we need to separately handle
+        // server responses to our update requests,
+        // and after each one, check to see if there are no outstanding updates
+        // queued.
+        this.setState({waitingToClose: true}, () => {
+            this.checkForOutstandingUpdates();
         });
     }
     render () {
@@ -198,16 +189,17 @@ class AddToStudioModal extends React.Component {
             type,
             ...modalProps
         } = this.props;
-        const onOrDirty = this.state.onOrDirty;
+        const joined = this.state.joined;
+        const updateQueued = this.state.updateQueued;
         const contentLabel = intl.formatMessage({id: `addToStudio.${type}`});
         const studioButtons = myStudios.map((studio, index) => {
-            const isAdded = (studio.id in onOrDirty &&
-                onOrDirty[studio.id].added === true);
+            const isAdded = (studio.id in joined);
+            const isWaiting = (studio.id in updateQueued);
             return (
                 <div className={"studio-selector-button" +
                     (isAdded ? " studio-selector-button-selected" : "")}
                     key={studio.id}
-                    onClick={() => this.handleToggleAdded(studio.id)}
+                    onClick={() => this.handleToggle(studio.id)}
                 >
                     <div className="studio-selector-button-text">
                         {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
@@ -215,7 +207,7 @@ class AddToStudioModal extends React.Component {
                     <div className={"studio-status-icon" +
                         (isAdded ? " studio-status-icon-selected" : "")}
                     >
-                        {isAdded ? "✓" : "+"}
+                        {isWaiting ? (<Spinner />) : (isAdded ? "✓" : "+")}
                     </div>
                 </div>
             );
@@ -264,7 +256,7 @@ class AddToStudioModal extends React.Component {
                                         <FormattedMessage id="general.close" />
                                     </div>
                                 </Button>
-                                {this.state.waiting ? [
+                                {this.state.waitingToClose ? [
                                     <Button
                                         className="action-button submit-button"
                                         disabled="disabled"
