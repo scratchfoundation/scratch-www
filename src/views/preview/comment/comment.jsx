@@ -19,7 +19,9 @@ const Comment = ({
         className="flex-row comment"
         id={`comments-${id}`}
     >
-        <Avatar src={author.image} />
+        <a href={`/users/${author.username}`}>
+            <Avatar src={author.image} />
+        </a>
         <FlexRow className="comment-body column">
             <FlexRow className="comment-top-row">
                 <a
