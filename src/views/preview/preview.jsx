@@ -55,6 +55,7 @@ class Preview extends React.Component {
                 waiting: false
             }
         };
+        this.getExtensions(this.state.projectId);
         this.addEventListeners();
     }
     componentDidUpdate (prevProps) {
@@ -124,9 +125,9 @@ class Preview extends React.Component {
                     }
                     const extensionSet = new Set();
                     if (projectData[0].targets) {
-                    projectData[0].targets.forEach(target => target.extensions.forEach(extension => {
-                        extensionSet.add(EXTENSION_INFO[extension]);
-                    }));
+                        projectData[0].targets.forEach(target => target.extensions.forEach(extension => {
+                            extensionSet.add(EXTENSION_INFO[extension]);
+                        }));
                     }
                     this.setState({
                         extensions: Array.from(extensionSet)
