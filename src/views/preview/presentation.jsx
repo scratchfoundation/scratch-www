@@ -97,8 +97,8 @@ class PreviewPresentation extends React.Component {
     handleAddToStudioSubmit (studiosToAdd, studiosToLeave, callback) {
         console.log('studios to add: ');
         console.log(studiosToAdd);
-        console.log('studios to delete: ');
-        console.log(studiosToDelete);
+        console.log('studios to leave: ');
+        console.log(studiosToLeave);
         // const data = {
         //     ...formData,
         //     id: this.props.projectId,

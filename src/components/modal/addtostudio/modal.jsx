@@ -2,7 +2,11 @@
 // * should the button to submit instantly? By clicking away shouldn't effectively undo what you thought you did.
 // * should it really be pinned on the page? Isn't that something you're trying to move away from?
 // *
-// *
+// plan:
+// * change onOrDirty to updateQueued = {[id]: {updateType: ['join':'leave']}, ...}
+// * also maintain second hash, joined = {[id]: true, ...}
+// in render, use joined to set color, and if queued, use spinner for icon.
+
 
 const bindAll = require('lodash.bindall');
 const truncate = require('lodash.truncate');
@@ -164,16 +168,25 @@ class AddToStudioModal extends React.Component {
                     return accumulator;
                 }, []);
 
-            this.props.onAddToStudio(studiosToAdd, studiosToLeave, err => {
-                if (err) log.error(err);
-                // When this modal is opened, and isOpen becomes true,
-                // onOrDirty should start with a clean slate
-                // NOTE: this doesn't seem to be working:
-                this.setState({
-                    waiting: false,
-                    onOrDirty: {}
+            setTimeout(function() {
+                this.props.onAddToStudio(studiosToAdd, studiosToLeave, err => {
+                    if (err) log.error(err);
+                    // When this modal is opened, and isOpen becomes true,
+                    // onOrDirty should start with a clean slate
+                    // NOTE: this doesn't seem to be working:
+                    setTimeout(function() {
+                        this.setState({
+                            waiting: false,
+                            onOrDirty: {}
+                        });
+                    }.bind(this), 3000);
+                    // this.setState({
+
+                    //     waiting: false,
+                    //     onOrDirty: {}
+                    // });
                 });
-            });
+            }.bind(this), 3000);
         });
     }
     render () {
@@ -251,7 +264,7 @@ class AddToStudioModal extends React.Component {
                                         <FormattedMessage id="general.close" />
                                     </div>
                                 </Button>
-                                {this.state.addToStudioWaiting ? [
+                                {this.state.waiting ? [
                                     <Button
                                         className="action-button submit-button"
                                         disabled="disabled"

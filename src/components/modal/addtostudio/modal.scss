@@ -87,6 +87,7 @@
     );
     width: 100%;
     height: 32px;
+    pointer-events: none; /* pass clicks through to buttons underneath */
 }
 
 .studio-selector-button {
