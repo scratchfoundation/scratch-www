@@ -12,6 +12,8 @@
 // * should it really be pinned on the page? Isn't that something you're trying to move away from?
 // * is it ok for me to make the spinner bigger and higher-radius-as-percent? (just for modal)
 // *
+// one way to go: no buttons at all.
+// maybe let kids toggle on and off like crazy, then when you click ok it submits?
 // *
 // plan:
 // * change joined to updateQueued = {[id]: {updateType: ['join':'leave']}, ...}
@@ -19,6 +21,19 @@
 // in render, use joined to set color, and if queued, use spinner for icon.
 //
 
+// sample data:
+// this.studios = [{name: 'Funny games', id: 1}, {name: 'Silly ideas', id: 2}];
+// studios data is like:
+// [{
+//   id: 1702295,
+//   description: "...",
+//   history: {created: "2015-11-15T00:24:35.000Z",
+//   modified: "2018-05-01T00:14:48.000Z"},
+//   image: "http....png",
+//   owner: 10689298,
+//   stats: {followers: 0},
+//   title: "Studio title"
+// }, {...}]
 const bindAll = require('lodash.bindall');
 const truncate = require('lodash.truncate');
 const PropTypes = require('prop-types');
@@ -47,29 +62,11 @@ class AddToStudioModal extends React.Component {
             'handleRequestClose',
             'handleSubmit'
         ]);
-        // NOTE: get real data
-        // this.studios = [{name: 'Funny games', id: 1}, {name: 'Silly ideas', id: 2}];
-        // studios data is like:
-        // [{
-        //   id: 1702295,
-        //   description: "...",
-        //   history: {created: "2015-11-15T00:24:35.000Z",
-        //   modified: "2018-05-01T00:14:48.000Z"},
-        //   image: "http....png",
-        //   owner: 10689298,
-        //   stats: {followers: 0},
-        //   title: "Studio title"
-        // }, {...}]
 
         // NOTE: need to:
         // construct hash of inclusion status by id, populate it.
         // replace mystudios with list of studios ordered by
         // membership/stats/name. use that for rendering.
-        // returning: provide the hash to handlesubmit. or
-        // maybe i should calculate delta here? if studio was
-        // left elsewhere and that status was not changed here,
-        // prolly didn't want to be changed!
-
         this.state = {
             waitingToClose: false,
             joined: {},
@@ -86,67 +83,44 @@ class AddToStudioModal extends React.Component {
     }
 
     updateJoined(projectStudios) {
-        // NOTE: in theory, myStudios could have dropped some studios in
-        // joined, so we should check all existing joined and drop
-        // them too; otherwise we might retain a dirty change for a studio
-        // we no longer have permission for. In theory.
-
+        // projectStudios could have dropped some studios since the last time
+        // we traveresd it, so we should build the joined state object
+        // from scratch.
         let joined = Object.assign({}, this.state.joined);
         projectStudios.forEach((studio) => {
             joined[studio.id] = true;
         });
-        console.log(projectStudios);
-        console.log(joined);
-        if (!this.deepCompare(joined, this.state.joined)) {
-            this.setState({joined: Object.assign({}, joined)});
-        }
+        this.setState({joined: Object.assign({}, joined)});
     }
 
-    deepCompare(obj1, obj2) {
-        //Loop through properties in object 1
-        for (var p in obj1) {
-            //Check property exists on both objects
-            if (obj1.hasOwnProperty(p) !== obj2.hasOwnProperty(p)) return false;
-
-            switch (typeof (obj1[p])) {
-                //Deep compare objects
-                case 'object':
-                    if (!this.deepCompare(obj1[p], obj2[p])) return false;
-                    break;
-                //Compare values
-                default:
-                    if (obj1[p] != obj2[p]) return false;
-            }
-        }
-
-        //Check object 2 for any extra properties
-        for (var p in obj2) {
-            if (typeof (obj1[p]) == 'undefined') return false;
-        }
-        return true;
-    };
+    requestJoinStudio(studioId) {
+        // submit here? or through presentation?
+    }
+    requestLeaveStudio(studioId) {
+        // submit here? or through presentation?
+    }
 
     handleToggle(studioId) {
         const joined = this.state.joined;
-        let updateQueued = this.state.updateQueued;
-        if (studioId in joined) { // so we want to leave the studio...
-            if (studioId in updateQueued) {
-                // we've already requested it... should we request again??
-            } else { // need to request it...
-                console.log("queueing leave request from studio: " + studioId);
-                updateQueued[studioId] = {updateType: 'leave'};
-                // NOTE: this should work with regular updateQueued, not object.assign, right?
-                // test it...
-                this.setState({updateQueued: Object.assign({}, updateQueued)});
-            }
-        } else { // we want to join
-            if (studioId in updateQueued) {
-                // we've already requested it... should we request again??
-            } else { // need to request it...
-                console.log("queueing join request to studio: " + studioId);
-                updateQueued[studioId] = {updateType: 'join'};
-                this.setState({updateQueued: Object.assign({}, updateQueued)});
-            }
+        const updateQueued = this.state.updateQueued;
+        console.log(updateQueued)
+        if (!(studioId in updateQueued)) { // we haven't requested it yet...
+            const updateType = (studioId in joined) ? 'leave' : 'join';
+            console.log("queueing " + updateType + " request for studio: " + studioId);
+            this.setState(prevState => ({
+                updateQueued: {
+                    ...prevState.updateQueued,
+                    [studioId]: {updateType: updateType}
+                }
+            }), () => { // callback
+                // submit request to server
+
+                if (updateType === 'join') {
+                    this.requestJoinStudio(studioId);
+                } else {
+                    this.requestLeaveStudio(studioId);
+                }
+            });
         }
     }
 
