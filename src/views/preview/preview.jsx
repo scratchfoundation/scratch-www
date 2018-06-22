@@ -124,10 +124,10 @@ class Preview extends React.Component {
                         return;
                     }
                     const extensionSet = new Set();
-                    if (projectData[0].targets) {
-                        projectData[0].targets.forEach(target => target.extensions.forEach(extension => {
+                    if (projectData[0].extensions) {
+                        projectData[0].extensions.forEach(extension => {
                             extensionSet.add(EXTENSION_INFO[extension]);
-                        }));
+                        });
                     }
                     this.setState({
                         extensions: Array.from(extensionSet)
