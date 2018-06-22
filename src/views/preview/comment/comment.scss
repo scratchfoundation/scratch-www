@@ -31,7 +31,8 @@
             width: calc(100% - 10px);
             box-sizing: border-box;
 
-            .comment-schwoop {
+            &:before {
+                display: inline-block;
                 position: absolute;
                 top: -1px;
                 left: -11px; // width + 1px
@@ -41,7 +42,8 @@
                 border-color: $ui-blue-25percent transparent $ui-blue-25percent $ui-blue-25percent;
                 background: $ui-white;
                 width: 10px;
-                height: 8px;
+                height: 9px;
+                content: "";
             }
         }
 
