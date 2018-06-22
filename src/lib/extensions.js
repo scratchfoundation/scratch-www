@@ -5,25 +5,25 @@ const EXTENSION_INFO = {
         hasStatus: true
     },
     music: {
-        name: 'Music',
+        l10nId: 'preview.musicExtensionChip',
         icon: 'extension-music.svg'
     },
     pen: {
-        name: 'Pen',
+        l10nId: 'preview.penExtensionChip',
         icon: 'extension-pen.svg'
     },
     speak: {
         name: 'Amazon Polly'
     },
     speech: {
-        name: 'Google Speech'
+        l10nId: 'preview.speechExtensionChip'
     },
     translate: {
-        name: 'Google Translate',
+        l10nId: 'preview.translateExtensionChip',
         icon: 'extension-translate.svg'
     },
     videoSensing: {
-        name: 'Video Motion',
+        l10nId: 'preview.videoMotionChip',
         icon: 'extension-videomotion.svg'
     },
     wedo2: {
