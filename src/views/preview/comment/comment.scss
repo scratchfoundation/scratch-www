@@ -19,6 +19,7 @@
 
     .comment-body {
         flex-grow: 1;
+        align-items: flex-start;
 
         .comment-bubble {
             position: relative;
@@ -27,7 +28,7 @@
             border-radius: 0 .5rem .5rem .5rem;
             background-color: $ui-white;
             padding: .625rem;
-            width: 100%;
+            width: calc(100% - 10px);
             box-sizing: border-box;
 
             .comment-schwoop {
