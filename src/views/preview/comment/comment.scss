@@ -21,12 +21,27 @@
         flex-grow: 1;
 
         .comment-bubble {
+            position: relative;
+            margin-left: 10px;
             border: 1px solid $ui-blue-25percent;
-            border-radius: .5rem;
+            border-radius: 0 .5rem .5rem .5rem;
             background-color: $ui-white;
             padding: .625rem;
             width: 100%;
             box-sizing: border-box;
+
+            .comment-schwoop {
+                position: absolute;
+                top: -1px;
+                left: -11px; // width + 1px
+                border-width: 1px 0 1px 1px;
+                border-style: solid;
+                border-radius: 0 0 0 .625rem;
+                border-color: $ui-blue-25percent transparent $ui-blue-25percent $ui-blue-25percent;
+                background: $ui-white;
+                width: 10px;
+                height: 8px;
+            }
         }
 
         .comment-bottom-row {

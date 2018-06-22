@@ -34,6 +34,7 @@ const Comment = ({
                 </div>
             </FlexRow>
             <div className="comment-bubble">
+                <div className="comment-schwoop" />
                 <span className="comment-content">{content}</span>
                 <FlexRow className="comment-bottom-row">
                     <FormattedRelative value={new Date(datetime_created)} />
