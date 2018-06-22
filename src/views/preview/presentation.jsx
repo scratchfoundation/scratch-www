@@ -268,10 +268,11 @@ const PreviewPresentation = ({
                             <FlexRow className="extension-list">
                                 {extensions && extensions.map(extension => (
                                     <ExtensionChip
+                                        extensionL10n={extension.l10nId}
                                         extensionName={extension.name}
                                         hasStatus={extension.hasStatus}
                                         iconURI={extension.icon && `/svgs/project/${extension.icon}`}
-                                        key={extension.name}
+                                        key={extension.name || extension.l10nId}
                                     />
                                 ))}
                             </FlexRow>
