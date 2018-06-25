@@ -6,8 +6,9 @@
     "start": "make start",
     "stop": "make stop",
     "test": "make test",
-    "smoke": "make smoke",
+    "smoke": "./node_modules/.bin/tap ./test/integration/smoke-testing/*.js --timeout=3600",
     "smoke-verbose": "make smoke-verbose",
+    "smoke-sauce": "./node_modules/.bin/tap ./test/integration/smoke-testing/*.js --timeout=60000",
     "watch": "make watch",
     "build": "make build",
     "dev": "make watch && make start &"
