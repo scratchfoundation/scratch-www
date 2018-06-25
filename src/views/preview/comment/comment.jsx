@@ -11,9 +11,7 @@ const Comment = ({
     author,
     content,
     datetime_created,
-    id,
-    parent_id,
-    reply_count
+    id
 }) => (
     <div
         className="flex-row comment"
@@ -52,9 +50,7 @@ Comment.propTypes = {
     }),
     content: PropTypes.string,
     datetime_created: PropTypes.string,
-    id: PropTypes.number,
-    parent_id: PropTypes.number,
-    reply_count: PropTypes.number
+    id: PropTypes.number
 };
 
 module.exports = Comment;
