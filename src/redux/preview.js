@@ -121,6 +121,11 @@ module.exports.setStudios = items => ({
     items: items
 });
 
+module.exports.setComments = items => ({
+    type: 'SET_COMMENTS',
+    items: items
+});
+
 module.exports.setFetchStatus = (type, status) => ({
     type: 'SET_FETCH_STATUS',
     infoType: type,
@@ -209,6 +214,26 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));
         dispatch(module.exports.setFaved(body.userFavorite));
+    });
+});
+
+module.exports.getTopLevelComments = id => (dispatch => {
+    dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
+    api({
+        uri: `/comments/project/${id}`
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No comment info'));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
+        dispatch(module.exports.setComments(body));
     });
 });
 

@@ -26,6 +26,7 @@ const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const PreviewPresentation = ({
+    comments,
     editable,
     faved,
     favoriteCount,
@@ -51,127 +52,6 @@ const PreviewPresentation = ({
     onUpdate
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
-    const _TESTCOMMENTS = [{
-        id: 56496790,
-        parent_id: null,
-        content: 'What a cool idea! Love this! :D',
-        datetime_created: '2016-03-14T15:41:42.000Z',
-        datetime_modified: '2016-03-14T15:41:42.000Z',
-        author: {
-            id: 9557330,
-            username: 'Candycode',
-            image: 'https://cdn2.scratch.mit.edu/get_image/user/9557330_60x60.png'
-        },
-        reply_count: 1
-    }, {
-        id: 54719338,
-        parent_id: null,
-        content: 'Ha! This is so cool and well done, and thanks for the love.',
-        datetime_created: '2016-02-06T08:20:00.000Z',
-        datetime_modified: '2016-02-06T08:20:00.000Z',
-        author: {
-            id: 14420300,
-            username: 'saltbrain',
-            image: 'https://cdn2.scratch.mit.edu/get_image/user/14420300_60x60.png'
-        },
-        reply_count: 2
-    }, {
-        id: 53187166,
-        parent_id: null,
-        content: 'Fantastic!',
-        datetime_created: '2016-01-03T00:08:24.000Z',
-        datetime_modified: '2016-01-03T00:08:24.000Z',
-        author: {
-            id: 2592116,
-            username: 'The_Grits',
-            image: 'https://cdn2.scratch.mit.edu/get_image/user/2592116_60x60.png'
-        },
-        reply_count: 1
-    }, {
-        id: 53179188,
-        parent_id: null,
-        content: 'WOW!!! This is amazing, I mean everything! Especially the idea!',
-        datetime_created: '2016-01-02T21:36:55.000Z',
-        datetime_modified: '2016-01-02T21:36:55.000Z',
-        author: {
-            id: 2814281,
-            username: 'Samrya',
-            image: 'https://cdn2.scratch.mit.edu/get_image/user/2814281_60x60.png'
-        },
-        reply_count: 2
-    }, {
-        id: 52866270,
-        parent_id: null,
-        content: 'This project is beyond me.',
-        datetime_created: '2015-12-26T19:00:36.000Z',
-        datetime_modified: '2015-12-26T19:00:36.000Z',
-        author: {
-            id: 3058431,
-            username: 'RWawesome13',
-            image: 'https://cdn2.scratch.mit.edu/get_image/user/3058431_60x60.png'
-        },
-        reply_count: 0
-    }, {
-        id: 52823492,
-        parent_id: null,
-        content: 'This is AMAZING!!!!!!!!!!!!!!!!!!!!!!!!!!',
-        datetime_created: '2015-12-25T07:49:41.000Z',
-        datetime_modified: '2015-12-25T07:49:41.000Z',
-        author: {
-            id: 10571716,
-            username: 'MouseGames123',
-            image: 'https://cdn2.scratch.mit.edu/get_image/user/10571716_60x60.png'
-        },
-        reply_count: 1
-    }, {
-        id: 50866065,
-        parent_id: null,
-        content: '<3',
-        datetime_created: '2015-11-11T16:39:56.000Z',
-        datetime_modified: '2015-11-11T16:39:56.000Z',
-        author: {
-            id: 3550327,
-            username: 'ic6862',
-            image: 'https://cdn2.scratch.mit.edu/get_image/user/3550327_60x60.png'
-        },
-        reply_count: 1
-    }, {
-        id: 50782209,
-        parent_id: null,
-        content: "It's relaxing...",
-        datetime_created: '2015-11-09T16:38:12.000Z',
-        datetime_modified: '2015-11-09T16:38:12.000Z',
-        author: {
-            id: 10381664,
-            username: '-Io-',
-            image: 'https://cdn2.scratch.mit.edu/get_image/user/10381664_60x60.png'
-        },
-        reply_count: 1
-    }, {
-        id: 50619702,
-        parent_id: null,
-        content: 'This is such a fun and creative way to display information!',
-        datetime_created: '2015-11-06T00:18:52.000Z',
-        datetime_modified: '2015-11-06T00:18:52.000Z',
-        author: {
-            id: 2755634,
-            username: 'ceebee',
-            image: 'https://cdn2.scratch.mit.edu/get_image/user/2755634_60x60.png'
-        },
-        reply_count: 1
-    }, {
-        id: 49855470,
-        parent_id: null,
-        content: 'great job',
-        datetime_created: '2015-10-24T22:42:27.000Z',
-        datetime_modified: '2015-10-24T22:42:27.000Z',
-        author: {
-            id: 4351253,
-            username: 'CreeperDudeEX',
-            image: 'https://cdn2.scratch.mit.edu/get_image/user/4351253_60x60.png'
-        },
-        reply_count: 9
-    }];
     return (
         <div className="preview">
             <ShareBanner shared={isShared} />
@@ -395,7 +275,7 @@ const PreviewPresentation = ({
                                     </FlexRow>
                                     <FlexRow className="create-comment" />
                                     <FlexRow className="comments-list">
-                                        {_TESTCOMMENTS.map(comment => (
+                                        {comments.map(comment => (
                                             <CommentContainer
                                                 {...comment}
                                                 key={comment.id}
@@ -417,6 +297,7 @@ const PreviewPresentation = ({
 };
 
 PreviewPresentation.propTypes = {
+    comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
