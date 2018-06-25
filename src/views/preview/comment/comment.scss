@@ -1,11 +1,18 @@
 @import "../../../colors";
 
+.comment-container {
+    width: 100%;
+    justify-content: flex-end;
+}
+
 .comment {
+    width: 100%;
+    flex-wrap: nowrap;
     justify-content: space-between;
-    flex-grow: 1;
     align-items: flex-start;
 
     .comment-top-row {
+        margin-bottom: 8px;
         width: 100%;
 
         .username {
@@ -18,6 +25,7 @@
     }
 
     .comment-body {
+        margin-bottom: 24px;
         flex-grow: 1;
         align-items: flex-start;
 
@@ -25,9 +33,9 @@
             position: relative;
             margin-left: 10px;
             border: 1px solid $ui-blue-25percent;
-            border-radius: 0 .5rem .5rem .5rem;
+            border-radius: 0 8px 8px 8px;
             background-color: $ui-white;
-            padding: .625rem;
+            padding: 10px;
             width: calc(100% - 10px);
             box-sizing: border-box;
 
@@ -38,7 +46,7 @@
                 left: -11px; // width + 1px
                 border-width: 1px 0 1px 1px;
                 border-style: solid;
-                border-radius: 0 0 0 .625rem;
+                border-radius: 0 0 0 8px;
                 border-color: $ui-blue-25percent transparent $ui-blue-25percent $ui-blue-25percent;
                 background: $ui-white;
                 width: 10px;
@@ -48,9 +56,13 @@
         }
 
         .comment-bottom-row {
-            padding-top: .625rem;
-            font-size: .75rem;
+            padding-top: 10px;
+            font-size: 12px;
             justify-content: space-between;
         }
     }
+}
+
+.replies {
+    margin-left: 4rem;
 }
