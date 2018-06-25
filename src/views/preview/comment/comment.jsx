@@ -25,7 +25,7 @@ const Comment = ({
                 <a
                     className="username"
                     href={`/users/${author.username}`}
-                >@{author.username}</a>
+                >{author.username}</a>
                 <div className="action-list">
                     <span>Delete</span>
                     <span>Report</span>
