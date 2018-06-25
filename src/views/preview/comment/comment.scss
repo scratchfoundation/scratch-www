@@ -55,6 +55,11 @@
             }
         }
 
+        .comment-content {
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+
         .comment-bottom-row {
             padding-top: 10px;
             font-size: 12px;
