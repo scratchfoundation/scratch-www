@@ -26,6 +26,7 @@
 
     .comment-body {
         margin-bottom: 24px;
+        min-width: 50%;
         flex-grow: 1;
         align-items: flex-start;
 
@@ -56,8 +57,7 @@
         }
 
         .comment-content {
-            word-wrap: break-word;
-            word-break: break-word;
+            overflow-wrap: break-word;
         }
 
         .comment-bottom-row {
