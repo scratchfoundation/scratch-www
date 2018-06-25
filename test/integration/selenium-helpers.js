@@ -1,6 +1,8 @@
 var webdriver = require('selenium-webdriver');
 
 const headless = process.env.SMOKE_HEADLESS || false;
+const remote = process.env.SMOKE_REMOTE || false;
+const {SAUCE_USERNAME, SAUCE_ACCESS_KEY} = process.env;
 
 const getDriver = function () {
     const chromeCapabilities = webdriver.Capabilities.chrome();
@@ -18,7 +20,34 @@ const getDriver = function () {
     return newDriver;
 };
 
-const driver = getDriver();
+const getSauceDriver = function (username, accessKey, configs) {
+    let driver = new webdriver.Builder()
+        .withCapabilities({
+            browserName: configs.browserName,
+            platform: configs.platform,
+            version: configs.version,
+            username: username,
+            accessKey: accessKey,
+            name: 'smoke test scratch-www'
+        })
+        .usingServer(`http://${username}:${accessKey
+        }@ondemand.saucelabs.com:80/wd/hub`)
+        .build();
+    return driver;
+};
+// Driver configs can be generated with the Sauce Platform Configurator
+// https://wiki.saucelabs.com/display/DOCS/Platform+Configurator
+const driverConfig = {
+    browserName: 'chrome',
+    platform: 'macOS 10.13',
+    version: '67.0'
+};
+var driver;
+if (remote === 'true'){
+    driver = getSauceDriver(SAUCE_USERNAME, SAUCE_ACCESS_KEY, driverConfig);
+} else {
+    driver = getDriver();
+}
 
 const {By, until} = webdriver;
 
@@ -87,5 +116,6 @@ module.exports = {
     findByCss,
     clickCss,
     getLogs,
-    getDriver
+    getDriver,
+    getSauceDriver
 };
