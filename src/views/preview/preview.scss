@@ -12,7 +12,7 @@ $stage-height: 404px;
 
 /* override view padding for share banner */
 #view {
-    padding: 0 0 20px 0;
+    padding: 0;
 }
 
 .gui {
@@ -470,6 +470,7 @@ $stage-height: 404px;
         margin-top: 1rem;
         background-color: $ui-blue-10percent;
         padding: 1rem 0;
+        min-height: 12rem;
     }
     
     .remix-list,
