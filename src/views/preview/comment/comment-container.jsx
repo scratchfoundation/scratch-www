@@ -1,7 +1,6 @@
 const React = require('react');
 const PropTypes = require('prop-types');
 
-const api = require('../../../lib/api');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Comment = require('./comment.jsx');
 
