@@ -57,3 +57,5 @@ CommentContainer.propTypes = {
     parent_id: PropTypes.number,
     reply_count: PropTypes.number
 };
+
+export default CommentContainer;

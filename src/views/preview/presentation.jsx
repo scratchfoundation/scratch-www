@@ -20,7 +20,7 @@ const RemixList = require('./remix-list.jsx');
 const StudioList = require('./studio-list.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
-const CommentContainer = require('./comment/comment-container.jsx');
+const CommentContainer = require('./comment/comment-container.jsx').default;
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
