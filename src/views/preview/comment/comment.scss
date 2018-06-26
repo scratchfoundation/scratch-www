@@ -1,11 +1,13 @@
 @import "../../../colors";
 
 .comment-container {
+    position: relative;
     width: 100%;
     justify-content: flex-end;
 }
 
 .comment {
+    position: relative;
     width: 100%;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -66,9 +68,52 @@
             justify-content: space-between;
         }
     }
+
 }
 
 .replies {
     margin-left: 4rem;
     width: 100%;
+
+    &.collapsed .comment {
+        &:last-child {
+            &:after {
+                position: absolute;
+                bottom: 0;
+                background-image: linear-gradient(transparent, mix($ui-white, $ui-blue-25percent));
+                width: 100%;
+                height: 100%;
+                content: "";
+            }
+        }
+    }
 }
+
+.expand-thread {
+    margin-bottom: 24px;
+    width: 100%;
+    overflow: hidden;
+    text-align: center; 
+
+    &:before,
+    &:after {
+        display: inline-block;
+        position: relative;
+        background-color: $active-gray;
+        width: 50%;
+        height: 2px;
+        vertical-align: middle;
+        content: "";
+    }
+
+    &:before {
+        right: .5em;
+        margin-left: -50%;
+    }
+
+    &:after {
+        left: .5em;
+        margin-right: -50%;
+    }
+}
+

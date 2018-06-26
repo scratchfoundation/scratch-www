@@ -2,6 +2,8 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const api = require('../../../lib/api');
 const log = require('../../../lib/log');
+const bindAll = require('lodash.bindall');
+const classNames = require('classnames');
 
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Comment = require('./comment.jsx');
@@ -11,7 +13,11 @@ require('./comment.scss');
 class CommentContainer extends React.Component {
     constructor (props) {
         super(props);
+        bindAll(this, [
+            'handleExpandThread'
+        ]);
         this.state = {
+            expanded: false,
             replies: []
         };
     }
@@ -40,6 +46,12 @@ class CommentContainer extends React.Component {
         }
     }
 
+    handleExpandThread () {
+        this.setState({
+            expanded: true
+        });
+    }
+
     render () {
         const {
             author,
@@ -54,16 +66,26 @@ class CommentContainer extends React.Component {
                 <Comment {...{author, content, datetime_created, id}} />
                 {reply_count > 0 && // eslint-disable-line camelcase
                     <FlexRow
-                        className="replies column"
+                        className={classNames(
+                            'replies',
+                            'column',
+                            {collapsed: !this.state.expanded && this.state.replies.length > 3}
+                        )}
                         key={id} // eslint-disable-line camelcase
                     >
-                        {this.state.replies.map(reply => (
+                        {(this.state.expanded ? this.state.replies : this.state.replies.slice(0, 3)).map(reply => (
                             <Comment
                                 {...reply}
                                 key={reply.id}
                             />
                         ))}
                     </FlexRow>
+                }
+                {!this.state.expanded && this.state.replies.length > 3 &&
+                    <a
+                        className="expand-thread"
+                        onClick={this.handleExpandThread}
+                    >See all {this.state.replies.length} replies</a>
                 }
             </FlexRow>
         );
