@@ -7,6 +7,7 @@ const parser = require('scratch-parser');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 const storage = require('../../lib/storage.js').default;
+const log = require('../../lib/log');
 const EXTENSION_INFO = require('../../lib/extensions.js').default;
 
 const PreviewPresentation = require('./presentation.jsx');
@@ -120,7 +121,7 @@ class Preview extends React.Component {
                 }
                 parser(projectAsset.data, false, (err, projectData) => {
                     if (err) {
-                        console.log('Caught project parsing error:', err); // eslint-disable-line no-console
+                        log.error(`Unhandled project parsing error: ${err}`);
                         return;
                     }
                     const extensionSet = new Set();
