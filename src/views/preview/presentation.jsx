@@ -44,6 +44,7 @@ const PreviewPresentation = ({
     studios,
     userOwnsProject,
     onFavoriteClicked,
+    onLoadMore,
     onLoveClicked,
     onReportClicked,
     onReportClose,
@@ -282,6 +283,12 @@ const PreviewPresentation = ({
                                                 projectId={projectId}
                                             />
                                         ))}
+                                        <Button
+                                            className="button load-more-button"
+                                            onClick={onLoadMore}
+                                        >
+                                        Load More
+                                        </Button>
                                     </FlexRow>
                                 </div>
                                 <FlexRow className="column">
@@ -308,6 +315,7 @@ PreviewPresentation.propTypes = {
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
     onFavoriteClicked: PropTypes.func,
+    onLoadMore: PropTypes.func,
     onLoveClicked: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
