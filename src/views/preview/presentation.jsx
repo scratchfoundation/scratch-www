@@ -279,6 +279,7 @@ const PreviewPresentation = ({
                                             <CommentContainer
                                                 {...comment}
                                                 key={comment.id}
+                                                projectId={projectId}
                                             />
                                         ))}
                                     </FlexRow>
