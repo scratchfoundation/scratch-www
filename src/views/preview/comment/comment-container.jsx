@@ -1,5 +1,7 @@
 const React = require('react');
 const PropTypes = require('prop-types');
+const api = require('../../../lib/api');
+const log = require('../../../lib/log');
 
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Comment = require('./comment.jsx');
@@ -14,13 +16,36 @@ class CommentContainer extends React.Component {
         };
     }
 
+    componentDidMount () {
+        this.fetchReplies(this.props.id);
+    }
+
+    fetchReplies (id) {
+        if (this.props.reply_count > 0) {
+            api({
+                uri: `/comments/project/${this.props.projectId}/${id}`
+            }, (err, body) => {
+                if (err) {
+                    log.error(`Error fetching comment replies: ${err}`);
+                    return;
+                }
+                if (typeof body === 'undefined') {
+                    log.error('No comment reply information');
+                    return;
+                }
+                this.setState({
+                    replies: body
+                });
+            });
+        }
+    }
+
     render () {
         const {
             author,
             content,
             datetime_created,
             id,
-            parent_id,
             reply_count
         } = this.props;
 
@@ -30,9 +55,9 @@ class CommentContainer extends React.Component {
                 {reply_count > 0 && // eslint-disable-line camelcase
                     <FlexRow
                         className="replies column"
-                        key={parent_id} // eslint-disable-line camelcase
+                        key={id} // eslint-disable-line camelcase
                     >
-                        {[].map(reply => (
+                        {this.state.replies.map(reply => (
                             <Comment
                                 {...reply}
                                 key={reply.id}
@@ -55,6 +80,7 @@ CommentContainer.propTypes = {
     datetime_created: PropTypes.string,
     id: PropTypes.number,
     parent_id: PropTypes.number,
+    projectId: PropTypes.string,
     reply_count: PropTypes.number
 };
 
