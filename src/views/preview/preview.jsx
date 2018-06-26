@@ -21,6 +21,7 @@ class Preview extends React.Component {
         bindAll(this, [
             'addEventListeners',
             'handleFavoriteToggle',
+            'handleLoadMore',
             'handleLoveToggle',
             'handlePermissions',
             'handlePopState',
@@ -60,14 +61,14 @@ class Preview extends React.Component {
             if (this.props.user) {
                 const username = this.props.user.username;
                 const token = this.props.user.token;
-                this.props.getTopLevelComments(this.state.projectId);
+                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
                 this.props.getProjectInfo(this.state.projectId, token);
                 this.props.getRemixes(this.state.projectId, token);
                 this.props.getStudios(this.state.projectId, token);
                 this.props.getFavedStatus(this.state.projectId, username, token);
                 this.props.getLovedStatus(this.state.projectId, username, token);
             } else {
-                this.props.getTopLevelComments(this.state.projectId);
+                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
                 this.props.getProjectInfo(this.state.projectId);
                 this.props.getRemixes(this.state.projectId);
                 this.props.getStudios(this.state.projectId);
@@ -176,6 +177,10 @@ class Preview extends React.Component {
             }));
         }
     }
+    handleLoadMore () {
+        console.log(this.props.comments.length); // eslint-disable-line no-console
+        this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
+    }
     handleLoveToggle () {
         this.props.setLovedStatus(
             !this.props.loved,
@@ -262,6 +267,7 @@ class Preview extends React.Component {
                         user={this.props.user}
                         userOwnsProject={this.userOwnsProject()}
                         onFavoriteClicked={this.handleFavoriteToggle}
+                        onLoadMore={this.handleLoadMore}
                         onLoveClicked={this.handleLoveToggle}
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
@@ -354,8 +360,8 @@ const mapDispatchToProps = dispatch => ({
     getStudios: id => {
         dispatch(previewActions.getStudios(id));
     },
-    getTopLevelComments: id => {
-        dispatch(previewActions.getTopLevelComments(id));
+    getTopLevelComments: (id, offset) => {
+        dispatch(previewActions.getTopLevelComments(id, offset));
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));

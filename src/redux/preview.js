@@ -59,7 +59,7 @@ module.exports.previewReducer = (state, action) => {
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
-            comments: action.items
+            comments: [...state.comments, ...action.items] // todo: this is bad
         });
     case 'SET_LOVED':
         return Object.assign({}, state, {
@@ -217,10 +217,12 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
     });
 });
 
-module.exports.getTopLevelComments = id => (dispatch => {
+module.exports.getTopLevelComments = (id, offset) => (dispatch => {
+    console.log('offset:', offset); // eslint-disable-line no-console
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
-        uri: `/comments/project/${id}`
+        uri: `/comments/project/${id}`,
+        params: {offset: offset || 0}
     }, (err, body) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
