@@ -6,31 +6,44 @@ const Comment = require('./comment.jsx');
 
 require('./comment.scss');
 
-const CommentContainer = ({
-    author,
-    content,
-    datetime_created,
-    id,
-    parent_id,
-    reply_count
-}) => (
-    <FlexRow className="comment-container">
-        <Comment {...{author, content, datetime_created, id}} />
-        {reply_count > 0 && // eslint-disable-line camelcase
-            <FlexRow
-                className="replies column"
-                key={parent_id} // eslint-disable-line camelcase
-            >
-                {[].map(reply => (
-                    <Comment
-                        {...reply}
-                        key={reply.id}
-                    />
-                ))}
+class CommentContainer extends React.Component {
+    constructor (props) {
+        super(props);
+        this.state = {
+            replies: []
+        };
+    }
+
+    render () {
+        const {
+            author,
+            content,
+            datetime_created,
+            id,
+            parent_id,
+            reply_count
+        } = this.props;
+
+        return (
+            <FlexRow className="comment-container">
+                <Comment {...{author, content, datetime_created, id}} />
+                {reply_count > 0 && // eslint-disable-line camelcase
+                    <FlexRow
+                        className="replies column"
+                        key={parent_id} // eslint-disable-line camelcase
+                    >
+                        {[].map(reply => (
+                            <Comment
+                                {...reply}
+                                key={reply.id}
+                            />
+                        ))}
+                    </FlexRow>
+                }
             </FlexRow>
-        }
-    </FlexRow>
-);
+        );
+    }
+}
 
 CommentContainer.propTypes = {
     author: PropTypes.shape({
@@ -44,5 +57,3 @@ CommentContainer.propTypes = {
     parent_id: PropTypes.number,
     reply_count: PropTypes.number
 };
-
-module.exports = CommentContainer;
