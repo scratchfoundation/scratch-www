@@ -216,12 +216,6 @@ const ConferenceExpectations = () => (
                                 <p>Poster Sessions</p>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <b>7:00p</b>
-                                <p>Self-organized dinner excursions</p>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
                 <table>
