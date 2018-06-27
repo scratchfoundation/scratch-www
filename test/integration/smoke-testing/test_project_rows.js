@@ -5,13 +5,14 @@
  * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows
  */
 
-require('chromedriver');
-var tap = require('tap');
-var seleniumWebdriver = require('selenium-webdriver');
+const SeleniumHelper = require('../selenium-helpers.js');
+const helper = new SeleniumHelper();
 
-const {
-    driver
-} = require('../selenium-helpers.js');
+var tap = require('tap');
+
+const webdriver = require('selenium-webdriver');
+const driver = helper.buildDriver('www-smoke test_project_rows');
+
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
@@ -31,7 +32,7 @@ tap.beforeEach(function () {
 // checks that the title of the first row is Featured Projects
 tap.test('checkFeaturedProjectsRowTitleWhenSignedOut', function (t) {
     var xPathLink = '//div[@class="box"]/div[@class="box-header"]/h4';
-    driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
+    driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             element.getText('h4')
                 .then(function (text) {
@@ -48,8 +49,8 @@ tap.test('checkFeaturedProjectsRowLinkWhenSignedOut', function (t) {
     var xPathLink = '//div[contains(@class, "thumbnail") ' +
         'and contains(@class, "project") and contains(@class, "slick-slide") ' +
         'and contains(@class, "slick-active")]/a[@class="thumbnail-image"]';
-    driver.wait(seleniumWebdriver.until
-        .elementLocated(seleniumWebdriver.By.xpath(xPathLink)))
+    driver.wait(webdriver.until
+        .elementLocated(webdriver.By.xpath(xPathLink)))
         .then(function (element) {
             element.getAttribute('href')
                 .then(function (url) {
@@ -65,7 +66,7 @@ tap.test('checkFeaturedProjectsRowLinkWhenSignedOut', function (t) {
 // checks that the title of the 2nd row is Featured Studios
 tap.test('checkFeaturedStudiosRowWhenSignedOut', function (t) {
     var xPathLink = '//div[@class="box"][2]/div[@class="box-header"]/h4';
-    driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
+    driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             element.getText('h4')
                 .then(function (text) {
@@ -80,7 +81,7 @@ tap.test('checkFeaturedStudiosRowWhenSignedOut', function (t) {
 tap.test('checkFeaturedStudiosRowLinkWhenSignedOut', function (t) {
     var xPathLink = '//div[contains(@class, "thumbnail") and contains(@class, "gallery") ' +
         'and contains(@class, "slick-slide") and contains(@class, "slick-active")]/a[@class="thumbnail-image"]';
-    driver.findElement(seleniumWebdriver.By.xpath(xPathLink))
+    driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             element.getAttribute('href')
                 .then(function (url) {
