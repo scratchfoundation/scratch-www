@@ -69,7 +69,7 @@ class CommentContainer extends React.Component {
                         className={classNames(
                             'replies',
                             'column',
-                            {collapsed: !this.state.expanded && this.state.replies.length > 3}
+                            {collapsed: !this.state.expanded && this.state.replies.length > 2}
                         )}
                         key={id} // eslint-disable-line camelcase
                     >
@@ -81,7 +81,7 @@ class CommentContainer extends React.Component {
                         ))}
                     </FlexRow>
                 }
-                {!this.state.expanded && this.state.replies.length > 3 &&
+                {!this.state.expanded && this.state.replies.length > 2 &&
                     <a
                         className="expand-thread"
                         onClick={this.handleExpandThread}
