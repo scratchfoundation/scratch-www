@@ -218,7 +218,6 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
 });
 
 module.exports.getTopLevelComments = (id, offset) => (dispatch => {
-    console.log('offset:', offset); // eslint-disable-line no-console
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
         uri: `/comments/project/${id}`,
