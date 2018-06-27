@@ -1,25 +1,17 @@
 // NOTE: next questions:
 // * what is the lifecycle of the getStudios etc. requests? Are they guaranteed to be there
 //   on page load? Are they ever updated, e.g. after you join one?
-// * should we treat "waiting" to mean, user has requested the modal to be closed;
+
+// design decisions:
+// * we should treat "waiting" to mean, user has requested the modal to be closed;
 //   that is, if you click ok and it's waiting for responses, then you click x,
 //   it closes and sets waiting to false?
 //   then in the checkForOutstandingUpdates function, we close the window
 //   iff waiting is true.
 //   that avoids the situation where you close the window while a request is
 //   outstanding, then reopen it only to have it instantly close on you.
-// * should the button to submit instantly? By clicking away shouldn't effectively undo what you thought you did.
-// * should it really be pinned on the page? Isn't that something you're trying to move away from?
-// * is it ok for me to make the spinner bigger and higher-radius-as-percent? (just for modal)
-// *
-// one way to go: no buttons at all.
-// maybe let kids toggle on and off like crazy, then when you click ok it submits?
-// *
-// plan:
-// * change joined to updateQueued = {[id]: {updateType: ['join':'leave']}, ...}
-// * also maintain second hash, joined = {[id]: true, ...}
-// in render, use joined to set color, and if queued, use spinner for icon.
-//
+// * keep the okay button, it sets up an overall spinner until everything is resolved
+// * but you can totally close the window regardless
 
 // sample data:
 // this.studios = [{name: 'Funny games', id: 1}, {name: 'Silly ideas', id: 2}];
