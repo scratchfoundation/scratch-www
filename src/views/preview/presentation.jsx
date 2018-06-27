@@ -20,12 +20,14 @@ const RemixList = require('./remix-list.jsx');
 const StudioList = require('./studio-list.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
+const ExtensionChip = require('./extension-chip.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const PreviewPresentation = ({
     editable,
+    extensions,
     faved,
     favoriteCount,
     isFullScreen,
@@ -263,6 +265,19 @@ const PreviewPresentation = ({
                             </FlexRow>
                         </FlexRow>
                         <FlexRow className="preview-row">
+                            <FlexRow className="extension-list">
+                                {extensions && extensions.map(extension => (
+                                    <ExtensionChip
+                                        extensionL10n={extension.l10nId}
+                                        extensionName={extension.name}
+                                        hasStatus={extension.hasStatus}
+                                        iconURI={extension.icon && `/svgs/project/${extension.icon}`}
+                                        key={extension.name || extension.l10nId}
+                                    />
+                                ))}
+                            </FlexRow>
+                        </FlexRow>
+                        <FlexRow className="preview-row">
                             <div className="comments-container">
                                 <div className="project-title" />
                             </div>
@@ -280,6 +295,7 @@ const PreviewPresentation = ({
 
 PreviewPresentation.propTypes = {
     editable: PropTypes.bool,
+    extensions: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
     isFullScreen: PropTypes.bool,

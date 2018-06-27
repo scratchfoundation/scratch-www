@@ -29,7 +29,9 @@
     "express-http-proxy": "1.1.0",
     "lodash.defaults": "4.0.1",
     "newrelic": "1.25.4",
-    "raven": "0.10.0"
+    "raven": "0.10.0",
+    "scratch-parser": "^4.2.0",
+    "scratch-storage": "^0.5.1"
   },
   "devDependencies": {
     "ajv": "6.4.0",

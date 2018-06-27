@@ -457,6 +457,10 @@ $stage-height: 404px;
             background-image: url("/svgs/project/report-white.svg");
         }
     }
+
+    .extension-list {
+        justify-content: flex-start;
+    }
     
     .remix-list,
     .studio-list {
