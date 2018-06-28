@@ -31,6 +31,9 @@ const LoveProjectMessage = require('./activity-rows/love-project.jsx');
 const RemixProjectMessage = require('./activity-rows/remix-project.jsx');
 const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 
+// Beta Banner Components
+const TopBanner = require('./beta/top-banner.jsx').default;
+
 require('./splash.scss');
 
 class ActivityList extends React.Component {
@@ -416,6 +419,15 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                         messages={messages}
                     />
                 ] : []}
+                {this.props.sessionStatus === sessionActions.Status.FETCHED &&
+                    Object.keys(this.props.user).length !== 0 && // Only show top banner if user is logged in
+                    <MediaQuery
+                        key="frameless-tablet"
+                        minWidth={frameless.tablet}
+                    >
+                        <TopBanner />
+                    </MediaQuery>
+                }
                 <div
                     className="inner mod-splash"
                     key="inner"
