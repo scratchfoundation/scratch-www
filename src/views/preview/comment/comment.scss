@@ -72,8 +72,7 @@
 }
 
 .replies {
-    margin-left: 4rem;
-    width: 100%;
+    width: calc(100% - 4rem);
 
     &.collapsed .comment {
         &:last-child {
