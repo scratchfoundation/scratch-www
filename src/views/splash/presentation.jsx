@@ -33,6 +33,7 @@ const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 
 // Beta Banner Components
 const TopBanner = require('./beta/top-banner.jsx').default;
+const MiddleBanner = require('./beta/middle-banner.jsx').default;
 
 require('./splash.scss');
 
@@ -271,6 +272,17 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.curator_top_projects} />
                 </Box>
+            );
+        }
+
+        if (this.props.sessionStatus === sessionActions.Status.FETCHED && Object.keys(this.props.user).length === 0) {
+            rows.push(
+                <MediaQuery
+                    key="frameless-tablet"
+                    minWidth={frameless.tablet}
+                >
+                    <MiddleBanner />
+                </MediaQuery>
             );
         }
 
