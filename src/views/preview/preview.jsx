@@ -3,8 +3,12 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
+const parser = require('scratch-parser');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
+const storage = require('../../lib/storage.js').default;
+const log = require('../../lib/log');
+const EXTENSION_INFO = require('../../lib/extensions.js').default;
 
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -42,6 +46,7 @@ class Preview extends React.Component {
         // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
         this.state = {
             editable: false,
+            extensions: [],
             favoriteCount: 0,
             loveCount: 0,
             projectId: parts[1] === 'editor' ? 0 : parts[1],
@@ -52,6 +57,7 @@ class Preview extends React.Component {
                 waiting: false
             }
         };
+        this.getExtensions(this.state.projectId);
         this.addEventListeners();
     }
     componentDidUpdate (prevProps) {
@@ -76,6 +82,7 @@ class Preview extends React.Component {
             
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
+            this.getExtensions(this.state.projectId);
             this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
             this.handlePermissions();
             if (this.props.projectInfo.remix.parent !== null) {
@@ -99,6 +106,38 @@ class Preview extends React.Component {
     }
     removeEventListeners () {
         window.removeEventListener('popstate', this.handlePopState);
+    }
+    getExtensions (projectId) {
+        storage
+            .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
+            .then(projectAsset => {
+                let input = projectAsset.data;
+                if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
+                !ArrayBuffer.isView(input)) { // taken from scratch-vm
+                    // If the input is an object and not any ArrayBuffer
+                    // or an ArrayBuffer view (this includes all typed arrays and DataViews)
+                    // turn the object into a JSON string, because we suspect
+                    // this is a project.json as an object
+                    // validate expects a string or buffer as input
+                    // TODO not sure if we need to check that it also isn't a data view
+                    input = JSON.stringify(input);
+                }
+                parser(projectAsset.data, false, (err, projectData) => {
+                    if (err) {
+                        log.error(`Unhandled project parsing error: ${err}`);
+                        return;
+                    }
+                    const extensionSet = new Set();
+                    if (projectData[0].extensions) {
+                        projectData[0].extensions.forEach(extension => {
+                            extensionSet.add(EXTENSION_INFO[extension]);
+                        });
+                    }
+                    this.setState({
+                        extensions: Array.from(extensionSet)
+                    });
+                });
+            });
     }
     handleReportClick () {
         this.setState({report: {...this.state.report, open: true}});
@@ -250,6 +289,7 @@ class Preview extends React.Component {
                     <PreviewPresentation
                         comments={this.props.comments}
                         editable={this.state.editable}
+                        extensions={this.state.extensions}
                         faved={this.props.faved}
                         favoriteCount={this.state.favoriteCount}
                         isFullScreen={this.state.isFullScreen}

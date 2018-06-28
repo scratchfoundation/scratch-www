@@ -21,6 +21,7 @@ const StudioList = require('./studio-list.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 const CommentContainer = require('./comment/comment-container.jsx').default;
+const ExtensionChip = require('./extension-chip.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -28,6 +29,7 @@ require('./preview.scss');
 const PreviewPresentation = ({
     comments,
     editable,
+    extensions,
     faved,
     favoriteCount,
     isFullScreen,
@@ -265,6 +267,19 @@ const PreviewPresentation = ({
                                 </FlexRow>
                             </FlexRow>
                         </FlexRow>
+                        <FlexRow className="preview-row">
+                            <FlexRow className="extension-list">
+                                {extensions && extensions.map(extension => (
+                                    <ExtensionChip
+                                        extensionL10n={extension.l10nId}
+                                        extensionName={extension.name}
+                                        hasStatus={extension.hasStatus}
+                                        iconURI={extension.icon && `/svgs/project/${extension.icon}`}
+                                        key={extension.name || extension.l10nId}
+                                    />
+                                ))}
+                            </FlexRow>
+                        </FlexRow>
                     </div>
                     <div className="project-lower-container">
                         <div className="inner">
@@ -307,6 +322,7 @@ const PreviewPresentation = ({
 PreviewPresentation.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
+    extensions: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
     isFullScreen: PropTypes.bool,

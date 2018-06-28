@@ -79,10 +79,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
-                include: path.resolve(__dirname, 'src'),
-                options: {
-                    presets: ['es2015', 'react']
-                }
+                include: [path.resolve(__dirname, 'src'), /node_modules[\\/]scratch-[^\\/]+[\\/]src/]
             },
             {
                 test: /\.scss$/,

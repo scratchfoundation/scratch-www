@@ -220,6 +220,7 @@ $stage-height: 404px;
     .description-block {
         display: flex;
         width: 100%;
+        min-height: 0;
         flex-direction: column;
         align-items: flex-start;
         flex: 1;
@@ -471,6 +472,10 @@ $stage-height: 404px;
         background-color: $ui-blue-10percent;
         padding: 1rem 0;
         min-height: 12rem;
+    }
+    
+    .extension-list {
+        justify-content: flex-start;
     }
     
     .remix-list,
