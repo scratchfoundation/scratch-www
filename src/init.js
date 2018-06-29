@@ -44,6 +44,7 @@ const Raven = require('raven-js');
  */
 (() => {
     window.onload = function () {
+        /* eslint-disable no-console */
         console.log('%cStop!', 'color: #F00; font-size: 30px; -webkit-text-stroke: 1px black; font-weight:bold');
         console.log(
             'This is part of your browser intended for developers. ' +
@@ -54,5 +55,6 @@ const Raven = require('raven-js');
             'you are doing here, you should close this window without doing ' +
             'anything.'
         );
+        /* eslint-enable no-console */
     };
 })();
