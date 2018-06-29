@@ -35,7 +35,7 @@
         .comment-bubble {
             position: relative;
             margin-left: 10px;
-            border: 1px solid $ui-blue-25percent;
+            border: 1px solid $active-gray;
             border-radius: 0 8px 8px 8px;
             background-color: $ui-white;
             padding: 10px;
@@ -50,7 +50,7 @@
                 border-width: 1px 0 1px 1px;
                 border-style: solid;
                 border-radius: 0 0 0 8px;
-                border-color: $ui-blue-25percent transparent $ui-blue-25percent $ui-blue-25percent;
+                border-color: $active-gray transparent $active-gray $active-gray;
                 background: $ui-white;
                 width: 10px;
                 height: 9px;
