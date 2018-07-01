@@ -21,6 +21,7 @@ const StudioList = require('./studio-list.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 const CommentContainer = require('./comment/comment-container.jsx').default;
+const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -289,7 +290,10 @@ const PreviewPresentation = ({
                                         <h4>Comments</h4>
                                         <div>comments on/off</div>
                                     </FlexRow>
-                                    <FlexRow className="create-comment" />
+                                    <FlexRow className="create-comment comment">
+                                        <Avatar src="https://cdn2.scratch.mit.edu/get_image/user/3581881_60x60.png" />
+                                        <ComposeComment />
+                                    </FlexRow>
                                     <FlexRow className="comments-list">
                                         {comments.map(comment => (
                                             <CommentContainer
