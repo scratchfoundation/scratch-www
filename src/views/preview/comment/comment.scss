@@ -1,5 +1,32 @@
 @import "../../../colors";
 
+.compose-comment {
+    width: 100%;
+
+    .textarea-row {
+        width: 100%;
+
+        textarea {
+            &:not(:focus) {
+                border: 1px solid $active-dark-gray;
+            }
+        }
+    }
+
+    .compose-bottom-row {
+        width: 100%;
+        justify-content: space-between;
+
+        .compose-limit {
+            margin-left: auto;
+        }
+
+        .button {
+            margin-left: 0;
+        }
+    }
+}
+
 .comment-container {
     position: relative;
     width: 100%;
