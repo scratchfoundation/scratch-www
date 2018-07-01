@@ -17,6 +17,14 @@
         width: 100%;
         justify-content: space-between;
 
+        .compose-post {
+            margin-right: .5rem;
+        }
+
+        .compose-cancel {
+            background-color: $ui-dark-gray;
+        }
+
         .compose-limit {
             margin-left: auto;
         }
