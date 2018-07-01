@@ -21,7 +21,7 @@ const ComposeComment = () => (
         <FlexRow className="compose-bottom-row">
             <Button className="compose-post">Post</Button>
             <Button className="compose-cancel">Cancel</Button>
-            <span className="compose-limit">xyz characters left</span>
+            <span className="compose-limit">500 characters left</span>
         </FlexRow>
     </FlexRow>
 );
