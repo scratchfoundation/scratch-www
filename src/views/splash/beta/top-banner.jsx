@@ -9,11 +9,13 @@ require('./top-banner.scss');
 
 const TopBanner = () => (
     <TitleBanner className="beta-top-banner">
-        <FlexRow>
+        <FlexRow className="beta-top-container column">
+            <h1 className="beta-header">The Next Generation of Scratch</h1>
+            <h3 className="beta-copy">Try out the beta version of Scratch 3.0</h3>
             <a
-                className="call-to-action button"
+                className="beta-try-it button"
                 href="https://beta.scratch.mit.edu/"
-            >Call to Action</a>
+            >Try it!</a>
         </FlexRow>
     </TitleBanner>
 );

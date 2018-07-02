@@ -1,7 +1,11 @@
 @import "../../../colors";
 
 .beta-top-banner {
-    .call-to-action {
+    background: $ui-orange;
+
+    .beta-header,
+    .beta-copy,
+    .beta-try-it {
         color: $ui-white;
     }
 }
