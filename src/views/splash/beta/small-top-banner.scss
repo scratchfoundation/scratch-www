@@ -1,0 +1,21 @@
+@import "../../../colors";
+
+.beta-small-top-banner {
+    background: $ui-orange;
+    padding: 5px 0;
+
+    .beta-small-header {
+        justify-content: center;
+    }
+
+    .beta-copy,
+    .beta-try-it {
+        color: $ui-white;
+        font-size: 16px;
+    }
+
+    .beta-try-it {
+        margin-left: 32px;
+        border-radius: 10px;
+    }
+}
