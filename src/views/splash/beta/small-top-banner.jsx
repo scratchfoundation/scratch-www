@@ -9,7 +9,7 @@ require('./small-top-banner.scss');
 
 const SmallTopBanner = () => (
     <TitleBanner className="beta-small-top-banner">
-        <FlexRow className="beta-small-top-header">
+        <FlexRow className="beta-small-top-container">
             <h2 className="beta-copy">Try out the beta version of Scratch 3.0</h2>
             <a
                 className="beta-try-it button"
