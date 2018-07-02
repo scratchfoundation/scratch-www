@@ -4,7 +4,7 @@
     background: $ui-orange;
     padding: 5px 0;
 
-    .beta-small-header {
+    .beta-small-top-header {
         justify-content: center;
     }
 
@@ -16,6 +16,7 @@
 
     .beta-try-it {
         margin-left: 32px;
-        border-radius: 10px;
+        border-radius: 8px;
+        padding: .625em 1em;
     }
 }
