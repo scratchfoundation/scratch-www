@@ -1,7 +1,36 @@
 @import "../../../colors";
+@import "../../../frameless";
 
 .beta-middle-banner {
-    .call-to-action {
+    margin-top: 20px;
+    border-radius: 16px;
+    background: $ui-orange;
+    padding: 64px 48px;
+    box-sizing: border-box;
+
+    .beta-middle-container {
+        align-items: flex-start;
+    }
+
+    .beta-header,
+    .beta-copy,
+    .beta-try-it {
         color: $ui-white;
     }
+
+    .beta-try-it {
+        border-radius: 10px;
+        padding: 1em 2em;
+        font-size: 1em;
+    }
 }
+
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .beta-middle-banner {
+        .beta-middle-container {
+            align-items: center;
+        }
+    }
+}
+
+
