@@ -10,6 +10,7 @@
     background-size: cover;
     padding: 0;
     height: 17rem;
+    overflow: hidden;
     box-sizing: border-box;
     justify-content: center;
 
@@ -19,15 +20,20 @@
         flex-shrink: 0;
     }
 
-    .beta-banner-image {
+    .beta-banner-images {
         display: flex;
-        margin-right: 2rem;
-        min-width: 0;
         align-self: flex-end;
 
-        img {
-            max-width: 100%;
-            height: auto;
+        .beta-banner-image {
+            display: flex;
+            margin-right: 2rem;
+            min-width: 0;
+            align-self: flex-end;
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
         }
     }
 
@@ -46,8 +52,28 @@
 
 @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
     .beta-middle-banner {
+        height: initial;
+        flex-direction: column;
+
         .beta-middle-container {
+            padding-top: 4rem;
+            padding-left: 0;
             align-items: center;
+        }
+
+        .beta-banner-images {
+            .beta-banner-image {
+                margin: 0;
+                padding: 0;
+
+                &.left {
+                    margin-left: -2.5rem;
+                }
+
+                &.right {
+                    margin-right: -2.5rem;
+                }
+            }
         }
     }
 }
