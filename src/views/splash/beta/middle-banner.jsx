@@ -17,6 +17,9 @@ const MiddleBanner = () => (
                 href="https://beta.scratch.mit.edu/"
             >Try it!</a>
         </FlexRow>
+        <div className="beta-banner-image">
+            <img src="/images/beta/right-illustration.png" />
+        </div>
     </TitleBanner>
 );
 

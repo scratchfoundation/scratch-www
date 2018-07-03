@@ -2,14 +2,33 @@
 @import "../../../frameless";
 
 .beta-middle-banner {
+    display: flex;
     margin-top: 20px;
     border-radius: 16px;
-    background: $ui-orange;
-    padding: 64px 48px;
+    background-color: $ui-orange;
+    background-image: url("/images/beta/bg-pattern.png");
+    background-size: cover;
+    padding: 0;
+    height: 17rem;
     box-sizing: border-box;
+    justify-content: center;
 
     .beta-middle-container {
+        padding-left: 3rem;
         align-items: flex-start;
+        flex-shrink: 0;
+    }
+
+    .beta-banner-image {
+        display: flex;
+        margin-right: 2rem;
+        min-width: 0;
+        align-self: flex-end;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
     }
 
     .beta-header,
