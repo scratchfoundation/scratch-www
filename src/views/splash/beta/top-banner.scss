@@ -1,7 +1,9 @@
 @import "../../../colors";
+@import "../../../frameless";
 
 .beta-top-banner {
     display: flex;
+    position: relative;
     background-color: $ui-orange;
     background-image: url("/images/beta/bg-pattern.png");
     background-size: cover;
@@ -11,12 +13,22 @@
     justify-content: center;
 
     .beta-top-container {
-        flex-shrink: 0;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 15rem;
+    }
+
+    .beta-banner-images {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
     }
 
     .beta-banner-image {
         display: flex;
-        min-width: 0;
+        width: 27rem;
         align-self: flex-end;
 
         img {
@@ -44,5 +56,15 @@
         border-radius: 10px;
         padding: 1em 2em;
         font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: $tablet) and (max-width: 1150px) {
+    .beta-top-banner {
+        height: 23rem;
+
+        .beta-banner-image {
+            width: 20rem;
+        }
     }
 }
