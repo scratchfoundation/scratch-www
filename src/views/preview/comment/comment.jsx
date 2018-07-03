@@ -27,8 +27,8 @@ const Comment = ({
                     href={`/users/${author.username}`}
                 >{author.username}</a>
                 <div className="action-list">
-                    <span>Delete</span>
-                    <span>Report</span>
+                    <span className="comment-delete">Delete</span>
+                    <span className="comment-report">Report</span>
                 </div>
             </FlexRow>
             <div className="comment-bubble">

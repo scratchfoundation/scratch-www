@@ -57,6 +57,43 @@
         .username {
             margin-right: auto;
         }
+
+        .comment-delete,
+        .comment-report {
+            opacity: .5;
+            font-size: .75rem;
+            font-weight: 500;
+
+            &:before {
+                display: inline-block;
+                margin-right: .5rem;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: contain;
+                content: "";
+            }
+        }
+
+        .comment-delete {
+            margin-right: 1rem;
+
+            &:before {
+                background-image: url("/svgs/project/delete-gray.svg");
+                width: 1rem;
+                height: 1rem;
+                vertical-align: -.25rem;
+            }
+        }
+
+        .comment-report {
+            &:before {
+                margin-right: .25rem;
+                background-image: url("/svgs/project/report-gray.svg");
+                width: .75rem;
+                height: .75rem;
+                vertical-align: -.125rem;
+            }
+        }
     }
 
     .avatar {
