@@ -9,7 +9,7 @@ require('./top-banner.scss');
 
 const TopBanner = () => (
     <TitleBanner className="beta-top-banner">
-        <div className="beta-header-image left">
+        <div className="beta-banner-image left">
             <img src="/images/beta/left-illustration.png" />
         </div>
         <FlexRow className="beta-top-container column">
@@ -20,7 +20,7 @@ const TopBanner = () => (
                 href="https://beta.scratch.mit.edu/"
             >Try it!</a>
         </FlexRow>
-        <div className="beta-header-image right">
+        <div className="beta-banner-image right">
             <img src="/images/beta/right-illustration.png" />
         </div>
     </TitleBanner>
