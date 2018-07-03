@@ -1,7 +1,37 @@
 @import "../../../colors";
 
 .beta-top-banner {
-    background: $ui-orange;
+    display: flex;
+    background-color: $ui-orange;
+    background-image: url("/images/beta/bg-pattern.png");
+    background-size: cover;
+    padding: 0;
+    height: 20rem;
+    overflow: hidden;
+    justify-content: center;
+
+    .beta-top-container {
+        flex-shrink: 0;
+    }
+
+    .beta-header-image {
+        display: flex;
+        min-width: 0;
+        align-self: flex-end;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        &.left {
+            margin-left: -2.5rem;
+        }
+
+        &.right {
+            margin-right: -2.5rem;
+        }
+    }
 
     .beta-header,
     .beta-copy,
