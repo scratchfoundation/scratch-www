@@ -57,7 +57,7 @@ class AddToStudioModal extends React.Component {
 
         // NOTE: need to:
         // construct hash of inclusion status by id, populate it.
-        // replace mystudios with list of studios ordered by
+        // replace curatedStudios with list of studios ordered by
         // membership/stats/name. use that for rendering.
         this.state = {
             waitingToClose: false,
@@ -150,30 +150,42 @@ class AddToStudioModal extends React.Component {
         const {
             intl,
             projectStudios,
-            myStudios,
+            curatedStudios,
             onAddToStudio, // eslint-disable-line no-unused-vars
             type,
-            ...modalProps
+            isOpen,
+            onRequestClose
         } = this.props;
         const joined = this.state.joined;
         const updateQueued = this.state.updateQueued;
         const contentLabel = intl.formatMessage({id: `addToStudio.${type}`});
-        const studioButtons = myStudios.map((studio, index) => {
+        const checkmark = <img alt="checkmark-icon"
+                           className="studio-status-icon-checkmark-img"
+                           src="/svgs/modal/confirm.svg"
+                          />
+        const plus = <img alt="plus-icon"
+                      className="studio-status-icon-plus-img"
+                      src="/svgs/modal/add.svg"
+                     />
+        const studioButtons = curatedStudios.map((studio, index) => {
             const isAdded = (studio.id in joined);
             const isWaiting = (studio.id in updateQueued);
             return (
-                <div className={"studio-selector-button" +
-                    (isAdded ? " studio-selector-button-selected" : "")}
+                <div className={"studio-selector-button " +
+                    (isWaiting ? "studio-selector-button-waiting" :
+                    (isAdded ? "studio-selector-button-selected" : ""))}
                     key={studio.id}
                     onClick={() => this.handleToggle(studio.id)}
                 >
-                    <div className="studio-selector-button-text">
+                    <div className={"studio-selector-button-text " +
+                        ((isWaiting || isAdded) ? "studio-selector-button-text-selected" :
+                        ".studio-selector-button-text-unselected")}>
                         {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
                     </div>
                     <div className={"studio-status-icon" +
-                        (isAdded ? " studio-status-icon-selected" : "")}
+                        ((isWaiting || isAdded) ? "" : " studio-status-icon-unselected")}
                     >
-                        {isWaiting ? (<Spinner />) : (isAdded ? "✓" : "+")}
+                        {isWaiting ? (<Spinner type="smooth" />) : (isAdded ? checkmark : plus)}
                     </div>
                 </div>
             );
@@ -186,7 +198,8 @@ class AddToStudioModal extends React.Component {
                 ref={component => { // bind to base modal, to pass handleRequestClose through
                     this.baseModal = component;
                 }}
-                {...modalProps}
+                onRequestClose={onRequestClose}
+                isOpen={isOpen}
             >
                 <div>
                     <div className="addToStudio-modal-header">
@@ -257,7 +270,7 @@ class AddToStudioModal extends React.Component {
 AddToStudioModal.propTypes = {
     intl: intlShape,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
-    myStudios: PropTypes.arrayOf(PropTypes.object),
+    curatedStudios: PropTypes.arrayOf(PropTypes.object),
     onAddToStudio: PropTypes.func,
     onRequestClose: PropTypes.func,
     type: PropTypes.string

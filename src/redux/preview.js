@@ -19,7 +19,8 @@ module.exports.getInitialState = () => ({
         original: module.exports.Status.NOT_FETCHED,
         parent: module.exports.Status.NOT_FETCHED,
         remixes: module.exports.Status.NOT_FETCHED,
-        studios: module.exports.Status.NOT_FETCHED
+        projectStudios: module.exports.Status.NOT_FETCHED,
+        curatedStudios: module.exports.Status.NOT_FETCHED
     },
     projectInfo: {},
     remixes: [],
@@ -28,7 +29,8 @@ module.exports.getInitialState = () => ({
     loved: false,
     original: {},
     parent: {},
-    studios: []
+    projectStudios: [],
+    curatedStudios: []
 });
 
 module.exports.previewReducer = (state, action) => {
@@ -53,9 +55,13 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             parent: action.info
         });
-    case 'SET_STUDIOS':
+    case 'SET_PROJECT_STUDIOS':
         return Object.assign({}, state, {
-            studios: action.items
+            projectStudios: action.items
+        });
+    case 'SET_CURATED_STUDIOS':
+        return Object.assign({}, state, {
+            curatedStudios: action.items
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
@@ -116,8 +122,13 @@ module.exports.setRemixes = items => ({
     items: items
 });
 
-module.exports.setStudios = items => ({
-    type: 'SET_STUDIOS',
+module.exports.setProjectStudios = items => ({
+    type: 'SET_PROJECT_STUDIOS',
+    items: items
+});
+
+module.exports.setCuratedStudios = items => ({
+    type: 'SET_CURATED_STUDIOS',
     items: items
 });
 
@@ -333,28 +344,53 @@ module.exports.getRemixes = id => (dispatch => {
     });
 });
 
-module.exports.getStudios = id => (dispatch => {
-    dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHING));
+module.exports.getProjectStudios = id => (dispatch => {
+    dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.FETCHING));
     api({
-        uri: `/projects/${id}/studios?limit=5`
+        uri: `/projects/${id}/studios`
     }, (err, body, res) => {
         if (err) {
-            dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
+            dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
             return;
         }
         if (typeof body === 'undefined') {
-            dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
-            dispatch(module.exports.setError('No studios info'));
+            dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No projectStudios info'));
             return;
         }
         if (res.statusCode === 404) { // NotFound
             body = [];
         }
-        dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHED));
-        dispatch(module.exports.setStudios(body));
+        dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.FETCHED));
+        dispatch(module.exports.setProjectStudios(body));
     });
 });
+
+module.exports.getCuratedStudios = (username, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.FETCHING));
+    api({
+        uri: `/user/${username}/studios/curate`,
+        authentication: token
+    }, (err, body, res) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No curated studios info'));
+            return;
+        }
+        if (res.statusCode === 404) { // NotFound
+            body = [];
+        }
+        dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.FETCHED));
+        dispatch(module.exports.setCuratedStudios(body));
+    });
+});
+
 
 module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
     api({

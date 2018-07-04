@@ -72,7 +72,6 @@
     flex-flow: row wrap;
     padding: 0 0.21875rem 0 1.46875rem;
 
-    min-height: 30rem;
 }
 /* NOTE: force scrolling: add to above:
     min-height: 30rem;
@@ -106,7 +105,6 @@
 .studio-selector-button-text {
     /* color: $type-gray; */
     width: 13.3125rem;
-    color: #575E75;
     font-family: "Helvetica Neue";
     font-size: 0.875rem;
     font-weight: 800;
@@ -120,52 +118,80 @@
 
 .studio-selector-button-selected {
     background-color: hsl(165,100%,37%);
+    background-color: hsl(162,68.6%,43.7%);
     color: $ui-white;
 }
 
+.studio-selector-button-waiting {
+    background-color: hsl(168,52.9%,66.7%);
+    color: $ui-white;
+}
+
+.studio-selector-button-text-selected {
+    color: $ui-white;
+}
+
+.studio-selector-button-text-unselected {
+    color: #575E75;
+}
+
 .studio-status-icon {
-    background-color: $ui-blue;
     color: $ui-white;
     font-weight: 800;
     height: 1.5rem;
     width: 1.5rem;
     margin: 0.5rem 0.625rem 0.5rem 14.0625rem;
-    padding: 0rem 0.5rem;
+
+    /* removed when changing to new spinner */
+        padding: 0.0625rem 0.075rem;
+
     border-radius: 0.75rem;
     box-sizing: border-box;
     position: absolute;
 }
 
-.studio-status-icon-selected {
-    background-color: hsl(165,100%,37%);
-    color: $ui-white;
+
+
+.studio-status-icon-unselected {
+    background-color: $ui-blue;
 }
 
 .submit-button {
     background-color: #3F9AFB;
 }
 
-.action-button-text .spinner {
+.studio-status-icon-plus-img {
+    height: 1.4rem;
+    width: 1.4rem;
+}
+
+.studio-status-icon--img {
+    height: 1.4rem;
+    width: 1.4rem;
+}
+
+
+
+
+
+
+
+
+
+.action-button-text .spinner-smooth {
     margin: -0.125rem auto 2rem;
     height: 30px;
     width: 1.875rem;
 }
 
-.studio-status-icon .spinner {
+.studio-status-icon .spinner-smooth {
     position: unset; /* don't understand why neither relative nor absolute work */
 }
 
-.studio-status-icon .spinner .circle {
+.studio-status-icon .spinner-smooth .circle {
     /* overlay spinner on circle */
     position: absolute;
     width: 75%; /* stay within boundaries of circle */
     height: 75%; /* stay within boundaries of circle */
     margin: 0.1875rem; /* stay within boundaries of circle */
 }
-
-/* for both .studio-status-icon and .action-button-text : */
-.spinner .circle:before {
-    /* make spinner come closer to center of circle; was too hard to see */
-    height: 30%;
-}
-

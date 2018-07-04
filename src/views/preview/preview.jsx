@@ -44,13 +44,14 @@ class Preview extends React.Component {
                 const token = this.props.user.token;
                 this.props.getProjectInfo(this.state.projectId, token);
                 this.props.getRemixes(this.state.projectId, token);
-                this.props.getStudios(this.state.projectId, token);
+                this.props.getProjectStudios(this.state.projectId, token);
+                this.props.getCuratedStudios(username, token);
                 this.props.getFavedStatus(this.state.projectId, username, token);
                 this.props.getLovedStatus(this.state.projectId, username, token);
             } else {
                 this.props.getProjectInfo(this.state.projectId);
                 this.props.getRemixes(this.state.projectId);
-                this.props.getStudios(this.state.projectId);
+                this.props.getProjectStudios(this.state.projectId);
             }
 
         }
@@ -200,7 +201,8 @@ class Preview extends React.Component {
                         projectInfo={this.props.projectInfo}
                         remixes={this.props.remixes}
                         sessionStatus={this.props.sessionStatus}
-                        studios={this.props.studios}
+                        projectStudios={this.props.projectStudios}
+                        curatedStudios={this.props.curatedStudios}
                         user={this.props.user}
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoveClicked={this.handleLoveToggle}
@@ -228,7 +230,8 @@ Preview.propTypes = {
     getParentInfo: PropTypes.func.isRequired,
     getProjectInfo: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
-    getStudios: PropTypes.func.isRequired,
+    getProjectStudios: PropTypes.func.isRequired,
+    getCuratedStudios: PropTypes.func.isRequired,
     loved: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
@@ -240,7 +243,8 @@ Preview.propTypes = {
     setFullScreen: PropTypes.func.isRequired,
     setLovedStatus: PropTypes.func.isRequired,
     setPlayer: PropTypes.func.isRequired,
-    studios: PropTypes.arrayOf(PropTypes.object),
+    projectStudios: PropTypes.arrayOf(PropTypes.object),
+    curatedStudios: PropTypes.arrayOf(PropTypes.object),
     updateProject: PropTypes.func.isRequired,
     user: PropTypes.shape({
         id: PropTypes.number,
@@ -268,7 +272,8 @@ const mapStateToProps = state => ({
     parent: state.preview.parent,
     remixes: state.preview.remixes,
     sessionStatus: state.session.status,
-    studios: state.preview.studios,
+    projectStudios: state.preview.projectStudios,
+    curatedStudios: state.preview.curatedStudios,
     user: state.session.session.user,
     playerMode: state.scratchGui.mode.isPlayerOnly,
     fullScreen: state.scratchGui.mode.isFullScreen
@@ -288,8 +293,11 @@ const mapDispatchToProps = dispatch => ({
     getRemixes: id => {
         dispatch(previewActions.getRemixes(id));
     },
-    getStudios: id => {
-        dispatch(previewActions.getStudios(id));
+    getProjectStudios: id => {
+        dispatch(previewActions.getProjectStudios(id));
+    },
+    getCuratedStudios: (username, token) => {
+        dispatch(previewActions.getCuratedStudios(username, token));
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));

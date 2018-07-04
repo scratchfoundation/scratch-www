@@ -19,7 +19,7 @@ const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const ShareBanner = require('../../components/share-banner/share-banner.jsx');
 const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolumn.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
-const AddToStudioModal = require('../../components/modal/addtostudio/modal.jsx');
+const AddToStudioModal = require('../../components/modal/addtostudio/container.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -82,6 +82,96 @@ class PreviewPresentation extends React.Component {
                 owner: 10689298,
                 stats: {followers: 0},
                 title: "Studio C"
+            },
+            {
+                id: 3,
+                description: "Wow, studio A rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio D"
+            },
+            {
+                id: 4,
+                description: "Wow, studio B rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio E"
+            },
+            {
+                id: 5,
+                description: "Wow, studio C rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio F"
+            },
+            {
+                id: 6,
+                description: "Wow, studio A rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio G"
+            },
+            {
+                id: 7,
+                description: "Wow, studio B rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio H"
+            },
+            {
+                id: 8,
+                description: "Wow, studio C rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio I"
+            },
+            {
+                id: 9,
+                description: "Wow, studio A rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio J"
+            },
+            {
+                id: 10,
+                description: "Wow, studio B rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio K"
+            },
+            {
+                id: 11,
+                description: "Wow, studio C rocks",
+                history: {created: "2015-11-15T00:24:35.000Z",
+                modified: "2018-05-01T00:14:48.000Z"},
+                image: "https://cdn2.scratch.mit.edu/get_image/gallery/1702295_170x100.png",
+                owner: 10689298,
+                stats: {followers: 0},
+                title: "Studio L"
             }
         ]
     }
@@ -148,7 +238,8 @@ class PreviewPresentation extends React.Component {
             projectInfo,
             remixes,
             sessionStatus,
-            studios,
+            projectStudios,
+            curatedStudios,
             user,
             onFavoriteClicked,
             onLoveClicked,
@@ -401,8 +492,8 @@ class PreviewPresentation extends React.Component {
                                                     isOpen={this.state.addToStudioOpen}
                                                     key="add-to-studio-modal"
                                                     type="project"
-                                                    projectStudios={studios}
-                                                    myStudios={this.mockedMyStudios}
+                                                    projectStudios={projectStudios}
+                                                    curatedStudios={this.mockedMyStudios}
                                                     onAddToStudio={this.handleAddToStudioSubmit}
                                                     onRequestClose={this.handleAddToStudioClose}
                                                 />
@@ -467,12 +558,12 @@ class PreviewPresentation extends React.Component {
                                         </FlexRow>
                                     )}
                                     {/* hide studios if there aren't any */}
-                                    {studios && studios.length !== 0 && (
+                                    {projectStudios && projectStudios.length !== 0 && (
                                         <FlexRow className="studio-list">
                                             <div className="project-title">
                                                 Studios
                                             </div>
-                                            {studios && studios.length === 0 ? (
+                                            {projectStudios && projectStudios.length === 0 ? (
                                                 // TODO: invite user to add to studio?
                                                 <span>None </span>
                                             ) : (
@@ -480,7 +571,7 @@ class PreviewPresentation extends React.Component {
                                                     cards
                                                     showAvatar
                                                     itemType="gallery"
-                                                    items={studios.slice(0, 5)}
+                                                    items={projectStudios.slice(0, 5)}
                                                     showFavorites={false}
                                                     showLoves={false}
                                                     showViews={false}
@@ -516,7 +607,8 @@ PreviewPresentation.propTypes = {
     projectInfo: projectShape,
     remixes: PropTypes.arrayOf(PropTypes.object),
     sessionStatus: PropTypes.string.isRequired,
-    studios: PropTypes.arrayOf(PropTypes.object),
+    projectStudios: PropTypes.arrayOf(PropTypes.object),
+    curatedStudios: PropTypes.arrayOf(PropTypes.object),
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,

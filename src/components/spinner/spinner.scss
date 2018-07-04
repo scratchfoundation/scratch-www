@@ -56,3 +56,64 @@
         opacity: 1;
     }
 }
+
+
+/*********************/
+/* type === "smooth" */
+/*********************/
+
+.spinner-smooth {
+    position: relative;
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+
+    .circle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        &:before {
+            display: block;
+            animation: circleFadeDelaySmooth 1.2s infinite ease-in-out both;
+            margin: 0 auto;
+            border-radius: 100%;
+            background-color: $ui-white;
+            width: 30%;
+            height: 20%;
+            content: "";
+
+            .white & {
+                background-color: darken($ui-blue, 8%);
+            }
+        }
+    }
+
+    @for $i from 1 through 24 {
+        $rotation: 15deg * ($i - 1);
+        $delay: -1.3s + $i * .05;
+
+        .circle#{$i} {
+            transform: rotate($rotation);
+
+            &:before {
+                animation-delay: $delay;
+            }
+        }
+
+    }
+
+}
+
+@keyframes circleFadeDelaySmooth {
+    0%,
+    35% {
+        opacity: 0;
+    },
+    40% {
+        opacity: 1;
+    }
+
+}
