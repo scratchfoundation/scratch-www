@@ -13,7 +13,6 @@ var tap = require('tap');
 const webdriver = require('selenium-webdriver');
 const driver = helper.buildDriver('www-smoke test_project_rows');
 
-
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
 // number of tests in the plan

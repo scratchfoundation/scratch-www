@@ -12,7 +12,6 @@ const tap = require('tap');
 const webdriver = require('selenium-webdriver');
 const driver = helper.buildDriver('www-smoke test_footer_links');
 
-
 const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
 // timeout for each test; timeout for suite set at command line level
