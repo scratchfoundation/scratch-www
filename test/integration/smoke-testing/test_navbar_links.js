@@ -12,9 +12,6 @@ const {
 } = require('../selenium-helpers.js');
 var tap = require('tap');
 
-// Selenium's promise driver will be deprecated, so we should not rely on it
-webdriver.SELENIUM_PROMISE_MANAGER = 0;
-
 // Set test url through environment variable
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 

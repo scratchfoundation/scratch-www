@@ -9,9 +9,6 @@ require('chromedriver');
 var tap = require('tap');
 var seleniumWebdriver = require('selenium-webdriver');
 
-// Selenium's promise driver will be deprecated, so we should not rely on it
-seleniumWebdriver.SELENIUM_PROMISE_MANAGER = 0;
-
 const {
     driver
 } = require('../selenium-helpers.js');

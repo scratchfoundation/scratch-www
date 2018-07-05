@@ -11,8 +11,6 @@ const {
     webdriver
 } = require('../selenium-helpers.js');
 
-// Selenium's promise driver will be deprecated, so we should not rely on it
-webdriver.SELENIUM_PROMISE_MANAGER = 0;
 
 const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 
