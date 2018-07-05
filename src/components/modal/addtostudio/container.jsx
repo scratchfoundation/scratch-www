@@ -78,6 +78,9 @@ class AddToStudioModal extends React.Component {
         // projectStudios could have dropped some studios since the last time
         // we traveresd it, so we should build the joined state object
         // from scratch.
+
+        // can't just use the spread operator here, because we may have
+        // project studios removed from the list.
         let joined = Object.assign({}, this.state.joined);
         projectStudios.forEach((studio) => {
             joined[studio.id] = true;
