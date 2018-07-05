@@ -30,7 +30,7 @@
     "faq.privacyCountry":"country",
     "faq.privacyBirthdate":"birth month and year - We use this to confirm ownership of the account if the owner loses the password and email or asks to close an account.",
     "faq.privacyGender":"gender",
-    "faq.privacyEmail":"contact email address - If the account holder is younger than 13, we ask for the email address of their parent or guardian. We do not send email to this address except when someone requests to have the account password reset.",
+    "faq.privacyEmail":"contact email address - If the account holder is younger than 16, we ask for the email address of their parent or guardian. We do not send email to this address except when someone requests to have the account password reset.",
     "faq.accountPublicInfo":"The username and country of the account holder are displayed publicly on their profile page. The birth month / year, email address, and gender associated with the account are not displayed publicly. We collect this info so we can know the age and gender of our users in aggregate, and for research purposes. We do not sell or rent information about our users to anyone.",
     "faq.dataCollectionTitle":"What data is collected from people while they use the website?",
     "faq.dataCollectionOne":"When a user logs in, the Scratch website asks their browser to put an <a href=\"http://en.wikipedia.org/wiki/HTTP_cookie\">http cookie</a> on their computer in order to remember that they are logged in while they browse different pages. We collect some data on where users click and which parts of the site they visit using Google Analytics. This \"click data\" helps us figure out ways to improve the website.",
