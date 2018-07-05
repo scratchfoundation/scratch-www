@@ -1,4 +1,4 @@
-var webdriver = require('selenium-webdriver');
+const webdriver = require('selenium-webdriver');
 
 const headless = process.env.SMOKE_HEADLESS || false;
 const remote = process.env.SMOKE_REMOTE || false;
@@ -42,7 +42,7 @@ const driverConfig = {
     platform: 'macOS 10.13',
     version: '67.0'
 };
-var driver;
+let driver;
 if (remote === 'true'){
     driver = getSauceDriver(SAUCE_USERNAME, SAUCE_ACCESS_KEY, driverConfig);
 } else {
