@@ -4,15 +4,13 @@
  * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows
  */
 
+const SeleniumHelper = require('../selenium-helpers.js');
+const helper = new SeleniumHelper();
+
 const tap = require('tap');
 
-const {
-    driver,
-    webdriver
-} = require('../selenium-helpers.js');
-
-// Selenium's promise driver will be deprecated, so we should not rely on it
-webdriver.SELENIUM_PROMISE_MANAGER = 0;
+const webdriver = require('selenium-webdriver');
+const driver = helper.buildDriver('www-smoke test_footer_links');
 
 const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 

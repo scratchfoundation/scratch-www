@@ -5,20 +5,23 @@
  *
  */
 
+const SeleniumHelper = require('../selenium-helpers.js');
+const helper = new SeleniumHelper();
+
+var tap = require('tap');
+const test = tap.test;
+
+const driver = helper.buildDriver('www-smoke test-my-stuff');
+
 const {
     clickText,
     findByXpath,
     clickXpath,
-    clickButton,
-    driver
-} = require('../selenium-helpers.js');
+    clickButton
+} = helper;
 
 var username = process.env.SMOKE_USERNAME;
 var password = process.env.SMOKE_PASSWORD;
-
-
-var tap = require('tap');
-const test = tap.test;
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 var url = rootUrl + '/users/' + username;
