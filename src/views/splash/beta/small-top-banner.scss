@@ -11,12 +11,17 @@
     .beta-copy,
     .beta-try-it {
         color: $ui-white;
-        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .beta-copy {
+        font-size: 1.1rem;
     }
 
     .beta-try-it {
         margin-left: 32px;
         border-radius: 8px;
-        padding: .625em 1em;
+        padding: .625rem 1.2rem;
+        font-size: 1rem;
     }
 }
