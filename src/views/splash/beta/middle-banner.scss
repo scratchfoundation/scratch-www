@@ -12,7 +12,7 @@
     height: 17rem;
     overflow: hidden;
     box-sizing: border-box;
-    justify-content: center;
+    justify-content: space-between;
 
     .beta-middle-container {
         padding-left: 3rem;
@@ -22,17 +22,19 @@
 
     .beta-banner-images {
         display: flex;
+        height: 100%;
         align-self: flex-end;
 
         .beta-banner-image {
             display: flex;
             margin-right: 2rem;
             min-width: 0;
+            height: 100%;
             align-self: flex-end;
 
             img {
                 max-width: 100%;
-                height: auto;
+                height: 100%;
                 align-self: flex-end;
             }
         }
@@ -57,6 +59,7 @@
         width: $cols8;
         height: initial;
         flex-direction: column;
+        justify-content: center;
 
         .beta-middle-container {
             padding-top: 4rem;
