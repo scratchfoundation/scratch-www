@@ -10,13 +10,17 @@ require('./small-top-banner.scss');
 const SmallTopBanner = () => (
     <TitleBanner className="beta-small-top-banner">
         <FlexRow className="beta-small-top-container">
-            <h2 className="beta-copy">Try out the beta version of Scratch 3.0</h2>
+            <h2 className="beta-copy">
+                <FormattedMessage id="betabanner.calloutTitle" />
+            </h2>
             <a
                 className="beta-try-it button"
                 href="https://beta.scratch.mit.edu/"
-            >Try it!</a>
+            >
+                <FormattedMessage id="betabanner.callToAction" />
+            </a>
         </FlexRow>
     </TitleBanner>
 );
 
-export default SmallTopBanner;
+export default injectIntl(SmallTopBanner);

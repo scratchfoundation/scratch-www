@@ -14,12 +14,18 @@ require('./middle-banner.scss');
 const MiddleBanner = () => (
     <TitleBanner className="beta-middle-banner">
         <FlexRow className="beta-middle-container column">
-            <h2 className="beta-header">The Next Generation of Scratch</h2>
-            <h3 className="beta-copy">Try out the beta version of Scratch 3.0</h3>
+            <h2 className="beta-header">
+                <FormattedMessage id="betabanner.title" />
+            </h2>
+            <h3 className="beta-copy">
+                <FormattedMessage id="betabanner.subtitle" />
+            </h3>
             <a
                 className="beta-try-it button"
                 href="https://beta.scratch.mit.edu/"
-            >Try it!</a>
+            >
+                <FormattedMessage id="betabanner.callToAction" />
+            </a>
         </FlexRow>
         <div className="beta-banner-images">
             <MediaQuery maxWidth={frameless.desktop - 1}>
@@ -34,4 +40,4 @@ const MiddleBanner = () => (
     </TitleBanner>
 );
 
-export default MiddleBanner;
+export default injectIntl(MiddleBanner);
