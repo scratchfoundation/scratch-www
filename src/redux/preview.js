@@ -391,7 +391,6 @@ module.exports.getCuratedStudios = (username, token) => (dispatch => {
     });
 });
 
-
 module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
     api({
         uri: `/projects/${id}`,

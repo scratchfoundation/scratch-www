@@ -155,13 +155,12 @@ class AddToStudioModal extends React.Component {
             projectStudios,
             curatedStudios,
             onAddToStudio, // eslint-disable-line no-unused-vars
-            type,
             isOpen,
             onRequestClose
         } = this.props;
         const joined = this.state.joined;
         const updateQueued = this.state.updateQueued;
-        const contentLabel = intl.formatMessage({id: `addToStudio.${type}`});
+        const contentLabel = intl.formatMessage({id: "addToStudio.title"});
         const checkmark = <img alt="checkmark-icon"
                            className="studio-status-icon-checkmark-img"
                            src="/svgs/modal/confirm.svg"
@@ -240,13 +239,14 @@ class AddToStudioModal extends React.Component {
                                 </Button>
                                 {this.state.waitingToClose ? [
                                     <Button
-                                        className="action-button submit-button"
+                                        className="action-button submit-button submit-button-waiting"
                                         disabled="disabled"
                                         key="submitButton"
                                         type="submit"
                                     >
                                         <div className="action-button-text">
-                                            <Spinner />
+                                            <Spinner type="smooth" />
+                                            <FormattedMessage id="addToStudio.finishing" />
                                         </div>
                                     </Button>
                                 ] : [

@@ -160,6 +160,10 @@
     background-color: #3F9AFB;
 }
 
+submit-button-waiting {
+    background-color: #3F9AFB;
+}
+
 .studio-status-icon-plus-img {
     height: 1.4rem;
     width: 1.4rem;
@@ -179,9 +183,9 @@
 
 
 .action-button-text .spinner-smooth {
-    margin: -0.125rem auto 2rem;
-    height: 30px;
+    margin: 0.2125rem auto;
     width: 1.875rem;
+    height: 1rem;
 }
 
 .studio-status-icon .spinner-smooth {

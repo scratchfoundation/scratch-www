@@ -1,31 +1,3 @@
-// NOTE: next questions:
-// * what is the lifecycle of the getStudios etc. requests? Are they guaranteed to be there
-//   on page load? Are they ever updated, e.g. after you join one?
-
-// design decisions:
-// * we should treat "waiting" to mean, user has requested the modal to be closed;
-//   that is, if you click ok and it's waiting for responses, then you click x,
-//   it closes and sets waiting to false?
-//   then in the checkForOutstandingUpdates function, we close the window
-//   iff waiting is true.
-//   that avoids the situation where you close the window while a request is
-//   outstanding, then reopen it only to have it instantly close on you.
-// * keep the okay button, it sets up an overall spinner until everything is resolved
-// * but you can totally close the window regardless
-
-// sample data:
-// this.studios = [{name: 'Funny games', id: 1}, {name: 'Silly ideas', id: 2}];
-// studios data is like:
-// [{
-//   id: 1702295,
-//   description: "...",
-//   history: {created: "2015-11-15T00:24:35.000Z",
-//   modified: "2018-05-01T00:14:48.000Z"},
-//   image: "http....png",
-//   owner: 10689298,
-//   stats: {followers: 0},
-//   title: "Studio title"
-// }, {...}]
 const bindAll = require('lodash.bindall');
 const truncate = require('lodash.truncate');
 const PropTypes = require('prop-types');
@@ -46,7 +18,7 @@ const FlexRow = require('../../flex-row/flex-row.jsx');
 require('../../forms/button.scss');
 require('./modal.scss');
 
-class AddToStudioModal extends React.Component {
+class AddToStudioModalPresentation extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [ // NOTE: will need to add and bind callback fn to handle addind and removing studios
@@ -64,25 +36,6 @@ class AddToStudioModal extends React.Component {
             joined: {},
             updateQueued: {}
         };
-    }
-
-    componentDidMount() {
-        this.updateJoined(this.props.projectStudios);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.updateJoined(nextProps.projectStudios);
-    }
-
-    updateJoined(projectStudios) {
-        // projectStudios could have dropped some studios since the last time
-        // we traveresd it, so we should build the joined state object
-        // from scratch.
-        let joined = Object.assign({}, this.state.joined);
-        projectStudios.forEach((studio) => {
-            joined[studio.id] = true;
-        });
-        this.setState({joined: Object.assign({}, joined)});
     }
 
     requestJoinStudio(studioId) {
@@ -149,16 +102,14 @@ class AddToStudioModal extends React.Component {
     render () {
         const {
             intl,
-            projectStudios,
-            curatedStudios,
+            studios,
             onAddToStudio, // eslint-disable-line no-unused-vars
-            type,
             isOpen,
             onRequestClose
         } = this.props;
         const joined = this.state.joined;
         const updateQueued = this.state.updateQueued;
-        const contentLabel = intl.formatMessage({id: `addToStudio.${type}`});
+        const contentLabel = intl.formatMessage({id: "addToStudio.title");
         const checkmark = <img alt="checkmark-icon"
                            className="studio-status-icon-checkmark-img"
                            src="/svgs/modal/confirm.svg"
@@ -267,13 +218,11 @@ class AddToStudioModal extends React.Component {
     }
 }
 
-AddToStudioModal.propTypes = {
+AddToStudioModalPresentation.propTypes = {
     intl: intlShape,
-    projectStudios: PropTypes.arrayOf(PropTypes.object),
-    curatedStudios: PropTypes.arrayOf(PropTypes.object),
+    studios: PropTypes.arrayOf(PropTypes.object),
     onAddToStudio: PropTypes.func,
-    onRequestClose: PropTypes.func,
-    type: PropTypes.string
+    onRequestClose: PropTypes.func
 };
 
 module.exports = injectIntl(AddToStudioModal);
