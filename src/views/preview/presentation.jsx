@@ -28,6 +28,7 @@ const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const PreviewPresentation = ({
+    backpackOptions,
     comments,
     editable,
     extensions,
@@ -124,6 +125,7 @@ const PreviewPresentation = ({
                             <div className="guiPlayer">
                                 <IntlGUI
                                     isPlayerOnly
+                                    backpackOptions={backpackOptions}
                                     basePath="/"
                                     className="guiPlayer"
                                     isFullScreen={isFullScreen}
@@ -349,6 +351,10 @@ const PreviewPresentation = ({
 
 PreviewPresentation.propTypes = {
     addToStudioOpen: PropTypes.bool,
+    backpackOptions: PropTypes.shape({
+        host: PropTypes.string,
+        visible: PropTypes.bool
+    }),
     comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
     extensions: PropTypes.arrayOf(PropTypes.object),
