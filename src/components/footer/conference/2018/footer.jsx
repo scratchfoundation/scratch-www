@@ -47,19 +47,26 @@ const ConferenceFooter = props => (
                     </a>
                 </li>
                 <li className="lego">
-                    <a href="http://education.lego.com/">
+                    <a href="http://www.legofoundation.com/">
                         <img
-                            alt="LEGO Education"
-                            src="/images/conference/footer/2018/lego-education.png"
+                            alt="The LEGO Foundation"
+                            src="/images/conference/footer/2018/lego-foundation.png"
                         />
                     </a>
                 </li>
-                
                 <li className="siegel">
                     <a href="http://www.siegelendowment.org/">
                         <img
                             alt="Siegel Family Endowment"
                             src="/images/conference/footer/2018/siegel.png"
+                        />
+                    </a>
+                </li>
+                <li className="cartoon-network">
+                    <a href="https://www.cartoonnetwork.com/">
+                        <img
+                            alt="Cartoon Network"
+                            src="/images/conference/footer/2018/cartoon-network.png"
                         />
                     </a>
                 </li>
