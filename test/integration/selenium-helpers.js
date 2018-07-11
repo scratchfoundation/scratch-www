@@ -4,6 +4,7 @@ const bindAll = require('lodash.bindall');
 const headless = process.env.SMOKE_HEADLESS || false;
 const remote = process.env.SMOKE_REMOTE || false;
 const travis = process.env.SMOKE_TRAVIS || false;
+const buildID = process.env.TRAVIS_BUILD_ID;
 const {SAUCE_USERNAME, SAUCE_ACCESS_KEY} = process.env;
 const {By, until} = webdriver;
 
@@ -27,7 +28,7 @@ class SeleniumHelper {
         if (remote === 'true'){
             let nameToUse;
             if (travis === 'true'){
-                nameToUse = 'travis: ' + name;
+                nameToUse = 'travis ' + buildID + ' : ' + name;
             } else {
                 nameToUse = name;
             }
