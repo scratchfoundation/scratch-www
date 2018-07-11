@@ -126,6 +126,21 @@ class Preview extends React.Component {
             );
         }
     }
+    handleToggleStudio (studioId, isAdd) {
+        if (isAdd === true) {
+            this.props.addToStudio(
+                studioId,
+                this.props.projectInfo.id,
+                this.props.user.token
+            );
+        } else {
+            this.props.leaveStudio(
+                studioId,
+                this.props.projectInfo.id,
+                this.props.user.token
+            );
+        }
+    }
     handleFavoriteToggle () {
         this.props.setFavedStatus(
             !this.props.faved,
@@ -203,6 +218,8 @@ class Preview extends React.Component {
                         sessionStatus={this.props.sessionStatus}
                         projectStudios={this.props.projectStudios}
                         curatedStudios={this.props.curatedStudios}
+                        studioRequests={this.props.studioRequests}
+                        onToggleStudio={this.handleToggleStudio}
                         user={this.props.user}
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoveClicked={this.handleLoveToggle}
@@ -245,6 +262,7 @@ Preview.propTypes = {
     setPlayer: PropTypes.func.isRequired,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     curatedStudios: PropTypes.arrayOf(PropTypes.object),
+    studioRequests: PropTypes.object,
     updateProject: PropTypes.func.isRequired,
     user: PropTypes.shape({
         id: PropTypes.number,
@@ -274,6 +292,7 @@ const mapStateToProps = state => ({
     sessionStatus: state.session.status,
     projectStudios: state.preview.projectStudios,
     curatedStudios: state.preview.curatedStudios,
+    studioRequests: state.preview.status.studioRequests,
     user: state.session.session.user,
     playerMode: state.scratchGui.mode.isPlayerOnly,
     fullScreen: state.scratchGui.mode.isFullScreen
@@ -298,6 +317,12 @@ const mapDispatchToProps = dispatch => ({
     },
     getCuratedStudios: (username, token) => {
         dispatch(previewActions.getCuratedStudios(username, token));
+    },
+    addToStudio: (studioId, id, token) => {
+        dispatch(previewActions.addToStudio(studioId, id, token));
+    },
+    leaveStudio: (studioId, id, token) => {
+        dispatch(previewActions.leaveStudio(studioId, id, token));
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));

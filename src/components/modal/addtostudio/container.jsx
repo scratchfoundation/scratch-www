@@ -42,6 +42,8 @@ const Select = require('../../forms/select.jsx');
 const Spinner = require('../../spinner/spinner.jsx');
 const TextArea = require('../../forms/textarea.jsx');
 const FlexRow = require('../../flex-row/flex-row.jsx');
+const AddToStudioModalPresentation = require('presentation.jsx');
+const RequestStatus = require('').intlShape;
 
 require('../../forms/button.scss');
 require('./modal.scss');
@@ -61,61 +63,59 @@ class AddToStudioModal extends React.Component {
         // membership/stats/name. use that for rendering.
         this.state = {
             waitingToClose: false,
-            joined: {},
-            updateQueued: {}
+            studioState: {},
         };
     }
 
     componentDidMount() {
-        this.updateJoined(this.props.projectStudios);
+        this.updateStudioState(this.props.projectStudios, this.props.curatedStudios);
     }
 
     componentWillReceiveProps(nextProps) {
-        this.updateJoined(nextProps.projectStudios);
+        this.updateStudioState(nextProps.projectStudios, nextProps.curatedStudios);
     }
 
-    updateJoined(projectStudios) {
-        // projectStudios could have dropped some studios since the last time
-        // we traveresd it, so we should build the joined state object
-        // from scratch.
-
+    updateStudioState(projectStudios, curatedStudios) {
         // can't just use the spread operator here, because we may have
         // project studios removed from the list.
-        let joined = Object.assign({}, this.state.joined);
-        projectStudios.forEach((studio) => {
-            joined[studio.id] = true;
-        });
-        this.setState({joined: Object.assign({}, joined)});
-    }
+        // NOTE: This isn't handling the removal of a studio from the list well.
 
-    requestJoinStudio(studioId) {
-        // submit here? or through presentation?
-    }
-    requestLeaveStudio(studioId) {
-        // submit here? or through presentation?
+        // can't build it from scratch, because needs transitional state
+        let studioState = Object.assign({}, this.state.studioState);
+
+        // remove all states that are not in transition
+        for (let id in studioState) {
+          if (studioState[id] === AddToStudioModalPresentation.State.IN
+              || studioState[id] === AddToStudioModalPresentation.State.OUT) {
+                  delete studioState[id];
+              }
+        }
+        // for all studios with no state, either because they weren't transitional
+        // or they're new, start them with state OUT
+        curatedStudios.forEach((curatedStudio) => {
+            if (!(curatedStudio.id in studioState)) {
+                studioState[curatedStudio.id] = AddToStudioModalPresentation.State.OUT
+            }
+        });
+        // nests which all states to in for studios this project is in
+        projectStudios.forEach((joinedStudio) => {
+            studioState[joinedStudio.id] = AddToStudioModalPresentation.State.IN
+        });
+        // NOTE: do I really need this assign? I took it out
+        this.setState({studioState: studioState});
     }
 
     handleToggle(studioId) {
-        const joined = this.state.joined;
-        const updateQueued = this.state.updateQueued;
-        console.log(updateQueued)
-        if (!(studioId in updateQueued)) { // we haven't requested it yet...
-            const updateType = (studioId in joined) ? 'leave' : 'join';
-            console.log("queueing " + updateType + " request for studio: " + studioId);
-            this.setState(prevState => ({
-                updateQueued: {
-                    ...prevState.updateQueued,
-                    [studioId]: {updateType: updateType}
-                }
-            }), () => { // callback
-                // submit request to server
-
-                if (updateType === 'join') {
-                    this.requestJoinStudio(studioId);
-                } else {
-                    this.requestLeaveStudio(studioId);
-                }
-            });
+        if (studioId in this.state.studioState) {
+            const studioState = this.state.studioState[studioId];
+            // ignore clicks on studio buttons that are still waiting for response
+            if (studioState === AddToStudioModalPresentation.State.IN) {
+                this.props.onToggleStudio(studioId, false)
+            } elseif (studioState === AddToStudioModalPresentation.State.OUT) {
+                this.props.onToggleStudio(studioId, true)
+            }
+        } else {
+            // NOTE: error
         }
     }
 
@@ -151,132 +151,26 @@ class AddToStudioModal extends React.Component {
     }
     render () {
         const {
-            intl,
-            projectStudios,
             curatedStudios,
-            onAddToStudio, // eslint-disable-line no-unused-vars
             isOpen,
             onRequestClose
         } = this.props;
-        const joined = this.state.joined;
-        const updateQueued = this.state.updateQueued;
-        const contentLabel = intl.formatMessage({id: "addToStudio.title"});
-        const checkmark = <img alt="checkmark-icon"
-                           className="studio-status-icon-checkmark-img"
-                           src="/svgs/modal/confirm.svg"
-                          />
-        const plus = <img alt="plus-icon"
-                      className="studio-status-icon-plus-img"
-                      src="/svgs/modal/add.svg"
-                     />
-        const studioButtons = curatedStudios.map((studio, index) => {
-            const isAdded = (studio.id in joined);
-            const isWaiting = (studio.id in updateQueued);
-            return (
-                <div className={"studio-selector-button " +
-                    (isWaiting ? "studio-selector-button-waiting" :
-                    (isAdded ? "studio-selector-button-selected" : ""))}
-                    key={studio.id}
-                    onClick={() => this.handleToggle(studio.id)}
-                >
-                    <div className={"studio-selector-button-text " +
-                        ((isWaiting || isAdded) ? "studio-selector-button-text-selected" :
-                        ".studio-selector-button-text-unselected")}>
-                        {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
-                    </div>
-                    <div className={"studio-status-icon" +
-                        ((isWaiting || isAdded) ? "" : " studio-status-icon-unselected")}
-                    >
-                        {isWaiting ? (<Spinner type="smooth" />) : (isAdded ? checkmark : plus)}
-                    </div>
-                </div>
-            );
-        });
 
         return (
-            <Modal
-                className="mod-addToStudio"
-                contentLabel={contentLabel}
-                ref={component => { // bind to base modal, to pass handleRequestClose through
-                    this.baseModal = component;
-                }}
-                onRequestClose={onRequestClose}
-                isOpen={isOpen}
-            >
-                <div>
-                    <div className="addToStudio-modal-header">
-                        <div className="addToStudio-content-label">
-                            {contentLabel}
-                        </div>
-                    </div>
-                    <div className="addToStudio-modal-content">
-                        <div className="studio-list-outer-scrollbox">
-                            <div className="studio-list-inner-scrollbox">
-                                <div className="studio-list-container">
-                                    {studioButtons}
-                                </div>
-                            </div>
-                            <div className="studio-list-bottom-gradient">
-                            </div>
-                        </div>
-
-
-                        <Form
-                            className="add-to-studio"
-                            onSubmit={this.handleSubmit}
-                        >
-                            <FlexRow className="action-buttons">
-                                <Button
-                                    className="action-button close-button white"
-                                    onClick={this.handleRequestClose}
-                                    key="closeButton"
-                                    name="closeButton"
-                                    type="button"
-                                >
-                                    <div className="action-button-text">
-                                        <FormattedMessage id="general.close" />
-                                    </div>
-                                </Button>
-                                {this.state.waitingToClose ? [
-                                    <Button
-                                        className="action-button submit-button submit-button-waiting"
-                                        disabled="disabled"
-                                        key="submitButton"
-                                        type="submit"
-                                    >
-                                        <div className="action-button-text">
-                                            <Spinner type="smooth" />
-                                            <FormattedMessage id="addToStudio.finishing" />
-                                        </div>
-                                    </Button>
-                                ] : [
-                                    <Button
-                                        className="action-button submit-button"
-                                        key="submitButton"
-                                        type="submit"
-                                    >
-                                        <div className="action-button-text">
-                                            <FormattedMessage id="general.okay" />
-                                        </div>
-                                    </Button>
-                                ]}
-                            </FlexRow>
-                        </Form>
-                    </div>
-                </div>
-
-            </Modal>
+          <AddToStudioModalPresentation
+              studios={curatedStudios}
+              studioState={this.state.studioState}
+              isOpen={isOpen}
+              onToggleStudio={handleToggle}
+          />
         );
     }
 }
 
 AddToStudioModal.propTypes = {
-    intl: intlShape,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     curatedStudios: PropTypes.arrayOf(PropTypes.object),
-    onAddToStudio: PropTypes.func,
-    onRequestClose: PropTypes.func,
-    type: PropTypes.string
+    studioRequests: PropTypes.object,
+    onToggleStudio: PropTypes.func,
+    onRequestClose: PropTypes.func
 };
-
-module.exports = injectIntl(AddToStudioModal);

@@ -33,7 +33,6 @@ class PreviewPresentation extends React.Component {
         bindAll(this, [
             'handleAddToStudioClick',
             'handleAddToStudioClose',
-            'handleAddToStudioSubmit',
             'handleReportClick',
             'handleReportClose',
             'handleReportSubmit'
@@ -184,24 +183,6 @@ class PreviewPresentation extends React.Component {
     handleAddToStudioClose () {
         this.setState({addToStudioOpen: false});
     }
-    handleAddToStudioSubmit (studiosToAdd, studiosToLeave, callback) {
-        console.log('studios to add: ');
-        console.log(studiosToAdd);
-        console.log('studios to leave: ');
-        console.log(studiosToLeave);
-        // const data = {
-        //     ...formData,
-        //     id: this.props.projectId,
-        //     username: this.props.user.username
-        // };
-        //console.log('submit addToStudio data', data); // eslint-disable-line no-console
-
-        // TODO: post to API; in that callback,
-        // pass error to modal via its callback.
-        this.setState({addToStudioOpen: false}, () => {
-            callback();
-        });
-    }
 
     // Report Project modal
     handleReportClick (e) {
@@ -240,6 +221,8 @@ class PreviewPresentation extends React.Component {
             sessionStatus,
             projectStudios,
             curatedStudios,
+            studioRequests,
+            onToggleStudio,
             user,
             onFavoriteClicked,
             onLoveClicked,
@@ -493,7 +476,8 @@ class PreviewPresentation extends React.Component {
                                                     key="add-to-studio-modal"
                                                     projectStudios={projectStudios}
                                                     curatedStudios={this.mockedMyStudios}
-                                                    onAddToStudio={this.handleAddToStudioSubmit}
+                                                    studioRequests={studioRequests}
+                                                    onToggleStudio={onToggleStudio}
                                                     onRequestClose={this.handleAddToStudioClose}
                                                 />
                                             ]
@@ -608,6 +592,8 @@ PreviewPresentation.propTypes = {
     sessionStatus: PropTypes.string.isRequired,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     curatedStudios: PropTypes.arrayOf(PropTypes.object),
+    studioRequests: PropTypes.object,
+    onToggleStudio: PropTypes.func,
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,

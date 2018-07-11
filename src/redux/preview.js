@@ -20,7 +20,8 @@ module.exports.getInitialState = () => ({
         parent: module.exports.Status.NOT_FETCHED,
         remixes: module.exports.Status.NOT_FETCHED,
         projectStudios: module.exports.Status.NOT_FETCHED,
-        curatedStudios: module.exports.Status.NOT_FETCHED
+        curatedStudios: module.exports.Status.NOT_FETCHED,
+        studioRequests: {}
     },
     projectInfo: {},
     remixes: [],
@@ -30,7 +31,7 @@ module.exports.getInitialState = () => ({
     original: {},
     parent: {},
     projectStudios: [],
-    curatedStudios: []
+    curatedStudios: [],
 });
 
 module.exports.previewReducer = (state, action) => {
@@ -78,6 +79,10 @@ module.exports.previewReducer = (state, action) => {
     case 'SET_FETCH_STATUS':
         state = JSON.parse(JSON.stringify(state));
         state.status[action.infoType] = action.status;
+        return state;
+    case 'SET_STUDIO_FETCH_STATUS':
+        state = JSON.parse(JSON.stringify(state));
+        state.status.studioRequests[action.studioId] = action.status;
         return state;
     case 'ERROR':
         log.error(action.error);
@@ -132,9 +137,17 @@ module.exports.setCuratedStudios = items => ({
     items: items
 });
 
+// NOTE:  unclear to me what kind of Delta to do to what data when add and leave commands come back
+
 module.exports.setFetchStatus = (type, status) => ({
     type: 'SET_FETCH_STATUS',
     infoType: type,
+    status: status
+});
+
+module.exports.setStudioFetchStatus = (studioId, status) => ({
+    type: 'SET_STUDIO_FETCH_STATUS',
+    studioId: studioId,
     status: status
 });
 
@@ -388,6 +401,44 @@ module.exports.getCuratedStudios = (username, token) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.FETCHED));
         dispatch(module.exports.setCuratedStudios(body));
+    });
+});
+
+module.exports.addToStudio = (studioId, projectId, token) => (dispatch => {
+    api({
+        uri: `/studios/${studioId}/project/${projectId}`,
+        authentication: token,
+        method: 'POST'
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setError('Add to studio returned no data'));
+            return;
+        }
+        dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHED));
+        // NOTE: is there a way here to update or refresh the project studio list?
+    });
+});
+
+module.exports.leaveStudio = (studioId, projectId, token) => (dispatch => {
+    api({
+        uri: `/studios/${studioId}/project/${projectId}`,
+        authentication: token,
+        method: 'DELETE'
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setError('Leave studio returned no data'));
+            return;
+        }
+        dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHED));
+        // NOTE: is there a way here to update or refresh the project studio list?
     });
 });
 
