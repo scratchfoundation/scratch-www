@@ -98,4 +98,4 @@ jobs:
 stages:
 - test
 - name: smoke
-  if: branch IN (travis) and type != pull_request
+  if: type != pull_request
