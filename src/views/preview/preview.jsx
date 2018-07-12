@@ -297,6 +297,7 @@ class Preview extends React.Component {
                 <Page>
                     <PreviewPresentation
                         addToStudioOpen={this.state.addToStudioOpen}
+                        assetHost={this.props.assetHost}
                         backpackOptions={backpackOptions}
                         comments={this.props.comments}
                         editable={this.state.editable}
@@ -310,6 +311,7 @@ class Preview extends React.Component {
                         loved={this.props.loved}
                         originalInfo={this.props.original}
                         parentInfo={this.props.parent}
+                        projectHost={this.props.projectHost}
                         projectId={this.state.projectId}
                         projectInfo={this.props.projectInfo}
                         projectStudios={this.props.projectStudios}
@@ -335,9 +337,11 @@ class Preview extends React.Component {
                 <IntlGUI
                     enableCommunity
                     hideIntro
+                    assetHost={this.props.assetHost}
                     backpackOptions={backpackOptions}
                     basePath="/"
                     className="gui"
+                    projectHost={this.props.projectHost}
                     projectId={this.state.projectId}
                 />
         );
@@ -345,6 +349,7 @@ class Preview extends React.Component {
 }
 
 Preview.propTypes = {
+    assetHost: PropTypes.string.isRequired,
     comments: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     fullScreen: PropTypes.bool,
@@ -362,6 +367,7 @@ Preview.propTypes = {
     parent: projectShape,
     playerMode: PropTypes.bool,
     projectInfo: projectShape,
+    projectHost: PropTypes.string.isRequired,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
@@ -387,6 +393,8 @@ Preview.propTypes = {
 };
 
 Preview.defaultProps = {
+    assetHost: process.env.ASSET_HOST,
+    projectHost: process.env.PROJECT_HOST,
     sessionStatus: sessionActions.Status.NOT_FETCHED,
     user: {}
 };

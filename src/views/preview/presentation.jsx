@@ -28,6 +28,7 @@ const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const PreviewPresentation = ({
+    assetHost,
     backpackOptions,
     comments,
     editable,
@@ -41,6 +42,7 @@ const PreviewPresentation = ({
     loveCount,
     originalInfo,
     parentInfo,
+    projectHost,
     projectId,
     projectInfo,
     remixes,
@@ -125,11 +127,13 @@ const PreviewPresentation = ({
                             <div className="guiPlayer">
                                 <IntlGUI
                                     isPlayerOnly
+                                    assetHost={assetHost}
                                     backpackOptions={backpackOptions}
                                     basePath="/"
                                     className="guiPlayer"
                                     isFullScreen={isFullScreen}
                                     previewInfoVisible="false"
+                                    projectHost={projectHost}
                                     projectId={projectId}
                                 />
                             </div>
@@ -351,6 +355,7 @@ const PreviewPresentation = ({
 
 PreviewPresentation.propTypes = {
     addToStudioOpen: PropTypes.bool,
+    assetHost: PropTypes.string,
     backpackOptions: PropTypes.shape({
         host: PropTypes.string,
         visible: PropTypes.bool
@@ -378,6 +383,7 @@ PreviewPresentation.propTypes = {
     onUpdate: PropTypes.func,
     originalInfo: projectShape,
     parentInfo: projectShape,
+    projectHost: PropTypes.string,
     projectId: PropTypes.string,
     projectInfo: projectShape,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
