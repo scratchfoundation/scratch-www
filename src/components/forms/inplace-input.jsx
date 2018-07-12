@@ -38,6 +38,8 @@ class InplaceInput extends React.Component {
                 <FRCTextarea
                     className="inplace-textarea"
                     componentRef={this.setRef}
+                    elementWrapperClassName="grow"
+                    label={null}
                     rowClassName={classNames('textarea-row no-label', className)}
                     onBlur={this.handleBlur}
                     {...props}

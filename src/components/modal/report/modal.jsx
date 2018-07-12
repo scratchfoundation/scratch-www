@@ -5,7 +5,6 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 const Modal = require('../base/modal.jsx');
-const log = require('../../../lib/log.js');
 
 const Form = require('../../forms/form.jsx');
 const Button = require('../../forms/button.jsx');
@@ -16,48 +15,74 @@ const TextArea = require('../../forms/textarea.jsx');
 require('../../forms/button.scss');
 require('./modal.scss');
 
+const REPORT_OPTIONS = [
+    {
+        value: '',
+        label: {id: 'report.reasonPlaceHolder'},
+        prompt: {id: 'report.promptPlaceholder'}
+    },
+    {
+        value: '0',
+        label: {id: 'report.reasonCopy'},
+        prompt: {id: 'report.promptCopy'}
+    },
+    {
+        value: '1',
+        label: {id: 'report.reasonUncredited'},
+        prompt: {id: 'report.promptUncredited'}
+    },
+    {
+        value: '2',
+        label: {id: 'report.reasonScary'},
+        prompt: {id: 'report.promptScary'}
+    },
+    {
+        value: '3',
+        label: {id: 'report.reasonLanguage'},
+        prompt: {id: 'report.promptLanguage'}
+    },
+    {
+        value: '4',
+        label: {id: 'report.reasonMusic'},
+        prompt: {id: 'report.promptMusic'}
+    },
+    {
+        value: '8',
+        label: {id: 'report.reasonImage'},
+        prompt: {id: 'report.promptImage'}
+    },
+    {
+        value: '5',
+        label: {id: 'report.reasonPersonal'},
+        prompt: {id: 'report.promptPersonal'}
+    },
+    {
+        value: '6',
+        label: {id: 'general.other'},
+        prompt: {id: 'report.promptGuidelines'}
+    }
+];
+
 class ReportModal extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleReasonSelect',
-            'handleSubmit'
+            'handleReportCategorySelect'
         ]);
-        this.state = {
-            prompt: props.intl.formatMessage({id: 'report.promptPlaceholder'}),
-            reason: '',
-            waiting: false
-        };
+        this.state = {reportCategory: this.props.report.category};
     }
-    handleReasonSelect (name, value) {
-        const prompts = [
-            this.props.intl.formatMessage({id: 'report.promptCopy'}),
-            this.props.intl.formatMessage({id: 'report.promptUncredited'}),
-            this.props.intl.formatMessage({id: 'report.promptScary'}),
-            this.props.intl.formatMessage({id: 'report.promptLanguage'}),
-            this.props.intl.formatMessage({id: 'report.promptMusic'}),
-            this.props.intl.formatMessage({id: 'report.promptPersonal'}),
-            this.props.intl.formatMessage({id: 'report.promptGuidelines'}),
-            'not used',
-            this.props.intl.formatMessage({id: 'report.promptImage'})
-        ];
-        this.setState({prompt: prompts[value], reason: value});
+    handleReportCategorySelect (name, value) {
+        this.setState({reportCategory: value});
     }
-    handleSubmit (formData) {
-        this.setState({waiting: true});
-        this.props.onReport(formData, err => {
-            if (err) log.error(err);
-            this.setState({
-                prompt: this.props.intl.formatMessage({id: 'report.promptPlaceholder'}),
-                reason: '',
-                waiting: false
-            });
-        });
+    lookupPrompt (value) {
+        const prompt = REPORT_OPTIONS.find(item => item.value === value).prompt;
+        return this.props.intl.formatMessage(prompt);
     }
     render () {
         const {
             intl,
             onReport, // eslint-disable-line no-unused-vars
+            report,
             type,
             ...modalProps
         } = this.props;
@@ -66,6 +91,7 @@ class ReportModal extends React.Component {
             <Modal
                 className="mod-report"
                 contentLabel={contentLabel}
+                isOpen={report.open}
                 {...modalProps}
             >
                 <div>
@@ -88,68 +114,38 @@ class ReportModal extends React.Component {
                         />
                         <Form
                             className="report"
-                            onSubmit={this.handleSubmit}
+                            onSubmit={onReport}
                         >
                             <Select
                                 required
-                                name="reason"
-                                options={[
-                                    {
-                                        value: '',
-                                        label: this.props.intl.formatMessage({id: 'report.reasonPlaceHolder'})
-                                    },
-                                    {
-                                        value: '0',
-                                        label: this.props.intl.formatMessage({id: 'report.reasonCopy'})
-                                    },
-                                    {
-                                        value: '1',
-                                        label: this.props.intl.formatMessage({id: 'report.reasonUncredited'})
-                                    },
-                                    {
-                                        value: '2',
-                                        label: this.props.intl.formatMessage({id: 'report.reasonScary'})
-                                    },
-                                    {
-                                        value: '3',
-                                        label: this.props.intl.formatMessage({id: 'report.reasonLanguage'})
-                                    },
-                                    {
-                                        value: '4',
-                                        label: this.props.intl.formatMessage({id: 'report.reasonMusic'})
-                                    },
-                                    {
-                                        value: '8',
-                                        label: this.props.intl.formatMessage({id: 'report.reasonImage'})
-                                    },
-                                    {
-                                        value: '5',
-                                        label: this.props.intl.formatMessage({id: 'report.reasonPersonal'})
-                                    },
-                                    {
-                                        value: '6',
-                                        label: this.props.intl.formatMessage({id: 'general.other'})
-                                    }
-                                ]}
-                                value={this.state.reason}
-                                onChange={this.handleReasonSelect}
+                                elementWrapperClassName="report-modal-field"
+                                label={null}
+                                name="report_category"
+                                options={REPORT_OPTIONS.map(option => ({
+                                    value: option.value,
+                                    label: this.props.intl.formatMessage(option.label)
+                                }))}
+                                value={this.state.reportCategory}
+                                onChange={this.handleReportCategorySelect}
                             />
                             <TextArea
                                 required
                                 className="report-text"
-                                name="reportText"
-                                placeholder={this.state.prompt}
+                                elementWrapperClassName="report-modal-field"
+                                label={null}
+                                name="notes"
+                                placeholder={this.lookupPrompt(this.state.reportCategory)}
                                 validationErrors={{
                                     maxLength: this.props.intl.formatMessage({id: 'report.tooLongError'}),
                                     minLength: this.props.intl.formatMessage({id: 'report.tooShortError'})
                                 }}
                                 validations={{
-                                    // TODO find out max and min characters
                                     maxLength: 500,
-                                    minLength: 30
+                                    minLength: 20
                                 }}
+                                value={report.notes}
                             />
-                            {this.state.reportWaiting ? [
+                            {report.waiting ? [
                                 <Button
                                     className="submit-button white"
                                     disabled="disabled"
@@ -180,6 +176,12 @@ ReportModal.propTypes = {
     intl: intlShape,
     onReport: PropTypes.func,
     onRequestClose: PropTypes.func,
+    report: PropTypes.shape({
+        category: PropTypes.string,
+        notes: PropTypes.string,
+        open: PropTypes.bool,
+        waiting: PropTypes.bool
+    }),
     type: PropTypes.string
 };
 

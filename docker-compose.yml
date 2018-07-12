@@ -1,0 +1,40 @@
+version: '3.4'
+volumes:
+  npm_data:
+  runtime_data:
+  intl_data:
+
+networks:
+  scratchapi_scratch_network:
+    external: true
+
+services:
+  app:
+    container_name: scratch-www-app
+    hostname: scratch-www-app
+    environment:
+      - API_HOST=http://localhost:8491
+      - FALLBACK=http://scratchr2-app:8080
+    build:  
+      context: ./
+      dockerfile: Dockerfile
+    image: scratch-www:latest
+    command: ./docker_entrypoint.sh npm start
+    volumes:
+      - type: bind
+        source: ./
+        target: /var/app/current
+        volume:
+          nocopy: true
+      - type: bind
+        source: ../scratch-gui
+        target: /var/app/current/scratch-gui
+        volume:
+          nocopy: true
+      - npm_data:/var/app/current/node_modules
+      - runtime_data:/runtime
+      - intl_data:/var/app/current/intl
+    ports:
+      - "8333:8333"
+    networks:
+      - scratchapi_scratch_network

@@ -4,16 +4,13 @@
  * Test cases: https://github.com/LLK/scratch-www/wiki/Most-Important-Workflows
  */
 
-require('chromedriver');
+const SeleniumHelper = require('../selenium-helpers.js');
+const helper = new SeleniumHelper();
 
-const {
-    driver,
-    webdriver
-} = require('../selenium-helpers.js');
 var tap = require('tap');
 
-// Selenium's promise driver will be deprecated, so we should not rely on it
-webdriver.SELENIUM_PROMISE_MANAGER = 0;
+const webdriver = require('selenium-webdriver');
+const driver = helper.buildDriver('www-smoke test_navbar_links');
 
 // Set test url through environment variable
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';

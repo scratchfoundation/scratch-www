@@ -6,8 +6,9 @@
     "start": "make start",
     "stop": "make stop",
     "test": "make test",
-    "smoke": "make smoke",
+    "smoke": "tap ./test/integration/smoke-testing/*.js --timeout=3600",
     "smoke-verbose": "make smoke-verbose",
+    "smoke-sauce": "tap ./test/integration/smoke-testing/*.js --timeout=60000",
     "watch": "make watch",
     "build": "make build",
     "dev": "make watch && make start &"
@@ -30,7 +31,8 @@
     "lodash.defaults": "4.0.1",
     "newrelic": "1.25.4",
     "raven": "0.10.0",
-    "scratch-gui": "0.1.0-prerelease.20180529181946"
+    "scratch-parser": "^4.2.0",
+    "scratch-storage": "^0.5.1"
   },
   "devDependencies": {
     "ajv": "6.4.0",
@@ -97,6 +99,7 @@
     "redux-thunk": "2.0.1",
     "sass-lint": "1.5.1",
     "sass-loader": "6.0.6",
+    "scratch-gui": "latest",
     "scratchr2_translations": "git://github.com/LLK/scratchr2_translations.git#master",
     "slick-carousel": "1.6.0",
     "source-map-support": "0.3.2",

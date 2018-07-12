@@ -5,15 +5,19 @@
  *
  */
 
-const {
-    clickText,
-    findByXpath,
-    findByCss,
-    driver
-} = require('../selenium-helpers.js');
+const SeleniumHelper = require('../selenium-helpers.js');
+const helper = new SeleniumHelper();
 
 var tap = require('tap');
 const test = tap.test;
+
+const driver = helper.buildDriver('www-smoke test_statistics_page');
+
+const {
+    clickText,
+    findByXpath,
+    findByCss
+} = helper;
 
 tap.plan(2);
 
