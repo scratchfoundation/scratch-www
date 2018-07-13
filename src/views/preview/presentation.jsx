@@ -221,7 +221,6 @@ class PreviewPresentation extends React.Component {
             sessionStatus,
             projectStudios,
             curatedStudios,
-            studioRequests,
             onToggleStudio,
             user,
             onFavoriteClicked,
@@ -474,9 +473,7 @@ class PreviewPresentation extends React.Component {
                                                 <AddToStudioModal
                                                     isOpen={this.state.addToStudioOpen}
                                                     key="add-to-studio-modal"
-                                                    projectStudios={projectStudios}
-                                                    curatedStudios={this.mockedMyStudios}
-                                                    studioRequests={studioRequests}
+                                                    studios={curatedStudios}
                                                     onToggleStudio={onToggleStudio}
                                                     onRequestClose={this.handleAddToStudioClose}
                                                 />
@@ -592,7 +589,6 @@ PreviewPresentation.propTypes = {
     sessionStatus: PropTypes.string.isRequired,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     curatedStudios: PropTypes.arrayOf(PropTypes.object),
-    studioRequests: PropTypes.object,
     onToggleStudio: PropTypes.func,
     user: PropTypes.shape({
         id: PropTypes.number,

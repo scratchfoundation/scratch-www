@@ -1,4 +1,3 @@
-const keyMirror = require('keymirror');
 const bindAll = require('lodash.bindall');
 const truncate = require('lodash.truncate');
 const PropTypes = require('prop-types');
@@ -19,39 +18,24 @@ const FlexRow = require('../../flex-row/flex-row.jsx');
 require('../../forms/button.scss');
 require('./modal.scss');
 
-module.exports.State = keyMirror({
-    IN: null,
-    OUT: null,
-    JOINING: null,
-    LEAVING: null
-});
-
 class AddToStudioModalPresentation extends React.Component {
     constructor (props) {
         super(props);
-        bindAll(this, [ // NOTE: will need to add and bind callback fn to handle addind and removing studios
-            'handleRequestClose',
+        bindAll(this, [
             'handleSubmit'
         ]);
 
-        // NOTE: need to:
-        // construct hash of inclusion status by id, populate it.
-        // replace curatedStudios with list of studios ordered by
-        // membership/stats/name. use that for rendering.
         this.state = {
             waitingToClose: false,
             studios: props.studios
         };
     }
 
-    handleRequestClose () {
-        this.baseModal.handleRequestClose();
-    }
     handleSubmit (formData) {
-        this.props.handleSubmit(formData);
+        this.props.onSubmit(formData);
     }
+
     render () {
-        // NOTE: how does intl get injected?
         const {
             intl,
             studios,
@@ -68,29 +52,24 @@ class AddToStudioModalPresentation extends React.Component {
                       src="/svgs/modal/add.svg"
                      />
         const studioButtons = studios.map((studio, index) => {
-            const thisStudioState = studioState[studio.id];
             return (
                 <div className={"studio-selector-button " +
-                    (thisStudioState === module.exports.State.JOINING ||
-                    thisStudioState === module.exports.State.LEAVING) ?
-                    "studio-selector-button-waiting" :
-                    (thisStudioState === module.exports.State.IN ? "studio-selector-button-selected" : ""))}
+                    (studio.hasRequestOutstanding ? "studio-selector-button-waiting" :
+                    (studio.includesProject ? "studio-selector-button-selected" : ""))}
                     key={studio.id}
                     onClick={() => this.props.onToggleStudio(studio.id)}
                 >
                     <div className={"studio-selector-button-text " +
-                        (thisStudioState === module.exports.State.OUT ?
-                        "studio-selector-button-text-unselected" :
-                        ".studio-selector-button-text-selected")}>
+                        (studio.includesProject ? "studio-selector-button-text-selected" :
+                        "studio-selector-button-text-unselected")}>
                         {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
                     </div>
                     <div className={"studio-status-icon " +
-                        (thisStudioState === module.exports.State.OUT ? "studio-status-icon-unselected" : "")}
+                        (studio.includesProject ? "" : "studio-status-icon-unselected")}
                     >
-                        {(thisStudioState === module.exports.State.JOINING ||
-                        thisStudioState === module.exports.State.LEAVING) ?
+                        {(studio.hasRequestOutstanding ?
                         (<Spinner type="smooth" />) :
-                        (thisStudioState === module.exports.State.IN ? checkmark : plus)}
+                        (studio.includesProject ? checkmark : plus))}
                     </div>
                 </div>
             );
@@ -100,9 +79,6 @@ class AddToStudioModalPresentation extends React.Component {
             <Modal
                 className="mod-addToStudio"
                 contentLabel={contentLabel}
-                ref={component => { // bind to base modal, to pass handleRequestClose through
-                    this.baseModal = component;
-                }}
                 onRequestClose={this.props.onRequestClose}
                 isOpen={isOpen}
             >
@@ -131,7 +107,7 @@ class AddToStudioModalPresentation extends React.Component {
                             <FlexRow className="action-buttons">
                                 <Button
                                     className="action-button close-button white"
-                                    onClick={this.handleRequestClose}
+                                    onClick={this.props.onRequestClose}
                                     key="closeButton"
                                     name="closeButton"
                                     type="button"
@@ -177,7 +153,8 @@ AddToStudioModalPresentation.propTypes = {
     intl: intlShape,
     studios: PropTypes.arrayOf(PropTypes.object),
     onAddToStudio: PropTypes.func,
-    onRequestClose: PropTypes.func
+    onRequestClose: PropTypes.func,
+    onSubmit: PropTypes.func
 };
 
 module.exports = injectIntl(AddToStudioModalPresentation);

@@ -31,7 +31,7 @@ module.exports.getInitialState = () => ({
     original: {},
     parent: {},
     projectStudios: [],
-    curatedStudios: [],
+    curatedStudios: []
 });
 
 module.exports.previewReducer = (state, action) => {
@@ -63,6 +63,17 @@ module.exports.previewReducer = (state, action) => {
     case 'SET_CURATED_STUDIOS':
         return Object.assign({}, state, {
             curatedStudios: action.items
+        });
+    case 'ADD_TO_PROJECT_STUDIOS':
+        return Object.assign({}, state, {
+            // NOTE: move this to calling fn, make this add object passed to me
+            projectStudios: state.projectStudios.concat({id: action.studioId})
+        });
+    case 'REMOVE_FROM_PROJECT_STUDIOS':
+        return Object.assign({}, state, {
+            projectStudios: state.projectStudios.filter(studio => (
+                studio.id !== action.studioId
+            ))
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
@@ -137,7 +148,15 @@ module.exports.setCuratedStudios = items => ({
     items: items
 });
 
-// NOTE:  unclear to me what kind of Delta to do to what data when add and leave commands come back
+module.exports.addToProjectStudios = studioId => ({
+    type: 'ADD_TO_PROJECT_STUDIOS',
+    studioId: studioId
+});
+
+module.exports.removeFromProjectStudios = studioId => ({
+    type: 'REMOVE_FROM_PROJECT_STUDIOS',
+    studioId: studioId
+});
 
 module.exports.setFetchStatus = (type, status) => ({
     type: 'SET_FETCH_STATUS',
@@ -405,6 +424,7 @@ module.exports.getCuratedStudios = (username, token) => (dispatch => {
 });
 
 module.exports.addToStudio = (studioId, projectId, token) => (dispatch => {
+    dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHING));
     api({
         uri: `/studios/${studioId}/project/${projectId}`,
         authentication: token,
@@ -419,11 +439,15 @@ module.exports.addToStudio = (studioId, projectId, token) => (dispatch => {
             return;
         }
         dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHED));
-        // NOTE: is there a way here to update or refresh the project studio list?
+        // action: add studio to list
+        // NOTE: what is the content of the body in the response to this request?
+        // should we pass the rich object to addToProjectStudios ?
+        dispatch(module.exports.addToProjectStudios(studioId));
     });
 });
 
 module.exports.leaveStudio = (studioId, projectId, token) => (dispatch => {
+    dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHING));
     api({
         uri: `/studios/${studioId}/project/${projectId}`,
         authentication: token,
@@ -438,7 +462,7 @@ module.exports.leaveStudio = (studioId, projectId, token) => (dispatch => {
             return;
         }
         dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHED));
-        // NOTE: is there a way here to update or refresh the project studio list?
+        dispatch(module.exports.removeFromProjectStudios(studioId));
     });
 });
 

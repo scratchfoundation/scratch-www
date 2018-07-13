@@ -23,6 +23,7 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'addEventListeners',
+            'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoveToggle',
             'handlePermissions',
@@ -127,19 +128,12 @@ class Preview extends React.Component {
         }
     }
     handleToggleStudio (studioId, isAdd) {
-        if (isAdd === true) {
-            this.props.addToStudio(
-                studioId,
-                this.props.projectInfo.id,
-                this.props.user.token
-            );
-        } else {
-            this.props.leaveStudio(
-                studioId,
-                this.props.projectInfo.id,
-                this.props.user.token
-            );
-        }
+        this.props.toggleStudio(
+            isAdd,
+            studioId,
+            this.props.projectInfo.id,
+            this.props.user.token
+        );
     }
     handleFavoriteToggle () {
         this.props.setFavedStatus(
@@ -218,7 +212,6 @@ class Preview extends React.Component {
                         sessionStatus={this.props.sessionStatus}
                         projectStudios={this.props.projectStudios}
                         curatedStudios={this.props.curatedStudios}
-                        studioRequests={this.props.studioRequests}
                         onToggleStudio={this.handleToggleStudio}
                         user={this.props.user}
                         onFavoriteClicked={this.handleFavoriteToggle}
@@ -249,6 +242,7 @@ Preview.propTypes = {
     getRemixes: PropTypes.func.isRequired,
     getProjectStudios: PropTypes.func.isRequired,
     getCuratedStudios: PropTypes.func.isRequired,
+    toggleStudio: PropTypes.func.isRequired,
     loved: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
@@ -262,7 +256,6 @@ Preview.propTypes = {
     setPlayer: PropTypes.func.isRequired,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     curatedStudios: PropTypes.arrayOf(PropTypes.object),
-    studioRequests: PropTypes.object,
     updateProject: PropTypes.func.isRequired,
     user: PropTypes.shape({
         id: PropTypes.number,
@@ -281,6 +274,42 @@ Preview.defaultProps = {
     user: {}
 };
 
+// Build consolidated curatedStudios object from all studio info.
+// We add data to curatedStudios so it knows which of the studios the
+// project belongs to, and the status of requests to join/leave studios.
+function consolidateStudiosInfo (curatedStudios, projectStudios, studioRequests) {
+    let studios = [];
+    let projectStudiosFoundInCurated = {}; // temp, for time complexity
+
+    // copy curated studios, updating any that are also in other data structures
+    curatedStudios.forEach((curatedStudio) => {
+        let studioCopy = Object.assign({}, curatedStudio,
+            {includesProject: false, hasRequestOutstanding: false});
+        projectStudios.forEach((projectStudio) => {
+            if (curatedStudio.id === projectStudio.id) {
+                studioCopy.includesProject = true;
+                projectStudiosFoundInCurated[projectStudio.id] = true;
+            }
+        });
+        // set studio state to leaving or joining if it's being fetched
+        if (studioCopy.id in status.studioRequests) {
+            const request = status.studioRequests[studioId];
+            studioCopy.hasRequestOutstanding = (request === preview.Status.FETCHING);
+        }
+        studios.push(studioCopy);
+    });
+    // if there are any other studios this project is in that are NOT in the list
+    // of studios this user curates, like public studios, add to front of list
+    projectStudios.forEach((projectStudio) => {
+        if (!(projectStudio.id in projectStudiosFoundInCurated)) {
+            studios.unshift(Object.assign({}, projectStudio,
+                {includesProject: true, hasRequestOutstanding: false}
+            ));
+        }
+    });
+    return studios;
+}
+
 const mapStateToProps = state => ({
     projectInfo: state.preview.projectInfo,
     comments: state.preview.comments,
@@ -291,8 +320,8 @@ const mapStateToProps = state => ({
     remixes: state.preview.remixes,
     sessionStatus: state.session.status,
     projectStudios: state.preview.projectStudios,
-    curatedStudios: state.preview.curatedStudios,
-    studioRequests: state.preview.status.studioRequests,
+    curatedStudios: consolidateStudiosInfo(state.preview.curatedStudios,
+        state.preview.projectStudios, state.preview.status.studioRequests),
     user: state.session.session.user,
     playerMode: state.scratchGui.mode.isPlayerOnly,
     fullScreen: state.scratchGui.mode.isFullScreen
@@ -318,11 +347,12 @@ const mapDispatchToProps = dispatch => ({
     getCuratedStudios: (username, token) => {
         dispatch(previewActions.getCuratedStudios(username, token));
     },
-    addToStudio: (studioId, id, token) => {
-        dispatch(previewActions.addToStudio(studioId, id, token));
-    },
-    leaveStudio: (studioId, id, token) => {
-        dispatch(previewActions.leaveStudio(studioId, id, token));
+    toggleStudio: (isAdd, studioId, id, token) => {
+        if (isAdd === true) {
+            dispatch(previewActions.addToStudio(studioId, id, token));
+        } else {
+            dispatch(previewActions.leaveStudio(studioId, id, token));
+        }
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));
