@@ -36,6 +36,9 @@ const TopBanner = require('./beta/top-banner.jsx');
 const SmallTopBanner = require('./beta/small-top-banner.jsx');
 const MiddleBanner = require('./beta/middle-banner.jsx');
 
+const BETA_LAUNCH_TIME = 1533128400000; // August 1 at 9am ET
+const SMALL_BANNER_TIME = 1534942800000; // August 22 at 9am ET
+
 require('./splash.scss');
 
 class ActivityList extends React.Component {
@@ -279,7 +282,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
         if (
             this.props.sessionStatus === sessionActions.Status.FETCHED &&
             Object.keys(this.props.user).length === 0 &&
-            Date.now() >= new Date(2018, 6, 16) // Show middle banner on and after August 1
+            Date.now() >= BETA_LAUNCH_TIME // Show middle banner on and after August 1
         ) {
             rows.push(
                 <MediaQuery
@@ -439,13 +442,13 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 {
                     this.props.sessionStatus === sessionActions.Status.FETCHED &&
                     Object.keys(this.props.user).length !== 0 && // Only show top banner if user is logged in
-                    Date.now() >= new Date(2018, 7, 1) && // Show starting August 1
+                    Date.now() >= BETA_LAUNCH_TIME &&
                     <MediaQuery
                         key="frameless-tablet"
                         minWidth={frameless.tablet}
                     >
-                        {Date.now() >= new Date(2018, 8, 1) ?
-                            <SmallTopBanner /> : // Show small banner starting September 1
+                        {Date.now() >= SMALL_BANNER_TIME ?
+                            <SmallTopBanner /> : // Show small banner starting September 1 at 9am ET
                             <TopBanner />
                         }
                     </MediaQuery>
