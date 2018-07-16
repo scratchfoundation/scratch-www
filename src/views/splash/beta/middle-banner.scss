@@ -47,6 +47,17 @@
         color: $ui-white;
     }
 
+    .beta-header {
+        font-size: 1.7rem;
+    }
+
+    .beta-copy {
+        margin-bottom: 1rem;
+        max-width: 350px;
+        line-height: 1.7rem;
+        font-size: 1.3rem;
+    }
+
     .beta-try-it {
         border-radius: 10px;
         padding: 1em 2em;

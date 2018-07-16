@@ -11,7 +11,7 @@ const SmallTopBanner = () => (
     <TitleBanner className="beta-small-top-banner">
         <FlexRow className="beta-small-top-container">
             <h2 className="beta-copy">
-                <FormattedMessage id="betabanner.calloutTitle" />
+                <FormattedMessage id="betabanner.subtitle" />
             </h2>
             <a
                 className="beta-try-it button"

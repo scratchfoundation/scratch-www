@@ -52,6 +52,14 @@
         color: $ui-white;
     }
 
+    .beta-header {
+        font-size: 2.2rem;
+    }
+
+    .beta-copy {
+        font-size: 1.3rem;
+    }
+
     .beta-try-it {
         border-radius: 10px;
         padding: 1em 2em;
@@ -59,9 +67,13 @@
     }
 }
 
-@media only screen and (min-width: $tablet) and (max-width: 1150px) {
+@media only screen and (min-width: $tablet) and (max-width: 1200px) {
     .beta-top-banner {
-        height: 23rem;
+        height: 22rem;
+
+        .beta-top-container {
+            bottom: 4rem;
+        }
 
         .beta-banner-image {
             width: 20rem;
