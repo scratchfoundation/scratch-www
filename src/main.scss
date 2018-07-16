@@ -6,7 +6,7 @@ html,
 body {
     display: block;
     margin: 0;
-    background-color: darken($ui-blue, 8%);
+    background-color: $ui-blue-dark;
     padding: 0;
     color: $type-gray;
     font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
@@ -69,8 +69,8 @@ p {
 
         margin: 1.5em 0;
         border: 1px solid $active-gray;
-        border-radius: 5px;
-        background-color: lighten($ui-blue, 40);
+        border-radius: .5rem;
+        background-color: $ui-blue-10percent;
         padding: 1.25em;
 
         &.orange {
@@ -103,7 +103,7 @@ a {
 
     &:hover {
         text-decoration: none;
-        color: darken($ui-blue, 15);
+        color: $ui-blue-dark;
     }
 }
 
