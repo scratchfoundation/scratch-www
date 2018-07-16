@@ -40,4 +40,4 @@ const MiddleBanner = () => (
     </TitleBanner>
 );
 
-export default injectIntl(MiddleBanner);
+module.exports = injectIntl(MiddleBanner);

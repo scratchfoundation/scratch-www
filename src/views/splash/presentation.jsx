@@ -32,8 +32,8 @@ const RemixProjectMessage = require('./activity-rows/remix-project.jsx');
 const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 
 // Beta Banner Components
-const TopBanner = require('./beta/top-banner.jsx').default;
-const MiddleBanner = require('./beta/middle-banner.jsx').default;
+const TopBanner = require('./beta/top-banner.jsx');
+const MiddleBanner = require('./beta/middle-banner.jsx');
 
 require('./splash.scss');
 

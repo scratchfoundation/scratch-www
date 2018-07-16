@@ -23,4 +23,4 @@ const SmallTopBanner = () => (
     </TitleBanner>
 );
 
-export default injectIntl(SmallTopBanner);
+module.exports = injectIntl(SmallTopBanner);
