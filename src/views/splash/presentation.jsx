@@ -33,6 +33,7 @@ const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 
 // Beta Banner Components
 const TopBanner = require('./beta/top-banner.jsx');
+const SmallTopBanner = require('./beta/small-top-banner.jsx');
 const MiddleBanner = require('./beta/middle-banner.jsx');
 
 require('./splash.scss');
@@ -275,7 +276,11 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             );
         }
 
-        if (this.props.sessionStatus === sessionActions.Status.FETCHED && Object.keys(this.props.user).length === 0) {
+        if (
+            this.props.sessionStatus === sessionActions.Status.FETCHED &&
+            Object.keys(this.props.user).length === 0 &&
+            Date.now() >= new Date(2018, 6, 16) // Show middle banner on and after August 1
+        ) {
             rows.push(
                 <MediaQuery
                     key="frameless-tablet"
@@ -431,13 +436,18 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                         messages={messages}
                     />
                 ] : []}
-                {this.props.sessionStatus === sessionActions.Status.FETCHED &&
+                {
+                    this.props.sessionStatus === sessionActions.Status.FETCHED &&
                     Object.keys(this.props.user).length !== 0 && // Only show top banner if user is logged in
+                    Date.now() >= new Date(2018, 7, 1) && // Show starting August 1
                     <MediaQuery
                         key="frameless-tablet"
                         minWidth={frameless.tablet}
                     >
-                        <TopBanner />
+                        {Date.now() >= new Date(2018, 8, 1) ?
+                            <SmallTopBanner /> : // Show small banner starting September 1
+                            <TopBanner />
+                        }
                     </MediaQuery>
                 }
                 <div
