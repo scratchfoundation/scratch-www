@@ -6,8 +6,12 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
+const parser = require('scratch-parser');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
+const storage = require('../../lib/storage.js').default;
+const log = require('../../lib/log');
+const EXTENSION_INFO = require('../../lib/extensions.js').default;
 
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -28,12 +32,35 @@ class Preview extends React.Component {
             'handleLoveToggle',
             'handlePermissions',
             'handlePopState',
+            'handleReportClick',
+            'handleReportClose',
+            'handleReportSubmit',
             'handleSeeInside',
             'handleUpdate',
             'initCounts',
-            'pushHistory'
+            'isShared',
+            'pushHistory',
+            'userOwnsProject'
         ]);
-        this.state = this.initState();
+        const pathname = window.location.pathname.toLowerCase();
+        const parts = pathname.split('/').filter(Boolean);
+        // parts[0]: 'preview'
+        // parts[1]: either :id or 'editor'
+        // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
+        this.state = {
+            editable: false,
+            extensions: [],
+            favoriteCount: 0,
+            loveCount: 0,
+            projectId: parts[1] === 'editor' ? 0 : parts[1],
+            report: {
+                category: '',
+                notes: '',
+                open: false,
+                waiting: false
+            }
+        };
+        this.getExtensions(this.state.projectId);
         this.addEventListeners();
     }
     componentDidUpdate (prevProps) {
@@ -57,6 +84,7 @@ class Preview extends React.Component {
 
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
+            this.getExtensions(this.state.projectId);
             this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
             this.handlePermissions();
             if (this.props.projectInfo.remix.parent !== null) {
@@ -75,24 +103,70 @@ class Preview extends React.Component {
     componentWillUnmount () {
         this.removeEventListeners();
     }
-    initState () {
-        const pathname = window.location.pathname.toLowerCase();
-        const parts = pathname.split('/').filter(Boolean);
-        // parts[0]: 'preview'
-        // parts[1]: either :id or 'editor'
-        // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
-        return {
-            editable: false,
-            favoriteCount: 0,
-            loveCount: 0,
-            projectId: parts[1] === 'editor' ? 0 : parts[1]
-        };
-    }
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
     }
     removeEventListeners () {
         window.removeEventListener('popstate', this.handlePopState);
+    }
+    getExtensions (projectId) {
+        storage
+            .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
+            .then(projectAsset => {
+                let input = projectAsset.data;
+                if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
+                !ArrayBuffer.isView(input)) { // taken from scratch-vm
+                    // If the input is an object and not any ArrayBuffer
+                    // or an ArrayBuffer view (this includes all typed arrays and DataViews)
+                    // turn the object into a JSON string, because we suspect
+                    // this is a project.json as an object
+                    // validate expects a string or buffer as input
+                    // TODO not sure if we need to check that it also isn't a data view
+                    input = JSON.stringify(input);
+                }
+                parser(projectAsset.data, false, (err, projectData) => {
+                    if (err) {
+                        log.error(`Unhandled project parsing error: ${err}`);
+                        return;
+                    }
+                    const extensionSet = new Set();
+                    if (projectData[0].extensions) {
+                        projectData[0].extensions.forEach(extension => {
+                            extensionSet.add(EXTENSION_INFO[extension]);
+                        });
+                    }
+                    this.setState({
+                        extensions: Array.from(extensionSet)
+                    });
+                });
+            });
+    }
+    handleReportClick () {
+        this.setState({report: {...this.state.report, open: true}});
+    }
+    handleReportClose () {
+        this.setState({report: {...this.state.report, open: false}});
+    }
+    handleReportSubmit (formData) {
+        this.setState({report: {
+            category: formData.report_category,
+            notes: formData.notes,
+            open: this.state.report.open,
+            waiting: true}
+        });
+
+        const data = {
+            ...formData,
+            id: this.state.projectId,
+            user: this.props.user.username
+        };
+        console.log('submit report data', data); // eslint-disable-line no-console
+        this.setState({report: {
+            category: '',
+            notes: '',
+            open: false,
+            waiting: false}
+        });
     }
     handlePopState () {
         const path = window.location.pathname.toLowerCase();
@@ -192,6 +266,28 @@ class Preview extends React.Component {
             loveCount: loves
         });
     }
+    isShared () {
+        return (
+            // if we don't have projectInfo assume shared until we know otherwise
+            Object.keys(this.props.projectInfo).length === 0 || (
+                this.props.projectInfo.history &&
+                this.props.projectInfo.history.shared.length > 0
+            )
+        );
+    }
+    isLoggedIn () {
+        return (
+            this.props.sessionStatus === sessionActions.Status.FETCHED &&
+            Object.keys(this.props.user).length > 0
+        );
+    }
+    userOwnsProject () {
+        return (
+            this.isLoggedIn() &&
+            Object.keys(this.props.projectInfo).length > 0 &&
+            this.props.user.id === this.props.projectInfo.author.id
+        );
+    }
     render () {
         return (
             this.props.playerMode ?
@@ -199,9 +295,12 @@ class Preview extends React.Component {
                     <PreviewPresentation
                         comments={this.props.comments}
                         editable={this.state.editable}
+                        extensions={this.state.extensions}
                         faved={this.props.faved}
                         favoriteCount={this.state.favoriteCount}
                         isFullScreen={this.state.isFullScreen}
+                        isLoggedIn={this.isLoggedIn()}
+                        isShared={this.isShared()}
                         loveCount={this.state.loveCount}
                         loved={this.props.loved}
                         originalInfo={this.props.original}
@@ -209,13 +308,17 @@ class Preview extends React.Component {
                         projectId={this.state.projectId}
                         projectInfo={this.props.projectInfo}
                         remixes={this.props.remixes}
-                        sessionStatus={this.props.sessionStatus}
+                        report={this.state.report}
                         projectStudios={this.props.projectStudios}
                         curatedStudios={this.props.curatedStudios}
                         onToggleStudio={this.handleToggleStudio}
                         user={this.props.user}
+                        userOwnsProject={this.userOwnsProject()}
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoveClicked={this.handleLoveToggle}
+                        onReportClicked={this.handleReportClick}
+                        onReportClose={this.handleReportClose}
+                        onReportSubmit={this.handleReportSubmit}
                         onSeeInside={this.handleSeeInside}
                         onUpdate={this.handleUpdate}
                     />

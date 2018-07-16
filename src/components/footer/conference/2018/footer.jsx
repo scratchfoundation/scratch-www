@@ -18,7 +18,7 @@ const ConferenceFooter = props => (
                     <a href="https://odl.mit.edu/">
                         <img
                             alt="MIT Office of Digital Learning"
-                            src="/images/conference/footer/2018/mit-odl.png"
+                            src="/images/conference/footer/2018/mit-ol-logo.png"
                         />
                     </a>
                 </li>
@@ -49,17 +49,24 @@ const ConferenceFooter = props => (
                 <li className="lego">
                     <a href="http://www.legofoundation.com/">
                         <img
-                            alt="LEGO Foundation"
+                            alt="The LEGO Foundation"
                             src="/images/conference/footer/2018/lego-foundation.png"
                         />
                     </a>
                 </li>
-                
                 <li className="siegel">
                     <a href="http://www.siegelendowment.org/">
                         <img
                             alt="Siegel Family Endowment"
                             src="/images/conference/footer/2018/siegel.png"
+                        />
+                    </a>
+                </li>
+                <li className="cartoon-network">
+                    <a href="https://www.cartoonnetwork.com/">
+                        <img
+                            alt="Cartoon Network"
+                            src="/images/conference/footer/2018/cartoon-network.png"
                         />
                     </a>
                 </li>

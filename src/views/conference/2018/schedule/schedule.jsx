@@ -53,6 +53,13 @@ class ConferenceSchedule extends React.Component {
                                     />
                                     {item.Start} &ndash; {item.End}
                                 </p>
+                                <p>
+                                    <img
+                                        alt="location icon"
+                                        src="/svgs/conference/schedule/location-icon.svg"
+                                    />
+                                    {item.Location}
+                                </p>
                             </FlexRow>
                             <FlexRow>
                                 <p>
@@ -81,8 +88,20 @@ class ConferenceSchedule extends React.Component {
                 >
                     <h3>{item.Title}</h3>
                     <FlexRow>
-                        <p>{item.Start} &ndash; {item.End}</p>
-                        <p>{item.Location}</p>
+                        <p>
+                            <img
+                                alt="time icon"
+                                src="/svgs/conference/schedule/time-icon.svg"
+                            />
+                            {item.Start} &ndash; {item.End}
+                        </p>
+                        <p>
+                            <img
+                                alt="location icon"
+                                src="/svgs/conference/schedule/location-icon.svg"
+                            />
+                            {item.Location}
+                        </p>
                     </FlexRow>
                 </div>
             );

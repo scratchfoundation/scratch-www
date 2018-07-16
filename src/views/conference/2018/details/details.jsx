@@ -66,6 +66,13 @@ class ConferenceDetails extends React.Component {
                                     src="/svgs/conference/schedule/event-icon.svg"
                                 />
                                 {this.props.conferenceDetails.Type}
+                            </li>,
+                            <li key="location">
+                                <img
+                                    alt="location icon"
+                                    src="/svgs/conference/schedule/location-icon.svg"
+                                />
+                                {this.props.conferenceDetails.Location}
                             </li>
                         ]}
                     </ul>,

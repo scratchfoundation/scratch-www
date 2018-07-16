@@ -80,6 +80,12 @@
         "title": "Conference Schedule"
     },
     {
+        "name": "connect",
+        "pattern": "^/connect/?$",
+        "routeAlias": "/connect/?$",
+        "redirect": "https://eepurl.com/cws7_f"
+    },
+    {
         "name": "credits",
         "pattern": "^/info/credits/?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
@@ -293,6 +299,12 @@
         "name": "donate-redirect",
         "pattern": "^/info/donate/?",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "redirect": "https://secure.donationpay.org/scratchfoundation/"
+    },
+    {
+        "name": "donate-redirect2",
+        "pattern": "^/donate/?$",
+        "routeAlias": "/donate/?$",
         "redirect": "https://secure.donationpay.org/scratchfoundation/"
     },
     {

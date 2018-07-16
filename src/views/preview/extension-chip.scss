@@ -1,0 +1,39 @@
+@import "../../colors";
+
+.extension-chip {
+    display: flex;
+    margin: 0 .625rem .625rem 0;
+    border-radius: 5px;
+    background-color: $ui-blue-25percent;
+    padding: .625rem;
+    height: 3rem;
+    flex-flow: row;
+    box-sizing: border-box;
+
+    &.has-status {
+        background-color: $ui-orange-25percent;
+    }
+
+    .extension-icon {
+        margin-right: 5px;
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .extension-content {
+        display: flex;
+        margin: 0 5px;
+        font-size: .875rem;
+        justify-content: center;
+        flex-flow: column;
+    }
+
+    .extension-status {
+        border-radius: 10px;
+        background-color: $ui-orange;
+        padding: 0 5px;
+        text-align: center;
+        color: $ui-white;
+        font-size: .675rem;
+    }
+}

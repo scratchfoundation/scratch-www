@@ -99,7 +99,7 @@ const ConferenceExpectations = () => (
                         <div className="date">
                             <b>Friday</b>
                         </div>
-                        <h3>Interdisciplinary Creativity</h3>
+                        <h3>Creative Is Not A Noun</h3>
                         <img
                             alt="Austin Kleon Photo"
                             src="/images/conference/expect/2018/austin_kleon.png"
@@ -116,12 +116,18 @@ const ConferenceExpectations = () => (
                         <p>
                             <b>Karen Brennan (moderator)</b>
                         </p>
+
+                        <p>
+                            Writer and artist Austin Kleon (author of the bestsellers Steal Like An Artist{' '}
+                            and Show Your Work!) discusses his practice and shares 10 principles for anyone{' '}
+                            who wants to do more creative work in a connected world.
+                        </p>
                     </div>
                     <div className="card">
                         <div className="date">
                             <b>Saturday</b>
                         </div>
-                        <h3>Growing Up with Scratch</h3>
+                        <h3>Growing Up With Scratch</h3>
                         <img
                             alt="Isabella, JT, and Jocelyn Photo"
                             src="/images/conference/expect/2018/growing-up-with-scratch-presenters.png"
@@ -176,44 +182,38 @@ const ConferenceExpectations = () => (
                         </tr>
                         <tr>
                             <td>
-                                <b>8:30a</b>
+                                <b>8:30a-9:30a</b>
                                 <p>Breakfast (provided)</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>9:30a</b>
+                                <b>9:30a-10:30a</b>
                                 <p>Keynote Presentation</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>11:00a</b>
+                                <b>11:00a-12:30p</b>
                                 <p>Morning Workshops</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>12:30p</b>
+                                <b>12:30p-1:30p</b>
                                 <p>Lunch (provided)</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>2:00p</b>
+                                <b>2:00p-3:30p</b>
                                 <p>Afternoon Workshops</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>4:00p</b>
+                                <b>4:00p-5:30p</b>
                                 <p>Poster Sessions</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <b>7:00p</b>
-                                <p>Self-organized dinner excursions</p>
                             </td>
                         </tr>
                     </tbody>
@@ -231,50 +231,50 @@ const ConferenceExpectations = () => (
                         </tr>
                         <tr>
                             <td>
-                                <b>8:30a</b>
+                                <b>8:30a-9:30a</b>
                                 <p>Breakfast (provided)</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>9:30a</b>
+                                <b>9:30a-10:30a</b>
                                 <p>Keynote Presentation</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>11:00a</b>
+                                <b>11:00a-12:00p</b>
                                 <p>Morning Workshops, Panels, and Ignite Talks</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>12:00p</b>
+                                <b>12:00p-1:00p</b>
                                 <p>Lunch (provided)</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>1:30p</b>
+                                <b>1:30p-2:30p</b>
                                 <p>Early Afternoon Workshops, Panels, and Ignite Talks</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>3:00p</b>
+                                <b>3:00p-4:00p</b>
                                 <p>Late Afternoon Workshops, Panels, and Ignite Talks</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>4:30p</b>
+                                <b>4:30p-6:00p</b>
                                 <p>Poster Sessions</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>6:30p</b>
-                                <p>Conference Dinner</p>
+                                <b>6:00p-7:30p</b>
+                                <p>Conference Dinner (provided)</p>
                             </td>
                         </tr>
                     </tbody>
@@ -292,26 +292,26 @@ const ConferenceExpectations = () => (
                         </tr>
                         <tr>
                             <td>
-                                <b>8:30a</b>
+                                <b>8:30a-9:30a</b>
                                 <p>Breakfast (provided)</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>9:30a</b>
+                                <b>9:30a-10:30a</b>
                                 <p>Keynote Presentation</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>11:00a</b>
+                                <b>11:00a-12:00p</b>
                                 <p>Morning Workshops, Panels and Ignite Talks</p>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <b>12:00p</b>
-                                <p>Lunch (provided) and Wrap-up Session</p>
+                                <b>12:00p-1:30p</b>
+                                <p>Closing Ceremony and Lunch (provided)</p>
                             </td>
                         </tr>
                         <tr>
