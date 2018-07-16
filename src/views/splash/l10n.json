@@ -42,7 +42,6 @@
     "welcome.connect": "Connect with other Scratchers",
 
     "betabanner.title": "The Next Generation of Scratch",
-    "betabanner.subtitle": "Try out the Beta version of Scratch 3.0",
-    "betabanner.callToAction": "Try it!",
-    "betabanner.calloutTitle": "Scratch 3.0 is coming in January! Try the Beta version now."
+    "betabanner.subtitle": "Scratch 3.0 is coming in January! Try the Beta version now.",
+    "betabanner.callToAction": "Try it!"
 }
