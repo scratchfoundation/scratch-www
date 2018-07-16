@@ -70,6 +70,11 @@
     .installation-column {
         max-width: $cols4;
         text-align: center;
+
+        p {
+          margin-left: .5rem;
+          margin-right: .5rem;
+        }
     }
 
     .installation-column-number {

@@ -22,34 +22,34 @@ h4 {
     padding: 0;
 
     color: $header-gray;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 h1 {
     font-size: 2.5rem;
-    font-weight: 900;
+    font-weight: bold;
 }
 
 h2 {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 h3 {
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 h4 {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 h5 {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: .85rem;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 p {
@@ -85,14 +85,14 @@ p {
 
 b,
 strong {
-    font-weight: 500;
+    font-weight: bold;
 }
 
 /* Links */
 a {
     cursor: pointer;
     color: $ui-blue;
-    font-weight: 500;
+    font-weight: bold;
 
     &:link,
     &:visited,
@@ -136,7 +136,7 @@ p {
 
 p {
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: normal;
 }
 
 ::selection {
@@ -149,7 +149,7 @@ ul {
 
     line-height: 1.5em;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: normal;
 
     li {
         margin: .75em 0;
@@ -159,10 +159,10 @@ ul {
 dl {
     line-height: 1.5rem;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: normal;
 
     dt {
-        font-weight: 700;
+        font-weight: bold;
     }
 
     dd {
