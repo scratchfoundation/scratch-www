@@ -109,11 +109,9 @@ a {
 
 /* Classes */
 .empty {
-    $bg-blue: #d9edf7;
-    $bg-blue-accent: #bce8f1;
-    border: 1px solid $bg-blue-accent;
+    border: 1px solid $active-gray;
     border-radius: 5px;
-    background-color: $bg-blue;
+    background-color: $ui-blue-10percent;
     padding: 10px;
     text-align: center;
     line-height: 2rem;
