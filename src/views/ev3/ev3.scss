@@ -1,0 +1,100 @@
+@import "../../colors";
+
+#view {
+    padding: 0;
+}
+
+.ev3 {
+    .extension-header {
+        background-color: $ui-green;
+        background-image: url("/images/beta/bg-pattern.png");
+        background-size: cover;
+        padding: 3rem 10rem;
+        height: 25rem;
+        color: $ui-white;
+        justify-content: space-between;
+
+        .extension-info {
+            align-items: flex-start;
+            flex-basis: 50%;
+
+            .extension-copy {
+                align-items: flex-start;
+
+                h2 {
+                    color: $ui-white;
+                }
+
+                span {
+                    font-size: 1.2rem;
+                }
+            }
+
+            .extension-requirements-container {
+                font-weight: 500;
+                align-items: flex-start;
+
+                .extension-requirements span {
+                    margin-right: 1rem;
+                }
+            }
+        }
+    }
+
+    .os-chooser {
+        position: sticky;
+        top: 50px;
+        z-index: 1;
+        background-color: $ui-white;
+        padding: 0 10rem;
+        height: 5rem;
+        justify-content: flex-start;
+
+        span {
+            margin-right: 1rem;
+            font-weight: 600;
+        }
+
+        .button {
+            margin-right: 1rem;
+            border-radius: 1.6rem;
+            padding: .8rem;
+        }
+    }
+
+    .install-scratch-link,
+    .getting-started,
+    .faq {
+        padding: 0 10rem;
+        align-items: flex-start;
+    }
+
+    .faq {
+        justify-content: space-between;
+    }
+
+    .blue {
+        background-color: $ui-blue-25percent;
+    }
+}
+
+.steps {
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.step {
+    .step-top-row {
+        .step-number {
+            display: flex;
+            border-radius: 30px;
+            background-color: $ui-blue;
+            width: 30px;
+            height: 30px;
+            color: $ui-white;
+            justify-content: center;
+            align-items: center;
+
+        }
+    }
+}
