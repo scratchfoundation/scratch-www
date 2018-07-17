@@ -24,7 +24,7 @@
             content: "";
 
             .white & {
-                background-color: darken($ui-blue, 8%);    
+                background-color: $ui-blue-dark    
             }
         }
     }

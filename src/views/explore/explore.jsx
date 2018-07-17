@@ -209,7 +209,6 @@ class Explore extends React.Component {
                             showViews={false}
                         />
                         <Button
-                            className="white"
                             onClick={this.handleGetExploreMore}
                         >
                             <FormattedMessage id="general.loadMore" />

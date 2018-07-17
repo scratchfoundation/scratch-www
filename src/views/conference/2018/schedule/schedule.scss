@@ -67,7 +67,7 @@
                 display: block;
 
                 &:hover {
-                    background-color: lighten($ui-blue, 40);
+                    background-color: $ui-blue-10percent;
                 }
             }
         }
