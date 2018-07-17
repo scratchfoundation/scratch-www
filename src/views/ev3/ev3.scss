@@ -1,4 +1,5 @@
 @import "../../colors";
+@import "../../frameless";
 
 #view {
     padding: 0;
@@ -7,22 +8,32 @@
 .ev3 {
     .extension-header {
         background-color: $ui-aqua;
-        background-image: url("/images/beta/bg-pattern.png");
+        background-image: url("/images/ev3/ev3-pattern.svg");
         background-size: cover;
-        padding: 3rem 10rem;
-        height: 25rem;
+        padding: 4rem 0;
         color: $ui-white;
-        justify-content: space-between;
+
+        .inner {
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
 
         .extension-info {
+            max-width: $cols7;
             align-items: flex-start;
-            flex-basis: 50%;
 
             .extension-copy {
+                margin-bottom: 5rem;
                 align-items: flex-start;
 
                 h2 {
+                    display: flex;
                     color: $ui-white;
+                }
+
+                h2 img {
+                    padding-right: .5rem;
+                    max-height: 100%;
                 }
 
                 span {
@@ -34,21 +45,52 @@
                 font-weight: 500;
                 align-items: flex-start;
 
+                .requirements-header {
+                    margin-bottom: 1.5rem;
+                }
+
+                .extension-requirements {
+                    justify-content: space-between;
+                }
+
                 .extension-requirements span {
+                    display: flex;
                     margin-right: 1rem;
+                    font-size: 15px; // TODO: change to rem later
+                    align-items: center;
+                }
+
+                .extension-requirements span img {
+                    padding-right: .5rem;
                 }
             }
+        }
+
+        .extension-image {
+            padding-left: $cols1;
+            width: 100%;
+            max-width: 100%;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
         }
     }
 
     .os-chooser {
+        display: flex;
         position: sticky;
         top: 50px;
         z-index: 1;
+        box-shadow: 0 0 3px $box-shadow-gray;
         background-color: $ui-white;
-        padding: 0 10rem;
         height: 5rem;
-        justify-content: flex-start;
+
+        .inner {
+            justify-content: flex-start;
+        }
 
         span {
             margin-right: 1rem;
@@ -56,10 +98,18 @@
         }
 
         .button {
+            display: flex;
             margin-right: 1rem;
             border-radius: 1.6rem;
             background-color: $active-gray;
-            padding: .8rem;
+            padding: .5rem 1.1rem;
+            align-items: center;
+            box-sizing: border-box;
+
+            img {
+                margin-right: .3rem;
+                height: 1.5rem;
+            }
 
             &.active {
                 background-color: $ui-blue;
@@ -70,36 +120,87 @@
     .install-scratch-link,
     .getting-started,
     .faq {
-        padding: 0 10rem;
-        align-items: flex-start;
+        .inner {
+            align-items: flex-start;
+        }
     }
 
-    .faq {
+    .getting-started {
+        .connecting-ev3 {
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        .tip-box {
+            border: 1px solid $ui-blue-25percent;
+            border-radius: 2rem;
+            background-color: $ui-blue-10percent;
+            padding: 2rem 3rem;
+
+            .tip-content {
+                align-items: flex-start;
+            }
+        }
+    }
+
+    .faq .inner {
         justify-content: space-between;
     }
 
     .blue {
-        background-color: $ui-blue-25percent;
+        background-color: $ui-blue-10percent;
+    }
+
+    .inner {
+        max-width: $cols12;
     }
 }
 
 .steps {
+    display: flex;
     width: 100%;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .step {
-    .step-top-row {
+    flex-basis: 0;
+    flex-grow: 1;
+
+    .step-number-row {
+        padding-bottom: 1.5rem;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+
         .step-number {
-            display: flex;
-            border-radius: 30px;
+            display: inline-flex;
+            border-radius: 2rem;
             background-color: $ui-blue;
-            width: 30px;
-            height: 30px;
+            width: 2rem;
+            height: 2rem;
             color: $ui-white;
             justify-content: center;
             align-items: center;
+            flex-shrink: 0;
+        }
+    }
 
+    .step-content {
+        display: flex;
+        padding: 0 2rem;
+        text-align: center;
+        flex-flow: column;
+        align-items: center;
+        box-sizing: border-box;
+
+        .step-image {
+            max-height: 10rem;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
         }
     }
 }
