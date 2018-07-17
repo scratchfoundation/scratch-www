@@ -6,11 +6,14 @@
 }
 
 .ev3 {
+    &>div {
+        padding: 4rem 0;
+    }
+
     .extension-header {
         background-color: $ui-aqua;
         background-image: url("/images/ev3/ev3-pattern.svg");
         background-size: cover;
-        padding: 4rem 0;
         color: $ui-white;
 
         .inner {
@@ -86,6 +89,7 @@
         z-index: 1;
         box-shadow: 0 0 3px $box-shadow-gray;
         background-color: $ui-white;
+        padding: 0;
         height: 5rem;
 
         .inner {
@@ -116,6 +120,7 @@
             }
         }
     }
+
 
     .install-scratch-link,
     .getting-started,
