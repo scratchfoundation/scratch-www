@@ -43,7 +43,7 @@ const EV3 = () => (
         <FlexRow className="os-chooser">
             <span>Choose your OS</span>
             <Button>Windows</Button>
-            <Button>macOS</Button>
+            <Button className="active">macOS</Button>
         </FlexRow>
         <FlexRow className="column blue install-scratch-link">
             <h2>Install Scratch Link</h2>

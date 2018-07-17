@@ -6,7 +6,7 @@
 
 .ev3 {
     .extension-header {
-        background-color: $ui-green;
+        background-color: $ui-aqua;
         background-image: url("/images/beta/bg-pattern.png");
         background-size: cover;
         padding: 3rem 10rem;
@@ -58,7 +58,12 @@
         .button {
             margin-right: 1rem;
             border-radius: 1.6rem;
+            background-color: $active-gray;
             padding: .8rem;
+
+            &.active {
+                background-color: $ui-blue;
+            }
         }
     }
 
