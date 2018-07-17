@@ -214,7 +214,7 @@
     {
         "name": "preview-faq-redirect",
         "pattern": "^/preview-faq/?$",
-        "routeAlias": "/preview-faq/?$",
+        "routeAlias": "/preview-faq",
         "redirect": "/3faq"
     },
     {
