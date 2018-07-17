@@ -296,6 +296,13 @@
         "title": "LEGO WeDo 2.0"
     },
     {
+        "name": "ev3",
+        "pattern": "^/ev3/?$",
+        "routeAlias": "/ev3/?$",
+        "view": "ev3/ev3",
+        "title": "LEGO EV3"
+    },
+    {
         "name": "donate-redirect",
         "pattern": "^/info/donate/?",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
