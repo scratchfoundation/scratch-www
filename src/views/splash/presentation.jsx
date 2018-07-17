@@ -31,6 +31,14 @@ const LoveProjectMessage = require('./activity-rows/love-project.jsx');
 const RemixProjectMessage = require('./activity-rows/remix-project.jsx');
 const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 
+// Beta Banner Components
+const TopBanner = require('./beta/top-banner.jsx');
+const SmallTopBanner = require('./beta/small-top-banner.jsx');
+const MiddleBanner = require('./beta/middle-banner.jsx');
+
+const BETA_LAUNCH_TIME = 1533128400000; // August 1 at 9am ET
+const SMALL_BANNER_TIME = 1534942800000; // August 22 at 9am ET
+
 require('./splash.scss');
 
 class ActivityList extends React.Component {
@@ -271,6 +279,21 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             );
         }
 
+        if (
+            this.props.sessionStatus === sessionActions.Status.FETCHED &&
+            Object.keys(this.props.user).length === 0 &&
+            Date.now() >= BETA_LAUNCH_TIME // Show middle banner on and after August 1
+        ) {
+            rows.push(
+                <MediaQuery
+                    key="frameless-tablet"
+                    minWidth={frameless.tablet}
+                >
+                    <MiddleBanner />
+                </MediaQuery>
+            );
+        }
+
         if (this.props.featuredGlobal.scratch_design_studio &&
             this.props.featuredGlobal.scratch_design_studio.length > 4) {
 
@@ -416,6 +439,20 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                         messages={messages}
                     />
                 ] : []}
+                {
+                    this.props.sessionStatus === sessionActions.Status.FETCHED &&
+                    Object.keys(this.props.user).length !== 0 && // Only show top banner if user is logged in
+                    Date.now() >= BETA_LAUNCH_TIME &&
+                    <MediaQuery
+                        key="frameless-tablet"
+                        minWidth={frameless.tablet}
+                    >
+                        {Date.now() >= SMALL_BANNER_TIME ?
+                            <SmallTopBanner /> : // Show small banner starting September 1 at 9am ET
+                            <TopBanner />
+                        }
+                    </MediaQuery>
+                }
                 <div
                     className="inner mod-splash"
                     key="inner"
