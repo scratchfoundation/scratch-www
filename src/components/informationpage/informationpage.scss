@@ -6,11 +6,9 @@
     @import "../../colors";
     @import "../../frameless";
 
-    $ui-secondary: darken($ui-blue, 10%);
-
     .title-banner {
         &.masthead {
-            background-color: $ui-secondary;
+            background-color: $ui-blue-dark;
             padding-bottom: .5rem;
 
             h1 {

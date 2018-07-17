@@ -205,11 +205,17 @@
         "title": "Scratch 3.0 Preview"
     },
     {
-        "name": "preview-faq",
+        "name": "3faq",
+        "pattern": "^/3faq/?$",
+        "routeAlias": "/3faq/?$",
+        "view": "preview-faq/preview-faq",
+        "title": "Scratch 3.0 FAQ"
+    },
+    {
+        "name": "preview-faq-redirect",
         "pattern": "^/preview-faq/?$",
         "routeAlias": "/preview-faq/?$",
-        "view": "preview-faq/preview-faq",
-        "title": "Scratch 3.0 Preview FAQ"
+        "redirect": "/3faq"
     },
     {
         "name": "privacypolicy",
