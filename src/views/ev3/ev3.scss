@@ -10,6 +10,14 @@
         padding: 4rem 0;
     }
 
+    h2 {
+        margin-bottom: 3rem;
+    }
+
+    h3 {
+        margin-bottom: 2rem;
+    }
+
     .extension-header {
         background-color: $ui-aqua;
         background-image: url("/images/ev3/ev3-pattern.svg");
@@ -31,6 +39,7 @@
 
                 h2 {
                     display: flex;
+                    margin-bottom: 2rem;
                     color: $ui-white;
                 }
 
@@ -137,8 +146,9 @@
         }
 
         .tip-box {
+            margin-top: 4rem;
             border: 1px solid $ui-blue-25percent;
-            border-radius: 2rem;
+            border-radius: 1rem;
             background-color: $ui-blue-10percent;
             padding: 2rem 3rem;
 
