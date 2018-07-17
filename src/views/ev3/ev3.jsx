@@ -37,7 +37,7 @@ const EV3 = () => (
             </FlexRow>
             <img
                 className="extension-image"
-                src="/images/wedo/wedo2.png"
+                src="/images/ev3/ev3-illustration.png"
             />
         </FlexRow>
         <FlexRow className="os-chooser">
