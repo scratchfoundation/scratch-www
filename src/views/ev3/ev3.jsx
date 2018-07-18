@@ -274,7 +274,13 @@ class EV3 extends React.Component {
                         <section id="scratch-link">
                             <dl>
                                 <dt><FormattedMessage id="faq.aboutScratchTitle" /></dt>
-                                <dd><FormattedHTMLMessage id="faq.aboutScratchBody" /></dd>
+                                <dd>
+                                    <p>To open ScratchLink:</p>
+                                    <ol className="indented">
+                                        <li>Go to your <strong>Applications</strong> folder</li>
+                                        <li>Find and open <strong>Scratch Link</strong></li>
+                                    </ol>
+                                </dd>
 
                                 <dt><FormattedMessage id="faq.makeGameTitle" /></dt>
                                 <dd><FormattedHTMLMessage id="faq.makeGameBody" /></dd>

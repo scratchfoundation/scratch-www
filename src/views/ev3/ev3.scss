@@ -10,12 +10,9 @@
         padding: 4rem 0;
     }
 
-    h2 {
-        margin-bottom: 3rem;
-    }
-
+    h2,
     h3 {
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
     }
 
     .extension-header {
@@ -188,7 +185,7 @@
                 }
 
                 dd {
-                    margin-bottom: 1.25rem;
+                    margin-bottom: 3rem;
                     margin-left: 0;
                     max-width: $cols8;
                     text-align: left;
@@ -200,8 +197,6 @@
             }
 
             section {
-                margin-bottom: 3rem;
-
                 ul {
                     max-width: $cols8;
                 }
@@ -213,6 +208,12 @@
                     height: 50px;
                 }
 
+            }
+
+            ol {
+                &.indented {
+                    padding-left: $cols1 + (20px / $em);
+                }
             }
         }
     }
