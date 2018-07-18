@@ -1,5 +1,6 @@
 const classNames = require('classnames');
 const injectIntl = require('react-intl').injectIntl;
+const FormattedMessage = require('react-intl').FormattedMessage;
 const PropTypes = require('prop-types');
 const React = require('react');
 
@@ -17,7 +18,7 @@ const OS_ENUM = {
 const OSChooser = props => (
     <div className="os-chooser">
         <FlexRow className="inner">
-            <span>Choose your OS</span>
+            <FormattedMessage id="oschooser.choose" />
             <Button
                 className={classNames({active: props.currentOS === OS_ENUM.WINDOWS})}
                 onClick={() => // eslint-disable-line react/jsx-no-bind
