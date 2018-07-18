@@ -55,7 +55,7 @@ test:
 	@make tap
 
 lint:
-	$(ESLINT) . --ext .js,.jsx,.json
+	$(ESLINT) --ignore-pattern scratch-gui --ignore-pattern node_modules . --ext .js,.jsx,.json
 	$(SASSLINT) ./src/*.scss
 	$(SASSLINT) ./src/**/*.scss
 
