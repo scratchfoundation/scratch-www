@@ -12,7 +12,6 @@ const Form = require('../../forms/form.jsx');
 const Button = require('../../forms/button.jsx');
 const Select = require('../../forms/select.jsx');
 const Spinner = require('../../spinner/spinner.jsx');
-const TextArea = require('../../forms/textarea.jsx');
 const FlexRow = require('../../flex-row/flex-row.jsx');
 
 require('../../forms/button.scss');
@@ -24,11 +23,6 @@ class AddToStudioModalPresentation extends React.Component {
         bindAll(this, [
             'handleSubmit'
         ]);
-
-        this.state = {
-            waitingToClose: false,
-            studios: props.studios
-        };
     }
 
     handleSubmit (formData) {
@@ -36,13 +30,7 @@ class AddToStudioModalPresentation extends React.Component {
     }
 
     render () {
-        const {
-            intl,
-            studios,
-            onToggleStudio,
-            isOpen
-        } = this.props;
-        const contentLabel = intl.formatMessage({id: "addToStudio.title"});
+        const contentLabel = this.props.intl.formatMessage({id: "addToStudio.title"});
         const checkmark = <img alt="checkmark-icon"
                            className="studio-status-icon-checkmark-img"
                            src="/svgs/modal/confirm.svg"
@@ -51,7 +39,7 @@ class AddToStudioModalPresentation extends React.Component {
                       className="studio-status-icon-plus-img"
                       src="/svgs/modal/add.svg"
                      />
-        const studioButtons = studios.map((studio, index) => {
+        const studioButtons = this.props.studios.map((studio, index) => {
             return (
                 <div className={"studio-selector-button " +
                     (studio.hasRequestOutstanding ? "studio-selector-button-waiting" :
@@ -80,7 +68,7 @@ class AddToStudioModalPresentation extends React.Component {
                 className="mod-addToStudio"
                 contentLabel={contentLabel}
                 onRequestClose={this.props.onRequestClose}
-                isOpen={isOpen}
+                isOpen={this.props.isOpen}
             >
                 <div>
                     <div className="addToStudio-modal-header">
@@ -116,7 +104,7 @@ class AddToStudioModalPresentation extends React.Component {
                                         <FormattedMessage id="general.close" />
                                     </div>
                                 </Button>
-                                {this.state.waitingToClose ? [
+                                {this.props.waitingToClose ? [
                                     <Button
                                         className="action-button submit-button submit-button-waiting"
                                         disabled="disabled"
@@ -143,7 +131,6 @@ class AddToStudioModalPresentation extends React.Component {
                         </Form>
                     </div>
                 </div>
-
             </Modal>
         );
     }
@@ -151,8 +138,10 @@ class AddToStudioModalPresentation extends React.Component {
 
 AddToStudioModalPresentation.propTypes = {
     intl: intlShape,
+    isOpen: PropTypes.bool,
     studios: PropTypes.arrayOf(PropTypes.object),
-    onAddToStudio: PropTypes.func,
+    waitingToClose: PropTypes.bool,
+    onToggleStudio: PropTypes.func,
     onRequestClose: PropTypes.func,
     onSubmit: PropTypes.func
 };

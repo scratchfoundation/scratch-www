@@ -35,6 +35,8 @@ class Preview extends React.Component {
             'handleReportClick',
             'handleReportClose',
             'handleReportSubmit',
+            'handleAddToStudioClick',
+            'handleAddToStudioClose',
             'handleSeeInside',
             'handleUpdate',
             'initCounts',
@@ -53,6 +55,7 @@ class Preview extends React.Component {
             favoriteCount: 0,
             loveCount: 0,
             projectId: parts[1] === 'editor' ? 0 : parts[1],
+            addToStudioOpen: false,
             report: {
                 category: '',
                 notes: '',
@@ -147,6 +150,13 @@ class Preview extends React.Component {
     handleReportClose () {
         this.setState({report: {...this.state.report, open: false}});
     }
+    handleAddToStudioClick () {
+        this.setState({addToStudioOpen: true});
+    }
+    handleAddToStudioClose () {
+        this.setState({addToStudioOpen: false});
+    }
+    // NOTE: this is a copy, change it
     handleReportSubmit (formData) {
         this.setState({report: {
             category: formData.report_category,
@@ -201,13 +211,17 @@ class Preview extends React.Component {
             );
         }
     }
-    handleToggleStudio (studioId, isAdd) {
-        this.props.toggleStudio(
-            isAdd,
-            studioId,
-            this.props.projectInfo.id,
-            this.props.user.token
-        );
+    handleToggleStudio (studioId) {
+        const studio = this.props.curatedStudios.find((studio) => {return studio.id === studioId});
+        // only send add or leave request to server if we know current status
+        if (studio !== undefined && ('includesProject' in studio)) {
+            this.props.toggleStudio(
+                (studio.includesProject === false),
+                studioId,
+                this.props.projectInfo.id,
+                this.props.user.token
+            );
+        }
     }
     handleFavoriteToggle () {
         this.props.setFavedStatus(
@@ -309,9 +323,9 @@ class Preview extends React.Component {
                         projectInfo={this.props.projectInfo}
                         remixes={this.props.remixes}
                         report={this.state.report}
+                        addToStudioOpen={this.state.addToStudioOpen}
                         projectStudios={this.props.projectStudios}
                         curatedStudios={this.props.curatedStudios}
-                        onToggleStudio={this.handleToggleStudio}
                         user={this.props.user}
                         userOwnsProject={this.userOwnsProject()}
                         onFavoriteClicked={this.handleFavoriteToggle}
@@ -319,6 +333,9 @@ class Preview extends React.Component {
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
                         onReportSubmit={this.handleReportSubmit}
+                        onAddToStudioClicked={this.handleAddToStudioClick}
+                        onAddToStudioClosed={this.handleAddToStudioClose}
+                        onToggleStudio={this.handleToggleStudio}
                         onSeeInside={this.handleSeeInside}
                         onUpdate={this.handleUpdate}
                     />
@@ -395,10 +412,9 @@ function consolidateStudiosInfo (curatedStudios, projectStudios, studioRequests)
             }
         });
         // set studio state to leaving or joining if it's being fetched
-        if (studioCopy.id in status.studioRequests) {
-            const request = status.studioRequests[studioId];
-            studioCopy.hasRequestOutstanding = (request === preview.Status.FETCHING);
-        }
+        studioCopy.hasRequestOutstanding =
+            ((studioCopy.id in studioRequests) &&
+            (studioRequests[studioCopy.id] === previewActions.Status.FETCHING));
         studios.push(studioCopy);
     });
     // if there are any other studios this project is in that are NOT in the list

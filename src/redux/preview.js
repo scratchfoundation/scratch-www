@@ -66,8 +66,7 @@ module.exports.previewReducer = (state, action) => {
         });
     case 'ADD_TO_PROJECT_STUDIOS':
         return Object.assign({}, state, {
-            // NOTE: move this to calling fn, make this add object passed to me
-            projectStudios: state.projectStudios.concat({id: action.studioId})
+            projectStudios: state.projectStudios.concat(action.studioStub)
         });
     case 'REMOVE_FROM_PROJECT_STUDIOS':
         return Object.assign({}, state, {
@@ -148,9 +147,9 @@ module.exports.setCuratedStudios = items => ({
     items: items
 });
 
-module.exports.addToProjectStudios = studioId => ({
+module.exports.addToProjectStudios = studioStub => ({
     type: 'ADD_TO_PROJECT_STUDIOS',
-    studioId: studioId
+    studioStub: studioStub
 });
 
 module.exports.removeFromProjectStudios = studioId => ({
@@ -402,7 +401,7 @@ module.exports.getProjectStudios = id => (dispatch => {
 module.exports.getCuratedStudios = (username, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.FETCHING));
     api({
-        uri: `/user/${username}/studios/curate`,
+        uri: `/users/${username}/studios/curate`,
         authentication: token
     }, (err, body, res) => {
         if (err) {
@@ -439,10 +438,11 @@ module.exports.addToStudio = (studioId, projectId, token) => (dispatch => {
             return;
         }
         dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHED));
-        // action: add studio to list
-        // NOTE: what is the content of the body in the response to this request?
-        // should we pass the rich object to addToProjectStudios ?
-        dispatch(module.exports.addToProjectStudios(studioId));
+        // add studio to our studios-that-this-project-belongs-to list.
+        // Server response doesn't include full studio object, so just use a
+        // minimal stub object.
+        const studioStub = {id: studioId};
+        dispatch(module.exports.addToProjectStudios(studioStub));
     });
 });
 
