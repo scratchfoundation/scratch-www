@@ -48,6 +48,11 @@
                 span {
                     font-size: 1.2rem;
                 }
+
+                a {
+                    border-bottom: 1px solid $ui-white;
+                    color: $ui-white;
+                }
             }
 
             .extension-requirements-container {
