@@ -57,23 +57,49 @@ module.exports.previewReducer = (state, action) => {
             parent: action.info
         });
     case 'SET_PROJECT_STUDIOS':
+        // alter the returned object so that each studio object in the array
+        // includes an additional property indicating that initially, this
+        // studio includes the project. This is important because if it is a
+        // studio open to the public, which the user does not curate or own,
+        // and the user removes the project from that studio, we don't want
+        // to forget about the studio completely!
         return Object.assign({}, state, {
-            projectStudios: action.items
+            projectStudios: action.items.map(studio => (
+                Object.assign({}, studio, {includesProject: true})
+            ))
         });
     case 'SET_CURATED_STUDIOS':
         return Object.assign({}, state, {
             curatedStudios: action.items
         });
     case 'ADD_TO_PROJECT_STUDIOS':
+        // add studio to our studios-that-this-project-belongs-to list.
+        // Server response doesn't include full studio object, so just use a
+        // minimal stub object.
         return Object.assign({}, state, {
-            // NOTE: move this to calling fn, make this add object passed to me
-            projectStudios: state.projectStudios.concat({id: action.studioId})
+            projectStudios: state.projectStudios.some(studio => (
+                studio.id === action.studioId
+            )) ?
+                state.projectStudios.map(studio => {
+                    if (studio.id === action.studioId) {
+                        studio.includesProject = true;
+                    }
+                    return Object.assign({}, studio);
+                }) : state.projectStudios.concat(
+                    {
+                        id: action.studioId,
+                        includesProject: true
+                    }
+                )
         });
     case 'REMOVE_FROM_PROJECT_STUDIOS':
         return Object.assign({}, state, {
-            projectStudios: state.projectStudios.filter(studio => (
-                studio.id !== action.studioId
-            ))
+            projectStudios: state.projectStudios.map(studio => {
+                if (studio.id === action.studioId) {
+                    studio.includesProject = false;
+                }
+                return Object.assign({}, studio);
+            })
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
@@ -402,7 +428,7 @@ module.exports.getProjectStudios = id => (dispatch => {
 module.exports.getCuratedStudios = (username, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.FETCHING));
     api({
-        uri: `/user/${username}/studios/curate`,
+        uri: `/users/${username}/studios/curate`,
         authentication: token
     }, (err, body, res) => {
         if (err) {
@@ -439,9 +465,6 @@ module.exports.addToStudio = (studioId, projectId, token) => (dispatch => {
             return;
         }
         dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHED));
-        // action: add studio to list
-        // NOTE: what is the content of the body in the response to this request?
-        // should we pass the rich object to addToProjectStudios ?
         dispatch(module.exports.addToProjectStudios(studioId));
     });
 });

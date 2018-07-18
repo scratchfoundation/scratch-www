@@ -42,14 +42,17 @@ const PreviewPresentation = ({
     projectInfo,
     remixes,
     report,
+    addToStudioOpen,
     projectStudios,
-    curatedStudios,
+    studios,
     userOwnsProject,
     onFavoriteClicked,
     onLoveClicked,
     onReportClicked,
     onReportClose,
     onReportSubmit,
+    onAddToStudioClicked,
+    onAddToStudioClosed,
     onToggleStudio,
     onSeeInside,
     onUpdate
@@ -244,16 +247,16 @@ const PreviewPresentation = ({
                                         <React.Fragment>
                                             <Button className="action-button studio-button"
                                                 key="add-to-studio-button"
-                                                onClick={this.handleAddToStudioClick}
+                                                onClick={onAddToStudioClicked}
                                             >
                                                 Add to Studio
                                             </Button>,
                                             <AddToStudioModal
-                                                isOpen={this.state.addToStudioOpen}
+                                                isOpen={addToStudioOpen}
                                                 key="add-to-studio-modal"
-                                                studios={curatedStudios}
+                                                studios={studios}
                                                 onToggleStudio={onToggleStudio}
-                                                onRequestClose={this.handleAddToStudioClose}
+                                                onRequestClose={onAddToStudioClosed}
                                             />
                                         </React.Fragment>
                                     }
@@ -338,8 +341,11 @@ PreviewPresentation.propTypes = {
         open: PropTypes.bool,
         waiting: PropTypes.bool
     }),
+    addToStudioOpen: PropTypes.bool,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
-    curatedStudios: PropTypes.arrayOf(PropTypes.object),
+    studios: PropTypes.arrayOf(PropTypes.object),
+    onAddToStudioClicked: PropTypes.func,
+    onAddToStudioClosed: PropTypes.func,
     onToggleStudio: PropTypes.func,
     userOwnsProject: PropTypes.bool
 };

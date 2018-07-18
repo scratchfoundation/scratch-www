@@ -35,6 +35,8 @@ class Preview extends React.Component {
             'handleReportClick',
             'handleReportClose',
             'handleReportSubmit',
+            'handleAddToStudioClick',
+            'handleAddToStudioClose',
             'handleSeeInside',
             'handleUpdate',
             'initCounts',
@@ -53,6 +55,7 @@ class Preview extends React.Component {
             favoriteCount: 0,
             loveCount: 0,
             projectId: parts[1] === 'editor' ? 0 : parts[1],
+            addToStudioOpen: false,
             report: {
                 category: '',
                 notes: '',
@@ -147,6 +150,13 @@ class Preview extends React.Component {
     handleReportClose () {
         this.setState({report: {...this.state.report, open: false}});
     }
+    handleAddToStudioClick () {
+        this.setState({addToStudioOpen: true});
+    }
+    handleAddToStudioClose () {
+        this.setState({addToStudioOpen: false});
+    }
+    // NOTE: this is a copy, change it
     handleReportSubmit (formData) {
         this.setState({report: {
             category: formData.report_category,
@@ -201,13 +211,17 @@ class Preview extends React.Component {
             );
         }
     }
-    handleToggleStudio (studioId, isAdd) {
-        this.props.toggleStudio(
-            isAdd,
-            studioId,
-            this.props.projectInfo.id,
-            this.props.user.token
-        );
+    handleToggleStudio (studioId) {
+        const studio = this.props.studios.find((studio) => {return studio.id === studioId});
+        // only send add or leave request to server if we know current status
+        if (studio !== undefined && ('includesProject' in studio)) {
+            this.props.toggleStudio(
+                (studio.includesProject === false),
+                studioId,
+                this.props.projectInfo.id,
+                this.props.user.token
+            );
+        }
     }
     handleFavoriteToggle () {
         this.props.setFavedStatus(
@@ -309,9 +323,9 @@ class Preview extends React.Component {
                         projectInfo={this.props.projectInfo}
                         remixes={this.props.remixes}
                         report={this.state.report}
+                        addToStudioOpen={this.state.addToStudioOpen}
                         projectStudios={this.props.projectStudios}
-                        curatedStudios={this.props.curatedStudios}
-                        onToggleStudio={this.handleToggleStudio}
+                        studios={this.props.studios}
                         user={this.props.user}
                         userOwnsProject={this.userOwnsProject()}
                         onFavoriteClicked={this.handleFavoriteToggle}
@@ -319,6 +333,9 @@ class Preview extends React.Component {
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
                         onReportSubmit={this.handleReportSubmit}
+                        onAddToStudioClicked={this.handleAddToStudioClick}
+                        onAddToStudioClosed={this.handleAddToStudioClose}
+                        onToggleStudio={this.handleToggleStudio}
                         onSeeInside={this.handleSeeInside}
                         onUpdate={this.handleUpdate}
                     />
@@ -358,7 +375,7 @@ Preview.propTypes = {
     setLovedStatus: PropTypes.func.isRequired,
     setPlayer: PropTypes.func.isRequired,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
-    curatedStudios: PropTypes.arrayOf(PropTypes.object),
+    studios: PropTypes.arrayOf(PropTypes.object),
     updateProject: PropTypes.func.isRequired,
     user: PropTypes.shape({
         id: PropTypes.number,
@@ -381,36 +398,40 @@ Preview.defaultProps = {
 // We add data to curatedStudios so it knows which of the studios the
 // project belongs to, and the status of requests to join/leave studios.
 function consolidateStudiosInfo (curatedStudios, projectStudios, studioRequests) {
-    let studios = [];
+    let consolidatedStudios = [];
     let projectStudiosFoundInCurated = {}; // temp, for time complexity
 
     // copy curated studios, updating any that are also in other data structures
-    curatedStudios.forEach((curatedStudio) => {
-        let studioCopy = Object.assign({}, curatedStudio,
-            {includesProject: false, hasRequestOutstanding: false});
-        projectStudios.forEach((projectStudio) => {
+    curatedStudios.forEach(curatedStudio => {
+        let studioCopy = Object.assign({}, curatedStudio, {includesProject: false});
+        projectStudios.some(projectStudio => {
             if (curatedStudio.id === projectStudio.id) {
-                studioCopy.includesProject = true;
+                studioCopy.includesProject = projectStudio.includesProject;
                 projectStudiosFoundInCurated[projectStudio.id] = true;
+                return true; // break out of the Array.some loop
             }
         });
-        // set studio state to leaving or joining if it's being fetched
-        if (studioCopy.id in status.studioRequests) {
-            const request = status.studioRequests[studioId];
-            studioCopy.hasRequestOutstanding = (request === preview.Status.FETCHING);
-        }
-        studios.push(studioCopy);
+        consolidatedStudios.push(studioCopy);
     });
-    // if there are any other studios this project is in that are NOT in the list
-    // of studios this user curates, like public studios, add to front of list
-    projectStudios.forEach((projectStudio) => {
+    // if there are any other studios this project is in that are NOT in
+    // the list of studios this user curates, like anyone-can-add-their-project
+    // studios, add to front of list
+    projectStudios.forEach(projectStudio => {
         if (!(projectStudio.id in projectStudiosFoundInCurated)) {
-            studios.unshift(Object.assign({}, projectStudio,
-                {includesProject: true, hasRequestOutstanding: false}
-            ));
+            // no need to specify includesProject = true or false, because
+            // that state is managed by redux actions.
+            consolidatedStudios.unshift(Object.assign({}, projectStudio));
         }
     });
-    return studios;
+    // set studio state to hasRequestOutstanding==true if it's being fetched,
+    // false if it's not
+    consolidatedStudios.forEach(consolidatedStudio => {
+        const id = consolidatedStudio.id;
+        consolidatedStudio.hasRequestOutstanding =
+            ((id in studioRequests) &&
+            (studioRequests[id] === previewActions.Status.FETCHING));
+    });
+    return consolidatedStudios;
 }
 
 const mapStateToProps = state => ({
@@ -423,7 +444,7 @@ const mapStateToProps = state => ({
     remixes: state.preview.remixes,
     sessionStatus: state.session.status,
     projectStudios: state.preview.projectStudios,
-    curatedStudios: consolidateStudiosInfo(state.preview.curatedStudios,
+    studios: consolidateStudiosInfo(state.preview.curatedStudios,
         state.preview.projectStudios, state.preview.status.studioRequests),
     user: state.session.session.user,
     playerMode: state.scratchGui.mode.isPlayerOnly,
