@@ -21,7 +21,15 @@ routes.forEach(route => {
     app.get(route.pattern, handler(route));
 });
 
-app.use(webpackDevMiddleware(compiler));
+app.use(webpackDevMiddleware(compiler,
+    {
+        watchOptions: {
+            aggregateTimeout: 500,
+            poll: 2500,
+            ignored: ['node_modules','build']
+        }
+    }
+));
 
 var proxyHost = process.env.FALLBACK || '';
 if (proxyHost !== '') {
