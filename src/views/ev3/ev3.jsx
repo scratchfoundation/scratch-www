@@ -291,7 +291,7 @@ class EV3 extends React.Component {
                                 <div className="project-card-info">
                                     <h4>Space Tacos</h4>
                                     <p>
-                                        Build your own controller to fly around in space.
+                                        Build your own controller to catch tacos in space.
                                     </p>
                                 </div>
                             </a>
