@@ -45,12 +45,18 @@ class EV3 extends React.Component {
                             <FlexRow className="column extension-copy">
                                 <h2><img src="/images/ev3/ev3.svg" />LEGO Mindstorms EV3</h2>
                                 <span>
-                                The LEGO® Mindstorms EV3 is an invention kit with motors and sensors
-                                you can use to build interactive robotic creations.
-                                Connecting it to Scratch expands the possibilities:
-                                build a robotic puppet and tell stories,
-                                make your own musical instruments and game controllers,
-                                or whatever else you can imagine.
+                                    <a
+                                        href="https://shop.lego.com/en-US/LEGO-MINDSTORMS-EV3-31313"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                      LEGO® Mindstorms EV3
+                                    </a> is an invention kit with motors and sensors
+                                    you can use to build interactive robotic creations.
+                                    Connecting it to Scratch expands the possibilities:
+                                    build a robotic puppet and tell stories,
+                                    make your own musical instruments and game controllers,
+                                    or whatever else you can imagine.
                                 </span>
                             </FlexRow>
                             <FlexRow className="column extension-requirements-container">
