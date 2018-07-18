@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="32px" height="36px" viewBox="0 0 32 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
     <title>ev3</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Round-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="EV3-Landing" transform="translate(-169.000000, -112.000000)">
-            <rect fill="#FAFAFF" x="0" y="0" width="1280" height="5795"></rect>
-            <g id="Masthead" transform="translate(0.000000, 46.000000)" fill-rule="nonzero">
+        <g id="EV3-Landing" transform="translate(-169.000000, -112.000000)" fill-rule="nonzero">
+            <g id="Masthead" transform="translate(0.000000, 46.000000)">
                 <g id="ev3" transform="translate(169.000000, 66.000000)">
                     <path d="M30.3448276,32.0727273 L1.65517241,32.0727273 C0.993103448,32.0727273 0.551724138,31.6363636 0.551724138,30.9818182 L0.551724138,5.01818182 C0.551724138,4.36363636 0.993103448,3.92727273 1.65517241,3.92727273 L30.3448276,3.92727273 C31.0068966,3.92727273 31.4482759,4.36363636 31.4482759,5.01818182 L31.4482759,30.9818182 C31.4482759,31.6363636 31.0068966,32.0727273 30.3448276,32.0727273 Z" id="Shape" stroke="#7C87A5" stroke-width="1.09090909" fill="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"></path>
                     <path d="M28.137931,35.4545455 L3.86206897,35.4545455 C3.2,35.4545455 2.75862069,35.0181818 2.75862069,34.3636364 L2.75862069,1.63636364 C2.75862069,0.981818182 3.2,0.545454545 3.86206897,0.545454545 L28.137931,0.545454545 C28.8,0.545454545 29.2413793,0.981818182 29.2413793,1.63636364 L29.2413793,34.3636364 C29.2413793,35.0181818 28.8,35.4545455 28.137931,35.4545455 Z" id="Shape" stroke="#7C87A5" stroke-width="1.09090909" fill="#E6E7E8" stroke-linecap="round" stroke-linejoin="round"></path>
