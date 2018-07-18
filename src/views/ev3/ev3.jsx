@@ -103,8 +103,9 @@ class EV3 extends React.Component {
                                         </span>
                                         <a className="step-image badge">
                                             <img
-                                                // eslint-disable-next-line max-len
-                                                src={`/svgs/app-store-badges/${this.state.OS === this.OS_ENUM.WINDOWS ? 'microsoft' : 'apple'}-app-store-badge.svg`}
+                                                src={`/svgs/app-store-badges/${
+                                                    this.state.OS === this.OS_ENUM.WINDOWS ? 'microsoft' : 'apple'
+                                                }-app-store-badge.svg`}
                                             />
                                         </a>
                                     </FlexRow>
@@ -120,7 +121,12 @@ class EV3 extends React.Component {
                                             It should appear in your toolbar.
                                         </span>
                                         <div className="step-image">
-                                            <img src="/images/ev3/mac-toolbar.png" />
+                                            <img
+                                                className="screenshot"
+                                                src={`/images/scratchlink/${
+                                                    this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'
+                                                }-toolbar.png`}
+                                            />
                                         </div>
                                     </FlexRow>
                                 </FlexRow>
@@ -153,7 +159,12 @@ class EV3 extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/ev3/ev3-connect-2.png" />
                                         </div>
-                                        <p>Use the <a>Scratch 3.0</a> editor.</p>
+                                        <p>Use the
+                                            <a
+                                                href="https://beta.scratch.mit.edu/"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                            > Scratch 3.0</a> editor.</p>
                                     </div>
                                 </div>
                                 <div className="step">
@@ -164,21 +175,22 @@ class EV3 extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/ev3/ev3-connect-3.png" />
                                         </div>
-                                        <p>Step 3 content here.</p>
+                                        <p>Add the EV3 extension.</p>
                                     </div>
                                 </div>
                             </FlexRow>
                             <div className="tip-box">
                                 <h4>First time connecting your EV3?</h4>
                                 <FlexRow className="column tip-content">
-                                    <p>If you have not connected with your EV3 before, you should probably do that.</p>
+                                    <p>After clicking the connect button in Scratch,
+                                      you can pair it with your computer:</p>
                                     <FlexRow className="steps">
                                         <div className="step">
                                             <div className="step-content">
                                                 <div className="step-image">
                                                     <img src="/images/ev3/ev3-accept-connection.png" />
                                                 </div>
-                                                <p>Press center to accept connection</p>
+                                                <p>Accept the connection.</p>
                                             </div>
                                         </div>
                                         <div className="step">
@@ -186,15 +198,27 @@ class EV3 extends React.Component {
                                                 <div className="step-image">
                                                     <img src="/images/ev3/ev3-pin.png" />
                                                 </div>
-                                                <p>Press center to accept passcode</p>
+                                                <p>Accept the passcode.</p>
                                             </div>
                                         </div>
                                         <div className="step">
                                             <div className="step-content">
+
                                                 <div className="step-image">
-                                                    <img src="/images/ev3/ev3-enter-pin.png" />
+                                                    <img
+                                                        className="screenshot"
+                                                        src={`/images/ev3/${
+                                                            this.state.OS === this.OS_ENUM.WINDOWS ?
+                                                                'win-device-ready.png' :
+                                                                'mac-enter-passcode.png'
+                                                        }`}
+                                                    />
                                                 </div>
-                                                <p>Enter pin on your computer.</p>
+                                                <p>
+                                                    {this.state.OS === this.OS_ENUM.WINDOWS ?
+                                                        'Wait for your device to be ready.' :
+                                                        'Enter the passcode on your computer.'}
+                                                </p>
                                             </div>
                                         </div>
                                     </FlexRow>
@@ -226,21 +250,21 @@ class EV3 extends React.Component {
                                     <div className="step-number">2</div>
                                     <FlexRow className="step-content">
                                         <span className="step-description">
-                                            Find the <strong>Motor A turn this way</strong> block and click on it.
+                                            Find the <strong>motor A turn this way</strong> block and click on it.
                                         </span>
                                         <div className="step-image">
-                                            <img src="/images/ev3/motor-blocks.png" />
+                                            <img src="/images/ev3/motor-turn-block.png" />
                                         </div>
                                     </FlexRow>
                                 </FlexRow>
                             </div>
                         </FlexRow>
                         <div className="section-separator" />
-                        <h3>Sample Projects</h3>
+                        <h3>Starter Projects</h3>
                         <FlexRow className="steps">
                             <a className="project-card">
                                 <div className="project-card-image">
-                                    <img src="/images/ev3/wave-hello.png" />
+                                    <img src="/images/ev3/starter-wave-hello.png" />
                                 </div>
                                 <div className="project-card-info">
                                     <h4>Wave Hello</h4>
@@ -251,7 +275,7 @@ class EV3 extends React.Component {
                             </a>
                             <a className="project-card">
                                 <div className="project-card-image">
-                                    <img src="/images/ev3/distance-instrument.png" />
+                                    <img src="/images/ev3/starter-distance-instrument.png" />
                                 </div>
                                 <div className="project-card-info">
                                     <h4>Distance Instrument</h4>
@@ -262,7 +286,7 @@ class EV3 extends React.Component {
                             </a>
                             <a className="project-card">
                                 <div className="project-card-image">
-                                    <img src="/images/ev3/flying-game.png" />
+                                    <img src="/images/ev3/starter-flying-game.png" />
                                 </div>
                                 <div className="project-card-info">
                                     <h4>Space Tacos</h4>
