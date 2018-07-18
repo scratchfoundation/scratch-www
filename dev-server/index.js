@@ -21,15 +21,18 @@ routes.forEach(route => {
     app.get(route.pattern, handler(route));
 });
 
-app.use(webpackDevMiddleware(compiler,
-    {
+var middlewareOptions = {};
+if (process.env.USE_DOCKER_WATCHOPTIONS) {
+    middlewareOptions = {
         watchOptions: {
             aggregateTimeout: 500,
             poll: 2500,
             ignored: ['node_modules','build']
         }
-    }
-));
+    };
+}
+
+app.use(webpackDevMiddleware(compiler, middlewareOptions));
 
 var proxyHost = process.env.FALLBACK || '';
 if (proxyHost !== '') {
