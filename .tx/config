@@ -150,3 +150,9 @@ type = KEYVALUEJSON
 source_file = src/views/preview/l10n.json
 source_lang = en
 type = KEYVALUEJSON
+
+[scratch-website.ev3-l10njson]
+source_file = src/views/ev3/l10n.json
+source_lang = en
+type = KEYVALUEJSON
+
