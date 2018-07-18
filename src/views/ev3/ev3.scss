@@ -159,8 +159,62 @@
         }
     }
 
-    .faq .inner {
-        justify-content: space-between;
+    .faq {
+        .faq-links {
+            float: right;
+            border-left: 1px solid $ui-border;
+            width: 30%;
+
+            ol {
+                list-style: none;
+            }
+        }
+
+        .faq-content {
+            float: left;
+            width: 60%;
+
+            p {
+                margin-bottom: 1.25rem;
+                margin-left: 0;
+                max-width: $cols8;
+                text-align: left;
+            }
+
+            dl {
+                dt {
+                    margin-bottom: 1rem;
+                    font-size: 1.4rem;
+                }
+
+                dd {
+                    margin-bottom: 1.25rem;
+                    margin-left: 0;
+                    max-width: $cols8;
+                    text-align: left;
+                }
+            }
+
+            ul {
+                max-width: $cols8;
+            }
+
+            section {
+                margin-bottom: 3rem;
+
+                ul {
+                    max-width: $cols8;
+                }
+
+                .nav-spacer {
+                    display: block;
+                    visibility: hidden;
+                    margin-top: -50px; // height of  nav bar
+                    height: 50px;
+                }
+
+            }
+        }
     }
 
     .blue {

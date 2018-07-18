@@ -1,5 +1,7 @@
 const bindAll = require('lodash.bindall');
 const injectIntl = require('react-intl').injectIntl;
+const FormattedMessage = require('react-intl').FormattedMessage;
+const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const React = require('react');
 
 
@@ -269,8 +271,31 @@ class EV3 extends React.Component {
                 <div className="faq inner">
                     <div className="faq-content">
                         <h2>FAQ / Troubleshooting</h2>
+                        <section id="scratch-link">
+                            <dl>
+                                <dt><FormattedMessage id="faq.aboutScratchTitle" /></dt>
+                                <dd><FormattedHTMLMessage id="faq.aboutScratchBody" /></dd>
+
+                                <dt><FormattedMessage id="faq.makeGameTitle" /></dt>
+                                <dd><FormattedHTMLMessage id="faq.makeGameBody" /></dd>
+                            </dl>
+                        </section>
+                        <section id="bluetooth">
+                            <dl>
+                                <dt><FormattedMessage id="faq.aboutScratchTitle" /></dt>
+                                <dd><FormattedHTMLMessage id="faq.aboutScratchBody" /></dd>
+
+                                <dt><FormattedMessage id="faq.makeGameTitle" /></dt>
+                                <dd><FormattedHTMLMessage id="faq.makeGameBody" /></dd>
+                            </dl>
+                        </section>
                     </div>
-                    <div className="faq-links" />
+                    <nav className="faq-links">
+                        <ol>
+                            <li><a href="#scratch-link"><FormattedMessage id="ev3.scratchLinkFAQ" /></a></li>
+                            <li><a href="#bluetooth"><FormattedMessage id="ev3.bluetoothFAQ" /></a></li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         );
