@@ -230,7 +230,7 @@ class EV3 extends React.Component {
                         <div className="section-separator" />
                         <h3>Sample Projects</h3>
                         <FlexRow className="steps">
-                            <div className="project-card">
+                            <a className="project-card">
                                 <div className="project-card-image">
                                     <img src="/images/ev3/wave-hello.png" />
                                 </div>
@@ -240,8 +240,8 @@ class EV3 extends React.Component {
                                         Make a puppet robot and have a friendly chat.
                                     </p>
                                 </div>
-                            </div>
-                            <div className="project-card">
+                            </a>
+                            <a className="project-card">
                                 <div className="project-card-image">
                                     <img src="/images/ev3/distance-instrument.png" />
                                 </div>
@@ -251,8 +251,8 @@ class EV3 extends React.Component {
                                         Move your body in front of the sensor to make music.
                                     </p>
                                 </div>
-                            </div>
-                            <div className="project-card">
+                            </a>
+                            <a className="project-card">
                                 <div className="project-card-image">
                                     <img src="/images/ev3/flying-game.png" />
                                 </div>
@@ -262,7 +262,7 @@ class EV3 extends React.Component {
                                         Build your own controller to fly around in space.
                                     </p>
                                 </div>
-                            </div>
+                            </a>
                         </FlexRow>
                     </FlexRow>
                 </div>
