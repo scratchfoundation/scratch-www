@@ -227,6 +227,7 @@ class EV3 extends React.Component {
                                 </FlexRow>
                             </div>
                         </FlexRow>
+                        <div className="section-separator" />
                         <h3>Sample Projects</h3>
                         <FlexRow className="steps">
                             <div className="project-card">

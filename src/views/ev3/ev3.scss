@@ -129,15 +129,12 @@
 
     .things-to-try {
         .project-card {
+            margin: 0 1.5rem;
             border-radius: .5rem;
             background-color: $ui-white;
             overflow: hidden;
             flex-basis: 0;
             flex-grow: 1;
-        }
-
-        .project-card+.project-card {
-            margin-left: 3rem;
         }
 
         .project-card-image {
@@ -148,6 +145,12 @@
 
         .project-card-info {
             padding: 1rem;
+        }
+
+        .section-separator {
+            margin: 4rem 0;
+            border-top: 1px solid $ui-border;
+            width: 100%;
         }
     }
 
