@@ -226,6 +226,41 @@ class EV3 extends React.Component {
                             </div>
                         </FlexRow>
                         <h3>Sample Projects</h3>
+                        <FlexRow className="steps">
+                            <div className="project-card">
+                                <div className="project-card-image">
+                                    <img src="/images/ev3/wave-hello.png" />
+                                </div>
+                                <div className="project-card-info">
+                                    <h4>Wave Hello</h4>
+                                    <p>
+                                        Make a puppet robot and have a friendly chat.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="project-card">
+                                <div className="project-card-image">
+                                    <img src="/images/ev3/distance-instrument.png" />
+                                </div>
+                                <div className="project-card-info">
+                                    <h4>Distance Instrument</h4>
+                                    <p>
+                                        Move your body in front of the sensor to make music.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="project-card">
+                                <div className="project-card-image">
+                                    <img src="/images/ev3/flying-game.png" />
+                                </div>
+                                <div className="project-card-info">
+                                    <h4>Space Tacos</h4>
+                                    <p>
+                                        Build your own controller to fly around in space.
+                                    </p>
+                                </div>
+                            </div>
+                        </FlexRow>
                     </FlexRow>
                 </div>
                 <div className="faq inner">
