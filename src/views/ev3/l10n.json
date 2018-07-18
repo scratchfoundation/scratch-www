@@ -1,3 +1,6 @@
 {
-    "ev3.installScratchLink": "Install Scratch Link"
+    "ev3.installScratchLink": "Install Scratch Link",
+    "ev3.gettingStarted": "Getting Started",
+    "ev3.thingsToTry": "Things to Try",
+    "ev3.faqTitle": "FAQ / Troubleshooting"
 }

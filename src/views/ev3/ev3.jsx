@@ -92,7 +92,7 @@ class EV3 extends React.Component {
                 />
                 <div className="blue install-scratch-link">
                     <FlexRow className="inner column">
-                        <h2>Install Scratch Link</h2>
+                        <h2><FormattedMessage id="ev3.installScratchLink" /></h2>
                         <FlexRow className="steps">
                             <div className="step">
                                 <FlexRow className="step-number-row">
@@ -136,7 +136,7 @@ class EV3 extends React.Component {
                 </div>
                 <div className="getting-started">
                     <FlexRow className="inner column">
-                        <h2>Getting Started</h2>
+                        <h2><FormattedMessage id="ev3.gettingStarted" /></h2>
                         <FlexRow className="column connecting-ev3">
                             <h3>Connecting EV3 to Scratch</h3>
                             <FlexRow className="steps">
@@ -229,7 +229,7 @@ class EV3 extends React.Component {
                 </div>
                 <div className="blue things-to-try">
                     <FlexRow className="inner column">
-                        <h2>Things to Try</h2>
+                        <h2><FormattedMessage id="ev3.thingsToTry" /></h2>
                         <h3>Make a motor move</h3>
                         <FlexRow className="steps">
                             <div className="step">
@@ -300,7 +300,7 @@ class EV3 extends React.Component {
                 </div>
                 <div className="faq inner">
                     <div className="faq-content">
-                        <h2>FAQ / Troubleshooting</h2>
+                        <h2><FormattedMessage id="ev3.faqTitle" /></h2>
                         <section id="scratch-link">
                             <dl>
                                 <dt><FormattedMessage id="faq.aboutScratchTitle" /></dt>
