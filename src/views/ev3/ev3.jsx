@@ -91,12 +91,14 @@ class EV3 extends React.Component {
                                     <div className="step-number">1</div>
                                     <FlexRow className="step-content">
                                         <span className="step-description">
-                                            Download and install ScratchLink on a
-                                            {this.state.OS === this.OS_ENUM.MACOS ? ' Mac' : ' Windows computer'}!
+                                            Download and install ScratchLink.
                                         </span>
-                                        <div className="step-image">
-                                            <img src="/images/ev3/mac-toolbar.png" />
-                                        </div>
+                                        <a className="step-image badge">
+                                            <img
+                                                // eslint-disable-next-line max-len
+                                                src={`/svgs/app-store-badges/${this.state.OS === this.OS_ENUM.WINDOWS ? 'microsoft' : 'apple'}-app-store-badge.svg`}
+                                            />
+                                        </a>
                                     </FlexRow>
                                 </FlexRow>
 
