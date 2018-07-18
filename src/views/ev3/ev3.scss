@@ -176,6 +176,7 @@
     width: 100%;
     justify-content: space-between;
     align-items: flex-start;
+    flex-wrap: nowrap;
 }
 
 .step {
@@ -187,6 +188,15 @@
         flex-wrap: nowrap;
         justify-content: flex-start;
         align-items: flex-start;
+
+        .step-content {
+            text-align: left;
+            align-items: flex-start;
+
+            .step-description {
+                margin-bottom: 1rem;
+            }
+        }
 
         .step-number {
             display: inline-flex;
@@ -210,11 +220,11 @@
         box-sizing: border-box;
 
         .step-image {
-            max-height: 10rem;
+            height: 10rem;
 
             img {
-                max-width: 100%;
-                max-height: 100%;
+                width: auto;
+                height: 100%;
             }
         }
     }
