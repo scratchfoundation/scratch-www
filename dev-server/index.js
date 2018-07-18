@@ -27,7 +27,7 @@ if (process.env.USE_DOCKER_WATCHOPTIONS) {
         watchOptions: {
             aggregateTimeout: 500,
             poll: 2500,
-            ignored: ['node_modules','build']
+            ignored: ['node_modules', 'build']
         }
     };
 }
