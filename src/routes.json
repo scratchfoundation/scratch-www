@@ -306,7 +306,14 @@
         "pattern": "^/ev3/?$",
         "routeAlias": "/ev3/?$",
         "view": "ev3/ev3",
-        "title": "LEGO EV3"
+        "title": "LEGO MINDSTORMS EV3"
+    },
+    {
+        "name": "microbit",
+        "pattern": "^/microbit/?$",
+        "routeAlias": "/microbit/?$",
+        "view": "microbit/microbit",
+        "title": "micro:bit"
     },
     {
         "name": "donate-redirect",
