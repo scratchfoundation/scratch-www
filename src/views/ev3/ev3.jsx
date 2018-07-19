@@ -1,7 +1,6 @@
 const bindAll = require('lodash.bindall');
 const injectIntl = require('react-intl').injectIntl;
 const FormattedMessage = require('react-intl').FormattedMessage;
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const React = require('react');
 
 
@@ -326,25 +325,48 @@ class EV3 extends React.Component {
                 </div>
                 <div className="faq inner">
                     <div className="faq-content">
-                        <h2><FormattedMessage id="ev3.faqTitle" /></h2>
-                        <h3 className="faq-title">Make sure your computer is paired with your EV3</h3>
-                        <p>Your computer needs to be paired with your EV3 before it can connect to Scratch. We try to do this automatically the first time you add the EV3 extension, but if it isn't working you can try these <a
-                            href="https://www.lego.com/en-us/service/help/products/themes-sets/mindstorms/connecting-your-lego-mindstorms-ev3-to-bluetooth-408100000007886"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                        bluetooth pairing instructions from LEGO
-                        </a>.</p>
-                        <h3 className="faq-title">Close other copies of Scratch</h3>
-                        <p>Only one copy of Scratch can connect with the EV3 at a time. If you have Scratch open in other browser tabs, close it and try again.</p>
-                        <h3 className="faq-title">Make sure no other computer is connected to your EV3</h3>
-                        <p>Only one computer can be connected to an EV3 at a time. If you have another computer connected to your EV3, disconnect the EV3 or close Scratch on that computer and try again.</p>
-                        <h3 className="faq-title">Trying updating your EV3 firmware</h3>
-                        <p>We recommend updating to EV3 firmware version 1.10E or above. See <a
-                            href="https://education.lego.com/en-us/support/mindstorms-ev3/firmware-update"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >firmware update instructions from LEGO</a>. We recommend following the instructions for "Manual Firmware Update".
+                        <h2><FormattedMessage id="ev3.troubleshootingTitle" /></h2>
+                        <h3 className="faq-title"><FormattedMessage id="ev3.makeSurePairedTitle" /></h3>
+                        <p>
+                            <FormattedMessage
+                                id="ev3.makeSurePairedText"
+                                values={{
+                                    pairingInstructionLink: (
+                                        <a
+                                            href="https://www.lego.com/en-us/service/help/products/themes-sets/mindstorms/connecting-your-lego-mindstorms-ev3-to-bluetooth-408100000007886"
+                                            rel="noopener noreferrer"
+                                            target="_blank"
+                                        >
+                                            <FormattedMessage id="ev3.pairingInstructionText" />
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
+                        <h3 className="faq-title"><FormattedMessage id="ev3.closeScratchCopiesTitle" /></h3>
+                        <p>
+                            <FormattedMessage id="ev3.closeScratchCopiesText" />
+                        </p>
+                        <h3 className="faq-title"><FormattedMessage id="ev3.otherComputerConnectedTitle" /></h3>
+                        <p>
+                            <FormattedMessage id="ev3.otherComputerConnectedText" />
+                        </p>
+                        <h3 className="faq-title"><FormattedMessage id="ev3.updateFirmwareTitle" /></h3>
+                        <p>
+                            <FormattedMessage
+                                id="ev3.updateFirmwareText"
+                                values={{
+                                    firmwareUpdateLink: (
+                                        <a
+                                            href="https://education.lego.com/en-us/support/mindstorms-ev3/firmware-update"
+                                            rel="noopener noreferrer"
+                                            target="_blank"
+                                        >
+                                            <FormattedMessage id="ev3.firmwareUpdateText" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                 </div>

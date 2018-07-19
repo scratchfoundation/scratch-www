@@ -16,5 +16,15 @@
     "ev3.windowsFinalizePairing": "Wait for your device to be ready.",
     "ev3.macosFinalizePairing": "Enter the passcode on your computer.",
     "ev3.thingsToTry": "Things to Try",
-    "ev3.faqTitle": "FAQ / Troubleshooting"
+    "ev3.troubleshootingTitle": "Troubleshooting",
+    "ev3.makeSurePairedTitle": "Make sure your computer is paired with your EV3",
+    "ev3.makeSurePairedText": "Your computer needs to be paired with your EV3 before it can connect to Scratch. We try to do this automatically the first time you add the EV3 extension, but if it isn't working you can try these {pairingInstructionLink}.",
+    "ev3.pairingInstructionText": "bluetooth pairing instructions from LEGO",
+    "ev3.closeScratchCopiesTitle": "Close other copies of Scratch",
+    "ev3.closeScratchCopiesText": "Only one copy of Scratch can connect with the EV3 at a time. If you have Scratch open in other browser tabs, close it and try again.",
+    "ev3.otherComputerConnectedTitle": "Make sure no other computer is connected to your EV3",
+    "ev3.otherComputerConnectedText": "Only one computer can be connected to an EV3 at a time. If you have another computer connected to your EV3, disconnect the EV3 or close Scratch on that computer and try again.",
+    "ev3.updateFirmwareTitle": "Try updating your EV3 firmware",
+    "ev3.updateFirmwareText": "We recommend updating to EV3 firmware version 1.10E or above. See {firmwareUpdateLink}. We recommend following the instructions for \"Manual Firmware Update\".",
+    "ev3.firmwareUpdateText": "firmware update instructions from LEGO"
 }
