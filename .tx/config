@@ -128,12 +128,6 @@ source_file = src/views/messages/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
-[scratch-website.conference-index-l10njson]
-file_filter = localizations/conference-index/<lang>.json
-source_file = src/views/conference/2018/index/l10n.json
-source_lang = en
-type = KEYVALUEJSON
-
 [scratch-website.preview-faq-l10njson]
 file_filter = localizations/preview-faq/<lang>.json
 source_file = src/views/preview-faq/l10n.json
@@ -147,6 +141,7 @@ source_lang = en
 type = KEYVALUEJSON
 
 [scratch-website.preview-l10njson]
+file_filter = localizations/preview/<lang>.json
 source_file = src/views/preview/l10n.json
 source_lang = en
 type = KEYVALUEJSON
