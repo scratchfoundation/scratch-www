@@ -157,7 +157,13 @@ class MicroBit extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/microbit/mbit-hex-download.png" />
                                         </div>
-                                        <a className="download">Download the Scratch micro:bit hex file</a>
+                                        <a
+                                            download
+                                            className="download"
+                                            href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.0.hex"
+                                        >
+                                          Download the Scratch micro:bit hex file
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="step">
@@ -253,7 +259,11 @@ class MicroBit extends React.Component {
                         <div className="section-separator" />
                         <h3>Sample Projects</h3>
                         <FlexRow className="steps">
-                            <a className="project-card">
+                            <a
+                                download
+                                className="project-card"
+                                href="https://downloads.scratch.mit.edu/microbit/microbit-heartbeat.sb3"
+                            >
                                 <div className="project-card-image">
                                     <img src="/images/microbit/starter-heart.png" />
                                 </div>
@@ -264,7 +274,11 @@ class MicroBit extends React.Component {
                                     </p>
                                 </div>
                             </a>
-                            <a className="project-card">
+                            <a
+                                download
+                                className="project-card"
+                                href="https://downloads.scratch.mit.edu/microbit/microbit-guitar.sb3"
+                            >
                                 <div className="project-card-image">
                                     <img src="/images/microbit/starter-guitar.png" />
                                 </div>
@@ -275,7 +289,12 @@ class MicroBit extends React.Component {
                                     </p>
                                 </div>
                             </a>
-                            <a className="project-card">
+                            <a
+                                download
+                                className="project-card"
+                                href="https://downloads.scratch.mit.edu/microbit/microbit-fish.sb3"
+                            >
+
                                 <div className="project-card-image">
                                     <img src="/images/microbit/starter-fish.png" />
                                 </div>
