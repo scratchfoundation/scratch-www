@@ -15,6 +15,21 @@
         margin-bottom: 3rem;
     }
 
+    .download {
+        display: flex;
+        align-items: center;
+
+        &::after {
+            display: inline-block;
+            margin-left: .5rem;
+            background-image: url("/svgs/extensions/download.svg");
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+            content: "";
+        }
+    }
+
     .extension-header {
         background-color: $ui-aqua;
         background-image: url("/images/ev3/ev3-pattern.svg");
@@ -111,7 +126,7 @@
     }
 
     .screenshot {
-      border-radius: 0.5rem;
+        border-radius: .5rem;
     }
 
     .getting-started {
