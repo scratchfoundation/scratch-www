@@ -1,6 +1,20 @@
 {
+    "ev3.headerText": "{ev3Link} is an invention kit with motors and sensors you can use to build interactive robotic creations. Connecting it to Scratch expands the possibilities: build a robotic puppet and tell stories, make your own musical instruments and game controllers, or whatever else you can imagine.",
+    "ev3.requirements": "Requirements",
     "ev3.installScratchLink": "Install Scratch Link",
+    "ev3.installScratchLinkStep": "Download and install ScratchLink.",
+    "ev3.startScratchLink": "Start ScratchLink and make sure it is running. It should appear in your toolbar.",
     "ev3.gettingStarted": "Getting Started",
+    "ev3.connectingEV3": "Connecting EV3 to Scratch",
+    "ev3.turnOnEV3": "Turn on your EV3 by holding down the center button.",
+    "ev3.useScratch3": "Use the {scratch3Link} editor.",
+    "ev3.addExtension": "Add the EV3 extension.",
+    "ev3.firstTimeConnecting": "First time connecting your EV3?",
+    "ev3.pairingDescription": "After clicking the connect button in Scratch, you can pair it with your computer:",
+    "ev3.acceptConnection": "Accept the connection.",
+    "ev3.acceptPasscode": "Accept the passcode.",
+    "ev3.windowsFinalizePairing": "Wait for your device to be ready.",
+    "ev3.macosFinalizePairing": "Enter the passcode on your computer.",
     "ev3.thingsToTry": "Things to Try",
     "ev3.faqTitle": "FAQ / Troubleshooting"
 }

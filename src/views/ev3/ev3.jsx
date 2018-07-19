@@ -44,23 +44,26 @@ class EV3 extends React.Component {
                         <FlexRow className="column extension-info">
                             <FlexRow className="column extension-copy">
                                 <h2><img src="/images/ev3/ev3.svg" />LEGO Mindstorms EV3</h2>
-                                <span>
-                                    <a
-                                        href="https://shop.lego.com/en-US/LEGO-MINDSTORMS-EV3-31313"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                      LEGO® Mindstorms EV3
-                                    </a> is an invention kit with motors and sensors
-                                    you can use to build interactive robotic creations.
-                                    Connecting it to Scratch expands the possibilities:
-                                    build a robotic puppet and tell stories,
-                                    make your own musical instruments and game controllers,
-                                    or whatever else you can imagine.
-                                </span>
+                                <FormattedMessage
+                                    id="ev3.headerText"
+                                    values={{
+                                        ev3Link: (
+                                            <a
+                                                href="https://shop.lego.com/en-US/LEGO-MINDSTORMS-EV3-31313"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                            >
+                                                LEGO® Mindstorms EV3
+                                            </a>
+                                        )
+                                    }}
+                                />
+                                <span />
                             </FlexRow>
                             <FlexRow className="column extension-requirements-container">
-                                <span className="requirements-header">Requirements</span>
+                                <span className="requirements-header">
+                                    <FormattedMessage id="ev3.requirements" />
+                                </span>
                                 <FlexRow className="extension-requirements">
                                     <span>
                                         <img src="/svgs/extensions/windows.svg" />
@@ -99,7 +102,7 @@ class EV3 extends React.Component {
                                     <div className="step-number">1</div>
                                     <FlexRow className="step-content">
                                         <span className="step-description">
-                                            Download and install ScratchLink.
+                                            <FormattedMessage id="ev3.installScratchLinkStep" />
                                         </span>
                                         <a className="step-image badge">
                                             <img
@@ -117,8 +120,7 @@ class EV3 extends React.Component {
                                     <div className="step-number">2</div>
                                     <FlexRow className="step-content">
                                         <span className="step-description">
-                                            Start ScratchLink and make sure it is running.
-                                            It should appear in your toolbar.
+                                            <FormattedMessage id="ev3.startScratchLink" />
                                         </span>
                                         <div className="step-image">
                                             <img
@@ -138,7 +140,7 @@ class EV3 extends React.Component {
                     <FlexRow className="inner column">
                         <h2><FormattedMessage id="ev3.gettingStarted" /></h2>
                         <FlexRow className="column connecting-ev3">
-                            <h3>Connecting EV3 to Scratch</h3>
+                            <h3><FormattedMessage id="ev3.connectingEV3" /></h3>
                             <FlexRow className="steps">
                                 <div className="step">
                                     <FlexRow className="step-number-row">
@@ -148,7 +150,7 @@ class EV3 extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/ev3/ev3-connect-1.png" />
                                         </div>
-                                        <p>Turn on your EV3 by holding down the center button.</p>
+                                        <p><FormattedMessage id="ev3.turnOnEV3" /></p>
                                     </div>
                                 </div>
                                 <div className="step">
@@ -159,12 +161,22 @@ class EV3 extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/ev3/ev3-connect-2.png" />
                                         </div>
-                                        <p>Use the
-                                            <a
-                                                href="https://beta.scratch.mit.edu/"
-                                                rel="noopener noreferrer"
-                                                target="_blank"
-                                            > Scratch 3.0</a> editor.</p>
+                                        <p>
+                                            <FormattedMessage
+                                                id="ev3.useScratch3"
+                                                values={{
+                                                    scratch3Link: (
+                                                        <a
+                                                            href="https://beta.scratch.mit.edu/"
+                                                            rel="noopener noreferrer"
+                                                            target="_blank"
+                                                        >
+                                                            Scratch 3.0
+                                                        </a>
+                                                    )
+                                                }}
+                                            />
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="step">
@@ -175,22 +187,21 @@ class EV3 extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/ev3/ev3-connect-3.png" />
                                         </div>
-                                        <p>Add the EV3 extension.</p>
+                                        <p><FormattedMessage id="ev3.addExtension" /></p>
                                     </div>
                                 </div>
                             </FlexRow>
                             <div className="tip-box">
-                                <h4>First time connecting your EV3?</h4>
+                                <h4><FormattedMessage id="ev3.firstTimeConnecting" /></h4>
                                 <FlexRow className="column tip-content">
-                                    <p>After clicking the connect button in Scratch,
-                                      you can pair it with your computer:</p>
+                                    <p><FormattedMessage id="ev3.pairingDescription" /></p>
                                     <FlexRow className="steps">
                                         <div className="step">
                                             <div className="step-content">
                                                 <div className="step-image">
                                                     <img src="/images/ev3/ev3-accept-connection.png" />
                                                 </div>
-                                                <p>Accept the connection.</p>
+                                                <p><FormattedMessage id="ev3.acceptConnection" /></p>
                                             </div>
                                         </div>
                                         <div className="step">
@@ -198,7 +209,7 @@ class EV3 extends React.Component {
                                                 <div className="step-image">
                                                     <img src="/images/ev3/ev3-pin.png" />
                                                 </div>
-                                                <p>Accept the passcode.</p>
+                                                <p><FormattedMessage id="ev3.acceptPasscode" /></p>
                                             </div>
                                         </div>
                                         <div className="step">
@@ -216,8 +227,9 @@ class EV3 extends React.Component {
                                                 </div>
                                                 <p>
                                                     {this.state.OS === this.OS_ENUM.WINDOWS ?
-                                                        'Wait for your device to be ready.' :
-                                                        'Enter the passcode on your computer.'}
+                                                        <FormattedMessage id="ev3.windowsFinalizePairing" /> :
+                                                        <FormattedMessage id="ev3.macosFinalizePairing" />
+                                                    }
                                                 </p>
                                             </div>
                                         </div>
