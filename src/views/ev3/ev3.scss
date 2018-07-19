@@ -204,18 +204,9 @@
                 text-align: left;
             }
 
-            dl {
-                dt {
-                    margin-bottom: 1rem;
-                    font-size: 1.4rem;
-                }
-
-                dd {
-                    margin-bottom: 3rem;
-                    margin-left: 0;
-                    max-width: $cols8;
-                    text-align: left;
-                }
+            .faq-title {
+                margin-bottom: 1rem;
+                font-size: 1.4rem;
             }
 
             ul {
@@ -236,6 +227,7 @@
 
             }
 
+            ul,
             ol {
                 &.indented {
                     padding-left: $cols1 + (20px / $em);

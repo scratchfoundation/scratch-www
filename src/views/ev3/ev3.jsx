@@ -43,7 +43,7 @@ class EV3 extends React.Component {
                     <FlexRow className="inner">
                         <FlexRow className="column extension-info">
                             <FlexRow className="column extension-copy">
-                                <h2><img src="/images/ev3/ev3.svg" />LEGO Mindstorms EV3</h2>
+                                <h2><img src="/images/ev3/ev3.svg" />LEGO MINDSTORMS EV3</h2>
                                 <FormattedMessage
                                     id="ev3.headerText"
                                     values={{
@@ -53,7 +53,7 @@ class EV3 extends React.Component {
                                                 rel="noopener noreferrer"
                                                 target="_blank"
                                             >
-                                                LEGO® Mindstorms EV3
+                                                LEGO MINDSTORMS EV3
                                             </a>
                                         )
                                     }}
@@ -79,7 +79,7 @@ class EV3 extends React.Component {
                                     </span>
                                     <span>
                                         <img src="/svgs/extensions/scratch-link.svg" />
-                                        ScratchLink
+                                        Scratch Link
                                     </span>
                                 </FlexRow>
                             </FlexRow>
@@ -104,12 +104,13 @@ class EV3 extends React.Component {
                                         <span className="step-description">
                                             <FormattedMessage id="ev3.installScratchLinkStep" />
                                         </span>
-                                        <a className="step-image badge">
-                                            <img
-                                                src={`/svgs/app-store-badges/${
-                                                    this.state.OS === this.OS_ENUM.WINDOWS ? 'microsoft' : 'apple'
-                                                }-app-store-badge.svg`}
-                                            />
+                                        <a
+                                            className="step-image badge"
+                                            href={`https://downloads.scratch.mit.edu/link/${
+                                                this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'
+                                            }.zip`}
+                                        >
+                                            <button className="button">Download</button>
                                         </a>
                                     </FlexRow>
                                 </FlexRow>
@@ -326,37 +327,26 @@ class EV3 extends React.Component {
                 <div className="faq inner">
                     <div className="faq-content">
                         <h2><FormattedMessage id="ev3.faqTitle" /></h2>
-                        <section id="scratch-link">
-                            <dl>
-                                <dt><FormattedMessage id="faq.aboutScratchTitle" /></dt>
-                                <dd>
-                                    <p>To open ScratchLink:</p>
-                                    <ol className="indented">
-                                        <li>Go to your <strong>Applications</strong> folder</li>
-                                        <li>Find and open <strong>Scratch Link</strong></li>
-                                    </ol>
-                                </dd>
-
-                                <dt><FormattedMessage id="faq.makeGameTitle" /></dt>
-                                <dd><FormattedHTMLMessage id="faq.makeGameBody" /></dd>
-                            </dl>
-                        </section>
-                        <section id="bluetooth">
-                            <dl>
-                                <dt><FormattedMessage id="faq.aboutScratchTitle" /></dt>
-                                <dd><FormattedHTMLMessage id="faq.aboutScratchBody" /></dd>
-
-                                <dt><FormattedMessage id="faq.makeGameTitle" /></dt>
-                                <dd><FormattedHTMLMessage id="faq.makeGameBody" /></dd>
-                            </dl>
-                        </section>
+                        <h3 className="faq-title">Make sure your computer is paired with your EV3</h3>
+                        <p>Your computer needs to be paired with your EV3 before it can connect to Scratch. We try to do this automatically the first time you add the EV3 extension, but if it isn't working you can try these <a
+                            href="https://www.lego.com/en-us/service/help/products/themes-sets/mindstorms/connecting-your-lego-mindstorms-ev3-to-bluetooth-408100000007886"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                        >
+                        bluetooth pairing instructions from LEGO
+                        </a>.</p>
+                        <h3 className="faq-title">Close other copies of Scratch</h3>
+                        <p>Only one copy of Scratch can connect with the EV3 at a time. If you have Scratch open in other browser tabs, close it and try again.</p>
+                        <h3 className="faq-title">Make sure no other computer is connected to your EV3</h3>
+                        <p>Only one computer can be connected to an EV3 at a time. If you have another computer connected to your EV3, disconnect the EV3 or close Scratch on that computer and try again.</p>
+                        <h3 className="faq-title">Trying updating your EV3 firmware</h3>
+                        <p>We recommend updating to EV3 firmware version 1.10E or above. See <a
+                            href="https://education.lego.com/en-us/support/mindstorms-ev3/firmware-update"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                        >firmware update instructions from LEGO</a>. We recommend following the instructions for "Manual Firmware Update".
+                        </p>
                     </div>
-                    <nav className="faq-links">
-                        <ol>
-                            <li><a href="#scratch-link"><FormattedMessage id="ev3.scratchLinkFAQ" /></a></li>
-                            <li><a href="#bluetooth"><FormattedMessage id="ev3.bluetoothFAQ" /></a></li>
-                        </ol>
-                    </nav>
                 </div>
             </div>
         );

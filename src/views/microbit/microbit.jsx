@@ -78,7 +78,7 @@ class MicroBit extends React.Component {
                                     </span>
                                     <span>
                                         <img src="/svgs/extensions/scratch-link.svg" />
-                                        ScratchLink
+                                        Scratch Link
                                     </span>
                                 </FlexRow>
                             </FlexRow>
@@ -103,12 +103,13 @@ class MicroBit extends React.Component {
                                         <span className="step-description">
                                             <FormattedMessage id="microbit.installScratchLinkStep" />
                                         </span>
-                                        <a className="step-image badge">
-                                            <img
-                                                src={`/svgs/app-store-badges/${
-                                                    this.state.OS === this.OS_ENUM.WINDOWS ? 'microsoft' : 'apple'
-                                                }-app-store-badge.svg`}
-                                            />
+                                        <a
+                                            className="step-image badge"
+                                            href={`https://downloads.scratch.mit.edu/link/${
+                                                this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'
+                                            }.zip`}
+                                        >
+                                            <button className="button">Download</button>
                                         </a>
                                     </FlexRow>
                                 </FlexRow>
