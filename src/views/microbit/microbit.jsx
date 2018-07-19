@@ -137,9 +137,9 @@ class MicroBit extends React.Component {
                 </div>
                 <div className="getting-started">
                     <FlexRow className="inner column">
-                        <h2>Getting Started</h2>
+                        <h2><FormattedMessage id="microbit.gettingStarted" /></h2>
                         <FlexRow className="column install-hex">
-                            <h3>Install Scratch micro:bit HEX</h3>
+                            <h3><FormattedMessage id="microbit.installMicrobitHex" /></h3>
                             <FlexRow className="steps">
                                 <div className="step">
                                     <FlexRow className="step-number-row">
@@ -149,7 +149,9 @@ class MicroBit extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/microbit/mbit-usb.png" />
                                         </div>
-                                        <p>Connect a micro:bit to your computer with a USB cable</p>
+                                        <p>
+                                            <FormattedMessage id="microbit.connectUSB" />
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="step">
@@ -165,7 +167,7 @@ class MicroBit extends React.Component {
                                             className="download"
                                             href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.0.hex"
                                         >
-                                          Download the Scratch micro:bit hex file
+                                            <FormattedMessage id="microbit.downloadHex" />
                                         </a>
                                     </div>
                                 </div>
@@ -181,14 +183,16 @@ class MicroBit extends React.Component {
                                                 }-copy-hex.png`}
                                             />
                                         </div>
-                                        <p>Drag and drop the hex file onto your micro:bit</p>
+                                        <p>
+                                            <FormattedMessage id="microbit.dragDropHex" />
+                                        </p>
                                     </div>
                                 </div>
                             </FlexRow>
                         </FlexRow>
                         <div className="section-separator" />
                         <FlexRow className="column connecting">
-                            <h3>Connecting micro:bit to Scratch</h3>
+                            <h3><FormattedMessage id="microbit.connectingMicrobit" /></h3>
                             <FlexRow className="steps">
                                 <div className="step">
                                     <FlexRow className="step-number-row">
@@ -198,7 +202,7 @@ class MicroBit extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/microbit/mbit-connect-1.png" />
                                         </div>
-                                        <p>Power your micro:bit with USB or a battery pack.</p>
+                                        <p><FormattedMessage id="microbit.powerMicrobit" /></p>
                                     </div>
                                 </div>
                                 <div className="step">
@@ -209,7 +213,22 @@ class MicroBit extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/microbit/mbit-connect-2.png" />
                                         </div>
-                                        <p>Use the <a>Scratch 3.0</a> editor.</p>
+                                        <p>
+                                            <FormattedMessage
+                                                id="microbit.useScratch3"
+                                                values={{
+                                                    scratch3Link: (
+                                                        <a
+                                                            href="https://beta.scratch.mit.edu/"
+                                                            rel="noopener noreferrer"
+                                                            target="_blank"
+                                                        >
+                                                            Scratch 3.0
+                                                        </a>
+                                                    )
+                                                }}
+                                            />
+                                        </p>
                                     </div>
                                 </div>
                                 <div className="step">
@@ -220,7 +239,7 @@ class MicroBit extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/microbit/mbit-connect-3.png" />
                                         </div>
-                                        <p>Step 3 content here.</p>
+                                        <p><FormattedMessage id="microbit.addExtension" /></p>
                                     </div>
                                 </div>
                             </FlexRow>
@@ -229,15 +248,24 @@ class MicroBit extends React.Component {
                 </div>
                 <div className="blue things-to-try">
                     <FlexRow className="inner column">
-                        <h2>Things to Try</h2>
-                        <h3>Display &ldquo;Hello!&rdquo;</h3>
+                        <h2><FormattedMessage id="microbit.thingsToTry" /></h2>
+                        <h3><FormattedMessage id="microbit.displayHelloTitle" /></h3>
                         <FlexRow className="steps display-hello">
                             <div className="step">
                                 <FlexRow className="step-number-row">
                                     <div className="step-number">1</div>
                                     <FlexRow className="step-content">
                                         <span className="step-description">
-                                            Find the <strong>&ldquo;display hello&rdquo;</strong> block and click on it.
+                                            <FormattedMessage
+                                                id="microbit.displayHelloBlock"
+                                                values={{
+                                                    displayHelloText: (
+                                                        <strong>
+                                                            <FormattedMessage id="microbit.displayHelloText" />
+                                                        </strong>
+                                                    )
+                                                }}
+                                            />
                                         </span>
                                         <div className="step-image">
                                             <img src="/images/microbit/display-hello-block.png" />
@@ -250,8 +278,14 @@ class MicroBit extends React.Component {
                                     <div className="step-number">2</div>
                                     <FlexRow className="step-content">
                                         <span className="step-description">
-                                            You should see <strong>hello</strong> scroll across the micro:bit display
-                                        </span>
+                                            <FormattedMessage
+                                                id="microbit.helloScroll"
+                                                values={{
+                                                    helloText: (
+                                                        <strong><FormattedMessage id="microbit.helloText" /></strong>
+                                                    )
+                                                }}
+                                            />                                        </span>
                                         <div className="step-image">
                                             <img src="/images/microbit/mbit-display-h.png" />
                                         </div>
@@ -260,7 +294,7 @@ class MicroBit extends React.Component {
                             </div>
                         </FlexRow>
                         <div className="section-separator" />
-                        <h3>Starter Projects</h3>
+                        <h3><FormattedMessage id="microbit.starterProjects" /></h3>
                         <FlexRow className="steps">
                             <a
                                 download
@@ -271,9 +305,9 @@ class MicroBit extends React.Component {
                                     <img src="/images/microbit/starter-heart.png" />
                                 </div>
                                 <div className="project-card-info">
-                                    <h4>Heart Beat</h4>
+                                    <h4><FormattedMessage id="microbit.heartBeat" /></h4>
                                     <p>
-                                        Press the buttons to animate the heart.
+                                        <FormattedMessage id="microbit.heartBeatDescription" />
                                     </p>
                                 </div>
                             </a>
@@ -286,9 +320,9 @@ class MicroBit extends React.Component {
                                     <img src="/images/microbit/starter-guitar.png" />
                                 </div>
                                 <div className="project-card-info">
-                                    <h4>Tilt guitar</h4>
+                                    <h4><FormattedMessage id="microbit.tiltGuitar" /></h4>
                                     <p>
-                                        Make music by tilting your micro:bit.
+                                        <FormattedMessage id="microbit.tiltGuitarDescription" />
                                     </p>
                                 </div>
                             </a>
@@ -302,9 +336,9 @@ class MicroBit extends React.Component {
                                     <img src="/images/microbit/starter-fish.png" />
                                 </div>
                                 <div className="project-card-info">
-                                    <h4>Ocean Adventure</h4>
+                                    <h4><FormattedMessage id="microbit.oceanAdventure" /></h4>
                                     <p>
-                                        Build your own controller and swim toward the saxophones.
+                                        <FormattedMessage id="microbit.oceanAdventureDescription" />
                                     </p>
                                 </div>
                             </a>
