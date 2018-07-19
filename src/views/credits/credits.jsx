@@ -173,7 +173,7 @@ const Credits = () => (
                 />
                 <span className="name">Tracy Tang</span>
             </li>
-            
+
             <li>
                 <img
                     alt="Matthew Avatar"
