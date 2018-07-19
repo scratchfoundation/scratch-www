@@ -348,38 +348,14 @@ class MicroBit extends React.Component {
                 </div>
                 <div className="faq inner">
                     <div className="faq-content">
-                        <h2>FAQ / Troubleshooting</h2>
-                        <section id="scratch-link">
-                            <dl>
-                                <dt><FormattedMessage id="faq.aboutScratchTitle" /></dt>
-                                <dd>
-                                    <p>To open ScratchLink:</p>
-                                    <ol className="indented">
-                                        <li>Go to your <strong>Applications</strong> folder</li>
-                                        <li>Find and open <strong>Scratch Link</strong></li>
-                                    </ol>
-                                </dd>
-
-                                <dt><FormattedMessage id="faq.makeGameTitle" /></dt>
-                                <dd><FormattedHTMLMessage id="faq.makeGameBody" /></dd>
-                            </dl>
-                        </section>
-                        <section id="bluetooth">
-                            <dl>
-                                <dt><FormattedMessage id="faq.aboutScratchTitle" /></dt>
-                                <dd><FormattedHTMLMessage id="faq.aboutScratchBody" /></dd>
-
-                                <dt><FormattedMessage id="faq.makeGameTitle" /></dt>
-                                <dd><FormattedHTMLMessage id="faq.makeGameBody" /></dd>
-                            </dl>
-                        </section>
+                        <h2><FormattedMessage id="microbit.faqTitle" /></h2>
+                        <h3 className="faq-title">Close other copies of Scratch</h3>
+                        <p>Only one copy of Scratch can connect with the micro:bit at a time. If you have Scratch open in other browser tabs, close it and try again.</p>
+                        <h3 className="faq-title">Make sure no other computer is connected to your micro:bit</h3>
+                        <p>Only one computer can be connected to an micro:bit at a time. If you have another computer connected to your micro:bit, disconnect the micro:bit or close Scratch on that computer and try again.</p>
+                        <h3 className="faq-title">Make sure you aren’t hitting the “reset” button</h3>
+                        <p>Sometimes while using the micro:bit you can accidentally press the “reset” button on the back in-between the USB and power ports. Make sure you keep your fingers (and toes) away from it while using Scratch!</p>
                     </div>
-                    <nav className="faq-links">
-                        <ol>
-                            <li><a href="#scratch-link"><FormattedMessage id="microbit.scratchLinkFAQ" /></a></li>
-                            <li><a href="#bluetooth"><FormattedMessage id="microbit.bluetoothFAQ" /></a></li>
-                        </ol>
-                    </nav>
                 </div>
             </div>
         );
