@@ -195,7 +195,7 @@ class MicroBit extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/microbit/mbit-connect-1.png" />
                                         </div>
-                                        <p>Turn on your microbit by holding down the center button.</p>
+                                        <p>Power your micro:bit with USB or a battery pack.</p>
                                     </div>
                                 </div>
                                 <div className="step">
@@ -257,7 +257,7 @@ class MicroBit extends React.Component {
                             </div>
                         </FlexRow>
                         <div className="section-separator" />
-                        <h3>Sample Projects</h3>
+                        <h3>Starter Projects</h3>
                         <FlexRow className="steps">
                             <a
                                 download
