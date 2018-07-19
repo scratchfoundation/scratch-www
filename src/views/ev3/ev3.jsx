@@ -109,8 +109,9 @@ class EV3 extends React.Component {
                                                 this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'
                                             }.zip`}
                                         >
-                                            <button className="button">Download</button>
-                                        </a>
+                                            <button className="button">
+                                            Download for {this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'}
+                                            </button>                                        </a>
                                     </FlexRow>
                                 </FlexRow>
 
