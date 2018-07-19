@@ -44,22 +44,25 @@ class MicroBit extends React.Component {
                         <FlexRow className="column extension-info">
                             <FlexRow className="column extension-copy">
                                 <h2><img src="/images/microbit/microbit.svg" />micro:bit</h2>
-                                <span>
-                                    <a
-                                        href="http://microbit.org/"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
+                                <FormattedMessage
+                                    id="microbit.headerText"
+                                    values={{
+                                        microbitLink: (
+                                            <a
+                                                href="http://microbit.org/"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                            >
                                       micro:bit
-                                    </a> is a tiny circuit board designed to help kids
-                                    learn to code and create with technology. It has many features
-                                    including an LED display, buttons, and a motion sensor.
-                                    You can connect it to Scratch and build creative projects
-                                    that combine the magic of the digital and physical worlds.
-                                </span>
+                                            </a>
+                                        )
+                                    }}
+                                />
                             </FlexRow>
                             <FlexRow className="column extension-requirements-container">
-                                <span className="requirements-header">Requirements</span>
+                                <span className="requirements-header">
+                                    <FormattedMessage id="microbit.requirements" />
+                                </span>
                                 <FlexRow className="extension-requirements">
                                     <span>
                                         <img src="/svgs/extensions/windows.svg" />
@@ -91,19 +94,20 @@ class MicroBit extends React.Component {
                 />
                 <div className="blue install-scratch-link">
                     <FlexRow className="inner column">
-                        <h2>Install Scratch Link</h2>
+                        <h2><FormattedMessage id="microbit.installScratchLink" /></h2>
                         <FlexRow className="steps">
                             <div className="step">
                                 <FlexRow className="step-number-row">
                                     <div className="step-number">1</div>
                                     <FlexRow className="step-content">
                                         <span className="step-description">
-                                            Download and install ScratchLink.
+                                            <FormattedMessage id="microbit.installScratchLinkStep" />
                                         </span>
                                         <a className="step-image badge">
                                             <img
-                                                // eslint-disable-next-line max-len
-                                                src={`/svgs/app-store-badges/${this.state.OS === this.OS_ENUM.WINDOWS ? 'microsoft' : 'apple'}-app-store-badge.svg`}
+                                                src={`/svgs/app-store-badges/${
+                                                    this.state.OS === this.OS_ENUM.WINDOWS ? 'microsoft' : 'apple'
+                                                }-app-store-badge.svg`}
                                             />
                                         </a>
                                     </FlexRow>
@@ -115,8 +119,7 @@ class MicroBit extends React.Component {
                                     <div className="step-number">2</div>
                                     <FlexRow className="step-content">
                                         <span className="step-description">
-                                            Start ScratchLink and make sure it is running.
-                                            It should appear in your toolbar.
+                                            <FormattedMessage id="microbit.startScratchLink" />
                                         </span>
                                         <div className="step-image">
                                             <img
