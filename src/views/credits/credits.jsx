@@ -176,12 +176,6 @@ const Credits = () => (
             
             <li>
                 <img
-                    alt="Kathy Avatar"
-                    src="//cdn2.scratch.mit.edu/get_image/user/default_60x60.png"
-                />
-                <span className="name">Kathy Wu</span>
-            <li>
-                <img
                     alt="Matthew Avatar"
                     src="//cdn.scratch.mit.edu/get_image/user/4373707_170x170.png"
                 />
@@ -194,6 +188,14 @@ const Credits = () => (
                     src="//cdn.scratch.mit.edu/get_image/user/2678986_170x170.png"
                 />
                 <span className="name">Moran Tsur</span>
+            </li>
+
+            <li>
+                <img
+                    alt="Kathy Avatar"
+                    src="//cdn.scratch.mit.edu/get_image/user/26779669_170x170.png"
+                />
+                <span className="name">Kathy Wu</span>
             </li>
 
             <li>
