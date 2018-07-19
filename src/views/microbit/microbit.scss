@@ -147,7 +147,8 @@
             border-radius: 1rem;
             background-color: $ui-blue-10percent;
             padding: 0 2rem;
-            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
 
             .tip-content {
                 align-items: flex-start;
