@@ -262,7 +262,8 @@ class EV3 extends React.Component {
                                     <div className="step-number">2</div>
                                     <FlexRow className="step-content">
                                         <span className="step-description">
-                                            Find the <strong>motor A turn this way</strong> block and click on it.
+                                            Find the <strong>&ldquo;motor A turn this way&rdquo;</strong> block
+                                             and click on it.
                                         </span>
                                         <div className="step-image">
                                             <img src="/images/ev3/motor-turn-block.png" />
