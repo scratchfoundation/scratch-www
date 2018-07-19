@@ -1,3 +1,8 @@
+/*
+ * TODO: Refactor this file and views/microbit/microbit.jsx
+ * into something that can be used in both places (scratch-www#1982)
+ */
+
 const bindAll = require('lodash.bindall');
 const injectIntl = require('react-intl').injectIntl;
 const FormattedMessage = require('react-intl').FormattedMessage;
