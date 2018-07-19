@@ -164,6 +164,10 @@
 
             .tip-content {
                 align-items: flex-start;
+
+                p {
+                    margin-top: 0;
+                }
             }
         }
     }
