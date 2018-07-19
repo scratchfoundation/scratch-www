@@ -275,7 +275,11 @@ class EV3 extends React.Component {
                         <div className="section-separator" />
                         <h3>Starter Projects</h3>
                         <FlexRow className="steps">
-                            <a className="project-card">
+                            <a
+                                download
+                                className="project-card"
+                                href="https://downloads.scratch.mit.edu/ev3/ev3-wave-hello.sb3"
+                            >
                                 <div className="project-card-image">
                                     <img src="/images/ev3/starter-wave-hello.png" />
                                 </div>
@@ -286,7 +290,11 @@ class EV3 extends React.Component {
                                     </p>
                                 </div>
                             </a>
-                            <a className="project-card">
+                            <a
+                                download
+                                className="project-card"
+                                href="https://downloads.scratch.mit.edu/ev3/ev3-distance-instrument.sb3"
+                            >
                                 <div className="project-card-image">
                                     <img src="/images/ev3/starter-distance-instrument.png" />
                                 </div>
@@ -297,7 +305,11 @@ class EV3 extends React.Component {
                                     </p>
                                 </div>
                             </a>
-                            <a className="project-card">
+                            <a
+                                download
+                                className="project-card"
+                                href="https://downloads.scratch.mit.edu/ev3/ev3-space-tacos.sb3"
+                            >
                                 <div className="project-card-image">
                                     <img src="/images/ev3/starter-flying-game.png" />
                                 </div>
