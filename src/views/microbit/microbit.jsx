@@ -215,15 +215,6 @@ class MicroBit extends React.Component {
                                     </div>
                                 </div>
                             </FlexRow>
-                            <div className="tip-box">
-                                <FlexRow className="column tip-content">
-                                    <p>
-                                        <strong>Tip:</strong> You can be sure to connect to the right
-                                        micro:bit by matching the name shown in Scratch with the name
-                                        scrolling on the micro:bit display.
-                                    </p>
-                                </FlexRow>
-                            </div>
                         </FlexRow>
                     </FlexRow>
                 </div>
