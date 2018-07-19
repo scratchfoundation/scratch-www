@@ -10,9 +10,16 @@
         padding: 4rem 0;
     }
 
-    h2,
+    h2 {
+        margin-bottom: 1rem;
+    }
+
     h3 {
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    span {
+        line-height: 1.7rem;
     }
 
     .download {
@@ -120,8 +127,19 @@
     }
 
     .install-scratch-link {
+        padding: 2rem 0;
+
         .step-image.badge {
             height: initial;
+        }
+
+        .download-button {
+            display: flex;
+            align-items: center;
+
+            img {
+                margin-left: .5rem;
+            }
         }
     }
 
@@ -183,55 +201,40 @@
     }
 
     .faq {
-        .faq-links {
-            float: right;
-            border-left: 1px solid $ui-border;
-            width: 30%;
-
-            ol {
-                list-style: none;
-            }
+        p {
+            margin-bottom: 1.25rem;
+            margin-left: 0;
+            max-width: $cols8;
+            text-align: left;
         }
 
-        .faq-content {
-            float: left;
-            width: 60%;
+        .faq-title {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
 
-            p {
-                margin-bottom: 1.25rem;
-                margin-left: 0;
-                max-width: $cols8;
-                text-align: left;
-            }
+        ul {
+            max-width: $cols8;
+        }
 
-            .faq-title {
-                margin-bottom: 1rem;
-                font-size: 1.4rem;
-            }
-
+        section {
             ul {
                 max-width: $cols8;
             }
 
-            section {
-                ul {
-                    max-width: $cols8;
-                }
-
-                .nav-spacer {
-                    display: block;
-                    visibility: hidden;
-                    margin-top: -50px; // height of  nav bar
-                    height: 50px;
-                }
-
+            .nav-spacer {
+                display: block;
+                visibility: hidden;
+                margin-top: -50px; // height of  nav bar
+                height: 50px;
             }
 
-            ul,
-            ol {
-                &.indented {
-                    padding-left: $cols1 + (20px / $em);
-                }
+        }
+
+        ul,
+        ol {
+            &.indented {
+                padding-left: $cols1 + (20px / $em);
             }
         }
     }

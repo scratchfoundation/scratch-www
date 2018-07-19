@@ -108,11 +108,12 @@ class MicroBit extends React.Component {
                                                 this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'
                                             }.zip`}
                                         >
-                                            <button className="button">
+                                            <button className="button download-button">
                                                 {this.state.OS === this.OS_ENUM.WINDOWS ?
                                                     <FormattedMessage id="microbit.windowsDownload" /> :
                                                     <FormattedMessage id="microbit.macosDownload" />
                                                 }
+                                                <img src="/svgs/extensions/download-white.svg" />
                                             </button>
                                         </a>
                                     </FlexRow>
@@ -351,21 +352,19 @@ class MicroBit extends React.Component {
                     </FlexRow>
                 </div>
                 <div className="faq inner">
-                    <div className="faq-content">
-                        <h2><FormattedMessage id="microbit.troubleshootingTitle" /></h2>
-                        <h3 className="faq-title"><FormattedMessage id="microbit.closeScratchCopiesTitle" /></h3>
-                        <p>
-                            <FormattedMessage id="microbit.closeScratchCopiesText" />
-                        </p>
-                        <h3 className="faq-title"><FormattedMessage id="microbit.otherComputerConnectedTitle" /></h3>
-                        <p>
-                            <FormattedMessage id="microbit.otherComputerConnectedText" />
-                        </p>
-                        <h3 className="faq-title"><FormattedMessage id="microbit.resetButtonTitle" /></h3>
-                        <p>
-                            <FormattedMessage id="microbit.resetButtonText" />
-                        </p>
-                    </div>
+                    <h2><FormattedMessage id="microbit.troubleshootingTitle" /></h2>
+                    <h3 className="faq-title"><FormattedMessage id="microbit.closeScratchCopiesTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="microbit.closeScratchCopiesText" />
+                    </p>
+                    <h3 className="faq-title"><FormattedMessage id="microbit.otherComputerConnectedTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="microbit.otherComputerConnectedText" />
+                    </p>
+                    <h3 className="faq-title"><FormattedMessage id="microbit.resetButtonTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="microbit.resetButtonText" />
+                    </p>
                 </div>
             </div>
         );

@@ -109,11 +109,12 @@ class EV3 extends React.Component {
                                                 this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'
                                             }.zip`}
                                         >
-                                            <button className="button">
+                                            <button className="button download-button">
                                                 {this.state.OS === this.OS_ENUM.WINDOWS ?
                                                     <FormattedMessage id="ev3.windowsDownload" /> :
                                                     <FormattedMessage id="ev3.macosDownload" />
                                                 }
+                                                <img src="/svgs/extensions/download-white.svg" />
                                             </button>
                                         </a>
                                     </FlexRow>
@@ -329,51 +330,49 @@ class EV3 extends React.Component {
                     </FlexRow>
                 </div>
                 <div className="faq inner">
-                    <div className="faq-content">
-                        <h2><FormattedMessage id="ev3.troubleshootingTitle" /></h2>
-                        <h3 className="faq-title"><FormattedMessage id="ev3.makeSurePairedTitle" /></h3>
-                        <p>
-                            <FormattedMessage
-                                id="ev3.makeSurePairedText"
-                                values={{
-                                    pairingInstructionLink: (
-                                        <a
-                                            href="https://www.lego.com/en-us/service/help/products/themes-sets/mindstorms/connecting-your-lego-mindstorms-ev3-to-bluetooth-408100000007886"
-                                            rel="noopener noreferrer"
-                                            target="_blank"
-                                        >
-                                            <FormattedMessage id="ev3.pairingInstructionText" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                        <h3 className="faq-title"><FormattedMessage id="ev3.closeScratchCopiesTitle" /></h3>
-                        <p>
-                            <FormattedMessage id="ev3.closeScratchCopiesText" />
-                        </p>
-                        <h3 className="faq-title"><FormattedMessage id="ev3.otherComputerConnectedTitle" /></h3>
-                        <p>
-                            <FormattedMessage id="ev3.otherComputerConnectedText" />
-                        </p>
-                        <h3 className="faq-title"><FormattedMessage id="ev3.updateFirmwareTitle" /></h3>
-                        <p>
-                            <FormattedMessage
-                                id="ev3.updateFirmwareText"
-                                values={{
-                                    firmwareUpdateLink: (
-                                        <a
-                                            href="https://education.lego.com/en-us/support/mindstorms-ev3/firmware-update"
-                                            rel="noopener noreferrer"
-                                            target="_blank"
-                                        >
-                                            <FormattedMessage id="ev3.firmwareUpdateText" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                    </div>
+                    <h2><FormattedMessage id="ev3.troubleshootingTitle" /></h2>
+                    <h3 className="faq-title"><FormattedMessage id="ev3.makeSurePairedTitle" /></h3>
+                    <p>
+                        <FormattedMessage
+                            id="ev3.makeSurePairedText"
+                            values={{
+                                pairingInstructionLink: (
+                                    <a
+                                        href="https://www.lego.com/en-us/service/help/products/themes-sets/mindstorms/connecting-your-lego-mindstorms-ev3-to-bluetooth-408100000007886"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="ev3.pairingInstructionText" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </p>
+                    <h3 className="faq-title"><FormattedMessage id="ev3.closeScratchCopiesTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="ev3.closeScratchCopiesText" />
+                    </p>
+                    <h3 className="faq-title"><FormattedMessage id="ev3.otherComputerConnectedTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="ev3.otherComputerConnectedText" />
+                    </p>
+                    <h3 className="faq-title"><FormattedMessage id="ev3.updateFirmwareTitle" /></h3>
+                    <p>
+                        <FormattedMessage
+                            id="ev3.updateFirmwareText"
+                            values={{
+                                firmwareUpdateLink: (
+                                    <a
+                                        href="https://education.lego.com/en-us/support/mindstorms-ev3/firmware-update"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="ev3.firmwareUpdateText" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </p>
                 </div>
             </div>
         );
