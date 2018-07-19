@@ -146,7 +146,7 @@ class MicroBit extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/microbit/mbit-usb.png" />
                                         </div>
-                                        <p>Connect your micro:bit to your computer with a USB cable</p>
+                                        <p>Connect a micro:bit to your computer with a USB cable</p>
                                     </div>
                                 </div>
                                 <div className="step">
@@ -157,7 +157,7 @@ class MicroBit extends React.Component {
                                         <div className="step-image">
                                             <img src="/images/microbit/mbit-hex-download.png" />
                                         </div>
-                                        <a className="download">Download micro:bit HEX</a>
+                                        <a className="download">Download the Scratch micro:bit hex file</a>
                                     </div>
                                 </div>
                                 <div className="step">
@@ -166,9 +166,13 @@ class MicroBit extends React.Component {
                                     </FlexRow>
                                     <div className="step-content">
                                         <div className="step-image">
-                                            <img src="/images/microbit/mac-copy-hex.png" />
+                                            <img
+                                                src={`/images/microbit/${
+                                                    this.state.OS === this.OS_ENUM.WINDOWS ? 'win' : 'mac'
+                                                }-copy-hex.png`}
+                                            />
                                         </div>
-                                        <p>Copy the HEX file onto your micro:bit to install it</p>
+                                        <p>Drag and drop the hex file onto your micro:bit</p>
                                     </div>
                                 </div>
                             </FlexRow>
