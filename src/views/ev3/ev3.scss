@@ -16,8 +16,7 @@
     }
 
     .download {
-        display: flex;
-        align-items: center;
+        display: inline-block;
 
         &::after {
             display: inline-block;
@@ -26,6 +25,7 @@
             background-repeat: no-repeat;
             width: 20px;
             height: 20px;
+            vertical-align: text-top;
             content: "";
         }
     }
