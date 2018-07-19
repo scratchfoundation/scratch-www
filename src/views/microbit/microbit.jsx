@@ -45,11 +45,17 @@ class MicroBit extends React.Component {
                             <FlexRow className="column extension-copy">
                                 <h2><img src="/images/microbit/microbit.svg" />micro:bit</h2>
                                 <span>
-                                The micro:bit is a tiny circuit board designed to help kids
-                                learn to code and create with technology. It has many features
-                                including an LED display, buttons, and a motion sensor.
-                                You can connect it to Scratch and build creative projects
-                                that combine the magic of the digital and physical worlds.
+                                    <a
+                                        href="http://microbit.org/"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                      micro:bit
+                                    </a> is a tiny circuit board designed to help kids
+                                    learn to code and create with technology. It has many features
+                                    including an LED display, buttons, and a motion sensor.
+                                    You can connect it to Scratch and build creative projects
+                                    that combine the magic of the digital and physical worlds.
                                 </span>
                             </FlexRow>
                             <FlexRow className="column extension-requirements-container">
@@ -113,7 +119,12 @@ class MicroBit extends React.Component {
                                             It should appear in your toolbar.
                                         </span>
                                         <div className="step-image">
-                                            <img src="/images/microbit/mac-toolbar.png" />
+                                            <img
+                                                className="screenshot"
+                                                src={`/images/scratchlink/${
+                                                    this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'
+                                                }-toolbar.png`}
+                                            />
                                         </div>
                                     </FlexRow>
                                 </FlexRow>
