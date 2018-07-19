@@ -1,7 +1,6 @@
 const bindAll = require('lodash.bindall');
 const injectIntl = require('react-intl').injectIntl;
 const FormattedMessage = require('react-intl').FormattedMessage;
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const React = require('react');
 
 
@@ -110,7 +109,10 @@ class MicroBit extends React.Component {
                                             }.zip`}
                                         >
                                             <button className="button">
-                                            Download for {this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'}
+                                                {this.state.OS === this.OS_ENUM.WINDOWS ?
+                                                    <FormattedMessage id="microbit.windowsDownload" /> :
+                                                    <FormattedMessage id="microbit.macosDownload" />
+                                                }
                                             </button>
                                         </a>
                                     </FlexRow>
@@ -350,13 +352,19 @@ class MicroBit extends React.Component {
                 </div>
                 <div className="faq inner">
                     <div className="faq-content">
-                        <h2><FormattedMessage id="microbit.faqTitle" /></h2>
-                        <h3 className="faq-title">Close other copies of Scratch</h3>
-                        <p>Only one copy of Scratch can connect with the micro:bit at a time. If you have Scratch open in other browser tabs, close it and try again.</p>
-                        <h3 className="faq-title">Make sure no other computer is connected to your micro:bit</h3>
-                        <p>Only one computer can be connected to an micro:bit at a time. If you have another computer connected to your micro:bit, disconnect the micro:bit or close Scratch on that computer and try again.</p>
-                        <h3 className="faq-title">Make sure you aren’t hitting the “reset” button</h3>
-                        <p>Sometimes while using the micro:bit you can accidentally press the “reset” button on the back in-between the USB and power ports. Make sure you keep your fingers (and toes) away from it while using Scratch!</p>
+                        <h2><FormattedMessage id="microbit.troubleshootingTitle" /></h2>
+                        <h3 className="faq-title"><FormattedMessage id="microbit.closeScratchCopiesTitle" /></h3>
+                        <p>
+                            <FormattedMessage id="microbit.closeScratchCopiesText" />
+                        </p>
+                        <h3 className="faq-title"><FormattedMessage id="microbit.otherComputerConnectedTitle" /></h3>
+                        <p>
+                            <FormattedMessage id="microbit.otherComputerConnectedText" />
+                        </p>
+                        <h3 className="faq-title"><FormattedMessage id="microbit.resetButtonTitle" /></h3>
+                        <p>
+                            <FormattedMessage id="microbit.resetButtonText" />
+                        </p>
                     </div>
                 </div>
             </div>
