@@ -249,34 +249,34 @@ class MicroBit extends React.Component {
                         <FlexRow className="steps">
                             <a className="project-card">
                                 <div className="project-card-image">
-                                    <img src="/images/microbit/animation.png" />
+                                    <img src="/images/microbit/starter-heart.png" />
                                 </div>
                                 <div className="project-card-info">
-                                    <h4>Animation thing</h4>
+                                    <h4>Heart Beat</h4>
                                     <p>
-                                        Make a puppet robot and have a friendly chat.
+                                        Press the buttons to animate the heart.
                                     </p>
                                 </div>
                             </a>
                             <a className="project-card">
                                 <div className="project-card-image">
-                                    <img src="/images/microbit/music.png" />
+                                    <img src="/images/microbit/starter-guitar.png" />
                                 </div>
                                 <div className="project-card-info">
-                                    <h4>Music thing</h4>
+                                    <h4>Tilt guitar</h4>
                                     <p>
-                                        Move your body in front of the sensor to make music.
+                                        Make music by tilting your micro:bit.
                                     </p>
                                 </div>
                             </a>
                             <a className="project-card">
                                 <div className="project-card-image">
-                                    <img src="/images/microbit/game.png" />
+                                    <img src="/images/microbit/starter-fish.png" />
                                 </div>
                                 <div className="project-card-info">
-                                    <h4>Game thing</h4>
+                                    <h4>Ocean Adventure</h4>
                                     <p>
-                                        Build your own controller to fly around in space.
+                                        Build your own controller and swim toward the saxophones.
                                     </p>
                                 </div>
                             </a>
