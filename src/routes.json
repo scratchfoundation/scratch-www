@@ -302,6 +302,20 @@
         "title": "LEGO WeDo 2.0"
     },
     {
+        "name": "ev3",
+        "pattern": "^/ev3/?$",
+        "routeAlias": "/ev3/?$",
+        "view": "ev3/ev3",
+        "title": "LEGO MINDSTORMS EV3"
+    },
+    {
+        "name": "microbit",
+        "pattern": "^/microbit/?$",
+        "routeAlias": "/microbit/?$",
+        "view": "microbit/microbit",
+        "title": "micro:bit"
+    },
+    {
         "name": "donate-redirect",
         "pattern": "^/info/donate/?",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",

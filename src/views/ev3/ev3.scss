@@ -1,0 +1,313 @@
+// TODO: Refactor this file and views/microbit/microbit.scss into something that can be used in both places (scratch-www#1982)
+
+@import "../../colors";
+@import "../../frameless";
+
+#view {
+    padding: 0;
+}
+
+.ev3 {
+    &>div {
+        padding: 4rem 0;
+    }
+
+    h2 {
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        margin-bottom: 2rem;
+    }
+
+    span {
+        line-height: 1.7rem;
+    }
+
+    .download {
+        display: inline-block;
+
+        &::after {
+            display: inline-block;
+            margin-left: .5rem;
+            background-image: url("/svgs/extensions/download.svg");
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;
+            vertical-align: text-top;
+            content: "";
+        }
+    }
+
+    .extension-header {
+        background-color: $ui-aqua;
+        background-image: url("/images/ev3/ev3-pattern.svg");
+        background-size: cover;
+        color: $ui-white;
+
+        .inner {
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
+
+        .extension-info {
+            max-width: $cols7;
+            align-items: flex-start;
+
+            .extension-copy {
+                margin-bottom: 5rem;
+                align-items: flex-start;
+
+                h2 {
+                    display: flex;
+                    margin-bottom: 2rem;
+                    color: $ui-white;
+                }
+
+                h2 img {
+                    padding-right: .5rem;
+                    max-height: 100%;
+                }
+
+                span {
+                    font-size: 1.2rem;
+                }
+
+                a {
+                    border-bottom: 1px solid $ui-white;
+                    color: $ui-white;
+                }
+            }
+
+            .extension-requirements-container {
+                font-weight: 500;
+                align-items: flex-start;
+
+                .requirements-header {
+                    margin-bottom: 1.5rem;
+                }
+
+                .extension-requirements {
+                    justify-content: space-between;
+                }
+
+                .extension-requirements span {
+                    display: flex;
+                    margin-right: 1rem;
+                    font-size: 15px; // TODO: change to rem later
+                    align-items: center;
+                }
+
+                .extension-requirements span img {
+                    padding-right: .5rem;
+                }
+            }
+        }
+
+        .extension-image {
+            width: 100%;
+            max-width: $cols5;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+        }
+    }
+
+    .os-chooser {
+        padding: 0;
+    }
+
+    .install-scratch-link,
+    .getting-started,
+    .faq {
+        .inner {
+            align-items: flex-start;
+        }
+    }
+
+    .install-scratch-link {
+        padding: 2rem 0;
+
+        .step-image.badge {
+            height: initial;
+        }
+
+        .download-button {
+            display: flex;
+            align-items: center;
+
+            img {
+                margin-left: .5rem;
+            }
+        }
+    }
+
+    .screenshot {
+        border-radius: .5rem;
+    }
+
+    .getting-started {
+        .connecting-ev3 {
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        .tip-box {
+            margin-top: 4rem;
+            border: 1px solid $ui-blue-25percent;
+            border-radius: 1rem;
+            background-color: $ui-blue-10percent;
+            padding: 2rem 3rem;
+            width: 100%;
+            box-sizing: border-box;
+
+            .tip-content {
+                align-items: flex-start;
+
+                p {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+
+    .things-to-try {
+        .project-card {
+            margin: 0 1.5rem;
+            border: 1px solid $ui-border;
+            border-radius: .5rem;
+            background-color: $ui-white;
+            overflow: hidden;
+            flex-basis: 0;
+            flex-grow: 1;
+        }
+
+        .project-card-image {
+            img {
+                max-width: 100%;
+            }
+        }
+
+        .project-card-info {
+            padding: 1rem;
+
+            p {
+                margin: .2rem 0;
+            }
+        }
+
+        .section-separator {
+            margin: 4rem 0;
+            border-top: 1px solid $ui-border;
+            width: 100%;
+        }
+    }
+
+    .faq {
+        p {
+            margin-bottom: 1.25rem;
+            margin-left: 0;
+            max-width: $cols8;
+            text-align: left;
+        }
+
+        .faq-title {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        ul {
+            max-width: $cols8;
+        }
+
+        section {
+            ul {
+                max-width: $cols8;
+            }
+
+            .nav-spacer {
+                display: block;
+                visibility: hidden;
+                margin-top: -50px; // height of  nav bar
+                height: 50px;
+            }
+
+        }
+
+        ul,
+        ol {
+            &.indented {
+                padding-left: $cols1 + (20px / $em);
+            }
+        }
+    }
+
+    .blue {
+        background-color: $ui-blue-10percent;
+    }
+
+    .inner {
+        max-width: $cols12;
+    }
+}
+
+.steps {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.step {
+    flex-basis: 0;
+    flex-grow: 1;
+
+    .step-number-row {
+        padding-bottom: 1.5rem;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .step-content {
+            text-align: left;
+            align-items: flex-start;
+
+            .step-description {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .step-number {
+            display: inline-flex;
+            border-radius: 2rem;
+            background-color: $ui-blue;
+            width: 2rem;
+            height: 2rem;
+            color: $ui-white;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+    }
+
+    .step-content {
+        display: flex;
+        padding: 0 2rem;
+        text-align: center;
+        flex-flow: column;
+        align-items: center;
+        box-sizing: border-box;
+
+        .step-image {
+            height: 10rem;
+
+            img {
+                width: auto;
+                height: 100%;
+            }
+        }
+    }
+}
