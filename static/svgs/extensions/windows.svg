@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>windows</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="windows" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M3,4.98829432 L8.72135617,4.20910483 L8.72385717,9.72781594 L3.00522645,9.76038184 L3,4.98829432 Z M8.71863073,10.3636789 L8.7230716,15.8871997 L3.00444088,15.1009721 L3.00412024,10.3266289 L8.71863073,10.3636789 Z M9.41219306,4.10717308 L16.9982365,3 L16.9982365,9.65762765 L9.41219306,9.71785203 L9.41219306,4.10717308 Z M17,10.4156228 L16.9982204,17.0432705 L9.41217703,15.9725863 L9.40154778,10.403214 L17,10.4156228 Z" id="Windows-Icon" fill="#FFFFFF" fill-rule="nonzero"></path>
+    </g>
+</svg>

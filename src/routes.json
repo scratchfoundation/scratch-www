@@ -205,11 +205,17 @@
         "title": "Scratch 3.0 Preview"
     },
     {
-        "name": "preview-faq",
-        "pattern": "^/preview-faq/?$",
-        "routeAlias": "/preview-faq/?$",
+        "name": "3faq",
+        "pattern": "^/3faq/?$",
+        "routeAlias": "/3faq/?$",
         "view": "preview-faq/preview-faq",
-        "title": "Scratch 3.0 Preview FAQ"
+        "title": "Scratch 3.0 FAQ"
+    },
+    {
+        "name": "preview-faq-redirect",
+        "pattern": "^/preview-faq/?$",
+        "routeAlias": "/preview-faq",
+        "redirect": "/3faq"
     },
     {
         "name": "privacypolicy",
@@ -294,6 +300,20 @@
         "routeAlias": "/wedo/?$",
         "view": "wedo2/wedo2",
         "title": "LEGO WeDo 2.0"
+    },
+    {
+        "name": "ev3",
+        "pattern": "^/ev3/?$",
+        "routeAlias": "/ev3/?$",
+        "view": "ev3/ev3",
+        "title": "LEGO MINDSTORMS EV3"
+    },
+    {
+        "name": "microbit",
+        "pattern": "^/microbit/?$",
+        "routeAlias": "/microbit/?$",
+        "view": "microbit/microbit",
+        "title": "micro:bit"
     },
     {
         "name": "donate-redirect",
