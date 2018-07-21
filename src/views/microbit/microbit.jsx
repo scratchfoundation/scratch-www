@@ -84,6 +84,10 @@ class MicroBit extends React.Component {
                                         <img src="/svgs/extensions/scratch-link.svg" />
                                         Scratch Link
                                     </span>
+                                     <span>
+                                        <img src="/svgs/extensions/microbit.svg" />
+                                        micro:bit
+                                    </span>
                                 </FlexRow>
                             </FlexRow>
                         </FlexRow>
