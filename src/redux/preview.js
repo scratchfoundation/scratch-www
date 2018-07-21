@@ -174,9 +174,9 @@ module.exports.setCuratedStudios = items => ({
     items: items
 });
 
-module.exports.addToProjectStudios = studioId => ({
+module.exports.addToProjectStudios = studioStub => ({
     type: 'ADD_TO_PROJECT_STUDIOS',
-    studioId: studioId
+    studioStub: studioStub
 });
 
 module.exports.removeFromProjectStudios = studioId => ({
