@@ -136,7 +136,6 @@ class Search extends React.Component {
         } else if (this.state.loadMore) {
             searchAction = (
                 <Button
-                    className="white"
                     onClick={this.handleGetSearchMore}
                 >
                     <FormattedMessage id="general.loadMore" />

@@ -135,7 +135,7 @@
             cursor: pointer; 
 
             p {
-                color: darken($ui-blue, 15);
+                color: $ui-blue-dark;
             }
         }
     }

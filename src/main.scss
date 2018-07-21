@@ -6,7 +6,7 @@ html,
 body {
     display: block;
     margin: 0;
-    background-color: darken($ui-blue, 8%);
+    background-color: $ui-blue-dark;
     padding: 0;
     color: $type-gray;
     font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
@@ -22,34 +22,34 @@ h4 {
     padding: 0;
 
     color: $header-gray;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 h1 {
     font-size: 2.5rem;
-    font-weight: 900;
+    font-weight: bold;
 }
 
 h2 {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: bold;
 }
 
 h3 {
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 h4 {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 h5 {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: .85rem;
-    font-weight: 700;
+    font-weight: bold;
 }
 
 p {
@@ -69,8 +69,8 @@ p {
 
         margin: 1.5em 0;
         border: 1px solid $active-gray;
-        border-radius: 5px;
-        background-color: lighten($ui-blue, 40);
+        border-radius: .5rem;
+        background-color: $ui-blue-10percent;
         padding: 1.25em;
 
         &.orange {
@@ -85,14 +85,14 @@ p {
 
 b,
 strong {
-    font-weight: 500;
+    font-weight: bold;
 }
 
 /* Links */
 a {
     cursor: pointer;
     color: $ui-blue;
-    font-weight: 500;
+    font-weight: bold;
 
     &:link,
     &:visited,
@@ -103,17 +103,15 @@ a {
 
     &:hover {
         text-decoration: none;
-        color: darken($ui-blue, 15);
+        color: $ui-blue-dark;
     }
 }
 
 /* Classes */
 .empty {
-    $bg-blue: #d9edf7;
-    $bg-blue-accent: #bce8f1;
-    border: 1px solid $bg-blue-accent;
+    border: 1px solid $active-gray;
     border-radius: 5px;
-    background-color: $bg-blue;
+    background-color: $ui-blue-10percent;
     padding: 10px;
     text-align: center;
     line-height: 2rem;
@@ -136,7 +134,7 @@ p {
 
 p {
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: normal;
 }
 
 ::selection {
@@ -149,7 +147,7 @@ ul {
 
     line-height: 1.5em;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: normal;
 
     li {
         margin: .75em 0;
@@ -159,10 +157,10 @@ ul {
 dl {
     line-height: 1.5rem;
     font-size: 1rem;
-    font-weight: 300;
+    font-weight: normal;
 
     dt {
-        font-weight: 700;
+        font-weight: bold;
     }
 
     dd {

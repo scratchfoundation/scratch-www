@@ -12,7 +12,7 @@ $base-bg: $ui-white;
     .title-banner {
         &.masthead {
             margin-bottom: 0;
-            background-color: darken($ui-blue, 10%);
+            background-color: $ui-blue-dark;
             padding: 0;
 
             h1 {
@@ -131,6 +131,7 @@ $base-bg: $ui-white;
         .button {
             display: block;
             margin: 0 auto;
+            width: 58.75rem;
         }
 
         .search-prompt {
@@ -160,6 +161,12 @@ $base-bg: $ui-white;
         .sort-controls {
             width: $cols4;
         }
+
+        #projectBox {
+            .button {
+                width: $cols4;
+          }
+        }
     }
 }
 
@@ -174,6 +181,12 @@ $base-bg: $ui-white;
         .sort-controls {
             width: $cols6;
         }
+
+        #projectBox {
+            .button {
+                width: $cols6;
+          }
+        }
     }
 }
 
@@ -186,6 +199,12 @@ $base-bg: $ui-white;
 
         .sort-controls {
             width: $cols8;
+        }
+
+        #projectBox {
+            .button {
+                width: $cols9;
+          }
         }
     }
 }
