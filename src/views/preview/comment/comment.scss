@@ -101,19 +101,19 @@
     }
 
     .comment-body {
-        margin-bottom: 24px;
+        margin-bottom: 1.5rem;
         min-width: 50%;
         flex-grow: 1;
         align-items: flex-start;
 
         .comment-bubble {
             position: relative;
-            margin-left: 10px;
+            margin-left: .5rem;
             border: 1px solid $active-gray;
             border-radius: 0 8px 8px 8px;
             background-color: $ui-white;
-            padding: 10px;
-            width: calc(100% - 10px);
+            padding: .5rem;
+            width: calc(100% - .5rem);
             box-sizing: border-box;
 
             &:before {
@@ -137,8 +137,8 @@
         }
 
         .comment-bottom-row {
-            padding-top: 10px;
-            font-size: 12px;
+            padding-top: .5rem;
+            font-size: .75rem;
             justify-content: space-between;
         }
     }
