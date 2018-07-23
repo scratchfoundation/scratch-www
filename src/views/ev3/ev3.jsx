@@ -14,8 +14,9 @@ const render = require('../../lib/render.jsx');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
+const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
 
-require('./ev3.scss');
+require('../../components/extension-landing/extension-landing.scss');
 
 class EV3 extends React.Component {
     constructor (props) {
@@ -97,60 +98,13 @@ class EV3 extends React.Component {
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
                 />
-                <div className="blue install-scratch-link">
-                    <FlexRow className="inner column">
-                        <h2><FormattedMessage id="ev3.installScratchLink" /></h2>
-                        <FlexRow className="steps">
-                            <div className="step">
-                                <FlexRow className="step-number-row">
-                                    <div className="step-number">1</div>
-                                    <FlexRow className="step-content">
-                                        <span className="step-description">
-                                            <FormattedMessage id="ev3.installScratchLinkStep" />
-                                        </span>
-                                        <a
-                                            className="step-image badge"
-                                            href={`https://downloads.scratch.mit.edu/link/${
-                                                this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                                            }.zip`}
-                                        >
-                                            <button className="button download-button">
-                                                {this.state.OS === this.OS_ENUM.WINDOWS ?
-                                                    <FormattedMessage id="ev3.windowsDownload" /> :
-                                                    <FormattedMessage id="ev3.macosDownload" />
-                                                }
-                                                <img src="/svgs/extensions/download-white.svg" />
-                                            </button>
-                                        </a>
-                                    </FlexRow>
-                                </FlexRow>
-
-                            </div>
-                            <div className="step">
-                                <FlexRow className="step-number-row">
-                                    <div className="step-number">2</div>
-                                    <FlexRow className="step-content">
-                                        <span className="step-description">
-                                            <FormattedMessage id="ev3.startScratchLink" />
-                                        </span>
-                                        <div className="step-image">
-                                            <img
-                                                className="screenshot"
-                                                src={`/images/scratchlink/${
-                                                    this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                                                }-toolbar.png`}
-                                            />
-                                        </div>
-                                    </FlexRow>
-                                </FlexRow>
-                            </div>
-                        </FlexRow>
-                    </FlexRow>
-                </div>
+                <InstallScratchLink
+                    currentOS={this.state.OS}
+                />
                 <div className="getting-started">
                     <FlexRow className="inner column">
                         <h2><FormattedMessage id="ev3.gettingStarted" /></h2>
-                        <FlexRow className="column connecting-ev3">
+                        <FlexRow className="column getting-started-section">
                             <h3><FormattedMessage id="ev3.connectingEV3" /></h3>
                             <FlexRow className="steps">
                                 <div className="step">
