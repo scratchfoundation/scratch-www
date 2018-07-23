@@ -94,8 +94,8 @@ jobs:
     - cd test/integration
     - npm install
     - cd -
-    script: npm run smoke
+    script: npm run smoke-sauce
 stages:
 - test
 - name: smoke
-  if: branch IN (travis) and type != pull_request
+  if: type != pull_request
