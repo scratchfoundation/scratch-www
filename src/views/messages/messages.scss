@@ -122,6 +122,7 @@
 .messages-social-loadmore {
     display: block;
     margin: 1rem auto;
+    width: 58.75rem;
 }
 
 .emoji-text.mod-comment {
@@ -137,6 +138,10 @@
     .comment-text {
         max-width: 9.75rem;
     }
+
+    .messages-social-loadmore {
+        width: $cols4;
+    }
 }
 
 @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
@@ -148,10 +153,18 @@
     .comment-text {
         max-width: 19.5rem;
     }
+
+    .messages-social-loadmore {
+        width: $cols6;
+    }
 }
 
 @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
     .comment-text {
         max-width: 23.75rem;
+    }
+
+    .messages-social-loadmore {
+        width: $cols8;
     }
 }

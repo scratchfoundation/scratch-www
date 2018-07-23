@@ -94,37 +94,37 @@
 
         &.sprite-1 {
             .circle {
-                background-color: $splash-green;
+                background-color: $ui-aqua;
             }
 
             .text {
                 top: 60px;
                 left: 50px;
-                color: $splash-green;
+                color: $ui-aqua;
             }
         }
 
         &.sprite-2 {
             .circle {
-                background-color: $splash-pink;
+                background-color: $ui-purple;
             }
 
             .text {
                 top: 77px;
                 left: 50px;
-                color: $splash-pink;
+                color: $ui-purple;
             }
         }
 
         &.sprite-3 {
             .circle {
-                background-color: $splash-blue;
+                background-color: $ui-blue;
             }
 
             .text {
                 top: 37px;
                 left: 45px;
-                color: $splash-blue;
+                color: $ui-blue;
             }
 
             .subtext {
@@ -145,19 +145,19 @@
 
             &.sprite-1 {
                 .circle {
-                    box-shadow: 0 0 10px 2px $splash-green;
+                    box-shadow: 0 0 10px 2px $ui-aqua;
                 }
             }
 
             &.sprite-2 {
                 .circle {
-                    box-shadow: 0 0 10px 2px $splash-pink;
+                    box-shadow: 0 0 10px 2px $ui-purple;
                 }
             }
 
             &.sprite-3 {
                 .circle {
-                    box-shadow: 0 0 10px 2px $splash-blue;
+                    box-shadow: 0 0 10px 2px $ui-blue;
                 }
             }
         }

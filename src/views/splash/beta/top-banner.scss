@@ -1,0 +1,82 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.beta-top-banner {
+    display: flex;
+    position: relative;
+    background-color: $ui-orange;
+    background-image: url("/images/beta/bg-pattern.png");
+    background-size: cover;
+    padding: 0;
+    height: 20rem;
+    overflow: hidden;
+    justify-content: center;
+
+    .beta-top-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        height: 15rem;
+    }
+
+    .beta-banner-images {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .beta-banner-image {
+        display: flex;
+        width: 27rem;
+        align-self: flex-end;
+
+        img {
+            max-width: 100%;
+            height: auto;
+            align-self: flex-end;
+        }
+
+        &.left {
+            margin-left: -2.5rem;
+        }
+
+        &.right {
+            margin-right: -2.5rem;
+        }
+    }
+
+    .beta-header,
+    .beta-copy,
+    .beta-try-it {
+        color: $ui-white;
+    }
+
+    .beta-header {
+        font-size: 2.2rem;
+    }
+
+    .beta-copy {
+        font-size: 1.3rem;
+    }
+
+    .beta-try-it {
+        border-radius: 10px;
+        padding: 1em 2em;
+        font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: $tablet) and (max-width: 1200px) {
+    .beta-top-banner {
+        height: 22rem;
+
+        .beta-top-container {
+            bottom: 4rem;
+        }
+
+        .beta-banner-image {
+            width: 20rem;
+        }
+    }
+}

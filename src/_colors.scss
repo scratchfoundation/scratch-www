@@ -1,6 +1,12 @@
 /* UI Primary Colors */
-$ui-blue: hsla(200, 90, 55, 1); // #25AFF4
-$ui-orange: hsla(35, 90, 55, 1); // #F49D25
+$ui-blue: hsla(215, 100, 65, 1); // #4C97FF Motion Primary
+$ui-blue-dark: hsla(215, 65, 55, 1); // #3373CC Motion Secondary
+$ui-blue-10percent: hsla(215, 100, 65, .1);
+$ui-blue-25percent:  hsla(215, 100, 65, .25);
+
+$ui-orange: hsla(38, 100, 55, 1); // #FFAB19 Control Primary
+$ui-orange-25percent: hsla(35, 90, 55, .25);
+
 $ui-light-gray: hsla(0, 0, 98, 1); //#FAFAFA
 $ui-gray: hsla(0, 0, 95, 1); //#F2F2F2
 $ui-dark-gray: hsla(0, 0, 70, 1); //#B3B3B3
@@ -9,21 +15,20 @@ $background-color: hsla(0, 0, 99, 1); //#FDFDFD
 
 
 /* UI Secondary Colors */
-$ui-aqua: hsla(170, 70, 50, 1); //#26D9BB
-$ui-purple: hsla(265, 55, 55, 1); //#824DCB
-$ui-yellow: hsla(45, 100, 50, 1); //#FFBF00
-$ui-white: #fff;
-
-$ui-border: hsla(0, 0, 85, 1); //#D9D9D9
-
 /* 3.0 colors */
 /* Using www naming convention for now, should be consistent with gui */
-$ui-green: hsla(163, 83, 40, 1); // #0fbd8c Pen Primary
-$ui-coral: hsla(350, 100, 70, 1); // #FF6680 More Primary
-$ui-coral-dark: hsla(350, 100, 60, 1); // #FF3355 More tertiary
-$ui-blue-10percent: hsla(215, 100, 65, .1);
-$ui-blue-25percent:  hsla(215, 100, 65, .25);
-$ui-orange-25percent: hsla(35, 90, 55, .25);
+$ui-aqua: hsla(163, 85, 40, 1); // #0FBD8C Extension Primary
+$ui-purple: hsla(260, 100, 70, 1); // #9966FF Looks Primary
+$ui-purple-dark: hsla(260, 60, 60, 1); // #774DCB Looks Secondary
+
+$ui-yellow: hsla(45, 100, 50, 1); // #FFBF00 Control Primary
+$ui-coral: hsla(350, 100, 70, 1); // #FF6680 More Blocks Primary
+$ui-coral-dark: hsla(350, 100, 60, 1); // #FF3355 More Blocks tertiary
+
+$ui-white: hsla(0, 100%, 100%, 1); //#FFF
+$ui-white-15percent: hsla(0, 100%, 100%, .15); //#FFF
+
+$ui-border: hsla(0, 0, 85, 1); //#D9D9D9
 
 /* Overlay UI Gray Colors */
 $active-gray: hsla(0, 0, 0, .1);
@@ -32,16 +37,11 @@ $box-shadow-gray: hsla(0, 0, 0, .25);
 $overlay-gray: hsla(0, 0, 0, .75);
 
 /* Typography Colors */
-$header-gray: hsla(0, 0, 42, 1); //#6B6B6B
-$type-gray: hsla(0, 0, 42, 1); //#6B6B6B
-$type-white: #fff;
+$header-gray: hsla(225, 15, 40, 1); //#575E75
+$type-gray: hsla(225, 15, 40, 1); //#575E75
+$type-white: hsla(0, 100, 100, 1); //#FFF
 
 $link-blue: $ui-blue;
-
-/* Component colors */
-$splash-green: #9c0;
-$splash-pink: #c2479d;
-$splash-blue: #199ed7;
 
 /* Down Deep */
 $dd-darkblue: hsla(195, 72.4, 17.1, 1);

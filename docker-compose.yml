@@ -5,7 +5,7 @@ volumes:
   intl_data:
 
 networks:
-  scratchapi_scratch_network:
+  scratch-api_scratch_network:
     external: true
 
 services:
@@ -14,7 +14,7 @@ services:
     hostname: scratch-www-app
     environment:
       - API_HOST=http://localhost:8491
-      - FALLBACK=http://scratchr2-app:8080
+      - FALLBACK=http://localhost:8080
     build:  
       context: ./
       dockerfile: Dockerfile
@@ -37,4 +37,4 @@ services:
     ports:
       - "8333:8333"
     networks:
-      - scratchapi_scratch_network
+      - scratch-api_scratch_network

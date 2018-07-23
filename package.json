@@ -6,8 +6,9 @@
     "start": "make start",
     "stop": "make stop",
     "test": "make test",
-    "smoke": "make smoke",
-    "smoke-verbose": "make smoke-verbose",
+    "smoke": "tap ./test/integration/smoke-testing/*.js --timeout=3600",
+    "smoke-verbose": "tap ./test/integration/smoke-testing/*.js --timeout=3600 -R spec",
+    "smoke-sauce": "SMOKE_REMOTE=true tap ./test/integration/smoke-testing/*.js --timeout=60000",
     "watch": "make watch",
     "build": "make build",
     "dev": "make watch && make start &"

@@ -1,16 +1,21 @@
-const {
-    driver,
-    findByCss,
-    clickCss,
-    until
-} = require('../selenium-helpers.js');
-
-var username = process.env.SMOKE_USERNAME;
-var password = process.env.SMOKE_PASSWORD;
-
+const SeleniumHelper = require('../selenium-helpers.js');
+const helper = new SeleniumHelper();
 
 var tap = require('tap');
 const test = tap.test;
+
+const webdriver = require('selenium-webdriver');
+const driver = helper.buildDriver('www-smoke test-login-failures');
+
+const {
+    findByCss,
+    clickCss
+} = helper;
+
+var until = webdriver.until;
+
+var username = process.env.SMOKE_USERNAME;
+var password = process.env.SMOKE_PASSWORD;
 
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 var url = rootUrl + '/users/' + username;
