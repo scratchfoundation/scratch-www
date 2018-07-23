@@ -140,6 +140,10 @@
             padding-top: .5rem;
             font-size: .75rem;
             justify-content: space-between;
+
+            .comment-time {
+                color: $ui-dark-gray;
+            }
         }
     }
 

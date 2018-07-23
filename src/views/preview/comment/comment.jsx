@@ -34,7 +34,9 @@ const Comment = ({
             <div className="comment-bubble">
                 <span className="comment-content">{content}</span>
                 <FlexRow className="comment-bottom-row">
-                    <FormattedRelative value={new Date(datetime_created)} />
+                    <span className="comment-time">
+                        <FormattedRelative value={new Date(datetime_created)} />
+                    </span>
                     <a href={`#comments-${id}`}>reply</a>
                 </FlexRow>
             </div>
