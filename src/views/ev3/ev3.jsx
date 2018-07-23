@@ -15,6 +15,7 @@ const render = require('../../lib/render.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
+const OS_ENUM = require('../../components/extension-landing/os-enum.js');
 
 require('../../components/extension-landing/extension-landing.scss');
 
@@ -25,13 +26,8 @@ class EV3 extends React.Component {
             'onSetOS'
         ]);
 
-        this.OS_ENUM = {
-            WINDOWS: 'Windows',
-            MACOS: 'macOS'
-        };
-
         this.state = {
-            OS: this.OS_ENUM.WINDOWS
+            OS: OS_ENUM.WINDOWS
         };
     }
 
@@ -184,14 +180,14 @@ class EV3 extends React.Component {
                                                     <img
                                                         className="screenshot"
                                                         src={`/images/ev3/${
-                                                            this.state.OS === this.OS_ENUM.WINDOWS ?
+                                                            this.state.OS === OS_ENUM.WINDOWS ?
                                                                 'win-device-ready.png' :
                                                                 'mac-enter-passcode.png'
                                                         }`}
                                                     />
                                                 </div>
                                                 <p>
-                                                    {this.state.OS === this.OS_ENUM.WINDOWS ?
+                                                    {this.state.OS === OS_ENUM.WINDOWS ?
                                                         <FormattedMessage id="ev3.windowsFinalizePairing" /> :
                                                         <FormattedMessage id="ev3.macosFinalizePairing" />
                                                     }
