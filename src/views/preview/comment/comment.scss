@@ -33,6 +33,7 @@
 
         .button {
             margin-left: 0;
+            border-radius: .25rem;
         }
     }
 }
@@ -110,9 +111,9 @@
             position: relative;
             margin-left: .5rem;
             border: 1px solid $active-gray;
-            border-radius: 0 8px 8px 8px;
+            border-radius: 0 .5rem .5rem .5rem;
             background-color: $ui-white;
-            padding: .5rem;
+            padding: .75rem;
             width: calc(100% - .5rem);
             box-sizing: border-box;
 
