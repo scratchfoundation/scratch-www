@@ -39,7 +39,7 @@ class EV3 extends React.Component {
 
     render () {
         return (
-            <div className="ev3">
+            <div className="extension-landing ev3">
                 <div className="extension-header">
                     <FlexRow className="inner">
                         <FlexRow className="column extension-info">
