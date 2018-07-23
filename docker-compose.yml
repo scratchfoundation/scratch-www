@@ -15,7 +15,7 @@ services:
     environment:
       - API_HOST=http://localhost:8491
       - FALLBACK=http://localhost:8080
-    build:  
+    build:
       context: ./
       dockerfile: Dockerfile
     image: scratch-www:latest
