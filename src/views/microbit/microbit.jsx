@@ -14,7 +14,11 @@ const render = require('../../lib/render.jsx');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
+const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
 
+const OS_ENUM = require('../../components/extension-landing/os-enum.js');
+
+require('../../components/extension-landing/extension-landing.scss');
 require('./microbit.scss');
 
 class MicroBit extends React.Component {
@@ -24,13 +28,8 @@ class MicroBit extends React.Component {
             'onSetOS'
         ]);
 
-        this.OS_ENUM = {
-            WINDOWS: 'Windows',
-            MACOS: 'macOS'
-        };
-
         this.state = {
-            OS: this.OS_ENUM.WINDOWS
+            OS: OS_ENUM.WINDOWS
         };
     }
 
@@ -42,7 +41,7 @@ class MicroBit extends React.Component {
 
     render () {
         return (
-            <div className="microbit">
+            <div className="extension-landing microbit">
                 <div className="extension-header">
                     <FlexRow className="inner">
                         <FlexRow className="column extension-info">
@@ -96,56 +95,9 @@ class MicroBit extends React.Component {
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
                 />
-                <div className="blue install-scratch-link">
-                    <FlexRow className="inner column">
-                        <h2><FormattedMessage id="microbit.installScratchLink" /></h2>
-                        <FlexRow className="steps">
-                            <div className="step">
-                                <FlexRow className="step-number-row">
-                                    <div className="step-number">1</div>
-                                    <FlexRow className="step-content">
-                                        <span className="step-description">
-                                            <FormattedMessage id="microbit.installScratchLinkStep" />
-                                        </span>
-                                        <a
-                                            className="step-image badge"
-                                            href={`https://downloads.scratch.mit.edu/link/${
-                                                this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                                            }.zip`}
-                                        >
-                                            <button className="button download-button">
-                                                {this.state.OS === this.OS_ENUM.WINDOWS ?
-                                                    <FormattedMessage id="microbit.windowsDownload" /> :
-                                                    <FormattedMessage id="microbit.macosDownload" />
-                                                }
-                                                <img src="/svgs/extensions/download-white.svg" />
-                                            </button>
-                                        </a>
-                                    </FlexRow>
-                                </FlexRow>
-
-                            </div>
-                            <div className="step">
-                                <FlexRow className="step-number-row">
-                                    <div className="step-number">2</div>
-                                    <FlexRow className="step-content">
-                                        <span className="step-description">
-                                            <FormattedMessage id="microbit.startScratchLink" />
-                                        </span>
-                                        <div className="step-image">
-                                            <img
-                                                className="screenshot"
-                                                src={`/images/scratchlink/${
-                                                    this.state.OS === this.OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                                                }-toolbar.png`}
-                                            />
-                                        </div>
-                                    </FlexRow>
-                                </FlexRow>
-                            </div>
-                        </FlexRow>
-                    </FlexRow>
-                </div>
+                <InstallScratchLink
+                    currentOS={this.state.OS}
+                />
                 <div className="getting-started">
                     <FlexRow className="inner column">
                         <h2><FormattedMessage id="microbit.gettingStarted" /></h2>
@@ -190,7 +142,7 @@ class MicroBit extends React.Component {
                                         <div className="step-image">
                                             <img
                                                 src={`/images/microbit/${
-                                                    this.state.OS === this.OS_ENUM.WINDOWS ? 'win' : 'mac'
+                                                    this.state.OS === OS_ENUM.WINDOWS ? 'win' : 'mac'
                                                 }-copy-hex.png`}
                                             />
                                         </div>
