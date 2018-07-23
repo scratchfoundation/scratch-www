@@ -27,6 +27,13 @@
             font-size: 4rem;
         }
 
+        h3 {
+            a {
+                text-decoration: underline;
+                color: $type-white;
+            }
+        }
+
         p {
             margin-top: 1rem;
 
