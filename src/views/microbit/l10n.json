@@ -1,11 +1,6 @@
 {
     "microbit.headerText": "{microbitLink} is a tiny circuit board designed to help kids learn to code and create with technology. It has many features including an LED display, buttons, and a motion sensor. You can connect it to Scratch and build creative projects that combine the magic of the digital and physical worlds.",
     "microbit.requirements": "Requirements",
-    "microbit.installScratchLink": "Install Scratch Link",
-    "microbit.installScratchLinkStep": "Download and install Scratch Link.",   
-    "microbit.windowsDownload": "Download for Windows",
-    "microbit.macosDownload": "Download for macOS",
-    "microbit.startScratchLink": "Start Scratch Link and make sure it is running. It should appear in your toolbar.",
     "microbit.gettingStarted": "Getting Started",
     "microbit.installMicrobitHex": "Install Scratch micro:bit HEX",
     "microbit.connectUSB": "Connect a micro:bit to your computer with a USB cable",

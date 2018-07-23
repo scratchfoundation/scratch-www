@@ -13,14 +13,14 @@ const InstallScratchLink = ({
 }) => (
     <div className="blue install-scratch-link">
         <FlexRow className="inner column">
-            <h2><FormattedMessage id="ev3.installScratchLink" /></h2>
+            <h2><FormattedMessage id="installScratchLink.installHeaderTitle" /></h2>
             <FlexRow className="steps">
                 <div className="step">
                     <FlexRow className="step-number-row">
                         <div className="step-number">1</div>
                         <FlexRow className="step-content">
                             <span className="step-description">
-                                <FormattedMessage id="ev3.installScratchLinkStep" />
+                                <FormattedMessage id="installScratchLink.downloadAndInstall" />
                             </span>
                             <a
                                 className="step-image badge"
@@ -30,8 +30,8 @@ const InstallScratchLink = ({
                             >
                                 <button className="button download-button">
                                     {currentOS === OS_ENUM.WINDOWS ?
-                                        <FormattedMessage id="ev3.windowsDownload" /> :
-                                        <FormattedMessage id="ev3.macosDownload" />
+                                        <FormattedMessage id="installScratchLink.windowsDownload" /> :
+                                        <FormattedMessage id="installScratchLink.macosDownload" />
                                     }
                                     <img src="/svgs/extensions/download-white.svg" />
                                 </button>
@@ -45,7 +45,7 @@ const InstallScratchLink = ({
                         <div className="step-number">2</div>
                         <FlexRow className="step-content">
                             <span className="step-description">
-                                <FormattedMessage id="ev3.startScratchLink" />
+                                <FormattedMessage id="installScratchLink.startScratchLink" />
                             </span>
                             <div className="step-image">
                                 <img

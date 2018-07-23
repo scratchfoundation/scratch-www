@@ -22,6 +22,12 @@
         line-height: 1.7rem;
     }
 
+    .section-separator {
+        margin: 4rem 0;
+        border-top: 1px solid $ui-border;
+        width: 100%;
+    }
+
     .download {
         display: inline-block;
 
@@ -38,8 +44,6 @@
     }
 
     .extension-header {
-        background-color: $ui-aqua;
-        background-image: url("/images/ev3/ev3-pattern.svg");
         background-size: cover;
         color: $ui-white;
 
@@ -202,12 +206,6 @@
             p {
                 margin: .2rem 0;
             }
-        }
-
-        .section-separator {
-            margin: 4rem 0;
-            border-top: 1px solid $ui-border;
-            width: 100%;
         }
     }
 
