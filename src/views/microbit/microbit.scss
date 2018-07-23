@@ -1,7 +1,16 @@
+@import "../../colors";
 @import "../../frameless";
 
 .microbit {
     .extension-header {
+        background-color: $ui-purple;
+        background-image: url("/images/microbit/mbit-pattern.svg");
+
+        .extension-info {
+            padding-right: $cols1;
+            max-width: $cols7 + ($gutter / $em);
+        }
+
         .extension-image {
             max-width: $cols4;
         }

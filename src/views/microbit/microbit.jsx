@@ -101,7 +101,7 @@ class MicroBit extends React.Component {
                 <div className="getting-started">
                     <FlexRow className="inner column">
                         <h2><FormattedMessage id="microbit.gettingStarted" /></h2>
-                        <FlexRow className="column install-hex">
+                        <FlexRow className="column getting-started-section">
                             <h3><FormattedMessage id="microbit.installMicrobitHex" /></h3>
                             <FlexRow className="steps">
                                 <div className="step">
@@ -154,7 +154,7 @@ class MicroBit extends React.Component {
                             </FlexRow>
                         </FlexRow>
                         <div className="section-separator" />
-                        <FlexRow className="column connecting">
+                        <FlexRow className="column getting-started-section">
                             <h3><FormattedMessage id="microbit.connectingMicrobit" /></h3>
                             <FlexRow className="steps">
                                 <div className="step">

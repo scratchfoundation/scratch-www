@@ -18,6 +18,7 @@ const InstallScratchLink = require('../../components/extension-landing/install-s
 const OS_ENUM = require('../../components/extension-landing/os-enum.js');
 
 require('../../components/extension-landing/extension-landing.scss');
+require('./ev3.scss');
 
 class EV3 extends React.Component {
     constructor (props) {
