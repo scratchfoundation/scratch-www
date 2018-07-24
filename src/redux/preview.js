@@ -59,7 +59,7 @@ module.exports.previewReducer = (state, action) => {
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
-            comments: [...state.comments, ...action.items] // todo: this is bad
+            comments: [...state.comments, ...action.items] // TODO: consider a different way of doing this?
         });
     case 'SET_LOVED':
         return Object.assign({}, state, {

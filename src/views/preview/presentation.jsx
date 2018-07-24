@@ -288,6 +288,7 @@ const PreviewPresentation = ({
                                 <div className="comments-container">
                                     <FlexRow className="comments-header">
                                         <h4>Comments</h4>
+                                        {/* TODO: Add toggle comments component and logic*/}
                                         <div>comments on/off</div>
                                     </FlexRow>
                                     <FlexRow className="create-comment comment">
