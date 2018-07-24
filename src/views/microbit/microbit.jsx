@@ -5,6 +5,7 @@
 
 const bindAll = require('lodash.bindall');
 const injectIntl = require('react-intl').injectIntl;
+const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
@@ -15,6 +16,9 @@ const render = require('../../lib/render.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
+const ProjectCard = require('../../components/extension-landing/project-card.jsx');
+const Steps = require('../../components/steps/steps.jsx');
+const Step = require('../../components/steps/step.jsx');
 
 const OS_ENUM = require('../../components/extension-landing/os-enum.js');
 
@@ -103,109 +107,79 @@ class MicroBit extends React.Component {
                         <h2><FormattedMessage id="microbit.gettingStarted" /></h2>
                         <FlexRow className="column getting-started-section">
                             <h3><FormattedMessage id="microbit.installMicrobitHex" /></h3>
-                            <FlexRow className="steps">
-                                <div className="step">
-                                    <FlexRow className="step-number-row">
-                                        <div className="step-number">1</div>
-                                    </FlexRow>
-                                    <div className="step-content">
-                                        <div className="step-image">
-                                            <img src="/images/microbit/mbit-usb.png" />
-                                        </div>
-                                        <p>
-                                            <FormattedMessage id="microbit.connectUSB" />
-                                        </p>
+                            <Steps>
+                                <Step number={1}>
+                                    <div className="step-image">
+                                        <img src="/images/microbit/mbit-usb.png" />
                                     </div>
-                                </div>
-                                <div className="step">
-                                    <FlexRow className="step-number-row">
-                                        <div className="step-number">2</div>
-                                    </FlexRow>
-                                    <div className="step-content">
-                                        <div className="step-image">
-                                            <img src="/images/microbit/mbit-hex-download.png" />
-                                        </div>
-                                        <a
-                                            download
-                                            className="download"
-                                            href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.0.hex.zip"
-                                        >
-                                            <FormattedMessage id="microbit.downloadHex" />
-                                        </a>
+                                    <p>
+                                        <FormattedMessage id="microbit.connectUSB" />
+                                    </p>
+                                </Step>
+                                <Step number={2}>
+                                    <div className="step-image">
+                                        <img src="/images/microbit/mbit-hex-download.png" />
                                     </div>
-                                </div>
-                                <div className="step">
-                                    <FlexRow className="step-number-row">
-                                        <div className="step-number">3</div>
-                                    </FlexRow>
-                                    <div className="step-content">
-                                        <div className="step-image">
-                                            <img
-                                                src={`/images/microbit/${
-                                                    this.state.OS === OS_ENUM.WINDOWS ? 'win' : 'mac'
-                                                }-copy-hex.png`}
-                                            />
-                                        </div>
-                                        <p>
-                                            <FormattedMessage id="microbit.dragDropHex" />
-                                        </p>
+                                    <a
+                                        download
+                                        className="download"
+                                        href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.0.hex.zip"
+                                    >
+                                        <FormattedMessage id="microbit.downloadHex" />
+                                    </a>
+                                </Step>
+                                <Step number={3}>
+                                    <div className="step-image">
+                                        <img
+                                            src={`/images/microbit/${
+                                                this.state.OS === OS_ENUM.WINDOWS ? 'win' : 'mac'
+                                            }-copy-hex.png`}
+                                        />
                                     </div>
-                                </div>
-                            </FlexRow>
+                                    <p>
+                                        <FormattedMessage id="microbit.dragDropHex" />
+                                    </p>
+                                </Step>
+                            </Steps>
                         </FlexRow>
                         <div className="section-separator" />
                         <FlexRow className="column getting-started-section">
                             <h3><FormattedMessage id="microbit.connectingMicrobit" /></h3>
-                            <FlexRow className="steps">
-                                <div className="step">
-                                    <FlexRow className="step-number-row">
-                                        <div className="step-number">1</div>
-                                    </FlexRow>
-                                    <div className="step-content">
-                                        <div className="step-image">
-                                            <img src="/images/microbit/mbit-connect-1.png" />
-                                        </div>
-                                        <p><FormattedMessage id="microbit.powerMicrobit" /></p>
+                            <Steps>
+                                <Step number={1}>
+                                    <div className="step-image">
+                                        <img src="/images/microbit/mbit-connect-1.png" />
                                     </div>
-                                </div>
-                                <div className="step">
-                                    <FlexRow className="step-number-row">
-                                        <div className="step-number">2</div>
-                                    </FlexRow>
-                                    <div className="step-content">
-                                        <div className="step-image">
-                                            <img src="/images/microbit/mbit-connect-2.png" />
-                                        </div>
-                                        <p>
-                                            <FormattedMessage
-                                                id="microbit.useScratch3"
-                                                values={{
-                                                    scratch3Link: (
-                                                        <a
-                                                            href="https://beta.scratch.mit.edu/"
-                                                            rel="noopener noreferrer"
-                                                            target="_blank"
-                                                        >
+                                    <p><FormattedMessage id="microbit.powerMicrobit" /></p>
+                                </Step>
+                                <Step number={2}>
+                                    <div className="step-image">
+                                        <img src="/images/microbit/mbit-connect-2.png" />
+                                    </div>
+                                    <p>
+                                        <FormattedMessage
+                                            id="microbit.useScratch3"
+                                            values={{
+                                                scratch3Link: (
+                                                    <a
+                                                        href="https://beta.scratch.mit.edu/"
+                                                        rel="noopener noreferrer"
+                                                        target="_blank"
+                                                    >
                                                             Scratch 3.0
-                                                        </a>
-                                                    )
-                                                }}
-                                            />
-                                        </p>
+                                                    </a>
+                                                )
+                                            }}
+                                        />
+                                    </p>
+                                </Step>
+                                <Step number={3}>
+                                    <div className="step-image">
+                                        <img src="/images/microbit/mbit-connect-3.png" />
                                     </div>
-                                </div>
-                                <div className="step">
-                                    <FlexRow className="step-number-row">
-                                        <div className="step-number">3</div>
-                                    </FlexRow>
-                                    <div className="step-content">
-                                        <div className="step-image">
-                                            <img src="/images/microbit/mbit-connect-3.png" />
-                                        </div>
-                                        <p><FormattedMessage id="microbit.addExtension" /></p>
-                                    </div>
-                                </div>
-                            </FlexRow>
+                                    <p><FormattedMessage id="microbit.addExtension" /></p>
+                                </Step>
+                            </Steps>
                         </FlexRow>
                     </FlexRow>
                 </div>
@@ -213,99 +187,67 @@ class MicroBit extends React.Component {
                     <FlexRow className="inner column">
                         <h2><FormattedMessage id="microbit.thingsToTry" /></h2>
                         <h3><FormattedMessage id="microbit.displayHelloTitle" /></h3>
-                        <FlexRow className="steps display-hello">
-                            <div className="step">
-                                <FlexRow className="step-number-row">
-                                    <div className="step-number">1</div>
-                                    <FlexRow className="step-content">
-                                        <span className="step-description">
-                                            <FormattedMessage
-                                                id="microbit.displayHelloBlock"
-                                                values={{
-                                                    displayHelloText: (
-                                                        <strong>
-                                                            <FormattedMessage id="microbit.displayHelloText" />
-                                                        </strong>
-                                                    )
-                                                }}
-                                            />
-                                        </span>
-                                        <div className="step-image">
-                                            <img src="/images/microbit/display-hello-block.png" />
-                                        </div>
-                                    </FlexRow>
-                                </FlexRow>
-                            </div>
-                            <div className="step">
-                                <FlexRow className="step-number-row">
-                                    <div className="step-number">2</div>
-                                    <FlexRow className="step-content">
-                                        <span className="step-description">
-                                            <FormattedMessage
-                                                id="microbit.helloScroll"
-                                                values={{
-                                                    helloText: (
-                                                        <strong><FormattedMessage id="microbit.helloText" /></strong>
-                                                    )
-                                                }}
-                                            />                                        </span>
-                                        <div className="step-image">
-                                            <img src="/images/microbit/mbit-display-h.png" />
-                                        </div>
-                                    </FlexRow>
-                                </FlexRow>
-                            </div>
-                        </FlexRow>
+                        <Steps className="display-hello">
+                            <Step
+                                compact
+                                number={1}
+                            >
+                                <span className="step-description">
+                                    <FormattedMessage
+                                        id="microbit.displayHelloBlock"
+                                        values={{
+                                            displayHelloText: (
+                                                <strong>
+                                                    <FormattedMessage id="microbit.displayHelloText" />
+                                                </strong>
+                                            )
+                                        }}
+                                    />
+                                </span>
+                                <div className="step-image">
+                                    <img src="/images/microbit/display-hello-block.png" />
+                                </div>
+                            </Step>
+                            <Step
+                                compact
+                                number={2}
+                            >
+                                <span className="step-description">
+                                    <FormattedMessage
+                                        id="microbit.helloScroll"
+                                        values={{
+                                            helloText: (
+                                                <strong><FormattedMessage id="microbit.helloText" /></strong>
+                                            )
+                                        }}
+                                    />                                        </span>
+                                <div className="step-image">
+                                    <img src="/images/microbit/mbit-display-h.png" />
+                                </div>
+                            </Step>
+                        </Steps>
                         <div className="section-separator" />
                         <h3><FormattedMessage id="microbit.starterProjects" /></h3>
-                        <FlexRow className="steps">
-                            <a
-                                download
-                                className="project-card"
-                                href="https://downloads.scratch.mit.edu/microbit/microbit-heartbeat.sb3"
-                            >
-                                <div className="project-card-image">
-                                    <img src="/images/microbit/starter-heart.png" />
-                                </div>
-                                <div className="project-card-info">
-                                    <h4><FormattedMessage id="microbit.heartBeat" /></h4>
-                                    <p>
-                                        <FormattedMessage id="microbit.heartBeatDescription" />
-                                    </p>
-                                </div>
-                            </a>
-                            <a
-                                download
-                                className="project-card"
-                                href="https://downloads.scratch.mit.edu/microbit/microbit-guitar.sb3"
-                            >
-                                <div className="project-card-image">
-                                    <img src="/images/microbit/starter-guitar.png" />
-                                </div>
-                                <div className="project-card-info">
-                                    <h4><FormattedMessage id="microbit.tiltGuitar" /></h4>
-                                    <p>
-                                        <FormattedMessage id="microbit.tiltGuitarDescription" />
-                                    </p>
-                                </div>
-                            </a>
-                            <a
-                                download
-                                className="project-card"
-                                href="https://downloads.scratch.mit.edu/microbit/microbit-fish.sb3"
-                            >
-
-                                <div className="project-card-image">
-                                    <img src="/images/microbit/starter-fish.png" />
-                                </div>
-                                <div className="project-card-info">
-                                    <h4><FormattedMessage id="microbit.oceanAdventure" /></h4>
-                                    <p>
-                                        <FormattedMessage id="microbit.oceanAdventureDescription" />
-                                    </p>
-                                </div>
-                            </a>
-                        </FlexRow>
+                        <Steps>
+                            <ProjectCard
+                                cardUrl="https://downloads.scratch.mit.edu/microbit/microbit-heartbeat.sb3"
+                                description={this.props.intl.formatMessage({id: 'microbit.heartBeatDescription'})}
+                                imageUrl="/images/microbit/starter-heart.png"
+                                title={this.props.intl.formatMessage({id: 'microbit.heartBeat'})}
+                            />
+                            <ProjectCard
+                                cardUrl="https://downloads.scratch.mit.edu/microbit/microbit-guitar.sb3"
+                                description={this.props.intl.formatMessage({id: 'microbit.tiltGuitarDescription'})}
+                                imageUrl="/images/microbit/starter-guitar.png"
+                                title={this.props.intl.formatMessage({id: 'microbit.tiltGuitar'})}
+                            />
+                            <ProjectCard
+                                cardUrl="https://downloads.scratch.mit.edu/microbit/microbit-fish.sb3"
+                                description={this.props.intl.formatMessage({id: 'microbit.oceanAdventureDescription'})}
+                                imageUrl="/images/microbit/starter-fish.png"
+                                title={this.props.intl.formatMessage({id: 'microbit.oceanAdventure'})}
+                            />
+                        </Steps>
                     </FlexRow>
                 </div>
                 <div className="faq inner">
@@ -327,6 +269,10 @@ class MicroBit extends React.Component {
         );
     }
 }
+
+MicroBit.propTypes = {
+    intl: intlShape.isRequired
+};
 
 const WrappedMicroBit = injectIntl(MicroBit);
 
