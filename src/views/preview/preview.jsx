@@ -395,34 +395,28 @@ Preview.defaultProps = {
 };
 
 // Build consolidated curatedStudios object from all studio info.
-// We add data to curatedStudios so it knows which of the studios the
-// project belongs to, and the status of requests to join/leave studios.
-function consolidateStudiosInfo (curatedStudios, projectStudios, studioRequests) {
-    let consolidatedStudios = [];
-    let projectStudiosFoundInCurated = {}; // temp, for time complexity
+// We add flags to indicate whether the project is currently in the studio,
+// and the status of requests to join/leave studios.
+function consolidateStudiosInfo (curatedStudios, projectStudios,
+    currentStudioIds, studioRequests) {
+    const consolidatedStudios = [];
 
-    // copy curated studios, updating any that are also in other data structures
-    curatedStudios.forEach(curatedStudio => {
-        let studioCopy = Object.assign({}, curatedStudio, {includesProject: false});
-        projectStudios.some(projectStudio => {
-            if (curatedStudio.id === projectStudio.id) {
-                studioCopy.includesProject = projectStudio.includesProject;
-                projectStudiosFoundInCurated[projectStudio.id] = true;
-                return true; // break out of the Array.some loop
-            }
-        });
-        consolidatedStudios.push(studioCopy);
-    });
-    // if there are any other studios this project is in that are NOT in
-    // the list of studios this user curates, like anyone-can-add-their-project
-    // studios, add to front of list
     projectStudios.forEach(projectStudio => {
-        if (!(projectStudio.id in projectStudiosFoundInCurated)) {
-            // no need to specify includesProject = true or false, because
-            // that state is managed by redux actions.
-            consolidatedStudios.unshift(Object.assign({}, projectStudio));
+        const includesProject = currentStudioIds.has(projectStudio.id);
+        const consolidatedStudio =
+            Object.assign({}, projectStudio, {includesProject: includesProject});
+        consolidatedStudios.push(consolidatedStudio);
+    });
+
+    // copy the curated studios that project is not in
+    curatedStudios.forEach(curatedStudio => {
+        if (!currentStudioIds.has(curatedStudio.id)) {
+            const consolidatedStudio =
+                Object.assign({}, curatedStudio, {includesProject: false});
+            consolidatedStudios.push(consolidatedStudio);
         }
     });
+
     // set studio state to hasRequestOutstanding==true if it's being fetched,
     // false if it's not
     consolidatedStudios.forEach(consolidatedStudio => {
@@ -445,7 +439,8 @@ const mapStateToProps = state => ({
     sessionStatus: state.session.status,
     projectStudios: state.preview.projectStudios,
     studios: consolidateStudiosInfo(state.preview.curatedStudios,
-        state.preview.projectStudios, state.preview.status.studioRequests),
+        state.preview.projectStudios, state.preview.currentStudioIds,
+        state.preview.status.studioRequests),
     user: state.session.session.user,
     playerMode: state.scratchGui.mode.isPlayerOnly,
     fullScreen: state.scratchGui.mode.isFullScreen

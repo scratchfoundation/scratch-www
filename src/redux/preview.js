@@ -31,7 +31,8 @@ module.exports.getInitialState = () => ({
     original: {},
     parent: {},
     projectStudios: [],
-    curatedStudios: []
+    curatedStudios: [],
+    currentStudioIds: new Set()
 });
 
 module.exports.previewReducer = (state, action) => {
@@ -57,49 +58,23 @@ module.exports.previewReducer = (state, action) => {
             parent: action.info
         });
     case 'SET_PROJECT_STUDIOS':
-        // alter the returned object so that each studio object in the array
-        // includes an additional property indicating that initially, this
-        // studio includes the project. This is important because if it is a
-        // studio open to the public, which the user does not curate or own,
-        // and the user removes the project from that studio, we don't want
-        // to forget about the studio completely!
+        // also initialize currentStudioIds, to keep track of which studios
+        // the project is currently in.
         return Object.assign({}, state, {
-            projectStudios: action.items.map(studio => (
-                Object.assign({}, studio, {includesProject: true})
-            ))
+            projectStudios: action.items,
+            currentStudioIds: new Set(action.items.map(studio => studio.id))
         });
     case 'SET_CURATED_STUDIOS':
+        return Object.assign({}, state, {curatedStudios: action.items});
+    case 'ADD_PROJECT_TO_STUDIO':
+        // add studio id to our studios-that-this-project-belongs-to set.
         return Object.assign({}, state, {
-            curatedStudios: action.items
+            currentStudioIds: new Set(state.currentStudioIds.add(action.studioId))
         });
-    case 'ADD_TO_PROJECT_STUDIOS':
-        // add studio to our studios-that-this-project-belongs-to list.
-        // Server response doesn't include full studio object, so just use a
-        // minimal stub object.
+    case 'REMOVE_PROJECT_FROM_STUDIO':
+        state.currentStudioIds.delete(action.studioId);
         return Object.assign({}, state, {
-            projectStudios: state.projectStudios.some(studio => (
-                studio.id === action.studioId
-            )) ?
-                state.projectStudios.map(studio => {
-                    if (studio.id === action.studioId) {
-                        studio.includesProject = true;
-                    }
-                    return Object.assign({}, studio);
-                }) : state.projectStudios.concat(
-                    {
-                        id: action.studioId,
-                        includesProject: true
-                    }
-                )
-        });
-    case 'REMOVE_FROM_PROJECT_STUDIOS':
-        return Object.assign({}, state, {
-            projectStudios: state.projectStudios.map(studio => {
-                if (studio.id === action.studioId) {
-                    studio.includesProject = false;
-                }
-                return Object.assign({}, studio);
-            })
+            currentStudioIds: new Set(state.currentStudioIds)
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
@@ -174,13 +149,13 @@ module.exports.setCuratedStudios = items => ({
     items: items
 });
 
-module.exports.addToProjectStudios = studioId => ({
-    type: 'ADD_TO_PROJECT_STUDIOS',
+module.exports.addProjectToStudio = studioId => ({
+    type: 'ADD_PROJECT_TO_STUDIO',
     studioId: studioId
 });
 
-module.exports.removeFromProjectStudios = studioId => ({
-    type: 'REMOVE_FROM_PROJECT_STUDIOS',
+module.exports.removeProjectFromStudio = studioId => ({
+    type: 'REMOVE_PROJECT_FROM_STUDIO',
     studioId: studioId
 });
 
@@ -465,7 +440,7 @@ module.exports.addToStudio = (studioId, projectId, token) => (dispatch => {
             return;
         }
         dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHED));
-        dispatch(module.exports.addToProjectStudios(studioId));
+        dispatch(module.exports.addProjectToStudio(studioId));
     });
 });
 
@@ -485,7 +460,7 @@ module.exports.leaveStudio = (studioId, projectId, token) => (dispatch => {
             return;
         }
         dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHED));
-        dispatch(module.exports.removeFromProjectStudios(studioId));
+        dispatch(module.exports.removeProjectFromStudio(studioId));
     });
 });
 
