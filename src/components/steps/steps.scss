@@ -1,0 +1,59 @@
+@import "../../colors";
+
+.steps {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.step {
+    flex-basis: 0;
+    flex-grow: 1;
+
+    .step-number-row {
+        padding-bottom: 1.5rem;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .step-content {
+            text-align: left;
+            align-items: flex-start;
+
+            .step-description {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .step-number {
+            display: inline-flex;
+            border-radius: 2rem;
+            background-color: $ui-blue;
+            width: 2rem;
+            height: 2rem;
+            color: $ui-white;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+    }
+
+    .step-content {
+        display: flex;
+        padding: 0 2rem;
+        text-align: center;
+        flex-flow: column;
+        align-items: center;
+        box-sizing: border-box;
+
+        .step-image {
+            height: 10rem;
+
+            img {
+                width: auto;
+                height: 100%;
+            }
+        }
+    }
+}

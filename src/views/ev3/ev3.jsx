@@ -15,6 +15,7 @@ const render = require('../../lib/render.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
+const Steps = require('../../components/steps/steps.jsx');
 const OS_ENUM = require('../../components/extension-landing/os-enum.js');
 
 require('../../components/extension-landing/extension-landing.scss');
@@ -103,7 +104,7 @@ class EV3 extends React.Component {
                         <h2><FormattedMessage id="ev3.gettingStarted" /></h2>
                         <FlexRow className="column getting-started-section">
                             <h3><FormattedMessage id="ev3.connectingEV3" /></h3>
-                            <FlexRow className="steps">
+                            <Steps>
                                 <div className="step">
                                     <FlexRow className="step-number-row">
                                         <div className="step-number">1</div>
@@ -152,12 +153,12 @@ class EV3 extends React.Component {
                                         <p><FormattedMessage id="ev3.addExtension" /></p>
                                     </div>
                                 </div>
-                            </FlexRow>
+                            </Steps>
                             <div className="tip-box">
                                 <h4><FormattedMessage id="ev3.firstTimeConnecting" /></h4>
                                 <FlexRow className="column tip-content">
                                     <p><FormattedMessage id="ev3.pairingDescription" /></p>
-                                    <FlexRow className="steps">
+                                    <Steps>
                                         <div className="step">
                                             <div className="step-content">
                                                 <div className="step-image">
@@ -195,7 +196,7 @@ class EV3 extends React.Component {
                                                 </p>
                                             </div>
                                         </div>
-                                    </FlexRow>
+                                    </Steps>
                                 </FlexRow>
                             </div>
                         </FlexRow>
@@ -205,7 +206,7 @@ class EV3 extends React.Component {
                     <FlexRow className="inner column">
                         <h2><FormattedMessage id="ev3.thingsToTry" /></h2>
                         <h3>Make a motor move</h3>
-                        <FlexRow className="steps">
+                        <Steps>
                             <div className="step">
                                 <FlexRow className="step-number-row">
                                     <div className="step-number">1</div>
@@ -233,10 +234,10 @@ class EV3 extends React.Component {
                                     </FlexRow>
                                 </FlexRow>
                             </div>
-                        </FlexRow>
+                        </Steps>
                         <div className="section-separator" />
                         <h3>Starter Projects</h3>
-                        <FlexRow className="steps">
+                        <Steps>
                             <a
                                 download
                                 className="project-card"
@@ -282,7 +283,7 @@ class EV3 extends React.Component {
                                     </p>
                                 </div>
                             </a>
-                        </FlexRow>
+                        </Steps>
                     </FlexRow>
                 </div>
                 <div className="faq inner">
