@@ -217,7 +217,6 @@ class Preview extends React.Component {
         }
     }
     handleLoadMore () {
-        console.log(this.props.comments.length); // eslint-disable-line no-console
         this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
     }
     handleLoveToggle () {
