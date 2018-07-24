@@ -138,12 +138,25 @@
         }
 
         .comment-bottom-row {
-            padding-top: .5rem;
+            padding-top: 1rem;
             font-size: .75rem;
             justify-content: space-between;
 
             .comment-time {
                 color: $ui-dark-gray;
+            }
+
+            .comment-reply {
+                display: inline-flex;
+
+                &:after {
+                    margin-left: .25rem;
+                    background-image: url("/svgs/project/comment-reply.svg");
+                    background-size: cover;
+                    width: 1rem;
+                    height: 1rem;
+                    content: "";
+                }
             }
         }
     }

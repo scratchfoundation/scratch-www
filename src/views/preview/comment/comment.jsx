@@ -27,17 +27,28 @@ const Comment = ({
                     href={`/users/${author.username}`}
                 >{author.username}</a>
                 <div className="action-list">
+                    {/* TODO: Hook these up to API calls/logic */}
                     <span className="comment-delete">Delete</span>
                     <span className="comment-report">Report</span>
                 </div>
             </FlexRow>
             <div className="comment-bubble">
+                {/* TODO: at the moment, comment content does not properly display
+                  * emojis/easter eggs
+                  * @user links in replies 
+                  * links to scratch.mit.edu pages
+                  */}
                 <span className="comment-content">{content}</span>
                 <FlexRow className="comment-bottom-row">
                     <span className="comment-time">
                         <FormattedRelative value={new Date(datetime_created)} />
                     </span>
-                    <a href={`#comments-${id}`}>reply</a>
+                    <a
+                        className="comment-reply"
+                        href={`#comments-${id}`}
+                    >
+                        reply
+                    </a>
                 </FlexRow>
             </div>
         </FlexRow>
