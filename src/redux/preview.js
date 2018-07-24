@@ -32,7 +32,7 @@ module.exports.getInitialState = () => ({
     parent: {},
     projectStudios: [],
     curatedStudios: [],
-    currentStudioIds: new Set()
+    currentStudioIds: {}
 });
 
 module.exports.previewReducer = (state, action) => {
@@ -62,19 +62,23 @@ module.exports.previewReducer = (state, action) => {
         // the project is currently in.
         return Object.assign({}, state, {
             projectStudios: action.items,
-            currentStudioIds: new Set(action.items.map(studio => studio.id))
+            currentStudioIds: action.items.reduce((ids, studio) => {
+                ids[studio.id] = true;
+                return ids;
+            }, {})
         });
     case 'SET_CURATED_STUDIOS':
         return Object.assign({}, state, {curatedStudios: action.items});
     case 'ADD_PROJECT_TO_STUDIO':
         // add studio id to our studios-that-this-project-belongs-to set.
+        state.currentStudioIds[action.studioId] = true;
         return Object.assign({}, state, {
-            currentStudioIds: new Set(state.currentStudioIds.add(action.studioId))
+            currentStudioIds: Object.assign({}, state.currentStudioIds)
         });
     case 'REMOVE_PROJECT_FROM_STUDIO':
-        state.currentStudioIds.delete(action.studioId);
+        delete state.currentStudioIds[action.studioId];
         return Object.assign({}, state, {
-            currentStudioIds: new Set(state.currentStudioIds)
+            currentStudioIds: Object.assign({}, state.currentStudioIds)
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {

@@ -18,6 +18,7 @@ require('../../forms/button.scss');
 require('./modal.scss');
 
 const AddToStudioModalPresentation = ({
+    intl,
     isOpen,
     studios,
     waitingToClose,
@@ -25,7 +26,7 @@ const AddToStudioModalPresentation = ({
     onRequestClose,
     onSubmit
 }) => {
-    const contentLabel = this.props.intl.formatMessage({id: "addToStudio.title"});
+    const contentLabel = intl.formatMessage({id: "addToStudio.title"});
     const checkmark = <img alt="checkmark-icon"
                        className="studio-status-icon-checkmark-img"
                        src="/svgs/modal/confirm.svg"
@@ -34,13 +35,13 @@ const AddToStudioModalPresentation = ({
                   className="studio-status-icon-plus-img"
                   src="/svgs/modal/add.svg"
                  />
-    const studioButtons = this.props.studios.map((studio, index) => {
+    const studioButtons = studios.map((studio, index) => {
         return (
             <div className={"studio-selector-button " +
                 (studio.hasRequestOutstanding ? "studio-selector-button-waiting" :
                 (studio.includesProject ? "studio-selector-button-selected" : ""))}
                 key={studio.id}
-                onClick={() => this.props.onToggleStudio(studio.id)}
+                onClick={() => onToggleStudio(studio.id)}
             >
                 <div className={"studio-selector-button-text " +
                     (studio.includesProject ? "studio-selector-button-text-selected" :
@@ -62,8 +63,8 @@ const AddToStudioModalPresentation = ({
         <Modal
             className="mod-addToStudio"
             contentLabel={contentLabel}
-            onRequestClose={this.props.onRequestClose}
-            isOpen={this.props.isOpen}
+            onRequestClose={onRequestClose}
+            isOpen={isOpen}
         >
             <div>
                 <div className="addToStudio-modal-header">
@@ -85,12 +86,12 @@ const AddToStudioModalPresentation = ({
 
                     <Form
                         className="add-to-studio"
-                        onSubmit={this.props.onSubmit}
+                        onSubmit={onSubmit}
                     >
                         <FlexRow className="action-buttons">
                             <Button
                                 className="action-button close-button white"
-                                onClick={this.props.onRequestClose}
+                                onClick={onRequestClose}
                                 key="closeButton"
                                 name="closeButton"
                                 type="button"
@@ -99,7 +100,7 @@ const AddToStudioModalPresentation = ({
                                     <FormattedMessage id="general.close" />
                                 </div>
                             </Button>
-                            {this.props.waitingToClose ? [
+                            {waitingToClose ? [
                                 <Button
                                     className="action-button submit-button submit-button-waiting"
                                     disabled="disabled"
@@ -131,7 +132,6 @@ const AddToStudioModalPresentation = ({
 }
 
 AddToStudioModalPresentation.propTypes = {
-    intl: intlShape,
     isOpen: PropTypes.bool,
     studios: PropTypes.arrayOf(PropTypes.object),
     waitingToClose: PropTypes.bool,

@@ -402,7 +402,7 @@ function consolidateStudiosInfo (curatedStudios, projectStudios,
     const consolidatedStudios = [];
 
     projectStudios.forEach(projectStudio => {
-        const includesProject = currentStudioIds.has(projectStudio.id);
+        const includesProject = (projectStudio.id in currentStudioIds);
         const consolidatedStudio =
             Object.assign({}, projectStudio, {includesProject: includesProject});
         consolidatedStudios.push(consolidatedStudio);
@@ -410,9 +410,10 @@ function consolidateStudiosInfo (curatedStudios, projectStudios,
 
     // copy the curated studios that project is not in
     curatedStudios.forEach(curatedStudio => {
-        if (!currentStudioIds.has(curatedStudio.id)) {
+        if (!projectStudios.some(projectStudio => (projectStudio.id === curatedStudio.id))) {
+            const includesProject = (curatedStudio.id in currentStudioIds);
             const consolidatedStudio =
-                Object.assign({}, curatedStudio, {includesProject: false});
+                Object.assign({}, curatedStudio, {includesProject: includesProject});
             consolidatedStudios.push(consolidatedStudio);
         }
     });
@@ -423,7 +424,7 @@ function consolidateStudiosInfo (curatedStudios, projectStudios,
         const id = consolidatedStudio.id;
         consolidatedStudio.hasRequestOutstanding =
             ((id in studioRequests) &&
-            (studioRequests[id] === previewActions.Status.FETCHING));
+           (studioRequests[id] === previewActions.Status.FETCHING));
     });
     return consolidatedStudios;
 }
