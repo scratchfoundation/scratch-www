@@ -18,7 +18,7 @@ const ConferenceSplash = () => (
                 July 26-28, 2018 | Cambridge, MA, USA
             </h3>
             <h3>
-                <a href="http://web.media.mit.edu/events/medialabtalk/">
+                <a href="http://www.media.mit.edu/events/medialabtalk/">
                     Watch the keynotes live 7/26-7/28 at 9:30 a.m. EDT
                 </a>
             </h3>
