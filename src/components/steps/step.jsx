@@ -3,13 +3,25 @@ const React = require('react');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
+require('./steps.scss');
+
 const Step = props => (
-    <div className="step" />
+    <div className="step">
+        <FlexRow className="step-number-row">
+            {props.number && <div className="step-number">{props.number}</div>}
+            {props.compact && <FlexRow className="step-content">{props.children}</FlexRow>}
+        </FlexRow>
+        {!props.compact &&
+            <div className="step-content">
+                {props.children}
+            </div>
+        }
+    </div>
 );
 
 Step.propTypes = {
-    caption: PropTypes.string,
     children: PropTypes.node,
+    compact: PropTypes.bool,
     number: PropTypes.number
 };
 

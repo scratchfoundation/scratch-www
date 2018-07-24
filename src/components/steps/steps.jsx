@@ -7,6 +7,7 @@ require('./steps.scss');
 
 const Steps = props => (
     <FlexRow className="steps">
+        {/* TODO: Should this component do something with automatically numbering individual steps? */}
         {props.children}
     </FlexRow>
 );
