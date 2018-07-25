@@ -7,10 +7,12 @@ require('./steps.scss');
 
 const Step = props => (
     <div className="step">
-        <FlexRow className="step-number-row">
-            {props.number && <div className="step-number">{props.number}</div>}
-            {props.compact && <FlexRow className="step-content">{props.children}</FlexRow>}
-        </FlexRow>
+        {(props.compact || props.number) &&
+            <FlexRow className="step-number-row">
+                {props.number && <div className="step-number">{props.number}</div>}
+                {props.compact && <FlexRow className="step-content">{props.children}</FlexRow>}
+            </FlexRow>
+        }
         {!props.compact &&
             <div className="step-content">
                 {props.children}
