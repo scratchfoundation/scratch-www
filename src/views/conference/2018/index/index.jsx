@@ -18,10 +18,9 @@ const ConferenceSplash = () => (
                 July 26-28, 2018 | Cambridge, MA, USA
             </h3>
             <h3>
-                (Opening Reception on Evening of July 25)
-            </h3>
-            <h3>
-                Scratch@MIT is sold out!
+                <a href="http://www.media.mit.edu/events/medialabtalk/">
+                    Watch the keynotes live 7/26-7/28 at 9:30 a.m. EDT
+                </a>
             </h3>
             <p>
                 <a href="/conference/2018/schedule">
