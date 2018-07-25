@@ -14,7 +14,10 @@ const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
+
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
+
+const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
 const Steps = require('../../components/steps/steps.jsx');
@@ -46,55 +49,48 @@ class MicroBit extends React.Component {
     render () {
         return (
             <div className="extension-landing microbit">
-                <div className="extension-header">
-                    <FlexRow className="inner">
-                        <FlexRow className="column extension-info">
-                            <FlexRow className="column extension-copy">
-                                <h2><img src="/images/microbit/microbit.svg" />micro:bit</h2>
-                                <FormattedMessage
-                                    id="microbit.headerText"
-                                    values={{
-                                        microbitLink: (
-                                            <a
-                                                href="http://microbit.org/"
-                                                rel="noopener noreferrer"
-                                                target="_blank"
-                                            >
+                <ExtensionHeader>
+                    <FlexRow className="column extension-copy">
+                        <h2><img src="/images/microbit/microbit.svg" />micro:bit</h2>
+                        <FormattedMessage
+                            id="microbit.headerText"
+                            values={{
+                                microbitLink: (
+                                    <a
+                                        href="http://microbit.org/"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
                                       micro:bit
-                                            </a>
-                                        )
-                                    }}
-                                />
-                            </FlexRow>
-                            <FlexRow className="column extension-requirements-container">
-                                <span className="requirements-header">
-                                    <FormattedMessage id="microbit.requirements" />
-                                </span>
-                                <FlexRow className="extension-requirements">
-                                    <span>
-                                        <img src="/svgs/extensions/windows.svg" />
-                                        Windows 10+
-                                    </span>
-                                    <span>
-                                        <img src="/svgs/extensions/mac.svg" />
-                                        macOS 10.13+
-                                    </span>
-                                    <span>
-                                        <img src="/svgs/extensions/bluetooth.svg" />
-                                        Bluetooth 4.0
-                                    </span>
-                                    <span>
-                                        <img src="/svgs/extensions/scratch-link.svg" />
-                                        Scratch Link
-                                    </span>
-                                </FlexRow>
-                            </FlexRow>
-                        </FlexRow>
-                        <div className="extension-image">
-                            <img src="/images/microbit/microbit-heart.png" />
-                        </div>
+                                    </a>
+                                )
+                            }}
+                        />
                     </FlexRow>
-                </div>
+                    <FlexRow className="column extension-requirements-container">
+                        <span className="requirements-header">
+                            <FormattedMessage id="microbit.requirements" />
+                        </span>
+                        <FlexRow className="extension-requirements">
+                            <span>
+                                <img src="/svgs/extensions/windows.svg" />
+                                        Windows 10+
+                            </span>
+                            <span>
+                                <img src="/svgs/extensions/mac.svg" />
+                                        macOS 10.13+
+                            </span>
+                            <span>
+                                <img src="/svgs/extensions/bluetooth.svg" />
+                                        Bluetooth 4.0
+                            </span>
+                            <span>
+                                <img src="/svgs/extensions/scratch-link.svg" />
+                                        Scratch Link
+                            </span>
+                        </FlexRow>
+                    </FlexRow>
+                </ExtensionHeader>
                 <OSChooser
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
@@ -232,19 +228,19 @@ class MicroBit extends React.Component {
                             <ProjectCard
                                 cardUrl="https://downloads.scratch.mit.edu/microbit/microbit-heartbeat.sb3"
                                 description={this.props.intl.formatMessage({id: 'microbit.heartBeatDescription'})}
-                                imageUrl="/images/microbit/starter-heart.png"
+                                imageSrc="/images/microbit/starter-heart.png"
                                 title={this.props.intl.formatMessage({id: 'microbit.heartBeat'})}
                             />
                             <ProjectCard
                                 cardUrl="https://downloads.scratch.mit.edu/microbit/microbit-guitar.sb3"
                                 description={this.props.intl.formatMessage({id: 'microbit.tiltGuitarDescription'})}
-                                imageUrl="/images/microbit/starter-guitar.png"
+                                imageSrc="/images/microbit/starter-guitar.png"
                                 title={this.props.intl.formatMessage({id: 'microbit.tiltGuitar'})}
                             />
                             <ProjectCard
                                 cardUrl="https://downloads.scratch.mit.edu/microbit/microbit-fish.sb3"
                                 description={this.props.intl.formatMessage({id: 'microbit.oceanAdventureDescription'})}
-                                imageUrl="/images/microbit/starter-fish.png"
+                                imageSrc="/images/microbit/starter-fish.png"
                                 title={this.props.intl.formatMessage({id: 'microbit.oceanAdventure'})}
                             />
                         </Steps>

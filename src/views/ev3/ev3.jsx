@@ -13,9 +13,13 @@ const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
+
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
+
+const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
+
 const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');
 
@@ -45,56 +49,49 @@ class EV3 extends React.Component {
     render () {
         return (
             <div className="extension-landing ev3">
-                <div className="extension-header">
-                    <FlexRow className="inner">
-                        <FlexRow className="column extension-info">
-                            <FlexRow className="column extension-copy">
-                                <h2><img src="/images/ev3/ev3.svg" />LEGO MINDSTORMS EV3</h2>
-                                <FormattedMessage
-                                    id="ev3.headerText"
-                                    values={{
-                                        ev3Link: (
-                                            <a
-                                                href="https://shop.lego.com/en-US/LEGO-MINDSTORMS-EV3-31313"
-                                                rel="noopener noreferrer"
-                                                target="_blank"
-                                            >
+                <ExtensionHeader imageSrc="/images/ev3/ev3-illustration.png">
+                    <FlexRow className="column extension-copy">
+                        <h2><img src="/images/ev3/ev3.svg" />LEGO MINDSTORMS EV3</h2>
+                        <FormattedMessage
+                            id="ev3.headerText"
+                            values={{
+                                ev3Link: (
+                                    <a
+                                        href="https://shop.lego.com/en-US/LEGO-MINDSTORMS-EV3-31313"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
                                                 LEGO MINDSTORMS EV3
-                                            </a>
-                                        )
-                                    }}
-                                />
-                                <span />
-                            </FlexRow>
-                            <FlexRow className="column extension-requirements-container">
-                                <span className="requirements-header">
-                                    <FormattedMessage id="ev3.requirements" />
-                                </span>
-                                <FlexRow className="extension-requirements">
-                                    <span>
-                                        <img src="/svgs/extensions/windows.svg" />
-                                        Windows 10+
-                                    </span>
-                                    <span>
-                                        <img src="/svgs/extensions/mac.svg" />
-                                        macOS 10.13+
-                                    </span>
-                                    <span>
-                                        <img src="/svgs/extensions/bluetooth.svg" />
-                                        Bluetooth
-                                    </span>
-                                    <span>
-                                        <img src="/svgs/extensions/scratch-link.svg" />
-                                        Scratch Link
-                                    </span>
-                                </FlexRow>
-                            </FlexRow>
-                        </FlexRow>
-                        <div className="extension-image">
-                            <img src="/images/ev3/ev3-illustration.png" />
-                        </div>
+                                    </a>
+                                )
+                            }}
+                        />
+                        <span />
                     </FlexRow>
-                </div>
+                    <FlexRow className="column extension-requirements-container">
+                        <span className="requirements-header">
+                            <FormattedMessage id="ev3.requirements" />
+                        </span>
+                        <FlexRow className="extension-requirements">
+                            <span>
+                                <img src="/svgs/extensions/windows.svg" />
+                                        Windows 10+
+                            </span>
+                            <span>
+                                <img src="/svgs/extensions/mac.svg" />
+                                        macOS 10.13+
+                            </span>
+                            <span>
+                                <img src="/svgs/extensions/bluetooth.svg" />
+                                        Bluetooth
+                            </span>
+                            <span>
+                                <img src="/svgs/extensions/scratch-link.svg" />
+                                        Scratch Link
+                            </span>
+                        </FlexRow>
+                    </FlexRow>
+                </ExtensionHeader>
                 <OSChooser
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
@@ -218,19 +215,19 @@ class EV3 extends React.Component {
                             <ProjectCard
                                 cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-wave-hello.sb3"
                                 description="Make a puppet robot and have a friendly chat."
-                                imageUrl="/images/ev3/starter-wave-hello.png"
+                                imageSrc="/images/ev3/starter-wave-hello.png"
                                 title="Wave Hello"
                             />
                             <ProjectCard
                                 cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-distance-instrument.sb3"
                                 description="Move your body in front of the sensor to make music."
-                                imageUrl="/images/ev3/starter-distance-instrument.png"
+                                imageSrc="/images/ev3/starter-distance-instrument.png"
                                 title="Distance Instrument"
                             />
                             <ProjectCard
                                 cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-space-tacos.sb3"
                                 description="Build your own controller to catch tacos in space."
-                                imageUrl="/images/ev3/starter-flying-game.png"
+                                imageSrc="/images/ev3/starter-flying-game.png"
                                 title="Space Tacos"
                             />
                         </Steps>
