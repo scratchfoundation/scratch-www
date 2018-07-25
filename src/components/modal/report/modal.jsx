@@ -148,7 +148,7 @@ class ReportModal extends React.Component {
                             />
                         </div>
                         <FlexRow className="action-buttons">
-                            {this.state.reportWaiting ? [
+                            {report.waiting ? [
                                 <Button
                                     className="submit-button"
                                     disabled="disabled"
