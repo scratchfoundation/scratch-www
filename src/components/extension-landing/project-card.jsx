@@ -8,7 +8,7 @@ const ProjectCard = props => (
         href={props.cardUrl}
     >
         <div className="project-card-image">
-            <img src={props.imageUrl} />
+            <img src={props.imageSrc} />
         </div>
         <div className="project-card-info">
             <h4>{props.title}</h4>
@@ -20,7 +20,7 @@ const ProjectCard = props => (
 ProjectCard.propTypes = {
     cardUrl: PropTypes.string,
     description: PropTypes.string,
-    imageUrl: PropTypes.string,
+    imageSrc: PropTypes.string,
     title: PropTypes.string
 };
 
