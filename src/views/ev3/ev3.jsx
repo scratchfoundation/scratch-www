@@ -17,6 +17,7 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
+const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
 
@@ -68,29 +69,24 @@ class EV3 extends React.Component {
                         />
                         <span />
                     </FlexRow>
-                    <FlexRow className="column extension-requirements-container">
-                        <span className="requirements-header">
-                            <FormattedMessage id="ev3.requirements" />
-                        </span>
-                        <FlexRow className="extension-requirements">
-                            <span>
-                                <img src="/svgs/extensions/windows.svg" />
+                    <ExtensionRequirements>
+                        <span>
+                            <img src="/svgs/extensions/windows.svg" />
                                         Windows 10+
-                            </span>
-                            <span>
-                                <img src="/svgs/extensions/mac.svg" />
+                        </span>
+                        <span>
+                            <img src="/svgs/extensions/mac.svg" />
                                         macOS 10.13+
-                            </span>
-                            <span>
-                                <img src="/svgs/extensions/bluetooth.svg" />
+                        </span>
+                        <span>
+                            <img src="/svgs/extensions/bluetooth.svg" />
                                         Bluetooth
-                            </span>
-                            <span>
-                                <img src="/svgs/extensions/scratch-link.svg" />
+                        </span>
+                        <span>
+                            <img src="/svgs/extensions/scratch-link.svg" />
                                         Scratch Link
-                            </span>
-                        </FlexRow>
-                    </FlexRow>
+                        </span>
+                    </ExtensionRequirements>
                 </ExtensionHeader>
                 <OSChooser
                     currentOS={this.state.OS}

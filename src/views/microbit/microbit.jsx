@@ -18,8 +18,10 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
+const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
+
 const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');
 
@@ -49,7 +51,7 @@ class MicroBit extends React.Component {
     render () {
         return (
             <div className="extension-landing microbit">
-                <ExtensionHeader>
+                <ExtensionHeader imageSrc="/images/microbit/microbit-heart.png">
                     <FlexRow className="column extension-copy">
                         <h2><img src="/images/microbit/microbit.svg" />micro:bit</h2>
                         <FormattedMessage
@@ -67,29 +69,24 @@ class MicroBit extends React.Component {
                             }}
                         />
                     </FlexRow>
-                    <FlexRow className="column extension-requirements-container">
-                        <span className="requirements-header">
-                            <FormattedMessage id="microbit.requirements" />
-                        </span>
-                        <FlexRow className="extension-requirements">
-                            <span>
-                                <img src="/svgs/extensions/windows.svg" />
+                    <ExtensionRequirements>
+                        <span>
+                            <img src="/svgs/extensions/windows.svg" />
                                         Windows 10+
-                            </span>
-                            <span>
-                                <img src="/svgs/extensions/mac.svg" />
+                        </span>
+                        <span>
+                            <img src="/svgs/extensions/mac.svg" />
                                         macOS 10.13+
-                            </span>
-                            <span>
-                                <img src="/svgs/extensions/bluetooth.svg" />
+                        </span>
+                        <span>
+                            <img src="/svgs/extensions/bluetooth.svg" />
                                         Bluetooth 4.0
-                            </span>
-                            <span>
-                                <img src="/svgs/extensions/scratch-link.svg" />
+                        </span>
+                        <span>
+                            <img src="/svgs/extensions/scratch-link.svg" />
                                         Scratch Link
-                            </span>
-                        </FlexRow>
-                    </FlexRow>
+                        </span>
+                    </ExtensionRequirements>
                 </ExtensionHeader>
                 <OSChooser
                     currentOS={this.state.OS}
