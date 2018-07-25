@@ -1,18 +1,15 @@
-const bindAll = require('lodash.bindall');
-const truncate = require('lodash.truncate');
 const PropTypes = require('prop-types');
 const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 const Modal = require('../base/modal.jsx');
-const log = require('../../../lib/log.js');
 
 const Form = require('../../forms/form.jsx');
 const Button = require('../../forms/button.jsx');
-const Select = require('../../forms/select.jsx');
 const Spinner = require('../../spinner/spinner.jsx');
 const FlexRow = require('../../flex-row/flex-row.jsx');
+const StudioButton = require('./studio-button.jsx');
 
 require('../../forms/button.scss');
 require('./modal.scss');
@@ -26,45 +23,24 @@ const AddToStudioModalPresentation = ({
     onRequestClose,
     onSubmit
 }) => {
-    const contentLabel = intl.formatMessage({id: "addToStudio.title"});
-    const checkmark = <img alt="checkmark-icon"
-                       className="studio-status-icon-checkmark-img"
-                       src="/svgs/modal/confirm.svg"
-                      />
-    const plus = <img alt="plus-icon"
-                  className="studio-status-icon-plus-img"
-                  src="/svgs/modal/add.svg"
-                 />
-    const studioButtons = studios.map((studio, index) => {
-        return (
-            <div className={"studio-selector-button " +
-                (studio.hasRequestOutstanding ? "studio-selector-button-waiting" :
-                (studio.includesProject ? "studio-selector-button-selected" : ""))}
-                key={studio.id}
-                onClick={() => onToggleStudio(studio.id)}
-            >
-                <div className={"studio-selector-button-text " +
-                    (studio.includesProject ? "studio-selector-button-text-selected" :
-                    "studio-selector-button-text-unselected")}>
-                    {truncate(studio.title, {'length': 20, 'separator': /[,:\.;]*\s+/})}
-                </div>
-                <div className={"studio-status-icon " +
-                    (studio.includesProject ? "" : "studio-status-icon-unselected")}
-                >
-                    {(studio.hasRequestOutstanding ?
-                    (<Spinner type="smooth" />) :
-                    (studio.includesProject ? checkmark : plus))}
-                </div>
-            </div>
-        );
-    });
+    const contentLabel = intl.formatMessage({id: 'addToStudio.title'});
+    const studioButtons = studios.map(studio => (
+        <StudioButton
+            hasRequestOutstanding={studio.hasRequestOutstanding}
+            id={studio.id}
+            includesProject={studio.includesProject}
+            key={studio.id}
+            title={studio.title}
+            onToggleStudio={onToggleStudio}
+        />
+    ));
 
     return (
         <Modal
             className="mod-addToStudio"
             contentLabel={contentLabel}
-            onRequestClose={onRequestClose}
             isOpen={isOpen}
+            onRequestClose={onRequestClose}
         >
             <div>
                 <div className="addToStudio-modal-header">
@@ -78,8 +54,7 @@ const AddToStudioModalPresentation = ({
                             <div className="studio-list-container">
                                 {studioButtons}
                             </div>
-                        </div>
-                        <div className="studio-list-bottom-gradient">
+                            <div className="studio-list-bottom-gradient" />
                         </div>
                     </div>
 
@@ -91,10 +66,10 @@ const AddToStudioModalPresentation = ({
                         <FlexRow className="action-buttons">
                             <Button
                                 className="action-button close-button white"
-                                onClick={onRequestClose}
                                 key="closeButton"
                                 name="closeButton"
                                 type="button"
+                                onClick={onRequestClose}
                             >
                                 <div className="action-button-text">
                                     <FormattedMessage id="general.close" />
@@ -108,7 +83,7 @@ const AddToStudioModalPresentation = ({
                                     type="submit"
                                 >
                                     <div className="action-button-text">
-                                        <Spinner type="smooth" />
+                                        <Spinner mode="smooth" />
                                         <FormattedMessage id="addToStudio.finishing" />
                                     </div>
                                 </Button>
@@ -129,15 +104,16 @@ const AddToStudioModalPresentation = ({
             </div>
         </Modal>
     );
-}
+};
 
 AddToStudioModalPresentation.propTypes = {
+    intl: intlShape,
     isOpen: PropTypes.bool,
-    studios: PropTypes.arrayOf(PropTypes.object),
-    waitingToClose: PropTypes.bool,
-    onToggleStudio: PropTypes.func,
     onRequestClose: PropTypes.func,
-    onSubmit: PropTypes.func
+    onSubmit: PropTypes.func,
+    onToggleStudio: PropTypes.func,
+    studios: PropTypes.arrayOf(PropTypes.object),
+    waitingToClose: PropTypes.bool
 };
 
 module.exports = injectIntl(AddToStudioModalPresentation);

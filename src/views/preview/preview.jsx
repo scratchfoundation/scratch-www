@@ -211,16 +211,19 @@ class Preview extends React.Component {
             );
         }
     }
-    handleToggleStudio (studioId) {
-        const studio = this.props.studios.find((studio) => {return studio.id === studioId});
-        // only send add or leave request to server if we know current status
-        if (studio !== undefined && ('includesProject' in studio)) {
-            this.props.toggleStudio(
-                (studio.includesProject === false),
-                studioId,
-                this.props.projectInfo.id,
-                this.props.user.token
-            );
+    handleToggleStudio (event) {
+        const studioId = parseInt(event.currentTarget.dataset.id, 10);
+        if (!isNaN(studioId)) { // probably unnecessary test; should always be a number
+            const studio = this.props.studios.find(thisStudio => (thisStudio.id === studioId));
+            // only send add or leave request to server if we know current status
+            if ((typeof studio !== 'undefined') && ('includesProject' in studio)) {
+                this.props.toggleStudio(
+                    (studio.includesProject === false),
+                    studioId,
+                    this.props.projectInfo.id,
+                    this.props.user.token
+                );
+            }
         }
     }
     handleFavoriteToggle () {
@@ -307,6 +310,7 @@ class Preview extends React.Component {
             this.props.playerMode ?
                 <Page>
                     <PreviewPresentation
+                        addToStudioOpen={this.state.addToStudioOpen}
                         comments={this.props.comments}
                         editable={this.state.editable}
                         extensions={this.state.extensions}
@@ -321,22 +325,21 @@ class Preview extends React.Component {
                         parentInfo={this.props.parent}
                         projectId={this.state.projectId}
                         projectInfo={this.props.projectInfo}
+                        projectStudios={this.props.projectStudios}
                         remixes={this.props.remixes}
                         report={this.state.report}
-                        addToStudioOpen={this.state.addToStudioOpen}
-                        projectStudios={this.props.projectStudios}
                         studios={this.props.studios}
                         user={this.props.user}
                         userOwnsProject={this.userOwnsProject()}
+                        onAddToStudioClicked={this.handleAddToStudioClick}
+                        onAddToStudioClosed={this.handleAddToStudioClose}
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoveClicked={this.handleLoveToggle}
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
                         onReportSubmit={this.handleReportSubmit}
-                        onAddToStudioClicked={this.handleAddToStudioClick}
-                        onAddToStudioClosed={this.handleAddToStudioClose}
-                        onToggleStudio={this.handleToggleStudio}
                         onSeeInside={this.handleSeeInside}
+                        onToggleStudio={this.handleToggleStudio}
                         onUpdate={this.handleUpdate}
                     />
                 </Page> :
@@ -354,28 +357,28 @@ Preview.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     fullScreen: PropTypes.bool,
+    getCuratedStudios: PropTypes.func.isRequired,
     getFavedStatus: PropTypes.func.isRequired,
     getLovedStatus: PropTypes.func.isRequired,
     getOriginalInfo: PropTypes.func.isRequired,
     getParentInfo: PropTypes.func.isRequired,
     getProjectInfo: PropTypes.func.isRequired,
-    getRemixes: PropTypes.func.isRequired,
     getProjectStudios: PropTypes.func.isRequired,
-    getCuratedStudios: PropTypes.func.isRequired,
-    toggleStudio: PropTypes.func.isRequired,
+    getRemixes: PropTypes.func.isRequired,
     loved: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
     playerMode: PropTypes.bool,
     projectInfo: projectShape,
+    projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
     setFullScreen: PropTypes.func.isRequired,
     setLovedStatus: PropTypes.func.isRequired,
     setPlayer: PropTypes.func.isRequired,
-    projectStudios: PropTypes.arrayOf(PropTypes.object),
     studios: PropTypes.arrayOf(PropTypes.object),
+    toggleStudio: PropTypes.func.isRequired,
     updateProject: PropTypes.func.isRequired,
     user: PropTypes.shape({
         id: PropTypes.number,
@@ -397,8 +400,7 @@ Preview.defaultProps = {
 // Build consolidated curatedStudios object from all studio info.
 // We add flags to indicate whether the project is currently in the studio,
 // and the status of requests to join/leave studios.
-function consolidateStudiosInfo (curatedStudios, projectStudios,
-    currentStudioIds, studioRequests) {
+const consolidateStudiosInfo = (curatedStudios, projectStudios, currentStudioIds, studioRequests) => {
     const consolidatedStudios = [];
 
     projectStudios.forEach(projectStudio => {
@@ -427,7 +429,7 @@ function consolidateStudiosInfo (curatedStudios, projectStudios,
            (studioRequests[id] === previewActions.Status.FETCHING));
     });
     return consolidatedStudios;
-}
+};
 
 const mapStateToProps = state => ({
     projectInfo: state.preview.projectInfo,

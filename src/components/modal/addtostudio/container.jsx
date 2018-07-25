@@ -1,15 +1,13 @@
 const bindAll = require('lodash.bindall');
 const PropTypes = require('prop-types');
 const React = require('react');
-const log = require('../../../lib/log.js');
 const AddToStudioModalPresentation = require('./presentation.jsx');
-const previewActions = require('../../../redux/preview.js');
 
 class AddToStudioModal extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'closeAndStopWaiting',
+            'handleRequestClose',
             'handleSubmit'
         ]);
 
@@ -18,7 +16,7 @@ class AddToStudioModal extends React.Component {
         };
     }
 
-    componentWillUpdate (prevProps) {
+    componentWillUpdate () {
         this.checkIfFinishedUpdating();
     }
 
@@ -32,15 +30,19 @@ class AddToStudioModal extends React.Component {
         }
     }
 
-    // need to register here that we are no longer waiting for the modal to close.
-    // Otherwise, user may reopen modal only to have it immediately close.
+    // before closing, set waitingToClose to false. That way, if user reopens
+    // modal, it won't unexpectedly close.
     closeAndStopWaiting () {
         this.setState({waitingToClose: false}, () => {
             this.props.onRequestClose();
         });
     }
 
-    handleSubmit (formData) {
+    handleRequestClose () {
+        this.closeAndStopWaiting();
+    }
+
+    handleSubmit () {
         this.setState({waitingToClose: true}, () => {
             this.checkIfFinishedUpdating();
         });
@@ -48,23 +50,23 @@ class AddToStudioModal extends React.Component {
 
     render () {
         return (
-          <AddToStudioModalPresentation
-              studios={this.props.studios}
-              isOpen={this.props.isOpen}
-              waitingToClose={this.state.waitingToClose}
-              onRequestClose={this.closeAndStopWaiting}
-              onToggleStudio={this.props.onToggleStudio}
-              onSubmit={this.handleSubmit}
-          />
+            <AddToStudioModalPresentation
+                isOpen={this.props.isOpen}
+                studios={this.props.studios}
+                waitingToClose={this.state.waitingToClose}
+                onRequestClose={this.handleRequestClose}
+                onSubmit={this.handleSubmit}
+                onToggleStudio={this.props.onToggleStudio}
+            />
         );
     }
 }
 
 AddToStudioModal.propTypes = {
     isOpen: PropTypes.bool,
-    studios: PropTypes.arrayOf(PropTypes.object),
+    onRequestClose: PropTypes.func,
     onToggleStudio: PropTypes.func,
-    onRequestClose: PropTypes.func
+    studios: PropTypes.arrayOf(PropTypes.object)
 };
 
 module.exports = AddToStudioModal;

@@ -1,12 +1,15 @@
 const range = require('lodash.range');
+const PropTypes = require('prop-types');
 const React = require('react');
 
 require('./spinner.scss');
 
 // Adapted from http://tobiasahlin.com/spinkit/
-const Spinner = (props) => {
-    const spinnerClassName = (props.type === "smooth" ? "spinner-smooth" : "spinner");
-    const spinnerDivCount = (props.type === "smooth" ? 24 : 12)
+const Spinner = ({
+    mode
+}) => {
+    const spinnerClassName = (mode === 'smooth' ? 'spinner-smooth' : 'spinner');
+    const spinnerDivCount = (mode === 'smooth' ? 24 : 12);
     return (
         <div className={spinnerClassName}>
             {range(1, spinnerDivCount + 1).map(id => (
@@ -17,6 +20,10 @@ const Spinner = (props) => {
             ))}
         </div>
     );
+};
+
+Spinner.propTypes = {
+    mode: PropTypes.string
 };
 
 module.exports = Spinner;

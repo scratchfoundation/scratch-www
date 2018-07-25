@@ -4,11 +4,15 @@
 .modal-content {
     position: relative;
     margin: 3.75rem auto;
-    border-radius: 0.5rem;
+    border-radius: .5rem;
     box-shadow: 0 0 0 1px $active-gray;
     background-color: $ui-white;
     padding: 0;
     width: 48.75rem;
+
+    &:focus {
+        outline: none;
+    }
 }
 
 .modal-overlay {
@@ -19,10 +23,6 @@
     left: 0;
     z-index: 100;
     background-color: transparentize($ui-blue, .3);
-}
-
-.modal-content:focus {
-    outline: none;
 }
 
 $modal-close-size: 1rem;
@@ -63,19 +63,23 @@ $modal-close-size: 1rem;
 /* Close button, Submit button, etc. */
 .action-buttons {
     display: flex;
+    margin: 1.125rem .8275rem .9375rem .8275rem;
     justify-content: flex-end !important;
     align-items: flex-start;
     flex-wrap: nowrap;
-    margin: 1rem;
 }
 
 .action-button {
-    margin: 0 0 0 0.54625rem;
+    margin: 0 0 0 .54625rem;
+    border-radius: .25rem;
     padding: 6px 1.25rem 14px 1.25rem;
     height: 36px;
+}
+
+.action-button.close-button {
+    border: 1px solid $active-gray;
 }
 
 .action-button-text {
     display: flex;
 }
-

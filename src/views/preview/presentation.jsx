@@ -245,7 +245,8 @@ const PreviewPresentation = ({
                                 <FlexRow className="action-buttons">
                                     {(isLoggedIn && userOwnsProject) &&
                                         <React.Fragment>
-                                            <Button className="action-button studio-button"
+                                            <Button
+                                                className="action-button studio-button"
                                                 key="add-to-studio-button"
                                                 onClick={onAddToStudioClicked}
                                             >
@@ -255,8 +256,8 @@ const PreviewPresentation = ({
                                                 isOpen={addToStudioOpen}
                                                 key="add-to-studio-modal"
                                                 studios={studios}
-                                                onToggleStudio={onToggleStudio}
                                                 onRequestClose={onAddToStudioClosed}
+                                                onToggleStudio={onToggleStudio}
                                             />
                                         </React.Fragment>
                                     }
@@ -314,6 +315,7 @@ const PreviewPresentation = ({
 };
 
 PreviewPresentation.propTypes = {
+    addToStudioOpen: PropTypes.bool,
     editable: PropTypes.bool,
     extensions: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
@@ -323,17 +325,21 @@ PreviewPresentation.propTypes = {
     isShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
+    onAddToStudioClicked: PropTypes.func,
+    onAddToStudioClosed: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onLoveClicked: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
     onSeeInside: PropTypes.func,
+    onToggleStudio: PropTypes.func,
     onUpdate: PropTypes.func,
     originalInfo: projectShape,
     parentInfo: projectShape,
     projectId: PropTypes.string,
     projectInfo: projectShape,
+    projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     report: PropTypes.shape({
         category: PropTypes.string,
@@ -341,12 +347,7 @@ PreviewPresentation.propTypes = {
         open: PropTypes.bool,
         waiting: PropTypes.bool
     }),
-    addToStudioOpen: PropTypes.bool,
-    projectStudios: PropTypes.arrayOf(PropTypes.object),
     studios: PropTypes.arrayOf(PropTypes.object),
-    onAddToStudioClicked: PropTypes.func,
-    onAddToStudioClosed: PropTypes.func,
-    onToggleStudio: PropTypes.func,
     userOwnsProject: PropTypes.bool
 };
 

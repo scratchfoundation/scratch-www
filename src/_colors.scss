@@ -19,11 +19,16 @@ $background-color: hsla(0, 0, 99, 1); //#FDFDFD
 $ui-green: hsla(163, 83, 40, 1); // #0fbd8c Pen Primary
 $ui-coral: hsla(350, 100, 70, 1); // #FF6680 More Primary
 $ui-coral-dark: hsla(350, 100, 60, 1); // #FF3355 More tertiary
-$ui-blue-10percent-solid: hsla(214, 93, 94, 1); // don't blend when overlaid
-// #4F9AFC per invision mockup; www royal blue is really #4169E1;
-// cornflower blue is #6495ED
-$ui-royal-blue: hsla(214, 97, 65, 1);
-$ui-dark-blue: hsla(214, 63, 55, 1);
+
+/* modals */
+$ui-royal-blue: hsl(214, 97, 65);
+$ui-dark-blue: hsl(214, 63, 55);
+$ui-azure-blue: hsl(211, 96%, 62%);
+$ui-blue-10percent-solid: hsl(214, 93, 94);
+$ui-blue-white: hsl(213, 100, 95);
+$ui-cadet-blue: hsl(226, 15, 40);
+$ui-mint-green: hsl(162,68.6%,43.7%);
+$ui-light-mint: hsl(168,52.9%,66.7%);
 
 $ui-aqua: hsla(163, 85, 40, 1); // #0FBD8C Extension Primary
 $ui-purple: hsla(260, 100, 70, 1); // #9966FF Looks Primary
