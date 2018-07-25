@@ -143,8 +143,7 @@
         }
     }
 
-    .getting-started,
-    .faq {
+    .extension-section {
         .inner {
             align-items: flex-start;
         }
@@ -183,6 +182,10 @@
         }
     }
 
+    .things-to-try .inner {
+        align-items: center;
+    }
+
     .project-card {
         margin: 0 1.5rem;
         border: 1px solid $ui-border;
@@ -216,7 +219,7 @@
         }
 
         .faq-title {
-            margin-bottom: 1rem;
+            margin-bottom: 0;
             font-size: 1.4rem;
         }
 
