@@ -183,29 +183,27 @@
         }
     }
 
-    .things-to-try {
-        .project-card {
-            margin: 0 1.5rem;
-            border: 1px solid $ui-border;
-            border-radius: .5rem;
-            background-color: $ui-white;
-            overflow: hidden;
-            flex-basis: 0;
-            flex-grow: 1;
+    .project-card {
+        margin: 0 1.5rem;
+        border: 1px solid $ui-border;
+        border-radius: .5rem;
+        background-color: $ui-white;
+        overflow: hidden;
+        flex-basis: 0;
+        flex-grow: 1;
+    }
+
+    .project-card-image {
+        img {
+            max-width: 100%;
         }
+    }
 
-        .project-card-image {
-            img {
-                max-width: 100%;
-            }
-        }
+    .project-card-info {
+        padding: 1rem;
 
-        .project-card-info {
-            padding: 1rem;
-
-            p {
-                margin: .2rem 0;
-            }
+        p {
+            margin: .2rem 0;
         }
     }
 
