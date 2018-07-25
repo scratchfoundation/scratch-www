@@ -45,19 +45,17 @@ const InstallScratchLink = ({
                     compact
                     number={2}
                 >
-                    <FlexRow className="step-content">
-                        <span className="step-description">
-                            <FormattedMessage id="installScratchLink.startScratchLink" />
-                        </span>
-                        <div className="step-image">
-                            <img
-                                className="screenshot"
-                                src={`/images/scratchlink/${
-                                    currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                                }-toolbar.png`}
-                            />
-                        </div>
-                    </FlexRow>
+                    <span className="step-description">
+                        <FormattedMessage id="installScratchLink.startScratchLink" />
+                    </span>
+                    <div className="step-image">
+                        <img
+                            className="screenshot"
+                            src={`/images/scratchlink/${
+                                currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
+                            }-toolbar.png`}
+                        />
+                    </div>
                 </Step>
             </Steps>
         </FlexRow>
