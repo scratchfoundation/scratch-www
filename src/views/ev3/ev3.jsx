@@ -3,7 +3,6 @@
  * into something that can be used in both places (scratch-www#1982)
  */
 
-const bindAll = require('lodash.bindall');
 const injectIntl = require('react-intl').injectIntl;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
@@ -16,6 +15,7 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 
+const ExtensionLanding = require('../../components/extension-landing/extension-landing.jsx');
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
@@ -30,24 +30,7 @@ const OS_ENUM = require('../../components/extension-landing/os-enum.js');
 require('../../components/extension-landing/extension-landing.scss');
 require('./ev3.scss');
 
-class EV3 extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'onSetOS'
-        ]);
-
-        this.state = {
-            OS: OS_ENUM.WINDOWS
-        };
-    }
-
-    onSetOS (os) {
-        this.setState({
-            OS: os
-        });
-    }
-
+class EV3 extends ExtensionLanding {
     render () {
         return (
             <div className="extension-landing ev3">
