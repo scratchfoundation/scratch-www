@@ -18,6 +18,7 @@ const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
+const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
 
@@ -95,141 +96,137 @@ class EV3 extends React.Component {
                 <InstallScratchLink
                     currentOS={this.state.OS}
                 />
-                <div className="getting-started">
-                    <FlexRow className="inner column">
-                        <h2><FormattedMessage id="ev3.gettingStarted" /></h2>
-                        <FlexRow className="column getting-started-section">
-                            <h3><FormattedMessage id="ev3.connectingEV3" /></h3>
-                            <Steps>
-                                <Step number={1}>
-                                    <div className="step-image">
-                                        <img src="/images/ev3/ev3-connect-1.png" />
-                                    </div>
-                                    <p><FormattedMessage id="ev3.turnOnEV3" /></p>
-                                </Step>
-                                <Step number={2}>
-                                    <div className="step-image">
-                                        <img src="/images/ev3/ev3-connect-2.png" />
-                                    </div>
-                                    <p>
-                                        <FormattedMessage
-                                            id="ev3.useScratch3"
-                                            values={{
-                                                scratch3Link: (
-                                                    <a
-                                                        href="https://beta.scratch.mit.edu/"
-                                                        rel="noopener noreferrer"
-                                                        target="_blank"
-                                                    >
-                                                            Scratch 3.0
-                                                    </a>
-                                                )
-                                            }}
-                                        />
-                                    </p>
-                                </Step>
-                                <Step number={3}>
-                                    <div className="step-image">
-                                        <img src="/images/ev3/ev3-connect-3.png" />
-                                    </div>
-                                    <p><FormattedMessage id="ev3.addExtension" /></p>
-                                </Step>
-                            </Steps>
-                            <div className="tip-box">
-                                <h4><FormattedMessage id="ev3.firstTimeConnecting" /></h4>
-                                <FlexRow className="column tip-content">
-                                    <p><FormattedMessage id="ev3.pairingDescription" /></p>
-                                    <Steps>
-                                        <Step>
-                                            <div className="step-image">
-                                                <img src="/images/ev3/ev3-accept-connection.png" />
-                                            </div>
-                                            <p><FormattedMessage id="ev3.acceptConnection" /></p>
-                                        </Step>
-                                        <Step>
-                                            <div className="step-image">
-                                                <img src="/images/ev3/ev3-pin.png" />
-                                            </div>
-                                            <p><FormattedMessage id="ev3.acceptPasscode" /></p>
-                                        </Step>
-                                        <Step>
-                                            <div className="step-image">
-                                                <img
-                                                    className="screenshot"
-                                                    src={`/images/ev3/${
-                                                        this.state.OS === OS_ENUM.WINDOWS ?
-                                                            'win-device-ready.png' :
-                                                            'mac-enter-passcode.png'
-                                                    }`}
-                                                />
-                                            </div>
-                                            <p>
-                                                {this.state.OS === OS_ENUM.WINDOWS ?
-                                                    <FormattedMessage id="ev3.windowsFinalizePairing" /> :
-                                                    <FormattedMessage id="ev3.macosFinalizePairing" />
-                                                }
-                                            </p>
-                                        </Step>
-                                    </Steps>
-                                </FlexRow>
-                            </div>
-                        </FlexRow>
-                    </FlexRow>
-                </div>
-                <div className="blue things-to-try">
-                    <FlexRow className="inner column">
-                        <h2><FormattedMessage id="ev3.thingsToTry" /></h2>
-                        <h3>Make a motor move</h3>
+                <ExtensionSection className="getting-started">
+                    <h2><FormattedMessage id="ev3.gettingStarted" /></h2>
+                    <FlexRow className="column getting-started-section">
+                        <h3><FormattedMessage id="ev3.connectingEV3" /></h3>
                         <Steps>
-                            <Step
-                                compact
-                                number={1}
-                            >
-                                <span className="step-description">
-                                    Plug a motor into <strong>port A</strong> on the EV3 hub
-                                </span>
+                            <Step number={1}>
                                 <div className="step-image">
-                                    <img src="/images/ev3/ev3-motor-port-a.png" />
+                                    <img src="/images/ev3/ev3-connect-1.png" />
                                 </div>
+                                <p><FormattedMessage id="ev3.turnOnEV3" /></p>
                             </Step>
-                            <Step
-                                compact
-                                number={2}
-                            >
-                                <span className="step-description">
+                            <Step number={2}>
+                                <div className="step-image">
+                                    <img src="/images/ev3/ev3-connect-2.png" />
+                                </div>
+                                <p>
+                                    <FormattedMessage
+                                        id="ev3.useScratch3"
+                                        values={{
+                                            scratch3Link: (
+                                                <a
+                                                    href="https://beta.scratch.mit.edu/"
+                                                    rel="noopener noreferrer"
+                                                    target="_blank"
+                                                >
+                                                            Scratch 3.0
+                                                </a>
+                                            )
+                                        }}
+                                    />
+                                </p>
+                            </Step>
+                            <Step number={3}>
+                                <div className="step-image">
+                                    <img src="/images/ev3/ev3-connect-3.png" />
+                                </div>
+                                <p><FormattedMessage id="ev3.addExtension" /></p>
+                            </Step>
+                        </Steps>
+                        <div className="tip-box">
+                            <h4><FormattedMessage id="ev3.firstTimeConnecting" /></h4>
+                            <FlexRow className="column tip-content">
+                                <p><FormattedMessage id="ev3.pairingDescription" /></p>
+                                <Steps>
+                                    <Step>
+                                        <div className="step-image">
+                                            <img src="/images/ev3/ev3-accept-connection.png" />
+                                        </div>
+                                        <p><FormattedMessage id="ev3.acceptConnection" /></p>
+                                    </Step>
+                                    <Step>
+                                        <div className="step-image">
+                                            <img src="/images/ev3/ev3-pin.png" />
+                                        </div>
+                                        <p><FormattedMessage id="ev3.acceptPasscode" /></p>
+                                    </Step>
+                                    <Step>
+                                        <div className="step-image">
+                                            <img
+                                                className="screenshot"
+                                                src={`/images/ev3/${
+                                                    this.state.OS === OS_ENUM.WINDOWS ?
+                                                        'win-device-ready.png' :
+                                                        'mac-enter-passcode.png'
+                                                }`}
+                                            />
+                                        </div>
+                                        <p>
+                                            {this.state.OS === OS_ENUM.WINDOWS ?
+                                                <FormattedMessage id="ev3.windowsFinalizePairing" /> :
+                                                <FormattedMessage id="ev3.macosFinalizePairing" />
+                                            }
+                                        </p>
+                                    </Step>
+                                </Steps>
+                            </FlexRow>
+                        </div>
+                    </FlexRow>
+                </ExtensionSection>
+                <ExtensionSection className="blue things-to-try">
+                    <h2><FormattedMessage id="ev3.thingsToTry" /></h2>
+                    <h3>Make a motor move</h3>
+                    <Steps>
+                        <Step
+                            compact
+                            number={1}
+                        >
+                            <span className="step-description">
+                                    Plug a motor into <strong>port A</strong> on the EV3 hub
+                            </span>
+                            <div className="step-image">
+                                <img src="/images/ev3/ev3-motor-port-a.png" />
+                            </div>
+                        </Step>
+                        <Step
+                            compact
+                            number={2}
+                        >
+                            <span className="step-description">
                                             Find the <strong>&ldquo;motor A turn this way&rdquo;</strong> block
                                              and click on it.
-                                </span>
-                                <div className="step-image">
-                                    <img src="/images/ev3/motor-turn-block.png" />
-                                </div>
-                            </Step>
-                        </Steps>
-                        <div className="section-separator" />
-                        <h3>Starter Projects</h3>
-                        <Steps>
-                            <ProjectCard
-                                cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-wave-hello.sb3"
-                                description="Make a puppet robot and have a friendly chat."
-                                imageSrc="/images/ev3/starter-wave-hello.png"
-                                title="Wave Hello"
-                            />
-                            <ProjectCard
-                                cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-distance-instrument.sb3"
-                                description="Move your body in front of the sensor to make music."
-                                imageSrc="/images/ev3/starter-distance-instrument.png"
-                                title="Distance Instrument"
-                            />
-                            <ProjectCard
-                                cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-space-tacos.sb3"
-                                description="Build your own controller to catch tacos in space."
-                                imageSrc="/images/ev3/starter-flying-game.png"
-                                title="Space Tacos"
-                            />
-                        </Steps>
-                    </FlexRow>
-                </div>
-                <div className="faq inner">
+                            </span>
+                            <div className="step-image">
+                                <img src="/images/ev3/motor-turn-block.png" />
+                            </div>
+                        </Step>
+                    </Steps>
+                    <div className="section-separator" />
+                    <h3>Starter Projects</h3>
+                    <Steps>
+                        <ProjectCard
+                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-wave-hello.sb3"
+                            description="Make a puppet robot and have a friendly chat."
+                            imageSrc="/images/ev3/starter-wave-hello.png"
+                            title="Wave Hello"
+                        />
+                        <ProjectCard
+                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-distance-instrument.sb3"
+                            description="Move your body in front of the sensor to make music."
+                            imageSrc="/images/ev3/starter-distance-instrument.png"
+                            title="Distance Instrument"
+                        />
+                        <ProjectCard
+                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-space-tacos.sb3"
+                            description="Build your own controller to catch tacos in space."
+                            imageSrc="/images/ev3/starter-flying-game.png"
+                            title="Space Tacos"
+                        />
+                    </Steps>
+                </ExtensionSection>
+                <ExtensionSection className="faq">
                     <h2><FormattedMessage id="ev3.troubleshootingTitle" /></h2>
                     <h3 className="faq-title"><FormattedMessage id="ev3.makeSurePairedTitle" /></h3>
                     <p>
@@ -273,7 +270,7 @@ class EV3 extends React.Component {
                             }}
                         />
                     </p>
-                </div>
+                </ExtensionSection>
             </div>
         );
     }
