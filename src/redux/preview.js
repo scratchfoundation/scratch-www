@@ -404,11 +404,10 @@ module.exports.getProjectStudios = id => (dispatch => {
     });
 });
 
-module.exports.getCuratedStudios = (username, token) => (dispatch => {
+module.exports.getCuratedStudios = (username) => (dispatch => {
     dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.FETCHING));
     api({
-        uri: `/users/${username}/studios/curate`,
-        authentication: token
+        uri: `/users/${username}/studios/curate`
     }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.ERROR));

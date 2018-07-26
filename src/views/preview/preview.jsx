@@ -76,7 +76,7 @@ class Preview extends React.Component {
                 this.props.getProjectInfo(this.state.projectId, token);
                 this.props.getRemixes(this.state.projectId, token);
                 this.props.getProjectStudios(this.state.projectId, token);
-                this.props.getCuratedStudios(username, token);
+                this.props.getCuratedStudios(username);
                 this.props.getFavedStatus(this.state.projectId, username, token);
                 this.props.getLovedStatus(this.state.projectId, username, token);
             } else {
