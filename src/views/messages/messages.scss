@@ -24,6 +24,10 @@
     color: $type-gray;
 }
 
+select {
+    width: 110%;
+}
+
 .help-block {
     display: none;
 }
@@ -166,5 +170,9 @@
 
     .messages-social-loadmore {
         width: $cols8;
+    }
+    
+    select {
+        width: 100%;
     }
 }
