@@ -8,6 +8,7 @@ const React = require('react');
 
 const api = require('../../lib/api');
 const Button = require('../../components/forms/button.jsx');
+const Form = require('../../components/forms/form.jsx');
 const Grid = require('../../components/grid/grid.jsx');
 const navigationActions = require('../../redux/navigation.js');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
@@ -23,12 +24,14 @@ class Search extends React.Component {
         super(props);
         bindAll(this, [
             'getSearchState',
+            'handleChangeSortMode',
             'handleGetSearchMore',
             'getTab'
         ]);
         this.state = this.getSearchState();
         this.state.loaded = [];
         this.state.loadNumber = 16;
+        this.state.mode = '';
         this.state.offset = 0;
         this.state.loadMore = false;
     }
@@ -47,6 +50,20 @@ class Search extends React.Component {
         }
         term = decodeURIComponent(term.split('+').join(' '));
         this.props.dispatch(navigationActions.setSearchTerm(term));
+        
+        let mode = '';
+        const m = query.lastIndexOf('m=');
+        if (m !== -1) {
+            mode = query.substring(m + 2, query.length).toLowerCase();
+        }
+        while (mode.indexOf('/') > -1) {
+            mode = mode.substring(0, term.indexOf('/'));
+        }
+        while (term.indexOf('&') > -1) {
+            mode = mode.substring(0, term.indexOf('&'));
+        }
+        mode = decodeURIComponent(mode.split('+').join(' '));
+        this.state.mode = mode;
     }
     componentDidUpdate (prevProps) {
         if (this.props.searchTerm !== prevProps.searchTerm) {
@@ -60,10 +77,19 @@ class Search extends React.Component {
         }
         const start = pathname.lastIndexOf('/');
         const type = pathname.substring(start + 1, pathname.length);
+        const modeOptions = ['trending', 'popular', 'recent', ''];
         return {
+            acceptableModes: modeOptions,
             tab: type,
             loadNumber: 16
         };
+    }
+    handleChangeSortMode (name, value) {
+        if (this.state.acceptableModes.indexOf(value) !== -1) {
+            const term = this.props.searchTerm.split(' ').join('+');
+            window.location =
+                `${window.location.origin}/search/${this.state.tab}?q=${term}&m=${value}`;
+        }
     }
     handleGetSearchMore () {
         let termText = '';
@@ -73,7 +99,8 @@ class Search extends React.Component {
         const locale = this.props.intl.locale;
         const loadNumber = this.state.loadNumber;
         const offset = this.state.offset;
-        const queryString = `limit=${loadNumber}&offset=${offset}&language=${locale}&mode=popular${termText}`;
+        const mode = this.state.mode;
+        const queryString = `limit=${loadNumber}&offset=${offset}&language=${locale}&mode=${mode}${termText}`;
 
         api({
             uri: `/search/${this.state.tab}?${queryString}`
@@ -167,6 +194,29 @@ class Search extends React.Component {
                         {this.getTab('projects')}
                         {this.getTab('studios')}
                     </Tabs>
+                    <div className="sort-controls">
+                        <Form className="sort-mode">
+                            <Select
+                                name="sort"
+                                options={[
+                                    {
+                                        value: 'trending',
+                                        label: this.props.intl.formatMessage({id: 'explore.trending'})
+                                    },
+                                    {
+                                        value: 'popular',
+                                        label: this.props.intl.formatMessage({id: 'explore.popular'})
+                                    },
+                                    {
+                                        value: 'recent',
+                                        label: this.props.intl.formatMessage({id: 'explore.recent'})
+                                    }
+                                ]}
+                                value={this.state.mode}
+                                onChange={this.handleChangeSortMode}
+                            />
+                        </Form>
+                    </div>
                     {this.getProjectBox()}
                 </div>
             </div>
@@ -177,6 +227,7 @@ class Search extends React.Component {
 Search.propTypes = {
     dispatch: PropTypes.func,
     intl: intlShape,
+    mode: PropTypes.string,
     searchTerm: PropTypes.string
 };
 
