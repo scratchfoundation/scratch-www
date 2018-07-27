@@ -14,7 +14,7 @@ services:
     hostname: scratch-www-app
     environment:
       - API_HOST=http://localhost:8491
-      - FALLBACK=http://localhost:8080
+      - FALLBACK=http://scratchr2-app:8080
       - USE_DOCKER_WATCHOPTIONS=true
     build:
       context: ./

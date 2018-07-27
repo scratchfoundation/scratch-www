@@ -14,10 +14,10 @@ build:
 	@make webpack
 
 clean:
-	rm -rf ./build
-	rm -rf ./intl
 	mkdir -p build
+	rm -rf ./build/*
 	mkdir -p intl
+	rm -rf ./intl/*
 
 deploy:
 	@make build
@@ -70,7 +70,7 @@ integration:
 
 smoke:
 	$(TAP) ./test/integration/smoke-testing/*.js --timeout=3600
-	
+
 smoke-verbose:
 	$(TAP) ./test/integration/smoke-testing/*.js --timeout=3600 -R spec
 
