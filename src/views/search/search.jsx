@@ -11,6 +11,7 @@ const Button = require('../../components/forms/button.jsx');
 const Form = require('../../components/forms/form.jsx');
 const Grid = require('../../components/grid/grid.jsx');
 const navigationActions = require('../../redux/navigation.js');
+const Select = require('../../components/forms/select.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 const Tabs = require('../../components/tabs/tabs.jsx');
 
@@ -63,7 +64,9 @@ class Search extends React.Component {
             mode = mode.substring(0, term.indexOf('&'));
         }
         mode = decodeURIComponent(mode.split('+').join(' '));
-        this.state.mode = mode;
+        this.setState({
+            mode: mode
+        });
     }
     componentDidUpdate (prevProps) {
         if (this.props.searchTerm !== prevProps.searchTerm) {
@@ -227,7 +230,6 @@ class Search extends React.Component {
 Search.propTypes = {
     dispatch: PropTypes.func,
     intl: intlShape,
-    mode: PropTypes.string,
     searchTerm: PropTypes.string
 };
 
