@@ -105,7 +105,7 @@ $base-bg: $ui-white;
         }
     }
     
-        /* HACK: sort controls are terrible. There's some sort of magic formula for height of formsy components that I can't control. */
+    /* HACK: sort controls are terrible. There's some sort of magic formula for height of formsy components that I can't control. */
 
     .sort-controls {
         display: flex;
