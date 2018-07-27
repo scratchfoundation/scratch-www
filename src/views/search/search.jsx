@@ -64,9 +64,7 @@ class Search extends React.Component {
             mode = mode.substring(0, term.indexOf('&'));
         }
         mode = decodeURIComponent(mode.split('+').join(' '));
-        this.setState({
-            mode: mode
-        });
+        this.props.dispatch(navigationActions.setMode(mode));
     }
     componentDidUpdate (prevProps) {
         if (this.props.searchTerm !== prevProps.searchTerm) {
