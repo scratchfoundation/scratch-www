@@ -43,6 +43,28 @@
         }
     }
 
+    .screenshot {
+        border-radius: .5rem;
+    }
+
+    .tip-box {
+        margin-top: 4rem;
+        border: 1px solid $ui-blue-25percent;
+        border-radius: 1rem;
+        background-color: $ui-blue-10percent;
+        padding: 2rem 3rem;
+        width: 100%;
+        box-sizing: border-box;
+
+        .tip-content {
+            align-items: flex-start;
+
+            p {
+                margin-top: 0;
+            }
+        }
+    }
+
     .extension-header {
         background-size: cover;
         color: $ui-white;
@@ -149,10 +171,6 @@
         }
     }
 
-    .screenshot {
-        border-radius: .5rem;
-    }
-
     .getting-started {
         .getting-started-section {
             width: 100%;
@@ -160,24 +178,6 @@
 
             a {
                 margin: 1rem 0;
-            }
-        }
-
-        .tip-box {
-            margin-top: 4rem;
-            border: 1px solid $ui-blue-25percent;
-            border-radius: 1rem;
-            background-color: $ui-blue-10percent;
-            padding: 2rem 3rem;
-            width: 100%;
-            box-sizing: border-box;
-
-            .tip-content {
-                align-items: flex-start;
-
-                p {
-                    margin-top: 0;
-                }
             }
         }
     }
