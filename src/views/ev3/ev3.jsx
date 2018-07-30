@@ -4,6 +4,7 @@
  */
 
 const injectIntl = require('react-intl').injectIntl;
+const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
@@ -20,6 +21,7 @@ const ExtensionHeader = require('../../components/extension-landing/extension-he
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
+const TipBox = require('../../components/extension-landing/tip-box.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
 
 const Steps = require('../../components/steps/steps.jsx');
@@ -51,7 +53,6 @@ class EV3 extends ExtensionLanding {
                                 )
                             }}
                         />
-                        <span />
                     </FlexRow>
                     <ExtensionRequirements>
                         <span>
@@ -118,44 +119,41 @@ class EV3 extends ExtensionLanding {
                                 <p><FormattedMessage id="ev3.addExtension" /></p>
                             </Step>
                         </Steps>
-                        <div className="tip-box">
-                            <h4><FormattedMessage id="ev3.firstTimeConnecting" /></h4>
-                            <FlexRow className="column tip-content">
-                                <p><FormattedMessage id="ev3.pairingDescription" /></p>
-                                <Steps>
-                                    <Step>
-                                        <div className="step-image">
-                                            <img src="/images/ev3/ev3-accept-connection.png" />
-                                        </div>
-                                        <p><FormattedMessage id="ev3.acceptConnection" /></p>
-                                    </Step>
-                                    <Step>
-                                        <div className="step-image">
-                                            <img src="/images/ev3/ev3-pin.png" />
-                                        </div>
-                                        <p><FormattedMessage id="ev3.acceptPasscode" /></p>
-                                    </Step>
-                                    <Step>
-                                        <div className="step-image">
-                                            <img
-                                                className="screenshot"
-                                                src={`/images/ev3/${
-                                                    this.state.OS === OS_ENUM.WINDOWS ?
-                                                        'win-device-ready.png' :
-                                                        'mac-enter-passcode.png'
-                                                }`}
-                                            />
-                                        </div>
-                                        <p>
-                                            {this.state.OS === OS_ENUM.WINDOWS ?
-                                                <FormattedMessage id="ev3.windowsFinalizePairing" /> :
-                                                <FormattedMessage id="ev3.macosFinalizePairing" />
-                                            }
-                                        </p>
-                                    </Step>
-                                </Steps>
-                            </FlexRow>
-                        </div>
+                        <TipBox title={this.props.intl.formatMessage({id: 'ev3.firstTimeConnecting'})}>
+                            <p><FormattedMessage id="ev3.pairingDescription" /></p>
+                            <Steps>
+                                <Step>
+                                    <div className="step-image">
+                                        <img src="/images/ev3/ev3-accept-connection.png" />
+                                    </div>
+                                    <p><FormattedMessage id="ev3.acceptConnection" /></p>
+                                </Step>
+                                <Step>
+                                    <div className="step-image">
+                                        <img src="/images/ev3/ev3-pin.png" />
+                                    </div>
+                                    <p><FormattedMessage id="ev3.acceptPasscode" /></p>
+                                </Step>
+                                <Step>
+                                    <div className="step-image">
+                                        <img
+                                            className="screenshot"
+                                            src={`/images/ev3/${
+                                                this.state.OS === OS_ENUM.WINDOWS ?
+                                                    'win-device-ready.png' :
+                                                    'mac-enter-passcode.png'
+                                            }`}
+                                        />
+                                    </div>
+                                    <p>
+                                        {this.state.OS === OS_ENUM.WINDOWS ?
+                                            <FormattedMessage id="ev3.windowsFinalizePairing" /> :
+                                            <FormattedMessage id="ev3.macosFinalizePairing" />
+                                        }
+                                    </p>
+                                </Step>
+                            </Steps>
+                        </TipBox>
                     </FlexRow>
                 </ExtensionSection>
                 <ExtensionSection className="blue things-to-try">
@@ -258,6 +256,10 @@ class EV3 extends ExtensionLanding {
         );
     }
 }
+
+EV3.propTypes = {
+    intl: intlShape.isRequired
+};
 
 const WrappedEV3 = injectIntl(EV3);
 
