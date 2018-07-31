@@ -39,7 +39,8 @@ $base-bg: $ui-white;
 
     &.getting-started-button {
         margin-right: 0;
-        background-color: $ui-aqua;
+        background-color: $ui-white;
+        color: $link-blue;
     }
 
     img {
