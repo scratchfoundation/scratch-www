@@ -200,6 +200,14 @@ const Credits = () => (
 
             <li>
                 <img
+                    alt="Kathy Avatar"
+                    src="//cdn.scratch.mit.edu/get_image/user/26779669_170x170.png"
+                />
+                <span className="name">Kathy Wu</span>
+            </li>
+
+            <li>
+                <img
                     alt="Julia Avatar"
                     src="//cdn.scratch.mit.edu/get_image/user/2796185_170x170.png"
                 />
