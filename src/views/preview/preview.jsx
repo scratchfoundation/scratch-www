@@ -213,17 +213,16 @@ class Preview extends React.Component {
     }
     handleToggleStudio (event) {
         const studioId = parseInt(event.currentTarget.dataset.id, 10);
-        if (!isNaN(studioId)) { // probably unnecessary test; should always be a number
-            const studio = this.props.studios.find(thisStudio => (thisStudio.id === studioId));
-            // only send add or leave request to server if we know current status
-            if ((typeof studio !== 'undefined') && ('includesProject' in studio)) {
-                this.props.toggleStudio(
-                    (studio.includesProject === false),
-                    studioId,
-                    this.props.projectInfo.id,
-                    this.props.user.token
-                );
-            }
+        if (isNaN(studioId)) { return; } // sanity check in case event had no integer data-id
+        const studio = this.props.studios.find(thisStudio => (thisStudio.id === studioId));
+        // only send add or leave request to server if we know current status
+        if ((typeof studio !== 'undefined') && ('includesProject' in studio)) {
+            this.props.toggleStudio(
+                (studio.includesProject === false),
+                studioId,
+                this.props.projectInfo.id,
+                this.props.user.token
+            );
         }
     }
     handleFavoriteToggle () {
