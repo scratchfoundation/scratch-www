@@ -22,9 +22,11 @@
         line-height: 1.7rem;
     }
 
-    .section-separator {
+    hr {
         margin: 4rem 0;
-        border-top: 1px solid $ui-border;
+        border-width: 1px 0 0 0;
+        border-style: solid;
+        border-color: $ui-border;
         width: 100%;
     }
 

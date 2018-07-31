@@ -184,7 +184,7 @@ class EV3 extends ExtensionLanding {
                             </div>
                         </Step>
                     </Steps>
-                    <div className="section-separator" />
+                    <hr />
                     <h3>Starter Projects</h3>
                     <Steps>
                         <ProjectCard

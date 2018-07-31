@@ -119,7 +119,7 @@ class MicroBit extends ExtensionLanding {
                             </Step>
                         </Steps>
                     </FlexRow>
-                    <div className="section-separator" />
+                    <hr />
                     <FlexRow className="column getting-started-section">
                         <h3><FormattedMessage id="microbit.connectingMicrobit" /></h3>
                         <Steps>
@@ -202,7 +202,7 @@ class MicroBit extends ExtensionLanding {
                             </div>
                         </Step>
                     </Steps>
-                    <div className="section-separator" />
+                    <hr />
                     <h3><FormattedMessage id="microbit.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
