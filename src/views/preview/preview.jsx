@@ -213,7 +213,9 @@ class Preview extends React.Component {
     }
     handleToggleStudio (event) {
         const studioId = parseInt(event.currentTarget.dataset.id, 10);
-        if (isNaN(studioId)) { return; } // sanity check in case event had no integer data-id
+        if (isNaN(studioId)) { // sanity check in case event had no integer data-id
+            return;
+        }
         const studio = this.props.studios.find(thisStudio => (thisStudio.id === studioId));
         // only send add or leave request to server if we know current status
         if ((typeof studio !== 'undefined') && ('includesProject' in studio)) {
