@@ -14,10 +14,10 @@ build:
 	@make webpack
 
 clean:
+	rm -rf ./build
+	rm -rf ./intl
 	mkdir -p build
-	rm -rf ./build/*
 	mkdir -p intl
-	rm -rf ./intl/*
 
 deploy:
 	@make build

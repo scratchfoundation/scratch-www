@@ -1,4 +1,4 @@
-const truncate = require('lodash.truncate');
+const truncateAtWordBoundary = require('../../../lib/truncate').truncateAtWordBoundary;
 const PropTypes = require('prop-types');
 const React = require('react');
 const classNames = require('classnames');
@@ -45,7 +45,7 @@ const StudioButton = ({
                     {'studio-selector-button-text-unselected': !includesProject}
                 )}
             >
-                {truncate(title, {length: 20, separator: /[.,:;]*\s+/})}
+                {truncateAtWordBoundary(title, 20)}
             </div>
             <div
                 className={classNames(

@@ -404,7 +404,7 @@ const consolidateStudiosInfo = (curatedStudios, projectStudios, currentStudioIds
     const consolidatedStudios = [];
 
     projectStudios.forEach(projectStudio => {
-        const includesProject = (projectStudio.id in currentStudioIds);
+        const includesProject = (currentStudioIds.indexOf(projectStudio.id) !== -1);
         const consolidatedStudio =
             Object.assign({}, projectStudio, {includesProject: includesProject});
         consolidatedStudios.push(consolidatedStudio);
@@ -413,7 +413,7 @@ const consolidateStudiosInfo = (curatedStudios, projectStudios, currentStudioIds
     // copy the curated studios that project is not in
     curatedStudios.forEach(curatedStudio => {
         if (!projectStudios.some(projectStudio => (projectStudio.id === curatedStudio.id))) {
-            const includesProject = (curatedStudio.id in currentStudioIds);
+            const includesProject = (currentStudioIds.indexOf(curatedStudio.id) !== -1);
             const consolidatedStudio =
                 Object.assign({}, curatedStudio, {includesProject: includesProject});
             consolidatedStudios.push(consolidatedStudio);

@@ -17,14 +17,14 @@ class AddToStudioModal extends React.Component {
     }
 
     componentWillUpdate () {
-        this.checkIfFinishedUpdating();
+        this.closeIfFinishedUpdating();
     }
 
     hasOutstandingUpdates () {
         return (this.props.studios.some(studio => (studio.hasRequestOutstanding === true)));
     }
 
-    checkIfFinishedUpdating () {
+    closeIfFinishedUpdating () {
         if (this.state.waitingToClose === true && this.hasOutstandingUpdates() === false) {
             this.closeAndStopWaiting();
         }
@@ -44,7 +44,7 @@ class AddToStudioModal extends React.Component {
 
     handleSubmit () {
         this.setState({waitingToClose: true}, () => {
-            this.checkIfFinishedUpdating();
+            this.closeIfFinishedUpdating();
         });
     }
 
