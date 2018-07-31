@@ -53,9 +53,9 @@ class Search extends React.Component {
         this.props.dispatch(navigationActions.setSearchTerm(term));
         
         let mode = '';
-        const m = query.lastIndexOf('m=');
+        const m = query.lastIndexOf('mode=');
         if (m !== -1) {
-            mode = query.substring(m + 2, query.length).toLowerCase();
+            mode = query.substring(m + 5, query.length).toLowerCase();
         }
         while (mode.indexOf('/') > -1) {
             mode = mode.substring(0, term.indexOf('/'));
@@ -89,7 +89,7 @@ class Search extends React.Component {
         if (this.state.acceptableModes.indexOf(value) !== -1) {
             const term = this.props.searchTerm.split(' ').join('+');
             window.location =
-                `${window.location.origin}/search/${this.state.tab}?q=${term}&m=${value}`;
+                `${window.location.origin}/search/${this.state.tab}?q=${term}&mode=${value}`;
         }
     }
     handleGetSearchMore () {
