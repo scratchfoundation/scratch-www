@@ -27,7 +27,7 @@ class CommentContainer extends React.Component {
     }
 
     fetchReplies (id) {
-        if (this.props.reply_count > 0) {
+        if (this.props.replyCount > 0) {
             api({
                 uri: `/comments/project/${this.props.projectId}/${id}`
             }, (err, body) => {
@@ -56,15 +56,15 @@ class CommentContainer extends React.Component {
         const {
             author,
             content,
-            datetime_created,
+            datetimeCreated,
             id,
-            reply_count
+            replyCount
         } = this.props;
 
         return (
             <FlexRow className="comment-container">
-                <Comment {...{author, content, datetime_created, id}} />
-                {reply_count > 0 && // eslint-disable-line camelcase
+                <Comment {...{author, content, datetimeCreated, id}} />
+                {replyCount > 0 && // eslint-disable-line camelcase
                     <FlexRow
                         className={classNames(
                             'replies',
@@ -99,11 +99,11 @@ CommentContainer.propTypes = {
         username: PropTypes.string
     }),
     content: PropTypes.string,
-    datetime_created: PropTypes.string,
+    datetimeCreated: PropTypes.string,
     id: PropTypes.number,
-    parent_id: PropTypes.number,
+    parentId: PropTypes.number,
     projectId: PropTypes.string,
-    reply_count: PropTypes.number
+    replyCount: PropTypes.number
 };
 
 export default CommentContainer;

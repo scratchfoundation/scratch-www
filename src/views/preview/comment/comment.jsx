@@ -10,7 +10,7 @@ require('./comment.scss');
 const Comment = ({
     author,
     content,
-    datetime_created,
+    datetimeCreated,
     id
 }) => (
     <div
@@ -41,7 +41,7 @@ const Comment = ({
                 <span className="comment-content">{content}</span>
                 <FlexRow className="comment-bottom-row">
                     <span className="comment-time">
-                        <FormattedRelative value={new Date(datetime_created)} />
+                        <FormattedRelative value={new Date(datetimeCreated)} />
                     </span>
                     <a
                         className="comment-reply"
@@ -62,7 +62,7 @@ Comment.propTypes = {
         username: PropTypes.string
     }),
     content: PropTypes.string,
-    datetime_created: PropTypes.string,
+    datetimeCreated: PropTypes.string,
     id: PropTypes.number
 };
 

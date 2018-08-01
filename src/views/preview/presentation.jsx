@@ -298,9 +298,14 @@ const PreviewPresentation = ({
                                     <FlexRow className="comments-list">
                                         {comments.map(comment => (
                                             <CommentContainer
-                                                {...comment}
+                                                author={comment.author}
+                                                content={comment.content}
+                                                datetimeCreated={comment.datetime_created}
+                                                id={comment.id}
                                                 key={comment.id}
+                                                parentId={comment.parent_id}
                                                 projectId={projectId}
+                                                replyCount={comment.reply_count}
                                             />
                                         ))}
                                         <Button
