@@ -41,8 +41,8 @@ const StudioButton = ({
             <div
                 className={classNames(
                     'studio-selector-button-text',
-                    {'studio-selector-button-text-selected': includesProject},
-                    {'studio-selector-button-text-unselected': !includesProject}
+                    {'studio-selector-button-text-selected': includesProject || hasRequestOutstanding},
+                    {'studio-selector-button-text-unselected': !includesProject && !hasRequestOutstanding}
                 )}
             >
                 {truncateAtWordBoundary(title, 25)}

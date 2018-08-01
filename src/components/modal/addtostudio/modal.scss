@@ -16,8 +16,8 @@
 }
 
 .addToStudio-modal-header {
-    box-shadow: inset 0 -1px 0 0 $ui-dark-blue;
-    background-color: $ui-azure-blue;
+    box-shadow: inset 0 -1px 0 0 $ui-blue-dark;
+    background-color: $ui-blue;
     padding-top: .75rem;
     width: 100%;
     height: 3rem;
@@ -41,18 +41,17 @@
 
 .studio-list-outer-scrollbox {
     position: relative;
-    background-color: $ui-blue-10percent-solid;
+    background-color: $ui-blue-10percent;
 }
 
 .studio-list-inner-scrollbox {
-    margin-right: 8px;
-    padding-right: 8px;
+    margin-right: .5rem;
+    padding-right: .5rem;
     height: 16.9375rem;
     overflow: scroll;
     overflow-x: hidden;
 
     &::-webkit-scrollbar {
-        background-color: $ui-blue-10percent-solid;
         width: 8px;
     }
 
@@ -70,7 +69,6 @@
 
 .studio-list-container {
     display: flex;
-    background-color: $ui-blue-10percent-solid;
     padding: .40625rem 0 0 1.46875rem;
     justify-content: flex-start;
     flex-flow: row wrap;
@@ -86,7 +84,7 @@
     left: 0;
     background: linear-gradient(
         $transparent-light-blue,
-        $ui-blue-white
+        $ui-light-primary
     );
     height: 32px;
     pointer-events: none; /* pass clicks through to buttons underneath */
@@ -119,7 +117,7 @@
     line-height: 1.25rem;
     font-family: "Helvetica Neue";
     font-size: .875rem;
-    font-weight: 800;
+    font-weight: regular;
 }
 
 .studio-selector-button-selected {
@@ -137,7 +135,7 @@
 }
 
 .studio-selector-button-text-unselected {
-    color: $ui-cadet-blue;
+    color: $type-gray;
 }
 
 .studio-status-icon {
@@ -148,7 +146,6 @@
     width: 1.5rem;
     height: 1.5rem;
     color: $ui-white;
-    font-weight: 800;
     box-sizing: border-box;
 }
 
@@ -157,11 +154,11 @@
 }
 
 .submit-button {
-    background-color: $ui-azure-blue;
+    background-color: $ui-blue;
 }
 
 .submit-button-waiting {
-    background-color: $ui-azure-blue;
+    background-color: $ui-blue;
 }
 
 .studio-status-icon-plus-img {
