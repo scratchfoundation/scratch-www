@@ -78,7 +78,7 @@ class Search extends React.Component {
         }
         const start = pathname.lastIndexOf('/');
         const type = pathname.substring(start + 1, pathname.length);
-        const modeOptions = ['trending', 'popular', 'recent', ''];
+        const modeOptions = ['trending', 'popular', ''];
         return {
             acceptableModes: modeOptions,
             tab: type,
@@ -202,15 +202,11 @@ class Search extends React.Component {
                                 options={[
                                     {
                                         value: 'trending',
-                                        label: this.props.intl.formatMessage({id: 'explore.trending'})
+                                        label: this.props.intl.formatMessage({id: 'search.trending'})
                                     },
                                     {
                                         value: 'popular',
-                                        label: this.props.intl.formatMessage({id: 'explore.popular'})
-                                    },
-                                    {
-                                        value: 'recent',
-                                        label: this.props.intl.formatMessage({id: 'explore.recent'})
+                                        label: this.props.intl.formatMessage({id: 'search.popular'})
                                     }
                                 ]}
                                 value={this.state.mode}
