@@ -75,7 +75,10 @@ class CommentContainer extends React.Component {
                     >
                         {(this.state.expanded ? this.state.replies : this.state.replies.slice(0, 3)).map(reply => (
                             <Comment
-                                {...reply}
+                                author={reply.author}
+                                content={reply.content}
+                                datetimeCreated={reply.datetime_created}
+                                id={reply.id}
                                 key={reply.id}
                             />
                         ))}
