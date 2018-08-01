@@ -68,9 +68,8 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {curatedStudios: action.items});
     case 'ADD_PROJECT_TO_STUDIO':
         // add studio id to our studios-that-this-project-belongs-to set.
-        state.currentStudioIds.push(action.studioId);
         return Object.assign({}, state, {
-            currentStudioIds: state.currentStudioIds.slice()
+            currentStudioIds: state.currentStudioIds.concat(action.studioId)
         });
     case 'REMOVE_PROJECT_FROM_STUDIO':
         return Object.assign({}, state, {
