@@ -31,25 +31,24 @@ $base-bg: $ui-white;
     max-width: calc(100% - 2rem);
 }
 
-$darken-button: rgba(0, 0, 0, .1);
-
 .tips-button {
     margin-right: .75rem;
     background-color: $ui-blue;
     color: $ui-white;
     font-size: 1rem;
-    
+
     &.getting-started-button {
         margin-right: 0;
-        background-color: $darken-button;
+        background-color: $ui-white;
+        color: $link-blue;
     }
-    
+
     img {
         margin-right: 1rem;
         height: 1.25rem;
         vertical-align: middle;
     }
-    
+
     a {
         color: $ui-white;
     }
@@ -95,26 +94,26 @@ img.tips-icon {
             }
         }
     }
-    
+
     .ttt-head {
-        
+
         p {
             max-width: $cols4;
         }
     }
-    
+
     //put the image first if in 4-column
     .tips-info-body {
         max-width: $cols4;
         text-align: center;
-        
+
         &.tips-illustration {
             order: -1;
             img {
                 width: $cols4;
             }
         }
-        
+
         .button {
             width: 100%;
         }
@@ -131,13 +130,13 @@ img.tips-icon {
             }
         }
     }
-    
+
     .ttt-head {
         p {
             max-width: $cols6;
         }
     }
-    
+
     .tips-info-body.tips-illustration {
         order: -1;
         img {
@@ -163,27 +162,27 @@ img.tips-icon {
             }
         }
     }
-    
+
     .ttt-head {
         p {
             max-width: $cols6;
         }
     }
-    
+
     .tips-info-section {
         &.mod-align-top {
             align-items: flex-start;
         }
     }
-    
+
     .tips-info-body {
         max-width: $cols4;
     }
-    
+
     .tips-button {
         width: 100%;
     }
-    
+
     img.mod-flow-left {
         transform: translate(-1*$cols2);
     }
@@ -200,19 +199,19 @@ img.tips-icon {
             }
         }
     }
-    
+
     .ttt-head {
         p {
             max-width: $cols8;
         }
     }
-    
+
     .tips-info-section {
         &.mod-align-top {
             align-items: flex-start;
         }
     }
-    
+
     .tips-info-body {
         max-width: $cols6;
         &.mod-narrow {
