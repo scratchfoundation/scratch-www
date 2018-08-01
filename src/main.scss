@@ -74,7 +74,7 @@ p {
         padding: 1.25em;
 
         &.orange {
-            background-color: lighten($ui-orange, 30);
+            background-color: $ui-orange-10percent;
         }
     }
 
@@ -138,7 +138,7 @@ p {
 }
 
 ::selection {
-    background-color: lighten($ui-blue, 30);
+    background-color: $ui-blue-25percent;
 }
 
 ol,

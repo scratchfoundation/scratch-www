@@ -5,6 +5,7 @@ $ui-blue-10percent: hsla(215, 100, 65, .1);
 $ui-blue-25percent:  hsla(215, 100, 65, .25);
 
 $ui-orange: hsla(38, 100, 55, 1); // #FFAB19 Control Primary
+$ui-orange-10percent: hsla(35, 90, 55, .1);
 $ui-orange-25percent: hsla(35, 90, 55, .25);
 
 $ui-light-gray: hsla(0, 0, 98, 1); //#FAFAFA
@@ -39,6 +40,7 @@ $overlay-gray: hsla(0, 0, 0, .75);
 /* Typography Colors */
 $header-gray: hsla(225, 15, 40, 1); //#575E75
 $type-gray: hsla(225, 15, 40, 1); //#575E75
+$type-gray-75percent: hsla(225, 15, 40, .75);
 $type-white: hsla(0, 100, 100, 1); //#FFF
 
 $link-blue: $ui-blue;

@@ -18,13 +18,13 @@
             animation: circleFadeDelay 1.2s infinite ease-in-out both;
             margin: 0 auto;
             border-radius: 100%;
-            background-color: darken($ui-white, 8%);
+            background-color: $ui-gray;
             width: 15%;
             height: 15%;
             content: "";
 
             .white & {
-                background-color: $ui-blue-dark    
+                background-color: $ui-blue-dark;
             }
         }
     }
@@ -37,7 +37,7 @@
             transform: rotate($rotation);
 
             &:before {
-                animation-delay: $delay; 
+                animation-delay: $delay;
             }
         }
 
@@ -54,5 +54,5 @@
 
     40% {
         opacity: 1;
-    } 
+    }
 }
