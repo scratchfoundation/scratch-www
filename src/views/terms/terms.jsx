@@ -466,7 +466,7 @@ const Terms = () => (
                 <p>
                     This document, together with all appendices, constitutes the entire Terms
                      of Use and supersedes all previous agreements with the Scratch Team relating
-                     to the use of Scratch. Revision date: 4 March 2015.
+                     to the use of Scratch. Revision date: April 2016.
                 </p>
             </section>
             <section id="appendix-a">
