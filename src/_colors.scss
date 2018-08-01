@@ -16,20 +16,6 @@ $background-color: hsla(0, 0, 99, 1); //#FDFDFD
 /* UI Secondary Colors */
 /* 3.0 colors */
 /* Using www naming convention for now, should be consistent with gui */
-$ui-green: hsla(163, 83, 40, 1); // #0fbd8c Pen Primary
-$ui-coral: hsla(350, 100, 70, 1); // #FF6680 More Primary
-$ui-coral-dark: hsla(350, 100, 60, 1); // #FF3355 More tertiary
-
-/* modals */
-$ui-royal-blue: hsl(214, 97, 65);
-$ui-dark-blue: hsl(214, 63, 55);
-$ui-azure-blue: hsl(211, 96%, 62%);
-$ui-blue-10percent-solid: hsl(214, 93, 94);
-$ui-blue-white: hsl(213, 100, 95);
-$ui-cadet-blue: hsl(226, 15, 40);
-$ui-mint-green: hsl(162,68.6%,43.7%);
-$ui-light-mint: hsl(168,52.9%,66.7%);
-
 $ui-aqua: hsla(163, 85, 40, 1); // #0FBD8C Extension Primary
 $ui-purple: hsla(260, 100, 70, 1); // #9966FF Looks Primary
 $ui-purple-dark: hsla(260, 60, 60, 1); // #774DCB Looks Secondary
@@ -42,6 +28,16 @@ $ui-white: hsla(0, 100%, 100%, 1); //#FFF
 $ui-white-15percent: hsla(0, 100%, 100%, .15); //#FFF
 
 $ui-border: hsla(0, 0, 85, 1); //#D9D9D9
+
+/* modals */
+$ui-royal-blue: hsl(214, 97, 65);
+$ui-dark-blue: hsl(214, 63, 55);
+$ui-azure-blue: hsl(211, 96%, 62%);
+$ui-blue-10percent-solid: hsl(214, 93, 94);
+$ui-blue-white: hsl(213, 100, 95);
+$ui-cadet-blue: hsl(226, 15, 40);
+$ui-mint-green: hsl(162,68.6%,43.7%);
+$ui-light-mint: hsl(168,52.9%,66.7%);
 
 /* Overlay UI Gray Colors */
 $active-gray: hsla(0, 0, 0, .1);
