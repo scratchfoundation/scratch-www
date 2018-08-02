@@ -10,7 +10,7 @@ const Comment = require('./comment.jsx');
 
 require('./comment.scss');
 
-class CommentContainer extends React.Component {
+class TopLevelComment extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
@@ -64,7 +64,7 @@ class CommentContainer extends React.Component {
         return (
             <FlexRow className="comment-container">
                 <Comment {...{author, content, datetimeCreated, id}} />
-                {replyCount > 0 && // eslint-disable-line camelcase
+                {replyCount > 0 &&
                     <FlexRow
                         className={classNames(
                             'replies',
@@ -95,7 +95,7 @@ class CommentContainer extends React.Component {
     }
 }
 
-CommentContainer.propTypes = {
+TopLevelComment.propTypes = {
     author: PropTypes.shape({
         id: PropTypes.number,
         image: PropTypes.string,
@@ -109,4 +109,4 @@ CommentContainer.propTypes = {
     replyCount: PropTypes.number
 };
 
-export default CommentContainer;
+export default TopLevelComment;
