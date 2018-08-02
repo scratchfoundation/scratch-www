@@ -248,12 +248,16 @@ module.exports.getTopLevelComments = (id, offset) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
         dispatch(module.exports.setComments(body));
+        for (const comment of body) {
+            dispatch(module.exports.getReplies(id, comment.id));
+        }
     });
 });
 
-module.exports.getReplies = (projectId, parentId) => (dispatch => {
+module.exports.getReplies = (projectId, parentId, offset) => (dispatch => {
     api({
-        uri: `/comments/project/${projectId}/${parentId}`
+        uri: `/comments/project/${projectId}/${parentId}`,
+        params: {offset: offset || 0}
     }, (err, body) => {
         if (err) {
             log.error(`Error fetching comment replies: ${err}`);

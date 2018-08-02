@@ -1,7 +1,5 @@
 const React = require('react');
 const PropTypes = require('prop-types');
-const api = require('../../../lib/api');
-const log = require('../../../lib/log');
 const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
 
@@ -17,33 +15,8 @@ class TopLevelComment extends React.Component {
             'handleExpandThread'
         ]);
         this.state = {
-            expanded: false,
-            replies: []
+            expanded: false
         };
-    }
-
-    componentDidMount () {
-        this.fetchReplies(this.props.id);
-    }
-
-    fetchReplies (id) {
-        if (this.props.replyCount > 0) {
-            api({
-                uri: `/comments/project/${this.props.projectId}/${id}`
-            }, (err, body) => {
-                if (err) {
-                    log.error(`Error fetching comment replies: ${err}`);
-                    return;
-                }
-                if (typeof body === 'undefined') {
-                    log.error('No comment reply information');
-                    return;
-                }
-                this.setState({
-                    replies: body
-                });
-            });
-        }
     }
 
     handleExpandThread () {
@@ -58,22 +31,22 @@ class TopLevelComment extends React.Component {
             content,
             datetimeCreated,
             id,
-            replyCount
+            replies
         } = this.props;
 
         return (
             <FlexRow className="comment-container">
                 <Comment {...{author, content, datetimeCreated, id}} />
-                {replyCount > 0 &&
+                {replies.length > 0 &&
                     <FlexRow
                         className={classNames(
                             'replies',
                             'column',
-                            {collapsed: !this.state.expanded && this.state.replies.length > 3}
+                            {collapsed: !this.state.expanded && replies.length > 3}
                         )}
                         key={id}
                     >
-                        {(this.state.expanded ? this.state.replies : this.state.replies.slice(0, 3)).map(reply => (
+                        {(this.state.expanded ? replies : replies.slice(0, 3)).map(reply => (
                             <Comment
                                 author={reply.author}
                                 content={reply.content}
@@ -84,11 +57,11 @@ class TopLevelComment extends React.Component {
                         ))}
                     </FlexRow>
                 }
-                {!this.state.expanded && this.state.replies.length > 3 &&
+                {!this.state.expanded && replies.length > 3 &&
                     <a
                         className="expand-thread"
                         onClick={this.handleExpandThread}
-                    >See all {this.state.replies.length} replies</a>
+                    >See all {replies.length} replies</a>
                 }
             </FlexRow>
         );
@@ -106,7 +79,7 @@ TopLevelComment.propTypes = {
     id: PropTypes.number,
     parentId: PropTypes.number,
     projectId: PropTypes.string,
-    replyCount: PropTypes.number
+    replies: PropTypes.arrayOf(PropTypes.object)
 };
 
-export default TopLevelComment;
+module.exports = TopLevelComment;

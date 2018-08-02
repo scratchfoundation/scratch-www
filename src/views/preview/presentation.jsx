@@ -20,7 +20,7 @@ const RemixList = require('./remix-list.jsx');
 const StudioList = require('./studio-list.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
-const CommentContainer = require('./comment/comment-container.jsx').default;
+const TopLevelComment = require('./comment/top-level-comment.jsx');
 const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 
@@ -44,6 +44,7 @@ const PreviewPresentation = ({
     projectInfo,
     remixes,
     report,
+    replies,
     studios,
     userOwnsProject,
     onFavoriteClicked,
@@ -297,7 +298,7 @@ const PreviewPresentation = ({
                                     </FlexRow>
                                     <FlexRow className="comments-list">
                                         {comments.map(comment => (
-                                            <CommentContainer
+                                            <TopLevelComment
                                                 author={comment.author}
                                                 content={comment.content}
                                                 datetimeCreated={comment.datetime_created}
@@ -305,7 +306,7 @@ const PreviewPresentation = ({
                                                 key={comment.id}
                                                 parentId={comment.parent_id}
                                                 projectId={projectId}
-                                                replyCount={comment.reply_count}
+                                                replies={replies && replies[comment.id] ? replies[comment.id] : []}
                                             />
                                         ))}
                                         <Button
@@ -353,6 +354,7 @@ PreviewPresentation.propTypes = {
     projectId: PropTypes.string,
     projectInfo: projectShape,
     remixes: PropTypes.arrayOf(PropTypes.object),
+    replies: PropTypes.objectOf(PropTypes.array),
     report: PropTypes.shape({
         category: PropTypes.string,
         notes: PropTypes.string,

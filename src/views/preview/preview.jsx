@@ -301,6 +301,7 @@ class Preview extends React.Component {
                         projectId={this.state.projectId}
                         projectInfo={this.props.projectInfo}
                         remixes={this.props.remixes}
+                        replies={this.props.replies}
                         report={this.state.report}
                         studios={this.props.studios}
                         user={this.props.user}
@@ -343,6 +344,7 @@ Preview.propTypes = {
     playerMode: PropTypes.bool,
     projectInfo: projectShape,
     remixes: PropTypes.arrayOf(PropTypes.object),
+    replies: PropTypes.objectOf(PropTypes.array),
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
     setFullScreen: PropTypes.func.isRequired,
@@ -375,6 +377,7 @@ const mapStateToProps = state => ({
     original: state.preview.original,
     parent: state.preview.parent,
     remixes: state.preview.remixes,
+    replies: state.preview.replies,
     sessionStatus: state.session.status,
     studios: state.preview.studios,
     user: state.session.session.user,
