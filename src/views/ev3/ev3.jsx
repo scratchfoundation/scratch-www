@@ -1,8 +1,3 @@
-/*
- * TODO: Refactor this file and views/microbit/microbit.jsx
- * into something that can be used in both places (scratch-www#1982)
- */
-
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
