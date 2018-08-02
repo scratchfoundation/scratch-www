@@ -24,6 +24,7 @@ module.exports.getInitialState = () => ({
     projectInfo: {},
     remixes: [],
     comments: [],
+    replies: {},
     faved: false,
     loved: false,
     original: {},
@@ -60,6 +61,12 @@ module.exports.previewReducer = (state, action) => {
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
             comments: [...state.comments, ...action.items] // TODO: consider a different way of doing this?
+        });
+    case 'SET_REPLIES':
+        return Object.assign({}, state, {
+            replies: Object.assign({}, state.replies, { // this feels bad
+                [action.parentId]: action.items // are computed keys okay here?
+            })
         });
     case 'SET_LOVED':
         return Object.assign({}, state, {
@@ -123,6 +130,12 @@ module.exports.setStudios = items => ({
 
 module.exports.setComments = items => ({
     type: 'SET_COMMENTS',
+    items: items
+});
+
+module.exports.setReplies = (parentId, items) => ({
+    type: 'SET_REPLIES',
+    parentId: parentId,
     items: items
 });
 
@@ -235,6 +248,22 @@ module.exports.getTopLevelComments = (id, offset) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
         dispatch(module.exports.setComments(body));
+    });
+});
+
+module.exports.getReplies = (projectId, parentId) => (dispatch => {
+    api({
+        uri: `/comments/project/${projectId}/${parentId}`
+    }, (err, body) => {
+        if (err) {
+            log.error(`Error fetching comment replies: ${err}`);
+            return;
+        }
+        if (typeof body === 'undefined') {
+            log.error('No comment reply information');
+            return;
+        }
+        dispatch(module.exports.setReplies(parentId, body));
     });
 });
 
