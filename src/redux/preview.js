@@ -1,3 +1,4 @@
+const defaults = require('lodash.defaults');
 const keyMirror = require('keymirror');
 const async = require('async');
 const merge = require('lodash.merge');
@@ -21,6 +22,7 @@ module.exports.getInitialState = () => ({
         original: module.exports.Status.NOT_FETCHED,
         parent: module.exports.Status.NOT_FETCHED,
         remixes: module.exports.Status.NOT_FETCHED,
+        report: module.exports.Status.NOT_FETCHED,
         projectStudios: module.exports.Status.NOT_FETCHED,
         curatedStudios: module.exports.Status.NOT_FETCHED,
         studioRequests: {}
@@ -324,6 +326,7 @@ module.exports.getReplies = (projectId, commentIds) => (dispatch => {
 });
 
 module.exports.setFavedStatus = (faved, id, username, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHING));
     if (faved) {
         api({
             uri: `/projects/${id}/favorites/user/${username}`,
@@ -383,6 +386,7 @@ module.exports.getLovedStatus = (id, username, token) => (dispatch => {
 });
 
 module.exports.setLovedStatus = (loved, id, username, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHING));
     if (loved) {
         api({
             uri: `/projects/${id}/loves/user/${username}`,
@@ -531,6 +535,7 @@ module.exports.leaveStudio = (studioId, projectId, token) => (dispatch => {
 });
 
 module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHING));
     api({
         uri: `/projects/${id}`,
         authentication: token,
@@ -554,5 +559,29 @@ module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
         dispatch(module.exports.setProjectInfo(body));
+    });
+});
+
+module.exports.reportProject = (id, jsonData) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('report', module.exports.Status.FETCHING));
+    // scratchr2 will fail if no thumbnail base64 string provided. We don't yet have
+    // a way to get the actual project thumbnail in www/gui, so for now just submit
+    // a minimal base64 png string.
+    defaults(jsonData, {
+        thumbnail: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC' +
+            '0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII='
+    });
+    api({
+        host: '',
+        uri: `/site-api/projects/all/${id}/report/`,
+        method: 'POST',
+        json: jsonData,
+        useCsrf: true
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            dispatch(module.exports.setFetchStatus('report', module.exports.Status.ERROR));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('report', module.exports.Status.FETCHED));
     });
 });

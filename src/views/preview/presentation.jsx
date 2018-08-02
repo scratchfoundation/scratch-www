@@ -43,7 +43,7 @@ const PreviewPresentation = ({
     projectId,
     projectInfo,
     remixes,
-    report,
+    reportOpen,
     replies,
     addToStudioOpen,
     projectStudios,
@@ -278,8 +278,8 @@ const PreviewPresentation = ({
                                                 Report
                                             </Button>,
                                             <ReportModal
+                                                isOpen={reportOpen}
                                                 key="report-modal"
-                                                report={report}
                                                 type="project"
                                                 onReport={onReportSubmit}
                                                 onRequestClose={onReportClose}
@@ -377,12 +377,7 @@ PreviewPresentation.propTypes = {
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
-    report: PropTypes.shape({
-        category: PropTypes.string,
-        notes: PropTypes.string,
-        open: PropTypes.bool,
-        waiting: PropTypes.bool
-    }),
+    reportOpen: PropTypes.bool,
     studios: PropTypes.arrayOf(PropTypes.object),
     userOwnsProject: PropTypes.bool
 };
