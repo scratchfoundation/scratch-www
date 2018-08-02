@@ -1,3 +1,6 @@
+// preview view can show either project page or editor page;
+// idea is that we shouldn't require a page reload to switch back and forth
+
 const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
@@ -24,6 +27,7 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'addEventListeners',
+            'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoveToggle',
             'handlePermissions',
@@ -31,6 +35,8 @@ class Preview extends React.Component {
             'handleReportClick',
             'handleReportClose',
             'handleReportSubmit',
+            'handleAddToStudioClick',
+            'handleAddToStudioClose',
             'handleSeeInside',
             'handleUpdate',
             'initCounts',
@@ -49,6 +55,7 @@ class Preview extends React.Component {
             favoriteCount: 0,
             loveCount: 0,
             projectId: parts[1] === 'editor' ? 0 : parts[1],
+            addToStudioOpen: false,
             report: {
                 category: '',
                 notes: '',
@@ -68,15 +75,16 @@ class Preview extends React.Component {
                 const token = this.props.user.token;
                 this.props.getProjectInfo(this.state.projectId, token);
                 this.props.getRemixes(this.state.projectId, token);
-                this.props.getStudios(this.state.projectId, token);
+                this.props.getProjectStudios(this.state.projectId, token);
+                this.props.getCuratedStudios(username);
                 this.props.getFavedStatus(this.state.projectId, username, token);
                 this.props.getLovedStatus(this.state.projectId, username, token);
             } else {
                 this.props.getProjectInfo(this.state.projectId);
                 this.props.getRemixes(this.state.projectId);
-                this.props.getStudios(this.state.projectId);
+                this.props.getProjectStudios(this.state.projectId);
             }
-            
+
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             this.getExtensions(this.state.projectId);
@@ -142,6 +150,13 @@ class Preview extends React.Component {
     handleReportClose () {
         this.setState({report: {...this.state.report, open: false}});
     }
+    handleAddToStudioClick () {
+        this.setState({addToStudioOpen: true});
+    }
+    handleAddToStudioClose () {
+        this.setState({addToStudioOpen: false});
+    }
+    // NOTE: this is a copy, change it
     handleReportSubmit (formData) {
         this.setState({report: {
             category: formData.report_category,
@@ -196,6 +211,22 @@ class Preview extends React.Component {
             );
         }
     }
+    handleToggleStudio (event) {
+        const studioId = parseInt(event.currentTarget.dataset.id, 10);
+        if (isNaN(studioId)) { // sanity check in case event had no integer data-id
+            return;
+        }
+        const studio = this.props.studios.find(thisStudio => (thisStudio.id === studioId));
+        // only send add or leave request to server if we know current status
+        if ((typeof studio !== 'undefined') && ('includesProject' in studio)) {
+            this.props.toggleStudio(
+                (studio.includesProject === false),
+                studioId,
+                this.props.projectInfo.id,
+                this.props.user.token
+            );
+        }
+    }
     handleFavoriteToggle () {
         this.props.setFavedStatus(
             !this.props.faved,
@@ -231,7 +262,7 @@ class Preview extends React.Component {
         }
     }
     handlePermissions () {
-        // TODO: handle admins and mods 
+        // TODO: handle admins and mods
         if (this.props.projectInfo.author.username === this.props.user.username) {
             this.setState({editable: true});
         }
@@ -280,6 +311,7 @@ class Preview extends React.Component {
             this.props.playerMode ?
                 <Page>
                     <PreviewPresentation
+                        addToStudioOpen={this.state.addToStudioOpen}
                         comments={this.props.comments}
                         editable={this.state.editable}
                         extensions={this.state.extensions}
@@ -294,17 +326,21 @@ class Preview extends React.Component {
                         parentInfo={this.props.parent}
                         projectId={this.state.projectId}
                         projectInfo={this.props.projectInfo}
+                        projectStudios={this.props.projectStudios}
                         remixes={this.props.remixes}
                         report={this.state.report}
                         studios={this.props.studios}
                         user={this.props.user}
                         userOwnsProject={this.userOwnsProject()}
+                        onAddToStudioClicked={this.handleAddToStudioClick}
+                        onAddToStudioClosed={this.handleAddToStudioClose}
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoveClicked={this.handleLoveToggle}
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
                         onReportSubmit={this.handleReportSubmit}
                         onSeeInside={this.handleSeeInside}
+                        onToggleStudio={this.handleToggleStudio}
                         onUpdate={this.handleUpdate}
                     />
                 </Page> :
@@ -322,18 +358,20 @@ Preview.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     fullScreen: PropTypes.bool,
+    getCuratedStudios: PropTypes.func.isRequired,
     getFavedStatus: PropTypes.func.isRequired,
     getLovedStatus: PropTypes.func.isRequired,
     getOriginalInfo: PropTypes.func.isRequired,
     getParentInfo: PropTypes.func.isRequired,
     getProjectInfo: PropTypes.func.isRequired,
+    getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
-    getStudios: PropTypes.func.isRequired,
     loved: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
     playerMode: PropTypes.bool,
     projectInfo: projectShape,
+    projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
@@ -341,6 +379,7 @@ Preview.propTypes = {
     setLovedStatus: PropTypes.func.isRequired,
     setPlayer: PropTypes.func.isRequired,
     studios: PropTypes.arrayOf(PropTypes.object),
+    toggleStudio: PropTypes.func.isRequired,
     updateProject: PropTypes.func.isRequired,
     user: PropTypes.shape({
         id: PropTypes.number,
@@ -359,6 +398,40 @@ Preview.defaultProps = {
     user: {}
 };
 
+// Build consolidated curatedStudios object from all studio info.
+// We add flags to indicate whether the project is currently in the studio,
+// and the status of requests to join/leave studios.
+const consolidateStudiosInfo = (curatedStudios, projectStudios, currentStudioIds, studioRequests) => {
+    const consolidatedStudios = [];
+
+    projectStudios.forEach(projectStudio => {
+        const includesProject = (currentStudioIds.indexOf(projectStudio.id) !== -1);
+        const consolidatedStudio =
+            Object.assign({}, projectStudio, {includesProject: includesProject});
+        consolidatedStudios.push(consolidatedStudio);
+    });
+
+    // copy the curated studios that project is not in
+    curatedStudios.forEach(curatedStudio => {
+        if (!projectStudios.some(projectStudio => (projectStudio.id === curatedStudio.id))) {
+            const includesProject = (currentStudioIds.indexOf(curatedStudio.id) !== -1);
+            const consolidatedStudio =
+                Object.assign({}, curatedStudio, {includesProject: includesProject});
+            consolidatedStudios.push(consolidatedStudio);
+        }
+    });
+
+    // set studio state to hasRequestOutstanding==true if it's being fetched,
+    // false if it's not
+    consolidatedStudios.forEach(consolidatedStudio => {
+        const id = consolidatedStudio.id;
+        consolidatedStudio.hasRequestOutstanding =
+            ((id in studioRequests) &&
+           (studioRequests[id] === previewActions.Status.FETCHING));
+    });
+    return consolidatedStudios;
+};
+
 const mapStateToProps = state => ({
     projectInfo: state.preview.projectInfo,
     comments: state.preview.comments,
@@ -368,7 +441,10 @@ const mapStateToProps = state => ({
     parent: state.preview.parent,
     remixes: state.preview.remixes,
     sessionStatus: state.session.status,
-    studios: state.preview.studios,
+    projectStudios: state.preview.projectStudios,
+    studios: consolidateStudiosInfo(state.preview.curatedStudios,
+        state.preview.projectStudios, state.preview.currentStudioIds,
+        state.preview.status.studioRequests),
     user: state.session.session.user,
     playerMode: state.scratchGui.mode.isPlayerOnly,
     fullScreen: state.scratchGui.mode.isFullScreen
@@ -388,8 +464,18 @@ const mapDispatchToProps = dispatch => ({
     getRemixes: id => {
         dispatch(previewActions.getRemixes(id));
     },
-    getStudios: id => {
-        dispatch(previewActions.getStudios(id));
+    getProjectStudios: id => {
+        dispatch(previewActions.getProjectStudios(id));
+    },
+    getCuratedStudios: (username, token) => {
+        dispatch(previewActions.getCuratedStudios(username, token));
+    },
+    toggleStudio: (isAdd, studioId, id, token) => {
+        if (isAdd === true) {
+            dispatch(previewActions.addToStudio(studioId, id, token));
+        } else {
+            dispatch(previewActions.leaveStudio(studioId, id, token));
+        }
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));

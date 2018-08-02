@@ -14,7 +14,6 @@ $ui-dark-gray: hsla(0, 0, 70, 1); //#B3B3B3
 
 $background-color: hsla(0, 0, 99, 1); //#FDFDFD
 
-
 /* UI Secondary Colors */
 /* 3.0 colors */
 /* Using www naming convention for now, should be consistent with gui */
@@ -28,14 +27,20 @@ $ui-coral-dark: hsla(350, 100, 60, 1); // #FF3355 More Blocks tertiary
 
 $ui-white: hsla(0, 100%, 100%, 1); //#FFF
 $ui-white-15percent: hsla(0, 100%, 100%, .15); //#FFF
+$ui-light-primary: hsl(215, 100, 95);
 
 $ui-border: hsla(0, 0, 85, 1); //#D9D9D9
+
+/* modals */
+$ui-mint-green: hsl(163, 69, 44);
+$ui-light-mint: hsl(163, 53, 67);
 
 /* Overlay UI Gray Colors */
 $active-gray: hsla(0, 0, 0, .1);
 $active-dark-gray: hsla(0, 0, 0, .2);
 $box-shadow-gray: hsla(0, 0, 0, .25);
 $overlay-gray: hsla(0, 0, 0, .75);
+$transparent-light-blue: rgba(229, 240, 254, 0);
 
 /* Typography Colors */
 $header-gray: hsla(225, 15, 40, 1); //#575E75

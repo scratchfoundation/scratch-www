@@ -19,7 +19,9 @@ module.exports.getInitialState = () => ({
         original: module.exports.Status.NOT_FETCHED,
         parent: module.exports.Status.NOT_FETCHED,
         remixes: module.exports.Status.NOT_FETCHED,
-        studios: module.exports.Status.NOT_FETCHED
+        projectStudios: module.exports.Status.NOT_FETCHED,
+        curatedStudios: module.exports.Status.NOT_FETCHED,
+        studioRequests: {}
     },
     projectInfo: {},
     remixes: [],
@@ -28,7 +30,9 @@ module.exports.getInitialState = () => ({
     loved: false,
     original: {},
     parent: {},
-    studios: []
+    projectStudios: [],
+    curatedStudios: [],
+    currentStudioIds: []
 });
 
 module.exports.previewReducer = (state, action) => {
@@ -53,9 +57,25 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             parent: action.info
         });
-    case 'SET_STUDIOS':
+    case 'SET_PROJECT_STUDIOS':
+        // also initialize currentStudioIds, to keep track of which studios
+        // the project is currently in.
         return Object.assign({}, state, {
-            studios: action.items
+            projectStudios: action.items,
+            currentStudioIds: action.items.map(item => item.id)
+        });
+    case 'SET_CURATED_STUDIOS':
+        return Object.assign({}, state, {curatedStudios: action.items});
+    case 'ADD_PROJECT_TO_STUDIO':
+        // add studio id to our studios-that-this-project-belongs-to set.
+        return Object.assign({}, state, {
+            currentStudioIds: state.currentStudioIds.concat(action.studioId)
+        });
+    case 'REMOVE_PROJECT_FROM_STUDIO':
+        return Object.assign({}, state, {
+            currentStudioIds: state.currentStudioIds.filter(item => (
+                item !== action.studioId
+            ))
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
@@ -72,6 +92,10 @@ module.exports.previewReducer = (state, action) => {
     case 'SET_FETCH_STATUS':
         state = JSON.parse(JSON.stringify(state));
         state.status[action.infoType] = action.status;
+        return state;
+    case 'SET_STUDIO_FETCH_STATUS':
+        state = JSON.parse(JSON.stringify(state));
+        state.status.studioRequests[action.studioId] = action.status;
         return state;
     case 'ERROR':
         log.error(action.error);
@@ -116,14 +140,35 @@ module.exports.setRemixes = items => ({
     items: items
 });
 
-module.exports.setStudios = items => ({
-    type: 'SET_STUDIOS',
+module.exports.setProjectStudios = items => ({
+    type: 'SET_PROJECT_STUDIOS',
     items: items
+});
+
+module.exports.setCuratedStudios = items => ({
+    type: 'SET_CURATED_STUDIOS',
+    items: items
+});
+
+module.exports.addProjectToStudio = studioId => ({
+    type: 'ADD_PROJECT_TO_STUDIO',
+    studioId: studioId
+});
+
+module.exports.removeProjectFromStudio = studioId => ({
+    type: 'REMOVE_PROJECT_FROM_STUDIO',
+    studioId: studioId
 });
 
 module.exports.setFetchStatus = (type, status) => ({
     type: 'SET_FETCH_STATUS',
     infoType: type,
+    status: status
+});
+
+module.exports.setStudioFetchStatus = (studioId, status) => ({
+    type: 'SET_STUDIO_FETCH_STATUS',
+    studioId: studioId,
     status: status
 });
 
@@ -333,26 +378,89 @@ module.exports.getRemixes = id => (dispatch => {
     });
 });
 
-module.exports.getStudios = id => (dispatch => {
-    dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHING));
+module.exports.getProjectStudios = id => (dispatch => {
+    dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.FETCHING));
     api({
-        uri: `/projects/${id}/studios?limit=5`
+        uri: `/projects/${id}/studios`
     }, (err, body, res) => {
         if (err) {
-            dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
+            dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
             return;
         }
         if (typeof body === 'undefined') {
-            dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
-            dispatch(module.exports.setError('No studios info'));
+            dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No projectStudios info'));
             return;
         }
         if (res.statusCode === 404) { // NotFound
             body = [];
         }
-        dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHED));
-        dispatch(module.exports.setStudios(body));
+        dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.FETCHED));
+        dispatch(module.exports.setProjectStudios(body));
+    });
+});
+
+module.exports.getCuratedStudios = username => (dispatch => {
+    dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.FETCHING));
+    api({
+        uri: `/users/${username}/studios/curate`
+    }, (err, body, res) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No curated studios info'));
+            return;
+        }
+        if (res.statusCode === 404) { // NotFound
+            body = [];
+        }
+        dispatch(module.exports.setFetchStatus('curatedStudios', module.exports.Status.FETCHED));
+        dispatch(module.exports.setCuratedStudios(body));
+    });
+});
+
+module.exports.addToStudio = (studioId, projectId, token) => (dispatch => {
+    dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHING));
+    api({
+        uri: `/studios/${studioId}/project/${projectId}`,
+        authentication: token,
+        method: 'POST'
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setError('Add to studio returned no data'));
+            return;
+        }
+        dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHED));
+        dispatch(module.exports.addProjectToStudio(studioId));
+    });
+});
+
+module.exports.leaveStudio = (studioId, projectId, token) => (dispatch => {
+    dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHING));
+    api({
+        uri: `/studios/${studioId}/project/${projectId}`,
+        authentication: token,
+        method: 'DELETE'
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setError('Leave studio returned no data'));
+            return;
+        }
+        dispatch(module.exports.setStudioFetchStatus(studioId, module.exports.Status.FETCHED));
+        dispatch(module.exports.removeProjectFromStudio(studioId));
     });
 });
 

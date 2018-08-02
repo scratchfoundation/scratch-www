@@ -19,6 +19,7 @@ const RemixCredit = require('./remix-credit.jsx');
 const RemixList = require('./remix-list.jsx');
 const StudioList = require('./studio-list.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
+const AddToStudioModal = require('../../components/modal/addtostudio/container.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 
@@ -41,6 +42,8 @@ const PreviewPresentation = ({
     projectInfo,
     remixes,
     report,
+    addToStudioOpen,
+    projectStudios,
     studios,
     userOwnsProject,
     onFavoriteClicked,
@@ -48,6 +51,9 @@ const PreviewPresentation = ({
     onReportClicked,
     onReportClose,
     onReportSubmit,
+    onAddToStudioClicked,
+    onAddToStudioClosed,
+    onToggleStudio,
     onSeeInside,
     onUpdate
 }) => {
@@ -55,7 +61,7 @@ const PreviewPresentation = ({
     return (
         <div className="preview">
             <ShareBanner shared={isShared} />
-            
+
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <div className="inner">
                     <Formsy>
@@ -69,7 +75,7 @@ const PreviewPresentation = ({
                                 </a>
                                 <div className="title">
                                     {editable ?
-                                        
+
                                         <InplaceInput
                                             className="project-title"
                                             handleUpdate={onUpdate}
@@ -237,9 +243,24 @@ const PreviewPresentation = ({
                                     {/*  eslint-enable react/jsx-sort-props */}
                                 </div>
                                 <FlexRow className="action-buttons">
-                                    <Button className="action-button studio-button">
-                                        Add to Studio
-                                    </Button>
+                                    {(isLoggedIn && userOwnsProject) &&
+                                        <React.Fragment>
+                                            <Button
+                                                className="action-button studio-button"
+                                                key="add-to-studio-button"
+                                                onClick={onAddToStudioClicked}
+                                            >
+                                                Add to Studio
+                                            </Button>,
+                                            <AddToStudioModal
+                                                isOpen={addToStudioOpen}
+                                                key="add-to-studio-modal"
+                                                studios={studios}
+                                                onRequestClose={onAddToStudioClosed}
+                                                onToggleStudio={onToggleStudio}
+                                            />
+                                        </React.Fragment>
+                                    }
                                     <Button className="action-button copy-link-button">
                                         Copy Link
                                     </Button>
@@ -283,7 +304,7 @@ const PreviewPresentation = ({
                             </div>
                             <FlexRow className="column">
                                 <RemixList remixes={remixes} />
-                                <StudioList studios={studios} />
+                                <StudioList studios={projectStudios} />
                             </FlexRow>
                         </FlexRow>
                     </Formsy>
@@ -294,6 +315,7 @@ const PreviewPresentation = ({
 };
 
 PreviewPresentation.propTypes = {
+    addToStudioOpen: PropTypes.bool,
     editable: PropTypes.bool,
     extensions: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
@@ -303,17 +325,21 @@ PreviewPresentation.propTypes = {
     isShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
+    onAddToStudioClicked: PropTypes.func,
+    onAddToStudioClosed: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onLoveClicked: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
     onSeeInside: PropTypes.func,
+    onToggleStudio: PropTypes.func,
     onUpdate: PropTypes.func,
     originalInfo: projectShape,
     parentInfo: projectShape,
     projectId: PropTypes.string,
     projectInfo: projectShape,
+    projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     report: PropTypes.shape({
         category: PropTypes.string,
