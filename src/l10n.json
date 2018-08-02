@@ -103,7 +103,15 @@
 
     "navigation.signOut": "Sign out",
 
+    "extensionHeader.requirements": "Requirements",
+
     "oschooser.choose": "Choose your OS:",
+
+    "installScratchLink.installHeaderTitle": "Install Scratch Link",
+    "installScratchLink.downloadAndInstall": "Download and install Scratch Link.",
+    "installScratchLink.windowsDownload": "Download for Windows",
+    "installScratchLink.macosDownload": "Download for macOS",
+    "installScratchLink.startScratchLink": "Start Scratch Link and make sure it is running. It should appear in your toolbar.",
 
     "parents.FaqAgeRangeA": "While Scratch is primarily designed for 8 to 16 year olds, it is also used by people of all ages, including younger children with their parents.",
     "parents.FaqAgeRangeQ": "What is the age range for Scratch?",
