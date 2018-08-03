@@ -153,14 +153,21 @@ class EV3 extends ExtensionLanding {
                 </ExtensionSection>
                 <ExtensionSection className="blue things-to-try">
                     <h2><FormattedMessage id="ev3.thingsToTry" /></h2>
-                    <h3>Make a motor move</h3>
+                    <h3><FormattedMessage id="ev3.makeMotorMove" /></h3>
                     <Steps>
                         <Step
                             compact
                             number={1}
                         >
                             <span className="step-description">
-                                    Plug a motor into <strong>port A</strong> on the EV3 hub
+                                <FormattedMessage
+                                    id="ev3.plugMotorIn"
+                                    values={{
+                                        portA: (
+                                            <strong><FormattedMessage id="ev3.portA" /></strong>
+                                        )
+                                    }}
+                                />
                             </span>
                             <div className="step-image">
                                 <img src="/images/ev3/ev3-motor-port-a.png" />
@@ -171,8 +178,14 @@ class EV3 extends ExtensionLanding {
                             number={2}
                         >
                             <span className="step-description">
-                                            Find the <strong>&ldquo;motor A turn this way&rdquo;</strong> block
-                                             and click on it.
+                                <FormattedMessage
+                                    id="ev3.clickMotorBlock"
+                                    values={{
+                                        motorBlockText: (
+                                            <strong><FormattedMessage id="ev3.motorBlockText" /></strong>
+                                        )
+                                    }}
+                                />
                             </span>
                             <div className="step-image">
                                 <img src="/images/ev3/motor-turn-block.png" />
@@ -180,25 +193,25 @@ class EV3 extends ExtensionLanding {
                         </Step>
                     </Steps>
                     <hr />
-                    <h3>Starter Projects</h3>
+                    <h3><FormattedMessage id="ev3.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
                             cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-wave-hello.sb3"
-                            description="Make a puppet robot and have a friendly chat."
+                            description={this.props.intl.formatMessage({id: 'ev3.waveHelloDescription'})}
                             imageSrc="/images/ev3/starter-wave-hello.png"
-                            title="Wave Hello"
+                            title={this.props.intl.formatMessage({id: 'ev3.waveHelloTitle'})}
                         />
                         <ProjectCard
                             cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-distance-instrument.sb3"
-                            description="Move your body in front of the sensor to make music."
+                            description={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentDescription'})}
                             imageSrc="/images/ev3/starter-distance-instrument.png"
-                            title="Distance Instrument"
+                            title={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentTitle'})}
                         />
                         <ProjectCard
                             cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-space-tacos.sb3"
-                            description="Build your own controller to catch tacos in space."
+                            description={this.props.intl.formatMessage({id: 'ev3.spaceTacosDescription'})}
                             imageSrc="/images/ev3/starter-flying-game.png"
-                            title="Space Tacos"
+                            title={this.props.intl.formatMessage({id: 'ev3.spaceTacosTitle'})}
                         />
                     </Steps>
                 </ExtensionSection>
