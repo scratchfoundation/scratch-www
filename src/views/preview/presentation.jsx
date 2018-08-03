@@ -303,13 +303,14 @@ const PreviewPresentation = ({
                                                 replies={replies && replies[comment.id] ? replies[comment.id] : []}
                                             />
                                         ))}
-                                        <Button
-                                            className="button load-more-button"
-                                            onClick={onLoadMore}
-                                        >
-                                            Load More
-                                        </Button>
-
+                                        {comments.length < projectInfo.stats.comments &&
+                                            <Button
+                                                className="button load-more-button"
+                                                onClick={onLoadMore}
+                                            >
+                                                Load More
+                                            </Button>
+                                        }
                                     </FlexRow>
                                 </div>
                                 <FlexRow className="column">
