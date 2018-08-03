@@ -2,7 +2,6 @@
 @import "../../frameless";
 
 $base-bg: $ui-light-gray;
-$pass-bg: lighten($ui-aqua, 35%);
 
 .row {
     label {
@@ -32,8 +31,7 @@ $pass-bg: lighten($ui-aqua, 35%);
     }
 
     &.pass {
-        border: 1px solid $active-dark-gray;
-        background-color: $pass-bg;
+        border: 1px solid $ui-aqua;
     }
 
     /* IE10/11-specific style resets */

@@ -6,6 +6,7 @@
     "general.birthMonth": "Birth Month",
     "general.birthYear": "Birth Year",
     "general.donate": "Donate",
+    "general.close": "Close",
     "general.collaborators": "Collaborators",
     "general.community": "Community",
     "general.confirmEmail": "Confirm Email",
@@ -52,6 +53,7 @@
     "general.noDeletionDescription": "Your account was scheduled for deletion but you logged in. Your account has been reactivated. If you didn’t request for your account to be deleted, you should {resetLink} to make sure your account is secure.",
     "general.noDeletionLink": "change your password",
     "general.notRequired": "Not Required",
+    "general.okay": "Okay",
     "general.other": "Other",
     "general.offlineEditor": "Offline Editor",
     "general.password": "Password",
@@ -103,7 +105,15 @@
 
     "navigation.signOut": "Sign out",
 
+    "extensionHeader.requirements": "Requirements",
+
     "oschooser.choose": "Choose your OS:",
+
+    "installScratchLink.installHeaderTitle": "Install Scratch Link",
+    "installScratchLink.downloadAndInstall": "Download and install Scratch Link.",
+    "installScratchLink.windowsDownload": "Download for Windows",
+    "installScratchLink.macosDownload": "Download for macOS",
+    "installScratchLink.startScratchLink": "Start Scratch Link and make sure it is running. It should appear in your toolbar.",
 
     "parents.FaqAgeRangeA": "While Scratch is primarily designed for 8 to 16 year olds, it is also used by people of all ages, including younger children with their parents.",
     "parents.FaqAgeRangeQ": "What is the age range for Scratch?",

@@ -11,6 +11,7 @@ const Button = require('../../forms/button.jsx');
 const Select = require('../../forms/select.jsx');
 const Spinner = require('../../spinner/spinner.jsx');
 const TextArea = require('../../forms/textarea.jsx');
+const FlexRow = require('../../flex-row/flex-row.jsx');
 
 require('../../forms/button.scss');
 require('./modal.scss');
@@ -101,21 +102,21 @@ class ReportModal extends React.Component {
                         </div>
                     </div>
 
-                    <div className="report-modal-content">
-                        <FormattedMessage
-                            id={`report.${type}Instructions`}
-                            values={{
-                                CommunityGuidelinesLink: (
-                                    <a href="/community_guidelines">
-                                        <FormattedMessage id="report.CommunityGuidelinesLinkText" />
-                                    </a>
-                                )
-                            }}
-                        />
-                        <Form
-                            className="report"
-                            onSubmit={onReport}
-                        >
+                    <Form
+                        className="report"
+                        onSubmit={onReport}
+                    >
+                        <div className="report-modal-content">
+                            <FormattedMessage
+                                id={`report.${type}Instructions`}
+                                values={{
+                                    CommunityGuidelinesLink: (
+                                        <a href="/community_guidelines">
+                                            <FormattedMessage id="report.CommunityGuidelinesLinkText" />
+                                        </a>
+                                    )
+                                }}
+                            />
                             <Select
                                 required
                                 elementWrapperClassName="report-modal-field"
@@ -145,9 +146,11 @@ class ReportModal extends React.Component {
                                 }}
                                 value={report.notes}
                             />
+                        </div>
+                        <FlexRow className="action-buttons">
                             {report.waiting ? [
                                 <Button
-                                    className="submit-button white"
+                                    className="submit-button"
                                     disabled="disabled"
                                     key="submitButton"
                                     type="submit"
@@ -156,17 +159,16 @@ class ReportModal extends React.Component {
                                 </Button>
                             ] : [
                                 <Button
-                                    className="submit-button white"
+                                    className="submit-button"
                                     key="submitButton"
                                     type="submit"
                                 >
                                     <FormattedMessage id="report.send" />
                                 </Button>
                             ]}
-                        </Form>
-                    </div>
+                        </FlexRow>
+                    </Form>
                 </div>
-                
             </Modal>
         );
     }
