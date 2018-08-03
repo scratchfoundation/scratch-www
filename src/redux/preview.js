@@ -1,4 +1,6 @@
 const keyMirror = require('keymirror');
+const async = require('async');
+const merge = require('lodash.merge');
 
 const api = require('../lib/api');
 const log = require('../lib/log');
@@ -64,9 +66,7 @@ module.exports.previewReducer = (state, action) => {
         });
     case 'SET_REPLIES':
         return Object.assign({}, state, {
-            replies: Object.assign({}, state.replies, { // this feels bad
-                [action.parentId]: action.items // are computed keys okay here?
-            })
+            replies: merge({}, state.replies, action.replies)
         });
     case 'SET_LOVED':
         return Object.assign({}, state, {
@@ -133,10 +133,9 @@ module.exports.setComments = items => ({
     items: items
 });
 
-module.exports.setReplies = (parentId, items) => ({
+module.exports.setReplies = replies => ({
     type: 'SET_REPLIES',
-    parentId: parentId,
-    items: items
+    replies: replies
 });
 
 module.exports.setFetchStatus = (type, status) => ({
@@ -248,26 +247,34 @@ module.exports.getTopLevelComments = (id, offset) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
         dispatch(module.exports.setComments(body));
-        for (const comment of body) {
-            dispatch(module.exports.getReplies(id, comment.id));
-        }
+        dispatch(module.exports.getReplies(id, body.map(comment => comment.id)));
     });
 });
 
-module.exports.getReplies = (projectId, parentId, offset) => (dispatch => {
-    api({
-        uri: `/comments/project/${projectId}/${parentId}`,
-        params: {offset: offset || 0}
-    }, (err, body) => {
+module.exports.getReplies = (projectId, commentIds) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('replies', module.exports.Status.FETCHING));
+    const fetchedReplies = {};
+    async.eachLimit(commentIds, 10, (parentId, callback) => {
+        api({
+            uri: `/comments/project/${projectId}/${parentId}`
+        }, (err, body) => {
+            if (err) {
+                return callback(`Error fetching comment replies: ${err}`);
+            }
+            if (typeof body === 'undefined') {
+                return callback('No comment reply information');
+            }
+            fetchedReplies[parentId] = body;
+            callback(null, body);
+        });
+    }, err => {
         if (err) {
-            log.error(`Error fetching comment replies: ${err}`);
+            dispatch(module.exports.setFetchStatus('replies', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
             return;
         }
-        if (typeof body === 'undefined') {
-            log.error('No comment reply information');
-            return;
-        }
-        dispatch(module.exports.setReplies(parentId, body));
+        dispatch(module.exports.setFetchStatus('replies', module.exports.Status.FETCHED));
+        dispatch(module.exports.setReplies(fetchedReplies));
     });
 });
 
