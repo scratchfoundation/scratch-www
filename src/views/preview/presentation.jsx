@@ -21,7 +21,6 @@ const StudioList = require('./studio-list.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 const TopLevelComment = require('./comment/top-level-comment.jsx');
-const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -69,7 +68,7 @@ const PreviewPresentation = ({
                                 <a href={`/users/${projectInfo.author.username}`}>
                                     <Avatar
                                         alt={projectInfo.author.username}
-                                        src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo. author.id}_48x48.png`}
+                                        src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_48x48.png`}
                                     />
                                 </a>
                                 <div className="title">
@@ -290,11 +289,6 @@ const PreviewPresentation = ({
                                     <FlexRow className="comments-header">
                                         <h4>Comments</h4>
                                         {/* TODO: Add toggle comments component and logic*/}
-                                        <div>comments on/off</div>
-                                    </FlexRow>
-                                    <FlexRow className="create-comment comment">
-                                        <Avatar src="https://cdn2.scratch.mit.edu/get_image/user/3581881_60x60.png" />
-                                        <ComposeComment />
                                     </FlexRow>
                                     <FlexRow className="comments-list">
                                         {comments.map(comment => (
@@ -313,8 +307,9 @@ const PreviewPresentation = ({
                                             className="button load-more-button"
                                             onClick={onLoadMore}
                                         >
-                                        Load More
+                                            Load More
                                         </Button>
+
                                     </FlexRow>
                                 </div>
                                 <FlexRow className="column">
