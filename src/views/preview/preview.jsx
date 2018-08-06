@@ -29,6 +29,7 @@ class Preview extends React.Component {
             'addEventListeners',
             'handleToggleStudio',
             'handleFavoriteToggle',
+            'handleLoadMore',
             'handleLoveToggle',
             'handlePermissions',
             'handlePopState',
@@ -73,6 +74,7 @@ class Preview extends React.Component {
             if (this.props.user) {
                 const username = this.props.user.username;
                 const token = this.props.user.token;
+                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
                 this.props.getProjectInfo(this.state.projectId, token);
                 this.props.getRemixes(this.state.projectId, token);
                 this.props.getProjectStudios(this.state.projectId, token);
@@ -80,6 +82,7 @@ class Preview extends React.Component {
                 this.props.getFavedStatus(this.state.projectId, username, token);
                 this.props.getLovedStatus(this.state.projectId, username, token);
             } else {
+                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
                 this.props.getProjectInfo(this.state.projectId);
                 this.props.getRemixes(this.state.projectId);
                 this.props.getProjectStudios(this.state.projectId);
@@ -244,6 +247,9 @@ class Preview extends React.Component {
             }));
         }
     }
+    handleLoadMore () {
+        this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
+    }
     handleLoveToggle () {
         this.props.setLovedStatus(
             !this.props.loved,
@@ -328,6 +334,7 @@ class Preview extends React.Component {
                         projectInfo={this.props.projectInfo}
                         projectStudios={this.props.projectStudios}
                         remixes={this.props.remixes}
+                        replies={this.props.replies}
                         report={this.state.report}
                         studios={this.props.studios}
                         user={this.props.user}
@@ -335,6 +342,7 @@ class Preview extends React.Component {
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
                         onFavoriteClicked={this.handleFavoriteToggle}
+                        onLoadMore={this.handleLoadMore}
                         onLoveClicked={this.handleLoveToggle}
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
@@ -366,6 +374,7 @@ Preview.propTypes = {
     getProjectInfo: PropTypes.func.isRequired,
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
+    getTopLevelComments: PropTypes.func.isRequired,
     loved: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
@@ -373,6 +382,7 @@ Preview.propTypes = {
     projectInfo: projectShape,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
+    replies: PropTypes.objectOf(PropTypes.array),
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
     setFullScreen: PropTypes.func.isRequired,
@@ -440,6 +450,7 @@ const mapStateToProps = state => ({
     original: state.preview.original,
     parent: state.preview.parent,
     remixes: state.preview.remixes,
+    replies: state.preview.replies,
     sessionStatus: state.session.status,
     projectStudios: state.preview.projectStudios,
     studios: consolidateStudiosInfo(state.preview.curatedStudios,
@@ -476,6 +487,9 @@ const mapDispatchToProps = dispatch => ({
         } else {
             dispatch(previewActions.leaveStudio(studioId, id, token));
         }
+    },
+    getTopLevelComments: (id, offset) => {
+        dispatch(previewActions.getTopLevelComments(id, offset));
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));

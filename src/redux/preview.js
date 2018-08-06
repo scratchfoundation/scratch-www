@@ -1,4 +1,6 @@
 const keyMirror = require('keymirror');
+const async = require('async');
+const merge = require('lodash.merge');
 
 const api = require('../lib/api');
 const log = require('../lib/log');
@@ -26,6 +28,7 @@ module.exports.getInitialState = () => ({
     projectInfo: {},
     remixes: [],
     comments: [],
+    replies: {},
     faved: false,
     loved: false,
     original: {},
@@ -79,7 +82,11 @@ module.exports.previewReducer = (state, action) => {
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
-            comments: action.items
+            comments: [...state.comments, ...action.items] // TODO: consider a different way of doing this?
+        });
+    case 'SET_REPLIES':
+        return Object.assign({}, state, {
+            replies: merge({}, state.replies, action.replies)
         });
     case 'SET_LOVED':
         return Object.assign({}, state, {
@@ -143,6 +150,16 @@ module.exports.setRemixes = items => ({
 module.exports.setProjectStudios = items => ({
     type: 'SET_PROJECT_STUDIOS',
     items: items
+});
+
+module.exports.setComments = items => ({
+    type: 'SET_COMMENTS',
+    items: items
+});
+
+module.exports.setReplies = replies => ({
+    type: 'SET_REPLIES',
+    replies: replies
 });
 
 module.exports.setCuratedStudios = items => ({
@@ -254,6 +271,55 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));
         dispatch(module.exports.setFaved(body.userFavorite));
+    });
+});
+
+module.exports.getTopLevelComments = (id, offset) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
+    api({
+        uri: `/comments/project/${id}`,
+        params: {offset: offset || 0}
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (typeof body === 'undefined') {
+            dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No comment info'));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
+        dispatch(module.exports.setComments(body));
+        dispatch(module.exports.getReplies(id, body.map(comment => comment.id)));
+    });
+});
+
+module.exports.getReplies = (projectId, commentIds) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('replies', module.exports.Status.FETCHING));
+    const fetchedReplies = {};
+    async.eachLimit(commentIds, 10, (parentId, callback) => {
+        api({
+            uri: `/comments/project/${projectId}/${parentId}`
+        }, (err, body) => {
+            if (err) {
+                return callback(`Error fetching comment replies: ${err}`);
+            }
+            if (typeof body === 'undefined') {
+                return callback('No comment reply information');
+            }
+            fetchedReplies[parentId] = body;
+            callback(null, body);
+        });
+    }, err => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('replies', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('replies', module.exports.Status.FETCHED));
+        dispatch(module.exports.setReplies(fetchedReplies));
     });
 });
 

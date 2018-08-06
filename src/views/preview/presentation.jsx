@@ -21,12 +21,14 @@ const StudioList = require('./studio-list.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const AddToStudioModal = require('../../components/modal/addtostudio/container.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
+const TopLevelComment = require('./comment/top-level-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const PreviewPresentation = ({
+    comments,
     editable,
     extensions,
     faved,
@@ -42,11 +44,13 @@ const PreviewPresentation = ({
     projectInfo,
     remixes,
     report,
+    replies,
     addToStudioOpen,
     projectStudios,
     studios,
     userOwnsProject,
     onFavoriteClicked,
+    onLoadMore,
     onLoveClicked,
     onReportClicked,
     onReportClose,
@@ -63,14 +67,14 @@ const PreviewPresentation = ({
             <ShareBanner shared={isShared} />
 
             { projectInfo && projectInfo.author && projectInfo.author.id && (
-                <div className="inner">
-                    <Formsy>
+                <Formsy>
+                    <div className="inner">
                         <FlexRow className="preview-row">
                             <FlexRow className="project-header">
                                 <a href={`/users/${projectInfo.author.username}`}>
                                     <Avatar
                                         alt={projectInfo.author.username}
-                                        src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo. author.id}_48x48.png`}
+                                        src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_48x48.png`}
                                     />
                                 </a>
                                 <div className="title">
@@ -298,17 +302,46 @@ const PreviewPresentation = ({
                                 ))}
                             </FlexRow>
                         </FlexRow>
-                        <FlexRow className="preview-row">
-                            <div className="comments-container">
-                                <div className="project-title" />
-                            </div>
-                            <FlexRow className="column">
-                                <RemixList remixes={remixes} />
-                                <StudioList studios={projectStudios} />
+                    </div>
+                    <div className="project-lower-container">
+                        <div className="inner">
+                            <FlexRow className="preview-row">
+                                <div className="comments-container">
+                                    <FlexRow className="comments-header">
+                                        <h4>Comments</h4>
+                                        {/* TODO: Add toggle comments component and logic*/}
+                                    </FlexRow>
+                                    <FlexRow className="comments-list">
+                                        {comments.map(comment => (
+                                            <TopLevelComment
+                                                author={comment.author}
+                                                content={comment.content}
+                                                datetimeCreated={comment.datetime_created}
+                                                id={comment.id}
+                                                key={comment.id}
+                                                parentId={comment.parent_id}
+                                                projectId={projectId}
+                                                replies={replies && replies[comment.id] ? replies[comment.id] : []}
+                                            />
+                                        ))}
+                                        {comments.length < projectInfo.stats.comments &&
+                                            <Button
+                                                className="button load-more-button"
+                                                onClick={onLoadMore}
+                                            >
+                                                Load More
+                                            </Button>
+                                        }
+                                    </FlexRow>
+                                </div>
+                                <FlexRow className="column">
+                                    <RemixList remixes={remixes} />
+                                    <StudioList studios={projectStudios} />
+                                </FlexRow>
                             </FlexRow>
-                        </FlexRow>
-                    </Formsy>
-                </div>
+                        </div>
+                    </div>
+                </Formsy>
             )}
         </div>
     );
@@ -316,6 +349,7 @@ const PreviewPresentation = ({
 
 PreviewPresentation.propTypes = {
     addToStudioOpen: PropTypes.bool,
+    comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
     extensions: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
@@ -328,6 +362,7 @@ PreviewPresentation.propTypes = {
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
+    onLoadMore: PropTypes.func,
     onLoveClicked: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
@@ -341,6 +376,7 @@ PreviewPresentation.propTypes = {
     projectInfo: projectShape,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
+    replies: PropTypes.objectOf(PropTypes.array),
     report: PropTypes.shape({
         category: PropTypes.string,
         notes: PropTypes.string,

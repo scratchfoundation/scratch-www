@@ -12,7 +12,7 @@ $stage-height: 404px;
 
 /* override view padding for share banner */
 #view {
-    padding: 0 0 20px 0;
+    padding: 0;
 }
 
 .gui {
@@ -422,6 +422,15 @@ $stage-height: 404px;
         //     }
         // }
     }
+
+    .comments-header {
+        padding: 0 0 1rem 0;
+        justify-content: space-between;
+
+        h4 {
+            font-size: 1.25rem;
+        }
+    }
     
     .studio-button,
     .copy-link-button,
@@ -458,10 +467,26 @@ $stage-height: 404px;
         }
     }
 
+    .project-lower-container {
+        margin-top: 1rem;
+        background-color: $ui-blue-10percent;
+        padding: 1rem 0;
+        min-height: 12rem;
+    }
+
+    .create-comment {
+        margin-bottom: 2rem;
+    }
+
+    .load-more-button {
+        margin-left: 0;
+        width: 100%;
+    }
+
     .extension-list {
         justify-content: flex-start;
     }
-    
+
     .remix-list,
     .studio-list {
         flex-direction: column;
