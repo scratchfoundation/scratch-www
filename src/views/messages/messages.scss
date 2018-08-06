@@ -24,7 +24,7 @@
     color: $type-gray;
 }
 
-select {
+.messages-title-filter {
     width: 110%;
 }
 
@@ -172,7 +172,7 @@ select {
         width: $cols8;
     }
     
-    select {
+    .messages-title-filter {
         width: 100%;
     }
 }
