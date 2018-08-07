@@ -1,14 +1,10 @@
 @import "../../colors";
 @import "../../frameless";
 
-/* stage size constants 
- * this is a hack right now - stage includes padding of .5rem (8px) for alignment in gui
- * in www the player is placed with margin -.5rem to align the edge.
- * the height is calculated from the actual height on the page (404)
-*/
-$gui-width: 496px;
+/* stage size constants */
+$player-width: 482px;
+$player-height: 406px;
 $stage-width: 480px;
-$stage-height: 404px;
 
 /* override view padding for share banner */
 #view {
@@ -29,34 +25,34 @@ $stage-height: 404px;
     .project-title {
         font-size: 1.75rem;
         font-weight: 500;
-        
+
         &.has-error {
-            
+
             .validation-message {
                 transform: translate(22rem, 0);
             }
         }
     }
-    
+
     .project-header {
         margin-right: 2rem;
         flex-grow: 1;
         justify-content: flex-start;
         align-items: flex-start;
-        
+
         .inplace-input {
             height: calc(3rem - 4px);
         }
     }
-    
+
     img {
-        
+
         &.avatar {
             border: 0;
             border-radius: 5px;
             width: 3rem;
             height: 3rem;
-            
+
             &.remix {
                 margin-right: .5em;
                 width: 2rem;
@@ -64,14 +60,14 @@ $stage-height: 404px;
             }
         }
     }
-    
+
     .title {
         margin-left: 1rem;
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
     }
-    
+
     .validation-message {
         $arrow-border-width: 1rem;
         display: block;
@@ -108,8 +104,8 @@ $stage-height: 404px;
             content: "";
         }
     }
-    
-    .row {        
+
+    .row {
 
         &.has-error {
             .inplace-input,
@@ -122,21 +118,21 @@ $stage-height: 404px;
             position: relative;
         }
     }
-    
+
     .button {
         margin-left: 1rem;
     }
-    
+
     .comments-container {
         width: 60%;
     }
-    
+
     .remix-button,
     .see-inside-button {
         margin-top: 0;
         font-size: .875rem;
         font-weight: normal;
-        
+
         &:before {
             display: inline-block;
             margin-right: .5rem;
@@ -152,19 +148,19 @@ $stage-height: 404px;
 
     .remix-button {
         background-color: $ui-aqua;
-        
+
         &:before {
             background-image: url("/svgs/project/remix-white.svg");
         }
     }
 
     .see-inside-button {
-        
+
         &:before {
             background-image: url("/svgs/project/see-inside-white.svg");
         }
     }
-    
+
     .preview-row {
         margin-top: 1rem;
         justify-content: space-between;
@@ -174,14 +170,13 @@ $stage-height: 404px;
 
     .guiPlayer {
         display: inline-block;
-        margin-left: -.5rem;
-        width: $gui-width;
+        width: $player-width;
     }
 
     .project-notes {
         // not 1.5rem because of stage padding
         margin-left: 1rem;
-        height: $stage-height;
+        height: $player-height;
         align-items: flex-start;
         flex: 1;
         flex-flow: column;
@@ -194,7 +189,7 @@ $stage-height: 404px;
         color: $type-gray;
         font-size: .875rem;
     }
-    
+
     .subactions {
         margin-left: 1.5rem;
         justify-content: flex-end;
@@ -216,7 +211,7 @@ $stage-height: 404px;
         font-size: .875rem;
         flex-shrink: 1;
     }
-    
+
     .description-block {
         display: flex;
         width: 100%;
@@ -225,7 +220,7 @@ $stage-height: 404px;
         align-items: flex-start;
         flex: 1;
     }
-    
+
     .project-textlabel {
         margin: 0 0 .5rem 0;
         font-size: 1rem;
@@ -240,12 +235,12 @@ $stage-height: 404px;
         padding: .5rem;
         width: calc(100% - (1rem + 2px));
         overflow: auto;
-        white-space: pre-line;        
+        white-space: pre-line;
         font-size: 1rem;
         // flex-grow
         flex: 1;
     }
-    
+
     .project-description.last {
         margin-bottom: 0;
     }
@@ -261,29 +256,29 @@ $stage-height: 404px;
         white-space: pre-line;
         // flex-grow
         flex: 1;
-        
+
         &.last {
             margin-bottom: 0;
         }
-        
+
         &.textarea-row {
             border: 0;
             background-color: inherit;
             padding: 0;
         }
-        
+
         &.has-error {
             .validation-message {
                 transform: translate(26rem, 0);
             }
         }
-        
+
         & > .grow {
             display: flex;
             flex: 1;
         }
     }
-    
+
     .copyleft {
         display: inline-block;
         transform: scale(-1, 1);
@@ -320,9 +315,9 @@ $stage-height: 404px;
     }
 
     .project-loves {
-        
+
         cursor: pointer;
-        
+
         &:before {
             opacity: .5;
             background-image: url("/svgs/project/love-gray.svg");
@@ -330,7 +325,7 @@ $stage-height: 404px;
     }
 
     .project-loves.loved {
-        
+
         &:before {
             opacity: 1;
             background-image: url("/svgs/project/love-red.svg");
@@ -338,9 +333,9 @@ $stage-height: 404px;
     }
 
     .project-favorites {
-        
+
         cursor: pointer;
-        
+
         &:before {
             opacity: .5;
             background-image: url("/svgs/project/fav-gray.svg");
@@ -348,7 +343,7 @@ $stage-height: 404px;
     }
 
     .project-favorites.favorited {
-        
+
         &:before {
             opacity: 1;
             background-image: url("/svgs/project/fav-yellow.svg");
@@ -356,7 +351,7 @@ $stage-height: 404px;
     }
 
     .project-remixes {
-        
+
         &:before {
             opacity: .5;
             background-image: url("/svgs/project/remix-gray.svg");
@@ -364,7 +359,7 @@ $stage-height: 404px;
     }
 
     .project-views {
-        
+
         &:before {
             opacity: .5;
             background-image: url("/svgs/project/views-gray.svg");
@@ -396,24 +391,24 @@ $stage-height: 404px;
         //     border-color: transparent;
         //     background-color: $active-gray;
         // }
-        // 
+        //
         // &:active {
         //     border: 0 solid transparent;
         //     box-shadow: inset 0 0 5px $box-shadow-gray;
         //     background-color: $active-dark-gray;
         //     padding: calc(.75em + 1px) calc(1.5em + 1px);
         // }
-        // 
+        //
         // &.report {
         //     border: 1px solid $ui-coral;
         //     background-color: $ui-coral;
-        // 
+        //
         //     &:hover {
         //         transition: background-color .25s ease;
         //         border-color: transparent;
         //         background-color: $active-gray;
         //     }
-        // 
+        //
         //     &:active {
         //         border: 0 solid transparent;
         //         box-shadow: inset 0 0 5px $box-shadow-gray;
@@ -431,7 +426,7 @@ $stage-height: 404px;
             font-size: 1.25rem;
         }
     }
-    
+
     .studio-button,
     .copy-link-button,
     .report-button {
@@ -461,7 +456,7 @@ $stage-height: 404px;
 
     .report-button {
         background-color: $ui-coral;
-        
+
         &:before {
             background-image: url("/svgs/project/report-white.svg");
         }
@@ -490,16 +485,16 @@ $stage-height: 404px;
     .remix-list,
     .studio-list {
         flex-direction: column;
-        
+
         .project {
             margin-bottom: 1.5rem;
         }
-        
+
         .creator-image img {
             max-width: 2rem;
             max-height: 2rem;
         }
-        
+
         .thumbnail-column {
             display: inline-block;
             width: 100%;
