@@ -329,6 +329,7 @@ class Preview extends React.Component {
                 </Page> :
                 <IntlGUI
                     enableCommunity
+                    hideIntro
                     basePath="/"
                     className="gui"
                     projectId={this.state.projectId}
