@@ -57,12 +57,7 @@ class Preview extends React.Component {
             loveCount: 0,
             projectId: parts[1] === 'editor' ? 0 : parts[1],
             addToStudioOpen: false,
-            report: {
-                category: '',
-                notes: '',
-                open: false,
-                waiting: false
-            }
+            reportOpen: false
         };
         this.getExtensions(this.state.projectId);
         this.addEventListeners();
@@ -87,7 +82,6 @@ class Preview extends React.Component {
                 this.props.getRemixes(this.state.projectId);
                 this.props.getProjectStudios(this.state.projectId);
             }
-
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             this.getExtensions(this.state.projectId);
@@ -118,7 +112,7 @@ class Preview extends React.Component {
     getExtensions (projectId) {
         storage
             .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
-            .then(projectAsset => {
+            .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
                 let input = projectAsset.data;
                 if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
                 !ArrayBuffer.isView(input)) { // taken from scratch-vm
@@ -148,10 +142,10 @@ class Preview extends React.Component {
             });
     }
     handleReportClick () {
-        this.setState({report: {...this.state.report, open: true}});
+        this.setState({reportOpen: true});
     }
     handleReportClose () {
-        this.setState({report: {...this.state.report, open: false}});
+        this.setState({reportOpen: false});
     }
     handleAddToStudioClick () {
         this.setState({addToStudioOpen: true});
@@ -159,27 +153,8 @@ class Preview extends React.Component {
     handleAddToStudioClose () {
         this.setState({addToStudioOpen: false});
     }
-    // NOTE: this is a copy, change it
     handleReportSubmit (formData) {
-        this.setState({report: {
-            category: formData.report_category,
-            notes: formData.notes,
-            open: this.state.report.open,
-            waiting: true}
-        });
-
-        const data = {
-            ...formData,
-            id: this.state.projectId,
-            user: this.props.user.username
-        };
-        console.log('submit report data', data); // eslint-disable-line no-console
-        this.setState({report: {
-            category: '',
-            notes: '',
-            open: false,
-            waiting: false}
-        });
+        this.props.reportProject(this.state.projectId, formData);
     }
     handlePopState () {
         const path = window.location.pathname.toLowerCase();
@@ -335,7 +310,7 @@ class Preview extends React.Component {
                         projectStudios={this.props.projectStudios}
                         remixes={this.props.remixes}
                         replies={this.props.replies}
-                        report={this.state.report}
+                        reportOpen={this.state.reportOpen}
                         studios={this.props.studios}
                         user={this.props.user}
                         userOwnsProject={this.userOwnsProject()}
@@ -383,6 +358,7 @@ Preview.propTypes = {
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
+    reportProject: PropTypes.func,
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
     setFullScreen: PropTypes.func.isRequired,
@@ -461,7 +437,6 @@ const mapStateToProps = state => ({
     fullScreen: state.scratchGui.mode.isFullScreen
 });
 
-
 const mapDispatchToProps = dispatch => ({
     getOriginalInfo: id => {
         dispatch(previewActions.getOriginalInfo(id));
@@ -505,6 +480,9 @@ const mapDispatchToProps = dispatch => ({
     },
     refreshSession: () => {
         dispatch(sessionActions.refreshSession());
+    },
+    reportProject: (id, formData) => {
+        dispatch(previewActions.reportProject(id, formData));
     },
     setOriginalInfo: info => {
         dispatch(previewActions.setOriginalInfo(info));

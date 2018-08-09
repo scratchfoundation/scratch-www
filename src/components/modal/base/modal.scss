@@ -64,9 +64,18 @@ $modal-close-size: 1rem;
 .action-buttons {
     display: flex;
     margin: 1.125rem .8275rem .9375rem .8275rem;
+    line-height: 1.5rem;
     justify-content: flex-end !important;
     align-items: flex-start;
     flex-wrap: nowrap;
+}
+
+/* setting overall modal to contain overflow looks good, but isn't
+compatible with elements (like validation popups) that need to bleed
+past modal boundary. This class can be used to force modal button
+row to appear to contain overflow. */
+.action-buttons-overflow-fix {
+    margin-bottom: .9375rem;
 }
 
 .action-button {
@@ -82,4 +91,20 @@ $modal-close-size: 1rem;
 
 .action-button-text {
     display: flex;
+}
+
+.action-button.disabled {
+    background-color: $active-dark-gray;
+}
+
+.error-text
+{
+    display: block;
+    border: 1px solid $active-gray;
+    border-radius: 5px;
+    background-color: $ui-orange;
+    padding: 1rem;
+    min-height: 1rem;
+    overflow: visible;
+    color: $type-white;
 }
