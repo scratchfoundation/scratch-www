@@ -11,7 +11,6 @@ const messageCountActions = require('../../../redux/message-count.js');
 const sessionActions = require('../../../redux/session.js');
 
 const api = require('../../../lib/api');
-const Avatar = require('../../avatar/avatar.jsx');
 const Button = require('../../forms/button.jsx');
 const Dropdown = require('../../dropdown/dropdown.jsx');
 const Form = require('../../forms/form.jsx');
@@ -21,6 +20,7 @@ const Login = require('../../login/login.jsx');
 const Modal = require('../../modal/base/modal.jsx');
 const NavigationBox = require('../base/navigation.jsx');
 const Registration = require('../../registration/registration.jsx');
+const AccountNav = require('./accountnav.jsx');
 
 require('./navigation.scss');
 
@@ -268,66 +268,18 @@ class Navigation extends React.Component {
                                 className="link right account-nav"
                                 key="account-nav"
                             >
-                                <a
-                                    className={classNames({
-                                        'user-info': true,
-                                        'open': this.state.accountNavOpen
-                                    })}
-                                    href="#"
-                                    onClick={this.handleAccountNavClick}
-                                >
-                                    <Avatar
-                                        alt=""
-                                        src={this.props.session.session.user.thumbnailUrl}
-                                    />
-                                    <span className="profile-name">
-                                        {this.props.session.session.user.username}
-                                    </span>
-                                </a>
-                                <Dropdown
-                                    as="ul"
-                                    className={process.env.SCRATCH_ENV}
+                                <AccountNav
+                                    classroomId={this.props.session.session.user.classroomId}
+                                    isEducator={this.props.permissions.educator}
                                     isOpen={this.state.accountNavOpen}
-                                    onRequestClose={this.handleCloseAccountNav}
-                                >
-                                    <li>
-                                        <a href={this.getProfileUrl()}>
-                                            <FormattedMessage id="general.profile" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="/mystuff/">
-                                            <FormattedMessage id="general.myStuff" />
-                                        </a>
-                                    </li>
-                                    {this.props.permissions.educator ? [
-                                        <li key="my-classes-li">
-                                            <a href="/educators/classes/">
-                                                <FormattedMessage id="general.myClasses" />
-                                            </a>
-                                        </li>
-                                    ] : []}
-                                    {this.props.permissions.student ? [
-                                        <li key="my-class-li">
-                                            <a href={`/classes/${this.props.session.session.user.classroomId}/`}>
-                                                <FormattedMessage id="general.myClass" />
-                                            </a>
-                                        </li>
-                                    ] : []}
-                                    <li>
-                                        <a href="/accounts/settings/">
-                                            <FormattedMessage id="general.accountSettings" />
-                                        </a>
-                                    </li>
-                                    <li className="divider">
-                                        <a
-                                            href="#"
-                                            onClick={this.handleLogOut}
-                                        >
-                                            <FormattedMessage id="navigation.signOut" />
-                                        </a>
-                                    </li>
-                                </Dropdown>
+                                    isStudent={this.props.permissions.student}
+                                    profileUrl={this.getProfileUrl()}
+                                    thumbnailUrl={this.props.session.session.user.thumbnailUrl}
+                                    username={this.props.session.session.user.username}
+                                    onClick={this.handleAccountNavClick}
+                                    onClickLogout={this.handleLogOut}
+                                    onClose={this.handleCloseAccountNav}
+                                />
                             </li>
                         ] : [
                             <li
@@ -437,6 +389,11 @@ const mapStateToProps = state => ({
     searchTerm: state.navigation
 });
 
-const ConnectedNavigation = connect(mapStateToProps)(Navigation);
+const mapDispatchToProps = () => ({});
+
+const ConnectedNavigation = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Navigation);
 
 module.exports = injectIntl(ConnectedNavigation);
