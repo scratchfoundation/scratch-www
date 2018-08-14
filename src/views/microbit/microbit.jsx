@@ -126,7 +126,10 @@ class MicroBit extends ExtensionLanding {
                             </Step>
                             <Step number={2}>
                                 <div className="step-image">
-                                    <img src="/images/microbit/mbit-connect-2.png" />
+                                    <img
+                                        className="screenshot"
+                                        src="/images/microbit/mbit-connect-2.png"
+                                    />
                                 </div>
                                 <p>
                                     <FormattedMessage
@@ -147,7 +150,10 @@ class MicroBit extends ExtensionLanding {
                             </Step>
                             <Step number={3}>
                                 <div className="step-image">
-                                    <img src="/images/microbit/mbit-connect-3.png" />
+                                    <img
+                                        className="screenshot"
+                                        src="/images/microbit/mbit-connect-3.png"
+                                    />
                                 </div>
                                 <p><FormattedMessage id="microbit.addExtension" /></p>
                             </Step>

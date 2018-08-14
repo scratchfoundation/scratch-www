@@ -88,7 +88,10 @@ class EV3 extends ExtensionLanding {
                             </Step>
                             <Step number={2}>
                                 <div className="step-image">
-                                    <img src="/images/ev3/ev3-connect-2.png" />
+                                    <img
+                                        className="screenshot"
+                                        src="/images/ev3/ev3-connect-2.png"
+                                    />
                                 </div>
                                 <p>
                                     <FormattedMessage
@@ -109,7 +112,10 @@ class EV3 extends ExtensionLanding {
                             </Step>
                             <Step number={3}>
                                 <div className="step-image">
-                                    <img src="/images/ev3/ev3-connect-3.png" />
+                                    <img
+                                        className="screenshot"
+                                        src="/images/ev3/ev3-connect-3.png"
+                                    />
                                 </div>
                                 <p><FormattedMessage id="ev3.addExtension" /></p>
                             </Step>
