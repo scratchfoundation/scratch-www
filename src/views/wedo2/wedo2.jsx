@@ -36,7 +36,7 @@ class Wedo2 extends ExtensionLanding {
                             values={{
                                 wedo2Link: (
                                     <a
-                                        href="https://education.lego.com/en-us/products/lego-education-wedo-2-0-core-set/45300"
+                                        href="https://education.lego.com/en-us/elementary/intro/wedo2"
                                         rel="noopener noreferrer"
                                         target="_blank"
                                     >

@@ -39,7 +39,7 @@ class EV3 extends ExtensionLanding {
                             values={{
                                 ev3Link: (
                                     <a
-                                        href="https://shop.lego.com/en-US/LEGO-MINDSTORMS-EV3-31313"
+                                        href="https://education.lego.com/en-us/middle-school/intro/mindstorms-ev3"
                                         rel="noopener noreferrer"
                                         target="_blank"
                                     >
