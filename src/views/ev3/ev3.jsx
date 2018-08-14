@@ -43,7 +43,7 @@ class EV3 extends ExtensionLanding {
                                         rel="noopener noreferrer"
                                         target="_blank"
                                     >
-                                                LEGO MINDSTORMS EV3
+                                                LEGO MINDSTORMS Education EV3
                                     </a>
                                 )
                             }}
