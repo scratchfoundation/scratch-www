@@ -288,17 +288,13 @@ class Preview extends React.Component {
         );
     }
     render () {
-        const backpackOptions = {
-            host: process.env.BACKPACK_HOST,
-            visible: true
-        };
         return (
             this.props.playerMode ?
                 <Page>
                     <PreviewPresentation
                         addToStudioOpen={this.state.addToStudioOpen}
                         assetHost={this.props.assetHost}
-                        backpackOptions={backpackOptions}
+                        backpackOptions={this.props.backpackOptions}
                         comments={this.props.comments}
                         editable={this.state.editable}
                         extensions={this.state.extensions}
@@ -338,7 +334,7 @@ class Preview extends React.Component {
                     enableCommunity
                     hideIntro
                     assetHost={this.props.assetHost}
-                    backpackOptions={backpackOptions}
+                    backpackOptions={this.props.backpackOptions}
                     basePath="/"
                     className="gui"
                     projectHost={this.props.projectHost}
@@ -350,6 +346,10 @@ class Preview extends React.Component {
 
 Preview.propTypes = {
     assetHost: PropTypes.string.isRequired,
+    backpackOptions: PropTypes.shape({
+        host: PropTypes.string,
+        visible: PropTypes.bool
+    }),
     comments: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     fullScreen: PropTypes.bool,
@@ -366,8 +366,8 @@ Preview.propTypes = {
     original: projectShape,
     parent: projectShape,
     playerMode: PropTypes.bool,
-    projectInfo: projectShape,
     projectHost: PropTypes.string.isRequired,
+    projectInfo: projectShape,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
@@ -394,6 +394,10 @@ Preview.propTypes = {
 
 Preview.defaultProps = {
     assetHost: process.env.ASSET_HOST,
+    backpackOptions: {
+        host: process.env.BACKPACK_HOST,
+        visible: true
+    },
     projectHost: process.env.PROJECT_HOST,
     sessionStatus: sessionActions.Status.NOT_FETCHED,
     user: {}
