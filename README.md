@@ -81,14 +81,17 @@ To stop the process that is making the site available to your web browser (creat
 
 `npm start` can be configured with the following environment variables
 
-| Variable      | Default                       | Description                                    |
-| ------------- | ----------------------------- | ---------------------------------------------- |
-| `API_HOST`    | `https://api.scratch.mit.edu` | Hostname for API requests                      |
-| `SENTRY_DSN`  | `''`                          | DSN for Sentry                                 |
-| `FALLBACK`    | `''`                          | Pass-through location for old site             |
-| `GA_TRACKER`  | `''`                          | Where to log Google Analytics data             |
-| `NODE_ENV`    | `null`                        | If not `production`, app acts like development |
-| `PORT`        | `8333`                        | Port for devserver (http://localhost:XXXX)     |
+| Variable        | Default                            | Description                                    |
+| --------------- | ---------------------------------- | ---------------------------------------------- |
+| `API_HOST`      | `https://api.scratch.mit.edu`      | Hostname for API requests                      |
+| `ASSETS_HOST`   | `https://assets.scratch.mit.edu`   | Hostname for asset requests                    |
+| `BACKPACK_HOST` | `https://backpack.scratch.mit.edu` | Hostname for backpack requests                 |
+| `PROJECTS_HOST` | `https://projects.scratch.mit.edu` | Hostname for project requests                  |
+| `SENTRY_DSN`    | `''`                               | DSN for Sentry                                 |
+| `FALLBACK`      | `''`                               | Pass-through location for old site             |
+| `GA_TRACKER`    | `''`                               | Where to log Google Analytics data             |
+| `NODE_ENV`      | `null`                             | If not `production`, app acts like development |
+| `PORT`          | `8333`                             | Port for devserver (http://localhost:XXXX)     |
 
 **NOTE:** Because by default `API_HOST=https://api.scratch.mit.edu`, please be aware that, by default, you will be seeing and interacting with real data on the Scratch website.
 
