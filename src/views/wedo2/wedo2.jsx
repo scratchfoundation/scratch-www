@@ -151,19 +151,19 @@ class Wedo2 extends ExtensionLanding {
                     <h3><FormattedMessage id="wedo2.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/wedo2/wedo2-starter1.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239284992"
                             description={this.props.intl.formatMessage({id: 'wedo2.starter1Description'})}
                             imageSrc="/images/wedo2/wedo2-starter1.png"
                             title={this.props.intl.formatMessage({id: 'wedo2.starter1Title'})}
                         />
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/wedo2/wedo2-starter2.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239285001"
                             description={this.props.intl.formatMessage({id: 'wedo2.starter2Description'})}
                             imageSrc="/images/wedo2/wedo2-starter2.png"
                             title={this.props.intl.formatMessage({id: 'wedo2.starter2Title'})}
                         />
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/wedo2/wedo2-starter3.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239284997"
                             description={this.props.intl.formatMessage({id: 'wedo2.starter3Description'})}
                             imageSrc="/images/wedo2/wedo2-starter3.png"
                             title={this.props.intl.formatMessage({id: 'wedo2.starter3Title'})}
