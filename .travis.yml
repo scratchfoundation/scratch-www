@@ -84,6 +84,7 @@ addons:
 install:
   - sudo -H pip install -r requirements.txt
   - npm --production=false install
+  - npm --production=false update
 jobs:
   include:
   - stage: test
