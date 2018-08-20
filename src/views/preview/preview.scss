@@ -1,132 +1,199 @@
 @import "../../colors";
 @import "../../frameless";
 
-html,
-body,
-#app,
+/* stage size constants */
+$player-width: 482px;
+$player-height: 406px;
+$stage-width: 480px;
+
+/* override view padding for share banner */
+#view {
+    padding: 0;
+}
+
 .gui {
+    position: absolute;
+    top: 0;
+    z-index: 11;
     margin: 0;
     width: 100%;
     height: 100%;
 }
 
-/* override view padding for share banner */
-#view {
-    padding: 0 0 20px 0;
-}
-
-.gui * { box-sizing: border-box; }
-
 .preview {
-    
-    .title-text {
-        font-size: 2rem;
+
+    .project-title {
+        font-size: 1.75rem;
         font-weight: 500;
+
+        &.has-error {
+
+            .validation-message {
+                transform: translate(22rem, 0);
+            }
+        }
     }
-    
+
+    .project-header {
+        margin-right: 2rem;
+        flex-grow: 1;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        .inplace-input {
+            height: calc(3rem - 4px);
+        }
+    }
+
     img {
-        
+
         &.avatar {
             border: 0;
             border-radius: 5px;
             width: 3rem;
-            
+            height: 3rem;
+
             &.remix {
                 margin-right: .5em;
-                width: 1.5rem;
+                width: 2rem;
+                height: 2rem;
             }
         }
     }
-    
+
     .title {
         margin-left: 1rem;
         text-align: left;
         font-size: .8rem;
+        flex-grow: 1;
     }
-    
+
+    .validation-message {
+        $arrow-border-width: 1rem;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-left: $arrow-border-width;
+        border: 1px solid $active-gray;
+        border-radius: 5px;
+        background-color: $ui-orange;
+        padding: 1rem;
+        max-width: 18.75rem;
+        min-height: 1rem;
+        overflow: visible;
+        color: $type-white;
+        font-size: 1rem;
+
+        &:before {
+            display: block;
+            position: absolute;
+            top: 1rem;
+            left: -$arrow-border-width / 2;
+
+            transform: rotate(45deg);
+
+            border-bottom: 1px solid $active-gray;
+            border-left: 1px solid $active-gray;
+            border-radius: 5px;
+
+            background-color: $ui-orange;
+            width: $arrow-border-width;
+            height: $arrow-border-width;
+
+            content: "";
+        }
+    }
+
+    .row {
+
+        &.has-error {
+            .inplace-input,
+            .inplace-textarea {
+                border: 1px solid $ui-orange;
+            }
+        }
+
+        .col-sm-9 {
+            position: relative;
+        }
+    }
+
     .button {
         margin-left: 1rem;
     }
-    
+
     .comments-container {
         width: 60%;
     }
-    
-    .remix-list {
-        width: 25%;
-    }
-    
-    .share-button,
+
     .remix-button,
     .see-inside-button {
+        margin-top: 0;
         font-size: .875rem;
         font-weight: normal;
-        
+
         &:before {
             display: inline-block;
             margin-right: .5rem;
             background-repeat: no-repeat;
             background-position: center center;
             background-size: contain;
-            width: 1.5rem;
-            height: 1.5rem;
+            width: 1.25rem;
+            height: 1.25rem;
             vertical-align: middle;
             content: "";
         }
     }
 
-    .shareText {
-        align-self: center;
-    }
-
-    .share-button {
-        background-color: $ui-orange;
-        
-        &:before {
-            background-image: url("/svgs/favorite/favorite_type-gray.svg");
-        }
-    }
-
     .remix-button {
-        background-color: $ui-green;
-        
+        background-color: $ui-aqua;
+
         &:before {
-            background-image: url("/svgs/remix/remix_type-gray.svg");
+            background-image: url("/svgs/project/remix-white.svg");
         }
     }
 
     .see-inside-button {
-        
+
         &:before {
-            background-image: url("/images/emoji/cool-cat.png");
+            background-image: url("/svgs/project/see-inside-white.svg");
         }
     }
-    
+
     .preview-row {
         margin-top: 1rem;
         justify-content: space-between;
         align-items: flex-start;
+        flex-wrap: nowrap;
     }
 
-    .placeholder {
+    .guiPlayer {
         display: inline-block;
-        width: 480px;
-    }
-
-    .placeholder img {
-        width: 100%;
+        width: $player-width;
     }
 
     .project-notes {
-        width: 45%;
-        height: 404px;
+        // not 1.5rem because of stage padding
+        margin-left: 1rem;
+        height: $player-height;
+        align-items: flex-start;
+        flex: 1;
         flex-flow: column;
-        align-items: left;
     }
 
     .share-date {
-        height: 2.5rem;
+        margin-right: .75rem;
         vertical-align: middle;
+        line-height: 2rem;
+        color: $type-gray;
+        font-size: .875rem;
+    }
+
+    .subactions {
+        margin-left: 1.5rem;
+        justify-content: flex-end;
+        flex: 1;
     }
 
     .remix-credit {
@@ -135,7 +202,7 @@ body,
         border-radius: 8px;
         background-color: $ui-blue-10percent;
         padding: .5rem;
-        width: 100%;
+        width: calc(100% - 1rem);
         flex-wrap: nowrap;
         align-items: flex-start;
     }
@@ -145,15 +212,71 @@ body,
         flex-shrink: 1;
     }
 
+    .description-block {
+        display: flex;
+        width: 100%;
+        min-height: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        flex: 1;
+    }
+
+    .project-textlabel {
+        margin: 0 0 .5rem 0;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
     .project-description {
+        margin-bottom: .75rem;
+        border: 1px solid $ui-blue-10percent;
+        border-radius: 8px;
+        background-color: $ui-blue-10percent;
+        padding: .5rem;
+        width: calc(100% - (1rem + 2px));
+        overflow: auto;
+        white-space: pre-line;
+        font-size: 1rem;
+        // flex-grow
+        flex: 1;
+    }
+
+    .project-description.last {
+        margin-bottom: 0;
+    }
+
+    .project-description-edit {
+        display: flex;
+        margin-bottom: .75rem;
         border: 1px solid $ui-blue-10percent;
         border-radius: 8px;
         background-color: $ui-blue-10percent;
         padding: .5rem;
         width: 100%;
         white-space: pre-line;
-        overflow-y: scroll;
+        // flex-grow
         flex: 1;
+
+        &.last {
+            margin-bottom: 0;
+        }
+
+        &.textarea-row {
+            border: 0;
+            background-color: inherit;
+            padding: 0;
+        }
+
+        &.has-error {
+            .validation-message {
+                transform: translate(26rem, 0);
+            }
+        }
+
+        & > .grow {
+            display: flex;
+            flex: 1;
+        }
     }
 
     .copyleft {
@@ -164,7 +287,7 @@ body,
     }
 
     .stats {
-        width: 480px;
+        line-height: 2rem;
         justify-content: flex-start;
     }
 
@@ -175,114 +298,211 @@ body,
 
         display: inline;
         padding-right: 2rem;
-        font-size: 1.25rem;
+        font-size: 1rem;
+        font-weight: bold;
 
         &:before {
             display: inline-block;
-            margin-right: .1rem;
+            margin-right: .5rem;
             background-repeat: no-repeat;
             background-position: center center;
             background-size: contain;
             width: 1.5rem;
             height: 1.5rem;
-            vertical-align: text-bottom;
+            vertical-align: -.25rem;
             content: "";
         }
     }
 
     .project-loves {
-        
+
+        cursor: pointer;
+
         &:before {
-            background-image: url("/svgs/love/love_type-gray.svg");
+            opacity: .5;
+            background-image: url("/svgs/project/love-gray.svg");
         }
     }
 
     .project-loves.loved {
-        
+
         &:before {
-            background-image: url("/svgs/messages/love.svg");
+            opacity: 1;
+            background-image: url("/svgs/project/love-red.svg");
         }
     }
 
     .project-favorites {
-        
+
+        cursor: pointer;
+
         &:before {
-            background-image: url("/svgs/favorite/favorite_type-gray.svg");
+            opacity: .5;
+            background-image: url("/svgs/project/fav-gray.svg");
         }
     }
 
     .project-favorites.favorited {
-        
+
         &:before {
-            background-image: url("/svgs/messages/favorite.svg");
+            opacity: 1;
+            background-image: url("/svgs/project/fav-yellow.svg");
         }
     }
 
     .project-remixes {
-        
+
         &:before {
-            background-image: url("/svgs/remix/remix_type-gray.svg");
+            opacity: .5;
+            background-image: url("/svgs/project/remix-gray.svg");
         }
     }
 
     .project-views {
-        
+
         &:before {
-            background-image: url("/svgs/view/view_type-gray.svg");
+            opacity: .5;
+            background-image: url("/svgs/project/views-gray.svg");
         }
     }
 
     .action-buttons {
         display: flex;
-        width: 40%;
         color: $type-white;
         font-size: .8rem;
         font-weight: 500;
         justify-content: flex-end;
         flex-wrap: wrap;
-        
+    }
 
-        li {
-            display: inline-block;
-            margin: 0 5px;
-            border: 1px solid $ui-blue;
-            border-radius: 50px;
-            background-color: $ui-blue;
-            padding: .5em .75em .5em 1.5em;
-            text-decoration: none;
-            color: $type-white;
-            list-style-type: none;
+    .action-button {
+        margin: 0 0 0 .5rem;
+        border-radius: 19px;
+        background-color: $ui-blue;
+        padding: 0 .75rem;
+        height: 2rem;
+        text-decoration: none;
+        line-height: .875rem;
+        font-size: .75rem;
+        font-weight: normal;
 
-            &:hover {
-                transition: background-color .25s ease;
-                border-color: transparent;
-                background-color: $active-gray;
-            }
+        // &:hover {
+        //     transition: background-color .25s ease;
+        //     border-color: transparent;
+        //     background-color: $active-gray;
+        // }
+        //
+        // &:active {
+        //     border: 0 solid transparent;
+        //     box-shadow: inset 0 0 5px $box-shadow-gray;
+        //     background-color: $active-dark-gray;
+        //     padding: calc(.75em + 1px) calc(1.5em + 1px);
+        // }
+        //
+        // &.report {
+        //     border: 1px solid $ui-coral;
+        //     background-color: $ui-coral;
+        //
+        //     &:hover {
+        //         transition: background-color .25s ease;
+        //         border-color: transparent;
+        //         background-color: $active-gray;
+        //     }
+        //
+        //     &:active {
+        //         border: 0 solid transparent;
+        //         box-shadow: inset 0 0 5px $box-shadow-gray;
+        //         background-color: $active-dark-gray;
+        //         padding: calc(.75em + 1px) calc(1.5em + 1px);
+        //     }
+        // }
+    }
 
-            &:active {
-                border: 0 solid transparent;
-                box-shadow: inset 0 0 5px $box-shadow-gray;
-                background-color: $active-dark-gray;
-                padding: calc(.75em + 1px) calc(1.5em + 1px);
-            }
+    .comments-header {
+        padding: 0 0 1rem 0;
+        justify-content: space-between;
 
-            &.report {
-                border: 1px solid $ui-coral;
-                background-color: $ui-coral;
-                
-                &:hover {
-                    transition: background-color .25s ease;
-                    border-color: transparent;
-                    background-color: $active-gray;
-                }
-
-                &:active {
-                    border: 0 solid transparent;
-                    box-shadow: inset 0 0 5px $box-shadow-gray;
-                    background-color: $active-dark-gray;
-                    padding: calc(.75em + 1px) calc(1.5em + 1px);
-                }
-            }
+        h4 {
+            font-size: 1.25rem;
         }
     }
+
+    .studio-button,
+    .copy-link-button,
+    .report-button {
+        &:before {
+            display: inline-block;
+            margin-right: .25rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            width: .875rem;
+            height: .875rem;
+            vertical-align: bottom;
+            content: "";
+        }
+    }
+    .studio-button {
+        &:before {
+            background-image: url("/svgs/project/studio-add-white.svg");
+        }
+    }
+
+    .copy-link-button {
+        &:before {
+            background-image: url("/svgs/project/copy-link-white.svg");
+        }
+    }
+
+    .report-button {
+        background-color: $ui-coral;
+
+        &:before {
+            background-image: url("/svgs/project/report-white.svg");
+        }
+    }
+
+    .project-lower-container {
+        margin-top: 1rem;
+        background-color: $ui-blue-10percent;
+        padding: 1rem 0;
+        min-height: 12rem;
+    }
+
+    .create-comment {
+        margin-bottom: 2rem;
+    }
+
+    .load-more-button {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .extension-list {
+        justify-content: flex-start;
+    }
+
+    .remix-list,
+    .studio-list {
+        flex-direction: column;
+
+        .project {
+            margin-bottom: 1.5rem;
+        }
+
+        .creator-image img {
+            max-width: 2rem;
+            max-height: 2rem;
+        }
+
+        .thumbnail-column {
+            display: inline-block;
+            width: 100%;
+        }
+    }
+}
+
+.report-text textarea {
+    // override min-height from default settings (for teacher registration)
+    min-height: 8rem;
 }

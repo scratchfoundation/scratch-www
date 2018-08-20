@@ -1,0 +1,69 @@
+@import "../../colors";
+@import "../../frameless";
+
+.inplace-input {
+    transition: all .5s ease;
+    border: 2px dashed $ui-blue-25percent;
+    border-radius: 8px;
+    background-color: transparent;
+    padding: 0 1rem;
+    width: calc(100% - 2.25rem);
+    color: $type-gray;
+
+    &:focus {
+        transition: all .5s ease;
+        outline: none;
+        border: 2px solid $ui-blue;
+        box-shadow: 0 0 0 4px $ui-blue-25percent;
+    }
+
+    &.fail {
+        border: 1px solid $ui-orange;
+    }
+
+    &.pass {
+        border: 1px solid $active-dark-gray;
+    }
+
+    /* IE10/11-specific style resets */
+    &::-ms-reveal, &::-ms-clear {
+        display: none;
+    }
+    
+    &::placeholder {
+        font-style: italic;
+    }
+}
+
+.inplace-textarea {
+    transition: all 1s ease;
+    border: 2px dashed $ui-blue-25percent;
+    border-radius: 8px;
+    background-color: $ui-light-gray;
+    padding: .75rem 1rem;
+    width: 100%;
+    line-height: 1.75em;
+    color: $type-gray;
+    font-size: 1rem;
+    box-sizing: border-box;
+    resize: none;
+
+    &:focus {
+        transition: all 1s ease;
+        outline: none;
+        border: 2px solid $ui-blue;
+        box-shadow: 0 0 0 4px $ui-blue-25percent;
+    }
+
+    &.fail {
+        border: 1px solid $ui-orange;
+    }
+    
+    &::placeholder {
+        padding-top: 1rem;
+        text-align: center;
+        font-style: italic;
+    }
+}
+
+

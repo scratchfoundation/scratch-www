@@ -1,0 +1,8 @@
+@import "../../colors";
+
+.ev3 {
+    .extension-header {
+        background-color: $ui-aqua;
+        background-image: url("/images/ev3/ev3-pattern.svg");
+    }
+}

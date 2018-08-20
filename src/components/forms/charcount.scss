@@ -2,7 +2,7 @@
 
 .char-count {
     letter-spacing: 1px;
-    color: lighten($type-gray, 30%);
+    color: $type-gray-75percent;
     font-weight: 500;
 
     &.overmax {

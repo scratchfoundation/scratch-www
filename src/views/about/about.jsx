@@ -67,7 +67,7 @@ const About = () => (
                         id="about.aroundTheWorldDescription"
                         values={{
                             translationLink: (
-                                <a href="http://wiki.scratch.mit.edu/wiki/How_to_Translate_Scratch">
+                                <a href="https://en.scratch-wiki.info/wiki/How_to_Translate_Scratch">
                                     <FormattedMessage id="about.translationLinkText" />
                                 </a>
                             )
@@ -119,7 +119,7 @@ const About = () => (
                         id="about.researchDescription"
                         values={{
                             researchLink: (
-                                <a href="/info/research">
+                                <a href="/research">
                                     <FormattedMessage id="about.researchLinkText" />
                                 </a>
                             ),
@@ -141,7 +141,7 @@ const About = () => (
                     <h3><FormattedMessage id="about.learnMore" /></h3>
                     <ul className="list">
                         <li>
-                            <a href="/help"><FormattedMessage id="about.learnMoreHelp" /></a>
+                            <a href="/tips"><FormattedMessage id="about.learnMoreHelp" /></a>
                         </li>
                         <li>
                             <a href="/info/faq"><FormattedMessage id="about.learnMoreFaq" /></a>

@@ -13,7 +13,7 @@
 }
 
 .social-message.mod-unread {
-    background-color: lighten($ui-blue, 40);
+    background-color: $ui-blue-10percent;
 }
 
 .social-message.mod-unread .social-message-icon {
@@ -41,7 +41,7 @@ a.social-messages-profile-link {
     color: $type-gray;
 
     &:hover {
-        color: darken($type-gray, 10);
+        color: $link-blue;
     }
 }
 

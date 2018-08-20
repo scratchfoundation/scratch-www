@@ -1,0 +1,56 @@
+@import "../../../../frameless";
+
+#view {
+    @media only screen and (max-width: $tablet - 1) {
+        margin-top: 100px;
+    } 
+
+    @media only screen and (max-width: $desktop - 1) {
+        text-align: left;
+    }   
+}
+
+.details {
+    width: $cols8;
+
+    &.inner {
+        margin-top: 2rem;
+
+        &.fetching {
+            opacity: .6;
+        }
+    }
+
+    .back {
+        margin: 1rem 0;
+    }
+
+    ul {
+        &.logistics {
+            margin: .25rem 0 2.5rem;
+            padding-left: 0;
+            list-style-type: none;
+        }
+
+        li {
+            margin: .25rem 0;
+
+            img {
+                margin-right: .5rem;
+                width: 1rem;
+                height: 1rem;
+            }
+        }
+    }
+
+    .description {
+        margin: 2rem 0;
+    }
+}
+
+//8 columns
+@media only screen and (max-width: $desktop - 1) {
+    .details {
+        width: 100%;
+    }
+}

@@ -1,8 +1,6 @@
 @import "../../colors";
 @import "../../frameless";
 
-$developer-spot: $splash-blue;
-
 #view {
     padding: 0;
 }
@@ -11,7 +9,7 @@ $developer-spot: $splash-blue;
     .title-banner {
         &.masthead {
             margin-bottom: 0;
-            background-color: $developer-spot;
+            background-color: $ui-blue-dark;
             padding-bottom: 0;
 
             h1 {
@@ -32,10 +30,8 @@ $developer-spot: $splash-blue;
             }
 
             .band {
-                $band-color: #3baddd;
-                
                 margin-top: 2rem;
-                background-color: $band-color;
+                background-color: $ui-white-15percent;
                 padding: 1rem 0;
             }
 
@@ -74,13 +70,17 @@ $developer-spot: $splash-blue;
     .installation-column {
         max-width: $cols4;
         text-align: center;
+
+        p {
+            margin-right: .5rem;
+            margin-left: .5rem;
+        }
     }
 
     .installation-column-number {
         margin: 2rem auto;
         border: 2px solid $active-gray;
         border-radius: 2rem;
-        box-shadow: 0 0 0 .5rem lighten($ui-blue, 35);
         background-color: $ui-blue;
         width: 3.75rem;
         height: 3.75rem;

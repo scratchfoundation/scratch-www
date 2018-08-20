@@ -11,6 +11,75 @@ require('../footer.scss');
 
 const ConferenceFooter = props => (
     <FooterBox>
+        <div className="collaborators">
+            <h4>Sponsors</h4>
+            <FlexRow as="ul">
+                <li className="odl">
+                    <a href="https://odl.mit.edu/">
+                        <img
+                            alt="MIT Office of Digital Learning"
+                            src="/images/conference/footer/2018/mit-ol-logo.png"
+                        />
+                    </a>
+                </li>
+                <li className="google">
+                    <a href="http://www.google.com/">
+                        <img
+                            alt="Google"
+                            src="/images/conference/footer/2018/google.png"
+                        />
+                    </a>
+                </li>
+                <li className="epam">
+                    <a href="https://www.epam.com/">
+                        <img
+                            alt="EPAM Systems"
+                            src="/images/conference/footer/2018/epam.png"
+                        />
+                    </a>
+                </li>
+                <li className="intel">
+                    <a href="http://www.intel.com/content/www/us/en/homepage.html">
+                        <img
+                            alt="Intel"
+                            src="/images/conference/footer/2018/intel.png"
+                        />
+                    </a>
+                </li>
+                <li className="lego">
+                    <a href="http://www.legofoundation.com/">
+                        <img
+                            alt="The LEGO Foundation"
+                            src="/images/conference/footer/2018/lego-foundation.png"
+                        />
+                    </a>
+                </li>
+                <li className="siegel">
+                    <a href="http://www.siegelendowment.org/">
+                        <img
+                            alt="Siegel Family Endowment"
+                            src="/images/conference/footer/2018/siegel.png"
+                        />
+                    </a>
+                </li>
+                <li className="cartoon-network">
+                    <a href="https://www.cartoonnetwork.com/">
+                        <img
+                            alt="Cartoon Network"
+                            src="/images/conference/footer/2018/cartoon-network.png"
+                        />
+                    </a>
+                </li>
+                <li className="scratchfoundation">
+                    <a href="http://www.scratchfoundation.org/">
+                        <img
+                            alt="Scratch Foundation"
+                            src="/images/conference/footer/2018/scratch-foundation.png"
+                        />
+                    </a>
+                </li>
+            </FlexRow>
+        </div>
         <FlexRow className="scratch-links">
             <div className="family">
                 <h4><FormattedMessage id="footer.scratchFamily" /></h4>
@@ -121,13 +190,25 @@ const ConferenceFooter = props => (
                         </li>
                         <li>
                             <a
-                                href="http://medium.com/scratchfoundation-blog"
+                                href="https://medium.com/scratchteam-blog"
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
                                 <img
-                                    alt="scratch foundation blog"
+                                    alt="scratch team blog"
                                     src="/images/conference/footer/medium.png"
+                                />
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="https://scratch-foundation.myshopify.com/"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                <img
+                                    alt="scratch store"
+                                    src="/images/conference/footer/shopify-white.svg"
                                 />
                             </a>
                         </li>

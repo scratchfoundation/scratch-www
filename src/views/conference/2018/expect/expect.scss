@@ -1,0 +1,198 @@
+@import "../../../../colors";
+@import "../../../../frameless";
+
+.expect {
+    .flex-row {
+        align-items: flex-start;
+        justify-content: space-between;
+
+        .card {
+            width: $cols4;
+
+            p {
+                text-align: left;
+            }
+        }
+    }
+
+    .profile {
+        img {
+            border-radius: 8em;
+            width: 80%;
+        }
+
+        h4 {
+            margin-top: 1.2rem;
+        }
+
+        @media only screen and (max-width: $tablet - 1) {
+            img {
+                width: 50%;
+            }
+
+            h2 {
+                margin: 20px 0;
+                text-align: center;
+                font-size: 1.7rem;
+            }
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            .uneven {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+
+    .keynote {
+        background-color: $ui-purple;
+        padding: 48px 0 64px 0;
+        width: 100%;
+
+        h2,
+        h3,
+        b,
+        p {
+            color: $ui-white;
+        }
+
+        h2 {
+            margin-bottom: 32px;
+        }
+
+        h3 {
+            margin: 15px 0;
+        }
+
+        img {
+            width: 100%;
+
+            &.moderator {
+                width: 50%;
+            }
+
+        }
+
+        .date {
+            b {
+                border-radius: 20px;
+                background-color: $ui-orange;
+                padding: 5px 15px;
+                font-size: .85rem;
+            }
+
+            margin: 15px 0;
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            .flex-row {
+                flex-direction: column;
+                align-items: center;
+
+                .card {
+                    margin-top: 25px;
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    .schedule {
+        .title {
+            display: flex;
+            margin-top: 20px;
+            justify-content: space-between;
+            align-items: center;
+
+            h2 {
+                margin: 0;
+            }
+        }
+
+        img {
+            width: 30px;
+        }
+
+        .callout {
+            display: flex;
+            padding: .85rem;
+            align-items: center;
+
+            img {
+                margin-right: 30px;
+            }
+        }
+
+        table {
+            width: $cols4;
+
+            th {
+                display: flex;
+                border-bottom: thin solid $ui-border;
+                padding: 2.5%;
+                align-items: center;
+                justify-content: flex-start;
+
+                h3 {
+                    margin: 0;
+                }
+
+                img {
+                    margin-right: 30px;
+                }
+            }
+
+            td {
+                display: flex;
+                border-bottom: thin solid $ui-border;
+                padding: 2.5%;
+                height: 60px;
+                align-items: center;
+
+                b {
+                    width: 40%;
+                    line-height: 1.7em;
+                }
+
+                p {
+                    margin: 0;
+                    padding-left: 20px;
+                    width: 60%;
+                }
+            }
+        }
+
+        @media only screen and (max-width: $mobile - 1) {
+            .flex-row {
+                table {
+                    width: 100%;
+                }
+            }
+        }
+
+        @media only screen and (min-width: $mobile) and (max-width: $desktop - 1) {
+            .flex-row {
+                table {
+                    width: $cols6;
+                }
+            }
+        }
+
+        @media only screen and (max-width: $desktop - 1) {
+            .flex-row {
+                flex-direction: column;
+                align-items: center;
+
+                table {
+                    margin-top: 50px;
+                    text-align: left;
+
+                    th {
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+    }
+}

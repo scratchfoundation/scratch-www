@@ -1,0 +1,40 @@
+@import "../../colors";
+
+.os-chooser {
+    display: flex;
+    position: sticky;
+    top: 50px;
+    z-index: 9;
+    box-shadow: 0 0 3px $box-shadow-gray;
+    background-color: $ui-white;
+    padding: 0;
+    height: 5rem;
+
+    .inner {
+        justify-content: flex-start;
+    }
+
+    span {
+        margin-right: 1rem;
+        font-weight: 600;
+    }
+
+    .button {
+        display: flex;
+        margin-right: 1rem;
+        border-radius: 1.6rem;
+        background-color: $active-gray;
+        padding: .5rem 1.1rem;
+        align-items: center;
+        box-sizing: border-box;
+
+        img {
+            margin-right: .3rem;
+            height: 1.5rem;
+        }
+
+        &.active {
+            background-color: $ui-blue;
+        }
+    }
+}

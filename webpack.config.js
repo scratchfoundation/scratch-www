@@ -79,10 +79,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
-                include: path.resolve(__dirname, 'src'),
-                options: {
-                    presets: ['es2015', 'react']
-                }
+                include: [path.resolve(__dirname, 'src'), /node_modules[\\/]scratch-[^\\/]+[\\/]src/]
             },
             {
                 test: /\.scss$/,
@@ -142,7 +139,21 @@ module.exports = {
         new CopyWebpackPlugin([
             {from: 'static'},
             {from: 'intl', to: 'js'}
-        ])
+        ]),
+        new CopyWebpackPlugin([{
+            from: 'node_modules/scratch-gui/dist/static/blocks-media',
+            to: 'static/blocks-media'
+        }]),
+        new CopyWebpackPlugin([{
+            from: 'node_modules/scratch-gui/dist/extension-worker.js'
+        }]),
+        new CopyWebpackPlugin([{
+            from: 'node_modules/scratch-gui/dist/extension-worker.js.map'
+        }]),
+        new CopyWebpackPlugin([{
+            from: 'node_modules/scratch-gui/dist/static/assets',
+            to: 'static/assets'
+        }])
     ])
         .concat(process.env.NODE_ENV === 'production' ? [
             new webpack.optimize.UglifyJsPlugin({
@@ -154,6 +165,9 @@ module.exports = {
                 'process.env.NODE_ENV': '"' + (process.env.NODE_ENV || 'development') + '"',
                 'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"',
                 'process.env.API_HOST': '"' + (process.env.API_HOST || 'https://api.scratch.mit.edu') + '"',
+                'process.env.ASSET_HOST': '"' + (process.env.ASSET_HOST || 'https://assets.scratch.mit.edu') + '"',
+                'process.env.BACKPACK_HOST': '"' + (process.env.BACKPACK_HOST || 'https://backpack.scratch.mit.edu') + '"',
+                'process.env.PROJECT_HOST': '"' + (process.env.PROJECT_HOST || 'https://projects.scratch.mit.edu') + '"',
                 'process.env.SCRATCH_ENV': '"' + (process.env.SCRATCH_ENV || 'development') + '"'
             }),
             new webpack.optimize.CommonsChunkPlugin({

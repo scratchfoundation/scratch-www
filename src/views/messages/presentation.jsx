@@ -161,7 +161,7 @@ class SocialMessagesList extends React.Component {
         if (loadMore) {
             return (
                 <Button
-                    className="messages-social-loadmore white"
+                    className="messages-social-loadmore"
                     key="load-more"
                     onClick={this.props.onLoadMoreMethod}
                 >

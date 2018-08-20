@@ -37,31 +37,31 @@
 
         &.blue {
             #{$color-bars} {
-                background-color: $splash-blue;
+                background-color: $ui-blue;
             }
 
             a {
-                color: $splash-blue;
+                color: $ui-blue;
             }
         }
 
         &.green {
             #{$color-bars} {
-                background-color: $splash-green;
+                background-color: $ui-aqua;
             }
 
             a {
-                color: $splash-green;
+                color: $ui-aqua;
             }
         }
 
         &.pink {
             #{$color-bars} {
-                background-color: $splash-pink;
+                background-color: $ui-purple;
             }
 
             a {
-                color: $splash-pink;
+                color: $ui-purple;
             }
         }
     }

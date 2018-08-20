@@ -88,7 +88,7 @@ module.exports.getDaySchedule = day => (dispatch => {
                         cleanedRow[columns[i]] = cur[i];
                     }
                 }
-                cleanedRow.uri = `/conference/2016/${cleanedRow.rowid}/details`;
+                cleanedRow.uri = `/conference/2018/${cleanedRow.rowid}/details`;
                 const timeSlot = cleanedRow.Chunk + cleanedRow.Start;
                 if (typeof prev.timeSlots[timeSlot] === 'undefined') {
                     prev.timeSlots[timeSlot] = [cleanedRow];

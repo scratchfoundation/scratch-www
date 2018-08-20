@@ -18,10 +18,27 @@ env:
   - API_HOST_VAR=API_HOST_$TRAVIS_BRANCH
   - API_HOST=${!API_HOST_VAR}
   - API_HOST=${API_HOST:-$API_HOST_STAGING}
-  # EB_AWS_ACCESS_KEY_ID
-  - secure: A138rYuXDsOmpEwYxZ31WyXEeq5fgr9qyqsQh1nTFsjBKpFtNM+CN9e0QJQFT3PLs4wH/lWTRSyHxakxKQS1sxq828f9gHed+f15REKk/fRUplcCYIexT9xKVtU3D8CRNn/KBFWk75fZyZt20eyOVIv4h3pInKQz7y84J6PWzB1BCrAFvADrzS1X68Z3NJJLyxnz0YEurzz8mC2v4D0s/XifKTWvRtefD4QM6pE0C2iYyk+ThrLwg7i9FDHVfo0MrkgcdX7mz37SnTr7p7mHWnGXrGngi/NiDRQ+Uwwq/sr2UIww0rCwS1xsOcS//dC4NNqrrt1kUTsoC1Yt87Ny+gI0nUplsfEpdKajAkOYdANC5bJUGqPdSlOds1v9aJs9Hx48uGamWkm/3cFmoJ5uA2ZzUwbSGjTkWbnhwzT0YRvcLGhP1WE/EswaIyK5qMp522E79mP1yH6M750iUvi4N39+QW1BNX3ADkOwyAI67ArX5on5gWP83RXcJ15im7XsBpsmVn/KXi6AouWPb8jmSmKCj0QZCzfLY7ivM42IugYpK2NV7kFB38DpXQamJ5eskgwYa3elRmednIFUuwb1QDnONvJogVjk4CLmoSxssC2mJnnrUItM7l8G6As81GMI+6lTtl86hAuXBjUk60FMbgTAQDX9ll26LgpBy8jHSx8=
-  # EB_AWS_SECRET_ACCESS_KEY
-  - secure: EX1fyov+f6ytWN2ZSL4dLslwrVkp6Ho/uoSLO38/qNG3XdGmBN4VprxddcQiWfo+Mrg3GdWcfcM/VazhhStBi1uLfZiw3RHZaSGuWbiuD2EtzqtlC+OVvoajgy91QFajh9Zzuwa0rYbEPd/sw01R53NoWJYl0GSteWk7C8Wv6anl4FUJCqgvvTV2ZEcyTtGcVJgUhKi1MfNpTSM6JWBy0DWszcyxj7C8LSs1+l9ZjAtnlUBWY13HsrNu8G5d+FwqGHZLUAjdu2O602wxV897/xLARLduZ+01ALpVefNEEGMB1Wd+xMw4dm2B0Uk86a4TBRCeOgJZ1yoJoPpGPOHTo+dgNXcU8ReszGVoy7uOjFWwu82FQq8gzfcf75yzaRJgG8/BJ6BkJfa0EmFg3iO5CwixQyHR5+CqsedtoLAWVT8zlOfQ/Z6yx4Pm7jXQSOkyvo09YJ2QIn4IFGPvwOVS7Firzi+fLl8GYApeSV9G10e1IzA4pPrKdJMRA4qRMPt9zJGq7ZO1J/d9aW/5KIsJUDnodnl7yXJyDMOyNeljT9I82ciHZcURxRRY080vrW6dgNJE1V9jxBhWEvr2iCeWMMedWaGuC41I7K9L79eW8lmaE+cQ+OZrzpOJP4GbfmIiXrh+0M4ChL/xBpjtiFwpNdkCXXhzWMnjJ4wCrii4yuc=
+  - ASSET_HOST_master=https://assets.scratch.mit.edu
+  - ASSET_HOST_STAGING=https://assets.scratch.ly
+  - ASSET_HOST_VAR=ASSET_HOST_$TRAVIS_BRANCH
+  - ASSET_HOST=${!ASSET_HOST_VAR}
+  - ASSET_HOST=${ASSET_HOST:-$ASSET_HOST_STAGING}
+  - BACKPACK_HOST_master=https://backpack.scratch.mit.edu
+  - BACKPACK_HOST_STAGING=https://backpack.scratch.ly
+  - BACKPACK_HOST_VAR=BACKPACK_HOST_$TRAVIS_BRANCH
+  - BACKPACK_HOST=${!BACKPACK_HOST_VAR}
+  - BACKPACK_HOST=${BACKPACK_HOST:-$BACKPACK_HOST_STAGING}
+  - ROOT_URL_master=https://scratch.mit.edu
+  - ROOT_URL_STAGING=https://scratch.ly
+  - ROOT_URL_VAR=ROOT_URL_$TRAVIS_BRANCH
+  - ROOT_URL=${!ROOT_URL_VAR}
+  - ROOT_URL=${ROOT_URL:-$ROOT_URL_STAGING}
+  - PROJECT_HOST_master=https://projects.scratch.mit.edu
+  - PROJECT_HOST_STAGING=https://projects.scratch.ly
+  - PROJECT_HOST_VAR=PROJECT_HOST_$TRAVIS_BRANCH
+  - PROJECT_HOST=${!PROJECT_HOST_VAR}
+  - PROJECT_HOST=${PROJECT_HOST:-$PROJECT_HOST_STAGING}
+  - PATH=$PATH:$PWD/test/integration/node_modules/chromedriver/bin
   - AWS_ACCESS_KEY_ID=$EB_AWS_ACCESS_KEY_ID
   - AWS_SECRET_ACCESS_KEY=$EB_AWS_SECRET_ACCESS_KEY
   - FASTLY_ACTIVATE_CHANGES=true
@@ -58,6 +75,7 @@ env:
   - NODE_ENV=production
   - WWW_VERSION=${TRAVIS_COMMIT:0:5}
 addons:
+  chrome: stable
   apt:
     sources:
       - ubuntu-toolchain-r-test
@@ -66,20 +84,34 @@ addons:
 install:
   - sudo -H pip install -r requirements.txt
   - npm --production=false install
-deploy:
-- provider: script
-  skip_cleanup: $SKIP_CLEANUP
-  script: env make sync
-  on:
-    repo: LLK/scratch-www
-    branch:
-    - develop
-    - hotfix/*
-    - release/*
-- provider: script
-  skip_cleanup: $SKIP_CLEANUP
-  script: env make sync
-  on:
-    repo: LLK/scratch-www
-    branch:
-    - master
+  - npm --production=false update
+jobs:
+  include:
+  - stage: test
+    deploy:
+    - provider: script
+      skip_cleanup: $SKIP_CLEANUP
+      script: env make sync
+      on:
+        repo: LLK/scratch-www
+        branch:
+        - develop
+        - hotfix/*
+        - release/*
+    - provider: script
+      skip_cleanup: $SKIP_CLEANUP
+      script: env make sync
+      on:
+        repo: LLK/scratch-www
+        branch:
+        - master
+  - stage: smoke
+    install:
+    - cd test/integration
+    - npm install
+    - cd -
+    script: npm run smoke-sauce
+stages:
+- test
+- name: smoke
+  if: type != pull_request
