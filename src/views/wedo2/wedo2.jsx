@@ -187,7 +187,7 @@ class Wedo2 extends ExtensionLanding {
                             values={{
                                 wedoLegacyLink: (
                                     <a
-                                        href="https://scratch.mit.edu/wedo-legacy"
+                                        href="/wedo-legacy"
                                         rel="noopener noreferrer"
                                         target="_blank"
                                     >
