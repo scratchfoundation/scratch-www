@@ -31,7 +31,10 @@ class EV3 extends ExtensionLanding {
     render () {
         return (
             <div className="extension-landing ev3">
-                <ExtensionHeader imageSrc="/images/ev3/ev3-illustration.png">
+                <ExtensionHeader
+                    imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltEv3illustration'})}
+                    imageSrc="/images/ev3/ev3-illustration.png"
+                >
                     <FlexRow className="column extension-copy">
                         <h2><img src="/images/ev3/ev3.svg" />LEGO MINDSTORMS EV3</h2>
                         <FormattedMessage
@@ -119,13 +122,19 @@ class EV3 extends ExtensionLanding {
                             <Steps>
                                 <Step>
                                     <div className="step-image">
-                                        <img src="/images/ev3/ev3-accept-connection.png" />
+                                        <img
+                                            alt={this.props.intl.formatMessage({id: 'ev3.imgAltAcceptConnection'})}
+                                            src="/images/ev3/ev3-accept-connection.png"
+                                        />
                                     </div>
                                     <p><FormattedMessage id="ev3.acceptConnection" /></p>
                                 </Step>
                                 <Step>
                                     <div className="step-image">
-                                        <img src="/images/ev3/ev3-pin.png" />
+                                        <img
+                                            alt={this.props.intl.formatMessage({id: 'ev3.imgAltAcceptPasscode'})}
+                                            src="/images/ev3/ev3-pin.png"
+                                        />
                                     </div>
                                     <p><FormattedMessage id="ev3.acceptPasscode" /></p>
                                 </Step>
@@ -170,7 +179,10 @@ class EV3 extends ExtensionLanding {
                                 />
                             </span>
                             <div className="step-image">
-                                <img src="/images/ev3/ev3-motor-port-a.png" />
+                                <img
+                                    alt={this.props.intl.formatMessage({id: 'ev3.imgAltPlugInMotor'})}
+                                    src="/images/ev3/ev3-motor-port-a.png"
+                                />
                             </div>
                         </Step>
                         <Step
