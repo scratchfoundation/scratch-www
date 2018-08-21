@@ -141,6 +141,11 @@ class EV3 extends ExtensionLanding {
                                 <Step>
                                     <div className="step-image">
                                         <img
+                                            alt={this.props.intl.formatMessage({id: `${
+                                                this.state.OS === OS_ENUM.WINDOWS ?
+                                                    'ev3.imgAltWaitForWindows' :
+                                                    'ev3.imgAltEnterPasscodeMac'
+                                            }`})}
                                             className="screenshot"
                                             src={`/images/ev3/${
                                                 this.state.OS === OS_ENUM.WINDOWS ?
