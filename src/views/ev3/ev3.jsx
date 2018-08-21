@@ -210,18 +210,21 @@ class EV3 extends ExtensionLanding {
                         <ProjectCard
                             cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-wave-hello.sb3"
                             description={this.props.intl.formatMessage({id: 'ev3.waveHelloDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltWaveHello'})}
                             imageSrc="/images/ev3/starter-wave-hello.png"
                             title={this.props.intl.formatMessage({id: 'ev3.waveHelloTitle'})}
                         />
                         <ProjectCard
                             cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-distance-instrument.sb3"
                             description={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltDistanceInstrument'})}
                             imageSrc="/images/ev3/starter-distance-instrument.png"
                             title={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentTitle'})}
                         />
                         <ProjectCard
                             cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-space-tacos.sb3"
                             description={this.props.intl.formatMessage({id: 'ev3.spaceTacosDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltSpaceTacos'})}
                             imageSrc="/images/ev3/starter-flying-game.png"
                             title={this.props.intl.formatMessage({id: 'ev3.spaceTacosTitle'})}
                         />
