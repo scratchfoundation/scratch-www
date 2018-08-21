@@ -180,6 +180,23 @@ class Wedo2 extends ExtensionLanding {
                     <p>
                         <FormattedMessage id="wedo2.otherComputerConnectedText" />
                     </p>
+                    <h3 className="faq-title"><FormattedMessage id="wedo2.legacyInfoTitle" /></h3>
+                    <p>
+                        <FormattedMessage
+                            id="wedo2.legacyInfoText"
+                            values={{
+                                wedoLegacyLink: (
+                                    <a
+                                        href="https://scratch.mit.edu/wedo-legacy"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="wedo2.legacyLinkText" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </p>
                 </ExtensionSection>
             </div>
         );
