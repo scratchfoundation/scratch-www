@@ -3,9 +3,9 @@ const React = require('react');
 
 const ProjectCard = props => (
     <a
-        download
         className="project-card"
         href={props.cardUrl}
+        target="_blank"
     >
         <div className="project-card-image">
             <img src={props.imageSrc} />
