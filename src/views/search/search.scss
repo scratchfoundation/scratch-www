@@ -104,15 +104,40 @@ $base-bg: $ui-white;
             }
         }
     }
+    
+    /* HACK: sort controls are terrible. There's some sort of magic formula for height of formsy components that I can't control. */
 
-    .select {
-        select {
-            margin-bottom: 0;
-            color: $header-gray;
-        }
+    .sort-controls {
+        display: flex;
+        margin: 0 auto;
+        border-bottom: 1px solid $ui-border;
+        padding: 8px 0;
+        width: 58.75rem;
+        justify-content: space-between;
+    }
 
-        .help-block {
-            display: none;
+    .sort-mode {
+        margin-top: -4px;
+        width: 13.75rem;
+
+        .select {
+
+            select {
+                margin-bottom: 0;
+                border: 0;
+                background-color: transparent;
+                height: 32px;
+                color: $header-gray;
+
+                &:focus,
+                &:active {
+                    background-color: transparent;
+                }
+            }
+
+            .help-block {
+                display: none;
+            }
         }
     }
 

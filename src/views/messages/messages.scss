@@ -54,9 +54,9 @@
 }
 
 .admin-message {
-    border: 1px solid darken($ui-gray, 10);
+    border: 1px solid $active-dark-gray;
     border-radius: 5px;
-    background-color: lighten($ui-blue, 40);
+    background-color: $ui-blue-25percent;
     padding: 1rem;
 }
 

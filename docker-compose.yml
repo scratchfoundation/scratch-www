@@ -2,7 +2,6 @@ version: '3.4'
 volumes:
   npm_data:
   runtime_data:
-  intl_data:
 
 networks:
   scratch-api_scratch_network:
@@ -15,7 +14,8 @@ services:
     environment:
       - API_HOST=http://localhost:8491
       - FALLBACK=http://localhost:8080
-    build:  
+      - USE_DOCKER_WATCHOPTIONS=true
+    build:
       context: ./
       dockerfile: Dockerfile
     image: scratch-www:latest
@@ -33,7 +33,6 @@ services:
           nocopy: true
       - npm_data:/var/app/current/node_modules
       - runtime_data:/runtime
-      - intl_data:/var/app/current/intl
     ports:
       - "8333:8333"
     networks:

@@ -28,8 +28,8 @@ module.exports.validationHOCFactory = defaultValidationErrors => (Component => {
         <Component
             validationErrors={defaults(
                 {},
-                defaultValidationErrors,
-                props.validationErrors
+                props.validationErrors,
+                defaultValidationErrors
             )}
             {...omit(props, ['validationErrors'])}
         />
