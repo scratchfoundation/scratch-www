@@ -36,10 +36,10 @@ class EV3 extends ExtensionLanding {
                     imageSrc="/images/ev3/ev3-illustration.png"
                 >
                     <FlexRow className="column extension-copy">
-                        <h2><img
+                        <h1><img
                             alt=""
                             src="/images/ev3/ev3.svg"
-                        />LEGO MINDSTORMS EV3</h2>
+                        />LEGO MINDSTORMS EV3</h1>
                         <FormattedMessage
                             id="ev3.headerText"
                             values={{
