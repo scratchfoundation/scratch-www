@@ -112,11 +112,14 @@
     */
     margin: .575rem 2.18375rem .175rem .6875rem;
     width: 13.3125rem;
-    height: 1rem; /* diff from spec, in case we ever do valign to middle */
+    height: 1.25rem; /* diff from spec, in case we ever do valign to middle; changed to match line-height because else with overflow hidden it cuts off some letters */
     line-height: 1.25rem;
     font-family: "Helvetica Neue";
     font-size: .875rem;
     font-weight: regular;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }
 
 .studio-selector-button-selected {

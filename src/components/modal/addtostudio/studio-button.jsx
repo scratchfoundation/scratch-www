@@ -44,8 +44,9 @@ const StudioButton = ({
                     {'studio-selector-button-text-selected': includesProject || hasRequestOutstanding},
                     {'studio-selector-button-text-unselected': !includesProject && !hasRequestOutstanding}
                 )}
+                title={title}
             >
-                {truncateAtWordBoundary(title, 25)}
+                {title}
             </div>
             <div
                 className={classNames(
