@@ -39,11 +39,11 @@ class EV3 extends ExtensionLanding {
                             values={{
                                 ev3Link: (
                                     <a
-                                        href="https://shop.lego.com/en-US/LEGO-MINDSTORMS-EV3-31313"
+                                        href="https://education.lego.com/en-us/middle-school/intro/mindstorms-ev3"
                                         rel="noopener noreferrer"
                                         target="_blank"
                                     >
-                                                LEGO MINDSTORMS EV3
+                                                LEGO MINDSTORMS Education EV3
                                     </a>
                                 )
                             }}
@@ -88,7 +88,10 @@ class EV3 extends ExtensionLanding {
                             </Step>
                             <Step number={2}>
                                 <div className="step-image">
-                                    <img src="/images/ev3/ev3-connect-2.png" />
+                                    <img
+                                        className="screenshot"
+                                        src="/images/ev3/ev3-connect-2.png"
+                                    />
                                 </div>
                                 <p>
                                     <FormattedMessage
@@ -109,7 +112,10 @@ class EV3 extends ExtensionLanding {
                             </Step>
                             <Step number={3}>
                                 <div className="step-image">
-                                    <img src="/images/ev3/ev3-connect-3.png" />
+                                    <img
+                                        className="screenshot"
+                                        src="/images/ev3/ev3-connect-3.png"
+                                    />
                                 </div>
                                 <p><FormattedMessage id="ev3.addExtension" /></p>
                             </Step>
@@ -196,19 +202,19 @@ class EV3 extends ExtensionLanding {
                     <h3><FormattedMessage id="ev3.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-wave-hello.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239075992"
                             description={this.props.intl.formatMessage({id: 'ev3.waveHelloDescription'})}
                             imageSrc="/images/ev3/starter-wave-hello.png"
                             title={this.props.intl.formatMessage({id: 'ev3.waveHelloTitle'})}
                         />
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-distance-instrument.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239076020"
                             description={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentDescription'})}
                             imageSrc="/images/ev3/starter-distance-instrument.png"
                             title={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentTitle'})}
                         />
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-space-tacos.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239076044"
                             description={this.props.intl.formatMessage({id: 'ev3.spaceTacosDescription'})}
                             imageSrc="/images/ev3/starter-flying-game.png"
                             title={this.props.intl.formatMessage({id: 'ev3.spaceTacosTitle'})}
