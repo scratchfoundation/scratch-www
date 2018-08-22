@@ -1,4 +1,3 @@
-const truncateAtWordBoundary = require('../../../lib/truncate').truncateAtWordBoundary;
 const PropTypes = require('prop-types');
 const React = require('react');
 const classNames = require('classnames');
