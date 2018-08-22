@@ -47,7 +47,7 @@ class Search extends React.Component {
         while (mode.indexOf('/') > -1) {
             mode = mode.substring(0, mode.indexOf('/'));
         }
-        while (term.indexOf('&') > -1) {
+        while (mode.indexOf('&') > -1) {
             mode = mode.substring(0, mode.indexOf('&'));
         }
         mode = decodeURIComponent(mode.split('+').join(' '));
