@@ -39,6 +39,8 @@ class Search extends React.Component {
         this.state.loadMore = false;
         
         let mode = '';
+        const query = window.location.search;
+        const q = query.lastIndexOf('q=');
         const m = query.lastIndexOf('mode=');
         if (m !== -1) {
             mode = query.substring(m + 5, query.length).toLowerCase();
