@@ -18,6 +18,8 @@ const Tabs = require('../../components/tabs/tabs.jsx');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
+const ACCEPTABLE_MODES = ['trending', 'popular', ''];
+
 require('./search.scss');
 
 class Search extends React.Component {
@@ -64,7 +66,7 @@ class Search extends React.Component {
             mode = mode.substring(0, term.indexOf('&'));
         }
         mode = decodeURIComponent(mode.split('+').join(' '));
-        this.props.dispatch(navigationActions.setMode(mode));
+        this.setState({mode: mode});
     }
     componentDidUpdate (prevProps) {
         if (this.props.searchTerm !== prevProps.searchTerm) {
@@ -78,15 +80,13 @@ class Search extends React.Component {
         }
         const start = pathname.lastIndexOf('/');
         const type = pathname.substring(start + 1, pathname.length);
-        const modeOptions = ['trending', 'popular', ''];
         return {
-            acceptableModes: modeOptions,
             tab: type,
             loadNumber: 16
         };
     }
     handleChangeSortMode (name, value) {
-        if (this.state.acceptableModes.indexOf(value) !== -1) {
+        if (ACCEPTABLE_MODES.indexOf(value) !== -1) {
             const term = this.props.searchTerm.split(' ').join('+');
             window.location =
                 `${window.location.origin}/search/${this.state.tab}?q=${term}&mode=${value}`;
