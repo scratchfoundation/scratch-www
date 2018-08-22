@@ -45,11 +45,11 @@ class EV3 extends ExtensionLanding {
                             values={{
                                 ev3Link: (
                                     <a
-                                        href="https://shop.lego.com/en-US/LEGO-MINDSTORMS-EV3-31313"
+                                        href="https://education.lego.com/en-us/middle-school/intro/mindstorms-ev3"
                                         rel="noopener noreferrer"
                                         target="_blank"
                                     >
-                                                LEGO MINDSTORMS EV3
+                                                LEGO MINDSTORMS Education EV3
                                     </a>
                                 )
                             }}
@@ -108,6 +108,7 @@ class EV3 extends ExtensionLanding {
                                 <div className="step-image">
                                     <img
                                         alt=""
+                                        className="screenshot"
                                         src="/images/ev3/ev3-connect-2.png"
                                     />
                                 </div>
@@ -132,6 +133,7 @@ class EV3 extends ExtensionLanding {
                                 <div className="step-image">
                                     <img
                                         alt={this.props.intl.formatMessage({id: 'ev3.imgAltAddExtension'})}
+                                        className="screenshot"
                                         src="/images/ev3/ev3-connect-3.png"
                                     />
                                 </div>
@@ -237,21 +239,21 @@ class EV3 extends ExtensionLanding {
                     <h3><FormattedMessage id="ev3.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-wave-hello.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239075992"
                             description={this.props.intl.formatMessage({id: 'ev3.waveHelloDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltWaveHello'})}
                             imageSrc="/images/ev3/starter-wave-hello.png"
                             title={this.props.intl.formatMessage({id: 'ev3.waveHelloTitle'})}
                         />
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-distance-instrument.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239076020"
                             description={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltDistanceInstrument'})}
                             imageSrc="/images/ev3/starter-distance-instrument.png"
                             title={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentTitle'})}
                         />
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-space-tacos.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239076044"
                             description={this.props.intl.formatMessage({id: 'ev3.spaceTacosDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltSpaceTacos'})}
                             imageSrc="/images/ev3/starter-flying-game.png"

@@ -302,6 +302,13 @@
         "title": "LEGO WeDo 2.0"
     },
     {
+        "name": "wedo-legacy",
+        "pattern": "^/wedo-legacy/?$",
+        "routeAlias": "/wedo-legacy/?$",
+        "view": "wedo2-legacy/wedo2",
+        "title": "LEGO WeDo"
+    },
+    {
         "name": "ev3",
         "pattern": "^/ev3/?$",
         "routeAlias": "/ev3/?$",
