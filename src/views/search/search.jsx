@@ -37,6 +37,20 @@ class Search extends React.Component {
         this.state.mode = '';
         this.state.offset = 0;
         this.state.loadMore = false;
+        
+        let mode = '';
+        const m = query.lastIndexOf('mode=');
+        if (m !== -1) {
+            mode = query.substring(m + 5, query.length).toLowerCase();
+        }
+        while (mode.indexOf('/') > -1) {
+            mode = mode.substring(0, term.indexOf('/'));
+        }
+        while (term.indexOf('&') > -1) {
+            mode = mode.substring(0, term.indexOf('&'));
+        }
+        mode = decodeURIComponent(mode.split('+').join(' '));
+        this.state.mode = mode;
     }
     componentDidMount () {
         const query = window.location.search;
@@ -53,20 +67,6 @@ class Search extends React.Component {
         }
         term = decodeURIComponent(term.split('+').join(' '));
         this.props.dispatch(navigationActions.setSearchTerm(term));
-        
-        let mode = '';
-        const m = query.lastIndexOf('mode=');
-        if (m !== -1) {
-            mode = query.substring(m + 5, query.length).toLowerCase();
-        }
-        while (mode.indexOf('/') > -1) {
-            mode = mode.substring(0, term.indexOf('/'));
-        }
-        while (term.indexOf('&') > -1) {
-            mode = mode.substring(0, term.indexOf('&'));
-        }
-        mode = decodeURIComponent(mode.split('+').join(' '));
-        this.setState({mode: mode});
     }
     componentDidUpdate (prevProps) {
         if (this.props.searchTerm !== prevProps.searchTerm) {
