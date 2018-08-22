@@ -8,12 +8,9 @@ const React = require('react');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 
-require('./os-chooser.scss');
+const OS_ENUM = require('../../components/extension-landing/os-enum.js');
 
-const OS_ENUM = {
-    WINDOWS: 'Windows',
-    MACOS: 'macOS'
-};
+require('./os-chooser.scss');
 
 const OSChooser = props => (
     <div className="os-chooser">
