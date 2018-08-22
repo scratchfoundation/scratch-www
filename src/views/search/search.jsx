@@ -40,16 +40,15 @@ class Search extends React.Component {
         
         let mode = '';
         const query = window.location.search;
-        const q = query.lastIndexOf('q=');
         const m = query.lastIndexOf('mode=');
         if (m !== -1) {
             mode = query.substring(m + 5, query.length).toLowerCase();
         }
         while (mode.indexOf('/') > -1) {
-            mode = mode.substring(0, term.indexOf('/'));
+            mode = mode.substring(0, mode.indexOf('/'));
         }
         while (term.indexOf('&') > -1) {
-            mode = mode.substring(0, term.indexOf('&'));
+            mode = mode.substring(0, mode.indexOf('&'));
         }
         mode = decodeURIComponent(mode.split('+').join(' '));
         this.state.mode = mode;
