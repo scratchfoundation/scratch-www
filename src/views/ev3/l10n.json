@@ -33,6 +33,6 @@
     "ev3.otherComputerConnectedTitle": "Make sure no other computer is connected to your EV3",
     "ev3.otherComputerConnectedText": "Only one computer can be connected to an EV3 at a time. If you have another computer connected to your EV3, disconnect the EV3 or close Scratch on that computer and try again.",
     "ev3.updateFirmwareTitle": "Try updating your EV3 firmware",
-    "ev3.updateFirmwareText": "We recommend updating to EV3 firmware version 1.10E or above. See {firmwareUpdateLink}. We recommend following the instructions for \"Manual Firmware Update\".",
+    "ev3.updateFirmwareText": "We recommend updating to EV3 firmware version 1.10E or above. See {firmwareUpdateLink}.",
     "ev3.firmwareUpdateText": "firmware update instructions from LEGO"
 }
