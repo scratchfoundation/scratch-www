@@ -42,7 +42,7 @@
     "ev3.imgAltWaitForWindows": "Windows notifies you when EV3 is ready.",
     "ev3.imgAltEnterPasscodeMac": "Enter the passcode into the connection request window opening on your Mac.",
     "ev3.imgAltPlugInMotor": "Port A is not to be confused with Port 4 on the other side of the EV3.",
-    "ev3.imgAltWaveHello": "A fairy",
-    "ev3.imgAltDistanceInstrument": "A guitar on stage",
-    "ev3.imgAltSpaceTacos": "A cat and a taco in space"
+    "ev3.imgAltWaveHello": "Example of a Scratch project with a waving fairy.",
+    "ev3.imgAltDistanceInstrument": "Example of a Scratch project with a guitar.",
+    "ev3.imgAltSpaceTacos": "Example of a Scratch project with Scratch Cat and a taco in space."
 }

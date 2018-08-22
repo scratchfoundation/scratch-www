@@ -36,7 +36,10 @@ class EV3 extends ExtensionLanding {
                     imageSrc="/images/ev3/ev3-illustration.png"
                 >
                     <FlexRow className="column extension-copy">
-                        <h2><img src="/images/ev3/ev3.svg" />LEGO MINDSTORMS EV3</h2>
+                        <h2><img
+                            alt=""
+                            src="/images/ev3/ev3.svg"
+                        />LEGO MINDSTORMS EV3</h2>
                         <FormattedMessage
                             id="ev3.headerText"
                             values={{
@@ -54,11 +57,17 @@ class EV3 extends ExtensionLanding {
                     </FlexRow>
                     <ExtensionRequirements>
                         <span>
-                            <img src="/svgs/extensions/windows.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/windows.svg"
+                            />
                                         Windows 10+
                         </span>
                         <span>
-                            <img src="/svgs/extensions/mac.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/mac.svg"
+                            />
                                         macOS 10.13+
                         </span>
                         <span>
@@ -66,7 +75,10 @@ class EV3 extends ExtensionLanding {
                                         Bluetooth
                         </span>
                         <span>
-                            <img src="/svgs/extensions/scratch-link.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/scratch-link.svg"
+                            />
                                         Scratch Link
                         </span>
                     </ExtensionRequirements>
@@ -85,13 +97,19 @@ class EV3 extends ExtensionLanding {
                         <Steps>
                             <Step number={1}>
                                 <div className="step-image">
-                                    <img src="/images/ev3/ev3-connect-1.png" />
+                                    <img
+                                        alt=""
+                                        src="/images/ev3/ev3-connect-1.png"
+                                    />
                                 </div>
                                 <p><FormattedMessage id="ev3.turnOnEV3" /></p>
                             </Step>
                             <Step number={2}>
                                 <div className="step-image">
-                                    <img src="/images/ev3/ev3-connect-2.png" />
+                                    <img
+                                        alt=""
+                                        src="/images/ev3/ev3-connect-2.png"
+                                    />
                                 </div>
                                 <p>
                                     <FormattedMessage
@@ -112,7 +130,10 @@ class EV3 extends ExtensionLanding {
                             </Step>
                             <Step number={3}>
                                 <div className="step-image">
-                                    <img src="/images/ev3/ev3-connect-3.png" />
+                                    <img
+                                        alt={this.props.intl.formatMessage({id: 'ev3.imgAltAddExtension'})}
+                                        src="/images/ev3/ev3-connect-3.png"
+                                    />
                                 </div>
                                 <p><FormattedMessage id="ev3.addExtension" /></p>
                             </Step>
@@ -205,7 +226,10 @@ class EV3 extends ExtensionLanding {
                                 />
                             </span>
                             <div className="step-image">
-                                <img src="/images/ev3/motor-turn-block.png" />
+                                <img
+                                    alt=""
+                                    src="/images/ev3/motor-turn-block.png"
+                                />
                             </div>
                         </Step>
                     </Steps>
