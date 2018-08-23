@@ -35,7 +35,7 @@
     "ev3.updateFirmwareTitle": "Try updating your EV3 firmware",
     "ev3.updateFirmwareText": "We recommend updating to EV3 firmware version 1.10E or above. See {firmwareUpdateLink}.",
     "ev3.firmwareUpdateText": "firmware update instructions from LEGO",
-    "ev3.imgAltEv3illustration": "Illustration of an EV3 Computer featuring some examples of interacting with an EV3.",
+    "ev3.imgAltEv3Illustration": "Illustration of an EV3 Computer featuring some examples of interacting with an EV3.",
     "ev3.imgAltAddExtension": "In the editor, click on the \"Add Extensions\" button on the lower left.",
     "ev3.imgAltAcceptConnection": "Use the buttons of your EV3 to accept the connection.",
     "ev3.imgAltAcceptPasscode": "Use the center button of your EV3 to accept the passcode.",

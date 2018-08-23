@@ -29,7 +29,7 @@ class Wedo2 extends ExtensionLanding {
         return (
             <div className="extension-landing wedo2">
                 <ExtensionHeader
-                    imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltWeDoillustration'})}
+                    imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltWeDoIllustration'})}
                     imageSrc="/images/wedo2/wedo2-illustration.png"
                 >
                     <FlexRow className="column extension-copy">

@@ -32,7 +32,7 @@ class EV3 extends ExtensionLanding {
         return (
             <div className="extension-landing ev3">
                 <ExtensionHeader
-                    imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltEv3illustration'})}
+                    imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltEv3Illustration'})}
                     imageSrc="/images/ev3/ev3-illustration.png"
                 >
                     <FlexRow className="column extension-copy">
