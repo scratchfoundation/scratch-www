@@ -32,6 +32,14 @@ $stage-width: 480px;
                 transform: translate(22rem, 0);
             }
         }
+
+        &.no-edit {
+            /* titles of projects you don't own should not
+            show the full title if this is too long */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     }
 
     .project-header {
@@ -39,6 +47,8 @@ $stage-width: 480px;
         flex-grow: 1;
         justify-content: flex-start;
         align-items: flex-start;
+        flex-wrap: nowrap;
+        width: 65%; /* Setting a width to the header will keep it from flowing over the usual content of the page */
 
         .inplace-input {
             height: calc(3rem - 4px);
@@ -66,9 +76,10 @@ $stage-width: 480px;
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
+        width: inherit; /* Inherits the width of whatever this is in. This works well for the preview page and might need to change if used in a different context*/
     }
 
-    .validation-message {
+    .validation-message { 
         $arrow-border-width: 1rem;
         display: block;
         position: absolute;
