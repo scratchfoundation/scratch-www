@@ -132,7 +132,7 @@ class EV3 extends ExtensionLanding {
                             <Step number={3}>
                                 <div className="step-image">
                                     <img
-                                        alt={this.props.intl.formatMessage({id: 'ev3.imgAltAddExtension'})}
+                                        alt={this.props.intl.formatMessage({id: 'extensionInstallation.addExtension'})}
                                         className="screenshot"
                                         src="/images/ev3/ev3-connect-3.png"
                                     />
