@@ -44,11 +44,11 @@ $stage-width: 480px;
 
     .project-header {
         margin-right: 2rem;
+        width: 65%; /* Setting a width to the header will keep it from flowing over the usual content of the page */
         flex-grow: 1;
         justify-content: flex-start;
         align-items: flex-start;
         flex-wrap: nowrap;
-        width: 65%; /* Setting a width to the header will keep it from flowing over the usual content of the page */
 
         .inplace-input {
             height: calc(3rem - 4px);
@@ -73,13 +73,13 @@ $stage-width: 480px;
 
     .title {
         margin-left: 1rem;
+        width: inherit; /* Inherits the width of whatever this is in. This works well for the preview page and might need to change if used in a different context*/
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
-        width: inherit; /* Inherits the width of whatever this is in. This works well for the preview page and might need to change if used in a different context*/
     }
 
-    .validation-message { 
+    .validation-message {
         $arrow-border-width: 1rem;
         display: block;
         position: absolute;
