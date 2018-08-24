@@ -9,9 +9,9 @@ const RemixList = props => {
     if (remixes.length === 0) return null;
     return (
         <FlexRow className="remix-list">
-            <div className="project-title">
+            <h2>
                 Remixes
-            </div>
+            </h2>
             {remixes.length === 0 ? (
                 // TODO: style remix invitation
                 <span>Invite user to remix</span>

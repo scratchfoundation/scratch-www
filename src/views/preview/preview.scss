@@ -486,8 +486,16 @@ $stage-width: 480px;
     .studio-list {
         flex-direction: column;
 
+        h2 {
+          align-self: flex-start;
+          margin-left: 1rem;
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+
         .project {
-            margin-bottom: 1.5rem;
+            // not necessary: 
+            // margin-bottom: 1.5rem;
         }
 
         .creator-image img {

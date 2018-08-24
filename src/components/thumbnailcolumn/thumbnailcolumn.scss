@@ -16,11 +16,8 @@
 
     .thumbnail {
         margin: 7px;
-        // adding the following commented lines to thumbnail-image
-        // border-radius: 4px;
-        // box-shadow: 0 0 0 1px $active-gray;
-        // background-color: $ui-white;
-        padding-bottom: 4px;
+        // unnecessary:
+        // padding-bottom: 4px;
         width: $thumbnail-width;
 
         .thumbnail-image {
