@@ -113,6 +113,8 @@ class Navigation extends React.Component {
     handleCloseLogin () {
         this.setState({loginOpen: false});
     }
+    // NOTE: TODO: continue here. Should move these two functions up to a redux level,
+    // maybe into session...
     handleLogIn (formData, callback) {
         this.setState({loginError: null});
         formData.useMessages = true;

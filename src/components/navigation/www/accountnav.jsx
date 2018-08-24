@@ -7,7 +7,7 @@ const React = require('react');
 const Avatar = require('../../avatar/avatar.jsx');
 const Dropdown = require('../../dropdown/dropdown.jsx');
 
-require('./navigation.scss');
+require('./accountnav.scss');
 
 const AccountNav = ({
     classroomId,
@@ -21,7 +21,7 @@ const AccountNav = ({
     onClickLogout,
     onClose
 }) => (
-    <React.Fragment>
+    <div id="account-nav">
         <a
             className={classNames({
                 'user-info': true,
@@ -82,7 +82,7 @@ const AccountNav = ({
                 </a>
             </li>
         </Dropdown>
-    </React.Fragment>
+    </div>
 );
 
 AccountNav.propTypes = {

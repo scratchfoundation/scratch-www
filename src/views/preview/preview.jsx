@@ -8,6 +8,7 @@ const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
 const Page = require('../../components/page/www/page.jsx');
+const api = require('../../lib/api');
 const render = require('../../lib/render.jsx');
 const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
@@ -30,6 +31,8 @@ class Preview extends React.Component {
             'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoadMore',
+            // temporary, to pass to GUI. Remove when nav bar components are shared between www and gui.
+            'handleLogout',
             'handleLoveToggle',
             'handlePermissions',
             'handlePopState',
@@ -140,6 +143,21 @@ class Preview extends React.Component {
                     });
                 });
             });
+    }
+    // Temporarily duplicated this function from navigation.jsx here.
+    // Should move handling of login/logout into session.js, and handle them
+    // from here as well as navigation.jsx.
+    handleLogout (e) {
+        e.preventDefault();
+        api({
+            host: '',
+            method: 'post',
+            uri: '/accounts/logout/',
+            useCsrf: true
+        }, err => {
+            if (err) log.error(err);
+            window.location = '/';
+        });
     }
     handleReportClick () {
         this.setState({reportOpen: true});
@@ -315,7 +333,6 @@ class Preview extends React.Component {
                         replies={this.props.replies}
                         reportOpen={this.state.reportOpen}
                         studios={this.props.studios}
-                        user={this.props.user}
                         userOwnsProject={this.userOwnsProject()}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
@@ -339,6 +356,7 @@ class Preview extends React.Component {
                     className="gui"
                     projectHost={this.props.projectHost}
                     projectId={this.state.projectId}
+                    onClickLogout={this.handleLogout}
                 />
         );
     }

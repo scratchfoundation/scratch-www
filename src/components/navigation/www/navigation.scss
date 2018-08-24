@@ -182,55 +182,6 @@
             }
         }
     }
-
-    .account-nav {
-        .user-info {
-            padding-top: 14px;
-            max-width: 260px;
-        }
-
-        > a {
-            display: inline-block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-size: .8125rem;
-            font-weight: normal;
-
-            .avatar {
-                margin-right: 10px;
-                border-radius: 3px;
-                width: 24px;
-                height: 24px;
-                vertical-align: middle;
-            }
-
-            &.open {
-                background-color: $active-gray;
-            }
-
-            &:after {
-                display: inline-block;
-                margin-left: 8px;
-
-                background-image: url("/images/dropdown.png");
-                background-repeat: no-repeat;
-                background-position: center center;
-                background-size: 50%;
-                width: 20px;
-                height: 20px;
-                vertical-align: middle;
-                content: " ";
-            }
-        }
-
-        .dropdown {
-            top: 50px;
-            padding: 0;
-            padding-top: 5px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-    }
 }
 
 //4 columns
@@ -245,16 +196,6 @@
 
             &.account-nav {
                 margin-left: 0;
-
-                > a {
-                    .avatar {
-                        margin-right: 0;
-                    }
-
-                    &:after {
-                        display: none;
-                    }
-                }
             }
         }
 
@@ -283,16 +224,6 @@
 
             &.account-nav {
                 margin-left: 0;
-
-                > a {
-                    .avatar {
-                        margin-right: 0;
-                    }
-
-                    &:after {
-                        display: none;
-                    }
-                }
             }
         }
 
