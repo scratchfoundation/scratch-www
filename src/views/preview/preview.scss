@@ -487,14 +487,14 @@ $stage-width: 480px;
         flex-direction: column;
 
         h2 {
-          align-self: flex-start;
-          margin-left: 1rem;
-          font-size: 1.2rem;
-          font-weight: bold;
+            margin-left: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            align-self: flex-start;
         }
 
         .project {
-            // not necessary: 
+            // not necessary:
             // margin-bottom: 1.5rem;
         }
 

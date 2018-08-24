@@ -22,10 +22,10 @@
 
         .thumbnail-image {
             margin: 8px auto;
-            width: $thumbnail-inner-width;
             border-radius: 4px;
             box-shadow: 0 0 0 1px $active-gray;
             background-color: $ui-white;
+            width: $thumbnail-inner-width;
         }
 
         .thumbnail-info {
