@@ -27,6 +27,16 @@ const ExtensionChip = require('./extension-chip.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
+// disable enter key submission on formsy input fields; otherwise formsy thinks
+// we meant to trigger the "See inside" button. Instead, treat these keypresses
+// as a blur, which will trigger a save.
+const onKeyPress = e => {
+    if (e.target.type === 'text' && e.which === 13 /* Enter */) {
+        e.preventDefault();
+        e.target.blur();
+    }
+};
+
 const PreviewPresentation = ({
     assetHost,
     backpackOptions,
@@ -70,7 +80,7 @@ const PreviewPresentation = ({
             <ShareBanner shared={isShared} />
 
             { projectInfo && projectInfo.author && projectInfo.author.id && (
-                <Formsy>
+                <Formsy onKeyPress={onKeyPress}>
                     <div className="inner">
                         <FlexRow className="preview-row">
                             <FlexRow className="project-header">
@@ -135,6 +145,7 @@ const PreviewPresentation = ({
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
                                     projectId={projectId}
+                                    projectTitle={projectInfo.title}
                                 />
                             </div>
                             <FlexRow className="project-notes">

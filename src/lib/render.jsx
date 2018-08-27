@@ -37,7 +37,7 @@ const render = (jsx, element, reducers, initialState, enhancer) => {
     }
 
     const allReducers = reducer(reducers);
-    
+
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux.compose;
     const enhancers = enhancer ?
         composeEnhancers(
