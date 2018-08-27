@@ -180,6 +180,10 @@ class Wedo2 extends ExtensionLanding {
                     <p>
                         <FormattedMessage id="wedo2.otherComputerConnectedText" />
                     </p>
+                    <h3 className="faq-title"><FormattedMessage id="wedo2.updateLinkTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="wedo2.updateLinkText" />
+                    </p>
                     <h3 className="faq-title"><FormattedMessage id="wedo2.legacyInfoTitle" /></h3>
                     <p>
                         <FormattedMessage
