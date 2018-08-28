@@ -9,9 +9,9 @@ const StudioList = props => {
     if (studios.length === 0) return null;
     return (
         <FlexRow className="studio-list">
-            <h2>
+            <div className="list-title">
                 Studios
-            </h2>
+            </div>
             {studios.length === 0 ? (
                 // TODO: style remix invitation
                 <span>Invite user to add to studio</span>
