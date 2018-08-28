@@ -35,6 +35,7 @@ const Raven = require('raven-js');
     };
 
     window._locale = updateLocale();
+    document.documentElement.lang = window._locale;
 })();
 
 /**
