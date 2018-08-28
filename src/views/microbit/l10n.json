@@ -32,7 +32,7 @@
     "microbit.imgAltMicrobitIllustration": "Illustration of the micro:bit circuit board.",
     "microbit.imgAltDragDropHex": "Drag and drop the HEX file from the folder you downloaded it to to the micro:bit.",
     "microbit.imgAltDisplayH": "A micro:bit displaying an H.",
-    "microbit.imgAltHeartBeat" : "An example project with a heart.",
-    "microbit.imgAltTiltGuitar": "An example project with a guitar.",
-    "microbit.imgAltOceanAdventure": "An example project with a clown fish and a saxophone under water."
+    "microbit.imgAltHeartBeat" : "A Scratch project with a heart.",
+    "microbit.imgAltTiltGuitar": "A Scratch project with a guitar.",
+    "microbit.imgAltOceanAdventure": "A Scratch project with a clown fish and a saxophone under water."
 }
