@@ -106,7 +106,7 @@
     font-weight: 500;
 
     &:hover {
-        background-color: lighten($link-blue, 40%);
+        background-color: $ui-blue-10percent;
     }
 }
 

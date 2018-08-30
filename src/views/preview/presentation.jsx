@@ -19,13 +19,18 @@ const RemixCredit = require('./remix-credit.jsx');
 const RemixList = require('./remix-list.jsx');
 const StudioList = require('./studio-list.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
+const AddToStudioModal = require('../../components/modal/addtostudio/container.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
+const TopLevelComment = require('./comment/top-level-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
 const PreviewPresentation = ({
+    assetHost,
+    backpackOptions,
+    comments,
     editable,
     extensions,
     faved,
@@ -37,17 +42,25 @@ const PreviewPresentation = ({
     loveCount,
     originalInfo,
     parentInfo,
+    projectHost,
     projectId,
     projectInfo,
     remixes,
-    report,
+    reportOpen,
+    replies,
+    addToStudioOpen,
+    projectStudios,
     studios,
     userOwnsProject,
     onFavoriteClicked,
+    onLoadMore,
     onLoveClicked,
     onReportClicked,
     onReportClose,
     onReportSubmit,
+    onAddToStudioClicked,
+    onAddToStudioClosed,
+    onToggleStudio,
     onSeeInside,
     onUpdate
 }) => {
@@ -55,21 +68,21 @@ const PreviewPresentation = ({
     return (
         <div className="preview">
             <ShareBanner shared={isShared} />
-            
+
             { projectInfo && projectInfo.author && projectInfo.author.id && (
-                <div className="inner">
-                    <Formsy>
+                <Formsy>
+                    <div className="inner">
                         <FlexRow className="preview-row">
                             <FlexRow className="project-header">
                                 <a href={`/users/${projectInfo.author.username}`}>
                                     <Avatar
                                         alt={projectInfo.author.username}
-                                        src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo. author.id}_48x48.png`}
+                                        src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_48x48.png`}
                                     />
                                 </a>
                                 <div className="title">
                                     {editable ?
-                                        
+
                                         <InplaceInput
                                             className="project-title"
                                             handleUpdate={onUpdate}
@@ -114,10 +127,13 @@ const PreviewPresentation = ({
                             <div className="guiPlayer">
                                 <IntlGUI
                                     isPlayerOnly
+                                    assetHost={assetHost}
+                                    backpackOptions={backpackOptions}
                                     basePath="/"
                                     className="guiPlayer"
                                     isFullScreen={isFullScreen}
                                     previewInfoVisible="false"
+                                    projectHost={projectHost}
                                     projectId={projectId}
                                 />
                             </div>
@@ -237,9 +253,24 @@ const PreviewPresentation = ({
                                     {/*  eslint-enable react/jsx-sort-props */}
                                 </div>
                                 <FlexRow className="action-buttons">
-                                    <Button className="action-button studio-button">
-                                        Add to Studio
-                                    </Button>
+                                    {(isLoggedIn && userOwnsProject) &&
+                                        <React.Fragment>
+                                            <Button
+                                                className="action-button studio-button"
+                                                key="add-to-studio-button"
+                                                onClick={onAddToStudioClicked}
+                                            >
+                                                Add to Studio
+                                            </Button>,
+                                            <AddToStudioModal
+                                                isOpen={addToStudioOpen}
+                                                key="add-to-studio-modal"
+                                                studios={studios}
+                                                onRequestClose={onAddToStudioClosed}
+                                                onToggleStudio={onToggleStudio}
+                                            />
+                                        </React.Fragment>
+                                    }
                                     <Button className="action-button copy-link-button">
                                         Copy Link
                                     </Button>
@@ -253,8 +284,8 @@ const PreviewPresentation = ({
                                                 Report
                                             </Button>,
                                             <ReportModal
+                                                isOpen={reportOpen}
                                                 key="report-modal"
-                                                report={report}
                                                 type="project"
                                                 onReport={onReportSubmit}
                                                 onRequestClose={onReportClose}
@@ -277,23 +308,59 @@ const PreviewPresentation = ({
                                 ))}
                             </FlexRow>
                         </FlexRow>
-                        <FlexRow className="preview-row">
-                            <div className="comments-container">
-                                <div className="project-title" />
-                            </div>
-                            <FlexRow className="column">
-                                <RemixList remixes={remixes} />
-                                <StudioList studios={studios} />
+                    </div>
+                    <div className="project-lower-container">
+                        <div className="inner">
+                            <FlexRow className="preview-row">
+                                <div className="comments-container">
+                                    <FlexRow className="comments-header">
+                                        <h4>Comments</h4>
+                                        {/* TODO: Add toggle comments component and logic*/}
+                                    </FlexRow>
+                                    <FlexRow className="comments-list">
+                                        {comments.map(comment => (
+                                            <TopLevelComment
+                                                author={comment.author}
+                                                content={comment.content}
+                                                datetimeCreated={comment.datetime_created}
+                                                id={comment.id}
+                                                key={comment.id}
+                                                parentId={comment.parent_id}
+                                                projectId={projectId}
+                                                replies={replies && replies[comment.id] ? replies[comment.id] : []}
+                                            />
+                                        ))}
+                                        {comments.length < projectInfo.stats.comments &&
+                                            <Button
+                                                className="button load-more-button"
+                                                onClick={onLoadMore}
+                                            >
+                                                Load More
+                                            </Button>
+                                        }
+                                    </FlexRow>
+                                </div>
+                                <FlexRow className="column">
+                                    <RemixList remixes={remixes} />
+                                    <StudioList studios={projectStudios} />
+                                </FlexRow>
                             </FlexRow>
-                        </FlexRow>
-                    </Formsy>
-                </div>
+                        </div>
+                    </div>
+                </Formsy>
             )}
         </div>
     );
 };
 
 PreviewPresentation.propTypes = {
+    addToStudioOpen: PropTypes.bool,
+    assetHost: PropTypes.string,
+    backpackOptions: PropTypes.shape({
+        host: PropTypes.string,
+        visible: PropTypes.bool
+    }),
+    comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
     extensions: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
@@ -303,24 +370,26 @@ PreviewPresentation.propTypes = {
     isShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
+    onAddToStudioClicked: PropTypes.func,
+    onAddToStudioClosed: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
+    onLoadMore: PropTypes.func,
     onLoveClicked: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
     onSeeInside: PropTypes.func,
+    onToggleStudio: PropTypes.func,
     onUpdate: PropTypes.func,
     originalInfo: projectShape,
     parentInfo: projectShape,
+    projectHost: PropTypes.string,
     projectId: PropTypes.string,
     projectInfo: projectShape,
+    projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
-    report: PropTypes.shape({
-        category: PropTypes.string,
-        notes: PropTypes.string,
-        open: PropTypes.bool,
-        waiting: PropTypes.bool
-    }),
+    replies: PropTypes.objectOf(PropTypes.array),
+    reportOpen: PropTypes.bool,
     studios: PropTypes.arrayOf(PropTypes.object),
     userOwnsProject: PropTypes.bool
 };

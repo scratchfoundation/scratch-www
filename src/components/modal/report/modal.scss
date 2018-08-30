@@ -9,7 +9,7 @@
     margin: 100px auto;
     outline: none;
     padding: 0;
-    width: 30rem;
+    width: 36.25rem; /* 580px; */
     user-select: none;
 }
 
@@ -34,26 +34,45 @@
 .report-modal-content {
     margin: 1rem auto;
     width: 80%;
-    line-height: 1.5rem;
     font-size: .875rem;
-    
+
+    .instructions {
+        line-height: 1.5rem;
+    }
+
+    .received {
+        margin: 0 auto;
+        width: 90%;
+        text-align: center;
+        line-height: 1.65rem;
+
+        .received-header {
+            font-weight: bold;
+        }
+    }
+
+    .error-text {
+        margin-top: .9375rem;
+    }
+
     .validation-message {
         $arrow-border-width: 1rem;
         display: block;
         position: absolute;
         top: 0;
-        left: 0;
-        transform: translate(23.5rem, 0);
+        left: 100%; /* position to the right of parent */
         margin-left: $arrow-border-width;
         border: 1px solid $active-gray;
         border-radius: 5px;
         background-color: $ui-orange;
         padding: 1rem;
+        min-width: 12rem;
         max-width: 18.75rem;
         min-height: 1rem;
         overflow: visible;
         color: $type-white;
 
+        /* arrow on box that points to the left */
         &:before {
             display: block;
             position: absolute;
@@ -77,4 +96,14 @@
 
 .report-modal-field {
     position: relative;
+}
+
+.form-group.has-error {
+    .textarea, select {
+        border: 1px solid $ui-orange;
+    }
+}
+
+.report-text .textarea {
+    margin-bottom: 0;
 }

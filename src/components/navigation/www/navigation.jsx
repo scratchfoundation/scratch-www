@@ -249,7 +249,7 @@ class Navigation extends React.Component {
                                             'message-count': true,
                                             'show': this.props.unreadMessageCount > 0
                                         })}
-                                    >{this.props.unreadMessageCount}</span>
+                                    >{this.props.unreadMessageCount} </span>
                                     <FormattedMessage id="general.messages" />
                                 </a>
                             </li>,
