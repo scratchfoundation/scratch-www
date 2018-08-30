@@ -38,21 +38,23 @@ class Search extends React.Component {
         this.state.offset = 0;
         this.state.loadMore = false;
         
-        let mode = '';
+        let mode = 'popular';
         const query = window.location.search;
-        const m = query.lastIndexOf('mode=');
-        if (m !== -1) {
-            mode = query.substring(m + 5, query.length).toLowerCase();
-        }
-        while (mode.indexOf('/') > -1) {
-            mode = mode.substring(0, mode.indexOf('/'));
-        }
-        while (mode.indexOf('&') > -1) {
-            mode = mode.substring(0, mode.indexOf('&'));
-        }
-        mode = decodeURIComponent(mode.split('+').join(' '));
-        if (ACCEPTABLE_MODES.indexOf(mode) !== -1) {
-            this.state.mode = mode;
+        if(query.lastIndexOf('mode=') > -1){
+            const m = query.lastIndexOf('mode=');
+            if (m !== -1) {
+                mode = query.substring(m + 5, query.length).toLowerCase();
+            }
+            while (mode.indexOf('/') > -1) {
+                mode = mode.substring(0, mode.indexOf('/'));
+            }
+            while (mode.indexOf('&') > -1) {
+                mode = mode.substring(0, mode.indexOf('&'));
+            }
+            mode = decodeURIComponent(mode.split('+').join(' '));
+            if (ACCEPTABLE_MODES.indexOf(mode) !== -1) {
+                this.state.mode = mode;
+            }
         }
         
     }
