@@ -132,7 +132,7 @@ $stage-width: 480px;
     }
 
     .project-buttons {
-      flex-shrink: 0;
+        flex-shrink: 0;
     }
 
     .button {
@@ -458,6 +458,7 @@ $stage-width: 480px;
             content: "";
         }
     }
+    
     .studio-button {
         &:before {
             background-image: url("/svgs/project/studio-add-white.svg");
