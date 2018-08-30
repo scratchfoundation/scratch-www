@@ -1,4 +1,3 @@
-const truncateAtWordBoundary = require('../../../lib/truncate').truncateAtWordBoundary;
 const PropTypes = require('prop-types');
 const React = require('react');
 const classNames = require('classnames');
@@ -44,8 +43,9 @@ const StudioButton = ({
                     {'studio-selector-button-text-selected': includesProject || hasRequestOutstanding},
                     {'studio-selector-button-text-unselected': !includesProject && !hasRequestOutstanding}
                 )}
+                title={title}
             >
-                {truncateAtWordBoundary(title, 25)}
+                {title}
             </div>
             <div
                 className={classNames(

@@ -28,9 +28,15 @@ class Wedo2 extends ExtensionLanding {
     render () {
         return (
             <div className="extension-landing wedo2">
-                <ExtensionHeader imageSrc="/images/wedo2/wedo2-illustration.png">
+                <ExtensionHeader
+                    imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltWeDoIllustration'})}
+                    imageSrc="/images/wedo2/wedo2-illustration.png"
+                >
                     <FlexRow className="column extension-copy">
-                        <h2><img src="/images/wedo2/wedo2.svg" />LEGO WeDo 2.0</h2>
+                        <h1><img
+                            alt=""
+                            src="/images/wedo2/wedo2.svg"
+                        />LEGO WeDo 2.0</h1>
                         <FormattedMessage
                             id="wedo2.headerText"
                             values={{
@@ -48,19 +54,31 @@ class Wedo2 extends ExtensionLanding {
                     </FlexRow>
                     <ExtensionRequirements>
                         <span>
-                            <img src="/svgs/extensions/windows.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/windows.svg"
+                            />
                                         Windows 10+
                         </span>
                         <span>
-                            <img src="/svgs/extensions/mac.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/mac.svg"
+                            />
                                         macOS 10.13+
                         </span>
                         <span>
-                            <img src="/svgs/extensions/bluetooth.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/bluetooth.svg"
+                            />
                                         Bluetooth
                         </span>
                         <span>
-                            <img src="/svgs/extensions/scratch-link.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/scratch-link.svg"
+                            />
                                         Scratch Link
                         </span>
                     </ExtensionRequirements>
@@ -80,6 +98,7 @@ class Wedo2 extends ExtensionLanding {
                             <Step number={1}>
                                 <div className="step-image">
                                     <img
+                                        alt=""
                                         className="screenshot"
                                         src="/images/wedo2/wedo2-connect-1.png"
                                     />
@@ -104,6 +123,7 @@ class Wedo2 extends ExtensionLanding {
                             <Step number={2}>
                                 <div className="step-image">
                                     <img
+                                        alt={this.props.intl.formatMessage({id: 'extensionInstallation.addExtension'})}
                                         className="screenshot"
                                         src="/images/wedo2/wedo2-connect-2.png"
                                     />
@@ -125,7 +145,10 @@ class Wedo2 extends ExtensionLanding {
                                 <FormattedMessage id="wedo2.plugMotorIn" />
                             </span>
                             <div className="step-image">
-                                <img src="/images/wedo2/wedo2-motor.png" />
+                                <img
+                                    alt=""
+                                    src="/images/wedo2/wedo2-motor.png"
+                                />
                             </div>
                         </Step>
                         <Step
@@ -143,7 +166,10 @@ class Wedo2 extends ExtensionLanding {
                                 />
                             </span>
                             <div className="step-image">
-                                <img src="/images/wedo2/wedo2-motor-turn-block.png" />
+                                <img
+                                    alt=""
+                                    src="/images/wedo2/wedo2-motor-turn-block.png"
+                                />
                             </div>
                         </Step>
                     </Steps>
@@ -153,18 +179,21 @@ class Wedo2 extends ExtensionLanding {
                         <ProjectCard
                             cardUrl="https://beta.scratch.mit.edu/#239284992"
                             description={this.props.intl.formatMessage({id: 'wedo2.starter1Description'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter1'})}
                             imageSrc="/images/wedo2/wedo2-starter1.png"
                             title={this.props.intl.formatMessage({id: 'wedo2.starter1Title'})}
                         />
                         <ProjectCard
                             cardUrl="https://beta.scratch.mit.edu/#239284997"
                             description={this.props.intl.formatMessage({id: 'wedo2.starter2Description'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter2'})}
                             imageSrc="/images/wedo2/wedo2-starter2.png"
                             title={this.props.intl.formatMessage({id: 'wedo2.starter2Title'})}
                         />
                         <ProjectCard
                             cardUrl="https://beta.scratch.mit.edu/#239285001"
                             description={this.props.intl.formatMessage({id: 'wedo2.starter3Description'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter3'})}
                             imageSrc="/images/wedo2/wedo2-starter3.png"
                             title={this.props.intl.formatMessage({id: 'wedo2.starter3Title'})}
                         />
@@ -179,6 +208,10 @@ class Wedo2 extends ExtensionLanding {
                     <h3 className="faq-title"><FormattedMessage id="wedo2.otherComputerConnectedTitle" /></h3>
                     <p>
                         <FormattedMessage id="wedo2.otherComputerConnectedText" />
+                    </p>
+                    <h3 className="faq-title"><FormattedMessage id="wedo2.updateLinkTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="wedo2.updateLinkText" />
                     </p>
                     <h3 className="faq-title"><FormattedMessage id="wedo2.legacyInfoTitle" /></h3>
                     <p>

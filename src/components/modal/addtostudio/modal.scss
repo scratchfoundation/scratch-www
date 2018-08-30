@@ -96,6 +96,7 @@
     margin: .21875rem .21875rem;
     border-radius: .5rem;
     background-color: $ui-white;
+    cursor: pointer;
     padding: 0;
     width: 16.1875rem; /* 259px */
     height: 2.5rem;
@@ -112,8 +113,11 @@
     */
     margin: .575rem 2.18375rem .175rem .6875rem;
     width: 13.3125rem;
-    height: 1rem; /* diff from spec, in case we ever do valign to middle */
+    height: 1.25rem; /* diff from spec, in case we ever do valign to middle; changed to match line-height because else with overflow hidden it cuts off some letters */
+    overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 1.25rem;
+    white-space: nowrap;
     font-family: "Helvetica Neue";
     font-size: .875rem;
     font-weight: regular;

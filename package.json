@@ -77,7 +77,6 @@
     "lodash.merge": "3.3.2",
     "lodash.omit": "3.1.0",
     "lodash.range": "3.0.1",
-    "lodash.truncate": "4.4.2",
     "minilog": "2.0.8",
     "node-dir": "0.1.16",
     "node-sass": "4.6.1",

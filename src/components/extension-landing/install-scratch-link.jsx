@@ -35,7 +35,10 @@ const InstallScratchLink = ({
                                     <FormattedMessage id="installScratchLink.windowsDownload" /> :
                                     <FormattedMessage id="installScratchLink.macosDownload" />
                                 }
-                                <img src="/svgs/extensions/download-white.svg" />
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/download-white.svg"
+                                />
                             </button>
                         </a>
                     </Step>
@@ -50,6 +53,7 @@ const InstallScratchLink = ({
                     </span>
                     <div className="step-image">
                         <img
+                            alt=""
                             className="screenshot"
                             src={`/images/scratchlink/${
                                 currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
