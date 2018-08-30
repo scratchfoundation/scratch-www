@@ -44,7 +44,7 @@ $stage-width: 480px;
 
     .project-header {
         margin-right: 2rem;
-        width: 65%; /* Setting a width to the header will keep it from flowing over the usual content of the page */
+        min-width: 0;
         flex-grow: 1;
         justify-content: flex-start;
         align-items: flex-start;
@@ -73,7 +73,8 @@ $stage-width: 480px;
 
     .title {
         margin-left: 1rem;
-        width: inherit; /* Inherits the width of whatever this is in. This works well for the preview page and might need to change if used in a different context*/
+        /* width: inherit;  Inherits the width of whatever this is in. This works well for the preview page and might need to change if used in a different context*/
+        min-width: 0;
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
@@ -128,6 +129,10 @@ $stage-width: 480px;
         .col-sm-9 {
             position: relative;
         }
+    }
+
+    .project-buttons {
+      flex-shrink: 0;
     }
 
     .button {
