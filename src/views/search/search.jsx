@@ -18,7 +18,7 @@ const Tabs = require('../../components/tabs/tabs.jsx');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
-const ACCEPTABLE_MODES = ['trending', 'popular', ''];
+const ACCEPTABLE_MODES = ['trending', 'popular'];
 
 require('./search.scss');
 
@@ -34,7 +34,7 @@ class Search extends React.Component {
         this.state = this.getSearchState();
         this.state.loaded = [];
         this.state.loadNumber = 16;
-        this.state.mode = '';
+        this.state.mode = 'popular';
         this.state.offset = 0;
         this.state.loadMore = false;
         
@@ -51,7 +51,10 @@ class Search extends React.Component {
             mode = mode.substring(0, mode.indexOf('&'));
         }
         mode = decodeURIComponent(mode.split('+').join(' '));
-        this.state.mode = mode;
+        if (ACCEPTABLE_MODES.indexOf(mode) !== -1) {
+            this.state.mode = mode;
+        }
+        
     }
     componentDidMount () {
         const query = window.location.search;
