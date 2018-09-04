@@ -1,6 +1,7 @@
 const FormattedDate = require('react-intl').FormattedDate;
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
+const intlShape = require('react-intl').intlShape;
 const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
@@ -45,6 +46,7 @@ const PreviewPresentation = ({
     extensions,
     faved,
     favoriteCount,
+    intl,
     isFullScreen,
     isLoggedIn,
     isShared,
@@ -98,10 +100,9 @@ const PreviewPresentation = ({
                                             handleUpdate={onUpdate}
                                             name="title"
                                             validationErrors={{
-                                                maxLength: 'Sorry title is too long'
-                                                // maxLength: props.intl.formatMessage({
-                                                //     id: 'project.titleMaxLength'
-                                                // })
+                                                maxLength: intl.formatMessage({
+                                                    id: 'preview.titleMaxLength'
+                                                })
                                             }}
                                             validations={{
                                                 maxLength: 100
@@ -376,6 +377,7 @@ PreviewPresentation.propTypes = {
     extensions: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
+    intl: intlShape,
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isShared: PropTypes.bool,
