@@ -193,10 +193,6 @@
             &.login-item {
                 margin-left: 0;
             }
-
-            &.account-nav {
-                margin-left: 0;
-            }
         }
 
         .create,
@@ -221,10 +217,6 @@
             &.login-item {
                 margin-left: 0;
             }
-
-            &.account-nav {
-                margin-left: 0;
-            }
         }
 
         .discuss,
@@ -244,8 +236,7 @@
         width: $cols8;
 
         > ul > li {
-            &.login-item,
-            &.account-nav {
+            &.login-item {
                 margin-left: 0;
             }
         }

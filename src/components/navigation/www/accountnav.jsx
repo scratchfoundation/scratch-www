@@ -21,7 +21,7 @@ const AccountNav = ({
     onClickLogout,
     onClose
 }) => (
-    <div id="account-nav">
+    <div className="account-nav">
         <a
             className={classNames({
                 'user-info': true,
