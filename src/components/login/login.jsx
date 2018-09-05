@@ -48,9 +48,6 @@ class Login extends React.Component {
                         key="usernameInput"
                         maxLength="30"
                         name="username"
-                        ref={input => {
-                            this.username = input;
-                        }}
                         type="text"
                     />
                     <label
@@ -63,9 +60,6 @@ class Login extends React.Component {
                         required
                         key="passwordInput"
                         name="password"
-                        ref={input => {
-                            this.password = input;
-                        }}
                         type="password"
                     />
                     {this.state.waiting ? [

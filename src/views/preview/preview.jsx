@@ -8,7 +8,6 @@ const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
 const Page = require('../../components/page/www/page.jsx');
-const api = require('../../lib/api');
 const render = require('../../lib/render.jsx');
 const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
@@ -16,6 +15,8 @@ const EXTENSION_INFO = require('../../lib/extensions.js').default;
 
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
+const Registration = require('../../components/registration/registration.jsx');
+const LoginDropdown = require('../../components/login/logindropdown.jsx');
 
 const sessionActions = require('../../redux/session.js');
 const previewActions = require('../../redux/preview.js');
@@ -31,10 +32,7 @@ class Preview extends React.Component {
             'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoadMore',
-            // temporary, to pass to GUI. Remove when nav bar components are shared between www and gui.
-            'handleLogout',
             'handleLoveToggle',
-            'handlePermissions',
             'handlePopState',
             'handleReportClick',
             'handleReportClose',
@@ -45,9 +43,7 @@ class Preview extends React.Component {
             'handleUpdateProjectTitle',
             'handleUpdate',
             'initCounts',
-            'isShared',
-            'pushHistory',
-            'userOwnsProject'
+            'pushHistory'
         ]);
         const pathname = window.location.pathname.toLowerCase();
         const parts = pathname.split('/').filter(Boolean);
@@ -55,7 +51,6 @@ class Preview extends React.Component {
         // parts[1]: either :id or 'editor'
         // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
         this.state = {
-            editable: false,
             extensions: [],
             favoriteCount: 0,
             loveCount: 0,
@@ -90,7 +85,6 @@ class Preview extends React.Component {
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             this.getExtensions(this.state.projectId);
             this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
-            this.handlePermissions();
             if (this.props.projectInfo.remix.parent !== null) {
                 this.props.getParentInfo(this.props.projectInfo.remix.parent);
             }
@@ -144,21 +138,6 @@ class Preview extends React.Component {
                     });
                 });
             });
-    }
-    // Temporarily duplicated this function from navigation.jsx here.
-    // Should move handling of login/logout into session.js, and handle them
-    // from here as well as navigation.jsx.
-    handleLogout (e) {
-        e.preventDefault();
-        api({
-            host: '',
-            method: 'post',
-            uri: '/accounts/logout/',
-            useCsrf: true
-        }, err => {
-            if (err) log.error(err);
-            window.location = '/';
-        });
     }
     handleReportClick () {
         this.setState({reportOpen: true});
@@ -261,12 +240,6 @@ class Preview extends React.Component {
             }));
         }
     }
-    handlePermissions () {
-        // TODO: handle admins and mods
-        if (this.props.projectInfo.author.username === this.props.user.username) {
-            this.setState({editable: true});
-        }
-    }
     handleSeeInside () {
         this.props.setPlayer(false);
     }
@@ -289,28 +262,6 @@ class Preview extends React.Component {
             loveCount: loves
         });
     }
-    isShared () {
-        return (
-            // if we don't have projectInfo assume shared until we know otherwise
-            Object.keys(this.props.projectInfo).length === 0 || (
-                this.props.projectInfo.history &&
-                this.props.projectInfo.history.shared.length > 0
-            )
-        );
-    }
-    isLoggedIn () {
-        return (
-            this.props.sessionStatus === sessionActions.Status.FETCHED &&
-            Object.keys(this.props.user).length > 0
-        );
-    }
-    userOwnsProject () {
-        return (
-            this.isLoggedIn() &&
-            Object.keys(this.props.projectInfo).length > 0 &&
-            this.props.user.id === this.props.projectInfo.author.id
-        );
-    }
     render () {
         return (
             this.props.playerMode ?
@@ -320,13 +271,13 @@ class Preview extends React.Component {
                         assetHost={this.props.assetHost}
                         backpackOptions={this.props.backpackOptions}
                         comments={this.props.comments}
-                        editable={this.state.editable}
+                        editable={this.props.isEditable}
                         extensions={this.state.extensions}
                         faved={this.props.faved}
                         favoriteCount={this.state.favoriteCount}
                         isFullScreen={this.state.isFullScreen}
-                        isLoggedIn={this.isLoggedIn()}
-                        isShared={this.isShared()}
+                        isLoggedIn={this.props.isLoggedIn}
+                        isShared={this.props.isShared}
                         loveCount={this.state.loveCount}
                         loved={this.props.loved}
                         originalInfo={this.props.original}
@@ -339,7 +290,7 @@ class Preview extends React.Component {
                         replies={this.props.replies}
                         reportOpen={this.state.reportOpen}
                         studios={this.props.studios}
-                        userOwnsProject={this.userOwnsProject()}
+                        userOwnsProject={this.props.userOwnsProject}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
                         onFavoriteClicked={this.handleFavoriteToggle}
@@ -353,19 +304,40 @@ class Preview extends React.Component {
                         onUpdate={this.handleUpdate}
                     />
                 </Page> :
-                <IntlGUI
-                    enableCommunity
-                    hideIntro
-                    assetHost={this.props.assetHost}
-                    backpackOptions={this.props.backpackOptions}
-                    basePath="/"
-                    className="gui"
-                    projectHost={this.props.projectHost}
-                    projectId={this.state.projectId}
-                    projectTitle={this.props.projectInfo.title}
-                    onClickLogout={this.handleLogout}
-                    onUpdateProjectTitle={this.handleUpdateProjectTitle}
-                />
+                <React.Fragment>
+                    <IntlGUI
+                        enableCommunity
+                        hideIntro
+                        assetHost={this.props.assetHost}
+                        backpackOptions={this.props.backpackOptions}
+                        basePath="/"
+                        className="gui"
+                        projectHost={this.props.projectHost}
+                        projectId={this.state.projectId}
+                        projectTitle={this.props.projectInfo.title}
+                        // onClickLogout={this.handleLogout}
+                        onCloseAccountNav={this.props.handleCloseAccountNav}
+                        onCloseCanceledDeletion={this.props.handleCloseCanceledDeletion}
+                        onCloseLogin={this.props.handleCloseLogin}
+                        onCloseRegistration={this.props.handleCloseRegistration}
+                        onCompleteRegistration={this.props.handleCompleteRegistration}
+                        onLogIn={this.props.handleLogIn}
+                        onLogOut={this.props.handleLogOut}
+                        onOpenAccountNav={this.props.handleOpenAccountNav}
+                        onOpenRegistration={this.props.handleOpenRegistration}
+                        onToggleLoginOpen={this.props.handleToggleLoginOpen}
+                        onUpdateProjectTitle={this.handleUpdateProjectTitle}
+                    />
+                    <Registration />
+                    <LoginDropdown
+                        error={this.props.loginError}
+                        isOpen={this.props.loginOpen}
+                        key="login-dropdown"
+                        mode="gui"
+                        onClose={this.props.handleCloseLogin}
+                        onLogIn={this.props.handleLogIn}
+                    />
+                </React.Fragment>
         );
     }
 }
@@ -388,6 +360,21 @@ Preview.propTypes = {
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getTopLevelComments: PropTypes.func.isRequired,
+    handleCloseAccountNav: PropTypes.func,
+    handleCloseCanceledDeletion: PropTypes.func,
+    handleCloseLogin: PropTypes.func,
+    handleCloseRegistration: PropTypes.func,
+    handleCompleteRegistration: PropTypes.func,
+    handleLogIn: PropTypes.func,
+    handleLogOut: PropTypes.func,
+    handleOpenAccountNav: PropTypes.func,
+    handleOpenRegistration: PropTypes.func,
+    handleToggleLoginOpen: PropTypes.func,
+    isEditable: PropTypes.bool,
+    isLoggedIn: PropTypes.bool,
+    isShared: PropTypes.bool,
+    loginError: PropTypes.string,
+    loginOpen: PropTypes.bool,
     loved: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
@@ -415,7 +402,8 @@ Preview.propTypes = {
         dateJoined: PropTypes.string,
         email: PropTypes.string,
         classroomId: PropTypes.string
-    })
+    }),
+    userOwnsProject: PropTypes.bool
 };
 
 Preview.defaultProps = {
@@ -463,26 +451,83 @@ const consolidateStudiosInfo = (curatedStudios, projectStudios, currentStudioIds
     return consolidatedStudios;
 };
 
-const mapStateToProps = state => ({
-    comments: state.preview.comments,
-    faved: state.preview.faved,
-    loved: state.preview.loved,
-    original: state.preview.original,
-    parent: state.preview.parent,
-    remixes: state.preview.remixes,
-    replies: state.preview.replies,
-    sessionStatus: state.session.status,
-    projectInfo: state.preview.projectInfo,
-    projectStudios: state.preview.projectStudios,
-    studios: consolidateStudiosInfo(state.preview.curatedStudios,
-        state.preview.projectStudios, state.preview.currentStudioIds,
-        state.preview.status.studioRequests),
-    user: state.session.session.user,
-    playerMode: state.scratchGui.mode.isPlayerOnly,
-    fullScreen: state.scratchGui.mode.isFullScreen
-});
+const mapStateToProps = state => {
+    const projectInfoPresent = Object.keys(state.preview.projectInfo).length > 0;
+    const userPresent = state.session.session.user &&
+        Object.keys(state.session.session.user).length > 0;
+    const isLoggedIn = state.session.status === sessionActions.Status.FETCHED &&
+        userPresent;
+    const authorPresent = projectInfoPresent && state.preview.projectInfo.author &&
+        Object.keys(state.preview.projectInfo.author).length > 0;
+
+    return {
+        comments: state.preview.comments,
+        faved: state.preview.faved,
+        fullScreen: state.scratchGui.mode.isFullScreen,
+        // TODO: this value's logic is unfinished. Currently it seems to be
+        // identical to userOwnsProject, but we need to also set this true
+        // for admins and mods.
+        isEditable: isLoggedIn && authorPresent &&
+            state.preview.projectInfo.author.username === state.session.session.user.username,
+        isLoggedIn: isLoggedIn,
+        // if we don't have projectInfo, assume it's shared until we know otherwise
+        isShared: !projectInfoPresent || (
+            state.preview.projectInfo.history &&
+            state.preview.projectInfo.history.shared &&
+            state.preview.projectInfo.history.shared.length > 0),
+        loginError: state.session.loginError,
+        loginOpen: state.session.loginOpen,
+        loved: state.preview.loved,
+        original: state.preview.original,
+        parent: state.preview.parent,
+        playerMode: state.scratchGui.mode.isPlayerOnly,
+        projectInfo: state.preview.projectInfo,
+        projectStudios: state.preview.projectStudios,
+        remixes: state.preview.remixes,
+        replies: state.preview.replies,
+        sessionStatus: state.session.status, // check if used
+        studios: consolidateStudiosInfo(state.preview.curatedStudios,
+            state.preview.projectStudios, state.preview.currentStudioIds,
+            state.preview.status.studioRequests),
+        user: state.session.session.user,
+        userOwnsProject: isLoggedIn && authorPresent &&
+            state.session.session.user.id === state.preview.projectInfo.author.id
+    };
+};
 
 const mapDispatchToProps = dispatch => ({
+    handleOpenAccountNav: event => {
+        dispatch(sessionActions.handleOpenAccountNav(event));
+    },
+    handleCloseAccountNav: () => {
+        dispatch(sessionActions.handleCloseAccountNav());
+    },
+    handleCloseCanceledDeletion: () => {
+        dispatch(sessionActions.handleCloseCanceledDeletion());
+    },
+    handleCloseRegistration: () => {
+        dispatch(sessionActions.handleCloseRegistration());
+    },
+    handleCompleteRegistration: () => {
+        dispatch(sessionActions.handleCompleteRegistration());
+    },
+    handleOpenRegistration: event => {
+        dispatch(sessionActions.handleOpenRegistration(event));
+    },
+    handleCloseLogin: () => {
+        dispatch(sessionActions.handleCloseLogin());
+    },
+    handleLogIn: (formData, callback) => {
+        dispatch(sessionActions.handleLogIn(formData, callback));
+    },
+    handleLogOut: event => {
+        dispatch(sessionActions.handleLogOut(event));
+    },
+    handleToggleLoginOpen: event => {
+        dispatch(sessionActions.handleToggleLoginOpen(event));
+    },
+
+
     getOriginalInfo: id => {
         dispatch(previewActions.getOriginalInfo(id));
     },

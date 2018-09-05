@@ -1,8 +1,10 @@
 const bindAll = require('lodash.bindall');
 const PropTypes = require('prop-types');
 const React = require('react');
+const connect = require('react-redux').connect;
 
 const IframeModal = require('../modal/iframe/modal.jsx');
+const sessionActions = require('../../redux/session.js');
 
 require('./registration.scss');
 
@@ -26,7 +28,7 @@ class Registration extends React.Component {
     handleMessage (e) {
         if (e.origin !== window.location.origin) return;
         if (e.source !== this.registrationIframe.contentWindow) return;
-        if (e.data === 'registration-done') this.props.onRegistrationDone();
+        if (e.data === 'registration-done') this.props.handleCompleteRegistration();
         if (e.data === 'registration-relaunch') {
             this.registrationIframe.contentWindow.location.reload();
         }
@@ -47,16 +49,32 @@ class Registration extends React.Component {
                 }}
                 isOpen={this.props.isOpen}
                 src="/accounts/standalone-registration/"
-                onRequestClose={this.props.onRequestClose}
+                onRequestClose={this.props.handleCloseRegistration}
             />
         );
     }
 }
 
 Registration.propTypes = {
-    isOpen: PropTypes.bool,
-    onRegistrationDone: PropTypes.func,
-    onRequestClose: PropTypes.func
+    handleCloseRegistration: PropTypes.func,
+    handleCompleteRegistration: PropTypes.func,
+    isOpen: PropTypes.bool
 };
 
-module.exports = Registration;
+const mapStateToProps = state => ({
+    isOpen: state.session.registrationOpen
+});
+
+const mapDispatchToProps = dispatch => ({
+    handleCloseRegistration: () => {
+        dispatch(sessionActions.handleCloseRegistration());
+    },
+    handleCompleteRegistration: () => {
+        dispatch(sessionActions.handleCompleteRegistration());
+    }
+});
+
+module.exports = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Registration);

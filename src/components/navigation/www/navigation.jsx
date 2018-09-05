@@ -10,13 +10,12 @@ const React = require('react');
 const messageCountActions = require('../../../redux/message-count.js');
 const sessionActions = require('../../../redux/session.js');
 
-const api = require('../../../lib/api');
+// const api = require('../../../lib/api');
 const Button = require('../../forms/button.jsx');
-const Dropdown = require('../../dropdown/dropdown.jsx');
 const Form = require('../../forms/form.jsx');
 const Input = require('../../forms/input.jsx');
-const log = require('../../../lib/log.js');
-const Login = require('../../login/login.jsx');
+// const log = require('../../../lib/log.js');
+const LoginDropdown = require('../../login/logindropdown.jsx');
 const Modal = require('../../modal/base/modal.jsx');
 const NavigationBox = require('../base/navigation.jsx');
 const Registration = require('../../registration/registration.jsx');
@@ -29,25 +28,9 @@ class Navigation extends React.Component {
         super(props);
         bindAll(this, [
             'getProfileUrl',
-            'handleJoinClick',
-            'handleLoginClick',
-            'handleCloseLogin',
-            'handleLogIn',
-            'handleLogOut',
-            'handleAccountNavClick',
-            'handleCloseAccountNav',
-            'showCanceledDeletion',
-            'handleCloseCanceledDeletion',
-            'handleCloseRegistration',
-            'handleCompleteRegistration',
             'handleSearchSubmit'
         ]);
         this.state = {
-            accountNavOpen: false,
-            canceledDeletionOpen: false,
-            loginOpen: false,
-            loginError: null,
-            registrationOpen: false,
             messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
         };
     }
@@ -63,10 +46,7 @@ class Navigation extends React.Component {
     }
     componentDidUpdate (prevProps) {
         if (prevProps.session.session.user !== this.props.session.session.user) {
-            this.setState({ // eslint-disable-line react/no-did-update-set-state
-                loginOpen: false,
-                accountNavOpen: false
-            });
+            this.props.closeAccountMenus();
             if (this.props.session.session.user) {
                 const intervalId = setInterval(() => {
                     this.props.getMessageCount(this.props.session.session.user.username);
@@ -88,7 +68,7 @@ class Navigation extends React.Component {
         // clear message interval if it exists
         if (this.state.messageCountIntervalId !== -1) {
             clearInterval(this.state.messageCountIntervalId);
-            this.props.dispatch(messageCountActions.setCount(0));
+            this.props.setMessageCount(0);
             this.setState({
                 messageCountIntervalId: -1
             });
@@ -97,85 +77,6 @@ class Navigation extends React.Component {
     getProfileUrl () {
         if (!this.props.session.session.user) return;
         return `/users/${this.props.session.session.user.username}/`;
-    }
-    handleJoinClick (e) {
-        e.preventDefault();
-        this.setState({registrationOpen: true});
-    }
-    handleLoginClick (e) {
-        e.preventDefault();
-        this.setState({loginOpen: !this.state.loginOpen});
-    }
-    handleCloseLogin () {
-        this.setState({loginOpen: false});
-    }
-    // NOTE: TODO: continue here. Should move these two functions up to a redux level,
-    // maybe into session...
-    handleLogIn (formData, callback) {
-        this.setState({loginError: null});
-        formData.useMessages = true;
-        api({
-            method: 'post',
-            host: '',
-            uri: '/accounts/login/',
-            json: formData,
-            useCsrf: true
-        }, (err, body) => {
-            if (err) this.setState({loginError: err.message});
-            if (body) {
-                body = body[0];
-                if (body.success) {
-                    this.handleCloseLogin();
-                    body.messages.map(message => { // eslint-disable-line array-callback-return
-                        if (message.message === 'canceled-deletion') {
-                            this.showCanceledDeletion();
-                        }
-                    });
-                    this.props.refreshSession();
-                } else {
-                    if (body.redirect) {
-                        window.location = body.redirect;
-                    }
-                    // Update login error message to a friendlier one if it exists
-                    this.setState({loginError: body.msg});
-                }
-            }
-            // JS error already logged by api mixin
-            callback();
-        });
-    }
-    handleLogOut (e) {
-        e.preventDefault();
-        api({
-            host: '',
-            method: 'post',
-            uri: '/accounts/logout/',
-            useCsrf: true
-        }, err => {
-            if (err) log.error(err);
-            this.handleCloseLogin();
-            window.location = '/';
-        });
-    }
-    handleAccountNavClick (e) {
-        e.preventDefault();
-        this.setState({accountNavOpen: true});
-    }
-    handleCloseAccountNav () {
-        this.setState({accountNavOpen: false});
-    }
-    showCanceledDeletion () {
-        this.setState({canceledDeletionOpen: true});
-    }
-    handleCloseCanceledDeletion () {
-        this.setState({canceledDeletionOpen: false});
-    }
-    handleCloseRegistration () {
-        this.setState({registrationOpen: false});
-    }
-    handleCompleteRegistration () {
-        this.props.dispatch(sessionActions.refreshSession());
-        this.handleCloseRegistration();
     }
     handleSearchSubmit (formData) {
         window.location.href = `/search/projects?q=${encodeURIComponent(formData.q)}`;
@@ -269,33 +170,30 @@ class Navigation extends React.Component {
                                 <AccountNav
                                     classroomId={this.props.session.session.user.classroomId}
                                     isEducator={this.props.permissions.educator}
-                                    isOpen={this.state.accountNavOpen}
+                                    isOpen={this.props.session.accountNavOpen}
                                     isStudent={this.props.permissions.student}
                                     profileUrl={this.getProfileUrl()}
                                     thumbnailUrl={this.props.session.session.user.thumbnailUrl}
                                     username={this.props.session.session.user.username}
-                                    onClick={this.handleAccountNavClick}
-                                    onClickLogout={this.handleLogOut}
-                                    onClose={this.handleCloseAccountNav}
+                                    onClick={this.props.handleOpenAccountNav}
+                                    onClickLogout={this.props.handleLogOut}
+                                    onClose={this.props.handleCloseAccountNav}
                                 />
                             </li>
                         ] : [
                             <li
-                                className="link right join"
+                                className="link right"
                                 key="join"
                             >
                                 <a
                                     href="#"
-                                    onClick={this.handleJoinClick}
+                                    onClick={this.props.handleOpenRegistration}
                                 >
                                     <FormattedMessage id="general.joinScratch" />
                                 </a>
                             </li>,
                             <Registration
-                                isOpen={this.state.registrationOpen}
                                 key="registration"
-                                onRegistrationDone={this.handleCompleteRegistration}
-                                onRequestClose={this.handleCloseRegistration}
                             />,
                             <li
                                 className="link right login-item"
@@ -305,32 +203,29 @@ class Navigation extends React.Component {
                                     className="ignore-react-onclickoutside"
                                     href="#"
                                     key="login-link"
-                                    onClick={this.handleLoginClick}
+                                    onClick={this.props.handleToggleLoginOpen}
                                 >
                                     <FormattedMessage id="general.signIn" />
                                 </a>
-                                <Dropdown
-                                    className="login-dropdown with-arrow"
-                                    isOpen={this.state.loginOpen}
+                                <LoginDropdown
+                                    error={this.props.session.loginError}
+                                    isOpen={this.props.session.loginOpen}
                                     key="login-dropdown"
-                                    onRequestClose={this.handleCloseLogin}
-                                >
-                                    <Login
-                                        error={this.state.loginError}
-                                        onLogIn={this.handleLogIn}
-                                    />
-                                </Dropdown>
+                                    mode="www"
+                                    onClose={this.props.handleCloseLogin}
+                                    onLogIn={this.props.handleLogIn}
+                                />
                             </li>
                         ]) : []}
                 </ul>
                 <Modal
-                    isOpen={this.state.canceledDeletionOpen}
+                    isOpen={this.props.session.canceledDeletionOpen}
                     style={{
                         content: {
                             padding: 15
                         }
                     }}
-                    onRequestClose={this.handleCloseCanceledDeletion}
+                    onRequestClose={this.props.handleCloseCanceledDeletion}
                 >
                     <h4>Your Account Will Not Be Deleted</h4>
                     <h4><FormattedMessage id="general.noDeletionTitle" /></h4>
@@ -351,8 +246,16 @@ class Navigation extends React.Component {
 }
 
 Navigation.propTypes = {
-    dispatch: PropTypes.func,
+    closeAccountMenus: PropTypes.func,
     getMessageCount: PropTypes.func,
+    handleCloseAccountNav: PropTypes.func,
+    handleCloseCanceledDeletion: PropTypes.func,
+    handleCloseLogin: PropTypes.func,
+    handleLogIn: PropTypes.func,
+    handleLogOut: PropTypes.func,
+    handleOpenAccountNav: PropTypes.func,
+    handleOpenRegistration: PropTypes.func,
+    handleToggleLoginOpen: PropTypes.func,
     intl: intlShape,
     permissions: PropTypes.shape({
         admin: PropTypes.bool,
@@ -361,9 +264,12 @@ Navigation.propTypes = {
         educator_invitee: PropTypes.bool,
         student: PropTypes.bool
     }),
-    refreshSession: PropTypes.func,
     searchTerm: PropTypes.string,
     session: PropTypes.shape({
+        accountNavOpen: PropTypes.bool,
+        canceledDeletionOpen: PropTypes.bool,
+        loginOpen: PropTypes.bool,
+        loginError: PropTypes.string,
         session: PropTypes.shape({
             user: PropTypes.shape({
                 classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -391,11 +297,35 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+    closeAccountMenus: () => {
+        dispatch(sessionActions.closeAccountMenus());
+    },
     getMessageCount: username => {
         dispatch(messageCountActions.getCount(username));
     },
-    refreshSession: () => {
-        dispatch(sessionActions.refreshSession());
+    handleOpenAccountNav: event => {
+        dispatch(sessionActions.handleOpenAccountNav(event));
+    },
+    handleCloseAccountNav: () => {
+        dispatch(sessionActions.handleCloseAccountNav());
+    },
+    handleCloseCanceledDeletion: () => {
+        dispatch(sessionActions.handleCloseCanceledDeletion());
+    },
+    handleOpenRegistration: event => {
+        dispatch(sessionActions.handleOpenRegistration(event));
+    },
+    handleCloseLogin: () => {
+        dispatch(sessionActions.handleCloseLogin());
+    },
+    handleLogIn: (formData, callback) => {
+        dispatch(sessionActions.handleLogIn(formData, callback));
+    },
+    handleLogOut: event => {
+        dispatch(sessionActions.handleLogOut(event));
+    },
+    handleToggleLoginOpen: event => {
+        dispatch(sessionActions.handleToggleLoginOpen(event));
     },
     setMessageCount: newCount => {
         dispatch(messageCountActions.setCount(newCount));
