@@ -54,9 +54,7 @@ class Navigation extends React.Component {
     componentDidMount () {
         if (this.props.session.session.user) {
             const intervalId = setInterval(() => {
-                this.props.dispatch(
-                    messageCountActions.getCount(this.props.session.session.user.username)
-                );
+                this.props.getMessageCount(this.props.session.session.user.username);
             }, 120000); // check for new messages every 2 mins.
             this.setState({ // eslint-disable-line react/no-did-mount-set-state
                 messageCountIntervalId: intervalId
@@ -71,9 +69,7 @@ class Navigation extends React.Component {
             });
             if (this.props.session.session.user) {
                 const intervalId = setInterval(() => {
-                    this.props.dispatch(
-                        messageCountActions.getCount(this.props.session.session.user.username)
-                    );
+                    this.props.getMessageCount(this.props.session.session.user.username);
                 }, 120000); // check for new messages every 2 mins.
                 this.setState({ // eslint-disable-line react/no-did-update-set-state
                     messageCountIntervalId: intervalId
@@ -81,7 +77,7 @@ class Navigation extends React.Component {
             } else {
                 // clear message count check, and set to default id.
                 clearInterval(this.state.messageCountIntervalId);
-                this.props.dispatch(messageCountActions.setCount(0));
+                this.props.setMessageCount(0);
                 this.setState({ // eslint-disable-line react/no-did-update-set-state
                     messageCountIntervalId: -1
                 });
@@ -135,7 +131,7 @@ class Navigation extends React.Component {
                             this.showCanceledDeletion();
                         }
                     });
-                    this.props.dispatch(sessionActions.refreshSession());
+                    this.props.refreshSession();
                 } else {
                     if (body.redirect) {
                         window.location = body.redirect;
@@ -356,6 +352,7 @@ class Navigation extends React.Component {
 
 Navigation.propTypes = {
     dispatch: PropTypes.func,
+    getMessageCount: PropTypes.func,
     intl: intlShape,
     permissions: PropTypes.shape({
         admin: PropTypes.bool,
@@ -364,6 +361,7 @@ Navigation.propTypes = {
         educator_invitee: PropTypes.bool,
         student: PropTypes.bool
     }),
+    refreshSession: PropTypes.func,
     searchTerm: PropTypes.string,
     session: PropTypes.shape({
         session: PropTypes.shape({
@@ -375,6 +373,7 @@ Navigation.propTypes = {
         }),
         status: PropTypes.string
     }),
+    setMessageCount: PropTypes.func,
     unreadMessageCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
@@ -391,7 +390,17 @@ const mapStateToProps = state => ({
     searchTerm: state.navigation
 });
 
-const mapDispatchToProps = () => ({});
+const mapDispatchToProps = dispatch => ({
+    getMessageCount: username => {
+        dispatch(messageCountActions.getCount(username));
+    },
+    refreshSession: () => {
+        dispatch(sessionActions.refreshSession());
+    },
+    setMessageCount: newCount => {
+        dispatch(messageCountActions.setCount(newCount));
+    }
+});
 
 const ConnectedNavigation = connect(
     mapStateToProps,
