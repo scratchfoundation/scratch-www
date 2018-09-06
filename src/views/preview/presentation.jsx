@@ -146,7 +146,6 @@ const PreviewPresentation = ({
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
                                     projectId={projectId}
-                                    projectTitle={projectInfo.title}
                                 />
                             </div>
                             <FlexRow className="project-notes">

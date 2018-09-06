@@ -362,7 +362,9 @@ class Preview extends React.Component {
                     className="gui"
                     projectHost={this.props.projectHost}
                     projectId={this.state.projectId}
+                    projectTitle={this.props.projectInfo.title}
                     onClickLogout={this.handleLogout}
+                    onUpdateProjectTitle={this.handleUpdateProjectTitle}
                 />
         );
     }
