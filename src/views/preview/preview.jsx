@@ -42,6 +42,7 @@ class Preview extends React.Component {
             'handleAddToStudioClick',
             'handleAddToStudioClose',
             'handleSeeInside',
+            'handleUpdateProjectTitle',
             'handleUpdate',
             'initCounts',
             'isShared',
@@ -277,6 +278,11 @@ class Preview extends React.Component {
             this.props.user.token
         );
     }
+    handleUpdateProjectTitle (title) {
+        this.handleUpdate({
+            title: title
+        });
+    }
     initCounts (favorites, loves) {
         this.setState({
             favoriteCount: favorites,
@@ -356,7 +362,9 @@ class Preview extends React.Component {
                     className="gui"
                     projectHost={this.props.projectHost}
                     projectId={this.state.projectId}
+                    projectTitle={this.props.projectInfo.title}
                     onClickLogout={this.handleLogout}
+                    onUpdateProjectTitle={this.handleUpdateProjectTitle}
                 />
         );
     }
@@ -456,7 +464,6 @@ const consolidateStudiosInfo = (curatedStudios, projectStudios, currentStudioIds
 };
 
 const mapStateToProps = state => ({
-    projectInfo: state.preview.projectInfo,
     comments: state.preview.comments,
     faved: state.preview.faved,
     loved: state.preview.loved,
@@ -465,6 +472,7 @@ const mapStateToProps = state => ({
     remixes: state.preview.remixes,
     replies: state.preview.replies,
     sessionStatus: state.session.status,
+    projectInfo: state.preview.projectInfo,
     projectStudios: state.preview.projectStudios,
     studios: consolidateStudiosInfo(state.preview.curatedStudios,
         state.preview.projectStudios, state.preview.currentStudioIds,

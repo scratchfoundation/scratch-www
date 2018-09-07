@@ -1,6 +1,7 @@
 const FormattedDate = require('react-intl').FormattedDate;
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
+const intlShape = require('react-intl').intlShape;
 const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
@@ -27,6 +28,16 @@ const ExtensionChip = require('./extension-chip.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
+// disable enter key submission on formsy input fields; otherwise formsy thinks
+// we meant to trigger the "See inside" button. Instead, treat these keypresses
+// as a blur, which will trigger a save.
+const onKeyPress = e => {
+    if (e.target.type === 'text' && e.which === 13 /* Enter */) {
+        e.preventDefault();
+        e.target.blur();
+    }
+};
+
 const PreviewPresentation = ({
     assetHost,
     backpackOptions,
@@ -35,6 +46,7 @@ const PreviewPresentation = ({
     extensions,
     faved,
     favoriteCount,
+    intl,
     isFullScreen,
     isLoggedIn,
     isShared,
@@ -70,7 +82,7 @@ const PreviewPresentation = ({
             <ShareBanner shared={isShared} />
 
             { projectInfo && projectInfo.author && projectInfo.author.id && (
-                <Formsy>
+                <Formsy onKeyPress={onKeyPress}>
                     <div className="inner">
                         <FlexRow className="preview-row">
                             <FlexRow className="project-header">
@@ -88,10 +100,9 @@ const PreviewPresentation = ({
                                             handleUpdate={onUpdate}
                                             name="title"
                                             validationErrors={{
-                                                maxLength: 'Sorry title is too long'
-                                                // maxLength: props.intl.formatMessage({
-                                                //     id: 'project.titleMaxLength'
-                                                // })
+                                                maxLength: intl.formatMessage({
+                                                    id: 'preview.titleMaxLength'
+                                                })
                                             }}
                                             validations={{
                                                 maxLength: 100
@@ -365,6 +376,7 @@ PreviewPresentation.propTypes = {
     extensions: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
+    intl: intlShape,
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isShared: PropTypes.bool,
