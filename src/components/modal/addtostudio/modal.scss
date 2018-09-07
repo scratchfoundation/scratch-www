@@ -179,6 +179,8 @@
 }
 
 .studio-status-icon-spinner {
+    /* This class can be used on an icon that should spin.
+    It first plays the intro animation, then spins forever. */
     animation-name: intro, spin;
     -webkit-animation-name: intro, spin;
     animation-duration: .25s, .5s;
@@ -187,8 +189,8 @@
     -webkit-animation-iteration-count: 1, infinite;
     animation-delay: 0s, .25s;
     -webkit-animation-delay: 0s, .25s;
-    animation-timing-function: cubic-bezier(0.3, -3, 0.6, 3), ease-in-out;
-    -webkit-animation-timing-function: cubic-bezier(0.3, -3, 0.6, 3), ease-in-out;
+    animation-timing-function: cubic-bezier(0.3, -3, 0.6, 3), linear;
+    -webkit-animation-timing-function: cubic-bezier(0.3, -3, 0.6, 3), linear;
 }
 
 @keyframes intro {
@@ -204,6 +206,9 @@
   }
 }
 
+/* intro and bump look the same but for some reason,
+I need two keyframes and if I don't make two separate ones the
+animations don't get called. */
 @keyframes bump {
   0% {
     transform: scale(0);
