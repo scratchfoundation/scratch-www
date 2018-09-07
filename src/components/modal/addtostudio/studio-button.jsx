@@ -1,7 +1,8 @@
 const PropTypes = require('prop-types');
 const React = require('react');
 const classNames = require('classnames');
-const AnimateHOC = require('./animate-hoc');
+
+const AnimateHOC = require('./animate-hoc.jsx');
 
 require('./modal.scss');
 
@@ -10,15 +11,15 @@ const StudioButton = ({
     id,
     includesProject,
     title,
-    onToggleStudio,
+    onClick,
     wasClicked
 }) => {
     const checkmark = (
         <img
             alt="checkmark-icon"
             className={classNames(
-                {'studio-status-icon-with-animation': true},
-                'studio-status-icon-checkmark-img'
+                'studio-status-icon-checkmark-img',
+                {'studio-status-icon-with-animation': wasClicked}
             )}
             src="/svgs/modal/confirm.svg"
         />
@@ -34,8 +35,8 @@ const StudioButton = ({
         <img
             alt="plus-icon"
             className={classNames(
-                {'studio-status-icon-with-animation': true},
-                'studio-status-icon-plus-img'
+                'studio-status-icon-plus-img',
+                {'studio-status-icon-with-animation': wasClicked}
             )}
             src="/svgs/modal/add.svg"
         />
@@ -49,7 +50,7 @@ const StudioButton = ({
                     includesProject && !hasRequestOutstanding}
             )}
             data-id={id}
-            onClick={onToggleStudio}
+            onClick={onClick}
         >
             <div
                 className={classNames(
@@ -79,7 +80,7 @@ StudioButton.propTypes = {
     hasRequestOutstanding: PropTypes.bool,
     id: PropTypes.number,
     includesProject: PropTypes.bool,
-    onToggleStudio: PropTypes.func,
+    onClick: PropTypes.func,
     title: PropTypes.string,
     wasClicked: PropTypes.bool
 };

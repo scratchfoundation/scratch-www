@@ -31,7 +31,7 @@ const AddToStudioModalPresentation = ({
             includesProject={studio.includesProject}
             key={studio.id}
             title={studio.title}
-            onToggleStudio={onToggleStudio}
+            onClick={onToggleStudio}
         />
     ));
 

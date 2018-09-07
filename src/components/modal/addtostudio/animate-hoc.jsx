@@ -7,28 +7,42 @@ const PropTypes = require('prop-types');
  * @return {React.Component}           a wrapped studio button component
  */
 
-const AnimateHOC = ({
-    Component
-}) => {
+const AnimateHOC = Component => {
     class WrappedComponent extends React.Component {
-        constructor(props) {
+        constructor (props) {
             super(props);
-            let wasClicked = false;
+
+            this.state = {
+                wasClicked: false
+            };
+
+            this.handleClick = this.handleClick.bind(this);
         }
-        onClick () {
-            this.wasClicked = true; // BUT PROPS ARE READONLY?
+        handleClick () {
+            if (this.state.wasClicked) {
+                this.props.onClick(this.props.id);
+            } else {
+                this.setState({
+                    wasClicked: true
+                }, () => this.props.onClick(this.props.id));
+            }
         }
         render () {
+            const {wasClicked} = this.state;
             return (<Component
-                wasClicked={this.wasClicked}
                 {...this.props}
+                wasClicked={wasClicked}
+                onClick={this.handleClick}
             />);
         }
     }
 
+    WrappedComponent.propTypes = {
+        id: PropTypes.number,
+        onClick: PropTypes.func
+    };
+
     return WrappedComponent;
 };
 
-AnimateHOC.propTypes = {
-    Component: PropTypes.element
-};
+module.exports = AnimateHOC;
