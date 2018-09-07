@@ -89,7 +89,6 @@
     pointer-events: none; /* pass clicks through to buttons underneath */
 }
 
-
 .studio-selector-button {
     display: flex;
     position: relative;
@@ -102,6 +101,7 @@
     height: 2.5rem;
     box-sizing: border-box;
     justify-content: space-between;
+    transition: all .5s;
 }
 
 .studio-selector-button-text {
@@ -164,30 +164,67 @@
     background-color: $ui-blue;
 }
 
-.studio-status-icon-plus-img {
-    width: 1.4rem;
-    height: 1.4rem;
+.studio-status-icon-plus-img, .studio-status-icon-checkmark-img, .studio-status-icon-spinner {
+  width: 1.4rem;
+  height: 1.4rem;
+  transform-origin: center;
+  animation-direction: normal;
 }
 
-.studio-status-icon--img {
-    width: 1.4rem;
-    height: 1.4rem;
+.studio-status-icon-with-animation {
+  animation-duration: .25s;
+  animation-name: bump;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.3, -3, 0.6, 3);
 }
 
-.action-button-text .spinner-smooth {
-    margin: .2125rem auto;
-    width: 1.875rem;
-    height: 1rem;
+.studio-status-icon-spinner {
+    animation-name: bump, spin;
+    -webkit-animation-name: bump, spin;
+    animation-duration: .25s, .5s;
+    -webkit-animation-duration: .25s, .5s;
+    animation-iteration-count: 1, infinite;
+    -webkit-animation-iteration-count: 1, infinite;
+    animation-delay: 0s, .25s;
+    -webkit-animation-delay: 0s, .25s;
+    animation-timing-function: cubic-bezier(0.3, -3, 0.6, 3), ease-in-out;
+    -webkit-animation-timing-function: cubic-bezier(0.3, -3, 0.6, 3), ease-in-out;
 }
 
-.studio-status-icon .spinner-smooth {
-    position: unset; /* don't understand why neither relative nor absolute work */
+@keyframes intro {
+  0% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
 }
 
-.studio-status-icon .spinner-smooth .circle {
-    /* overlay spinner on circle */
-    position: absolute;
-    margin: .1875rem; /* stay within boundaries of circle */
-    width: 75%; /* stay within boundaries of circle */
-    height: 75%; /* stay within boundaries of circle */
+@keyframes bump {
+  0% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+    -webkit-transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+  }
 }
