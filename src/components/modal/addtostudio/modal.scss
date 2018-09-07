@@ -92,6 +92,7 @@
 .studio-selector-button {
     display: flex;
     position: relative;
+    transition: all .5s;
     margin: .21875rem .21875rem;
     border-radius: .5rem;
     background-color: $ui-white;
@@ -101,7 +102,7 @@
     height: 2.5rem;
     box-sizing: border-box;
     justify-content: space-between;
-    transition: all .5s;
+
 }
 
 .studio-selector-button-text {
@@ -164,72 +165,74 @@
     background-color: $ui-blue;
 }
 
-.studio-status-icon-plus-img, .studio-status-icon-checkmark-img, .studio-status-icon-spinner {
-  width: 1.4rem;
-  height: 1.4rem;
-  transform-origin: center;
-  animation-direction: normal;
+.studio-status-icon-plus-img,
+.studio-status-icon-checkmark-img,
+.studio-status-icon-spinner {
+    animation-direction: normal;
+    width: 1.4rem;
+    height: 1.4rem;
+    transform-origin: center;
 }
 
 .studio-status-icon-with-animation {
-  animation-duration: .25s;
-  animation-name: bump;
-  animation-iteration-count: 1;
-  animation-timing-function: cubic-bezier(0.3, -3, 0.6, 3);
+    animation-name: bump;
+    animation-duration: .25s;
+    animation-timing-function: cubic-bezier(.3, -3, .6, 3);
+    animation-iteration-count: 1;
 }
 
 .studio-status-icon-spinner {
     /* This class can be used on an icon that should spin.
     It first plays the intro animation, then spins forever. */
     animation-name: intro, spin;
-    -webkit-animation-name: intro, spin;
     animation-duration: .25s, .5s;
-    -webkit-animation-duration: .25s, .5s;
-    animation-iteration-count: 1, infinite;
-    -webkit-animation-iteration-count: 1, infinite;
+    animation-timing-function: cubic-bezier(.3, -3, .6, 3), linear;
     animation-delay: 0s, .25s;
+    animation-iteration-count: 1, infinite;
+    -webkit-animation-name: intro, spin;
+    -webkit-animation-duration: .25s, .5s;
+    -webkit-animation-iteration-count: 1, infinite;
     -webkit-animation-delay: 0s, .25s;
-    animation-timing-function: cubic-bezier(0.3, -3, 0.6, 3), linear;
-    -webkit-animation-timing-function: cubic-bezier(0.3, -3, 0.6, 3), linear;
+    -webkit-animation-timing-function: cubic-bezier(.3, -3, .6, 3), linear;
 }
 
 @keyframes intro {
-  0% {
-    transform: scale(0);
-    -webkit-transform: scale(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-    opacity: 1;
-  }
+    0% {
+        transform: scale(0);
+        opacity: 0;
+        -webkit-transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
 }
 
 /* intro and bump look the same but for some reason,
 I need two keyframes and if I don't make two separate ones the
 animations don't get called. */
 @keyframes bump {
-  0% {
-    transform: scale(0);
-    -webkit-transform: scale(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    -webkit-transform: scale(1);
-    opacity: 1;
-  }
+    0% {
+        transform: scale(0);
+        opacity: 0;
+        -webkit-transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0);
-    -webkit-transform: rotate(0);
-  }
+    0% {
+        transform: rotate(0);
+        -webkit-transform: rotate(0);
+    }
 
-  100% {
-    transform: rotate(359deg);
-    -webkit-transform: rotate(359deg);
-  }
+    100% {
+        transform: rotate(359deg);
+        -webkit-transform: rotate(359deg);
+    }
 }
