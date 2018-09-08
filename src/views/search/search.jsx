@@ -37,7 +37,7 @@ class Search extends React.Component {
         this.state.mode = 'popular';
         this.state.offset = 0;
         this.state.loadMore = false;
-        
+
         let mode = '';
         const query = window.location.search;
         const m = query.lastIndexOf('mode=');
@@ -54,7 +54,7 @@ class Search extends React.Component {
         if (ACCEPTABLE_MODES.indexOf(mode) !== -1) {
             this.state.mode = mode;
         }
-        
+
     }
     componentDidMount () {
         const query = window.location.search;
@@ -69,7 +69,7 @@ class Search extends React.Component {
         while (term.indexOf('&') > -1) {
             term = term.substring(0, term.indexOf('&'));
         }
-        term = decodeURIComponent(term.split('+').join(' '));
+        term = decodeURIComponent(decodeURIComponent(term.split('+').join(' ')));
         this.props.dispatch(navigationActions.setSearchTerm(term));
     }
     componentDidUpdate (prevProps) {
