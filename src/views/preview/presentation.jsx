@@ -110,7 +110,10 @@ const PreviewPresentation = ({
                                             value={projectInfo.title}
                                         /> :
                                         <React.Fragment>
-                                            <div className="project-title">{projectInfo.title}</div>
+                                            <div
+                                                className="project-title no-edit"
+                                                title={projectInfo.title}
+                                            >{projectInfo.title}</div>
                                             {'by '}
                                             <a href={`/users/${projectInfo.author.username}`}>
                                                 {projectInfo.author.username}

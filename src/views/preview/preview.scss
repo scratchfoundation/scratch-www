@@ -32,13 +32,23 @@ $stage-width: 480px;
                 transform: translate(22rem, 0);
             }
         }
+
+        &.no-edit {
+            /* titles of projects you don't own should not
+            show the full title if this is too long */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     }
 
     .project-header {
         margin-right: 2rem;
+        min-width: 0;
         flex-grow: 1;
         justify-content: flex-start;
         align-items: flex-start;
+        flex-wrap: nowrap;
 
         .inplace-input {
             height: calc(3rem - 4px);
@@ -63,6 +73,8 @@ $stage-width: 480px;
 
     .title {
         margin-left: 1rem;
+        /* width: inherit;  Inherits the width of whatever this is in. This works well for the preview page and might need to change if used in a different context*/
+        min-width: 0;
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
@@ -117,6 +129,10 @@ $stage-width: 480px;
         .col-sm-9 {
             position: relative;
         }
+    }
+
+    .project-buttons {
+        flex-shrink: 0;
     }
 
     .button {
@@ -442,6 +458,7 @@ $stage-width: 480px;
             content: "";
         }
     }
+    
     .studio-button {
         &:before {
             background-image: url("/svgs/project/studio-add-white.svg");
