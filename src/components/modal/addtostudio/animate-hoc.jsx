@@ -23,13 +23,9 @@ const AnimateHOC = Component => {
             this.handleClick = this.handleClick.bind(this);
         }
         handleClick () {
-            if (this.state.wasClicked) { // if the button has been clicked before
-                this.props.onClick(this.props.id);
-            } else {
-                this.setState({ // else tell the state that the button has been clicked
-                    wasClicked: true
-                }, () => this.props.onClick(this.props.id)); // callback after state has been updated
-            }
+            this.setState({ // else tell the state that the button has been clicked
+                wasClicked: true
+            }, () => this.props.onClick(this.props.id)); // callback after state has been updated
         }
         render () {
             const {wasClicked} = this.state;

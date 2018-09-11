@@ -8,7 +8,6 @@ require('./modal.scss');
 
 const StudioButton = ({
     hasRequestOutstanding,
-    id,
     includesProject,
     title,
     onClick,
@@ -49,7 +48,6 @@ const StudioButton = ({
                 {'studio-selector-button-selected':
                     includesProject && !hasRequestOutstanding}
             )}
-            data-id={id}
             onClick={onClick}
         >
             <div
@@ -60,7 +58,7 @@ const StudioButton = ({
                 )}
                 title={title}
             >
-                {title}{wasClicked}
+                {title}
             </div>
             <div
                 className={classNames(
@@ -78,7 +76,6 @@ const StudioButton = ({
 
 StudioButton.propTypes = {
     hasRequestOutstanding: PropTypes.bool,
-    id: PropTypes.number,
     includesProject: PropTypes.bool,
     onClick: PropTypes.func,
     title: PropTypes.string,
