@@ -8,8 +8,8 @@ const StudioList = props => {
     const studios = props.studios;
     if (studios.length === 0) return null;
     return (
-        <FlexRow className="remix-list">
-            <div className="project-title">
+        <FlexRow className="studio-list">
+            <div className="list-title">
                 Studios
             </div>
             {studios.length === 0 ? (
