@@ -2,6 +2,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const classNames = require('classnames');
 
+const Spinner = require('../../spinner/spinner.jsx');
 const AnimateHOC = require('./animate-hoc.jsx');
 
 require('./modal.scss');
@@ -23,13 +24,7 @@ const StudioButton = ({
             src="/svgs/modal/confirm.svg"
         />
     );
-    const spinner = (
-        <img
-            alt="loading animation"
-            className="studio-status-icon-spinner"
-            src="/svgs/modal/spinner.svg"
-        />
-    );
+    const spinner = <Spinner />;
     const plus = (
         <img
             alt="plus-icon"

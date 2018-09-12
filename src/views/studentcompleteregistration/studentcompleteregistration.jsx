@@ -75,7 +75,7 @@ class StudentCompleteRegistration extends React.Component {
     }
     handleRegister (formData) {
         this.setState({waiting: true});
-        
+
         formData = defaults({}, formData || {}, this.state.formData);
         const submittedData = {
             birth_month: formData.user.birth.month,
@@ -87,7 +87,7 @@ class StudentCompleteRegistration extends React.Component {
         if (this.props.must_reset_password) {
             submittedData.password = formData.user.password;
         }
-        
+
         api({
             host: '',
             uri: '/classes/student_update_registration/',

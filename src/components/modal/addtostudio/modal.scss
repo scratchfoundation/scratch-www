@@ -166,8 +166,7 @@
 }
 
 .studio-status-icon-plus-img,
-.studio-status-icon-checkmark-img,
-.studio-status-icon-spinner {
+.studio-status-icon-checkmark-img {
     animation-direction: normal;
     width: 1.4rem;
     height: 1.4rem;
@@ -181,37 +180,6 @@
     animation-iteration-count: 1;
 }
 
-.studio-status-icon-spinner {
-    /* This class can be used on an icon that should spin.
-    It first plays the intro animation, then spins forever. */
-    animation-name: intro, spin;
-    animation-duration: .25s, .5s;
-    animation-timing-function: cubic-bezier(.3, -3, .6, 3), linear;
-    animation-delay: 0s, .25s;
-    animation-iteration-count: 1, infinite;
-    -webkit-animation-name: intro, spin;
-    -webkit-animation-duration: .25s, .5s;
-    -webkit-animation-iteration-count: 1, infinite;
-    -webkit-animation-delay: 0s, .25s;
-    -webkit-animation-timing-function: cubic-bezier(.3, -3, .6, 3), linear;
-}
-
-@keyframes intro {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-        -webkit-transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-        -webkit-transform: scale(1);
-    }
-}
-
-/* intro and bump look the same but for some reason,
-I need two keyframes and if I don't make two separate ones the
-animations don't get called. */
 @keyframes bump {
     0% {
         transform: scale(0);
@@ -222,17 +190,5 @@ animations don't get called. */
         transform: scale(1);
         opacity: 1;
         -webkit-transform: scale(1);
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0);
-        -webkit-transform: rotate(0);
-    }
-
-    100% {
-        transform: rotate(359deg);
-        -webkit-transform: rotate(359deg);
     }
 }

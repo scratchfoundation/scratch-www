@@ -83,7 +83,7 @@ const AddToStudioModalPresentation = ({
                                     type="submit"
                                 >
                                     <div className="action-button-text">
-                                        <Spinner mode="smooth" />
+                                        <Spinner />
                                         <FormattedMessage id="addToStudio.finishing" />
                                     </div>
                                 </Button>

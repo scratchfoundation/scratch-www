@@ -75,7 +75,10 @@ class Login extends React.Component {
                             key="submitButton"
                             type="submit"
                         >
-                            <Spinner />
+                            <Spinner
+                                className="spinner"
+                                color="blue"
+                            />
                         </Button>
                     ] : [
                         <Button
