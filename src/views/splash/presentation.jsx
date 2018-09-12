@@ -495,7 +495,6 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                             </MediaQuery>
                         ]) : []
                     }
-                    
                     {featured}
 
                     {this.props.isAdmin ? [
@@ -555,7 +554,7 @@ SplashPresentation.propTypes = {
     isAdmin: PropTypes.bool.isRequired,
     isEducator: PropTypes.bool.isRequired,
     lovedByFollowing: PropTypes.arrayOf(PropTypes.object),
-    news: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    news: PropTypes.arrayOf(PropTypes.object),
     onDismiss: PropTypes.func.isRequired,
     onHideEmailConfirmationModal: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
