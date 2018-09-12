@@ -29,7 +29,7 @@ $stage-width: 480px;
         &.has-error {
 
             .validation-message {
-                transform: translate(22rem, 0);
+                right: 0;
             }
         }
 
@@ -84,9 +84,7 @@ $stage-width: 480px;
         $arrow-border-width: 1rem;
         display: block;
         position: absolute;
-        top: 0;
-        left: 0;
-        margin-left: $arrow-border-width;
+        margin-top: $arrow-border-width;
         border: 1px solid $active-gray;
         border-radius: 5px;
         background-color: $ui-orange;
@@ -96,6 +94,7 @@ $stage-width: 480px;
         overflow: visible;
         color: $type-white;
         font-size: 1rem;
+        z-index: 1;
 
         &:before {
             display: block;
@@ -103,7 +102,7 @@ $stage-width: 480px;
             top: 1rem;
             left: -$arrow-border-width / 2;
 
-            transform: rotate(45deg);
+            transform: rotate(135deg);
 
             border-bottom: 1px solid $active-gray;
             border-left: 1px solid $active-gray;
@@ -458,7 +457,7 @@ $stage-width: 480px;
             content: "";
         }
     }
-    
+
     .studio-button {
         &:before {
             background-image: url("/svgs/project/studio-add-white.svg");
