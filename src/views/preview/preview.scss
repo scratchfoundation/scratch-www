@@ -192,10 +192,11 @@ $stage-width: 480px;
     .project-notes {
         // not 1.5rem because of stage padding
         margin-left: 1rem;
-        height: $player-height;
+        height: calc(#{$player-height} - 1rem);
         align-items: flex-start;
         flex: 1;
         flex-flow: column;
+        align-self: flex-end;
     }
 
     .share-date {
@@ -209,6 +210,7 @@ $stage-width: 480px;
     .subactions {
         margin-left: 1.5rem;
         justify-content: flex-end;
+        align-items: flex-start;
         flex: 1;
     }
 
@@ -384,6 +386,7 @@ $stage-width: 480px;
 
     .action-buttons {
         display: flex;
+        margin-top: 0;
         color: $type-white;
         font-size: .8rem;
         font-weight: 500;
@@ -458,7 +461,7 @@ $stage-width: 480px;
             content: "";
         }
     }
-    
+
     .studio-button {
         &:before {
             background-image: url("/svgs/project/studio-add-white.svg");
