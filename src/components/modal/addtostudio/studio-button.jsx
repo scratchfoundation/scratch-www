@@ -24,7 +24,6 @@ const StudioButton = ({
             src="/svgs/modal/confirm.svg"
         />
     );
-    const spinner = <Spinner />;
     const plus = (
         <img
             alt="plus-icon"
@@ -62,7 +61,7 @@ const StudioButton = ({
                 )}
             >
                 {(hasRequestOutstanding ?
-                    spinner :
+                    <Spinner /> :
                     (includesProject ? checkmark : plus))}
             </div>
         </div>

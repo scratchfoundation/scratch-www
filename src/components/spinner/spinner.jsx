@@ -5,12 +5,14 @@ const classNames = require('classnames');
 require('./spinner.scss');
 
 // Adapted from http://tobiasahlin.com/spinkit/
-// Available colors right now are white, blue and transparent-gray
-const Spinner = props => (
+const Spinner = ({
+    className,
+    color
+}) => (
     <img
         alt="loading animation"
-        className={classNames('studio-status-icon-spinner', props.className)}
-        src={`/svgs/modal/spinner-${props.color}.svg`}
+        className={classNames('studio-status-icon-spinner', className)}
+        src={`/svgs/modal/spinner-${color}.svg`}
     />
 );
 
@@ -20,7 +22,7 @@ Spinner.defaultProps = {
 
 Spinner.propTypes = {
     className: PropTypes.string,
-    color: PropTypes.string
+    color: PropTypes.oneOf(['white', 'blue', 'transparent-gray'])
 };
 
 module.exports = Spinner;
