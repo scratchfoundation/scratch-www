@@ -6,6 +6,12 @@ $player-width: 482px;
 $player-height: 406px;
 $stage-width: 480px;
 
+/* screen sizes */
+$small: "screen and (max-width : #{$mobile}-1)";
+$medium: "screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
+$big: "screen and (min-width : #{$tablet})";
+$medium-and-small: "screen and (max-width : #{$tablet}-1)";
+
 /* override view padding for share banner */
 #view {
     padding: 0;
@@ -73,7 +79,6 @@ $stage-width: 480px;
 
     .title {
         margin-left: 1rem;
-        /* width: inherit;  Inherits the width of whatever this is in. This works well for the preview page and might need to change if used in a different context*/
         min-width: 0;
         text-align: left;
         font-size: .8rem;
@@ -96,11 +101,16 @@ $stage-width: 480px;
         font-size: 1rem;
         z-index: 1;
 
+        @media #{$medium-and-small} {
+            width: 100%;
+            margin-top: calc($arrow-border-width / 2);
+        }
+
         &:before {
             display: block;
             position: absolute;
-            top: 1rem;
-            left: -$arrow-border-width / 2;
+            top: -0.5rem;
+            left: calc(50% - calc(#{$arrow-border-width} / 2));
 
             transform: rotate(135deg);
 
@@ -113,6 +123,10 @@ $stage-width: 480px;
             height: $arrow-border-width;
 
             content: "";
+
+            @media #{$medium-and-small} {
+                display: none;
+            }
         }
     }
 
