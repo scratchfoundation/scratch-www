@@ -86,9 +86,10 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
     }
 
     .validation-message {
-        $arrow-border-width: 1rem;
         display: block;
         position: absolute;
+        z-index: 1;
+        $arrow-border-width: 1rem;
         margin-top: $arrow-border-width;
         border: 1px solid $active-gray;
         border-radius: 5px;
@@ -99,17 +100,16 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         overflow: visible;
         color: $type-white;
         font-size: 1rem;
-        z-index: 1;
 
         @media #{$medium-and-small} {
-            width: 100%;
             margin-top: calc($arrow-border-width / 2);
+            width: 100%;
         }
 
         &:before {
             display: block;
             position: absolute;
-            top: -0.5rem;
+            top: -.5rem;
             left: calc(50% - calc(#{$arrow-border-width} / 2));
 
             transform: rotate(135deg);
