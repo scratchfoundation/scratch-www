@@ -87,10 +87,6 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
-
-        @media #{$medium-and-small} {
-            min-width: 100%;
-        }
     }
 
     .validation-message {
@@ -203,6 +199,12 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         justify-content: space-between;
         align-items: flex-start;
         flex-wrap: nowrap;
+
+        &.force-row {
+            @media #{$medium-and-small} {
+                flex-direction: row;
+            }
+        }
     }
 
     .guiPlayer {

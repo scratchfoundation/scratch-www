@@ -84,7 +84,7 @@ const PreviewPresentation = ({
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <Formsy onKeyPress={onKeyPress}>
                     <div className="inner">
-                        <FlexRow className="preview-row">
+                        <FlexRow className="preview-row force-row">
                             <FlexRow className="project-header">
                                 <a href={`/users/${projectInfo.author.username}`}>
                                     <Avatar
@@ -354,10 +354,12 @@ const PreviewPresentation = ({
                                         }
                                     </FlexRow>
                                 </div>
-                                <FlexRow className="column">
-                                    <RemixList remixes={remixes} />
-                                    <StudioList studios={projectStudios} />
-                                </FlexRow>
+                                <MediaQuery minWidth={frameless.mobile}>
+                                    <FlexRow className="column">
+                                        <RemixList remixes={remixes} />
+                                        <StudioList studios={projectStudios} />
+                                    </FlexRow>
+                                </MediaQuery>
                             </FlexRow>
                         </div>
                     </div>
