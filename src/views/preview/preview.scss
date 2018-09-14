@@ -154,6 +154,10 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
     .comments-container {
         width: 65%;
+
+        @media #{$medium-and-small} {
+            width: 100%;
+        }
     }
 
     .remix-button,
@@ -195,6 +199,12 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         justify-content: space-between;
         align-items: flex-start;
         flex-wrap: nowrap;
+
+        &.force-row {
+            @media #{$medium-and-small} {
+                flex-direction: row;
+            }
+        }
     }
 
     .guiPlayer {
