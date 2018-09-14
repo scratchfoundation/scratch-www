@@ -2,6 +2,7 @@ const FormattedDate = require('react-intl').FormattedDate;
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
 const intlShape = require('react-intl').intlShape;
+const MediaQuery = require('react-responsive').default;
 const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
@@ -27,6 +28,8 @@ const ExtensionChip = require('./extension-chip.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
+
+const frameless = require('../../lib/frameless');
 
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
@@ -122,20 +125,22 @@ const PreviewPresentation = ({
                                     }
                                 </div>
                             </FlexRow>
-                            <div className="project-buttons">
-                                {/* TODO: Hide Remix button for now until implemented */}
-                                {(!userOwnsProject && false) &&
-                                    <Button className="button remix-button">
-                                        Remix
+                            <MediaQuery minWidth={frameless.tablet}>
+                                <div className="project-buttons">
+                                    {/* TODO: Hide Remix button for now until implemented */}
+                                    {(!userOwnsProject && false) &&
+                                        <Button className="button remix-button">
+                                            Remix
+                                        </Button>
+                                    }
+                                    <Button
+                                        className="button see-inside-button"
+                                        onClick={onSeeInside}
+                                    >
+                                        See Inside
                                     </Button>
-                                }
-                                <Button
-                                    className="button see-inside-button"
-                                    onClick={onSeeInside}
-                                >
-                                    See Inside
-                                </Button>
-                            </div>
+                                </div>
+                            </MediaQuery>
                         </FlexRow>
                         <FlexRow className="preview-row">
                             <div className="guiPlayer">
