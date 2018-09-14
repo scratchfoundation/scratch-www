@@ -6,10 +6,6 @@ $player-width: 482px;
 $player-height: 406px;
 $stage-width: 480px;
 
-/* screen sizes */
-$small: "screen and (max-width : #{$mobile}-1)";
-$medium: "screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
-$big: "screen and (min-width : #{$tablet})";
 $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
 /* override view padding for share banner */
@@ -211,6 +207,15 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         justify-content: space-between;
         align-items: flex-start;
         flex-wrap: nowrap;
+
+        &.wrap-to-col {
+            @media #{$medium-and-small} {
+                width: 100%;
+                flex-wrap: wrap-reverse;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
     }
 
     .guiPlayer {
@@ -347,11 +352,41 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         transform: scale(-1, 1);
         margin: 0;
         text-align: right;
+
+        @media #{$medium-and-small} {
+            padding: 0;
+        }
     }
 
     .stats {
         line-height: 2rem;
         justify-content: flex-start;
+    }
+
+    .stats, .subactions, .action-buttons {
+      @media #{$medium-and-small} {
+          margin: 0;
+          justify-content: center;
+          flex-direction: row;
+      }
+
+      & > div, .action-button {
+          @media #{$medium-and-small} {
+              padding: 0 1rem;
+          }
+      }
+    }
+
+    .stats, .subactions {
+      @media #{$medium-and-small} {
+          width: 100%;
+      }
+    }
+
+    .subactions {
+      @media #{$medium-and-small} {
+          margin-top: 1rem;
+      }
     }
 
     .project-loves,
