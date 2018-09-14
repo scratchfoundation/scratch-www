@@ -59,6 +59,10 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         .inplace-input {
             height: calc(3rem - 4px);
         }
+
+        @media #{$medium-and-small} {
+            flex-direction: row;
+        }
     }
 
     img {
@@ -83,6 +87,10 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
+
+        @media #{$medium-and-small} {
+            min-width: 100%;
+        }
     }
 
     .validation-message {
