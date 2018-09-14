@@ -31,7 +31,7 @@ const AddToStudioModalPresentation = ({
             includesProject={studio.includesProject}
             key={studio.id}
             title={studio.title}
-            onToggleStudio={onToggleStudio}
+            onClick={onToggleStudio}
         />
     ));
 
@@ -83,7 +83,7 @@ const AddToStudioModalPresentation = ({
                                     type="submit"
                                 >
                                     <div className="action-button-text">
-                                        <Spinner mode="smooth" />
+                                        <Spinner />
                                         <FormattedMessage id="addToStudio.finishing" />
                                     </div>
                                 </Button>

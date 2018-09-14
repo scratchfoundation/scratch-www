@@ -208,8 +208,8 @@ class Preview extends React.Component {
             );
         }
     }
-    handleToggleStudio (event) {
-        const studioId = parseInt(event.currentTarget.dataset.id, 10);
+    handleToggleStudio (id) {
+        const studioId = parseInt(id, 10);
         if (isNaN(studioId)) { // sanity check in case event had no integer data-id
             return;
         }

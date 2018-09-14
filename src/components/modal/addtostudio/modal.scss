@@ -89,10 +89,10 @@
     pointer-events: none; /* pass clicks through to buttons underneath */
 }
 
-
 .studio-selector-button {
     display: flex;
     position: relative;
+    transition: all .5s;
     margin: .21875rem .21875rem;
     border-radius: .5rem;
     background-color: $ui-white;
@@ -102,6 +102,7 @@
     height: 2.5rem;
     box-sizing: border-box;
     justify-content: space-between;
+
 }
 
 .studio-selector-button-text {
@@ -164,30 +165,30 @@
     background-color: $ui-blue;
 }
 
-.studio-status-icon-plus-img {
+.studio-status-icon-plus-img,
+.studio-status-icon-checkmark-img {
+    animation-direction: normal;
     width: 1.4rem;
     height: 1.4rem;
+    transform-origin: center;
 }
 
-.studio-status-icon--img {
-    width: 1.4rem;
-    height: 1.4rem;
+.studio-status-icon-with-animation {
+    animation-name: bump;
+    animation-duration: .25s;
+    animation-timing-function: cubic-bezier(.3, -3, .6, 3);
+    animation-iteration-count: 1;
 }
 
-.action-button-text .spinner-smooth {
-    margin: .2125rem auto;
-    width: 1.875rem;
-    height: 1rem;
-}
-
-.studio-status-icon .spinner-smooth {
-    position: unset; /* don't understand why neither relative nor absolute work */
-}
-
-.studio-status-icon .spinner-smooth .circle {
-    /* overlay spinner on circle */
-    position: absolute;
-    margin: .1875rem; /* stay within boundaries of circle */
-    width: 75%; /* stay within boundaries of circle */
-    height: 75%; /* stay within boundaries of circle */
+@keyframes bump {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+        -webkit-transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
 }
