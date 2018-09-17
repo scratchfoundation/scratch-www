@@ -4,7 +4,7 @@ const React = require('react');
 const connect = require('react-redux').connect;
 
 const IframeModal = require('../modal/iframe/modal.jsx');
-const sessionActions = require('../../redux/session.js');
+const navigationActions = require('../../redux/navigation.js');
 
 require('./registration.scss');
 
@@ -62,15 +62,15 @@ Registration.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    isOpen: state.session.registrationOpen
+    isOpen: state.navigation.registrationOpen
 });
 
 const mapDispatchToProps = dispatch => ({
     handleCloseRegistration: () => {
-        dispatch(sessionActions.handleCloseRegistration());
+        dispatch(navigationActions.setRegistrationOpen(false));
     },
     handleCompleteRegistration: () => {
-        dispatch(sessionActions.handleCompleteRegistration());
+        dispatch(navigationActions.handleCompleteRegistration());
     }
 });
 

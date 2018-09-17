@@ -4,6 +4,7 @@ const defaults = require('lodash.defaults');
 const messageCountReducer = require('./message-count.js').messageCountReducer;
 const permissionsReducer = require('./permissions.js').permissionsReducer;
 const sessionReducer = require('./session.js').sessionReducer;
+const navigationReducer = require('./navigation.js').navigationReducer;
 
 /**
  * Returns a combined reducer to be used for a page in `render.jsx`.
@@ -18,8 +19,9 @@ const sessionReducer = require('./session.js').sessionReducer;
 module.exports = opts => {
     opts = opts || {};
     return combineReducers(defaults(opts, {
-        session: sessionReducer,
+        messageCount: messageCountReducer,
+        navigation: navigationReducer,
         permissions: permissionsReducer,
-        messageCount: messageCountReducer
+        session: sessionReducer
     }));
 };

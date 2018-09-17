@@ -3,8 +3,6 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const log = require('../../lib/log.js');
-
 const Form = require('../forms/form.jsx');
 const Input = require('../forms/input.jsx');
 const Button = require('../forms/button.jsx');
@@ -24,8 +22,7 @@ class Login extends React.Component {
     }
     handleSubmit (formData) {
         this.setState({waiting: true});
-        this.props.onLogIn(formData, err => {
-            if (err) log.error(err);
+        this.props.onLogIn(formData, () => {
             this.setState({waiting: false});
         });
     }

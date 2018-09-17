@@ -7,8 +7,8 @@ const React = require('react');
 const api = require('../../lib/api');
 const injectIntl = require('../../lib/intl.jsx').injectIntl;
 const intlShape = require('../../lib/intl.jsx').intlShape;
-const log = require('../../lib/log.js');
 const sessionStatus = require('../../redux/session').Status;
+const navigationActions = require('../../redux/navigation.js');
 
 const Deck = require('../../components/deck/deck.jsx');
 const Progression = require('../../components/progression/progression.jsx');
@@ -24,7 +24,6 @@ class StudentCompleteRegistration extends React.Component {
         super(props);
         bindAll(this, [
             'handleAdvanceStep',
-            'handleLogOut',
             'handleRegister',
             'handleGoToClass'
         ]);
@@ -59,18 +58,6 @@ class StudentCompleteRegistration extends React.Component {
         this.setState({
             step: this.state.step + 1,
             formData: defaults({}, formData, this.state.formData)
-        });
-    }
-    handleLogOut (e) {
-        e.preventDefault();
-        api({
-            host: '',
-            method: 'post',
-            uri: '/accounts/logout/',
-            useCsrf: true
-        }, err => {
-            if (err) return log.error(err);
-            window.location = '/';
         });
     }
     handleRegister (formData) {
@@ -147,7 +134,7 @@ class StudentCompleteRegistration extends React.Component {
                                 classroom={this.state.classroom}
                                 studentUsername={this.props.studentUsername}
                                 waiting={this.state.waiting}
-                                onHandleLogOut={this.handleLogOut}
+                                onHandleLogOut={this.props.handleLogOut}
                                 onNextStep={this.handleAdvanceStep}
                             />
                             {this.props.must_reset_password ?
@@ -178,6 +165,7 @@ class StudentCompleteRegistration extends React.Component {
 
 StudentCompleteRegistration.propTypes = {
     classroomId: PropTypes.number.isRequired,
+    handleLogOut: PropTypes.func,
     intl: intlShape,
     must_reset_password: PropTypes.bool.isRequired,
     newStudent: PropTypes.bool.isRequired,
@@ -199,6 +187,16 @@ const mapStateToProps = state => ({
     studentUsername: state.session.session.user && state.session.session.user.username
 });
 
-const ConnectedStudentCompleteRegistration = connect(mapStateToProps)(IntlStudentCompleteRegistration);
+const mapDispatchToProps = dispatch => ({
+    handleLogOut: event => {
+        event.preventDefault();
+        dispatch(navigationActions.handleLogOut());
+    }
+});
+
+const ConnectedStudentCompleteRegistration = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(IntlStudentCompleteRegistration);
 
 render(<ConnectedStudentCompleteRegistration />, document.getElementById('app'));

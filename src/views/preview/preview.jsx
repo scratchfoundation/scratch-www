@@ -16,9 +16,11 @@ const EXTENSION_INFO = require('../../lib/extensions.js').default;
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 const Registration = require('../../components/registration/registration.jsx');
-const LoginDropdown = require('../../components/login/logindropdown.jsx');
+const ConnectedLogin = require('../../components/login/connected-login.jsx');
+const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 
 const sessionActions = require('../../redux/session.js');
+const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
 
 const GUI = require('scratch-gui');
@@ -43,7 +45,8 @@ class Preview extends React.Component {
             'handleUpdateProjectTitle',
             'handleUpdate',
             'initCounts',
-            'pushHistory'
+            'pushHistory',
+            'renderLogin'
         ]);
         const pathname = window.location.pathname.toLowerCase();
         const parts = pathname.split('/').filter(Boolean);
@@ -262,6 +265,23 @@ class Preview extends React.Component {
             loveCount: loves
         });
     }
+    renderLogin ({onClose}) {
+        return (
+            <ConnectedLogin
+                key="login-dropdown-presentation"
+                /* eslint-disable react/jsx-no-bind */
+                onLogIn={(formData, callback) => {
+                    this.props.handleLogIn(formData, result => {
+                        if (result.success === true) {
+                            onClose();
+                        }
+                        callback(result);
+                    });
+                }}
+                /* eslint-ensable react/jsx-no-bind */
+            />
+        );
+    }
     render () {
         return (
             this.props.playerMode ?
@@ -315,29 +335,16 @@ class Preview extends React.Component {
                         projectHost={this.props.projectHost}
                         projectId={this.state.projectId}
                         projectTitle={this.props.projectInfo.title}
-                        // onClickLogout={this.handleLogout}
-                        onCloseAccountNav={this.props.handleCloseAccountNav}
-                        onCloseCanceledDeletion={this.props.handleCloseCanceledDeletion}
-                        onCloseLogin={this.props.handleCloseLogin}
-                        onCloseRegistration={this.props.handleCloseRegistration}
-                        onCompleteRegistration={this.props.handleCompleteRegistration}
-                        onLogIn={this.props.handleLogIn}
+                        renderLogin={this.renderLogin}
                         onLogOut={this.props.handleLogOut}
-                        onOpenAccountNav={this.props.handleOpenAccountNav}
                         onOpenRegistration={this.props.handleOpenRegistration}
                         onToggleLoginOpen={this.props.handleToggleLoginOpen}
                         onUpdateProjectTitle={this.handleUpdateProjectTitle}
                     />
                     <Registration />
-                    <LoginDropdown
-                        error={this.props.loginError}
-                        isOpen={this.props.loginOpen}
-                        key="login-dropdown"
-                        mode="gui"
-                        onClose={this.props.handleCloseLogin}
-                        onLogIn={this.props.handleLogIn}
-                    />
+                    <CanceledDeletionModal />
                 </React.Fragment>
+
         );
     }
 }
@@ -360,21 +367,13 @@ Preview.propTypes = {
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getTopLevelComments: PropTypes.func.isRequired,
-    handleCloseAccountNav: PropTypes.func,
-    handleCloseCanceledDeletion: PropTypes.func,
-    handleCloseLogin: PropTypes.func,
-    handleCloseRegistration: PropTypes.func,
-    handleCompleteRegistration: PropTypes.func,
     handleLogIn: PropTypes.func,
     handleLogOut: PropTypes.func,
-    handleOpenAccountNav: PropTypes.func,
     handleOpenRegistration: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     isEditable: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isShared: PropTypes.bool,
-    loginError: PropTypes.string,
-    loginOpen: PropTypes.bool,
     loved: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
@@ -464,19 +463,17 @@ const mapStateToProps = state => {
         comments: state.preview.comments,
         faved: state.preview.faved,
         fullScreen: state.scratchGui.mode.isFullScreen,
-        // TODO: this value's logic is unfinished. Currently it seems to be
-        // identical to userOwnsProject, but we need to also set this true
-        // for admins and mods.
-        isEditable: isLoggedIn && authorPresent &&
-            state.preview.projectInfo.author.username === state.session.session.user.username,
+        // project is editable iff logged in user is the author of the project, or
+        // logged in user is an admin.
+        isEditable: isLoggedIn &&
+            ((authorPresent && state.preview.projectInfo.author.username === state.session.session.user.username) ||
+            state.permissions.admin === true),
         isLoggedIn: isLoggedIn,
         // if we don't have projectInfo, assume it's shared until we know otherwise
         isShared: !projectInfoPresent || (
             state.preview.projectInfo.history &&
             state.preview.projectInfo.history.shared &&
             state.preview.projectInfo.history.shared.length > 0),
-        loginError: state.session.loginError,
-        loginOpen: state.session.loginOpen,
         loved: state.preview.loved,
         original: state.preview.original,
         parent: state.preview.parent,
@@ -496,38 +493,21 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    handleOpenAccountNav: event => {
-        dispatch(sessionActions.handleOpenAccountNav(event));
-    },
-    handleCloseAccountNav: () => {
-        dispatch(sessionActions.handleCloseAccountNav());
-    },
-    handleCloseCanceledDeletion: () => {
-        dispatch(sessionActions.handleCloseCanceledDeletion());
-    },
-    handleCloseRegistration: () => {
-        dispatch(sessionActions.handleCloseRegistration());
-    },
-    handleCompleteRegistration: () => {
-        dispatch(sessionActions.handleCompleteRegistration());
-    },
     handleOpenRegistration: event => {
-        dispatch(sessionActions.handleOpenRegistration(event));
-    },
-    handleCloseLogin: () => {
-        dispatch(sessionActions.handleCloseLogin());
+        event.preventDefault();
+        dispatch(navigationActions.setRegistrationOpen(true));
     },
     handleLogIn: (formData, callback) => {
-        dispatch(sessionActions.handleLogIn(formData, callback));
+        dispatch(navigationActions.handleLogIn(formData, callback));
     },
     handleLogOut: event => {
-        dispatch(sessionActions.handleLogOut(event));
+        event.preventDefault();
+        dispatch(navigationActions.handleLogOut());
     },
     handleToggleLoginOpen: event => {
-        dispatch(sessionActions.handleToggleLoginOpen(event));
+        event.preventDefault();
+        dispatch(navigationActions.toggleLoginOpen());
     },
-
-
     getOriginalInfo: id => {
         dispatch(previewActions.getOriginalInfo(id));
     },
@@ -567,9 +547,6 @@ const mapDispatchToProps = dispatch => ({
     },
     setLovedStatus: (loved, id, username, token) => {
         dispatch(previewActions.setLovedStatus(loved, id, username, token));
-    },
-    refreshSession: () => {
-        dispatch(sessionActions.refreshSession());
     },
     reportProject: (id, formData) => {
         dispatch(previewActions.reportProject(id, formData));

@@ -8,15 +8,14 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const messageCountActions = require('../../../redux/message-count.js');
+const navigationActions = require('../../../redux/navigation.js');
 const sessionActions = require('../../../redux/session.js');
 
-// const api = require('../../../lib/api');
 const Button = require('../../forms/button.jsx');
 const Form = require('../../forms/form.jsx');
 const Input = require('../../forms/input.jsx');
-// const log = require('../../../lib/log.js');
-const LoginDropdown = require('../../login/logindropdown.jsx');
-const Modal = require('../../modal/base/modal.jsx');
+const LoginDropdown = require('../../login/login-dropdown.jsx');
+const CanceledDeletionModal = require('../../login/canceled-deletion-modal.jsx');
 const NavigationBox = require('../base/navigation.jsx');
 const Registration = require('../../registration/registration.jsx');
 const AccountNav = require('./accountnav.jsx');
@@ -35,9 +34,9 @@ class Navigation extends React.Component {
         };
     }
     componentDidMount () {
-        if (this.props.session.session.user) {
+        if (this.props.user) {
             const intervalId = setInterval(() => {
-                this.props.getMessageCount(this.props.session.session.user.username);
+                this.props.getMessageCount(this.props.user.username);
             }, 120000); // check for new messages every 2 mins.
             this.setState({ // eslint-disable-line react/no-did-mount-set-state
                 messageCountIntervalId: intervalId
@@ -45,11 +44,11 @@ class Navigation extends React.Component {
         }
     }
     componentDidUpdate (prevProps) {
-        if (prevProps.session.session.user !== this.props.session.session.user) {
+        if (prevProps.user !== this.props.user) {
             this.props.closeAccountMenus();
-            if (this.props.session.session.user) {
+            if (this.props.user) {
                 const intervalId = setInterval(() => {
-                    this.props.getMessageCount(this.props.session.session.user.username);
+                    this.props.getMessageCount(this.props.user.username);
                 }, 120000); // check for new messages every 2 mins.
                 this.setState({ // eslint-disable-line react/no-did-update-set-state
                     messageCountIntervalId: intervalId
@@ -75,18 +74,18 @@ class Navigation extends React.Component {
         }
     }
     getProfileUrl () {
-        if (!this.props.session.session.user) return;
-        return `/users/${this.props.session.session.user.username}/`;
+        if (!this.props.user) return;
+        return `/users/${this.props.user.username}/`;
     }
     handleSearchSubmit (formData) {
         window.location.href = `/search/projects?q=${encodeURIComponent(formData.q)}`;
     }
     render () {
-        const createLink = this.props.session.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
+        const createLink = this.props.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
         return (
             <NavigationBox
                 className={classNames({
-                    'logged-in': this.props.session.session.user
+                    'logged-in': this.props.user
                 })}
             >
                 <ul>
@@ -134,7 +133,7 @@ class Navigation extends React.Component {
                         </Form>
                     </li>
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
-                        this.props.session.session.user ? [
+                        this.props.user ? [
                             <li
                                 className="link right messages"
                                 key="messages"
@@ -168,14 +167,14 @@ class Navigation extends React.Component {
                                 key="account-nav"
                             >
                                 <AccountNav
-                                    classroomId={this.props.session.session.user.classroomId}
+                                    classroomId={this.props.user.classroomId}
                                     isEducator={this.props.permissions.educator}
-                                    isOpen={this.props.session.accountNavOpen}
+                                    isOpen={this.props.accountNavOpen}
                                     isStudent={this.props.permissions.student}
                                     profileUrl={this.getProfileUrl()}
-                                    thumbnailUrl={this.props.session.session.user.thumbnailUrl}
-                                    username={this.props.session.session.user.username}
-                                    onClick={this.props.handleOpenAccountNav}
+                                    thumbnailUrl={this.props.user.thumbnailUrl}
+                                    username={this.props.user.username}
+                                    onClick={this.props.handleToggleAccountNav}
                                     onClickLogout={this.props.handleLogOut}
                                     onClose={this.props.handleCloseAccountNav}
                                 />
@@ -208,53 +207,25 @@ class Navigation extends React.Component {
                                     <FormattedMessage id="general.signIn" />
                                 </a>
                                 <LoginDropdown
-                                    error={this.props.session.loginError}
-                                    isOpen={this.props.session.loginOpen}
                                     key="login-dropdown"
-                                    mode="www"
-                                    onClose={this.props.handleCloseLogin}
-                                    onLogIn={this.props.handleLogIn}
                                 />
                             </li>
                         ]) : []}
                 </ul>
-                <Modal
-                    isOpen={this.props.session.canceledDeletionOpen}
-                    style={{
-                        content: {
-                            padding: 15
-                        }
-                    }}
-                    onRequestClose={this.props.handleCloseCanceledDeletion}
-                >
-                    <h4>Your Account Will Not Be Deleted</h4>
-                    <h4><FormattedMessage id="general.noDeletionTitle" /></h4>
-                    <p>
-                        <FormattedMessage
-                            id="general.noDeletionDescription"
-                            values={{
-                                resetLink: <a href="/accounts/password_reset/">
-                                    {this.props.intl.formatMessage({id: 'general.noDeletionLink'})}
-                                </a>
-                            }}
-                        />
-                    </p>
-                </Modal>
+                <CanceledDeletionModal />
             </NavigationBox>
         );
     }
 }
 
 Navigation.propTypes = {
+    accountNavOpen: PropTypes.bool,
     closeAccountMenus: PropTypes.func,
     getMessageCount: PropTypes.func,
     handleCloseAccountNav: PropTypes.func,
-    handleCloseCanceledDeletion: PropTypes.func,
-    handleCloseLogin: PropTypes.func,
-    handleLogIn: PropTypes.func,
     handleLogOut: PropTypes.func,
-    handleOpenAccountNav: PropTypes.func,
     handleOpenRegistration: PropTypes.func,
+    handleToggleAccountNav: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     intl: intlShape,
     permissions: PropTypes.shape({
@@ -266,21 +237,15 @@ Navigation.propTypes = {
     }),
     searchTerm: PropTypes.string,
     session: PropTypes.shape({
-        accountNavOpen: PropTypes.bool,
-        canceledDeletionOpen: PropTypes.bool,
-        loginOpen: PropTypes.bool,
-        loginError: PropTypes.string,
-        session: PropTypes.shape({
-            user: PropTypes.shape({
-                classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                thumbnailUrl: PropTypes.string,
-                username: PropTypes.string
-            })
-        }),
         status: PropTypes.string
     }),
     setMessageCount: PropTypes.func,
-    unreadMessageCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    unreadMessageCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    user: PropTypes.shape({
+        classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        thumbnailUrl: PropTypes.string,
+        username: PropTypes.string
+    })
 };
 
 Navigation.defaultProps = {
@@ -290,42 +255,39 @@ Navigation.defaultProps = {
 };
 
 const mapStateToProps = state => ({
+    accountNavOpen: state.navigation && state.navigation.accountNavOpen,
     session: state.session,
     permissions: state.permissions,
+    searchTerm: state.navigation.searchTerm,
     unreadMessageCount: state.messageCount.messageCount,
-    searchTerm: state.navigation
+    user: state.session && state.session.session && state.session.session.user
 });
 
 const mapDispatchToProps = dispatch => ({
     closeAccountMenus: () => {
-        dispatch(sessionActions.closeAccountMenus());
+        dispatch(navigationActions.closeAccountMenus());
     },
     getMessageCount: username => {
         dispatch(messageCountActions.getCount(username));
     },
-    handleOpenAccountNav: event => {
-        dispatch(sessionActions.handleOpenAccountNav(event));
+    handleToggleAccountNav: event => {
+        event.preventDefault();
+        dispatch(navigationActions.handleToggleAccountNav());
     },
     handleCloseAccountNav: () => {
-        dispatch(sessionActions.handleCloseAccountNav());
-    },
-    handleCloseCanceledDeletion: () => {
-        dispatch(sessionActions.handleCloseCanceledDeletion());
+        dispatch(navigationActions.setAccountNavOpen(false));
     },
     handleOpenRegistration: event => {
-        dispatch(sessionActions.handleOpenRegistration(event));
-    },
-    handleCloseLogin: () => {
-        dispatch(sessionActions.handleCloseLogin());
-    },
-    handleLogIn: (formData, callback) => {
-        dispatch(sessionActions.handleLogIn(formData, callback));
+        event.preventDefault();
+        dispatch(navigationActions.setRegistrationOpen(true));
     },
     handleLogOut: event => {
-        dispatch(sessionActions.handleLogOut(event));
+        event.preventDefault();
+        dispatch(navigationActions.handleLogOut());
     },
     handleToggleLoginOpen: event => {
-        dispatch(sessionActions.handleToggleLoginOpen(event));
+        event.preventDefault();
+        dispatch(navigationActions.toggleLoginOpen());
     },
     setMessageCount: newCount => {
         dispatch(messageCountActions.setCount(newCount));
