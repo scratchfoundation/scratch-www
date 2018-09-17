@@ -153,7 +153,19 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
     }
 
     .comments-container {
-        width: 65%;
+        min-width: 65%;
+
+        @media #{$medium-and-small} {
+            width: 100%;
+        }
+
+        .comment, .comment-top-row, .comment-bottom-row {
+          flex-direction: row;
+        }
+
+        .comment-bubble {
+          text-align: left;
+        }
     }
 
     .remix-button,
