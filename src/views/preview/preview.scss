@@ -11,6 +11,7 @@ $small: "screen and (max-width : #{$mobile}-1)";
 $medium: "screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
 $big: "screen and (min-width : #{$tablet})";
 $medium-and-small: "screen and (max-width : #{$tablet}-1)";
+$little-height: "screen and (max-height : 460px)";
 
 /* override view padding for share banner */
 #view {

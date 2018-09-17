@@ -1,6 +1,11 @@
 @import "../../../colors";
 @import "../../../frameless";
 
+$small: "only screen and (max-width : #{$mobile})";
+$medium: "only screen and (min-width : #{$mobile}+1) and (max-width : #{$tablet}-1)";
+$small-height: "only screen and (max-height : #{$mobile})";
+$medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height : #{$tablet} - 1)";
+
 .mod-report * {
     box-sizing: border-box;
 }
@@ -9,32 +14,45 @@
     margin: 100px auto;
     outline: none;
     padding: 0;
-    width: 36.25rem; /* 580px; */
+    max-width: 36.25rem; /* 580px; */
     user-select: none;
+
+    @media #{$medium}, #{$medium-height} {
+        margin: 40px auto;
+    }
+
+    @media #{$small}, #{$small-height} {
+        width: auto;
+        margin: 0 auto;
+    }
 }
 
 .report-modal-header {
     border-radius: 1rem 1rem 0 0;
     box-shadow: inset 0 -1px 0 0 $ui-coral-dark;
     background-color: $ui-coral;
-    padding-top: .75rem;
-    width: 100%;
-    height: 3rem;
-    box-sizing: border-box;
+    // padding-top: .75rem;
+    // width: 100%;
+    // height: 3rem;
+    // box-sizing: border-box;
+    //
+    // @media #{$small}, #{$small-height} {
+    //     border-radius: 0;
+    // }
 }
 
-.report-content-label {
-    text-align: center;
-    color: $type-white;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    font-weight: bold;
-}
+// .report-content-label {
+//     text-align: center;
+//     color: $type-white;
+//     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+//     font-size: 1rem;
+//     font-weight: bold;
+// }
 
 .report-modal-content {
     margin: 1rem auto;
     width: 80%;
-    font-size: .875rem;
+    // font-size: .875rem;
 
     .instructions {
         line-height: 1.5rem;

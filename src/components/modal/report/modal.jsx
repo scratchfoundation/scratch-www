@@ -111,6 +111,7 @@ class ReportModal extends React.Component {
         const contentLabel = intl.formatMessage({id: `report.${type}`});
         return (
             <Modal
+                standardSizes
                 className="mod-report"
                 contentLabel={contentLabel}
                 isOpen={isOpen}
@@ -118,8 +119,8 @@ class ReportModal extends React.Component {
                 {...modalProps}
             >
                 <div>
-                    <div className="report-modal-header">
-                        <div className="report-content-label">
+                    <div className="report-modal-header modal-header">
+                        <div className="report-content-label content-label">
                             {contentLabel}
                         </div>
                     </div>
@@ -130,7 +131,7 @@ class ReportModal extends React.Component {
                         onValid={this.handleValid}
                         onValidSubmit={onReport}
                     >
-                        <div className="report-modal-content">
+                        <div className="report-modal-content modal-content">
                             {isConfirmed ? (
                                 <div className="received">
                                     <div className="received-header">

@@ -37,18 +37,19 @@ const AddToStudioModalPresentation = ({
 
     return (
         <Modal
+            standardSizes
             className="mod-addToStudio"
             contentLabel={contentLabel}
             isOpen={isOpen}
             onRequestClose={onRequestClose}
         >
             <div>
-                <div className="addToStudio-modal-header">
-                    <div className="addToStudio-content-label">
+                <div className="addToStudio-modal-header modal-header">
+                    <div className="addToStudio-content-label content-label">
                         {contentLabel}
                     </div>
                 </div>
-                <div className="addToStudio-modal-content">
+                <div className="addToStudio-modal-content modal-content">
                     <div className="studio-list-outer-scrollbox">
                         <div className="studio-list-inner-scrollbox">
                             <div className="studio-list-container">
