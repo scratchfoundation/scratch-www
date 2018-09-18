@@ -63,7 +63,7 @@ Modal.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     overlayClassName: PropTypes.string,
-    standardSizes: PropTypes.boolean
+    standardSizes: PropTypes.bool
 };
 
 module.exports = Modal;

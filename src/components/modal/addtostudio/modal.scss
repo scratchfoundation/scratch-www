@@ -6,55 +6,15 @@ $medium: "only screen and (min-width : #{$mobile}+1) and (max-width : #{$tablet}
 $small-height: "only screen and (max-height : #{$mobile})";
 $medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height : #{$tablet} - 1)";
 
-.mod-addToStudio * {
-    // box-sizing: border-box;
-}
-
-.mod-addToStudio {
-    // margin: 100px auto;
-    // outline: none;
-    // padding: 0;
-    // max-width: 36.25rem; /* 580px; */
-    height: 388px; /* 24.25rem; */
-    // overflow: hidden;
-    // user-select: none;
-    //
-    // @media #{$medium}, #{$medium-height} {
-    //     margin: 40px auto;
-    // }
-    //
-    // @media #{$small}, #{$small-height} {
-    //     width: auto;
-    //     height: 100%;
-    //     margin: 0 auto;
-    // }
-}
-
 .addToStudio-modal-header {
     box-shadow: inset 0 -1px 0 0 $ui-blue-dark;
     background-color: $ui-blue;
-    // padding-top: .75rem;
-    // width: 100%;
-    // height: 3rem;
-    // box-sizing: border-box;
-
-    // @media #{$small}, #{$small-height} {
-    //     border-radius: 0;
-    // }
 }
-
-// .addToStudio-content-label {
-//     text-align: center;
-//     color: $type-white;
-//     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-//     font-size: 1rem;
-//     font-weight: bold;
-// }
 
 .addToStudio-modal-content {
     margin: 0 auto;
     width: 100%;
-    // font-size: .875rem;
+    box-shadow: none;
 }
 
 .studio-list-outer-scrollbox {
@@ -112,35 +72,32 @@ $medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height :
     display: flex;
     position: relative;
     transition: all .5s;
-    margin: .21875rem .21875rem;
+    margin: .21875rem;
     border-radius: .5rem;
     background-color: $ui-white;
     cursor: pointer;
     padding: 0;
-    width: 16.1875rem; /* 259px */
+    width: 48%;
     height: 2.5rem;
-    box-sizing: border-box;
     justify-content: space-between;
+    align-items: center;
 
+    @media #{$small} {
+        min-width: 98%;
+        flex-shrink: 1;
+    }
 }
 
 .studio-selector-button-text {
-    position: absolute;
-    /* per spec, should be:
-    margin: .375rem 2.18375rem .375rem .6875rem
-    but in practice, our css seems to vertically align text to top, where
-    invision spec aligned to middle.
-    */
-    margin: .575rem 2.18375rem .175rem .6875rem;
-    width: 13.3125rem;
-    height: 1.25rem; /* diff from spec, in case we ever do valign to middle; changed to match line-height because else with overflow hidden it cuts off some letters */
+    margin: auto 2.18375rem auto .6875rem;
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.25rem;
     white-space: nowrap;
     font-family: "Helvetica Neue";
     font-size: .875rem;
     font-weight: regular;
+    flex-shrink: 1;
 }
 
 .studio-selector-button-selected {
@@ -163,7 +120,7 @@ $medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height :
 
 .studio-status-icon {
     position: absolute;
-    margin: .5rem .625rem .5rem 14.0625rem;
+    right: .625rem;
     border-radius: .75rem;
     padding: .0625rem .075rem;
     width: 1.5rem;
