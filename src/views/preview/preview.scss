@@ -190,9 +190,8 @@ $stage-width: 480px;
     }
 
     .project-notes {
-        // not 1.5rem because of stage padding
         margin-left: 1rem;
-        height: #{$player-height};
+        height: $player-height;
         align-items: flex-start;
         flex: 1;
         flex-flow: column;
