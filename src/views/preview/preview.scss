@@ -192,11 +192,14 @@ $stage-width: 480px;
     .project-notes {
         // not 1.5rem because of stage padding
         margin-left: 1rem;
-        height: calc(#{$player-height} - 1rem);
+        height: #{$player-height};
         align-items: flex-start;
         flex: 1;
         flex-flow: column;
-        align-self: flex-end;
+
+        > .description-block:first-child {
+            margin-top: 1rem;
+        }
     }
 
     .share-date {
@@ -228,6 +231,14 @@ $stage-width: 480px;
     .credit-text {
         font-size: .875rem;
         flex-shrink: 1;
+    }
+
+    .credit-text {
+        /* Line clamping is not supported in IE, FF yet */
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
     }
 
     .description-block {
