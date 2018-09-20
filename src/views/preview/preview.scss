@@ -255,6 +255,13 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         line-height: 2rem;
         color: $type-gray;
         font-size: .875rem;
+
+        @media #{$small} {
+            order: 100;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
     }
 
     .subactions {
