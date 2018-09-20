@@ -232,14 +232,6 @@ $stage-width: 480px;
         flex-shrink: 1;
     }
 
-    .credit-text {
-        /* Line clamping is not supported in IE, FF yet */
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-    }
-
     .description-block {
         display: flex;
         width: 100%;
