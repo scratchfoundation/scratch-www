@@ -515,6 +515,12 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
     .extension-list {
         justify-content: flex-start;
+        flex-direction: row;
+
+        @media #{$medium-and-small} {
+            justify-content: center;
+        }
+
     }
 
     .remix-list,
