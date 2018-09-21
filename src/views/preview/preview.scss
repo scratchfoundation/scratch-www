@@ -9,7 +9,7 @@ $stage-width: 480px;
 /* screen sizes */
 $small: "screen and (max-width : #{$mobile}-1)";
 $medium: "screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
-$big: "screen and (min-width : #{$tablet})";
+$intermediate: "screen and (min-width : #{$tablet}) and (max-width : 941px)"; /* 941 because currently breakpoint of .inner in www is 941 */
 $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
 /* override view padding for share banner */
@@ -27,6 +27,19 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 }
 
 .preview {
+
+    .inner {
+      @media #{$medium-and-small} {
+          max-width: 90%;
+          margin: 0 auto;
+      }
+
+      @media #{$intermediate} {
+          min-width: 640px;
+          width: 90%;
+          margin: 0 auto;
+      }
+    }
 
     .project-title {
         font-size: 1.75rem;
