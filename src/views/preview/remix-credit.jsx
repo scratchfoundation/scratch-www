@@ -19,6 +19,7 @@ const RemixCredit = props => {
                     {projectInfo.author.username}
                 </a> for the original project <a
                     href={`/preview/${projectInfo.id}`}
+                    title={projectInfo.title}
                 >
                     {projectInfo.title}
                 </a>.
