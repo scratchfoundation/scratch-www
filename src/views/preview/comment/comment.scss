@@ -1,7 +1,5 @@
 @import "../../../colors";
 
-$cross-browser-transparent: hsla(0, 0, 100%, 0);
-
 .compose-comment {
     width: 100%;
 
@@ -174,7 +172,7 @@ $cross-browser-transparent: hsla(0, 0, 100%, 0);
                 position: absolute;
                 bottom: 0;
                 background: linear-gradient(
-                    $cross-browser-transparent,
+                    $ui-light-primary-transparent,
                     $ui-light-primary
                 );
                 width: 100%;
