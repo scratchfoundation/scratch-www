@@ -7,7 +7,7 @@ const ReactModal = require('react-modal');
 
 require('./modal.scss');
 
-ReactModal.setAppElement(document.getElementById('view'));
+ReactModal.setAppElement(document.getElementById('app'));
 
 /**
  * Container for pop up windows (See: registration window)
@@ -25,7 +25,7 @@ class Modal extends React.Component {
     render () {
         return (
             <ReactModal
-                appElement={document.getElementById('view')}
+                appElement={document.getElementById('app')}
                 className={{
                     base: classNames('modal-content', this.props.className),
                     afterOpen: classNames('modal-content', this.props.className),

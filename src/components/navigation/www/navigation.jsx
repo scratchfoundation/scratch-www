@@ -8,16 +8,14 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const messageCountActions = require('../../../redux/message-count.js');
+const navigationActions = require('../../../redux/navigation.js');
 const sessionActions = require('../../../redux/session.js');
 
-const api = require('../../../lib/api');
 const Button = require('../../forms/button.jsx');
-const Dropdown = require('../../dropdown/dropdown.jsx');
 const Form = require('../../forms/form.jsx');
 const Input = require('../../forms/input.jsx');
-const log = require('../../../lib/log.js');
-const Login = require('../../login/login.jsx');
-const Modal = require('../../modal/base/modal.jsx');
+const LoginDropdown = require('../../login/login-dropdown.jsx');
+const CanceledDeletionModal = require('../../login/canceled-deletion-modal.jsx');
 const NavigationBox = require('../base/navigation.jsx');
 const Registration = require('../../registration/registration.jsx');
 const AccountNav = require('./accountnav.jsx');
@@ -29,32 +27,16 @@ class Navigation extends React.Component {
         super(props);
         bindAll(this, [
             'getProfileUrl',
-            'handleJoinClick',
-            'handleLoginClick',
-            'handleCloseLogin',
-            'handleLogIn',
-            'handleLogOut',
-            'handleAccountNavClick',
-            'handleCloseAccountNav',
-            'showCanceledDeletion',
-            'handleCloseCanceledDeletion',
-            'handleCloseRegistration',
-            'handleCompleteRegistration',
             'handleSearchSubmit'
         ]);
         this.state = {
-            accountNavOpen: false,
-            canceledDeletionOpen: false,
-            loginOpen: false,
-            loginError: null,
-            registrationOpen: false,
             messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
         };
     }
     componentDidMount () {
-        if (this.props.session.session.user) {
+        if (this.props.user) {
             const intervalId = setInterval(() => {
-                this.props.getMessageCount(this.props.session.session.user.username);
+                this.props.getMessageCount(this.props.user.username);
             }, 120000); // check for new messages every 2 mins.
             this.setState({ // eslint-disable-line react/no-did-mount-set-state
                 messageCountIntervalId: intervalId
@@ -62,14 +44,11 @@ class Navigation extends React.Component {
         }
     }
     componentDidUpdate (prevProps) {
-        if (prevProps.session.session.user !== this.props.session.session.user) {
-            this.setState({ // eslint-disable-line react/no-did-update-set-state
-                loginOpen: false,
-                accountNavOpen: false
-            });
-            if (this.props.session.session.user) {
+        if (prevProps.user !== this.props.user) {
+            this.props.closeAccountMenus();
+            if (this.props.user) {
                 const intervalId = setInterval(() => {
-                    this.props.getMessageCount(this.props.session.session.user.username);
+                    this.props.getMessageCount(this.props.user.username);
                 }, 120000); // check for new messages every 2 mins.
                 this.setState({ // eslint-disable-line react/no-did-update-set-state
                     messageCountIntervalId: intervalId
@@ -88,104 +67,25 @@ class Navigation extends React.Component {
         // clear message interval if it exists
         if (this.state.messageCountIntervalId !== -1) {
             clearInterval(this.state.messageCountIntervalId);
-            this.props.dispatch(messageCountActions.setCount(0));
+            this.props.setMessageCount(0);
             this.setState({
                 messageCountIntervalId: -1
             });
         }
     }
     getProfileUrl () {
-        if (!this.props.session.session.user) return;
-        return `/users/${this.props.session.session.user.username}/`;
-    }
-    handleJoinClick (e) {
-        e.preventDefault();
-        this.setState({registrationOpen: true});
-    }
-    handleLoginClick (e) {
-        e.preventDefault();
-        this.setState({loginOpen: !this.state.loginOpen});
-    }
-    handleCloseLogin () {
-        this.setState({loginOpen: false});
-    }
-    // NOTE: TODO: continue here. Should move these two functions up to a redux level,
-    // maybe into session...
-    handleLogIn (formData, callback) {
-        this.setState({loginError: null});
-        formData.useMessages = true;
-        api({
-            method: 'post',
-            host: '',
-            uri: '/accounts/login/',
-            json: formData,
-            useCsrf: true
-        }, (err, body) => {
-            if (err) this.setState({loginError: err.message});
-            if (body) {
-                body = body[0];
-                if (body.success) {
-                    this.handleCloseLogin();
-                    body.messages.map(message => { // eslint-disable-line array-callback-return
-                        if (message.message === 'canceled-deletion') {
-                            this.showCanceledDeletion();
-                        }
-                    });
-                    this.props.refreshSession();
-                } else {
-                    if (body.redirect) {
-                        window.location = body.redirect;
-                    }
-                    // Update login error message to a friendlier one if it exists
-                    this.setState({loginError: body.msg});
-                }
-            }
-            // JS error already logged by api mixin
-            callback();
-        });
-    }
-    handleLogOut (e) {
-        e.preventDefault();
-        api({
-            host: '',
-            method: 'post',
-            uri: '/accounts/logout/',
-            useCsrf: true
-        }, err => {
-            if (err) log.error(err);
-            this.handleCloseLogin();
-            window.location = '/';
-        });
-    }
-    handleAccountNavClick (e) {
-        e.preventDefault();
-        this.setState({accountNavOpen: true});
-    }
-    handleCloseAccountNav () {
-        this.setState({accountNavOpen: false});
-    }
-    showCanceledDeletion () {
-        this.setState({canceledDeletionOpen: true});
-    }
-    handleCloseCanceledDeletion () {
-        this.setState({canceledDeletionOpen: false});
-    }
-    handleCloseRegistration () {
-        this.setState({registrationOpen: false});
-    }
-    handleCompleteRegistration () {
-        this.props.dispatch(sessionActions.refreshSession());
-        this.handleCloseRegistration();
+        if (!this.props.user) return;
+        return `/users/${this.props.user.username}/`;
     }
     handleSearchSubmit (formData) {
         window.location.href = `/search/projects?q=${encodeURIComponent(formData.q)}`;
     }
     render () {
-        const createLink = this.props.session.session.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
+        const createLink = this.props.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
         return (
             <NavigationBox
                 className={classNames({
-                    'logged-in': this.props.session.session.user
+                    'logged-in': this.props.user
                 })}
             >
                 <ul>
@@ -233,7 +133,7 @@ class Navigation extends React.Component {
                         </Form>
                     </li>
                     {this.props.session.status === sessionActions.Status.FETCHED ? (
-                        this.props.session.session.user ? [
+                        this.props.user ? [
                             <li
                                 className="link right messages"
                                 key="messages"
@@ -267,16 +167,16 @@ class Navigation extends React.Component {
                                 key="account-nav"
                             >
                                 <AccountNav
-                                    classroomId={this.props.session.session.user.classroomId}
+                                    classroomId={this.props.user.classroomId}
                                     isEducator={this.props.permissions.educator}
-                                    isOpen={this.state.accountNavOpen}
+                                    isOpen={this.props.accountNavOpen}
                                     isStudent={this.props.permissions.student}
                                     profileUrl={this.getProfileUrl()}
-                                    thumbnailUrl={this.props.session.session.user.thumbnailUrl}
-                                    username={this.props.session.session.user.username}
-                                    onClick={this.handleAccountNavClick}
-                                    onClickLogout={this.handleLogOut}
-                                    onClose={this.handleCloseAccountNav}
+                                    thumbnailUrl={this.props.user.thumbnailUrl}
+                                    username={this.props.user.username}
+                                    onClick={this.props.handleToggleAccountNav}
+                                    onClickLogout={this.props.handleLogOut}
+                                    onClose={this.props.handleCloseAccountNav}
                                 />
                             </li>
                         ] : [
@@ -286,16 +186,13 @@ class Navigation extends React.Component {
                             >
                                 <a
                                     href="#"
-                                    onClick={this.handleJoinClick}
+                                    onClick={this.props.handleOpenRegistration}
                                 >
                                     <FormattedMessage id="general.joinScratch" />
                                 </a>
                             </li>,
                             <Registration
-                                isOpen={this.state.registrationOpen}
                                 key="registration"
-                                onRegistrationDone={this.handleCompleteRegistration}
-                                onRequestClose={this.handleCloseRegistration}
                             />,
                             <li
                                 className="link right login-item"
@@ -305,54 +202,31 @@ class Navigation extends React.Component {
                                     className="ignore-react-onclickoutside"
                                     href="#"
                                     key="login-link"
-                                    onClick={this.handleLoginClick}
+                                    onClick={this.props.handleToggleLoginOpen}
                                 >
                                     <FormattedMessage id="general.signIn" />
                                 </a>
-                                <Dropdown
-                                    className="login-dropdown with-arrow"
-                                    isOpen={this.state.loginOpen}
+                                <LoginDropdown
                                     key="login-dropdown"
-                                    onRequestClose={this.handleCloseLogin}
-                                >
-                                    <Login
-                                        error={this.state.loginError}
-                                        onLogIn={this.handleLogIn}
-                                    />
-                                </Dropdown>
+                                />
                             </li>
                         ]) : []}
                 </ul>
-                <Modal
-                    isOpen={this.state.canceledDeletionOpen}
-                    style={{
-                        content: {
-                            padding: 15
-                        }
-                    }}
-                    onRequestClose={this.handleCloseCanceledDeletion}
-                >
-                    <h4>Your Account Will Not Be Deleted</h4>
-                    <h4><FormattedMessage id="general.noDeletionTitle" /></h4>
-                    <p>
-                        <FormattedMessage
-                            id="general.noDeletionDescription"
-                            values={{
-                                resetLink: <a href="/accounts/password_reset/">
-                                    {this.props.intl.formatMessage({id: 'general.noDeletionLink'})}
-                                </a>
-                            }}
-                        />
-                    </p>
-                </Modal>
+                <CanceledDeletionModal />
             </NavigationBox>
         );
     }
 }
 
 Navigation.propTypes = {
-    dispatch: PropTypes.func,
+    accountNavOpen: PropTypes.bool,
+    closeAccountMenus: PropTypes.func,
     getMessageCount: PropTypes.func,
+    handleCloseAccountNav: PropTypes.func,
+    handleLogOut: PropTypes.func,
+    handleOpenRegistration: PropTypes.func,
+    handleToggleAccountNav: PropTypes.func,
+    handleToggleLoginOpen: PropTypes.func,
     intl: intlShape,
     permissions: PropTypes.shape({
         admin: PropTypes.bool,
@@ -361,20 +235,17 @@ Navigation.propTypes = {
         educator_invitee: PropTypes.bool,
         student: PropTypes.bool
     }),
-    refreshSession: PropTypes.func,
     searchTerm: PropTypes.string,
     session: PropTypes.shape({
-        session: PropTypes.shape({
-            user: PropTypes.shape({
-                classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-                thumbnailUrl: PropTypes.string,
-                username: PropTypes.string
-            })
-        }),
         status: PropTypes.string
     }),
     setMessageCount: PropTypes.func,
-    unreadMessageCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    unreadMessageCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    user: PropTypes.shape({
+        classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        thumbnailUrl: PropTypes.string,
+        username: PropTypes.string
+    })
 };
 
 Navigation.defaultProps = {
@@ -384,18 +255,39 @@ Navigation.defaultProps = {
 };
 
 const mapStateToProps = state => ({
+    accountNavOpen: state.navigation && state.navigation.accountNavOpen,
     session: state.session,
     permissions: state.permissions,
+    searchTerm: state.navigation.searchTerm,
     unreadMessageCount: state.messageCount.messageCount,
-    searchTerm: state.navigation
+    user: state.session && state.session.session && state.session.session.user
 });
 
 const mapDispatchToProps = dispatch => ({
+    closeAccountMenus: () => {
+        dispatch(navigationActions.closeAccountMenus());
+    },
     getMessageCount: username => {
         dispatch(messageCountActions.getCount(username));
     },
-    refreshSession: () => {
-        dispatch(sessionActions.refreshSession());
+    handleToggleAccountNav: event => {
+        event.preventDefault();
+        dispatch(navigationActions.handleToggleAccountNav());
+    },
+    handleCloseAccountNav: () => {
+        dispatch(navigationActions.setAccountNavOpen(false));
+    },
+    handleOpenRegistration: event => {
+        event.preventDefault();
+        dispatch(navigationActions.setRegistrationOpen(true));
+    },
+    handleLogOut: event => {
+        event.preventDefault();
+        dispatch(navigationActions.handleLogOut());
+    },
+    handleToggleLoginOpen: event => {
+        event.preventDefault();
+        dispatch(navigationActions.toggleLoginOpen());
     },
     setMessageCount: newCount => {
         dispatch(messageCountActions.setCount(newCount));

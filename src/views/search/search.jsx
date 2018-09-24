@@ -37,7 +37,7 @@ class Search extends React.Component {
         this.state.mode = 'popular';
         this.state.offset = 0;
         this.state.loadMore = false;
-        
+
         let mode = '';
         const query = window.location.search;
         const m = query.lastIndexOf('mode=');
@@ -54,7 +54,7 @@ class Search extends React.Component {
         if (ACCEPTABLE_MODES.indexOf(mode) !== -1) {
             this.state.mode = mode;
         }
-        
+
     }
     componentDidMount () {
         const query = window.location.search;
@@ -232,7 +232,7 @@ Search.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    searchTerm: state.navigation
+    searchTerm: state.navigation.searchTerm
 });
 
 const WrappedSearch = injectIntl(Search);

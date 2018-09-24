@@ -23,10 +23,11 @@ const AccountNav = ({
 }) => (
     <div className="account-nav">
         <a
-            className={classNames({
-                'user-info': true,
-                'open': isOpen
-            })}
+            className={classNames([
+                'ignore-react-onclickoutside',
+                'user-info',
+                {open: isOpen}
+            ])}
             href="#"
             onClick={onClick}
         >
