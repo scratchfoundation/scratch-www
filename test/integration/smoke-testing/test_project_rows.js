@@ -79,7 +79,8 @@ tap.test('checkFeaturedStudiosRowWhenSignedOut', function (t) {
 // checks that the link for a studio makes sense
 tap.test('checkFeaturedStudiosRowLinkWhenSignedOut', function (t) {
     var xPathLink = '//div[contains(@class, "thumbnail") and contains(@class, "gallery") ' +
-        'and contains(@class, "slick-slide") and contains(@class, "slick-active")]/a[@class="thumbnail-image"]';
+        'and contains(@class, "slick-slide") ' +
+        'and contains(@class, "slick-active")]/a[@class="thumbnail-image"]';
     driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             element.getAttribute('href')
