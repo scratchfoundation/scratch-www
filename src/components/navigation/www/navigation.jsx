@@ -181,7 +181,7 @@ class Navigation extends React.Component {
                             </li>
                         ] : [
                             <li
-                                className="link right"
+                                className="link right join"
                                 key="join"
                             >
                                 <a
