@@ -1,6 +1,8 @@
 @import "../../../colors";
 @import "../../../frameless";
 
+$medium-and-small: "screen and (max-width : #{$tablet}-1)";
+
 .mod-report * {
     box-sizing: border-box;
 }
@@ -58,28 +60,33 @@
     .validation-message {
         $arrow-border-width: 1rem;
         display: block;
-        position: absolute;
-        top: 0;
-        left: 100%; /* position to the right of parent */
-        margin-left: $arrow-border-width;
+        position: relative;
+        z-index: 1;
+        margin-top: $arrow-border-width;
+
         border: 1px solid $active-gray;
         border-radius: 5px;
         background-color: $ui-orange;
         padding: 1rem;
         min-width: 12rem;
-        max-width: 18.75rem;
         min-height: 1rem;
         overflow: visible;
         color: $type-white;
+
+        @media #{$medium-and-small} {
+            position: relative;
+            margin-top: calc($arrow-border-width / 2);
+            max-width: 100%;
+        }
 
         /* arrow on box that points to the left */
         &:before {
             display: block;
             position: absolute;
-            top: 1rem;
-            left: -$arrow-border-width / 2;
+            top: -.5rem;
+            left: calc(50% - calc(#{$arrow-border-width} / 2));
 
-            transform: rotate(45deg);
+            transform: rotate(135deg);
 
             border-bottom: 1px solid $active-gray;
             border-left: 1px solid $active-gray;
@@ -90,6 +97,10 @@
             height: $arrow-border-width;
 
             content: "";
+
+            @media #{$medium-and-small} {
+                display: none;
+            }
         }
     }
 }
@@ -101,9 +112,12 @@
 .form-group.has-error {
     .textarea, select {
         border: 1px solid $ui-orange;
+        margin: 0;
     }
+    margin-bottom: 1rem;
 }
 
 .report-text .textarea {
     margin-bottom: 0;
+    min-height: 8rem;
 }

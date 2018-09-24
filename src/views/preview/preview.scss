@@ -30,7 +30,6 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         font-weight: 500;
 
         &.has-error {
-
             .validation-message {
                 right: 0;
             }
@@ -83,10 +82,10 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
     }
 
     .validation-message {
+        $arrow-border-width: 1rem;
         display: block;
         position: absolute;
         z-index: 1;
-        $arrow-border-width: 1rem;
         margin-top: $arrow-border-width;
         border: 1px solid $active-gray;
         border-radius: 5px;
@@ -256,28 +255,6 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         }
     }
 
-    .share-date {
-        margin-right: .75rem;
-        vertical-align: middle;
-        line-height: 2rem;
-        color: $type-gray;
-        font-size: .875rem;
-
-        @media #{$small} {
-            margin-top: 1rem;
-            width: 100%;
-            order: 100;
-        }
-
-    }
-
-    .subactions {
-        margin-left: 1.5rem;
-        justify-content: flex-end;
-        align-items: flex-start;
-        flex: 1;
-    }
-
     .remix-credit {
         margin-bottom: 1rem;
         border: 1px solid $ui-blue-10percent;
@@ -361,218 +338,12 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         }
     }
 
-    .copyleft {
-        display: inline-block;
-        transform: scale(-1, 1);
-        margin: 0;
-        text-align: right;
-
-        @media #{$medium-and-small} {
-            padding: 0;
-        }
-    }
-
-    .stats {
-        line-height: 2rem;
-        justify-content: flex-start;
-    }
-
-    .stats, .subactions, .action-buttons {
-        @media #{$medium-and-small} {
-            margin: 0;
-            justify-content: center;
-            flex-direction: row;
-        }
-
-        & > div, .action-button {
-            @media #{$medium-and-small} {
-                padding: 0 1rem;
-            }
-        }
-    }
-
-    .stats, .subactions {
-        @media #{$medium-and-small} {
-            width: 100%;
-        }
-    }
-
-    .subactions {
-        @media #{$medium-and-small} {
-            margin-top: 1rem;
-        }
-    }
-
-    .project-loves,
-    .project-favorites,
-    .project-remixes,
-    .project-views {
-
-        display: inline;
-        padding-right: 2rem;
-        font-size: 1rem;
-        font-weight: bold;
-
-        &:before {
-            display: inline-block;
-            margin-right: .5rem;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: contain;
-            width: 1.5rem;
-            height: 1.5rem;
-            vertical-align: -.25rem;
-            content: "";
-        }
-    }
-
-    .project-loves {
-
-        cursor: pointer;
-
-        &:before {
-            opacity: .5;
-            background-image: url("/svgs/project/love-gray.svg");
-        }
-    }
-
-    .project-loves.loved {
-
-        &:before {
-            opacity: 1;
-            background-image: url("/svgs/project/love-red.svg");
-        }
-    }
-
-    .project-favorites {
-
-        cursor: pointer;
-
-        &:before {
-            opacity: .5;
-            background-image: url("/svgs/project/fav-gray.svg");
-        }
-    }
-
-    .project-favorites.favorited {
-
-        &:before {
-            opacity: 1;
-            background-image: url("/svgs/project/fav-yellow.svg");
-        }
-    }
-
-    .project-remixes {
-
-        &:before {
-            opacity: .5;
-            background-image: url("/svgs/project/remix-gray.svg");
-        }
-    }
-
-    .project-views {
-
-        &:before {
-            opacity: .5;
-            background-image: url("/svgs/project/views-gray.svg");
-        }
-    }
-
-    .action-buttons {
-        display: flex;
-        margin-top: 0;
-        color: $type-white;
-        font-size: .8rem;
-        font-weight: 500;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-    }
-
-    .action-button {
-        margin: 0 0 0 .5rem;
-        border-radius: 19px;
-        background-color: $ui-blue;
-        padding: 0 .75rem;
-        height: 2rem;
-        text-decoration: none;
-        line-height: .875rem;
-        font-size: .75rem;
-        font-weight: normal;
-
-        // &:hover {
-        //     transition: background-color .25s ease;
-        //     border-color: transparent;
-        //     background-color: $active-gray;
-        // }
-        //
-        // &:active {
-        //     border: 0 solid transparent;
-        //     box-shadow: inset 0 0 5px $box-shadow-gray;
-        //     background-color: $active-dark-gray;
-        //     padding: calc(.75em + 1px) calc(1.5em + 1px);
-        // }
-        //
-        // &.report {
-        //     border: 1px solid $ui-coral;
-        //     background-color: $ui-coral;
-        //
-        //     &:hover {
-        //         transition: background-color .25s ease;
-        //         border-color: transparent;
-        //         background-color: $active-gray;
-        //     }
-        //
-        //     &:active {
-        //         border: 0 solid transparent;
-        //         box-shadow: inset 0 0 5px $box-shadow-gray;
-        //         background-color: $active-dark-gray;
-        //         padding: calc(.75em + 1px) calc(1.5em + 1px);
-        //     }
-        // }
-    }
-
     .comments-header {
         padding: 0 0 1rem 0;
         justify-content: space-between;
 
         h4 {
             font-size: 1.25rem;
-        }
-    }
-
-    .studio-button,
-    .copy-link-button,
-    .report-button {
-        &:before {
-            display: inline-block;
-            margin-right: .25rem;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: contain;
-            width: .875rem;
-            height: .875rem;
-            vertical-align: bottom;
-            content: "";
-        }
-    }
-
-    .studio-button {
-        &:before {
-            background-image: url("/svgs/project/studio-add-white.svg");
-        }
-    }
-
-    .copy-link-button {
-        &:before {
-            background-image: url("/svgs/project/copy-link-white.svg");
-        }
-    }
-
-    .report-button {
-        background-color: $ui-coral;
-
-        &:before {
-            background-image: url("/svgs/project/report-white.svg");
         }
     }
 
@@ -638,9 +409,4 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
             margin-top: 1rem;
         }
     }
-}
-
-.report-text textarea {
-    // override min-height from default settings (for teacher registration)
-    min-height: 8rem;
 }

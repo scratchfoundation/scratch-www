@@ -9,6 +9,8 @@ const ReportModal = require('../../components/modal/report/modal.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 
+require('./subactions.scss');
+
 const Subactions = props => {
     const shareDate = ((props.projectInfo.history && props.projectInfo.history.shared)) ?
         props.projectInfo.history.shared : '';

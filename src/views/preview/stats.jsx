@@ -7,6 +7,8 @@ const approx = require('approximate-number');
 const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 
+require('./stats.scss');
+
 const Stats = props => (
     <FlexRow className="stats">
         <div
