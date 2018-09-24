@@ -6,6 +6,7 @@ $player-width: 482px;
 $player-height: 406px;
 $stage-width: 480px;
 
+$small: "screen and (max-width : #{$mobile}-1)";
 $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
 /* override view padding for share banner */
