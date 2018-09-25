@@ -94,7 +94,6 @@ const PreviewPresentation = ({
                                 </a>
                                 <div className="title">
                                     {editable ?
-
                                         <InplaceInput
                                             className="project-title"
                                             handleUpdate={onUpdate}
