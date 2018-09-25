@@ -264,9 +264,9 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         font-size: .875rem;
 
         @media #{$small} {
-            order: 100;
             margin-top: 1rem;
             width: 100%;
+            order: 100;
         }
 
     }
@@ -378,29 +378,29 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
     }
 
     .stats, .subactions, .action-buttons {
-      @media #{$medium-and-small} {
-          margin: 0;
-          justify-content: center;
-          flex-direction: row;
-      }
+        @media #{$medium-and-small} {
+            margin: 0;
+            justify-content: center;
+            flex-direction: row;
+        }
 
-      & > div, .action-button {
-          @media #{$medium-and-small} {
-              padding: 0 1rem;
-          }
-      }
+        & > div, .action-button {
+            @media #{$medium-and-small} {
+                padding: 0 1rem;
+            }
+        }
     }
 
     .stats, .subactions {
-      @media #{$medium-and-small} {
-          width: 100%;
-      }
+        @media #{$medium-and-small} {
+            width: 100%;
+        }
     }
 
     .subactions {
-      @media #{$medium-and-small} {
-          margin-top: 1rem;
-      }
+        @media #{$medium-and-small} {
+            margin-top: 1rem;
+        }
     }
 
     .project-loves,
