@@ -54,7 +54,7 @@ test('Sign in to Scratch using scratchr2 navbar', t => {
 
 test('Sign out of Scratch using scratchr2 navbar', t => {
     clickXpath('//span[contains(@class, "user-name")' +
-        ' and contains(@class, "dropdown-toggle")]/img[@class="user-icon"]')
+        ' and contains(@class, "dropdown-toggle")]/img[contains(@class, "user-icon")]')
         .then(() => clickXpath('//input[@value="Sign out"]'))
         .then(() => findText('Sign in'))
         .then((element) => t.ok(element, 'Sign in reappeared on the page after signing out'))

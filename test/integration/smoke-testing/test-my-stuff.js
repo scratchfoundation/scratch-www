@@ -52,7 +52,7 @@ test('Sign in to Scratch using scratchr2 navbar', t => {
 });
 
 test('Sign in to Scratch & verify My Stuff structure (tabs, title)', t => {
-    clickXpath('//a[@class="mystuff-icon"]')
+    clickXpath('//a[contains(@class, "mystuff-icon")]')
         .then(() => findByXpath('//div[@class="box-head"]/h2'))
         .then((element) => element.getText('h2'))
         .then((text) => t.equal('My Stuff', text, 'title should be My Stuff'))
@@ -75,7 +75,7 @@ test('Sign in to Scratch & verify My Stuff structure (tabs, title)', t => {
 });
 
 test('clicking See Inside should take you to the editor', t => {
-    clickXpath('//a[@class="mystuff-icon"]')
+    clickXpath('//a[contains(@class, "mystuff-icon")]')
         .then(() => findByXpath('//a[@data-control="edit"]'))
         .then((element) => element.getText('span'))
         .then((text) => t.equal(text, 'See inside', 'there should be a "See inside" button'))
@@ -89,7 +89,7 @@ test('clicking See Inside should take you to the editor', t => {
 });
 
 test('clicking a project title should take you to the project page', t => {
-    clickXpath('//a[@class="mystuff-icon"]')
+    clickXpath('//a[contains(@class, "mystuff-icon")]')
         .then(() => clickXpath('//a[@data-control="edit"]'))
         .then(() => driver.getCurrentUrl())
         .then(function (u) {
@@ -100,7 +100,7 @@ test('clicking a project title should take you to the project page', t => {
 });
 
 test('Add To button should bring up a list of studios', t => {
-    clickXpath('//a[@class="mystuff-icon"]')
+    clickXpath('//a[contains(@class, "mystuff-icon")]')
         .then(() => findByXpath('//div[@data-control="add-to"]'))
         .then((element) => element.getText('span'))
         .then((text) => t.equal(text, 'Add to', 'there should be an "Add to" button'))
@@ -115,7 +115,7 @@ test('Add To button should bring up a list of studios', t => {
 });
 
 test('+ New Studio button should take you to the studio page', t => {
-    clickXpath('//a[@class="mystuff-icon"]')
+    clickXpath('//a[contains(@class, "mystuff-icon")]')
         .then(() => clickXpath('//form[@id="new_studio"]/button[@type="submit"]'))
         .then(() => findByXpath('//div[@id="show-add-project"]'))
         .then((element) => element.getText('span'))
@@ -130,7 +130,7 @@ test('+ New Studio button should take you to the studio page', t => {
 });
 
 test('+ New Project button should open the editor', t => {
-    clickXpath('//a[@class="mystuff-icon"]')
+    clickXpath('//a[contains(@class, "mystuff-icon")]')
         .then(() => clickText('+ New Project'))
         .then(() => driver.getCurrentUrl())
         .then(function (u) {
