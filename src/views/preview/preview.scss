@@ -29,16 +29,16 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 .preview {
 
     .inner {
-      @media #{$medium-and-small} {
-          max-width: 90%;
-          margin: 0 auto;
-      }
+        @media #{$medium-and-small} {
+            margin: 0 auto;
+            max-width: 90%;
+        }
 
-      @media #{$intermediate} {
-          min-width: 640px;
-          width: 90%;
-          margin: 0 auto;
-      }
+        @media #{$intermediate} {
+            margin: 0 auto;
+            width: 90%;
+            min-width: 640px;
+        }
     }
 
     .project-title {
