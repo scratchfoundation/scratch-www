@@ -17,9 +17,9 @@ $medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height :
     width: 48.75rem;
 
     .modal-content { /* content inside of content */
-      border-radius: 0;
-      display: flex;
-      flex-direction: column;
+        display: flex;
+        border-radius: 0;
+        flex-direction: column;
     }
 
     &:focus {
@@ -33,9 +33,9 @@ $medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height :
     }
 
     @media #{$small}, #{$small-height} {
-        height: 100%;
-        box-shadow: none;
         border-radius: 0;
+        box-shadow: none;
+        height: 100%;
     }
 }
 
@@ -138,8 +138,8 @@ row to appear to contain overflow. */
     }
 
     @media #{$small}, #{$small-height} {
-        width: auto;
         margin: 0 auto;
+        width: auto;
         overflow: hidden scroll;
     }
 
