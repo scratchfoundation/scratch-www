@@ -232,6 +232,12 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         }
     }
 
+    .force-center {
+        @media #{$medium-and-small} {
+            align-self: center;
+        }
+    }
+
     .project-notes {
         margin-left: 1rem;
         height: $player-height;

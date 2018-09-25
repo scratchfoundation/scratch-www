@@ -75,18 +75,19 @@ const Subactions = props => {
 };
 
 Subactions.propTypes = {
-    addToStudioOpen: PropTypes.bool.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
-    onAddToStudioClicked: PropTypes.func.isRequired,
-    onAddToStudioClosed: PropTypes.func.isRequired,
+    addToStudioOpen: PropTypes.bool,
+    isLoggedIn: PropTypes.bool,
+    onAddToStudioClicked: PropTypes.func,
+    onAddToStudioClosed: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
-    onToggleStudio: PropTypes.func.isRequired,
-    projectInfo: projectShape.isRequired,
-    reportOpen: PropTypes.bool.isRequired,
-    studios: PropTypes.arrayOf(PropTypes.object).isRequired,
-    userOwnsProject: PropTypes.bool.isRequired
+    onToggleStudio: PropTypes.func,
+    projectInfo: projectShape,
+    reportOpen: PropTypes.bool,
+    studios: PropTypes.arrayOf(PropTypes.object),
+    userOwnsProject: PropTypes.bool
+
 };
 
 module.exports = Subactions;

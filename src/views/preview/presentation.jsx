@@ -5,7 +5,6 @@ const MediaQuery = require('react-responsive').default;
 const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
-const approx = require('approximate-number');
 
 const GUI = require('scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
@@ -14,10 +13,10 @@ const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
-const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const ShareBanner = require('./share-banner.jsx');
 const RemixCredit = require('./remix-credit.jsx');
 const RemixList = require('./remix-list.jsx');
+const Stats = require('./stats.jsx');
 const StudioList = require('./studio-list.jsx');
 const Subactions = require('./subactions.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
@@ -148,6 +147,33 @@ const PreviewPresentation = ({
                                 projectId={projectId}
                             />
                         </div>
+                        <MediaQuery maxWidth={frameless.tablet - 1}>
+                            <FlexRow className="preview-row force-center">
+                                <Stats
+                                    faved={faved}
+                                    favoriteCount={favoriteCount}
+                                    loveCount={loveCount}
+                                    loved={loved}
+                                    projectInfo={projectInfo}
+                                    onFavoriteClicked={onFavoriteClicked}
+                                    onLoveClicked={onLoveClicked}
+                                />
+                                <Subactions
+                                    addToStudioOpen={addToStudioOpen}
+                                    isLoggedIn={isLoggedIn}
+                                    projectInfo={projectInfo}
+                                    reportOpen={reportOpen}
+                                    studios={studios}
+                                    userOwnsProject={userOwnsProject}
+                                    onAddToStudioClicked={onAddToStudioClicked}
+                                    onAddToStudioClosed={onAddToStudioClosed}
+                                    onReportClicked={onReportClicked}
+                                    onReportClose={onReportClose}
+                                    onReportSubmit={onReportSubmit}
+                                    onToggleStudio={onToggleStudio}
+                                />
+                            </FlexRow>
+                        </MediaQuery>
                         <FlexRow className="project-notes">
                             <RemixCredit projectInfo={parentInfo} />
                             <RemixCredit projectInfo={originalInfo} />
@@ -166,8 +192,8 @@ const PreviewPresentation = ({
                                         ))}
                                     </FlexRow>
                                 </FlexRow>
-                             </MediaQuery>
-                             <FlexRow className="description-block">
+                            </MediaQuery>
+                            <FlexRow className="description-block">
                                 <div className="project-textlabel">
                                     Instructions
                                 </div>
@@ -233,50 +259,33 @@ const PreviewPresentation = ({
                             {/*  eslint-enable max-len */}
                         </FlexRow>
                     </FlexRow>
-                    <FlexRow className="preview-row">
-                        <FlexRow className="stats">
-                            <div
-                                className={classNames('project-loves', {loved: loved})}
-                                key="loves"
-                                onClick={onLoveClicked}
-                            >
-                                {approx(loveCount, {decimal: false})}
-                            </div>
-                            <div
-                                className={classNames('project-favorites', {favorited: faved})}
-                                key="favorites"
-                                onClick={onFavoriteClicked}
-                            >
-                                {approx(favoriteCount, {decimal: false})}
-                            </div>
-                            <div
-                                className="project-remixes"
-                                key="remixes"
-                            >
-                                {approx(projectInfo.stats.remixes, {decimal: false})}
-                            </div>
-                            <div
-                                className="project-views"
-                                key="views"
-                            >
-                                <CappedNumber value={projectInfo.stats.views} />
-                            </div>
+                    <MediaQuery minWidth={frameless.tablet}>
+                        <FlexRow className="preview-row">
+                            <Stats
+                                faved={faved}
+                                favoriteCount={favoriteCount}
+                                loveCount={loveCount}
+                                loved={loved}
+                                projectInfo={projectInfo}
+                                onFavoriteClicked={onFavoriteClicked}
+                                onLoveClicked={onLoveClicked}
+                            />
+                            <Subactions
+                                addToStudioOpen={addToStudioOpen}
+                                isLoggedIn={isLoggedIn}
+                                projectInfo={projectInfo}
+                                reportOpen={reportOpen}
+                                studios={studios}
+                                userOwnsProject={userOwnsProject}
+                                onAddToStudioClicked={onAddToStudioClicked}
+                                onAddToStudioClosed={onAddToStudioClosed}
+                                onReportClicked={onReportClicked}
+                                onReportClose={onReportClose}
+                                onReportSubmit={onReportSubmit}
+                                onToggleStudio={onToggleStudio}
+                            />
                         </FlexRow>
-                        <Subactions
-                            addToStudioOpen={addToStudioOpen}
-                            isLoggedIn={isLoggedIn}
-                            projectInfo={projectInfo}
-                            reportOpen={reportOpen}
-                            studios={studios}
-                            userOwnsProject={userOwnsProject}
-                            onAddToStudioClicked={onAddToStudioClicked}
-                            onAddToStudioClosed={onAddToStudioClosed}
-                            onReportClicked={onReportClicked}
-                            onReportClose={onReportClose}
-                            onReportSubmit={onReportSubmit}
-                            onToggleStudio={onToggleStudio}
-                        />
-                    </FlexRow>
+                    </MediaQuery>
                     <MediaQuery minWidth={frameless.tablet}>
                         <FlexRow className="preview-row">
                             <FlexRow className="extension-list">
