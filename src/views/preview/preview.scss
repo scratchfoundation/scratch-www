@@ -540,8 +540,3 @@ $little-height: "screen and (max-height : 460px)";
         }
     }
 }
-
-.report-text textarea {
-    // override min-height from default settings (for teacher registration)
-    min-height: 8rem;
-}

@@ -29,7 +29,7 @@ $medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height :
     @media #{$small}, #{$medium}, #{$big} {
         margin-top: 0;
         width: 100%;
-        overflow: scroll;
+        overflow: auto;
     }
 
     @media #{$small}, #{$small-height} {
