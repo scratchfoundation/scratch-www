@@ -7,8 +7,8 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
     justify-content: flex-start;
 
     @media #{$medium-and-small} {
-        width: 100%;
         margin: 0;
+        width: 100%;
         justify-content: center;
         flex-direction: row;
     }

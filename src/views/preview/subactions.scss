@@ -13,8 +13,8 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
     flex: 1;
 
     @media #{$medium-and-small} {
-        width: 100%;
         margin-top: 1rem;
+        width: 100%;
     }
 
     .share-date {

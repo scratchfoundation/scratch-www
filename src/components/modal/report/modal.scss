@@ -111,8 +111,8 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
 .form-group.has-error {
     .textarea, select {
-        border: 1px solid $ui-orange;
         margin: 0;
+        border: 1px solid $ui-orange;
     }
     margin-bottom: 1rem;
 }
