@@ -154,9 +154,13 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
     .comments-container {
         min-width: 65%;
+        max-width: 100%;
+        flex: 1;
+        padding-right: 1.5rem;
 
         @media #{$medium-and-small} {
             width: 100%;
+            padding: 0;
         }
 
         .comment, .comment-top-row, .comment-bottom-row {
