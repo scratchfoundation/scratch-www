@@ -202,9 +202,9 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         width: $player-width;
 
         @media #{$small} {
-           width: 100%;
+            width: 100%;
 
-           .stage-wrapper {
+            .stage-wrapper {
                 max-width: 100%;
             }
         }
