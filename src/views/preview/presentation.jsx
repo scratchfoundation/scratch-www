@@ -354,12 +354,10 @@ const PreviewPresentation = ({
                                         }
                                     </FlexRow>
                                 </div>
-                                <MediaQuery minWidth={frameless.mobile}>
-                                    <FlexRow className="column">
-                                        <RemixList remixes={remixes} />
-                                        <StudioList studios={projectStudios} />
-                                    </FlexRow>
-                                </MediaQuery>
+                                <FlexRow className="column">
+                                    <RemixList remixes={remixes} />
+                                    <StudioList studios={projectStudios} />
+                                </FlexRow>
                             </FlexRow>
                         </div>
                     </div>
