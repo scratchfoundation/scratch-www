@@ -200,6 +200,14 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
     .guiPlayer {
         display: inline-block;
         width: $player-width;
+
+        @media #{$small} {
+           width: 100%;
+
+           .stage-wrapper {
+                max-width: 100%;
+            }
+        }
     }
 
     .project-notes {
@@ -208,6 +216,12 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         align-items: flex-start;
         flex: 1;
         flex-flow: column;
+
+        @media #{$medium-and-small} {
+            margin-top: 1rem;
+            margin-left: 0;
+            width: 100%;
+        }
 
         > .description-block:first-child {
             margin-top: 1rem;
