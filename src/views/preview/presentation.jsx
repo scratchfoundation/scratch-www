@@ -2,6 +2,7 @@ const FormattedDate = require('react-intl').FormattedDate;
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
 const intlShape = require('react-intl').intlShape;
+const MediaQuery = require('react-responsive').default;
 const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
@@ -27,6 +28,8 @@ const ExtensionChip = require('./extension-chip.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
+
+const frameless = require('../../lib/frameless');
 
 // disable enter key submission on formsy input fields; otherwise formsy thinks
 // we meant to trigger the "See inside" button. Instead, treat these keypresses
@@ -155,6 +158,21 @@ const PreviewPresentation = ({
                                 <RemixCredit projectInfo={parentInfo} />
                                 <RemixCredit projectInfo={originalInfo} />
                                 {/*  eslint-disable max-len */}
+                                <MediaQuery maxWidth={frameless.tablet - 1}>
+                                    <FlexRow className="preview-row">
+                                        <FlexRow className="extension-list">
+                                            {extensions && extensions.map(extension => (
+                                                <ExtensionChip
+                                                    extensionL10n={extension.l10nId}
+                                                    extensionName={extension.name}
+                                                    hasStatus={extension.hasStatus}
+                                                    iconURI={extension.icon && `/svgs/project/${extension.icon}`}
+                                                    key={extension.name || extension.l10nId}
+                                                />
+                                            ))}
+                                        </FlexRow>
+                                    </FlexRow>
+                                </MediaQuery>
                                 <FlexRow className="description-block">
                                     <div className="project-textlabel">
                                         Instructions
@@ -309,19 +327,21 @@ const PreviewPresentation = ({
                                 </FlexRow>
                             </FlexRow>
                         </FlexRow>
-                        <FlexRow className="preview-row">
-                            <FlexRow className="extension-list">
-                                {extensions && extensions.map(extension => (
-                                    <ExtensionChip
-                                        extensionL10n={extension.l10nId}
-                                        extensionName={extension.name}
-                                        hasStatus={extension.hasStatus}
-                                        iconURI={extension.icon && `/svgs/project/${extension.icon}`}
-                                        key={extension.name || extension.l10nId}
-                                    />
-                                ))}
+                        <MediaQuery minWidth={frameless.tablet}>
+                            <FlexRow className="preview-row">
+                                <FlexRow className="extension-list">
+                                    {extensions && extensions.map(extension => (
+                                        <ExtensionChip
+                                            extensionL10n={extension.l10nId}
+                                            extensionName={extension.name}
+                                            hasStatus={extension.hasStatus}
+                                            iconURI={extension.icon && `/svgs/project/${extension.icon}`}
+                                            key={extension.name || extension.l10nId}
+                                        />
+                                    ))}
+                                </FlexRow>
                             </FlexRow>
-                        </FlexRow>
+                        </MediaQuery>
                     </div>
                     <div className="project-lower-container">
                         <div className="inner">
