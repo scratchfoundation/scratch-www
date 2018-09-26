@@ -57,12 +57,21 @@ class Search extends React.Component {
 
     }
     componentDidMount () {
-        const query = window.location.search;
-        const q = query.lastIndexOf('q=');
-        let term = '';
-        if (q !== -1) {
-            term = query.substring(q + 2, query.length).toLowerCase();
-        }
+        const query = decodeURIComponent(window.location.search);
+        let term = query;
+
+        const stripQueryValue = function (queryTerm) {
+            const queryIndex = query.indexOf('q=');
+            if (queryIndex !== -1) {
+                queryTerm = query.substring(queryIndex + 2, query.length).toLowerCase();
+            }
+            return queryTerm;
+        };
+        // Strip off the initial "?q="
+        term = stripQueryValue(term);
+        // Strip off user entered "?q="
+        term = stripQueryValue(term);
+
         while (term.indexOf('/') > -1) {
             term = term.substring(0, term.indexOf('/'));
         }
