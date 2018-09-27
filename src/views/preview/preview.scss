@@ -537,7 +537,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
             display: inline-block;
             width: 100%;
 
-            /* the following can be transferred to
+            /* TODO: the following can be transferred to
             src/components/thumbnailcolumn/thumbnailcolumn.scss
             after testing */
             @media #{$medium-and-small} {
