@@ -246,6 +246,9 @@ class Preview extends React.Component {
     handleSeeInside () {
         this.props.setPlayer(false);
     }
+    handleShare () {
+        // This is just a placeholder, but enables the button in the editor
+    }
     handleUpdate (jsonData) {
         this.props.updateProject(
             this.props.projectInfo.id,
@@ -338,6 +341,7 @@ class Preview extends React.Component {
                         renderLogin={this.renderLogin}
                         onLogOut={this.props.handleLogOut}
                         onOpenRegistration={this.props.handleOpenRegistration}
+                        onShare={this.handleShare}
                         onToggleLoginOpen={this.props.handleToggleLoginOpen}
                         onUpdateProjectTitle={this.handleUpdateProjectTitle}
                     />
