@@ -444,18 +444,20 @@ class DemographicsStep extends React.Component {
     handleChooseGender (name, gender) {
         this.setState({otherDisabled: gender !== 'other'});
     }
-    handleValidSubmit (formData, reset, invalidate) {
+    handleValidSubmit (formData) {
+        return this.props.onNextStep(formData);
+    }
+    isValidBirthdate (year, month) {
         const birthdate = new Date(
-            formData.user.birth.year,
-            formData.user.birth.month - 1,
+            year,
+            month - 1,
             1
         );
-        if (((Date.now() - birthdate) / (24 * 3600 * 1000 * 365.25)) < this.props.birthOffset) {
-            return invalidate({
-                'user.birth.year': this.props.intl.formatMessage({id: 'teacherRegistration.validationAge'})
-            });
-        }
-        return this.props.onNextStep(formData);
+        return (((Date.now() - birthdate) / (24 * 3600 * 1000 * 365.25)) >= this.props.birthOffset);
+    }
+    birthDateValidator (values) {
+        const isValid = this.isValidBirthdate(values['user.birth.year'], values['user.birth.month']);
+        return isValid ? true : this.props.intl.formatMessage({id: 'teacherRegistration.validationAge'});
     }
     render () {
         const countryOptions = getCountryOptions(this.props.intl, DEFAULT_COUNTRY);
@@ -485,6 +487,9 @@ class DemographicsStep extends React.Component {
                             }
                             name="user.birth.month"
                             options={this.getMonthOptions()}
+                            validations={{
+                                birthDateVal: values => this.birthDateValidator(values)
+                            }}
                         />
                         <Select
                             required
