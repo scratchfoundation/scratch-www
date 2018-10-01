@@ -9,7 +9,7 @@ $stage-width: 480px;
 /* screen sizes */
 $small: "screen and (max-width : #{$mobile}-1)";
 $medium: "screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
-$intermediate: "screen and (min-width : #{$tablet}) and (max-width : 941px)"; /* 941 because currently breakpoint of .inner in www is 941 */
+$intermediate: "screen and (min-width : #{$tablet}) and (max-width : #{$desktop}-1)";
 $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
 /* override view padding for share banner */
@@ -29,14 +29,13 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 .preview {
 
     .inner {
+        margin: 0 auto;
+
         @media #{$medium-and-small} {
-            margin: 0 auto;
-            max-width: 90%;
+            padding: 0 1rem;
         }
 
         @media #{$intermediate} {
-            margin: 0 auto;
-            width: 90%;
             min-width: 640px;
         }
     }
@@ -528,6 +527,12 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
     .extension-list {
         justify-content: flex-start;
+        flex-direction: row;
+
+        @media #{$medium-and-small} {
+            justify-content: center;
+        }
+
     }
 
     .remix-list,
@@ -549,6 +554,21 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         .thumbnail-column {
             display: inline-block;
             width: 100%;
+
+            /* TODO: the following can be transferred to
+            src/components/thumbnailcolumn/thumbnailcolumn.scss
+            after testing */
+            @media #{$medium-and-small} {
+                flex-direction: row;
+
+                .thumbnail {
+                    display: inline-block;
+                }
+            }
+        }
+
+        @media #{$medium-and-small} {
+            margin-top: 1rem;
         }
     }
 }
