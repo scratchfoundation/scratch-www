@@ -28,8 +28,6 @@ const frameless = require('../../lib/frameless');
 const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
-const isMobileDevice = () => screen.height <= frameless.mobile || screen.width <= frameless.mobile;
-
 class Preview extends React.Component {
     constructor (props) {
         super(props);
@@ -39,7 +37,6 @@ class Preview extends React.Component {
             'handleFavoriteToggle',
             'handleLoadMore',
             'handleLoveToggle',
-            'handleOrientationChange',
             'handlePopState',
             'handleReportClick',
             'handleReportClose',
@@ -51,7 +48,8 @@ class Preview extends React.Component {
             'handleUpdate',
             'initCounts',
             'pushHistory',
-            'renderLogin'
+            'renderLogin',
+            'setScreenFromOrientation'
         ]);
         const pathname = window.location.pathname.toLowerCase();
         const parts = pathname.split('/').filter(Boolean);
@@ -69,13 +67,7 @@ class Preview extends React.Component {
         this.getExtensions(this.state.projectId);
         this.addEventListeners();
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
-        if (this.props.playerMode && isMobileDevice()) {
-            if (screen.orientation.type === 'landscape-primary') {
-                this.props.setFullScreen(true);
-            } else {
-                this.props.setFullScreen(false);
-            }
-        }
+        this.setScreenFromOrientation();
     }
     componentDidUpdate (prevProps) {
         if (this.props.sessionStatus !== prevProps.sessionStatus &&
@@ -119,11 +111,25 @@ class Preview extends React.Component {
     }
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
-        window.addEventListener('orientationchange', this.handleOrientationChange);
+        window.addEventListener('orientationchange', this.setScreenFromOrientation);
     }
     removeEventListeners () {
         window.removeEventListener('popstate', this.handlePopState);
-        window.addEventListener('orientationchange', this.handleOrientationChange);
+        window.addEventListener('orientationchange', this.setScreenFromOrientation);
+    }
+    setScreenFromOrientation () {
+        /*
+        * If the user is on a mobile device, switching to
+        * landscape format should make the fullscreen mode active
+        */
+        const isMobileDevice = screen.height <= frameless.mobile || screen.width <= frameless.mobile;
+        if (this.props.playerMode && isMobileDevice) {
+            if (screen.orientation.type === 'landscape-primary') {
+                this.props.setFullScreen(true);
+            } else {
+                this.props.setFullScreen(false);
+            }
+        }
     }
     getExtensions (projectId) {
         storage
@@ -171,19 +177,6 @@ class Preview extends React.Component {
     }
     handleReportSubmit (formData) {
         this.props.reportProject(this.state.projectId, formData);
-    }
-    handleOrientationChange () {
-        /*
-         * If the user is on a mobile device, switching to
-         * landscape format should make the fullscreen mode active
-         */
-        if (this.props.playerMode && isMobileDevice()) {
-            if (screen.orientation.type === 'landscape-primary') {
-                this.props.setFullScreen(true);
-            } else {
-                this.props.setFullScreen(false);
-            }
-        }
     }
     handlePopState () {
         const path = window.location.pathname.toLowerCase();
