@@ -115,7 +115,7 @@ class Preview extends React.Component {
     }
     removeEventListeners () {
         window.removeEventListener('popstate', this.handlePopState);
-        window.addEventListener('orientationchange', this.setScreenFromOrientation);
+        window.removeEventListener('orientationchange', this.setScreenFromOrientation);
     }
     setScreenFromOrientation () {
         /*
@@ -124,7 +124,9 @@ class Preview extends React.Component {
         */
         const isMobileDevice = screen.height <= frameless.mobile || screen.width <= frameless.mobile;
         if (this.props.playerMode && isMobileDevice) {
-            if (screen.orientation.type === 'landscape-primary') {
+            const isLandscape = (screen.orientation.type && screen.orientation.type === 'landscape-primary') ||
+            screen.height < screen.width;
+            if (isLandscape) {
                 this.props.setFullScreen(true);
             } else {
                 this.props.setFullScreen(false);
@@ -267,6 +269,9 @@ class Preview extends React.Component {
     handleSeeInside () {
         this.props.setPlayer(false);
     }
+    handleShare () {
+        // This is just a placeholder, but enables the button in the editor
+    }
     handleUpdate (jsonData) {
         this.props.updateProject(
             this.props.projectInfo.id,
@@ -359,6 +364,7 @@ class Preview extends React.Component {
                         renderLogin={this.renderLogin}
                         onLogOut={this.props.handleLogOut}
                         onOpenRegistration={this.props.handleOpenRegistration}
+                        onShare={this.handleShare}
                         onToggleLoginOpen={this.props.handleToggleLoginOpen}
                         onUpdateProjectTitle={this.handleUpdateProjectTitle}
                     />

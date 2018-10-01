@@ -172,7 +172,7 @@
                 position: absolute;
                 bottom: 0;
                 background: linear-gradient(
-                    transparent,
+                    $ui-light-primary-transparent,
                     $ui-light-primary
                 );
                 width: 100%;
@@ -188,7 +188,7 @@
     margin-bottom: 24px;
     width: 100%;
     overflow: hidden;
-    text-align: center; 
+    text-align: center;
 
     &:before,
     &:after {
@@ -211,4 +211,3 @@
         margin-right: -50%;
     }
 }
-

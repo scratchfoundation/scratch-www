@@ -515,6 +515,12 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
     .extension-list {
         justify-content: flex-start;
+        flex-direction: row;
+
+        @media #{$medium-and-small} {
+            justify-content: center;
+        }
+
     }
 
     .remix-list,
@@ -536,6 +542,21 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         .thumbnail-column {
             display: inline-block;
             width: 100%;
+
+            /* TODO: the following can be transferred to
+            src/components/thumbnailcolumn/thumbnailcolumn.scss
+            after testing */
+            @media #{$medium-and-small} {
+                flex-direction: row;
+
+                .thumbnail {
+                    display: inline-block;
+                }
+            }
+        }
+
+        @media #{$medium-and-small} {
+            margin-top: 1rem;
         }
     }
 }
