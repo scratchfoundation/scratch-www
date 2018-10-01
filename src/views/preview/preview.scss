@@ -153,7 +153,23 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
     }
 
     .comments-container {
-        width: 65%;
+        padding-right: 1.5rem;
+        min-width: 65%;
+        max-width: 100%;
+        flex: 1;
+
+        @media #{$medium-and-small} {
+            padding: 0;
+            width: 100%;
+        }
+
+        .comment, .comment-top-row, .comment-bottom-row {
+            flex-direction: row;
+        }
+
+        .comment-bubble {
+            text-align: left;
+        }
     }
 
     .remix-button,
