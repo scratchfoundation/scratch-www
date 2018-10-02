@@ -20,12 +20,19 @@ $medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height :
 .studio-list-outer-scrollbox {
     position: relative;
     background-color: $ui-blue-10percent;
+    flex: 1;
+    max-height: calc(100% - 8rem);
+    min-height: 15rem;
+
+    @media #{$small-height} {
+        min-height: 0;
+    }
 }
 
 .studio-list-inner-scrollbox {
     margin-right: .5rem;
     padding-right: .5rem;
-    height: 16.9375rem;
+    height: 100%;
     overflow: scroll;
     overflow-x: hidden;
 

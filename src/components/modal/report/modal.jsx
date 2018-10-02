@@ -111,7 +111,7 @@ class ReportModal extends React.Component {
         const contentLabel = intl.formatMessage({id: `report.${type}`});
         return (
             <Modal
-                standardSizes
+                useStandardSizes
                 className="mod-report"
                 contentLabel={contentLabel}
                 isOpen={isOpen}

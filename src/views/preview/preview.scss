@@ -11,7 +11,6 @@ $small: "screen and (max-width : #{$mobile}-1)";
 $medium: "screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
 $big: "screen and (min-width : #{$tablet})";
 $medium-and-small: "screen and (max-width : #{$tablet}-1)";
-$little-height: "screen and (max-height : 460px)";
 
 /* override view padding for share banner */
 #view {
@@ -154,7 +153,23 @@ $little-height: "screen and (max-height : 460px)";
     }
 
     .comments-container {
-        width: 65%;
+        padding-right: 1.5rem;
+        min-width: 65%;
+        max-width: 100%;
+        flex: 1;
+
+        @media #{$medium-and-small} {
+            padding: 0;
+            width: 100%;
+        }
+
+        .comment, .comment-top-row, .comment-bottom-row {
+            flex-direction: row;
+        }
+
+        .comment-bubble {
+            text-align: left;
+        }
     }
 
     .remix-button,
@@ -201,6 +216,14 @@ $little-height: "screen and (max-height : 460px)";
     .guiPlayer {
         display: inline-block;
         width: $player-width;
+
+        @media #{$small} {
+            width: 100%;
+
+            .stage-wrapper {
+                max-width: 100%;
+            }
+        }
     }
 
     .project-notes {
@@ -209,6 +232,12 @@ $little-height: "screen and (max-height : 460px)";
         align-items: flex-start;
         flex: 1;
         flex-flow: column;
+
+        @media #{$medium-and-small} {
+            margin-top: 1rem;
+            margin-left: 0;
+            width: 100%;
+        }
 
         > .description-block:first-child {
             margin-top: 1rem;
@@ -516,6 +545,12 @@ $little-height: "screen and (max-height : 460px)";
 
     .extension-list {
         justify-content: flex-start;
+        flex-direction: row;
+
+        @media #{$medium-and-small} {
+            justify-content: center;
+        }
+
     }
 
     .remix-list,
@@ -537,6 +572,21 @@ $little-height: "screen and (max-height : 460px)";
         .thumbnail-column {
             display: inline-block;
             width: 100%;
+
+            /* TODO: the following can be transferred to
+            src/components/thumbnailcolumn/thumbnailcolumn.scss
+            after testing */
+            @media #{$medium-and-small} {
+                flex-direction: row;
+
+                .thumbnail {
+                    display: inline-block;
+                }
+            }
+        }
+
+        @media #{$medium-and-small} {
+            margin-top: 1rem;
         }
     }
 }

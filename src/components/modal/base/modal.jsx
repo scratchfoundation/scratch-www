@@ -28,7 +28,7 @@ class Modal extends React.Component {
                 appElement={document.getElementById('app')}
                 className={{
                     base: classNames('modal-content', this.props.className, {
-                        'modal-sizes': this.props.standardSizes
+                        'modal-sizes': this.props.useStandardSizes
                     }),
                     afterOpen: classNames('modal-content', this.props.className),
                     beforeClose: classNames('modal-content', this.props.className)
@@ -63,7 +63,7 @@ Modal.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     overlayClassName: PropTypes.string,
-    standardSizes: PropTypes.bool
+    useStandardSizes: PropTypes.bool
 };
 
 module.exports = Modal;
