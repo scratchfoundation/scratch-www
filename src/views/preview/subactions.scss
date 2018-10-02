@@ -60,37 +60,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
             line-height: .875rem;
             font-size: .75rem;
             font-weight: normal;
-
-            // &:hover {
-            //     transition: background-color .25s ease;
-            //     border-color: transparent;
-            //     background-color: $active-gray;
-            // }
-            //
-            // &:active {
-            //     border: 0 solid transparent;
-            //     box-shadow: inset 0 0 5px $box-shadow-gray;
-            //     background-color: $active-dark-gray;
-            //     padding: calc(.75em + 1px) calc(1.5em + 1px);
-            // }
-            //
-            // &.report {
-            //     border: 1px solid $ui-coral;
-            //     background-color: $ui-coral;
-            //
-            //     &:hover {
-            //         transition: background-color .25s ease;
-            //         border-color: transparent;
-            //         background-color: $active-gray;
-            //     }
-            //
-            //     &:active {
-            //         border: 0 solid transparent;
-            //         box-shadow: inset 0 0 5px $box-shadow-gray;
-            //         background-color: $active-dark-gray;
-            //         padding: calc(.75em + 1px) calc(1.5em + 1px);
-            //     }
-            // }
+            
             &.studio-button,
             &.copy-link-button,
             &.report-button {
