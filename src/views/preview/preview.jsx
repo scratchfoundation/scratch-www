@@ -124,8 +124,7 @@ class Preview extends React.Component {
         */
         const isMobileDevice = screen.height <= frameless.mobile || screen.width <= frameless.mobile;
         if (this.props.playerMode && isMobileDevice) {
-            const isLandscape = (screen.orientation.type && screen.orientation.type === 'landscape-primary') ||
-            screen.height < screen.width;
+            const isLandscape = screen.height < screen.width;
             if (isLandscape) {
                 this.props.setFullScreen(true);
             } else {
