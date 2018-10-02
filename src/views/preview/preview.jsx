@@ -23,6 +23,8 @@ const sessionActions = require('../../redux/session.js');
 const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
 
+const frameless = require('../../lib/frameless');
+
 const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
@@ -46,7 +48,8 @@ class Preview extends React.Component {
             'handleUpdate',
             'initCounts',
             'pushHistory',
-            'renderLogin'
+            'renderLogin',
+            'setScreenFromOrientation'
         ]);
         const pathname = window.location.pathname.toLowerCase();
         const parts = pathname.split('/').filter(Boolean);
@@ -63,6 +66,8 @@ class Preview extends React.Component {
         };
         this.getExtensions(this.state.projectId);
         this.addEventListeners();
+        /* In the beginning, if user is on mobile and landscape, go to fullscreen */
+        this.setScreenFromOrientation();
     }
     componentDidUpdate (prevProps) {
         if (this.props.sessionStatus !== prevProps.sessionStatus &&
@@ -106,9 +111,26 @@ class Preview extends React.Component {
     }
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
+        window.addEventListener('orientationchange', this.setScreenFromOrientation);
     }
     removeEventListeners () {
         window.removeEventListener('popstate', this.handlePopState);
+        window.removeEventListener('orientationchange', this.setScreenFromOrientation);
+    }
+    setScreenFromOrientation () {
+        /*
+        * If the user is on a mobile device, switching to
+        * landscape format should make the fullscreen mode active
+        */
+        const isMobileDevice = screen.height <= frameless.mobile || screen.width <= frameless.mobile;
+        if (this.props.playerMode && isMobileDevice) {
+            const isLandscape = screen.height < screen.width;
+            if (isLandscape) {
+                this.props.setFullScreen(true);
+            } else {
+                this.props.setFullScreen(false);
+            }
+        }
     }
     getExtensions (projectId) {
         storage
@@ -246,6 +268,9 @@ class Preview extends React.Component {
     handleSeeInside () {
         this.props.setPlayer(false);
     }
+    handleShare () {
+        // This is just a placeholder, but enables the button in the editor
+    }
     handleUpdate (jsonData) {
         this.props.updateProject(
             this.props.projectInfo.id,
@@ -338,6 +363,7 @@ class Preview extends React.Component {
                         renderLogin={this.renderLogin}
                         onLogOut={this.props.handleLogOut}
                         onOpenRegistration={this.props.handleOpenRegistration}
+                        onShare={this.handleShare}
                         onToggleLoginOpen={this.props.handleToggleLoginOpen}
                         onUpdateProjectTitle={this.handleUpdateProjectTitle}
                     />

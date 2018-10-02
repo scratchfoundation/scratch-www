@@ -97,7 +97,6 @@ const PreviewPresentation = ({
                                 </a>
                                 <div className="title">
                                     {editable ?
-
                                         <InplaceInput
                                             className="project-title"
                                             handleUpdate={onUpdate}
@@ -160,6 +159,21 @@ const PreviewPresentation = ({
                                 <RemixCredit projectInfo={parentInfo} />
                                 <RemixCredit projectInfo={originalInfo} />
                                 {/*  eslint-disable max-len */}
+                                <MediaQuery maxWidth={frameless.tablet - 1}>
+                                    <FlexRow className="preview-row">
+                                        <FlexRow className="extension-list">
+                                            {extensions && extensions.map(extension => (
+                                                <ExtensionChip
+                                                    extensionL10n={extension.l10nId}
+                                                    extensionName={extension.name}
+                                                    hasStatus={extension.hasStatus}
+                                                    iconURI={extension.icon && `/svgs/project/${extension.icon}`}
+                                                    key={extension.name || extension.l10nId}
+                                                />
+                                            ))}
+                                        </FlexRow>
+                                    </FlexRow>
+                                </MediaQuery>
                                 <FlexRow className="description-block">
                                     <div className="project-textlabel">
                                         Instructions
@@ -314,19 +328,21 @@ const PreviewPresentation = ({
                                 </FlexRow>
                             </FlexRow>
                         </FlexRow>
-                        <FlexRow className="preview-row">
-                            <FlexRow className="extension-list">
-                                {extensions && extensions.map(extension => (
-                                    <ExtensionChip
-                                        extensionL10n={extension.l10nId}
-                                        extensionName={extension.name}
-                                        hasStatus={extension.hasStatus}
-                                        iconURI={extension.icon && `/svgs/project/${extension.icon}`}
-                                        key={extension.name || extension.l10nId}
-                                    />
-                                ))}
+                        <MediaQuery minWidth={frameless.tablet}>
+                            <FlexRow className="preview-row">
+                                <FlexRow className="extension-list">
+                                    {extensions && extensions.map(extension => (
+                                        <ExtensionChip
+                                            extensionL10n={extension.l10nId}
+                                            extensionName={extension.name}
+                                            hasStatus={extension.hasStatus}
+                                            iconURI={extension.icon && `/svgs/project/${extension.icon}`}
+                                            key={extension.name || extension.l10nId}
+                                        />
+                                    ))}
+                                </FlexRow>
                             </FlexRow>
-                        </FlexRow>
+                        </MediaQuery>
                     </div>
                     <div className="project-lower-container">
                         <div className="inner">
