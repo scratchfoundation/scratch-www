@@ -26,6 +26,7 @@ class Modal extends React.Component {
         return (
             <ReactModal
                 appElement={document.getElementById('app')}
+                bodyOpenClassName={this.props.useStandardSizes ? classNames('overflow-hidden') : null}
                 className={{
                     base: classNames('modal-content', this.props.className, {
                         'modal-sizes': this.props.useStandardSizes

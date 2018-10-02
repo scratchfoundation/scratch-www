@@ -7,6 +7,12 @@ $big: "only screen and (min-width : #{$tablet}) and (max-width : #{$desktop}-1)"
 $small-height: "only screen and (max-height : #{$mobile})";
 $medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height : #{$tablet} - 1)";
 
+.overflow-hidden {
+    /* to avoid double scroll bars this
+    gets added to body while modal is open */
+    overflow: hidden;
+}
+
 .modal-content {
     position: relative;
     margin: 3.75rem auto;
@@ -130,7 +136,6 @@ row to appear to contain overflow. */
     outline: none;
     padding: 0;
     max-width: 36.25rem; /* 580px; */
-    overflow: hidden;
     user-select: none;
 
     @media #{$medium}, #{$medium-height} {
@@ -140,7 +145,6 @@ row to appear to contain overflow. */
     @media #{$small}, #{$small-height} {
         margin: 0 auto;
         width: auto;
-        overflow: hidden scroll;
     }
 
     .modal-header {
