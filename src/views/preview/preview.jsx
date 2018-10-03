@@ -33,6 +33,7 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'addEventListeners',
+            'handleDeleteComment',
             'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoadMore',
@@ -163,6 +164,9 @@ class Preview extends React.Component {
                     });
                 });
             });
+    }
+    handleDeleteComment (id) {
+        this.props.handleDeleteComment(this.state.projectId, id, this.props.user.token);
     }
     handleReportClick () {
         this.setState({reportOpen: true});
@@ -338,6 +342,7 @@ class Preview extends React.Component {
                         userOwnsProject={this.props.userOwnsProject}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
+                        onDeleteComment={this.handleDeleteComment}
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoadMore={this.handleLoadMore}
                         onLoveClicked={this.handleLoveToggle}
@@ -393,6 +398,7 @@ Preview.propTypes = {
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getTopLevelComments: PropTypes.func.isRequired,
+    handleDeleteComment: PropTypes.func,
     handleLogIn: PropTypes.func,
     handleLogOut: PropTypes.func,
     handleOpenRegistration: PropTypes.func,
@@ -519,6 +525,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+    handleDeleteComment: (projectId, commentId, token) => {
+        dispatch(previewActions.deleteComment(projectId, commentId, token));
+    },
     handleOpenRegistration: event => {
         event.preventDefault();
         dispatch(navigationActions.setRegistrationOpen(true));

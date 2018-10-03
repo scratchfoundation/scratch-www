@@ -12,7 +12,8 @@ class TopLevelComment extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleExpandThread'
+            'handleExpandThread',
+            'handleDelete'
         ]);
         this.state = {
             expanded: false
@@ -25,18 +26,27 @@ class TopLevelComment extends React.Component {
         });
     }
 
+    handleDelete () {
+        this.props.onDelete(this.props.id);
+    }
+
     render () {
         const {
             author,
             content,
             datetimeCreated,
+            deletable,
+            deleted,
             id,
             replies
         } = this.props;
 
         return (
             <FlexRow className="comment-container">
-                <Comment {...{author, content, datetimeCreated, id}} />
+                <Comment
+                    onDelete={this.handleDelete}
+                    {...{author, content, datetimeCreated, deletable, deleted, id}}
+                />
                 {replies.length > 0 &&
                     <FlexRow
                         className={classNames(
@@ -51,8 +61,11 @@ class TopLevelComment extends React.Component {
                                 author={reply.author}
                                 content={reply.content}
                                 datetimeCreated={reply.datetime_created}
+                                deletable={deletable}
+                                deleted={reply.deleted}
                                 id={reply.id}
                                 key={reply.id}
+                                onDelete={this.handleDelete}
                             />
                         ))}
                     </FlexRow>
@@ -76,7 +89,10 @@ TopLevelComment.propTypes = {
     }),
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
+    deletable: PropTypes.bool,
+    deleted: PropTypes.bool,
     id: PropTypes.number,
+    onDelete: PropTypes.func,
     parentId: PropTypes.number,
     projectId: PropTypes.string,
     replies: PropTypes.arrayOf(PropTypes.object)

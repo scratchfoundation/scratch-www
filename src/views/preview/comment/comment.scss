@@ -131,6 +131,16 @@
                 height: 9px;
                 content: "";
             }
+
+            &.comment-bubble-deleted {
+                border-color: #FF6680;
+                background-color: rgb(236, 206, 223);
+
+                &:before {
+                    border-color: #FF6680 transparent #FF6680 #FF6680;
+                    background: rgb(236, 206, 223);
+                }
+            }
         }
 
         .comment-content {
