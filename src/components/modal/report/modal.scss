@@ -1,10 +1,6 @@
 @import "../../../colors";
 @import "../../../frameless";
 
-$small: "only screen and (max-width : #{$mobile})";
-$medium: "only screen and (min-width : #{$mobile}+1) and (max-width : #{$tablet}-1)";
-$small-height: "only screen and (max-height : #{$mobile})";
-$medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height : #{$tablet} - 1)";
 $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
 .report-modal-header {
