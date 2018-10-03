@@ -119,21 +119,21 @@ const PreviewPresentation = ({
                             </div>
                         </FlexRow>
                         <MediaQuery minWidth={frameless.mobile}>
-                             <div className="project-buttons">
-                                  {/* TODO: Hide Remix button for now until implemented */}
-                                  {(!userOwnsProject && false) &&
-                                      <Button className="button remix-button">
-                                          Remix
-                                      </Button>
-                                  }
-                                  <Button
-                                      className="button see-inside-button"
-                                      onClick={onSeeInside}
-                                  >
-                                      See Inside
-                                  </Button>
-                              </div>
-                         </MediaQuery>
+                            <div className="project-buttons">
+                                {/* TODO: Hide Remix button for now until implemented */}
+                                {(!userOwnsProject && false) &&
+                                    <Button className="button remix-button">
+                                        Remix
+                                    </Button>
+                                }
+                                <Button
+                                    className="button see-inside-button"
+                                    onClick={onSeeInside}
+                                >
+                                    See Inside
+                                </Button>
+                            </div>
+                        </MediaQuery>
                     </FlexRow>
                     <FlexRow className="preview-row">
                         <div className="guiPlayer">
