@@ -1,0 +1,115 @@
+@import "../../colors";
+@import "../../frameless";
+
+$small: "screen and (max-width : #{$mobile}-1)";
+$medium: "screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
+$intermediate: "screen and (min-width : #{$tablet}) and (max-width : 941px)"; /* 941 because currently breakpoint of .inner in www is 941 */
+$medium-and-small: "screen and (max-width : #{$tablet}-1)";
+
+.subactions {
+    margin-left: 1.5rem;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex: 1;
+
+    @media #{$medium-and-small} {
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .share-date {
+        margin-right: .75rem;
+        vertical-align: middle;
+        line-height: 2rem;
+        color: $type-gray;
+        font-size: .875rem;
+
+        @media #{$small} {
+            margin-top: 1rem;
+            width: 100%;
+            order: 100;
+        }
+
+        .copyleft {
+            display: inline-block;
+            transform: scale(-1, 1);
+            margin: 0;
+            text-align: right;
+
+            @media #{$medium-and-small} {
+                padding: 0;
+            }
+        }
+    }
+    .action-buttons {
+        display: flex;
+        margin-top: 0;
+        color: $type-white;
+        font-size: .8rem;
+        font-weight: 500;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+
+        .action-button {
+            margin: 0 0 0 .5rem;
+            border-radius: 19px;
+            background-color: $ui-blue;
+            padding: 0 .75rem;
+            height: 2rem;
+            text-decoration: none;
+            line-height: .875rem;
+            font-size: .75rem;
+            font-weight: normal;
+            
+            &.studio-button,
+            &.copy-link-button,
+            &.report-button {
+                &:before {
+                    display: inline-block;
+                    margin-right: .25rem;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: contain;
+                    width: .875rem;
+                    height: .875rem;
+                    vertical-align: bottom;
+                    content: "";
+                }
+            }
+
+            &.studio-button {
+                &:before {
+                    background-image: url("/svgs/project/studio-add-white.svg");
+                }
+            }
+
+            &.copy-link-button {
+                &:before {
+                    background-image: url("/svgs/project/copy-link-white.svg");
+                }
+            }
+
+            &.report-button {
+                background-color: $ui-coral;
+
+                &:before {
+                    background-image: url("/svgs/project/report-white.svg");
+                }
+            }
+        }
+    }
+}
+
+.subactions, .subactions .action-buttons {
+    @media #{$medium-and-small} {
+        margin: 0;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    & > div, .action-button {
+        @media #{$medium-and-small} {
+            padding: 0 1rem;
+        }
+    }
+}
