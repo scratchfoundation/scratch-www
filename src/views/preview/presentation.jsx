@@ -1,6 +1,8 @@
 const FormattedDate = require('react-intl').FormattedDate;
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
+const intlShape = require('react-intl').intlShape;
+const MediaQuery = require('react-responsive').default;
 const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
@@ -27,6 +29,18 @@ const ExtensionChip = require('./extension-chip.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
 
+const frameless = require('../../lib/frameless');
+
+// disable enter key submission on formsy input fields; otherwise formsy thinks
+// we meant to trigger the "See inside" button. Instead, treat these keypresses
+// as a blur, which will trigger a save.
+const onKeyPress = e => {
+    if (e.target.type === 'text' && e.which === 13 /* Enter */) {
+        e.preventDefault();
+        e.target.blur();
+    }
+};
+
 const PreviewPresentation = ({
     assetHost,
     backpackOptions,
@@ -35,6 +49,7 @@ const PreviewPresentation = ({
     extensions,
     faved,
     favoriteCount,
+    intl,
     isFullScreen,
     isLoggedIn,
     isShared,
@@ -70,7 +85,7 @@ const PreviewPresentation = ({
             <ShareBanner shared={isShared} />
 
             { projectInfo && projectInfo.author && projectInfo.author.id && (
-                <Formsy>
+                <Formsy onKeyPress={onKeyPress}>
                     <div className="inner">
                         <FlexRow className="preview-row">
                             <FlexRow className="project-header">
@@ -88,10 +103,9 @@ const PreviewPresentation = ({
                                             handleUpdate={onUpdate}
                                             name="title"
                                             validationErrors={{
-                                                maxLength: 'Sorry title is too long'
-                                                // maxLength: props.intl.formatMessage({
-                                                //     id: 'project.titleMaxLength'
-                                                // })
+                                                maxLength: intl.formatMessage({
+                                                    id: 'preview.titleMaxLength'
+                                                })
                                             }}
                                             validations={{
                                                 maxLength: 100
@@ -99,7 +113,10 @@ const PreviewPresentation = ({
                                             value={projectInfo.title}
                                         /> :
                                         <React.Fragment>
-                                            <div className="project-title">{projectInfo.title}</div>
+                                            <div
+                                                className="project-title no-edit"
+                                                title={projectInfo.title}
+                                            >{projectInfo.title}</div>
                                             {'by '}
                                             <a href={`/users/${projectInfo.author.username}`}>
                                                 {projectInfo.author.username}
@@ -141,6 +158,21 @@ const PreviewPresentation = ({
                                 <RemixCredit projectInfo={parentInfo} />
                                 <RemixCredit projectInfo={originalInfo} />
                                 {/*  eslint-disable max-len */}
+                                <MediaQuery maxWidth={frameless.tablet - 1}>
+                                    <FlexRow className="preview-row">
+                                        <FlexRow className="extension-list">
+                                            {extensions && extensions.map(extension => (
+                                                <ExtensionChip
+                                                    extensionL10n={extension.l10nId}
+                                                    extensionName={extension.name}
+                                                    hasStatus={extension.hasStatus}
+                                                    iconURI={extension.icon && `/svgs/project/${extension.icon}`}
+                                                    key={extension.name || extension.l10nId}
+                                                />
+                                            ))}
+                                        </FlexRow>
+                                    </FlexRow>
+                                </MediaQuery>
                                 <FlexRow className="description-block">
                                     <div className="project-textlabel">
                                         Instructions
@@ -295,19 +327,21 @@ const PreviewPresentation = ({
                                 </FlexRow>
                             </FlexRow>
                         </FlexRow>
-                        <FlexRow className="preview-row">
-                            <FlexRow className="extension-list">
-                                {extensions && extensions.map(extension => (
-                                    <ExtensionChip
-                                        extensionL10n={extension.l10nId}
-                                        extensionName={extension.name}
-                                        hasStatus={extension.hasStatus}
-                                        iconURI={extension.icon && `/svgs/project/${extension.icon}`}
-                                        key={extension.name || extension.l10nId}
-                                    />
-                                ))}
+                        <MediaQuery minWidth={frameless.tablet}>
+                            <FlexRow className="preview-row">
+                                <FlexRow className="extension-list">
+                                    {extensions && extensions.map(extension => (
+                                        <ExtensionChip
+                                            extensionL10n={extension.l10nId}
+                                            extensionName={extension.name}
+                                            hasStatus={extension.hasStatus}
+                                            iconURI={extension.icon && `/svgs/project/${extension.icon}`}
+                                            key={extension.name || extension.l10nId}
+                                        />
+                                    ))}
+                                </FlexRow>
                             </FlexRow>
-                        </FlexRow>
+                        </MediaQuery>
                     </div>
                     <div className="project-lower-container">
                         <div className="inner">
@@ -365,6 +399,7 @@ PreviewPresentation.propTypes = {
     extensions: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
+    intl: intlShape,
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isShared: PropTypes.bool,

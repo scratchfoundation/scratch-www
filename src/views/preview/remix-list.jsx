@@ -9,7 +9,7 @@ const RemixList = props => {
     if (remixes.length === 0) return null;
     return (
         <FlexRow className="remix-list">
-            <div className="project-title">
+            <div className="list-title">
                 Remixes
             </div>
             {remixes.length === 0 ? (

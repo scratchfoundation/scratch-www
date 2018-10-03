@@ -6,6 +6,12 @@ $player-width: 482px;
 $player-height: 406px;
 $stage-width: 480px;
 
+/* screen sizes */
+$small: "screen and (max-width : #{$mobile}-1)";
+$medium: "screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
+$big: "screen and (min-width : #{$tablet})";
+$medium-and-small: "screen and (max-width : #{$tablet}-1)";
+
 /* override view padding for share banner */
 #view {
     padding: 0;
@@ -29,16 +35,26 @@ $stage-width: 480px;
         &.has-error {
 
             .validation-message {
-                transform: translate(22rem, 0);
+                right: 0;
             }
+        }
+
+        &.no-edit {
+            /* titles of projects you don't own should not
+            show the full title if this is too long */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
 
     .project-header {
         margin-right: 2rem;
+        min-width: 0;
         flex-grow: 1;
         justify-content: flex-start;
         align-items: flex-start;
+        flex-wrap: nowrap;
 
         .inplace-input {
             height: calc(3rem - 4px);
@@ -63,18 +79,18 @@ $stage-width: 480px;
 
     .title {
         margin-left: 1rem;
+        min-width: 0;
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
     }
 
     .validation-message {
-        $arrow-border-width: 1rem;
         display: block;
         position: absolute;
-        top: 0;
-        left: 0;
-        margin-left: $arrow-border-width;
+        z-index: 1;
+        $arrow-border-width: 1rem;
+        margin-top: $arrow-border-width;
         border: 1px solid $active-gray;
         border-radius: 5px;
         background-color: $ui-orange;
@@ -85,13 +101,18 @@ $stage-width: 480px;
         color: $type-white;
         font-size: 1rem;
 
+        @media #{$medium-and-small} {
+            margin-top: calc($arrow-border-width / 2);
+            width: 100%;
+        }
+
         &:before {
             display: block;
             position: absolute;
-            top: 1rem;
-            left: -$arrow-border-width / 2;
+            top: -.5rem;
+            left: calc(50% - calc(#{$arrow-border-width} / 2));
 
-            transform: rotate(45deg);
+            transform: rotate(135deg);
 
             border-bottom: 1px solid $active-gray;
             border-left: 1px solid $active-gray;
@@ -102,6 +123,10 @@ $stage-width: 480px;
             height: $arrow-border-width;
 
             content: "";
+
+            @media #{$medium-and-small} {
+                display: none;
+            }
         }
     }
 
@@ -119,12 +144,16 @@ $stage-width: 480px;
         }
     }
 
+    .project-buttons {
+        flex-shrink: 0;
+    }
+
     .button {
         margin-left: 1rem;
     }
 
     .comments-container {
-        width: 60%;
+        width: 65%;
     }
 
     .remix-button,
@@ -174,12 +203,15 @@ $stage-width: 480px;
     }
 
     .project-notes {
-        // not 1.5rem because of stage padding
         margin-left: 1rem;
         height: $player-height;
         align-items: flex-start;
         flex: 1;
         flex-flow: column;
+
+        > .description-block:first-child {
+            margin-top: 1rem;
+        }
     }
 
     .share-date {
@@ -193,6 +225,7 @@ $stage-width: 480px;
     .subactions {
         margin-left: 1.5rem;
         justify-content: flex-end;
+        align-items: flex-start;
         flex: 1;
     }
 
@@ -368,6 +401,7 @@ $stage-width: 480px;
 
     .action-buttons {
         display: flex;
+        margin-top: 0;
         color: $type-white;
         font-size: .8rem;
         font-weight: 500;
@@ -442,6 +476,7 @@ $stage-width: 480px;
             content: "";
         }
     }
+
     .studio-button {
         &:before {
             background-image: url("/svgs/project/studio-add-white.svg");
@@ -480,14 +515,23 @@ $stage-width: 480px;
 
     .extension-list {
         justify-content: flex-start;
+        flex-direction: row;
+
+        @media #{$medium-and-small} {
+            justify-content: center;
+        }
+
     }
 
     .remix-list,
     .studio-list {
         flex-direction: column;
 
-        .project {
-            margin-bottom: 1.5rem;
+        .list-title {
+            margin-left: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            align-self: flex-start;
         }
 
         .creator-image img {

@@ -1,6 +1,7 @@
 {
     "addToStudio.title": "Add to Studio",
     "addToStudio.finishing": "Finishing up...",
+    "preview.titleMaxLength": "Title is too long",
     "preview.musicExtensionChip": "Music",
     "preview.penExtensionChip": "Pen",
     "preview.speechExtensionChip": "Google Speech",

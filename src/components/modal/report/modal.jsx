@@ -224,7 +224,7 @@ class ReportModal extends React.Component {
                                     >
                                         {isWaiting ? (
                                             <div className="action-button-text">
-                                                <Spinner mode="smooth" />
+                                                <Spinner />
                                                 <FormattedMessage id="report.sending" />
                                             </div>
                                         ) : (

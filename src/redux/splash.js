@@ -77,13 +77,13 @@ module.exports.getActivity = (username, token) => (dispatch => {
     api({
         uri: `/users/${username}/following/users/activity?limit=5`,
         authentication: token
-    }, (err, body) => {
+    }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('activity', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
             return;
         }
-        if (typeof body === 'undefined') {
+        if (typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('activity', module.exports.Status.ERROR));
             dispatch(module.exports.setError('No session content'));
             return;
@@ -100,13 +100,13 @@ module.exports.getFeaturedGlobal = () => (dispatch => {
     dispatch(module.exports.setFetchStatus('featured', module.exports.Status.FETCHING));
     api({
         uri: '/proxy/featured'
-    }, (err, body) => {
+    }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('featured', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
             return;
         }
-        if (typeof body === 'undefined') {
+        if (typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('featured', module.exports.Status.ERROR));
             dispatch(module.exports.setError('No session content'));
             return;
@@ -126,13 +126,13 @@ module.exports.getSharedByFollowing = (username, token) => (dispatch => {
     api({
         uri: `/users/${username}/following/users/projects`,
         authentication: token
-    }, (err, body) => {
+    }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('shared', module.exports.Status.Status.ERROR));
             dispatch(module.exports.setError(err));
             return;
         }
-        if (typeof body === 'undefined') {
+        if (typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('shared', module.exports.Status.ERROR));
             dispatch(module.exports.setError('No session content'));
             return;
@@ -152,13 +152,13 @@ module.exports.getInStudiosFollowing = (username, token) => (dispatch => {
     api({
         uri: `/users/${username}/following/studios/projects`,
         authentication: token
-    }, (err, body) => {
+    }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
             return;
         }
-        if (typeof body === 'undefined') {
+        if (typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
             dispatch(module.exports.setError('No session content'));
             return;
@@ -178,13 +178,13 @@ module.exports.getLovedByFollowing = (username, token) => (dispatch => {
     api({
         uri: `/users/${username}/following/users/loves`,
         authentication: token
-    }, (err, body) => {
+    }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('loved', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
             return;
         }
-        if (typeof body === 'undefined') {
+        if (typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('loved', module.exports.Status.ERROR));
             dispatch(module.exports.setError('No session content'));
             return;

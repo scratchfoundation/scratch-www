@@ -37,7 +37,7 @@ class Search extends React.Component {
         this.state.mode = 'popular';
         this.state.offset = 0;
         this.state.loadMore = false;
-        
+
         let mode = '';
         const query = window.location.search;
         const m = query.lastIndexOf('mode=');
@@ -54,15 +54,24 @@ class Search extends React.Component {
         if (ACCEPTABLE_MODES.indexOf(mode) !== -1) {
             this.state.mode = mode;
         }
-        
+
     }
     componentDidMount () {
-        const query = window.location.search;
-        const q = query.lastIndexOf('q=');
-        let term = '';
-        if (q !== -1) {
-            term = query.substring(q + 2, query.length).toLowerCase();
-        }
+        const query = decodeURIComponent(window.location.search);
+        let term = query;
+
+        const stripQueryValue = function (queryTerm) {
+            const queryIndex = query.indexOf('q=');
+            if (queryIndex !== -1) {
+                queryTerm = query.substring(queryIndex + 2, query.length).toLowerCase();
+            }
+            return queryTerm;
+        };
+        // Strip off the initial "?q="
+        term = stripQueryValue(term);
+        // Strip off user entered "?q="
+        term = stripQueryValue(term);
+
         while (term.indexOf('/') > -1) {
             term = term.substring(0, term.indexOf('/'));
         }
@@ -232,7 +241,7 @@ Search.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    searchTerm: state.navigation
+    searchTerm: state.navigation.searchTerm
 });
 
 const WrappedSearch = injectIntl(Search);

@@ -35,8 +35,10 @@ const Components = () => (
             <Box title="Carousel component in a box!">
                 <Carousel />
             </Box>
-            <h1>This is a Spinner</h1>
-            <Spinner />
+            <h1>This is a blue Spinner</h1>
+            <Spinner
+                color="blue"
+            />
             <h1>Colors</h1>
             <div className="colors">
                 <span className="ui-blue">$ui-blue</span>

@@ -3,7 +3,7 @@ const connect = require('react-redux').connect;
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const sessionActions = require('../../redux/session.js');
+const navigationActions = require('../../redux/navigation.js');
 
 const IframeModal = require('../modal/iframe/modal.jsx');
 const Registration = require('../registration/registration.jsx');
@@ -15,10 +15,7 @@ class Intro extends React.Component {
         super(props);
         bindAll(this, [
             'handleShowVideo',
-            'handleCloseVideo',
-            'handleJoinClick',
-            'handleCloseRegistration',
-            'handleCompleteRegistration'
+            'handleCloseVideo'
         ]);
         this.state = {
             videoOpen: false
@@ -29,17 +26,6 @@ class Intro extends React.Component {
     }
     handleCloseVideo () {
         this.setState({videoOpen: false});
-    }
-    handleJoinClick (e) {
-        e.preventDefault();
-        this.setState({registrationOpen: true});
-    }
-    handleCloseRegistration () {
-        this.setState({registrationOpen: false});
-    }
-    handleCompleteRegistration () {
-        this.props.dispatch(sessionActions.refreshSession());
-        this.closeRegistration();
     }
     render () {
         return (
@@ -92,7 +78,7 @@ class Intro extends React.Component {
                         <a
                             className="sprite sprite-3"
                             href="#"
-                            onClick={this.handleJoinClick}
+                            onClick={this.props.handleOpenRegistration}
                         >
                             <img
                                 alt="Gobo"
@@ -111,10 +97,7 @@ class Intro extends React.Component {
                             <div className="text subtext">{this.props.messages['intro.itsFree']}</div>
                         </a>
                         <Registration
-                            isOpen={this.state.registrationOpen}
                             key="registration"
-                            onRegistrationDone={this.handleCompleteRegistration}
-                            onRequestClose={this.handleCloseRegistration}
                         />
                     </div>
                     <div
@@ -160,7 +143,7 @@ class Intro extends React.Component {
 }
 
 Intro.propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    handleOpenRegistration: PropTypes.func,
     messages: PropTypes.shape({
         'intro.aboutScratch': PropTypes.string,
         'intro.forEducators': PropTypes.string,
@@ -194,6 +177,17 @@ const mapStateToProps = state => ({
     session: state.session
 });
 
-const ConnectedIntro = connect(mapStateToProps)(Intro);
+const mapDispatchToProps = dispatch => ({
+    handleOpenRegistration: event => {
+        event.preventDefault();
+        dispatch(navigationActions.handleOpenRegistration());
+    }
+});
+
+
+const ConnectedIntro = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Intro);
 
 module.exports = ConnectedIntro;
