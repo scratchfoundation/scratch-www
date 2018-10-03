@@ -133,12 +133,15 @@
             }
 
             &.comment-bubble-deleted {
-                border-color: #FF6680;
-                background-color: rgb(236, 206, 223);
+                $deleted-outline:  #ff6680;
+                $deleted-background: rgb(236, 206, 223);
+
+                border-color: $deleted-outline;
+                background-color: $deleted-background;
 
                 &:before {
-                    border-color: #FF6680 transparent #FF6680 #FF6680;
-                    background: rgb(236, 206, 223);
+                    border-color: $deleted-outline transparent $deleted-outline $deleted-outline;
+                    background: $deleted-background;
                 }
             }
         }
