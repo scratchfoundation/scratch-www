@@ -263,7 +263,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         padding: .5rem;
         width: calc(100% - 1rem);
         flex-wrap: nowrap;
-        align-items: flex-start;
+        align-items: center;
     }
 
     .credit-text {
