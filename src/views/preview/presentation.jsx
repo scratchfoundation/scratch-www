@@ -81,7 +81,7 @@ const PreviewPresentation = ({
         { projectInfo && projectInfo.author && projectInfo.author.id && (
             <Formsy onKeyPress={onKeyPress}>
                 <div className="inner">
-                    <FlexRow className="preview-row wrap-to-col">
+                    <FlexRow className="preview-row force-row">
                         <FlexRow className="project-header">
                             <a href={`/users/${projectInfo.author.username}`}>
                                 <Avatar

@@ -55,6 +55,10 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         .inplace-input {
             height: calc(3rem - 4px);
         }
+
+        @media #{$medium-and-small} {
+            flex-direction: row;
+        }
     }
 
     img {
@@ -212,12 +216,9 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         align-items: flex-start;
         flex-wrap: nowrap;
 
-        &.wrap-to-col {
+        &.force-row {
             @media #{$medium-and-small} {
-                width: 100%;
-                flex-wrap: wrap-reverse;
-                flex-direction: column;
-                justify-content: center;
+                flex-direction: row;
             }
         }
     }
