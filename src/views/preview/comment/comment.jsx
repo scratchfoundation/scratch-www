@@ -1,5 +1,6 @@
 const React = require('react');
 const PropTypes = require('prop-types');
+const classNames = require('classnames');
 
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../../components/avatar/avatar.jsx');
@@ -9,8 +10,11 @@ require('./comment.scss');
 
 const Comment = ({
     author,
+    deletable,
+    deleted,
     content,
     datetimeCreated,
+    onDelete,
     id
 }) => (
     <div
@@ -27,12 +31,25 @@ const Comment = ({
                     href={`/users/${author.username}`}
                 >{author.username}</a>
                 <div className="action-list">
-                    {/* TODO: Hook these up to API calls/logic */}
-                    <span className="comment-delete">Delete</span>
-                    <span className="comment-report">Report</span>
+                    {deletable ? (
+                        <span
+                            className="comment-delete"
+                            onClick={onDelete}
+                        >
+                            Delete {/* TODO internationalize */}
+                        </span>
+                    ) : null}
+                    <span className="comment-report">
+                        Report {/* TODO internationalize */}
+                    </span>
                 </div>
             </FlexRow>
-            <div className="comment-bubble">
+            <div
+                className={classNames({
+                    'comment-bubble': true,
+                    'comment-bubble-deleted': deleted
+                })}
+            >
                 {/* TODO: at the moment, comment content does not properly display
                   * emojis/easter eggs
                   * @user links in replies 
@@ -63,7 +80,10 @@ Comment.propTypes = {
     }),
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
-    id: PropTypes.number
+    deletable: PropTypes.bool,
+    deleted: PropTypes.bool,
+    id: PropTypes.number,
+    onDelete: PropTypes.func
 };
 
 module.exports = Comment;

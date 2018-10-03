@@ -64,6 +64,7 @@ const PreviewPresentation = ({
     projectStudios,
     studios,
     userOwnsProject,
+    onDeleteComment,
     onFavoriteClicked,
     onLoadMore,
     onLoveClicked,
@@ -318,11 +319,14 @@ const PreviewPresentation = ({
                                             author={comment.author}
                                             content={comment.content}
                                             datetimeCreated={comment.datetime_created}
+                                            deletable={userOwnsProject}
+                                            deleted={comment.deleted}
                                             id={comment.id}
                                             key={comment.id}
                                             parentId={comment.parent_id}
                                             projectId={projectId}
                                             replies={replies && replies[comment.id] ? replies[comment.id] : []}
+                                            onDelete={onDeleteComment}
                                         />
                                     ))}
                                     {comments.length < projectInfo.stats.comments &&
@@ -367,6 +371,7 @@ PreviewPresentation.propTypes = {
     loved: PropTypes.bool,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
+    onDeleteComment: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onLoadMore: PropTypes.func,
     onLoveClicked: PropTypes.func,
