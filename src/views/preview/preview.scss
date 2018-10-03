@@ -264,6 +264,10 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         width: calc(100% - 1rem);
         flex-wrap: nowrap;
         align-items: center;
+
+        @media #{$medium-and-small} {
+            flex-direction: row;
+        }
     }
 
     .credit-text {
