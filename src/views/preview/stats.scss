@@ -1,0 +1,96 @@
+@import "../../frameless";
+
+$medium-and-small: "screen and (max-width : #{$tablet}-1)";
+
+.stats {
+    line-height: 2rem;
+    justify-content: flex-start;
+
+    @media #{$medium-and-small} {
+        margin: 0;
+        width: 100%;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    & > div {
+        @media #{$medium-and-small} {
+            padding: 0 1rem;
+        }
+    }
+}
+
+.project-loves,
+.project-favorites,
+.project-remixes,
+.project-views {
+
+    display: inline;
+    padding-right: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+
+    &:before {
+        display: inline-block;
+        margin-right: .5rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: -.25rem;
+        content: "";
+    }
+}
+
+.project-loves {
+
+    cursor: pointer;
+
+    &:before {
+        opacity: .5;
+        background-image: url("/svgs/project/love-gray.svg");
+    }
+}
+
+.project-loves.loved {
+
+    &:before {
+        opacity: 1;
+        background-image: url("/svgs/project/love-red.svg");
+    }
+}
+
+.project-favorites {
+
+    cursor: pointer;
+
+    &:before {
+        opacity: .5;
+        background-image: url("/svgs/project/fav-gray.svg");
+    }
+}
+
+.project-favorites.favorited {
+
+    &:before {
+        opacity: 1;
+        background-image: url("/svgs/project/fav-yellow.svg");
+    }
+}
+
+.project-remixes {
+
+    &:before {
+        opacity: .5;
+        background-image: url("/svgs/project/remix-gray.svg");
+    }
+}
+
+.project-views {
+
+    &:before {
+        opacity: .5;
+        background-image: url("/svgs/project/views-gray.svg");
+    }
+}
