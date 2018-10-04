@@ -32,11 +32,12 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         margin: 0 auto;
 
         @media #{$medium-and-small} {
-            padding: 0 1rem;
+            max-width: 90%;
         }
 
         @media #{$intermediate} {
             min-width: 640px;
+            width: 90%;
         }
     }
 
