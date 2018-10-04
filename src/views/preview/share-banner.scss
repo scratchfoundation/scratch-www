@@ -7,14 +7,27 @@ $navigation-height: 50px;
     width: 100%;
     overflow: hidden;
     color: $ui-orange;
+
+    /* overwrite styles for flex row and preview row */
+    .flex-row {
+        flex-direction: row;
+    }
+
+    .preview-row {
+        margin-top: 0 !important;
+        padding: .5rem;
+        align-items: center !important;
+    }
 }
 
 .share-button {
-    margin-top: 0;
+    display: flex;
     background-color: $ui-orange;
     font-size: .875rem;
     font-weight: normal;
-    
+    flex-wrap: nowrap;
+    align-items: center;
+
     &:before {
         display: inline-block;
         margin-right: .5rem;
@@ -27,4 +40,9 @@ $navigation-height: 50px;
         vertical-align: middle;
         content: "";
     }
+}
+
+.share-text {
+    min-width: 0;
+    flex-grow: 1;
 }
