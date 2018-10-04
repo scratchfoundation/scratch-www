@@ -124,7 +124,8 @@ class Preview extends React.Component {
         * landscape format should make the fullscreen mode active
         */
         const isMobileDevice = screen.height <= frameless.mobile || screen.width <= frameless.mobile;
-        if (this.props.playerMode && isMobileDevice) {
+        const isAModalOpen = this.state.addToStudioOpen || this.state.reportOpen;
+        if (this.props.playerMode && isMobileDevice && !isAModalOpen) {
             const isLandscape = screen.height < screen.width;
             if (isLandscape) {
                 this.props.setFullScreen(true);
@@ -381,6 +382,7 @@ class Preview extends React.Component {
 }
 
 Preview.propTypes = {
+    addToStudioOpen: PropTypes.bool,
     assetHost: PropTypes.string.isRequired,
     backpackOptions: PropTypes.shape({
         host: PropTypes.string,
@@ -415,6 +417,7 @@ Preview.propTypes = {
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
+    reportOpen: PropTypes.bool,
     reportProject: PropTypes.func,
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
