@@ -382,7 +382,6 @@ class Preview extends React.Component {
 }
 
 Preview.propTypes = {
-    addToStudioOpen: PropTypes.bool,
     assetHost: PropTypes.string.isRequired,
     backpackOptions: PropTypes.shape({
         host: PropTypes.string,
@@ -417,7 +416,6 @@ Preview.propTypes = {
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
-    reportOpen: PropTypes.bool,
     reportProject: PropTypes.func,
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
