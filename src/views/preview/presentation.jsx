@@ -21,6 +21,7 @@ const StudioList = require('./studio-list.jsx');
 const Subactions = require('./subactions.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const TopLevelComment = require('./comment/top-level-comment.jsx');
+const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -64,6 +65,7 @@ const PreviewPresentation = ({
     projectStudios,
     studios,
     userOwnsProject,
+    onAddComment,
     onDeleteComment,
     onFavoriteClicked,
     onLoadMore,
@@ -317,10 +319,21 @@ const PreviewPresentation = ({
                                         <h4>Comments</h4>
                                         {/* TODO: Add toggle comments component and logic*/}
                                     </FlexRow>
+
+                                    <FlexRow className="comments-root-reply">
+                                        {isLoggedIn &&
+                                            <ComposeComment
+                                                projectId={projectId}
+                                                onAddComment={onAddComment}
+                                            />
+                                        }
+                                    </FlexRow>
+
                                     <FlexRow className="comments-list">
                                         {comments.map(comment => (
                                             <TopLevelComment
                                                 author={comment.author}
+                                                canReply={isLoggedIn}
                                                 content={comment.content}
                                                 datetimeCreated={comment.datetime_created}
                                                 deletable={userOwnsProject}
@@ -330,6 +343,7 @@ const PreviewPresentation = ({
                                                 parentId={comment.parent_id}
                                                 projectId={projectId}
                                                 replies={replies && replies[comment.id] ? replies[comment.id] : []}
+                                                onAddComment={onAddComment}
                                                 onDelete={onDeleteComment}
                                             />
                                         ))}
@@ -374,6 +388,7 @@ PreviewPresentation.propTypes = {
     isShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
+    onAddComment: PropTypes.func,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onDeleteComment: PropTypes.func,

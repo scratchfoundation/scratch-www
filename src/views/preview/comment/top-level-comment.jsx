@@ -33,19 +33,24 @@ class TopLevelComment extends React.Component {
     render () {
         const {
             author,
+            canReply,
             content,
             datetimeCreated,
             deletable,
             deleted,
             id,
-            replies
+            replies,
+            projectId,
+            onAddComment
         } = this.props;
 
         return (
             <FlexRow className="comment-container">
                 <Comment
+                    projectId={projectId}
+                    onAddComment={onAddComment}
                     onDelete={this.handleDelete}
-                    {...{author, content, datetimeCreated, deletable, deleted, id}}
+                    {...{author, content, datetimeCreated, deletable, deleted, canReply, id}}
                 />
                 {replies.length > 0 &&
                     <FlexRow
@@ -59,12 +64,15 @@ class TopLevelComment extends React.Component {
                         {(this.state.expanded ? replies : replies.slice(0, 3)).map(reply => (
                             <Comment
                                 author={reply.author}
+                                canReply={canReply}
                                 content={reply.content}
                                 datetimeCreated={reply.datetime_created}
                                 deletable={deletable}
                                 deleted={reply.deleted}
                                 id={reply.id}
                                 key={reply.id}
+                                projectId={projectId}
+                                onAddComment={this.props.onAddComment}
                                 onDelete={this.handleDelete}
                             />
                         ))}
@@ -87,11 +95,13 @@ TopLevelComment.propTypes = {
         image: PropTypes.string,
         username: PropTypes.string
     }),
+    canReply: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
     deletable: PropTypes.bool,
     deleted: PropTypes.bool,
     id: PropTypes.number,
+    onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
     parentId: PropTypes.number,
     projectId: PropTypes.string,

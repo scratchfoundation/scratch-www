@@ -95,6 +95,38 @@ module.exports.previewReducer = (state, action) => {
                 return comment;
             })
         });
+    case 'ADD_NEW_COMMENT':
+        if (action.comment.parent_id) {
+            let topLevelParent = action.comment.parent_id;
+
+            // If this is a nested reply, we need to look up which top level comment
+            // to put this new reply under.
+            if (!state.replies[topLevelParent]) {
+                Object.keys(state.replies).forEach(topLevelCommentId => {
+                    state.replies[topLevelCommentId].forEach(reply => {
+                        if (reply.id === action.comment.parent_id) {
+                            topLevelParent = topLevelCommentId;
+                        }
+                    });
+                });
+            }
+
+            if (state.replies[topLevelParent]) {
+                const replies = JSON.parse(JSON.stringify(state.replies));
+                // Replies to comments go at the end  of the thread
+                replies[topLevelParent] = replies[topLevelParent].concat(action.comment);
+                return Object.assign({}, state, {replies: replies});
+            }
+
+            log.error('Could not find top level parent to put reply in');
+            return state;
+        }
+
+        // Reply to the top level project, put the reply at the beginning
+        return Object.assign({}, state, {
+            comments: [action.comment, ...state.comments],
+            replies: Object.assign({}, state.replies, {[action.comment.id]: []})
+        });
     case 'SET_REPLIES':
         return Object.assign({}, state, {
             replies: merge({}, state.replies, action.replies)
@@ -203,6 +235,11 @@ module.exports.setStudioFetchStatus = (studioId, status) => ({
 module.exports.setCommentDeleted = commentId => ({
     type: 'SET_COMMENT_DELETED',
     commentId: commentId
+});
+
+module.exports.addNewComment = comment => ({
+    type: 'ADD_NEW_COMMENT',
+    comment: comment
 });
 
 module.exports.getProjectInfo = (id, token) => (dispatch => {

@@ -33,6 +33,7 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'addEventListeners',
+            'handleAddComment',
             'handleDeleteComment',
             'handleToggleStudio',
             'handleFavoriteToggle',
@@ -165,6 +166,9 @@ class Preview extends React.Component {
                     });
                 });
             });
+    }
+    handleAddComment (comment) {
+        this.props.handleAddComment(comment);
     }
     handleDeleteComment (id) {
         this.props.handleDeleteComment(this.state.projectId, id, this.props.user.token);
@@ -341,6 +345,7 @@ class Preview extends React.Component {
                         reportOpen={this.state.reportOpen}
                         studios={this.props.studios}
                         userOwnsProject={this.props.userOwnsProject}
+                        onAddComment={this.handleAddComment}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
                         onDeleteComment={this.handleDeleteComment}
@@ -399,6 +404,7 @@ Preview.propTypes = {
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getTopLevelComments: PropTypes.func.isRequired,
+    handleAddComment: PropTypes.func,
     handleDeleteComment: PropTypes.func,
     handleLogIn: PropTypes.func,
     handleLogOut: PropTypes.func,
@@ -526,6 +532,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+    handleAddComment: comment => {
+        dispatch(previewActions.addNewComment(comment));
+    },
     handleDeleteComment: (projectId, commentId, token) => {
         dispatch(previewActions.deleteComment(projectId, commentId, token));
     },
