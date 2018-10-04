@@ -23,6 +23,8 @@ const sessionActions = require('../../redux/session.js');
 const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
 
+const frameless = require('../../lib/frameless');
+
 const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
@@ -31,6 +33,7 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'addEventListeners',
+            'handleDeleteComment',
             'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoadMore',
@@ -46,7 +49,8 @@ class Preview extends React.Component {
             'handleUpdate',
             'initCounts',
             'pushHistory',
-            'renderLogin'
+            'renderLogin',
+            'setScreenFromOrientation'
         ]);
         const pathname = window.location.pathname.toLowerCase();
         const parts = pathname.split('/').filter(Boolean);
@@ -63,6 +67,8 @@ class Preview extends React.Component {
         };
         this.getExtensions(this.state.projectId);
         this.addEventListeners();
+        /* In the beginning, if user is on mobile and landscape, go to fullscreen */
+        this.setScreenFromOrientation();
     }
     componentDidUpdate (prevProps) {
         if (this.props.sessionStatus !== prevProps.sessionStatus &&
@@ -106,9 +112,26 @@ class Preview extends React.Component {
     }
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
+        window.addEventListener('orientationchange', this.setScreenFromOrientation);
     }
     removeEventListeners () {
         window.removeEventListener('popstate', this.handlePopState);
+        window.removeEventListener('orientationchange', this.setScreenFromOrientation);
+    }
+    setScreenFromOrientation () {
+        /*
+        * If the user is on a mobile device, switching to
+        * landscape format should make the fullscreen mode active
+        */
+        const isMobileDevice = screen.height <= frameless.mobile || screen.width <= frameless.mobile;
+        if (this.props.playerMode && isMobileDevice) {
+            const isLandscape = screen.height < screen.width;
+            if (isLandscape) {
+                this.props.setFullScreen(true);
+            } else {
+                this.props.setFullScreen(false);
+            }
+        }
     }
     getExtensions (projectId) {
         storage
@@ -141,6 +164,9 @@ class Preview extends React.Component {
                     });
                 });
             });
+    }
+    handleDeleteComment (id) {
+        this.props.handleDeleteComment(this.state.projectId, id, this.props.user.token);
     }
     handleReportClick () {
         this.setState({reportOpen: true});
@@ -316,6 +342,7 @@ class Preview extends React.Component {
                         userOwnsProject={this.props.userOwnsProject}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
+                        onDeleteComment={this.handleDeleteComment}
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoadMore={this.handleLoadMore}
                         onLoveClicked={this.handleLoveToggle}
@@ -371,6 +398,7 @@ Preview.propTypes = {
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getTopLevelComments: PropTypes.func.isRequired,
+    handleDeleteComment: PropTypes.func,
     handleLogIn: PropTypes.func,
     handleLogOut: PropTypes.func,
     handleOpenRegistration: PropTypes.func,
@@ -497,6 +525,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+    handleDeleteComment: (projectId, commentId, token) => {
+        dispatch(previewActions.deleteComment(projectId, commentId, token));
+    },
     handleOpenRegistration: event => {
         event.preventDefault();
         dispatch(navigationActions.setRegistrationOpen(true));

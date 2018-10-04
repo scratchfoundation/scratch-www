@@ -86,6 +86,15 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             comments: [...state.comments, ...action.items] // TODO: consider a different way of doing this?
         });
+    case 'SET_COMMENT_DELETED':
+        return Object.assign({}, state, {
+            comments: state.comments.map(comment => {
+                if (comment.id === action.commentId) {
+                    return Object.assign({}, comment, {deleted: true});
+                }
+                return comment;
+            })
+        });
     case 'SET_REPLIES':
         return Object.assign({}, state, {
             replies: merge({}, state.replies, action.replies)
@@ -189,6 +198,11 @@ module.exports.setStudioFetchStatus = (studioId, status) => ({
     type: 'SET_STUDIO_FETCH_STATUS',
     studioId: studioId,
     status: status
+});
+
+module.exports.setCommentDeleted = commentId => ({
+    type: 'SET_COMMENT_DELETED',
+    commentId: commentId
 });
 
 module.exports.getProjectInfo = (id, token) => (dispatch => {
@@ -559,6 +573,26 @@ module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
         dispatch(module.exports.setProjectInfo(body));
+    });
+});
+
+module.exports.deleteComment = (projectId, commentId, token) => (dispatch => {
+    /* TODO fetching/fetched/error states updates for comment deleting */
+    api({
+        uri: `/proxy/comments/project/${projectId}`,
+        authentication: token,
+        withCredentials: true,
+        method: 'DELETE',
+        useCsrf: true,
+        json: {
+            id: commentId
+        }
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            log.error(err || res.body);
+            return;
+        }
+        dispatch(module.exports.setCommentDeleted(commentId));
     });
 });
 

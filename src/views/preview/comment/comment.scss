@@ -131,6 +131,19 @@
                 height: 9px;
                 content: "";
             }
+
+            &.comment-bubble-deleted {
+                $deleted-outline:  #ff6680;
+                $deleted-background: rgb(236, 206, 223);
+
+                border-color: $deleted-outline;
+                background-color: $deleted-background;
+
+                &:before {
+                    border-color: $deleted-outline transparent $deleted-outline $deleted-outline;
+                    background: $deleted-background;
+                }
+            }
         }
 
         .comment-content {
