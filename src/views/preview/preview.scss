@@ -14,6 +14,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 /* override view padding for share banner */
 #view {
     padding: 0;
+    width: 100%;
 }
 
 .gui {
@@ -74,6 +75,10 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         @media #{$medium-and-small} {
             flex-direction: row;
         }
+
+        @media #{$small} {
+            margin-right: 0;
+        }
     }
 
     img {
@@ -98,10 +103,6 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
-
-        @media #{$medium-and-small} {
-            min-width: 100%;
-        }
     }
 
     .validation-message {
@@ -244,10 +245,6 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
         @media #{$small} {
             width: 100%;
-
-            .stage-wrapper {
-                max-width: 100%;
-            }
         }
     }
 
