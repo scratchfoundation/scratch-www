@@ -36,8 +36,8 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         }
 
         @media #{$intermediate} {
-            min-width: 640px;
             width: 90%;
+            min-width: 640px;
         }
     }
 
