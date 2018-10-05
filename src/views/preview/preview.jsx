@@ -124,7 +124,8 @@ class Preview extends React.Component {
         * landscape format should make the fullscreen mode active
         */
         const isMobileDevice = screen.height <= frameless.mobile || screen.width <= frameless.mobile;
-        if (this.props.playerMode && isMobileDevice) {
+        const isAModalOpen = this.state.addToStudioOpen || this.state.reportOpen;
+        if (this.props.playerMode && isMobileDevice && !isAModalOpen) {
             const isLandscape = screen.height < screen.width;
             if (isLandscape) {
                 this.props.setFullScreen(true);
