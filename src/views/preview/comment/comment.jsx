@@ -13,13 +13,11 @@ require('./comment.scss');
 class Comment extends React.Component {
     constructor (props) {
         super(props);
-
         bindAll(this, [
             'handleDelete',
             'handlePostReply',
             'handleToggleReplying'
         ]);
-
         this.state = {
             replying: false
         };

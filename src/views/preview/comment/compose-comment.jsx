@@ -46,13 +46,11 @@ const CommentErrorMessages = {
 class ComposeComment extends React.Component {
     constructor (props) {
         super(props);
-
         bindAll(this, [
             'handlePost',
             'handleCancel',
             'handleInput'
         ]);
-
         this.state = {
             message: '',
             status: ComposeStatus.EDITING,
@@ -85,12 +83,20 @@ class ComposeComment extends React.Component {
             }
 
             if (body.rejected && this.state.status === ComposeStatus.SUBMITTING) {
-                this.setState({status: ComposeStatus.REJECTED, error: body.rejected});
+                // Note: does not reset the message state
+                this.setState({
+                    status: ComposeStatus.REJECTED,
+                    error: body.rejected
+                });
                 return;
             }
 
-            // Clear the text field on successful submission
-            this.setState({status: ComposeStatus.EDITING, error: null, message: ''});
+            // Clear the text field and reset status on successful submission
+            this.setState({
+                message: '',
+                status: ComposeStatus.EDITING,
+                error: null
+            });
 
             // Add the username, which isn't included right now from scratch-api
             if (body.author) body.author.username = this.props.user.username;
@@ -99,7 +105,11 @@ class ComposeComment extends React.Component {
         });
     }
     handleCancel () {
-        this.setState({message: '', error: null, status: ComposeStatus.EDITING});
+        this.setState({
+            message: '',
+            status: ComposeStatus.EDITING,
+            error: null
+        });
         if (this.props.onCancel) this.props.onCancel();
     }
     render () {

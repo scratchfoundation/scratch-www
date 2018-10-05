@@ -14,7 +14,7 @@ class TopLevelComment extends React.Component {
         bindAll(this, [
             'handleExpandThread',
             'handleAddComment',
-            'handleDeleteComment'
+            'handleDeleteReply'
         ]);
         this.state = {
             expanded: false

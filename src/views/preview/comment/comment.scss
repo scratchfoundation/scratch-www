@@ -1,23 +1,23 @@
 @import "../../../colors";
 
 .compose-comment {
+    margin-left: .5rem;
     width: 100%;
-    margin-left: 0.5rem;
 
     .compose-error-row {
         width: 100%;
         justify-content: flex-start;
 
         .compose-error-tip {
-            width: 100%;
-            margin-bottom: 0.5rem;
+            margin-bottom: .5rem;
             border: 1px solid $active-gray;
             border-radius: 5px;
             background-color: $ui-orange;
-            padding: 0.25rem;
-            font-size: 0.85rem;
+            padding: .25rem;
+            width: 100%;
             text-align: left;
             color: $type-white;
+            font-size: .85rem;
         }
     }
 
@@ -223,9 +223,9 @@
 }
 
 .comment-reply-row {
-    width: 100%;
     margin-top: 1.5rem;
-    margin-left: 0.5rem;
+    margin-left: .5rem;
+    width: 100%;
 }
 
 .expand-thread {
