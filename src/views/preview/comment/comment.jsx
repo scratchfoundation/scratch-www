@@ -15,6 +15,7 @@ class Comment extends React.Component {
         super(props);
 
         bindAll(this, [
+            'handleDelete',
             'handlePostReply',
             'handleToggleReplying'
         ]);
@@ -33,6 +34,10 @@ class Comment extends React.Component {
         this.setState({replying: !this.state.replying});
     }
 
+    handleDelete () {
+        this.props.onDelete(this.props.id);
+    }
+
     render () {
         const {
             author,
@@ -41,7 +46,6 @@ class Comment extends React.Component {
             canReply,
             content,
             datetimeCreated,
-            onDelete,
             id,
             projectId
         } = this.props;
@@ -64,7 +68,7 @@ class Comment extends React.Component {
                             {deletable ? (
                                 <span
                                     className="comment-delete"
-                                    onClick={onDelete}
+                                    onClick={this.handleDelete}
                                 >
                                     Delete {/* TODO internationalize */}
                                 </span>

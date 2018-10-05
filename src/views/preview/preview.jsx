@@ -167,11 +167,11 @@ class Preview extends React.Component {
                 });
             });
     }
-    handleAddComment (comment) {
-        this.props.handleAddComment(comment);
+    handleAddComment (comment, topLevelCommentId) {
+        this.props.handleAddComment(comment, topLevelCommentId);
     }
-    handleDeleteComment (id) {
-        this.props.handleDeleteComment(this.state.projectId, id, this.props.user.token);
+    handleDeleteComment (id, topLevelCommentId) {
+        this.props.handleDeleteComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
     }
     handleReportClick () {
         this.setState({reportOpen: true});
@@ -532,11 +532,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    handleAddComment: comment => {
-        dispatch(previewActions.addNewComment(comment));
+    handleAddComment: (comment, topLevelCommentId) => {
+        dispatch(previewActions.addNewComment(comment, topLevelCommentId));
     },
-    handleDeleteComment: (projectId, commentId, token) => {
-        dispatch(previewActions.deleteComment(projectId, commentId, token));
+    handleDeleteComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.deleteComment(projectId, commentId, topLevelCommentId, token));
     },
     handleOpenRegistration: event => {
         event.preventDefault();

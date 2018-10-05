@@ -87,6 +87,19 @@ module.exports.previewReducer = (state, action) => {
             comments: [...state.comments, ...action.items] // TODO: consider a different way of doing this?
         });
     case 'SET_COMMENT_DELETED':
+        if (action.topLevelCommentId) {
+            return Object.assign({}, state, {
+                replies: Object.assign({}, state.replies, {
+                    [action.topLevelCommentId]: state.replies[action.topLevelCommentId].map(comment => {
+                        if (comment.id === action.commentId) {
+                            return Object.assign({}, comment, {deleted: true});
+                        }
+                        return comment;
+                    })
+                })
+            });
+        }
+
         return Object.assign({}, state, {
             comments: state.comments.map(comment => {
                 if (comment.id === action.commentId) {
@@ -96,30 +109,13 @@ module.exports.previewReducer = (state, action) => {
             })
         });
     case 'ADD_NEW_COMMENT':
-        if (action.comment.parent_id) {
-            let topLevelParent = action.comment.parent_id;
-
-            // If this is a nested reply, we need to look up which top level comment
-            // to put this new reply under.
-            if (!state.replies[topLevelParent]) {
-                Object.keys(state.replies).forEach(topLevelCommentId => {
-                    state.replies[topLevelCommentId].forEach(reply => {
-                        if (reply.id === action.comment.parent_id) {
-                            topLevelParent = topLevelCommentId;
-                        }
-                    });
-                });
-            }
-
-            if (state.replies[topLevelParent]) {
-                const replies = JSON.parse(JSON.stringify(state.replies));
-                // Replies to comments go at the end  of the thread
-                replies[topLevelParent] = replies[topLevelParent].concat(action.comment);
-                return Object.assign({}, state, {replies: replies});
-            }
-
-            log.error('Could not find top level parent to put reply in');
-            return state;
+        if (action.topLevelCommentId) {
+            return Object.assign({}, state, {
+                replies: Object.assign({}, state.replies, {
+                    // Replies to comments go at the end  of the thread
+                    [action.topLevelCommentId]: state.replies[action.topLevelCommentId].concat(action.comment)
+                })
+            });
         }
 
         // Reply to the top level project, put the reply at the beginning
@@ -232,14 +228,16 @@ module.exports.setStudioFetchStatus = (studioId, status) => ({
     status: status
 });
 
-module.exports.setCommentDeleted = commentId => ({
+module.exports.setCommentDeleted = (commentId, topLevelCommentId) => ({
     type: 'SET_COMMENT_DELETED',
-    commentId: commentId
+    commentId: commentId,
+    topLevelCommentId: topLevelCommentId
 });
 
-module.exports.addNewComment = comment => ({
+module.exports.addNewComment = (comment, topLevelCommentId) => ({
     type: 'ADD_NEW_COMMENT',
-    comment: comment
+    comment: comment,
+    topLevelCommentId: topLevelCommentId
 });
 
 module.exports.getProjectInfo = (id, token) => (dispatch => {

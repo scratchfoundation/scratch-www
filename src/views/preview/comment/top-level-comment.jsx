@@ -13,7 +13,8 @@ class TopLevelComment extends React.Component {
         super(props);
         bindAll(this, [
             'handleExpandThread',
-            'handleDelete'
+            'handleAddComment',
+            'handleDeleteComment'
         ]);
         this.state = {
             expanded: false
@@ -26,8 +27,14 @@ class TopLevelComment extends React.Component {
         });
     }
 
-    handleDelete () {
-        this.props.onDelete(this.props.id);
+    handleDeleteReply (commentId) {
+        // Only apply topLevelCommentId for deleting replies
+        // The top level comment itself just gets passed onDelete directly
+        this.props.onDelete(commentId, this.props.id);
+    }
+
+    handleAddComment (comment) {
+        this.props.onAddComment(comment, this.props.id);
     }
 
     render () {
@@ -39,18 +46,17 @@ class TopLevelComment extends React.Component {
             deletable,
             deleted,
             id,
+            onDelete,
             replies,
-            projectId,
-            onAddComment
+            projectId
         } = this.props;
 
         return (
             <FlexRow className="comment-container">
                 <Comment
                     projectId={projectId}
-                    onAddComment={onAddComment}
-                    onDelete={this.handleDelete}
-                    {...{author, content, datetimeCreated, deletable, deleted, canReply, id}}
+                    onAddComment={this.handleAddComment}
+                    {...{author, content, datetimeCreated, deletable, deleted, canReply, id, onDelete}}
                 />
                 {replies.length > 0 &&
                     <FlexRow
@@ -72,8 +78,8 @@ class TopLevelComment extends React.Component {
                                 id={reply.id}
                                 key={reply.id}
                                 projectId={projectId}
-                                onAddComment={this.props.onAddComment}
-                                onDelete={this.handleDelete}
+                                onAddComment={this.handleAddComment}
+                                onDelete={this.handleDeleteReply}
                             />
                         ))}
                     </FlexRow>
