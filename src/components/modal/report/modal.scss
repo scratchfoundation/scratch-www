@@ -1,7 +1,6 @@
 @import "../../../colors";
 @import "../../../frameless";
 
-$medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
 .report-modal-header {
     box-shadow: inset 0 -1px 0 0 $ui-coral-dark;
@@ -47,7 +46,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         overflow: visible;
         color: $type-white;
 
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             position: relative;
             margin-top: calc($arrow-border-width / 2);
             max-width: 100%;
@@ -72,7 +71,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
             content: "";
 
-            @media #{$medium-and-small} {
+            @media #{$medium-and-smaller} {
                 display: none;
             }
         }

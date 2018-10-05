@@ -1,18 +1,13 @@
 @import "../../colors";
 @import "../../frameless";
 
-$small: "screen and (max-width : #{$mobile}-1)";
-$medium: "screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
-$intermediate: "screen and (min-width : #{$tablet}) and (max-width : 941px)"; /* 941 because currently breakpoint of .inner in www is 941 */
-$medium-and-small: "screen and (max-width : #{$tablet}-1)";
-
 .subactions {
     margin-left: 1.5rem;
     justify-content: flex-end;
     align-items: flex-start;
     flex: 1;
 
-    @media #{$medium-and-small} {
+    @media #{$medium-and-smaller} {
         margin-top: 1rem;
         width: 100%;
     }
@@ -36,7 +31,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
             margin: 0;
             text-align: right;
 
-            @media #{$medium-and-small} {
+            @media #{$medium-and-smaller} {
                 padding: 0;
             }
         }
@@ -60,7 +55,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
             line-height: .875rem;
             font-size: .75rem;
             font-weight: normal;
-            
+
             &.studio-button,
             &.copy-link-button,
             &.report-button {
@@ -101,14 +96,14 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 }
 
 .subactions, .subactions .action-buttons {
-    @media #{$medium-and-small} {
+    @media #{$medium-and-smaller} {
         margin: 0;
         justify-content: center;
         flex-direction: row;
     }
 
     & > div, .action-button {
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             padding: 0 1rem;
         }
     }

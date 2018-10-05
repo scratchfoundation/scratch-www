@@ -38,6 +38,29 @@ $desktop: 942px;
 $tablet: 640px;
 $mobile: 480px;
 
+/* Media Queries */
+
+/* Width */
+/*
+* ... small | medium     | intermediate | big ...
+* ... medium-and-smaller |
+*          ... intermediate-and-smaller |
+*/
+
+$small: "only screen and (max-width : #{$mobile}-1)";
+$medium: "only screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
+$intermediate: "only screen and (min-width : #{$tablet}) and (max-width : #{$desktop}-1)";
+$big: "only screen and (min-width : #{$desktop})";
+
+$medium-and-smaller: "only screen and (max-width : #{$tablet}-1)";
+$intermediate-and-smaller: "only screen and (max-width : #{$desktop}-1)";
+
+/* Height */
+
+$small-height: "only screen and (max-height : #{$mobile} - 1)";
+$medium-height: "only screen and (min-height : #{$mobile}) and (max-height : #{$tablet} - 1)";
+
+
 //
 // Column-widths in a function, in ems
 //
