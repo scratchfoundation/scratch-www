@@ -31,16 +31,21 @@ const CommentErrorMessages = {
     isFlood: "Woah, seems like you're commenting really quickly. Please wait longer between posts.",
     isBad: 'Hmm...the bad word detector thinks there is a problem with your comment. ' +
         'Please change it and remember to be respectful.',
-    serverError: 'Server error, please try again later',
-
-    /* TODO others... */
-    isSpam: '',
-    isMuted: '',
-    isUnconstructive: '',
-    isDisallowed: '',
-    isIPMuted: '',
-    isTooLong: '',
-    isNotPermitted: ''
+    hasChatSite: 'Uh oh! This comment contains a link to a website with unmoderated chat.' +
+        'For safety reasons, please do not link to these sites!',
+    isSpam: "Hmm, seems like you've posted the same comment a bunch of times. Please don't spam.",
+    isMuted: "Hmm, the filterbot is pretty sure your recent comments weren't ok for Scratch, " +
+        'so your account has been muted for the rest of the day. :/',
+    isUnconstructive: 'Hmm, the filterbot thinks your comment may be mean or disrespectful. ' +
+        'Remember, most projects on Scratch are made by people who are just learning how to program.',
+    isDisallowed: 'Hmm, it looks like comments have been turned off for this page. :/',
+    // TODO implement the special modal for ip mute bans that includes links to appeals
+    //      this is just a stub of the actual message
+    isIPMuted: 'Sorry, the Scratch Team had to prevent your network from sharing comments or ' +
+        'projects because it was used to break our community guidelines too many times.' +
+        'You can still share comments and projects from another network.',
+    isTooLong: "That's too long! Please find a way to shorten your text.",
+    error: 'Oops! Something went wrong'
 };
 
 class ComposeComment extends React.Component {
@@ -79,14 +84,17 @@ class ComposeComment extends React.Component {
             }
         }, (err, body, res) => {
             if (err || res.statusCode !== 200) {
-                body = {rejected: 'serverError'};
+                body = {rejected: 'error'};
             }
 
             if (body.rejected && this.state.status === ComposeStatus.SUBMITTING) {
                 // Note: does not reset the message state
                 this.setState({
                     status: ComposeStatus.REJECTED,
-                    error: body.rejected
+                    // If there is a special error message for the rejected reason,
+                    // use it. Otherwise, use the generic 'error' ("Oops!...")
+                    error: CommentErrorMessages[body.rejected] ?
+                        body.rejected : 'error'
                 });
                 return;
             }
