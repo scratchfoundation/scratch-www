@@ -7,11 +7,14 @@ $player-height: 406px;
 $stage-width: 480px;
 
 $small: "screen and (max-width : #{$mobile}-1)";
+$medium: "screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
+$intermediate: "screen and (min-width : #{$tablet}) and (max-width : #{$desktop}-1)";
 $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
 /* override view padding for share banner */
 #view {
     padding: 0;
+    width: 100%;
 }
 
 .gui {
@@ -24,6 +27,19 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 }
 
 .preview {
+
+    .inner {
+        margin: 0 auto;
+
+        @media #{$medium-and-small} {
+            max-width: 90%;
+        }
+
+        @media #{$intermediate} {
+            width: 90%;
+            min-width: 640px;
+        }
+    }
 
     .project-title {
         font-size: 1.75rem;
@@ -59,6 +75,10 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         @media #{$medium-and-small} {
             flex-direction: row;
         }
+
+        @media #{$small} {
+            margin-right: 0;
+        }
     }
 
     img {
@@ -83,10 +103,6 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
-
-        @media #{$medium-and-small} {
-            min-width: 100%;
-        }
     }
 
     .validation-message {
@@ -229,10 +245,6 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
         @media #{$small} {
             width: 100%;
-
-            .stage-wrapper {
-                max-width: 100%;
-            }
         }
     }
 
