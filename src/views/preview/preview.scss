@@ -9,6 +9,7 @@ $stage-width: 480px;
 /* override view padding for share banner */
 #view {
     padding: 0;
+    width: 100%;
 }
 
 .gui {
@@ -21,6 +22,19 @@ $stage-width: 480px;
 }
 
 .preview {
+
+    .inner {
+        margin: 0 auto;
+
+        @media #{$medium-and-small} {
+            max-width: 90%;
+        }
+
+        @media #{$intermediate} {
+            width: 90%;
+            min-width: 640px;
+        }
+    }
 
     .project-title {
         font-size: 1.75rem;
@@ -55,6 +69,10 @@ $stage-width: 480px;
 
         @media #{$medium-and-smaller} {
             flex-direction: row;
+        }
+
+        @media #{$small} {
+            margin-right: 0;
         }
     }
 
@@ -226,10 +244,6 @@ $stage-width: 480px;
 
         @media #{$small} {
             width: 100%;
-
-            .stage-wrapper {
-                max-width: 100%;
-            }
         }
     }
 
