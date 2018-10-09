@@ -23,13 +23,16 @@ class Modal extends React.Component {
         return this.modal.portal.requestClose();
     }
     render () {
+        // only set bodyOpenClassName prop if this.props.useStandardSizes is true.
+        // (careful -- setting bodyOpenClassName to null here causes an error, because
+        // ReactModal does not correctly handle the case of a null bodyOpenClassName)
+        const bodyOpenClassName = {
+            ...(this.props.useStandardSizes ? {bodyOpenClassName: classNames('overflow-hidden')} : {})
+        };
         return (
             <ReactModal
                 appElement={document.getElementById('app')}
-                // only set bodyOpenClassName prop if this.props.useStandardSizes is true.
-                // (careful -- setting bodyOpenClassName to null here causes an error, because ReactModal
-                // does not correctly handle the case of a null bodyOpenClassName)
-                {...(this.props.useStandardSizes ? {bodyOpenClassName: classNames('overflow-hidden')} : {})}
+                {...bodyOpenClassName}
                 className={{
                     base: classNames('modal-content', this.props.className, {
                         'modal-sizes': this.props.useStandardSizes
