@@ -14,7 +14,8 @@ class TopLevelComment extends React.Component {
         bindAll(this, [
             'handleExpandThread',
             'handleAddComment',
-            'handleDeleteReply'
+            'handleDeleteReply',
+            'handleReportReply'
         ]);
         this.state = {
             expanded: false
@@ -33,6 +34,12 @@ class TopLevelComment extends React.Component {
         this.props.onDelete(commentId, this.props.id);
     }
 
+    handleReportReply (commentId) {
+        // Only apply topLevelCommentId for reporting replies
+        // The top level comment itself just gets passed onReport directly
+        this.props.onReport(commentId, this.props.id);
+    }
+
     handleAddComment (comment) {
         this.props.onAddComment(comment, this.props.id);
     }
@@ -47,7 +54,9 @@ class TopLevelComment extends React.Component {
             deleted,
             id,
             onDelete,
+            onReport,
             replies,
+            reported,
             projectId
         } = this.props;
 
@@ -56,7 +65,18 @@ class TopLevelComment extends React.Component {
                 <Comment
                     projectId={projectId}
                     onAddComment={this.handleAddComment}
-                    {...{author, content, datetimeCreated, deletable, deleted, canReply, id, onDelete}}
+                    {...{
+                        author,
+                        content,
+                        datetimeCreated,
+                        deletable,
+                        deleted,
+                        canReply,
+                        id,
+                        onDelete,
+                        onReport,
+                        reported
+                    }}
                 />
                 {replies.length > 0 &&
                     <FlexRow
@@ -78,8 +98,10 @@ class TopLevelComment extends React.Component {
                                 id={reply.id}
                                 key={reply.id}
                                 projectId={projectId}
+                                reported={reply.reported}
                                 onAddComment={this.handleAddComment}
                                 onDelete={this.handleDeleteReply}
+                                onReport={this.handleReportReply}
                             />
                         ))}
                     </FlexRow>
@@ -109,9 +131,11 @@ TopLevelComment.propTypes = {
     id: PropTypes.number,
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
+    onReport: PropTypes.func,
     parentId: PropTypes.number,
     projectId: PropTypes.string,
-    replies: PropTypes.arrayOf(PropTypes.object)
+    replies: PropTypes.arrayOf(PropTypes.object),
+    reported: PropTypes.bool
 };
 
 module.exports = TopLevelComment;

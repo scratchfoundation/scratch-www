@@ -42,6 +42,7 @@ class Preview extends React.Component {
             'handlePopState',
             'handleReportClick',
             'handleReportClose',
+            'handleReportComment',
             'handleReportSubmit',
             'handleAddToStudioClick',
             'handleAddToStudioClose',
@@ -172,6 +173,9 @@ class Preview extends React.Component {
     }
     handleDeleteComment (id, topLevelCommentId) {
         this.props.handleDeleteComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
+    }
+    handleReportComment (id, topLevelCommentId) {
+        this.props.handleReportComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
     }
     handleReportClick () {
         this.setState({reportOpen: true});
@@ -354,6 +358,7 @@ class Preview extends React.Component {
                         onLoveClicked={this.handleLoveToggle}
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
+                        onReportComment={this.handleReportComment}
                         onReportSubmit={this.handleReportSubmit}
                         onSeeInside={this.handleSeeInside}
                         onToggleStudio={this.handleToggleStudio}
@@ -409,6 +414,7 @@ Preview.propTypes = {
     handleLogIn: PropTypes.func,
     handleLogOut: PropTypes.func,
     handleOpenRegistration: PropTypes.func,
+    handleReportComment: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     isEditable: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
@@ -537,6 +543,9 @@ const mapDispatchToProps = dispatch => ({
     },
     handleDeleteComment: (projectId, commentId, topLevelCommentId, token) => {
         dispatch(previewActions.deleteComment(projectId, commentId, topLevelCommentId, token));
+    },
+    handleReportComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.reportComment(projectId, commentId, topLevelCommentId, token));
     },
     handleOpenRegistration: event => {
         event.preventDefault();

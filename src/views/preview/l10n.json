@@ -6,5 +6,13 @@
     "preview.penExtensionChip": "Pen",
     "preview.speechExtensionChip": "Google Speech",
     "preview.translateExtensionChip": "Google Translate",
-    "preview.videoMotionChip": "Video Motion"
+    "preview.videoMotionChip": "Video Motion",
+
+    "comments.report": "Report",
+    "comments.delete": "Delete",
+    "comments.reportModal.title": "Report Comment",
+    "comments.reportModal.reported": "The comment has been reported, and the Scratch Team has been notified.",
+    "comments.reportModal.prompt": "Are you sure you want to report this comment?",
+    "comments.deleteModal.title": "Delete Comment",
+    "comments.deleteModal.body": "Delete this comment? If the comment is mean or disrespectful, please click Report instead to let the Scratch Team know about it."
 }

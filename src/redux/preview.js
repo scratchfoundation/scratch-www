@@ -86,13 +86,13 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             comments: [...state.comments, ...action.items] // TODO: consider a different way of doing this?
         });
-    case 'SET_COMMENT_DELETED':
+    case 'UPDATE_COMMENT':
         if (action.topLevelCommentId) {
             return Object.assign({}, state, {
                 replies: Object.assign({}, state.replies, {
                     [action.topLevelCommentId]: state.replies[action.topLevelCommentId].map(comment => {
                         if (comment.id === action.commentId) {
-                            return Object.assign({}, comment, {deleted: true});
+                            return Object.assign({}, comment, action.comment);
                         }
                         return comment;
                     })
@@ -103,7 +103,7 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             comments: state.comments.map(comment => {
                 if (comment.id === action.commentId) {
-                    return Object.assign({}, comment, {deleted: true});
+                    return Object.assign({}, comment, action.comment);
                 }
                 return comment;
             })
@@ -229,9 +229,21 @@ module.exports.setStudioFetchStatus = (studioId, status) => ({
 });
 
 module.exports.setCommentDeleted = (commentId, topLevelCommentId) => ({
-    type: 'SET_COMMENT_DELETED',
+    type: 'UPDATE_COMMENT',
     commentId: commentId,
-    topLevelCommentId: topLevelCommentId
+    topLevelCommentId: topLevelCommentId,
+    comment: {
+        deleted: true
+    }
+});
+
+module.exports.setCommentReported = (commentId, topLevelCommentId) => ({
+    type: 'UPDATE_COMMENT',
+    commentId: commentId,
+    topLevelCommentId: topLevelCommentId,
+    comment: {
+        reported: true
+    }
 });
 
 module.exports.addNewComment = (comment, topLevelCommentId) => ({
@@ -628,6 +640,23 @@ module.exports.deleteComment = (projectId, commentId, topLevelCommentId, token) 
             return;
         }
         dispatch(module.exports.setCommentDeleted(commentId, topLevelCommentId));
+    });
+});
+
+module.exports.reportComment = (projectId, commentId, topLevelCommentId, token) => (dispatch => {
+    api({
+        uri: `/proxy/report/project/${projectId}/comment/${commentId}`,
+        authentication: token,
+        withCredentials: true,
+        method: 'POST',
+        useCsrf: true
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            log.error(err || res.body);
+            return;
+        }
+        // TODO use the reportId in the response for unreporting functionality
+        dispatch(module.exports.setCommentReported(commentId, topLevelCommentId));
     });
 });
 
