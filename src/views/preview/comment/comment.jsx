@@ -1,76 +1,122 @@
 const React = require('react');
 const PropTypes = require('prop-types');
+const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
 
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../../components/avatar/avatar.jsx');
 const FormattedRelative = require('react-intl').FormattedRelative;
+const ComposeComment = require('./compose-comment.jsx');
 
 require('./comment.scss');
 
-const Comment = ({
-    author,
-    deletable,
-    deleted,
-    content,
-    datetimeCreated,
-    onDelete,
-    id
-}) => (
-    <div
-        className="flex-row comment"
-        id={`comments-${id}`}
-    >
-        <a href={`/users/${author.username}`}>
-            <Avatar src={author.image} />
-        </a>
-        <FlexRow className="comment-body column">
-            <FlexRow className="comment-top-row">
-                <a
-                    className="username"
-                    href={`/users/${author.username}`}
-                >{author.username}</a>
-                <div className="action-list">
-                    {deletable ? (
-                        <span
-                            className="comment-delete"
-                            onClick={onDelete}
-                        >
-                            Delete {/* TODO internationalize */}
-                        </span>
-                    ) : null}
-                    <span className="comment-report">
-                        Report {/* TODO internationalize */}
-                    </span>
-                </div>
-            </FlexRow>
+class Comment extends React.Component {
+    constructor (props) {
+        super(props);
+        bindAll(this, [
+            'handleDelete',
+            'handlePostReply',
+            'handleToggleReplying'
+        ]);
+        this.state = {
+            replying: false
+        };
+    }
+
+    handlePostReply (comment) {
+        this.setState({replying: false});
+        this.props.onAddComment(comment);
+    }
+
+    handleToggleReplying () {
+        this.setState({replying: !this.state.replying});
+    }
+
+    handleDelete () {
+        this.props.onDelete(this.props.id);
+    }
+
+    render () {
+        const {
+            author,
+            deletable,
+            deleted,
+            canReply,
+            content,
+            datetimeCreated,
+            id,
+            projectId
+        } = this.props;
+
+        return (
             <div
-                className={classNames({
-                    'comment-bubble': true,
-                    'comment-bubble-deleted': deleted
-                })}
+                className="flex-row comment"
+                id={`comments-${id}`}
             >
-                {/* TODO: at the moment, comment content does not properly display
-                  * emojis/easter eggs
-                  * @user links in replies 
-                  * links to scratch.mit.edu pages
-                  */}
-                <span className="comment-content">{content}</span>
-                <FlexRow className="comment-bottom-row">
-                    <span className="comment-time">
-                        <FormattedRelative value={new Date(datetimeCreated)} />
-                    </span>
-                    <a
-                        className="comment-reply"
-                        href={`#comments-${id}`}
+                <a href={`/users/${author.username}`}>
+                    <Avatar src={author.image} />
+                </a>
+                <FlexRow className="comment-body column">
+                    <FlexRow className="comment-top-row">
+                        <a
+                            className="username"
+                            href={`/users/${author.username}`}
+                        >{author.username}</a>
+                        <div className="action-list">
+                            {deletable ? (
+                                <span
+                                    className="comment-delete"
+                                    onClick={this.handleDelete}
+                                >
+                                    Delete {/* TODO internationalize */}
+                                </span>
+                            ) : null}
+                            <span className="comment-report">
+                                Report {/* TODO internationalize */}
+                            </span>
+                        </div>
+                    </FlexRow>
+                    <div
+                        className={classNames({
+                            'comment-bubble': true,
+                            'comment-bubble-deleted': deleted
+                        })}
                     >
-                        reply
-                    </a>
+                        {/* TODO: at the moment, comment content does not properly display
+                          * emojis/easter eggs
+                          * @user links in replies
+                          * links to scratch.mit.edu pages
+                          */}
+                        <span className="comment-content">{content}</span>
+                        <FlexRow className="comment-bottom-row">
+                            <span className="comment-time">
+                                <FormattedRelative value={new Date(datetimeCreated)} />
+                            </span>
+                            {canReply ? (
+                                <span
+                                    className="comment-reply"
+                                    onClick={this.handleToggleReplying}
+                                >
+                                    reply
+                                </span>
+                            ) : null}
+                        </FlexRow>
+                    </div>
+                    {this.state.replying ? (
+                        <FlexRow className="comment-reply-row">
+                            <ComposeComment
+                                parentId={id}
+                                projectId={projectId}
+                                onAddComment={this.handlePostReply}
+                                onCancel={this.handleToggleReplying}
+                            />
+                        </FlexRow>
+                    ) : null}
                 </FlexRow>
             </div>
-        </FlexRow>
-    </div>
-);
+        );
+    }
+}
 
 Comment.propTypes = {
     author: PropTypes.shape({
@@ -78,12 +124,15 @@ Comment.propTypes = {
         image: PropTypes.string,
         username: PropTypes.string
     }),
+    canReply: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
     deletable: PropTypes.bool,
     deleted: PropTypes.bool,
     id: PropTypes.number,
-    onDelete: PropTypes.func
+    onAddComment: PropTypes.func,
+    onDelete: PropTypes.func,
+    projectId: PropTypes.number
 };
 
 module.exports = Comment;

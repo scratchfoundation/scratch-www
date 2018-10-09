@@ -1,7 +1,25 @@
 @import "../../../colors";
 
 .compose-comment {
+    margin-left: .5rem;
     width: 100%;
+
+    .compose-error-row {
+        width: 100%;
+        justify-content: flex-start;
+
+        .compose-error-tip {
+            margin-bottom: .5rem;
+            border: 1px solid $active-gray;
+            border-radius: 5px;
+            background-color: $ui-orange;
+            padding: .25rem;
+            width: 100%;
+            text-align: left;
+            color: $type-white;
+            font-size: .85rem;
+        }
+    }
 
     .textarea-row {
         width: 100%;
@@ -161,6 +179,9 @@
 
             .comment-reply {
                 display: inline-flex;
+                cursor: pointer;
+                color: $ui-blue;
+                font-weight: bold;
 
                 &:after {
                     margin-left: .25rem;
@@ -195,6 +216,16 @@
             }
         }
     }
+}
+
+.comments-root-reply {
+    margin-bottom: 1.5rem;
+}
+
+.comment-reply-row {
+    margin-top: 1.5rem;
+    margin-left: .5rem;
+    width: 100%;
 }
 
 .expand-thread {

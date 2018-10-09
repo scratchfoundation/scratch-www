@@ -33,6 +33,7 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'addEventListeners',
+            'handleAddComment',
             'handleDeleteComment',
             'handleToggleStudio',
             'handleFavoriteToggle',
@@ -166,8 +167,11 @@ class Preview extends React.Component {
                 });
             });
     }
-    handleDeleteComment (id) {
-        this.props.handleDeleteComment(this.state.projectId, id, this.props.user.token);
+    handleAddComment (comment, topLevelCommentId) {
+        this.props.handleAddComment(comment, topLevelCommentId);
+    }
+    handleDeleteComment (id, topLevelCommentId) {
+        this.props.handleDeleteComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
     }
     handleReportClick () {
         this.setState({reportOpen: true});
@@ -341,6 +345,7 @@ class Preview extends React.Component {
                         reportOpen={this.state.reportOpen}
                         studios={this.props.studios}
                         userOwnsProject={this.props.userOwnsProject}
+                        onAddComment={this.handleAddComment}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
                         onDeleteComment={this.handleDeleteComment}
@@ -399,6 +404,7 @@ Preview.propTypes = {
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getTopLevelComments: PropTypes.func.isRequired,
+    handleAddComment: PropTypes.func,
     handleDeleteComment: PropTypes.func,
     handleLogIn: PropTypes.func,
     handleLogOut: PropTypes.func,
@@ -526,8 +532,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    handleDeleteComment: (projectId, commentId, token) => {
-        dispatch(previewActions.deleteComment(projectId, commentId, token));
+    handleAddComment: (comment, topLevelCommentId) => {
+        dispatch(previewActions.addNewComment(comment, topLevelCommentId));
+    },
+    handleDeleteComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.deleteComment(projectId, commentId, topLevelCommentId, token));
     },
     handleOpenRegistration: event => {
         event.preventDefault();

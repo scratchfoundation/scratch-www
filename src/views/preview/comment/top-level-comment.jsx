@@ -13,7 +13,8 @@ class TopLevelComment extends React.Component {
         super(props);
         bindAll(this, [
             'handleExpandThread',
-            'handleDelete'
+            'handleAddComment',
+            'handleDeleteReply'
         ]);
         this.state = {
             expanded: false
@@ -26,26 +27,36 @@ class TopLevelComment extends React.Component {
         });
     }
 
-    handleDelete () {
-        this.props.onDelete(this.props.id);
+    handleDeleteReply (commentId) {
+        // Only apply topLevelCommentId for deleting replies
+        // The top level comment itself just gets passed onDelete directly
+        this.props.onDelete(commentId, this.props.id);
+    }
+
+    handleAddComment (comment) {
+        this.props.onAddComment(comment, this.props.id);
     }
 
     render () {
         const {
             author,
+            canReply,
             content,
             datetimeCreated,
             deletable,
             deleted,
             id,
-            replies
+            onDelete,
+            replies,
+            projectId
         } = this.props;
 
         return (
             <FlexRow className="comment-container">
                 <Comment
-                    onDelete={this.handleDelete}
-                    {...{author, content, datetimeCreated, deletable, deleted, id}}
+                    projectId={projectId}
+                    onAddComment={this.handleAddComment}
+                    {...{author, content, datetimeCreated, deletable, deleted, canReply, id, onDelete}}
                 />
                 {replies.length > 0 &&
                     <FlexRow
@@ -59,13 +70,16 @@ class TopLevelComment extends React.Component {
                         {(this.state.expanded ? replies : replies.slice(0, 3)).map(reply => (
                             <Comment
                                 author={reply.author}
+                                canReply={canReply}
                                 content={reply.content}
                                 datetimeCreated={reply.datetime_created}
                                 deletable={deletable}
                                 deleted={reply.deleted}
                                 id={reply.id}
                                 key={reply.id}
-                                onDelete={this.handleDelete}
+                                projectId={projectId}
+                                onAddComment={this.handleAddComment}
+                                onDelete={this.handleDeleteReply}
                             />
                         ))}
                     </FlexRow>
@@ -87,11 +101,13 @@ TopLevelComment.propTypes = {
         image: PropTypes.string,
         username: PropTypes.string
     }),
+    canReply: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
     deletable: PropTypes.bool,
     deleted: PropTypes.bool,
     id: PropTypes.number,
+    onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
     parentId: PropTypes.number,
     projectId: PropTypes.string,
