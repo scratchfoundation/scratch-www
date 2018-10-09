@@ -78,7 +78,7 @@ class Search extends React.Component {
         while (term.indexOf('&') > -1) {
             term = term.substring(0, term.indexOf('&'));
         }
-        term = decodeURIComponent(term.split('+').join(' '));
+        term = decodeURIComponent(term);
         this.props.dispatch(navigationActions.setSearchTerm(term));
     }
     componentDidUpdate (prevProps) {
