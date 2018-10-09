@@ -183,7 +183,7 @@ ComposeComment.propTypes = {
     onAddComment: PropTypes.func,
     onCancel: PropTypes.func,
     parentId: PropTypes.number,
-    projectId: PropTypes.number,
+    projectId: PropTypes.string,
     user: PropTypes.shape({
         id: PropTypes.number,
         username: PropTypes.string,

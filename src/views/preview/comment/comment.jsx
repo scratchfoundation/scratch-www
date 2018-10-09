@@ -196,7 +196,7 @@ Comment.propTypes = {
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
     onReport: PropTypes.func,
-    projectId: PropTypes.number,
+    projectId: PropTypes.string,
     reported: PropTypes.bool
 };
 
