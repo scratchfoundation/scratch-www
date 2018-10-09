@@ -1,12 +1,6 @@
 @import "../../../colors";
 @import "../../../frameless";
 
-$small: "only screen and (max-width : #{$mobile})";
-$medium: "only screen and (min-width : #{$mobile}+1) and (max-width : #{$tablet}-1)";
-$big: "only screen and (min-width : #{$tablet}) and (max-width : #{$desktop}-1)";
-$small-height: "only screen and (max-height : #{$mobile})";
-$medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height : #{$tablet} - 1)";
-
 .overflow-hidden {
     /* to avoid double scroll bars this
     gets added to body while modal is open */
@@ -32,7 +26,7 @@ $medium-height: "only screen and (min-height : #{$mobile} + 1) and (max-height :
         outline: none;
     }
 
-    @media #{$small}, #{$medium}, #{$big} {
+    @media #{$intermediate-and-smaller} {
         margin-top: 0;
         width: 100%;
         overflow: auto;
@@ -82,7 +76,7 @@ $modal-close-size: 1rem;
     align-items: flex-start;
     flex-wrap: nowrap;
 
-    @media #{$small}, #{$medium}, #{$big} {
+    @media #{$intermediate-and-smaller} {
         justify-content: center !important; //overwriting flex row properties
         flex-direction: row !important;
     }

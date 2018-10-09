@@ -6,11 +6,6 @@ $player-width: 482px;
 $player-height: 406px;
 $stage-width: 480px;
 
-$small: "screen and (max-width : #{$mobile}-1)";
-$medium: "screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
-$intermediate: "screen and (min-width : #{$tablet}) and (max-width : #{$desktop}-1)";
-$medium-and-small: "screen and (max-width : #{$tablet}-1)";
-
 /* override view padding for share banner */
 #view {
     padding: 0;
@@ -31,7 +26,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
     .inner {
         margin: 0 auto;
 
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             max-width: 90%;
         }
 
@@ -72,7 +67,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
             height: calc(3rem - 4px);
         }
 
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             flex-direction: row;
         }
 
@@ -103,6 +98,10 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
+
+        @media #{$medium-and-smaller} {
+            min-width: 100%;
+        }
     }
 
     .validation-message {
@@ -121,7 +120,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         color: $type-white;
         font-size: 1rem;
 
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             margin-top: calc($arrow-border-width / 2);
             width: 100%;
         }
@@ -144,7 +143,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
             content: "";
 
-            @media #{$medium-and-small} {
+            @media #{$medium-and-smaller} {
                 display: none;
             }
         }
@@ -178,7 +177,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         max-width: 100%;
         flex: 1;
 
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             padding: 0;
             width: 100%;
         }
@@ -233,7 +232,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         flex-wrap: nowrap;
 
         &.force-row {
-            @media #{$medium-and-small} {
+            @media #{$medium-and-smaller} {
                 flex-direction: row;
             }
         }
@@ -249,7 +248,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
     }
 
     .force-center {
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             align-self: center;
         }
     }
@@ -261,7 +260,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         flex: 1;
         flex-flow: column;
 
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             margin-top: 1rem;
             margin-left: 0;
             width: 100%;
@@ -282,7 +281,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         flex-wrap: nowrap;
         align-items: center;
 
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             flex-direction: row;
         }
     }
@@ -388,7 +387,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         justify-content: flex-start;
         flex-direction: row;
 
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             justify-content: center;
         }
 
@@ -417,7 +416,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
             /* TODO: the following can be transferred to
             src/components/thumbnailcolumn/thumbnailcolumn.scss
             after testing */
-            @media #{$medium-and-small} {
+            @media #{$medium-and-smaller} {
                 flex-direction: row;
 
                 .thumbnail {
@@ -426,7 +425,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
             }
         }
 
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             margin-top: 1rem;
         }
     }
