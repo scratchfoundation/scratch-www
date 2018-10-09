@@ -78,7 +78,12 @@ class Search extends React.Component {
         while (term.indexOf('&') > -1) {
             term = term.substring(0, term.indexOf('&'));
         }
-        term = decodeURIComponent(term);
+        try {
+            term = decodeURIComponent(term);
+        } catch (e){
+            // Error means that term was not URI encoded and decoding failed.
+            // We can silence this error because not all query strings are intended to be decoded.
+        }
         this.props.dispatch(navigationActions.setSearchTerm(term));
     }
     componentDidUpdate (prevProps) {
