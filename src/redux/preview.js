@@ -611,7 +611,7 @@ module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
     });
 });
 
-module.exports.deleteComment = (projectId, commentId, token) => (dispatch => {
+module.exports.deleteComment = (projectId, commentId, topLevelCommentId, token) => (dispatch => {
     /* TODO fetching/fetched/error states updates for comment deleting */
     api({
         uri: `/proxy/comments/project/${projectId}`,
@@ -627,7 +627,7 @@ module.exports.deleteComment = (projectId, commentId, token) => (dispatch => {
             log.error(err || res.body);
             return;
         }
-        dispatch(module.exports.setCommentDeleted(commentId));
+        dispatch(module.exports.setCommentDeleted(commentId, topLevelCommentId));
     });
 });
 
