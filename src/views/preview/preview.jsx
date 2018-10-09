@@ -33,6 +33,8 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'addEventListeners',
+            'handleAddComment',
+            'handleDeleteComment',
             'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoadMore',
@@ -123,7 +125,8 @@ class Preview extends React.Component {
         * landscape format should make the fullscreen mode active
         */
         const isMobileDevice = screen.height <= frameless.mobile || screen.width <= frameless.mobile;
-        if (this.props.playerMode && isMobileDevice) {
+        const isAModalOpen = this.state.addToStudioOpen || this.state.reportOpen;
+        if (this.props.playerMode && isMobileDevice && !isAModalOpen) {
             const isLandscape = screen.height < screen.width;
             if (isLandscape) {
                 this.props.setFullScreen(true);
@@ -163,6 +166,12 @@ class Preview extends React.Component {
                     });
                 });
             });
+    }
+    handleAddComment (comment, topLevelCommentId) {
+        this.props.handleAddComment(comment, topLevelCommentId);
+    }
+    handleDeleteComment (id, topLevelCommentId) {
+        this.props.handleDeleteComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
     }
     handleReportClick () {
         this.setState({reportOpen: true});
@@ -336,8 +345,10 @@ class Preview extends React.Component {
                         reportOpen={this.state.reportOpen}
                         studios={this.props.studios}
                         userOwnsProject={this.props.userOwnsProject}
+                        onAddComment={this.handleAddComment}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
+                        onDeleteComment={this.handleDeleteComment}
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoadMore={this.handleLoadMore}
                         onLoveClicked={this.handleLoveToggle}
@@ -393,6 +404,8 @@ Preview.propTypes = {
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getTopLevelComments: PropTypes.func.isRequired,
+    handleAddComment: PropTypes.func,
+    handleDeleteComment: PropTypes.func,
     handleLogIn: PropTypes.func,
     handleLogOut: PropTypes.func,
     handleOpenRegistration: PropTypes.func,
@@ -519,6 +532,12 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+    handleAddComment: (comment, topLevelCommentId) => {
+        dispatch(previewActions.addNewComment(comment, topLevelCommentId));
+    },
+    handleDeleteComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.deleteComment(projectId, commentId, topLevelCommentId, token));
+    },
     handleOpenRegistration: event => {
         event.preventDefault();
         dispatch(navigationActions.setRegistrationOpen(true));

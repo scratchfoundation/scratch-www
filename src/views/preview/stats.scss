@@ -1,12 +1,10 @@
 @import "../../frameless";
 
-$medium-and-small: "screen and (max-width : #{$tablet}-1)";
-
 .stats {
     line-height: 2rem;
     justify-content: flex-start;
 
-    @media #{$medium-and-small} {
+    @media #{$medium-and-smaller} {
         margin: 0;
         width: 100%;
         justify-content: center;
@@ -14,7 +12,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
     }
 
     & > div {
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             padding: 0 1rem;
         }
     }

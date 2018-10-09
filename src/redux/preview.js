@@ -86,6 +86,43 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             comments: [...state.comments, ...action.items] // TODO: consider a different way of doing this?
         });
+    case 'SET_COMMENT_DELETED':
+        if (action.topLevelCommentId) {
+            return Object.assign({}, state, {
+                replies: Object.assign({}, state.replies, {
+                    [action.topLevelCommentId]: state.replies[action.topLevelCommentId].map(comment => {
+                        if (comment.id === action.commentId) {
+                            return Object.assign({}, comment, {deleted: true});
+                        }
+                        return comment;
+                    })
+                })
+            });
+        }
+
+        return Object.assign({}, state, {
+            comments: state.comments.map(comment => {
+                if (comment.id === action.commentId) {
+                    return Object.assign({}, comment, {deleted: true});
+                }
+                return comment;
+            })
+        });
+    case 'ADD_NEW_COMMENT':
+        if (action.topLevelCommentId) {
+            return Object.assign({}, state, {
+                replies: Object.assign({}, state.replies, {
+                    // Replies to comments go at the end  of the thread
+                    [action.topLevelCommentId]: state.replies[action.topLevelCommentId].concat(action.comment)
+                })
+            });
+        }
+
+        // Reply to the top level project, put the reply at the beginning
+        return Object.assign({}, state, {
+            comments: [action.comment, ...state.comments],
+            replies: Object.assign({}, state.replies, {[action.comment.id]: []})
+        });
     case 'SET_REPLIES':
         return Object.assign({}, state, {
             replies: merge({}, state.replies, action.replies)
@@ -189,6 +226,18 @@ module.exports.setStudioFetchStatus = (studioId, status) => ({
     type: 'SET_STUDIO_FETCH_STATUS',
     studioId: studioId,
     status: status
+});
+
+module.exports.setCommentDeleted = (commentId, topLevelCommentId) => ({
+    type: 'SET_COMMENT_DELETED',
+    commentId: commentId,
+    topLevelCommentId: topLevelCommentId
+});
+
+module.exports.addNewComment = (comment, topLevelCommentId) => ({
+    type: 'ADD_NEW_COMMENT',
+    comment: comment,
+    topLevelCommentId: topLevelCommentId
 });
 
 module.exports.getProjectInfo = (id, token) => (dispatch => {
@@ -559,6 +608,26 @@ module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
         dispatch(module.exports.setProjectInfo(body));
+    });
+});
+
+module.exports.deleteComment = (projectId, commentId, token) => (dispatch => {
+    /* TODO fetching/fetched/error states updates for comment deleting */
+    api({
+        uri: `/proxy/comments/project/${projectId}`,
+        authentication: token,
+        withCredentials: true,
+        method: 'DELETE',
+        useCsrf: true,
+        json: {
+            id: commentId
+        }
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            log.error(err || res.body);
+            return;
+        }
+        dispatch(module.exports.setCommentDeleted(commentId));
     });
 });
 

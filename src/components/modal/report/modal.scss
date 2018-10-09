@@ -1,42 +1,15 @@
 @import "../../../colors";
 @import "../../../frameless";
 
-$medium-and-small: "screen and (max-width : #{$tablet}-1)";
-
-.mod-report * {
-    box-sizing: border-box;
-}
-
-.mod-report {
-    margin: 100px auto;
-    outline: none;
-    padding: 0;
-    width: 36.25rem; /* 580px; */
-    user-select: none;
-}
 
 .report-modal-header {
-    border-radius: 1rem 1rem 0 0;
     box-shadow: inset 0 -1px 0 0 $ui-coral-dark;
     background-color: $ui-coral;
-    padding-top: .75rem;
-    width: 100%;
-    height: 3rem;
-    box-sizing: border-box;
-}
-
-.report-content-label {
-    text-align: center;
-    color: $type-white;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    font-weight: bold;
 }
 
 .report-modal-content {
     margin: 1rem auto;
     width: 80%;
-    font-size: .875rem;
 
     .instructions {
         line-height: 1.5rem;
@@ -73,7 +46,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
         overflow: visible;
         color: $type-white;
 
-        @media #{$medium-and-small} {
+        @media #{$medium-and-smaller} {
             position: relative;
             margin-top: calc($arrow-border-width / 2);
             max-width: 100%;
@@ -98,7 +71,7 @@ $medium-and-small: "screen and (max-width : #{$tablet}-1)";
 
             content: "";
 
-            @media #{$medium-and-small} {
+            @media #{$medium-and-smaller} {
                 display: none;
             }
         }

@@ -1,6 +1,12 @@
 @import "../../../colors";
 @import "../../../frameless";
 
+.overflow-hidden {
+    /* to avoid double scroll bars this
+    gets added to body while modal is open */
+    overflow: hidden;
+}
+
 .modal-content {
     position: relative;
     margin: 3.75rem auto;
@@ -10,8 +16,26 @@
     padding: 0;
     width: 48.75rem;
 
+    .modal-content { /* content inside of content */
+        display: flex;
+        border-radius: 0;
+        flex-direction: column;
+    }
+
     &:focus {
         outline: none;
+    }
+
+    @media #{$intermediate-and-smaller} {
+        margin-top: 0;
+        width: 100%;
+        overflow: auto;
+    }
+
+    @media #{$small}, #{$small-height} {
+        border-radius: 0;
+        box-shadow: none;
+        height: 100%;
     }
 }
 
@@ -43,23 +67,6 @@ $modal-close-size: 1rem;
     padding-top: $modal-close-size / 2;
 }
 
-@media only screen and (max-width: $desktop - 1) {
-    .modal-content {
-        top: 0;
-        left: 0;
-        margin-top: 0;
-        border-radius: 0;
-        box-shadow: none;
-        width: 100%;
-        height: 100%;
-        overflow: scroll;
-    }
-
-    .modal-content-close {
-        position: fixed;
-    }
-}
-
 /* Close button, Submit button, etc. */
 .action-buttons {
     display: flex;
@@ -68,6 +75,11 @@ $modal-close-size: 1rem;
     justify-content: flex-end !important;
     align-items: flex-start;
     flex-wrap: nowrap;
+
+    @media #{$intermediate-and-smaller} {
+        justify-content: center !important; //overwriting flex row properties
+        flex-direction: row !important;
+    }
 }
 
 /* setting overall modal to contain overflow looks good, but isn't
@@ -107,4 +119,47 @@ row to appear to contain overflow. */
     min-height: 1rem;
     overflow: visible;
     color: $type-white;
+}
+
+.modal-sizes * {
+    box-sizing: border-box;
+}
+
+.modal-sizes {
+    margin: 100px auto;
+    outline: none;
+    padding: 0;
+    max-width: 36.25rem; /* 580px; */
+    user-select: none;
+
+    @media #{$medium}, #{$medium-height} {
+        margin: 40px auto;
+    }
+
+    @media #{$small}, #{$small-height} {
+        margin: 0 auto;
+        width: auto;
+    }
+
+    .modal-header {
+        padding-top: .75rem;
+        width: 100%;
+        height: 3rem;
+
+        @media #{$small}, #{$small-height} {
+            border-radius: 0;
+        }
+    }
+
+    .content-label {
+        text-align: center;
+        color: $type-white;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .modal-content {
+        font-size: .875rem;
+    }
 }
