@@ -26,7 +26,11 @@ class Modal extends React.Component {
         return (
             <ReactModal
                 appElement={document.getElementById('app')}
-                bodyOpenClassName={this.props.useStandardSizes ? classNames('overflow-hidden') : null}
+                // bodyOpenClassName can be blank string, but must not be null here; a null value causes
+                // an error, because ReactModal does not correctly handle the case of a null bodyOpenClassName
+                bodyOpenClassName={classNames({
+                    'overflow-hidden': this.props.useStandardSizes
+                })}
                 className={{
                     base: classNames('modal-content', this.props.className, {
                         'modal-sizes': this.props.useStandardSizes
