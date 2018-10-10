@@ -150,7 +150,7 @@
                 content: "";
             }
 
-            &.comment-bubble-deleted, .comment-bubble-reported {
+            &.comment-bubble-deleted, &.comment-bubble-reported {
                 $deleted-outline:  #ff6680;
                 $deleted-background: rgb(236, 206, 223);
 
