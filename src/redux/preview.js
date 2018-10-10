@@ -645,7 +645,7 @@ module.exports.deleteComment = (projectId, commentId, topLevelCommentId, token) 
 
 module.exports.reportComment = (projectId, commentId, topLevelCommentId, token) => (dispatch => {
     api({
-        uri: `/proxy/report/project/${projectId}/comment/${commentId}`,
+        uri: `/proxy/project/${projectId}/comment/${commentId}/report`,
         authentication: token,
         withCredentials: true,
         method: 'POST',
