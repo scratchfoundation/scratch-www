@@ -14,7 +14,7 @@ env:
   global:
   - CXX=g++-4.8
   - API_HOST_master=https://api.scratch.mit.edu
-  - API_HOST_STAGING=https://api-staging.scratch.mit.edu
+  - API_HOST_STAGING=https://api.scratch.ly
   - API_HOST_VAR=API_HOST_$TRAVIS_BRANCH
   - API_HOST=${!API_HOST_VAR}
   - API_HOST=${API_HOST:-$API_HOST_STAGING}
