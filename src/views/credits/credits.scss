@@ -1,39 +1,205 @@
 @import "../../colors";
 
+#view {
+    padding: 0;
+}
+
 .credits {
-    p {
-        line-height: 1.5rem;
-
-        a {
-            white-space: normal;
-            word-wrap: break-word; /* Overrides: https://github.com/LLK/scratch-www/blob/develop/src/main.scss#L43-L47 */
-        }
-    }
-
     ul {
         display: flex;
-        margin: 0;
-        padding: 0;
+        margin: 0 auto;
+        padding: 64px 0;
+        max-width: 864px;
         list-style: none;
         flex-wrap: wrap;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+
+    .content {
+        padding-top: 40px;
     }
 
     li {
         display: inline-block;
-        margin: 10px 0;
-        width: 188px;
-        text-align: center; 
+        margin: 0;
+        padding-bottom: 32px;
+        text-align: center;
+        line-height: 1.25rem;
 
         img {
-            margin: 10px 23px;
-            border: 2px;
-            border-style: solid;
-            border-radius: 50%;
-            border-color: $ui-dark-gray;
+            $img-border: rgba(0, 0, 0, .05);
+            border: 2px solid $img-border;
+            border-radius: 8px;
             background-color: $ui-white;
-            padding: 20px;
-            width: 85px;
-            height: 85px;
+            width: 80px;
+            height: 80px;
+        }
+
+        span {
+            display: inline-block;
+            width: 144px;
+            font-size: .875rem;
+            word-wrap: break-word;
+
+        }
+    }
+
+    .acknowledgeContent {
+        margin: 0 176px;
+        padding: 2.5rem 0 5.75rem 0;
+        max-width: 520px;
+
+        p {
+            margin: 0;
+            padding-bottom: 1.875rem;
+            line-height: 1.5rem;
+        }
+
+        h2 {
+            padding: 3rem 0 1.5rem;
+            line-height: normal;
+            font-size: 2rem;
+        }
+    }
+
+    .textLogo {
+        max-width: 140px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .midHeader {
+        display: flex;
+        margin: 0 88px;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+            line-height: 1.5rem;
+        }
+    }
+
+    .logoGrid {
+        display: flex;
+        margin: 0 auto;
+        max-width: 864px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    .supporters {
+        $bg-grey: #f7f6f8;
+        background-color: $bg-grey;
+        padding: 5.25rem 0;
+    }
+
+    .logo {
+        padding: 84px 24px 0;
+    }
+
+    .title-banner {
+        display: flex;
+        padding: 0;
+        height: 152px;
+        align-items: center;
+    }
+
+    .title-banner-h1 {
+        font-size: 2rem;
+    }
+
+}
+
+@media only screen and (min-width: 1041px) and (max-width: 1280px) {
+    .credits {
+        .logoGrid {
+            max-width: 864px;
+         }
+    }
+}
+@media only screen and (min-width: 769px ) and (max-width: 1040px) {
+    .credits {
+        text-align: left;
+
+        .logoGrid  {
+            max-width: 680px;
+        }
+    }
+}
+@media only screen and (min-width: 477px) and (max-width: 768px) {
+    .credits {
+        text-align: left;
+
+        .logoGrid {
+            max-width: 434px;
+         }
+
+        .acknowledgeContent {
+            margin: 0 88px;
+        }
+    }
+}
+@media only screen and (min-width: 365px) and (max-width: 476px) {
+    .credits {
+        text-align: left;
+
+        li {
+            padding-bottom: 16px;
+
+            span {
+                width: 112px;
+            }
+        }
+
+        .logoGrid {
+            max-width: 444px;
+        }
+
+        .acknowledgeContent,
+        .midHeader {
+            margin: 0 44px;
+        }
+    }
+}
+@media only screen and (max-width: 364px) {
+    .credits {
+        text-align: left;
+        font-size: .6rem;
+
+        li {
+            padding-bottom: 16px;
+
+            img {
+                width: 56px;
+                height: 56px;
+            }
+
+            span {
+                width: 96px;
+            }
+        }
+
+        .logoGrid {
+            display: flex;
+            margin: 0 auto;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .acknowledgeContent {
+            margin: 0 12px;
+        }
+
+        .logo {
+            padding: 36px;
+        }
+
+        ul {
+            margin: 0 12px;
         }
     }
 }
