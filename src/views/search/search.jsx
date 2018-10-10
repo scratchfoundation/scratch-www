@@ -80,7 +80,7 @@ class Search extends React.Component {
         }
         try {
             term = decodeURIComponent(term);
-        } catch (e){
+        } catch (e) {
             // Error means that term was not URI encoded and decoding failed.
             // We can silence this error because not all query strings are intended to be decoded.
         }
