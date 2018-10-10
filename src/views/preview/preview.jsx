@@ -48,6 +48,7 @@ class Preview extends React.Component {
             'handleSeeInside',
             'handleUpdateProjectTitle',
             'handleUpdate',
+            'handleToggleComments',
             'initCounts',
             'pushHistory',
             'renderLogin',
@@ -166,6 +167,14 @@ class Preview extends React.Component {
                     });
                 });
             });
+    }
+    handleToggleComments () {
+        this.props.updateProject(
+            this.props.projectInfo.id,
+            {comments_allowed: !this.props.projectInfo.comments_allowed},
+            this.props.user.username,
+            this.props.user.token
+        );
     }
     handleAddComment (comment, topLevelCommentId) {
         this.props.handleAddComment(comment, topLevelCommentId);
@@ -356,6 +365,7 @@ class Preview extends React.Component {
                         onReportClose={this.handleReportClose}
                         onReportSubmit={this.handleReportSubmit}
                         onSeeInside={this.handleSeeInside}
+                        onToggleComments={this.handleToggleComments}
                         onToggleStudio={this.handleToggleStudio}
                         onUpdate={this.handleUpdate}
                     />

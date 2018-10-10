@@ -1,6 +1,8 @@
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
 const intlShape = require('react-intl').intlShape;
+const FormattedMessage = require('react-intl').FormattedMessage;
+
 const MediaQuery = require('react-responsive').default;
 const React = require('react');
 const Formsy = require('formsy-react').default;
@@ -76,6 +78,7 @@ const PreviewPresentation = ({
     onAddToStudioClicked,
     onAddToStudioClosed,
     onToggleStudio,
+    onToggleComments,
     onSeeInside,
     onUpdate
 }) => {
@@ -317,16 +320,37 @@ const PreviewPresentation = ({
                                 <div className="comments-container">
                                     <FlexRow className="comments-header">
                                         <h4>Comments</h4>
-                                        {/* TODO: Add toggle comments component and logic*/}
+                                        {userOwnsProject ? (
+                                            <div>
+                                                <label>
+                                                    <input
+                                                        checked={!projectInfo.comments_allowed}
+                                                        className="comments-allowed-input"
+                                                        type="checkbox"
+                                                        onChange={onToggleComments}
+                                                    />
+                                                    <FormattedMessage id="preview.comments.turnOff" />
+                                                </label>
+                                            </div>
+                                        ) : null}
                                     </FlexRow>
 
                                     <FlexRow className="comments-root-reply">
-                                        {isLoggedIn &&
-                                            <ComposeComment
-                                                projectId={projectId}
-                                                onAddComment={onAddComment}
-                                            />
-                                        }
+                                        {projectInfo.comments_allowed ? (
+                                            isLoggedIn ? (
+                                                <ComposeComment
+                                                    projectId={projectId}
+                                                    onAddComment={onAddComment}
+                                                />
+                                            ) : (
+                                                /* TODO add box for signing in to leave a comment */
+                                                null
+                                            )
+                                        ) : (
+                                            <div className="comments-turned-off">
+                                                <FormattedMessage id="preview.comments.turnedOff" />
+                                            </div>
+                                        )}
                                     </FlexRow>
 
                                     <FlexRow className="comments-list">
@@ -399,6 +423,7 @@ PreviewPresentation.propTypes = {
     onReportClose: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
     onSeeInside: PropTypes.func,
+    onToggleComments: PropTypes.func,
     onToggleStudio: PropTypes.func,
     onUpdate: PropTypes.func,
     originalInfo: projectShape,
