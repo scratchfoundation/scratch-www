@@ -6,6 +6,7 @@ const classNames = require('classnames');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../../components/avatar/avatar.jsx');
 const FormattedRelative = require('react-intl').FormattedRelative;
+const FormattedMessage = require('react-intl').FormattedMessage;
 const ComposeComment = require('./compose-comment.jsx');
 const DeleteCommentModal = require('../../../components/modal/comments/delete-comment.jsx');
 const ReportCommentModal = require('../../../components/modal/comments/report-comment.jsx');
@@ -109,14 +110,14 @@ class Comment extends React.Component {
                                     className="comment-delete"
                                     onClick={this.handleDelete}
                                 >
-                                    Delete {/* TODO internationalize */}
+                                    <FormattedMessage id="comments.delete" />
                                 </span>
                             ) : null}
                             <span
                                 className="comment-report"
                                 onClick={this.handleReport}
                             >
-                                Report {/* TODO internationalize */}
+                                <FormattedMessage id="comments.report" />
                             </span>
                         </div>
                     </FlexRow>
@@ -142,11 +143,12 @@ class Comment extends React.Component {
                                     className="comment-reply"
                                     onClick={this.handleToggleReplying}
                                 >
-                                    reply
+                                    <FormattedMessage id="comments.reply" />
                                 </span>
                             ) : null}
                         </FlexRow>
                     </div>
+
                     {this.state.replying ? (
                         <FlexRow className="comment-reply-row">
                             <ComposeComment
