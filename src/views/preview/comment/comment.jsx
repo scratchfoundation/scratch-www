@@ -167,7 +167,7 @@ class Comment extends React.Component {
                         onRequestClose={this.handleCancelDelete}
                     />
                 ) : null}
-                {this.state.reporting || this.state.reportConfirmed ? (
+                {(this.state.reporting || this.state.reportConfirmed) ? (
                     <ReportCommentModal
                         isOpen
                         isConfirmed={this.state.reportConfirmed}
