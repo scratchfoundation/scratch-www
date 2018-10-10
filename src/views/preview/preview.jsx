@@ -372,6 +372,7 @@ class Preview extends React.Component {
                         projectId={this.state.projectId}
                         projectTitle={this.props.projectInfo.title}
                         renderLogin={this.renderLogin}
+                        userOwnsProject={this.props.userOwnsProject}
                         onLogOut={this.props.handleLogOut}
                         onOpenRegistration={this.props.handleOpenRegistration}
                         onShare={this.handleShare}
