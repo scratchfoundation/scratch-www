@@ -189,6 +189,19 @@ $stage-width: 480px;
         .comment-bubble {
             text-align: left;
         }
+
+        .comments-turned-off {
+            border: 1px solid $ui-blue-25percent;
+            border-radius: .5rem;
+            background: $ui-blue-10percent;
+            padding: 1.5rem 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .comments-allowed-input {
+            margin-right: 3px;
+        }
     }
 
     .remix-button,
