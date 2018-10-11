@@ -74,6 +74,7 @@ const PreviewPresentation = ({
     onLoveClicked,
     onReportClicked,
     onReportClose,
+    onReportComment,
     onReportSubmit,
     onAddToStudioClicked,
     onAddToStudioClosed,
@@ -367,8 +368,10 @@ const PreviewPresentation = ({
                                                 parentId={comment.parent_id}
                                                 projectId={projectId}
                                                 replies={replies && replies[comment.id] ? replies[comment.id] : []}
+                                                reported={comment.reported}
                                                 onAddComment={onAddComment}
                                                 onDelete={onDeleteComment}
+                                                onReport={onReportComment}
                                             />
                                         ))}
                                         {comments.length < projectInfo.stats.comments &&
@@ -421,6 +424,7 @@ PreviewPresentation.propTypes = {
     onLoveClicked: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
+    onReportComment: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
     onSeeInside: PropTypes.func,
     onToggleComments: PropTypes.func,

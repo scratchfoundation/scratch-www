@@ -202,5 +202,14 @@
     "report.tooShortError": "That's too short. Please describe in detail what's inappropriate or disrespectful about the project.",
     "report.send": "Send",
     "report.sending": "Sending...",
-    "report.textMissing": "Please tell us why you are reporting this project"
+    "report.textMissing": "Please tell us why you are reporting this project",
+
+    "comments.report": "Report",
+    "comments.delete": "Delete",
+    "comments.reportModal.title": "Report Comment",
+    "comments.reportModal.reported": "The comment has been reported, and the Scratch Team has been notified.",
+    "comments.reportModal.prompt": "Are you sure you want to report this comment?",
+    "comments.deleteModal.title": "Delete Comment",
+    "comments.deleteModal.body": "Delete this comment? If the comment is mean or disrespectful, please click Report instead to let the Scratch Team know about it.",
+    "comments.reply": "reply"
 }

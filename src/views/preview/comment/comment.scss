@@ -151,8 +151,8 @@
             }
 
             &.comment-bubble-deleted {
-                $deleted-outline:  #ff6680;
-                $deleted-background: rgb(236, 206, 223);
+                $deleted-outline:  $active-gray;
+                $deleted-background: rgb(215, 222, 234);
 
                 border-color: $deleted-outline;
                 background-color: $deleted-background;
@@ -160,6 +160,19 @@
                 &:before {
                     border-color: $deleted-outline transparent $deleted-outline $deleted-outline;
                     background: $deleted-background;
+                }
+            }
+
+            &.comment-bubble-reported {
+                $reported-outline:  #ff6680;
+                $reported-background: rgb(236, 206, 223);
+
+                border-color: $reported-outline;
+                background-color: $reported-background;
+
+                &:before {
+                    border-color: $reported-outline transparent $reported-outline $reported-outline;
+                    background: $reported-background;
                 }
             }
         }
