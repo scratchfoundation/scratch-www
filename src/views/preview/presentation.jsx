@@ -358,7 +358,7 @@ const PreviewPresentation = ({
                                         {comments.map(comment => (
                                             <TopLevelComment
                                                 author={comment.author}
-                                                canReply={isLoggedIn}
+                                                canReply={isLoggedIn && projectInfo.comments_allowed}
                                                 content={comment.content}
                                                 datetimeCreated={comment.datetime_created}
                                                 deletable={userOwnsProject}
