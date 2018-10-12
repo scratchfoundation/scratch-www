@@ -2,6 +2,7 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
+const FormattedMessage = require('react-intl').FormattedMessage;
 
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Comment = require('./comment.jsx');
@@ -110,7 +111,14 @@ class TopLevelComment extends React.Component {
                     <a
                         className="expand-thread"
                         onClick={this.handleExpandThread}
-                    >See all {replies.length} replies</a>
+                    >
+                        <FormattedMessage
+                            id="comments.seeMoreReplies"
+                            values={{
+                                repliesCount: replies.length
+                            }}
+                        />
+                    </a>
                 }
             </FlexRow>
         );

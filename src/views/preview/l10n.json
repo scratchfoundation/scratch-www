@@ -7,6 +7,7 @@
     "preview.speechExtensionChip": "Google Speech",
     "preview.translateExtensionChip": "Google Translate",
     "preview.videoMotionChip": "Video Motion",
+    "preview.comments.header": "Comments",
     "preview.comments.turnOff": "Turn off commenting",
     "preview.comments.turnedOff": "Sorry, comment posting has been turned off for this project."
 }
