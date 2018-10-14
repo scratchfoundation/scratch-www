@@ -58,7 +58,7 @@
     }
 }
 
-@media only screen and (max-width: $desktop - 1) {
+@media #{$intermediate-and-smaller} {
     .tooltip {
         display: block;
 

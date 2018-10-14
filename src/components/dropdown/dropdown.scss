@@ -89,7 +89,7 @@
         }
     }
 
-    @media only screen and (max-width: $tablet - 1) {
+    @media #{$medium-and-smaller} {
         min-width: 160px;
     }
 }

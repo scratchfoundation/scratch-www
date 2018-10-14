@@ -79,7 +79,7 @@ td {
     color: $type-white;
 }
 
-@media only screen and (max-width: $mobile - 1) {
+@media #{$small} {
     .index.mod-2017 {
         text-align: left;
     }
@@ -123,7 +123,7 @@ td {
     }
 }
 
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+@media #{$medium} {
     .index.mod-2017 {
         text-align: left;
     }
@@ -159,7 +159,7 @@ td {
     }
 }
 
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+@media #{$intermediate} {
     .index.mod-2017 {
         text-align: left;
     }

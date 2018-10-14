@@ -129,7 +129,7 @@
     word-wrap: break-word;
 }
 
-@media only screen and (max-width: $mobile - 1) {
+@media #{$small} {
     .flex-row.admin-message-header,
     .flex-row.mod-comment-message {
         flex-direction: row;
@@ -144,7 +144,7 @@
     }
 }
 
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+@media #{$medium} {
     .flex-row.admin-message-header,
     .flex-row.mod-comment-message {
         flex-direction: row;
@@ -159,7 +159,7 @@
     }
 }
 
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+@media #{$intermediate} {
     .comment-text {
         max-width: 23.75rem;
     }

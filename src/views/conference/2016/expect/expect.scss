@@ -25,7 +25,7 @@
             margin-top: 1.2rem;
         }
 
-        @media only screen and (max-width: $tablet - 1) {
+        @media #{$medium-and-smaller} {
             img {
                 width: 50%;
             }
@@ -37,7 +37,7 @@
             }
         }
 
-        @media only screen and (max-width: $desktop - 1) {
+        @media #{$intermediate-and-smaller} {
             .uneven {
                 flex-direction: column;
                 align-items: center;
@@ -80,7 +80,7 @@
             margin: 15px 0;
         }
 
-        @media only screen and (max-width: $desktop - 1) {
+        @media #{$intermediate-and-smaller} {
             .flex-row {
                 flex-direction: column;
                 align-items: center;
@@ -156,7 +156,7 @@
             }
         }
 
-        @media only screen and (max-width: $mobile - 1) {
+        @media #{$small} {
             .flex-row {
                 table {
                     width: 100%;
@@ -172,7 +172,7 @@
             }
         }
 
-        @media only screen and (max-width: $desktop - 1) {
+        @media #{$intermediate-and-smaller} {
             .flex-row {
                 flex-direction: column;
                 align-items: center;

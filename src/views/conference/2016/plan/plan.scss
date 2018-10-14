@@ -19,13 +19,13 @@
                 width: 100%;
             }
 
-            @media only screen and (max-width: $tablet - 1) {
+            @media #{$medium-and-smaller} {
                 img {
                     width: 30%;
                 }
             }
 
-            @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+            @media #{$intermediate} {
                 img {
                     width: 70%;
                 }
@@ -36,7 +36,7 @@
     .lodging {
         text-align: left;
 
-        @media only screen and (max-width: $desktop - 1) {
+        @media #{$intermediate-and-smaller} {
             .uneven {
                 .short {
                     display: none;
@@ -50,7 +50,7 @@
             align-items: center;
         }
 
-        @media only screen and (max-width: $desktop - 1) {
+        @media #{$intermediate-and-smaller} {
             .flex-row {
                 flex-direction: column-reverse;
             }
@@ -69,13 +69,13 @@
             justify-content: flex-start;
         }
 
-        @media only screen and (max-width: $tablet - 1) {
+        @media #{$medium-and-smaller} {
             ul {
                 max-height: 100%;
             }
         }
 
-        @media only screen and (max-width: $desktop - 1) {
+        @media #{$intermediate-and-smaller} {
             div {
                 text-align: left;
             }
@@ -105,7 +105,7 @@
                 margin: 0;
             }
 
-            @media only screen and (max-width: $tablet - 1) {
+            @media #{$medium-and-smaller} {
                 margin-top: 0;
             }
         }
