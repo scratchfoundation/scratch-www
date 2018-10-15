@@ -1,0 +1,268 @@
+@import "../../colors";
+@import "../../frameless";
+
+$parents-spot: $ui-blue-dark;
+$story-width: $cols3;
+
+#view {
+    padding: 0;
+}
+
+.parents {
+    .intro {
+        margin: 0;
+    }
+
+    b {
+        font-weight: bold;
+    }
+
+    a {
+        white-space: normal;
+    }
+
+    .title-banner {
+        &.masthead {
+            background-color: $parents-spot;
+            padding-bottom: 0;
+
+            h1 {
+                margin: 0;
+                color: $ui-white;
+            }
+
+
+            .masthead-info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                p {
+                    margin: 0;
+                    max-width: $cols6;
+                    text-align: left;
+                    color: $ui-white;
+
+                    a {
+                        border-bottom: 1px solid $ui-white;
+                        color: $ui-white;
+                    }
+                }
+            }
+
+            .ted-talk {
+                position: relative;
+                margin-bottom: $gutter;
+                border: 2px solid $ui-border;
+                border-radius: 10px;
+                width: $cols4;
+                height: $cols4 * .5625;
+                overflow: hidden;
+
+                iframe {
+                    border: 0;
+                    width: inherit;
+                    height: inherit;
+                }
+            }
+
+            .band {
+                $band-color: hsla(360, 100, 100, .15);
+
+                margin-top: 2rem;
+                background-color: $band-color;
+                padding: 1rem 0;
+            }
+
+            .sub-nav {
+                text-align: left;
+
+                li {
+                    margin: 0 .5rem 0 0;
+                }
+            }
+
+        }
+
+        &.faq-banner {
+            margin-bottom: 0;
+            background-color: $ui-gray;
+        }
+    }
+
+    .general-usage {
+        justify-content: space-between;
+
+        p {
+            max-width: $cols5;
+        }
+    }
+
+
+    section {
+        margin-bottom: 3rem;
+    }
+
+    #overview {
+        .nav-spacer {
+            display: block;
+            visibility: hidden;
+            margin-top: -50px; // height of  nav bar
+            height: 50px;
+        }
+    }
+}
+
+//4 columns
+@media only screen and (max-width: $mobile - 1) {
+    .title-banner {
+        &.masthead {
+            padding-bottom: 2rem;
+        }
+
+        .band {
+            display: none;
+        }
+    }
+
+    .flex-row {
+        &.sidebar-row {
+
+            .body-copy {
+                width: 100%;
+            }
+        }
+    }
+
+
+    .overview {
+        text-align: center;
+    }
+
+    .flex-row {
+        align-items: center;
+    }
+
+    .general-usage {
+        align-items: center;
+    }
+}
+
+//6 columns
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .flex-row {
+        &.sidebar-row {
+
+            .body-copy {
+                width: 100%;
+            }
+
+            .sidebar {
+                margin: 0 auto;
+            }
+        }
+    }
+
+    .overview {
+        text-align: center;
+    }
+
+    .flex-row {
+        align-items: center;
+    }
+
+    .general-usage {
+        align-items: center;
+    }
+}
+
+
+//8 columns
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .masthead {
+        h1 {
+            text-align: center;
+        }
+
+        .subnav {
+            justify-content: center;
+        }
+    }
+
+    .masthead-info {
+        p {
+            width: $cols4;
+        }
+
+        iframe {
+            width: $cols4;
+            box-sizing: border-box;
+        }
+    }
+
+    #view {
+        text-align: left;
+    }
+
+    .flex-row {
+        &.sidebar-row {
+
+            .body-copy {
+                width: 100%;
+            }
+
+            .sidebar {
+                margin: 0 auto;
+            }
+        }
+    }
+
+    #overview {
+        h2 {
+            text-align: center;
+        }
+
+        .intro {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .general-usage {
+            margin-bottom: 2rem;
+
+            p {
+                margin: .25em 0;
+                max-width: $cols8;
+                text-align: center;
+            }
+        }
+    }
+
+    section {
+        p {
+            width: 100%;
+        }
+    }
+
+    #left {
+        width: $cols4;
+    }
+}
+
+// 12 columns
+@media only screen and (min-width: $desktop) {
+    .masthead {
+        h1 {
+            text-align: left;
+        }
+
+        .sub-nav {
+            justify-content: flex-start;
+        }
+    }
+
+    .general-usage {
+        align-items: flex-start;
+    }
+
+}
