@@ -108,7 +108,7 @@ const Landing = () => (
             <div className="inner">
                 <section id="faq">
                     <span className="nav-spacer" />
-                    <h2><FormattedMessage id="parents.faqTitle" /></h2>
+                    <h2><FormattedMessage id="parents.faq" /></h2>
                     <p>
                         <FormattedMessage
                             id="parents.faqMoreAndAsk"
