@@ -626,14 +626,11 @@ module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
 module.exports.deleteComment = (projectId, commentId, topLevelCommentId, token) => (dispatch => {
     /* TODO fetching/fetched/error states updates for comment deleting */
     api({
-        uri: `/proxy/comments/project/${projectId}`,
+        uri: `/proxy/comments/project/${projectId}/comment/${commentId}`,
         authentication: token,
         withCredentials: true,
         method: 'DELETE',
-        useCsrf: true,
-        json: {
-            id: commentId
-        }
+        useCsrf: true
     }, (err, body, res) => {
         if (err || res.statusCode !== 200) {
             log.error(err || res.body);
