@@ -85,8 +85,9 @@ class Comment extends React.Component {
     render () {
         const {
             author,
-            deletable,
+            canDelete,
             canReply,
+            canRestore,
             content,
             datetimeCreated,
             id,
@@ -113,7 +114,7 @@ class Comment extends React.Component {
                         <div className="action-list">
                             {visible ? (
                                 <React.Fragment>
-                                    {deletable ? (
+                                    {canDelete ? (
                                         <span
                                             className="comment-delete"
                                             onClick={this.handleDelete}
@@ -133,7 +134,7 @@ class Comment extends React.Component {
                                     <span className="comment-visibility">
                                         <FormattedMessage id={`comments.status.${visibility}`} />
                                     </span>
-                                    {this.props.onRestore && (
+                                    {canRestore && (
                                         <span
                                             className="comment-restore"
                                             onClick={this.handleRestore}
@@ -212,10 +213,11 @@ Comment.propTypes = {
         image: PropTypes.string,
         username: PropTypes.string
     }),
+    canDelete: PropTypes.bool,
     canReply: PropTypes.bool,
+    canRestore: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
-    deletable: PropTypes.bool,
     id: PropTypes.number,
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,

@@ -351,6 +351,7 @@ class Preview extends React.Component {
                         backpackOptions={this.props.backpackOptions}
                         canAddToStudio={this.props.canAddToStudio}
                         canReport={this.props.canReport}
+                        canRestoreComments={this.props.isAdmin}
                         comments={this.props.comments}
                         editable={this.props.isEditable}
                         extensions={this.state.extensions}
@@ -383,7 +384,7 @@ class Preview extends React.Component {
                         onReportClose={this.handleReportClose}
                         onReportComment={this.handleReportComment}
                         onReportSubmit={this.handleReportSubmit}
-                        onRestoreComment={this.props.isAdmin && this.handleRestoreComment}
+                        onRestoreComment={this.handleRestoreComment}
                         onSeeInside={this.handleSeeInside}
                         onShare={this.handleShare}
                         onToggleComments={this.handleToggleComments}

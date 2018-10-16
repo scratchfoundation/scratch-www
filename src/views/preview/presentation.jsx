@@ -46,6 +46,7 @@ const PreviewPresentation = ({
     backpackOptions,
     canAddToStudio,
     canReport,
+    canRestoreComments,
     comments,
     editable,
     extensions,
@@ -363,10 +364,11 @@ const PreviewPresentation = ({
                                         {comments.map(comment => (
                                             <TopLevelComment
                                                 author={comment.author}
+                                                canDelete={userOwnsProject}
                                                 canReply={isLoggedIn && projectInfo.comments_allowed}
+                                                canRestore={canRestoreComments}
                                                 content={comment.content}
                                                 datetimeCreated={comment.datetime_created}
-                                                deletable={userOwnsProject}
                                                 id={comment.id}
                                                 key={comment.id}
                                                 parentId={comment.parent_id}
@@ -411,6 +413,7 @@ PreviewPresentation.propTypes = {
     }),
     canAddToStudio: PropTypes.bool,
     canReport: PropTypes.bool,
+    canRestoreComments: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
     extensions: PropTypes.arrayOf(PropTypes.object),

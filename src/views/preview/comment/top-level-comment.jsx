@@ -53,10 +53,11 @@ class TopLevelComment extends React.Component {
     render () {
         const {
             author,
+            canDelete,
             canReply,
+            canRestore,
             content,
             datetimeCreated,
-            deletable,
             id,
             onDelete,
             onReport,
@@ -66,7 +67,7 @@ class TopLevelComment extends React.Component {
             visibility
         } = this.props;
 
-        const canRestoreReplies = visibility === 'visible';
+        const parentVisible = visibility === 'visible';
 
         return (
             <FlexRow className="comment-container">
@@ -77,8 +78,9 @@ class TopLevelComment extends React.Component {
                         author,
                         content,
                         datetimeCreated,
-                        deletable,
+                        canDelete,
                         canReply,
+                        canRestore,
                         id,
                         onDelete,
                         onReport,
@@ -98,10 +100,11 @@ class TopLevelComment extends React.Component {
                         {(this.state.expanded ? replies : replies.slice(0, 3)).map(reply => (
                             <Comment
                                 author={reply.author}
+                                canDelete={canDelete}
                                 canReply={canReply}
+                                canRestore={canRestore && parentVisible}
                                 content={reply.content}
                                 datetimeCreated={reply.datetime_created}
-                                deletable={deletable}
                                 id={reply.id}
                                 key={reply.id}
                                 projectId={projectId}
@@ -109,7 +112,7 @@ class TopLevelComment extends React.Component {
                                 onAddComment={this.handleAddComment}
                                 onDelete={this.handleDeleteReply}
                                 onReport={this.handleReportReply}
-                                onRestore={canRestoreReplies && this.handleRestoreReply}
+                                onRestore={this.handleRestoreReply}
                             />
                         ))}
                     </FlexRow>
@@ -138,7 +141,9 @@ TopLevelComment.propTypes = {
         image: PropTypes.string,
         username: PropTypes.string
     }),
+    canDelete: PropTypes.bool,
     canReply: PropTypes.bool,
+    canRestore: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
     deletable: PropTypes.bool,
