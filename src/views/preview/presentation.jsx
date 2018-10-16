@@ -44,6 +44,8 @@ const onKeyPress = e => {
 const PreviewPresentation = ({
     assetHost,
     backpackOptions,
+    canAddToStudio,
+    canReport,
     comments,
     editable,
     extensions,
@@ -81,12 +83,15 @@ const PreviewPresentation = ({
     onToggleStudio,
     onToggleComments,
     onSeeInside,
+    onShare,
     onUpdate
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     return (
         <div className="preview">
-            <ShareBanner shared={isShared} />
+            {!isShared && (
+                <ShareBanner onShare={onShare} />
+            )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <Formsy onKeyPress={onKeyPress}>
                     <div className="inner">
@@ -171,12 +176,11 @@ const PreviewPresentation = ({
                                     />
                                     <Subactions
                                         addToStudioOpen={addToStudioOpen}
-                                        isLoggedIn={isLoggedIn}
+                                        canReport={canReport}
                                         projectInfo={projectInfo}
                                         reportOpen={reportOpen}
                                         shareDate={shareDate}
                                         studios={studios}
-                                        userOwnsProject={userOwnsProject}
                                         onAddToStudioClicked={onAddToStudioClicked}
                                         onAddToStudioClosed={onAddToStudioClosed}
                                         onReportClicked={onReportClicked}
@@ -284,12 +288,12 @@ const PreviewPresentation = ({
                                 />
                                 <Subactions
                                     addToStudioOpen={addToStudioOpen}
-                                    isLoggedIn={isLoggedIn}
+                                    canAddToStudio={canAddToStudio}
+                                    canReport={canReport}
                                     projectInfo={projectInfo}
                                     reportOpen={reportOpen}
                                     shareDate={shareDate}
                                     studios={studios}
-                                    userOwnsProject={userOwnsProject}
                                     onAddToStudioClicked={onAddToStudioClicked}
                                     onAddToStudioClosed={onAddToStudioClosed}
                                     onReportClicked={onReportClicked}
@@ -320,7 +324,7 @@ const PreviewPresentation = ({
                             <FlexRow className="preview-row">
                                 <div className="comments-container">
                                     <FlexRow className="comments-header">
-                                        <h4>Comments</h4>
+                                        <h4><FormattedMessage id="preview.comments.header" /></h4>
                                         {userOwnsProject ? (
                                             <div>
                                                 <label>
@@ -404,6 +408,8 @@ PreviewPresentation.propTypes = {
         host: PropTypes.string,
         visible: PropTypes.bool
     }),
+    canAddToStudio: PropTypes.bool,
+    canReport: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
     extensions: PropTypes.arrayOf(PropTypes.object),
@@ -427,6 +433,7 @@ PreviewPresentation.propTypes = {
     onReportComment: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
     onSeeInside: PropTypes.func,
+    onShare: PropTypes.func,
     onToggleComments: PropTypes.func,
     onToggleStudio: PropTypes.func,
     onUpdate: PropTypes.func,

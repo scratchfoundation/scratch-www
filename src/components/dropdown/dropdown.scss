@@ -9,7 +9,8 @@
     border-radius: 0 0 5px 5px;
     background-color: $ui-blue;
     padding: 10px;
-    max-width: 260px;
+    min-width: 9rem;
+    max-width: 16.25rem;
     overflow: visible;
     color: $type-white;
     font-size: .8125rem;
@@ -87,9 +88,5 @@
 
             content: "";
         }
-    }
-
-    @media #{$medium-and-smaller} {
-        min-width: 160px;
     }
 }

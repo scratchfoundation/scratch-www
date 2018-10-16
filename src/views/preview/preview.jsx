@@ -47,6 +47,7 @@ class Preview extends React.Component {
             'handleAddToStudioClick',
             'handleAddToStudioClose',
             'handleSeeInside',
+            'handleShare',
             'handleUpdateProjectTitle',
             'handleUpdate',
             'handleToggleComments',
@@ -199,7 +200,7 @@ class Preview extends React.Component {
         this.setState({addToStudioOpen: false});
     }
     handleReportSubmit (formData) {
-        this.props.reportProject(this.state.projectId, formData);
+        this.props.reportProject(this.state.projectId, formData, this.props.user.token);
     }
     handlePopState () {
         const path = window.location.pathname.toLowerCase();
@@ -291,7 +292,12 @@ class Preview extends React.Component {
         this.props.setPlayer(false);
     }
     handleShare () {
-        // This is just a placeholder, but enables the button in the editor
+        this.props.updateProject(
+            this.props.projectInfo.id,
+            {isPublished: true},
+            this.props.user.username,
+            this.props.user.token
+        );
     }
     handleUpdate (jsonData) {
         this.props.updateProject(
@@ -337,6 +343,8 @@ class Preview extends React.Component {
                         addToStudioOpen={this.state.addToStudioOpen}
                         assetHost={this.props.assetHost}
                         backpackOptions={this.props.backpackOptions}
+                        canAddToStudio={this.props.canAddToStudio}
+                        canReport={this.props.canReport}
                         comments={this.props.comments}
                         editable={this.props.isEditable}
                         extensions={this.state.extensions}
@@ -370,6 +378,7 @@ class Preview extends React.Component {
                         onReportComment={this.handleReportComment}
                         onReportSubmit={this.handleReportSubmit}
                         onSeeInside={this.handleSeeInside}
+                        onShare={this.handleShare}
                         onToggleComments={this.handleToggleComments}
                         onToggleStudio={this.handleToggleStudio}
                         onUpdate={this.handleUpdate}
@@ -382,6 +391,11 @@ class Preview extends React.Component {
                         assetHost={this.props.assetHost}
                         backpackOptions={this.props.backpackOptions}
                         basePath="/"
+                        canCreateNew={this.props.canCreateNew}
+                        canRemix={this.props.canRemix}
+                        canSave={this.props.canSave}
+                        canSaveAsCopy={this.props.canSaveAsCopy}
+                        canShare={this.props.canShare}
                         className="gui"
                         projectHost={this.props.projectHost}
                         projectId={this.state.projectId}
@@ -407,6 +421,13 @@ Preview.propTypes = {
         host: PropTypes.string,
         visible: PropTypes.bool
     }),
+    canAddToStudio: PropTypes.bool,
+    canCreateNew: PropTypes.bool,
+    canRemix: PropTypes.bool,
+    canReport: PropTypes.bool,
+    canSave: PropTypes.bool,
+    canSaveAsCopy: PropTypes.bool,
+    canShare: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     fullScreen: PropTypes.bool,
@@ -513,8 +534,17 @@ const mapStateToProps = state => {
         userPresent;
     const authorPresent = projectInfoPresent && state.preview.projectInfo.author &&
         Object.keys(state.preview.projectInfo.author).length > 0;
+    const userOwnsProject = isLoggedIn && authorPresent &&
+        state.session.session.user.id === state.preview.projectInfo.author.id;
 
     return {
+        canAddToStudio: isLoggedIn && userOwnsProject,
+        canCreateNew: false,
+        canRemix: false,
+        canReport: isLoggedIn && !userOwnsProject,
+        canSave: userOwnsProject,
+        canSaveAsCopy: false,
+        canShare: userOwnsProject && state.permissions.social,
         comments: state.preview.comments,
         faved: state.preview.faved,
         fullScreen: state.scratchGui.mode.isFullScreen,
@@ -525,10 +555,7 @@ const mapStateToProps = state => {
             state.permissions.admin === true),
         isLoggedIn: isLoggedIn,
         // if we don't have projectInfo, assume it's shared until we know otherwise
-        isShared: !projectInfoPresent || (
-            state.preview.projectInfo.history &&
-            state.preview.projectInfo.history.shared &&
-            state.preview.projectInfo.history.shared.length > 0),
+        isShared: !projectInfoPresent || state.preview.projectInfo.is_published,
         loved: state.preview.loved,
         original: state.preview.original,
         parent: state.preview.parent,
@@ -542,8 +569,7 @@ const mapStateToProps = state => {
             state.preview.projectStudios, state.preview.currentStudioIds,
             state.preview.status.studioRequests),
         user: state.session.session.user,
-        userOwnsProject: isLoggedIn && authorPresent &&
-            state.session.session.user.id === state.preview.projectInfo.author.id
+        userOwnsProject: userOwnsProject
     };
 };
 
@@ -612,8 +638,8 @@ const mapDispatchToProps = dispatch => ({
     setLovedStatus: (loved, id, username, token) => {
         dispatch(previewActions.setLovedStatus(loved, id, username, token));
     },
-    reportProject: (id, formData) => {
-        dispatch(previewActions.reportProject(id, formData));
+    reportProject: (id, formData, token) => {
+        dispatch(previewActions.reportProject(id, formData, token));
     },
     setOriginalInfo: info => {
         dispatch(previewActions.setOriginalInfo(info));

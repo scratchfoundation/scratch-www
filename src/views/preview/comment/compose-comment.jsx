@@ -3,6 +3,7 @@ const PropTypes = require('prop-types');
 const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
 const keyMirror = require('keymirror');
+const FormattedMessage = require('react-intl').FormattedMessage;
 
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../../components/avatar/avatar.jsx');
@@ -24,29 +25,6 @@ const ComposeStatus = keyMirror({
     SUBMITTING: null,
     REJECTED: null
 });
-
-/* TODO translations */
-const CommentErrorMessages = {
-    isEmpty: "You can't post an empty comment",
-    isFlood: "Woah, seems like you're commenting really quickly. Please wait longer between posts.",
-    isBad: 'Hmm...the bad word detector thinks there is a problem with your comment. ' +
-        'Please change it and remember to be respectful.',
-    hasChatSite: 'Uh oh! This comment contains a link to a website with unmoderated chat.' +
-        'For safety reasons, please do not link to these sites!',
-    isSpam: "Hmm, seems like you've posted the same comment a bunch of times. Please don't spam.",
-    isMuted: "Hmm, the filterbot is pretty sure your recent comments weren't ok for Scratch, " +
-        'so your account has been muted for the rest of the day. :/',
-    isUnconstructive: 'Hmm, the filterbot thinks your comment may be mean or disrespectful. ' +
-        'Remember, most projects on Scratch are made by people who are just learning how to program.',
-    isDisallowed: 'Hmm, it looks like comments have been turned off for this page. :/',
-    // TODO implement the special modal for ip mute bans that includes links to appeals
-    //      this is just a stub of the actual message
-    isIPMuted: 'Sorry, the Scratch Team had to prevent your network from sharing comments or ' +
-        'projects because it was used to break our community guidelines too many times.' +
-        'You can still share comments and projects from another network.',
-    isTooLong: "That's too long! Please find a way to shorten your text.",
-    error: 'Oops! Something went wrong'
-};
 
 class ComposeComment extends React.Component {
     constructor (props) {
@@ -91,10 +69,7 @@ class ComposeComment extends React.Component {
                 // Note: does not reset the message state
                 this.setState({
                     status: ComposeStatus.REJECTED,
-                    // If there is a special error message for the rejected reason,
-                    // use it. Otherwise, use the generic 'error' ("Oops!...")
-                    error: CommentErrorMessages[body.rejected] ?
-                        body.rejected : 'error'
+                    error: body.rejected
                 });
                 return;
             }
@@ -132,7 +107,7 @@ class ComposeComment extends React.Component {
                     {this.state.error ? (
                         <FlexRow className="compose-error-row">
                             <div className="compose-error-tip">
-                                {CommentErrorMessages[this.state.error] || 'Unknown error'}
+                                <FormattedMessage id={`comments.${this.state.error}`} />
                             </div>
                         </FlexRow>
                     ) : null}
@@ -152,24 +127,28 @@ class ComposeComment extends React.Component {
                             onClick={this.handlePost}
                         >
                             {this.state.status === ComposeStatus.SUBMITTING ? (
-                                'Posting...' /* TODO internationalize */
+                                <FormattedMessage id="comments.posting" />
                             ) : (
-                                'Post' /* TODO internationalize */
+                                <FormattedMessage id="comments.post" />
                             )}
                         </Button>
                         <Button
                             className="compose-cancel"
                             onClick={this.handleCancel}
                         >
-                            Cancel {/* TODO internationalize */}
+                            <FormattedMessage id="comments.cancel" />
                         </Button>
                         <span
                             className={classNames('compose-limit',
                                 MAX_COMMENT_LENGTH - this.state.message.length >= 0 ?
                                     'compose-valid' : 'compose-invalid')}
                         >
-                            {/* TODO internationalize */}
-                            {MAX_COMMENT_LENGTH - this.state.message.length} characters left
+                            <FormattedMessage
+                                id="comments.lengthWarning"
+                                values={{
+                                    remainingCharacters: MAX_COMMENT_LENGTH - this.state.message.length
+                                }}
+                            />
                         </span>
                     </FlexRow>
                 </FlexRow>

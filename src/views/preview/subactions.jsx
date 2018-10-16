@@ -27,7 +27,7 @@ const Subactions = props => (
             {/*  eslint-enable react/jsx-sort-props */}
         </div>
         <FlexRow className="action-buttons">
-            {(props.isLoggedIn && props.userOwnsProject) &&
+            {props.canAddToStudio &&
                 <React.Fragment>
                     <Button
                         className="action-button studio-button"
@@ -48,7 +48,7 @@ const Subactions = props => (
             <Button className="action-button copy-link-button">
               Copy Link
             </Button>
-            {(props.isLoggedIn && !props.userOwnsProject) &&
+            {(props.canReport) &&
             <React.Fragment>
                 <Button
                     className="action-button report-button"
@@ -72,7 +72,8 @@ const Subactions = props => (
 
 Subactions.propTypes = {
     addToStudioOpen: PropTypes.bool,
-    isLoggedIn: PropTypes.bool,
+    canAddToStudio: PropTypes.bool,
+    canReport: PropTypes.bool,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
@@ -81,9 +82,7 @@ Subactions.propTypes = {
     onToggleStudio: PropTypes.func,
     reportOpen: PropTypes.bool,
     shareDate: PropTypes.string,
-    studios: PropTypes.arrayOf(PropTypes.object),
-    userOwnsProject: PropTypes.bool
-
+    studios: PropTypes.arrayOf(PropTypes.object)
 };
 
 module.exports = Subactions;
