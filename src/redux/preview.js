@@ -657,7 +657,7 @@ module.exports.reportComment = (projectId, commentId, topLevelCommentId, token) 
     });
 });
 
-module.exports.reportProject = (id, jsonData) => (dispatch => {
+module.exports.reportProject = (id, jsonData, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('report', module.exports.Status.FETCHING));
     // scratchr2 will fail if no thumbnail base64 string provided. We don't yet have
     // a way to get the actual project thumbnail in www/gui, so for now just submit
@@ -667,11 +667,12 @@ module.exports.reportProject = (id, jsonData) => (dispatch => {
             '0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII='
     });
     api({
-        host: '',
-        uri: `/site-api/projects/all/${id}/report/`,
+        uri: `/proxy/projects/${id}/report`,
+        authentication: token,
+        withCredentials: true,
         method: 'POST',
-        json: jsonData,
-        useCsrf: true
+        useCsrf: true,
+        json: jsonData
     }, (err, body, res) => {
         if (err || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('report', module.exports.Status.ERROR));

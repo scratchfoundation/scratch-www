@@ -199,7 +199,7 @@ class Preview extends React.Component {
         this.setState({addToStudioOpen: false});
     }
     handleReportSubmit (formData) {
-        this.props.reportProject(this.state.projectId, formData);
+        this.props.reportProject(this.state.projectId, formData, this.props.user.token);
     }
     handlePopState () {
         const path = window.location.pathname.toLowerCase();
@@ -612,8 +612,8 @@ const mapDispatchToProps = dispatch => ({
     setLovedStatus: (loved, id, username, token) => {
         dispatch(previewActions.setLovedStatus(loved, id, username, token));
     },
-    reportProject: (id, formData) => {
-        dispatch(previewActions.reportProject(id, formData));
+    reportProject: (id, formData, token) => {
+        dispatch(previewActions.reportProject(id, formData, token));
     },
     setOriginalInfo: info => {
         dispatch(previewActions.setOriginalInfo(info));
