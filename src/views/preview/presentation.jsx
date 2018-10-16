@@ -87,10 +87,9 @@ const PreviewPresentation = ({
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     return (
         <div className="preview">
-            <ShareBanner
-                shared={isShared}
-                onShare={onShare}
-            />
+            {!isShared && (
+                <ShareBanner onShare={onShare} />
+            )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <Formsy onKeyPress={onKeyPress}>
                     <div className="inner">

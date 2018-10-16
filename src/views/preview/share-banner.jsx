@@ -6,30 +6,24 @@ const Button = require('../../components/forms/button.jsx');
 
 require('./share-banner.scss');
 
-const ShareBanner = props => {
-    if (props.shared) return null;
-    return (
-        <div className="shareBanner">
-            <div className="inner">
-                <FlexRow className="preview-row">
-                    <span className="share-text">
-                        <FormattedMessage id="preview.share.notShared" />
-                    </span>
-                    <Button
-                        className="button share-button"
-                        onClick={props.onShare}
-                    >
-                        <FormattedMessage id="preview.share.shareButton" />
-                    </Button>
-                </FlexRow>
-            </div>
-        </div>
-    );
-};
+const ShareBanner = ({onShare}) => (
+    <div className="share-banner-outer">
+        <FlexRow className="inner share-banner">
+            <span className="share-text">
+                <FormattedMessage id="preview.share.notShared" />
+            </span>
+            <Button
+                className="button share-button"
+                onClick={onShare}
+            >
+                <FormattedMessage id="preview.share.shareButton" />
+            </Button>
+        </FlexRow>
+    </div>
+);
 
 ShareBanner.propTypes = {
-    onShare: PropTypes.func,
-    shared: PropTypes.bool.isRequired
+    onShare: PropTypes.func
 };
 
 module.exports = ShareBanner;
