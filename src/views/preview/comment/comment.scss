@@ -81,9 +81,9 @@
         .comment-report,
         .comment-restore {
             opacity: .5;
+            cursor: pointer;
             font-size: .75rem;
             font-weight: 500;
-            cursor: pointer;
 
             &:before {
                 display: inline-block;
