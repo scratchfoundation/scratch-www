@@ -386,7 +386,6 @@ class Preview extends React.Component {
                         basePath="/"
                         canCreateNew={this.props.canCreateNew}
                         canRemix={this.props.canRemix}
-                        canReport={this.props.canReport}
                         canSave={this.props.canSave}
                         canSaveAsCopy={this.props.canSaveAsCopy}
                         canShare={this.props.canShare}
