@@ -161,7 +161,7 @@ class Comment extends React.Component {
                             <span className="comment-time">
                                 <FormattedRelative value={new Date(datetimeCreated)} />
                             </span>
-                            {canReply ? (
+                            {(canReply && visible) ? (
                                 <span
                                     className="comment-reply"
                                     onClick={this.handleToggleReplying}

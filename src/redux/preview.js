@@ -123,6 +123,14 @@ module.exports.previewReducer = (state, action) => {
             comments: [action.comment, ...state.comments],
             replies: Object.assign({}, state.replies, {[action.comment.id]: []})
         });
+    case 'UPDATE_ALL_REPLIES':
+        return Object.assign({}, state, {
+            replies: Object.assign({}, state.replies, {
+                [action.commentId]: state.replies[action.commentId].map(reply =>
+                    Object.assign({}, reply, action.comment)
+                )
+            })
+        });
     case 'SET_REPLIES':
         return Object.assign({}, state, {
             replies: merge({}, state.replies, action.replies)
@@ -237,6 +245,14 @@ module.exports.setCommentDeleted = (commentId, topLevelCommentId) => ({
     }
 });
 
+module.exports.setRepliesDeleted = commentId => ({
+    type: 'UPDATE_ALL_REPLIES',
+    commentId: commentId,
+    comment: {
+        visibility: 'deleted'
+    }
+});
+
 module.exports.setCommentReported = (commentId, topLevelCommentId) => ({
     type: 'UPDATE_COMMENT',
     commentId: commentId,
@@ -250,6 +266,14 @@ module.exports.setCommentRestored = (commentId, topLevelCommentId) => ({
     type: 'UPDATE_COMMENT',
     commentId: commentId,
     topLevelCommentId: topLevelCommentId,
+    comment: {
+        visibility: 'visible'
+    }
+});
+
+module.exports.setRepliesRestored = commentId => ({
+    type: 'UPDATE_ALL_REPLIES',
+    commentId: commentId,
     comment: {
         visibility: 'visible'
     }
@@ -648,6 +672,9 @@ module.exports.deleteComment = (projectId, commentId, topLevelCommentId, token) 
             return;
         }
         dispatch(module.exports.setCommentDeleted(commentId, topLevelCommentId));
+        if (!topLevelCommentId) {
+            dispatch(module.exports.setRepliesDeleted(commentId));
+        }
     });
 });
 
@@ -681,6 +708,9 @@ module.exports.restoreComment = (projectId, commentId, topLevelCommentId, token)
             return;
         }
         dispatch(module.exports.setCommentRestored(commentId, topLevelCommentId));
+        if (!topLevelCommentId) {
+            dispatch(module.exports.setRepliesRestored(commentId));
+        }
     });
 });
 

@@ -66,6 +66,8 @@ class TopLevelComment extends React.Component {
             visibility
         } = this.props;
 
+        const canRestoreReplies = visibility === 'visible';
+
         return (
             <FlexRow className="comment-container">
                 <Comment
@@ -107,7 +109,7 @@ class TopLevelComment extends React.Component {
                                 onAddComment={this.handleAddComment}
                                 onDelete={this.handleDeleteReply}
                                 onReport={this.handleReportReply}
-                                onRestore={this.handleRestoreReply}
+                                onRestore={canRestoreReplies && this.handleRestoreReply}
                             />
                         ))}
                     </FlexRow>
