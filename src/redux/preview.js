@@ -337,10 +337,11 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
     });
 });
 
-module.exports.getTopLevelComments = (id, offset) => (dispatch => {
+module.exports.getTopLevelComments = (id, offset, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
-        uri: `/comments/project/${id}`,
+        uri: `${isAdmin ? '/admin' : ''}/comments/project/${id}`,
+        authentication: isAdmin ? token : null,
         params: {offset: offset || 0}
     }, (err, body) => {
         if (err) {
@@ -355,16 +356,17 @@ module.exports.getTopLevelComments = (id, offset) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
         dispatch(module.exports.setComments(body));
-        dispatch(module.exports.getReplies(id, body.map(comment => comment.id)));
+        dispatch(module.exports.getReplies(id, body.map(comment => comment.id), isAdmin, token));
     });
 });
 
-module.exports.getReplies = (projectId, commentIds) => (dispatch => {
+module.exports.getReplies = (projectId, commentIds, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('replies', module.exports.Status.FETCHING));
     const fetchedReplies = {};
     async.eachLimit(commentIds, 10, (parentId, callback) => {
         api({
-            uri: `/comments/project/${projectId}/${parentId}`
+            uri: `${isAdmin ? '/admin' : ''}/comments/project/${projectId}/${parentId}`,
+            authentication: isAdmin ? token : null
         }, (err, body) => {
             if (err) {
                 return callback(`Error fetching comment replies: ${err}`);
