@@ -55,6 +55,8 @@ $big: "only screen and (min-width : #{$desktop})";
 $medium-and-smaller: "only screen and (max-width : #{$tablet}-1)";
 $intermediate-and-smaller: "only screen and (max-width : #{$desktop}-1)";
 
+$medium-and-intermediate: "only screen and (min-width : #{$mobile}) and (max-width : #{$desktop}-1)";
+
 /* Height */
 
 $small-height: "only screen and (max-height : #{$mobile} - 1)";
