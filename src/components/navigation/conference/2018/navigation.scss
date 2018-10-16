@@ -11,7 +11,7 @@
         align-items: center;
         list-style-type: none;
     }
-    
+
     .li-left-ul.mod-2018 {
         padding-left: 0;
     }
@@ -45,7 +45,7 @@
         font-weight: bold;
     }
 
-    @media only screen and (max-width: $mobile - 1) {
+    @media #{$small} {
         .li-right-ul.mod-2018 {
             flex-flow: row nowrap;
         }
@@ -60,7 +60,7 @@
         }
     }
 
-    @media only screen and (max-width: $tablet - 1) {
+    @media #{$medium-and-smaller} {
         height: 100px;
 
         .ul.mod-2018 {

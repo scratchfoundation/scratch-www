@@ -7,7 +7,7 @@
 
     $thumbnail-width: 220px;
     $thumbnail-inner-width: 204px;
-    
+
     $project-height: 208px;
     $gallery-height: 164px;
 
@@ -94,21 +94,21 @@
     }
 
     //4 columns
-    @media only screen and (max-width: $mobile - 1) {
+    @media #{$small} {
         .flex-row {
             width: $cols4;
         }
     }
 
     //6 columns
-    @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    @media #{$medium} {
         .flex-row {
             width: $cols6;
         }
     }
 
     // 8 columns
-    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    @media #{$intermediate} {
         .flex-row {
             width: $cols9;
         }

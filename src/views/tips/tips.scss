@@ -83,7 +83,7 @@ img.tips-icon {
     height: 1.75rem;
 }
 //4 columns
-@media only screen and (max-width: $mobile - 1) {
+@media #{$small} {
 
     .title-banner {
         &.masthead {
@@ -121,7 +121,7 @@ img.tips-icon {
 }
 
 //6 columns
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+@media #{$medium} {
     .title-banner {
         &.masthead {
 
@@ -152,7 +152,7 @@ img.tips-icon {
 
 
 //8 columns
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+@media #{$intermediate} {
     .title-banner {
         &.masthead {
             padding-bottom: 2rem;
@@ -189,7 +189,7 @@ img.tips-icon {
 }
 
 // 12 columns
-@media only screen and (min-width: $desktop) {
+@media #{$big} {
     .title-banner {
         &.masthead {
             padding-bottom: 1.25rem;

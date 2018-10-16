@@ -10,7 +10,7 @@
     min-height: 27.375rem;
 }
 
-@media only screen and (max-width: $desktop - 1) {
+@media #{$intermediate-and-smaller} {
     .modal-content.mod-registration {
         width: 100%;
         overflow: scroll;

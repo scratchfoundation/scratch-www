@@ -247,7 +247,7 @@ $story-width: $cols3;
 }
 
 //4 columns
-@media only screen and (max-width: $mobile - 1) {
+@media #{$small} {
     $story-width: $cols4;
 
     .stories {
@@ -311,7 +311,7 @@ $story-width: $cols3;
 }
 
 //6 columns
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+@media #{$medium} {
     $story-width: $cols3;
 
     .stories {
@@ -366,7 +366,7 @@ $story-width: $cols3;
 
 
 //8 columns
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+@media #{$intermediate} {
     $story-width: $cols4;
 
     .stories {
@@ -500,7 +500,7 @@ $story-width: $cols3;
 }
 
 // 12 columns
-@media only screen and (min-width: $desktop) {
+@media #{$big} {
     $story-width: $cols3;
 
     .stories {

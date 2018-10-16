@@ -155,7 +155,7 @@
     }
 }
 
-@media only screen and (max-width: $mobile - 1) {
+@media #{$small} {
     .registration-step {
         &.demographics-step {
             .radio {
@@ -174,7 +174,7 @@
     }
 }
 
-@media only screen and (max-width: $desktop - 1) {
+@media #{$intermediate-and-smaller} {
     .registration-step {
         .form {
             text-align: left;

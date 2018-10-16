@@ -65,7 +65,7 @@
             margin: 0 0 -3rem -4rem;
         }
 
-        .row {        
+        .row {
             margin-bottom: 1.2rem;
 
             &.has-error {
@@ -81,7 +81,7 @@
     }
 }
 
-@media only screen and (max-width: $mobile - 1) {
+@media #{$small} {
     .card {
         width: 22.5rem;
 
@@ -95,7 +95,7 @@
     }
 }
 
-@media only screen and (max-width: $tablet - 1) {
+@media #{$medium-and-smaller} {
     .card {
         .input {
             width: 90%;
@@ -103,7 +103,7 @@
     }
 }
 
-@media only screen and (max-width: $desktop - 1) {
+@media #{$intermediate-and-smaller} {
     .card {
         .validation-message {
             position: relative;

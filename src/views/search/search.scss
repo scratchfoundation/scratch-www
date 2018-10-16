@@ -169,7 +169,7 @@ $base-bg: $ui-white;
 }
 
 //4 columns
-@media only screen and (max-width: $mobile - 1) {
+@media #{$small} {
     .outer {
         .search {
             width: $cols4;
@@ -197,7 +197,7 @@ $base-bg: $ui-white;
 
 
 //6 columns
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+@media #{$medium} {
     .outer {
         .tabs {
             width: $cols6;
@@ -216,7 +216,7 @@ $base-bg: $ui-white;
 }
 
 // 8 columns
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+@media #{$intermediate} {
     .outer {
         .tabs {
             width: $cols8;
