@@ -538,7 +538,7 @@ const mapStateToProps = state => {
         canReport: isLoggedIn && !userOwnsProject,
         canSave: userOwnsProject,
         canSaveAsCopy: false,
-        canShare: true,
+        canShare: userOwnsProject && state.permissions.social,
         comments: state.preview.comments,
         faved: state.preview.faved,
         fullScreen: state.scratchGui.mode.isFullScreen,
