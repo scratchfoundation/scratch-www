@@ -337,6 +337,8 @@ class Preview extends React.Component {
                         addToStudioOpen={this.state.addToStudioOpen}
                         assetHost={this.props.assetHost}
                         backpackOptions={this.props.backpackOptions}
+                        canAddToStudio={this.props.canAddToStudio}
+                        canReport={this.props.canReport}
                         comments={this.props.comments}
                         editable={this.props.isEditable}
                         extensions={this.state.extensions}
@@ -382,6 +384,11 @@ class Preview extends React.Component {
                         assetHost={this.props.assetHost}
                         backpackOptions={this.props.backpackOptions}
                         basePath="/"
+                        canCreateNew={this.props.canCreateNew}
+                        canRemix={this.props.canRemix}
+                        canSave={this.props.canSave}
+                        canSaveAsCopy={this.props.canSaveAsCopy}
+                        canShare={this.props.canShare}
                         className="gui"
                         projectHost={this.props.projectHost}
                         projectId={this.state.projectId}
@@ -407,6 +414,13 @@ Preview.propTypes = {
         host: PropTypes.string,
         visible: PropTypes.bool
     }),
+    canAddToStudio: PropTypes.bool,
+    canCreateNew: PropTypes.bool,
+    canRemix: PropTypes.bool,
+    canReport: PropTypes.bool,
+    canSave: PropTypes.bool,
+    canSaveAsCopy: PropTypes.bool,
+    canShare: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     fullScreen: PropTypes.bool,
@@ -513,8 +527,17 @@ const mapStateToProps = state => {
         userPresent;
     const authorPresent = projectInfoPresent && state.preview.projectInfo.author &&
         Object.keys(state.preview.projectInfo.author).length > 0;
+    const userOwnsProject = isLoggedIn && authorPresent &&
+        state.session.session.user.id === state.preview.projectInfo.author.id;
 
     return {
+        canAddToStudio: isLoggedIn && userOwnsProject,
+        canCreateNew: false,
+        canRemix: false,
+        canReport: isLoggedIn && !userOwnsProject,
+        canSave: userOwnsProject,
+        canSaveAsCopy: false,
+        canShare: userOwnsProject && state.permissions.social,
         comments: state.preview.comments,
         faved: state.preview.faved,
         fullScreen: state.scratchGui.mode.isFullScreen,
@@ -542,8 +565,7 @@ const mapStateToProps = state => {
             state.preview.projectStudios, state.preview.currentStudioIds,
             state.preview.status.studioRequests),
         user: state.session.session.user,
-        userOwnsProject: isLoggedIn && authorPresent &&
-            state.session.session.user.id === state.preview.projectInfo.author.id
+        userOwnsProject: userOwnsProject
     };
 };
 

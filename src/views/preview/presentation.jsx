@@ -44,6 +44,8 @@ const onKeyPress = e => {
 const PreviewPresentation = ({
     assetHost,
     backpackOptions,
+    canAddToStudio,
+    canReport,
     comments,
     editable,
     extensions,
@@ -171,12 +173,11 @@ const PreviewPresentation = ({
                                     />
                                     <Subactions
                                         addToStudioOpen={addToStudioOpen}
-                                        isLoggedIn={isLoggedIn}
+                                        canReport={canReport}
                                         projectInfo={projectInfo}
                                         reportOpen={reportOpen}
                                         shareDate={shareDate}
                                         studios={studios}
-                                        userOwnsProject={userOwnsProject}
                                         onAddToStudioClicked={onAddToStudioClicked}
                                         onAddToStudioClosed={onAddToStudioClosed}
                                         onReportClicked={onReportClicked}
@@ -284,12 +285,12 @@ const PreviewPresentation = ({
                                 />
                                 <Subactions
                                     addToStudioOpen={addToStudioOpen}
-                                    isLoggedIn={isLoggedIn}
+                                    canAddToStudio={canAddToStudio}
+                                    canReport={canReport}
                                     projectInfo={projectInfo}
                                     reportOpen={reportOpen}
                                     shareDate={shareDate}
                                     studios={studios}
-                                    userOwnsProject={userOwnsProject}
                                     onAddToStudioClicked={onAddToStudioClicked}
                                     onAddToStudioClosed={onAddToStudioClosed}
                                     onReportClicked={onReportClicked}
@@ -404,6 +405,8 @@ PreviewPresentation.propTypes = {
         host: PropTypes.string,
         visible: PropTypes.bool
     }),
+    canAddToStudio: PropTypes.bool,
+    canReport: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
     extensions: PropTypes.arrayOf(PropTypes.object),
