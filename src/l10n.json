@@ -206,6 +206,7 @@
 
     "comments.report": "Report",
     "comments.delete": "Delete",
+    "comments.restore": "Restore",
     "comments.reportModal.title": "Report Comment",
     "comments.reportModal.reported": "The comment has been reported, and the Scratch Team has been notified.",
     "comments.reportModal.prompt": "Are you sure you want to report this comment?",

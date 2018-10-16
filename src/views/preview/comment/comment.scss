@@ -78,7 +78,8 @@
         }
 
         .comment-delete,
-        .comment-report {
+        .comment-report,
+        .comment-restore {
             opacity: .5;
             font-size: .75rem;
             font-weight: 500;
@@ -114,6 +115,18 @@
             &:before {
                 margin-right: .25rem;
                 background-image: url("/svgs/project/report-gray.svg");
+                width: .75rem;
+                height: .75rem;
+                vertical-align: -.125rem;
+            }
+        }
+
+        .comment-restore {
+            margin-left: 1rem;
+
+            &:before {
+                margin-right: .25rem;
+                background-image: url("/svgs/project/restore-gray.svg");
                 width: .75rem;
                 height: .75rem;
                 vertical-align: -.125rem;

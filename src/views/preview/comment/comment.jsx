@@ -13,10 +13,6 @@ const ReportCommentModal = require('../../../components/modal/comments/report-co
 
 require('./comment.scss');
 
-const CommentVisibility = {
-    VISIBLE: 'visible' // Has to match the server response for visibility
-};
-
 class Comment extends React.Component {
     constructor (props) {
         super(props);
@@ -28,7 +24,8 @@ class Comment extends React.Component {
             'handleConfirmReport',
             'handleCancelReport',
             'handlePostReply',
-            'handleToggleReplying'
+            'handleToggleReplying',
+            'handleRestore'
         ]);
         this.state = {
             deleting: false,
@@ -64,6 +61,10 @@ class Comment extends React.Component {
         this.setState({reporting: true});
     }
 
+    handleRestore () {
+        this.props.onRestore(this.props.id);
+    }
+
     handleConfirmReport () {
         this.setState({
             reporting: false,
@@ -93,7 +94,7 @@ class Comment extends React.Component {
             visibility
         } = this.props;
 
-        const visible = visibility === CommentVisibility.VISIBLE;
+        const visible = visibility === 'visible';
 
         return (
             <div
@@ -128,10 +129,19 @@ class Comment extends React.Component {
                                     </span>
                                 </React.Fragment>
                             ) : (
-                                <span className="comment-visibility">
-                                    <FormattedMessage id={`comments.status.${visibility}`} />
-                                    {/* TODO restore action will go here */}
-                                </span>
+                                <React.Fragment>
+                                    <span className="comment-visibility">
+                                        <FormattedMessage id={`comments.status.${visibility}`} />
+                                    </span>
+                                    {this.props.onRestore && (
+                                        <span
+                                            className="comment-restore"
+                                            onClick={this.handleRestore}
+                                        >
+                                            <FormattedMessage id="comments.restore" />
+                                        </span>
+                                    )}
+                                </React.Fragment>
                             )}
                         </div>
                     </FlexRow>
@@ -210,6 +220,7 @@ Comment.propTypes = {
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
     onReport: PropTypes.func,
+    onRestore: PropTypes.func,
     projectId: PropTypes.string,
     visibility: PropTypes.string
 };

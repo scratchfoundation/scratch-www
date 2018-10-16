@@ -44,6 +44,7 @@ class Preview extends React.Component {
             'handleReportClose',
             'handleReportComment',
             'handleReportSubmit',
+            'handleRestoreComment',
             'handleAddToStudioClick',
             'handleAddToStudioClose',
             'handleSeeInside',
@@ -187,6 +188,9 @@ class Preview extends React.Component {
     }
     handleReportComment (id, topLevelCommentId) {
         this.props.handleReportComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
+    }
+    handleRestoreComment (id, topLevelCommentId) {
+        this.props.handleRestoreComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
     }
     handleReportClick () {
         this.setState({reportOpen: true});
@@ -379,6 +383,7 @@ class Preview extends React.Component {
                         onReportClose={this.handleReportClose}
                         onReportComment={this.handleReportComment}
                         onReportSubmit={this.handleReportSubmit}
+                        onRestoreComment={this.props.isAdmin && this.handleRestoreComment}
                         onSeeInside={this.handleSeeInside}
                         onShare={this.handleShare}
                         onToggleComments={this.handleToggleComments}
@@ -448,6 +453,7 @@ Preview.propTypes = {
     handleLogOut: PropTypes.func,
     handleOpenRegistration: PropTypes.func,
     handleReportComment: PropTypes.func,
+    handleRestoreComment: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
@@ -587,6 +593,9 @@ const mapDispatchToProps = dispatch => ({
     },
     handleReportComment: (projectId, commentId, topLevelCommentId, token) => {
         dispatch(previewActions.reportComment(projectId, commentId, topLevelCommentId, token));
+    },
+    handleRestoreComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.restoreComment(projectId, commentId, topLevelCommentId, token));
     },
     handleOpenRegistration: event => {
         event.preventDefault();

@@ -78,6 +78,7 @@ const PreviewPresentation = ({
     onReportClose,
     onReportComment,
     onReportSubmit,
+    onRestoreComment,
     onAddToStudioClicked,
     onAddToStudioClosed,
     onToggleStudio,
@@ -375,6 +376,7 @@ const PreviewPresentation = ({
                                                 onAddComment={onAddComment}
                                                 onDelete={onDeleteComment}
                                                 onReport={onReportComment}
+                                                onRestore={onRestoreComment}
                                             />
                                         ))}
                                         {comments.length < projectInfo.stats.comments &&
@@ -431,6 +433,7 @@ PreviewPresentation.propTypes = {
     onReportClose: PropTypes.func.isRequired,
     onReportComment: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
+    onRestoreComment: PropTypes.func,
     onSeeInside: PropTypes.func,
     onShare: PropTypes.func,
     onToggleComments: PropTypes.func,

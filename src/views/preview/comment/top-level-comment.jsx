@@ -16,7 +16,8 @@ class TopLevelComment extends React.Component {
             'handleExpandThread',
             'handleAddComment',
             'handleDeleteReply',
-            'handleReportReply'
+            'handleReportReply',
+            'handleRestoreReply'
         ]);
         this.state = {
             expanded: false
@@ -29,16 +30,20 @@ class TopLevelComment extends React.Component {
         });
     }
 
-    handleDeleteReply (commentId) {
+    handleDeleteReply (replyId) {
         // Only apply topLevelCommentId for deleting replies
         // The top level comment itself just gets passed onDelete directly
-        this.props.onDelete(commentId, this.props.id);
+        this.props.onDelete(replyId, this.props.id);
     }
 
-    handleReportReply (commentId) {
+    handleReportReply (replyId) {
         // Only apply topLevelCommentId for reporting replies
         // The top level comment itself just gets passed onReport directly
-        this.props.onReport(commentId, this.props.id);
+        this.props.onReport(replyId, this.props.id);
+    }
+
+    handleRestoreReply (replyId) {
+        this.props.onRestore(replyId, this.props.id);
     }
 
     handleAddComment (comment) {
@@ -55,6 +60,7 @@ class TopLevelComment extends React.Component {
             id,
             onDelete,
             onReport,
+            onRestore,
             replies,
             projectId,
             visibility
@@ -74,6 +80,7 @@ class TopLevelComment extends React.Component {
                         id,
                         onDelete,
                         onReport,
+                        onRestore,
                         visibility
                     }}
                 />
@@ -100,6 +107,7 @@ class TopLevelComment extends React.Component {
                                 onAddComment={this.handleAddComment}
                                 onDelete={this.handleDeleteReply}
                                 onReport={this.handleReportReply}
+                                onRestore={this.handleRestoreReply}
                             />
                         ))}
                     </FlexRow>
@@ -136,6 +144,7 @@ TopLevelComment.propTypes = {
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
     onReport: PropTypes.func,
+    onRestore: PropTypes.func,
     parentId: PropTypes.number,
     projectId: PropTypes.string,
     replies: PropTypes.arrayOf(PropTypes.object),

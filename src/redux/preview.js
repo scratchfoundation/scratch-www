@@ -246,6 +246,15 @@ module.exports.setCommentReported = (commentId, topLevelCommentId) => ({
     }
 });
 
+module.exports.setCommentRestored = (commentId, topLevelCommentId) => ({
+    type: 'UPDATE_COMMENT',
+    commentId: commentId,
+    topLevelCommentId: topLevelCommentId,
+    comment: {
+        visibility: 'visible'
+    }
+});
+
 module.exports.addNewComment = (comment, topLevelCommentId) => ({
     type: 'ADD_NEW_COMMENT',
     comment: comment,
@@ -656,6 +665,22 @@ module.exports.reportComment = (projectId, commentId, topLevelCommentId, token) 
         }
         // TODO use the reportId in the response for unreporting functionality
         dispatch(module.exports.setCommentReported(commentId, topLevelCommentId));
+    });
+});
+
+module.exports.restoreComment = (projectId, commentId, topLevelCommentId, token) => (dispatch => {
+    api({
+        uri: `/proxy/admin/project/${projectId}/comment/${commentId}/undelete`,
+        authentication: token,
+        withCredentials: true,
+        method: 'PUT',
+        useCsrf: true
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            log.error(err || res.body);
+            return;
+        }
+        dispatch(module.exports.setCommentRestored(commentId, topLevelCommentId));
     });
 });
 
