@@ -1,5 +1,6 @@
 const PropTypes = require('prop-types');
 const React = require('react');
+const FormattedMessage = require('react-intl').FormattedMessage;
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 
@@ -12,10 +13,13 @@ const ShareBanner = props => {
             <div className="inner">
                 <FlexRow className="preview-row">
                     <span className="share-text">
-                        This project is not shared — so only you can see it. Click share to let everyone see it!
+                        <FormattedMessage id="preview.share.notShared" />
                     </span>
-                    <Button className="button share-button">
-                        Share
+                    <Button
+                        className="button share-button"
+                        onClick={props.onShare}
+                    >
+                        <FormattedMessage id="preview.share.shareButton" />
                     </Button>
                 </FlexRow>
             </div>
@@ -24,6 +28,7 @@ const ShareBanner = props => {
 };
 
 ShareBanner.propTypes = {
+    onShare: PropTypes.func,
     shared: PropTypes.bool.isRequired
 };
 

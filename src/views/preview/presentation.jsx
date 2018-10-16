@@ -81,12 +81,16 @@ const PreviewPresentation = ({
     onToggleStudio,
     onToggleComments,
     onSeeInside,
+    onShare,
     onUpdate
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     return (
         <div className="preview">
-            <ShareBanner shared={isShared} />
+            <ShareBanner
+                shared={isShared}
+                onShare={onShare}
+            />
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <Formsy onKeyPress={onKeyPress}>
                     <div className="inner">
@@ -427,6 +431,7 @@ PreviewPresentation.propTypes = {
     onReportComment: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
     onSeeInside: PropTypes.func,
+    onShare: PropTypes.func,
     onToggleComments: PropTypes.func,
     onToggleStudio: PropTypes.func,
     onUpdate: PropTypes.func,

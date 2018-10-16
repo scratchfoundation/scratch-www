@@ -47,6 +47,7 @@ class Preview extends React.Component {
             'handleAddToStudioClick',
             'handleAddToStudioClose',
             'handleSeeInside',
+            'handleShare',
             'handleUpdateProjectTitle',
             'handleUpdate',
             'handleToggleComments',
@@ -291,7 +292,12 @@ class Preview extends React.Component {
         this.props.setPlayer(false);
     }
     handleShare () {
-        // This is just a placeholder, but enables the button in the editor
+        this.props.updateProject(
+            this.props.projectInfo.id,
+            {isPublished: true},
+            this.props.user.username,
+            this.props.user.token
+        );
     }
     handleUpdate (jsonData) {
         this.props.updateProject(
@@ -370,6 +376,7 @@ class Preview extends React.Component {
                         onReportComment={this.handleReportComment}
                         onReportSubmit={this.handleReportSubmit}
                         onSeeInside={this.handleSeeInside}
+                        onShare={this.handleShare}
                         onToggleComments={this.handleToggleComments}
                         onToggleStudio={this.handleToggleStudio}
                         onUpdate={this.handleUpdate}
@@ -525,10 +532,7 @@ const mapStateToProps = state => {
             state.permissions.admin === true),
         isLoggedIn: isLoggedIn,
         // if we don't have projectInfo, assume it's shared until we know otherwise
-        isShared: !projectInfoPresent || (
-            state.preview.projectInfo.history &&
-            state.preview.projectInfo.history.shared &&
-            state.preview.projectInfo.history.shared.length > 0),
+        isShared: !projectInfoPresent || state.preview.projectInfo.is_published,
         loved: state.preview.loved,
         original: state.preview.original,
         parent: state.preview.parent,
