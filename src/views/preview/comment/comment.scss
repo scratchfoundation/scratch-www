@@ -82,6 +82,7 @@
             opacity: .5;
             font-size: .75rem;
             font-weight: 500;
+            cursor: pointer;
 
             &:before {
                 display: inline-block;
@@ -91,6 +92,11 @@
                 background-size: contain;
                 content: "";
             }
+        }
+
+        .comment-visibility {
+            opacity: .5;
+            font-size: .75rem;
         }
 
         .comment-delete {
@@ -148,19 +154,6 @@
                 width: 10px;
                 height: 9px;
                 content: "";
-            }
-
-            &.comment-bubble-deleted {
-                $deleted-outline:  $active-gray;
-                $deleted-background: rgb(215, 222, 234);
-
-                border-color: $deleted-outline;
-                background-color: $deleted-background;
-
-                &:before {
-                    border-color: $deleted-outline transparent $deleted-outline $deleted-outline;
-                    background: $deleted-background;
-                }
             }
 
             &.comment-bubble-reported {

@@ -52,13 +52,12 @@ class TopLevelComment extends React.Component {
             content,
             datetimeCreated,
             deletable,
-            deleted,
             id,
             onDelete,
             onReport,
             replies,
-            reported,
-            projectId
+            projectId,
+            visibility
         } = this.props;
 
         return (
@@ -71,12 +70,11 @@ class TopLevelComment extends React.Component {
                         content,
                         datetimeCreated,
                         deletable,
-                        deleted,
                         canReply,
                         id,
                         onDelete,
                         onReport,
-                        reported
+                        visibility
                     }}
                 />
                 {replies.length > 0 &&
@@ -95,11 +93,10 @@ class TopLevelComment extends React.Component {
                                 content={reply.content}
                                 datetimeCreated={reply.datetime_created}
                                 deletable={deletable}
-                                deleted={reply.deleted}
                                 id={reply.id}
                                 key={reply.id}
                                 projectId={projectId}
-                                reported={reply.reported}
+                                visibility={reply.visibility}
                                 onAddComment={this.handleAddComment}
                                 onDelete={this.handleDeleteReply}
                                 onReport={this.handleReportReply}
@@ -135,7 +132,6 @@ TopLevelComment.propTypes = {
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
     deletable: PropTypes.bool,
-    deleted: PropTypes.bool,
     id: PropTypes.number,
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
@@ -143,7 +139,7 @@ TopLevelComment.propTypes = {
     parentId: PropTypes.number,
     projectId: PropTypes.string,
     replies: PropTypes.arrayOf(PropTypes.object),
-    reported: PropTypes.bool
+    visibility: PropTypes.string
 };
 
 module.exports = TopLevelComment;

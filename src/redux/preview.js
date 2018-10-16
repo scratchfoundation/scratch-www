@@ -233,7 +233,7 @@ module.exports.setCommentDeleted = (commentId, topLevelCommentId) => ({
     commentId: commentId,
     topLevelCommentId: topLevelCommentId,
     comment: {
-        deleted: true
+        visibility: 'deleted'
     }
 });
 
@@ -242,7 +242,7 @@ module.exports.setCommentReported = (commentId, topLevelCommentId) => ({
     commentId: commentId,
     topLevelCommentId: topLevelCommentId,
     comment: {
-        reported: true
+        visibility: 'reported'
     }
 });
 

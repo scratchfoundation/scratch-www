@@ -13,6 +13,10 @@ const ReportCommentModal = require('../../../components/modal/comments/report-co
 
 require('./comment.scss');
 
+const CommentVisibility = {
+    VISIBLE: 'visible' // Has to match the server response for visibility
+};
+
 class Comment extends React.Component {
     constructor (props) {
         super(props);
@@ -81,14 +85,15 @@ class Comment extends React.Component {
         const {
             author,
             deletable,
-            deleted,
             canReply,
             content,
             datetimeCreated,
             id,
             projectId,
-            reported
+            visibility
         } = this.props;
+
+        const visible = visibility === CommentVisibility.VISIBLE;
 
         return (
             <div
@@ -105,27 +110,35 @@ class Comment extends React.Component {
                             href={`/users/${author.username}`}
                         >{author.username}</a>
                         <div className="action-list">
-                            {deletable ? (
-                                <span
-                                    className="comment-delete"
-                                    onClick={this.handleDelete}
-                                >
-                                    <FormattedMessage id="comments.delete" />
+                            {visible ? (
+                                <React.Fragment>
+                                    {deletable ? (
+                                        <span
+                                            className="comment-delete"
+                                            onClick={this.handleDelete}
+                                        >
+                                            <FormattedMessage id="comments.delete" />
+                                        </span>
+                                    ) : null}
+                                    <span
+                                        className="comment-report"
+                                        onClick={this.handleReport}
+                                    >
+                                        <FormattedMessage id="comments.report" />
+                                    </span>
+                                </React.Fragment>
+                            ) : (
+                                <span className="comment-visibility">
+                                    <FormattedMessage id={`comments.status.${visibility}`} />
+                                    {/* TODO restore action will go here */}
                                 </span>
-                            ) : null}
-                            <span
-                                className="comment-report"
-                                onClick={this.handleReport}
-                            >
-                                <FormattedMessage id="comments.report" />
-                            </span>
+                            )}
                         </div>
                     </FlexRow>
                     <div
                         className={classNames({
                             'comment-bubble': true,
-                            'comment-bubble-deleted': deleted,
-                            'comment-bubble-reported': reported
+                            'comment-bubble-reported': !visible
                         })}
                     >
                         {/* TODO: at the moment, comment content does not properly display
@@ -193,13 +206,12 @@ Comment.propTypes = {
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
     deletable: PropTypes.bool,
-    deleted: PropTypes.bool,
     id: PropTypes.number,
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
     onReport: PropTypes.func,
     projectId: PropTypes.string,
-    reported: PropTypes.bool
+    visibility: PropTypes.string
 };
 
 module.exports = Comment;
