@@ -2,19 +2,23 @@
 
 $navigation-height: 50px;
 
-.shareBanner {
+.share-banner-outer {
     background-color: $ui-orange-25percent;
     width: 100%;
     overflow: hidden;
     color: $ui-orange;
 }
 
+.share-banner {
+    align-items: center;
+    justify-content: space-between;
+}
+
 .share-button {
-    margin-top: 0;
     background-color: $ui-orange;
     font-size: .875rem;
     font-weight: normal;
-    
+
     &:before {
         display: inline-block;
         margin-right: .5rem;
