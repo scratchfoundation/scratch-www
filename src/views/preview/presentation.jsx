@@ -320,7 +320,7 @@ const PreviewPresentation = ({
                             <FlexRow className="preview-row">
                                 <div className="comments-container">
                                     <FlexRow className="comments-header">
-                                        <h4>Comments</h4>
+                                        <h4><FormattedMessage id="preview.comments.header" /></h4>
                                         {userOwnsProject ? (
                                             <div>
                                                 <label>
