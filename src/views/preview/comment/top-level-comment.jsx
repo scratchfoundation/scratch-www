@@ -55,6 +55,7 @@ class TopLevelComment extends React.Component {
             author,
             canDelete,
             canReply,
+            canReport,
             canRestore,
             content,
             datetimeCreated,
@@ -80,6 +81,7 @@ class TopLevelComment extends React.Component {
                         datetimeCreated,
                         canDelete,
                         canReply,
+                        canReport,
                         canRestore,
                         id,
                         onDelete,
@@ -102,6 +104,7 @@ class TopLevelComment extends React.Component {
                                 author={reply.author}
                                 canDelete={canDelete}
                                 canReply={canReply}
+                                canReport={canReport}
                                 canRestore={canRestore && parentVisible}
                                 content={reply.content}
                                 datetimeCreated={reply.datetime_created}
@@ -143,6 +146,7 @@ TopLevelComment.propTypes = {
     }),
     canDelete: PropTypes.bool,
     canReply: PropTypes.bool,
+    canReport: PropTypes.bool,
     canRestore: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,

@@ -367,6 +367,7 @@ const PreviewPresentation = ({
                                                 author={comment.author}
                                                 canDelete={canDeleteComments}
                                                 canReply={isLoggedIn && projectInfo.comments_allowed}
+                                                canReport={isLoggedIn}
                                                 canRestore={canRestoreComments}
                                                 content={comment.content}
                                                 datetimeCreated={comment.datetime_created}
