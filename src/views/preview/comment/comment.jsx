@@ -87,6 +87,7 @@ class Comment extends React.Component {
             author,
             canDelete,
             canReply,
+            canReport,
             canRestore,
             content,
             datetimeCreated,
@@ -122,12 +123,14 @@ class Comment extends React.Component {
                                             <FormattedMessage id="comments.delete" />
                                         </span>
                                     )}
-                                    <span
-                                        className="comment-report"
-                                        onClick={this.handleReport}
-                                    >
-                                        <FormattedMessage id="comments.report" />
-                                    </span>
+                                    {canReport && (
+                                        <span
+                                            className="comment-report"
+                                            onClick={this.handleReport}
+                                        >
+                                            <FormattedMessage id="comments.report" />
+                                        </span>
+                                    )}
                                 </React.Fragment>
                             ) : (
                                 <React.Fragment>
@@ -215,6 +218,7 @@ Comment.propTypes = {
     }),
     canDelete: PropTypes.bool,
     canReply: PropTypes.bool,
+    canReport: PropTypes.bool,
     canRestore: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,

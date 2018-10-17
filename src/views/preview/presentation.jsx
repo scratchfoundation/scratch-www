@@ -45,6 +45,7 @@ const PreviewPresentation = ({
     assetHost,
     backpackOptions,
     canAddToStudio,
+    canDeleteComments,
     canReport,
     canRestoreComments,
     comments,
@@ -364,8 +365,9 @@ const PreviewPresentation = ({
                                         {comments.map(comment => (
                                             <TopLevelComment
                                                 author={comment.author}
-                                                canDelete={userOwnsProject}
+                                                canDelete={canDeleteComments}
                                                 canReply={isLoggedIn && projectInfo.comments_allowed}
+                                                canReport={isLoggedIn}
                                                 canRestore={canRestoreComments}
                                                 content={comment.content}
                                                 datetimeCreated={comment.datetime_created}
@@ -412,6 +414,7 @@ PreviewPresentation.propTypes = {
         visible: PropTypes.bool
     }),
     canAddToStudio: PropTypes.bool,
+    canDeleteComments: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestoreComments: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
