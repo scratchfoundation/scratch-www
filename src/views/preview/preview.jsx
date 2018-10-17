@@ -350,6 +350,7 @@ class Preview extends React.Component {
                         assetHost={this.props.assetHost}
                         backpackOptions={this.props.backpackOptions}
                         canAddToStudio={this.props.canAddToStudio}
+                        canDeleteComments={this.props.isAdmin || this.props.userOwnsProject}
                         canReport={this.props.canReport}
                         canRestoreComments={this.props.isAdmin}
                         comments={this.props.comments}
