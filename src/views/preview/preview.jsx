@@ -84,15 +84,22 @@ class Preview extends React.Component {
             this.fetchCommunityData();
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
-            this.getExtensions(this.state.projectId);
-            this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
-            if (this.props.projectInfo.remix.parent !== null) {
-                this.props.getParentInfo(this.props.projectInfo.remix.parent);
-            }
-            if (this.props.projectInfo.remix.root !== null &&
-                this.props.projectInfo.remix.root !== this.props.projectInfo.remix.parent
-            ) {
-                this.props.getOriginalInfo(this.props.projectInfo.remix.root);
+            if (typeof this.props.projectInfo.id === 'undefined') {
+                this.initCounts(0, 0);
+                this.setState({ // eslint-disable-line react/no-did-update-set-state
+                    extensions: []
+                });
+            } else {
+                this.getExtensions(this.state.projectId);
+                this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
+                if (this.props.projectInfo.remix.parent !== null) {
+                    this.props.getParentInfo(this.props.projectInfo.remix.parent);
+                }
+                if (this.props.projectInfo.remix.root !== null &&
+                    this.props.projectInfo.remix.root !== this.props.projectInfo.remix.parent
+                ) {
+                    this.props.getOriginalInfo(this.props.projectInfo.remix.root);
+                }
             }
         }
         if (this.props.playerMode !== prevProps.playerMode || this.props.fullScreen !== prevProps.fullScreen) {
@@ -327,15 +334,16 @@ class Preview extends React.Component {
         // NOTE: this needs more work
         // NOTE: need to load everything for new project that is loaded in componentDidUpdate
         this.setState({projectId: projectId}, () => {
-            this.fetchCommunityData();
             const parts = window.location.pathname.toLowerCase()
                 .split('/')
                 .filter(Boolean);
             let newUrl;
             if (projectId === 0) {
                 newUrl = `/${parts[0]}/editor`;
+                this.props.resetProject();
             } else {
                 newUrl = `/${parts[0]}/${projectId}/editor`;
+                this.fetchCommunityData();
             }
             history.pushState(
                 `project ${projectId}`,
@@ -501,6 +509,7 @@ Preview.propTypes = {
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
     reportProject: PropTypes.func,
+    resetProject: PropTypes.func,
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
     setFullScreen: PropTypes.func.isRequired,
@@ -583,7 +592,7 @@ const mapStateToProps = state => {
 
     return {
         canAddToStudio: isLoggedIn && userOwnsProject,
-        canCreateNew: true, // NOTE: rename this and canSaveNew?
+        canCreateNew: true,
         canRemix: false,
         canReport: isLoggedIn && !userOwnsProject,
         canSave: userOwnsProject,
@@ -691,6 +700,9 @@ const mapDispatchToProps = dispatch => ({
     },
     reportProject: (id, formData, token) => {
         dispatch(previewActions.reportProject(id, formData, token));
+    },
+    resetProject: () => {
+        dispatch(previewActions.resetProject());
     },
     setOriginalInfo: info => {
         dispatch(previewActions.setOriginalInfo(info));

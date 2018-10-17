@@ -46,6 +46,8 @@ module.exports.previewReducer = (state, action) => {
     }
 
     switch (action.type) {
+    case 'RESET_TO_INTIAL_STATE':
+        return module.exports.getInitialState();
     case 'SET_PROJECT_INFO':
         return Object.assign({}, state, {
             projectInfo: action.info
@@ -162,6 +164,10 @@ module.exports.previewReducer = (state, action) => {
 module.exports.setError = error => ({
     type: 'ERROR',
     error: error
+});
+
+module.exports.resetProject = () => ({
+    type: 'RESET_TO_INTIAL_STATE'
 });
 
 module.exports.setProjectInfo = info => ({
