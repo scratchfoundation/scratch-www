@@ -126,7 +126,7 @@ class Preview extends React.Component {
             const username = this.props.user.username;
             const token = this.props.user.token;
             this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
-                 this.props.isAdmin, token);
+                this.props.isAdmin, token);
             this.props.getProjectInfo(this.state.projectId, token);
             this.props.getRemixes(this.state.projectId, token);
             this.props.getProjectStudios(this.state.projectId, token);
@@ -335,8 +335,6 @@ class Preview extends React.Component {
         });
     }
     handleUpdateProjectId (projectId, callback) {
-        // NOTE: this needs more work
-        // NOTE: need to load everything for new project that is loaded in componentDidUpdate
         this.setState({projectId: projectId}, () => {
             const parts = window.location.pathname.toLowerCase()
                 .split('/')
