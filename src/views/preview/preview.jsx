@@ -403,6 +403,7 @@ class Preview extends React.Component {
                         canRemix={this.props.canRemix}
                         canSave={this.props.canSave}
                         canSaveAsCopy={this.props.canSaveAsCopy}
+                        canSaveNew={this.props.canSaveNew}
                         canShare={this.props.canShare}
                         className="gui"
                         projectHost={this.props.projectHost}
@@ -430,11 +431,12 @@ Preview.propTypes = {
         visible: PropTypes.bool
     }),
     canAddToStudio: PropTypes.bool,
-    canCreateNew: PropTypes.bool,
+    canCreateNew: PropTypes.bool, // NOTE: rename these?
     canRemix: PropTypes.bool,
     canReport: PropTypes.bool,
     canSave: PropTypes.bool,
     canSaveAsCopy: PropTypes.bool,
+    canSaveNew: PropTypes.bool,
     canShare: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
@@ -550,11 +552,12 @@ const mapStateToProps = state => {
 
     return {
         canAddToStudio: isLoggedIn && userOwnsProject,
-        canCreateNew: false,
+        canCreateNew: isLoggedIn && userOwnsProject,
         canRemix: false,
         canReport: isLoggedIn && !userOwnsProject,
         canSave: userOwnsProject,
         canSaveAsCopy: false,
+        canSaveNew: isLoggedIn,
         canShare: userOwnsProject && state.permissions.social,
         comments: state.preview.comments,
         faved: state.preview.faved,
