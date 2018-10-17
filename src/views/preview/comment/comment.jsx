@@ -114,14 +114,14 @@ class Comment extends React.Component {
                         <div className="action-list">
                             {visible ? (
                                 <React.Fragment>
-                                    {canDelete ? (
+                                    {canDelete && (
                                         <span
                                             className="comment-delete"
                                             onClick={this.handleDelete}
                                         >
                                             <FormattedMessage id="comments.delete" />
                                         </span>
-                                    ) : null}
+                                    )}
                                     <span
                                         className="comment-report"
                                         onClick={this.handleReport}
