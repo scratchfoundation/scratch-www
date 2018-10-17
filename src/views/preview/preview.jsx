@@ -348,8 +348,8 @@ class Preview extends React.Component {
                 newUrl = `/${parts[0]}/${projectId}/editor`;
             }
             history.pushState(
-                `project ${projectId}`,
-                `project ${projectId}`,
+                {projectId: projectId},
+                {projectId: projectId},
                 newUrl
             );
             if (callback) callback();
