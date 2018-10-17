@@ -77,11 +77,15 @@ class Preview extends React.Component {
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
         this.setScreenFromOrientation();
     }
-    componentDidUpdate (prevProps) {
-        if (this.props.sessionStatus !== prevProps.sessionStatus &&
-            this.props.sessionStatus === sessionActions.Status.FETCHED &&
-            this.state.projectId) {
+    componentDidUpdate (prevProps, prevState) {
+        if (this.state.projectId &&
+            ((this.props.sessionStatus !== prevProps.sessionStatus &&
+            this.props.sessionStatus === sessionActions.Status.FETCHED) ||
+            (this.state.projectId !== prevState.projectId))) {
             this.fetchCommunityData();
+        }
+        if (this.state.projectId === '0' && this.state.projectId !== prevState.projectId) {
+            this.props.resetProject();
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             if (typeof this.props.projectInfo.id === 'undefined') {
@@ -340,10 +344,8 @@ class Preview extends React.Component {
             let newUrl;
             if (projectId === '0') {
                 newUrl = `/${parts[0]}/editor`;
-                this.props.resetProject();
             } else {
                 newUrl = `/${parts[0]}/${projectId}/editor`;
-                this.fetchCommunityData();
             }
             history.pushState(
                 `project ${projectId}`,
