@@ -68,7 +68,7 @@ class Preview extends React.Component {
             extensions: [],
             favoriteCount: 0,
             loveCount: 0,
-            projectId: parts[1] === 'editor' ? 0 : parts[1],
+            projectId: parts[1] === 'editor' ? '0' : parts[1],
             addToStudioOpen: false,
             reportOpen: false
         };
@@ -437,7 +437,6 @@ class Preview extends React.Component {
                         canRemix={this.props.canRemix}
                         canSave={this.props.canSave}
                         canSaveAsCopy={this.props.canSaveAsCopy}
-                        canSaveNew={this.props.canSaveNew}
                         canShare={this.props.canShare}
                         className="gui"
                         enableCommunity={this.props.enableCommunity}
@@ -472,7 +471,6 @@ Preview.propTypes = {
     canReport: PropTypes.bool,
     canSave: PropTypes.bool,
     canSaveAsCopy: PropTypes.bool,
-    canSaveNew: PropTypes.bool,
     canShare: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
     enableCommunity: PropTypes.bool,
@@ -595,9 +593,8 @@ const mapStateToProps = state => {
         canCreateNew: true,
         canRemix: false,
         canReport: isLoggedIn && !userOwnsProject,
-        canSave: userOwnsProject,
+        canSave: isLoggedIn && (userOwnsProject || !state.preview.projectInfo.id),
         canSaveAsCopy: false,
-        canSaveNew: isLoggedIn,
         canShare: userOwnsProject && state.permissions.social,
         comments: state.preview.comments,
         enableCommunity: state.preview.projectInfo && state.preview.projectInfo.id > 0,
