@@ -24,7 +24,8 @@ class Comment extends React.Component {
             'handleConfirmReport',
             'handleCancelReport',
             'handlePostReply',
-            'handleToggleReplying'
+            'handleToggleReplying',
+            'handleRestore'
         ]);
         this.state = {
             deleting: false,
@@ -60,6 +61,10 @@ class Comment extends React.Component {
         this.setState({reporting: true});
     }
 
+    handleRestore () {
+        this.props.onRestore(this.props.id);
+    }
+
     handleConfirmReport () {
         this.setState({
             reporting: false,
@@ -80,15 +85,17 @@ class Comment extends React.Component {
     render () {
         const {
             author,
-            deletable,
-            deleted,
+            canDelete,
             canReply,
+            canRestore,
             content,
             datetimeCreated,
             id,
             projectId,
-            reported
+            visibility
         } = this.props;
+
+        const visible = visibility === 'visible';
 
         return (
             <div
@@ -105,27 +112,44 @@ class Comment extends React.Component {
                             href={`/users/${author.username}`}
                         >{author.username}</a>
                         <div className="action-list">
-                            {deletable ? (
-                                <span
-                                    className="comment-delete"
-                                    onClick={this.handleDelete}
-                                >
-                                    <FormattedMessage id="comments.delete" />
-                                </span>
-                            ) : null}
-                            <span
-                                className="comment-report"
-                                onClick={this.handleReport}
-                            >
-                                <FormattedMessage id="comments.report" />
-                            </span>
+                            {visible ? (
+                                <React.Fragment>
+                                    {canDelete && (
+                                        <span
+                                            className="comment-delete"
+                                            onClick={this.handleDelete}
+                                        >
+                                            <FormattedMessage id="comments.delete" />
+                                        </span>
+                                    )}
+                                    <span
+                                        className="comment-report"
+                                        onClick={this.handleReport}
+                                    >
+                                        <FormattedMessage id="comments.report" />
+                                    </span>
+                                </React.Fragment>
+                            ) : (
+                                <React.Fragment>
+                                    <span className="comment-visibility">
+                                        <FormattedMessage id={`comments.status.${visibility}`} />
+                                    </span>
+                                    {canRestore && (
+                                        <span
+                                            className="comment-restore"
+                                            onClick={this.handleRestore}
+                                        >
+                                            <FormattedMessage id="comments.restore" />
+                                        </span>
+                                    )}
+                                </React.Fragment>
+                            )}
                         </div>
                     </FlexRow>
                     <div
                         className={classNames({
                             'comment-bubble': true,
-                            'comment-bubble-deleted': deleted,
-                            'comment-bubble-reported': reported
+                            'comment-bubble-reported': !visible
                         })}
                     >
                         {/* TODO: at the moment, comment content does not properly display
@@ -138,7 +162,7 @@ class Comment extends React.Component {
                             <span className="comment-time">
                                 <FormattedRelative value={new Date(datetimeCreated)} />
                             </span>
-                            {canReply ? (
+                            {(canReply && visible) ? (
                                 <span
                                     className="comment-reply"
                                     onClick={this.handleToggleReplying}
@@ -189,17 +213,18 @@ Comment.propTypes = {
         image: PropTypes.string,
         username: PropTypes.string
     }),
+    canDelete: PropTypes.bool,
     canReply: PropTypes.bool,
+    canRestore: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
-    deletable: PropTypes.bool,
-    deleted: PropTypes.bool,
     id: PropTypes.number,
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
     onReport: PropTypes.func,
+    onRestore: PropTypes.func,
     projectId: PropTypes.string,
-    reported: PropTypes.bool
+    visibility: PropTypes.string
 };
 
 module.exports = Comment;

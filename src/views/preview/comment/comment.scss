@@ -78,8 +78,10 @@
         }
 
         .comment-delete,
-        .comment-report {
+        .comment-report,
+        .comment-restore {
             opacity: .5;
+            cursor: pointer;
             font-size: .75rem;
             font-weight: 500;
 
@@ -91,6 +93,11 @@
                 background-size: contain;
                 content: "";
             }
+        }
+
+        .comment-visibility {
+            opacity: .5;
+            font-size: .75rem;
         }
 
         .comment-delete {
@@ -108,6 +115,18 @@
             &:before {
                 margin-right: .25rem;
                 background-image: url("/svgs/project/report-gray.svg");
+                width: .75rem;
+                height: .75rem;
+                vertical-align: -.125rem;
+            }
+        }
+
+        .comment-restore {
+            margin-left: 1rem;
+
+            &:before {
+                margin-right: .25rem;
+                background-image: url("/svgs/project/restore-gray.svg");
                 width: .75rem;
                 height: .75rem;
                 vertical-align: -.125rem;
@@ -148,19 +167,6 @@
                 width: 10px;
                 height: 9px;
                 content: "";
-            }
-
-            &.comment-bubble-deleted {
-                $deleted-outline:  $active-gray;
-                $deleted-background: rgb(215, 222, 234);
-
-                border-color: $deleted-outline;
-                background-color: $deleted-background;
-
-                &:before {
-                    border-color: $deleted-outline transparent $deleted-outline $deleted-outline;
-                    background: $deleted-background;
-                }
             }
 
             &.comment-bubble-reported {

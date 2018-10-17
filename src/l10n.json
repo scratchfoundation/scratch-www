@@ -206,6 +206,7 @@
 
     "comments.report": "Report",
     "comments.delete": "Delete",
+    "comments.restore": "Restore",
     "comments.reportModal.title": "Report Comment",
     "comments.reportModal.reported": "The comment has been reported, and the Scratch Team has been notified.",
     "comments.reportModal.prompt": "Are you sure you want to report this comment?",
@@ -227,5 +228,18 @@
     "comments.post": "Post",
     "comments.cancel": "Cancel",
     "comments.lengthWarning": "{remainingCharacters, plural, one {1 character left} other {{remainingCharacters} characters left}}",
-    "comments.seeMoreReplies": "{repliesCount, plural, one {See 1 more reply} other {See all {repliesCount} replies}}"
+    "comments.seeMoreReplies": "{repliesCount, plural, one {See 1 more reply} other {See all {repliesCount} replies}}",
+    "comments.status.delbyusr": "Deleted by project owner",
+    "comments.status.censbyfilter": "Censored by filter",
+    "comments.status.delbyparentcomment": "Parent comment deleted",
+    "comments.status.censbyadmin": "Censored by admin",
+    "comments.status.delbyadmin": "Deleted by admin",
+    "comments.status.parentcommentcensored": "Parent comment censored",
+    "comments.status.delbyclass": "Deleted by class",
+    "comments.status.hiddenduetourl": "Hidden due to URL",
+    "comments.status.markedbyfilter": "Marked by filter",
+    "comments.status.suspended": "Suspended",
+    "comments.status.acctdel": "Account deleted",
+    "comments.status.deleted": "Deleted",
+    "comments.status.reported": "Reported"
 }

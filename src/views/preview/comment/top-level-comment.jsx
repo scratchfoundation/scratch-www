@@ -16,7 +16,8 @@ class TopLevelComment extends React.Component {
             'handleExpandThread',
             'handleAddComment',
             'handleDeleteReply',
-            'handleReportReply'
+            'handleReportReply',
+            'handleRestoreReply'
         ]);
         this.state = {
             expanded: false
@@ -29,16 +30,20 @@ class TopLevelComment extends React.Component {
         });
     }
 
-    handleDeleteReply (commentId) {
+    handleDeleteReply (replyId) {
         // Only apply topLevelCommentId for deleting replies
         // The top level comment itself just gets passed onDelete directly
-        this.props.onDelete(commentId, this.props.id);
+        this.props.onDelete(replyId, this.props.id);
     }
 
-    handleReportReply (commentId) {
+    handleReportReply (replyId) {
         // Only apply topLevelCommentId for reporting replies
         // The top level comment itself just gets passed onReport directly
-        this.props.onReport(commentId, this.props.id);
+        this.props.onReport(replyId, this.props.id);
+    }
+
+    handleRestoreReply (replyId) {
+        this.props.onRestore(replyId, this.props.id);
     }
 
     handleAddComment (comment) {
@@ -48,18 +53,21 @@ class TopLevelComment extends React.Component {
     render () {
         const {
             author,
+            canDelete,
             canReply,
+            canRestore,
             content,
             datetimeCreated,
-            deletable,
-            deleted,
             id,
             onDelete,
             onReport,
+            onRestore,
             replies,
-            reported,
-            projectId
+            projectId,
+            visibility
         } = this.props;
+
+        const parentVisible = visibility === 'visible';
 
         return (
             <FlexRow className="comment-container">
@@ -70,13 +78,14 @@ class TopLevelComment extends React.Component {
                         author,
                         content,
                         datetimeCreated,
-                        deletable,
-                        deleted,
+                        canDelete,
                         canReply,
+                        canRestore,
                         id,
                         onDelete,
                         onReport,
-                        reported
+                        onRestore,
+                        visibility
                     }}
                 />
                 {replies.length > 0 &&
@@ -91,18 +100,19 @@ class TopLevelComment extends React.Component {
                         {(this.state.expanded ? replies : replies.slice(0, 3)).map(reply => (
                             <Comment
                                 author={reply.author}
+                                canDelete={canDelete}
                                 canReply={canReply}
+                                canRestore={canRestore && parentVisible}
                                 content={reply.content}
                                 datetimeCreated={reply.datetime_created}
-                                deletable={deletable}
-                                deleted={reply.deleted}
                                 id={reply.id}
                                 key={reply.id}
                                 projectId={projectId}
-                                reported={reply.reported}
+                                visibility={reply.visibility}
                                 onAddComment={this.handleAddComment}
                                 onDelete={this.handleDeleteReply}
                                 onReport={this.handleReportReply}
+                                onRestore={this.handleRestoreReply}
                             />
                         ))}
                     </FlexRow>
@@ -131,19 +141,21 @@ TopLevelComment.propTypes = {
         image: PropTypes.string,
         username: PropTypes.string
     }),
+    canDelete: PropTypes.bool,
     canReply: PropTypes.bool,
+    canRestore: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
     deletable: PropTypes.bool,
-    deleted: PropTypes.bool,
     id: PropTypes.number,
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
     onReport: PropTypes.func,
+    onRestore: PropTypes.func,
     parentId: PropTypes.number,
     projectId: PropTypes.string,
     replies: PropTypes.arrayOf(PropTypes.object),
-    reported: PropTypes.bool
+    visibility: PropTypes.string
 };
 
 module.exports = TopLevelComment;

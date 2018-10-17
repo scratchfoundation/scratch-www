@@ -44,6 +44,7 @@ class Preview extends React.Component {
             'handleReportClose',
             'handleReportComment',
             'handleReportSubmit',
+            'handleRestoreComment',
             'handleAddToStudioClick',
             'handleAddToStudioClose',
             'handleSeeInside',
@@ -81,7 +82,8 @@ class Preview extends React.Component {
             if (this.props.user) {
                 const username = this.props.user.username;
                 const token = this.props.user.token;
-                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
+                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
+                    this.props.isAdmin, token);
                 this.props.getProjectInfo(this.state.projectId, token);
                 this.props.getRemixes(this.state.projectId, token);
                 this.props.getProjectStudios(this.state.projectId, token);
@@ -187,6 +189,9 @@ class Preview extends React.Component {
     handleReportComment (id, topLevelCommentId) {
         this.props.handleReportComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
     }
+    handleRestoreComment (id, topLevelCommentId) {
+        this.props.handleRestoreComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
+    }
     handleReportClick () {
         this.setState({reportOpen: true});
     }
@@ -269,7 +274,8 @@ class Preview extends React.Component {
         }
     }
     handleLoadMore () {
-        this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
+        this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
+            this.props.isAdmin, this.props.user && this.props.user.token);
     }
     handleLoveToggle () {
         this.props.setLovedStatus(
@@ -345,6 +351,7 @@ class Preview extends React.Component {
                         backpackOptions={this.props.backpackOptions}
                         canAddToStudio={this.props.canAddToStudio}
                         canReport={this.props.canReport}
+                        canRestoreComments={this.props.isAdmin}
                         comments={this.props.comments}
                         editable={this.props.isEditable}
                         extensions={this.state.extensions}
@@ -377,6 +384,7 @@ class Preview extends React.Component {
                         onReportClose={this.handleReportClose}
                         onReportComment={this.handleReportComment}
                         onReportSubmit={this.handleReportSubmit}
+                        onRestoreComment={this.handleRestoreComment}
                         onSeeInside={this.handleSeeInside}
                         onShare={this.handleShare}
                         onToggleComments={this.handleToggleComments}
@@ -446,7 +454,9 @@ Preview.propTypes = {
     handleLogOut: PropTypes.func,
     handleOpenRegistration: PropTypes.func,
     handleReportComment: PropTypes.func,
+    handleRestoreComment: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
+    isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isShared: PropTypes.bool,
@@ -532,6 +542,7 @@ const mapStateToProps = state => {
         Object.keys(state.session.session.user).length > 0;
     const isLoggedIn = state.session.status === sessionActions.Status.FETCHED &&
         userPresent;
+    const isAdmin = isLoggedIn && state.session.session.permissions.admin;
     const authorPresent = projectInfoPresent && state.preview.projectInfo.author &&
         Object.keys(state.preview.projectInfo.author).length > 0;
     const userOwnsProject = isLoggedIn && authorPresent &&
@@ -554,6 +565,7 @@ const mapStateToProps = state => {
             ((authorPresent && state.preview.projectInfo.author.username === state.session.session.user.username) ||
             state.permissions.admin === true),
         isLoggedIn: isLoggedIn,
+        isAdmin: isAdmin,
         // if we don't have projectInfo, assume it's shared until we know otherwise
         isShared: !projectInfoPresent || state.preview.projectInfo.is_published,
         loved: state.preview.loved,
@@ -582,6 +594,9 @@ const mapDispatchToProps = dispatch => ({
     },
     handleReportComment: (projectId, commentId, topLevelCommentId, token) => {
         dispatch(previewActions.reportComment(projectId, commentId, topLevelCommentId, token));
+    },
+    handleRestoreComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.restoreComment(projectId, commentId, topLevelCommentId, token));
     },
     handleOpenRegistration: event => {
         event.preventDefault();
@@ -623,8 +638,8 @@ const mapDispatchToProps = dispatch => ({
             dispatch(previewActions.leaveStudio(studioId, id, token));
         }
     },
-    getTopLevelComments: (id, offset) => {
-        dispatch(previewActions.getTopLevelComments(id, offset));
+    getTopLevelComments: (id, offset, isAdmin, token) => {
+        dispatch(previewActions.getTopLevelComments(id, offset, isAdmin, token));
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));

@@ -123,6 +123,14 @@ module.exports.previewReducer = (state, action) => {
             comments: [action.comment, ...state.comments],
             replies: Object.assign({}, state.replies, {[action.comment.id]: []})
         });
+    case 'UPDATE_ALL_REPLIES':
+        return Object.assign({}, state, {
+            replies: Object.assign({}, state.replies, {
+                [action.commentId]: state.replies[action.commentId].map(reply =>
+                    Object.assign({}, reply, action.comment)
+                )
+            })
+        });
     case 'SET_REPLIES':
         return Object.assign({}, state, {
             replies: merge({}, state.replies, action.replies)
@@ -233,7 +241,15 @@ module.exports.setCommentDeleted = (commentId, topLevelCommentId) => ({
     commentId: commentId,
     topLevelCommentId: topLevelCommentId,
     comment: {
-        deleted: true
+        visibility: 'deleted'
+    }
+});
+
+module.exports.setRepliesDeleted = commentId => ({
+    type: 'UPDATE_ALL_REPLIES',
+    commentId: commentId,
+    comment: {
+        visibility: 'deleted'
     }
 });
 
@@ -242,7 +258,24 @@ module.exports.setCommentReported = (commentId, topLevelCommentId) => ({
     commentId: commentId,
     topLevelCommentId: topLevelCommentId,
     comment: {
-        reported: true
+        visibility: 'reported'
+    }
+});
+
+module.exports.setCommentRestored = (commentId, topLevelCommentId) => ({
+    type: 'UPDATE_COMMENT',
+    commentId: commentId,
+    topLevelCommentId: topLevelCommentId,
+    comment: {
+        visibility: 'visible'
+    }
+});
+
+module.exports.setRepliesRestored = commentId => ({
+    type: 'UPDATE_ALL_REPLIES',
+    commentId: commentId,
+    comment: {
+        visibility: 'visible'
     }
 });
 
@@ -337,10 +370,11 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
     });
 });
 
-module.exports.getTopLevelComments = (id, offset) => (dispatch => {
+module.exports.getTopLevelComments = (id, offset, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
-        uri: `/comments/project/${id}`,
+        uri: `${isAdmin ? '/admin' : ''}/comments/project/${id}`,
+        authentication: isAdmin ? token : null,
         params: {offset: offset || 0}
     }, (err, body) => {
         if (err) {
@@ -355,16 +389,17 @@ module.exports.getTopLevelComments = (id, offset) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
         dispatch(module.exports.setComments(body));
-        dispatch(module.exports.getReplies(id, body.map(comment => comment.id)));
+        dispatch(module.exports.getReplies(id, body.map(comment => comment.id), isAdmin, token));
     });
 });
 
-module.exports.getReplies = (projectId, commentIds) => (dispatch => {
+module.exports.getReplies = (projectId, commentIds, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('replies', module.exports.Status.FETCHING));
     const fetchedReplies = {};
     async.eachLimit(commentIds, 10, (parentId, callback) => {
         api({
-            uri: `/comments/project/${projectId}/${parentId}`
+            uri: `${isAdmin ? '/admin' : ''}/comments/project/${projectId}/${parentId}`,
+            authentication: isAdmin ? token : null
         }, (err, body) => {
             if (err) {
                 return callback(`Error fetching comment replies: ${err}`);
@@ -637,6 +672,9 @@ module.exports.deleteComment = (projectId, commentId, topLevelCommentId, token) 
             return;
         }
         dispatch(module.exports.setCommentDeleted(commentId, topLevelCommentId));
+        if (!topLevelCommentId) {
+            dispatch(module.exports.setRepliesDeleted(commentId));
+        }
     });
 });
 
@@ -654,6 +692,25 @@ module.exports.reportComment = (projectId, commentId, topLevelCommentId, token) 
         }
         // TODO use the reportId in the response for unreporting functionality
         dispatch(module.exports.setCommentReported(commentId, topLevelCommentId));
+    });
+});
+
+module.exports.restoreComment = (projectId, commentId, topLevelCommentId, token) => (dispatch => {
+    api({
+        uri: `/proxy/admin/project/${projectId}/comment/${commentId}/undelete`,
+        authentication: token,
+        withCredentials: true,
+        method: 'PUT',
+        useCsrf: true
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            log.error(err || res.body);
+            return;
+        }
+        dispatch(module.exports.setCommentRestored(commentId, topLevelCommentId));
+        if (!topLevelCommentId) {
+            dispatch(module.exports.setRepliesRestored(commentId));
+        }
     });
 });
 

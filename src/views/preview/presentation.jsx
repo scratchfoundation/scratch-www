@@ -46,6 +46,7 @@ const PreviewPresentation = ({
     backpackOptions,
     canAddToStudio,
     canReport,
+    canRestoreComments,
     comments,
     editable,
     extensions,
@@ -78,6 +79,7 @@ const PreviewPresentation = ({
     onReportClose,
     onReportComment,
     onReportSubmit,
+    onRestoreComment,
     onAddToStudioClicked,
     onAddToStudioClosed,
     onToggleStudio,
@@ -362,20 +364,21 @@ const PreviewPresentation = ({
                                         {comments.map(comment => (
                                             <TopLevelComment
                                                 author={comment.author}
+                                                canDelete={userOwnsProject}
                                                 canReply={isLoggedIn && projectInfo.comments_allowed}
+                                                canRestore={canRestoreComments}
                                                 content={comment.content}
                                                 datetimeCreated={comment.datetime_created}
-                                                deletable={userOwnsProject}
-                                                deleted={comment.deleted}
                                                 id={comment.id}
                                                 key={comment.id}
                                                 parentId={comment.parent_id}
                                                 projectId={projectId}
                                                 replies={replies && replies[comment.id] ? replies[comment.id] : []}
-                                                reported={comment.reported}
+                                                visibility={comment.visibility}
                                                 onAddComment={onAddComment}
                                                 onDelete={onDeleteComment}
                                                 onReport={onReportComment}
+                                                onRestore={onRestoreComment}
                                             />
                                         ))}
                                         {comments.length < projectInfo.stats.comments &&
@@ -410,6 +413,7 @@ PreviewPresentation.propTypes = {
     }),
     canAddToStudio: PropTypes.bool,
     canReport: PropTypes.bool,
+    canRestoreComments: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
     extensions: PropTypes.arrayOf(PropTypes.object),
@@ -432,6 +436,7 @@ PreviewPresentation.propTypes = {
     onReportClose: PropTypes.func.isRequired,
     onReportComment: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
+    onRestoreComment: PropTypes.func,
     onSeeInside: PropTypes.func,
     onShare: PropTypes.func,
     onToggleComments: PropTypes.func,
