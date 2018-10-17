@@ -338,7 +338,7 @@ class Preview extends React.Component {
                 .split('/')
                 .filter(Boolean);
             let newUrl;
-            if (projectId === 0) {
+            if (projectId === '0') {
                 newUrl = `/${parts[0]}/editor`;
                 this.props.resetProject();
             } else {
@@ -466,7 +466,7 @@ Preview.propTypes = {
         visible: PropTypes.bool
     }),
     canAddToStudio: PropTypes.bool,
-    canCreateNew: PropTypes.bool, // NOTE: rename these?
+    canCreateNew: PropTypes.bool,
     canRemix: PropTypes.bool,
     canReport: PropTypes.bool,
     canSave: PropTypes.bool,
