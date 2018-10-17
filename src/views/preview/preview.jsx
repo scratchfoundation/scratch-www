@@ -33,6 +33,7 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'addEventListeners',
+            'fetchCommunityData',
             'handleAddComment',
             'handleDeleteComment',
             'handleToggleStudio',
@@ -49,6 +50,7 @@ class Preview extends React.Component {
             'handleAddToStudioClose',
             'handleSeeInside',
             'handleShare',
+            'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleUpdate',
             'handleToggleComments',
@@ -79,23 +81,7 @@ class Preview extends React.Component {
         if (this.props.sessionStatus !== prevProps.sessionStatus &&
             this.props.sessionStatus === sessionActions.Status.FETCHED &&
             this.state.projectId) {
-            if (this.props.user) {
-                const username = this.props.user.username;
-                const token = this.props.user.token;
-                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
-                    this.props.isAdmin, token);
-                this.props.getProjectInfo(this.state.projectId, token);
-                this.props.getRemixes(this.state.projectId, token);
-                this.props.getProjectStudios(this.state.projectId, token);
-                this.props.getCuratedStudios(username);
-                this.props.getFavedStatus(this.state.projectId, username, token);
-                this.props.getLovedStatus(this.state.projectId, username, token);
-            } else {
-                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
-                this.props.getProjectInfo(this.state.projectId);
-                this.props.getRemixes(this.state.projectId);
-                this.props.getProjectStudios(this.state.projectId);
-            }
+            this.fetchCommunityData();
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             this.getExtensions(this.state.projectId);
@@ -123,6 +109,25 @@ class Preview extends React.Component {
     removeEventListeners () {
         window.removeEventListener('popstate', this.handlePopState);
         window.removeEventListener('orientationchange', this.setScreenFromOrientation);
+    }
+    fetchCommunityData () {
+        if (this.props.userPresent) {
+            const username = this.props.user.username;
+            const token = this.props.user.token;
+            this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
+                 this.props.isAdmin, token);
+            this.props.getProjectInfo(this.state.projectId, token);
+            this.props.getRemixes(this.state.projectId, token);
+            this.props.getProjectStudios(this.state.projectId, token);
+            this.props.getCuratedStudios(username);
+            this.props.getFavedStatus(this.state.projectId, username, token);
+            this.props.getLovedStatus(this.state.projectId, username, token);
+        } else {
+            this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
+            this.props.getProjectInfo(this.state.projectId);
+            this.props.getRemixes(this.state.projectId);
+            this.props.getProjectStudios(this.state.projectId);
+        }
     }
     setScreenFromOrientation () {
         /*
@@ -318,6 +323,28 @@ class Preview extends React.Component {
             title: title
         });
     }
+    handleUpdateProjectId (projectId, callback) {
+        // NOTE: this needs more work
+        // NOTE: need to load everything for new project that is loaded in componentDidUpdate
+        this.setState({projectId: projectId}, () => {
+            this.fetchCommunityData();
+            const parts = window.location.pathname.toLowerCase()
+                .split('/')
+                .filter(Boolean);
+            let newUrl;
+            if (projectId === 0) {
+                newUrl = `/${parts[0]}/editor`;
+            } else {
+                newUrl = `/${parts[0]}/${projectId}/editor`;
+            }
+            history.pushState(
+                `project ${projectId}`,
+                `project ${projectId}`,
+                newUrl
+            );
+            if (callback) callback();
+        });
+    }
     initCounts (favorites, loves) {
         this.setState({
             favoriteCount: favorites,
@@ -394,7 +421,6 @@ class Preview extends React.Component {
                 </Page> :
                 <React.Fragment>
                     <IntlGUI
-                        enableCommunity
                         hideIntro
                         assetHost={this.props.assetHost}
                         backpackOptions={this.props.backpackOptions}
@@ -406,6 +432,7 @@ class Preview extends React.Component {
                         canSaveNew={this.props.canSaveNew}
                         canShare={this.props.canShare}
                         className="gui"
+                        enableCommunity={this.props.enableCommunity}
                         projectHost={this.props.projectHost}
                         projectId={this.state.projectId}
                         projectTitle={this.props.projectInfo.title}
@@ -414,6 +441,7 @@ class Preview extends React.Component {
                         onOpenRegistration={this.props.handleOpenRegistration}
                         onShare={this.handleShare}
                         onToggleLoginOpen={this.props.handleToggleLoginOpen}
+                        onUpdateProjectId={this.handleUpdateProjectId}
                         onUpdateProjectTitle={this.handleUpdateProjectTitle}
                     />
                     <Registration />
@@ -439,6 +467,7 @@ Preview.propTypes = {
     canSaveNew: PropTypes.bool,
     canShare: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
+    enableCommunity: PropTypes.bool,
     faved: PropTypes.bool,
     fullScreen: PropTypes.bool,
     getCuratedStudios: PropTypes.func.isRequired,
@@ -490,7 +519,8 @@ Preview.propTypes = {
         email: PropTypes.string,
         classroomId: PropTypes.string
     }),
-    userOwnsProject: PropTypes.bool
+    userOwnsProject: PropTypes.bool,
+    userPresent: PropTypes.bool
 };
 
 Preview.defaultProps = {
@@ -501,7 +531,8 @@ Preview.defaultProps = {
     },
     projectHost: process.env.PROJECT_HOST,
     sessionStatus: sessionActions.Status.NOT_FETCHED,
-    user: {}
+    user: {},
+    userPresent: false
 };
 
 // Build consolidated curatedStudios object from all studio info.
@@ -552,7 +583,7 @@ const mapStateToProps = state => {
 
     return {
         canAddToStudio: isLoggedIn && userOwnsProject,
-        canCreateNew: isLoggedIn && userOwnsProject,
+        canCreateNew: true, // NOTE: rename this and canSaveNew?
         canRemix: false,
         canReport: isLoggedIn && !userOwnsProject,
         canSave: userOwnsProject,
@@ -560,6 +591,7 @@ const mapStateToProps = state => {
         canSaveNew: isLoggedIn,
         canShare: userOwnsProject && state.permissions.social,
         comments: state.preview.comments,
+        enableCommunity: state.preview.projectInfo && state.preview.projectInfo.id > 0,
         faved: state.preview.faved,
         fullScreen: state.scratchGui.mode.isFullScreen,
         // project is editable iff logged in user is the author of the project, or
@@ -584,7 +616,8 @@ const mapStateToProps = state => {
             state.preview.projectStudios, state.preview.currentStudioIds,
             state.preview.status.studioRequests),
         user: state.session.session.user,
-        userOwnsProject: userOwnsProject
+        userOwnsProject: userOwnsProject,
+        userPresent: userPresent
     };
 };
 
