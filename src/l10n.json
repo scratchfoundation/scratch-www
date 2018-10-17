@@ -238,6 +238,7 @@
     "comments.status.delbyclass": "Deleted by class",
     "comments.status.hiddenduetourl": "Hidden due to URL",
     "comments.status.markedbyfilter": "Marked by filter",
+    "comments.status.censbyunconstructive": "Censored unconstructive",
     "comments.status.suspended": "Suspended",
     "comments.status.acctdel": "Account deleted",
     "comments.status.deleted": "Deleted",
