@@ -5,6 +5,7 @@ const classNames = require('classnames');
 
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../../components/avatar/avatar.jsx');
+const EmojiText = require('../../../components/emoji-text/emoji-text.jsx');
 const FormattedRelative = require('react-intl').FormattedRelative;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const ComposeComment = require('./compose-comment.jsx');
@@ -166,7 +167,10 @@ class Comment extends React.Component {
                             {replyUsername && (
                                 <a href={`/users/${replyUsername}`}>@{replyUsername}&nbsp;</a>
                             )}
-                            {content}
+                            <EmojiText
+                                as="span"
+                                text={content}
+                            />
                         </span>
                         <FlexRow className="comment-bottom-row">
                             <span className="comment-time">
