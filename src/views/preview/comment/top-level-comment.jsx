@@ -22,6 +22,9 @@ class TopLevelComment extends React.Component {
         this.state = {
             expanded: false
         };
+
+        // A cache of {commentId: username, ...} in order to show reply usernames
+        this.commentUsernameCache = {};
     }
 
     handleExpandThread () {
@@ -48,6 +51,19 @@ class TopLevelComment extends React.Component {
 
     handleAddComment (comment) {
         this.props.onAddComment(comment, this.props.id);
+    }
+
+    commentUsername (parentId) {
+        if (this.commentUsernameCache[parentId]) return this.commentUsernameCache[parentId];
+
+        // If the cache misses, rebuild it. Every reply has a parent id that is
+        // either a reply to this top level comment or to one of the replies.
+        this.commentUsernameCache[this.props.id] = this.props.author.username;
+        const replies = this.props.replies;
+        for (let i = 0; i < replies.length; i++) {
+            this.commentUsernameCache[replies[i].id] = replies[i].author.username;
+        }
+        return this.commentUsernameCache[parentId];
     }
 
     render () {
@@ -111,6 +127,7 @@ class TopLevelComment extends React.Component {
                                 id={reply.id}
                                 key={reply.id}
                                 projectId={projectId}
+                                replyUsername={this.commentUsername(reply.parent_id)}
                                 visibility={reply.visibility}
                                 onAddComment={this.handleAddComment}
                                 onDelete={this.handleDeleteReply}

@@ -5,6 +5,7 @@ const classNames = require('classnames');
 
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../../components/avatar/avatar.jsx');
+const EmojiText = require('../../../components/emoji-text/emoji-text.jsx');
 const FormattedRelative = require('react-intl').FormattedRelative;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const ComposeComment = require('./compose-comment.jsx');
@@ -93,6 +94,7 @@ class Comment extends React.Component {
             datetimeCreated,
             id,
             projectId,
+            replyUsername,
             visibility
         } = this.props;
 
@@ -160,7 +162,16 @@ class Comment extends React.Component {
                           * @user links in replies
                           * links to scratch.mit.edu pages
                           */}
-                        <span className="comment-content">{content}</span>
+
+                        <span className="comment-content">
+                            {replyUsername && (
+                                <a href={`/users/${replyUsername}`}>@{replyUsername}&nbsp;</a>
+                            )}
+                            <EmojiText
+                                as="span"
+                                text={content}
+                            />
+                        </span>
                         <FlexRow className="comment-bottom-row">
                             <span className="comment-time">
                                 <FormattedRelative value={new Date(datetimeCreated)} />
@@ -228,6 +239,7 @@ Comment.propTypes = {
     onReport: PropTypes.func,
     onRestore: PropTypes.func,
     projectId: PropTypes.string,
+    replyUsername: PropTypes.string,
     visibility: PropTypes.string
 };
 
