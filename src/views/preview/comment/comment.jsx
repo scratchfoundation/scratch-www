@@ -111,7 +111,9 @@ class Comment extends React.Component {
                         <a
                             className="username"
                             href={`/users/${author.username}`}
-                        >{author.username}</a>
+                        >
+                            {author.username}{author.is_staff ? '*' : ''}
+                        </a>
                         <div className="action-list">
                             {visible ? (
                                 <React.Fragment>
@@ -214,6 +216,7 @@ Comment.propTypes = {
     author: PropTypes.shape({
         id: PropTypes.number,
         image: PropTypes.string,
+        is_staff: PropTypes.bool,
         username: PropTypes.string
     }),
     canDelete: PropTypes.bool,
