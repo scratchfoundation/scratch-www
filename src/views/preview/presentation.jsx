@@ -90,6 +90,7 @@ const PreviewPresentation = ({
     onUpdate
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
+    const loadedCommentCount = comments.length + Object.keys(replies).reduce((acc, id) => acc + replies[id].length, 0);
     return (
         <div className="preview">
             {!isShared && (
@@ -383,7 +384,7 @@ const PreviewPresentation = ({
                                                 onRestore={onRestoreComment}
                                             />
                                         ))}
-                                        {comments.length < projectInfo.stats.comments &&
+                                        {loadedCommentCount < projectInfo.stats.comments &&
                                         <Button
                                             className="button load-more-button"
                                             onClick={onLoadMore}
