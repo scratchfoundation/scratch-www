@@ -78,7 +78,7 @@ class Preview extends React.Component {
         this.setScreenFromOrientation();
     }
     componentDidUpdate (prevProps, prevState) {
-        if (this.state.projectId &&
+        if (this.state.projectId > 0 &&
             ((this.props.sessionStatus !== prevProps.sessionStatus &&
             this.props.sessionStatus === sessionActions.Status.FETCHED) ||
             (this.state.projectId !== prevState.projectId))) {
@@ -578,7 +578,8 @@ const consolidateStudiosInfo = (curatedStudios, projectStudios, currentStudioIds
 
 const mapStateToProps = state => {
     const projectInfoPresent = Object.keys(state.preview.projectInfo).length > 0;
-    const userPresent = state.session.session.user &&
+    const userPresent = state.session.session.user !== null &&
+        typeof state.session.session.user !== 'undefined' &&
         Object.keys(state.session.session.user).length > 0;
     const isLoggedIn = state.session.status === sessionActions.Status.FETCHED &&
         userPresent;
