@@ -69,7 +69,6 @@ const PreviewPresentation = ({
     replies,
     addToStudioOpen,
     projectStudios,
-    studios,
     userOwnsProject,
     onAddComment,
     onDeleteComment,
@@ -183,7 +182,6 @@ const PreviewPresentation = ({
                                         projectInfo={projectInfo}
                                         reportOpen={reportOpen}
                                         shareDate={shareDate}
-                                        studios={studios}
                                         onAddToStudioClicked={onAddToStudioClicked}
                                         onAddToStudioClosed={onAddToStudioClosed}
                                         onReportClicked={onReportClicked}
@@ -296,7 +294,6 @@ const PreviewPresentation = ({
                                     projectInfo={projectInfo}
                                     reportOpen={reportOpen}
                                     shareDate={shareDate}
-                                    studios={studios}
                                     onAddToStudioClicked={onAddToStudioClicked}
                                     onAddToStudioClosed={onAddToStudioClosed}
                                     onReportClicked={onReportClicked}
@@ -454,7 +451,6 @@ PreviewPresentation.propTypes = {
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
     reportOpen: PropTypes.bool,
-    studios: PropTypes.arrayOf(PropTypes.object),
     userOwnsProject: PropTypes.bool
 };
 

@@ -8,7 +8,8 @@ class AddToStudioModal extends React.Component {
         super(props);
         bindAll(this, [
             'handleRequestClose',
-            'handleSubmit'
+            'handleSubmit',
+            'handleToggleStudio'
         ]);
 
         this.state = {
@@ -48,6 +49,14 @@ class AddToStudioModal extends React.Component {
         });
     }
 
+    handleToggleStudio (id) {
+        const studioId = parseInt(id, 10);
+        if (isNaN(studioId)) { // sanity check in case event had no integer data-id
+            return;
+        }
+        this.props.onToggleStudio(this.props.studios.find(studio => studio.id === studioId));
+    }
+
     render () {
         return (
             <AddToStudioModalPresentation
@@ -56,7 +65,7 @@ class AddToStudioModal extends React.Component {
                 waitingToClose={this.state.waitingToClose}
                 onRequestClose={this.handleRequestClose}
                 onSubmit={this.handleSubmit}
-                onToggleStudio={this.props.onToggleStudio}
+                onToggleStudio={this.handleToggleStudio}
             />
         );
     }
