@@ -142,7 +142,7 @@ TopLevelComment.propTypes = {
     author: PropTypes.shape({
         id: PropTypes.number,
         image: PropTypes.string,
-        is_staff: PropTypes.bool,
+        scratchteam: PropTypes.bool,
         username: PropTypes.string
     }),
     canDelete: PropTypes.bool,
