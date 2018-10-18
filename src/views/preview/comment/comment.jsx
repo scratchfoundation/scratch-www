@@ -93,6 +93,7 @@ class Comment extends React.Component {
             datetimeCreated,
             id,
             projectId,
+            replyUsername,
             visibility
         } = this.props;
 
@@ -160,7 +161,13 @@ class Comment extends React.Component {
                           * @user links in replies
                           * links to scratch.mit.edu pages
                           */}
-                        <span className="comment-content">{content}</span>
+
+                        <span className="comment-content">
+                            {replyUsername && (
+                                <a href={`/users/${replyUsername}`}>@{replyUsername}&nbsp;</a>
+                            )}
+                            {content}
+                        </span>
                         <FlexRow className="comment-bottom-row">
                             <span className="comment-time">
                                 <FormattedRelative value={new Date(datetimeCreated)} />
@@ -228,6 +235,7 @@ Comment.propTypes = {
     onReport: PropTypes.func,
     onRestore: PropTypes.func,
     projectId: PropTypes.string,
+    replyUsername: PropTypes.string,
     visibility: PropTypes.string
 };
 
