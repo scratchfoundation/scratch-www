@@ -88,13 +88,10 @@ class Preview extends React.Component {
             this.props.resetProject();
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
+            this.getExtensions(this.state.projectId);
             if (typeof this.props.projectInfo.id === 'undefined') {
                 this.initCounts(0, 0);
-                this.setState({ // eslint-disable-line react/no-did-update-set-state
-                    extensions: []
-                });
             } else {
-                this.getExtensions(this.state.projectId);
                 this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
                 if (this.props.projectInfo.remix.parent !== null) {
                     this.props.getParentInfo(this.props.projectInfo.remix.parent);
@@ -157,36 +154,42 @@ class Preview extends React.Component {
         }
     }
     getExtensions (projectId) {
-        storage
-            .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
-            .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
-                let input = projectAsset.data;
-                if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
-                !ArrayBuffer.isView(input)) { // taken from scratch-vm
-                    // If the input is an object and not any ArrayBuffer
-                    // or an ArrayBuffer view (this includes all typed arrays and DataViews)
-                    // turn the object into a JSON string, because we suspect
-                    // this is a project.json as an object
-                    // validate expects a string or buffer as input
-                    // TODO not sure if we need to check that it also isn't a data view
-                    input = JSON.stringify(input);
-                }
-                parser(projectAsset.data, false, (err, projectData) => {
-                    if (err) {
-                        log.error(`Unhandled project parsing error: ${err}`);
-                        return;
+        if (projectId > 0) {
+            storage
+                .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
+                .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
+                    let input = projectAsset.data;
+                    if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
+                    !ArrayBuffer.isView(input)) { // taken from scratch-vm
+                        // If the input is an object and not any ArrayBuffer
+                        // or an ArrayBuffer view (this includes all typed arrays and DataViews)
+                        // turn the object into a JSON string, because we suspect
+                        // this is a project.json as an object
+                        // validate expects a string or buffer as input
+                        // TODO not sure if we need to check that it also isn't a data view
+                        input = JSON.stringify(input);
                     }
-                    const extensionSet = new Set();
-                    if (projectData[0].extensions) {
-                        projectData[0].extensions.forEach(extension => {
-                            extensionSet.add(EXTENSION_INFO[extension]);
+                    parser(projectAsset.data, false, (err, projectData) => {
+                        if (err) {
+                            log.error(`Unhandled project parsing error: ${err}`);
+                            return;
+                        }
+                        const extensionSet = new Set();
+                        if (projectData[0].extensions) {
+                            projectData[0].extensions.forEach(extension => {
+                                extensionSet.add(EXTENSION_INFO[extension]);
+                            });
+                        }
+                        this.setState({
+                            extensions: Array.from(extensionSet)
                         });
-                    }
-                    this.setState({
-                        extensions: Array.from(extensionSet)
                     });
                 });
+        } else { // projectId is default or invalid; empty the extensions array
+            this.setState({
+                extensions: []
             });
+        }
     }
     handleToggleComments () {
         this.props.updateProject(
