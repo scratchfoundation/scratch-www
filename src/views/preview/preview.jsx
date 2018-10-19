@@ -12,6 +12,7 @@ const render = require('../../lib/render.jsx');
 const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
 const EXTENSION_INFO = require('../../lib/extensions.js').default;
+const jar = require('../../lib/jar.js');
 
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -332,6 +333,9 @@ class Preview extends React.Component {
             title: title
         });
     }
+    handleSetLanguage (locale) {
+        jar.set('scratchlanguage', locale);
+    }
     handleUpdateProjectId (projectId, callback) {
         this.setState({projectId: projectId}, () => {
             const parts = window.location.pathname.toLowerCase()
@@ -444,6 +448,7 @@ class Preview extends React.Component {
                         renderLogin={this.renderLogin}
                         onLogOut={this.props.handleLogOut}
                         onOpenRegistration={this.props.handleOpenRegistration}
+                        onSetLanguage={this.handleSetLanguage}
                         onShare={this.handleShare}
                         onToggleLoginOpen={this.props.handleToggleLoginOpen}
                         onUpdateProjectId={this.handleUpdateProjectId}
@@ -707,6 +712,9 @@ render(
         preview: previewActions.previewReducer,
         ...GUI.guiReducers
     },
-    {scratchGui: initGuiState(GUI.guiInitialState)},
+    {
+        locales: GUI.initLocale(GUI.localesInitialState, window._locale),
+        scratchGui: initGuiState(GUI.guiInitialState)
+    },
     GUI.guiMiddleware
 );
