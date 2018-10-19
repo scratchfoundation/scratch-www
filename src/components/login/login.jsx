@@ -3,8 +3,6 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const log = require('../../lib/log.js');
-
 const Form = require('../forms/form.jsx');
 const Input = require('../forms/input.jsx');
 const Button = require('../forms/button.jsx');
@@ -24,8 +22,7 @@ class Login extends React.Component {
     }
     handleSubmit (formData) {
         this.setState({waiting: true});
-        this.props.onLogIn(formData, err => {
-            if (err) log.error(err);
+        this.props.onLogIn(formData, () => {
             this.setState({waiting: false});
         });
     }
@@ -48,9 +45,6 @@ class Login extends React.Component {
                         key="usernameInput"
                         maxLength="30"
                         name="username"
-                        ref={input => {
-                            this.username = input;
-                        }}
                         type="text"
                     />
                     <label
@@ -63,9 +57,6 @@ class Login extends React.Component {
                         required
                         key="passwordInput"
                         name="password"
-                        ref={input => {
-                            this.password = input;
-                        }}
                         type="password"
                     />
                     {this.state.waiting ? [
@@ -75,7 +66,10 @@ class Login extends React.Component {
                             key="submitButton"
                             type="submit"
                         >
-                            <Spinner />
+                            <Spinner
+                                className="spinner"
+                                color="blue"
+                            />
                         </Button>
                     ] : [
                         <Button

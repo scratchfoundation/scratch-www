@@ -31,19 +31,25 @@ class EV3 extends ExtensionLanding {
     render () {
         return (
             <div className="extension-landing ev3">
-                <ExtensionHeader imageSrc="/images/ev3/ev3-illustration.png">
+                <ExtensionHeader
+                    imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltEv3Illustration'})}
+                    imageSrc="/images/ev3/ev3-illustration.png"
+                >
                     <FlexRow className="column extension-copy">
-                        <h2><img src="/images/ev3/ev3.svg" />LEGO MINDSTORMS EV3</h2>
+                        <h1><img
+                            alt=""
+                            src="/images/ev3/ev3.svg"
+                        />LEGO MINDSTORMS EV3</h1>
                         <FormattedMessage
                             id="ev3.headerText"
                             values={{
                                 ev3Link: (
                                     <a
-                                        href="https://shop.lego.com/en-US/LEGO-MINDSTORMS-EV3-31313"
+                                        href="https://education.lego.com/en-us/middle-school/intro/mindstorms-ev3"
                                         rel="noopener noreferrer"
                                         target="_blank"
                                     >
-                                                LEGO MINDSTORMS EV3
+                                                LEGO MINDSTORMS Education EV3
                                     </a>
                                 )
                             }}
@@ -51,11 +57,17 @@ class EV3 extends ExtensionLanding {
                     </FlexRow>
                     <ExtensionRequirements>
                         <span>
-                            <img src="/svgs/extensions/windows.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/windows.svg"
+                            />
                                         Windows 10+
                         </span>
                         <span>
-                            <img src="/svgs/extensions/mac.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/mac.svg"
+                            />
                                         macOS 10.13+
                         </span>
                         <span>
@@ -63,7 +75,10 @@ class EV3 extends ExtensionLanding {
                                         Bluetooth
                         </span>
                         <span>
-                            <img src="/svgs/extensions/scratch-link.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/scratch-link.svg"
+                            />
                                         Scratch Link
                         </span>
                     </ExtensionRequirements>
@@ -82,13 +97,20 @@ class EV3 extends ExtensionLanding {
                         <Steps>
                             <Step number={1}>
                                 <div className="step-image">
-                                    <img src="/images/ev3/ev3-connect-1.png" />
+                                    <img
+                                        alt=""
+                                        src="/images/ev3/ev3-connect-1.png"
+                                    />
                                 </div>
                                 <p><FormattedMessage id="ev3.turnOnEV3" /></p>
                             </Step>
                             <Step number={2}>
                                 <div className="step-image">
-                                    <img src="/images/ev3/ev3-connect-2.png" />
+                                    <img
+                                        alt=""
+                                        className="screenshot"
+                                        src="/images/ev3/ev3-connect-2.png"
+                                    />
                                 </div>
                                 <p>
                                     <FormattedMessage
@@ -109,7 +131,11 @@ class EV3 extends ExtensionLanding {
                             </Step>
                             <Step number={3}>
                                 <div className="step-image">
-                                    <img src="/images/ev3/ev3-connect-3.png" />
+                                    <img
+                                        alt={this.props.intl.formatMessage({id: 'extensionInstallation.addExtension'})}
+                                        className="screenshot"
+                                        src="/images/ev3/ev3-connect-3.png"
+                                    />
                                 </div>
                                 <p><FormattedMessage id="ev3.addExtension" /></p>
                             </Step>
@@ -119,19 +145,30 @@ class EV3 extends ExtensionLanding {
                             <Steps>
                                 <Step>
                                     <div className="step-image">
-                                        <img src="/images/ev3/ev3-accept-connection.png" />
+                                        <img
+                                            alt={this.props.intl.formatMessage({id: 'ev3.imgAltAcceptConnection'})}
+                                            src="/images/ev3/ev3-accept-connection.png"
+                                        />
                                     </div>
                                     <p><FormattedMessage id="ev3.acceptConnection" /></p>
                                 </Step>
                                 <Step>
                                     <div className="step-image">
-                                        <img src="/images/ev3/ev3-pin.png" />
+                                        <img
+                                            alt={this.props.intl.formatMessage({id: 'ev3.imgAltAcceptPasscode'})}
+                                            src="/images/ev3/ev3-pin.png"
+                                        />
                                     </div>
                                     <p><FormattedMessage id="ev3.acceptPasscode" /></p>
                                 </Step>
                                 <Step>
                                     <div className="step-image">
                                         <img
+                                            alt={this.props.intl.formatMessage({id: `ev3.imgAlt${
+                                                this.state.OS === OS_ENUM.WINDOWS ?
+                                                    'WaitForWindows' :
+                                                    'EnterPasscodeMac'
+                                            }`})}
                                             className="screenshot"
                                             src={`/images/ev3/${
                                                 this.state.OS === OS_ENUM.WINDOWS ?
@@ -170,7 +207,10 @@ class EV3 extends ExtensionLanding {
                                 />
                             </span>
                             <div className="step-image">
-                                <img src="/images/ev3/ev3-motor-port-a.png" />
+                                <img
+                                    alt={this.props.intl.formatMessage({id: 'ev3.imgAltPlugInMotor'})}
+                                    src="/images/ev3/ev3-motor-port-a.png"
+                                />
                             </div>
                         </Step>
                         <Step
@@ -188,7 +228,10 @@ class EV3 extends ExtensionLanding {
                                 />
                             </span>
                             <div className="step-image">
-                                <img src="/images/ev3/motor-turn-block.png" />
+                                <img
+                                    alt=""
+                                    src="/images/ev3/motor-turn-block.png"
+                                />
                             </div>
                         </Step>
                     </Steps>
@@ -196,20 +239,23 @@ class EV3 extends ExtensionLanding {
                     <h3><FormattedMessage id="ev3.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-wave-hello.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239075992"
                             description={this.props.intl.formatMessage({id: 'ev3.waveHelloDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltWaveHello'})}
                             imageSrc="/images/ev3/starter-wave-hello.png"
                             title={this.props.intl.formatMessage({id: 'ev3.waveHelloTitle'})}
                         />
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-distance-instrument.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239076020"
                             description={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltDistanceInstrument'})}
                             imageSrc="/images/ev3/starter-distance-instrument.png"
                             title={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentTitle'})}
                         />
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/ev3/ev3-space-tacos.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239076044"
                             description={this.props.intl.formatMessage({id: 'ev3.spaceTacosDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltSpaceTacos'})}
                             imageSrc="/images/ev3/starter-flying-game.png"
                             title={this.props.intl.formatMessage({id: 'ev3.spaceTacosTitle'})}
                         />

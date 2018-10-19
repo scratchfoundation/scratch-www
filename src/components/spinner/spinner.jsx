@@ -1,29 +1,28 @@
-const range = require('lodash.range');
-const PropTypes = require('prop-types');
 const React = require('react');
+const PropTypes = require('prop-types');
+const classNames = require('classnames');
 
 require('./spinner.scss');
 
 // Adapted from http://tobiasahlin.com/spinkit/
 const Spinner = ({
-    mode
-}) => {
-    const spinnerClassName = (mode === 'smooth' ? 'spinner-smooth' : 'spinner');
-    const spinnerDivCount = (mode === 'smooth' ? 24 : 12);
-    return (
-        <div className={spinnerClassName}>
-            {range(1, spinnerDivCount + 1).map(id => (
-                <div
-                    className={`circle${id} circle`}
-                    key={`circle${id}`}
-                />
-            ))}
-        </div>
-    );
+    className,
+    color
+}) => (
+    <img
+        alt="loading animation"
+        className={classNames('studio-status-icon-spinner', className)}
+        src={`/svgs/modal/spinner-${color}.svg`}
+    />
+);
+
+Spinner.defaultProps = {
+    color: 'white'
 };
 
 Spinner.propTypes = {
-    mode: PropTypes.string
+    className: PropTypes.string,
+    color: PropTypes.oneOf(['white', 'blue', 'transparent-gray'])
 };
 
 module.exports = Spinner;

@@ -15,9 +15,15 @@ const EXTENSION_INFO = require('../../lib/extensions.js').default;
 
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
+const Registration = require('../../components/registration/registration.jsx');
+const ConnectedLogin = require('../../components/login/connected-login.jsx');
+const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 
 const sessionActions = require('../../redux/session.js');
+const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
+
+const frameless = require('../../lib/frameless');
 
 const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
@@ -27,22 +33,29 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'addEventListeners',
+            'handleAddComment',
+            'handleDeleteComment',
             'handleToggleStudio',
             'handleFavoriteToggle',
+            'handleLoadMore',
             'handleLoveToggle',
-            'handlePermissions',
             'handlePopState',
             'handleReportClick',
             'handleReportClose',
+            'handleReportComment',
             'handleReportSubmit',
+            'handleRestoreComment',
             'handleAddToStudioClick',
             'handleAddToStudioClose',
             'handleSeeInside',
+            'handleShare',
+            'handleUpdateProjectTitle',
             'handleUpdate',
+            'handleToggleComments',
             'initCounts',
-            'isShared',
             'pushHistory',
-            'userOwnsProject'
+            'renderLogin',
+            'setScreenFromOrientation'
         ]);
         const pathname = window.location.pathname.toLowerCase();
         const parts = pathname.split('/').filter(Boolean);
@@ -50,21 +63,17 @@ class Preview extends React.Component {
         // parts[1]: either :id or 'editor'
         // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
         this.state = {
-            editable: false,
             extensions: [],
             favoriteCount: 0,
             loveCount: 0,
             projectId: parts[1] === 'editor' ? 0 : parts[1],
             addToStudioOpen: false,
-            report: {
-                category: '',
-                notes: '',
-                open: false,
-                waiting: false
-            }
+            reportOpen: false
         };
         this.getExtensions(this.state.projectId);
         this.addEventListeners();
+        /* In the beginning, if user is on mobile and landscape, go to fullscreen */
+        this.setScreenFromOrientation();
     }
     componentDidUpdate (prevProps) {
         if (this.props.sessionStatus !== prevProps.sessionStatus &&
@@ -73,6 +82,8 @@ class Preview extends React.Component {
             if (this.props.user) {
                 const username = this.props.user.username;
                 const token = this.props.user.token;
+                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
+                    this.props.isAdmin, token);
                 this.props.getProjectInfo(this.state.projectId, token);
                 this.props.getRemixes(this.state.projectId, token);
                 this.props.getProjectStudios(this.state.projectId, token);
@@ -80,16 +91,15 @@ class Preview extends React.Component {
                 this.props.getFavedStatus(this.state.projectId, username, token);
                 this.props.getLovedStatus(this.state.projectId, username, token);
             } else {
+                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
                 this.props.getProjectInfo(this.state.projectId);
                 this.props.getRemixes(this.state.projectId);
                 this.props.getProjectStudios(this.state.projectId);
             }
-
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             this.getExtensions(this.state.projectId);
             this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
-            this.handlePermissions();
             if (this.props.projectInfo.remix.parent !== null) {
                 this.props.getParentInfo(this.props.projectInfo.remix.parent);
             }
@@ -108,14 +118,32 @@ class Preview extends React.Component {
     }
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
+        window.addEventListener('orientationchange', this.setScreenFromOrientation);
     }
     removeEventListeners () {
         window.removeEventListener('popstate', this.handlePopState);
+        window.removeEventListener('orientationchange', this.setScreenFromOrientation);
+    }
+    setScreenFromOrientation () {
+        /*
+        * If the user is on a mobile device, switching to
+        * landscape format should make the fullscreen mode active
+        */
+        const isMobileDevice = screen.height <= frameless.mobile || screen.width <= frameless.mobile;
+        const isAModalOpen = this.state.addToStudioOpen || this.state.reportOpen;
+        if (this.props.playerMode && isMobileDevice && !isAModalOpen) {
+            const isLandscape = screen.height < screen.width;
+            if (isLandscape) {
+                this.props.setFullScreen(true);
+            } else {
+                this.props.setFullScreen(false);
+            }
+        }
     }
     getExtensions (projectId) {
         storage
             .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
-            .then(projectAsset => {
+            .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
                 let input = projectAsset.data;
                 if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
                 !ArrayBuffer.isView(input)) { // taken from scratch-vm
@@ -144,11 +172,31 @@ class Preview extends React.Component {
                 });
             });
     }
+    handleToggleComments () {
+        this.props.updateProject(
+            this.props.projectInfo.id,
+            {comments_allowed: !this.props.projectInfo.comments_allowed},
+            this.props.user.username,
+            this.props.user.token
+        );
+    }
+    handleAddComment (comment, topLevelCommentId) {
+        this.props.handleAddComment(comment, topLevelCommentId);
+    }
+    handleDeleteComment (id, topLevelCommentId) {
+        this.props.handleDeleteComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
+    }
+    handleReportComment (id, topLevelCommentId) {
+        this.props.handleReportComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
+    }
+    handleRestoreComment (id, topLevelCommentId) {
+        this.props.handleRestoreComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
+    }
     handleReportClick () {
-        this.setState({report: {...this.state.report, open: true}});
+        this.setState({reportOpen: true});
     }
     handleReportClose () {
-        this.setState({report: {...this.state.report, open: false}});
+        this.setState({reportOpen: false});
     }
     handleAddToStudioClick () {
         this.setState({addToStudioOpen: true});
@@ -156,27 +204,8 @@ class Preview extends React.Component {
     handleAddToStudioClose () {
         this.setState({addToStudioOpen: false});
     }
-    // NOTE: this is a copy, change it
     handleReportSubmit (formData) {
-        this.setState({report: {
-            category: formData.report_category,
-            notes: formData.notes,
-            open: this.state.report.open,
-            waiting: true}
-        });
-
-        const data = {
-            ...formData,
-            id: this.state.projectId,
-            user: this.props.user.username
-        };
-        console.log('submit report data', data); // eslint-disable-line no-console
-        this.setState({report: {
-            category: '',
-            notes: '',
-            open: false,
-            waiting: false}
-        });
+        this.props.reportProject(this.state.projectId, formData, this.props.user.token);
     }
     handlePopState () {
         const path = window.location.pathname.toLowerCase();
@@ -211,8 +240,8 @@ class Preview extends React.Component {
             );
         }
     }
-    handleToggleStudio (event) {
-        const studioId = parseInt(event.currentTarget.dataset.id, 10);
+    handleToggleStudio (id) {
+        const studioId = parseInt(id, 10);
         if (isNaN(studioId)) { // sanity check in case event had no integer data-id
             return;
         }
@@ -244,6 +273,10 @@ class Preview extends React.Component {
             }));
         }
     }
+    handleLoadMore () {
+        this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
+            this.props.isAdmin, this.props.user && this.props.user.token);
+    }
     handleLoveToggle () {
         this.props.setLovedStatus(
             !this.props.loved,
@@ -261,14 +294,16 @@ class Preview extends React.Component {
             }));
         }
     }
-    handlePermissions () {
-        // TODO: handle admins and mods
-        if (this.props.projectInfo.author.username === this.props.user.username) {
-            this.setState({editable: true});
-        }
-    }
     handleSeeInside () {
         this.props.setPlayer(false);
+    }
+    handleShare () {
+        this.props.updateProject(
+            this.props.projectInfo.id,
+            {isPublished: true},
+            this.props.user.username,
+            this.props.user.token
+        );
     }
     handleUpdate (jsonData) {
         this.props.updateProject(
@@ -278,32 +313,32 @@ class Preview extends React.Component {
             this.props.user.token
         );
     }
+    handleUpdateProjectTitle (title) {
+        this.handleUpdate({
+            title: title
+        });
+    }
     initCounts (favorites, loves) {
         this.setState({
             favoriteCount: favorites,
             loveCount: loves
         });
     }
-    isShared () {
+    renderLogin ({onClose}) {
         return (
-            // if we don't have projectInfo assume shared until we know otherwise
-            Object.keys(this.props.projectInfo).length === 0 || (
-                this.props.projectInfo.history &&
-                this.props.projectInfo.history.shared.length > 0
-            )
-        );
-    }
-    isLoggedIn () {
-        return (
-            this.props.sessionStatus === sessionActions.Status.FETCHED &&
-            Object.keys(this.props.user).length > 0
-        );
-    }
-    userOwnsProject () {
-        return (
-            this.isLoggedIn() &&
-            Object.keys(this.props.projectInfo).length > 0 &&
-            this.props.user.id === this.props.projectInfo.author.id
+            <ConnectedLogin
+                key="login-dropdown-presentation"
+                /* eslint-disable react/jsx-no-bind */
+                onLogIn={(formData, callback) => {
+                    this.props.handleLogIn(formData, result => {
+                        if (result.success === true) {
+                            onClose();
+                        }
+                        callback(result);
+                    });
+                }}
+                /* eslint-ensable react/jsx-no-bind */
+            />
         );
     }
     render () {
@@ -312,49 +347,96 @@ class Preview extends React.Component {
                 <Page>
                     <PreviewPresentation
                         addToStudioOpen={this.state.addToStudioOpen}
+                        assetHost={this.props.assetHost}
+                        backpackOptions={this.props.backpackOptions}
+                        canAddToStudio={this.props.canAddToStudio}
+                        canDeleteComments={this.props.isAdmin || this.props.userOwnsProject}
+                        canReport={this.props.canReport}
+                        canRestoreComments={this.props.isAdmin}
                         comments={this.props.comments}
-                        editable={this.state.editable}
+                        editable={this.props.isEditable}
                         extensions={this.state.extensions}
                         faved={this.props.faved}
                         favoriteCount={this.state.favoriteCount}
                         isFullScreen={this.state.isFullScreen}
-                        isLoggedIn={this.isLoggedIn()}
-                        isShared={this.isShared()}
+                        isLoggedIn={this.props.isLoggedIn}
+                        isShared={this.props.isShared}
                         loveCount={this.state.loveCount}
                         loved={this.props.loved}
                         originalInfo={this.props.original}
                         parentInfo={this.props.parent}
+                        projectHost={this.props.projectHost}
                         projectId={this.state.projectId}
                         projectInfo={this.props.projectInfo}
                         projectStudios={this.props.projectStudios}
                         remixes={this.props.remixes}
-                        report={this.state.report}
+                        replies={this.props.replies}
+                        reportOpen={this.state.reportOpen}
                         studios={this.props.studios}
-                        user={this.props.user}
-                        userOwnsProject={this.userOwnsProject()}
+                        userOwnsProject={this.props.userOwnsProject}
+                        onAddComment={this.handleAddComment}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
+                        onDeleteComment={this.handleDeleteComment}
                         onFavoriteClicked={this.handleFavoriteToggle}
+                        onLoadMore={this.handleLoadMore}
                         onLoveClicked={this.handleLoveToggle}
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
+                        onReportComment={this.handleReportComment}
                         onReportSubmit={this.handleReportSubmit}
+                        onRestoreComment={this.handleRestoreComment}
                         onSeeInside={this.handleSeeInside}
+                        onShare={this.handleShare}
+                        onToggleComments={this.handleToggleComments}
                         onToggleStudio={this.handleToggleStudio}
                         onUpdate={this.handleUpdate}
                     />
                 </Page> :
-                <IntlGUI
-                    enableCommunity
-                    basePath="/"
-                    className="gui"
-                    projectId={this.state.projectId}
-                />
+                <React.Fragment>
+                    <IntlGUI
+                        enableCommunity
+                        hideIntro
+                        assetHost={this.props.assetHost}
+                        backpackOptions={this.props.backpackOptions}
+                        basePath="/"
+                        canCreateNew={this.props.canCreateNew}
+                        canRemix={this.props.canRemix}
+                        canSave={this.props.canSave}
+                        canSaveAsCopy={this.props.canSaveAsCopy}
+                        canShare={this.props.canShare}
+                        className="gui"
+                        projectHost={this.props.projectHost}
+                        projectId={this.state.projectId}
+                        projectTitle={this.props.projectInfo.title}
+                        renderLogin={this.renderLogin}
+                        onLogOut={this.props.handleLogOut}
+                        onOpenRegistration={this.props.handleOpenRegistration}
+                        onShare={this.handleShare}
+                        onToggleLoginOpen={this.props.handleToggleLoginOpen}
+                        onUpdateProjectTitle={this.handleUpdateProjectTitle}
+                    />
+                    <Registration />
+                    <CanceledDeletionModal />
+                </React.Fragment>
+
         );
     }
 }
 
 Preview.propTypes = {
+    assetHost: PropTypes.string.isRequired,
+    backpackOptions: PropTypes.shape({
+        host: PropTypes.string,
+        visible: PropTypes.bool
+    }),
+    canAddToStudio: PropTypes.bool,
+    canCreateNew: PropTypes.bool,
+    canRemix: PropTypes.bool,
+    canReport: PropTypes.bool,
+    canSave: PropTypes.bool,
+    canSaveAsCopy: PropTypes.bool,
+    canShare: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
     faved: PropTypes.bool,
     fullScreen: PropTypes.bool,
@@ -366,13 +448,29 @@ Preview.propTypes = {
     getProjectInfo: PropTypes.func.isRequired,
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
+    getTopLevelComments: PropTypes.func.isRequired,
+    handleAddComment: PropTypes.func,
+    handleDeleteComment: PropTypes.func,
+    handleLogIn: PropTypes.func,
+    handleLogOut: PropTypes.func,
+    handleOpenRegistration: PropTypes.func,
+    handleReportComment: PropTypes.func,
+    handleRestoreComment: PropTypes.func,
+    handleToggleLoginOpen: PropTypes.func,
+    isAdmin: PropTypes.bool,
+    isEditable: PropTypes.bool,
+    isLoggedIn: PropTypes.bool,
+    isShared: PropTypes.bool,
     loved: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
     playerMode: PropTypes.bool,
+    projectHost: PropTypes.string.isRequired,
     projectInfo: projectShape,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
+    replies: PropTypes.objectOf(PropTypes.array),
+    reportProject: PropTypes.func,
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
     setFullScreen: PropTypes.func.isRequired,
@@ -390,10 +488,17 @@ Preview.propTypes = {
         dateJoined: PropTypes.string,
         email: PropTypes.string,
         classroomId: PropTypes.string
-    })
+    }),
+    userOwnsProject: PropTypes.bool
 };
 
 Preview.defaultProps = {
+    assetHost: process.env.ASSET_HOST,
+    backpackOptions: {
+        host: process.env.BACKPACK_HOST,
+        visible: true
+    },
+    projectHost: process.env.PROJECT_HOST,
     sessionStatus: sessionActions.Status.NOT_FETCHED,
     user: {}
 };
@@ -432,26 +537,83 @@ const consolidateStudiosInfo = (curatedStudios, projectStudios, currentStudioIds
     return consolidatedStudios;
 };
 
-const mapStateToProps = state => ({
-    projectInfo: state.preview.projectInfo,
-    comments: state.preview.comments,
-    faved: state.preview.faved,
-    loved: state.preview.loved,
-    original: state.preview.original,
-    parent: state.preview.parent,
-    remixes: state.preview.remixes,
-    sessionStatus: state.session.status,
-    projectStudios: state.preview.projectStudios,
-    studios: consolidateStudiosInfo(state.preview.curatedStudios,
-        state.preview.projectStudios, state.preview.currentStudioIds,
-        state.preview.status.studioRequests),
-    user: state.session.session.user,
-    playerMode: state.scratchGui.mode.isPlayerOnly,
-    fullScreen: state.scratchGui.mode.isFullScreen
-});
+const mapStateToProps = state => {
+    const projectInfoPresent = Object.keys(state.preview.projectInfo).length > 0;
+    const userPresent = state.session.session.user &&
+        Object.keys(state.session.session.user).length > 0;
+    const isLoggedIn = state.session.status === sessionActions.Status.FETCHED &&
+        userPresent;
+    const isAdmin = isLoggedIn && state.session.session.permissions.admin;
+    const authorPresent = projectInfoPresent && state.preview.projectInfo.author &&
+        Object.keys(state.preview.projectInfo.author).length > 0;
+    const userOwnsProject = isLoggedIn && authorPresent &&
+        state.session.session.user.id === state.preview.projectInfo.author.id;
 
+    return {
+        canAddToStudio: isLoggedIn && userOwnsProject,
+        canCreateNew: false,
+        canRemix: false,
+        canReport: isLoggedIn && !userOwnsProject,
+        canSave: userOwnsProject,
+        canSaveAsCopy: false,
+        canShare: userOwnsProject && state.permissions.social,
+        comments: state.preview.comments,
+        faved: state.preview.faved,
+        fullScreen: state.scratchGui.mode.isFullScreen,
+        // project is editable iff logged in user is the author of the project, or
+        // logged in user is an admin.
+        isEditable: isLoggedIn &&
+            ((authorPresent && state.preview.projectInfo.author.username === state.session.session.user.username) ||
+            state.permissions.admin === true),
+        isLoggedIn: isLoggedIn,
+        isAdmin: isAdmin,
+        // if we don't have projectInfo, assume it's shared until we know otherwise
+        isShared: !projectInfoPresent || state.preview.projectInfo.is_published,
+        loved: state.preview.loved,
+        original: state.preview.original,
+        parent: state.preview.parent,
+        playerMode: state.scratchGui.mode.isPlayerOnly,
+        projectInfo: state.preview.projectInfo,
+        projectStudios: state.preview.projectStudios,
+        remixes: state.preview.remixes,
+        replies: state.preview.replies,
+        sessionStatus: state.session.status, // check if used
+        studios: consolidateStudiosInfo(state.preview.curatedStudios,
+            state.preview.projectStudios, state.preview.currentStudioIds,
+            state.preview.status.studioRequests),
+        user: state.session.session.user,
+        userOwnsProject: userOwnsProject
+    };
+};
 
 const mapDispatchToProps = dispatch => ({
+    handleAddComment: (comment, topLevelCommentId) => {
+        dispatch(previewActions.addNewComment(comment, topLevelCommentId));
+    },
+    handleDeleteComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.deleteComment(projectId, commentId, topLevelCommentId, token));
+    },
+    handleReportComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.reportComment(projectId, commentId, topLevelCommentId, token));
+    },
+    handleRestoreComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.restoreComment(projectId, commentId, topLevelCommentId, token));
+    },
+    handleOpenRegistration: event => {
+        event.preventDefault();
+        dispatch(navigationActions.setRegistrationOpen(true));
+    },
+    handleLogIn: (formData, callback) => {
+        dispatch(navigationActions.handleLogIn(formData, callback));
+    },
+    handleLogOut: event => {
+        event.preventDefault();
+        dispatch(navigationActions.handleLogOut());
+    },
+    handleToggleLoginOpen: event => {
+        event.preventDefault();
+        dispatch(navigationActions.toggleLoginOpen());
+    },
     getOriginalInfo: id => {
         dispatch(previewActions.getOriginalInfo(id));
     },
@@ -477,6 +639,9 @@ const mapDispatchToProps = dispatch => ({
             dispatch(previewActions.leaveStudio(studioId, id, token));
         }
     },
+    getTopLevelComments: (id, offset, isAdmin, token) => {
+        dispatch(previewActions.getTopLevelComments(id, offset, isAdmin, token));
+    },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));
     },
@@ -489,8 +654,8 @@ const mapDispatchToProps = dispatch => ({
     setLovedStatus: (loved, id, username, token) => {
         dispatch(previewActions.setLovedStatus(loved, id, username, token));
     },
-    refreshSession: () => {
-        dispatch(sessionActions.refreshSession());
+    reportProject: (id, formData, token) => {
+        dispatch(previewActions.reportProject(id, formData, token));
     },
     setOriginalInfo: info => {
         dispatch(previewActions.setOriginalInfo(info));

@@ -1,53 +1,41 @@
 @import "../../../colors";
 @import "../../../frameless";
 
-.mod-addToStudio * {
-    box-sizing: border-box;
-}
-
 .mod-addToStudio {
-    margin: 100px auto;
-    outline: none;
-    padding: 0;
-    width: 36.25rem; /* 580px; */
-    height: 388px; /* 24.25rem; */
     overflow: hidden;
-    user-select: none;
+
+    @media #{$small}, #{$small-height} {
+        overflow: hidden;
+    }
 }
 
 .addToStudio-modal-header {
     box-shadow: inset 0 -1px 0 0 $ui-blue-dark;
     background-color: $ui-blue;
-    padding-top: .75rem;
-    width: 100%;
-    height: 3rem;
-    box-sizing: border-box;
-}
-
-.addToStudio-content-label {
-    text-align: center;
-    color: $type-white;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 1rem;
-    font-weight: bold;
 }
 
 .addToStudio-modal-content {
     margin: 0 auto;
+    box-shadow: none;
     width: 100%;
-    line-height: 1.5rem;
-    font-size: .875rem;
 }
 
 .studio-list-outer-scrollbox {
     position: relative;
     background-color: $ui-blue-10percent;
+    min-height: 15rem;
+    max-height: calc(100% - 8rem);
+    flex: 1;
+
+    @media #{$small-height} {
+        min-height: 0;
+    }
 }
 
 .studio-list-inner-scrollbox {
     margin-right: .5rem;
     padding-right: .5rem;
-    height: 16.9375rem;
+    height: 100%;
     overflow: scroll;
     overflow-x: hidden;
 
@@ -90,34 +78,36 @@
     pointer-events: none; /* pass clicks through to buttons underneath */
 }
 
-
 .studio-selector-button {
     display: flex;
     position: relative;
-    margin: .21875rem .21875rem;
+    transition: all .5s;
+    margin: .21875rem;
     border-radius: .5rem;
     background-color: $ui-white;
+    cursor: pointer;
     padding: 0;
-    width: 16.1875rem; /* 259px */
+    width: 48%;
     height: 2.5rem;
-    box-sizing: border-box;
     justify-content: space-between;
+    align-items: center;
+
+    @media #{$small} {
+        min-width: 98%;
+        flex-shrink: 1;
+    }
 }
 
 .studio-selector-button-text {
-    position: absolute;
-    /* per spec, should be:
-    margin: .375rem 2.18375rem .375rem .6875rem
-    but in practice, our css seems to vertically align text to top, where
-    invision spec aligned to middle.
-    */
-    margin: .575rem 2.18375rem .175rem .6875rem;
-    width: 13.3125rem;
-    height: 1rem; /* diff from spec, in case we ever do valign to middle */
-    line-height: 1.25rem;
+    margin: auto 2.18375rem auto .6875rem;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     font-family: "Helvetica Neue";
     font-size: .875rem;
     font-weight: regular;
+    flex-shrink: 1;
 }
 
 .studio-selector-button-selected {
@@ -140,7 +130,7 @@
 
 .studio-status-icon {
     position: absolute;
-    margin: .5rem .625rem .5rem 14.0625rem;
+    right: .625rem;
     border-radius: .75rem;
     padding: .0625rem .075rem;
     width: 1.5rem;
@@ -161,30 +151,30 @@
     background-color: $ui-blue;
 }
 
-.studio-status-icon-plus-img {
+.studio-status-icon-plus-img,
+.studio-status-icon-checkmark-img {
+    animation-direction: normal;
     width: 1.4rem;
     height: 1.4rem;
+    transform-origin: center;
 }
 
-.studio-status-icon--img {
-    width: 1.4rem;
-    height: 1.4rem;
+.studio-status-icon-with-animation {
+    animation-name: bump;
+    animation-duration: .25s;
+    animation-timing-function: cubic-bezier(.3, -3, .6, 3);
+    animation-iteration-count: 1;
 }
 
-.action-button-text .spinner-smooth {
-    margin: .2125rem auto;
-    width: 1.875rem;
-    height: 1rem;
-}
-
-.studio-status-icon .spinner-smooth {
-    position: unset; /* don't understand why neither relative nor absolute work */
-}
-
-.studio-status-icon .spinner-smooth .circle {
-    /* overlay spinner on circle */
-    position: absolute;
-    margin: .1875rem; /* stay within boundaries of circle */
-    width: 75%; /* stay within boundaries of circle */
-    height: 75%; /* stay within boundaries of circle */
+@keyframes bump {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+        -webkit-transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
 }

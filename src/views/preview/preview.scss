@@ -1,18 +1,15 @@
 @import "../../colors";
 @import "../../frameless";
 
-/* stage size constants 
- * this is a hack right now - stage includes padding of .5rem (8px) for alignment in gui
- * in www the player is placed with margin -.5rem to align the edge.
- * the height is calculated from the actual height on the page (404)
-*/
-$gui-width: 496px;
+/* stage size constants */
+$player-width: 482px;
+$player-height: 406px;
 $stage-width: 480px;
-$stage-height: 404px;
 
 /* override view padding for share banner */
 #view {
-    padding: 0 0 20px 0;
+    padding: 0;
+    width: 100%;
 }
 
 .gui {
@@ -26,37 +23,67 @@ $stage-height: 404px;
 
 .preview {
 
+    .inner {
+        margin: 0 auto;
+
+        @media #{$medium-and-smaller} {
+            max-width: 90%;
+        }
+
+        @media #{$intermediate} {
+            width: 90%;
+            min-width: 640px;
+        }
+    }
+
     .project-title {
         font-size: 1.75rem;
         font-weight: 500;
-        
+
         &.has-error {
-            
             .validation-message {
-                transform: translate(22rem, 0);
+                right: 0;
             }
         }
+
+        &.no-edit {
+            /* titles of projects you don't own should not
+            show the full title if this is too long */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     }
-    
+
     .project-header {
         margin-right: 2rem;
+        min-width: 0;
         flex-grow: 1;
         justify-content: flex-start;
         align-items: flex-start;
-        
+        flex-wrap: nowrap;
+
         .inplace-input {
             height: calc(3rem - 4px);
         }
+
+        @media #{$medium-and-smaller} {
+            flex-direction: row;
+        }
+
+        @media #{$small} {
+            margin-right: 0;
+        }
     }
-    
+
     img {
-        
+
         &.avatar {
             border: 0;
             border-radius: 5px;
             width: 3rem;
             height: 3rem;
-            
+
             &.remix {
                 margin-right: .5em;
                 width: 2rem;
@@ -64,21 +91,25 @@ $stage-height: 404px;
             }
         }
     }
-    
+
     .title {
         margin-left: 1rem;
+        min-width: 0;
         text-align: left;
         font-size: .8rem;
         flex-grow: 1;
+
+        @media #{$medium-and-smaller} {
+            min-width: 100%;
+        }
     }
-    
+
     .validation-message {
         $arrow-border-width: 1rem;
         display: block;
         position: absolute;
-        top: 0;
-        left: 0;
-        margin-left: $arrow-border-width;
+        z-index: 1;
+        margin-top: $arrow-border-width;
         border: 1px solid $active-gray;
         border-radius: 5px;
         background-color: $ui-orange;
@@ -89,13 +120,18 @@ $stage-height: 404px;
         color: $type-white;
         font-size: 1rem;
 
+        @media #{$medium-and-smaller} {
+            margin-top: calc($arrow-border-width / 2);
+            width: 100%;
+        }
+
         &:before {
             display: block;
             position: absolute;
-            top: 1rem;
-            left: -$arrow-border-width / 2;
+            top: -.5rem;
+            left: calc(50% - calc(#{$arrow-border-width} / 2));
 
-            transform: rotate(45deg);
+            transform: rotate(135deg);
 
             border-bottom: 1px solid $active-gray;
             border-left: 1px solid $active-gray;
@@ -106,10 +142,14 @@ $stage-height: 404px;
             height: $arrow-border-width;
 
             content: "";
+
+            @media #{$medium-and-smaller} {
+                display: none;
+            }
         }
     }
-    
-    .row {        
+
+    .row {
 
         &.has-error {
             .inplace-input,
@@ -122,21 +162,54 @@ $stage-height: 404px;
             position: relative;
         }
     }
-    
+
+    .project-buttons {
+        flex-shrink: 0;
+    }
+
     .button {
         margin-left: 1rem;
     }
-    
+
     .comments-container {
-        width: 60%;
+        padding-right: 1.5rem;
+        min-width: 65%;
+        max-width: 100%;
+        flex: 1;
+
+        @media #{$medium-and-smaller} {
+            padding: 0;
+            width: 100%;
+        }
+
+        .comment, .comment-top-row, .comment-bottom-row {
+            flex-direction: row;
+        }
+
+        .comment-bubble {
+            text-align: left;
+        }
+
+        .comments-turned-off {
+            border: 1px solid $ui-blue-25percent;
+            border-radius: .5rem;
+            background: $ui-blue-10percent;
+            padding: 1.5rem 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .comments-allowed-input {
+            margin-right: 3px;
+        }
     }
-    
+
     .remix-button,
     .see-inside-button {
         margin-top: 0;
         font-size: .875rem;
         font-weight: normal;
-        
+
         &:before {
             display: inline-block;
             margin-right: .5rem;
@@ -152,53 +225,63 @@ $stage-height: 404px;
 
     .remix-button {
         background-color: $ui-aqua;
-        
+
         &:before {
             background-image: url("/svgs/project/remix-white.svg");
         }
     }
 
     .see-inside-button {
-        
+
         &:before {
             background-image: url("/svgs/project/see-inside-white.svg");
         }
     }
-    
+
     .preview-row {
         margin-top: 1rem;
         justify-content: space-between;
         align-items: flex-start;
         flex-wrap: nowrap;
+
+        &.force-row {
+            @media #{$medium-and-smaller} {
+                flex-direction: row;
+            }
+        }
     }
 
     .guiPlayer {
         display: inline-block;
-        margin-left: -.5rem;
-        width: $gui-width;
+        width: $player-width;
+
+        @media #{$small} {
+            width: 100%;
+        }
+    }
+
+    .force-center {
+        @media #{$medium-and-smaller} {
+            align-self: center;
+        }
     }
 
     .project-notes {
-        // not 1.5rem because of stage padding
         margin-left: 1rem;
-        height: $stage-height;
+        height: $player-height;
         align-items: flex-start;
         flex: 1;
         flex-flow: column;
-    }
 
-    .share-date {
-        margin-right: .75rem;
-        vertical-align: middle;
-        line-height: 2rem;
-        color: $type-gray;
-        font-size: .875rem;
-    }
-    
-    .subactions {
-        margin-left: 1.5rem;
-        justify-content: flex-end;
-        flex: 1;
+        @media #{$medium-and-smaller} {
+            margin-top: 1rem;
+            margin-left: 0;
+            width: 100%;
+        }
+
+        > .description-block:first-child {
+            margin-top: 1rem;
+        }
     }
 
     .remix-credit {
@@ -209,14 +292,18 @@ $stage-height: 404px;
         padding: .5rem;
         width: calc(100% - 1rem);
         flex-wrap: nowrap;
-        align-items: flex-start;
+        align-items: center;
+
+        @media #{$medium-and-smaller} {
+            flex-direction: row;
+        }
     }
 
     .credit-text {
         font-size: .875rem;
         flex-shrink: 1;
     }
-    
+
     .description-block {
         display: flex;
         width: 100%;
@@ -225,7 +312,7 @@ $stage-height: 404px;
         align-items: flex-start;
         flex: 1;
     }
-    
+
     .project-textlabel {
         margin: 0 0 .5rem 0;
         font-size: 1rem;
@@ -240,12 +327,12 @@ $stage-height: 404px;
         padding: .5rem;
         width: calc(100% - (1rem + 2px));
         overflow: auto;
-        white-space: pre-line;        
+        white-space: pre-line;
         font-size: 1rem;
         // flex-grow
         flex: 1;
     }
-    
+
     .project-description.last {
         margin-bottom: 0;
     }
@@ -261,228 +348,98 @@ $stage-height: 404px;
         white-space: pre-line;
         // flex-grow
         flex: 1;
-        
+
         &.last {
             margin-bottom: 0;
         }
-        
+
         &.textarea-row {
             border: 0;
             background-color: inherit;
             padding: 0;
         }
-        
+
         &.has-error {
             .validation-message {
                 transform: translate(26rem, 0);
             }
         }
-        
+
         & > .grow {
             display: flex;
             flex: 1;
         }
     }
-    
-    .copyleft {
-        display: inline-block;
-        transform: scale(-1, 1);
-        margin: 0;
-        text-align: right;
-    }
 
-    .stats {
-        line-height: 2rem;
-        justify-content: flex-start;
-    }
+    .comments-header {
+        padding: 0 0 1rem 0;
+        justify-content: space-between;
 
-    .project-loves,
-    .project-favorites,
-    .project-remixes,
-    .project-views {
-
-        display: inline;
-        padding-right: 2rem;
-        font-size: 1rem;
-        font-weight: bold;
-
-        &:before {
-            display: inline-block;
-            margin-right: .5rem;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: contain;
-            width: 1.5rem;
-            height: 1.5rem;
-            vertical-align: -.25rem;
-            content: "";
+        h4 {
+            font-size: 1.25rem;
         }
     }
 
-    .project-loves {
-        
-        cursor: pointer;
-        
-        &:before {
-            opacity: .5;
-            background-image: url("/svgs/project/love-gray.svg");
-        }
+    .project-lower-container {
+        margin-top: 1rem;
+        background-color: $ui-blue-10percent;
+        padding: 1rem 0;
+        min-height: 12rem;
     }
 
-    .project-loves.loved {
-        
-        &:before {
-            opacity: 1;
-            background-image: url("/svgs/project/love-red.svg");
-        }
+    .create-comment {
+        margin-bottom: 2rem;
     }
 
-    .project-favorites {
-        
-        cursor: pointer;
-        
-        &:before {
-            opacity: .5;
-            background-image: url("/svgs/project/fav-gray.svg");
-        }
-    }
-
-    .project-favorites.favorited {
-        
-        &:before {
-            opacity: 1;
-            background-image: url("/svgs/project/fav-yellow.svg");
-        }
-    }
-
-    .project-remixes {
-        
-        &:before {
-            opacity: .5;
-            background-image: url("/svgs/project/remix-gray.svg");
-        }
-    }
-
-    .project-views {
-        
-        &:before {
-            opacity: .5;
-            background-image: url("/svgs/project/views-gray.svg");
-        }
-    }
-
-    .action-buttons {
-        display: flex;
-        color: $type-white;
-        font-size: .8rem;
-        font-weight: 500;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-    }
-
-    .action-button {
-        margin: 0 0 0 .5rem;
-        border-radius: 19px;
-        background-color: $ui-blue;
-        padding: 0 .75rem;
-        height: 2rem;
-        text-decoration: none;
-        line-height: .875rem;
-        font-size: .75rem;
-        font-weight: normal;
-
-        // &:hover {
-        //     transition: background-color .25s ease;
-        //     border-color: transparent;
-        //     background-color: $active-gray;
-        // }
-        // 
-        // &:active {
-        //     border: 0 solid transparent;
-        //     box-shadow: inset 0 0 5px $box-shadow-gray;
-        //     background-color: $active-dark-gray;
-        //     padding: calc(.75em + 1px) calc(1.5em + 1px);
-        // }
-        // 
-        // &.report {
-        //     border: 1px solid $ui-coral;
-        //     background-color: $ui-coral;
-        // 
-        //     &:hover {
-        //         transition: background-color .25s ease;
-        //         border-color: transparent;
-        //         background-color: $active-gray;
-        //     }
-        // 
-        //     &:active {
-        //         border: 0 solid transparent;
-        //         box-shadow: inset 0 0 5px $box-shadow-gray;
-        //         background-color: $active-dark-gray;
-        //         padding: calc(.75em + 1px) calc(1.5em + 1px);
-        //     }
-        // }
-    }
-    
-    .studio-button,
-    .copy-link-button,
-    .report-button {
-        &:before {
-            display: inline-block;
-            margin-right: .25rem;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: contain;
-            width: .875rem;
-            height: .875rem;
-            vertical-align: bottom;
-            content: "";
-        }
-    }
-    .studio-button {
-        &:before {
-            background-image: url("/svgs/project/studio-add-white.svg");
-        }
-    }
-
-    .copy-link-button {
-        &:before {
-            background-image: url("/svgs/project/copy-link-white.svg");
-        }
-    }
-
-    .report-button {
-        background-color: $ui-coral;
-        
-        &:before {
-            background-image: url("/svgs/project/report-white.svg");
-        }
+    .load-more-button {
+        margin-left: 0;
+        width: 100%;
     }
 
     .extension-list {
         justify-content: flex-start;
+        flex-direction: row;
+
+        @media #{$medium-and-smaller} {
+            justify-content: center;
+        }
+
     }
-    
+
     .remix-list,
     .studio-list {
         flex-direction: column;
-        
-        .project {
-            margin-bottom: 1.5rem;
+
+        .list-title {
+            margin-left: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            align-self: flex-start;
         }
-        
+
         .creator-image img {
             max-width: 2rem;
             max-height: 2rem;
         }
-        
+
         .thumbnail-column {
             display: inline-block;
             width: 100%;
+
+            /* TODO: the following can be transferred to
+            src/components/thumbnailcolumn/thumbnailcolumn.scss
+            after testing */
+            @media #{$medium-and-smaller} {
+                flex-direction: row;
+
+                .thumbnail {
+                    display: inline-block;
+                }
+            }
+        }
+
+        @media #{$medium-and-smaller} {
+            margin-top: 1rem;
         }
     }
-}
-
-.report-text textarea {
-    // override min-height from default settings (for teacher registration)
-    min-height: 8rem;
 }

@@ -1,6 +1,6 @@
 [main]
 host = https://www.transifex.com
-lang_map = zh_CN:zh-cn, zh_TW:zh-tw, pt_BR:pt-br
+lang_map = zh_CN:zh-cn, zh_TW:zh-tw, pt_BR:pt-br, es_419:es-419, aa_DJ:aa-dj
 
 [scratch-website.explore-l10njson]
 file_filter = localizations/explore/<lang>.json
@@ -153,6 +153,23 @@ type = KEYVALUEJSON
 
 [scratch-website.microbit-l10njson]
 source_file = src/views/microbit/l10n.json
+source_lang = en
+type = KEYVALUEJSON
+
+[scratch-website.3faq-l10njson]
+file_filter = localizations/preview-faq/<lang>.json
+source_file = src/views/preview-faq/l10n.json
+source_lang = en
+type = KEYVALUEJSON
+
+[scratch-website.search-l10njson]
+file_filter = localizations/search/<lang>.json
+source_file = src/views/search/l10n.json
+source_lang = en
+type = KEYVALUEJSON
+
+[scratch-website.wedo2-legacy-l10njson]
+source_file = src/views/wedo2-legacy/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 

@@ -1,155 +1,245 @@
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
+const injectIntl = require('react-intl').injectIntl;
+const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
+
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
+const FlexRow = require('../../components/flex-row/flex-row.jsx');
+
+const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
+
+const ExtensionLanding = require('../../components/extension-landing/extension-landing.jsx');
+const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
+const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
+const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
+const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
+const ProjectCard = require('../../components/extension-landing/project-card.jsx');
+
+const Steps = require('../../components/steps/steps.jsx');
+const Step = require('../../components/steps/step.jsx');
+
+require('../../components/extension-landing/extension-landing.scss');
 require('./wedo2.scss');
 
-const Wedo2 = () => (
-    <div className="wedo">
-        <div className="top-banner">
-            <div className="inner">
-                <div className="columns2">
-                    <div className="banner-text">
-                        <h2>LEGO WeDo 2.0 &amp; Scratch</h2>
-                        <p className="intro">
-                            <FormattedMessage id="wedo2.intro" />
-                        </p>
-                    </div>
-                    <div className="banner-photo">
-                        <img src="/images/wedo/wedo-milo.png" />
-                    </div>
-                </div>
+class Wedo2 extends ExtensionLanding {
+    render () {
+        return (
+            <div className="extension-landing wedo2">
+                <ExtensionHeader
+                    imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltWeDoIllustration'})}
+                    imageSrc="/images/wedo2/wedo2-illustration.png"
+                >
+                    <FlexRow className="column extension-copy">
+                        <h1><img
+                            alt=""
+                            src="/images/wedo2/wedo2.svg"
+                        />LEGO WeDo 2.0</h1>
+                        <FormattedMessage
+                            id="wedo2.headerText"
+                            values={{
+                                wedo2Link: (
+                                    <a
+                                        href="https://education.lego.com/en-us/elementary/intro/wedo2"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                                LEGO Education WeDo 2.0
+                                    </a>
+                                )
+                            }}
+                        />
+                    </FlexRow>
+                    <ExtensionRequirements>
+                        <span>
+                            <img
+                                alt=""
+                                src="/svgs/extensions/windows.svg"
+                            />
+                                        Windows 10+
+                        </span>
+                        <span>
+                            <img
+                                alt=""
+                                src="/svgs/extensions/mac.svg"
+                            />
+                                        macOS 10.13+
+                        </span>
+                        <span>
+                            <img
+                                alt=""
+                                src="/svgs/extensions/bluetooth.svg"
+                            />
+                                        Bluetooth
+                        </span>
+                        <span>
+                            <img
+                                alt=""
+                                src="/svgs/extensions/scratch-link.svg"
+                            />
+                                        Scratch Link
+                        </span>
+                    </ExtensionRequirements>
+                </ExtensionHeader>
+                <OSChooser
+                    currentOS={this.state.OS}
+                    handleSetOS={this.onSetOS}
+                />
+                <InstallScratchLink
+                    currentOS={this.state.OS}
+                />
+                <ExtensionSection className="getting-started">
+                    <h2><FormattedMessage id="wedo2.gettingStarted" /></h2>
+                    <FlexRow className="column getting-started-section">
+                        <h3><FormattedMessage id="wedo2.connectingWedo2" /></h3>
+                        <Steps>
+                            <Step number={1}>
+                                <div className="step-image">
+                                    <img
+                                        alt=""
+                                        className="screenshot"
+                                        src="/images/wedo2/wedo2-connect-1.png"
+                                    />
+                                </div>
+                                <p>
+                                    <FormattedMessage
+                                        id="wedo2.useScratch3"
+                                        values={{
+                                            scratch3Link: (
+                                                <a
+                                                    href="https://beta.scratch.mit.edu/"
+                                                    rel="noopener noreferrer"
+                                                    target="_blank"
+                                                >
+                                                            Scratch 3.0
+                                                </a>
+                                            )
+                                        }}
+                                    />
+                                </p>
+                            </Step>
+                            <Step number={2}>
+                                <div className="step-image">
+                                    <img
+                                        alt={this.props.intl.formatMessage({id: 'extensionInstallation.addExtension'})}
+                                        className="screenshot"
+                                        src="/images/wedo2/wedo2-connect-2.png"
+                                    />
+                                </div>
+                                <p><FormattedMessage id="wedo2.addExtension" /></p>
+                            </Step>
+                        </Steps>
+                    </FlexRow>
+                </ExtensionSection>
+                <ExtensionSection className="blue things-to-try">
+                    <h2><FormattedMessage id="wedo2.thingsToTry" /></h2>
+                    <h3><FormattedMessage id="wedo2.makeMotorMove" /></h3>
+                    <Steps>
+                        <Step
+                            compact
+                            number={1}
+                        >
+                            <span className="step-description">
+                                <FormattedMessage id="wedo2.plugMotorIn" />
+                            </span>
+                            <div className="step-image">
+                                <img
+                                    alt=""
+                                    src="/images/wedo2/wedo2-motor.png"
+                                />
+                            </div>
+                        </Step>
+                        <Step
+                            compact
+                            number={2}
+                        >
+                            <span className="step-description">
+                                <FormattedMessage
+                                    id="wedo2.clickMotorBlock"
+                                    values={{
+                                        motorBlockText: (
+                                            <strong><FormattedMessage id="wedo2.motorBlockText" /></strong>
+                                        )
+                                    }}
+                                />
+                            </span>
+                            <div className="step-image">
+                                <img
+                                    alt=""
+                                    src="/images/wedo2/wedo2-motor-turn-block.png"
+                                />
+                            </div>
+                        </Step>
+                    </Steps>
+                    <hr />
+                    <h3><FormattedMessage id="wedo2.starterProjects" /></h3>
+                    <Steps>
+                        <ProjectCard
+                            cardUrl="https://beta.scratch.mit.edu/#239284992"
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter1Description'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter1'})}
+                            imageSrc="/images/wedo2/wedo2-starter1.png"
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter1Title'})}
+                        />
+                        <ProjectCard
+                            cardUrl="https://beta.scratch.mit.edu/#239284997"
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter2Description'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter2'})}
+                            imageSrc="/images/wedo2/wedo2-starter2.png"
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter2Title'})}
+                        />
+                        <ProjectCard
+                            cardUrl="https://beta.scratch.mit.edu/#239285001"
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter3Description'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter3'})}
+                            imageSrc="/images/wedo2/wedo2-starter3.png"
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter3Title'})}
+                        />
+                    </Steps>
+                </ExtensionSection>
+                <ExtensionSection className="faq">
+                    <h2><FormattedMessage id="wedo2.troubleshootingTitle" /></h2>
+                    <h3 className="faq-title"><FormattedMessage id="wedo2.closeScratchCopiesTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="wedo2.closeScratchCopiesText" />
+                    </p>
+                    <h3 className="faq-title"><FormattedMessage id="wedo2.otherComputerConnectedTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="wedo2.otherComputerConnectedText" />
+                    </p>
+                    <h3 className="faq-title"><FormattedMessage id="wedo2.updateLinkTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="wedo2.updateLinkText" />
+                    </p>
+                    <h3 className="faq-title"><FormattedMessage id="wedo2.legacyInfoTitle" /></h3>
+                    <p>
+                        <FormattedMessage
+                            id="wedo2.legacyInfoText"
+                            values={{
+                                wedoLegacyLink: (
+                                    <a
+                                        href="/wedo-legacy"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="wedo2.legacyLinkText" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </p>
+                </ExtensionSection>
             </div>
-        </div>
+        );
+    }
+}
 
-        <div className="inner">
-            <section id="getting-started">
-                <h3>
-                    <FormattedMessage id="wedo2.getStarted" />
-                </h3>
-                <p className="callout">
-                    <FormattedMessage id="wedo2.requirement" />
-                </p>
-                <div className="columns3">
-                    <div className="column">
-                        <img src="/images/wedo/download-device-manager.png" />
-                        <h4>
-                            <FormattedMessage id="wedo2.installTitle" />
-                        </h4>
-                        <p>
-                            <FormattedHTMLMessage id="wedo2.installText" />
-                            <br />
-                            <a href="https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1084869222&mt=12">
-                                <FormattedMessage id="wedo2.downloadMac" />
-                            </a>
-                            <br />
-                            <a href="https://downloads.scratch.mit.edu/device-manager/ScratchDeviceManager-1.1.0.exe">
-                                <FormattedMessage id="wedo2.downloadWin" />
-                            </a>
-                        </p>
-                    </div>
-                    <div className="column">
-                        <img src="/images/wedo/set-up.png" />
-                        <h4>
-                            <FormattedMessage id="wedo2.setupTitle" />
-                        </h4>
-                        <p>
-                            <FormattedHTMLMessage id="wedo2.setupText" />
-                        </p>
-                    </div>
-                    <div className="column">
-                        <img src="/images/wedo/create-and-share.png" />
-                        <h4>
-                            <FormattedMessage id="wedo2.createTitle" />
-                        </h4>
-                        <p>
-                            <FormattedMessage id="wedo2.createText" />
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </div>
+Wedo2.propTypes = {
+    intl: intlShape.isRequired
+};
 
-        <div className="banner">
-            <div
-                className="inner"
-                id="starter-projects"
-            >
-                <h3>
-                    <FormattedMessage id="wedo2.starterProjects" />
-                </h3>
-                <div className="project-list">
-                    <a href="/projects/101037564/?tip_bar=ext2#editor">
-                        <div className="project-card">
-                            <img
-                                alt=""
-                                src="/images/wedo/motor.png"
-                            />
-                            <p>
-                                <FormattedMessage id="wedo2.starterMotor" />
-                            </p>
-                        </div>
-                    </a>
-                    <a href="/projects/101038249/?tip_bar=ext2#editor">
-                        <div className="project-card">
-                            <img
-                                alt=""
-                                src="/images/wedo/distance.png"
-                            />
-                            <p>
-                                <FormattedMessage id="wedo2.starterDistance" />
-                            </p>
-                        </div>
-                    </a>
-                    <a href="/projects/101033190/?tip_bar=ext2#editor">
-                        <div className="project-card">
-                            <img
-                                alt=""
-                                src="/images/wedo/tilt.png"
-                            />
-                            <p>
-                                <FormattedMessage id="wedo2.starterTilt" />
-                            </p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+const WrappedWedo2 = injectIntl(Wedo2);
 
-        <div className="inner">
-            <section>
-                <h3>
-                    <FormattedMessage id="wedo2.versionTitle" />
-                </h3>
-                <p>
-                    <FormattedMessage id="wedo2.versionText" />
-                </p>
-                <div className="device-card">
-                    <h4>LEGO WeDo 1.0 Hub</h4>
-                    <img
-                        alt="LEGO WeDo 1.0 Hub"
-                        src="/images/wedo/wedo1.png"
-                    />
-                    <a href="/projects/editor/?tip_bar=ext1">
-                        <FormattedMessage id="wedo2.wedo1SetupInstructions" />
-                    </a>
-                </div>
-                <div className="device-card">
-                    <h4>LEGO WeDo 2.0 Hub</h4>
-                    <img
-                        alt="LEGO WeDo 2.0 Hub"
-                        src="/images/wedo/wedo2.png"
-                    />
-                    <a href="/projects/editor/?tip_bar=ext2">
-                        <FormattedMessage id="wedo2.wedo2SetupInstructions" />
-                    </a>
-                </div>
-            </section>
-        </div>
-    </div>
-);
-
-render(<Page><Wedo2 /></Page>, document.getElementById('app'));
+render(<Page><WrappedWedo2 /></Page>, document.getElementById('app'));

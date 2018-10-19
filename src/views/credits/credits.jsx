@@ -29,7 +29,7 @@ const Credits = () => (
                 />
                 <span className="name">Carl Bowman</span>
             </li>
-                                
+
             <li>
                 <img
                     alt="Karishma Avatar"
@@ -84,6 +84,14 @@ const Credits = () => (
                     src="//cdn.scratch.mit.edu/get_image/user/527836_170x170.png"
                 />
                 <span className="name">DD Liu</span>
+            </li>
+
+            <li>
+                <img
+                    alt="Katelyn Avatar"
+                    src="//cdn.scratch.mit.edu/get_image/user/34607790_170x170.png"
+                />
+                <span className="name">Katelyn Mann</span>
             </li>
 
             <li>
@@ -446,6 +454,6 @@ const Credits = () => (
         </p>
     </div>
 );
- 
+
 
 render(<Page><Credits /></Page>, document.getElementById('app'));

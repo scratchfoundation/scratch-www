@@ -48,7 +48,7 @@
             }
         }
 
-        @media only screen and (max-width: $mobile - 1) {
+        @media #{$small} {
             h3 {
                 display: none;
                 margin-top: 0;
@@ -60,7 +60,7 @@
 
         }
 
-        @media only screen and (max-width: $desktop - 1) {
+        @media #{$intermediate-and-smaller} {
             h1 {
                 font-size: 2.5rem;
             }
@@ -85,7 +85,7 @@
                 max-width: 125px;
             }
 
-            @media only screen and (max-width: $tablet - 1) {
+            @media #{$medium-and-smaller} {
                 margin: .5rem;
                 width: 125px;
             }
@@ -93,7 +93,7 @@
     }
 }
 
-@media only screen and (max-width: $tablet - 1) {
+@media #{$medium-and-smaller} {
     .index {
         .flex-row {
             align-items: center;

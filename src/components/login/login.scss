@@ -2,6 +2,26 @@
 
 .login {
     padding: 10px;
+    width: 200px;
+    line-height: 1.5rem;
+    white-space: normal; // override any parent, such as in gui, who sets nowrap
+    color: $type-white;
+    font-size: .8125rem;
+
+    .button {
+        padding: .75em;
+    }
+
+    .row {
+        margin-bottom: 1.25rem;
+    }
+
+    .input {
+        margin-bottom: 12px;
+        // 100% minus border and padding
+        width: calc(100% - 30px);
+        height: 2.25rem;
+    }
 
     label {
         padding-top: 5px;
@@ -15,7 +35,7 @@
     .spinner {
         margin: 0 .8rem;
         width: 1rem;
-        height: 1rem;
+        vertical-align: middle;
     }
 
     .submit-button {
@@ -24,12 +44,18 @@
 
     a {
         margin-top: 15px;
+        color: $ui-white;
+
+        &:link,
+        &:visited,
+        &:active {
+            color: $ui-white;
+        }
 
         &:hover {
             background-color: transparent;
         }
     }
-
 
     .error {
         border: 1px solid $active-dark-gray;

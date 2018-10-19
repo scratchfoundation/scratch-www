@@ -8,13 +8,17 @@ const React = require('react');
 
 const api = require('../../lib/api');
 const Button = require('../../components/forms/button.jsx');
+const Form = require('../../components/forms/form.jsx');
 const Grid = require('../../components/grid/grid.jsx');
 const navigationActions = require('../../redux/navigation.js');
+const Select = require('../../components/forms/select.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 const Tabs = require('../../components/tabs/tabs.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
+
+const ACCEPTABLE_MODES = ['trending', 'popular'];
 
 require('./search.scss');
 
@@ -23,29 +27,63 @@ class Search extends React.Component {
         super(props);
         bindAll(this, [
             'getSearchState',
+            'handleChangeSortMode',
             'handleGetSearchMore',
             'getTab'
         ]);
         this.state = this.getSearchState();
         this.state.loaded = [];
         this.state.loadNumber = 16;
+        this.state.mode = 'popular';
         this.state.offset = 0;
         this.state.loadMore = false;
+
+        let mode = '';
+        const query = window.location.search;
+        const m = query.lastIndexOf('mode=');
+        if (m !== -1) {
+            mode = query.substring(m + 5, query.length).toLowerCase();
+        }
+        while (mode.indexOf('/') > -1) {
+            mode = mode.substring(0, mode.indexOf('/'));
+        }
+        while (mode.indexOf('&') > -1) {
+            mode = mode.substring(0, mode.indexOf('&'));
+        }
+        mode = decodeURIComponent(mode.split('+').join(' '));
+        if (ACCEPTABLE_MODES.indexOf(mode) !== -1) {
+            this.state.mode = mode;
+        }
+
     }
     componentDidMount () {
-        const query = window.location.search;
-        const q = query.lastIndexOf('q=');
-        let term = '';
-        if (q !== -1) {
-            term = query.substring(q + 2, query.length).toLowerCase();
-        }
+        const query = decodeURIComponent(window.location.search);
+        let term = query;
+
+        const stripQueryValue = function (queryTerm) {
+            const queryIndex = query.indexOf('q=');
+            if (queryIndex !== -1) {
+                queryTerm = query.substring(queryIndex + 2, query.length).toLowerCase();
+            }
+            return queryTerm;
+        };
+        // Strip off the initial "?q="
+        term = stripQueryValue(term);
+        // Strip off user entered "?q="
+        term = stripQueryValue(term);
+
         while (term.indexOf('/') > -1) {
             term = term.substring(0, term.indexOf('/'));
         }
         while (term.indexOf('&') > -1) {
             term = term.substring(0, term.indexOf('&'));
         }
-        term = decodeURIComponent(term.split('+').join(' '));
+        try {
+            term = decodeURIComponent(term);
+        } catch (e) {
+            // Error means that term was not URI encoded and decoding failed.
+            // We can silence this error because not all query strings are intended to be decoded.
+        }
         this.props.dispatch(navigationActions.setSearchTerm(term));
     }
     componentDidUpdate (prevProps) {
@@ -65,6 +103,13 @@ class Search extends React.Component {
             loadNumber: 16
         };
     }
+    handleChangeSortMode (name, value) {
+        if (ACCEPTABLE_MODES.indexOf(value) !== -1) {
+            const term = this.props.searchTerm.split(' ').join('+');
+            window.location =
+                `${window.location.origin}/search/${this.state.tab}?q=${term}&mode=${value}`;
+        }
+    }
     handleGetSearchMore () {
         let termText = '';
         if (this.props.searchTerm !== '') {
@@ -73,7 +118,8 @@ class Search extends React.Component {
         const locale = this.props.intl.locale;
         const loadNumber = this.state.loadNumber;
         const offset = this.state.offset;
-        const queryString = `limit=${loadNumber}&offset=${offset}&language=${locale}&mode=popular${termText}`;
+        const mode = this.state.mode;
+        const queryString = `limit=${loadNumber}&offset=${offset}&language=${locale}&mode=${mode}${termText}`;
 
         api({
             uri: `/search/${this.state.tab}?${queryString}`
@@ -167,6 +213,25 @@ class Search extends React.Component {
                         {this.getTab('projects')}
                         {this.getTab('studios')}
                     </Tabs>
+                    <div className="sort-controls">
+                        <Form className="sort-mode">
+                            <Select
+                                name="sort"
+                                options={[
+                                    {
+                                        value: 'trending',
+                                        label: this.props.intl.formatMessage({id: 'search.trending'})
+                                    },
+                                    {
+                                        value: 'popular',
+                                        label: this.props.intl.formatMessage({id: 'search.popular'})
+                                    }
+                                ]}
+                                value={this.state.mode}
+                                onChange={this.handleChangeSortMode}
+                            />
+                        </Form>
+                    </div>
                     {this.getProjectBox()}
                 </div>
             </div>
@@ -181,7 +246,7 @@ Search.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    searchTerm: state.navigation
+    searchTerm: state.navigation.searchTerm
 });
 
 const WrappedSearch = injectIntl(Search);

@@ -165,6 +165,9 @@ module.exports = {
                 'process.env.NODE_ENV': '"' + (process.env.NODE_ENV || 'development') + '"',
                 'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"',
                 'process.env.API_HOST': '"' + (process.env.API_HOST || 'https://api.scratch.mit.edu') + '"',
+                'process.env.ASSET_HOST': '"' + (process.env.ASSET_HOST || 'https://assets.scratch.mit.edu') + '"',
+                'process.env.BACKPACK_HOST': '"' + (process.env.BACKPACK_HOST || 'https://backpack.scratch.mit.edu') + '"',
+                'process.env.PROJECT_HOST': '"' + (process.env.PROJECT_HOST || 'https://projects.scratch.mit.edu') + '"',
                 'process.env.SCRATCH_ENV': '"' + (process.env.SCRATCH_ENV || 'development') + '"'
             }),
             new webpack.optimize.CommonsChunkPlugin({

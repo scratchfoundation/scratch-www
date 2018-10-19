@@ -1,0 +1,232 @@
+@import "../../colors";
+@import "../../frameless";
+
+#view {
+    padding: 0;
+}
+
+.wedo {
+    h3,
+    h4 {
+        margin: 1.5em 0 .3em;
+    }
+
+    h2 {
+        margin: .75em 0 .3em;
+    }
+
+    p {
+        margin: .25em 0 1em;
+
+        &.intro {
+            margin-bottom: 1em;
+        }
+
+        &.callout {
+            padding: .75em 1em;
+            text-align: center;
+        }
+    }
+
+    .top-banner {
+        margin-bottom: 50px;
+        background-color: $ui-blue;
+        padding: 50px 0;
+        width: 100%;
+
+        h2 {
+            color: $ui-white;
+        }
+
+        p {
+            color: $ui-white;
+        }
+
+        .columns2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .banner-text {
+            max-width: $cols7;
+        }
+
+        .banner-photo {
+            max-width: $cols4;
+
+            img {
+                width: 100%;
+            }
+        }
+    } 
+
+    section {
+        margin-bottom: 50px;
+        text-align: center;
+    }
+
+    // Getting Started Section
+
+    .columns3 {
+        display: flex;
+        justify-content: space-between;
+
+        .column { 
+            margin: 15px;
+            max-width: $cols4;
+
+            img {
+                margin: 0 auto;
+                width: 80%;
+            }
+        }
+    }
+
+    // Project Highlight Section
+
+    #starter-projects {
+        h3,
+        p {
+            text-align: center;
+        }
+    }
+
+    .banner {
+        background-color: $ui-gray;
+        padding: 10px 0 50px;
+
+        h3 {
+            margin-top: 30px;
+        }
+    }
+
+    .project-list {
+        display: flex;
+        margin: 0 auto;
+        max-width: $cols9;
+        justify-content: space-between;
+    } 
+
+    .project-card {
+        transition: transform .25s ease;
+        margin: 10px;
+        border-radius: 7px;
+        background-color: $ui-white;
+        max-width: $cols3;
+        overflow: hidden;
+
+
+        img {
+            border-bottom: 2px solid $ui-white;
+            width: 100%;
+        }
+
+        p {
+            display: block;
+            margin: 15px 15px 20px;
+            color: $ui-blue;
+            font-weight: 500;
+        }
+
+        &:hover {
+            transform: scale(1.1, 1.1);
+            transition: transform .25s ease;
+            cursor: pointer; 
+
+            p {
+                color: $ui-blue-dark;
+            }
+        }
+    }
+
+    // Device Cards
+
+    .device-card {
+        display: inline-block;
+        margin: 0 10px;
+        max-width: $cols3;
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+// Responsive Behavior
+
+//4 columns
+@media #{$small} {
+    .wedo {
+        .inner {
+            margin: 0 auto;
+            width: calc(100% - 40px);
+        }
+        
+        .top-banner {
+            text-align: center;
+
+            .banner-photo {
+                display: none;
+            }
+        }
+
+        .project-list,
+        .columns3 {
+            display: block;
+        }
+
+        .project-card,
+        .columns3 .column {
+            display: block;
+            margin: 20px auto;
+            width: $cols6;
+        }
+    }
+}
+
+//6 columns
+@media #{$medium} {
+    .wedo {
+        .project-list,
+        .columns3 {
+            display: inline-block;
+        }
+
+        .top-banner {
+            text-align: center;
+
+            .banner-photo {
+                display: none;
+            }
+        }
+
+        .project-card,
+        .columns3 .column {
+            display: inline-block;
+            width: $cols6;
+        }
+    }
+}
+
+//8 columns
+@media #{$intermediate} {
+    #view {
+        text-align: center;
+    }
+
+    .wedo {
+        .top-banner {
+            text-align: left;
+
+            .banner-photo {
+                max-width: $cols3;
+            }
+        }
+
+        .inner {
+            margin: 0 auto;
+            width: $tablet;
+        }
+    }
+}

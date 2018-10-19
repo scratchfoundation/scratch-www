@@ -1,0 +1,276 @@
+@import "../../../colors";
+
+.compose-comment {
+    margin-left: .5rem;
+    width: 100%;
+
+    .compose-error-row {
+        width: 100%;
+        justify-content: flex-start;
+
+        .compose-error-tip {
+            margin-bottom: .5rem;
+            border: 1px solid $active-gray;
+            border-radius: 5px;
+            background-color: $ui-orange;
+            padding: .25rem;
+            width: 100%;
+            text-align: left;
+            color: $type-white;
+            font-size: .85rem;
+        }
+    }
+
+    .textarea-row {
+        width: 100%;
+
+        textarea {
+            &:not(:focus) {
+                border: 1px solid $active-dark-gray;
+            }
+        }
+    }
+
+    .compose-bottom-row {
+        width: 100%;
+        justify-content: space-between;
+
+        .compose-post {
+            margin-right: .5rem;
+        }
+
+        .compose-cancel {
+            background-color: $ui-dark-gray;
+        }
+
+        .compose-limit {
+            margin-left: auto;
+            height: 100%;
+            font-size: .75rem;
+        }
+
+        .button {
+            margin-left: 0;
+            border-radius: .25rem;
+        }
+    }
+}
+
+.comment-container {
+    position: relative;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.comment {
+    position: relative;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .comment-top-row {
+        margin-bottom: 8px;
+        width: 100%;
+
+        .username {
+            margin-right: auto;
+        }
+
+        .comment-delete,
+        .comment-report,
+        .comment-restore {
+            opacity: .5;
+            cursor: pointer;
+            font-size: .75rem;
+            font-weight: 500;
+
+            &:before {
+                display: inline-block;
+                margin-right: .5rem;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: contain;
+                content: "";
+            }
+        }
+
+        .comment-visibility {
+            opacity: .5;
+            font-size: .75rem;
+        }
+
+        .comment-delete {
+            margin-right: 1rem;
+
+            &:before {
+                background-image: url("/svgs/project/delete-gray.svg");
+                width: 1rem;
+                height: 1rem;
+                vertical-align: -.25rem;
+            }
+        }
+
+        .comment-report {
+            &:before {
+                margin-right: .25rem;
+                background-image: url("/svgs/project/report-gray.svg");
+                width: .75rem;
+                height: .75rem;
+                vertical-align: -.125rem;
+            }
+        }
+
+        .comment-restore {
+            margin-left: 1rem;
+
+            &:before {
+                margin-right: .25rem;
+                background-image: url("/svgs/project/restore-gray.svg");
+                width: .75rem;
+                height: .75rem;
+                vertical-align: -.125rem;
+            }
+        }
+    }
+
+    .avatar {
+        margin-right: .5rem;
+    }
+
+    .comment-body {
+        margin-bottom: 1.5rem;
+        min-width: 50%;
+        flex-grow: 1;
+        align-items: flex-start;
+
+        .comment-bubble {
+            position: relative;
+            margin-left: .5rem;
+            border: 1px solid $active-gray;
+            border-radius: 0 .5rem .5rem .5rem;
+            background-color: $ui-white;
+            padding: .75rem;
+            width: calc(100% - .5rem);
+            box-sizing: border-box;
+
+            &:before {
+                display: inline-block;
+                position: absolute;
+                top: -1px;
+                left: -11px; // width + 1px
+                border-width: 1px 0 1px 1px;
+                border-style: solid;
+                border-radius: 0 0 0 8px;
+                border-color: $active-gray transparent $active-gray $active-gray;
+                background: $ui-white;
+                width: 10px;
+                height: 9px;
+                content: "";
+            }
+
+            &.comment-bubble-reported {
+                $reported-outline:  #ff6680;
+                $reported-background: rgb(236, 206, 223);
+
+                border-color: $reported-outline;
+                background-color: $reported-background;
+
+                &:before {
+                    border-color: $reported-outline transparent $reported-outline $reported-outline;
+                    background: $reported-background;
+                }
+            }
+        }
+
+        .comment-content {
+            overflow-wrap: break-word;
+        }
+
+        .comment-bottom-row {
+            padding-top: 1rem;
+            font-size: .75rem;
+            justify-content: space-between;
+
+            .comment-time {
+                color: $ui-dark-gray;
+            }
+
+            .comment-reply {
+                display: inline-flex;
+                cursor: pointer;
+                color: $ui-blue;
+                font-weight: bold;
+
+                &:after {
+                    margin-left: .25rem;
+                    background-image: url("/svgs/project/comment-reply.svg");
+                    background-size: cover;
+                    width: 1rem;
+                    height: 1rem;
+                    content: "";
+                }
+            }
+        }
+    }
+
+}
+
+.replies {
+    width: calc(100% - 4rem);
+
+    &.collapsed .comment {
+        &:last-child {
+            &:after {
+                position: absolute;
+                bottom: 0;
+                background: linear-gradient(
+                    $ui-light-primary-transparent,
+                    $ui-light-primary
+                );
+                width: 100%;
+                height: 100%;
+                content: "";
+                pointer-events: none;
+            }
+        }
+    }
+}
+
+.comments-root-reply {
+    margin-bottom: 1.5rem;
+}
+
+.comment-reply-row {
+    margin-top: 1.5rem;
+    margin-left: .5rem;
+    width: 100%;
+}
+
+.expand-thread {
+    margin-bottom: 24px;
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+
+    &:before,
+    &:after {
+        display: inline-block;
+        position: relative;
+        background-color: $active-gray;
+        width: 50%;
+        height: 2px;
+        vertical-align: middle;
+        content: "";
+    }
+
+    &:before {
+        right: .5em;
+        margin-left: -50%;
+    }
+
+    &:after {
+        left: .5em;
+        margin-right: -50%;
+    }
+}

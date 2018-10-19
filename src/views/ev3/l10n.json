@@ -33,6 +33,15 @@
     "ev3.otherComputerConnectedTitle": "Make sure no other computer is connected to your EV3",
     "ev3.otherComputerConnectedText": "Only one computer can be connected to an EV3 at a time. If you have another computer connected to your EV3, disconnect the EV3 or close Scratch on that computer and try again.",
     "ev3.updateFirmwareTitle": "Try updating your EV3 firmware",
-    "ev3.updateFirmwareText": "We recommend updating to EV3 firmware version 1.10E or above. See {firmwareUpdateLink}. We recommend following the instructions for \"Manual Firmware Update\".",
-    "ev3.firmwareUpdateText": "firmware update instructions from LEGO"
+    "ev3.updateFirmwareText": "We recommend updating to EV3 firmware version 1.10E or above. See {firmwareUpdateLink}.",
+    "ev3.firmwareUpdateText": "firmware update instructions from LEGO",
+    "ev3.imgAltEv3Illustration": "Illustration of an EV3 hub, featuring some examples of interacting with it.",
+    "ev3.imgAltAcceptConnection": "Use the buttons on your EV3 to accept the connection.",
+    "ev3.imgAltAcceptPasscode": "Use the center button on your EV3 to accept the passcode.",
+    "ev3.imgAltWaitForWindows": "Windows will notify you when the EV3 is ready.",
+    "ev3.imgAltEnterPasscodeMac": "Enter the passcode into the connection request window opening on your Mac.",
+    "ev3.imgAltPlugInMotor": "To find port A: hold the EV3 with the screen and buttons facing you, with the screen above the buttons. Port A is on top, and it is the left-most one",
+    "ev3.imgAltWaveHello": "A Scratch project with a waving fairy.",
+    "ev3.imgAltDistanceInstrument": "A Scratch project with a guitar.",
+    "ev3.imgAltSpaceTacos": "A Scratch project with Scratch Cat and a taco in space."
 }

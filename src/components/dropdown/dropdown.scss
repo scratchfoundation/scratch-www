@@ -9,7 +9,8 @@
     border-radius: 0 0 5px 5px;
     background-color: $ui-blue;
     padding: 10px;
-    max-width: 260px;
+    min-width: 9rem;
+    max-width: 16.25rem;
     overflow: visible;
     color: $type-white;
     font-size: .8125rem;
@@ -33,8 +34,8 @@
     }
 
     input {
-        // 100% minus border and padding
         margin-bottom: 12px;
+        // 100% minus border and padding
         width: calc(100% - 30px);
     }
 
@@ -87,9 +88,5 @@
 
             content: "";
         }
-    }
-    
-    @media only screen and (max-width: $tablet - 1) {
-        min-width: 160px;
     }
 }

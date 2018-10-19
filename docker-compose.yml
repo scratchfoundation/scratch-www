@@ -4,8 +4,9 @@ volumes:
   runtime_data:
 
 networks:
-  scratch-api_scratch_network:
-    external: true
+  default:
+    external:
+      name: scratchapi_scratch_network
 
 services:
   app:
@@ -13,7 +14,7 @@ services:
     hostname: scratch-www-app
     environment:
       - API_HOST=http://localhost:8491
-      - FALLBACK=http://localhost:8080
+      - FALLBACK=http://scratchr2-app:8080
       - USE_DOCKER_WATCHOPTIONS=true
     build:
       context: ./
@@ -35,5 +36,3 @@ services:
       - runtime_data:/runtime
     ports:
       - "8333:8333"
-    networks:
-      - scratch-api_scratch_network

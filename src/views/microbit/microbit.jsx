@@ -31,9 +31,15 @@ class MicroBit extends ExtensionLanding {
     render () {
         return (
             <div className="extension-landing microbit">
-                <ExtensionHeader imageSrc="/images/microbit/microbit-heart.png">
+                <ExtensionHeader
+                    imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltMicrobitIllustration'})}
+                    imageSrc="/images/microbit/microbit-heart.png"
+                >
                     <FlexRow className="column extension-copy">
-                        <h2><img src="/images/microbit/microbit.svg" />micro:bit</h2>
+                        <h1><img
+                            alt=""
+                            src="/images/microbit/microbit.svg"
+                        />micro:bit</h1>
                         <FormattedMessage
                             id="microbit.headerText"
                             values={{
@@ -51,19 +57,31 @@ class MicroBit extends ExtensionLanding {
                     </FlexRow>
                     <ExtensionRequirements>
                         <span>
-                            <img src="/svgs/extensions/windows.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/windows.svg"
+                            />
                                         Windows 10+
                         </span>
                         <span>
-                            <img src="/svgs/extensions/mac.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/mac.svg"
+                            />
                                         macOS 10.13+
                         </span>
                         <span>
-                            <img src="/svgs/extensions/bluetooth.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/bluetooth.svg"
+                            />
                                         Bluetooth 4.0
                         </span>
                         <span>
-                            <img src="/svgs/extensions/scratch-link.svg" />
+                            <img
+                                alt=""
+                                src="/svgs/extensions/scratch-link.svg"
+                            />
                                         Scratch Link
                         </span>
                     </ExtensionRequirements>
@@ -82,7 +100,10 @@ class MicroBit extends ExtensionLanding {
                         <Steps>
                             <Step number={1}>
                                 <div className="step-image">
-                                    <img src="/images/microbit/mbit-usb.png" />
+                                    <img
+                                        alt=""
+                                        src="/images/microbit/mbit-usb.png"
+                                    />
                                 </div>
                                 <p>
                                     <FormattedMessage id="microbit.connectUSB" />
@@ -90,7 +111,10 @@ class MicroBit extends ExtensionLanding {
                             </Step>
                             <Step number={2}>
                                 <div className="step-image">
-                                    <img src="/images/microbit/mbit-hex-download.png" />
+                                    <img
+                                        alt=""
+                                        src="/images/microbit/mbit-hex-download.png"
+                                    />
                                 </div>
                                 <a
                                     download
@@ -103,6 +127,7 @@ class MicroBit extends ExtensionLanding {
                             <Step number={3}>
                                 <div className="step-image">
                                     <img
+                                        alt={this.props.intl.formatMessage({id: 'microbit.imgAltDragDropHex'})}
                                         src={`/images/microbit/${
                                             this.state.OS === OS_ENUM.WINDOWS ? 'win' : 'mac'
                                         }-copy-hex.png`}
@@ -120,13 +145,20 @@ class MicroBit extends ExtensionLanding {
                         <Steps>
                             <Step number={1}>
                                 <div className="step-image">
-                                    <img src="/images/microbit/mbit-connect-1.png" />
+                                    <img
+                                        alt=""
+                                        src="/images/microbit/mbit-connect-1.png"
+                                    />
                                 </div>
                                 <p><FormattedMessage id="microbit.powerMicrobit" /></p>
                             </Step>
                             <Step number={2}>
                                 <div className="step-image">
-                                    <img src="/images/microbit/mbit-connect-2.png" />
+                                    <img
+                                        alt=""
+                                        className="screenshot"
+                                        src="/images/microbit/mbit-connect-2.png"
+                                    />
                                 </div>
                                 <p>
                                     <FormattedMessage
@@ -147,7 +179,11 @@ class MicroBit extends ExtensionLanding {
                             </Step>
                             <Step number={3}>
                                 <div className="step-image">
-                                    <img src="/images/microbit/mbit-connect-3.png" />
+                                    <img
+                                        alt={this.props.intl.formatMessage({id: 'extensionInstallation.addExtension'})}
+                                        className="screenshot"
+                                        src="/images/microbit/mbit-connect-3.png"
+                                    />
                                 </div>
                                 <p><FormattedMessage id="microbit.addExtension" /></p>
                             </Step>
@@ -175,7 +211,10 @@ class MicroBit extends ExtensionLanding {
                                 />
                             </span>
                             <div className="step-image">
-                                <img src="/images/microbit/display-hello-block.png" />
+                                <img
+                                    alt=""
+                                    src="/images/microbit/display-hello-block.png"
+                                />
                             </div>
                         </Step>
                         <Step
@@ -193,7 +232,10 @@ class MicroBit extends ExtensionLanding {
                                 />
                             </span>
                             <div className="step-image">
-                                <img src="/images/microbit/mbit-display-h.png" />
+                                <img
+                                    alt={this.props.intl.formatMessage({id: 'microbit.imgAltDisplayH'})}
+                                    src="/images/microbit/mbit-display-h.png"
+                                />
                             </div>
                         </Step>
                     </Steps>
@@ -201,20 +243,23 @@ class MicroBit extends ExtensionLanding {
                     <h3><FormattedMessage id="microbit.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/microbit/microbit-heartbeat.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239075756"
                             description={this.props.intl.formatMessage({id: 'microbit.heartBeatDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltHeartBeat'})}
                             imageSrc="/images/microbit/starter-heart.png"
                             title={this.props.intl.formatMessage({id: 'microbit.heartBeat'})}
                         />
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/microbit/microbit-guitar.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239075950"
                             description={this.props.intl.formatMessage({id: 'microbit.tiltGuitarDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltTiltGuitar'})}
                             imageSrc="/images/microbit/starter-guitar.png"
                             title={this.props.intl.formatMessage({id: 'microbit.tiltGuitar'})}
                         />
                         <ProjectCard
-                            cardUrl="https://downloads.scratch.mit.edu/microbit/microbit-fish.sb3"
+                            cardUrl="https://beta.scratch.mit.edu/#239075973"
                             description={this.props.intl.formatMessage({id: 'microbit.oceanAdventureDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltOceanAdventure'})}
                             imageSrc="/images/microbit/starter-fish.png"
                             title={this.props.intl.formatMessage({id: 'microbit.oceanAdventure'})}
                         />

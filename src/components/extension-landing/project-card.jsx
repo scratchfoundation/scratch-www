@@ -3,12 +3,15 @@ const React = require('react');
 
 const ProjectCard = props => (
     <a
-        download
         className="project-card"
         href={props.cardUrl}
+        target="_blank"
     >
         <div className="project-card-image">
-            <img src={props.imageSrc} />
+            <img
+                alt={props.imageAlt}
+                src={props.imageSrc}
+            />
         </div>
         <div className="project-card-info">
             <h4>{props.title}</h4>
@@ -20,6 +23,7 @@ const ProjectCard = props => (
 ProjectCard.propTypes = {
     cardUrl: PropTypes.string,
     description: PropTypes.string,
+    imageAlt: PropTypes.string,
     imageSrc: PropTypes.string,
     title: PropTypes.string
 };

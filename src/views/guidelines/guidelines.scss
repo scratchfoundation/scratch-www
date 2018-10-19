@@ -14,7 +14,7 @@
     }
 }
 
-@media only screen and (max-width: $tablet - 1){
+@media #{$medium-and-smaller}{
     .guidelines-footer {
         img {
             display: none;

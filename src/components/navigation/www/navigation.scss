@@ -163,98 +163,16 @@
             background-image: url("/images/mystuff.png");
         }
     }
-
-    .login-dropdown {
-        width: 200px;
-
-        .button {
-            padding: .75em;
-        }
-    }
-
-    .dropdown {
-        .row {
-            margin-bottom: 1.25rem;
-
-            input {
-                margin: 0;
-                height: 2.25rem;
-            }
-        }
-    }
-
-    .account-nav {
-        .user-info {
-            padding-top: 14px;
-            max-width: 260px;
-        }
-
-        > a {
-            display: inline-block;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-size: .8125rem;
-            font-weight: normal;
-
-            .avatar {
-                margin-right: 10px;
-                border-radius: 3px;
-                width: 24px;
-                height: 24px;
-                vertical-align: middle;
-            }
-
-            &.open {
-                background-color: $active-gray;
-            }
-
-            &:after {
-                display: inline-block;
-                margin-left: 8px;
-
-                background-image: url("/images/dropdown.png");
-                background-repeat: no-repeat;
-                background-position: center center;
-                background-size: 50%;
-                width: 20px;
-                height: 20px;
-                vertical-align: middle;
-                content: " ";
-            }
-        }
-
-        .dropdown {
-            top: 50px;
-            padding: 0;
-            padding-top: 5px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-    }
 }
 
 //4 columns
-@media only screen and (max-width: $mobile - 1) {
+@media #{$small} {
     #navigation .inner {
         width: $cols4;
 
         > ul > li {
             &.login-item {
                 margin-left: 0;
-            }
-
-            &.account-nav {
-                margin-left: 0;
-
-                > a {
-                    .avatar {
-                        margin-right: 0;
-                    }
-
-                    &:after {
-                        display: none;
-                    }
-                }
             }
         }
 
@@ -272,27 +190,13 @@
 
 
 //6 columns
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+@media #{$medium} {
     #navigation .inner {
         width: $cols6;
 
         > ul > li {
             &.login-item {
                 margin-left: 0;
-            }
-
-            &.account-nav {
-                margin-left: 0;
-
-                > a {
-                    .avatar {
-                        margin-right: 0;
-                    }
-
-                    &:after {
-                        display: none;
-                    }
-                }
             }
         }
 
@@ -308,13 +212,12 @@
 }
 
 //8 columns
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+@media #{$intermediate} {
     #navigation .inner {
         width: $cols8;
 
         > ul > li {
-            &.login-item,
-            &.account-nav {
+            &.login-item {
                 margin-left: 0;
             }
         }

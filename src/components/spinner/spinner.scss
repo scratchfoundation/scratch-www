@@ -1,118 +1,44 @@
-@import "../../colors";
-
-.spinner {
-    position: relative;
-    margin: 0 auto;
-    width: 20px;
-    height: 20px;
-
-    .circle {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-
-        &:before {
-            display: block;
-            animation: circleFadeDelay 1.2s infinite ease-in-out both;
-            margin: 0 auto;
-            border-radius: 100%;
-            background-color: $ui-gray;
-            width: 15%;
-            height: 15%;
-            content: "";
-
-            .white & {
-                background-color: $ui-blue-dark;
-            }
-        }
-    }
-
-    @for $i from 1 through 12 {
-        $rotation: 30deg * ($i - 1);
-        $delay: -1.3s + $i * .1;
-
-        .circle#{$i} {
-            transform: rotate($rotation);
-
-            &:before {
-                animation-delay: $delay;
-            }
-        }
-
-    }
-
+.studio-status-icon-spinner {
+    /* This class can be used on an icon that should spin.
+    It first plays the intro animation, then spins forever. */
+    animation-name: intro, spin;
+    animation-duration: .25s, .5s;
+    animation-timing-function: cubic-bezier(.3, -3, .6, 3), linear;
+    animation-delay: 0s, .25s;
+    animation-iteration-count: 1, infinite;
+    animation-direction: normal;
+    width: 1.4rem; /* standard is 1.4 rem but can be overwritten by parent */
+    height: 1.4rem;
+    -webkit-animation-name: intro, spin;
+    -webkit-animation-duration: .25s, .5s;
+    -webkit-animation-iteration-count: 1, infinite;
+    -webkit-animation-delay: 0s, .25s;
+    -webkit-animation-timing-function: cubic-bezier(.3, -3, .6, 3), linear;
+    transform-origin: center;
 }
 
-@keyframes circleFadeDelay {
-    0%,
-    39%,
+@keyframes intro {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+        -webkit-transform: scale(0);
+    }
+    
     100% {
-        opacity: 0;
-    }
-
-    40% {
+        transform: scale(1);
         opacity: 1;
+        -webkit-transform: scale(1);
     }
 }
 
-
-/*********************/
-/* type === "smooth" */
-/*********************/
-
-.spinner-smooth {
-    position: relative;
-    margin: 0 auto;
-    width: 20px;
-    height: 20px;
-
-    .circle {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-
-        &:before {
-            display: block;
-            animation: circleFadeDelaySmooth 1.8s infinite ease-in-out both;
-            margin: 0 auto;
-            border-radius: 100%;
-            background-color: $ui-white;
-            width: 30%;
-            height: 20%;
-            content: "";
-
-            .white & {
-                background-color: darken($ui-blue, 8%);
-            }
-        }
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+        -webkit-transform: rotate(0);
     }
 
-    @for $i from 1 through 24 {
-        $rotation: 15deg * ($i - 1);
-        $delay: -1.9s + $i * .075;
-
-        .circle#{$i} {
-            transform: rotate($rotation);
-
-            &:before {
-                animation-delay: $delay;
-            }
-        }
-
-    }
-
-}
-
-@keyframes circleFadeDelaySmooth {
-    0%,
-    35% {
-        opacity: 0;
-    },
-    40% {
-        opacity: 1;
+    100% {
+        transform: rotate(359deg);
+        -webkit-transform: rotate(359deg);
     }
 }

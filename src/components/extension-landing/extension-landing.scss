@@ -10,7 +10,11 @@
         padding: 4rem 0;
     }
 
-    h2 {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h1, h2 {
         margin-bottom: 1rem;
     }
 
@@ -46,6 +50,7 @@
     }
 
     .screenshot {
+        border: 1px solid $ui-border;
         border-radius: .5rem;
     }
 
@@ -84,15 +89,15 @@
                 margin-bottom: 5rem;
                 align-items: flex-start;
 
-                h2 {
+                h1, h2 {
                     display: flex;
                     margin-bottom: 2rem;
                     color: $ui-white;
-                }
 
-                h2 img {
-                    padding-right: .5rem;
-                    max-height: 100%;
+                    img {
+                        padding-right: .5rem;
+                        max-height: 100%;
+                    }
                 }
 
                 span {

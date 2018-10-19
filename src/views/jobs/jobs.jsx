@@ -35,14 +35,6 @@ const Jobs = () => (
                             MIT Media Lab, Cambridge, MA
                         </span>
                     </li>
-                    <li>
-                        <a href="https://scratch.mit.edu/jobs/moderator">
-                            Community Moderator
-                        </a>
-                        <span>
-                            Remote
-                        </span>
-                    </li>
                 </ul>
             </div>
         </div>

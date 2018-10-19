@@ -65,7 +65,7 @@
     }
 }
 
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+@media #{$intermediate} {
     .beta-middle-banner {
         margin: 20px auto 40px auto;
         width: $cols8;

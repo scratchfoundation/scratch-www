@@ -74,6 +74,7 @@ const Thumbnail = props => {
             <a
                 href={props.href}
                 key="titleElement"
+                title={props.title}
             >
                 {props.title}
             </a>

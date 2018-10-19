@@ -5,10 +5,10 @@
 
     $thumbnail-width: 220px;
     $thumbnail-inner-width: 204px;
-    
+
     $project-height: 208px;
     $gallery-height: 164px;
-    
+
     margin: 0 auto;
     padding: 12px 0;
     justify-content: flex-start;
@@ -16,14 +16,13 @@
 
     .thumbnail {
         margin: 7px;
-        border-radius: 4px;
-        box-shadow: 0 0 0 1px $active-gray;
-        background-color: $ui-white;
-        padding-bottom: 4px;
         width: $thumbnail-width;
 
         .thumbnail-image {
             margin: 8px auto;
+            border-radius: 4px;
+            box-shadow: 0 0 0 1px $active-gray;
+            background-color: $ui-white;
             width: $thumbnail-inner-width;
         }
 
@@ -45,9 +44,18 @@
             .thumbnail-title {
                 float: left;
                 max-width: 164px;
+                overflow: hidden;
+                text-align: left;
 
                 .thumbnail-creator a {
                     color: $type-gray;
+                }
+
+                a {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    word-wrap: break-word;
                 }
             }
         }
