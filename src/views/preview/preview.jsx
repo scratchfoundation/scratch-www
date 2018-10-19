@@ -240,17 +240,12 @@ class Preview extends React.Component {
             );
         }
     }
-    handleToggleStudio (id) {
-        const studioId = parseInt(id, 10);
-        if (isNaN(studioId)) { // sanity check in case event had no integer data-id
-            return;
-        }
-        const studio = this.props.studios.find(thisStudio => (thisStudio.id === studioId));
+    handleToggleStudio (studio) {
         // only send add or leave request to server if we know current status
         if ((typeof studio !== 'undefined') && ('includesProject' in studio)) {
             this.props.toggleStudio(
                 (studio.includesProject === false),
-                studioId,
+                studio.id,
                 this.props.projectInfo.id,
                 this.props.user.token
             );
@@ -372,7 +367,6 @@ class Preview extends React.Component {
                         remixes={this.props.remixes}
                         replies={this.props.replies}
                         reportOpen={this.state.reportOpen}
-                        studios={this.props.studios}
                         userOwnsProject={this.props.userOwnsProject}
                         onAddComment={this.handleAddComment}
                         onAddToStudioClicked={this.handleAddToStudioClick}
@@ -476,7 +470,6 @@ Preview.propTypes = {
     setFullScreen: PropTypes.func.isRequired,
     setLovedStatus: PropTypes.func.isRequired,
     setPlayer: PropTypes.func.isRequired,
-    studios: PropTypes.arrayOf(PropTypes.object),
     toggleStudio: PropTypes.func.isRequired,
     updateProject: PropTypes.func.isRequired,
     user: PropTypes.shape({
@@ -501,40 +494,6 @@ Preview.defaultProps = {
     projectHost: process.env.PROJECT_HOST,
     sessionStatus: sessionActions.Status.NOT_FETCHED,
     user: {}
-};
-
-// Build consolidated curatedStudios object from all studio info.
-// We add flags to indicate whether the project is currently in the studio,
-// and the status of requests to join/leave studios.
-const consolidateStudiosInfo = (curatedStudios, projectStudios, currentStudioIds, studioRequests) => {
-    const consolidatedStudios = [];
-
-    projectStudios.forEach(projectStudio => {
-        const includesProject = (currentStudioIds.indexOf(projectStudio.id) !== -1);
-        const consolidatedStudio =
-            Object.assign({}, projectStudio, {includesProject: includesProject});
-        consolidatedStudios.push(consolidatedStudio);
-    });
-
-    // copy the curated studios that project is not in
-    curatedStudios.forEach(curatedStudio => {
-        if (!projectStudios.some(projectStudio => (projectStudio.id === curatedStudio.id))) {
-            const includesProject = (currentStudioIds.indexOf(curatedStudio.id) !== -1);
-            const consolidatedStudio =
-                Object.assign({}, curatedStudio, {includesProject: includesProject});
-            consolidatedStudios.push(consolidatedStudio);
-        }
-    });
-
-    // set studio state to hasRequestOutstanding==true if it's being fetched,
-    // false if it's not
-    consolidatedStudios.forEach(consolidatedStudio => {
-        const id = consolidatedStudio.id;
-        consolidatedStudio.hasRequestOutstanding =
-            ((id in studioRequests) &&
-           (studioRequests[id] === previewActions.Status.FETCHING));
-    });
-    return consolidatedStudios;
 };
 
 const mapStateToProps = state => {
@@ -578,9 +537,6 @@ const mapStateToProps = state => {
         remixes: state.preview.remixes,
         replies: state.preview.replies,
         sessionStatus: state.session.status, // check if used
-        studios: consolidateStudiosInfo(state.preview.curatedStudios,
-            state.preview.projectStudios, state.preview.currentStudioIds,
-            state.preview.status.studioRequests),
         user: state.session.session.user,
         userOwnsProject: userOwnsProject
     };

@@ -4,7 +4,7 @@ const React = require('react');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
 const Button = require('../../components/forms/button.jsx');
-const AddToStudioModal = require('../../components/modal/addtostudio/container.jsx');
+const AddToStudioModal = require('./add-to-studio.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 
 require('./subactions.scss');
@@ -35,14 +35,15 @@ const Subactions = props => (
                         onClick={props.onAddToStudioClicked}
                     >
                         Add to Studio
-                    </Button>,
-                    <AddToStudioModal
-                        isOpen={props.addToStudioOpen}
-                        key="add-to-studio-modal"
-                        studios={props.studios}
-                        onRequestClose={props.onAddToStudioClosed}
-                        onToggleStudio={props.onToggleStudio}
-                    />
+                    </Button>
+                    {props.addToStudioOpen && (
+                        <AddToStudioModal
+                            isOpen
+                            key="add-to-studio-modal"
+                            onRequestClose={props.onAddToStudioClosed}
+                            onToggleStudio={props.onToggleStudio}
+                        />
+                    )}
                 </React.Fragment>
             }
             <Button className="action-button copy-link-button">
@@ -56,14 +57,16 @@ const Subactions = props => (
                     onClick={props.onReportClicked}
                 >
                     Report
-                </Button>,
-                <ReportModal
-                    isOpen={props.reportOpen}
-                    key="report-modal"
-                    type="project"
-                    onReport={props.onReportSubmit}
-                    onRequestClose={props.onReportClose}
-                />
+                </Button>
+                {props.reportOpen && (
+                    <ReportModal
+                        isOpen
+                        key="report-modal"
+                        type="project"
+                        onReport={props.onReportSubmit}
+                        onRequestClose={props.onReportClose}
+                    />
+                )}
             </React.Fragment>
             }
         </FlexRow>
@@ -81,8 +84,7 @@ Subactions.propTypes = {
     onReportSubmit: PropTypes.func.isRequired,
     onToggleStudio: PropTypes.func,
     reportOpen: PropTypes.bool,
-    shareDate: PropTypes.string,
-    studios: PropTypes.arrayOf(PropTypes.object)
+    shareDate: PropTypes.string
 };
 
 module.exports = Subactions;
