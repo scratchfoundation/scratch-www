@@ -103,7 +103,8 @@ $story-width: $cols3;
         margin-bottom: 3rem;
     }
 
-    #overview {
+    #overview,
+    #faq  {
         .nav-spacer {
             display: block;
             visibility: hidden;
