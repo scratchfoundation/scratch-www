@@ -129,7 +129,7 @@ const Credits = () => (
                     <FormattedHTMLMessage id="credits.acknowledgementsTitle" />
                 </h2>
                 <p>
-                    <FormattedHTMLMessage id="credits.pastAcknowledgements" />
+                    <FormattedHTMLMessage id="credits.acknowledgementsContributors" />
                 </p>
                 <p>
                     Susan Abend, Robbie Berg, Lauren Bessen, Keith Braadfladt,
