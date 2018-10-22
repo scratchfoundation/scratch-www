@@ -23,8 +23,8 @@ class TopLevelComment extends React.Component {
             expanded: false
         };
 
-        // A cache of {commentId: username, ...} in order to show reply usernames
-        this.commentUsernameCache = {};
+        // A cache of {userId: username, ...} in order to show reply usernames
+        this.authorUsernameCache = {};
     }
 
     handleExpandThread () {
@@ -53,17 +53,19 @@ class TopLevelComment extends React.Component {
         this.props.onAddComment(comment, this.props.id);
     }
 
-    commentUsername (parentId) {
-        if (this.commentUsernameCache[parentId]) return this.commentUsernameCache[parentId];
+    authorUsername (authorId) {
+        if (this.authorUsernameCache[authorId]) return this.authorUsernameCache[authorId];
 
         // If the cache misses, rebuild it. Every reply has a parent id that is
         // either a reply to this top level comment or to one of the replies.
-        this.commentUsernameCache[this.props.id] = this.props.author.username;
+        this.authorUsernameCache[this.props.author.id] = this.props.author.username;
         const replies = this.props.replies;
         for (let i = 0; i < replies.length; i++) {
-            this.commentUsernameCache[replies[i].id] = replies[i].author.username;
+            this.authorUsernameCache[replies[i].author.id] = replies[i].author.username;
         }
-        return this.commentUsernameCache[parentId];
+        // Default to top level author if no author is found from authorId
+        // This can happen if there is no commentee_id stored with the comment
+        return this.authorUsernameCache[authorId] || this.props.author.username;
     }
 
     render () {
@@ -126,8 +128,9 @@ class TopLevelComment extends React.Component {
                                 datetimeCreated={reply.datetime_created}
                                 id={reply.id}
                                 key={reply.id}
+                                parentId={id}
                                 projectId={projectId}
-                                replyUsername={this.commentUsername(reply.parent_id)}
+                                replyUsername={this.authorUsername(reply.commentee_id)}
                                 visibility={reply.visibility}
                                 onAddComment={this.handleAddComment}
                                 onDelete={this.handleDeleteReply}

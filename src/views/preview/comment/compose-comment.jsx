@@ -58,7 +58,7 @@ class ComposeComment extends React.Component {
             json: {
                 content: this.state.message,
                 parent_id: this.props.parentId || '',
-                comentee_id: this.props.comenteeId || ''
+                commentee_id: this.props.commenteeId || ''
             }
         }, (err, body, res) => {
             if (err || res.statusCode !== 200) {
@@ -158,7 +158,7 @@ class ComposeComment extends React.Component {
 }
 
 ComposeComment.propTypes = {
-    comenteeId: PropTypes.number,
+    commenteeId: PropTypes.number,
     onAddComment: PropTypes.func,
     onCancel: PropTypes.func,
     parentId: PropTypes.number,

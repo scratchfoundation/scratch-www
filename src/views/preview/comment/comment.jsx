@@ -93,6 +93,7 @@ class Comment extends React.Component {
             content,
             datetimeCreated,
             id,
+            parentId,
             projectId,
             replyUsername,
             visibility
@@ -192,7 +193,8 @@ class Comment extends React.Component {
                     {this.state.replying ? (
                         <FlexRow className="comment-reply-row">
                             <ComposeComment
-                                parentId={id}
+                                commenteeId={author.id}
+                                parentId={parentId || id}
                                 projectId={projectId}
                                 onAddComment={this.handlePostReply}
                                 onCancel={this.handleToggleReplying}
@@ -241,6 +243,7 @@ Comment.propTypes = {
     onDelete: PropTypes.func,
     onReport: PropTypes.func,
     onRestore: PropTypes.func,
+    parentId: PropTypes.number,
     projectId: PropTypes.string,
     replyUsername: PropTypes.string,
     visibility: PropTypes.string
