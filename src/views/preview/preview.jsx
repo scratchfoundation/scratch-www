@@ -547,7 +547,6 @@ Preview.defaultProps = {
 const mapStateToProps = state => {
     const projectInfoPresent = state.preview.projectInfo &&
             Object.keys(state.preview.projectInfo).length > 0 && state.preview.projectInfo.id > 0;
-    const projectIsDefault = (state.projectId === '0');
     const userPresent = state.session.session.user !== null &&
         typeof state.session.session.user !== 'undefined' &&
         Object.keys(state.session.session.user).length > 0;
@@ -561,10 +560,10 @@ const mapStateToProps = state => {
 
     return {
         canAddToStudio: userOwnsProject,
-        canCreateNew: true,
+        canCreateNew: isLoggedIn,
         canRemix: isLoggedIn && projectInfoPresent && !userOwnsProject,
         canReport: isLoggedIn && !userOwnsProject,
-        canSave: isLoggedIn && (userOwnsProject || projectIsDefault), // can save a new project
+        canSave: isLoggedIn && userOwnsProject,
         canSaveAsCopy: userOwnsProject && projectInfoPresent,
         canShare: userOwnsProject && state.permissions.social,
         comments: state.preview.comments,
