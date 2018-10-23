@@ -2,14 +2,14 @@
 
 .about {
     .masthead {
-        display: flex;
-        flex-wrap: no-wrap;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(461px, 1fr));;
         justify-content: space-between;
         align-items: stretch;
 
         div {
             display: inline-block;
-            width: calc(50% - 10px);
+            width: calc(100% - 10px);
 
             ul {
                 margin: 0;
