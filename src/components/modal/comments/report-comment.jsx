@@ -61,7 +61,7 @@ const ReportModal = ({
                             onClick={onReport}
                         >
                             <div className="action-button-text">
-                                <FormattedMessage id="comments.report" />
+                                <FormattedMessage id="general.report" />
                             </div>
                         </Button>
                     )}

@@ -140,14 +140,14 @@ const PreviewPresentation = ({
                                     {/* TODO: Hide Remix button for now until implemented */}
                                     {(!userOwnsProject && false) &&
                                         <Button className="button remix-button">
-                                            Remix
+                                            <FormattedMessage id="preview.remixButton" />
                                         </Button>
                                     }
                                     <Button
                                         className="button see-inside-button"
                                         onClick={onSeeInside}
                                     >
-                                        See Inside
+                                        <FormattedMessage id="preview.seeInsideButton" />
                                     </Button>
                                 </div>
                             </MediaQuery>
@@ -213,7 +213,7 @@ const PreviewPresentation = ({
                                 </MediaQuery>
                                 <FlexRow className="description-block">
                                     <div className="project-textlabel">
-                                        Instructions
+                                        <FormattedMessage id="preview.instructionsLabel" />
                                     </div>
                                     {editable ?
                                         <InplaceInput
@@ -244,7 +244,7 @@ const PreviewPresentation = ({
                                 </FlexRow>
                                 <FlexRow className="description-block">
                                     <div className="project-textlabel">
-                                        Notes and Credits
+                                        <FormattedMessage id="preview.notesAndCreditsLabel" />
                                     </div>
                                     {editable ?
                                         <InplaceInput
@@ -386,7 +386,7 @@ const PreviewPresentation = ({
                                             className="button load-more-button"
                                             onClick={onLoadMore}
                                         >
-                                            Load More
+                                            <FormattedMessage id="general.loadMore" />
                                         </Button>
                                         }
                                     </FlexRow>

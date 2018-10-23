@@ -1,4 +1,5 @@
 const FormattedDate = require('react-intl').FormattedDate;
+const FormattedMessage = require('react-intl').FormattedMessage;
 const PropTypes = require('prop-types');
 const React = require('react');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
@@ -34,7 +35,7 @@ const Subactions = props => (
                         key="add-to-studio-button"
                         onClick={props.onAddToStudioClicked}
                     >
-                        Add to Studio
+                        <FormattedMessage id="addToStudio.title" />
                     </Button>
                     {props.addToStudioOpen && (
                         <AddToStudioModal
@@ -47,7 +48,7 @@ const Subactions = props => (
                 </React.Fragment>
             }
             <Button className="action-button copy-link-button">
-              Copy Link
+                <FormattedMessage id="general.copyLink" />
             </Button>
             {(props.canReport) &&
             <React.Fragment>
@@ -56,7 +57,7 @@ const Subactions = props => (
                     key="report-button"
                     onClick={props.onReportClicked}
                 >
-                    Report
+                    <FormattedMessage id="general.report" />
                 </Button>
                 {props.reportOpen && (
                     <ReportModal

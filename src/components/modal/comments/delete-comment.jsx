@@ -55,7 +55,7 @@ const DeleteModal = ({
                         type="button"
                         onClick={onReport}
                     >
-                        <FormattedMessage id="comments.report" />
+                        <FormattedMessage id="general.report" />
                     </Button>
                     <Button
                         className="action-button submit-button"
