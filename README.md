@@ -84,7 +84,7 @@ To stop the process that is making the site available to your web browser (creat
 | Variable        | Default                            | Description                                    |
 | --------------- | ---------------------------------- | ---------------------------------------------- |
 | `API_HOST`      | `https://api.scratch.mit.edu`      | Hostname for API requests                      |
-| `ASSETS_HOST`   | `https://assets.scratch.mit.edu`   | Hostname for asset requests                    |
+| `ASSET_HOST`    | `https://assets.scratch.mit.edu`   | Hostname for asset requests                    |
 | `BACKPACK_HOST` | `https://backpack.scratch.mit.edu` | Hostname for backpack requests                 |
 | `PROJECTS_HOST` | `https://projects.scratch.mit.edu` | Hostname for project requests                  |
 | `SENTRY_DSN`    | `''`                               | DSN for Sentry                                 |
