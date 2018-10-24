@@ -10,13 +10,13 @@ const ShareBanner = ({onShare}) => (
     <div className="share-banner-outer">
         <FlexRow className="inner share-banner">
             <span className="share-text">
-                <FormattedMessage id="preview.share.notShared" />
+                <FormattedMessage id="project.share.notShared" />
             </span>
             <Button
                 className="button share-button"
                 onClick={onShare}
             >
-                <FormattedMessage id="preview.share.shareButton" />
+                <FormattedMessage id="project.share.shareButton" />
             </Button>
         </FlexRow>
     </div>

@@ -15,7 +15,7 @@ const RemixCredit = props => {
             />
             <div className="credit-text">
                 <FormattedMessage
-                    id="preview.credit"
+                    id="project.credit"
                     values={{
                         userLink: (
                             <a href={`/users/${projectInfo.author.username}`}>

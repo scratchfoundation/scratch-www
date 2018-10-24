@@ -11,11 +11,11 @@ const RemixList = props => {
     return (
         <FlexRow className="remix-list">
             <div className="list-title">
-                <FormattedMessage id="preview.remixes" />
+                <FormattedMessage id="project.remixes" />
             </div>
             {remixes.length === 0 ? (
                 // TODO: style remix invitation
-                <FormattedMessage id="preview.inviteToRemix" />
+                <FormattedMessage id="project.inviteToRemix" />
             ) : (
                 <ThumbnailColumn
                     cards

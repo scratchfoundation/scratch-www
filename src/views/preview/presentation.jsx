@@ -114,7 +114,7 @@ const PreviewPresentation = ({
                                             name="title"
                                             validationErrors={{
                                                 maxLength: intl.formatMessage({
-                                                    id: 'preview.titleMaxLength'
+                                                    id: 'project.titleMaxLength'
                                                 })
                                             }}
                                             validations={{
@@ -140,14 +140,14 @@ const PreviewPresentation = ({
                                     {/* TODO: Hide Remix button for now until implemented */}
                                     {(!userOwnsProject && false) &&
                                         <Button className="button remix-button">
-                                            <FormattedMessage id="preview.remixButton" />
+                                            <FormattedMessage id="project.remixButton" />
                                         </Button>
                                     }
                                     <Button
                                         className="button see-inside-button"
                                         onClick={onSeeInside}
                                     >
-                                        <FormattedMessage id="preview.seeInsideButton" />
+                                        <FormattedMessage id="project.seeInsideButton" />
                                     </Button>
                                 </div>
                             </MediaQuery>
@@ -213,7 +213,7 @@ const PreviewPresentation = ({
                                 </MediaQuery>
                                 <FlexRow className="description-block">
                                     <div className="project-textlabel">
-                                        <FormattedMessage id="preview.instructionsLabel" />
+                                        <FormattedMessage id="project.instructionsLabel" />
                                     </div>
                                     {editable ?
                                         <InplaceInput
@@ -244,7 +244,7 @@ const PreviewPresentation = ({
                                 </FlexRow>
                                 <FlexRow className="description-block">
                                     <div className="project-textlabel">
-                                        <FormattedMessage id="preview.notesAndCreditsLabel" />
+                                        <FormattedMessage id="project.notesAndCreditsLabel" />
                                     </div>
                                     {editable ?
                                         <InplaceInput
@@ -325,7 +325,7 @@ const PreviewPresentation = ({
                             <FlexRow className="preview-row">
                                 <div className="comments-container">
                                     <FlexRow className="comments-header">
-                                        <h4><FormattedMessage id="preview.comments.header" /></h4>
+                                        <h4><FormattedMessage id="project.comments.header" /></h4>
                                         {userOwnsProject ? (
                                             <div>
                                                 <label>
@@ -335,7 +335,7 @@ const PreviewPresentation = ({
                                                         type="checkbox"
                                                         onChange={onToggleComments}
                                                     />
-                                                    <FormattedMessage id="preview.comments.turnOff" />
+                                                    <FormattedMessage id="project.comments.turnOff" />
                                                 </label>
                                             </div>
                                         ) : null}
@@ -354,7 +354,7 @@ const PreviewPresentation = ({
                                             )
                                         ) : (
                                             <div className="comments-turned-off">
-                                                <FormattedMessage id="preview.comments.turnedOff" />
+                                                <FormattedMessage id="project.comments.turnedOff" />
                                             </div>
                                         )}
                                     </FlexRow>
