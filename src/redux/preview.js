@@ -37,7 +37,8 @@ module.exports.getInitialState = () => ({
     parent: {},
     projectStudios: [],
     curatedStudios: [],
-    currentStudioIds: []
+    currentStudioIds: [],
+    moreCommentsToLoad: false
 });
 
 module.exports.previewReducer = (state, action) => {
@@ -153,6 +154,10 @@ module.exports.previewReducer = (state, action) => {
         state = JSON.parse(JSON.stringify(state));
         state.status.studioRequests[action.studioId] = action.status;
         return state;
+    case 'SET_MORE_COMMENTS_TO_LOAD':
+        return Object.assign({}, state, {
+            moreCommentsToLoad: action.moreCommentsToLoad
+        });
     case 'ERROR':
         log.error(action.error);
         return state;
@@ -291,6 +296,11 @@ module.exports.addNewComment = (comment, topLevelCommentId) => ({
     topLevelCommentId: topLevelCommentId
 });
 
+module.exports.setMoreCommentsToLoad = moreCommentsToLoad => ({
+    type: 'SET_MORE_COMMENTS_TO_LOAD',
+    moreCommentsToLoad: moreCommentsToLoad
+});
+
 module.exports.getProjectInfo = (id, token) => (dispatch => {
     const opts = {
         uri: `/projects/${id}`
@@ -377,11 +387,12 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
 });
 
 module.exports.getTopLevelComments = (id, offset, isAdmin, token) => (dispatch => {
+    const COMMENT_LIMIT = 20;
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
         uri: `${isAdmin ? '/admin' : ''}/comments/project/${id}`,
         authentication: isAdmin ? token : null,
-        params: {offset: offset || 0}
+        params: {offset: offset || 0, limit: COMMENT_LIMIT}
     }, (err, body) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
@@ -396,6 +407,13 @@ module.exports.getTopLevelComments = (id, offset, isAdmin, token) => (dispatch =
         dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
         dispatch(module.exports.setComments(body));
         dispatch(module.exports.getReplies(id, body.map(comment => comment.id), isAdmin, token));
+
+        // If we loaded a full page of comments, assume there are more to load.
+        // This will be wrong (1 / COMMENT_LIMIT) of the time, but does not require
+        // any more server query complexity, so seems worth it. In the case of a project with
+        // number of comments divisible by the COMMENT_LIMIT, the load more button will be
+        // clickable, but upon clicking it will go away.
+        dispatch(module.exports.setMoreCommentsToLoad(body.length === COMMENT_LIMIT));
     });
 });
 
