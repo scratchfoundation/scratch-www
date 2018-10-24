@@ -379,7 +379,7 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
 module.exports.getTopLevelComments = (id, offset, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
-        uri: `${isAdmin ? '/admin' : ''}/comments/project/${id}`,
+        uri: `${isAdmin ? '/admin' : ''}/projects/${id}/comments`,
         authentication: isAdmin ? token : null,
         params: {offset: offset || 0}
     }, (err, body) => {
@@ -404,7 +404,7 @@ module.exports.getReplies = (projectId, commentIds, isAdmin, token) => (dispatch
     const fetchedReplies = {};
     async.eachLimit(commentIds, 10, (parentId, callback) => {
         api({
-            uri: `${isAdmin ? '/admin' : ''}/comments/project/${projectId}/${parentId}`,
+            uri: `${isAdmin ? '/admin' : ''}/projects/${projectId}/comments/${parentId}/replies`,
             authentication: isAdmin ? token : null
         }, (err, body) => {
             if (err) {
