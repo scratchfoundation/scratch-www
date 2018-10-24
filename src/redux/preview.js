@@ -417,6 +417,35 @@ module.exports.getTopLevelComments = (id, offset, isAdmin, token) => (dispatch =
     });
 });
 
+module.exports.getCommentById = (projectId, commentId, isAdmin, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
+    api({
+        uri: `${isAdmin ? '/admin' : ''}/projects/comments/${commentId}`,
+        authentication: isAdmin ? token : null
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (!body) {
+            dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No comment info'));
+            return;
+        }
+
+        if (body.parent_id) {
+            // If the comment is a reply, load the parent
+            return dispatch(module.exports.getCommentById(projectId, body.parent_id, isAdmin, token));
+        }
+
+        // If the comment is not a reply, show it as top level and load replies
+        dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
+        dispatch(module.exports.setComments([body]));
+        dispatch(module.exports.getReplies(projectId, [body.id], isAdmin, token));
+    });
+});
+
 module.exports.getReplies = (projectId, commentIds, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('replies', module.exports.Status.FETCHING));
     const fetchedReplies = {};

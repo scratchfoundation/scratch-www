@@ -26,7 +26,8 @@ class Comment extends React.Component {
             'handleCancelReport',
             'handlePostReply',
             'handleToggleReplying',
-            'handleRestore'
+            'handleRestore',
+            'setRef'
         ]);
         this.state = {
             deleting: false,
@@ -34,6 +35,12 @@ class Comment extends React.Component {
             reportConfirmed: false,
             replying: false
         };
+    }
+
+    componentDidMount () {
+        if (this.props.highlighted) {
+            this.ref.scrollIntoView({behavior: 'smooth'});
+        }
     }
 
     handlePostReply (comment) {
@@ -82,6 +89,9 @@ class Comment extends React.Component {
             reportConfirmed: false
         });
     }
+    setRef (ref) {
+        this.ref = ref;
+    }
 
     render () {
         const {
@@ -92,6 +102,7 @@ class Comment extends React.Component {
             canRestore,
             content,
             datetimeCreated,
+            highlighted,
             id,
             parentId,
             projectId,
@@ -103,8 +114,11 @@ class Comment extends React.Component {
 
         return (
             <div
-                className="flex-row comment"
-                id={`comments-${id}`}
+                className={classNames('flex-row', 'comment', {
+                    'highlighted-comment': highlighted
+                })}
+                id={`comment-${id}`}
+                ref={this.setRef}
             >
                 <a href={`/users/${author.username}`}>
                     <Avatar src={author.image} />
@@ -238,6 +252,7 @@ Comment.propTypes = {
     canRestore: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
+    highlighted: PropTypes.bool,
     id: PropTypes.number,
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,

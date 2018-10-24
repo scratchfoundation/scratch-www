@@ -69,6 +69,17 @@
     justify-content: space-between;
     align-items: flex-start;
 
+    &.highlighted-comment:before {
+        position: absolute;
+        top: -.5rem;
+        left: -.5rem;
+        border-radius: .5rem;
+        background: $ui-blue-10percent;
+        width: calc(100% + 1rem);
+        height: 100%;
+        content: "";
+    }
+
     .comment-top-row {
         margin-bottom: 8px;
         width: 100%;

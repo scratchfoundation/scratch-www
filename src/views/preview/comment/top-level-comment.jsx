@@ -20,7 +20,7 @@ class TopLevelComment extends React.Component {
             'handleRestoreReply'
         ]);
         this.state = {
-            expanded: false
+            expanded: this.props.defaultExpanded
         };
 
         // A cache of {userId: username, ...} in order to show reply usernames
@@ -77,6 +77,7 @@ class TopLevelComment extends React.Component {
             canRestore,
             content,
             datetimeCreated,
+            highlightedCommentId,
             id,
             onDelete,
             onReport,
@@ -91,6 +92,7 @@ class TopLevelComment extends React.Component {
         return (
             <FlexRow className="comment-container">
                 <Comment
+                    highlighted={highlightedCommentId === id}
                     projectId={projectId}
                     onAddComment={this.handleAddComment}
                     {...{
@@ -126,6 +128,7 @@ class TopLevelComment extends React.Component {
                                 canRestore={canRestore && parentVisible}
                                 content={reply.content}
                                 datetimeCreated={reply.datetime_created}
+                                highlighted={highlightedCommentId === reply.id}
                                 id={reply.id}
                                 key={reply.id}
                                 parentId={id}
@@ -171,7 +174,9 @@ TopLevelComment.propTypes = {
     canRestore: PropTypes.bool,
     content: PropTypes.string,
     datetimeCreated: PropTypes.string,
+    defaultExpanded: PropTypes.bool,
     deletable: PropTypes.bool,
+    highlightedCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     id: PropTypes.number,
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
@@ -181,6 +186,10 @@ TopLevelComment.propTypes = {
     projectId: PropTypes.string,
     replies: PropTypes.arrayOf(PropTypes.object),
     visibility: PropTypes.string
+};
+
+TopLevelComment.defaultProps = {
+    defaultExpanded: false
 };
 
 module.exports = TopLevelComment;

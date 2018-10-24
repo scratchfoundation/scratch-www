@@ -70,6 +70,7 @@ const PreviewPresentation = ({
     replies,
     addToStudioOpen,
     projectStudios,
+    singleCommentId,
     userOwnsProject,
     onAddComment,
     onDeleteComment,
@@ -369,6 +370,8 @@ const PreviewPresentation = ({
                                                 canRestore={canRestoreComments}
                                                 content={comment.content}
                                                 datetimeCreated={comment.datetime_created}
+                                                defaultExpanded={!!singleCommentId}
+                                                highlightedCommentId={singleCommentId}
                                                 id={comment.id}
                                                 key={comment.id}
                                                 parentId={comment.parent_id}
@@ -453,6 +456,7 @@ PreviewPresentation.propTypes = {
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
     reportOpen: PropTypes.bool,
+    singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     userOwnsProject: PropTypes.bool
 };
 
