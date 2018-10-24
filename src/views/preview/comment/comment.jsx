@@ -11,6 +11,7 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const ComposeComment = require('./compose-comment.jsx');
 const DeleteCommentModal = require('../../../components/modal/comments/delete-comment.jsx');
 const ReportCommentModal = require('../../../components/modal/comments/report-comment.jsx');
+const decorateText = require('../../../lib/decorate-text.jsx');
 
 require('./comment.scss');
 
@@ -101,6 +102,16 @@ class Comment extends React.Component {
 
         const visible = visibility === 'visible';
 
+        let commentText = content;
+        if (replyUsername) {
+            commentText = `@${replyUsername} ${commentText}`;
+        }
+        commentText = decorateText(commentText, {
+            scratchLinks: true,
+            usernames: true,
+            hashtags: false
+        });
+
         return (
             <div
                 className="flex-row comment"
@@ -167,13 +178,17 @@ class Comment extends React.Component {
                           */}
 
                         <span className="comment-content">
-                            {replyUsername && (
-                                <a href={`/users/${replyUsername}`}>@{replyUsername}&nbsp;</a>
-                            )}
-                            <EmojiText
-                                as="span"
-                                text={content}
-                            />
+                            {commentText.map(fragment => {
+                                if (typeof fragment === 'string') {
+                                    return (
+                                        <EmojiText
+                                            as="span"
+                                            text={fragment}
+                                        />
+                                    );
+                                }
+                                return fragment;
+                            })}
                         </span>
                         <FlexRow className="comment-bottom-row">
                             <span className="comment-time">

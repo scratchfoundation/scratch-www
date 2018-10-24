@@ -238,7 +238,11 @@ const PreviewPresentation = ({
                                             value={projectInfo.instructions}
                                         /> :
                                         <div className="project-description">
-                                            {decorateText(projectInfo.instructions)}
+                                            {decorateText(projectInfo.instructions, {
+                                                usernames: true,
+                                                hashtags: true,
+                                                scratchLinks: false
+                                            })}
                                         </div>
                                     }
                                 </FlexRow>
@@ -270,7 +274,11 @@ const PreviewPresentation = ({
                                             value={projectInfo.description}
                                         /> :
                                         <div className="project-description last">
-                                            {decorateText(projectInfo.description)}
+                                            {decorateText(projectInfo.description, {
+                                                usernames: true,
+                                                hashtags: true,
+                                                scratchLinks: false
+                                            })}
                                         </div>
                                     }
                                 </FlexRow>
