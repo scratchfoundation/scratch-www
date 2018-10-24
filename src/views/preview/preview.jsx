@@ -436,10 +436,10 @@ class Preview extends React.Component {
                         assetHost={this.props.assetHost}
                         backpackOptions={this.props.backpackOptions}
                         basePath="/"
+                        canCreateCopy={this.props.canCreateCopy}
                         canCreateNew={this.props.canCreateNew}
                         canRemix={this.props.canRemix}
                         canSave={this.props.canSave}
-                        canSaveAsCopy={this.props.canSaveAsCopy}
                         canShare={this.props.canShare}
                         className="gui"
                         enableCommunity={this.props.enableCommunity}
@@ -470,11 +470,11 @@ Preview.propTypes = {
         visible: PropTypes.bool
     }),
     canAddToStudio: PropTypes.bool,
+    canCreateCopy: PropTypes.bool,
     canCreateNew: PropTypes.bool,
     canRemix: PropTypes.bool,
     canReport: PropTypes.bool,
     canSave: PropTypes.bool,
-    canSaveAsCopy: PropTypes.bool,
     canShare: PropTypes.bool,
     comments: PropTypes.arrayOf(PropTypes.object),
     enableCommunity: PropTypes.bool,
@@ -547,7 +547,8 @@ Preview.defaultProps = {
 };
 
 const mapStateToProps = state => {
-    const projectInfoPresent = Object.keys(state.preview.projectInfo).length > 0;
+    const projectInfoPresent = state.preview.projectInfo &&
+            Object.keys(state.preview.projectInfo).length > 0 && state.preview.projectInfo.id > 0;
     const userPresent = state.session.session.user !== null &&
         typeof state.session.session.user !== 'undefined' &&
         Object.keys(state.session.session.user).length > 0;
@@ -560,15 +561,15 @@ const mapStateToProps = state => {
         state.session.session.user.id === state.preview.projectInfo.author.id;
 
     return {
-        canAddToStudio: isLoggedIn && userOwnsProject,
-        canCreateNew: true,
-        canRemix: false,
+        canAddToStudio: userOwnsProject,
+        canCreateCopy: userOwnsProject && projectInfoPresent,
+        canCreateNew: isLoggedIn,
+        canRemix: isLoggedIn && projectInfoPresent && !userOwnsProject,
         canReport: isLoggedIn && !userOwnsProject,
-        canSave: isLoggedIn && (userOwnsProject || !state.preview.projectInfo.id),
-        canSaveAsCopy: false,
+        canSave: isLoggedIn && userOwnsProject,
         canShare: userOwnsProject && state.permissions.social,
         comments: state.preview.comments,
-        enableCommunity: state.preview.projectInfo && state.preview.projectInfo.id > 0,
+        enableCommunity: projectInfoPresent,
         faved: state.preview.faved,
         fullScreen: state.scratchGui.mode.isFullScreen,
         // project is editable iff logged in user is the author of the project, or
