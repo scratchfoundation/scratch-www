@@ -65,11 +65,18 @@ class Preview extends React.Component {
         // parts[0]: 'preview'
         // parts[1]: either :id or 'editor'
         // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
+
+        // Get single-comment id from url hash, using the #comment-{id} scheme from scratch2
+        const commentHashPrefix = '#comment-';
+        const singleCommentId = window.location.hash.indexOf(commentHashPrefix) !== -1 &&
+            parseInt(window.location.hash.replace(commentHashPrefix, ''), 10);
+
         this.state = {
             extensions: [],
             favoriteCount: 0,
             loveCount: 0,
             projectId: parts[1] === 'editor' ? '0' : parts[1],
+            singleCommentId: singleCommentId,
             addToStudioOpen: false,
             reportOpen: false
         };
@@ -123,8 +130,13 @@ class Preview extends React.Component {
         if (this.props.userPresent) {
             const username = this.props.user.username;
             const token = this.props.user.token;
-            this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
-                this.props.isAdmin, token);
+            if (this.state.singleCommentId) {
+                this.props.getCommentById(this.state.projectId, this.state.singleCommentId,
+                    this.props.isAdmin, token);
+            } else {
+                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
+                    this.props.isAdmin, token);
+            }
             this.props.getProjectInfo(this.state.projectId, token);
             this.props.getRemixes(this.state.projectId, token);
             this.props.getProjectStudios(this.state.projectId, token);
@@ -132,7 +144,11 @@ class Preview extends React.Component {
             this.props.getFavedStatus(this.state.projectId, username, token);
             this.props.getLovedStatus(this.state.projectId, username, token);
         } else {
-            this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
+            if (this.state.singleCommentId) {
+                this.props.getCommentById(this.state.projectId, this.state.singleCommentId);
+            } else {
+                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
+            }
             this.props.getProjectInfo(this.state.projectId);
             this.props.getRemixes(this.state.projectId);
             this.props.getProjectStudios(this.state.projectId);
@@ -409,6 +425,7 @@ class Preview extends React.Component {
                         remixes={this.props.remixes}
                         replies={this.props.replies}
                         reportOpen={this.state.reportOpen}
+                        singleCommentId={this.state.singleCommentId}
                         userOwnsProject={this.props.userOwnsProject}
                         onAddComment={this.handleAddComment}
                         onAddToStudioClicked={this.handleAddToStudioClick}
@@ -479,6 +496,7 @@ Preview.propTypes = {
     enableCommunity: PropTypes.bool,
     faved: PropTypes.bool,
     fullScreen: PropTypes.bool,
+    getCommentById: PropTypes.func.isRequired,
     getCuratedStudios: PropTypes.func.isRequired,
     getFavedStatus: PropTypes.func.isRequired,
     getLovedStatus: PropTypes.func.isRequired,
@@ -648,6 +666,9 @@ const mapDispatchToProps = dispatch => ({
     },
     getTopLevelComments: (id, offset, isAdmin, token) => {
         dispatch(previewActions.getTopLevelComments(id, offset, isAdmin, token));
+    },
+    getCommentById: (projectId, commentId, isAdmin, token) => {
+        dispatch(previewActions.getCommentById(projectId, commentId, isAdmin, token));
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));
