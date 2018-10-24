@@ -400,6 +400,7 @@ class Preview extends React.Component {
                         isShared={this.props.isShared}
                         loveCount={this.state.loveCount}
                         loved={this.props.loved}
+                        moreCommentsToLoad={this.props.moreCommentsToLoad}
                         originalInfo={this.props.original}
                         parentInfo={this.props.parent}
                         projectHost={this.props.projectHost}
@@ -501,6 +502,7 @@ Preview.propTypes = {
     isLoggedIn: PropTypes.bool,
     isShared: PropTypes.bool,
     loved: PropTypes.bool,
+    moreCommentsToLoad: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
     playerMode: PropTypes.bool,
@@ -579,6 +581,7 @@ const mapStateToProps = state => {
         // if we don't have projectInfo, assume it's shared until we know otherwise
         isShared: !projectInfoPresent || state.preview.projectInfo.is_published,
         loved: state.preview.loved,
+        moreCommentsToLoad: state.preview.moreCommentsToLoad,
         original: state.preview.original,
         parent: state.preview.parent,
         playerMode: state.scratchGui.mode.isPlayerOnly,

@@ -59,6 +59,7 @@ const PreviewPresentation = ({
     isShared,
     loved,
     loveCount,
+    moreCommentsToLoad,
     originalInfo,
     parentInfo,
     projectHost,
@@ -89,7 +90,6 @@ const PreviewPresentation = ({
     onUpdate
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
-    const loadedCommentCount = comments.length + Object.keys(replies).reduce((acc, id) => acc + replies[id].length, 0);
     return (
         <div className="preview">
             {!isShared && (
@@ -381,7 +381,7 @@ const PreviewPresentation = ({
                                                 onRestore={onRestoreComment}
                                             />
                                         ))}
-                                        {loadedCommentCount < projectInfo.stats.comments &&
+                                        {moreCommentsToLoad &&
                                         <Button
                                             className="button load-more-button"
                                             onClick={onLoadMore}
@@ -426,6 +426,7 @@ PreviewPresentation.propTypes = {
     isShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
+    moreCommentsToLoad: PropTypes.bool,
     onAddComment: PropTypes.func,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
