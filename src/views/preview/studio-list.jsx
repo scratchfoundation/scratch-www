@@ -1,5 +1,6 @@
 const React = require('react');
 const PropTypes = require('prop-types');
+const FormattedMessage = require('react-intl').FormattedMessage;
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const ThumbnailColumn = require('../../components/thumbnailcolumn/thumbnailcolumn.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -10,11 +11,11 @@ const StudioList = props => {
     return (
         <FlexRow className="studio-list">
             <div className="list-title">
-                Studios
+                <FormattedMessage id="general.studios" />
             </div>
             {studios.length === 0 ? (
                 // TODO: style remix invitation
-                <span>Invite user to add to studio</span>
+                <FormattedMessage id="addToStudio.inviteUser" />
             ) : (
                 <ThumbnailColumn
                     cards

@@ -5,25 +5,25 @@ const EXTENSION_INFO = {
         hasStatus: true
     },
     music: {
-        l10nId: 'preview.musicExtensionChip',
+        l10nId: 'project.musicExtensionChip',
         icon: 'extension-music.svg'
     },
     pen: {
-        l10nId: 'preview.penExtensionChip',
+        l10nId: 'project.penExtensionChip',
         icon: 'extension-pen.svg'
     },
     speak: {
         name: 'Amazon Polly'
     },
     speech: {
-        l10nId: 'preview.speechExtensionChip'
+        l10nId: 'project.speechExtensionChip'
     },
     translate: {
-        l10nId: 'preview.translateExtensionChip',
+        l10nId: 'project.translateExtensionChip',
         icon: 'extension-translate.svg'
     },
     videoSensing: {
-        l10nId: 'preview.videoMotionChip',
+        l10nId: 'project.videoMotionChip',
         icon: 'extension-videomotion.svg'
     },
     wedo2: {

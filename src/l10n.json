@@ -84,6 +84,8 @@
     "general.website": "Website",
     "general.whatsHappening": "What's Happening?",
     "general.wiki": "Scratch Wiki",
+    "general.copyLink": "Copy Link",
+    "general.report": "Report",
 
     "general.all": "All",
     "general.animations": "Animations",
@@ -204,7 +206,6 @@
     "report.sending": "Sending...",
     "report.textMissing": "Please tell us why you are reporting this project",
 
-    "comments.report": "Report",
     "comments.delete": "Delete",
     "comments.restore": "Restore",
     "comments.reportModal.title": "Report Comment",

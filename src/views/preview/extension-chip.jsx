@@ -19,7 +19,7 @@ const ExtensionChip = props => (
             }
             {props.hasStatus && (
                 <div className="extension-status">
-                    Needs Connection
+                    <FormattedMessage id="project.needsConnection" />
                 </div>
             )}
         </div>
