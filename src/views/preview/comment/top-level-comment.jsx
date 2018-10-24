@@ -176,7 +176,7 @@ TopLevelComment.propTypes = {
     datetimeCreated: PropTypes.string,
     defaultExpanded: PropTypes.bool,
     deletable: PropTypes.bool,
-    highlightedCommentId: PropTypes.number,
+    highlightedCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     id: PropTypes.number,
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,

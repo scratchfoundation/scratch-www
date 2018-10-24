@@ -455,7 +455,7 @@ PreviewPresentation.propTypes = {
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
     reportOpen: PropTypes.bool,
-    singleCommentId: PropTypes.number,
+    singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     userOwnsProject: PropTypes.bool
 };
 
