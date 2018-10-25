@@ -5,6 +5,7 @@ const classNames = require('classnames');
 const keyMirror = require('keymirror');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
+const Formsy = require('formsy-react').default;
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../../components/avatar/avatar.jsx');
 const InplaceInput = require('../../../components/forms/inplace-input.jsx');
@@ -111,46 +112,49 @@ class ComposeComment extends React.Component {
                             </div>
                         </FlexRow>
                     ) : null}
-                    <InplaceInput
-                        className={classNames('compose-input',
-                            MAX_COMMENT_LENGTH - this.state.message.length >= 0 ? 'compose-valid' : 'compose-invalid')}
-                        handleUpdate={onUpdate}
-                        name="compose-comment"
-                        type="textarea"
-                        value={this.state.message}
-                        onInput={this.handleInput}
-                    />
-                    <FlexRow className="compose-bottom-row">
-                        <Button
-                            className="compose-post"
-                            disabled={this.state.status === ComposeStatus.SUBMITTING}
-                            onClick={this.handlePost}
-                        >
-                            {this.state.status === ComposeStatus.SUBMITTING ? (
-                                <FormattedMessage id="comments.posting" />
-                            ) : (
-                                <FormattedMessage id="comments.post" />
-                            )}
-                        </Button>
-                        <Button
-                            className="compose-cancel"
-                            onClick={this.handleCancel}
-                        >
-                            <FormattedMessage id="comments.cancel" />
-                        </Button>
-                        <span
-                            className={classNames('compose-limit',
+                    <Formsy className="full-width-form">
+                        <InplaceInput
+                            className={classNames('compose-input',
                                 MAX_COMMENT_LENGTH - this.state.message.length >= 0 ?
                                     'compose-valid' : 'compose-invalid')}
-                        >
-                            <FormattedMessage
-                                id="comments.lengthWarning"
-                                values={{
-                                    remainingCharacters: MAX_COMMENT_LENGTH - this.state.message.length
-                                }}
-                            />
-                        </span>
-                    </FlexRow>
+                            handleUpdate={onUpdate}
+                            name="compose-comment"
+                            type="textarea"
+                            value={this.state.message}
+                            onInput={this.handleInput}
+                        />
+                        <FlexRow className="compose-bottom-row">
+                            <Button
+                                className="compose-post"
+                                disabled={this.state.status === ComposeStatus.SUBMITTING}
+                                onClick={this.handlePost}
+                            >
+                                {this.state.status === ComposeStatus.SUBMITTING ? (
+                                    <FormattedMessage id="comments.posting" />
+                                ) : (
+                                    <FormattedMessage id="comments.post" />
+                                )}
+                            </Button>
+                            <Button
+                                className="compose-cancel"
+                                onClick={this.handleCancel}
+                            >
+                                <FormattedMessage id="comments.cancel" />
+                            </Button>
+                            <span
+                                className={classNames('compose-limit',
+                                    MAX_COMMENT_LENGTH - this.state.message.length >= 0 ?
+                                        'compose-valid' : 'compose-invalid')}
+                            >
+                                <FormattedMessage
+                                    id="comments.lengthWarning"
+                                    values={{
+                                        remainingCharacters: MAX_COMMENT_LENGTH - this.state.message.length
+                                    }}
+                                />
+                            </span>
+                        </FlexRow>
+                    </Formsy>
                 </FlexRow>
             </div>
         );
