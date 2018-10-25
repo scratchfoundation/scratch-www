@@ -128,7 +128,7 @@ class Comment extends React.Component {
                 className={classNames('flex-row', 'comment', {
                     'highlighted-comment': highlighted
                 })}
-                id={`comment-${id}`}
+                id={`comments-${id}`}
                 ref={this.setRef}
             >
                 <a href={`/users/${author.username}`}>
