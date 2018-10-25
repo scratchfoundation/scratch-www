@@ -2,14 +2,15 @@
 
 .about {
     .masthead {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(461px, 1fr));;
+        display: flex;
+        flex-wrap: no-wrap;
         justify-content: space-between;
         align-items: stretch;
 
         div {
             display: inline-block;
-            width: calc(100% - 10px);
+            width: calc(50% - 10px);
+            min-width: calc(50% - 10px);
 
             ul {
                 margin: 0;
@@ -30,8 +31,9 @@
 
             iframe {
                 border: 1px solid $ui-gray;
-                width: 460px;
+                width: 100%;
                 height: 290px;
+                display: block;
             }
         }
     }
