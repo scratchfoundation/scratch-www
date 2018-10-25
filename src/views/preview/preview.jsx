@@ -459,6 +459,7 @@ class Preview extends React.Component {
                         canShare={this.props.canShare}
                         className="gui"
                         enableCommunity={this.props.enableCommunity}
+                        isShared={this.props.isShared}
                         projectHost={this.props.projectHost}
                         projectId={this.state.projectId}
                         projectTitle={this.props.projectInfo.title}
