@@ -97,7 +97,7 @@ const PreviewPresentation = ({
                 <ShareBanner onShare={onShare} />
             )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
-                <Formsy onKeyPress={onKeyPress}>
+                <React.Fragment>
                     <div className="inner">
                         <FlexRow className="preview-row force-row">
                             <FlexRow className="project-header">
@@ -109,20 +109,22 @@ const PreviewPresentation = ({
                                 </a>
                                 <div className="title">
                                     {editable ?
-                                        <InplaceInput
-                                            className="project-title"
-                                            handleUpdate={onUpdate}
-                                            name="title"
-                                            validationErrors={{
-                                                maxLength: intl.formatMessage({
-                                                    id: 'project.titleMaxLength'
-                                                })
-                                            }}
-                                            validations={{
-                                                maxLength: 100
-                                            }}
-                                            value={projectInfo.title}
-                                        /> :
+                                        <Formsy onKeyPress={onKeyPress}>
+                                            <InplaceInput
+                                                className="project-title"
+                                                handleUpdate={onUpdate}
+                                                name="title"
+                                                validationErrors={{
+                                                    maxLength: intl.formatMessage({
+                                                        id: 'project.titleMaxLength'
+                                                    })
+                                                }}
+                                                validations={{
+                                                    maxLength: 100
+                                                }}
+                                                value={projectInfo.title}
+                                            />
+                                        </Formsy> :
                                         <React.Fragment>
                                             <div
                                                 className="project-title no-edit"
@@ -217,27 +219,29 @@ const PreviewPresentation = ({
                                         <FormattedMessage id="project.instructionsLabel" />
                                     </div>
                                     {editable ?
-                                        <InplaceInput
-                                            className={classNames(
-                                                'project-description-edit',
-                                                {remixes: parentInfo && parentInfo.author}
-                                            )}
-                                            handleUpdate={onUpdate}
-                                            name="instructions"
-                                            placeholder="Tell people how to use your project (such as which keys to press)."
-                                            type="textarea"
-                                            validationErrors={{
-                                                maxLength: 'Sorry description is too long'
-                                                // maxLength: props.intl.formatMessage({
-                                                //     id: 'project.descriptionMaxLength'
-                                                // })
-                                            }}
-                                            validations={{
-                                                // TODO: actual 5000
-                                                maxLength: 1000
-                                            }}
-                                            value={projectInfo.instructions}
-                                        /> :
+                                        <Formsy onKeyPress={onKeyPress}>
+                                            <InplaceInput
+                                                className={classNames(
+                                                    'project-description-edit',
+                                                    {remixes: parentInfo && parentInfo.author}
+                                                )}
+                                                handleUpdate={onUpdate}
+                                                name="instructions"
+                                                placeholder="Tell people how to use your project (such as which keys to press)."
+                                                type="textarea"
+                                                validationErrors={{
+                                                    maxLength: 'Sorry description is too long'
+                                                    // maxLength: props.intl.formatMessage({
+                                                    //     id: 'project.descriptionMaxLength'
+                                                    // })
+                                                }}
+                                                validations={{
+                                                    // TODO: actual 5000
+                                                    maxLength: 1000
+                                                }}
+                                                value={projectInfo.instructions}
+                                            />
+                                        </Formsy> :
                                         <div className="project-description">
                                             {decorateText(projectInfo.instructions)}
                                         </div>
@@ -248,28 +252,30 @@ const PreviewPresentation = ({
                                         <FormattedMessage id="project.notesAndCreditsLabel" />
                                     </div>
                                     {editable ?
-                                        <InplaceInput
-                                            className={classNames(
-                                                'project-description-edit',
-                                                'last',
-                                                {remixes: parentInfo && parentInfo.author}
-                                            )}
-                                            handleUpdate={onUpdate}
-                                            name="description"
-                                            placeholder="How did you make this project? Did you use ideas scripts or artwork from other people? Thank them here."
-                                            type="textarea"
-                                            validationErrors={{
-                                                maxLength: 'Sorry description is too long'
-                                                // maxLength: props.intl.formatMessage({
-                                                //     id: 'project.descriptionMaxLength'
-                                                // })
-                                            }}
-                                            validations={{
-                                                // TODO: actual 5000
-                                                maxLength: 1000
-                                            }}
-                                            value={projectInfo.description}
-                                        /> :
+                                        <Formsy onKeyPress={onKeyPress}>
+                                            <InplaceInput
+                                                className={classNames(
+                                                    'project-description-edit',
+                                                    'last',
+                                                    {remixes: parentInfo && parentInfo.author}
+                                                )}
+                                                handleUpdate={onUpdate}
+                                                name="description"
+                                                placeholder="How did you make this project? Did you use ideas scripts or artwork from other people? Thank them here."
+                                                type="textarea"
+                                                validationErrors={{
+                                                    maxLength: 'Sorry description is too long'
+                                                    // maxLength: props.intl.formatMessage({
+                                                    //     id: 'project.descriptionMaxLength'
+                                                    // })
+                                                }}
+                                                validations={{
+                                                    // TODO: actual 5000
+                                                    maxLength: 1000
+                                                }}
+                                                value={projectInfo.description}
+                                            />
+                                        </Formsy> :
                                         <div className="project-description last">
                                             {decorateText(projectInfo.description)}
                                         </div>
@@ -401,7 +407,7 @@ const PreviewPresentation = ({
                             </FlexRow>
                         </div>
                     </div>
-                </Formsy>
+                </React.Fragment>
             )}
         </div>
     );
