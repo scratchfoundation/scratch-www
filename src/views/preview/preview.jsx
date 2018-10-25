@@ -80,7 +80,6 @@ class Preview extends React.Component {
             addToStudioOpen: false,
             reportOpen: false
         };
-        this.getExtensions(this.state.projectId);
         this.addEventListeners();
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
         this.setScreenFromOrientation();
@@ -91,12 +90,12 @@ class Preview extends React.Component {
             this.props.sessionStatus === sessionActions.Status.FETCHED) ||
             (this.state.projectId !== prevState.projectId))) {
             this.fetchCommunityData();
+            this.getExtensions(this.state.projectId);
         }
         if (this.state.projectId === '0' && this.state.projectId !== prevState.projectId) {
             this.props.resetProject();
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
-            this.getExtensions(this.state.projectId);
             if (typeof this.props.projectInfo.id === 'undefined') {
                 this.initCounts(0, 0);
             } else {
