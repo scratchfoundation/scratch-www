@@ -337,6 +337,12 @@ $stage-width: 480px;
         margin-bottom: 0;
     }
 
+    .project-description-form {
+        display: flex;
+        width: 100%;
+        flex-grow: 1;
+    }
+
     .project-description-edit {
         display: flex;
         margin-bottom: .75rem;

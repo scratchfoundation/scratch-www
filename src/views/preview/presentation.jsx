@@ -219,7 +219,10 @@ const PreviewPresentation = ({
                                         <FormattedMessage id="project.instructionsLabel" />
                                     </div>
                                     {editable ?
-                                        <Formsy onKeyPress={onKeyPress}>
+                                        <Formsy
+                                            className="project-description-form"
+                                            onKeyPress={onKeyPress}
+                                        >
                                             <InplaceInput
                                                 className={classNames(
                                                     'project-description-edit',
@@ -252,7 +255,10 @@ const PreviewPresentation = ({
                                         <FormattedMessage id="project.notesAndCreditsLabel" />
                                     </div>
                                     {editable ?
-                                        <Formsy onKeyPress={onKeyPress}>
+                                        <Formsy
+                                            className="project-description-form"
+                                            onKeyPress={onKeyPress}
+                                        >
                                             <InplaceInput
                                                 className={classNames(
                                                     'project-description-edit',
