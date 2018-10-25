@@ -66,8 +66,8 @@ class Preview extends React.Component {
         // parts[1]: either :id or 'editor'
         // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
 
-        // Get single-comment id from url hash, using the #comment-{id} scheme from scratch2
-        const commentHashPrefix = '#comment-';
+        // Get single-comment id from url hash, using the #comments-{id} scheme from scratch2
+        const commentHashPrefix = '#comments-';
         const singleCommentId = window.location.hash.indexOf(commentHashPrefix) !== -1 &&
             parseInt(window.location.hash.replace(commentHashPrefix, ''), 10);
 
