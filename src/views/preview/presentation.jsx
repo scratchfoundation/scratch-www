@@ -48,6 +48,7 @@ const PreviewPresentation = ({
     canDeleteComments,
     canReport,
     canRestoreComments,
+    cloudHost,
     comments,
     editable,
     extensions,
@@ -163,6 +164,7 @@ const PreviewPresentation = ({
                                     backpackOptions={backpackOptions}
                                     basePath="/"
                                     className="guiPlayer"
+                                    cloudHost={cloudHost}
                                     isFullScreen={isFullScreen}
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
@@ -438,6 +440,7 @@ PreviewPresentation.propTypes = {
     canDeleteComments: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestoreComments: PropTypes.bool,
+    cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
     extensions: PropTypes.arrayOf(PropTypes.object),
