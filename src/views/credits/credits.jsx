@@ -1,6 +1,5 @@
 const React = require('react');
 const render = require('../../lib/render.jsx');
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const Avatar = require('../../components/avatar/avatar.jsx');
@@ -23,7 +22,7 @@ const Credits = () => (
                 <div className="midHeader">
                     <h2>MIT Scratch Team</h2>
                     <p>
-                        <FormattedHTMLMessage id="credits.developers" />
+                        <FormattedMessage id="credits.developers" />
                     </p>
                 </div>
                 <ul>
@@ -49,10 +48,10 @@ const Credits = () => (
             <div className="supporters">
                 <div className="midHeader">
                     <h2>
-                        <FormattedHTMLMessage id="credits.currentSponsors" />
+                        <FormattedMessage id="credits.currentSponsors" />
                     </h2>
                     <p>
-                        <FormattedHTMLMessage id="credits.currentFinancialSupport" />
+                        <FormattedMessage id="credits.currentFinancialSupport" />
                     </p>
                 </div>
                 <div className="logoGrid">
@@ -80,29 +79,38 @@ const Credits = () => (
             </div>
             <div className="acknowledgeContent">
                 <h2>
-                    <FormattedHTMLMessage id="credits.translationsTitle" />
+                    <FormattedMessage id="credits.translationsTitle" />
                 </h2>
                 <p>
-                    <FormattedHTMLMessage id="credits.acknowledgementsTranslators" />
+                    <FormattedMessage
+                        id="credits.acknowledgementsTranslators"
+                        values={{
+                            translatorsLink: (
+                                <a href="http://wiki.scratch.mit.edu/wiki/Translators">
+                                    <FormattedMessage id="credits.acknowledgementsTranslatorsLinkText" />
+                                </a>
+                            )
+                        }}
+                    />
                 </p>
                 <h2>
-                    <FormattedHTMLMessage id="credits.illustrationsTitle" />
+                    <FormattedMessage id="credits.illustrationsTitle" />
                 </h2>
                 <p>
-                    <FormattedHTMLMessage id="credits.acknowledgementsIllustrations" />
+                    <FormattedMessage id="credits.acknowledgementsIllustrations" />
                 </p>
                 <p>
                   Natalie Rosalinda Hall, Wren McDonald, Andrew Rae, Daria Skrybchenko,
                   Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen Davey.
                 </p>
                 <h2>
-                    <FormattedHTMLMessage id="credits.pastContributors" />
+                    <FormattedMessage id="credits.pastContributors" />
                 </h2>
                 <p>
-                    <FormattedHTMLMessage id="credits.pastContributorsThanks" />
+                    <FormattedMessage id="credits.pastContributorsThanks" />
                 </p>
                 <p>
-                    <FormattedHTMLMessage id="credits.otherContributors" />
+                    <FormattedMessage id="credits.otherContributors" />
                     {' '}
                     Ben Berg, Amos Blanton, Karen Brennan, Juanita Buitrago, Leo Burd,
                     Gaia Carini, Kasia Chmielinski, Michelle Chung, Shane Clements,
@@ -114,22 +122,45 @@ const Credits = () => (
                     Urrea, Oren Zuckerman.
                 </p>
                 <p>
-                    <FormattedHTMLMessage id="credits.partnersBody" />
+                    <FormattedMessage id="credits.partnersBody" />
                 </p>
                 <h2>
-                    <FormattedHTMLMessage id="credits.researchersTitle" />
+                    <FormattedMessage id="credits.researchersTitle" />
                 </h2>
                 <p>
-                    <FormattedHTMLMessage id="credits.researchersBody" />
+                    <FormattedMessage
+                        id="credits.researchersBody"
+                        values={{
+                            scratchResearchLink: (
+                                <a href="https://scratch.mit.edu/info/research/">
+                                    <FormattedMessage id="credits.researchLinkText" />
+                                </a>
+                            )
+                        }}
+                    />
                 </p>
                 <p>
-                    <FormattedHTMLMessage id="credits.researchersContributors" />
+                    <FormattedMessage
+                        id="credits.researchersContributors"
+                        values={{
+                            nsfLink: (
+                                <a href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=0325828">
+                                    <FormattedMessage id="credits.researchNSFLinkText" />
+                                </a>
+                            ),
+                            scratchEdLink: (
+                                <a href="http://scratched.gse.harvard.edu/">
+                                    <FormattedMessage id="credits.researchScratchEdLinkText" />
+                                </a>
+                            )
+                        }}
+                    />
                 </p>
                 <h2>
-                    <FormattedHTMLMessage id="credits.acknowledgementsTitle" />
+                    <FormattedMessage id="credits.acknowledgementsTitle" />
                 </h2>
                 <p>
-                    <FormattedHTMLMessage id="credits.acknowledgementsContributors" />
+                    <FormattedMessage id="credits.acknowledgementsContributors" />
                 </p>
                 <p>
                     Susan Abend, Robbie Berg, Lauren Bessen, Keith Braadfladt,
@@ -146,10 +177,10 @@ const Credits = () => (
                     Vladimir Vuksan, Han Xu.
                 </p>
                 <p>
-                    <FormattedHTMLMessage id="credits.acknowledgementsInfluencers" />
+                    <FormattedMessage id="credits.acknowledgementsInfluencers" />
                 </p>
                 <p>
-                    <FormattedHTMLMessage id="credits.acknowledgementsCommunity" />
+                    <FormattedMessage id="credits.acknowledgementsCommunity" />
                 </p>
             </div>
         </div>
