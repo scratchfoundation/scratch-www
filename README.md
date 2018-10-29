@@ -86,7 +86,7 @@ To stop the process that is making the site available to your web browser (creat
 | `API_HOST`      | `https://api.scratch.mit.edu`      | Hostname for API requests                      |
 | `ASSET_HOST`    | `https://assets.scratch.mit.edu`   | Hostname for asset requests                    |
 | `BACKPACK_HOST` | `https://backpack.scratch.mit.edu` | Hostname for backpack requests                 |
-| `PROJECTS_HOST` | `https://projects.scratch.mit.edu` | Hostname for project requests                  |
+| `PROJECT_HOST`  | `https://projects.scratch.mit.edu` | Hostname for project requests                  |
 | `SENTRY_DSN`    | `''`                               | DSN for Sentry                                 |
 | `FALLBACK`      | `''`                               | Pass-through location for old site             |
 | `GA_TRACKER`    | `''`                               | Where to log Google Analytics data             |
