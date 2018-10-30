@@ -405,6 +405,7 @@ class Preview extends React.Component {
                         canDeleteComments={this.props.isAdmin || this.props.userOwnsProject}
                         canReport={this.props.canReport}
                         canRestoreComments={this.props.isAdmin}
+                        cloudHost={this.props.cloudHost}
                         comments={this.props.comments}
                         editable={this.props.isEditable}
                         extensions={this.state.extensions}
@@ -458,6 +459,7 @@ class Preview extends React.Component {
                         canSave={this.props.canSave}
                         canShare={this.props.canShare}
                         className="gui"
+                        cloudHost={this.props.cloudHost}
                         enableCommunity={this.props.enableCommunity}
                         isShared={this.props.isShared}
                         projectHost={this.props.projectHost}
@@ -493,6 +495,7 @@ Preview.propTypes = {
     canReport: PropTypes.bool,
     canSave: PropTypes.bool,
     canShare: PropTypes.bool,
+    cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
     enableCommunity: PropTypes.bool,
     faved: PropTypes.bool,
@@ -558,6 +561,7 @@ Preview.defaultProps = {
         host: process.env.BACKPACK_HOST,
         visible: true
     },
+    cloudHost: process.env.CLOUDDATA_HOST,
     projectHost: process.env.PROJECT_HOST,
     sessionStatus: sessionActions.Status.NOT_FETCHED,
     user: {},
