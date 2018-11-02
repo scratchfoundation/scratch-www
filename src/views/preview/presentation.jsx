@@ -48,6 +48,7 @@ const PreviewPresentation = ({
     canDeleteComments,
     canReport,
     canRestoreComments,
+    canShare,
     cloudHost,
     comments,
     editable,
@@ -94,7 +95,7 @@ const PreviewPresentation = ({
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     return (
         <div className="preview">
-            {!isShared && (
+            {canShare && !isShared && (
                 <ShareBanner onShare={onShare} />
             )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
@@ -440,6 +441,7 @@ PreviewPresentation.propTypes = {
     canDeleteComments: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestoreComments: PropTypes.bool,
+    canShare: PropTypes.bool,
     cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,

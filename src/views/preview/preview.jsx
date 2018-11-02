@@ -405,6 +405,7 @@ class Preview extends React.Component {
                         canDeleteComments={this.props.isAdmin || this.props.userOwnsProject}
                         canReport={this.props.canReport}
                         canRestoreComments={this.props.isAdmin}
+                        canShare={this.props.canShare}
                         cloudHost={this.props.cloudHost}
                         comments={this.props.comments}
                         editable={this.props.isEditable}
