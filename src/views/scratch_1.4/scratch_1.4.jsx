@@ -1,4 +1,3 @@
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
@@ -50,7 +49,14 @@ const OnePointFour = () => (
             >
                 <div className="inner">
                     <p className="callout">
-                        <FormattedHTMLMessage id="onePointFour.introNote" />
+                        <FormattedMessage
+                            id="onePointFour.introNote"
+                            values={{
+                                noteLabel: (
+                                    <b><FormattedMessage id="onePointFour.introNoteLabel" /></b>
+                                )
+                            }}
+                        />
                     </p>
                     <FlexRow className="three-col-row">
                         <div className="installation-column">
@@ -121,7 +127,28 @@ const OnePointFour = () => (
                     <span className="nav-spacer" />
                     <h2><FormattedMessage id="onePointFour.faqsTitle" /></h2>
                     <h3><FormattedMessage id="onePointFour.resourcesQ" /></h3>
-                    <p><FormattedHTMLMessage id="onePointFour.resourcesA" /></p>
+                    <p>
+                        <FormattedMessage
+                            id="onePointFour.resourcesA"
+                            values={{
+                                gettingStartedGuide: (
+                                    <a href="http://download.scratch.mit.edu/ScratchGettingStartedv14.pdf">
+                                        <FormattedMessage id="onePointFour.gettingStartedGuide" />
+                                    </a>
+                                ),
+                                referenceGuide: (
+                                    <a href="http://download.scratch.mit.edu/ScratchReferenceGuide14.pdf">
+                                        <FormattedMessage id="onePointFour.referenceGuide" />
+                                    </a>
+                                ),
+                                scratchCards: (
+                                    <a href="http://download.scratch.mit.edu/ScratchCardsAll-v1.4-PDF.zip">
+                                        <FormattedMessage id="onePointFour.scratchCards" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </p>
                     <h3><FormattedMessage id="onePointFour.requirementsQ" /></h3>
                     <p><FormattedMessage id="onePointFour.requirementsDisplay" /></p>
                     <p><FormattedMessage id="onePointFour.requirementsOS" /></p>
