@@ -199,7 +199,7 @@
     },
     {
         "name": "preview",
-        "pattern": "^/preview(/editor|(/\\d+(/editor|/fullscreen)?)?)?/?$",
+        "pattern": "^/preview(/editor|(/\\d+(/editor|/fullscreen)?)?)?/?(\\?.*)?$",
         "routeAlias": "/preview/?$",
         "view": "preview/preview",
         "title": "Scratch 3.0 Preview"
