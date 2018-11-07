@@ -38,7 +38,8 @@ module.exports.getInitialState = () => ({
     projectStudios: [],
     curatedStudios: [],
     currentStudioIds: [],
-    moreCommentsToLoad: false
+    moreCommentsToLoad: false,
+    projectNotAvailable: false
 });
 
 module.exports.previewReducer = (state, action) => {
@@ -51,7 +52,8 @@ module.exports.previewReducer = (state, action) => {
         return module.exports.getInitialState();
     case 'SET_PROJECT_INFO':
         return Object.assign({}, state, {
-            projectInfo: action.info
+            projectInfo: action.info ? action.info : {},
+            projectNotAvailable: !!action.info
         });
     case 'SET_REMIXES':
         return Object.assign({}, state, {
@@ -318,6 +320,7 @@ module.exports.getProjectInfo = (id, token) => (dispatch => {
         if (typeof body === 'undefined') {
             dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
             dispatch(module.exports.setError('No project info'));
+            dispatch(module.exports.setProjectInfo(null));
             return;
         }
         dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));

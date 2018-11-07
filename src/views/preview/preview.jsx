@@ -423,6 +423,7 @@ class Preview extends React.Component {
                         projectHost={this.props.projectHost}
                         projectId={this.state.projectId}
                         projectInfo={this.props.projectInfo}
+                        projectNotAvailable={this.props.projectNotAvailable}
                         projectStudios={this.props.projectStudios}
                         remixes={this.props.remixes}
                         replies={this.props.replies}
@@ -530,6 +531,7 @@ Preview.propTypes = {
     playerMode: PropTypes.bool,
     projectHost: PropTypes.string.isRequired,
     projectInfo: projectShape,
+    projectNotAvailable: PropTypes.bool,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
@@ -610,6 +612,7 @@ const mapStateToProps = state => {
         parent: state.preview.parent,
         playerMode: state.scratchGui.mode.isPlayerOnly,
         projectInfo: state.preview.projectInfo,
+        projectNotAvailable: state.preview.projectNotAvailable,
         projectStudios: state.preview.projectStudios,
         remixes: state.preview.remixes,
         replies: state.preview.replies,
