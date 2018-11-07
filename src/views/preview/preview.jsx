@@ -452,6 +452,8 @@ class Preview extends React.Component {
                     <IntlGUI
                         hideIntro
                         assetHost={this.props.assetHost}
+                        authorId={this.props.authorId}
+                        authorUsername={this.props.authorUsername}
                         backpackOptions={this.props.backpackOptions}
                         basePath="/"
                         canCreateCopy={this.props.canCreateCopy}
@@ -485,6 +487,8 @@ class Preview extends React.Component {
 
 Preview.propTypes = {
     assetHost: PropTypes.string.isRequired,
+    authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     backpackOptions: PropTypes.shape({
         host: PropTypes.string,
         visible: PropTypes.bool
@@ -578,12 +582,16 @@ const mapStateToProps = state => {
     const isLoggedIn = state.session.status === sessionActions.Status.FETCHED &&
         userPresent;
     const isAdmin = isLoggedIn && state.session.session.permissions.admin;
-    const authorPresent = projectInfoPresent && state.preview.projectInfo.author &&
-        Object.keys(state.preview.projectInfo.author).length > 0;
+    const author = projectInfoPresent && state.preview.projectInfo.author;
+    const authorPresent = author && Object.keys(state.preview.projectInfo.author).length > 0;
+    const authorId = authorPresent && author.id && author.id.toString();
+    const authorUsername = authorPresent && author.username;
     const userOwnsProject = isLoggedIn && authorPresent &&
-        state.session.session.user.id === state.preview.projectInfo.author.id;
+        state.session.session.user.id.toString() === authorId;
 
     return {
+        authorId: authorId,
+        authorUsername: authorUsername,
         canAddToStudio: userOwnsProject,
         canCreateCopy: userOwnsProject && projectInfoPresent,
         canCreateNew: isLoggedIn,
@@ -598,7 +606,7 @@ const mapStateToProps = state => {
         // project is editable iff logged in user is the author of the project, or
         // logged in user is an admin.
         isEditable: isLoggedIn &&
-            ((authorPresent && state.preview.projectInfo.author.username === state.session.session.user.username) ||
+            (authorUsername === state.session.session.user.username ||
             state.permissions.admin === true),
         isLoggedIn: isLoggedIn,
         isAdmin: isAdmin,
