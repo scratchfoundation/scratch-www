@@ -38,14 +38,16 @@ class ComposeComment extends React.Component {
         this.state = {
             message: '',
             status: ComposeStatus.EDITING,
-            error: null
+            error: null,
+            appealId: null
         };
     }
     handleInput (event) {
         this.setState({
             message: event.target.value,
             status: ComposeStatus.EDITING,
-            error: null
+            error: null,
+            appealId: null
         });
     }
     handlePost () {
@@ -70,7 +72,8 @@ class ComposeComment extends React.Component {
                 // Note: does not reset the message state
                 this.setState({
                     status: ComposeStatus.REJECTED,
-                    error: body.rejected
+                    error: body.rejected,
+                    appealId: body.appealId
                 });
                 return;
             }
@@ -79,7 +82,8 @@ class ComposeComment extends React.Component {
             this.setState({
                 message: '',
                 status: ComposeStatus.EDITING,
-                error: null
+                error: null,
+                appealId: null
             });
 
             // Add the username, which isn't included right now from scratch-api
@@ -92,7 +96,8 @@ class ComposeComment extends React.Component {
         this.setState({
             message: '',
             status: ComposeStatus.EDITING,
-            error: null
+            error: null,
+            appealId: null
         });
         if (this.props.onCancel) this.props.onCancel();
     }
@@ -108,7 +113,12 @@ class ComposeComment extends React.Component {
                     {this.state.error ? (
                         <FlexRow className="compose-error-row">
                             <div className="compose-error-tip">
-                                <FormattedMessage id={`comments.${this.state.error}`} />
+                                <FormattedMessage
+                                    id={`comments.${this.state.error}`}
+                                    values={{
+                                        appealId: this.state.appealId
+                                    }}
+                                />
                             </div>
                         </FlexRow>
                     ) : null}
