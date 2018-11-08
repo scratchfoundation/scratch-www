@@ -44,12 +44,13 @@ const onKeyPress = e => {
 
 const PreviewPresentation = ({
     assetHost,
-    backpackOptions,
+    backpackHost,
     canAddToStudio,
     canDeleteComments,
     canReport,
     canRestoreComments,
     canShare,
+    canUseBackpack,
     cloudHost,
     comments,
     editable,
@@ -173,7 +174,8 @@ const PreviewPresentation = ({
                                 <IntlGUI
                                     isPlayerOnly
                                     assetHost={assetHost}
-                                    backpackOptions={backpackOptions}
+                                    backpackHost={backpackHost}
+                                    backpackVisible={canUseBackpack}
                                     basePath="/"
                                     className="guiPlayer"
                                     cloudHost={cloudHost}
@@ -444,15 +446,13 @@ const PreviewPresentation = ({
 PreviewPresentation.propTypes = {
     addToStudioOpen: PropTypes.bool,
     assetHost: PropTypes.string,
-    backpackOptions: PropTypes.shape({
-        host: PropTypes.string,
-        visible: PropTypes.bool
-    }),
+    backpackHost: PropTypes.string,
     canAddToStudio: PropTypes.bool,
     canDeleteComments: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestoreComments: PropTypes.bool,
     canShare: PropTypes.bool,
+    canUseBackpack: PropTypes.bool,
     cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
