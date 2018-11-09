@@ -80,7 +80,7 @@ const ConferenceFooter = () => (
                             <a href="https://scratch.mit.edu">Scratch</a>
                         </li>
                         <li>
-                            <a href="http://www.scratchjr.org/">ScratchJr</a>
+                            <a href="https://www.scratchjr.org/">ScratchJr</a>
                         </li>
                     </FlexRow>
                     <FlexRow
