@@ -13,6 +13,7 @@ const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
 const EXTENSION_INFO = require('../../lib/extensions.js').default;
 const jar = require('../../lib/jar.js');
+const thumbnailUrl = require('../../lib/user-thumbnail');
 
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -453,11 +454,13 @@ class Preview extends React.Component {
                         hideIntro
                         assetHost={this.props.assetHost}
                         authorId={this.props.authorId}
+                        authorThumbnailUrl={this.props.authorThumbnailUrl}
                         authorUsername={this.props.authorUsername}
                         backpackOptions={this.props.backpackOptions}
                         basePath="/"
                         canCreateCopy={this.props.canCreateCopy}
                         canCreateNew={this.props.canCreateNew}
+                        canEditTitle={this.props.isEditable}
                         canRemix={this.props.canRemix}
                         canSave={this.props.canSave}
                         canShare={this.props.canShare}
@@ -488,6 +491,7 @@ class Preview extends React.Component {
 Preview.propTypes = {
     assetHost: PropTypes.string.isRequired,
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    authorThumbnailUrl: PropTypes.string,
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     backpackOptions: PropTypes.shape({
         host: PropTypes.string,
@@ -591,6 +595,7 @@ const mapStateToProps = state => {
 
     return {
         authorId: authorId,
+        authorThumbnailUrl: thumbnailUrl(authorId),
         authorUsername: authorUsername,
         canAddToStudio: userOwnsProject,
         canCreateCopy: userOwnsProject && projectInfoPresent,
