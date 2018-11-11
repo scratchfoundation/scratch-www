@@ -262,7 +262,7 @@ describe('test Scratch Family links in footer', function () {
             .click();
         cy
             .url()
-            .should('match', /^http:\/\/www\.scratchjr\.org\/?$/);
+            .should('match', /^https:\/\/www\.scratchjr\.org\/?$/);
     });
 
     it.skip('click Scratch Day', function (){
