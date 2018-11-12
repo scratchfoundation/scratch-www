@@ -33,7 +33,7 @@ tap.beforeEach(function () {
 // the create link changes depending on whether the user is signed in or not (tips window opens)
 tap.test('checkCreateLinkWhenSignedOut', function (t) {
     var xPathLink = '//li[contains(@class, "link") and contains(@class, "create")]/a';
-    var expectedHref = '/projects/editor/?tip_bar=home';
+    var expectedHref = '/projects/editor/?tutorial=getStarted';
     driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             return element.getAttribute('href');
