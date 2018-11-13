@@ -11,7 +11,8 @@
  * @returns {string} thumbnail url string
  */
 const thumbnailUrl = (userId, width, height) => (
-    `/get_image/user/${userId}_${width ? width : 32}x${height ? height : (width ? width : 32)}.png`
+    `${process.env.STATIC_HOST}/get_image/user/${userId}_` +
+        `${width ? width : 32}x${height ? height : (width ? width : 32)}.png`
 );
 
 module.exports = thumbnailUrl;
