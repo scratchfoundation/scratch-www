@@ -55,6 +55,10 @@ module.exports.previewReducer = (state, action) => {
             projectInfo: action.info ? action.info : {},
             projectNotAvailable: !action.info
         });
+    case 'UPDATE_PROJECT_INFO':
+        return Object.assign({}, state, {
+            projectInfo: Object.assign({}, state.projectInfo, action.info)
+        });
     case 'SET_REMIXES':
         return Object.assign({}, state, {
             remixes: action.items
@@ -179,6 +183,11 @@ module.exports.resetProject = () => ({
 
 module.exports.setProjectInfo = info => ({
     type: 'SET_PROJECT_INFO',
+    info: info
+});
+
+module.exports.updateProjectInfo = info => ({
+    type: 'UPDATE_PROJECT_INFO',
     info: info
 });
 
@@ -785,7 +794,7 @@ module.exports.shareProject = (projectId, token) => (dispatch => {
             return;
         }
         dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
-        dispatch(module.exports.setProjectInfo(body));
+        dispatch(module.exports.updateProjectInfo(body));
     });
 });
 
