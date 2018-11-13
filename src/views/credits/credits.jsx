@@ -19,15 +19,16 @@ const Credits = () => (
         </TitleBanner>
         <div className="content">
             <div className="people">
-                <div className="midHeader">
+                <div className="mid-header">
                     <h2>MIT Scratch Team</h2>
                     <p>
                         <FormattedMessage id="credits.developers" />
                     </p>
                 </div>
-                <ul>
+                <ul className="avatar-grid">
                     {People.map((person, index) => (
                         <li
+                            className="avatar-item"
                             key={`person-${index}`}
                         >
                             <div>
@@ -38,7 +39,7 @@ const Credits = () => (
                                     />
                                 </a>
                             </div>
-                            <span>
+                            <span className="avatar-text">
                                 {person.name}
                             </span>
                         </li>
@@ -46,7 +47,7 @@ const Credits = () => (
                 </ul>
             </div>
             <div className="supporters">
-                <div className="midHeader">
+                <div className="mid-header">
                     <h2>
                         <FormattedMessage id="credits.currentSponsors" />
                     </h2>
@@ -54,7 +55,7 @@ const Credits = () => (
                         <FormattedMessage id="credits.currentFinancialSupport" />
                     </p>
                 </div>
-                <div className="logoGrid">
+                <div className="logo-grid">
                     {Supporters.map((supporter, index) => (
                         <span
                             className="logo"
@@ -68,7 +69,7 @@ const Credits = () => (
                                         width={supporter.width}
                                     />
                                 ) :
-                                    <div className="textLogo">
+                                    <div className="text-logo">
                                         {supporter.textLogo}
                                     </div>
                                 }
@@ -77,7 +78,7 @@ const Credits = () => (
                     ))}
                 </div>
             </div>
-            <div className="acknowledgeContent">
+            <div className="acknowledge-content">
                 <h2>
                     <FormattedMessage id="credits.translationsTitle" />
                 </h2>

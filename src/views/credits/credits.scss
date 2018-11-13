@@ -2,10 +2,11 @@
 
 #view {
     padding: 0;
+    text-align: left;
 }
 
 .credits {
-    ul {
+    .avatar-grid {
         display: flex;
         margin: 0 auto;
         padding: 64px 0;
@@ -20,7 +21,7 @@
         padding-top: 40px;
     }
 
-    li {
+    .avatar-item {
         display: inline-block;
         margin: 0;
         padding-bottom: 32px;
@@ -36,7 +37,7 @@
             height: 80px;
         }
 
-        span {
+        .avatar-text {
             display: inline-block;
             width: 144px;
             font-size: .875rem;
@@ -45,7 +46,7 @@
         }
     }
 
-    .acknowledgeContent {
+    .acknowledge-content {
         margin: 0 176px;
         padding: 2.5rem 0 5.75rem 0;
         max-width: 520px;
@@ -58,35 +59,35 @@
 
         h2 {
             padding: 3rem 0 1.5rem;
-            line-height: normal;
+            line-height: 1.2em;
             font-size: 2rem;
         }
     }
 
-    .textLogo {
+    .text-logo {
         max-width: 140px;
         text-align: center;
         font-size: 16px;
         font-weight: bold;
     }
 
-    .midHeader {
+    .mid-header {
         display: flex;
         margin: 0 88px;
         flex-direction: column;
         align-items: center;
 
         h2 {
-            line-height: 1.5rem;
+            line-height: 1.2em;
         }
     }
 
-    .logoGrid {
+    .logo-grid {
         display: flex;
         margin: 0 auto;
         max-width: 864px;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
 
     }
@@ -114,63 +115,32 @@
 
 }
 
-@media only screen and (min-width: 1041px) and (max-width: 1280px) {
-    .credits {
-        .logoGrid {
-            max-width: 864px;
-         }
-    }
-}
-@media only screen and (min-width: 769px ) and (max-width: 1040px) {
-    .credits {
-        text-align: left;
-
-        .logoGrid  {
-            max-width: 680px;
-        }
-    }
-}
 @media only screen and (min-width: 477px) and (max-width: 768px) {
     .credits {
-        text-align: left;
-
-        .logoGrid {
-            max-width: 434px;
-         }
-
-        .acknowledgeContent {
+        .acknowledge-content {
             margin: 0 88px;
         }
     }
 }
 @media only screen and (min-width: 365px) and (max-width: 476px) {
     .credits {
-        text-align: left;
-
-        li {
+        .avatar-item {
             padding-bottom: 16px;
 
-            span {
+            .avatar-text {
                 width: 112px;
             }
         }
 
-        .logoGrid {
-            max-width: 444px;
-        }
-
-        .acknowledgeContent,
-        .midHeader {
+        .acknowledge-content,
+        .mid-header {
             margin: 0 44px;
         }
     }
 }
 @media only screen and (max-width: 364px) {
     .credits {
-        text-align: left;
-        font-size: .6rem;
-
-        li {
+        .avatar-item {
             padding-bottom: 16px;
 
             img {
@@ -178,19 +148,16 @@
                 height: 56px;
             }
 
-            span {
+            .avatar-text {
                 width: 96px;
             }
         }
 
-        .logoGrid {
-            display: flex;
-            margin: 0 auto;
-            align-items: center;
+        .logo-grid {
             flex-direction: column;
         }
 
-        .acknowledgeContent {
+        .acknowledge-content {
             margin: 0 12px;
         }
 
@@ -198,7 +165,7 @@
             padding: 36px;
         }
 
-        ul {
+        .avatar-grid {
             margin: 0 12px;
         }
     }
