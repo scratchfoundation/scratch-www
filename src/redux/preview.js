@@ -770,6 +770,25 @@ module.exports.restoreComment = (projectId, commentId, topLevelCommentId, token)
     });
 });
 
+module.exports.shareProject = (projectId, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHING));
+    api({
+        uri: `/proxy/projects/${projectId}/share`,
+        authentication: token,
+        withCredentials: true,
+        method: 'PUT',
+        useCsrf: true
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
+        dispatch(module.exports.setProjectInfo(body));
+    });
+});
+
 module.exports.reportProject = (id, jsonData, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('report', module.exports.Status.FETCHING));
     // scratchr2 will fail if no thumbnail base64 string provided. We don't yet have

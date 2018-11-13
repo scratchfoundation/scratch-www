@@ -328,10 +328,8 @@ class Preview extends React.Component {
         this.props.setPlayer(false);
     }
     handleShare () {
-        this.props.updateProject(
+        this.props.shareProject(
             this.props.projectInfo.id,
-            {isPublished: true},
-            this.props.user.username,
             this.props.user.token
         );
     }
@@ -542,6 +540,7 @@ Preview.propTypes = {
     setFullScreen: PropTypes.func.isRequired,
     setLovedStatus: PropTypes.func.isRequired,
     setPlayer: PropTypes.func.isRequired,
+    shareProject: PropTypes.func.isRequired,
     toggleStudio: PropTypes.func.isRequired,
     updateProject: PropTypes.func.isRequired,
     user: PropTypes.shape({
@@ -693,6 +692,9 @@ const mapDispatchToProps = dispatch => ({
     },
     setLovedStatus: (loved, id, username, token) => {
         dispatch(previewActions.setLovedStatus(loved, id, username, token));
+    },
+    shareProject: (id, token) => {
+        dispatch(previewActions.shareProject(id, token));
     },
     reportProject: (id, formData, token) => {
         dispatch(previewActions.reportProject(id, formData, token));
