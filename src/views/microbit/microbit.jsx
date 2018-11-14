@@ -119,7 +119,7 @@ class MicroBit extends ExtensionLanding {
                                 <a
                                     download
                                     className="download"
-                                    href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.0.hex.zip"
+                                    href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.1.0.hex.zip"
                                 >
                                     <FormattedMessage id="microbit.downloadHex" />
                                 </a>

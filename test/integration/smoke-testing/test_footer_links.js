@@ -269,7 +269,7 @@ tap.test('clickScratchEdLink', options, t => {
 // SCRATCH JR (SCRATCHJR)
 tap.test('clickScratchJrLink', options, t => {
     const linkText = 'ScratchJr';
-    const expectedUrl = 'http://www.scratchjr.org/';
+    const expectedUrl = 'https://www.scratchjr.org/';
     clickFooterLinks(linkText).then(url => {
         t.equal(url, expectedUrl);
         t.end();
