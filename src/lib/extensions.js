@@ -12,23 +12,26 @@ const EXTENSION_INFO = {
         l10nId: 'project.penExtensionChip',
         icon: 'extension-pen.svg'
     },
-    speak: {
-        name: 'Amazon Polly'
-    },
-    speech: {
-        l10nId: 'project.speechExtensionChip'
-    },
-    translate: {
-        l10nId: 'project.translateExtensionChip',
-        icon: 'extension-translate.svg'
-    },
     videoSensing: {
         l10nId: 'project.videoMotionChip',
-        icon: 'extension-videomotion.svg'
+        icon: 'extension-videosensing.svg'
+    },
+    text2speech: {
+        l10nId: 'project.text2SpeechChip',
+        icon: 'extension-text2speech.svg'
+    },
+    translate: {
+        l10nId: 'project.translateChip',
+        icon: 'extension-translate.svg'
     },
     wedo2: {
         name: 'LEGO WeDo 2.0',
         icon: 'extension-wedo2.svg',
+        hasStatus: true
+    },
+    ev3: {
+        name: 'LEGO MINDSTORMS EV3',
+        icon: 'extension-ev3.svg',
         hasStatus: true
     }
 };
