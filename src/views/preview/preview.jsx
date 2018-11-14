@@ -401,12 +401,13 @@ class Preview extends React.Component {
                     <PreviewPresentation
                         addToStudioOpen={this.state.addToStudioOpen}
                         assetHost={this.props.assetHost}
-                        backpackOptions={this.props.backpackOptions}
+                        backpackHost={this.props.backpackHost}
                         canAddToStudio={this.props.canAddToStudio}
                         canDeleteComments={this.props.isAdmin || this.props.userOwnsProject}
                         canReport={this.props.canReport}
                         canRestoreComments={this.props.isAdmin}
                         canShare={this.props.canShare}
+                        canUseBackpack={this.props.canUseBackpack}
                         cloudHost={this.props.cloudHost}
                         comments={this.props.comments}
                         editable={this.props.isEditable}
@@ -457,7 +458,8 @@ class Preview extends React.Component {
                         authorId={this.props.authorId}
                         authorThumbnailUrl={this.props.authorThumbnailUrl}
                         authorUsername={this.props.authorUsername}
-                        backpackOptions={this.props.backpackOptions}
+                        backpackHost={this.props.backpackHost}
+                        backpackVisible={this.props.canUseBackpack}
                         basePath="/"
                         canCreateCopy={this.props.canCreateCopy}
                         canCreateNew={this.props.canCreateNew}
@@ -496,10 +498,7 @@ Preview.propTypes = {
     authorThumbnailUrl: PropTypes.string,
     // If there's no author, this will be false`
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-    backpackOptions: PropTypes.shape({
-        host: PropTypes.string,
-        visible: PropTypes.bool
-    }),
+    backpackHost: PropTypes.string,
     canAddToStudio: PropTypes.bool,
     canCreateCopy: PropTypes.bool,
     canCreateNew: PropTypes.bool,
@@ -507,6 +506,7 @@ Preview.propTypes = {
     canReport: PropTypes.bool,
     canSave: PropTypes.bool,
     canShare: PropTypes.bool,
+    canUseBackpack: PropTypes.bool,
     cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
     enableCommunity: PropTypes.bool,
@@ -570,10 +570,8 @@ Preview.propTypes = {
 
 Preview.defaultProps = {
     assetHost: process.env.ASSET_HOST,
-    backpackOptions: {
-        host: process.env.BACKPACK_HOST,
-        visible: true
-    },
+    backpackHost: process.env.BACKPACK_HOST,
+    canUseBackpack: false,
     cloudHost: process.env.CLOUDDATA_HOST,
     projectHost: process.env.PROJECT_HOST,
     sessionStatus: sessionActions.Status.NOT_FETCHED,
@@ -608,6 +606,7 @@ const mapStateToProps = state => {
         canReport: isLoggedIn && !userOwnsProject,
         canSave: isLoggedIn && userOwnsProject,
         canShare: userOwnsProject && state.permissions.social,
+        canUseBackpack: isLoggedIn,
         comments: state.preview.comments,
         enableCommunity: projectInfoPresent,
         faved: state.preview.faved,
