@@ -490,8 +490,10 @@ class Preview extends React.Component {
 
 Preview.propTypes = {
     assetHost: PropTypes.string.isRequired,
+    // If there's no author, this will be false`
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     authorThumbnailUrl: PropTypes.string,
+    // If there's no author, this will be false`
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     backpackOptions: PropTypes.shape({
         host: PropTypes.string,
