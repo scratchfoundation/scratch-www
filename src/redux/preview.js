@@ -55,6 +55,10 @@ module.exports.previewReducer = (state, action) => {
             projectInfo: action.info ? action.info : {},
             projectNotAvailable: !action.info
         });
+    case 'UPDATE_PROJECT_INFO':
+        return Object.assign({}, state, {
+            projectInfo: Object.assign({}, state.projectInfo, action.info)
+        });
     case 'SET_REMIXES':
         return Object.assign({}, state, {
             remixes: action.items
@@ -179,6 +183,11 @@ module.exports.resetProject = () => ({
 
 module.exports.setProjectInfo = info => ({
     type: 'SET_PROJECT_INFO',
+    info: info
+});
+
+module.exports.updateProjectInfo = info => ({
+    type: 'UPDATE_PROJECT_INFO',
     info: info
 });
 
@@ -767,6 +776,25 @@ module.exports.restoreComment = (projectId, commentId, topLevelCommentId, token)
         if (!topLevelCommentId) {
             dispatch(module.exports.setRepliesRestored(commentId));
         }
+    });
+});
+
+module.exports.shareProject = (projectId, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHING));
+    api({
+        uri: `/proxy/projects/${projectId}/share`,
+        authentication: token,
+        withCredentials: true,
+        method: 'PUT',
+        useCsrf: true
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
+        dispatch(module.exports.updateProjectInfo(body));
     });
 });
 
