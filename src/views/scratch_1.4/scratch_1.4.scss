@@ -68,6 +68,7 @@
     }
 
     .installation-column {
+        padding-top: 40px;
         max-width: $cols4;
         text-align: center;
 
@@ -94,6 +95,12 @@
 
     .mod-link {
         color: $ui-white;
+    }
+
+    #faqs {
+        h2 {
+            margin-bottom: 1rem;
+        }
     }
     
     @media #{$small} {

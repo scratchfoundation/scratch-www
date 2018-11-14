@@ -15,7 +15,7 @@ const OnePointFour = () => (
         <TitleBanner className="masthead">
             <div className="inner">
                 <h1 className="title-banner-h1">
-                    <FormattedMessage id="onePointFour.title" />
+                    Scratch 1.4
                 </h1>
                 <p className="title-banner-p intro">
                     <FormattedMessage id="onePointFour.intro" />
@@ -68,8 +68,8 @@ const OnePointFour = () => (
                             <p><FormattedMessage id="onePointFour.macBody" /></p>
                             <ul className="installation-downloads">
                                 <li className="installation-downloads-item">
-                                    {' '}<a href="http://download.scratch.mit.edu/MacScratch1.4.dmg">
-                                        <FormattedMessage id="onePointFour.macDownload" />
+                                    <a href="http://download.scratch.mit.edu/MacScratch1.4.dmg">
+                                        MacScratch1.4.dmg
                                     </a>
                                 </li>
                             </ul>
@@ -86,15 +86,21 @@ const OnePointFour = () => (
                                 key="installation-downloads"
                             >
                                 <li className="installation-downloads-item">
-                                    {' '}<a href="http://download.scratch.mit.edu/ScratchInstaller1.4.exe">
-                                        <FormattedMessage id="onePointFour.windowsDownload" />
+                                    <a href="http://download.scratch.mit.edu/ScratchInstaller1.4.exe">
+                                        ScratchInstaller1.4.exe
                                     </a>
                                 </li>
                                 <li className="installation-downloads-item">
-                                    <FormattedMessage id="onePointFour.windowsNetworkBody" />
-                                    {' '}<a href="http://download.scratch.mit.edu/Scratch1.4.msi.installer.zip">
-                                        <FormattedMessage id="onePointFour.windowsNetwork" />
-                                    </a>
+                                    <FormattedMessage
+                                        id="onePointFour.windowsNetwork"
+                                        values={{
+                                            windowsNetworkInstaller: (
+                                                <a href="http://download.scratch.mit.edu/Scratch1.4.msi.installer.zip">
+                                                    <FormattedMessage id="onePointFour.windowsNetworkInstaller" />
+                                                </a>
+                                            )
+                                        }}
+                                    />
                                 </li>
                             </ul>
                         </div>
@@ -107,15 +113,21 @@ const OnePointFour = () => (
                             <p><FormattedMessage id="onePointFour.linuxBody" /></p>
                             <ul className="installation-downloads">
                                 <li className="installation-downloads-item">
-                                    {' '}<a href="apt:scratch">
-                                        <FormattedMessage id="onePointFour.linuxInstall" />
-                                    </a>
-                                </li>
-                                <li className="installation-downloads-item">
-                                    <FormattedMessage id="onePointFour.linuxOr" />
-                                    {' '}<a href="http://ubuntu.media.mit.edu/ubuntu//pool/universe/s/scratch/scratch_1.4.0.6~dfsg1-5~ubuntu12.04.1_all.deb">
-                                        <FormattedMessage id="onePointFour.linuxDownload" />
-                                    </a>
+                                    <FormattedMessage
+                                        id="onePointFour.linuxOptions"
+                                        values={{
+                                            linuxInstall: (
+                                                <a href="apt:scratch">
+                                                    <FormattedMessage id="onePointFour.linuxInstall" />
+                                                </a>
+                                            ),
+                                            linuxDownload: (
+                                                <a href="http://ubuntu.media.mit.edu/ubuntu//pool/universe/s/scratch/scratch_1.4.0.6~dfsg1-5~ubuntu12.04.1_all.deb">
+                                                    <FormattedMessage id="onePointFour.linuxDownload" />
+                                                </a>
+                                            )
+                                        }}
+                                    />
                                 </li>
                             </ul>
                         </div>
