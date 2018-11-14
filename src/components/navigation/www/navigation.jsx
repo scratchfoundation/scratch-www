@@ -81,7 +81,7 @@ class Navigation extends React.Component {
         window.location.href = `/search/projects?q=${encodeURIComponent(formData.q)}`;
     }
     render () {
-        const createLink = this.props.user ? '/projects/editor/' : '/projects/editor/?tip_bar=home';
+        const createLink = this.props.user ? '/projects/editor/' : '/projects/editor/?tutorial=getStarted';
         return (
             <NavigationBox
                 className={classNames({
