@@ -16,14 +16,14 @@ const Stats = props => (
             key="loves"
             onClick={props.onLoveClicked}
         >
-            {approx(props.loveCount, {decimal: false})}
+            {approx(Math.max(0, props.loveCount), {decimal: false})}
         </div>
         <div
             className={classNames('project-favorites', {favorited: props.faved})}
             key="favorites"
             onClick={props.onFavoriteClicked}
         >
-            {approx(props.favoriteCount, {decimal: false})}
+            {approx(Math.max(0, props.favoriteCount), {decimal: false})}
         </div>
         <div
             className="project-remixes"
