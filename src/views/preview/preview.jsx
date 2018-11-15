@@ -194,7 +194,10 @@ class Preview extends React.Component {
                         const extensionSet = new Set();
                         if (projectData[0].extensions) {
                             projectData[0].extensions.forEach(extension => {
-                                extensionSet.add(EXTENSION_INFO[extension]);
+                                const extensionInfo = EXTENSION_INFO[extension];
+                                if (extensionInfo) {
+                                    extensionSet.add(extensionInfo);
+                                }
                             });
                         }
                         this.setState({
