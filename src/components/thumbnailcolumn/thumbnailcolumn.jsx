@@ -4,6 +4,7 @@ const React = require('react');
 
 const Thumbnail = require('../thumbnail/thumbnail.jsx');
 const FlexRow = require('../flex-row/flex-row.jsx');
+const thumbnailUrl = require('../../lib/user-thumbnail');
 
 require('./thumbnailcolumn.scss');
 
@@ -14,7 +15,7 @@ const ThumbnailColumn = props => (
             if (props.itemType === 'preview') {
                 return (
                     <Thumbnail
-                        avatar={`https://cdn2.scratch.mit.edu/get_image/user/${item.author.id}_32x32.png`}
+                        avatar={thumbnailUrl(item.author.id)}
                         creator={item.author.username}
                         favorites={item.stats.favorites}
                         href={href}

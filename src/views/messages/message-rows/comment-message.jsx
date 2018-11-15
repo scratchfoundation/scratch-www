@@ -10,6 +10,7 @@ const React = require('react');
 const Comment = require('../../../components/comment/comment.jsx');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const SocialMessage = require('../../../components/social-message/social-message.jsx');
+const thumbnailUrl = require('../../../lib/user-thumbnail');
 
 class CommentMessage extends React.Component {
     constructor (props) {
@@ -164,7 +165,7 @@ class CommentMessage extends React.Component {
                         <img
                             alt={`${this.props.actorUsername}'s avatar`}
                             className="comment-message-info-img"
-                            src={`https://cdn2.scratch.mit.edu/get_image/user/${this.props.actorId}_32x32.png`}
+                            src={thumbnailUrl(this.props.actorId)}
                         />
                     </a>
                     <Comment
