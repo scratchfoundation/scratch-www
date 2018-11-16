@@ -1,12 +1,12 @@
-const FormattedDate = require('react-intl').FormattedDate;
 const injectIntl = require('react-intl').injectIntl;
 const PropTypes = require('prop-types');
 const intlShape = require('react-intl').intlShape;
+const FormattedMessage = require('react-intl').FormattedMessage;
+
 const MediaQuery = require('react-responsive').default;
 const React = require('react');
 const Formsy = require('formsy-react').default;
 const classNames = require('classnames');
-const approx = require('approximate-number');
 
 const GUI = require('scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
@@ -15,15 +15,15 @@ const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
-const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const ShareBanner = require('./share-banner.jsx');
 const RemixCredit = require('./remix-credit.jsx');
 const RemixList = require('./remix-list.jsx');
+const Stats = require('./stats.jsx');
 const StudioList = require('./studio-list.jsx');
+const Subactions = require('./subactions.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
-const AddToStudioModal = require('../../components/modal/addtostudio/container.jsx');
-const ReportModal = require('../../components/modal/report/modal.jsx');
 const TopLevelComment = require('./comment/top-level-comment.jsx');
+const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -44,6 +44,12 @@ const onKeyPress = e => {
 const PreviewPresentation = ({
     assetHost,
     backpackOptions,
+    canAddToStudio,
+    canDeleteComments,
+    canReport,
+    canRestoreComments,
+    canShare,
+    cloudHost,
     comments,
     editable,
     extensions,
@@ -55,6 +61,7 @@ const PreviewPresentation = ({
     isShared,
     loved,
     loveCount,
+    moreCommentsToLoad,
     originalInfo,
     parentInfo,
     projectHost,
@@ -65,29 +72,36 @@ const PreviewPresentation = ({
     replies,
     addToStudioOpen,
     projectStudios,
-    studios,
+    singleCommentId,
     userOwnsProject,
+    onAddComment,
+    onDeleteComment,
     onFavoriteClicked,
     onLoadMore,
     onLoveClicked,
     onReportClicked,
     onReportClose,
+    onReportComment,
     onReportSubmit,
+    onRestoreComment,
     onAddToStudioClicked,
     onAddToStudioClosed,
     onToggleStudio,
+    onToggleComments,
     onSeeInside,
+    onShare,
     onUpdate
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     return (
         <div className="preview">
-            <ShareBanner shared={isShared} />
-
+            {canShare && !isShared && (
+                <ShareBanner onShare={onShare} />
+            )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
-                <Formsy onKeyPress={onKeyPress}>
+                <React.Fragment>
                     <div className="inner">
-                        <FlexRow className="preview-row">
+                        <FlexRow className="preview-row force-row">
                             <FlexRow className="project-header">
                                 <a href={`/users/${projectInfo.author.username}`}>
                                     <Avatar
@@ -97,21 +111,22 @@ const PreviewPresentation = ({
                                 </a>
                                 <div className="title">
                                     {editable ?
-
-                                        <InplaceInput
-                                            className="project-title"
-                                            handleUpdate={onUpdate}
-                                            name="title"
-                                            validationErrors={{
-                                                maxLength: intl.formatMessage({
-                                                    id: 'preview.titleMaxLength'
-                                                })
-                                            }}
-                                            validations={{
-                                                maxLength: 100
-                                            }}
-                                            value={projectInfo.title}
-                                        /> :
+                                        <Formsy onKeyPress={onKeyPress}>
+                                            <InplaceInput
+                                                className="project-title"
+                                                handleUpdate={onUpdate}
+                                                name="title"
+                                                validationErrors={{
+                                                    maxLength: intl.formatMessage({
+                                                        id: 'project.titleMaxLength'
+                                                    })
+                                                }}
+                                                validations={{
+                                                    maxLength: 100
+                                                }}
+                                                value={projectInfo.title}
+                                            />
+                                        </Formsy> :
                                         <React.Fragment>
                                             <div
                                                 className="project-title no-edit"
@@ -125,20 +140,22 @@ const PreviewPresentation = ({
                                     }
                                 </div>
                             </FlexRow>
-                            <div className="project-buttons">
-                                {/* TODO: Hide Remix button for now until implemented */}
-                                {(!userOwnsProject && false) &&
-                                    <Button className="button remix-button">
-                                        Remix
+                            <MediaQuery minWidth={frameless.mobile}>
+                                <div className="project-buttons">
+                                    {/* TODO: Hide Remix button for now until implemented */}
+                                    {(!userOwnsProject && false) &&
+                                        <Button className="button remix-button">
+                                            <FormattedMessage id="project.remixButton" />
+                                        </Button>
+                                    }
+                                    <Button
+                                        className="button see-inside-button"
+                                        onClick={onSeeInside}
+                                    >
+                                        <FormattedMessage id="project.seeInsideButton" />
                                     </Button>
-                                }
-                                <Button
-                                    className="button see-inside-button"
-                                    onClick={onSeeInside}
-                                >
-                                    See Inside
-                                </Button>
-                            </div>
+                                </div>
+                            </MediaQuery>
                         </FlexRow>
                         <FlexRow className="preview-row">
                             <div className="guiPlayer">
@@ -148,12 +165,39 @@ const PreviewPresentation = ({
                                     backpackOptions={backpackOptions}
                                     basePath="/"
                                     className="guiPlayer"
+                                    cloudHost={cloudHost}
                                     isFullScreen={isFullScreen}
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
                                     projectId={projectId}
                                 />
                             </div>
+                            <MediaQuery maxWidth={frameless.tablet - 1}>
+                                <FlexRow className="preview-row force-center">
+                                    <Stats
+                                        faved={faved}
+                                        favoriteCount={favoriteCount}
+                                        loveCount={loveCount}
+                                        loved={loved}
+                                        projectInfo={projectInfo}
+                                        onFavoriteClicked={onFavoriteClicked}
+                                        onLoveClicked={onLoveClicked}
+                                    />
+                                    <Subactions
+                                        addToStudioOpen={addToStudioOpen}
+                                        canReport={canReport}
+                                        projectInfo={projectInfo}
+                                        reportOpen={reportOpen}
+                                        shareDate={shareDate}
+                                        onAddToStudioClicked={onAddToStudioClicked}
+                                        onAddToStudioClosed={onAddToStudioClosed}
+                                        onReportClicked={onReportClicked}
+                                        onReportClose={onReportClose}
+                                        onReportSubmit={onReportSubmit}
+                                        onToggleStudio={onToggleStudio}
+                                    />
+                                </FlexRow>
+                            </MediaQuery>
                             <FlexRow className="project-notes">
                                 <RemixCredit projectInfo={parentInfo} />
                                 <RemixCredit projectInfo={originalInfo} />
@@ -175,158 +219,115 @@ const PreviewPresentation = ({
                                 </MediaQuery>
                                 <FlexRow className="description-block">
                                     <div className="project-textlabel">
-                                        Instructions
+                                        <FormattedMessage id="project.instructionsLabel" />
                                     </div>
                                     {editable ?
-                                        <InplaceInput
-                                            className={classNames(
-                                                'project-description-edit',
-                                                {remixes: parentInfo && parentInfo.author}
-                                            )}
-                                            handleUpdate={onUpdate}
-                                            name="instructions"
-                                            placeholder="Tell people how to use your project (such as which keys to press)."
-                                            type="textarea"
-                                            validationErrors={{
-                                                maxLength: 'Sorry description is too long'
-                                                // maxLength: props.intl.formatMessage({
-                                                //     id: 'project.descriptionMaxLength'
-                                                // })
-                                            }}
-                                            validations={{
-                                                // TODO: actual 5000
-                                                maxLength: 1000
-                                            }}
-                                            value={projectInfo.instructions}
-                                        /> :
+                                        <Formsy
+                                            className="project-description-form"
+                                            onKeyPress={onKeyPress}
+                                        >
+                                            <InplaceInput
+                                                className={classNames(
+                                                    'project-description-edit',
+                                                    {remixes: parentInfo && parentInfo.author}
+                                                )}
+                                                handleUpdate={onUpdate}
+                                                name="instructions"
+                                                placeholder="Tell people how to use your project (such as which keys to press)."
+                                                type="textarea"
+                                                validationErrors={{
+                                                    maxLength: 'Sorry description is too long'
+                                                    // maxLength: props.intl.formatMessage({
+                                                    //     id: 'project.descriptionMaxLength'
+                                                    // })
+                                                }}
+                                                validations={{
+                                                    // TODO: actual 5000
+                                                    maxLength: 1000
+                                                }}
+                                                value={projectInfo.instructions}
+                                            />
+                                        </Formsy> :
                                         <div className="project-description">
-                                            {decorateText(projectInfo.instructions)}
+                                            {decorateText(projectInfo.instructions, {
+                                                usernames: true,
+                                                hashtags: true,
+                                                scratchLinks: false
+                                            })}
                                         </div>
                                     }
                                 </FlexRow>
                                 <FlexRow className="description-block">
                                     <div className="project-textlabel">
-                                        Notes and Credits
+                                        <FormattedMessage id="project.notesAndCreditsLabel" />
                                     </div>
                                     {editable ?
-                                        <InplaceInput
-                                            className={classNames(
-                                                'project-description-edit',
-                                                'last',
-                                                {remixes: parentInfo && parentInfo.author}
-                                            )}
-                                            handleUpdate={onUpdate}
-                                            name="description"
-                                            placeholder="How did you make this project? Did you use ideas scripts or artwork from other people? Thank them here."
-                                            type="textarea"
-                                            validationErrors={{
-                                                maxLength: 'Sorry description is too long'
-                                                // maxLength: props.intl.formatMessage({
-                                                //     id: 'project.descriptionMaxLength'
-                                                // })
-                                            }}
-                                            validations={{
-                                                // TODO: actual 5000
-                                                maxLength: 1000
-                                            }}
-                                            value={projectInfo.description}
-                                        /> :
+                                        <Formsy
+                                            className="project-description-form"
+                                            onKeyPress={onKeyPress}
+                                        >
+                                            <InplaceInput
+                                                className={classNames(
+                                                    'project-description-edit',
+                                                    'last',
+                                                    {remixes: parentInfo && parentInfo.author}
+                                                )}
+                                                handleUpdate={onUpdate}
+                                                name="description"
+                                                placeholder="How did you make this project? Did you use ideas scripts or artwork from other people? Thank them here."
+                                                type="textarea"
+                                                validationErrors={{
+                                                    maxLength: 'Sorry description is too long'
+                                                    // maxLength: props.intl.formatMessage({
+                                                    //     id: 'project.descriptionMaxLength'
+                                                    // })
+                                                }}
+                                                validations={{
+                                                    // TODO: actual 5000
+                                                    maxLength: 1000
+                                                }}
+                                                value={projectInfo.description}
+                                            />
+                                        </Formsy> :
                                         <div className="project-description last">
-                                            {decorateText(projectInfo.description)}
+                                            {decorateText(projectInfo.description, {
+                                                usernames: true,
+                                                hashtags: true,
+                                                scratchLinks: false
+                                            })}
                                         </div>
                                     }
                                 </FlexRow>
                                 {/*  eslint-enable max-len */}
                             </FlexRow>
                         </FlexRow>
-                        <FlexRow className="preview-row">
-                            <FlexRow className="stats">
-                                <div
-                                    className={classNames('project-loves', {loved: loved})}
-                                    key="loves"
-                                    onClick={onLoveClicked}
-                                >
-                                    {approx(loveCount, {decimal: false})}
-                                </div>
-                                <div
-                                    className={classNames('project-favorites', {favorited: faved})}
-                                    key="favorites"
-                                    onClick={onFavoriteClicked}
-                                >
-                                    {approx(favoriteCount, {decimal: false})}
-                                </div>
-                                <div
-                                    className="project-remixes"
-                                    key="remixes"
-                                >
-                                    {approx(projectInfo.stats.remixes, {decimal: false})}
-                                </div>
-                                <div
-                                    className="project-views"
-                                    key="views"
-                                >
-                                    <CappedNumber value={projectInfo.stats.views} />
-                                </div>
+                        <MediaQuery minWidth={frameless.tablet}>
+                            <FlexRow className="preview-row">
+                                <Stats
+                                    faved={faved}
+                                    favoriteCount={favoriteCount}
+                                    loveCount={loveCount}
+                                    loved={loved}
+                                    projectInfo={projectInfo}
+                                    onFavoriteClicked={onFavoriteClicked}
+                                    onLoveClicked={onLoveClicked}
+                                />
+                                <Subactions
+                                    addToStudioOpen={addToStudioOpen}
+                                    canAddToStudio={canAddToStudio}
+                                    canReport={canReport}
+                                    projectInfo={projectInfo}
+                                    reportOpen={reportOpen}
+                                    shareDate={shareDate}
+                                    onAddToStudioClicked={onAddToStudioClicked}
+                                    onAddToStudioClosed={onAddToStudioClosed}
+                                    onReportClicked={onReportClicked}
+                                    onReportClose={onReportClose}
+                                    onReportSubmit={onReportSubmit}
+                                    onToggleStudio={onToggleStudio}
+                                />
                             </FlexRow>
-                            <FlexRow className="subactions">
-                                <div className="share-date">
-                                    <div className="copyleft">&copy;</div>
-                                    {' '}
-                                    {/*  eslint-disable react/jsx-sort-props */}
-                                    {shareDate === null ?
-                                        'Unshared' :
-                                        <FormattedDate
-                                            value={Date.parse(shareDate)}
-                                            day="2-digit"
-                                            month="short"
-                                            year="numeric"
-                                        />
-                                    }
-                                    {/*  eslint-enable react/jsx-sort-props */}
-                                </div>
-                                <FlexRow className="action-buttons">
-                                    {(isLoggedIn && userOwnsProject) &&
-                                        <React.Fragment>
-                                            <Button
-                                                className="action-button studio-button"
-                                                key="add-to-studio-button"
-                                                onClick={onAddToStudioClicked}
-                                            >
-                                                Add to Studio
-                                            </Button>,
-                                            <AddToStudioModal
-                                                isOpen={addToStudioOpen}
-                                                key="add-to-studio-modal"
-                                                studios={studios}
-                                                onRequestClose={onAddToStudioClosed}
-                                                onToggleStudio={onToggleStudio}
-                                            />
-                                        </React.Fragment>
-                                    }
-                                    <Button className="action-button copy-link-button">
-                                        Copy Link
-                                    </Button>
-                                    {(isLoggedIn && !userOwnsProject) &&
-                                        <React.Fragment>
-                                            <Button
-                                                className="action-button report-button"
-                                                key="report-button"
-                                                onClick={onReportClicked}
-                                            >
-                                                Report
-                                            </Button>,
-                                            <ReportModal
-                                                isOpen={reportOpen}
-                                                key="report-modal"
-                                                type="project"
-                                                onReport={onReportSubmit}
-                                                onRequestClose={onReportClose}
-                                            />
-                                        </React.Fragment>
-                                    }
-                                </FlexRow>
-                            </FlexRow>
-                        </FlexRow>
+                        </MediaQuery>
                         <MediaQuery minWidth={frameless.tablet}>
                             <FlexRow className="preview-row">
                                 <FlexRow className="extension-list">
@@ -348,29 +349,71 @@ const PreviewPresentation = ({
                             <FlexRow className="preview-row">
                                 <div className="comments-container">
                                     <FlexRow className="comments-header">
-                                        <h4>Comments</h4>
-                                        {/* TODO: Add toggle comments component and logic*/}
+                                        <h4><FormattedMessage id="project.comments.header" /></h4>
+                                        {userOwnsProject ? (
+                                            <div>
+                                                <label>
+                                                    <input
+                                                        checked={!projectInfo.comments_allowed}
+                                                        className="comments-allowed-input"
+                                                        type="checkbox"
+                                                        onChange={onToggleComments}
+                                                    />
+                                                    <FormattedMessage id="project.comments.turnOff" />
+                                                </label>
+                                            </div>
+                                        ) : null}
                                     </FlexRow>
+
+                                    <FlexRow className="comments-root-reply">
+                                        {projectInfo.comments_allowed ? (
+                                            isLoggedIn ? (
+                                                <ComposeComment
+                                                    projectId={projectId}
+                                                    onAddComment={onAddComment}
+                                                />
+                                            ) : (
+                                                /* TODO add box for signing in to leave a comment */
+                                                null
+                                            )
+                                        ) : (
+                                            <div className="comments-turned-off">
+                                                <FormattedMessage id="project.comments.turnedOff" />
+                                            </div>
+                                        )}
+                                    </FlexRow>
+
                                     <FlexRow className="comments-list">
                                         {comments.map(comment => (
                                             <TopLevelComment
                                                 author={comment.author}
+                                                canDelete={canDeleteComments}
+                                                canReply={isLoggedIn && projectInfo.comments_allowed}
+                                                canReport={isLoggedIn}
+                                                canRestore={canRestoreComments}
                                                 content={comment.content}
                                                 datetimeCreated={comment.datetime_created}
+                                                defaultExpanded={!!singleCommentId}
+                                                highlightedCommentId={singleCommentId}
                                                 id={comment.id}
                                                 key={comment.id}
                                                 parentId={comment.parent_id}
                                                 projectId={projectId}
                                                 replies={replies && replies[comment.id] ? replies[comment.id] : []}
+                                                visibility={comment.visibility}
+                                                onAddComment={onAddComment}
+                                                onDelete={onDeleteComment}
+                                                onReport={onReportComment}
+                                                onRestore={onRestoreComment}
                                             />
                                         ))}
-                                        {comments.length < projectInfo.stats.comments &&
-                                            <Button
-                                                className="button load-more-button"
-                                                onClick={onLoadMore}
-                                            >
-                                                Load More
-                                            </Button>
+                                        {moreCommentsToLoad &&
+                                        <Button
+                                            className="button load-more-button"
+                                            onClick={onLoadMore}
+                                        >
+                                            <FormattedMessage id="general.loadMore" />
+                                        </Button>
                                         }
                                     </FlexRow>
                                 </div>
@@ -381,7 +424,7 @@ const PreviewPresentation = ({
                             </FlexRow>
                         </div>
                     </div>
-                </Formsy>
+                </React.Fragment>
             )}
         </div>
     );
@@ -394,6 +437,12 @@ PreviewPresentation.propTypes = {
         host: PropTypes.string,
         visible: PropTypes.bool
     }),
+    canAddToStudio: PropTypes.bool,
+    canDeleteComments: PropTypes.bool,
+    canReport: PropTypes.bool,
+    canRestoreComments: PropTypes.bool,
+    canShare: PropTypes.bool,
+    cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
     extensions: PropTypes.arrayOf(PropTypes.object),
@@ -405,15 +454,22 @@ PreviewPresentation.propTypes = {
     isShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
+    moreCommentsToLoad: PropTypes.bool,
+    onAddComment: PropTypes.func,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
+    onDeleteComment: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onLoadMore: PropTypes.func,
     onLoveClicked: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
+    onReportComment: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
+    onRestoreComment: PropTypes.func,
     onSeeInside: PropTypes.func,
+    onShare: PropTypes.func,
+    onToggleComments: PropTypes.func,
     onToggleStudio: PropTypes.func,
     onUpdate: PropTypes.func,
     originalInfo: projectShape,
@@ -425,7 +481,7 @@ PreviewPresentation.propTypes = {
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
     reportOpen: PropTypes.bool,
-    studios: PropTypes.arrayOf(PropTypes.object),
+    singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     userOwnsProject: PropTypes.bool
 };
 

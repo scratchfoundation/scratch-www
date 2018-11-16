@@ -6,19 +6,19 @@
         font-size: 4.5rem;
     }
 
-    @media only screen and (max-width: $mobile - 1) {
+    @media #{$small} {
         h1 {
             font-size: 2.5rem;
         }
     }
 
-    @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    @media #{$medium} {
         h1 {
             font-size: 3rem;
         }
     }
 
-    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    @media #{$intermediate} {
         h1 {
             font-size: 3.5rem;
         }
@@ -52,7 +52,7 @@
         }
     }
 
-    @media only screen and (max-width: $tablet - 1) {
+    @media #{$medium-and-smaller} {
         margin-top: 50px;
     }
 }
@@ -79,7 +79,7 @@
         font-size: 4rem;
     }
 
-    @media only screen and (max-width: $tablet - 1) {
+    @media #{$medium-and-smaller} {
         h1,
         .title-banner-h1.mod-2017 {
             font-size: 2.5rem;
@@ -96,7 +96,7 @@
         width: 125px;
     }
 
-    @media only screen and (max-width: $tablet - 1) {
+    @media #{$medium-and-smaller} {
         img {
             transform: translate(0, 5px);
             width: 85px;
@@ -108,7 +108,7 @@ section {
     padding: 64px 0;
 }
 
-@media only screen and (max-width: $mobile - 1) {
+@media #{$small} {
     #view {
         width: 100%;
         min-width: 100%;

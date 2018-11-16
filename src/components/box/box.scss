@@ -7,9 +7,9 @@ $base-bg: $ui-white;
     display: inline-block;
     border: 1px solid $ui-border;
     border-radius: 10px 10px 0 0;
-    
+
     //4 columns
-    @media only screen and (max-width: $mobile - 1) {
+    @media #{$small} {
         width: $cols4;
 
         .box-header {
@@ -22,7 +22,7 @@ $base-bg: $ui-white;
     }
 
     //6 columns
-    @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    @media #{$medium} {
         width: $cols6;
 
         .box-header {
@@ -35,7 +35,7 @@ $base-bg: $ui-white;
     }
 
     //8 columns
-    @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    @media #{$intermediate} {
         width: $cols8;
 
         .box-header {
@@ -48,7 +48,7 @@ $base-bg: $ui-white;
     }
 
     //12 columns
-    @media only screen and (min-width: $desktop) {
+    @media #{$big} {
         width: $cols12;
 
         .box-header {

@@ -102,7 +102,7 @@
         }
     }
 
-    @media only screen and (max-width: $mobile - 1) {
+    @media #{$small} {
         .sub-nav {
             flex-wrap: nowrap;
         }
@@ -124,7 +124,7 @@
         }
     }
 
-    @media only screen and (max-width: $tablet - 1) {
+    @media #{$medium-and-smaller} {
         .inner {
             h2 {
                 &.breaking-title {

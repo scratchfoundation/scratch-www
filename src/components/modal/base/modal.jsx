@@ -23,11 +23,19 @@ class Modal extends React.Component {
         return this.modal.portal.requestClose();
     }
     render () {
+        // bodyOpenClassName prop cannot be blank string or null here; both cause
+        // an error, because ReactModal does not correctly handle them.
+        // If we're not setting it to a class name, we must omit the prop entirely.
+        const bodyOpenClassNameProp = this.props.useStandardSizes ?
+            {bodyOpenClassName: classNames('overflow-hidden')} : {};
         return (
             <ReactModal
                 appElement={document.getElementById('app')}
+                {...bodyOpenClassNameProp}
                 className={{
-                    base: classNames('modal-content', this.props.className),
+                    base: classNames('modal-content', this.props.className, {
+                        'modal-sizes': this.props.useStandardSizes
+                    }),
                     afterOpen: classNames('modal-content', this.props.className),
                     beforeClose: classNames('modal-content', this.props.className)
                 }}
@@ -60,7 +68,8 @@ class Modal extends React.Component {
 Modal.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    overlayClassName: PropTypes.string
+    overlayClassName: PropTypes.string,
+    useStandardSizes: PropTypes.bool
 };
 
 module.exports = Modal;

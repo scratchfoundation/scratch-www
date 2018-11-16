@@ -14,7 +14,7 @@ env:
   global:
   - CXX=g++-4.8
   - API_HOST_master=https://api.scratch.mit.edu
-  - API_HOST_STAGING=https://api-staging.scratch.mit.edu
+  - API_HOST_STAGING=https://api.scratch.ly
   - API_HOST_VAR=API_HOST_$TRAVIS_BRANCH
   - API_HOST=${!API_HOST_VAR}
   - API_HOST=${API_HOST:-$API_HOST_STAGING}
@@ -28,6 +28,11 @@ env:
   - BACKPACK_HOST_VAR=BACKPACK_HOST_$TRAVIS_BRANCH
   - BACKPACK_HOST=${!BACKPACK_HOST_VAR}
   - BACKPACK_HOST=${BACKPACK_HOST:-$BACKPACK_HOST_STAGING}
+  - CLOUDDATA_HOST_master=clouddata.scratch.mit.edu
+  - CLOUDDATA_HOST_STAGING=varserver2.scratch.ly
+  - CLOUDDATA_HOST_VAR=CLOUDDATA_HOST_$TRAVIS_BRANCH
+  - CLOUDDATA_HOST=${!CLOUDDATA_HOST_VAR}
+  - CLOUDDATA_HOST=${CLOUDDATA_HOST:-$CLOUDDATA_HOST_STAGING}
   - ROOT_URL_master=https://scratch.mit.edu
   - ROOT_URL_STAGING=https://scratch.ly
   - ROOT_URL_VAR=ROOT_URL_$TRAVIS_BRANCH

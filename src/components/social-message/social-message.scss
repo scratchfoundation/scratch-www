@@ -53,7 +53,7 @@ a.social-messages-profile-link {
     margin-left: 1.5rem;
 }
 
-@media only screen and (max-width: $mobile - 1) {
+@media #{$small} {
     .social-message {
         text-align: left;
     }
@@ -67,7 +67,7 @@ a.social-messages-profile-link {
     }
 }
 
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+@media #{$medium} {
     .social-message {
         text-align: left;
     }

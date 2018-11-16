@@ -12,6 +12,7 @@ const render = require('../../lib/render.jsx');
 const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
 const EXTENSION_INFO = require('../../lib/extensions.js').default;
+const jar = require('../../lib/jar.js');
 
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -23,6 +24,8 @@ const sessionActions = require('../../redux/session.js');
 const navigationActions = require('../../redux/navigation.js');
 const previewActions = require('../../redux/preview.js');
 
+const frameless = require('../../lib/frameless');
+
 const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
@@ -31,6 +34,9 @@ class Preview extends React.Component {
         super(props);
         bindAll(this, [
             'addEventListeners',
+            'fetchCommunityData',
+            'handleAddComment',
+            'handleDeleteComment',
             'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoadMore',
@@ -38,63 +44,70 @@ class Preview extends React.Component {
             'handlePopState',
             'handleReportClick',
             'handleReportClose',
+            'handleReportComment',
             'handleReportSubmit',
+            'handleRestoreComment',
             'handleAddToStudioClick',
             'handleAddToStudioClose',
             'handleSeeInside',
+            'handleShare',
+            'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleUpdate',
+            'handleToggleComments',
             'initCounts',
             'pushHistory',
-            'renderLogin'
+            'renderLogin',
+            'setScreenFromOrientation'
         ]);
         const pathname = window.location.pathname.toLowerCase();
         const parts = pathname.split('/').filter(Boolean);
         // parts[0]: 'preview'
         // parts[1]: either :id or 'editor'
         // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
+
+        // Get single-comment id from url hash, using the #comments-{id} scheme from scratch2
+        const commentHashPrefix = '#comments-';
+        const singleCommentId = window.location.hash.indexOf(commentHashPrefix) !== -1 &&
+            parseInt(window.location.hash.replace(commentHashPrefix, ''), 10);
+
         this.state = {
             extensions: [],
             favoriteCount: 0,
             loveCount: 0,
-            projectId: parts[1] === 'editor' ? 0 : parts[1],
+            projectId: parts[1] === 'editor' ? '0' : parts[1],
+            singleCommentId: singleCommentId,
             addToStudioOpen: false,
             reportOpen: false
         };
-        this.getExtensions(this.state.projectId);
         this.addEventListeners();
+        /* In the beginning, if user is on mobile and landscape, go to fullscreen */
+        this.setScreenFromOrientation();
     }
-    componentDidUpdate (prevProps) {
-        if (this.props.sessionStatus !== prevProps.sessionStatus &&
-            this.props.sessionStatus === sessionActions.Status.FETCHED &&
-            this.state.projectId) {
-            if (this.props.user) {
-                const username = this.props.user.username;
-                const token = this.props.user.token;
-                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
-                this.props.getProjectInfo(this.state.projectId, token);
-                this.props.getRemixes(this.state.projectId, token);
-                this.props.getProjectStudios(this.state.projectId, token);
-                this.props.getCuratedStudios(username);
-                this.props.getFavedStatus(this.state.projectId, username, token);
-                this.props.getLovedStatus(this.state.projectId, username, token);
-            } else {
-                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
-                this.props.getProjectInfo(this.state.projectId);
-                this.props.getRemixes(this.state.projectId);
-                this.props.getProjectStudios(this.state.projectId);
-            }
+    componentDidUpdate (prevProps, prevState) {
+        if (this.state.projectId > 0 &&
+            ((this.props.sessionStatus !== prevProps.sessionStatus &&
+            this.props.sessionStatus === sessionActions.Status.FETCHED) ||
+            (this.state.projectId !== prevState.projectId))) {
+            this.fetchCommunityData();
+            this.getExtensions(this.state.projectId);
+        }
+        if (this.state.projectId === '0' && this.state.projectId !== prevState.projectId) {
+            this.props.resetProject();
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
-            this.getExtensions(this.state.projectId);
-            this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
-            if (this.props.projectInfo.remix.parent !== null) {
-                this.props.getParentInfo(this.props.projectInfo.remix.parent);
-            }
-            if (this.props.projectInfo.remix.root !== null &&
-                this.props.projectInfo.remix.root !== this.props.projectInfo.remix.parent
-            ) {
-                this.props.getOriginalInfo(this.props.projectInfo.remix.root);
+            if (typeof this.props.projectInfo.id === 'undefined') {
+                this.initCounts(0, 0);
+            } else {
+                this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
+                if (this.props.projectInfo.remix.parent !== null) {
+                    this.props.getParentInfo(this.props.projectInfo.remix.parent);
+                }
+                if (this.props.projectInfo.remix.root !== null &&
+                    this.props.projectInfo.remix.root !== this.props.projectInfo.remix.parent
+                ) {
+                    this.props.getOriginalInfo(this.props.projectInfo.remix.root);
+                }
             }
         }
         if (this.props.playerMode !== prevProps.playerMode || this.props.fullScreen !== prevProps.fullScreen) {
@@ -106,41 +119,113 @@ class Preview extends React.Component {
     }
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
+        window.addEventListener('orientationchange', this.setScreenFromOrientation);
     }
     removeEventListeners () {
         window.removeEventListener('popstate', this.handlePopState);
+        window.removeEventListener('orientationchange', this.setScreenFromOrientation);
+    }
+    fetchCommunityData () {
+        if (this.props.userPresent) {
+            const username = this.props.user.username;
+            const token = this.props.user.token;
+            if (this.state.singleCommentId) {
+                this.props.getCommentById(this.state.projectId, this.state.singleCommentId,
+                    this.props.isAdmin, token);
+            } else {
+                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
+                    this.props.isAdmin, token);
+            }
+            this.props.getProjectInfo(this.state.projectId, token);
+            this.props.getRemixes(this.state.projectId, token);
+            this.props.getProjectStudios(this.state.projectId, token);
+            this.props.getCuratedStudios(username);
+            this.props.getFavedStatus(this.state.projectId, username, token);
+            this.props.getLovedStatus(this.state.projectId, username, token);
+        } else {
+            if (this.state.singleCommentId) {
+                this.props.getCommentById(this.state.projectId, this.state.singleCommentId);
+            } else {
+                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
+            }
+            this.props.getProjectInfo(this.state.projectId);
+            this.props.getRemixes(this.state.projectId);
+            this.props.getProjectStudios(this.state.projectId);
+        }
+    }
+    setScreenFromOrientation () {
+        /*
+        * If the user is on a mobile device, switching to
+        * landscape format should make the fullscreen mode active
+        */
+        const isMobileDevice = screen.height <= frameless.mobile || screen.width <= frameless.mobile;
+        const isAModalOpen = this.state.addToStudioOpen || this.state.reportOpen;
+        if (this.props.playerMode && isMobileDevice && !isAModalOpen) {
+            const isLandscape = screen.height < screen.width;
+            if (isLandscape) {
+                this.props.setFullScreen(true);
+            } else {
+                this.props.setFullScreen(false);
+            }
+        }
     }
     getExtensions (projectId) {
-        storage
-            .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
-            .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
-                let input = projectAsset.data;
-                if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
-                !ArrayBuffer.isView(input)) { // taken from scratch-vm
-                    // If the input is an object and not any ArrayBuffer
-                    // or an ArrayBuffer view (this includes all typed arrays and DataViews)
-                    // turn the object into a JSON string, because we suspect
-                    // this is a project.json as an object
-                    // validate expects a string or buffer as input
-                    // TODO not sure if we need to check that it also isn't a data view
-                    input = JSON.stringify(input);
-                }
-                parser(projectAsset.data, false, (err, projectData) => {
-                    if (err) {
-                        log.error(`Unhandled project parsing error: ${err}`);
-                        return;
+        if (projectId > 0) {
+            storage
+                .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
+                .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
+                    let input = projectAsset.data;
+                    if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
+                    !ArrayBuffer.isView(input)) { // taken from scratch-vm
+                        // If the input is an object and not any ArrayBuffer
+                        // or an ArrayBuffer view (this includes all typed arrays and DataViews)
+                        // turn the object into a JSON string, because we suspect
+                        // this is a project.json as an object
+                        // validate expects a string or buffer as input
+                        // TODO not sure if we need to check that it also isn't a data view
+                        input = JSON.stringify(input);
                     }
-                    const extensionSet = new Set();
-                    if (projectData[0].extensions) {
-                        projectData[0].extensions.forEach(extension => {
-                            extensionSet.add(EXTENSION_INFO[extension]);
+                    parser(projectAsset.data, false, (err, projectData) => {
+                        if (err) {
+                            log.error(`Unhandled project parsing error: ${err}`);
+                            return;
+                        }
+                        const extensionSet = new Set();
+                        if (projectData[0].extensions) {
+                            projectData[0].extensions.forEach(extension => {
+                                extensionSet.add(EXTENSION_INFO[extension]);
+                            });
+                        }
+                        this.setState({
+                            extensions: Array.from(extensionSet)
                         });
-                    }
-                    this.setState({
-                        extensions: Array.from(extensionSet)
                     });
                 });
+        } else { // projectId is default or invalid; empty the extensions array
+            this.setState({
+                extensions: []
             });
+        }
+    }
+    handleToggleComments () {
+        this.props.updateProject(
+            this.props.projectInfo.id,
+            {comments_allowed: !this.props.projectInfo.comments_allowed},
+            this.props.user.username,
+            this.props.user.token
+        );
+    }
+    handleAddComment (comment, topLevelCommentId) {
+        this.props.handleAddComment(comment, topLevelCommentId);
+    }
+    handleDeleteComment (id, topLevelCommentId) {
+        this.props.handleDeleteComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
+    }
+    handleReportComment (id, topLevelCommentId) {
+        this.props.handleReportComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
+    }
+    handleRestoreComment (id, topLevelCommentId) {
+        this.props.handleRestoreComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
     }
     handleReportClick () {
         this.setState({reportOpen: true});
@@ -155,7 +240,7 @@ class Preview extends React.Component {
         this.setState({addToStudioOpen: false});
     }
     handleReportSubmit (formData) {
-        this.props.reportProject(this.state.projectId, formData);
+        this.props.reportProject(this.state.projectId, formData, this.props.user.token);
     }
     handlePopState () {
         const path = window.location.pathname.toLowerCase();
@@ -190,17 +275,12 @@ class Preview extends React.Component {
             );
         }
     }
-    handleToggleStudio (id) {
-        const studioId = parseInt(id, 10);
-        if (isNaN(studioId)) { // sanity check in case event had no integer data-id
-            return;
-        }
-        const studio = this.props.studios.find(thisStudio => (thisStudio.id === studioId));
+    handleToggleStudio (studio) {
         // only send add or leave request to server if we know current status
         if ((typeof studio !== 'undefined') && ('includesProject' in studio)) {
             this.props.toggleStudio(
                 (studio.includesProject === false),
-                studioId,
+                studio.id,
                 this.props.projectInfo.id,
                 this.props.user.token
             );
@@ -224,7 +304,8 @@ class Preview extends React.Component {
         }
     }
     handleLoadMore () {
-        this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
+        this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
+            this.props.isAdmin, this.props.user && this.props.user.token);
     }
     handleLoveToggle () {
         this.props.setLovedStatus(
@@ -247,7 +328,12 @@ class Preview extends React.Component {
         this.props.setPlayer(false);
     }
     handleShare () {
-        // This is just a placeholder, but enables the button in the editor
+        this.props.updateProject(
+            this.props.projectInfo.id,
+            {isPublished: true},
+            this.props.user.username,
+            this.props.user.token
+        );
     }
     handleUpdate (jsonData) {
         this.props.updateProject(
@@ -260,6 +346,28 @@ class Preview extends React.Component {
     handleUpdateProjectTitle (title) {
         this.handleUpdate({
             title: title
+        });
+    }
+    handleSetLanguage (locale) {
+        jar.set('scratchlanguage', locale);
+    }
+    handleUpdateProjectId (projectId, callback) {
+        this.setState({projectId: projectId}, () => {
+            const parts = window.location.pathname.toLowerCase()
+                .split('/')
+                .filter(Boolean);
+            let newUrl;
+            if (projectId === '0') {
+                newUrl = `/${parts[0]}/editor`;
+            } else {
+                newUrl = `/${parts[0]}/${projectId}/editor`;
+            }
+            history.pushState(
+                {projectId: projectId},
+                {projectId: projectId},
+                newUrl
+            );
+            if (callback) callback();
         });
     }
     initCounts (favorites, loves) {
@@ -293,6 +401,12 @@ class Preview extends React.Component {
                         addToStudioOpen={this.state.addToStudioOpen}
                         assetHost={this.props.assetHost}
                         backpackOptions={this.props.backpackOptions}
+                        canAddToStudio={this.props.canAddToStudio}
+                        canDeleteComments={this.props.isAdmin || this.props.userOwnsProject}
+                        canReport={this.props.canReport}
+                        canRestoreComments={this.props.isAdmin}
+                        canShare={this.props.canShare}
+                        cloudHost={this.props.cloudHost}
                         comments={this.props.comments}
                         editable={this.props.isEditable}
                         extensions={this.state.extensions}
@@ -303,6 +417,7 @@ class Preview extends React.Component {
                         isShared={this.props.isShared}
                         loveCount={this.state.loveCount}
                         loved={this.props.loved}
+                        moreCommentsToLoad={this.props.moreCommentsToLoad}
                         originalInfo={this.props.original}
                         parentInfo={this.props.parent}
                         projectHost={this.props.projectHost}
@@ -312,37 +427,52 @@ class Preview extends React.Component {
                         remixes={this.props.remixes}
                         replies={this.props.replies}
                         reportOpen={this.state.reportOpen}
-                        studios={this.props.studios}
+                        singleCommentId={this.state.singleCommentId}
                         userOwnsProject={this.props.userOwnsProject}
+                        onAddComment={this.handleAddComment}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
+                        onDeleteComment={this.handleDeleteComment}
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoadMore={this.handleLoadMore}
                         onLoveClicked={this.handleLoveToggle}
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
+                        onReportComment={this.handleReportComment}
                         onReportSubmit={this.handleReportSubmit}
+                        onRestoreComment={this.handleRestoreComment}
                         onSeeInside={this.handleSeeInside}
+                        onShare={this.handleShare}
+                        onToggleComments={this.handleToggleComments}
                         onToggleStudio={this.handleToggleStudio}
                         onUpdate={this.handleUpdate}
                     />
                 </Page> :
                 <React.Fragment>
                     <IntlGUI
-                        enableCommunity
                         hideIntro
                         assetHost={this.props.assetHost}
                         backpackOptions={this.props.backpackOptions}
                         basePath="/"
+                        canCreateCopy={this.props.canCreateCopy}
+                        canCreateNew={this.props.canCreateNew}
+                        canRemix={this.props.canRemix}
+                        canSave={this.props.canSave}
+                        canShare={this.props.canShare}
                         className="gui"
+                        cloudHost={this.props.cloudHost}
+                        enableCommunity={this.props.enableCommunity}
+                        isShared={this.props.isShared}
                         projectHost={this.props.projectHost}
                         projectId={this.state.projectId}
                         projectTitle={this.props.projectInfo.title}
                         renderLogin={this.renderLogin}
                         onLogOut={this.props.handleLogOut}
                         onOpenRegistration={this.props.handleOpenRegistration}
+                        onSetLanguage={this.handleSetLanguage}
                         onShare={this.handleShare}
                         onToggleLoginOpen={this.props.handleToggleLoginOpen}
+                        onUpdateProjectId={this.handleUpdateProjectId}
                         onUpdateProjectTitle={this.handleUpdateProjectTitle}
                     />
                     <Registration />
@@ -359,9 +489,19 @@ Preview.propTypes = {
         host: PropTypes.string,
         visible: PropTypes.bool
     }),
+    canAddToStudio: PropTypes.bool,
+    canCreateCopy: PropTypes.bool,
+    canCreateNew: PropTypes.bool,
+    canRemix: PropTypes.bool,
+    canReport: PropTypes.bool,
+    canSave: PropTypes.bool,
+    canShare: PropTypes.bool,
+    cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
+    enableCommunity: PropTypes.bool,
     faved: PropTypes.bool,
     fullScreen: PropTypes.bool,
+    getCommentById: PropTypes.func.isRequired,
     getCuratedStudios: PropTypes.func.isRequired,
     getFavedStatus: PropTypes.func.isRequired,
     getLovedStatus: PropTypes.func.isRequired,
@@ -371,14 +511,20 @@ Preview.propTypes = {
     getProjectStudios: PropTypes.func.isRequired,
     getRemixes: PropTypes.func.isRequired,
     getTopLevelComments: PropTypes.func.isRequired,
+    handleAddComment: PropTypes.func,
+    handleDeleteComment: PropTypes.func,
     handleLogIn: PropTypes.func,
     handleLogOut: PropTypes.func,
     handleOpenRegistration: PropTypes.func,
+    handleReportComment: PropTypes.func,
+    handleRestoreComment: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
+    isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isShared: PropTypes.bool,
     loved: PropTypes.bool,
+    moreCommentsToLoad: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
     playerMode: PropTypes.bool,
@@ -388,12 +534,12 @@ Preview.propTypes = {
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
     reportProject: PropTypes.func,
+    resetProject: PropTypes.func,
     sessionStatus: PropTypes.string,
     setFavedStatus: PropTypes.func.isRequired,
     setFullScreen: PropTypes.func.isRequired,
     setLovedStatus: PropTypes.func.isRequired,
     setPlayer: PropTypes.func.isRequired,
-    studios: PropTypes.arrayOf(PropTypes.object),
     toggleStudio: PropTypes.func.isRequired,
     updateProject: PropTypes.func.isRequired,
     user: PropTypes.shape({
@@ -406,7 +552,8 @@ Preview.propTypes = {
         email: PropTypes.string,
         classroomId: PropTypes.string
     }),
-    userOwnsProject: PropTypes.bool
+    userOwnsProject: PropTypes.bool,
+    userPresent: PropTypes.bool
 };
 
 Preview.defaultProps = {
@@ -415,56 +562,37 @@ Preview.defaultProps = {
         host: process.env.BACKPACK_HOST,
         visible: true
     },
+    cloudHost: process.env.CLOUDDATA_HOST,
     projectHost: process.env.PROJECT_HOST,
     sessionStatus: sessionActions.Status.NOT_FETCHED,
-    user: {}
-};
-
-// Build consolidated curatedStudios object from all studio info.
-// We add flags to indicate whether the project is currently in the studio,
-// and the status of requests to join/leave studios.
-const consolidateStudiosInfo = (curatedStudios, projectStudios, currentStudioIds, studioRequests) => {
-    const consolidatedStudios = [];
-
-    projectStudios.forEach(projectStudio => {
-        const includesProject = (currentStudioIds.indexOf(projectStudio.id) !== -1);
-        const consolidatedStudio =
-            Object.assign({}, projectStudio, {includesProject: includesProject});
-        consolidatedStudios.push(consolidatedStudio);
-    });
-
-    // copy the curated studios that project is not in
-    curatedStudios.forEach(curatedStudio => {
-        if (!projectStudios.some(projectStudio => (projectStudio.id === curatedStudio.id))) {
-            const includesProject = (currentStudioIds.indexOf(curatedStudio.id) !== -1);
-            const consolidatedStudio =
-                Object.assign({}, curatedStudio, {includesProject: includesProject});
-            consolidatedStudios.push(consolidatedStudio);
-        }
-    });
-
-    // set studio state to hasRequestOutstanding==true if it's being fetched,
-    // false if it's not
-    consolidatedStudios.forEach(consolidatedStudio => {
-        const id = consolidatedStudio.id;
-        consolidatedStudio.hasRequestOutstanding =
-            ((id in studioRequests) &&
-           (studioRequests[id] === previewActions.Status.FETCHING));
-    });
-    return consolidatedStudios;
+    user: {},
+    userPresent: false
 };
 
 const mapStateToProps = state => {
-    const projectInfoPresent = Object.keys(state.preview.projectInfo).length > 0;
-    const userPresent = state.session.session.user &&
+    const projectInfoPresent = state.preview.projectInfo &&
+            Object.keys(state.preview.projectInfo).length > 0 && state.preview.projectInfo.id > 0;
+    const userPresent = state.session.session.user !== null &&
+        typeof state.session.session.user !== 'undefined' &&
         Object.keys(state.session.session.user).length > 0;
     const isLoggedIn = state.session.status === sessionActions.Status.FETCHED &&
         userPresent;
+    const isAdmin = isLoggedIn && state.session.session.permissions.admin;
     const authorPresent = projectInfoPresent && state.preview.projectInfo.author &&
         Object.keys(state.preview.projectInfo.author).length > 0;
+    const userOwnsProject = isLoggedIn && authorPresent &&
+        state.session.session.user.id === state.preview.projectInfo.author.id;
 
     return {
+        canAddToStudio: userOwnsProject,
+        canCreateCopy: userOwnsProject && projectInfoPresent,
+        canCreateNew: isLoggedIn,
+        canRemix: isLoggedIn && projectInfoPresent && !userOwnsProject,
+        canReport: isLoggedIn && !userOwnsProject,
+        canSave: isLoggedIn && userOwnsProject,
+        canShare: userOwnsProject && state.permissions.social,
         comments: state.preview.comments,
+        enableCommunity: projectInfoPresent,
         faved: state.preview.faved,
         fullScreen: state.scratchGui.mode.isFullScreen,
         // project is editable iff logged in user is the author of the project, or
@@ -473,12 +601,11 @@ const mapStateToProps = state => {
             ((authorPresent && state.preview.projectInfo.author.username === state.session.session.user.username) ||
             state.permissions.admin === true),
         isLoggedIn: isLoggedIn,
+        isAdmin: isAdmin,
         // if we don't have projectInfo, assume it's shared until we know otherwise
-        isShared: !projectInfoPresent || (
-            state.preview.projectInfo.history &&
-            state.preview.projectInfo.history.shared &&
-            state.preview.projectInfo.history.shared.length > 0),
+        isShared: !projectInfoPresent || state.preview.projectInfo.is_published,
         loved: state.preview.loved,
+        moreCommentsToLoad: state.preview.moreCommentsToLoad,
         original: state.preview.original,
         parent: state.preview.parent,
         playerMode: state.scratchGui.mode.isPlayerOnly,
@@ -487,16 +614,25 @@ const mapStateToProps = state => {
         remixes: state.preview.remixes,
         replies: state.preview.replies,
         sessionStatus: state.session.status, // check if used
-        studios: consolidateStudiosInfo(state.preview.curatedStudios,
-            state.preview.projectStudios, state.preview.currentStudioIds,
-            state.preview.status.studioRequests),
         user: state.session.session.user,
-        userOwnsProject: isLoggedIn && authorPresent &&
-            state.session.session.user.id === state.preview.projectInfo.author.id
+        userOwnsProject: userOwnsProject,
+        userPresent: userPresent
     };
 };
 
 const mapDispatchToProps = dispatch => ({
+    handleAddComment: (comment, topLevelCommentId) => {
+        dispatch(previewActions.addNewComment(comment, topLevelCommentId));
+    },
+    handleDeleteComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.deleteComment(projectId, commentId, topLevelCommentId, token));
+    },
+    handleReportComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.reportComment(projectId, commentId, topLevelCommentId, token));
+    },
+    handleRestoreComment: (projectId, commentId, topLevelCommentId, token) => {
+        dispatch(previewActions.restoreComment(projectId, commentId, topLevelCommentId, token));
+    },
     handleOpenRegistration: event => {
         event.preventDefault();
         dispatch(navigationActions.setRegistrationOpen(true));
@@ -537,8 +673,11 @@ const mapDispatchToProps = dispatch => ({
             dispatch(previewActions.leaveStudio(studioId, id, token));
         }
     },
-    getTopLevelComments: (id, offset) => {
-        dispatch(previewActions.getTopLevelComments(id, offset));
+    getTopLevelComments: (id, offset, isAdmin, token) => {
+        dispatch(previewActions.getTopLevelComments(id, offset, isAdmin, token));
+    },
+    getCommentById: (projectId, commentId, isAdmin, token) => {
+        dispatch(previewActions.getCommentById(projectId, commentId, isAdmin, token));
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));
@@ -552,8 +691,11 @@ const mapDispatchToProps = dispatch => ({
     setLovedStatus: (loved, id, username, token) => {
         dispatch(previewActions.setLovedStatus(loved, id, username, token));
     },
-    reportProject: (id, formData) => {
-        dispatch(previewActions.reportProject(id, formData));
+    reportProject: (id, formData, token) => {
+        dispatch(previewActions.reportProject(id, formData, token));
+    },
+    resetProject: () => {
+        dispatch(previewActions.resetProject());
     },
     setOriginalInfo: info => {
         dispatch(previewActions.setOriginalInfo(info));
@@ -600,6 +742,9 @@ render(
         preview: previewActions.previewReducer,
         ...GUI.guiReducers
     },
-    {scratchGui: initGuiState(GUI.guiInitialState)},
+    {
+        locales: GUI.initLocale(GUI.localesInitialState, window._locale),
+        scratchGui: initGuiState(GUI.guiInitialState)
+    },
     GUI.guiMiddleware
 );
