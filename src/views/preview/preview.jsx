@@ -741,6 +741,19 @@ const ConnectedPreview = connect(
     mapDispatchToProps
 )(Preview);
 
+// replace old Scratch 2.0-style hashtag URLs with updated format
+if (window.location.hash) {
+    if (window.location.hash === '#editor') {
+        history.replaceState({}, document.title,
+            `${window.location.origin}${window.location.pathname}editor${window.location.search}`);
+    }
+    if (window.location.hash === '#fullscreen') {
+        history.replaceState({}, document.title,
+            `${window.location.origin}${window.location.pathname}fullscreen${window.location.search}`);
+    }
+}
+
+// initialize GUI by calling its reducer functions depending on URL
 GUI.setAppElement(document.getElementById('app'));
 const initGuiState = guiInitialState => {
     const pathname = window.location.pathname.toLowerCase();
