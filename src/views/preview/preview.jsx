@@ -51,6 +51,7 @@ class Preview extends React.Component {
             'handleAddToStudioClick',
             'handleAddToStudioClose',
             'handleRemix',
+            'handleSeeAllComments',
             'handleSeeInside',
             'handleShare',
             'handleUpdateProjectId',
@@ -376,6 +377,16 @@ class Preview extends React.Component {
             if (callback) callback();
         });
     }
+    handleSeeAllComments () {
+        // Remove hash from URL
+        history.pushState('', document.title, window.location.pathname + window.location.search);
+        this.setState({singleCommentId: null});
+        this.props.handleSeeAllComments(
+            this.props.projectInfo.id,
+            this.props.isAdmin,
+            this.props.user.token
+        );
+    }
     initCounts (favorites, loves) {
         this.setState({
             favoriteCount: favorites,
@@ -451,6 +462,7 @@ class Preview extends React.Component {
                         onReportComment={this.handleReportComment}
                         onReportSubmit={this.handleReportSubmit}
                         onRestoreComment={this.handleRestoreComment}
+                        onSeeAllComments={this.handleSeeAllComments}
                         onSeeInside={this.handleSeeInside}
                         onShare={this.handleShare}
                         onToggleComments={this.handleToggleComments}
@@ -536,6 +548,7 @@ Preview.propTypes = {
     handleOpenRegistration: PropTypes.func,
     handleReportComment: PropTypes.func,
     handleRestoreComment: PropTypes.func,
+    handleSeeAllComments: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
@@ -673,6 +686,10 @@ const mapDispatchToProps = dispatch => ({
     handleToggleLoginOpen: event => {
         event.preventDefault();
         dispatch(navigationActions.toggleLoginOpen());
+    },
+    handleSeeAllComments: (id, isAdmin, token) => {
+        dispatch(previewActions.resetComments());
+        dispatch(previewActions.getTopLevelComments(id, 0, isAdmin, token));
     },
     getOriginalInfo: id => {
         dispatch(previewActions.getOriginalInfo(id));
