@@ -43,10 +43,12 @@ const onKeyPress = e => {
 };
 
 const PreviewPresentation = ({
+    addToStudioOpen,
     assetHost,
     backpackHost,
     canAddToStudio,
     canDeleteComments,
+    canRemix,
     canReport,
     canRestoreComments,
     canShare,
@@ -61,39 +63,40 @@ const PreviewPresentation = ({
     isFullScreen,
     isLoggedIn,
     isShared,
-    loved,
     loveCount,
+    loved,
     moreCommentsToLoad,
+    onAddComment,
+    onAddToStudioClicked,
+    onAddToStudioClosed,
+    onDeleteComment,
+    onFavoriteClicked,
+    onLoadMore,
+    onLoveClicked,
+    onRemix,
+    onReportClicked,
+    onReportClose,
+    onReportComment,
+    onReportSubmit,
+    onRestoreComment,
+    onSeeInside,
+    onShare,
+    onToggleComments,
+    onToggleStudio,
+    onUpdate,
+    onUpdateProjectId,
     originalInfo,
     parentInfo,
     projectHost,
     projectId,
     projectInfo,
     projectNotAvailable,
-    remixes,
-    reportOpen,
-    replies,
-    addToStudioOpen,
     projectStudios,
+    remixes,
+    replies,
+    reportOpen,
     singleCommentId,
-    userOwnsProject,
-    onAddComment,
-    onDeleteComment,
-    onFavoriteClicked,
-    onLoadMore,
-    onLoveClicked,
-    onReportClicked,
-    onReportClose,
-    onReportComment,
-    onReportSubmit,
-    onRestoreComment,
-    onAddToStudioClicked,
-    onAddToStudioClosed,
-    onToggleStudio,
-    onToggleComments,
-    onSeeInside,
-    onShare,
-    onUpdate
+    userOwnsProject
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
 
@@ -154,9 +157,11 @@ const PreviewPresentation = ({
                             </FlexRow>
                             <MediaQuery minWidth={frameless.mobile}>
                                 <div className="project-buttons">
-                                    {/* TODO: Hide Remix button for now until implemented */}
-                                    {(!userOwnsProject && false) &&
-                                        <Button className="button remix-button">
+                                    {canRemix &&
+                                        <Button
+                                            className="button remix-button"
+                                            onClick={onRemix}
+                                        >
                                             <FormattedMessage id="project.remixButton" />
                                         </Button>
                                     }
@@ -177,12 +182,14 @@ const PreviewPresentation = ({
                                     backpackHost={backpackHost}
                                     backpackVisible={canUseBackpack}
                                     basePath="/"
+                                    canRemix={canRemix}
                                     className="guiPlayer"
                                     cloudHost={cloudHost}
                                     isFullScreen={isFullScreen}
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
                                     projectId={projectId}
+                                    onUpdateProjectId={onUpdateProjectId}
                                 />
                             </div>
                             <MediaQuery maxWidth={frameless.tablet - 1}>
@@ -449,6 +456,7 @@ PreviewPresentation.propTypes = {
     backpackHost: PropTypes.string,
     canAddToStudio: PropTypes.bool,
     canDeleteComments: PropTypes.bool,
+    canRemix: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestoreComments: PropTypes.bool,
     canShare: PropTypes.bool,
@@ -473,6 +481,7 @@ PreviewPresentation.propTypes = {
     onFavoriteClicked: PropTypes.func,
     onLoadMore: PropTypes.func,
     onLoveClicked: PropTypes.func,
+    onRemix: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
     onReportComment: PropTypes.func.isRequired,
@@ -483,6 +492,7 @@ PreviewPresentation.propTypes = {
     onToggleComments: PropTypes.func,
     onToggleStudio: PropTypes.func,
     onUpdate: PropTypes.func,
+    onUpdateProjectId: PropTypes.func,
     originalInfo: projectShape,
     parentInfo: projectShape,
     projectHost: PropTypes.string,

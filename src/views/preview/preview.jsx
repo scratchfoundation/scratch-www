@@ -50,6 +50,7 @@ class Preview extends React.Component {
             'handleRestoreComment',
             'handleAddToStudioClick',
             'handleAddToStudioClose',
+            'handleRemix',
             'handleSeeInside',
             'handleShare',
             'handleUpdateProjectId',
@@ -73,13 +74,13 @@ class Preview extends React.Component {
             parseInt(window.location.hash.replace(commentHashPrefix, ''), 10);
 
         this.state = {
+            addToStudioOpen: false,
             extensions: [],
             favoriteCount: 0,
             loveCount: 0,
             projectId: parts[1] === 'editor' ? '0' : parts[1],
-            singleCommentId: singleCommentId,
-            addToStudioOpen: false,
-            reportOpen: false
+            reportOpen: false,
+            singleCommentId: singleCommentId
         };
         this.addEventListeners();
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
@@ -328,6 +329,9 @@ class Preview extends React.Component {
             }));
         }
     }
+    handleRemix () {
+        this.props.remixProject();
+    }
     handleSeeInside () {
         this.props.setPlayer(false);
     }
@@ -405,6 +409,7 @@ class Preview extends React.Component {
                         backpackHost={this.props.backpackHost}
                         canAddToStudio={this.props.canAddToStudio}
                         canDeleteComments={this.props.isAdmin || this.props.userOwnsProject}
+                        canRemix={this.props.canRemix}
                         canReport={this.props.canReport}
                         canRestoreComments={this.props.isAdmin}
                         canShare={this.props.canShare}
@@ -440,6 +445,7 @@ class Preview extends React.Component {
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoadMore={this.handleLoadMore}
                         onLoveClicked={this.handleLoveToggle}
+                        onRemix={this.handleRemix}
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
                         onReportComment={this.handleReportComment}
@@ -450,11 +456,11 @@ class Preview extends React.Component {
                         onToggleComments={this.handleToggleComments}
                         onToggleStudio={this.handleToggleStudio}
                         onUpdate={this.handleUpdate}
+                        onUpdateProjectId={this.handleUpdateProjectId}
                     />
                 </Page> :
                 <React.Fragment>
                     <IntlGUI
-                        hideIntro
                         assetHost={this.props.assetHost}
                         authorId={this.props.authorId}
                         authorThumbnailUrl={this.props.authorThumbnailUrl}
@@ -544,6 +550,7 @@ Preview.propTypes = {
     projectInfo: projectShape,
     projectNotAvailable: PropTypes.bool,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
+    remixProject: PropTypes.func,
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
     reportProject: PropTypes.func,
@@ -727,6 +734,9 @@ const mapDispatchToProps = dispatch => ({
     },
     updateProject: (id, formData, username, token) => {
         dispatch(previewActions.updateProject(id, formData, username, token));
+    },
+    remixProject: () => {
+        dispatch(GUI.remixProject());
     },
     setPlayer: player => {
         dispatch(GUI.setPlayer(player));
