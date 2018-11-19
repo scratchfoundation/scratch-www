@@ -63,7 +63,7 @@ class Preview extends React.Component {
         ]);
         const pathname = window.location.pathname.toLowerCase();
         const parts = pathname.split('/').filter(Boolean);
-        // parts[0]: 'preview'
+        // parts[0]: 'projects'
         // parts[1]: either :id or 'editor'
         // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
 
@@ -264,7 +264,7 @@ class Preview extends React.Component {
         if (!this.props.playerMode) modePath = 'editor/';
         // fullscreen overrides editor
         if (this.props.fullScreen) modePath = 'fullscreen/';
-        const newPath = `/preview/${idPath}${modePath}`;
+        const newPath = `/projects/${idPath}${modePath}`;
         if (push) {
             history.pushState(
                 {},
@@ -745,7 +745,7 @@ GUI.setAppElement(document.getElementById('app'));
 const initGuiState = guiInitialState => {
     const pathname = window.location.pathname.toLowerCase();
     const parts = pathname.split('/').filter(Boolean);
-    // parts[0]: 'preview'
+    // parts[0]: 'projects'
     // parts[1]: either :id or 'editor'
     // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
     if (parts.indexOf('editor') === -1) {
