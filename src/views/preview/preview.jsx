@@ -20,6 +20,7 @@ const projectShape = require('./projectshape.jsx').projectShape;
 const Registration = require('../../components/registration/registration.jsx');
 const ConnectedLogin = require('../../components/login/connected-login.jsx');
 const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
+const NotAvailable = require('../../components/not-available/not-available.jsx');
 
 const sessionActions = require('../../redux/session.js');
 const navigationActions = require('../../redux/navigation.js');
@@ -400,6 +401,16 @@ class Preview extends React.Component {
         );
     }
     render () {
+        if (this.props.projectNotAvailable) {
+            return (
+                <Page>
+                    <div className="preview">
+                        <NotAvailable />
+                    </div>
+                </Page>
+            );
+        }
+
         return (
             this.props.playerMode ?
                 <Page>
@@ -431,7 +442,6 @@ class Preview extends React.Component {
                         projectHost={this.props.projectHost}
                         projectId={this.state.projectId}
                         projectInfo={this.props.projectInfo}
-                        projectNotAvailable={this.props.projectNotAvailable}
                         projectStudios={this.props.projectStudios}
                         remixes={this.props.remixes}
                         replies={this.props.replies}

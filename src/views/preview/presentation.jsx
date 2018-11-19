@@ -25,7 +25,6 @@ const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const TopLevelComment = require('./comment/top-level-comment.jsx');
 const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
-const NotAvailable = require('../../components/not-available/not-available.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -90,7 +89,6 @@ const PreviewPresentation = ({
     projectHost,
     projectId,
     projectInfo,
-    projectNotAvailable,
     projectStudios,
     remixes,
     replies,
@@ -99,14 +97,6 @@ const PreviewPresentation = ({
     userOwnsProject
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
-
-    if (projectNotAvailable) {
-        return (
-            <div className="preview">
-                <NotAvailable />
-            </div>
-        );
-    }
 
     return (
         <div className="preview">
@@ -498,7 +488,6 @@ PreviewPresentation.propTypes = {
     projectHost: PropTypes.string,
     projectId: PropTypes.string,
     projectInfo: projectShape,
-    projectNotAvailable: PropTypes.bool,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
