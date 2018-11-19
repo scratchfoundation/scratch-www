@@ -26,7 +26,7 @@
     "microbit.closeScratchCopiesTitle": "Close other copies of Scratch",
     "microbit.closeScratchCopiesText": "Only one copy of Scratch can connect with the micro:bit at a time. If you have Scratch open in other browser tabs, close it and try again.",
     "microbit.otherComputerConnectedTitle": "Make sure no other computer is connected to your micro:bit",
-    "microbit.otherComputerConnectedText": "Only one computer can be connected to an micro:bit at a time. If you have another computer connected to your micro:bit, disconnect the micro:bit or close Scratch on that computer and try again.",
+    "microbit.otherComputerConnectedText": "Only one computer can be connected to a micro:bit at a time. If you have another computer connected to your micro:bit, disconnect the micro:bit or close Scratch on that computer and try again.",
     "microbit.resetButtonTitle": "Make sure you aren’t hitting the “reset” button",
     "microbit.resetButtonText": "Sometimes while using the micro:bit you can accidentally press the “reset” button on the back in-between the USB and power ports. Make sure you keep your fingers (and toes) away from it while using Scratch!",
     "microbit.imgAltMicrobitIllustration": "Illustration of the micro:bit circuit board.",

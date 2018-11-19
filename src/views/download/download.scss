@@ -111,7 +111,7 @@
         color: $ui-white;
     }
     
-    @media only screen and (max-width: $mobile - 1) {
+    @media #{$small} {
         .inner {
             .installation-column {
                 max-width: 100%;
@@ -119,7 +119,7 @@
         }
     }
 
-    @media only screen and (max-width: $desktop - 1) {
+    @media #{$intermediate-and-smaller} {
         .three-col-row {
             flex-direction: column;
             align-items: center;

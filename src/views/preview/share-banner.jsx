@@ -1,30 +1,29 @@
 const PropTypes = require('prop-types');
 const React = require('react');
+const FormattedMessage = require('react-intl').FormattedMessage;
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 
 require('./share-banner.scss');
 
-const ShareBanner = props => {
-    if (props.shared) return null;
-    return (
-        <div className="shareBanner">
-            <div className="inner">
-                <FlexRow className="preview-row">
-                    <span className="share-text">
-                        This project is not shared — so only you can see it. Click share to let everyone see it!
-                    </span>
-                    <Button className="button share-button">
-                        Share
-                    </Button>
-                </FlexRow>
-            </div>
-        </div>
-    );
-};
+const ShareBanner = ({onShare}) => (
+    <div className="share-banner-outer">
+        <FlexRow className="inner share-banner">
+            <span className="share-text">
+                <FormattedMessage id="project.share.notShared" />
+            </span>
+            <Button
+                className="button share-button"
+                onClick={onShare}
+            >
+                <FormattedMessage id="project.share.shareButton" />
+            </Button>
+        </FlexRow>
+    </div>
+);
 
 ShareBanner.propTypes = {
-    shared: PropTypes.bool.isRequired
+    onShare: PropTypes.func
 };
 
 module.exports = ShareBanner;

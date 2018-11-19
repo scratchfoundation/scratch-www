@@ -166,7 +166,7 @@
 }
 
 //4 columns
-@media only screen and (max-width: $mobile - 1) {
+@media #{$small} {
     #navigation .inner {
         width: $cols4;
 
@@ -190,7 +190,7 @@
 
 
 //6 columns
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+@media #{$medium} {
     #navigation .inner {
         width: $cols6;
 
@@ -212,7 +212,7 @@
 }
 
 //8 columns
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+@media #{$intermediate} {
     #navigation .inner {
         width: $cols8;
 

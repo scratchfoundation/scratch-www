@@ -37,70 +37,69 @@ const AddToStudioModalPresentation = ({
 
     return (
         <Modal
+            useStandardSizes
             className="mod-addToStudio"
             contentLabel={contentLabel}
             isOpen={isOpen}
             onRequestClose={onRequestClose}
         >
-            <div>
-                <div className="addToStudio-modal-header">
-                    <div className="addToStudio-content-label">
-                        {contentLabel}
+            <div className="addToStudio-modal-header modal-header">
+                <div className="addToStudio-content-label content-label">
+                    {contentLabel}
+                </div>
+            </div>
+            <div className="addToStudio-modal-content modal-content">
+                <div className="studio-list-outer-scrollbox">
+                    <div className="studio-list-inner-scrollbox">
+                        <div className="studio-list-container">
+                            {studioButtons}
+                        </div>
+                        <div className="studio-list-bottom-gradient" />
                     </div>
                 </div>
-                <div className="addToStudio-modal-content">
-                    <div className="studio-list-outer-scrollbox">
-                        <div className="studio-list-inner-scrollbox">
-                            <div className="studio-list-container">
-                                {studioButtons}
+
+
+                <Form
+                    className="add-to-studio"
+                    onSubmit={onSubmit}
+                >
+                    <FlexRow className="action-buttons">
+                        <Button
+                            className="action-button close-button white"
+                            key="closeButton"
+                            name="closeButton"
+                            type="button"
+                            onClick={onRequestClose}
+                        >
+                            <div className="action-button-text">
+                                <FormattedMessage id="general.close" />
                             </div>
-                            <div className="studio-list-bottom-gradient" />
-                        </div>
-                    </div>
-
-
-                    <Form
-                        className="add-to-studio"
-                        onSubmit={onSubmit}
-                    >
-                        <FlexRow className="action-buttons">
+                        </Button>
+                        {waitingToClose ? [
                             <Button
-                                className="action-button close-button white"
-                                key="closeButton"
-                                name="closeButton"
-                                type="button"
-                                onClick={onRequestClose}
+                                className="action-button submit-button submit-button-waiting"
+                                disabled="disabled"
+                                key="submitButton"
+                                type="submit"
                             >
                                 <div className="action-button-text">
-                                    <FormattedMessage id="general.close" />
+                                    <Spinner />
+                                    <FormattedMessage id="addToStudio.finishing" />
                                 </div>
                             </Button>
-                            {waitingToClose ? [
-                                <Button
-                                    className="action-button submit-button submit-button-waiting"
-                                    disabled="disabled"
-                                    key="submitButton"
-                                    type="submit"
-                                >
-                                    <div className="action-button-text">
-                                        <Spinner />
-                                        <FormattedMessage id="addToStudio.finishing" />
-                                    </div>
-                                </Button>
-                            ] : [
-                                <Button
-                                    className="action-button submit-button"
-                                    key="submitButton"
-                                    type="submit"
-                                >
-                                    <div className="action-button-text">
-                                        <FormattedMessage id="general.okay" />
-                                    </div>
-                                </Button>
-                            ]}
-                        </FlexRow>
-                    </Form>
-                </div>
+                        ] : [
+                            <Button
+                                className="action-button submit-button"
+                                key="submitButton"
+                                type="submit"
+                            >
+                                <div className="action-button-text">
+                                    <FormattedMessage id="general.okay" />
+                                </div>
+                            </Button>
+                        ]}
+                    </FlexRow>
+                </Form>
             </div>
         </Modal>
     );

@@ -37,7 +37,8 @@ module.exports.getInitialState = () => ({
     parent: {},
     projectStudios: [],
     curatedStudios: [],
-    currentStudioIds: []
+    currentStudioIds: [],
+    moreCommentsToLoad: false
 });
 
 module.exports.previewReducer = (state, action) => {
@@ -46,6 +47,8 @@ module.exports.previewReducer = (state, action) => {
     }
 
     switch (action.type) {
+    case 'RESET_TO_INTIAL_STATE':
+        return module.exports.getInitialState();
     case 'SET_PROJECT_INFO':
         return Object.assign({}, state, {
             projectInfo: action.info
@@ -86,6 +89,51 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             comments: [...state.comments, ...action.items] // TODO: consider a different way of doing this?
         });
+    case 'UPDATE_COMMENT':
+        if (action.topLevelCommentId) {
+            return Object.assign({}, state, {
+                replies: Object.assign({}, state.replies, {
+                    [action.topLevelCommentId]: state.replies[action.topLevelCommentId].map(comment => {
+                        if (comment.id === action.commentId) {
+                            return Object.assign({}, comment, action.comment);
+                        }
+                        return comment;
+                    })
+                })
+            });
+        }
+
+        return Object.assign({}, state, {
+            comments: state.comments.map(comment => {
+                if (comment.id === action.commentId) {
+                    return Object.assign({}, comment, action.comment);
+                }
+                return comment;
+            })
+        });
+    case 'ADD_NEW_COMMENT':
+        if (action.topLevelCommentId) {
+            return Object.assign({}, state, {
+                replies: Object.assign({}, state.replies, {
+                    // Replies to comments go at the end  of the thread
+                    [action.topLevelCommentId]: state.replies[action.topLevelCommentId].concat(action.comment)
+                })
+            });
+        }
+
+        // Reply to the top level project, put the reply at the beginning
+        return Object.assign({}, state, {
+            comments: [action.comment, ...state.comments],
+            replies: Object.assign({}, state.replies, {[action.comment.id]: []})
+        });
+    case 'UPDATE_ALL_REPLIES':
+        return Object.assign({}, state, {
+            replies: Object.assign({}, state.replies, {
+                [action.commentId]: state.replies[action.commentId].map(reply =>
+                    Object.assign({}, reply, action.comment)
+                )
+            })
+        });
     case 'SET_REPLIES':
         return Object.assign({}, state, {
             replies: merge({}, state.replies, action.replies)
@@ -106,6 +154,10 @@ module.exports.previewReducer = (state, action) => {
         state = JSON.parse(JSON.stringify(state));
         state.status.studioRequests[action.studioId] = action.status;
         return state;
+    case 'SET_MORE_COMMENTS_TO_LOAD':
+        return Object.assign({}, state, {
+            moreCommentsToLoad: action.moreCommentsToLoad
+        });
     case 'ERROR':
         log.error(action.error);
         return state;
@@ -117,6 +169,10 @@ module.exports.previewReducer = (state, action) => {
 module.exports.setError = error => ({
     type: 'ERROR',
     error: error
+});
+
+module.exports.resetProject = () => ({
+    type: 'RESET_TO_INTIAL_STATE'
 });
 
 module.exports.setProjectInfo = info => ({
@@ -189,6 +245,60 @@ module.exports.setStudioFetchStatus = (studioId, status) => ({
     type: 'SET_STUDIO_FETCH_STATUS',
     studioId: studioId,
     status: status
+});
+
+module.exports.setCommentDeleted = (commentId, topLevelCommentId) => ({
+    type: 'UPDATE_COMMENT',
+    commentId: commentId,
+    topLevelCommentId: topLevelCommentId,
+    comment: {
+        visibility: 'deleted'
+    }
+});
+
+module.exports.setRepliesDeleted = commentId => ({
+    type: 'UPDATE_ALL_REPLIES',
+    commentId: commentId,
+    comment: {
+        visibility: 'deleted'
+    }
+});
+
+module.exports.setCommentReported = (commentId, topLevelCommentId) => ({
+    type: 'UPDATE_COMMENT',
+    commentId: commentId,
+    topLevelCommentId: topLevelCommentId,
+    comment: {
+        visibility: 'reported'
+    }
+});
+
+module.exports.setCommentRestored = (commentId, topLevelCommentId) => ({
+    type: 'UPDATE_COMMENT',
+    commentId: commentId,
+    topLevelCommentId: topLevelCommentId,
+    comment: {
+        visibility: 'visible'
+    }
+});
+
+module.exports.setRepliesRestored = commentId => ({
+    type: 'UPDATE_ALL_REPLIES',
+    commentId: commentId,
+    comment: {
+        visibility: 'visible'
+    }
+});
+
+module.exports.addNewComment = (comment, topLevelCommentId) => ({
+    type: 'ADD_NEW_COMMENT',
+    comment: comment,
+    topLevelCommentId: topLevelCommentId
+});
+
+module.exports.setMoreCommentsToLoad = moreCommentsToLoad => ({
+    type: 'SET_MORE_COMMENTS_TO_LOAD',
+    moreCommentsToLoad: moreCommentsToLoad
 });
 
 module.exports.getProjectInfo = (id, token) => (dispatch => {
@@ -276,11 +386,13 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
     });
 });
 
-module.exports.getTopLevelComments = (id, offset) => (dispatch => {
+module.exports.getTopLevelComments = (id, offset, isAdmin, token) => (dispatch => {
+    const COMMENT_LIMIT = 20;
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
-        uri: `/comments/project/${id}`,
-        params: {offset: offset || 0}
+        uri: `${isAdmin ? '/admin' : ''}/projects/${id}/comments`,
+        authentication: isAdmin ? token : null,
+        params: {offset: offset || 0, limit: COMMENT_LIMIT}
     }, (err, body) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
@@ -294,16 +406,53 @@ module.exports.getTopLevelComments = (id, offset) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
         dispatch(module.exports.setComments(body));
-        dispatch(module.exports.getReplies(id, body.map(comment => comment.id)));
+        dispatch(module.exports.getReplies(id, body.map(comment => comment.id), isAdmin, token));
+
+        // If we loaded a full page of comments, assume there are more to load.
+        // This will be wrong (1 / COMMENT_LIMIT) of the time, but does not require
+        // any more server query complexity, so seems worth it. In the case of a project with
+        // number of comments divisible by the COMMENT_LIMIT, the load more button will be
+        // clickable, but upon clicking it will go away.
+        dispatch(module.exports.setMoreCommentsToLoad(body.length === COMMENT_LIMIT));
     });
 });
 
-module.exports.getReplies = (projectId, commentIds) => (dispatch => {
+module.exports.getCommentById = (projectId, commentId, isAdmin, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
+    api({
+        uri: `${isAdmin ? '/admin' : ''}/projects/comments/${commentId}`,
+        authentication: isAdmin ? token : null
+    }, (err, body) => {
+        if (err) {
+            dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        if (!body) {
+            dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No comment info'));
+            return;
+        }
+
+        if (body.parent_id) {
+            // If the comment is a reply, load the parent
+            return dispatch(module.exports.getCommentById(projectId, body.parent_id, isAdmin, token));
+        }
+
+        // If the comment is not a reply, show it as top level and load replies
+        dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
+        dispatch(module.exports.setComments([body]));
+        dispatch(module.exports.getReplies(projectId, [body.id], isAdmin, token));
+    });
+});
+
+module.exports.getReplies = (projectId, commentIds, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('replies', module.exports.Status.FETCHING));
     const fetchedReplies = {};
     async.eachLimit(commentIds, 10, (parentId, callback) => {
         api({
-            uri: `/comments/project/${projectId}/${parentId}`
+            uri: `${isAdmin ? '/admin' : ''}/projects/${projectId}/comments/${parentId}/replies`,
+            authentication: isAdmin ? token : null
         }, (err, body) => {
             if (err) {
                 return callback(`Error fetching comment replies: ${err}`);
@@ -562,7 +711,63 @@ module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
     });
 });
 
-module.exports.reportProject = (id, jsonData) => (dispatch => {
+module.exports.deleteComment = (projectId, commentId, topLevelCommentId, token) => (dispatch => {
+    /* TODO fetching/fetched/error states updates for comment deleting */
+    api({
+        uri: `/proxy/comments/project/${projectId}/comment/${commentId}`,
+        authentication: token,
+        withCredentials: true,
+        method: 'DELETE',
+        useCsrf: true
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            log.error(err || res.body);
+            return;
+        }
+        dispatch(module.exports.setCommentDeleted(commentId, topLevelCommentId));
+        if (!topLevelCommentId) {
+            dispatch(module.exports.setRepliesDeleted(commentId));
+        }
+    });
+});
+
+module.exports.reportComment = (projectId, commentId, topLevelCommentId, token) => (dispatch => {
+    api({
+        uri: `/proxy/project/${projectId}/comment/${commentId}/report`,
+        authentication: token,
+        withCredentials: true,
+        method: 'POST',
+        useCsrf: true
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            log.error(err || res.body);
+            return;
+        }
+        // TODO use the reportId in the response for unreporting functionality
+        dispatch(module.exports.setCommentReported(commentId, topLevelCommentId));
+    });
+});
+
+module.exports.restoreComment = (projectId, commentId, topLevelCommentId, token) => (dispatch => {
+    api({
+        uri: `/proxy/admin/project/${projectId}/comment/${commentId}/undelete`,
+        authentication: token,
+        withCredentials: true,
+        method: 'PUT',
+        useCsrf: true
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            log.error(err || res.body);
+            return;
+        }
+        dispatch(module.exports.setCommentRestored(commentId, topLevelCommentId));
+        if (!topLevelCommentId) {
+            dispatch(module.exports.setRepliesRestored(commentId));
+        }
+    });
+});
+
+module.exports.reportProject = (id, jsonData, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('report', module.exports.Status.FETCHING));
     // scratchr2 will fail if no thumbnail base64 string provided. We don't yet have
     // a way to get the actual project thumbnail in www/gui, so for now just submit
@@ -572,11 +777,12 @@ module.exports.reportProject = (id, jsonData) => (dispatch => {
             '0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII='
     });
     api({
-        host: '',
-        uri: `/site-api/projects/all/${id}/report/`,
+        uri: `/proxy/projects/${id}/report`,
+        authentication: token,
+        withCredentials: true,
         method: 'POST',
-        json: jsonData,
-        useCsrf: true
+        useCsrf: true,
+        json: jsonData
     }, (err, body, res) => {
         if (err || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('report', module.exports.Status.ERROR));

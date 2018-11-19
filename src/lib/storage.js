@@ -1,6 +1,6 @@
 import ScratchStorage from 'scratch-storage';
 
-const PROJECT_SERVER = 'https://projects.scratch.mit.edu';
+const PROJECT_HOST = process.env.PROJECT_HOST || 'https://projects.scratch.mit.edu';
 
 /**
  * Wrapper for ScratchStorage which adds default web sources.
@@ -14,8 +14,8 @@ class Storage extends ScratchStorage {
             projectAsset => {
                 const [projectId, revision] = projectAsset.assetId.split('.');
                 return revision ?
-                    `${PROJECT_SERVER}/internalapi/project/${projectId}/get/${revision}` :
-                    `${PROJECT_SERVER}/internalapi/project/${projectId}/get/`;
+                    `${PROJECT_HOST}/internalapi/project/${projectId}/get/${revision}` :
+                    `${PROJECT_HOST}/internalapi/project/${projectId}/get/`;
             }
         );
     }

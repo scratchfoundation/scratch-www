@@ -1,7 +1,29 @@
 @import "../../../colors";
 
 .compose-comment {
+    margin-left: .5rem;
     width: 100%;
+
+    .compose-error-row {
+        width: 100%;
+        justify-content: flex-start;
+
+        .compose-error-tip {
+            margin-bottom: .5rem;
+            border: 1px solid $active-gray;
+            border-radius: 5px;
+            background-color: $ui-orange;
+            padding: .25rem;
+            width: 100%;
+            text-align: left;
+            color: $type-white;
+            font-size: .85rem;
+        }
+    }
+
+    .full-width-form {
+        width: 100%;
+    }
 
     .textarea-row {
         width: 100%;
@@ -51,6 +73,17 @@
     justify-content: space-between;
     align-items: flex-start;
 
+    &.highlighted-comment:before {
+        position: absolute;
+        top: -.5rem;
+        left: -.5rem;
+        border-radius: .5rem;
+        background: $ui-blue-10percent;
+        width: calc(100% + 1rem);
+        height: 100%;
+        content: "";
+    }
+
     .comment-top-row {
         margin-bottom: 8px;
         width: 100%;
@@ -60,8 +93,10 @@
         }
 
         .comment-delete,
-        .comment-report {
+        .comment-report,
+        .comment-restore {
             opacity: .5;
+            cursor: pointer;
             font-size: .75rem;
             font-weight: 500;
 
@@ -73,6 +108,11 @@
                 background-size: contain;
                 content: "";
             }
+        }
+
+        .comment-visibility {
+            opacity: .5;
+            font-size: .75rem;
         }
 
         .comment-delete {
@@ -90,6 +130,18 @@
             &:before {
                 margin-right: .25rem;
                 background-image: url("/svgs/project/report-gray.svg");
+                width: .75rem;
+                height: .75rem;
+                vertical-align: -.125rem;
+            }
+        }
+
+        .comment-restore {
+            margin-left: 1rem;
+
+            &:before {
+                margin-right: .25rem;
+                background-image: url("/svgs/project/restore-gray.svg");
                 width: .75rem;
                 height: .75rem;
                 vertical-align: -.125rem;
@@ -131,6 +183,19 @@
                 height: 9px;
                 content: "";
             }
+
+            &.comment-bubble-reported {
+                $reported-outline:  #ff6680;
+                $reported-background: rgb(236, 206, 223);
+
+                border-color: $reported-outline;
+                background-color: $reported-background;
+
+                &:before {
+                    border-color: $reported-outline transparent $reported-outline $reported-outline;
+                    background: $reported-background;
+                }
+            }
         }
 
         .comment-content {
@@ -148,6 +213,9 @@
 
             .comment-reply {
                 display: inline-flex;
+                cursor: pointer;
+                color: $ui-blue;
+                font-weight: bold;
 
                 &:after {
                     margin-left: .25rem;
@@ -172,7 +240,7 @@
                 position: absolute;
                 bottom: 0;
                 background: linear-gradient(
-                    transparent,
+                    $ui-light-primary-transparent,
                     $ui-light-primary
                 );
                 width: 100%;
@@ -184,11 +252,21 @@
     }
 }
 
+.comments-root-reply {
+    margin-bottom: 1.5rem;
+}
+
+.comment-reply-row {
+    margin-top: 1.5rem;
+    margin-left: .5rem;
+    width: 100%;
+}
+
 .expand-thread {
     margin-bottom: 24px;
     width: 100%;
     overflow: hidden;
-    text-align: center; 
+    text-align: center;
 
     &:before,
     &:after {
@@ -211,4 +289,3 @@
         margin-right: -50%;
     }
 }
-
