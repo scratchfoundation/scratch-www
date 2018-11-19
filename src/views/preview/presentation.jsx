@@ -157,7 +157,6 @@ const PreviewPresentation = ({
                             </FlexRow>
                             <MediaQuery minWidth={frameless.mobile}>
                                 <div className="project-buttons">
-                                    {/* TODO: Hide Remix button for now until implemented */}
                                     {canRemix &&
                                         <Button
                                             className="button remix-button"
