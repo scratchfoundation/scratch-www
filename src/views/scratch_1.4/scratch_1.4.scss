@@ -1,0 +1,120 @@
+@import "../../colors";
+@import "../../frameless";
+
+#view {
+    padding: 0;
+}
+
+.download {
+    .title-banner {
+        &.masthead {
+            margin-bottom: 0;
+            background-color: $ui-blue-dark;
+            padding-bottom: 0;
+
+            h1 {
+                margin: 0 0 2rem 0;
+                text-align: left;
+                color: $ui-white;
+            }
+
+            p {
+                margin: 0;
+                text-align: left;
+                color: $ui-white;
+
+                a {
+                    border-bottom: 1px solid $ui-white;
+                    color: $ui-white;
+                }
+            }
+
+            .band {
+                margin-top: 2rem;
+                background-color: $ui-white-15percent;
+                padding: 1rem 0;
+            }
+
+            .sub-nav {
+                text-align: left;
+                justify-content: flex-start;
+
+                li {
+                    margin: 0 .5rem 0 0;
+                }
+            }
+        }
+    }
+
+    .sub-nav-item {
+        margin: .5rem;
+    }
+
+    .callout {
+        text-align: center;
+    }
+
+    .download-content {
+        padding-bottom: 2rem;
+    }
+
+    .three-col-row {
+        align-items: flex-start;
+    }
+
+    .installation {
+        background-color: $ui-gray;
+        padding: 2rem;
+    }
+
+    .installation-column {
+        padding-top: 40px;
+        max-width: $cols4;
+        text-align: center;
+
+        p {
+            margin-right: .5rem;
+            margin-left: .5rem;
+        }
+    }
+
+    .installation-downloads {
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .installation-downloads-item {
+        margin: .25rem;
+        padding: 0;
+        text-align: center;
+    }
+
+    section {
+        margin-bottom: 2rem;
+    }
+
+    .mod-link {
+        color: $ui-white;
+    }
+
+    #faqs {
+        h2 {
+            margin-bottom: 1rem;
+        }
+    }
+    
+    @media #{$small} {
+        .inner {
+            .installation-column {
+                max-width: 100%;
+            }
+        }
+    }
+
+    @media #{$intermediate-and-smaller} {
+        .three-col-row {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}

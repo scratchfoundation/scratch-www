@@ -232,6 +232,13 @@
         "title": "Research"
     },
     {
+        "name": "scratch_1.4",
+        "pattern": "^/scratch_1.4/?$",
+        "routeAlias": "/scratch_1.4",
+        "view": "scratch_1.4/scratch_1.4",
+        "title": "Scratch 1.4"
+    },
+    {
         "name": "search",
         "pattern": "^/search/:projects/?$",
         "routeAlias": "/search",
