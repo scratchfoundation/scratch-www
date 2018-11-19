@@ -28,8 +28,8 @@ const InstallScratchLink = ({
                             <a
                                 href={
                                     currentOS === OS_ENUM.WINDOWS ?
-                                        'https://www.microsoft.com/en-us/p/scratch-link/9n48xllczh0x' :
-                                        'https://itunes.apple.com/us/app/scratch-device-manager/id1084869222'
+                                        'https://www.microsoft.com/store/productId/9N48XLLCZH0X' :
+                                        'https://itunes.apple.com/us/app/scratch-link/id1408863490'
                                 }
                                 target="_blank"
                             >
