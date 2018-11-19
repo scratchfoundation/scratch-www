@@ -11,7 +11,7 @@
  * @returns {string} thumbnail url string
  */
 const thumbnailUrl = (userId, width, height) => (
-    `${process.env.STATIC_HOST}/get_image/user/${userId}_` +
+    `${process.env.STATIC_HOST}/get_image/user/${userId || 'default'}_` +
         `${width ? width : 32}x${height ? height : (width ? width : 32)}.png`
 );
 
