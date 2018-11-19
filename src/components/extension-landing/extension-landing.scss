@@ -159,39 +159,39 @@
         }
 
         .downloads-container {
-          text-align: center;
+            text-align: center;
         }
 
         .store-badge {
-          width: 150px;
-          height: 80px;
-          display: block;
+            display: block;
+            width: 150px;
+            height: 80px;
         }
 
         .horizontal-divider {
-          margin: 20px;
-          display: block;
+            display: block;
+            margin: 20px;
         }
 
         .horizontal-divider:before,
         .horizontal-divider:after {
-           background-color: $ui-dark-gray;
-           content: "";
-           display: inline-block;
-           height: 1px;
-           position: relative;
-           vertical-align: middle;
-           width: 50%;
+            display: inline-block;
+            position: relative;
+            background-color: $ui-dark-gray;
+            width: 50%;
+            height: 1px;
+            vertical-align: middle;
+            content: "";
         }
 
         .horizontal-divider:before {
-         right: 0.5em;
-         margin-left: -50%;
+            right: .5em;
+            margin-left: -50%;
         }
 
         .horizontal-divider:after {
-         left: 0.5em;
-         margin-right: -50%;
+            left: .5em;
+            margin-right: -50%;
         }
     }
 
