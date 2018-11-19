@@ -198,11 +198,11 @@
         "title": "Microworlds"
     },
     {
-        "name": "preview",
-        "pattern": "^/preview(/editor|(/\\d+(/editor|/fullscreen)?)?)?/?(\\?.*)?$",
-        "routeAlias": "/preview/?$",
+        "name": "projects",
+        "pattern": "^/projects(/editor|(/\\d+(/editor|/fullscreen)?)?)?/?(\\?.*)?$",
+        "routeAlias": "/projects/?$",
         "view": "preview/preview",
-        "title": "Scratch 3.0 Preview"
+        "title": "Scratch Project"
     },
     {
         "name": "3faq",
