@@ -24,23 +24,34 @@ const InstallScratchLink = ({
                         <span className="step-description">
                             <FormattedMessage id="installScratchLink.downloadAndInstall" />
                         </span>
-                        <a
-                            className="step-image badge"
-                            href={`https://downloads.scratch.mit.edu/link/${
-                                currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                            }.zip`}
-                        >
-                            <button className="button download-button">
-                                {currentOS === OS_ENUM.WINDOWS ?
-                                    <FormattedMessage id="installScratchLink.windowsDownload" /> :
-                                    <FormattedMessage id="installScratchLink.macosDownload" />
+                        <div className="downloads-container">
+                            <a
+                                href={
+                                    currentOS === OS_ENUM.WINDOWS ?
+                                        'https://www.microsoft.com/en-us/p/scratch-link/9n48xllczh0x' :
+                                        'https://itunes.apple.com/us/app/scratch-device-manager/id1084869222'
                                 }
+                                target="_blank"
+                            >
                                 <img
                                     alt=""
-                                    src="/svgs/extensions/download-white.svg"
+                                    className="store-badge"
+                                    src={`/images/scratchlink/${
+                                        currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
+                                    }-store-badge.svg`}
                                 />
-                            </button>
-                        </a>
+                            </a>
+                            <span className="horizontal-divider">
+                                <FormattedMessage id="installScratchLink.or" />
+                            </span>
+                            <a
+                                href={`https://downloads.scratch.mit.edu/link/${
+                                    currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
+                                }.zip`}
+                            >
+                                <FormattedMessage id="installScratchLink.directDownload" />
+                            </a>
+                        </div>
                     </Step>
 
                 </div>

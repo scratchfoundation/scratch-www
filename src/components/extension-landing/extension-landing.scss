@@ -158,17 +158,40 @@
             align-items: flex-start;
         }
 
-        .step-image.badge {
-            height: initial;
+        .downloads-container {
+          text-align: center;
         }
 
-        .download-button {
-            display: flex;
-            align-items: center;
+        .store-badge {
+          width: 150px;
+          height: 80px;
+          display: block;
+        }
 
-            img {
-                margin-left: .5rem;
-            }
+        .horizontal-divider {
+          margin: 20px;
+          display: block;
+        }
+
+        .horizontal-divider:before,
+        .horizontal-divider:after {
+           background-color: $ui-dark-gray;
+           content: "";
+           display: inline-block;
+           height: 1px;
+           position: relative;
+           vertical-align: middle;
+           width: 50%;
+        }
+
+        .horizontal-divider:before {
+         right: 0.5em;
+         margin-left: -50%;
+        }
+
+        .horizontal-divider:after {
+         left: 0.5em;
+         margin-right: -50%;
         }
     }
 
