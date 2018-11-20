@@ -743,13 +743,17 @@ const ConnectedPreview = connect(
 
 // replace old Scratch 2.0-style hashtag URLs with updated format
 if (window.location.hash) {
+    let pathname = window.location.pathname;
+    if (pathname.substr(-1) !== '/') {
+        pathname = `${pathname}/`;
+    }
     if (window.location.hash === '#editor') {
         history.replaceState({}, document.title,
-            `${window.location.origin}${window.location.pathname}editor${window.location.search}`);
+            `${pathname}editor${window.location.search}`);
     }
     if (window.location.hash === '#fullscreen') {
         history.replaceState({}, document.title,
-            `${window.location.origin}${window.location.pathname}fullscreen${window.location.search}`);
+            `${pathname}fullscreen${window.location.search}`);
     }
 }
 
