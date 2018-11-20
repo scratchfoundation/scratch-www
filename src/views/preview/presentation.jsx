@@ -79,6 +79,7 @@ const PreviewPresentation = ({
     onReportComment,
     onReportSubmit,
     onRestoreComment,
+    onSeeAllComments,
     onSeeInside,
     onShare,
     onToggleComments,
@@ -376,23 +377,26 @@ const PreviewPresentation = ({
                                         ) : null}
                                     </FlexRow>
 
-                                    <FlexRow className="comments-root-reply">
-                                        {projectInfo.comments_allowed ? (
-                                            isLoggedIn ? (
-                                                <ComposeComment
-                                                    projectId={projectId}
-                                                    onAddComment={onAddComment}
-                                                />
+                                    {/* Do not show the top-level comment form in single comment mode */}
+                                    {!singleCommentId && (
+                                        <FlexRow className="comments-root-reply">
+                                            {projectInfo.comments_allowed ? (
+                                                isLoggedIn ? (
+                                                    <ComposeComment
+                                                        projectId={projectId}
+                                                        onAddComment={onAddComment}
+                                                    />
+                                                ) : (
+                                                    /* TODO add box for signing in to leave a comment */
+                                                    null
+                                                )
                                             ) : (
-                                                /* TODO add box for signing in to leave a comment */
-                                                null
-                                            )
-                                        ) : (
-                                            <div className="comments-turned-off">
-                                                <FormattedMessage id="project.comments.turnedOff" />
-                                            </div>
-                                        )}
-                                    </FlexRow>
+                                                <div className="comments-turned-off">
+                                                    <FormattedMessage id="project.comments.turnedOff" />
+                                                </div>
+                                            )}
+                                        </FlexRow>
+                                    )}
 
                                     <FlexRow className="comments-list">
                                         {comments.map(comment => (
@@ -425,6 +429,14 @@ const PreviewPresentation = ({
                                         >
                                             <FormattedMessage id="general.loadMore" />
                                         </Button>
+                                        }
+                                        {!!singleCommentId &&
+                                            <Button
+                                                className="button load-more-button"
+                                                onClick={onSeeAllComments}
+                                            >
+                                                <FormattedMessage id="general.seeAllComments" />
+                                            </Button>
                                         }
                                     </FlexRow>
                                 </div>
@@ -478,6 +490,7 @@ PreviewPresentation.propTypes = {
     onReportComment: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
     onRestoreComment: PropTypes.func,
+    onSeeAllComments: PropTypes.func,
     onSeeInside: PropTypes.func,
     onShare: PropTypes.func,
     onToggleComments: PropTypes.func,

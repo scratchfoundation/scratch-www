@@ -91,6 +91,11 @@ module.exports.previewReducer = (state, action) => {
                 item !== action.studioId
             ))
         });
+    case 'RESET_COMMENTS':
+        return Object.assign({}, state, {
+            comments: [],
+            replies: {}
+        });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
             comments: [...state.comments, ...action.items] // TODO: consider a different way of doing this?
@@ -310,6 +315,10 @@ module.exports.addNewComment = (comment, topLevelCommentId) => ({
 module.exports.setMoreCommentsToLoad = moreCommentsToLoad => ({
     type: 'SET_MORE_COMMENTS_TO_LOAD',
     moreCommentsToLoad: moreCommentsToLoad
+});
+
+module.exports.resetComments = () => ({
+    type: 'RESET_COMMENTS'
 });
 
 module.exports.getProjectInfo = (id, token) => (dispatch => {
