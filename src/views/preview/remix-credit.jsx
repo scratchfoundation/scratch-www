@@ -25,7 +25,7 @@ const RemixCredit = props => {
                         ),
                         projectLink: (
                             <a
-                                href={`/preview/${projectInfo.id}`}
+                                href={`/projects/${projectInfo.id}`}
                                 title={projectInfo.title}
                             >
                                 {projectInfo.title}
