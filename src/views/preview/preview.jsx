@@ -778,6 +778,23 @@ const ConnectedPreview = connect(
     mapDispatchToProps
 )(Preview);
 
+// replace old Scratch 2.0-style hashtag URLs with updated format
+if (window.location.hash) {
+    let pathname = window.location.pathname;
+    if (pathname.substr(-1) !== '/') {
+        pathname = `${pathname}/`;
+    }
+    if (window.location.hash === '#editor') {
+        history.replaceState({}, document.title,
+            `${pathname}editor${window.location.search}`);
+    }
+    if (window.location.hash === '#fullscreen') {
+        history.replaceState({}, document.title,
+            `${pathname}fullscreen${window.location.search}`);
+    }
+}
+
+// initialize GUI by calling its reducer functions depending on URL
 GUI.setAppElement(document.getElementById('app'));
 const initGuiState = guiInitialState => {
     const pathname = window.location.pathname.toLowerCase();
