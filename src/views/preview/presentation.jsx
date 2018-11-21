@@ -108,7 +108,12 @@ const PreviewPresentation = ({
     );
 
     let banner;
-    if (visibilityInfo.censored) {
+    if (visibilityInfo.deleted) { // If both censored and deleted, prioritize deleted banner
+        banner = (<Banner
+            className="banner-danger"
+            message={<FormattedMessage id="project.deletedBanner" />}
+        />);
+    } else if (visibilityInfo.censored) {
         if (visibilityInfo.reshareable) {
             banner = (<Banner
                 actionMessage={<FormattedMessage id="project.share.shareButton" />}
@@ -122,11 +127,6 @@ const PreviewPresentation = ({
                 message={embedCensorMessage(visibilityInfo.censorMessage)}
             />);
         }
-    } else if (visibilityInfo.deleted) {
-        banner = (<Banner
-            className="banner-danger"
-            message={<FormattedMessage id="project.deletedBanner" />}
-        />);
     } else if (canShare && !isShared) {
         banner = (<Banner
             actionMessage={<FormattedMessage id="project.share.shareButton" />}
