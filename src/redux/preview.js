@@ -332,7 +332,7 @@ module.exports.setVisibilityInfo = visibilityInfo => ({
     visibilityInfo: visibilityInfo
 });
 
-module.exports.getProjectInfo = (id, username, token) => (dispatch => {
+module.exports.getProjectInfo = (id, token) => (dispatch => {
     const opts = {
         uri: `/projects/${id}`
     };
@@ -356,16 +356,16 @@ module.exports.getProjectInfo = (id, username, token) => (dispatch => {
         dispatch(module.exports.setProjectInfo(body));
 
         // If the project is not public, make a follow-up request for why
-        if (username && !body.public) {
-            dispatch(module.exports.getVisibilityInfo(id, username, token));
+        if (!body.public) {
+            dispatch(module.exports.getVisibilityInfo(id, body.author.username, token));
         }
     });
 });
 
-module.exports.getVisibilityInfo = (id, username, token) => (dispatch => {
+module.exports.getVisibilityInfo = (id, ownerUsername, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('visibility', module.exports.Status.FETCHING));
     api({
-        uri: `/users/${username}/projects/${id}/visibility`,
+        uri: `/users/${ownerUsername}/projects/${id}/visibility`,
         authentication: token
     }, (err, body, response) => {
         if (err || !body || response.statusCode !== 200) {

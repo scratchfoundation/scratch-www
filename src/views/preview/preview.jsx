@@ -140,7 +140,7 @@ class Preview extends React.Component {
                 this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
                     this.props.isAdmin, token);
             }
-            this.props.getProjectInfo(this.state.projectId, username, token);
+            this.props.getProjectInfo(this.state.projectId, token);
             this.props.getRemixes(this.state.projectId, token);
             this.props.getProjectStudios(this.state.projectId, token);
             this.props.getCuratedStudios(username);
@@ -715,8 +715,8 @@ const mapDispatchToProps = dispatch => ({
     getParentInfo: id => {
         dispatch(previewActions.getParentInfo(id));
     },
-    getProjectInfo: (id, username, token) => {
-        dispatch(previewActions.getProjectInfo(id, username, token));
+    getProjectInfo: (id, token) => {
+        dispatch(previewActions.getProjectInfo(id, token));
     },
     getRemixes: id => {
         dispatch(previewActions.getRemixes(id));
