@@ -1,0 +1,80 @@
+@import "../../colors";
+
+#view {
+    position: relative;
+    padding: 0;
+    width: 100%;
+}
+
+.unsupported-browser {
+    position: absolute;
+    background-color: $ui-blue;
+    width: 100%;
+    height: 100%;
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .content {
+        margin: 100px auto;
+        outline: none;
+        border: .25rem solid $ui-white-15percent;
+        border-radius: .5rem;
+        padding: 0;
+        width: 500px;
+        overflow: hidden;
+        color: $type-gray;
+        user-select: none;
+    }
+
+    .illustration {
+        background-color: $ui-blue;
+        background-image: url("/images/unsupported.png");
+        background-size: cover;
+        width: 100%;
+        height: 208px;
+    }
+
+    [dir="rtl"] .illustration {
+        transform: scaleX(-1);
+    }
+
+    .body {
+        background: $ui-white;
+        padding: 1.5rem 2.25rem;
+        text-align: center;
+    }
+
+    /* Confirmation buttons at the bottom of the modal */
+    .button-row {
+        display: flex;
+        margin: 1.5rem 0;
+        text-align: right;
+        font-weight: bolder;
+        justify-content: center;
+    }
+
+    .back-button {
+        border: 1px solid $ui-blue;
+        border-radius: .25rem;
+        background: $ui-blue;
+        cursor: pointer;
+        padding: .5rem 2rem;
+        color: $ui-white;
+        font-size: .875rem;
+        font-weight: bold;
+    }
+
+    .faq-link-text {
+        margin: 2rem 0 .5rem 0;
+        color: $type-gray;
+        font-size: .875rem;
+    }
+
+    .faq-link {
+        text-decoration: none;
+        color: $ui-blue;
+    }
+}
+
