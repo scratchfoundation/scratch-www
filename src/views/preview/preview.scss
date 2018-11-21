@@ -171,6 +171,11 @@ $stage-width: 480px;
         margin-left: 1rem;
     }
 
+    .inplace-textarea::placeholder {
+        text-align: start;
+        padding: 0;
+    }
+
     .comments-container {
         padding-right: 1.5rem;
         min-width: 65%;
