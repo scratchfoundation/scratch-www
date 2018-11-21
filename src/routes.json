@@ -417,5 +417,135 @@
         "pattern": "^/go/?(\\?.*)?$",
         "routeAlias": "/go/?\\??",
         "redirect": "/tips"
+    },
+    {
+        "name": "create-tutorial-redirect",
+        "pattern": "^/create/?$",
+        "redirect": "/projects/editor/?tutorial=getStarted"
+    },
+    {
+        "name": "name-tutorial-redirect",
+        "pattern": "^/name/?$",
+        "redirect": "/projects/editor/?tutorial=name"
+    },
+    {
+        "name": "music-tutorial-redirect",
+        "pattern": "^/music/?$",
+        "redirect": "/projects/editor/?tutorial=music"
+    },
+    {
+        "name": "story-tutorial-redirect",
+        "pattern": "^/story/?$",
+        "redirect": "/projects/editor/?tutorial=story"
+    },
+    {
+        "name": "pong-tutorial-redirect",
+        "pattern": "^/pong/?$",
+        "redirect": "/projects/editor/?tutorial=pong"
+    },
+    {
+        "name": "clicker-tutorial-redirect",
+        "pattern": "^/clicker/?$",
+        "redirect": "/projects/editor/?tutorial=clicker-game"
+    },
+    {
+        "name": "chase-tutorial-redirect",
+        "pattern": "^/chase/?$",
+        "redirect": "/projects/editor/?tutorial=chase-game"
+    },
+    {
+        "name": "jazz-tutorial-redirect",
+        "pattern": "^/jazz/?$",
+        "redirect": "/projects/editor/?tutorial=music"
+    },
+    {
+        "name": "catch-tutorial-redirect",
+        "pattern": "^/catch/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "dance-tutorial-redirect",
+        "pattern": "^/dance/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "fly-tutorial-redirect",
+        "pattern": "^/fly/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "pet-tutorial-redirect",
+        "pattern": "^/pet/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "racegame-tutorial-redirect",
+        "pattern": "^/racegame/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "hide-tutorial-redirect",
+        "pattern": "^/hide/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "fashion-tutorial-redirect",
+        "pattern": "^/fashion/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "dressup-tutorial-redirect",
+        "pattern": "^/dressup/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "card-tutorial-redirect",
+        "pattern": "^/card/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "valentines-tutorial-redirect",
+        "pattern": "^/valentines/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "bearstack-tutorial-redirect",
+        "pattern": "^/bearstack/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "favorite-tutorial-redirect",
+        "pattern": "^/favorite/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "hoops-tutorial-redirect",
+        "pattern": "^/hoops/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "soccer-tutorial-redirect",
+        "pattern": "^/soccer/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "codeweek-tutorial-redirect",
+        "pattern": "^/codeweekeu/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "madewithcode-tutorial-redirects",
+        "pattern": "^/madewithcode-(name|card)/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "odetocode-tutorial-redirect",
+        "pattern": "^/odetocode/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "makey-tutorial-redirects",
+        "pattern": "^/makey(piano|drum)?/?$",
+        "redirect": "/tips"
     }
 ]
