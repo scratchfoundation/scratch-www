@@ -7,7 +7,7 @@ const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
-const copy = require('copy-text-to-clipboard');
+const copy = require('clipboard-copy');
 
 const Page = require('../../components/page/www/page.jsx');
 const storage = require('../../lib/storage.js').default;
