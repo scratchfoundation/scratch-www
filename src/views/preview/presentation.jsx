@@ -25,6 +25,7 @@ const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const TopLevelComment = require('./comment/top-level-comment.jsx');
 const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
+const thumbnailUrl = require('../../lib/user-thumbnail');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -112,7 +113,7 @@ const PreviewPresentation = ({
                                 <a href={`/users/${projectInfo.author.username}`}>
                                     <Avatar
                                         alt={projectInfo.author.username}
-                                        src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_48x48.png`}
+                                        src={thumbnailUrl(projectInfo.author.id, 48)}
                                     />
                                 </a>
                                 <div className="title">
