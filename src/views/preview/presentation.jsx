@@ -66,6 +66,7 @@ const PreviewPresentation = ({
     isLoggedIn,
     isNewScratcher,
     isShared,
+    justShared,
     loveCount,
     loved,
     modInfo,
@@ -539,6 +540,7 @@ PreviewPresentation.propTypes = {
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
+    justShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
     modInfo: PropTypes.shape({
