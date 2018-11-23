@@ -64,6 +64,7 @@ const PreviewPresentation = ({
     intl,
     isFullScreen,
     isLoggedIn,
+    isNewScratcher,
     isShared,
     loveCount,
     loved,
@@ -138,6 +139,11 @@ const PreviewPresentation = ({
             actionMessage={<FormattedMessage id="project.share.shareButton" />}
             message={<FormattedMessage id="project.share.notShared" />}
             onAction={onShare}
+        />);
+    } else if (isShared && isNewScratcher) {
+        banner = (<Banner
+            className="banner-success"
+            message={<FormattedMessage id="project.share.shared" />}
         />);
     }
 
@@ -531,6 +537,7 @@ PreviewPresentation.propTypes = {
     intl: intlShape,
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
+    isNewScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
