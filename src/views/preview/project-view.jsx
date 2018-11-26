@@ -771,6 +771,7 @@ const mapDispatchToProps = dispatch => ({
     },
     remixProject: () => {
         dispatch(GUI.remixProject());
+        dispatch(previewActions.resetComments());
     },
     setPlayer: player => {
         dispatch(GUI.setPlayer(player));
