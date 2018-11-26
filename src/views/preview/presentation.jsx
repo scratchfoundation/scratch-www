@@ -15,7 +15,7 @@ const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
-const ShareBanner = require('./share-banner.jsx');
+const Banner = require('./banner.jsx');
 const RemixCredit = require('./remix-credit.jsx');
 const RemixList = require('./remix-list.jsx');
 const Stats = require('./stats.jsx');
@@ -96,17 +96,50 @@ const PreviewPresentation = ({
     replies,
     reportOpen,
     singleCommentId,
-    userOwnsProject
+    userOwnsProject,
+    visibilityInfo
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
 
+    // Allow embedding html in banner messages coming from the server
+    const embedCensorMessage = message => (
+        // eslint-disable-next-line react/no-danger
+        <span dangerouslySetInnerHTML={{__html: message}} />
+    );
+
+    let banner;
+    if (visibilityInfo.deleted) { // If both censored and deleted, prioritize deleted banner
+        banner = (<Banner
+            className="banner-danger"
+            message={<FormattedMessage id="project.deletedBanner" />}
+        />);
+    } else if (visibilityInfo.censored) {
+        if (visibilityInfo.reshareable) {
+            banner = (<Banner
+                actionMessage={<FormattedMessage id="project.share.shareButton" />}
+                className="banner-danger"
+                message={embedCensorMessage(visibilityInfo.censorMessage)}
+                onAction={onShare}
+            />);
+        } else {
+            banner = (<Banner
+                className="banner-danger"
+                message={embedCensorMessage(visibilityInfo.censorMessage)}
+            />);
+        }
+    } else if (canShare && !isShared) {
+        banner = (<Banner
+            actionMessage={<FormattedMessage id="project.share.shareButton" />}
+            message={<FormattedMessage id="project.share.notShared" />}
+            onAction={onShare}
+        />);
+    }
+
     return (
         <div className="preview">
-            {canShare && !isShared && (
-                <ShareBanner onShare={onShare} />
-            )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
+                    {banner}
                     <div className="inner">
                         <FlexRow className="preview-row force-row">
                             <FlexRow className="project-header">
@@ -507,7 +540,13 @@ PreviewPresentation.propTypes = {
     replies: PropTypes.objectOf(PropTypes.array),
     reportOpen: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    userOwnsProject: PropTypes.bool
+    userOwnsProject: PropTypes.bool,
+    visibilityInfo: PropTypes.shape({
+        censored: PropTypes.bool,
+        censorMessage: PropTypes.string,
+        deleted: PropTypes.bool,
+        reshareable: PropTypes.bool
+    })
 };
 
 module.exports = injectIntl(PreviewPresentation);

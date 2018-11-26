@@ -459,6 +459,7 @@ class Preview extends React.Component {
                         reportOpen={this.state.reportOpen}
                         singleCommentId={this.state.singleCommentId}
                         userOwnsProject={this.props.userOwnsProject}
+                        visibilityInfo={this.props.visibilityInfo}
                         onAddComment={this.handleAddComment}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
@@ -597,7 +598,13 @@ Preview.propTypes = {
         classroomId: PropTypes.string
     }),
     userOwnsProject: PropTypes.bool,
-    userPresent: PropTypes.bool
+    userPresent: PropTypes.bool,
+    visibilityInfo: PropTypes.shape({
+        censored: PropTypes.bool,
+        censorMessage: PropTypes.string,
+        deleted: PropTypes.bool,
+        reshareable: PropTypes.bool
+    })
 };
 
 Preview.defaultProps = {
@@ -665,7 +672,8 @@ const mapStateToProps = state => {
         sessionStatus: state.session.status, // check if used
         user: state.session.session.user,
         userOwnsProject: userOwnsProject,
-        userPresent: userPresent
+        userPresent: userPresent,
+        visibilityInfo: state.preview.visibilityInfo
     };
 };
 

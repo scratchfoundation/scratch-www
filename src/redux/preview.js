@@ -25,6 +25,7 @@ module.exports.getInitialState = () => ({
         report: module.exports.Status.NOT_FETCHED,
         projectStudios: module.exports.Status.NOT_FETCHED,
         curatedStudios: module.exports.Status.NOT_FETCHED,
+        visibility: module.exports.Status.NOT_FETCHED,
         studioRequests: {}
     },
     projectInfo: {},
@@ -39,7 +40,8 @@ module.exports.getInitialState = () => ({
     curatedStudios: [],
     currentStudioIds: [],
     moreCommentsToLoad: false,
-    projectNotAvailable: false
+    projectNotAvailable: false,
+    visibilityInfo: {}
 });
 
 module.exports.previewReducer = (state, action) => {
@@ -168,6 +170,10 @@ module.exports.previewReducer = (state, action) => {
     case 'SET_MORE_COMMENTS_TO_LOAD':
         return Object.assign({}, state, {
             moreCommentsToLoad: action.moreCommentsToLoad
+        });
+    case 'SET_VISIBILITY_INFO':
+        return Object.assign({}, state, {
+            visibilityInfo: action.visibilityInfo
         });
     case 'ERROR':
         log.error(action.error);
@@ -321,6 +327,11 @@ module.exports.resetComments = () => ({
     type: 'RESET_COMMENTS'
 });
 
+module.exports.setVisibilityInfo = visibilityInfo => ({
+    type: 'SET_VISIBILITY_INFO',
+    visibilityInfo: visibilityInfo
+});
+
 module.exports.getProjectInfo = (id, token) => (dispatch => {
     const opts = {
         uri: `/projects/${id}`
@@ -343,6 +354,27 @@ module.exports.getProjectInfo = (id, token) => (dispatch => {
         }
         dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
         dispatch(module.exports.setProjectInfo(body));
+
+        // If the project is not public, make a follow-up request for why
+        if (!body.public) {
+            dispatch(module.exports.getVisibilityInfo(id, body.author.username, token));
+        }
+    });
+});
+
+module.exports.getVisibilityInfo = (id, ownerUsername, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('visibility', module.exports.Status.FETCHING));
+    api({
+        uri: `/users/${ownerUsername}/projects/${id}/visibility`,
+        authentication: token
+    }, (err, body, response) => {
+        if (err || !body || response.statusCode !== 200) {
+            dispatch(module.exports.setFetchStatus('visibility', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No visibility info available'));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('visibility', module.exports.Status.FETCHED));
+        dispatch(module.exports.setVisibilityInfo(body));
     });
 });
 

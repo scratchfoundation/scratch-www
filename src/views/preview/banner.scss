@@ -1,0 +1,36 @@
+@import "../../colors";
+
+$navigation-height: 50px;
+
+.banner-outer {
+    background-color: $ui-orange-25percent;
+    width: 100%;
+    overflow: hidden;
+    color: $ui-orange;
+    font-weight: bold;
+}
+
+.banner-outer.banner-danger {
+    background-color: $ui-red-25percent;
+    color: $ui-red;
+}
+
+.banner-inner {
+    min-height: 60px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.banner-text {
+    padding: .5rem 0;
+}
+
+.banner-button {
+    background-color: $ui-orange;
+    font-size: .875rem;
+}
+
+.banner-danger .banner-button {
+    background-color: $ui-red;
+}
