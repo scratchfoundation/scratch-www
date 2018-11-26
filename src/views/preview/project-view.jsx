@@ -7,6 +7,8 @@ const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
+const copy = require('clipboard-copy');
+
 const Page = require('../../components/page/www/page.jsx');
 const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
@@ -37,6 +39,7 @@ class Preview extends React.Component {
             'addEventListeners',
             'fetchCommunityData',
             'handleAddComment',
+            'handleCopyProjectLink',
             'handleDeleteComment',
             'handleToggleStudio',
             'handleFavoriteToggle',
@@ -387,6 +390,11 @@ class Preview extends React.Component {
             this.props.user.token
         );
     }
+    handleCopyProjectLink () {
+        // Use the pathname so we do not have to update this if path changes
+        // Also do not include hash or query params
+        copy(`${window.location.origin}${window.location.pathname}`);
+    }
     initCounts (favorites, loves) {
         this.setState({
             favoriteCount: favorites,
@@ -462,6 +470,7 @@ class Preview extends React.Component {
                         onAddComment={this.handleAddComment}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
+                        onCopyProjectLink={this.handleCopyProjectLink}
                         onDeleteComment={this.handleDeleteComment}
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoadMore={this.handleLoadMore}

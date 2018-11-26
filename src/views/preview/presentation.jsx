@@ -69,6 +69,7 @@ const PreviewPresentation = ({
     onAddComment,
     onAddToStudioClicked,
     onAddToStudioClosed,
+    onCopyProjectLink,
     onDeleteComment,
     onFavoriteClicked,
     onLoadMore,
@@ -236,6 +237,7 @@ const PreviewPresentation = ({
                                         shareDate={shareDate}
                                         onAddToStudioClicked={onAddToStudioClicked}
                                         onAddToStudioClosed={onAddToStudioClosed}
+                                        onCopyProjectLink={onCopyProjectLink}
                                         onReportClicked={onReportClicked}
                                         onReportClose={onReportClose}
                                         onReportSubmit={onReportSubmit}
@@ -366,6 +368,7 @@ const PreviewPresentation = ({
                                     shareDate={shareDate}
                                     onAddToStudioClicked={onAddToStudioClicked}
                                     onAddToStudioClosed={onAddToStudioClosed}
+                                    onCopyProjectLink={onCopyProjectLink}
                                     onReportClicked={onReportClicked}
                                     onReportClose={onReportClose}
                                     onReportSubmit={onReportSubmit}
@@ -513,6 +516,7 @@ PreviewPresentation.propTypes = {
     onAddComment: PropTypes.func,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
+    onCopyProjectLink: PropTypes.func,
     onDeleteComment: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onLoadMore: PropTypes.func,
