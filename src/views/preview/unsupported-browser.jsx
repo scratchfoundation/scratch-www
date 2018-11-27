@@ -32,10 +32,10 @@ const UnsupportedBrowser = () => (
                     <FormattedMessage
                         id="general.3faq"
                         values={{
-                            previewFaqLink: (
+                            faqLink: (
                                 <a
                                     className="faq-link"
-                                    href="//scratch.mit.edu/3faq"
+                                    href="/info/faq"
                                 >
                                     <FormattedMessage id="general.faq" />
                                 </a>
