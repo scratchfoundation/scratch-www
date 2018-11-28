@@ -177,3 +177,8 @@ type = KEYVALUEJSON
 source_file = src/views/parents/l10n.json
 source_lang = en
 type = KEYVALUEJSON
+
+[scratch-website.scratch_14-l10njson]
+source_file = src/views/scratch_1.4/l10n.json
+source_lang = en
+type = KEYVALUEJSON
