@@ -492,7 +492,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                                 minWidth={frameless.desktop}
                             >
                                 {
-                                    (Date.now() < HOC_START_TIME && // Hide intro if HoC banner is showing
+                                    (Date.now() < HOC_START_TIME || // Hide intro if HoC banner is showing
                                     Date.now() > HOC_END_TIME) ?
                                         [
                                             <Intro
