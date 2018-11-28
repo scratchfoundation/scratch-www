@@ -212,6 +212,13 @@
         "title": "Scratch 3.0 FAQ"
     },
     {
+        "name": "parents",
+        "pattern": "^/parents/?$",
+        "routeAlias": "/parents/",
+        "view": "parents/parents",
+        "title": "For Parents"
+    },
+    {
         "name": "preview-faq-redirect",
         "pattern": "^/preview-faq/?$",
         "routeAlias": "/preview-faq",
