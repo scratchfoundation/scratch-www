@@ -863,3 +863,24 @@ module.exports.reportProject = (id, jsonData, token) => (dispatch => {
         dispatch(module.exports.setFetchStatus('report', module.exports.Status.FETCHED));
     });
 });
+
+module.exports.updateProjectThumbnail = (id, blob) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.FETCHING));
+    api({
+        uri: `/internalapi/project/thumbnail/${id}/set/`,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'image/png'
+        },
+        withCredentials: true,
+        useCsrf: true,
+        body: blob,
+        host: '' // Not handled by the API, use existing infrastructure
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.ERROR));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.FETCHED));
+    });
+});
