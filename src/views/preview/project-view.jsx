@@ -441,6 +441,7 @@ class Preview extends React.Component {
                         canRemix={this.props.canRemix}
                         canReport={this.props.canReport}
                         canRestoreComments={this.props.isAdmin}
+                        canSave={this.props.canSave}
                         canShare={this.props.canShare}
                         canUseBackpack={this.props.canUseBackpack}
                         cloudHost={this.props.cloudHost}

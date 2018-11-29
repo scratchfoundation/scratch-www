@@ -51,6 +51,7 @@ const PreviewPresentation = ({
     canRemix,
     canReport,
     canRestoreComments,
+    canSave,
     canShare,
     canUseBackpack,
     cloudHost,
@@ -209,6 +210,7 @@ const PreviewPresentation = ({
                                     backpackVisible={canUseBackpack}
                                     basePath="/"
                                     canRemix={canRemix}
+                                    canSave={canSave}
                                     className="guiPlayer"
                                     cloudHost={cloudHost}
                                     isFullScreen={isFullScreen}
@@ -498,6 +500,7 @@ PreviewPresentation.propTypes = {
     canRemix: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestoreComments: PropTypes.bool,
+    canSave: PropTypes.bool,
     canShare: PropTypes.bool,
     canUseBackpack: PropTypes.bool,
     cloudHost: PropTypes.string,
