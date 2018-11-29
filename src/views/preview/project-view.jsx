@@ -519,6 +519,7 @@ class Preview extends React.Component {
                         onShare={this.handleShare}
                         onToggleLoginOpen={this.props.handleToggleLoginOpen}
                         onUpdateProjectId={this.handleUpdateProjectId}
+                        onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                         onUpdateProjectTitle={this.handleUpdateProjectTitle}
                     />
                     <Registration />
@@ -569,6 +570,7 @@ Preview.propTypes = {
     handleRestoreComment: PropTypes.func,
     handleSeeAllComments: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
+    handleUpdateProjectThumbnail: PropTypes.func,
     isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
@@ -716,6 +718,9 @@ const mapDispatchToProps = dispatch => ({
     handleSeeAllComments: (id, isAdmin, token) => {
         dispatch(previewActions.resetComments());
         dispatch(previewActions.getTopLevelComments(id, 0, isAdmin, token));
+    },
+    handleUpdateProjectThumbnail: (id, blob) => {
+        dispatch(previewActions.updateProjectThumbnail(id, blob));
     },
     getOriginalInfo: id => {
         dispatch(previewActions.getOriginalInfo(id));
