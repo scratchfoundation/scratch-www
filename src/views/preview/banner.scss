@@ -6,9 +6,9 @@ $navigation-height: 50px;
     display: flex;
     background-color: $ui-orange-25percent;
     width: 100%;
-    min-height: 3.75rem;
+    min-height: 4rem;
     overflow: hidden;
-    color: $ui-orange;
+    color: $ui-orange-high-contrast;
     font-size: .875rem;
     font-weight: bold;
     align-self: center;
@@ -35,8 +35,12 @@ $navigation-height: 50px;
 }
 
 .banner-button {
+    height: 2.5rem;
     background-color: $ui-orange;
     font-size: .875rem;
+    border-radius: .25rem;
+    padding-top: .6875rem;
+    padding-bottom: .75rem;
 }
 
 .banner-danger .banner-button {
