@@ -135,17 +135,28 @@ const PreviewPresentation = ({
                 message={embedCensorMessage(visibilityInfo.censorMessage)}
             />);
         }
-    } else if (canShare && !isShared) {
-        banner = (<Banner
-            actionMessage={<FormattedMessage id="project.share.shareButton" />}
-            message={<FormattedMessage id="project.share.notShared" />}
-            onAction={onShare}
-        />);
-    } else if (isShared && isNewScratcher) {
-        banner = (<Banner
-            className="banner-success"
-            message={<FormattedMessage id="project.share.shared" />}
-        />);
+    } else if (canShare) {
+        if (isShared) {
+            if (justShared) {
+                if (isNewScratcher) {
+                    banner = (<Banner
+                        className="banner-success"
+                        message={<FormattedMessage id="project.share.sharedLong" />}
+                    />);
+                } else {
+                    banner = (<Banner
+                        className="banner-success"
+                        message={<FormattedMessage id="project.share.sharedShort" />}
+                    />);
+                }
+            } // if was shared a while ago, don't show any share banner
+        } else {
+            banner = (<Banner
+                actionMessage={<FormattedMessage id="project.share.shareButton" />}
+                message={<FormattedMessage id="project.share.notShared" />}
+                onAction={onShare}
+            />);
+        }
     }
 
     return (
