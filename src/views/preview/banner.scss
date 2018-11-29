@@ -35,12 +35,12 @@ $navigation-height: 50px;
 }
 
 .banner-button {
-    height: 2.5rem;
-    background-color: $ui-orange;
-    font-size: .875rem;
     border-radius: .25rem;
+    background-color: $ui-orange;
     padding-top: .6875rem;
     padding-bottom: .75rem;
+    height: 2.5rem;
+    font-size: .875rem;
 }
 
 .banner-danger .banner-button {
