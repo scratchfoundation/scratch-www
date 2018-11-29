@@ -33,6 +33,10 @@ const EXTENSION_INFO = {
         name: 'LEGO MINDSTORMS EV3',
         icon: 'extension-ev3.svg',
         hasStatus: true
+    },
+    makeymakey: {
+        name: 'Makey Makey',
+        icon: 'extension-makeymakey.svg'
     }
 };
 
