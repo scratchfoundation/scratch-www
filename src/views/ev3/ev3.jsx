@@ -61,7 +61,7 @@ class EV3 extends ExtensionLanding {
                                 alt=""
                                 src="/svgs/extensions/windows.svg"
                             />
-                                        Windows 10+
+                                        Windows 10 version 1709+
                         </span>
                         <span>
                             <img
