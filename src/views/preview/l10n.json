@@ -21,5 +21,8 @@
     "project.instructionsLabel": "Instructions",
     "project.notesAndCreditsLabel": "Notes and Credits",
     "project.credit": "Thanks to {userLink} for the original project {projectLink}.",
-    "project.deletedBanner": "Note: This project is in the trash folder"
+    "project.deletedBanner": "Note: This project is in the trash folder",
+    "project.moderationInfoLabel": "Moderation Info",
+    "project.numScripts": "{number} scripts",
+    "project.numSprites": "{number} sprites"
 }

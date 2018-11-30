@@ -82,6 +82,10 @@ class Preview extends React.Component {
             extensions: [],
             favoriteCount: 0,
             loveCount: 0,
+            modInfo: {
+                scripts: 0,
+                sprites: 0
+            },
             projectId: parts[1] === 'editor' ? '0' : parts[1],
             reportOpen: false,
             singleCommentId: singleCommentId
@@ -96,7 +100,7 @@ class Preview extends React.Component {
             this.props.sessionStatus === sessionActions.Status.FETCHED) ||
             (this.state.projectId !== prevState.projectId))) {
             this.fetchCommunityData();
-            this.getExtensions(this.state.projectId);
+            this.getProjectData(this.state.projectId);
         }
         if (this.state.projectId === '0' && this.state.projectId !== prevState.projectId) {
             this.props.resetProject();
@@ -175,7 +179,7 @@ class Preview extends React.Component {
             }
         }
     }
-    getExtensions (projectId) {
+    getProjectData (projectId) {
         if (projectId > 0) {
             storage
                 .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
@@ -205,14 +209,29 @@ class Preview extends React.Component {
                                 }
                             });
                         }
+                        const sprites = projectData[0].targets.length - 1; // don't count stage
+                        const scripts = projectData[0].targets
+                            .map(target =>
+                                Object.values(target.blocks)
+                                    .filter(block => block.topLevel).length
+                            )
+                            .reduce((accumulator, currentVal) => accumulator + currentVal, 0);
                         this.setState({
-                            extensions: Array.from(extensionSet)
+                            extensions: Array.from(extensionSet),
+                            modInfo: {
+                                scripts: scripts,
+                                sprites: sprites
+                            }
                         });
                     });
                 });
         } else { // projectId is default or invalid; empty the extensions array
             this.setState({
-                extensions: []
+                extensions: [],
+                modInfo: {
+                    scripts: 0,
+                    sprites: 0
+                }
             });
         }
     }
@@ -455,6 +474,7 @@ class Preview extends React.Component {
                         isShared={this.props.isShared}
                         loveCount={this.state.loveCount}
                         loved={this.props.loved}
+                        modInfo={this.state.modInfo}
                         moreCommentsToLoad={this.props.moreCommentsToLoad}
                         originalInfo={this.props.original}
                         parentInfo={this.props.parent}
@@ -465,6 +485,7 @@ class Preview extends React.Component {
                         remixes={this.props.remixes}
                         replies={this.props.replies}
                         reportOpen={this.state.reportOpen}
+                        showModInfo={this.props.isAdmin}
                         singleCommentId={this.state.singleCommentId}
                         userOwnsProject={this.props.userOwnsProject}
                         visibilityInfo={this.props.visibilityInfo}

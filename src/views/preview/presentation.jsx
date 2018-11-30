@@ -16,6 +16,7 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
 const Banner = require('./banner.jsx');
+const ModInfo = require('./mod-info.jsx');
 const RemixCredit = require('./remix-credit.jsx');
 const RemixList = require('./remix-list.jsx');
 const Stats = require('./stats.jsx');
@@ -66,6 +67,7 @@ const PreviewPresentation = ({
     isShared,
     loveCount,
     loved,
+    modInfo,
     moreCommentsToLoad,
     onAddComment,
     onAddToStudioClicked,
@@ -97,11 +99,13 @@ const PreviewPresentation = ({
     remixes,
     replies,
     reportOpen,
+    showModInfo,
     singleCommentId,
     userOwnsProject,
     visibilityInfo
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
+    const revisedDate = ((projectInfo.history && projectInfo.history.modified)) ? projectInfo.history.modified : '';
 
     // Allow embedding html in banner messages coming from the server
     const embedCensorMessage = message => (
@@ -378,6 +382,21 @@ const PreviewPresentation = ({
                                 />
                             </FlexRow>
                         </MediaQuery>
+                        {showModInfo &&
+                            <React.Fragment>
+                                <div className="project-textlabel">
+                                    <FormattedMessage id="project.moderationInfoLabel" />
+                                </div>
+                                <ModInfo
+                                    revisedDate={revisedDate}
+                                    scripts={modInfo.scripts}
+                                    sprites={modInfo.sprites}
+                                />
+                                
+                            </React.Fragment>
+                        }
+                            
+                            
                         <MediaQuery minWidth={frameless.tablet}>
                             <FlexRow className="preview-row">
                                 <FlexRow className="extension-list">
@@ -515,6 +534,10 @@ PreviewPresentation.propTypes = {
     isShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
+    modInfo: PropTypes.shape({
+        scripts: PropTypes.number,
+        sprites: PropTypes.number
+    }),
     moreCommentsToLoad: PropTypes.bool,
     onAddComment: PropTypes.func,
     onAddToStudioClicked: PropTypes.func,
@@ -546,6 +569,7 @@ PreviewPresentation.propTypes = {
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
     reportOpen: PropTypes.bool,
+    showModInfo: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     userOwnsProject: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
