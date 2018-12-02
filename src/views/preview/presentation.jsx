@@ -136,21 +136,19 @@ const PreviewPresentation = ({
             />);
         }
     } else if (canShare) {
-        if (isShared) {
-            if (justShared) {
-                if (isNewScratcher) {
-                    banner = (<Banner
-                        className="banner-success"
-                        message={<FormattedMessage id="project.share.sharedLong" />}
-                    />);
-                } else {
-                    banner = (<Banner
-                        className="banner-success"
-                        message={<FormattedMessage id="project.share.sharedShort" />}
-                    />);
-                }
-            } // if was shared a while ago, don't show any share banner
-        } else {
+        if (isShared && justShared) { // if was shared a while ago, don't show any share banner
+            if (isNewScratcher) {
+                banner = (<Banner
+                    className="banner-success"
+                    message={<FormattedMessage id="project.share.sharedLong" />}
+                />);
+            } else {
+                banner = (<Banner
+                    className="banner-success"
+                    message={<FormattedMessage id="project.share.sharedShort" />}
+                />);
+            }
+        } else if (!isShared) {
             banner = (<Banner
                 actionMessage={<FormattedMessage id="project.share.shareButton" />}
                 message={<FormattedMessage id="project.share.notShared" />}
@@ -410,11 +408,11 @@ const PreviewPresentation = ({
                                     scripts={modInfo.scripts}
                                     sprites={modInfo.sprites}
                                 />
-                                
+
                             </React.Fragment>
                         }
-                            
-                            
+
+
                         <MediaQuery minWidth={frameless.tablet}>
                             <FlexRow className="preview-row">
                                 <FlexRow className="extension-list">
