@@ -25,7 +25,7 @@ const MiddleBanner = () => (
                 </a>
             </FlexRow>
             <FlexRow className="hoc-banner-images">
-                <a href="http://localhost:8333/projects/editor/?tip_bar=name">
+                <a href="/projects/editor/?tip_bar=name">
                     <FlexRow className="hoc-banner-image mod-middle-image column">
                         <img src="/images/ttt/animate-your-name.jpg" />
                         <div className="hoc-image-text">
@@ -33,7 +33,7 @@ const MiddleBanner = () => (
                         </div>
                     </FlexRow>
                 </a>
-                <a href="http://localhost:8333/projects/editor/?tip_bar=fly">
+                <a href="/projects/editor/?tip_bar=fly">
                     <FlexRow className="hoc-banner-image mod-middle-image column">
                         <img src="/images/ttt/make-it-fly.jpg" />
                         <div className="hoc-image-text">
@@ -45,7 +45,7 @@ const MiddleBanner = () => (
                     key="frameless-desktop"
                     minWidth={frameless.desktop}
                 >
-                    <a href="http://localhost:8333/projects/editor/?tip_bar=pong">
+                    <a href="/projects/editor/?tip_bar=pong">
                         <FlexRow className="hoc-banner-image mod-middle-image column">
                             <img src="/images/ttt/pong-game.jpg" />
                             <div className="hoc-image-text">

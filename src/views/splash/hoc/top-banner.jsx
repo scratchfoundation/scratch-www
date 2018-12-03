@@ -47,7 +47,7 @@ const TopBanner = () => (
                         </div>
                     </FlexRow>
                 </a>
-                <a href="https://beta.scratch.mit.edu/?tutorial=animate-an-adventure-game">
+                <a href="https://beta.scratch.mit.edu/?tutorial=animate-an-adventure-game#249143200">
                     <FlexRow className="hoc-banner-image column">
                         <img src="/images/hoc/create-an-adventure-game.jpg" />
                         <div className="hoc-image-text">
