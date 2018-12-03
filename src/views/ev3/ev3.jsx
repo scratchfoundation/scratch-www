@@ -268,6 +268,32 @@ class EV3 extends ExtensionLanding {
                 </ExtensionSection>
                 <ExtensionSection className="faq">
                     <h2><FormattedMessage id="ev3.troubleshootingTitle" /></h2>
+                    <h3 className="faq-title"><FormattedMessage id="ev3.checkOSVersionTitle" /></h3>
+                    <p>
+                        <FormattedMessage
+                            id="ev3.checkOSVersionText"
+                            values={{
+                                winOSVersionLink: (
+                                    <a
+                                        href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="ev3.winOSVersionLinkText" />
+                                    </a>
+                                ),
+                                macOSVersionLink: (
+                                    <a
+                                        href="https://support.apple.com/en-us/HT201260"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="ev3.macOSVersionLinkText" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </p>
                     <h3 className="faq-title"><FormattedMessage id="ev3.makeSurePairedTitle" /></h3>
                     <p>
                         <FormattedMessage

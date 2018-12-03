@@ -271,6 +271,32 @@ class MicroBit extends ExtensionLanding {
                 </ExtensionSection>
                 <ExtensionSection className="faq">
                     <h2><FormattedMessage id="microbit.troubleshootingTitle" /></h2>
+                    <h3 className="faq-title"><FormattedMessage id="microbit.checkOSVersionTitle" /></h3>
+                    <p>
+                        <FormattedMessage
+                            id="microbit.checkOSVersionText"
+                            values={{
+                                winOSVersionLink: (
+                                    <a
+                                        href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="microbit.winOSVersionLinkText" />
+                                    </a>
+                                ),
+                                macOSVersionLink: (
+                                    <a
+                                        href="https://support.apple.com/en-us/HT201260"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="microbit.macOSVersionLinkText" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </p>
                     <h3 className="faq-title"><FormattedMessage id="microbit.closeScratchCopiesTitle" /></h3>
                     <p>
                         <FormattedMessage id="microbit.closeScratchCopiesText" />
