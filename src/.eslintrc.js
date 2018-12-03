@@ -7,5 +7,8 @@ module.exports = {
     globals: {
         process: true
     },
-    plugins: ['json']
+    plugins: ['json'],
+    rules: {
+        'linebreak-style': ["error", "windows"]
+    }
 };
