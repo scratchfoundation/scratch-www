@@ -84,15 +84,15 @@
         }
 
         .extension-info {
+            margin-bottom: 5rem;
             flex-wrap: nowrap;
             flex-direction: row;
-            margin-bottom: 5rem;
 
             .extension-copy {
+                padding-right: 3.75em;
+                max-width: $cols7;
                 align-items: flex-start;
                 justify-content: start;
-                max-width: $cols7;
-                padding-right: 3.75em;
 
                 h1, h2 {
                     display: flex;
