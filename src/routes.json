@@ -478,6 +478,13 @@
     {
         "name": "fly-tutorial-redirect",
         "pattern": "^/fly/?$",
+        "routeAlias": "/(makeit)?fly/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "makeitfly-tutorial-redirect",
+        "pattern": "^/makeitfly/?$",
+        "routeAlias": "/(makeit)?fly/?$",
         "redirect": "/tips"
     },
     {
@@ -553,6 +560,11 @@
     {
         "name": "makey-tutorial-redirects",
         "pattern": "^/makey(piano|drum)?/?$",
+        "redirect": "/tips"
+    },
+    {
+        "name": "bird-redirect",
+        "pattern": "^/bird/?$",
         "redirect": "/tips"
     }
 ]
