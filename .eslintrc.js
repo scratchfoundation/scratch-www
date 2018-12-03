@@ -1,4 +1,7 @@
 module.exports = {
     extends: ['scratch', 'scratch/node'],
-    plugins: ['json']
+    plugins: ['json'],
+    rules: {
+        'linebreak-style': ["error", "windows"]
+    }
 };
