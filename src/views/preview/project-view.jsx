@@ -126,6 +126,11 @@ class Preview extends React.Component {
         if (this.props.playerMode !== prevProps.playerMode || this.props.fullScreen !== prevProps.fullScreen) {
             this.pushHistory(history.state === null);
         }
+
+        // Switching out of editor mode, refresh data that comes from project json
+        if (this.props.playerMode && !prevProps.playerMode) {
+            this.getProjectData(this.state.projectId);
+        }
     }
     componentWillUnmount () {
         this.removeEventListeners();
