@@ -32,6 +32,8 @@
     "ev3.makeSurePairedTitle": "Make sure your computer is paired with your EV3",
     "ev3.makeSurePairedText": "Your computer needs to be paired with your EV3 before it can connect to Scratch. We try to do this automatically the first time you add the EV3 extension, but if it isn't working you can try these {pairingInstructionLink}.",
     "ev3.pairingInstructionText": "bluetooth pairing instructions from LEGO",
+    "ev3.reconnectTitle": "On Windows, try un-pairing before connecting",
+    "ev3.reconnectText": "If you have connected before and are unable to reconnect, try manually un-pairing your EV3 from your computer: open your Bluetooth settings, find your EV3, and remove it.",
     "ev3.closeScratchCopiesTitle": "Close other copies of Scratch",
     "ev3.closeScratchCopiesText": "Only one copy of Scratch can connect with the EV3 at a time. If you have Scratch open in other browser tabs, close it and try again.",
     "ev3.otherComputerConnectedTitle": "Make sure no other computer is connected to your EV3",

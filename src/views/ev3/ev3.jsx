@@ -311,6 +311,10 @@ class EV3 extends ExtensionLanding {
                             }}
                         />
                     </p>
+                    <h3 className="faq-title"><FormattedMessage id="ev3.reconnectTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="ev3.reconnectText" />
+                    </p>
                     <h3 className="faq-title"><FormattedMessage id="ev3.closeScratchCopiesTitle" /></h3>
                     <p>
                         <FormattedMessage id="ev3.closeScratchCopiesText" />
