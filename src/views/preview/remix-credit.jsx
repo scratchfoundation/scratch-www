@@ -3,6 +3,7 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
+const thumbnailUrl = require('../../lib/user-thumbnail');
 
 const RemixCredit = props => {
     const projectInfo = props.projectInfo;
@@ -11,7 +12,7 @@ const RemixCredit = props => {
         <FlexRow className="remix-credit">
             <Avatar
                 className="remix"
-                src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_48x48.png`}
+                src={thumbnailUrl(projectInfo.author.id, 48)}
             />
             <div className="credit-text">
                 <FormattedMessage
@@ -24,7 +25,7 @@ const RemixCredit = props => {
                         ),
                         projectLink: (
                             <a
-                                href={`/preview/${projectInfo.id}`}
+                                href={`/projects/${projectInfo.id}`}
                                 title={projectInfo.title}
                             >
                                 {projectInfo.title}

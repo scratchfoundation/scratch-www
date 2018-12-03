@@ -82,7 +82,7 @@ test('clicking See Inside should take you to the editor', t => {
         .then(() => clickXpath('//a[@data-control="edit"]'))
         .then(() => driver.getCurrentUrl())
         .then(function (u) {
-            var expectedUrl = '/#editor';
+            var expectedUrl = '/editor';
             t.equal(u.substr(-expectedUrl.length), expectedUrl, 'after clicking, the URL should end in #editor');
         })
         .then(() => t.end());

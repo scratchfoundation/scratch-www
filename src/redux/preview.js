@@ -25,6 +25,7 @@ module.exports.getInitialState = () => ({
         report: module.exports.Status.NOT_FETCHED,
         projectStudios: module.exports.Status.NOT_FETCHED,
         curatedStudios: module.exports.Status.NOT_FETCHED,
+        visibility: module.exports.Status.NOT_FETCHED,
         studioRequests: {}
     },
     projectInfo: {},
@@ -38,7 +39,9 @@ module.exports.getInitialState = () => ({
     projectStudios: [],
     curatedStudios: [],
     currentStudioIds: [],
-    moreCommentsToLoad: false
+    moreCommentsToLoad: false,
+    projectNotAvailable: false,
+    visibilityInfo: {}
 });
 
 module.exports.previewReducer = (state, action) => {
@@ -51,7 +54,12 @@ module.exports.previewReducer = (state, action) => {
         return module.exports.getInitialState();
     case 'SET_PROJECT_INFO':
         return Object.assign({}, state, {
-            projectInfo: action.info
+            projectInfo: action.info ? action.info : {},
+            projectNotAvailable: !action.info
+        });
+    case 'UPDATE_PROJECT_INFO':
+        return Object.assign({}, state, {
+            projectInfo: Object.assign({}, state.projectInfo, action.info)
         });
     case 'SET_REMIXES':
         return Object.assign({}, state, {
@@ -84,6 +92,11 @@ module.exports.previewReducer = (state, action) => {
             currentStudioIds: state.currentStudioIds.filter(item => (
                 item !== action.studioId
             ))
+        });
+    case 'RESET_COMMENTS':
+        return Object.assign({}, state, {
+            comments: [],
+            replies: {}
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
@@ -158,6 +171,10 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             moreCommentsToLoad: action.moreCommentsToLoad
         });
+    case 'SET_VISIBILITY_INFO':
+        return Object.assign({}, state, {
+            visibilityInfo: action.visibilityInfo
+        });
     case 'ERROR':
         log.error(action.error);
         return state;
@@ -177,6 +194,11 @@ module.exports.resetProject = () => ({
 
 module.exports.setProjectInfo = info => ({
     type: 'SET_PROJECT_INFO',
+    info: info
+});
+
+module.exports.updateProjectInfo = info => ({
+    type: 'UPDATE_PROJECT_INFO',
     info: info
 });
 
@@ -301,6 +323,15 @@ module.exports.setMoreCommentsToLoad = moreCommentsToLoad => ({
     moreCommentsToLoad: moreCommentsToLoad
 });
 
+module.exports.resetComments = () => ({
+    type: 'RESET_COMMENTS'
+});
+
+module.exports.setVisibilityInfo = visibilityInfo => ({
+    type: 'SET_VISIBILITY_INFO',
+    visibilityInfo: visibilityInfo
+});
+
 module.exports.getProjectInfo = (id, token) => (dispatch => {
     const opts = {
         uri: `/projects/${id}`
@@ -309,19 +340,41 @@ module.exports.getProjectInfo = (id, token) => (dispatch => {
         Object.assign(opts, {authentication: token});
     }
     dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHING));
-    api(opts, (err, body) => {
+    api(opts, (err, body, response) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
             return;
         }
-        if (typeof body === 'undefined') {
+        if (typeof body === 'undefined' || response.statusCode === 404) {
             dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
             dispatch(module.exports.setError('No project info'));
+            dispatch(module.exports.setProjectInfo(null));
             return;
         }
         dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
         dispatch(module.exports.setProjectInfo(body));
+
+        // If the project is not public, make a follow-up request for why
+        if (!body.public) {
+            dispatch(module.exports.getVisibilityInfo(id, body.author.username, token));
+        }
+    });
+});
+
+module.exports.getVisibilityInfo = (id, ownerUsername, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('visibility', module.exports.Status.FETCHING));
+    api({
+        uri: `/users/${ownerUsername}/projects/${id}/visibility`,
+        authentication: token
+    }, (err, body, response) => {
+        if (err || !body || response.statusCode !== 200) {
+            dispatch(module.exports.setFetchStatus('visibility', module.exports.Status.ERROR));
+            dispatch(module.exports.setError('No visibility info available'));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('visibility', module.exports.Status.FETCHED));
+        dispatch(module.exports.setVisibilityInfo(body));
     });
 });
 
@@ -767,6 +820,25 @@ module.exports.restoreComment = (projectId, commentId, topLevelCommentId, token)
     });
 });
 
+module.exports.shareProject = (projectId, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHING));
+    api({
+        uri: `/proxy/projects/${projectId}/share`,
+        authentication: token,
+        withCredentials: true,
+        method: 'PUT',
+        useCsrf: true
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
+            dispatch(module.exports.setError(err));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
+        dispatch(module.exports.updateProjectInfo(body));
+    });
+});
+
 module.exports.reportProject = (id, jsonData, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('report', module.exports.Status.FETCHING));
     // scratchr2 will fail if no thumbnail base64 string provided. We don't yet have
@@ -789,5 +861,26 @@ module.exports.reportProject = (id, jsonData, token) => (dispatch => {
             return;
         }
         dispatch(module.exports.setFetchStatus('report', module.exports.Status.FETCHED));
+    });
+});
+
+module.exports.updateProjectThumbnail = (id, blob) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.FETCHING));
+    api({
+        uri: `/internalapi/project/thumbnail/${id}/set/`,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'image/png'
+        },
+        withCredentials: true,
+        useCsrf: true,
+        body: blob,
+        host: '' // Not handled by the API, use existing infrastructure
+    }, (err, body, res) => {
+        if (err || res.statusCode !== 200) {
+            dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.ERROR));
+            return;
+        }
+        dispatch(module.exports.setFetchStatus('project-thumbnail', module.exports.Status.FETCHED));
     });
 });

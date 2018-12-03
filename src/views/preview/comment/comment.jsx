@@ -158,7 +158,7 @@ class Comment extends React.Component {
                                             className="comment-report"
                                             onClick={this.handleReport}
                                         >
-                                            <FormattedMessage id="comments.report" />
+                                            <FormattedMessage id="general.report" />
                                         </span>
                                     )}
                                 </React.Fragment>

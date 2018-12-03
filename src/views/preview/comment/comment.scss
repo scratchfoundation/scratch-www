@@ -289,3 +289,7 @@
         margin-right: -50%;
     }
 }
+
+/* Hide the action list buttons (delete/report/restore) until hover over */
+.comment .action-list { opacity: 0; }
+.comment:hover .action-list { opacity: 1; }

@@ -39,7 +39,7 @@ class Intro extends React.Component {
                     <div className="sprites">
                         <a
                             className="sprite sprite-1"
-                            href="/projects/editor/?tip_bar=getStarted"
+                            href="/projects/editor/?tutorial=getStarted"
                         >
                             <img
                                 alt="Scratch Cat"

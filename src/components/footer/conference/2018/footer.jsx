@@ -99,7 +99,7 @@ const ConferenceFooter = props => (
                         </li>
                         <li>
                             <a
-                                href="http://www.scratchjr.org/"
+                                href="https://www.scratchjr.org/"
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >

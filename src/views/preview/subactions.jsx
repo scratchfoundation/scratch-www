@@ -47,7 +47,10 @@ const Subactions = props => (
                     )}
                 </React.Fragment>
             }
-            <Button className="action-button copy-link-button">
+            <Button
+                className="action-button copy-link-button"
+                onClick={props.onCopyProjectLink}
+            >
                 <FormattedMessage id="general.copyLink" />
             </Button>
             {(props.canReport) &&
@@ -80,6 +83,7 @@ Subactions.propTypes = {
     canReport: PropTypes.bool,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
+    onCopyProjectLink: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,

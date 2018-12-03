@@ -1,5 +1,6 @@
 const webdriver = require('selenium-webdriver');
 const bindAll = require('lodash.bindall');
+require('chromedriver');
 
 const headless = process.env.SMOKE_HEADLESS || false;
 const remote = process.env.SMOKE_REMOTE || false;
