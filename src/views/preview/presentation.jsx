@@ -64,7 +64,9 @@ const PreviewPresentation = ({
     intl,
     isFullScreen,
     isLoggedIn,
+    isNewScratcher,
     isShared,
+    justShared,
     loveCount,
     loved,
     modInfo,
@@ -133,12 +135,26 @@ const PreviewPresentation = ({
                 message={embedCensorMessage(visibilityInfo.censorMessage)}
             />);
         }
-    } else if (canShare && !isShared) {
-        banner = (<Banner
-            actionMessage={<FormattedMessage id="project.share.shareButton" />}
-            message={<FormattedMessage id="project.share.notShared" />}
-            onAction={onShare}
-        />);
+    } else if (canShare) {
+        if (isShared && justShared) { // if was shared a while ago, don't show any share banner
+            if (isNewScratcher) {
+                banner = (<Banner
+                    className="banner-success"
+                    message={<FormattedMessage id="project.share.sharedLong" />}
+                />);
+            } else {
+                banner = (<Banner
+                    className="banner-success"
+                    message={<FormattedMessage id="project.share.sharedShort" />}
+                />);
+            }
+        } else if (!isShared) {
+            banner = (<Banner
+                actionMessage={<FormattedMessage id="project.share.shareButton" />}
+                message={<FormattedMessage id="project.share.notShared" />}
+                onAction={onShare}
+            />);
+        }
     }
 
     return (
@@ -392,11 +408,11 @@ const PreviewPresentation = ({
                                     scripts={modInfo.scripts}
                                     sprites={modInfo.sprites}
                                 />
-                                
+
                             </React.Fragment>
                         }
-                            
-                            
+
+
                         <MediaQuery minWidth={frameless.tablet}>
                             <FlexRow className="preview-row">
                                 <FlexRow className="extension-list">
@@ -531,7 +547,9 @@ PreviewPresentation.propTypes = {
     intl: intlShape,
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
+    isNewScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
+    justShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
     modInfo: PropTypes.shape({

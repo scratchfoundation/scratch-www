@@ -14,7 +14,7 @@ const Banner = ({className, message, actionMessage, onAction}) => (
             </span>
             {actionMessage && onAction && (
                 <Button
-                    className="button banner-button"
+                    className="banner-button"
                     onClick={onAction}
                 >
                     {actionMessage}

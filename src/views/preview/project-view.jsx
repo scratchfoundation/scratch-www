@@ -81,6 +81,7 @@ class Preview extends React.Component {
             addToStudioOpen: false,
             extensions: [],
             favoriteCount: 0,
+            justShared: false,
             loveCount: 0,
             modInfo: {
                 scripts: 0,
@@ -101,9 +102,11 @@ class Preview extends React.Component {
             (this.state.projectId !== prevState.projectId))) {
             this.fetchCommunityData();
             this.getProjectData(this.state.projectId);
+            this.setState({justShared: false}); // eslint-disable-line react/no-did-update-set-state
         }
         if (this.state.projectId === '0' && this.state.projectId !== prevState.projectId) {
             this.props.resetProject();
+            this.setState({justShared: false}); // eslint-disable-line react/no-did-update-set-state
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             if (typeof this.props.projectInfo.id === 'undefined') {
@@ -357,12 +360,14 @@ class Preview extends React.Component {
     }
     handleSeeInside () {
         this.props.setPlayer(false);
+        this.setState({justShared: false});
     }
     handleShare () {
         this.props.shareProject(
             this.props.projectInfo.id,
             this.props.user.token
         );
+        this.setState({justShared: true});
     }
     handleUpdate (jsonData) {
         this.props.updateProject(
@@ -471,7 +476,9 @@ class Preview extends React.Component {
                         favoriteCount={this.state.favoriteCount}
                         isFullScreen={this.state.isFullScreen}
                         isLoggedIn={this.props.isLoggedIn}
+                        isNewScratcher={this.props.isNewScratcher}
                         isShared={this.props.isShared}
+                        justShared={this.state.justShared}
                         loveCount={this.state.loveCount}
                         loved={this.props.loved}
                         modInfo={this.state.modInfo}
@@ -596,6 +603,7 @@ Preview.propTypes = {
     isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
+    isNewScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
     loved: PropTypes.bool,
     moreCommentsToLoad: PropTypes.bool,
@@ -689,6 +697,7 @@ const mapStateToProps = state => {
             state.permissions.admin === true),
         isLoggedIn: isLoggedIn,
         isAdmin: isAdmin,
+        isNewScratcher: isLoggedIn && state.permissions.new_scratcher,
         // if we don't have projectInfo, assume it's shared until we know otherwise
         isShared: !projectInfoPresent || state.preview.projectInfo.is_published,
         loved: state.preview.loved,
