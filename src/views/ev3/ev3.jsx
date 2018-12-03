@@ -32,57 +32,62 @@ class EV3 extends ExtensionLanding {
         return (
             <div className="extension-landing ev3">
                 <ExtensionHeader
-                    imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltEv3Illustration'})}
-                    imageSrc="/images/ev3/ev3-illustration.png"
-                >
-                    <FlexRow className="column extension-copy">
-                        <h1><img
-                            alt=""
-                            src="/images/ev3/ev3.svg"
-                        />LEGO MINDSTORMS EV3</h1>
-                        <FormattedMessage
-                            id="ev3.headerText"
-                            values={{
-                                ev3Link: (
-                                    <a
-                                        href="https://education.lego.com/en-us/middle-school/intro/mindstorms-ev3"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                                LEGO MINDSTORMS Education EV3
-                                    </a>
-                                )
-                            }}
-                        />
-                    </FlexRow>
-                    <ExtensionRequirements>
-                        <span>
-                            <img
+                    renderCopy={
+                        <FlexRow className="column extension-copy">
+                            <h1><img
                                 alt=""
-                                src="/svgs/extensions/windows.svg"
+                                src="/images/ev3/ev3.svg"
+                            />LEGO MINDSTORMS EV3</h1>
+                            <FormattedMessage
+                                id="ev3.headerText"
+                                values={{
+                                    ev3Link: (
+                                        <a
+                                            href="https://education.lego.com/en-us/middle-school/intro/mindstorms-ev3"
+                                            rel="noopener noreferrer"
+                                            target="_blank"
+                                        >
+                                                    LEGO MINDSTORMS Education EV3
+                                        </a>
+                                    )
+                                }}
                             />
-                                        Windows 10 version 1709+
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/mac.svg"
-                            />
-                                        macOS 10.13+
-                        </span>
-                        <span>
-                            <img src="/svgs/extensions/bluetooth.svg" />
-                                        Bluetooth
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/scratch-link.svg"
-                            />
-                                        Scratch Link
-                        </span>
-                    </ExtensionRequirements>
-                </ExtensionHeader>
+                        </FlexRow>
+                    }
+                    renderImage={<img
+                        alt={this.props.intl.formatMessage({id: 'ev3.imgAltEv3Illustration'})}
+                        src="/images/ev3/ev3-illustration.png"
+                    />}
+                    renderRequirements={
+                        <ExtensionRequirements>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/windows.svg"
+                                />
+                                            Windows 10 version 1709+
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/mac.svg"
+                                />
+                                            macOS 10.13+
+                            </span>
+                            <span>
+                                <img src="/svgs/extensions/bluetooth.svg" />
+                                            Bluetooth
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/scratch-link.svg"
+                                />
+                                            Scratch Link
+                            </span>
+                        </ExtensionRequirements>
+                    }
+                />
                 <OSChooser
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
