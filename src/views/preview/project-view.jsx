@@ -477,6 +477,7 @@ class Preview extends React.Component {
                         isFullScreen={this.state.isFullScreen}
                         isLoggedIn={this.props.isLoggedIn}
                         isNewScratcher={this.props.isNewScratcher}
+                        isScratcher={this.props.isScratcher}
                         isShared={this.props.isShared}
                         justShared={this.state.justShared}
                         loveCount={this.state.loveCount}
@@ -537,6 +538,7 @@ class Preview extends React.Component {
                         className="gui"
                         cloudHost={this.props.cloudHost}
                         enableCommunity={this.props.enableCommunity}
+                        hasCloudPermission={this.props.isScratcher}
                         isShared={this.props.isShared}
                         projectHost={this.props.projectHost}
                         projectId={this.state.projectId}
@@ -604,6 +606,7 @@ Preview.propTypes = {
     isEditable: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
+    isScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
     loved: PropTypes.bool,
     moreCommentsToLoad: PropTypes.bool,
@@ -698,6 +701,7 @@ const mapStateToProps = state => {
         isLoggedIn: isLoggedIn,
         isAdmin: isAdmin,
         isNewScratcher: isLoggedIn && state.permissions.new_scratcher,
+        isScratcher: isLoggedIn && state.permissions.scratcher,
         // if we don't have projectInfo, assume it's shared until we know otherwise
         isShared: !projectInfoPresent || state.preview.projectInfo.is_published,
         loved: state.preview.loved,

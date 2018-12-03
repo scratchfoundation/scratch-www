@@ -65,6 +65,7 @@ const PreviewPresentation = ({
     isFullScreen,
     isLoggedIn,
     isNewScratcher,
+    isScratcher,
     isShared,
     justShared,
     loveCount,
@@ -233,6 +234,7 @@ const PreviewPresentation = ({
                                     canSave={canSave}
                                     className="guiPlayer"
                                     cloudHost={cloudHost}
+                                    hasCloudPermission={isScratcher}
                                     isFullScreen={isFullScreen}
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
@@ -548,6 +550,7 @@ PreviewPresentation.propTypes = {
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
+    isScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
     justShared: PropTypes.bool,
     loveCount: PropTypes.number,
