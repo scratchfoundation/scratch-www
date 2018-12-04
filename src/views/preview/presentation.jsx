@@ -127,13 +127,13 @@ const PreviewPresentation = ({
             banner = (<Banner
                 actionMessage={<FormattedMessage id="project.share.shareButton" />}
                 className="banner-danger"
-                message={embedCensorMessage(visibilityInfo.censorMessage)}
+                message={embedCensorMessage(visibilityInfo.message)}
                 onAction={onShare}
             />);
         } else {
             banner = (<Banner
                 className="banner-danger"
-                message={embedCensorMessage(visibilityInfo.censorMessage)}
+                message={embedCensorMessage(visibilityInfo.message)}
             />);
         }
     } else if (canShare) {
@@ -595,7 +595,7 @@ PreviewPresentation.propTypes = {
     userOwnsProject: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
-        censorMessage: PropTypes.string,
+        message: PropTypes.string,
         deleted: PropTypes.bool,
         reshareable: PropTypes.bool
     })
