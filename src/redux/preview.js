@@ -754,9 +754,9 @@ module.exports.updateProject = (id, jsonData, username, token) => (dispatch => {
             dispatch(module.exports.setError('No project info'));
             return;
         }
-        if (res.statusCode === 500) { // InternalServer
+        if (res.statusCode >= 400) { // API responding with error
             dispatch(module.exports.setFetchStatus('project', module.exports.Status.ERROR));
-            dispatch(module.exports.setError('API Internal Server Error'));
+            dispatch(module.exports.setError('API Error Response'));
             return;
         }
         dispatch(module.exports.setFetchStatus('project', module.exports.Status.FETCHED));
