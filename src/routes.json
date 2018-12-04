@@ -199,7 +199,7 @@
     },
     {
         "name": "projects",
-        "pattern": "^/projects(/editor|(/\\d+(/editor|/fullscreen)?)?)?/?(\\?.*)?$",
+        "pattern": "^/projects(/editor|(/\\d+(/editor|/fullscreen|/embed)?)?)?/?(\\?.*)?$",
         "routeAlias": "/projects/?$",
         "view": "preview/preview",
         "title": "Scratch Project"
