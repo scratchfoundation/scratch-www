@@ -69,7 +69,7 @@ class Preview extends React.Component {
         const pathname = window.location.pathname.toLowerCase();
         const parts = pathname.split('/').filter(Boolean);
         // parts[0]: 'projects'
-        // parts[1]: either :id or 'editor'
+        // parts[1]: either :id or 'editor', invalid if neither specified
         // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
 
         // Get single-comment id from url hash, using the #comments-{id} scheme from scratch2
@@ -81,6 +81,7 @@ class Preview extends React.Component {
             addToStudioOpen: false,
             extensions: [],
             favoriteCount: 0,
+            invalidProject: parts.length === 1,
             justShared: false,
             loveCount: 0,
             modInfo: {
@@ -448,7 +449,7 @@ class Preview extends React.Component {
         );
     }
     render () {
-        if (this.props.projectNotAvailable) {
+        if (this.props.projectNotAvailable || this.state.invalidProject) {
             return (
                 <Page>
                     <div className="preview">
