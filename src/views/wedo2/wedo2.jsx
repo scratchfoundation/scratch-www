@@ -29,60 +29,65 @@ class Wedo2 extends ExtensionLanding {
         return (
             <div className="extension-landing wedo2">
                 <ExtensionHeader
-                    imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltWeDoIllustration'})}
-                    imageSrc="/images/wedo2/wedo2-illustration.png"
-                >
-                    <FlexRow className="column extension-copy">
-                        <h1><img
-                            alt=""
-                            src="/images/wedo2/wedo2.svg"
-                        />LEGO WeDo 2.0</h1>
-                        <FormattedMessage
-                            id="wedo2.headerText"
-                            values={{
-                                wedo2Link: (
-                                    <a
-                                        href="https://education.lego.com/en-us/elementary/intro/wedo2"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                                LEGO Education WeDo 2.0
-                                    </a>
-                                )
-                            }}
-                        />
-                    </FlexRow>
-                    <ExtensionRequirements>
-                        <span>
-                            <img
+                    renderCopy={
+                        <FlexRow className="extension-copy">
+                            <h1><img
                                 alt=""
-                                src="/svgs/extensions/windows.svg"
+                                src="/images/wedo2/wedo2.svg"
+                            />LEGO WeDo 2.0</h1>
+                            <FormattedMessage
+                                id="wedo2.headerText"
+                                values={{
+                                    wedo2Link: (
+                                        <a
+                                            href="https://education.lego.com/en-us/elementary/intro/wedo2"
+                                            rel="noopener noreferrer"
+                                            target="_blank"
+                                        >
+                                            LEGO Education WeDo 2.0
+                                        </a>
+                                    )
+                                }}
                             />
-                                        Windows 10+
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/mac.svg"
-                            />
-                                        macOS 10.13+
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/bluetooth.svg"
-                            />
-                                        Bluetooth
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/scratch-link.svg"
-                            />
-                                        Scratch Link
-                        </span>
-                    </ExtensionRequirements>
-                </ExtensionHeader>
+                        </FlexRow>
+                    }
+                    renderImage={<img
+                        alt={this.props.intl.formatMessage({id: 'wedo2.imgAltWeDoIllustration'})}
+                        src="/images/wedo2/wedo2-illustration.png"
+                    />}
+                    renderRequirements={
+                        <ExtensionRequirements>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/windows.svg"
+                                />
+                                            Windows 10 version 1709+
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/mac.svg"
+                                />
+                                            macOS 10.13+
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/bluetooth.svg"
+                                />
+                                            Bluetooth 4.0
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/scratch-link.svg"
+                                />
+                                            Scratch Link
+                            </span>
+                        </ExtensionRequirements>
+                    }
+                />
                 <OSChooser
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
@@ -201,6 +206,32 @@ class Wedo2 extends ExtensionLanding {
                 </ExtensionSection>
                 <ExtensionSection className="faq">
                     <h2><FormattedMessage id="wedo2.troubleshootingTitle" /></h2>
+                    <h3 className="faq-title"><FormattedMessage id="wedo2.checkOSVersionTitle" /></h3>
+                    <p>
+                        <FormattedMessage
+                            id="wedo2.checkOSVersionText"
+                            values={{
+                                winOSVersionLink: (
+                                    <a
+                                        href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="wedo2.winOSVersionLinkText" />
+                                    </a>
+                                ),
+                                macOSVersionLink: (
+                                    <a
+                                        href="https://support.apple.com/en-us/HT201260"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="wedo2.macOSVersionLinkText" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </p>
                     <h3 className="faq-title"><FormattedMessage id="wedo2.closeScratchCopiesTitle" /></h3>
                     <p>
                         <FormattedMessage id="wedo2.closeScratchCopiesText" />
