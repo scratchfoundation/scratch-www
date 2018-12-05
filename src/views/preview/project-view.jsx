@@ -45,6 +45,7 @@ class Preview extends React.Component {
             'handleFavoriteToggle',
             'handleLoadMore',
             'handleLoveToggle',
+            'handleMessage',
             'handlePopState',
             'handleReportClick',
             'handleReportClose',
@@ -79,6 +80,7 @@ class Preview extends React.Component {
 
         this.state = {
             addToStudioOpen: false,
+            adminModalOpen: false,
             extensions: [],
             favoriteCount: 0,
             justShared: false,
@@ -91,9 +93,11 @@ class Preview extends React.Component {
             reportOpen: false,
             singleCommentId: singleCommentId
         };
-        this.addEventListeners();
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
         this.setScreenFromOrientation();
+    }
+    componentDidMount () {
+        this.addEventListeners();
     }
     componentDidUpdate (prevProps, prevState) {
         if (this.state.projectId > 0 &&
@@ -138,10 +142,12 @@ class Preview extends React.Component {
     addEventListeners () {
         window.addEventListener('popstate', this.handlePopState);
         window.addEventListener('orientationchange', this.setScreenFromOrientation);
+        window.addEventListener('message', this.handleMessage);
     }
     removeEventListeners () {
         window.removeEventListener('popstate', this.handlePopState);
         window.removeEventListener('orientationchange', this.setScreenFromOrientation);
+        window.removeEventListener('message', this.handleMessage);
     }
     fetchCommunityData () {
         if (this.props.userPresent) {
@@ -256,6 +262,18 @@ class Preview extends React.Component {
     }
     handleDeleteComment (id, topLevelCommentId) {
         this.props.handleDeleteComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
+    }
+    handleMessage (messageEvent) {
+        if (messageEvent.data === 'showDialog') {
+            this.setState({
+                adminModalOpen: true
+            });
+        }
+        if (messageEvent.data === 'hideDialog') {
+            this.setState({
+                adminModalOpen: false
+            });
+        }
     }
     handleReportComment (id, topLevelCommentId) {
         this.props.handleReportComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
@@ -463,6 +481,7 @@ class Preview extends React.Component {
                 <Page>
                     <PreviewPresentation
                         addToStudioOpen={this.state.addToStudioOpen}
+                        adminModalOpen={this.state.adminModalOpen}
                         assetHost={this.props.assetHost}
                         backpackHost={this.props.backpackHost}
                         canAddToStudio={this.props.canAddToStudio}
