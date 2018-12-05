@@ -51,10 +51,24 @@ class Wedo2 extends ExtensionLanding {
                             />
                         </FlexRow>
                     }
-                    renderImage={<img
-                        alt={this.props.intl.formatMessage({id: 'wedo2.imgAltWeDoIllustration'})}
-                        src="/images/wedo2/wedo2-illustration.png"
-                    />}
+                    renderImage={
+                        <div className="video-player">
+                            <iframe
+                                allowFullScreen
+                                allowTransparency="true"
+                                frameBorder="0"
+                                height="180"
+                                scrolling="no"
+                                src={`https://fast.wistia.net/embed/iframe/4im7iizv47?seo=false&videoFoam=true`}
+                                title="📹"
+                                width="320"
+                            />
+                            <script
+                                async
+                                src="https://fast.wistia.net/assets/external/E-v1.js"
+                            />
+                        </div>
+                    }
                     renderRequirements={
                         <ExtensionRequirements>
                             <span>
