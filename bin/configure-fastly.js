@@ -171,43 +171,6 @@ async.auto({
             if (err) return cb(err);
             cb(null, headers);
         });
-    }],
-    tipbarRedirectHeaders: ['version', function (cb, results) {
-        async.auto({
-            responseCondition: function (cb2) {
-                var condition = {
-                    name: 'routes/?tip_bar= (response)',
-                    statement: 'req.url ~ "\\?tip_bar="',
-                    type: 'RESPONSE',
-                    priority: 10
-                };
-                fastly.setCondition(results.version, condition, cb2);
-            },
-            responseObject: function (cb2) {
-                var responseObject = {
-                    name: 'redirects/?tip_bar=',
-                    status: 301,
-                    response: 'Moved Permanently',
-                    request_condition: 'routes/?tip_bar= (response)'
-                };
-                fastly.setResponseObject(results.version, responseObject, cb2);
-            },
-            redirectHeader: ['responseCondition', function (cb2, redirectResults) {
-                var header = {
-                    name: 'redirects/?tip_bar=',
-                    action: 'set',
-                    ignore_if_set: 0,
-                    type: 'RESPONSE',
-                    dst: 'http.Location',
-                    src: 'regsub(req.url, "tip_bar=", "tutorial=")',
-                    response_condition: redirectResults.responseCondition.name
-                };
-                fastly.setFastlyHeader(results.version, header, cb2);
-            }]
-        }, function (err, redirectResults) {
-            if (err) return cb(err);
-            cb(null, redirectResults);
-        });
     }]
 }, function (err, results) {
     if (err) throw new Error(err);
