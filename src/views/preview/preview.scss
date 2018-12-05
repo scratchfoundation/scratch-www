@@ -42,12 +42,12 @@ $stage-width: 480px;
         z-index: 100;
         width: 252px;
         height: 100%;
-
     }
-    
+
     .admin-iframe.modal-open,
     .project-admin-panel.modal-open {
-        width: 100%
+        background-color: transparent;
+        width: 100%;
     }
 
     .project-title {

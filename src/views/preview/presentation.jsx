@@ -171,7 +171,7 @@ const PreviewPresentation = ({
                     className={classNames('admin-iframe', {
                         'modal-open': adminModalOpen
                     })}
-                    src={`/scratch2/${projectId}`}
+                    src={`/scratch2/${projectId}/adminpanel/`}
                 />
             </AdminPanel>
             { projectInfo && projectInfo.author && projectInfo.author.id && (
