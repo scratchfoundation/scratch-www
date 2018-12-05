@@ -368,7 +368,6 @@
     {
         "name": "info-cards-redirect",
         "pattern": "^/info/cards/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
         "redirect": "/ideas"
     },
     {
