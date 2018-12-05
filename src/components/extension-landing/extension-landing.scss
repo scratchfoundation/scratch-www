@@ -117,8 +117,8 @@
 
             .video-player {
                 height: 180px;
-                border: 2px solid $ui-border;
-                border-radius: 10px;
+                border: 0.25rem solid $ui-white-15percent;
+                border-radius: 0.75rem;
                 overflow: hidden;
             }
         }

@@ -13,6 +13,7 @@ const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 
 const ExtensionLanding = require('../../components/extension-landing/extension-landing.jsx');
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
+const ExtensionVideo = require('../../components/extension-landing/extension-video.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
@@ -52,22 +53,9 @@ class Wedo2 extends ExtensionLanding {
                         </FlexRow>
                     }
                     renderImage={
-                        <div className="video-player">
-                            <iframe
-                                allowFullScreen
-                                allowTransparency="true"
-                                frameBorder="0"
-                                height="180"
-                                scrolling="no"
-                                src={`https://fast.wistia.net/embed/iframe/4im7iizv47?seo=false&videoFoam=true`}
-                                title="📹"
-                                width="320"
-                            />
-                            <script
-                                async
-                                src="https://fast.wistia.net/assets/external/E-v1.js"
-                            />
-                        </div>
+                        <ExtensionVideo
+                            videoId="4im7iizv47"
+                        />
                     }
                     renderRequirements={
                         <ExtensionRequirements>

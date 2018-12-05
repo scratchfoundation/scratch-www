@@ -13,6 +13,7 @@ const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 
 const ExtensionLanding = require('../../components/extension-landing/extension-landing.jsx');
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
+const ExtensionVideo = require('../../components/extension-landing/extension-video.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
@@ -54,10 +55,10 @@ class EV3 extends ExtensionLanding {
                             />
                         </FlexRow>
                     }
-                    renderImage={<img
-                        alt={this.props.intl.formatMessage({id: 'ev3.imgAltEv3Illustration'})}
-                        src="/images/ev3/ev3-illustration.png"
-                    />}
+                    renderImage={
+                        <ExtensionVideo
+                            videoId="0huu6wfiki"
+                        />}
                     renderRequirements={
                         <ExtensionRequirements>
                             <span>
