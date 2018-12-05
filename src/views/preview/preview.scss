@@ -37,11 +37,11 @@ $stage-width: 480px;
 
     .admin-iframe {
         position: absolute;
-        width: 252px;
-        height: 100%;
-        z-index: 100;
         top: 0;
         left: 0;
+        z-index: 100;
+        width: 252px;
+        height: 100%;
 
     }
     

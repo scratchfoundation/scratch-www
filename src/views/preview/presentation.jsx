@@ -544,6 +544,7 @@ const PreviewPresentation = ({
 
 PreviewPresentation.propTypes = {
     addToStudioOpen: PropTypes.bool,
+    adminModalOpen: PropTypes.bool,
     assetHost: PropTypes.string,
     backpackHost: PropTypes.string,
     canAddToStudio: PropTypes.bool,
