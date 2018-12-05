@@ -68,8 +68,10 @@ const PreviewPresentation = ({
     isFullScreen,
     isLoggedIn,
     isNewScratcher,
+    isRemixing,
     isScratcher,
     isShared,
+    justRemixed,
     justShared,
     loveCount,
     loved,
@@ -86,6 +88,7 @@ const PreviewPresentation = ({
     onLoveClicked,
     onOpenAdminPanel,
     onRemix,
+    onRemixing,
     onReportClicked,
     onReportClose,
     onReportComment,
@@ -141,6 +144,18 @@ const PreviewPresentation = ({
                 message={embedCensorMessage(visibilityInfo.message)}
             />);
         }
+    } else if (justRemixed && isNewScratcher) {
+        banner = (
+            <Banner
+                className="banner-success"
+                message={
+                    <FormattedMessage
+                        id="project.remix.justRemixed"
+                        values={{title: projectInfo.title}}
+                    />
+                }
+            />
+        );
     } else if (canShare) {
         if (isShared && justShared) { // if was shared a while ago, don't show any share banner
             if (isNewScratcher) {
@@ -228,10 +243,22 @@ const PreviewPresentation = ({
                                 <div className="project-buttons">
                                     {canRemix &&
                                         <Button
-                                            className="button remix-button"
+                                            alt={intl.formatMessage({id: 'project.remixButton.altText'})}
+                                            className={classNames([
+                                                'remix-button',
+                                                {
+                                                    remixing: isRemixing,
+                                                    spin: isRemixing
+                                                }
+                                            ])}
+                                            title={intl.formatMessage({id: 'project.remixButton.altText'})}
                                             onClick={onRemix}
                                         >
-                                            <FormattedMessage id="project.remixButton" />
+                                            {isRemixing ? (
+                                                <FormattedMessage id="project.remixButton.remixing" />
+                                            ) : (
+                                                <FormattedMessage id="project.remixButton" />
+                                            )}
                                         </Button>
                                     }
                                     <Button
@@ -260,6 +287,7 @@ const PreviewPresentation = ({
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
                                     projectId={projectId}
+                                    onRemixing={onRemixing}
                                     onUpdateProjectId={onUpdateProjectId}
                                 />
                             </div>
@@ -573,8 +601,10 @@ PreviewPresentation.propTypes = {
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
+    isRemixing: PropTypes.bool,
     isScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
+    justRemixed: PropTypes.bool,
     justShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
@@ -594,6 +624,7 @@ PreviewPresentation.propTypes = {
     onLoveClicked: PropTypes.func,
     onOpenAdminPanel: PropTypes.func,
     onRemix: PropTypes.func,
+    onRemixing: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
     onReportComment: PropTypes.func.isRequired,
