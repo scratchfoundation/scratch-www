@@ -649,7 +649,7 @@ Preview.propTypes = {
     userPresent: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
-        censorMessage: PropTypes.string,
+        message: PropTypes.string,
         deleted: PropTypes.bool,
         reshareable: PropTypes.bool
     })
