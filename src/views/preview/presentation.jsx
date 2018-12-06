@@ -168,7 +168,7 @@ const PreviewPresentation = ({
             <AdminPanel
                 className={classNames('project-admin-panel', {
                     'admin-panel-open': adminPanelOpen,
-                    'modal-open': adminModalOpen,
+                    'modal-open': adminModalOpen
                 })}
                 isOpen={adminPanelOpen}
                 onClose={onCloseAdminPanel}
