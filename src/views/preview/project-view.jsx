@@ -472,7 +472,7 @@ class Preview extends React.Component {
                         canReport={this.props.canReport}
                         canRestoreComments={this.props.isAdmin}
                         canSave={this.props.canSave}
-                        canShare={this.props.canShare}
+                        canShare={this.props.canShare || this.props.isAdmin}
                         canUseBackpack={this.props.canUseBackpack}
                         cloudHost={this.props.cloudHost}
                         comments={this.props.comments}
