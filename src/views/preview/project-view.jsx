@@ -470,7 +470,9 @@ class Preview extends React.Component {
             if (projectId === '0') {
                 newUrl = `/${parts[0]}/editor`;
             } else {
-                newUrl = `/${parts[0]}/${projectId}/editor`;
+                let modePath = '';
+                if (!this.props.playerMode) modePath = '/editor';
+                newUrl = `/${parts[0]}/${projectId}${modePath}`;
             }
             history.pushState(
                 {projectId: projectId},
