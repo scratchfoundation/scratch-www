@@ -47,6 +47,8 @@ class Preview extends React.Component {
             'handleLoveToggle',
             'handleMessage',
             'handlePopState',
+            'handleCloseAdminPanel',
+            'handleOpenAdminPanel',
             'handleReportClick',
             'handleReportClose',
             'handleReportComment',
@@ -262,6 +264,12 @@ class Preview extends React.Component {
     }
     handleDeleteComment (id, topLevelCommentId) {
         this.props.handleDeleteComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
+    }
+    handleCloseAdminPanel () {
+        this.setState({adminPanelOpen: false});
+    }
+    handleOpenAdminPanel () {
+        this.setState({adminPanelOpen: true});
     }
     handleMessage (messageEvent) {
         if (messageEvent.data === 'showDialog') {
@@ -482,6 +490,7 @@ class Preview extends React.Component {
                     <PreviewPresentation
                         addToStudioOpen={this.state.addToStudioOpen}
                         adminModalOpen={this.state.adminModalOpen}
+                        adminPanelOpen={this.state.adminPanelOpen}
                         assetHost={this.props.assetHost}
                         backpackHost={this.props.backpackHost}
                         canAddToStudio={this.props.canAddToStudio}
@@ -524,11 +533,13 @@ class Preview extends React.Component {
                         onAddComment={this.handleAddComment}
                         onAddToStudioClicked={this.handleAddToStudioClick}
                         onAddToStudioClosed={this.handleAddToStudioClose}
+                        onCloseAdminPanel={this.handleCloseAdminPanel}
                         onCopyProjectLink={this.handleCopyProjectLink}
                         onDeleteComment={this.handleDeleteComment}
                         onFavoriteClicked={this.handleFavoriteToggle}
                         onLoadMore={this.handleLoadMore}
                         onLoveClicked={this.handleLoveToggle}
+                        onOpenAdminPanel={this.handleOpenAdminPanel}
                         onRemix={this.handleRemix}
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
