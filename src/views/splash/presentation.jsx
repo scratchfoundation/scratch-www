@@ -529,41 +529,66 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 >
                     {featured}
 
-                    {this.props.isAdmin ? [
-                        <AdminPanel key="admin-panel">
-                            <dt>Tools</dt>
-                            <dd>
-                                <ul>
-                                    <li>
-                                        <a href="/scratch_admin/tickets">Ticket Queue</a>
-                                    </li>
-                                    <li>
-                                        <a href="/scratch_admin/ip-search/">IP Search</a>
-                                    </li>
-                                    <li>
-                                        <a href="/scratch_admin/email-search/">Email Search</a>
-                                    </li>
-                                </ul>
-                            </dd>
-                            <dt>Homepage Cache</dt>
-                            <dd>
-                                <ul className="cache-list">
-                                    <li>
-                                        <div className="button-row">
-                                            <span>Refresh row data:</span>
-                                            <Button
-                                                className={this.props.refreshCacheStatus.status}
-                                                disabled={this.props.refreshCacheStatus.disabled}
-                                                onClick={this.props.onRefreshHomepageCache}
+                    {this.props.isAdmin && (
+                        <AdminPanel className="splash-admin-panel">
+                            <dl>
+                                <dt>Tools</dt>
+                                <dd>
+                                    <ul>
+                                        <li>
+                                            <a href="/scratch_admin/tickets">Ticket Queue</a>
+                                        </li>
+                                        <li>
+                                            <a href="/scratch_admin/ip-search/">IP Search</a>
+                                        </li>
+                                        <li>
+                                            <a href="/scratch_admin/email-search/">Email Search</a>
+                                        </li>
+                                    </ul>
+                                </dd>
+                                <dt>Homepage Cache</dt>
+                                <dd>
+                                    <ul className="cache-list">
+                                        <li>
+                                            <div className="button-row">
+                                                <span>Refresh row data:</span>
+                                                <Button
+                                                    className={this.props.refreshCacheStatus.status}
+                                                    disabled={this.props.refreshCacheStatus.disabled}
+                                                    onClick={this.props.onRefreshHomepageCache}
+                                                >
+                                                    <span>{this.props.refreshCacheStatus.content}</span>
+                                                </Button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </dd>
+                                <dt>Page Cache</dt>
+                                <dd>
+                                    <ul className="cache-list">
+                                        <li>
+                                            <form
+                                                action="/scratch_admin/page/clear-anon-cache/"
+                                                method="post"
                                             >
-                                                <span>{this.props.refreshCacheStatus.content}</span>
-                                            </Button>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </dd>
+                                                <input
+                                                    name="path"
+                                                    type="hidden"
+                                                    value="/"
+                                                />
+                                                <div className="button-row">
+                                                    <span>For anonymous users:</span>
+                                                    <Button type="submit">
+                                                        <span>Clear</span>
+                                                    </Button>
+                                                </div>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dl>
                         </AdminPanel>
-                    ] : []}
+                    )}
                 </div>
             </div>
         );

@@ -1,9 +1,8 @@
 const bindAll = require('lodash.bindall');
+const classNames = require('classnames');
 const connect = require('react-redux').connect;
 const PropTypes = require('prop-types');
 const React = require('react');
-
-const Button = require('../forms/button.jsx');
 
 require('./adminpanel.scss');
 
@@ -23,64 +22,37 @@ class AdminPanel extends React.Component {
     }
     render () {
         if (!this.props.isAdmin) return false;
-
-        if (this.state.showPanel) {
-            return (
-                <div
-                    className="visible"
-                    id="admin-panel"
-                >
+        return (
+            <div
+                className={classNames(
+                    'admin-panel', this.props.className, {
+                        hidden: !this.state.showPanel
+                    }
+                )}
+            >
+                {this.state.showPanel ? (
+                    <React.Fragment>
+                        <span
+                            className="toggle"
+                            onClick={this.handleToggleVisibility}
+                        >
+                            x
+                        </span>
+                        <div className="admin-header">
+                            <h3>Admin Panel</h3>
+                        </div>
+                        <div className="admin-content">
+                            {this.props.children}
+                        </div>
+                    </React.Fragment>
+                ) : (
                     <span
                         className="toggle"
                         onClick={this.handleToggleVisibility}
                     >
-                        x
+                        &gt;
                     </span>
-                    <div className="admin-header">
-                        <h3>Admin Panel</h3>
-                    </div>
-                    <div className="admin-content">
-                        <dl>
-                            {this.props.children}
-                            <dt>Page Cache</dt>
-                            <dd>
-                                <ul className="cache-list">
-                                    <li>
-                                        <form
-                                            action="/scratch_admin/page/clear-anon-cache/"
-                                            method="post"
-                                        >
-                                            <input
-                                                name="path"
-                                                type="hidden"
-                                                value="/"
-                                            />
-                                            <div className="button-row">
-                                                <span>For anonymous users:</span>
-                                                <Button type="submit">
-                                                    <span>Clear</span>
-                                                </Button>
-                                            </div>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
-            );
-        }
-        return (
-            <div
-                className="hidden"
-                id="admin-panel"
-            >
-                <span
-                    className="toggle"
-                    onClick={this.handleToggleVisibility}
-                >
-                    &gt;
-                </span>
+                )}
             </div>
         );
     }
@@ -88,6 +60,7 @@ class AdminPanel extends React.Component {
 
 AdminPanel.propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
     isAdmin: PropTypes.bool
 };
 

@@ -35,6 +35,21 @@ $stage-width: 480px;
         }
     }
 
+    .admin-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        width: 252px;
+        height: 100%;
+    }
+
+    .admin-iframe.modal-open,
+    .project-admin-panel.modal-open {
+        background-color: transparent;
+        width: 100%;
+    }
+
     .project-title {
         font-size: 1.75rem;
         font-weight: 500;

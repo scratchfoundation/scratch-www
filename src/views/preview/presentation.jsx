@@ -11,6 +11,7 @@ const classNames = require('classnames');
 const GUI = require('scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
 
+const AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
 const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
@@ -45,6 +46,7 @@ const onKeyPress = e => {
 
 const PreviewPresentation = ({
     addToStudioOpen,
+    adminModalOpen,
     assetHost,
     backpackHost,
     canAddToStudio,
@@ -160,6 +162,18 @@ const PreviewPresentation = ({
 
     return (
         <div className="preview">
+            <AdminPanel
+                className={classNames('project-admin-panel', {
+                    'modal-open': adminModalOpen
+                })}
+            >
+                <iframe
+                    className={classNames('admin-iframe', {
+                        'modal-open': adminModalOpen
+                    })}
+                    src={`/scratch2/${projectId}/adminpanel/`}
+                />
+            </AdminPanel>
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
                     {banner}
@@ -530,6 +544,7 @@ const PreviewPresentation = ({
 
 PreviewPresentation.propTypes = {
     addToStudioOpen: PropTypes.bool,
+    adminModalOpen: PropTypes.bool,
     assetHost: PropTypes.string,
     backpackHost: PropTypes.string,
     canAddToStudio: PropTypes.bool,
