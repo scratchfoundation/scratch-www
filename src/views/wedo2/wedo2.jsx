@@ -13,6 +13,7 @@ const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 
 const ExtensionLanding = require('../../components/extension-landing/extension-landing.jsx');
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
+const ExtensionVideo = require('../../components/extension-landing/extension-video.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
@@ -51,10 +52,11 @@ class Wedo2 extends ExtensionLanding {
                             />
                         </FlexRow>
                     }
-                    renderImage={<img
-                        alt={this.props.intl.formatMessage({id: 'wedo2.imgAltWeDoIllustration'})}
-                        src="/images/wedo2/wedo2-illustration.png"
-                    />}
+                    renderImage={
+                        <ExtensionVideo
+                            videoId="4im7iizv47"
+                        />
+                    }
                     renderRequirements={
                         <ExtensionRequirements>
                             <span>

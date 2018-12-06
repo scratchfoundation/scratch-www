@@ -114,6 +114,13 @@
                     color: $ui-white;
                 }
             }
+
+            .video-player {
+                border: .25rem solid $ui-white-15percent;
+                border-radius: .75rem;
+                height: 180px;
+                overflow: hidden;
+            }
         }
 
         .extension-image {
