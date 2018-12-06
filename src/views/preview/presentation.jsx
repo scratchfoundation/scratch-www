@@ -144,7 +144,7 @@ const PreviewPresentation = ({
                 message={embedCensorMessage(visibilityInfo.message)}
             />);
         }
-    } else if (justRemixed && isNewScratcher) {
+    } else if (justRemixed) {
         banner = (
             <Banner
                 className="banner-success"
