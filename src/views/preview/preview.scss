@@ -270,6 +270,52 @@ $stage-width: 480px;
         }
     }
 
+    .remix-button.remixing {
+        opacity: .6;
+
+        &:before {
+            animation-name: remix-intro, remix-spin;
+            animation-duration: .25s, .75s;
+            animation-timing-function: cubic-bezier(.3, -3, .6, 3), ease-out;
+            animation-delay: 0s, .25s;
+            animation-iteration-count: 1, infinite;
+            animation-direction: normal;
+            width: 1.25rem;
+            height: 1.25rem;
+            -webkit-animation-name: intro, spin;
+            -webkit-animation-duration: .25s, .75s;
+            -webkit-animation-iteration-count: 1, infinite;
+            -webkit-animation-delay: 0s, .25s;
+            -webkit-animation-timing-function: cubic-bezier(.3, -3, .6, 3), ease-out;
+            transform-origin: center;
+        }
+        @keyframes remix-intro {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+                -webkit-transform: scale(0);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+                -webkit-transform: scale(1);
+            }
+        }
+
+        @keyframes remix-spin {
+            0% {
+                transform: rotate(0);
+                -webkit-transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(359deg);
+                -webkit-transform: rotate(359deg);
+            }
+        }
+    }
+
     .see-inside-button {
 
         &:before {

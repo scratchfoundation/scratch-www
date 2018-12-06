@@ -50,6 +50,7 @@ class Preview extends React.Component {
             'handleMessage',
             'handlePopState',
             'handleCloseAdminPanel',
+            'handleIsRemixing',
             'handleOpenAdminPanel',
             'handleReportClick',
             'handleReportClose',
@@ -90,7 +91,9 @@ class Preview extends React.Component {
             adminPanelOpen: adminPanelOpen || false,
             extensions: [],
             favoriteCount: 0,
+            isRemixing: false,
             invalidProject: parts.length === 1,
+            justRemixed: false,
             justShared: false,
             loveCount: 0,
             modInfo: {
@@ -114,11 +117,20 @@ class Preview extends React.Component {
             (this.state.projectId !== prevState.projectId))) {
             this.fetchCommunityData();
             this.getProjectData(this.state.projectId);
-            this.setState({justShared: false}); // eslint-disable-line react/no-did-update-set-state
+            if (this.state.justShared) {
+                this.setState({ // eslint-disable-line react/no-did-update-set-state
+                    justShared: false
+                });
+            }
         }
         if (this.state.projectId === '0' && this.state.projectId !== prevState.projectId) {
             this.props.resetProject();
-            this.setState({justShared: false}); // eslint-disable-line react/no-did-update-set-state
+            if (this.state.justRemixed || this.state.justShared) {
+                this.setState({ // eslint-disable-line react/no-did-update-set-state
+                    justRemixed: false,
+                    justShared: false
+                });
+            }
         }
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             if (typeof this.props.projectInfo.id === 'undefined') {
@@ -265,6 +277,17 @@ class Preview extends React.Component {
             this.props.user.token
         );
     }
+    handleIsRemixing (isRemixing) {
+        if (this.state.isRemixing !== isRemixing) {
+            this.setState({isRemixing: isRemixing});
+            if (isRemixing === false) { // just finished remixing
+                this.setState({
+                    justRemixed: true,
+                    justShared: false
+                });
+            }
+        }
+    }
     handleAddComment (comment, topLevelCommentId) {
         this.props.handleAddComment(comment, topLevelCommentId);
     }
@@ -405,14 +428,22 @@ class Preview extends React.Component {
     }
     handleSeeInside () {
         this.props.setPlayer(false);
-        this.setState({justShared: false});
+        if (this.state.justRemixed || this.state.justShared) {
+            this.setState({
+                justRemixed: false,
+                justShared: false
+            });
+        }
     }
     handleShare () {
         this.props.shareProject(
             this.props.projectInfo.id,
             this.props.user.token
         );
-        this.setState({justShared: true});
+        this.setState({
+            justRemixed: false,
+            justShared: true
+        });
     }
     handleUpdate (jsonData) {
         this.props.updateProject(
@@ -439,7 +470,9 @@ class Preview extends React.Component {
             if (projectId === '0') {
                 newUrl = `/${parts[0]}/editor`;
             } else {
-                newUrl = `/${parts[0]}/${projectId}/editor`;
+                let modePath = '';
+                if (!this.props.playerMode) modePath = '/editor';
+                newUrl = `/${parts[0]}/${projectId}${modePath}`;
             }
             history.pushState(
                 {projectId: projectId},
@@ -524,8 +557,10 @@ class Preview extends React.Component {
                         isFullScreen={this.state.isFullScreen}
                         isLoggedIn={this.props.isLoggedIn}
                         isNewScratcher={this.props.isNewScratcher}
+                        isRemixing={this.state.isRemixing}
                         isScratcher={this.props.isScratcher}
                         isShared={this.props.isShared}
+                        justRemixed={this.state.justRemixed}
                         justShared={this.state.justShared}
                         loveCount={this.state.loveCount}
                         loved={this.props.loved}
@@ -555,6 +590,7 @@ class Preview extends React.Component {
                         onLoveClicked={this.handleLoveToggle}
                         onOpenAdminPanel={this.handleOpenAdminPanel}
                         onRemix={this.handleRemix}
+                        onRemixing={this.handleIsRemixing}
                         onReportClicked={this.handleReportClick}
                         onReportClose={this.handleReportClose}
                         onReportComment={this.handleReportComment}
@@ -595,6 +631,7 @@ class Preview extends React.Component {
                         renderLogin={this.renderLogin}
                         onLogOut={this.props.handleLogOut}
                         onOpenRegistration={this.props.handleOpenRegistration}
+                        onRemixing={this.handleIsRemixing}
                         onSetLanguage={this.handleSetLanguage}
                         onShare={this.handleShare}
                         onToggleLoginOpen={this.props.handleToggleLoginOpen}
