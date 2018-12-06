@@ -282,6 +282,8 @@ class Preview extends React.Component {
                 adminModalOpen: false
             });
         }
+        if (messageEvent.data === 'openPanel') this.handleOpenAdminPanel();
+        if (messageEvent.data === 'closePanel') this.handleCloseAdminPanel();
     }
     handleReportComment (id, topLevelCommentId) {
         this.props.handleReportComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
