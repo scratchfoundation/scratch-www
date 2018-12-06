@@ -47,6 +47,7 @@ const onKeyPress = e => {
 const PreviewPresentation = ({
     addToStudioOpen,
     adminModalOpen,
+    adminPanelOpen,
     assetHost,
     backpackHost,
     canAddToStudio,
@@ -77,11 +78,13 @@ const PreviewPresentation = ({
     onAddComment,
     onAddToStudioClicked,
     onAddToStudioClosed,
+    onCloseAdminPanel,
     onCopyProjectLink,
     onDeleteComment,
     onFavoriteClicked,
     onLoadMore,
     onLoveClicked,
+    onOpenAdminPanel,
     onRemix,
     onReportClicked,
     onReportClose,
@@ -164,8 +167,12 @@ const PreviewPresentation = ({
         <div className="preview">
             <AdminPanel
                 className={classNames('project-admin-panel', {
+                    'admin-panel-open': adminPanelOpen,
                     'modal-open': adminModalOpen
                 })}
+                isOpen={adminPanelOpen}
+                onClose={onCloseAdminPanel}
+                onOpen={onOpenAdminPanel}
             >
                 <iframe
                     className={classNames('admin-iframe', {
@@ -545,6 +552,7 @@ const PreviewPresentation = ({
 PreviewPresentation.propTypes = {
     addToStudioOpen: PropTypes.bool,
     adminModalOpen: PropTypes.bool,
+    adminPanelOpen: PropTypes.bool,
     assetHost: PropTypes.string,
     backpackHost: PropTypes.string,
     canAddToStudio: PropTypes.bool,
@@ -578,11 +586,13 @@ PreviewPresentation.propTypes = {
     onAddComment: PropTypes.func,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
+    onCloseAdminPanel: PropTypes.func,
     onCopyProjectLink: PropTypes.func,
     onDeleteComment: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onLoadMore: PropTypes.func,
     onLoveClicked: PropTypes.func,
+    onOpenAdminPanel: PropTypes.func,
     onRemix: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,

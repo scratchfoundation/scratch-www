@@ -530,7 +530,12 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     {featured}
 
                     {this.props.isAdmin && (
-                        <AdminPanel className="splash-admin-panel">
+                        <AdminPanel
+                            className="splash-admin-panel"
+                            isOpen={this.props.adminPanelOpen}
+                            onClose={this.props.onCloseAdminPanel}
+                            onOpen={this.props.onOpenAdminPanel}
+                        >
                             <dl>
                                 <dt>Tools</dt>
                                 <dd>
@@ -597,6 +602,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
 
 SplashPresentation.propTypes = {
     activity: PropTypes.arrayOf(PropTypes.object),
+    adminPanelOpen: PropTypes.bool,
     emailConfirmationModalOpen: PropTypes.bool.isRequired,
     featuredGlobal: PropTypes.shape({
         community_featured_projects: PropTypes.array,
@@ -612,8 +618,10 @@ SplashPresentation.propTypes = {
     isEducator: PropTypes.bool.isRequired,
     lovedByFollowing: PropTypes.arrayOf(PropTypes.object),
     news: PropTypes.arrayOf(PropTypes.object),
+    onCloseAdminPanel: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
     onHideEmailConfirmationModal: PropTypes.func.isRequired,
+    onOpenAdminPanel: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
     onShowEmailConfirmationModal: PropTypes.func.isRequired,
     projectCount: PropTypes.number,
