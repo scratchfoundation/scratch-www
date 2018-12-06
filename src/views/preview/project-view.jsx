@@ -32,6 +32,8 @@ const frameless = require('../../lib/frameless');
 const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
+const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
+
 class Preview extends React.Component {
     constructor (props) {
         super(props);
@@ -80,9 +82,12 @@ class Preview extends React.Component {
         const singleCommentId = window.location.hash.indexOf(commentHashPrefix) !== -1 &&
             parseInt(window.location.hash.replace(commentHashPrefix, ''), 10);
 
+        const adminPanelOpen = localStorageAvailable && localStorage.getItem('adminPanelToggled_projects') === 'open';
+
         this.state = {
             addToStudioOpen: false,
             adminModalOpen: false,
+            adminPanelOpen: adminPanelOpen || false,
             extensions: [],
             favoriteCount: 0,
             justShared: false,
@@ -267,9 +272,15 @@ class Preview extends React.Component {
     }
     handleCloseAdminPanel () {
         this.setState({adminPanelOpen: false});
+        if (localStorageAvailable) {
+            localStorage.setItem('adminPanelToggled_projects', 'closed');
+        }
     }
     handleOpenAdminPanel () {
         this.setState({adminPanelOpen: true});
+        if (localStorageAvailable) {
+            localStorage.setItem('adminPanelToggled_projects', 'open');
+        }
     }
     handleMessage (messageEvent) {
         if (messageEvent.data === 'showDialog') {
