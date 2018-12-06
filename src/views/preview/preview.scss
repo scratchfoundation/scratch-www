@@ -35,17 +35,30 @@ $stage-width: 480px;
         }
     }
 
+    .project-admin-panel {
+        border: 0;
+        padding: 1rem;
+        overflow: hidden;
+    }
+
+    .project-admin-panel.admin-panel-open {
+        padding: 0;
+        width: 237px;
+    }
+
     .admin-iframe {
         position: absolute;
         top: 0;
         left: 0;
         z-index: 100;
-        width: 252px;
+        margin: 0;
+        border: 0;
+        width: 237px;
         height: 100%;
     }
 
     .admin-iframe.modal-open,
-    .project-admin-panel.modal-open {
+    .project-admin-panel.admin-panel-open.modal-open {
         background-color: transparent;
         width: 100%;
     }
