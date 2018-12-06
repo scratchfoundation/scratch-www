@@ -576,6 +576,7 @@ class Preview extends React.Component {
                         replies={this.props.replies}
                         reportOpen={this.state.reportOpen}
                         showModInfo={this.props.isAdmin}
+                        showAdminPanel={this.props.isAdmin}
                         singleCommentId={this.state.singleCommentId}
                         userOwnsProject={this.props.userOwnsProject}
                         visibilityInfo={this.props.visibilityInfo}

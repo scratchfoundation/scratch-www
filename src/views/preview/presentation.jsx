@@ -110,6 +110,7 @@ const PreviewPresentation = ({
     remixes,
     replies,
     reportOpen,
+    showAdminPanel,
     showModInfo,
     singleCommentId,
     userOwnsProject,
@@ -180,22 +181,24 @@ const PreviewPresentation = ({
 
     return (
         <div className="preview">
-            <AdminPanel
-                className={classNames('project-admin-panel', {
-                    'admin-panel-open': adminPanelOpen,
-                    'modal-open': adminModalOpen
-                })}
-                isOpen={adminPanelOpen}
-                onClose={onCloseAdminPanel}
-                onOpen={onOpenAdminPanel}
-            >
-                <iframe
-                    className={classNames('admin-iframe', {
+            {showAdminPanel && (
+                <AdminPanel
+                    className={classNames('project-admin-panel', {
+                        'admin-panel-open': adminPanelOpen,
                         'modal-open': adminModalOpen
                     })}
-                    src={`/scratch2/${projectId}/adminpanel/`}
-                />
-            </AdminPanel>
+                    isOpen={adminPanelOpen}
+                    onClose={onCloseAdminPanel}
+                    onOpen={onOpenAdminPanel}
+                >
+                    <iframe
+                        className={classNames('admin-iframe', {
+                            'modal-open': adminModalOpen
+                        })}
+                        src={`/scratch2/${projectId}/adminpanel/`}
+                    />
+                </AdminPanel>
+            )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
                     {banner}
@@ -646,6 +649,7 @@ PreviewPresentation.propTypes = {
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
     reportOpen: PropTypes.bool,
+    showAdminPanel: PropTypes.bool,
     showModInfo: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     userOwnsProject: PropTypes.bool,
