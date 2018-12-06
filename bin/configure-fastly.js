@@ -217,6 +217,52 @@ async.auto({
             if (err) return cb(err);
             cb(null, redirectResults);
         });
+    }],
+    embedRedirectHeaders: ['version', function (cb, results) {
+        async.auto({
+            requestCondition: function (cb2) {
+                var condition = {
+                    name: 'routes/projects/embed (request)',
+                    statement: 'req.url ~ "^/projects/embed/(\\d+)"',
+                    type: 'REQUEST',
+                    priority: 10
+                };
+                fastly.setCondition(results.version, condition, cb2);
+            },
+            responseCondition: function (cb2) {
+                var condition = {
+                    name: 'routes/projects/embed (response)',
+                    statement: 'req.url ~ "^/projects/embed/(\\d+)"',
+                    type: 'RESPONSE',
+                    priority: 10
+                };
+                fastly.setCondition(results.version, condition, cb2);
+            },
+            responseObject: ['requestCondition', function (cb2, redirectResults) {
+                var responseObject = {
+                    name: 'redirects/projects/embed',
+                    status: 301,
+                    response: 'Moved Permanently',
+                    request_condition: redirectResults.requestCondition.name
+                };
+                fastly.setResponseObject(results.version, responseObject, cb2);
+            }],
+            redirectHeader: ['responseCondition', function (cb2, redirectResults) {
+                var header = {
+                    name: 'redirects/projects/embed',
+                    action: 'set',
+                    ignore_if_set: 0,
+                    type: 'RESPONSE',
+                    dst: 'http.Location',
+                    src: '"/projects/" + re.group.1 + "/embed"',
+                    response_condition: redirectResults.responseCondition.name
+                };
+                fastly.setFastlyHeader(results.version, header, cb2);
+            }]
+        }, function (err, redirectResults) {
+            if (err) return cb(err);
+            cb(null, redirectResults);
+        });
     }]
 }, function (err, results) {
     if (err) throw new Error(err);
