@@ -116,9 +116,9 @@
             }
 
             .video-player {
+                border: .25rem solid $ui-white-15percent;
+                border-radius: .75rem;
                 height: 180px;
-                border: 0.25rem solid $ui-white-15percent;
-                border-radius: 0.75rem;
                 overflow: hidden;
             }
         }
