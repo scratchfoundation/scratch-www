@@ -59,6 +59,7 @@ class Preview extends React.Component {
             'handleRestoreComment',
             'handleAddToStudioClick',
             'handleAddToStudioClose',
+            'handleGreenFlag',
             'handleRemix',
             'handleSeeAllComments',
             'handleSeeInside',
@@ -341,6 +342,9 @@ class Preview extends React.Component {
     handleReportSubmit (formData) {
         this.props.reportProject(this.state.projectId, formData, this.props.user.token);
     }
+    handleGreenFlag () {
+        this.props.logProjectView(this.props.projectInfo.id, this.props.user.username);
+    }
     handlePopState () {
         const path = window.location.pathname.toLowerCase();
         const playerMode = path.indexOf('editor') === -1;
@@ -586,6 +590,7 @@ class Preview extends React.Component {
                         onCopyProjectLink={this.handleCopyProjectLink}
                         onDeleteComment={this.handleDeleteComment}
                         onFavoriteClicked={this.handleFavoriteToggle}
+                        onGreenFlag={this.handleGreenFlag}
                         onLoadMore={this.handleLoadMore}
                         onLoveClicked={this.handleLoveToggle}
                         onOpenAdminPanel={this.handleOpenAdminPanel}
@@ -629,6 +634,7 @@ class Preview extends React.Component {
                         projectId={this.state.projectId}
                         projectTitle={this.props.projectInfo.title}
                         renderLogin={this.renderLogin}
+                        onGreenFlag={this.handleGreenFlag}
                         onLogOut={this.props.handleLogOut}
                         onOpenRegistration={this.props.handleOpenRegistration}
                         onRemixing={this.handleIsRemixing}
@@ -694,6 +700,7 @@ Preview.propTypes = {
     isNewScratcher: PropTypes.bool,
     isScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
+    logProjectView: PropTypes.func,
     loved: PropTypes.bool,
     moreCommentsToLoad: PropTypes.bool,
     original: projectShape,
@@ -882,6 +889,9 @@ const mapDispatchToProps = dispatch => ({
     },
     getLovedStatus: (id, username, token) => {
         dispatch(previewActions.getLovedStatus(id, username, token));
+    },
+    logProjectView: (id, username) => {
+        dispatch(previewActions.logProjectView(id, username));
     },
     setLovedStatus: (loved, id, username, token) => {
         dispatch(previewActions.setLovedStatus(loved, id, username, token));
