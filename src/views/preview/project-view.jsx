@@ -764,11 +764,14 @@ const mapStateToProps = state => {
     const userOwnsProject = isLoggedIn && authorPresent &&
         state.session.session.user.id.toString() === authorId;
 
+    // if we don't have projectInfo, assume it's shared until we know otherwise
+    const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
+
     return {
         authorId: authorId,
         authorThumbnailUrl: thumbnailUrl(authorId),
         authorUsername: authorUsername,
-        canAddToStudio: userOwnsProject,
+        canAddToStudio: isLoggedIn && isShared,
         canCreateCopy: userOwnsProject && projectInfoPresent,
         canCreateNew: isLoggedIn,
         canRemix: isLoggedIn && projectInfoPresent && !userOwnsProject,
@@ -789,8 +792,7 @@ const mapStateToProps = state => {
         isAdmin: isAdmin,
         isNewScratcher: isLoggedIn && state.permissions.new_scratcher,
         isScratcher: isLoggedIn && state.permissions.scratcher,
-        // if we don't have projectInfo, assume it's shared until we know otherwise
-        isShared: !projectInfoPresent || state.preview.projectInfo.is_published,
+        isShared: isShared,
         loved: state.preview.loved,
         moreCommentsToLoad: state.preview.moreCommentsToLoad,
         original: state.preview.original,
