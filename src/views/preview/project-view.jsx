@@ -2,6 +2,7 @@
 // idea is that we shouldn't require a page reload to switch back and forth
 
 const bindAll = require('lodash.bindall');
+const classNames = require('classnames');
 const React = require('react');
 const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
@@ -533,7 +534,12 @@ class Preview extends React.Component {
 
         return (
             this.props.playerMode ?
-                <Page>
+                <Page
+                    className={classNames({
+                        'page-has-admin-panel': this.props.isAdmin,
+                        'admin-panel-open': this.state.adminPanelOpen
+                    })}
+                >
                     <PreviewPresentation
                         addToStudioOpen={this.state.addToStudioOpen}
                         adminModalOpen={this.state.adminModalOpen}
