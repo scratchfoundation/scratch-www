@@ -97,8 +97,8 @@ class Preview extends React.Component {
             justShared: false,
             loveCount: 0,
             modInfo: {
-                scripts: 0,
-                sprites: 0
+                scriptCount: 0,
+                spriteCount: 0
             },
             projectId: parts[1] === 'editor' ? '0' : parts[1],
             reportOpen: false,
@@ -243,18 +243,28 @@ class Preview extends React.Component {
                                 }
                             });
                         }
-                        const sprites = projectData[0].targets.length - 1; // don't count stage
-                        const scripts = projectData[0].targets
-                            .map(target =>
-                                Object.values(target.blocks)
-                                    .filter(block => block.topLevel).length
-                            )
-                            .reduce((accumulator, currentVal) => accumulator + currentVal, 0);
+                        let spriteCount = 0;
+                        let scriptCount = 0;
+                        if (projectData[0].projectVersion) {
+                            if (projectData[0].projectVersion === 3) {
+                                spriteCount = projectData[0].targets.length - 1; // don't count stage
+                                scriptCount = projectData[0].targets
+                                    .map(target =>
+                                        Object.values(target.blocks)
+                                            .filter(block => block.topLevel).length
+                                    )
+                                    .reduce((accumulator, currentVal) => accumulator + currentVal, 0);
+                            } else if (projectData[0].projectVersion === 2) { // sb2 file
+                                spriteCount = projectData[0].info.spriteCount;
+                                scriptCount = projectData[0].info.scriptCount;
+                            }
+                        } // else sb (scratch 1.x) numbers will be zero
+                        
                         this.setState({
                             extensions: Array.from(extensionSet),
                             modInfo: {
-                                scripts: scripts,
-                                sprites: sprites
+                                scriptCount: scriptCount,
+                                spriteCount: spriteCount
                             }
                         });
                     });
@@ -263,8 +273,8 @@ class Preview extends React.Component {
             this.setState({
                 extensions: [],
                 modInfo: {
-                    scripts: 0,
-                    sprites: 0
+                    scriptCount: 0,
+                    spriteCount: 0
                 }
             });
         }

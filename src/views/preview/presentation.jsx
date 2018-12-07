@@ -459,8 +459,8 @@ const PreviewPresentation = ({
                                 </div>
                                 <ModInfo
                                     revisedDate={revisedDate}
-                                    scripts={modInfo.scripts}
-                                    sprites={modInfo.sprites}
+                                    scripts={modInfo.scriptCount}
+                                    sprites={modInfo.spriteCount}
                                 />
 
                             </React.Fragment>
@@ -612,8 +612,8 @@ PreviewPresentation.propTypes = {
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
     modInfo: PropTypes.shape({
-        scripts: PropTypes.number,
-        sprites: PropTypes.number
+        scriptCount: PropTypes.number,
+        spriteCount: PropTypes.number
     }),
     moreCommentsToLoad: PropTypes.bool,
     onAddComment: PropTypes.func,
