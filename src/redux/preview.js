@@ -885,11 +885,14 @@ module.exports.updateProjectThumbnail = (id, blob) => (dispatch => {
     });
 });
 
-module.exports.logProjectView = (id, username) => (dispatch => {
+module.exports.logProjectView = (id, authorUsername, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('project-log-view', module.exports.Status.FETCHING));
     api({
-        uri: `/users/${username}/projects/${id}/views`,
-        method: 'POST'
+        uri: `/users/${authorUsername}/projects/${id}/views`,
+        method: 'POST',
+        authentication: token,
+        withCredentials: true,
+        useCsrf: true
     }, (err, body, res) => {
         if (err || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('project-log-view', module.exports.Status.ERROR));

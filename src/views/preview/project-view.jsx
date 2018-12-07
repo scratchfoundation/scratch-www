@@ -343,7 +343,7 @@ class Preview extends React.Component {
         this.props.reportProject(this.state.projectId, formData, this.props.user.token);
     }
     handleGreenFlag () {
-        this.props.logProjectView(this.props.projectInfo.id, this.props.user.username);
+        this.props.logProjectView(this.props.projectInfo.id, this.props.authorUsername, this.props.user.token);
     }
     handlePopState () {
         const path = window.location.pathname.toLowerCase();
@@ -890,8 +890,8 @@ const mapDispatchToProps = dispatch => ({
     getLovedStatus: (id, username, token) => {
         dispatch(previewActions.getLovedStatus(id, username, token));
     },
-    logProjectView: (id, username) => {
-        dispatch(previewActions.logProjectView(id, username));
+    logProjectView: (id, authorUsername, token) => {
+        dispatch(previewActions.logProjectView(id, authorUsername, token));
     },
     setLovedStatus: (loved, id, username, token) => {
         dispatch(previewActions.setLovedStatus(loved, id, username, token));
