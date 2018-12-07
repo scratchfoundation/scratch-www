@@ -132,19 +132,10 @@ const PreviewPresentation = ({
             message={<FormattedMessage id="project.deletedBanner" />}
         />);
     } else if (visibilityInfo.censored) {
-        if (visibilityInfo.reshareable) {
-            banner = (<Banner
-                actionMessage={<FormattedMessage id="project.share.shareButton" />}
-                className="banner-danger"
-                message={embedCensorMessage(visibilityInfo.message)}
-                onAction={onShare}
-            />);
-        } else {
-            banner = (<Banner
-                className="banner-danger"
-                message={embedCensorMessage(visibilityInfo.message)}
-            />);
-        }
+        banner = (<Banner
+            className="banner-danger"
+            message={embedCensorMessage(visibilityInfo.message)}
+        />);
     } else if (justRemixed) {
         banner = (
             <Banner
