@@ -57,6 +57,7 @@ const PreviewPresentation = ({
     canRestoreComments,
     canSave,
     canShare,
+    canToggleComments,
     canUseBackpack,
     cloudHost,
     comments,
@@ -489,7 +490,7 @@ const PreviewPresentation = ({
                                 <div className="comments-container">
                                     <FlexRow className="comments-header">
                                         <h4><FormattedMessage id="project.comments.header" /></h4>
-                                        {userOwnsProject ? (
+                                        {canToggleComments ? (
                                             <div>
                                                 <label>
                                                     <input
@@ -593,6 +594,7 @@ PreviewPresentation.propTypes = {
     canRestoreComments: PropTypes.bool,
     canSave: PropTypes.bool,
     canShare: PropTypes.bool,
+    canToggleComments: PropTypes.bool,
     canUseBackpack: PropTypes.bool,
     cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),

@@ -547,6 +547,7 @@ class Preview extends React.Component {
                         canRestoreComments={this.props.isAdmin}
                         canSave={this.props.canSave}
                         canShare={this.props.canShare || this.props.isAdmin}
+                        canToggleComments={this.props.canToggleComments}
                         canUseBackpack={this.props.canUseBackpack}
                         cloudHost={this.props.cloudHost}
                         comments={this.props.comments}
@@ -663,6 +664,7 @@ Preview.propTypes = {
     canReport: PropTypes.bool,
     canSave: PropTypes.bool,
     canShare: PropTypes.bool,
+    canToggleComments: PropTypes.bool,
     canUseBackpack: PropTypes.bool,
     cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
@@ -775,6 +777,7 @@ const mapStateToProps = state => {
         canReport: isLoggedIn && !userOwnsProject,
         canSave: isLoggedIn && userOwnsProject,
         canShare: userOwnsProject && state.permissions.social,
+        canToggleComments: userOwnsProject || isAdmin,
         canUseBackpack: isLoggedIn,
         comments: state.preview.comments,
         enableCommunity: projectInfoPresent,
