@@ -114,7 +114,6 @@ const PreviewPresentation = ({
     showAdminPanel,
     showModInfo,
     singleCommentId,
-    userOwnsProject,
     visibilityInfo
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
@@ -654,7 +653,6 @@ PreviewPresentation.propTypes = {
     showAdminPanel: PropTypes.bool,
     showModInfo: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    userOwnsProject: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
         message: PropTypes.string,

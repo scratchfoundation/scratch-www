@@ -579,7 +579,6 @@ class Preview extends React.Component {
                         showAdminPanel={this.props.isAdmin}
                         showModInfo={this.props.isAdmin}
                         singleCommentId={this.state.singleCommentId}
-                        userOwnsProject={this.props.userOwnsProject}
                         visibilityInfo={this.props.visibilityInfo}
                         onAddComment={this.handleAddComment}
                         onAddToStudioClicked={this.handleAddToStudioClick}
