@@ -85,6 +85,7 @@ const PreviewPresentation = ({
     onCopyProjectLink,
     onDeleteComment,
     onFavoriteClicked,
+    onGreenFlag,
     onLoadMore,
     onLoveClicked,
     onOpenAdminPanel,
@@ -281,6 +282,7 @@ const PreviewPresentation = ({
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
                                     projectId={projectId}
+                                    onGreenFlag={onGreenFlag}
                                     onRemixing={onRemixing}
                                     onUpdateProjectId={onUpdateProjectId}
                                 />
@@ -615,6 +617,7 @@ PreviewPresentation.propTypes = {
     onCopyProjectLink: PropTypes.func,
     onDeleteComment: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
+    onGreenFlag: PropTypes.func,
     onLoadMore: PropTypes.func,
     onLoveClicked: PropTypes.func,
     onOpenAdminPanel: PropTypes.func,
