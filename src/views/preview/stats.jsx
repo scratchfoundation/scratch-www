@@ -10,7 +10,7 @@ const projectShape = require('./projectshape.jsx').projectShape;
 require('./stats.scss');
 
 const Stats = props => (
-    <FlexRow className="stats">
+    <FlexRow className="stats noselect">
         <div
             className={classNames('project-loves', {loved: props.loved})}
             key="loves"

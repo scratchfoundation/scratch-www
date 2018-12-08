@@ -91,6 +91,8 @@ class Preview extends React.Component {
             addToStudioOpen: false,
             adminModalOpen: false,
             adminPanelOpen: adminPanelOpen || false,
+            clientFaved: false,
+            clientLoved: false,
             extensions: [],
             favoriteCount: 0,
             isRemixing: false,
@@ -149,6 +151,13 @@ class Preview extends React.Component {
                 }
             }
         }
+        if (this.props.faved !== prevProps.faved || this.props.loved !== prevProps.loved) {
+            this.setState({ // eslint-disable-line react/no-did-update-set-state
+                clientFaved: this.props.faved,
+                clientLoved: this.props.loved
+            });
+        }
+        /* eslint-enable react/no-did-update-set-state */
         if (this.props.playerMode !== prevProps.playerMode || this.props.fullScreen !== prevProps.fullScreen) {
             this.pushHistory(history.state === null);
         }
@@ -401,10 +410,12 @@ class Preview extends React.Component {
         );
         if (this.props.faved) {
             this.setState(state => ({
+                clientFaved: false,
                 favoriteCount: state.favoriteCount - 1
             }));
         } else {
             this.setState(state => ({
+                clientFaved: true,
                 favoriteCount: state.favoriteCount + 1
             }));
         }
@@ -424,10 +435,12 @@ class Preview extends React.Component {
         );
         if (this.props.loved) {
             this.setState(state => ({
+                clientLoved: false,
                 loveCount: state.loveCount - 1
             }));
         } else {
             this.setState(state => ({
+                clientLoved: true,
                 loveCount: state.loveCount + 1
             }));
         }
@@ -567,7 +580,7 @@ class Preview extends React.Component {
                         comments={this.props.comments}
                         editable={this.props.isEditable}
                         extensions={this.state.extensions}
-                        faved={this.props.faved}
+                        faved={this.state.clientFaved}
                         favoriteCount={this.state.favoriteCount}
                         isFullScreen={this.state.isFullScreen}
                         isLoggedIn={this.props.isLoggedIn}
@@ -578,7 +591,7 @@ class Preview extends React.Component {
                         justRemixed={this.state.justRemixed}
                         justShared={this.state.justShared}
                         loveCount={this.state.loveCount}
-                        loved={this.props.loved}
+                        loved={this.state.clientLoved}
                         modInfo={this.state.modInfo}
                         moreCommentsToLoad={this.props.moreCommentsToLoad}
                         originalInfo={this.props.original}
@@ -770,7 +783,7 @@ Preview.defaultProps = {
 
 const mapStateToProps = state => {
     const projectInfoPresent = state.preview.projectInfo &&
-            Object.keys(state.preview.projectInfo).length > 0 && state.preview.projectInfo.id > 0;
+        Object.keys(state.preview.projectInfo).length > 0 && state.preview.projectInfo.id > 0;
     const userPresent = state.session.session.user !== null &&
         typeof state.session.session.user !== 'undefined' &&
         Object.keys(state.session.session.user).length > 0;
