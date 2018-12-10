@@ -106,9 +106,9 @@ class Navigation extends React.Component {
                             <FormattedMessage id="general.explore" />
                         </a>
                     </li>
-                    <li className="link tips">
-                        <a href="/tips">
-                            <FormattedMessage id="general.tips" />
+                    <li className="link ideas">
+                        <a href="/ideas">
+                            <FormattedMessage id="general.ideas" />
                         </a>
                     </li>
                     <li className="link about">
