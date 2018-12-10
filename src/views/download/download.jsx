@@ -21,8 +21,8 @@ class Download extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-                  'onSetOS'
-              ]);
+            'onSetOS'
+        ]);
         let detectedOS = OS_ENUM.WINDOWS;
         if (window.navigator && window.navigator.platform) {
             if (window.navigator.platform === 'MacIntel') {
@@ -122,16 +122,6 @@ class Download extends React.Component {
                                                 }-store-badge.svg`}
                                             />
                                         </a>
-                                        <span className="horizontal-divider">
-                                            <FormattedMessage id="download.or" />
-                                        </span>
-                                        <a
-                                            href={`https://downloads.scratch.mit.edu/link/${
-                                                this.state.OS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                                            }.zip`}
-                                        >
-                                            <FormattedMessage id="download.directDownload" />
-                                        </a>
                                     </div>
                                 </Step>
 
@@ -141,7 +131,7 @@ class Download extends React.Component {
                                 number={2}
                             >
                                 <span className="step-description">
-                                    <FormattedMessage id="download.startScratchLink" />
+                                    <FormattedMessage id="download.startScratchDesktop" />
                                 </span>
                                 <div className="step-image">
                                     <img
@@ -159,11 +149,32 @@ class Download extends React.Component {
                 <div className="download-section faq">
                     <FlexRow className="inner column">
                         <h2><FormattedMessage id="download.troubleshootingTitle" /></h2>
-                        <h3 className="faq-title"><FormattedMessage id="download.haveYouInstalled" /></h3>
+
+                        <h3 className="faq-title">
+                            <FormattedMessage id="download.howDoIInstall" />
+                        </h3>
                         <p>
-                            <FormattedMessage id="download.answerInstalled" />
+                            You will need to install lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         </p>
-                        <h3 className="faq-title"><FormattedMessage id="download.question2" /></h3>
+
+                        <h3 className="faq-title">
+                            <FormattedMessage id="download.whenSupportLinux" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.supportLinuxAnswer" />
+                        </p>
+
+                        <h3 className="faq-title">
+                            <FormattedMessage id="download.supportChromeOS" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.supportChromeOSAnswer" />
+                        </p>
+
+
+                        <h3 className="faq-title">
+                            <FormattedMessage id="download.cannotAccessMacStore" />
+                        </h3>
                         <p>
                             <FormattedMessage id="download.question2" />
                         </p>
@@ -172,8 +183,12 @@ class Download extends React.Component {
 
                 <div className="download-section blue">
                     <FlexRow className="inner column">
-                        <h2><FormattedMessage id="download.olderVersions" /></h2>
-                        <h3 className="faq-title"><FormattedMessage id="download.lookingForOlder" /></h3>
+                        <h2>
+                            <FormattedMessage id="download.olderVersionsTitle" />
+                        </h2>
+                        <h3 className="faq-title">
+                            <FormattedMessage id="download.olderVersions" />
+                        </h3>
                         <FlexRow>
                             <div className="older-version">
                                 <img
@@ -185,7 +200,7 @@ class Download extends React.Component {
                                 />
                                 <p>
                                     <a href="/scratch_1.4">
-                                        <FormattedMessage id="download.scratch14Desktop" />
+                                        <FormattedMessage id="download.scratch1-4Desktop" />
                                         <img src="images/download/r-arrow.svg" />
                                     </a>
                                 </p>
