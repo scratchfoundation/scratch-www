@@ -15,5 +15,9 @@
   "download.olderVersionsTitle" : "Older Versions",
   "download.olderVersions": "Looking for an older version of Scratch Desktop?",
   "download.scratch1-4Desktop" : "Scratch 1.4 Desktop",
-  "download.scratch2Desktop" : "Scratch 2.0 Desktop"
+  "download.scratch2Desktop" : "Scratch 2.0 Desktop",
+  "download.cannotAccessMacStore" : "What if I can't access the Mac App Store?",
+  "download.cannotAccessWindowsStore" : "What if I can't access the Microsoft Store?",
+  "download.appstoreAccessAnswer" : "You can download Scratch Desktop directly to your computer by {directDownloadLink}.",
+  "download.directDownloadText" : "clicking here"
 }

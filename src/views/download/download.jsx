@@ -1,4 +1,3 @@
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
@@ -173,10 +172,22 @@ class Download extends React.Component {
 
 
                         <h3 className="faq-title">
-                            <FormattedMessage id="download.cannotAccessMacStore" />
+                            { this.state.OS === OS_ENUM.WINDOWS ?
+                                <FormattedMessage id="download.cannotAccessWindowsStore" /> :
+                                <FormattedMessage id="download.cannotAccessMacStore" />
+                            }
                         </h3>
                         <p>
-                            <FormattedMessage id="download.question2" />
+                            <FormattedMessage
+                                id="download.appstoreAccessAnswer"
+                                values={{
+                                    directDownloadLink: (
+                                        <a href="">
+                                            <FormattedMessage id="download.directDownloadText" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </FlexRow>
                 </div>
