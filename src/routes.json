@@ -163,41 +163,6 @@
         "title": "Messages"
     },
     {
-        "name": "microworld-art",
-        "pattern": "^/microworlds/art",
-        "routeAlias": "/microworlds",
-        "view": "microworld/art/art",
-        "title": "Art"
-    },
-    {
-        "name": "microworld-fashion",
-        "pattern": "^/microworlds/fashion",
-        "routeAlias": "/microworlds",
-        "view": "microworld/fashion/fashion",
-        "title": "Fashion"
-    },
-    {
-        "name": "microworld-hiphop",
-        "pattern": "^/microworlds/hiphop",
-        "routeAlias": "/microworlds",
-        "view": "microworld/hiphop/hiphop",
-        "title": "Hip Hop Dance"
-    },
-    {
-        "name": "microworld-soccer",
-        "pattern": "^/microworlds/soccer",
-        "routeAlias": "/microworlds",
-        "view": "microworld/soccer/soccer",
-        "title": "Soccer"
-    },
-    {
-        "name": "microworlds-homepage",
-        "pattern": "^/microworlds/go/?(\\?.*)?$",
-        "routeAlias": "/microworlds",
-        "view": "microworldshomepage/microworldshomepage",
-        "title": "Microworlds"
-    },
-    {
         "name": "projects",
         "pattern": "^/projects(/editor|(/\\d+(/editor|/fullscreen|/embed)?)?)?/?(\\?.*)?$",
         "routeAlias": "/projects/?$",
