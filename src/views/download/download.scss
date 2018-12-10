@@ -6,123 +6,152 @@
 }
 
 .download {
-    .title-banner {
-        &.masthead {
-            margin-bottom: 0;
-            background-color: $ui-blue-dark;
-            padding-bottom: 0;
-
-            h1 {
-                margin: 0 0 2rem 0;
-                text-align: left;
-                color: $ui-white;
-            }
-
-            p {
-                margin: 0;
-                text-align: left;
-                color: $ui-white;
-
-                a {
-                    border-bottom: 1px solid $ui-white;
-                    color: $ui-white;
-                }
-            }
-
-            .band {
-                margin-top: 2rem;
-                background-color: $ui-white-15percent;
-                padding: 1rem 0;
-            }
-
-            .sub-nav {
-                text-align: left;
-                justify-content: flex-start;
-
-                li {
-                    margin: 0 .5rem 0 0;
-                }
-            }
-        }
-    }
-
-    .sub-nav-item {
-        margin: .5rem;
-    }
-    
-    .callout {
-        text-align: center;
-    }
-    
-    .download-content {
-        padding-bottom: 2rem;
-    }
-
-    .three-col-row {
-        align-items: flex-start;
-    }
-
-    .installation {
-        background-color: $ui-gray;
-        padding: 2rem;
-    }
-
-    .installation-column {
-        max-width: $cols4;
-        text-align: center;
-
-        p {
-            margin-right: .5rem;
-            margin-left: .5rem;
-        }
-    }
-
-    .installation-column-number {
-        margin: 2rem auto;
-        border: 2px solid $active-gray;
-        border-radius: 2rem;
+    .download-header {
         background-color: $ui-blue;
-        width: 3.75rem;
-        height: 3.75rem;
-    }
-
-    .installation-column-number-text {
-        text-align: center;
-        line-height: 1.8em;
-        color: $type-white;
-    }
-
-    .installation-downloads {
-        padding-left: 0;
-        list-style: none;
-    }
-
-    .installation-downloads-item {
-        margin: .25rem;
-        padding: 0;
-        text-align: center;
-    }
-
-    section {
-        margin-bottom: 2rem;
-    }
-
-    .mod-link {
         color: $ui-white;
-    }
-    
-    @media #{$small} {
+        padding: 4rem 0;
+
         .inner {
-            .installation-column {
-                max-width: 100%;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
+
+        .download-info {
+            padding-right: $cols1;
+            max-width: $cols7 + ($gutter / $em);
+            align-items: flex-start;
+
+            .download-copy {
+                margin-bottom: 5rem;
+                align-items: flex-start;
+
+                h1, h2 {
+                    display: flex;
+                    margin-bottom: 2rem;
+                    color: $ui-white;
+
+                    img {
+                        padding-right: .5rem;
+                        max-height: 100%;
+                    }
+                }
+            }
+
+            .download-requirements-container {
+                font-weight: 500;
+                align-items: flex-start;
+
+                .requirements-header {
+                    margin-bottom: 1.5rem;
+                }
+
+                .download-requirements {
+                    justify-content: space-between;
+                }
+
+                .download-requirements span {
+                    display: flex;
+                    margin-right: 1rem;
+                    font-size: 15px;
+                    align-items: center;
+                }
+
+                .download-requirements span img {
+                    padding-right: .5rem;
+                }
             }
         }
-    }
+        .download-image {
+            width: 100%;
+            max-width: $cols4;
 
-    @media #{$intermediate-and-smaller} {
-        .three-col-row {
-            flex-direction: column;
-            align-items: center;
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
         }
     }
+    .install-scratch {
+        padding: 2rem 0;
+
+        .inner {
+            align-items: flex-start;
+        }
+
+        .downloads-container {
+            text-align: center;
+        }
+
+        .store-badge {
+            display: block;
+            width: 150px;
+            height: 80px;
+        }
+
+        .horizontal-divider {
+            display: block;
+            margin: 20px;
+        }
+
+        .horizontal-divider:before,
+        .horizontal-divider:after {
+            display: inline-block;
+            position: relative;
+            background-color: $ui-dark-gray;
+            width: 50%;
+            height: 1px;
+            vertical-align: middle;
+            content: "";
+        }
+
+        .horizontal-divider:before {
+            right: .5em;
+            margin-left: -50%;
+        }
+
+        .horizontal-divider:after {
+            left: .5em;
+            margin-right: -50%;
+        }
+    }
+    .download-section {
+        padding: 4rem 0;
+        .inner {
+            align-items: flex-start;
+        }
+    }
+
+    .blue {
+        background-color: $ui-blue-10percent;
+    }
+
+    .faq {
+        p {
+            margin-bottom: 1.25rem;
+            margin-left: 0;
+            max-width: $cols8;
+            text-align: left;
+        }
+
+        .faq-title {
+            margin-bottom: 0;
+            font-size: 1.4rem;
+        }
+    }
+
+    .older-version {
+        padding-right: 24px;
+        p {
+            color: $link-blue;
+            font-weight:600;
+        }
+        .screenshot {
+            $img-border: rgba(0, 0, 0, .05);
+            border: 2px solid $img-border;
+            border-radius: 8px;
+            background-color: $ui-white;
+        }
+    }
+
 }
