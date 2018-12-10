@@ -16,15 +16,14 @@ const Subactions = props => (
             <div className="copyleft">&copy;</div>
             {' '}
             {/*  eslint-disable react/jsx-sort-props */}
-            {props.shareDate === null ?
-                'Unshared' :
+            {props.shareDate ? (
                 <FormattedDate
                     value={Date.parse(props.shareDate)}
                     day="2-digit"
                     month="short"
                     year="numeric"
                 />
-            }
+            ) : 'Unshared'}
             {/*  eslint-enable react/jsx-sort-props */}
         </div>
         <FlexRow className="action-buttons">
