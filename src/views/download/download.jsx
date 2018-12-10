@@ -87,14 +87,15 @@ class Download extends React.Component {
                         </div>
                     </FlexRow>
                 </div>
-
                 <OSChooser
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
                 />
                 <div className="blue install-scratch">
                     <FlexRow className="inner column">
-                        <h2><FormattedMessage id="download.installHeaderTitle" /></h2>
+                        <h2>
+                            <FormattedMessage id="download.installHeaderTitle" />
+                        </h2>
                         <Steps>
                             <div className="step">
                                 <Step
@@ -191,7 +192,6 @@ class Download extends React.Component {
                         </p>
                     </FlexRow>
                 </div>
-
                 <div className="download-section blue">
                     <FlexRow className="inner column">
                         <h2>
@@ -233,7 +233,6 @@ class Download extends React.Component {
                             </div>
                         </FlexRow>
                     </FlexRow>
-
                 </div>
             </div>
         );
