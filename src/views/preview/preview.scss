@@ -20,6 +20,14 @@ $stage-width: 480px;
     height: 100%;
 }
 
+.page-has-admin-panel {
+    padding-left: 20px;
+}
+
+.page-has-admin-panel.admin-panel-open {
+    padding-left: 250px;
+}
+
 .preview {
 
     .inner {
@@ -36,6 +44,7 @@ $stage-width: 480px;
     }
 
     .project-admin-panel {
+        margin-top: 51px;
         border: 0;
         padding: 1rem;
         overflow: hidden;
