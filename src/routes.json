@@ -566,5 +566,12 @@
         "name": "bird-redirect",
         "pattern": "^/bird/?$",
         "redirect": "/tips"
+    },
+    {
+        "name": "ideas",
+        "pattern": "^/ideas/?(\\?.*)?$",
+        "routeAlias": "/ideas/?\\??",
+        "view": "ideas/ideas",
+        "title": "Ideas"
     }
 ]
