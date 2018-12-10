@@ -390,6 +390,8 @@ class Preview extends React.Component {
         }
     }
     handleFavoriteToggle () {
+        if (!this.props.favedLoaded) return;
+
         this.props.setFavedStatus(
             !this.props.faved,
             this.props.projectInfo.id,
@@ -411,6 +413,8 @@ class Preview extends React.Component {
             this.props.isAdmin, this.props.user && this.props.user.token);
     }
     handleLoveToggle () {
+        if (!this.props.lovedLoaded) return;
+
         this.props.setLovedStatus(
             !this.props.loved,
             this.props.projectInfo.id,
@@ -675,6 +679,7 @@ Preview.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.object),
     enableCommunity: PropTypes.bool,
     faved: PropTypes.bool,
+    favedLoaded: PropTypes.bool,
     fullScreen: PropTypes.bool,
     getCommentById: PropTypes.func.isRequired,
     getCuratedStudios: PropTypes.func.isRequired,
@@ -704,6 +709,7 @@ Preview.propTypes = {
     isShared: PropTypes.bool,
     logProjectView: PropTypes.func,
     loved: PropTypes.bool,
+    lovedLoaded: PropTypes.bool,
     moreCommentsToLoad: PropTypes.bool,
     original: projectShape,
     parent: projectShape,
@@ -791,6 +797,7 @@ const mapStateToProps = state => {
         comments: state.preview.comments,
         enableCommunity: projectInfoPresent,
         faved: state.preview.faved,
+        favedLoaded: state.preview.status.faved === previewActions.Status.FETCHED,
         fullScreen: state.scratchGui.mode.isFullScreen,
         // project is editable iff logged in user is the author of the project, or
         // logged in user is an admin.
@@ -803,6 +810,7 @@ const mapStateToProps = state => {
         isScratcher: isLoggedIn && state.permissions.scratcher,
         isShared: isShared,
         loved: state.preview.loved,
+        lovedLoaded: state.preview.status.loved === previewActions.Status.FETCHED,
         moreCommentsToLoad: state.preview.moreCommentsToLoad,
         original: state.preview.original,
         parent: state.preview.parent,
