@@ -7,22 +7,28 @@
 
 .download {
     .title {
-        font-size: 2rem;
         margin-bottom: 1rem;
+        font-size: 2rem;
     }
+
     .centered {
         display: flex;
     }
+
     .self-center {
         align-self: center;
     }
+
     .download-header {
         background-color: $ui-blue;
-        color: $ui-white;
         padding: 4rem 0;
+        color: $ui-white;
+
+
         .title {
             color: $ui-white;
         }
+
         .inner {
             justify-content: space-between;
             flex-wrap: nowrap;
@@ -37,20 +43,21 @@
                 margin-bottom: 5rem;
                 align-items: flex-start;
 
-                 .download-title {
+                .download-title {
                     display: flex;
-                    font-size: 2rem;
                     margin-bottom: 2rem;
                     color: $ui-white;
-
-                    img {
-                        padding-right: .5rem;
-                        max-height: 100%;
-                    }
+                    font-size: 2rem;
                 }
+
+                .icon {
+                    padding-right: .5rem;
+                    max-height: 100%;
+                }
+
                 .download-description {
-                    font-size: 1.2rem;
                     line-height: 1.7rem;
+                    font-size: 1.2rem;
                 }
             }
 
@@ -78,6 +85,7 @@
                 }
             }
         }
+
         .download-image {
             width: 100%;
             max-width: $cols4;
@@ -88,6 +96,7 @@
             }
         }
     }
+
     .install-scratch {
         padding: 2rem 0;
 
@@ -105,8 +114,10 @@
             height: 80px;
         }
     }
+
     .download-section {
         padding: 4rem 0;
+
         .inner {
             align-items: flex-start;
         }
@@ -123,7 +134,8 @@
             max-width: $cols8;
             text-align: left;
         }
-        .faq-question{
+
+        .faq-question {
             margin-bottom: 0;
             font-size: 1.4rem;
         }
@@ -131,16 +143,17 @@
 
     .older-version {
         padding-right: 24px;
+
         p {
             color: $link-blue;
-            font-weight:600;
+            font-weight: 600;
         }
+
         .screenshot {
+            margin-top: 1rem;
             $img-border: rgba(0, 0, 0, .05);
             border: 2px solid $img-border;
             border-radius: 8px;
-            margin-top: 1rem;
         }
     }
-
 }

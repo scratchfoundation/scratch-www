@@ -50,7 +50,7 @@ class Download extends React.Component {
                                 <h1 className="download-title">
                                     <img
                                         alt=""
-                                        className="self-center"
+                                        className="self-center icon"
                                         height="40"
                                         src="/images/download/placeholder.png"
                                         width="40"
