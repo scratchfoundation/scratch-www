@@ -105,13 +105,13 @@ $story-width: $cols3;
         align-items: flex-start;
 
         div {
-            max-width: $cols6;
+            max-width: 24rem;
         }
     }
 
     .guides-and-tutorials {
         div {
-            max-width: $cols4;
+            max-width: 16rem;
             text-align: center;
         }
     }
@@ -464,7 +464,7 @@ $story-width: $cols3;
             .guides-and-tutorials {
                 div {
                     display: flex;
-                    max-width: $cols8;
+                    max-width: 16rem;
                     text-align: left;
                     justify-content: space-between;
                 }

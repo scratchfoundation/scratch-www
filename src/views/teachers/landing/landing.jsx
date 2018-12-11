@@ -64,12 +64,30 @@ const Landing = () => (
                 <FlexRow className="educator-community">
                     <div>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.educatorGuides" />
+                            <FormattedMessage
+                                id="teacherlanding.educatorGuides"
+                                values={{
+                                    educatorLink: (
+                                        <a href="https://resources.scratch.mit.edu/www/guides/en/EducatorGuidesAll.pdf">
+                                            <FormattedMessage id="teacherlanding.educatorGuideLinkText" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                     <div>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.creativeComputing" />
+                            <FormattedMessage
+                                id="teacherlanding.creativeComputing"
+                                values={{
+                                    scratchEdLink: (
+                                        <a href="http://scratched.gse.harvard.edu/guide/">
+                                            <FormattedMessage id="teacherlanding.scratchEdLinkText" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                 </FlexRow>
@@ -84,18 +102,36 @@ const Landing = () => (
                             />
                         </a>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.tutorialResources" />
+                            <FormattedMessage
+                                id="teacherlanding.tutorialResources"
+                                values={{
+                                    tutorialLink: (
+                                        <a href="/projects/editor/?tutorial=all">
+                                            <FormattedMessage id="teacherlanding.tutorialLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                     <div>
                         <a href="/www/cards/en/ScratchCardsAll.pdf">
                             <img
                                 alt="cards icon"
-                                src="/svgs/teachers/v2-cards.svg"
+                                src="/svgs/teachers/coding-cards-icon.svg"
                             />
                         </a>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.codingCardResources" />
+                            <FormattedMessage
+                                id="teacherlanding.codingCardResources"
+                                values={{
+                                    codingCardLink: (
+                                        <a href="https://resources.scratch.mit.edu/www/cards/en/ScratchCardsAll.pdf">
+                                            <FormattedMessage id="teacherlanding.codingCardLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                     <div>
@@ -106,7 +142,16 @@ const Landing = () => (
                             />
                         </a>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.ideasResources" />
+                            <FormattedMessage
+                                id="teacherlanding.ideasResources"
+                                values={{
+                                    ideasPageLink: (
+                                        <a href="http://scratch.mit.edu/ideas">
+                                            <FormattedMessage id="teacherlanding.ideasLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                 </FlexRow>
