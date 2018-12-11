@@ -105,6 +105,8 @@ const PreviewPresentation = ({
     onUpdateProjectId,
     originalInfo,
     parentInfo,
+    showCloudDataAlert,
+    showUsernameBlockAlert,
     projectHost,
     projectId,
     projectInfo,
@@ -267,6 +269,16 @@ const PreviewPresentation = ({
                         </FlexRow>
                         <FlexRow className="preview-row">
                             <div className="guiPlayer">
+                                {showCloudDataAlert && (
+                                    <FlexRow className="project-info-alert">
+                                        <FormattedMessage id="project.cloudDataAlert" />
+                                    </FlexRow>
+                                )}
+                                {showUsernameBlockAlert && (
+                                    <FlexRow className="project-info-alert">
+                                        <FormattedMessage id="project.usernameBlockAlert" />
+                                    </FlexRow>
+                                )}
                                 <IntlGUI
                                     isPlayerOnly
                                     assetHost={assetHost}
@@ -647,7 +659,9 @@ PreviewPresentation.propTypes = {
     replies: PropTypes.objectOf(PropTypes.array),
     reportOpen: PropTypes.bool,
     showAdminPanel: PropTypes.bool,
+    showCloudDataAlert: PropTypes.bool,
     showModInfo: PropTypes.bool,
+    showUsernameBlockAlert: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
