@@ -170,11 +170,11 @@ class MicroBit extends ExtensionLanding {
                                         values={{
                                             scratch3Link: (
                                                 <a
-                                                    href="https://beta.scratch.mit.edu/"
+                                                    href="/projects/editor/"
                                                     rel="noopener noreferrer"
                                                     target="_blank"
                                                 >
-                                                            Scratch 3.0
+                                                            Scratch
                                                 </a>
                                             )
                                         }}

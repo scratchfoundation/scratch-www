@@ -124,11 +124,11 @@ class EV3 extends ExtensionLanding {
                                         values={{
                                             scratch3Link: (
                                                 <a
-                                                    href="https://beta.scratch.mit.edu/"
+                                                    href="/projects/editor/?tutorial=ev3"
                                                     rel="noopener noreferrer"
                                                     target="_blank"
                                                 >
-                                                            Scratch 3.0
+                                                            Scratch
                                                 </a>
                                             )
                                         }}
