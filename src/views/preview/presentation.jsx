@@ -349,13 +349,14 @@ const PreviewPresentation = ({
                                                 )}
                                                 handleUpdate={onUpdate}
                                                 name="instructions"
-                                                placeholder="Tell people how to use your project (such as which keys to press)."
+                                                placeholder={intl.formatMessage({
+                                                    id: 'project.descriptionPlaceholder'
+                                                })}
                                                 type="textarea"
                                                 validationErrors={{
-                                                    maxLength: 'Sorry description is too long'
-                                                    // maxLength: props.intl.formatMessage({
-                                                    //     id: 'project.descriptionMaxLength'
-                                                    // })
+                                                    maxLength: intl.formatMessage({
+                                                        id: 'project.descriptionMaxLength'
+                                                    })
                                                 }}
                                                 validations={{
                                                     // TODO: actual 5000
@@ -390,13 +391,14 @@ const PreviewPresentation = ({
                                                 )}
                                                 handleUpdate={onUpdate}
                                                 name="description"
-                                                placeholder="How did you make this project? Did you use ideas scripts or artwork from other people? Thank them here."
+                                                placeholder={intl.formatMessage({
+                                                    id: 'project.notesPlaceholder'
+                                                })}
                                                 type="textarea"
                                                 validationErrors={{
-                                                    maxLength: 'Sorry description is too long'
-                                                    // maxLength: props.intl.formatMessage({
-                                                    //     id: 'project.descriptionMaxLength'
-                                                    // })
+                                                    maxLength: intl.formatMessage({
+                                                        id: 'project.descriptionMaxLength'
+                                                    })
                                                 }}
                                                 validations={{
                                                     // TODO: actual 5000

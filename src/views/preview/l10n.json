@@ -29,5 +29,8 @@
     "project.deletedBanner": "Note: This project is in the trash folder",
     "project.moderationInfoLabel": "Moderation Info",
     "project.numScripts": "{number} scripts",
-    "project.numSprites": "{number} sprites"
+    "project.numSprites": "{number} sprites",
+    "project.descriptionMaxLength": "Description is too long",
+    "project.notesPlaceholder": "How did you make this project? Did you use ideas, scripts or artwork from other people? Thank them here.",
+    "project.descriptionPlaceholder": "Tell people how to use your project (such as which keys to press)."
 }
