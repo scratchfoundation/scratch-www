@@ -247,21 +247,21 @@ class MicroBit extends ExtensionLanding {
                     <h3><FormattedMessage id="microbit.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239075756"
+                            cardUrl="/projects/239075756/editor"
                             description={this.props.intl.formatMessage({id: 'microbit.heartBeatDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltHeartBeat'})}
                             imageSrc="/images/microbit/starter-heart.png"
                             title={this.props.intl.formatMessage({id: 'microbit.heartBeat'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239075950"
+                            cardUrl="/projects/239075950/editor"
                             description={this.props.intl.formatMessage({id: 'microbit.tiltGuitarDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltTiltGuitar'})}
                             imageSrc="/images/microbit/starter-guitar.png"
                             title={this.props.intl.formatMessage({id: 'microbit.tiltGuitar'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239075973"
+                            cardUrl="/projects/239075973/editor"
                             description={this.props.intl.formatMessage({id: 'microbit.oceanAdventureDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltOceanAdventure'})}
                             imageSrc="/images/microbit/starter-fish.png"
