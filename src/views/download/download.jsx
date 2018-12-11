@@ -215,7 +215,10 @@ class Download extends React.Component {
                                     width="150"
                                 />
                                 <p>
-                                    <a className="centered" href="/scratch_1.4">
+                                    <a
+                                        className="centered"
+                                        href="/scratch_1.4"
+                                    >
                                         <FormattedMessage id="download.scratch1-4Desktop" />
                                         <img src="images/download/r-arrow.svg" />
                                     </a>
@@ -230,7 +233,10 @@ class Download extends React.Component {
                                     width="150"
                                 />
                                 <p>
-                                    <a className="centered" href="/download/scratch2">
+                                    <a
+                                        className="centered"
+                                        href="/download/scratch2"
+                                    >
                                         <FormattedMessage id="download.scratch2Desktop" />
                                         <img src="images/download/r-arrow.svg" />
                                     </a>
