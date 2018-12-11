@@ -11,6 +11,9 @@
         color: $ui-white;
         padding: 4rem 0;
 
+        .title {
+            font-size: 2rem;
+        }
         .inner {
             justify-content: space-between;
             flex-wrap: nowrap;
@@ -34,6 +37,10 @@
                         padding-right: .5rem;
                         max-height: 100%;
                     }
+                }
+                .download-description {
+                    font-size: 1.2rem;
+                    line-height: 1.7rem;
                 }
             }
 
@@ -88,32 +95,10 @@
             width: 150px;
             height: 80px;
         }
-
-        .horizontal-divider {
-            display: block;
-            margin: 20px;
+        .title {
+            margin-bottom: 1rem;
         }
 
-        .horizontal-divider:before,
-        .horizontal-divider:after {
-            display: inline-block;
-            position: relative;
-            background-color: $ui-dark-gray;
-            width: 50%;
-            height: 1px;
-            vertical-align: middle;
-            content: "";
-        }
-
-        .horizontal-divider:before {
-            right: .5em;
-            margin-left: -50%;
-        }
-
-        .horizontal-divider:after {
-            left: .5em;
-            margin-right: -50%;
-        }
     }
     .download-section {
         padding: 4rem 0;
@@ -133,8 +118,10 @@
             max-width: $cols8;
             text-align: left;
         }
-
         .faq-title {
+            margin-bottom: 1rem;
+        }
+        .faq-question{
             margin-bottom: 0;
             font-size: 1.4rem;
         }

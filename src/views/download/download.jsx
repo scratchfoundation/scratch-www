@@ -55,7 +55,9 @@ class Download extends React.Component {
                                 />
                                 <FormattedMessage id="download.title" />
                                 </h1>
-                                <FormattedMessage id="download.intro" />
+                                <span className="download-description">
+                                    <FormattedMessage id="download.intro" />
+                                </span>
                             </FlexRow>
                             <FlexRow className="column download-requirements-container">
                                 <span className="requirements-header">
@@ -93,7 +95,7 @@ class Download extends React.Component {
                 />
                 <div className="blue install-scratch">
                     <FlexRow className="inner column">
-                        <h2>
+                        <h2 className="title">
                             <FormattedMessage id="download.installHeaderTitle" />
                         </h2>
                         <Steps>
@@ -148,23 +150,25 @@ class Download extends React.Component {
                 </div>
                 <div className="download-section faq">
                     <FlexRow className="inner column">
-                        <h2><FormattedMessage id="download.troubleshootingTitle" /></h2>
+                        <h2 className="faq-title">
+                            <FormattedMessage id="download.troubleshootingTitle" />
+                        </h2>
 
-                        <h3 className="faq-title">
+                        <h3 className="faq-question">
                             <FormattedMessage id="download.howDoIInstall" />
                         </h3>
                         <p>
                             You will need to install lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         </p>
 
-                        <h3 className="faq-title">
+                        <h3 className="faq-question">
                             <FormattedMessage id="download.whenSupportLinux" />
                         </h3>
                         <p>
                             <FormattedMessage id="download.supportLinuxAnswer" />
                         </p>
 
-                        <h3 className="faq-title">
+                        <h3 className="faq-question">
                             <FormattedMessage id="download.supportChromeOS" />
                         </h3>
                         <p>
@@ -172,7 +176,7 @@ class Download extends React.Component {
                         </p>
 
 
-                        <h3 className="faq-title">
+                        <h3 className="faq-question">
                             { this.state.OS === OS_ENUM.WINDOWS ?
                                 <FormattedMessage id="download.cannotAccessWindowsStore" /> :
                                 <FormattedMessage id="download.cannotAccessMacStore" />
@@ -197,7 +201,7 @@ class Download extends React.Component {
                         <h2>
                             <FormattedMessage id="download.olderVersionsTitle" />
                         </h2>
-                        <h3 className="faq-title">
+                        <h3 className="faq-question">
                             <FormattedMessage id="download.olderVersions" />
                         </h3>
                         <FlexRow>
