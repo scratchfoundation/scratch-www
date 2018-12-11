@@ -203,12 +203,30 @@ const Landing = () => (
                 <FlexRow className="educator-community">
                     <div>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.csFirst" />
+                            <FormattedMessage
+                                id="teacherlanding.csFirst"
+                                values={{
+                                    csFirstLink: (
+                                        <a href="http://g.co/csfirst">
+                                            <FormattedMessage id="teacherlanding.csFirstLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                     <div>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.codeClub" />
+                            <FormattedMessage
+                                id="teacherlanding.codeClub"
+                                values={{
+                                    codeClubLink: (
+                                        <a href="https://codeclubprojects.org/en-GB/scratch/">
+                                            <FormattedMessage id="teacherlanding.codeClubLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                 </FlexRow>
@@ -219,12 +237,40 @@ const Landing = () => (
                 <FlexRow className="educator-community">
                     <div>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.followUs" />
+                            <FormattedMessage
+                                id="teacherlanding.followUs"
+                                values={{
+                                    facebookLink: (
+                                        <a href="https://www.facebook.com/scratchteam/">
+                                            <FormattedMessage id="teacherlanding.facebookLink" />
+                                        </a>
+                                    ),
+                                    twitterLink: (
+                                        <a href="https://twitter.com/scratch">
+                                            <FormattedMessage id="teacherlanding.twitterLink" />
+                                        </a>
+                                    ),
+                                    instagramLink: (
+                                        <a href="https://www.instagram.com/mitscratchteam/">
+                                            <FormattedMessage id="teacherlanding.instagramLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                     <div>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.signupTips" />
+                            <FormattedMessage
+                                id="teacherlanding.signupTips"
+                                values={{
+                                    signupTipsLink: (
+                                        <a href="http://eepurl.com/cws7_f ">
+                                            <FormattedMessage id="teacherlanding.signupTipsLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                 </FlexRow>
