@@ -49,7 +49,7 @@ class Download extends React.Component {
                             <FlexRow className="column download-copy">
                                 <h1 className="download-title">
                                     <img
-                                        alt=""
+                                        alt={this.props.intl.formatMessage({id: 'download.iconAltText'})}
                                         className="self-center icon"
                                         height="40"
                                         src="/images/download/placeholder.png"
