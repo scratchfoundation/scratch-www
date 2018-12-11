@@ -14,13 +14,6 @@
         "title": "Down Deep"
     },
     {
-        "name": "cards",
-        "pattern": "^/info/cards/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
-        "view": "cards/cards",
-        "title": "Cards"
-    },
-    {
         "name": "communityblocks-interviews",
         "pattern": "^/info/communityblocks-interviews/?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
@@ -371,6 +364,11 @@
         "pattern": "^/explore/studios/?$",
         "routeAlias": "/explore(?!/ajax)",
         "redirect": "/explore/studios/all"
+    },
+    {
+        "name": "info-cards-redirect",
+        "pattern": "^/info/cards/?$",
+        "redirect": "/ideas"
     },
     {
         "name": "help-redirect",
