@@ -245,25 +245,25 @@ class EV3 extends ExtensionLanding {
                     <h3><FormattedMessage id="ev3.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239075992"
-                            description={this.props.intl.formatMessage({id: 'ev3.waveHelloDescription'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltWaveHello'})}
-                            imageSrc="/images/ev3/starter-wave-hello.png"
-                            title={this.props.intl.formatMessage({id: 'ev3.waveHelloTitle'})}
+                            cardUrl="/projects/269442346/editor?tutorial=ev3"
+                            description={this.props.intl.formatMessage({id: 'ev3.starter1Description'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltStarter1'})}
+                            imageSrc="/images/ev3/ev3-starter1.png"
+                            title={this.props.intl.formatMessage({id: 'ev3.starter1Title'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239076020"
-                            description={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentDescription'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltDistanceInstrument'})}
-                            imageSrc="/images/ev3/starter-distance-instrument.png"
-                            title={this.props.intl.formatMessage({id: 'ev3.distanceInstrumentTitle'})}
+                            cardUrl="/projects/269442350/editor?tutorial=ev3"
+                            description={this.props.intl.formatMessage({id: 'ev3.starter2Description'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltStarter2'})}
+                            imageSrc="/images/ev3/ev3-starter2.png"
+                            title={this.props.intl.formatMessage({id: 'ev3.starter2Title'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239076044"
-                            description={this.props.intl.formatMessage({id: 'ev3.spaceTacosDescription'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltSpaceTacos'})}
-                            imageSrc="/images/ev3/starter-flying-game.png"
-                            title={this.props.intl.formatMessage({id: 'ev3.spaceTacosTitle'})}
+                            cardUrl="/projects/269442354/editor?tutorial=ev3"
+                            description={this.props.intl.formatMessage({id: 'ev3.starter3Description'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltStarter3'})}
+                            imageSrc="/images/ev3/ev3-starter3.png"
+                            title={this.props.intl.formatMessage({id: 'ev3.starter3Title'})}
                         />
                     </Steps>
                 </ExtensionSection>
