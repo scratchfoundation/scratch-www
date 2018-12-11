@@ -431,6 +431,10 @@ class Preview extends React.Component {
         this.props.remixProject();
     }
     handleSeeInside () {
+        this.setState({ // Remove any project alerts so they don't show up later
+            showUsernameBlockAlert: false,
+            showCloudDataAlert: false
+        });
         this.props.setPlayer(false);
         if (this.state.justRemixed || this.state.justShared) {
             this.setState({
