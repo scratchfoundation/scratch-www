@@ -3,7 +3,6 @@ const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
-
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
@@ -184,21 +183,21 @@ class Wedo2 extends ExtensionLanding {
                     <h3><FormattedMessage id="wedo2.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239284992"
+                            cardUrl="/projects/269442111/editor?tutorial=wedo"
                             description={this.props.intl.formatMessage({id: 'wedo2.starter1Description'})}
                             imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter1'})}
                             imageSrc="/images/wedo2/wedo2-starter1.png"
                             title={this.props.intl.formatMessage({id: 'wedo2.starter1Title'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239284997"
+                            cardUrl="/projects/269442224/editor?tutorial=wedo"
                             description={this.props.intl.formatMessage({id: 'wedo2.starter2Description'})}
                             imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter2'})}
                             imageSrc="/images/wedo2/wedo2-starter2.png"
                             title={this.props.intl.formatMessage({id: 'wedo2.starter2Title'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239285001"
+                            cardUrl="/projects/269442247/editor?tutorial=wedo"
                             description={this.props.intl.formatMessage({id: 'wedo2.starter3Description'})}
                             imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter3'})}
                             imageSrc="/images/wedo2/wedo2-starter3.png"
