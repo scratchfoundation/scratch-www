@@ -91,6 +91,8 @@ const Landing = () => (
                         </p>
                     </div>
                 </FlexRow>
+            </section>
+            <section>
                 <span className="nav-spacer" />
                 <h2><FormattedMessage id="teacherlanding.studentResources" /></h2>
                 <FlexRow className="guides-and-tutorials">
@@ -171,6 +173,8 @@ const Landing = () => (
                         </p>
                     </div>
                 </FlexRow>
+            </section>
+            <section>
                 <span className="nav-spacer" />
                 <h2><FormattedMessage id="teacherlanding.moreGetStarted" /></h2>
                 <FlexRow className="educator-community">
@@ -185,9 +189,9 @@ const Landing = () => (
                         </p>
                     </div>
                 </FlexRow>
-                <span className="nav-spacer" />
             </section>
             <section id="news">
+                <span className="nav-spacer" />
                 <h2><FormattedMessage id="teacherlanding.newsAndUpdates" /></h2>
                 <FlexRow className="educator-community">
                     <div>

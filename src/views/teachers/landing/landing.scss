@@ -117,81 +117,17 @@ $story-width: $cols3;
     }
 
     section {
-        margin-bottom: 3rem;
-    }
-
-    #in-practice,
-    #resources,
-    #news,
-    #connect {
         .nav-spacer {
             display: block;
             visibility: hidden;
             margin-top: -50px; // height of  nav bar
             height: 50px;
         }
+
+        margin-bottom: 3rem;
         h2 {
             text-align: center;
-        }
-    }
-
-
-    #in-practice {
-        border-bottom: 1px solid $ui-border;
-        padding-bottom: 2rem;
-
-        .stories {
-            margin: auto;
-            align-items: center;
-            justify-content: space-between;
-            flex-direction: row;
-        }
-
-        .story {
-            margin: 10px auto;
-            border: 1px solid $ui-border;
-            border-radius: 10px;
-            background-color: $ui-white;
-            box-sizing: border-box;
-
-            img {
-                border-top-left-radius: 9px;
-                border-top-right-radius: 9px;
-                width: 100%;
-            }
-
-            .story-info {
-                padding-top: 10px;
-                padding-left: 10px;
-
-                .name {
-                    margin: 0;
-                    line-height: initial;
-                    color: $ui-blue;
-                    font-size: initial;
-                    font-weight: 500;
-                }
-
-                p {
-                    margin: 10px 0;
-                    font-size: .75rem;
-                }
-            }
-        }
-    }
-
-    #resources {
-        h2 {
-            padding-bottom: 2rem;
-            text-align: center;
-        }
-
-        h3 {
-            font-weight: 300;
-        }
-
-        #guides-header {
-            text-align: center;
+            margin-bottom: .75rem;
         }
     }
 
@@ -420,36 +356,10 @@ $story-width: $cols3;
         }
     }
 
-    #in-practice {
-        h2 {
-            text-align: center;
-        }
-
-        .intro {
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .general-usage {
-            margin-bottom: 2rem;
-
-            p {
-                margin: .25em 0;
-                max-width: $cols8;
-                text-align: center;
-            }
-        }
-    }
-
     .educators {
         #resources {
             margin: 0 auto;
             width: $cols6;
-
-            h2 {
-                margin: 0 auto;
-                text-align: left;
-            }
 
             .educator-community {
                 justify-content: center;
