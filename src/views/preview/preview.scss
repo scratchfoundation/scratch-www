@@ -347,7 +347,20 @@ $stage-width: 480px;
 
     .guiPlayer {
         display: inline-block;
+        position: relative;
         width: $player-width;
+
+        $alert-bg: rgba(255, 255, 255, .85);
+        .project-info-alert {
+            position: absolute;
+            z-index: 100;
+            margin: 60px 15px;
+            border-radius: .25rem;
+            background: $alert-bg;
+            padding: .75rem;
+            text-align: center;
+            font-size: .95rem;
+        }
 
         @media #{$small} {
             width: 100%;

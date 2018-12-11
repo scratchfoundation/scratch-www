@@ -13,10 +13,9 @@ const copy = require('clipboard-copy');
 const Page = require('../../components/page/www/page.jsx');
 const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
-const EXTENSION_INFO = require('../../lib/extensions.js').default;
 const jar = require('../../lib/jar.js');
 const thumbnailUrl = require('../../lib/user-thumbnail');
-
+const ProjectInfo = require('../../lib/project-info');
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 const Registration = require('../../components/registration/registration.jsx');
@@ -102,6 +101,8 @@ class Preview extends React.Component {
                 scriptCount: 0,
                 spriteCount: 0
             },
+            showCloudDataAlert: false,
+            showUsernameBlockAlert: false,
             projectId: parts[1] === 'editor' ? '0' : parts[1],
             reportOpen: false,
             singleCommentId: singleCommentId
@@ -118,7 +119,7 @@ class Preview extends React.Component {
             this.props.sessionStatus === sessionActions.Status.FETCHED) ||
             (this.state.projectId !== prevState.projectId))) {
             this.fetchCommunityData();
-            this.getProjectData(this.state.projectId);
+            this.getProjectData(this.state.projectId, true /* Show cloud/username alerts */);
             if (this.state.justShared) {
                 this.setState({ // eslint-disable-line react/no-did-update-set-state
                     justShared: false
@@ -155,7 +156,10 @@ class Preview extends React.Component {
 
         // Switching out of editor mode, refresh data that comes from project json
         if (this.props.playerMode && !prevProps.playerMode) {
-            this.getProjectData(this.state.projectId);
+            this.getProjectData(
+                this.state.projectId,
+                false // Do not show cloud/username alerts again
+            );
         }
     }
     componentWillUnmount () {
@@ -215,71 +219,48 @@ class Preview extends React.Component {
             }
         }
     }
-    getProjectData (projectId) {
-        if (projectId > 0) {
-            storage
-                .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
-                .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
-                    let input = projectAsset.data;
-                    if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
-                    !ArrayBuffer.isView(input)) { // taken from scratch-vm
-                        // If the input is an object and not any ArrayBuffer
-                        // or an ArrayBuffer view (this includes all typed arrays and DataViews)
-                        // turn the object into a JSON string, because we suspect
-                        // this is a project.json as an object
-                        // validate expects a string or buffer as input
-                        // TODO not sure if we need to check that it also isn't a data view
-                        input = JSON.stringify(input);
-                    }
-                    parser(projectAsset.data, false, (err, projectData) => {
-                        if (err) {
-                            log.error(`Unhandled project parsing error: ${err}`);
-                            return;
-                        }
-                        const extensionSet = new Set();
-                        if (projectData[0].extensions) {
-                            projectData[0].extensions.forEach(extension => {
-                                const extensionInfo = EXTENSION_INFO[extension];
-                                if (extensionInfo) {
-                                    extensionSet.add(extensionInfo);
-                                }
-                            });
-                        }
-                        let spriteCount = 0;
-                        let scriptCount = 0;
-                        if (projectData[0].projectVersion) {
-                            if (projectData[0].projectVersion === 3) {
-                                spriteCount = projectData[0].targets.length - 1; // don't count stage
-                                scriptCount = projectData[0].targets
-                                    .map(target =>
-                                        Object.values(target.blocks)
-                                            .filter(block => block.topLevel).length
-                                    )
-                                    .reduce((accumulator, currentVal) => accumulator + currentVal, 0);
-                            } else if (projectData[0].projectVersion === 2) { // sb2 file
-                                spriteCount = projectData[0].info.spriteCount;
-                                scriptCount = projectData[0].info.scriptCount;
-                            }
-                        } // else sb (scratch 1.x) numbers will be zero
-                        
-                        this.setState({
-                            extensions: Array.from(extensionSet),
-                            modInfo: {
-                                scriptCount: scriptCount,
-                                spriteCount: spriteCount
-                            }
-                        });
-                    });
-                });
-        } else { // projectId is default or invalid; empty the extensions array
-            this.setState({
-                extensions: [],
-                modInfo: {
-                    scriptCount: 0,
-                    spriteCount: 0
+    getProjectData (projectId, showAlerts) {
+        if (projectId <= 0) return 0;
+        storage
+            .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
+            .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
+                let input = projectAsset.data;
+                if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
+                !ArrayBuffer.isView(input)) { // taken from scratch-vm
+                    // If the input is an object and not any ArrayBuffer
+                    // or an ArrayBuffer view (this includes all typed arrays and DataViews)
+                    // turn the object into a JSON string, because we suspect
+                    // this is a project.json as an object
+                    // validate expects a string or buffer as input
+                    // TODO not sure if we need to check that it also isn't a data view
+                    input = JSON.stringify(input);
                 }
+                parser(projectAsset.data, false, (err, projectData) => {
+                    if (err) {
+                        log.error(`Unhandled project parsing error: ${err}`);
+                        return;
+                    }
+                    const newState = {
+                        modInfo: {} // Filled in below
+                    };
+
+                    const helpers = ProjectInfo[projectData[0].projectVersion];
+                    if (!helpers) return; // sb1 not handled
+                    newState.extensions = helpers.extensions(projectData[0]);
+                    newState.modInfo.scriptCount = helpers.scriptCount(projectData[0]);
+                    newState.modInfo.spriteCount = helpers.spriteCount(projectData[0]);
+
+                    if (showAlerts) {
+                        // Check for username block only if user is logged in
+                        if (this.props.isLoggedIn) {
+                            newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
+                        } else { // Check for cloud vars only if user is logged out
+                            newState.showCloudDataAlert = helpers.cloudData(projectData[0]);
+                        }
+                    }
+                    this.setState(newState);
+                });
             });
-        }
     }
     handleToggleComments () {
         this.props.updateProject(
@@ -354,6 +335,10 @@ class Preview extends React.Component {
         this.props.reportProject(this.state.projectId, formData, this.props.user.token);
     }
     handleGreenFlag () {
+        this.setState({
+            showUsernameBlockAlert: false,
+            showCloudDataAlert: false
+        });
         this.props.logProjectView(this.props.projectInfo.id, this.props.authorUsername, this.props.user.token);
     }
     handlePopState () {
@@ -601,7 +586,9 @@ class Preview extends React.Component {
                         replies={this.props.replies}
                         reportOpen={this.state.reportOpen}
                         showAdminPanel={this.props.isAdmin}
+                        showCloudDataAlert={this.state.showCloudDataAlert}
                         showModInfo={this.props.isAdmin}
+                        showUsernameBlockAlert={this.state.showUsernameBlockAlert}
                         singleCommentId={this.state.singleCommentId}
                         visibilityInfo={this.props.visibilityInfo}
                         onAddComment={this.handleAddComment}

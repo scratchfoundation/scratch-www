@@ -32,5 +32,7 @@
     "project.numSprites": "{number} sprites",
     "project.descriptionMaxLength": "Description is too long",
     "project.notesPlaceholder": "How did you make this project? Did you use ideas, scripts or artwork from other people? Thank them here.",
-    "project.descriptionPlaceholder": "Tell people how to use your project (such as which keys to press)."
+    "project.descriptionPlaceholder": "Tell people how to use your project (such as which keys to press).",
+    "project.cloudDataAlert": "This project uses cloud data - a feature that is only available to signed in users.",
+    "project.usernameBlockAlert": "This project can detect who is using it, through the \"username\" block. To hide your identity, sign out before using the project."
 }
