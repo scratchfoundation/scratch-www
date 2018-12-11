@@ -6,13 +6,22 @@
 }
 
 .download {
+    .title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    .centered {
+        display: flex;
+    }
+    .self-center {
+        align-self: center;
+    }
     .download-header {
         background-color: $ui-blue;
         color: $ui-white;
         padding: 4rem 0;
-
         .title {
-            font-size: 2rem;
+            color: $ui-white;
         }
         .inner {
             justify-content: space-between;
@@ -28,8 +37,9 @@
                 margin-bottom: 5rem;
                 align-items: flex-start;
 
-                h1, h2 {
+                 .download-title {
                     display: flex;
+                    font-size: 2rem;
                     margin-bottom: 2rem;
                     color: $ui-white;
 
@@ -76,7 +86,6 @@
                 max-width: 100%;
                 max-height: 100%;
             }
-
         }
     }
     .install-scratch {
@@ -95,10 +104,6 @@
             width: 150px;
             height: 80px;
         }
-        .title {
-            margin-bottom: 1rem;
-        }
-
     }
     .download-section {
         padding: 4rem 0;
@@ -117,9 +122,6 @@
             margin-left: 0;
             max-width: $cols8;
             text-align: left;
-        }
-        .faq-title {
-            margin-bottom: 1rem;
         }
         .faq-question{
             margin-bottom: 0;

@@ -47,13 +47,15 @@ class Download extends React.Component {
                     <FlexRow className="inner">
                         <FlexRow className="column download-info">
                             <FlexRow className="column download-copy">
-                                <h1 className="title"><img
-                                    alt=""
-                                    height="40"
-                                    src="/images/download/placeholder.png"
-                                    width="40"
-                                />
-                                <FormattedMessage id="download.title" />
+                                <h1 className="download-title">
+                                    <img
+                                        alt=""
+                                        className="self-center"
+                                        height="40"
+                                        src="/images/download/placeholder.png"
+                                        width="40"
+                                    />
+                                    <FormattedMessage id="download.title" />
                                 </h1>
                                 <span className="download-description">
                                     <FormattedMessage id="download.intro" />
@@ -150,7 +152,7 @@ class Download extends React.Component {
                 </div>
                 <div className="download-section faq">
                     <FlexRow className="inner column">
-                        <h2 className="faq-title">
+                        <h2 className="title">
                             <FormattedMessage id="download.troubleshootingTitle" />
                         </h2>
 
@@ -175,7 +177,6 @@ class Download extends React.Component {
                             <FormattedMessage id="download.supportChromeOSAnswer" />
                         </p>
 
-
                         <h3 className="faq-question">
                             { this.state.OS === OS_ENUM.WINDOWS ?
                                 <FormattedMessage id="download.cannotAccessWindowsStore" /> :
@@ -198,7 +199,7 @@ class Download extends React.Component {
                 </div>
                 <div className="download-section blue">
                     <FlexRow className="inner column">
-                        <h2>
+                        <h2 className="title">
                             <FormattedMessage id="download.olderVersionsTitle" />
                         </h2>
                         <h3 className="faq-question">
@@ -214,7 +215,7 @@ class Download extends React.Component {
                                     width="150"
                                 />
                                 <p>
-                                    <a href="/scratch_1.4">
+                                    <a className="centered" href="/scratch_1.4">
                                         <FormattedMessage id="download.scratch1-4Desktop" />
                                         <img src="images/download/r-arrow.svg" />
                                     </a>
@@ -229,7 +230,7 @@ class Download extends React.Component {
                                     width="150"
                                 />
                                 <p>
-                                    <a href="/download/scratch2">
+                                    <a className="centered" href="/download/scratch2">
                                         <FormattedMessage id="download.scratch2Desktop" />
                                         <img src="images/download/r-arrow.svg" />
                                     </a>
