@@ -121,12 +121,17 @@ $story-width: $cols3;
     }
 
     #in-practice,
-    #resources {
+    #resources,
+    #news,
+    #connect {
         .nav-spacer {
             display: block;
             visibility: hidden;
             margin-top: -50px; // height of  nav bar
             height: 50px;
+        }
+        h2 {
+            text-align: center;
         }
     }
 

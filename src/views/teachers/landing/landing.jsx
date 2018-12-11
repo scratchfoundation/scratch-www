@@ -26,26 +26,31 @@ const Landing = () => (
                         <iframe
                             allowFullScreen
                             frameBorder="0"
-                            src="https://www.youtube.com/embed/uPSuG063jhA?border=0&wmode=transparent"
+                            src="https://scratch.wistia.com/medias/h8hay3nnt4"
                         />
                     </div>
                 </FlexRow>
             </div>
             <div className="band">
                 <SubNavigation className="inner">
-                    <a href="#in-practice">
-                        <li>
-                            <FormattedMessage id="teacherlanding.inPracticeTitle" />
-                        </li>
-                    </a>
                     <a href="#resources">
                         <li>
                             <FormattedMessage id="teacherlanding.resourcesAnchor" />
                         </li>
                     </a>
+                    <a href="#connect">
+                        <li>
+                            <FormattedMessage id="teacherlanding.connectAnchor" />
+                        </li>
+                    </a>
+                    <a href="#news">
+                        <li>
+                            <FormattedMessage id="teacherlanding.newsAnchor" />
+                        </li>
+                    </a>
                     <a href="#teacher-accounts">
                         <li>
-                            <FormattedMessage id="general.teacherAccounts" />
+                            <FormattedMessage id="teacherlanding.teacherAccountsAnchor" />
                         </li>
                     </a>
                 </SubNavigation>
@@ -53,76 +58,101 @@ const Landing = () => (
         </TitleBanner>
 
         <div className="inner">
-            <section id="in-practice">
-                <span className="nav-spacer" />
-                <h2>
-                    <FormattedMessage id="teacherlanding.inPracticeTitle" />
-                </h2>
-                <p className="intro">
-                    <FormattedMessage id="teacherlanding.inPracticeIntro" />
-                </p>
-                <FlexRow className="general-usage">
-                    <p><FormattedHTMLMessage id="teacherlanding.generalUsageSettings" /></p>
-                    <p><FormattedHTMLMessage id="teacherlanding.generalUsageGradeLevels" /></p>
-                    <p><FormattedHTMLMessage id="teacherlanding.generalUsageSubjectAreas" /></p>
-                </FlexRow>
-            </section>
             <section id="resources">
                 <span className="nav-spacer" />
-                <h2><FormattedMessage id="general.resourcesTitle" /></h2>
+                <h2><FormattedMessage id="teacherlanding.educatorResources" /></h2>
                 <FlexRow className="educator-community">
                     <div>
-                        <h3>
-                            <FormattedMessage id="teacherlanding.scratchEdTitle" />
-                        </h3>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.scratchEdDescription" />
+                            <FormattedHTMLMessage id="teacherlanding.educatorGuides" />
                         </p>
                     </div>
                     <div>
-                        <h3>
-                            <FormattedMessage id="teacherlanding.meetupTitle" />
-                        </h3>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.meetupDescription" />
+                            <FormattedHTMLMessage id="teacherlanding.creativeComputing" />
                         </p>
                     </div>
                 </FlexRow>
-                <h3 id="guides-header">
-                    <FormattedMessage id="teacherlanding.guidesTitle" />
-                </h3>
+                <span className="nav-spacer" />
+                <h2><FormattedMessage id="teacherlanding.studentResources" /></h2>
                 <FlexRow className="guides-and-tutorials">
                     <div>
-                        <a href="/tips">
+                        <a href="/projects/editor/?tutorial=all">
+                            <img
+                                alt="tips window icon"
+                                src="/svgs/teachers/scratch-tutorials-icons.svg"
+                            />
+                        </a>
+                        <p>
+                            <FormattedHTMLMessage id="teacherlanding.tutorialResources" />
+                        </p>
+                    </div>
+                    <div>
+                        <a href="/www/cards/en/ScratchCardsAll.pdf">
                             <img
                                 alt="cards icon"
                                 src="/svgs/teachers/v2-cards.svg"
                             />
                         </a>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.tttPage" />
+                            <FormattedHTMLMessage id="teacherlanding.codingCardResources" />
                         </p>
                     </div>
                     <div>
-                        <a href="/projects/editor/?tip_bar=home">
-                            <img
-                                alt="tips window icon"
-                                src="/svgs/teachers/tips-window.svg"
-                            />
-                        </a>
-                        <p>
-                            <FormattedHTMLMessage id="teacherlanding.tipsWindow" />
-                        </p>
-                    </div>
-                    <div>
-                        <a href="http://scratched.gse.harconstd.edu/guide/">
+                        <a href="/ideas">
                             <img
                                 alt="creative computing icon"
-                                src="/svgs/teachers/creative-computing.svg"
+                                src="/svgs/teachers/ideas-page-icon.svg"
                             />
                         </a>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.creativeComputing" />
+                            <FormattedHTMLMessage id="teacherlanding.ideasResources" />
+                        </p>
+                    </div>
+                </FlexRow>
+            </section>
+            <section id="connect">
+                <span className="nav-spacer" />
+                <h2><FormattedMessage id="teacherlanding.connectingWithEducators" /></h2>
+                <FlexRow className="educator-community">
+                    <div>
+                        <p>
+                            <FormattedHTMLMessage id="teacherlanding.teachingWithScratch" />
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <FormattedHTMLMessage id="teacherlanding.attendMeetups" />
+                        </p>
+                    </div>
+                </FlexRow>
+                <span className="nav-spacer" />
+                <h2><FormattedMessage id="teacherlanding.moreGetStarted" /></h2>
+                <FlexRow className="educator-community">
+                    <div>
+                        <p>
+                            <FormattedHTMLMessage id="teacherlanding.csFirst" />
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <FormattedHTMLMessage id="teacherlanding.codeClub" />
+                        </p>
+                    </div>
+                </FlexRow>
+                <span className="nav-spacer" />
+            </section>
+            <section id="news">
+                <h2><FormattedMessage id="teacherlanding.newsAndUpdates" /></h2>
+                <FlexRow className="educator-community">
+                    <div>
+                        <p>
+                            <FormattedHTMLMessage id="teacherlanding.followUs" />
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <FormattedHTMLMessage id="teacherlanding.signupTips" />
                         </p>
                     </div>
                 </FlexRow>
