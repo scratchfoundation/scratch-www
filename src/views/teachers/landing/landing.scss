@@ -73,28 +73,6 @@ $story-width: $cols3;
                 background-color: $band-color;
                 padding: 1rem 0;
             }
-
-            .sub-nav {
-                text-align: left;
-
-                li {
-                    margin: 0 .5rem 0 0;
-                }
-            }
-
-        }
-
-        &.faq-banner {
-            margin-bottom: 0;
-            background-color: $ui-gray;
-        }
-    }
-
-    .general-usage {
-        justify-content: space-between;
-
-        p {
-            max-width: $cols4;
         }
     }
 
@@ -117,17 +95,18 @@ $story-width: $cols3;
     }
 
     section {
-        .nav-spacer {
+        .nav-spacer { // For making the anchors work.
             display: block;
             visibility: hidden;
-            margin-top: -50px; // height of  nav bar
+            margin-top: -50px;
             height: 50px;
         }
 
         margin-bottom: 3rem;
+
         h2 {
-            text-align: center;
             margin-bottom: .75rem;
+            text-align: center;
         }
     }
 
