@@ -22,11 +22,16 @@ const Landing = () => (
                     <p className="title-banner-p intro">
                         <FormattedMessage id="teacherlanding.intro" />
                     </p>
-                    <div className="ted-talk">
+                    <div className="video-player">
                         <iframe
                             allowFullScreen
+                            allowTransparency="true"
                             frameBorder="0"
-                            src="https://scratch.wistia.com/medias/h8hay3nnt4"
+                            height="180"
+                            scrolling="no"
+                            src={`https://fast.wistia.net/embed/iframe/h8hay3nnt4?seo=false&videoFoam=true`}
+                            title=""
+                            width="320"
                         />
                     </div>
                 </FlexRow>
@@ -164,12 +169,30 @@ const Landing = () => (
                 <FlexRow className="educator-community">
                     <div>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.teachingWithScratch" />
+                            <FormattedMessage
+                                id="teacherlanding.teachingWithScratch"
+                                values={{
+                                    teachingWithScratchLink: (
+                                        <a href="https://www.facebook.com/groups/TeachingwithScratch/">
+                                            <FormattedMessage id="teacherlanding.teachingWithScratchLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                     <div>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.attendMeetups" />
+                            <FormattedMessage
+                                id="teacherlanding.attendMeetups"
+                                values={{
+                                    meetupLink: (
+                                        <a href="https://www.meetup.com/pro/scratched/">
+                                            <FormattedMessage id="teacherlanding.meetupLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                 </FlexRow>
