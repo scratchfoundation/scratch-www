@@ -9,12 +9,12 @@ $base-bg: $ui-white;
 }
 
 .banner-wrapper {
-    background: $ui-yellow bottom right url('/images/ideas/right-juice.png') no-repeat;
+    background: $ui-yellow bottom right url("/images/ideas/right-juice.png") no-repeat;
 }
 
 .ideas-banner {
-    background: bottom left url('/images/ideas/left-juice.png') no-repeat;
-    margin-bottom: 0px;
+    margin-bottom: 0;
+    background: bottom left url("/images/ideas/left-juice.png") no-repeat;
 }
 
 .ttt-section {
@@ -53,25 +53,25 @@ $base-bg: $ui-white;
 }
 
 .wide-button {
-  width: 100%;
+    width: 100%;
 }
 
 .tips-getting-started {
-  padding-top: 2.5rem;
-  background-color: #FAFAFF;
+    background-color: $ui-light-blue;
+    padding-top: 2.5rem;
 }
 
 .tips-left {
-  justify-content: flex-start;
+    justify-content: flex-start;
 }
 
 .ideas-image {
-  margin-right: 2rem;
+    margin-right: 2rem;
 }
 
 .tips-activity-guides {
-  padding-bottom: 2rem;
-  background-color: #FAFAFF;
+    background-color: $ui-light-blue;
+    padding-bottom: 2rem;
 }
 
 .purchase-button {
@@ -100,7 +100,7 @@ $base-bg: $ui-white;
 }
 
 .gray-area {
-  background-color: $ui-gray;
+    background-color: $ui-gray;
 }
 
 img.tips-icon {

@@ -6,103 +6,57 @@
 }
 
 .ttt-modal-header {
-  background-color: $ui-blue;
-  height: 3rem;
+    background-color: $ui-blue;
+    height: 3rem;
 }
 
 .ttt-modal-body {
-  margin: 2.5rem 3rem;
-  display: flex;
+    display: flex;
+    margin: 2.5rem 3rem;
 }
 
 .mod-ttt-img {
-  border-radius: .5rem;
-  overflow: hidden;
-  width: 18rem;
-  height: 18rem;
+    border-radius: .5rem;
+    overflow: hidden;
+    height: 18rem;
+    width: 18rem;
 }
 
 .ttt-content {
-  margin-left: 2rem;
+    margin-left: 2rem;
 }
 
 .ttt-content-chunk + .ttt-content-chunk {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid $ui-border;
+    margin-top: 1rem;
+    border-top: 1px solid $ui-border;
+    padding-top: 1rem;
 }
 
 .ttt-description {
-  margin-top: 0px;
+    margin-top: 0;
 }
 
 a.ttt-try-tutorial-button {
-  display: flex;
-  width: fit-content;
-  align-items: center;
+    display: flex;
+    width: fit-content;
+    align-items: center;
 
-  & > span {
-      color: $type-white;
-  }
-  & > img {
-      margin-right: 0.5rem;
-  }
+    & > span {
+        color: $type-white;
+    }
+    & > img {
+        margin-right: .5rem;
+    }
 }
 
 .ttt-row {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .ttt-item {
-  display: flex;
-  img {
-      margin-right: 1rem;
-  }
+    display: flex;
+    img {
+        margin-right: 1rem;
+    }
 }
-
-// .ttt-title {
-//     text-align: center;
-// }
-//
-// .ttt-description {
-//     margin: 0;
-//     font-size: 1.1rem;
-// }
-//
-// .modal-content-ttt {
-//     padding: 0 5rem;
-//     list-style: none;
-// }
-//
-// .flex-row.mod-ttt-item {
-//     margin: 0;
-//     border-top: 1px dashed $ui-border;
-//     padding: .5rem;
-//     justify-content: space-between;
-// }
-//
-// .modal-content-ttt-text {
-//     max-width: 70%;
-// }
-//
-// .modal-content-ttt-title,
-// .modal-content-ttt-subtitle {
-//     margin: 0;
-//     font-size: .875rem;
-// }
-//
-// .modal-content-ttt-title {
-//     font-weight: 500;
-// }
-//
-// .modal-content-ttt-title-img {
-//     margin-right: .25rem;
-//     width: 1.25rem;
-//     vertical-align: middle;
-// }
-//
-// .button.white.mod-ttt-item {
-//     border: 1px solid $ui-blue;
-//     box-shadow: none;
-// }
