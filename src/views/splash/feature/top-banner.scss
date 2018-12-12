@@ -1,0 +1,210 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.feature-top-banner {
+    display: flex;
+    position: relative;
+    background-color: $ui-blue;
+    // background-image: url("/images/feature/bg-pattern.png");
+    background-size: cover;
+    padding: 0;
+    height: 22rem;
+    // overflow: hidden; // if banner shouldn't have things that break the edges
+    justify-content: center;
+
+    .feature-top-container {
+        position: absolute;
+        top: 0;
+        right: 20%;
+        bottom: 0;
+        left: 20%;
+        margin: auto;
+        justify-content: center;
+        align-items: flex-start;
+        height: 20rem;
+    }
+
+    .feature-banner-images {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .feature-banner-image {
+        display: flex;
+        align-self: flex-end;
+
+        img {
+            max-width: 100%;
+            height: auto;
+            align-self: flex-end;
+        }
+
+        &.left {
+            margin: auto 0;
+            width: 14rem;
+        }
+
+        &.right {
+            width: 30rem;
+        }
+    }
+
+    .feature-header,
+    .feature-copy,
+    .feature-call-to-action {
+        color: $ui-white;
+    }
+
+    .feature-header {
+        margin-bottom: .75rem;
+        font-size: 4rem;
+        line-height: 4.2rem;
+        width: 80%;
+    }
+
+    .feature-copy {
+        font-size: 1.3rem;
+    }
+
+    .feature-call-to-action {
+        border-radius: 4px;
+        background-color: $ui-dark-orange;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        
+        &:before {
+            display: inline-block;
+            margin-right: .5rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            background-image: url("/svgs/feature/create-icon.svg");
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: -.35rem;
+            content: "";
+        }
+    }
+}
+
+@media only screen and (min-width: $desktop) {
+    .feature-banner-image {
+        &.right:after {
+            display: block;
+            position: absolute;
+            bottom: -42px;
+            right: 33%;
+            background-image: url("/svgs/feature/tapping-block.svg");
+            background-repeat: no-repeat;
+            width: 122px;
+            height: 81px;
+            content: "";
+        }
+    }
+}
+
+@media only screen and (min-width: $tablet) {
+    .feature-top-banner {
+        margin-bottom: 80px; // double the normal banner 40px for the notch
+        
+        &:after{
+            display: block;
+            position: absolute;
+            bottom: -46px;
+            left: 48px;
+            background-image: url("/svgs/feature/banner-notch.svg");
+            background-repeat: no-repeat;
+            width: 433px;
+            height: 56px;
+            content: "";
+        }
+    }
+}
+
+@media only screen and (max-width: $desktop - 1) {
+    .feature-top-banner {
+        .feature-header {
+            text-align: left; // override #view text centering
+        }
+        
+        .feature-banner-images {
+            justify-content: flex-end;
+        }
+        
+        .feature-banner-image {
+            &.left {
+                display: none;
+            }
+        }
+    }
+}
+@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+    .feature-top-banner {
+        .feature-top-container {
+            left: 4rem;
+        }
+        
+        .feature-banner-image {
+            &.right {
+                margin-right: -8rem;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+    .feature-top-banner {
+        .feature-top-container {
+            left: 2rem;
+        }
+        
+        .feature-banner-image {
+            &.right {
+                margin-right: -12rem;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: $mobile - 1) {
+    .feature-top-banner {
+        overflow: hidden;
+        height: 32rem;
+        
+        .feature-top-container {
+            right: 0;
+            left: 0;
+            height: 30rem;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        
+        .feature-header {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .feature-banner-image {
+            &.right {
+                margin-right: 0;
+                margin-bottom: -8rem;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: $tablet) and (max-width: 1200px) {
+    // .feature-top-banner {
+    //     height: 22rem;
+    // 
+    //     .feature-top-container {
+    //         bottom: 4rem;
+    //     }
+    // 
+    //     .feature-banner-image {
+    //         width: 20rem;
+    //     }
+    // }
+}

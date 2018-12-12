@@ -1,24 +1,24 @@
 @import "../../../colors";
 
-.beta-small-top-banner {
+.small-top-banner {
     background: $ui-orange;
     padding: 5px 0;
 
-    .beta-small-top-container {
+    .small-top-container {
         justify-content: center;
     }
 
-    .beta-copy,
-    .beta-try-it {
+    .copy,
+    .call-to-action {
         color: $ui-white;
         font-weight: 500;
     }
 
-    .beta-copy {
+    .copy {
         font-size: 1.1rem;
     }
 
-    .beta-try-it {
+    .call-to-action {
         margin-left: 32px;
         border-radius: 8px;
         padding: .625rem 1.2rem;

@@ -41,16 +41,7 @@
     "welcome.tryOut": "Try out starter projects",
     "welcome.connect": "Connect with other Scratchers",
 
-    "betabanner.title": "The Next Generation of Scratch",
-    "betabanner.subtitle": "Scratch 3.0 is coming in January! Try the Beta version now.",
-    "betabanner.callToAction": "Try it!",
-    
-    "hocbanner.title": "Get Creative with Coding!",
-    "hocbanner.moreActivities": "See more activities",
-    "hocbanner.gettingStarted": "Getting Started",
-    "hocbanner.animationTalk": "Create Animations that Talk",
-    "hocbanner.adventureGame": "Animate an Adventure Game",
-    "hocbanner.name": "Animate a Name",
-    "hocbanner.fly": "Make it Fly",
-    "hocbanner.pong": "Pong Game"
+    "featureBanner.title": "The new Scratch is here!",
+    "featureBanner.subtitle": "not used",
+    "featureBanner.callToAction": "Start Creating"
 }
