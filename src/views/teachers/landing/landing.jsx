@@ -22,30 +22,40 @@ const Landing = () => (
                     <p className="title-banner-p intro">
                         <FormattedMessage id="teacherlanding.intro" />
                     </p>
-                    <div className="ted-talk">
+                    <div className="video-player">
                         <iframe
                             allowFullScreen
+                            allowTransparency="true"
                             frameBorder="0"
-                            src="https://www.youtube.com/embed/uPSuG063jhA?border=0&wmode=transparent"
+                            height="180"
+                            scrolling="no"
+                            src={`https://fast.wistia.net/embed/iframe/h8hay3nnt4?seo=false&videoFoam=true`}
+                            title=""
+                            width="320"
                         />
                     </div>
                 </FlexRow>
             </div>
             <div className="band">
                 <SubNavigation className="inner">
-                    <a href="#in-practice">
-                        <li>
-                            <FormattedMessage id="teacherlanding.inPracticeTitle" />
-                        </li>
-                    </a>
                     <a href="#resources">
                         <li>
-                            <FormattedMessage id="teacherlanding.resourcesAnchor" />
+                            <FormattedMessage id="teacherlanding.resourcesTitle" />
+                        </li>
+                    </a>
+                    <a href="#connect">
+                        <li>
+                            <FormattedMessage id="teacherlanding.connectTitle" />
+                        </li>
+                    </a>
+                    <a href="#news">
+                        <li>
+                            <FormattedMessage id="teacherlanding.newsTitle" />
                         </li>
                     </a>
                     <a href="#teacher-accounts">
                         <li>
-                            <FormattedMessage id="general.teacherAccounts" />
+                            <FormattedMessage id="teacherlanding.teacherAccountsTitle" />
                         </li>
                     </a>
                 </SubNavigation>
@@ -53,76 +63,214 @@ const Landing = () => (
         </TitleBanner>
 
         <div className="inner">
-            <section id="in-practice">
-                <span className="nav-spacer" />
-                <h2>
-                    <FormattedMessage id="teacherlanding.inPracticeTitle" />
-                </h2>
-                <p className="intro">
-                    <FormattedMessage id="teacherlanding.inPracticeIntro" />
-                </p>
-                <FlexRow className="general-usage">
-                    <p><FormattedHTMLMessage id="teacherlanding.generalUsageSettings" /></p>
-                    <p><FormattedHTMLMessage id="teacherlanding.generalUsageGradeLevels" /></p>
-                    <p><FormattedHTMLMessage id="teacherlanding.generalUsageSubjectAreas" /></p>
-                </FlexRow>
-            </section>
             <section id="resources">
                 <span className="nav-spacer" />
-                <h2><FormattedMessage id="general.resourcesTitle" /></h2>
+                <h2><FormattedMessage id="teacherlanding.educatorResourcesTitle" /></h2>
                 <FlexRow className="educator-community">
                     <div>
-                        <h3>
-                            <FormattedMessage id="teacherlanding.scratchEdTitle" />
-                        </h3>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.scratchEdDescription" />
+                            <FormattedMessage
+                                id="teacherlanding.educatorGuides"
+                                values={{
+                                    educatorLink: (
+                                        <a href="https://resources.scratch.mit.edu/www/guides/en/EducatorGuidesAll.pdf">
+                                            <FormattedMessage id="teacherlanding.educatorGuideLinkText" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                     <div>
-                        <h3>
-                            <FormattedMessage id="teacherlanding.meetupTitle" />
-                        </h3>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.meetupDescription" />
+                            <FormattedMessage
+                                id="teacherlanding.creativeComputing"
+                                values={{
+                                    scratchEdLink: (
+                                        <a href="http://scratched.gse.harvard.edu/guide/">
+                                            <FormattedMessage id="teacherlanding.scratchEdLinkText" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                 </FlexRow>
-                <h3 id="guides-header">
-                    <FormattedMessage id="teacherlanding.guidesTitle" />
-                </h3>
+            </section>
+            <section>
+                <span className="nav-spacer" />
+                <h2><FormattedMessage id="teacherlanding.studentResourcesTitle" /></h2>
                 <FlexRow className="guides-and-tutorials">
                     <div>
-                        <a href="/tips">
-                            <img
-                                alt="cards icon"
-                                src="/svgs/teachers/v2-cards.svg"
-                            />
-                        </a>
-                        <p>
-                            <FormattedHTMLMessage id="teacherlanding.tttPage" />
-                        </p>
-                    </div>
-                    <div>
-                        <a href="/projects/editor/?tip_bar=home">
+                        <a href="/projects/editor/?tutorial=all">
                             <img
                                 alt="tips window icon"
-                                src="/svgs/teachers/tips-window.svg"
+                                src="/svgs/teachers/scratch-tutorials-icons.svg"
                             />
                         </a>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.tipsWindow" />
+                            <FormattedMessage
+                                id="teacherlanding.tutorialResources"
+                                values={{
+                                    tutorialLink: (
+                                        <a href="/projects/editor/?tutorial=all">
+                                            <FormattedMessage id="teacherlanding.tutorialLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                     <div>
-                        <a href="http://scratched.gse.harconstd.edu/guide/">
+                        <a href="/www/cards/en/ScratchCardsAll.pdf">
                             <img
-                                alt="creative computing icon"
-                                src="/svgs/teachers/creative-computing.svg"
+                                alt="cards icon"
+                                src="/svgs/teachers/coding-cards-icon.svg"
                             />
                         </a>
                         <p>
-                            <FormattedHTMLMessage id="teacherlanding.creativeComputing" />
+                            <FormattedMessage
+                                id="teacherlanding.codingCardResources"
+                                values={{
+                                    codingCardLink: (
+                                        <a href="https://resources.scratch.mit.edu/www/cards/en/ScratchCardsAll.pdf">
+                                            <FormattedMessage id="teacherlanding.codingCardLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
+                    </div>
+                    <div>
+                        <a href="/ideas">
+                            <img
+                                alt="creative computing icon"
+                                src="/svgs/teachers/ideas-page-icon.svg"
+                            />
+                        </a>
+                        <p>
+                            <FormattedMessage
+                                id="teacherlanding.ideasResources"
+                                values={{
+                                    ideasPageLink: (
+                                        <a href="http://scratch.mit.edu/ideas">
+                                            <FormattedMessage id="teacherlanding.ideasLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
+                    </div>
+                </FlexRow>
+            </section>
+            <section id="connect">
+                <span className="nav-spacer" />
+                <h2><FormattedMessage id="teacherlanding.connectingWithEducators" /></h2>
+                <FlexRow className="educator-community">
+                    <div>
+                        <p>
+                            <FormattedMessage
+                                id="teacherlanding.teachingWithScratch"
+                                values={{
+                                    teachingWithScratchLink: (
+                                        <a href="https://www.facebook.com/groups/TeachingwithScratch/">
+                                            <FormattedMessage id="teacherlanding.teachingWithScratchLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <FormattedMessage
+                                id="teacherlanding.attendMeetups"
+                                values={{
+                                    meetupLink: (
+                                        <a href="https://www.meetup.com/pro/scratched/">
+                                            <FormattedMessage id="teacherlanding.meetupLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
+                    </div>
+                </FlexRow>
+            </section>
+            <section>
+                <span className="nav-spacer" />
+                <h2><FormattedMessage id="teacherlanding.moreGetStartedTitle" /></h2>
+                <FlexRow className="educator-community">
+                    <div>
+                        <p>
+                            <FormattedMessage
+                                id="teacherlanding.csFirst"
+                                values={{
+                                    csFirstLink: (
+                                        <a href="http://g.co/csfirst">
+                                            <FormattedMessage id="teacherlanding.csFirstLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <FormattedMessage
+                                id="teacherlanding.codeClub"
+                                values={{
+                                    codeClubLink: (
+                                        <a href="https://codeclubprojects.org/en-GB/scratch/">
+                                            <FormattedMessage id="teacherlanding.codeClubLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
+                    </div>
+                </FlexRow>
+            </section>
+            <section id="news">
+                <span className="nav-spacer" />
+                <h2><FormattedMessage id="teacherlanding.newsAndUpdatesTitle" /></h2>
+                <FlexRow className="educator-community">
+                    <div>
+                        <p>
+                            <FormattedMessage
+                                id="teacherlanding.followUs"
+                                values={{
+                                    facebookLink: (
+                                        <a href="https://www.facebook.com/scratchteam/">
+                                            Facebook
+                                        </a>
+                                    ),
+                                    twitterLink: (
+                                        <a href="https://twitter.com/scratch">
+                                            Twitter
+                                        </a>
+                                    ),
+                                    instagramLink: (
+                                        <a href="https://www.instagram.com/mitscratchteam/">
+                                            Instagram
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <FormattedMessage
+                                id="teacherlanding.signupTips"
+                                values={{
+                                    signupTipsLink: (
+                                        <a href="http://eepurl.com/cws7_f ">
+                                            <FormattedMessage id="teacherlanding.signupTipsLink" />
+                                        </a>
+                                    )
+                                }}
+                            />
                         </p>
                     </div>
                 </FlexRow>
