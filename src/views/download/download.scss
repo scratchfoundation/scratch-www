@@ -20,16 +20,17 @@
     }
 
     .download-button {
-        border-radius: 8px;
-        padding: 1rem;
-        font-size: 1rem;
         display: inline-block;
         margin: .5em 0;
         border: 0;
+        border-radius: 8px;
         background-color: $ui-blue;
         cursor: pointer;
-        color:$ui-white
+        color: $ui-white
+        padding: 1rem;
+        font-size: 1rem;
     }
+
     .download-header {
         background-color: $ui-blue;
         padding: 4rem 0;
@@ -156,14 +157,15 @@
         padding-right: 24px;
 
         p {
+            line-height: normal;
             color: $link-blue;
             font-weight: 600;
-            line-height: normal;
         }
 
         .little-arrow {
             padding-left: 2px;
         }
+
         .screenshot {
             margin-top: 1rem;
             $img-border: rgba(0, 0, 0, .05);
