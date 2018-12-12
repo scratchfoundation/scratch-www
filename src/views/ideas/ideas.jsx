@@ -47,7 +47,7 @@ class Ideas extends React.Component {
     renderTTTTiles () {
         return Tiles.map((tile, key) => {
             const translatedTile = {
-                tutorialUrl: this.props.intl.formatMessage({id: tile.tutorialUrl}),
+                tutorialUrl: tile.tutorialUrl,
                 modalImage: tile.modalImage,
                 description: this.props.intl.formatMessage({id: tile.description}),
                 guideUrl: this.props.intl.formatMessage({id: tile.guideUrl}),
@@ -159,7 +159,7 @@ class Ideas extends React.Component {
                                         id: 'cards.ScratchCardsAllLink'
                                     })}
                                 >
-                                    <Button className="tips-button ideas-button">
+                                    <Button className="ideas-button">
                                         <img src="/images/ideas/download-icon.svg" />
                                         <FormattedMessage id="ideas.downloadPDF" />
                                     </Button>
@@ -194,7 +194,7 @@ class Ideas extends React.Component {
                                 </p>
                                 <p>
                                     <a href="/starter_projects">
-                                        <Button className="tips-button">
+                                        <Button className="ideas-button">
                                             <FormattedMessage id="ideas.starterProjectsButton" />
                                         </Button>
                                     </a>
