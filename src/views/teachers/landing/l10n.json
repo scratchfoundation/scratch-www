@@ -1,6 +1,6 @@
 {
     "teacherlanding.title": "Scratch for Educators",
-    "teacherlanding.intro": "Your students can use Scratch to code their own interactive stories, animations, and games. In the process, they learn to think creatively, reason systematically, and work collaboratively  -- essential skills for everyone in today’s society. Educators are integrating Scratch across many different subject areas and age groups.",
+    "teacherlanding.intro": "Your students can use Scratch to code their own interactive stories, animations, and games. In the process, they learn to think creatively, reason systematically, and work collaboratively  — essential skills for everyone in today’s society. Educators are integrating Scratch across many different subject areas and age groups.",
     "teacherlanding.resourcesAnchor": "Resources",
     "teacherlanding.connectAnchor": "Connect",
     "teacherlanding.newsAnchor": "News",
@@ -29,9 +29,6 @@
     "teacherlanding.codeClubLink" : "Code Club",
     "teacherlanding.newsAndUpdates" : "News and Updates",
     "teacherlanding.followUs" : "Follow us on {facebookLink}, {twitterLink}, and {instagramLink}!",
-    "teacherlanding.facebookLink" : "Facebook",
-    "teacherlanding.twitterLink" : "Twitter",
-    "teacherlanding.instagramLink": "Instagram",
     "teacherlanding.signupTips" : "Sign up to receive {signupTipsLink} from the Scratch Team",
     "teacherlanding.signupTipsLink" : "updates and tips",
     "teacherlanding.accountsTitle": "Teacher Accounts in Scratch",

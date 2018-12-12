@@ -242,17 +242,17 @@ const Landing = () => (
                                 values={{
                                     facebookLink: (
                                         <a href="https://www.facebook.com/scratchteam/">
-                                            <FormattedMessage id="teacherlanding.facebookLink" />
+                                            Facebook
                                         </a>
                                     ),
                                     twitterLink: (
                                         <a href="https://twitter.com/scratch">
-                                            <FormattedMessage id="teacherlanding.twitterLink" />
+                                            Twitter
                                         </a>
                                     ),
                                     instagramLink: (
                                         <a href="https://www.instagram.com/mitscratchteam/">
-                                            <FormattedMessage id="teacherlanding.instagramLink" />
+                                            Instagram
                                         </a>
                                     )
                                 }}
