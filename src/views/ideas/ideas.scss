@@ -50,6 +50,10 @@ $base-bg: $ui-white;
     a {
         color: $ui-white;
     }
+
+    span {
+      vertical-align: middle;
+    }
 }
 
 .wide-button {
