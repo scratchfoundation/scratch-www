@@ -111,20 +111,10 @@ class Download extends React.Component {
                                     </span>
                                     <div className="downloads-container">
                                         <a
-                                            href={
-                                                this.state.OS === OS_ENUM.WINDOWS ?
-                                                    'FILL ME IN' :
-                                                    ''
-                                            }
-                                            target="_blank"
+                                            className="download-button"
+                                            href="https://beta.scratch.mit.edu/"
                                         >
-                                            <img
-                                                alt=""
-                                                className="store-badge"
-                                                src={`/images/scratchlink/${
-                                                    this.state.OS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                                                }-store-badge.svg`}
-                                            />
+                                            <span>Download Scratch Desktop</span>
                                         </a>
                                     </div>
                                 </Step>
@@ -135,8 +125,12 @@ class Download extends React.Component {
                                 number={2}
                             >
                                 <span className="step-description">
-                                    <FormattedMessage id="download.startScratchDesktop" />
+                                    {this.state.OS === OS_ENUM.WINDOWS ?
+                                        <FormattedMessage id="download.winMoveToApplications" /> :
+                                        <FormattedMessage id="download.macMoveToApplications" />
+                                    }
                                 </span>
+
                                 <div className="step-image">
                                     <img
                                         alt=""
@@ -157,13 +151,6 @@ class Download extends React.Component {
                         </h2>
 
                         <h3 className="faq-question">
-                            <FormattedMessage id="download.howDoIInstall" />
-                        </h3>
-                        <p>
-                            You will need to install lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        </p>
-
-                        <h3 className="faq-question">
                             <FormattedMessage id="download.whenSupportLinux" />
                         </h3>
                         <p>
@@ -177,24 +164,6 @@ class Download extends React.Component {
                             <FormattedMessage id="download.supportChromeOSAnswer" />
                         </p>
 
-                        <h3 className="faq-question">
-                            { this.state.OS === OS_ENUM.WINDOWS ?
-                                <FormattedMessage id="download.cannotAccessWindowsStore" /> :
-                                <FormattedMessage id="download.cannotAccessMacStore" />
-                            }
-                        </h3>
-                        <p>
-                            <FormattedMessage
-                                id="download.appstoreAccessAnswer"
-                                values={{
-                                    directDownloadLink: (
-                                        <a href="">
-                                            <FormattedMessage id="download.directDownloadText" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
                     </FlexRow>
                 </div>
                 <div className="download-section blue">

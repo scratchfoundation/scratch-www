@@ -19,6 +19,17 @@
         align-self: center;
     }
 
+    .download-button {
+        border-radius: 8px;
+        padding: 1rem;
+        font-size: 1rem;
+        display: inline-block;
+        margin: .5em 0;
+        border: 0;
+        background-color: $ui-blue;
+        cursor: pointer;
+        color:$ui-white
+    }
     .download-header {
         background-color: $ui-blue;
         padding: 4rem 0;

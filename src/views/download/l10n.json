@@ -19,5 +19,7 @@
   "download.cannotAccessMacStore" : "What if I can't access the Mac App Store?",
   "download.cannotAccessWindowsStore" : "What if I can't access the Microsoft Store?",
   "download.appstoreAccessAnswer" : "You can download Scratch Desktop directly to your computer by {directDownloadLink}.",
-  "download.directDownloadText" : "clicking here"
+  "download.directDownloadText" : "clicking here",
+  "download.macMoveToApplications" : "Move Scratch Desktop to your Applications folder and start Scratch Desktop.",
+  "download.winMoveToApplications" : "Run it."
 }
