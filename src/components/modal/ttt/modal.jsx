@@ -39,7 +39,7 @@ const TTTModal = props => (
                     <p className="ttt-description">{props.description}</p>
                     <a
                         className="button ttt-try-tutorial-button"
-                        href=""
+                        href={props.tutorialUrl}
                     >
                         <img src="/images/ideas/bulb-icon.svg" />
                         <FormattedMessage id="ideas.tryTheTutorial" />
@@ -52,7 +52,10 @@ const TTTModal = props => (
                             <FormattedMessage id="ideas.codingCards" />
                         </div>
                         <div className="ttt-item">
-                            <a href="">
+                            <a
+                                href={props.cardsUrl}
+                                target="_blank"
+                            >
                                 <FormattedMessage id="ideas.downloadPDF" />
                             </a>
                         </div>
@@ -65,7 +68,10 @@ const TTTModal = props => (
                             <FormattedMessage id="ideas.educatorGuide" />
                         </div>
                         <div className="ttt-item">
-                            <a href="">
+                            <a
+                                href={props.guideUrl}
+                                target="_blank"
+                            >
                                 <FormattedMessage id="ideas.downloadPDF" />
                             </a>
                         </div>

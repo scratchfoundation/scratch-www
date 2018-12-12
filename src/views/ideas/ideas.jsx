@@ -158,6 +158,7 @@ class Ideas extends React.Component {
                                     href={this.props.intl.formatMessage({
                                         id: 'cards.ScratchCardsAllLink'
                                     })}
+                                    target="_blank"
                                 >
                                     <Button className="ideas-button">
                                         <img src="/images/ideas/download-icon.svg" />
