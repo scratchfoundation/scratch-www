@@ -40,22 +40,22 @@ const Landing = () => (
                 <SubNavigation className="inner">
                     <a href="#resources">
                         <li>
-                            <FormattedMessage id="teacherlanding.resourcesAnchor" />
+                            <FormattedMessage id="teacherlanding.resourcesTitle" />
                         </li>
                     </a>
                     <a href="#connect">
                         <li>
-                            <FormattedMessage id="teacherlanding.connectAnchor" />
+                            <FormattedMessage id="teacherlanding.connectTitle" />
                         </li>
                     </a>
                     <a href="#news">
                         <li>
-                            <FormattedMessage id="teacherlanding.newsAnchor" />
+                            <FormattedMessage id="teacherlanding.newsTitle" />
                         </li>
                     </a>
                     <a href="#teacher-accounts">
                         <li>
-                            <FormattedMessage id="teacherlanding.teacherAccountsAnchor" />
+                            <FormattedMessage id="teacherlanding.teacherAccountsTitle" />
                         </li>
                     </a>
                 </SubNavigation>
@@ -65,7 +65,7 @@ const Landing = () => (
         <div className="inner">
             <section id="resources">
                 <span className="nav-spacer" />
-                <h2><FormattedMessage id="teacherlanding.educatorResources" /></h2>
+                <h2><FormattedMessage id="teacherlanding.educatorResourcesTitle" /></h2>
                 <FlexRow className="educator-community">
                     <div>
                         <p>
@@ -99,7 +99,7 @@ const Landing = () => (
             </section>
             <section>
                 <span className="nav-spacer" />
-                <h2><FormattedMessage id="teacherlanding.studentResources" /></h2>
+                <h2><FormattedMessage id="teacherlanding.studentResourcesTitle" /></h2>
                 <FlexRow className="guides-and-tutorials">
                     <div>
                         <a href="/projects/editor/?tutorial=all">
@@ -199,7 +199,7 @@ const Landing = () => (
             </section>
             <section>
                 <span className="nav-spacer" />
-                <h2><FormattedMessage id="teacherlanding.moreGetStarted" /></h2>
+                <h2><FormattedMessage id="teacherlanding.moreGetStartedTitle" /></h2>
                 <FlexRow className="educator-community">
                     <div>
                         <p>
@@ -233,7 +233,7 @@ const Landing = () => (
             </section>
             <section id="news">
                 <span className="nav-spacer" />
-                <h2><FormattedMessage id="teacherlanding.newsAndUpdates" /></h2>
+                <h2><FormattedMessage id="teacherlanding.newsAndUpdatesTitle" /></h2>
                 <FlexRow className="educator-community">
                     <div>
                         <p>
