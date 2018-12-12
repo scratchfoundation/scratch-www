@@ -2,6 +2,12 @@
 @import "../../../frameless";
 
 .mod-addToStudio {
+    min-height: 15rem;
+    max-height: calc(100% - 8rem);
+
+    /* Some value for height must be set for scrolling to work */
+    height: 100%;
+
     overflow: hidden;
 
     @media #{$small}, #{$small-height} {
@@ -18,14 +24,14 @@
     margin: 0 auto;
     box-shadow: none;
     width: 100%;
+    height: calc(100% - 3rem);
 }
 
 .studio-list-outer-scrollbox {
     position: relative;
     background-color: $ui-blue-10percent;
-    min-height: 15rem;
-    max-height: calc(100% - 8rem);
     flex: 1;
+    height: calc(100% - 5rem);
 
     @media #{$small-height} {
         min-height: 0;
