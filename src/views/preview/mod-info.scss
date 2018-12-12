@@ -1,5 +1,11 @@
 @import "../../frameless";
 
+.mod-info-container {
+    margin-bottom: .625rem; /* Match the extra padding below extension chips */
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 .mod-info {
     line-height: 2rem;
     justify-content: flex-start;
