@@ -53,7 +53,7 @@ $story-width: $cols3;
             .video-player {
                 position: relative;
                 margin-bottom: $gutter;
-                border: 2px solid $ui-border;
+                border: .25rem solid $ui-white-15percent;
                 border-radius: 10px;
                 width: $cols4;
                 height: $cols4 * .5625;
@@ -137,6 +137,7 @@ $story-width: $cols3;
         h2 {
             margin: 0 0 2rem 0;
             text-align: left;
+            line-height: normal;
             color: $ui-white;
         }
 
@@ -310,6 +311,7 @@ $story-width: $cols3;
     .masthead-info {
         p {
             width: $cols4;
+            text-align: center;
         }
 
         iframe {
