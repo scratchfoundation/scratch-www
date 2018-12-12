@@ -47,7 +47,7 @@ class Ideas extends React.Component {
     renderTTTTiles () {
         return Tiles.map((tile, key) => {
             const translatedTile = {
-                tutorialUrl: tile.tutorialUrl,
+                tutorialUrl: `/projects/editor/?tutorial=${tile.tutorialUrl}`,
                 modalImage: tile.modalImage,
                 description: this.props.intl.formatMessage({id: tile.description}),
                 guideUrl: this.props.intl.formatMessage({id: tile.guideUrl}),
