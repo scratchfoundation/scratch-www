@@ -482,7 +482,39 @@ $stage-width: 480px;
             display: flex;
             flex: 1;
         }
+
+        ::-webkit-input-placeholder { /* Chrome <=56, Safari < 10 */
+            transition: opacity .25s;
+            opacity: 1;
+            -webkit-transition: opacity .25s;
+        }
+        :-moz-placeholder { /* FF 4-18 */
+            transition: opacity .25s;
+            opacity: 1;
+            -moz-transition: opacity .25s;
+        }
+        ::-moz-placeholder { /* FF 19-51 */
+            transition: opacity .25s;
+            opacity: 1;
+            -moz-transition: opacity .25s;
+        }
+        :-ms-input-placeholder { /* IE 10+ */
+            transition: opacity .25s;
+            opacity: 1;
+            -ms-transition: opacity .25s;
+        }
+        ::placeholder { /* Modern Browsers */
+            transition: opacity .25s;
+            opacity: 1;
+        }
+
+        *:focus::-webkit-input-placeholder { opacity: 0; } /* Chrome <=56, Safari < 10 */
+        *:focus:-moz-placeholder { opacity: 0; } /* FF 4-18 */
+        *:focus::-moz-placeholder { opacity: 0; } /* FF 19-50 */
+        *:focus:-ms-input-placeholder { opacity: 0; } /* IE 10+ */
+        *:focus::placeholder { opacity: 0; } /* Modern Browsers */
     }
+
 
     .comments-header {
         padding: 0 0 1rem 0;
