@@ -3,7 +3,6 @@ const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
-
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
@@ -116,11 +115,11 @@ class Wedo2 extends ExtensionLanding {
                                         values={{
                                             scratch3Link: (
                                                 <a
-                                                    href="https://beta.scratch.mit.edu/"
+                                                    href="/projects/editor/?tutorial=wedo"
                                                     rel="noopener noreferrer"
                                                     target="_blank"
                                                 >
-                                                            Scratch 3.0
+                                                            Scratch
                                                 </a>
                                             )
                                         }}
@@ -184,25 +183,25 @@ class Wedo2 extends ExtensionLanding {
                     <h3><FormattedMessage id="wedo2.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239284992"
-                            description={this.props.intl.formatMessage({id: 'wedo2.starter1Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter1'})}
+                            cardUrl="/projects/269442111/editor?tutorial=wedo"
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter1PetDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter1Pet'})}
                             imageSrc="/images/wedo2/wedo2-starter1.png"
-                            title={this.props.intl.formatMessage({id: 'wedo2.starter1Title'})}
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter1PetTitle'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239284997"
-                            description={this.props.intl.formatMessage({id: 'wedo2.starter2Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter2'})}
+                            cardUrl="/projects/269442224/editor?tutorial=wedo"
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter2FoxDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter2Fox'})}
                             imageSrc="/images/wedo2/wedo2-starter2.png"
-                            title={this.props.intl.formatMessage({id: 'wedo2.starter2Title'})}
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter2FoxTitle'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239285001"
-                            description={this.props.intl.formatMessage({id: 'wedo2.starter3Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter3'})}
+                            cardUrl="/projects/269442247/editor?tutorial=wedo"
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter3PufferfishDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter3Pufferfish'})}
                             imageSrc="/images/wedo2/wedo2-starter3.png"
-                            title={this.props.intl.formatMessage({id: 'wedo2.starter3Title'})}
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter3PufferfishTitle'})}
                         />
                     </Steps>
                 </ExtensionSection>
