@@ -1,9 +1,15 @@
 {
-    "cards.ScratchCardsAllLink": "https://resources.scratch.mit.edu/www/cards/en/ScratchCardsAll.pdf",
-    "cards.nameCardsLink": "https://resources.scratch.mit.edu/www/cards/en/nameCards.pdf",
-    "cards.musicCardsLink": "https://resources.scratch.mit.edu/www/cards/en/musicCards.pdf",
-    "cards.storyCardsLink": "https://resources.scratch.mit.edu/www/cards/en/storyCards.pdf",
+    "cards.ScratchCardsAllLink": "https://resources.scratch.mit.edu/www/cards/en/scratch-cards-all.pdf",
+    "cards.nameCardsLink": "https://resources.scratch.mit.edu/www/cards/en/name-cards.pdf",
+    "cards.animateCardsLink": "https://resources.scratch.mit.edu/www/cards/en/animate-cards.pdf",
+    "cards.musicCardsLink": "https://resources.scratch.mit.edu/www/cards/en/music-cards.pdf",
+    "cards.storyCardsLink": "https://resources.scratch.mit.edu/www/cards/en/story-cards.pdf",
+    "cards.chaseCardsLink": "https://resources.scratch.mit.edu/www/cards/en/chase-cards.pdf",
+    "cards.videoCardsLink": "https://resources.scratch.mit.edu/www/cards/en/video-cards.pdf",
     "guides.nameGuideLink": "https://resources.scratch.mit.edu/www/guides/en/NameGuide.pdf",
+    "guides.animateGuideLink": "https://resources.scratch.mit.edu/www/guides/en/AnimateGuide.pdf",
     "guides.musicGuideLink": "https://resources.scratch.mit.edu/www/guides/en/MusicGuide.pdf",
-    "guides.storyGuideLink": "https://resources.scratch.mit.edu/www/guides/en/StoryGuide.pdf"
+    "guides.storyGuideLink": "https://resources.scratch.mit.edu/www/guides/en/StoryGuide.pdf",
+    "guides.chaseGuideLink": "https://resources.scratch.mit.edu/www/guides/en/ChaseGuide.pdf",
+    "guides.videoGuideLink": "https://resources.scratch.mit.edu/www/guides/en/VideoGuide.pdf"
 }
