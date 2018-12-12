@@ -1,5 +1,4 @@
 const classNames = require('classnames');
-const FormattedMessage = require('react-intl').FormattedMessage;
 const PropTypes = require('prop-types');
 const React = require('react');
 

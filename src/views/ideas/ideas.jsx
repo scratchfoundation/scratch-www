@@ -85,57 +85,61 @@ class Ideas extends React.Component {
                         </div>
                     </TitleBanner>
                 </div>
-                <div className="inner">
-                    <FlexRow
-                        as="section"
-                        className="tips-info-section"
-                    >
-                        <div>
-                            <img src="images/ideas/getting-started-illustration.svg" />
-                        </div>
-                        <div>
-                            <h2>
-                                <FormattedMessage id="ideas.gettingStartedTitle" />
-                            </h2>
-                            <p>
-                                <FormattedHTMLMessage id="ideas.gettingStartedText" />
-                            </p>
-                            <a href="">
-                                <Button className="ideas-button">
-                                    <img src="/images/ideas/try-it-icon.svg" />
-                                    <FormattedMessage id="ideas.tryIt" />
+                <div className="tips-getting-started">
+                    <div className="inner">
+                        <FlexRow
+                            as="section"
+                            className="tips-info-section tips-left"
+                        >
+                            <div className="ideas-image">
+                                <img src="images/ideas/getting-started-illustration.svg" />
+                            </div>
+                            <div>
+                                <h2>
+                                    <FormattedMessage id="ideas.gettingStartedTitle" />
+                                </h2>
+                                <p>
+                                    <FormattedHTMLMessage id="ideas.gettingStartedText" />
+                                </p>
+                                <a href="">
+                                    <Button className="ideas-button">
+                                        <img src="/images/ideas/try-it-icon.svg" />
+                                        <FormattedMessage id="ideas.tryIt" />
+                                    </Button>
+                                </a>
+                            </div>
+                        </FlexRow>
+                    </div>
+                </div>
+                <div className="tips-activity-guides">
+                    <div className="inner">
+                        <section className="ttt-section">
+                            <div className="ttt-head">
+                                <h2>
+                                    <FormattedMessage id="ideas.activityGuidesTitle" />
+                                </h2>
+                                <p>
+                                    <FormattedHTMLMessage id="ideas.activityGuidesText" />
+                                </p>
+                            </div>
+                            <MasonryGrid >
+                                {this.renderTTTTiles()}
+                            </MasonryGrid>
+                            <TTTModal
+                                isOpen={this.state.TTTModalOpen}
+                                onRequestClose={this.handleHideTTTModal}
+                                {...this.state.currentTile}
+                            />
+                            <a
+                                className="wide-button"
+                                href=""
+                            >
+                                <Button className="ideas-button wide-button">
+                                    <FormattedMessage id="ideas.seeAllTutorials" />
                                 </Button>
                             </a>
-                        </div>
-                    </FlexRow>
-                </div>
-                <div className="inner">
-                    <section className="ttt-section">
-                        <div className="ttt-head">
-                            <h2>
-                                <FormattedMessage id="ideas.activityGuidesTitle" />
-                            </h2>
-                            <p>
-                                <FormattedHTMLMessage id="ideas.activityGuidesText" />
-                            </p>
-                        </div>
-                        <MasonryGrid >
-                            {this.renderTTTTiles()}
-                        </MasonryGrid>
-                        <TTTModal
-                            isOpen={this.state.TTTModalOpen}
-                            onRequestClose={this.handleHideTTTModal}
-                            {...this.state.currentTile}
-                        />
-                        <a
-                            className="wide-button"
-                            href=""
-                        >
-                            <Button className="ideas-button wide-button">
-                                <FormattedMessage id="ideas.seeAllTutorials" />
-                            </Button>
-                        </a>
-                    </section>
+                        </section>
+                    </div>
                 </div>
                 <div>
                     <div className="inner">
@@ -155,7 +159,7 @@ class Ideas extends React.Component {
                                         id: 'cards.ScratchCardsAllLink'
                                     })}
                                 >
-                                    <Button className="tips-button">
+                                    <Button className="tips-button ideas-button">
                                         <img src="/images/ideas/download-icon.svg" />
                                         <FormattedMessage id="ideas.downloadPDF" />
                                     </Button>
@@ -174,11 +178,10 @@ class Ideas extends React.Component {
                     <div className="inner">
                         <FlexRow
                             as="section"
-                            className="tips-info-section"
+                            className="tips-info-section tips-left"
                         >
-                            <div className="tips-info-body tips-illustration">
+                            <div className="ideas-image">
                                 <img
-                                    className="mod-flow-left"
                                     src="/images/ideas/starter-projects-illustration.svg"
                                 />
                             </div>

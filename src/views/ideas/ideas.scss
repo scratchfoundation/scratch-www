@@ -14,6 +14,7 @@ $base-bg: $ui-white;
 
 .ideas-banner {
     background: bottom left url('/images/ideas/left-juice.png') no-repeat;
+    margin-bottom: 0px;
 }
 
 .ttt-section {
@@ -42,7 +43,7 @@ $base-bg: $ui-white;
 
     img {
         margin-right: 1rem;
-        height: 1.25rem;
+        height: 1.5rem;
         vertical-align: middle;
     }
 
@@ -53,6 +54,24 @@ $base-bg: $ui-white;
 
 .wide-button {
   width: 100%;
+}
+
+.tips-getting-started {
+  padding-top: 2.5rem;
+  background-color: #FAFAFF;
+}
+
+.tips-left {
+  justify-content: flex-start;
+}
+
+.ideas-image {
+  margin-right: 2rem;
+}
+
+.tips-activity-guides {
+  padding-bottom: 2rem;
+  background-color: #FAFAFF;
 }
 
 .purchase-button {
@@ -67,7 +86,7 @@ $base-bg: $ui-white;
 .tips-info-section {
     padding: 2.5rem 0;
     width: 100%;
-    justify-content: space-between;
+    flex-wrap: nowrap;
 }
 
 .tips-info-body {
@@ -182,14 +201,6 @@ img.tips-icon {
 
     .tips-info-body {
         max-width: $cols4;
-    }
-
-    .tips-button {
-        width: 100%;
-    }
-
-    img.mod-flow-left {
-        transform: translate(-1*$cols2);
     }
 }
 
