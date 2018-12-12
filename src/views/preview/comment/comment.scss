@@ -30,7 +30,7 @@
 
         textarea {
             &:not(:focus) {
-                border: 1px solid $active-dark-gray;
+                border: 2px solid $active-dark-gray;
             }
         }
     }
