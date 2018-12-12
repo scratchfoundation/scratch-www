@@ -3,7 +3,6 @@ const omit = require('lodash.omit');
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const FlexRow = require('../../flex-row/flex-row.jsx');
 const Modal = require('../base/modal.jsx');
 
 require('../../forms/button.scss');
