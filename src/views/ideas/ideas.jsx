@@ -215,10 +215,10 @@ class Ideas extends React.Component {
                                     src="/images/tips/download-icon.svg"
                                 />
                                 <h3>
-                                    <FormattedMessage id="ideas.offlineEditorHeader" />
+                                    <FormattedMessage id="ideas.desktopEditorHeader" />
                                 </h3>
                                 <p>
-                                    <FormattedHTMLMessage id="ideas.offlineEditorBody" />
+                                    <FormattedHTMLMessage id="ideas.desktopEditorBody" />
                                 </p>
                             </div>
                             <div className="tips-info-body mod-narrow">
