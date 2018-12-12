@@ -76,7 +76,7 @@ class Ideas extends React.Component {
                             <h1 className="title-banner-h1">
                                 <FormattedMessage id="ideas.headerMessage" />
                             </h1>
-                            <a href="">
+                            <a href="/projects/editor/?tutorial=all">
                                 <Button className="ideas-button">
                                     <img src="/images/ideas/bulb-icon.svg" />
                                     <FormattedMessage id="ideas.headerButtonMessage" />
@@ -101,7 +101,7 @@ class Ideas extends React.Component {
                                 <p>
                                     <FormattedHTMLMessage id="ideas.gettingStartedText" />
                                 </p>
-                                <a href="">
+                                <a href="/projects/editor/?tutorial=getStarted">
                                     <Button className="ideas-button">
                                         <img src="/images/ideas/try-it-icon.svg" />
                                         <FormattedMessage id="ideas.tryIt" />
@@ -132,7 +132,7 @@ class Ideas extends React.Component {
                             />
                             <a
                                 className="wide-button"
-                                href=""
+                                href="/projects/editor/?tutorial=all"
                             >
                                 <Button className="ideas-button wide-button">
                                     <FormattedMessage id="ideas.seeAllTutorials" />
