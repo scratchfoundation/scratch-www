@@ -8,20 +8,22 @@
     // background-image: url("/images/feature/bg-pattern.png");
     background-size: cover;
     padding: 0;
-    height: 22rem;
+    min-height: 22rem;
     // overflow: hidden; // if banner shouldn't have things that break the edges
     justify-content: center;
 
     .feature-top-container {
         position: absolute;
         top: 0;
-        right: 20%;
         bottom: 0;
         left: 20%;
+        z-index: 1;
         margin: auto;
+        padding: 1.5rem 0;
         justify-content: center;
         align-items: flex-start;
-        height: 20rem;
+        min-height: 20rem;
+        max-width: 660px;
     }
 
     .feature-banner-images {
@@ -139,15 +141,28 @@
         }
     }
 }
+
+@media only screen and (max-width: 1100px) {
+    .feature-top-banner {
+        
+        .feature-top-container {
+            max-width: 480px;
+        }
+    }
+}
 @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
     .feature-top-banner {
         .feature-top-container {
             left: 4rem;
         }
         
+        .feature-banner-images {
+            overflow: hidden;
+        }
+        
         .feature-banner-image {
             &.right {
-                margin-right: -8rem;
+                transform: translateX(32px);
             }
         }
     }
@@ -170,12 +185,12 @@
 @media only screen and (max-width: $mobile - 1) {
     .feature-top-banner {
         overflow: hidden;
-        height: 32rem;
+        min-height: 32rem;
         
         .feature-top-container {
             right: 0;
             left: 0;
-            height: 30rem;
+            min-height: 30rem;
             justify-content: flex-start;
             align-items: center;
         }
@@ -188,8 +203,14 @@
         .feature-banner-image {
             &.right {
                 margin-right: 0;
-                margin-bottom: -8rem;
+                margin-bottom: -4rem;
                 width: 100%;
+            }
+            
+            &.left {
+                margin-bottom: .5rem;
+                display: block;
+                width: 25%;
             }
         }
     }
