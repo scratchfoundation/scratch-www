@@ -3,7 +3,7 @@
     "cards.nameCardsLink": "https://resources.scratch.mit.edu/www/cards/en/nameCards.pdf",
     "cards.musicCardsLink": "https://resources.scratch.mit.edu/www/cards/en/musicCards.pdf",
     "cards.storyCardsLink": "https://resources.scratch.mit.edu/www/cards/en/storyCards.pdf",
-    "guides.MusicGuideLink": "https://resources.scratch.mit.edu/www/guides/en/MusicGuide.pdf",
-    "guides.NameGuideLink": "https://resources.scratch.mit.edu/www/guides/en/NameGuide.pdf",
-    "guides.StoryGuideLink": "https://resources.scratch.mit.edu/www/guides/en/StoryGuide.pdf"
+    "guides.nameGuideLink": "https://resources.scratch.mit.edu/www/guides/en/NameGuide.pdf",
+    "guides.musicGuideLink": "https://resources.scratch.mit.edu/www/guides/en/MusicGuide.pdf",
+    "guides.storyGuideLink": "https://resources.scratch.mit.edu/www/guides/en/StoryGuide.pdf"
 }
