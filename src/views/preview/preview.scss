@@ -427,7 +427,7 @@ $stage-width: 480px;
         overflow: auto;
         white-space: pre-line;
         font-size: 1rem;
-        // flex-grow
+        line-height: 1.5rem;
         flex: 1;
     }
 
@@ -472,6 +472,10 @@ $stage-width: 480px;
         & > .grow {
             display: flex;
             flex: 1;
+        }
+
+        & .inplace-textarea {
+            line-height: 1.5rem; /* Override 1.75 from form styling */
         }
 
         ::-webkit-input-placeholder { /* Chrome <=56, Safari < 10 */
