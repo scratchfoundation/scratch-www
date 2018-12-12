@@ -3,10 +3,9 @@ const EXTENSION_INFO = require('./extensions.js').default;
 module.exports = {
     // Keys match the projectVersion key from project serialization
     3: {
-        extensions: project => {
+        extensions: project =>
             (project.extensions || []).map(ext => EXTENSION_INFO[ext])
-                .filter(ext => !!ext); // Only include extensions in the info lib
-        },
+                .filter(ext => !!ext), // Only include extensions in the info lib
         spriteCount: project =>
             project.targets.length - 1, // don't count stage
         scriptCount: project => project.targets
