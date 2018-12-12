@@ -100,7 +100,6 @@
     "react-telephone-input": "4.3.4",
     "redux": "3.5.2",
     "redux-thunk": "2.0.1",
-    "sass-lint": "1.5.1",
     "sass-loader": "6.0.6",
     "scratch-gui": "develop",
     "scratchr2_translations": "git://github.com/LLK/scratchr2_translations.git#master",

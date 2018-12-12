@@ -1,6 +1,5 @@
 ESLINT=./node_modules/.bin/eslint
 NODE= NODE_OPTIONS=--max_old_space_size=8000 node
-SASSLINT=./node_modules/.bin/sass-lint -v
 SCRATCH_DOCKER_CONFIG=./node_modules/.bin/docker_config.sh
 S3CMD=s3cmd sync -P --delete-removed --add-header=Cache-Control:no-cache,public,max-age=3600
 TAP=./node_modules/.bin/tap
@@ -70,8 +69,6 @@ test:
 
 lint:
 	$(ESLINT) . --ext .js,.jsx,.json
-	$(SASSLINT) ./src/*.scss
-	$(SASSLINT) ./src/**/*.scss
 
 unit:
 	$(TAP) ./test/unit/*.js
