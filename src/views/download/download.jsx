@@ -176,38 +176,48 @@ class Download extends React.Component {
                         </h3>
                         <FlexRow>
                             <div className="older-version">
-                                <img
-                                    alt=""
-                                    className="screenshot"
-                                    height="106"
-                                    src="/images/download/scratch1-4.png"
-                                    width="150"
-                                />
-                                <p>
-                                    <a
-                                        className="centered"
-                                        href="/scratch_1.4"
-                                    >
-                                        <FormattedMessage id="download.scratch1-4Desktop" />
-                                        <img src="/svgs/download/r-arrow.svg" />
-                                    </a>
-                                </p>
-                            </div>
-                            <div className="older-version">
-                                <img
-                                    alt=""
-                                    className="screenshot"
-                                    height="106"
-                                    src="/images/download/scratch2.png"
-                                    width="150"
-                                />
+                                <a href="/download/scratch2">
+                                    <img
+                                        alt=""
+                                        className="screenshot"
+                                        height="106"
+                                        src="/images/download/scratch2.png"
+                                        width="150"
+                                    />
+                                </a>
                                 <p>
                                     <a
                                         className="centered"
                                         href="/download/scratch2"
                                     >
                                         <FormattedMessage id="download.scratch2Desktop" />
-                                        <img src="/svgs/download/r-arrow.svg" />
+                                        <img
+                                            className="little-arrow"
+                                            src="/svgs/download/r-arrow.svg"
+                                        />
+                                    </a>
+                                </p>
+                            </div>
+                            <div className="older-version">
+                                <a href="/scratch_1.4">
+                                    <img
+                                        alt=""
+                                        className="screenshot"
+                                        height="106"
+                                        src="/images/download/scratch1-4.png"
+                                        width="150"
+                                    />
+                                </a>
+                                <p>
+                                    <a
+                                        className="centered"
+                                        href="/scratch_1.4"
+                                    >
+                                        <FormattedMessage id="download.scratch1-4Desktop" />
+                                        <img
+                                            className="little-arrow"
+                                            src="/svgs/download/r-arrow.svg"
+                                        />
                                     </a>
                                 </p>
                             </div>
