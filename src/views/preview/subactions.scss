@@ -56,6 +56,9 @@
             font-size: .75rem;
             font-weight: bold;
 
+            &:active {
+                filter: brightness(90%);
+            }
             &.studio-button,
             &.copy-link-button,
             &.report-button {
