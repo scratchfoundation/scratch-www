@@ -246,24 +246,24 @@ class EV3 extends ExtensionLanding {
                     <Steps>
                         <ProjectCard
                             cardUrl="/projects/269442346/editor?tutorial=ev3"
-                            description={this.props.intl.formatMessage({id: 'ev3.starter1Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltStarter1'})}
+                            description={this.props.intl.formatMessage({id: 'ev3.starter1BasketballDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltStarter1Basketball'})}
                             imageSrc="/images/ev3/ev3-starter1.png"
-                            title={this.props.intl.formatMessage({id: 'ev3.starter1Title'})}
+                            title={this.props.intl.formatMessage({id: 'ev3.starter1BasketballTitle'})}
                         />
                         <ProjectCard
                             cardUrl="/projects/269442350/editor?tutorial=ev3"
-                            description={this.props.intl.formatMessage({id: 'ev3.starter2Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltStarter2'})}
+                            description={this.props.intl.formatMessage({id: 'ev3.starter2MusicDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltStarter2Music'})}
                             imageSrc="/images/ev3/ev3-starter2.png"
-                            title={this.props.intl.formatMessage({id: 'ev3.starter2Title'})}
+                            title={this.props.intl.formatMessage({id: 'ev3.starter2MusicTitle'})}
                         />
                         <ProjectCard
                             cardUrl="/projects/269442354/editor?tutorial=ev3"
-                            description={this.props.intl.formatMessage({id: 'ev3.starter3Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltStarter3'})}
+                            description={this.props.intl.formatMessage({id: 'ev3.starter3SpaceDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'ev3.imgAltStarter3Space'})}
                             imageSrc="/images/ev3/ev3-starter3.png"
-                            title={this.props.intl.formatMessage({id: 'ev3.starter3Title'})}
+                            title={this.props.intl.formatMessage({id: 'ev3.starter3SpaceTitle'})}
                         />
                     </Steps>
                 </ExtensionSection>

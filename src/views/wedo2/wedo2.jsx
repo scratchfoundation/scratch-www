@@ -184,24 +184,24 @@ class Wedo2 extends ExtensionLanding {
                     <Steps>
                         <ProjectCard
                             cardUrl="/projects/269442111/editor?tutorial=wedo"
-                            description={this.props.intl.formatMessage({id: 'wedo2.starter1Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter1'})}
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter1PetDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter1Pet'})}
                             imageSrc="/images/wedo2/wedo2-starter1.png"
-                            title={this.props.intl.formatMessage({id: 'wedo2.starter1Title'})}
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter1PetTitle'})}
                         />
                         <ProjectCard
                             cardUrl="/projects/269442224/editor?tutorial=wedo"
-                            description={this.props.intl.formatMessage({id: 'wedo2.starter2Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter2'})}
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter2FoxDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter2Fox'})}
                             imageSrc="/images/wedo2/wedo2-starter2.png"
-                            title={this.props.intl.formatMessage({id: 'wedo2.starter2Title'})}
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter2FoxTitle'})}
                         />
                         <ProjectCard
                             cardUrl="/projects/269442247/editor?tutorial=wedo"
-                            description={this.props.intl.formatMessage({id: 'wedo2.starter3Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter3'})}
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter3PufferfishDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter3Pufferfish'})}
                             imageSrc="/images/wedo2/wedo2-starter3.png"
-                            title={this.props.intl.formatMessage({id: 'wedo2.starter3Title'})}
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter3PufferfishTitle'})}
                         />
                     </Steps>
                 </ExtensionSection>
