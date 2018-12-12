@@ -8,6 +8,7 @@ const thumbnailUrl = require('../../lib/user-thumbnail');
 const RemixCredit = props => {
     const projectInfo = props.projectInfo;
     if (Object.keys(projectInfo).length === 0) return null;
+    if (!projectInfo.author) return null;
     return (
         <FlexRow className="remix-credit">
             <Avatar

@@ -394,6 +394,10 @@ module.exports.getOriginalInfo = id => (dispatch => {
             return;
         }
         dispatch(module.exports.setFetchStatus('original', module.exports.Status.FETCHED));
+        if (body && body.code === 'NotFound') {
+            dispatch(module.exports.setOriginalInfo({}));
+            return;
+        }
         dispatch(module.exports.setOriginalInfo(body));
     });
 });
@@ -414,6 +418,10 @@ module.exports.getParentInfo = id => (dispatch => {
             return;
         }
         dispatch(module.exports.setFetchStatus('parent', module.exports.Status.FETCHED));
+        if (body && body.code === 'NotFound') {
+            dispatch(module.exports.setParentInfo({}));
+            return;
+        }
         dispatch(module.exports.setParentInfo(body));
     });
 });
