@@ -112,7 +112,11 @@ class Download extends React.Component {
                                     <div className="downloads-container">
                                         <a
                                             className="download-button"
-                                            href="https://beta.scratch.mit.edu/"
+                                            href={
+                                                this.state.OS === OS_ENUM.WINDOWS ?
+                                                    'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop%20Setup%201.0.0.exe' :
+                                                    'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop-1.0.0.dmg'
+                                            }
                                         >
                                             <FormattedMessage id="download.downloadButton" />
                                         </a>
