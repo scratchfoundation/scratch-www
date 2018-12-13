@@ -8,16 +8,16 @@ const TitleBanner = require('../../../components/title-banner/title-banner.jsx')
 require('./small-top-banner.scss');
 
 const SmallTopBanner = () => (
-    <TitleBanner className="beta-small-top-banner">
-        <FlexRow className="beta-small-top-container">
-            <h2 className="beta-copy">
-                <FormattedMessage id="betabanner.subtitle" />
+    <TitleBanner className="small-top-banner">
+        <FlexRow className="small-top-container">
+            <h2 className="copy">
+                <FormattedMessage id="topBanner.subtitle" />
             </h2>
             <a
-                className="beta-try-it button"
-                href="https://beta.scratch.mit.edu/"
+                className="call-to-action button"
+                href="https://scratch.mit.edu/"
             >
-                <FormattedMessage id="betabanner.callToAction" />
+                <FormattedMessage id="topBanner.callToAction" />
             </a>
         </FlexRow>
     </TitleBanner>

@@ -1,12 +1,12 @@
 @import "../../../colors";
 @import "../../../frameless";
 
-.beta-middle-banner {
+.feature-middle-banner {
     display: flex;
     margin-top: 20px;
     border-radius: 16px;
     background-color: $ui-orange;
-    background-image: url("/images/beta/bg-pattern.png");
+    background-image: url("/images/feature/bg-pattern.png");
     background-size: cover;
     padding: 0;
     height: 17rem;
@@ -14,18 +14,18 @@
     box-sizing: border-box;
     justify-content: space-between;
 
-    .beta-middle-container {
+    .feature-middle-container {
         padding-left: 3rem;
         align-items: flex-start;
         flex-shrink: 0;
     }
 
-    .beta-banner-images {
+    .feature-banner-images {
         display: flex;
         height: 100%;
         align-self: flex-end;
 
-        .beta-banner-image {
+        .feature-banner-image {
             display: flex;
             margin-right: 2rem;
             min-width: 0;
@@ -41,24 +41,24 @@
         }
     }
 
-    .beta-header,
-    .beta-copy,
-    .beta-try-it {
+    .feature-header,
+    .feature-copy,
+    .feature-call-to-action {
         color: $ui-white;
     }
 
-    .beta-header {
+    .feature-header {
         font-size: 1.7rem;
     }
 
-    .beta-copy {
+    .feature-copy {
         margin-bottom: 1rem;
         max-width: 350px;
         line-height: 1.7rem;
         font-size: 1.3rem;
     }
 
-    .beta-try-it {
+    .feature-call-to-action {
         border-radius: 10px;
         padding: 1em 2em;
         font-size: 1em;
@@ -66,21 +66,21 @@
 }
 
 @media #{$intermediate} {
-    .beta-middle-banner {
+    .feature-middle-banner {
         margin: 20px auto 40px auto;
         width: $cols8;
         height: initial;
         flex-direction: column;
         justify-content: center;
 
-        .beta-middle-container {
+        .feature-middle-container {
             padding-top: 4rem;
             padding-left: 0;
             align-items: center;
         }
 
-        .beta-banner-images {
-            .beta-banner-image {
+        .feature-banner-images {
+            .feature-banner-image {
                 margin: 0;
                 padding: 0;
 
