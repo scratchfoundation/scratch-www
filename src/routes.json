@@ -142,6 +142,13 @@
         "title": "Scratch Community Guidelines"
     },
     {
+        "name": "ideas",
+        "pattern": "^/ideas/?(\\?.*)?$",
+        "routeAlias": "/ideas/?\\??",
+        "view": "ideas/ideas",
+        "title": "Ideas"
+    },
+    {
         "name": "jobs",
         "pattern": "^/jobs/?$",
         "routeAlias": "/jobs(/moderator)?/?$",
@@ -267,13 +274,6 @@
         "title": "Scratch Terms of Use"
     },
     {
-        "name": "tips",
-        "pattern": "^/tips/?(\\?.*)?$",
-        "routeAlias": "/tips/?\\??",
-        "view": "tips/tips",
-        "title": "Tips"
-    },
-    {
         "name": "wedo2",
         "pattern": "^/wedo/?$",
         "routeAlias": "/wedo/?$",
@@ -341,25 +341,25 @@
         "name": "help-redirect",
         "pattern": "^/help/?(\\?.*)?$",
         "routeAlias": "/help/?(\\?.*)?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "hoc-redirect",
         "pattern": "^/hoc/?(\\?.*)?$",
         "routeAlias": "/hoc/?\\??",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "hoc2014-redirect",
         "pattern": "^/hoc2014/?(\\?.*)?$",
         "routeAlias": "/hoc2014/?\\??",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "info-redirect",
         "pattern": "^/info/?(\\?.*)?$",
         "routeAlias": "/info/?(\\?.*)?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "research-redirect",
@@ -385,10 +385,16 @@
         "redirect": "https://scratch-foundation.myshopify.com"
     },
     {
+        "name": "tips-redirect",
+        "pattern": "^/tips/?(\\?.*)?$",
+        "routeAlias": "/tips/?\\??",
+        "redirect": "/ideas"
+    },
+    {
         "name": "things-to-try-redirect",
         "pattern": "^/go/?(\\?.*)?$",
         "routeAlias": "/go/?\\??",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "create-tutorial-redirect",
@@ -433,110 +439,103 @@
     {
         "name": "catch-tutorial-redirect",
         "pattern": "^/catch/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "dance-tutorial-redirect",
         "pattern": "^/dance/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "fly-tutorial-redirect",
         "pattern": "^/fly/?$",
         "routeAlias": "/(makeit)?fly/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "makeitfly-tutorial-redirect",
         "pattern": "^/makeitfly/?$",
         "routeAlias": "/(makeit)?fly/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "pet-tutorial-redirect",
         "pattern": "^/pet/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "racegame-tutorial-redirect",
         "pattern": "^/racegame/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "hide-tutorial-redirect",
         "pattern": "^/hide/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "fashion-tutorial-redirect",
         "pattern": "^/fashion/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "dressup-tutorial-redirect",
         "pattern": "^/dressup/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "card-tutorial-redirect",
         "pattern": "^/card/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "valentines-tutorial-redirect",
         "pattern": "^/valentines/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "bearstack-tutorial-redirect",
         "pattern": "^/bearstack/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "favorite-tutorial-redirect",
         "pattern": "^/favorite/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "hoops-tutorial-redirect",
         "pattern": "^/hoops/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "soccer-tutorial-redirect",
         "pattern": "^/soccer/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "codeweek-tutorial-redirect",
         "pattern": "^/codeweekeu/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "madewithcode-tutorial-redirects",
         "pattern": "^/madewithcode-(name|card)/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "odetocode-tutorial-redirect",
         "pattern": "^/odetocode/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "makey-tutorial-redirects",
         "pattern": "^/makey(piano|drum)?/?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "bird-redirect",
         "pattern": "^/bird/?$",
-        "redirect": "/tips"
-    },
-    {
-        "name": "ideas",
-        "pattern": "^/ideas/?(\\?.*)?$",
-        "routeAlias": "/ideas/?\\??",
-        "view": "ideas/ideas",
-        "title": "Ideas"
+        "redirect": "/ideas"
     }
 ]
