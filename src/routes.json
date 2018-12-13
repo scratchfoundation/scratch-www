@@ -239,6 +239,13 @@
         "title": "Scratch 1.4"
     },
     {
+        "name": "scratch2",
+        "pattern": "^/download/scratch2/?$",
+        "routeAlias": "/download/scratch2",
+        "view": "download/scratch2/download",
+        "title": "Scratch 2.0"
+    },
+    {
         "name": "search",
         "pattern": "^/search/:projects/?$",
         "routeAlias": "/search",
