@@ -459,21 +459,6 @@ const PreviewPresentation = ({
                                 />
                             </FlexRow>
                         </MediaQuery>
-                        {showModInfo &&
-                            <React.Fragment>
-                                <div className="project-textlabel">
-                                    <FormattedMessage id="project.moderationInfoLabel" />
-                                </div>
-                                <ModInfo
-                                    revisedDate={revisedDate}
-                                    scripts={modInfo.scriptCount}
-                                    sprites={modInfo.spriteCount}
-                                />
-
-                            </React.Fragment>
-                        }
-
-
                         <MediaQuery minWidth={frameless.tablet}>
                             <FlexRow className="preview-row">
                                 <FlexRow className="extension-list">
@@ -489,6 +474,15 @@ const PreviewPresentation = ({
                                 </FlexRow>
                             </FlexRow>
                         </MediaQuery>
+                        {showModInfo &&
+                            <FlexRow className="preview-row">
+                                <ModInfo
+                                    revisedDate={revisedDate}
+                                    scripts={modInfo.scriptCount}
+                                    sprites={modInfo.spriteCount}
+                                />
+                            </FlexRow>
+                        }
                     </div>
                     <div className="project-lower-container">
                         <div className="inner">

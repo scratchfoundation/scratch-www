@@ -30,7 +30,7 @@
 
         textarea {
             &:not(:focus) {
-                border: 1px solid $active-dark-gray;
+                border: 2px solid $active-dark-gray;
             }
         }
     }
@@ -199,6 +199,8 @@
         }
 
         .comment-content {
+            font-size: 1rem;
+            line-height: 1.5rem;
             overflow-wrap: break-word;
         }
 

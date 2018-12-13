@@ -9,6 +9,7 @@
     height: 3rem;
     flex-flow: row;
     box-sizing: border-box;
+    align-items: center;
 
     &.has-status {
         background-color: $ui-orange-25percent;

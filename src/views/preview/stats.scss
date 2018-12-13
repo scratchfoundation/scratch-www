@@ -32,10 +32,11 @@
 .project-remixes,
 .project-views {
 
-    display: inline;
+    display: flex;
     padding-right: 2rem;
     font-size: 1rem;
     font-weight: bold;
+    align-items: center;
 
     &:before {
         display: inline-block;
@@ -43,9 +44,8 @@
         background-repeat: no-repeat;
         background-position: center center;
         background-size: contain;
-        width: 1.5rem;
-        height: 1.5rem;
-        vertical-align: -.25rem;
+        width: 1.75rem;
+        height: 1.75rem;
         content: "";
     }
 }
