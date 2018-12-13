@@ -1,5 +1,8 @@
 const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
+const injectIntl = require('react-intl').injectIntl;
+const intlShape = require('react-intl').intlShape;
+
 const React = require('react');
 
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
@@ -11,7 +14,8 @@ const render = require('../../../lib/render.jsx');
 
 require('./landing.scss');
 
-const Landing = () => (
+const Landing = props => (
+
     <div className="educators">
         <TitleBanner className="masthead">
             <div className="inner">
@@ -73,7 +77,11 @@ const Landing = () => (
                                 id="teacherlanding.educatorGuides"
                                 values={{
                                     educatorLink: (
-                                        <a href="https://resources.scratch.mit.edu/www/guides/en/EducatorGuidesAll.pdf">
+                                        <a
+                                            href={props.intl.formatMessage({
+                                                id: 'guides.EducatorGuidesAllLink'
+                                            })}
+                                        >
                                             <FormattedMessage id="teacherlanding.educatorGuideLinkText" />
                                         </a>
                                     )
@@ -122,7 +130,11 @@ const Landing = () => (
                         </p>
                     </div>
                     <div>
-                        <a href="/www/cards/en/ScratchCardsAll.pdf">
+                        <a
+                            href={props.intl.formatMessage({
+                                id: 'cards.scratch-cards-allLink'
+                            })}
+                        >
                             <img
                                 alt="cards icon"
                                 src="/svgs/teachers/coding-cards-icon.svg"
@@ -133,7 +145,11 @@ const Landing = () => (
                                 id="teacherlanding.codingCardResources"
                                 values={{
                                     codingCardLink: (
-                                        <a href="https://resources.scratch.mit.edu/www/cards/en/ScratchCardsAll.pdf">
+                                        <a
+                                            href={props.intl.formatMessage({
+                                                id: 'cards.scratch-cards-allLink'
+                                            })}
+                                        >
                                             <FormattedMessage id="teacherlanding.codingCardLink" />
                                         </a>
                                     )
@@ -304,4 +320,9 @@ const Landing = () => (
     </div>
 );
 
-render(<Page><Landing /></Page>, document.getElementById('app'));
+Landing.propTypes = {
+    intl: intlShape
+};
+const WrappedLanding = injectIntl(Landing);
+
+render(<Page><WrappedLanding /></Page>, document.getElementById('app'));
