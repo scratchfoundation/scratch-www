@@ -107,14 +107,14 @@ class Download extends React.Component {
                                     number={1}
                                 >
                                     <span className="step-description">
-                                        <FormattedMessage id="download.downloadAndInstall" />
+                                        <FormattedMessage id="download.downloadScratchDesktop" />
                                     </span>
                                     <div className="downloads-container">
                                         <a
                                             className="download-button"
                                             href="https://beta.scratch.mit.edu/"
                                         >
-                                            <span>Download Scratch Desktop</span>
+                                            <FormattedMessage id="download.downloadButton" />
                                         </a>
                                     </div>
                                 </Step>
@@ -150,6 +150,24 @@ class Download extends React.Component {
                             <FormattedMessage id="download.troubleshootingTitle" />
                         </h2>
 
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.canIUseScratchLink" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.canIUseScratchLinkAnswer" />
+                        </p>
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.desktopAndBrowser" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.yesAnswer" />
+                        </p>
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.canIShare" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.canIShareAnswer" />
+                        </p>
                         <h3 className="faq-question">
                             <FormattedMessage id="download.whenSupportLinux" />
                         </h3>

@@ -1,11 +1,12 @@
 {
-  "download.title": "Scratch 3.0 Desktop",
-  "download.intro": "You can install the Scratch 3.0 editor to work on projects without an internet connection. This version will work on Windows and MacOS.",
+  "download.title": "Scratch Desktop",
+  "download.intro": "You can install the Scratch Desktop editor to work on projects without an internet connection. This version will work on Windows and MacOS.",
   "download.requirements": "Requirements",
   "download.imgAltDownloadIllustration" : "Scratch 3.0 Desktop screenshot",
   "download.installHeaderTitle": "Install Scratch Desktop",
-  "download.downloadAndInstall": "Download and install Scratch Desktop",
-  "download.troubleshootingTitle": "FAQ",
+  "download.downloadScratchDesktop": "Download Scratch Desktop",
+  "download.downloadButton": "Download",
+  "download.troubleshootingTitle": "FAQ / Troubleshooting",
   "download.startScratchDesktop": "Start Scratch Desktop",
   "download.howDoIInstall": "How do I install Scratch Desktop?",
   "download.whenSupportLinux": "When will you have Scratch Desktop for Linux?",
@@ -20,6 +21,12 @@
   "download.cannotAccessWindowsStore" : "What if I can't access the Microsoft Store?",
   "download.appstoreAccessAnswer" : "You can download Scratch Desktop directly to your computer by {directDownloadLink}.",
   "download.directDownloadText" : "clicking here",
-  "download.macMoveToApplications" : "Move Scratch Desktop to your Applications folder and start Scratch Desktop.",
-  "download.winMoveToApplications" : "Run it."
+  "download.macMoveToApplications" :  "Click to run the installer. Move Scratch Desktop to your Applications folder.",
+  "download.winMoveToApplications" : " Click on Scratch Desktop.exe to run the installer.",
+  "download.canIUseScratchLink" : "Can I use Scratch Link to connect to extensions?",
+  "download.canIUseScratchLinkAnswer" : "Yes. You'll need an Internet connection to use Scratch Link.",
+  "download.desktopAndBrowser": "Can I use Scratch Desktop and also have Scratch open in the browser?",
+  "download.yesAnswer" : "Yes.",
+  "download.canIShare": "Can I share from Scratch Desktop?",
+  "download.canIShareAnswer": "This isn’t supported currently. For now, you can save a project from Scratch Desktop, upload it to your Scratch account, and share it there. In a later version we will add the ability to upload to your Scratch account directly in Scratch Desktop."
 }
