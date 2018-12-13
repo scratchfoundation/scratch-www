@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-    <title>studio-add-white</title>
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Community/Social/Add to Studio</title>
     <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="studio-add-white" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect id="Rectangle" stroke="#FFFFFF" stroke-width="2" x="3" y="3" width="14" height="14" rx="4"></rect>
+    <defs>
+        <path d="M12,8 L16,8 C17.1045695,8 18,8.8954305 18,10 C18,11.1045695 17.1045695,12 16,12 L12,12 L12,16 C12,17.1045695 11.1045695,18 10,18 C8.8954305,18 8,17.1045695 8,16 L8,12 L4,12 C2.8954305,12 2,11.1045695 2,10 C2,8.8954305 2.8954305,8 4,8 L8,8 L8,4 C8,2.8954305 8.8954305,2 10,2 C11.1045695,2 12,2.8954305 12,4 L12,8 Z" id="path-1"></path>
+    </defs>
+    <g id="Community/Social/Add-to-Studio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#FFFFFF" xlink:href="#path-1"></use>
+        <g id="Color/White" mask="url(#mask-2)" fill="#FFFFFF">
+            <rect id="Color" x="0" y="0" width="20" height="20"></rect>
+        </g>
     </g>
 </svg>
