@@ -50,7 +50,7 @@ class Download extends React.Component {
                                 <h1 className="download-title">
                                     <img
                                         alt={this.props.intl.formatMessage({id: 'download.iconAltText'})}
-                                        className="self-center icon"
+                                        className="icon"
                                         height="40"
                                         src="/images/download/placeholder.png"
                                         width="40"
@@ -187,7 +187,7 @@ class Download extends React.Component {
                                 </a>
                                 <p>
                                     <a
-                                        className="centered"
+                                        className="legacy-link"
                                         href="/download/scratch2"
                                     >
                                         <FormattedMessage id="download.scratch2Desktop" />
@@ -210,7 +210,7 @@ class Download extends React.Component {
                                 </a>
                                 <p>
                                     <a
-                                        className="centered"
+                                        className="legacy-link"
                                         href="/scratch_1.4"
                                     >
                                         <FormattedMessage id="download.scratch1-4Desktop" />

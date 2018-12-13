@@ -11,12 +11,8 @@
         font-size: 2rem;
     }
 
-    .centered {
+    .legacy-link {
         display: flex;
-    }
-
-    .self-center {
-        align-self: center;
     }
 
     .download-button {
@@ -65,6 +61,7 @@
                 .icon {
                     padding-right: .5rem;
                     max-height: 100%;
+                    align-self: center;
                 }
 
                 .download-description {
