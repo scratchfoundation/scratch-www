@@ -345,7 +345,7 @@ const PreviewPresentation = ({
                                         </FlexRow>
                                     </FlexRow>
                                 </MediaQuery>
-                                <FlexRow className="description-block">
+                                <div className="description-block">
                                     <div className="project-textlabel">
                                         <FormattedMessage id="project.instructionsLabel" />
                                     </div>
@@ -385,8 +385,8 @@ const PreviewPresentation = ({
                                             })}
                                         </div>
                                     }
-                                </FlexRow>
-                                <FlexRow className="description-block">
+                                </div>
+                                <div className="description-block">
                                     <div className="project-textlabel">
                                         <FormattedMessage id="project.notesAndCreditsLabel" />
                                     </div>
@@ -427,7 +427,7 @@ const PreviewPresentation = ({
                                             })}
                                         </div>
                                     }
-                                </FlexRow>
+                                </div>
                                 {/*  eslint-enable max-len */}
                             </FlexRow>
                         </FlexRow>
