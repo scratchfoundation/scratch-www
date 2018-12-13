@@ -12,7 +12,7 @@ const ThumbnailColumn = props => (
     <FlexRow className={classNames('thumbnail-column', props.className)}>
         {props.items.map((item, key) => {
             const href = `/${props.itemType}/${item.id}/`;
-            if (props.itemType === 'preview') {
+            if (props.itemType === 'projects') {
                 return (
                     <Thumbnail
                         avatar={thumbnailUrl(item.author.id)}
