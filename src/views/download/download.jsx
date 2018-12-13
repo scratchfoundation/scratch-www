@@ -135,9 +135,9 @@ class Download extends React.Component {
                                     <img
                                         alt=""
                                         className="screenshot"
-                                        src={`/images/scratchlink/${
+                                        src={`/images/download/${
                                             this.state.OS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                                        }-toolbar.png`}
+                                        }-install.png`}
                                     />
                                 </div>
                             </Step>
@@ -169,19 +169,17 @@ class Download extends React.Component {
                             <FormattedMessage id="download.canIShareAnswer" />
                         </p>
                         <h3 className="faq-question">
-                            <FormattedMessage id="download.whenSupportLinux" />
-                        </h3>
-                        <p>
-                            <FormattedMessage id="download.supportLinuxAnswer" />
-                        </p>
-
-                        <h3 className="faq-question">
                             <FormattedMessage id="download.supportChromeOS" />
                         </h3>
                         <p>
                             <FormattedMessage id="download.supportChromeOSAnswer" />
                         </p>
-
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.whenSupportLinux" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.supportLinuxAnswer" />
+                        </p>
                     </FlexRow>
                 </div>
                 <div className="download-section blue">
