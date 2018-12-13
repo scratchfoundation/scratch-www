@@ -12,26 +12,12 @@
     background-color: $ui-white;
     width: $cols4;
     text-align: center;
+    min-height: 18.125rem;
 }
 
 .ttt-tile-tutorial {
     display: inline-block;
     position: relative;
-}
-
-// nesting is required (not just name-spacing) because we want the image
-// and tile box to change style on hover of the parent component.
-.ttt-tile-tutorial:hover {
-
-    .ttt-tile-image {
-        .ttt-tile-image-img {
-            opacity: .5;
-        }
-
-        .ttt-tile-image-try {
-            display: inline-block;
-        }
-    }
 }
 
 .ttt-tile-image {
