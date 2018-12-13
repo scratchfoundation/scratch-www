@@ -12,20 +12,22 @@ require('./subactions.scss');
 
 const Subactions = props => (
     <FlexRow className="subactions">
-        <div className="share-date">
-            <div className="copyleft">&copy;</div>
-            {' '}
-            {/*  eslint-disable react/jsx-sort-props */}
-            {props.shareDate ? (
-                <FormattedDate
-                    value={Date.parse(props.shareDate)}
-                    day="2-digit"
-                    month="short"
-                    year="numeric"
-                />
-            ) : 'Unshared'}
-            {/*  eslint-enable react/jsx-sort-props */}
-        </div>
+        {props.isShared &&
+            <div className="share-date">
+                <div className="copyleft">&copy;</div>
+                {' '}
+                {/*  eslint-disable react/jsx-sort-props */}
+                {props.shareDate ? (
+                    <FormattedDate
+                        value={Date.parse(props.shareDate)}
+                        day="2-digit"
+                        month="short"
+                        year="numeric"
+                    />
+                ) : 'Unshared'}
+                {/*  eslint-enable react/jsx-sort-props */}
+            </div>
+        }
         <FlexRow className="action-buttons">
             {props.canAddToStudio &&
                 <React.Fragment>
@@ -80,6 +82,7 @@ Subactions.propTypes = {
     addToStudioOpen: PropTypes.bool,
     canAddToStudio: PropTypes.bool,
     canReport: PropTypes.bool,
+    isShared: PropTypes.bool,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onCopyProjectLink: PropTypes.func,
