@@ -156,7 +156,7 @@ class Ideas extends React.Component {
                                 </p>
                                 <a
                                     href={this.props.intl.formatMessage({
-                                        id: 'cards.ScratchCardsAllLink'
+                                        id: 'cards.scratch-cards-allLink'
                                     })}
                                     target="_blank"
                                 >
