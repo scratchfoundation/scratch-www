@@ -145,7 +145,7 @@ class Ideas extends React.Component {
                     <div className="inner">
                         <FlexRow
                             as="section"
-                            className="tips-info-section cards-info"
+                            className="tips-info-section cards-info ideas-all-cards"
                         >
                             <div className="tips-info-body">
                                 <h2>
@@ -175,11 +175,11 @@ class Ideas extends React.Component {
                 <div className="inner">
                     <div className="tips-divider" />
                 </div>
-                <div className="tips-resources">
+                <div>
                     <div className="inner">
                         <FlexRow
                             as="section"
-                            className="tips-info-section tips-left"
+                            className="ideas-starter tips-info-section tips-left"
                         >
                             <div className="ideas-image">
                                 <img
