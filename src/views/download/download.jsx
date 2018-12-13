@@ -52,7 +52,7 @@ class Download extends React.Component {
                                         alt={this.props.intl.formatMessage({id: 'download.iconAltText'})}
                                         className="icon"
                                         height="40"
-                                        src="/images/download/placeholder.png"
+                                        src="/images/download/icon.png"
                                         width="40"
                                     />
                                     <FormattedMessage id="download.title" />
