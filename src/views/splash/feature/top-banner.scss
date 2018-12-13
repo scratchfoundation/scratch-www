@@ -13,21 +13,20 @@
     justify-content: center;
 
     .feature-top-container {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 20%;
         z-index: 1;
-        margin: auto;
-        padding: 1.5rem 0;
         justify-content: center;
         align-items: flex-start;
         min-height: 20rem;
-        max-width: 660px;
+        max-width: 55%;
     }
 
     .feature-banner-images {
         display: flex;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
         width: 100%;
         justify-content: space-between;
     }
@@ -48,7 +47,8 @@
         }
 
         &.right {
-            width: 30rem;
+            width: 50%;
+            justify-content: flex-end;
         }
     }
 
@@ -62,7 +62,7 @@
         margin-bottom: .75rem;
         font-size: 4rem;
         line-height: 4.2rem;
-        width: 80%;
+        max-width: 570px; // Ensure that launch title wraps before 'is'
     }
 
     .feature-copy {
@@ -121,17 +121,36 @@
             height: 56px;
             content: "";
         }
+        
+        .feature-top-container {
+            transform: translateX(-15%);
+        }
     }
 }
+
 
 @media only screen and (max-width: $desktop - 1) {
     .feature-top-banner {
         .feature-header {
             text-align: left; // override #view text centering
         }
+    }
+}
+
+@media only screen and (min-width: $mobile) and (max-width: $desktop - 1) {
+    .feature-top-banner {
+        justify-content: flex-start;
+        
+        .feature-header {
+            text-align: left; // override #view text centering
+        }
         
         .feature-banner-images {
             justify-content: flex-end;
+        }
+        
+        .feature-top-container {
+            transform: translateX(10%);
         }
         
         .feature-banner-image {
@@ -142,27 +161,16 @@
     }
 }
 
-@media only screen and (max-width: 1100px) {
-    .feature-top-banner {
-        
-        .feature-top-container {
-            max-width: 480px;
-        }
-    }
-}
 @media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
     .feature-top-banner {
-        .feature-top-container {
-            left: 4rem;
-        }
-        
         .feature-banner-images {
-            overflow: hidden;
+            overflow: hidden; // make sure overflow is hidden to avoid scrolling with translated content
         }
-        
+
         .feature-banner-image {
             &.right {
-                transform: translateX(32px);
+                width: 80%;
+                transform: translateX(10%);
             }
         }
     }
@@ -170,13 +178,10 @@
 
 @media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
     .feature-top-banner {
-        .feature-top-container {
-            left: 2rem;
-        }
-        
         .feature-banner-image {
             &.right {
-                margin-right: -12rem;
+                width: 100%;
+                transform: translateX(30%);
             }
         }
     }
@@ -185,7 +190,7 @@
 @media only screen and (max-width: $mobile - 1) {
     .feature-top-banner {
         overflow: hidden;
-        min-height: 32rem;
+        min-height: 35rem;
         
         .feature-top-container {
             right: 0;
@@ -206,7 +211,7 @@
                 margin-bottom: -4rem;
                 width: 100%;
             }
-            
+        
             &.left {
                 margin-bottom: .5rem;
                 display: block;
@@ -216,16 +221,3 @@
     }
 }
 
-@media only screen and (min-width: $tablet) and (max-width: 1200px) {
-    // .feature-top-banner {
-    //     height: 22rem;
-    // 
-    //     .feature-top-container {
-    //         bottom: 4rem;
-    //     }
-    // 
-    //     .feature-banner-image {
-    //         width: 20rem;
-    //     }
-    // }
-}
