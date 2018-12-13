@@ -26,13 +26,15 @@ const TTTModal = props => (
     >
         <div className="ttt-modal-header modal-header" />
         <div className="ttt-modal-body">
-            <div className="ttt-img-container">
-                <img
-                    alt=""
-                    className="mod-ttt-img"
-                    src={props.modalImage}
-                />
-            </div>
+            <a href={props.tutorialUrl}>
+                <div className="ttt-img-container">
+                    <img
+                        alt=""
+                        className="mod-ttt-img"
+                        src={props.modalImage}
+                    />
+                </div>
+            </a>
             <div className="ttt-content">
                 <div className="ttt-content-chunk">
                     <h2>{props.title}</h2>
