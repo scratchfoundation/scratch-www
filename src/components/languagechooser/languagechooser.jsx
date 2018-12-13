@@ -4,7 +4,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const jar = require('../../lib/jar.js');
-const languages = require('../../../languages.json');
+const languages = require('scratch-l10n').default;
 const Form = require('../forms/form.jsx');
 const Select = require('../forms/select.jsx');
 
@@ -27,7 +27,7 @@ class LanguageChooser extends React.Component {
     render () {
         const languageOptions = Object.keys(this.props.languages).map(value => ({
             value: value,
-            label: this.props.languages[value]
+            label: this.props.languages[value].name
         }));
         return (
             <Form className={classNames('language-chooser', this.props.className)}>

@@ -1,7 +1,7 @@
 var async = require('async');
 var defaults = require('lodash.defaults');
 var fastlyConfig = require('./lib/fastly-config-methods');
-const languages = require('../languages.json');
+const languages = require('scratch-l10n').default;
 
 var routeJson = require('../src/routes.json');
 
