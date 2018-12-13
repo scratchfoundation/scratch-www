@@ -42,6 +42,7 @@ class Preview extends React.Component {
             'addEventListeners',
             'fetchCommunityData',
             'handleAddComment',
+            'handleClickLogo',
             'handleCopyProjectLink',
             'handleDeleteComment',
             'handleToggleStudio',
@@ -296,6 +297,9 @@ class Preview extends React.Component {
     }
     handleDeleteComment (id, topLevelCommentId) {
         this.props.handleDeleteComment(this.state.projectId, id, topLevelCommentId, this.props.user.token);
+    }
+    handleClickLogo () {
+        window.location = '/';
     }
     handleCloseAdminPanel () {
         this.setState({adminPanelOpen: false});
@@ -662,6 +666,7 @@ class Preview extends React.Component {
                             projectId={this.state.projectId}
                             projectTitle={this.props.projectInfo.title}
                             renderLogin={this.renderLogin}
+                            onClickLogo={this.handleClickLogo}
                             onGreenFlag={this.handleGreenFlag}
                             onLogOut={this.props.handleLogOut}
                             onOpenRegistration={this.props.handleOpenRegistration}
