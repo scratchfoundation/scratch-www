@@ -25,7 +25,7 @@ class Ideas extends React.Component {
         bindAll(this, [
             'handleShowTTTModal',
             'handleHideTTTModal',
-            'renderTTTTiles'
+            'renderTiles'
         ]);
         this.state = {
             currentTile: Tiles[0],
@@ -44,10 +44,10 @@ class Ideas extends React.Component {
             TTTModalOpen: false
         });
     }
-    renderTTTTiles () {
+    renderTiles () {
         return Tiles.map((tile, key) => {
             const translatedTile = {
-                tutorialUrl: `/projects/editor/?tutorial=${tile.tutorialId}`,
+                tutorialUrl: `/projects/editor/?tutorial=${tile.tutorialUrl}`,
                 modalImage: tile.modalImage,
                 description: this.props.intl.formatMessage({id: tile.description}),
                 guideUrl: this.props.intl.formatMessage({id: tile.guideUrl}),
@@ -123,7 +123,7 @@ class Ideas extends React.Component {
                                 </p>
                             </div>
                             <MasonryGrid >
-                                {this.renderTTTTiles()}
+                                {this.renderTiles()}
                             </MasonryGrid>
                             <TTTModal
                                 isOpen={this.state.TTTModalOpen}

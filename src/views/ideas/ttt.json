@@ -4,7 +4,7 @@
         "description": "ideas.animateANameDescription",
         "thumbImage": "/images/ideas/activities/animate-a-name-thumb.jpg",
         "modalImage": "/images/ideas/activities/animate-a-name-modal.jpg",
-        "tutorialId": "name",
+        "tutorialUrl": "name",
         "cardsUrl": "cards.nameCardsLink",
         "guideUrl": "guides.nameGuideLink"
     },
@@ -13,7 +13,7 @@
         "description": "ideas.animateACharacterDescription",
         "thumbImage": "/images/ideas/activities/animate-a-character-thumb.jpg",
         "modalImage": "/images/ideas/activities/animate-a-character-modal.jpg",
-        "tutorialId": "animate-a-character",
+        "tutorialUrl": "animate-a-character",
         "cardsUrl": "cards.animateCardsLink",
         "guideUrl": "guides.animateGuideLink"
     },
@@ -22,7 +22,7 @@
         "description": "ideas.makeMusicDescription",
         "thumbImage": "/images/ideas/activities/make-music-thumb.jpg",
         "modalImage": "/images/ideas/activities/make-music-modal.jpg",
-        "tutorialId": "music",
+        "tutorialUrl": "music",
         "cardsUrl": "cards.musicCardsLink",
         "guideUrl": "guides.musicGuideLink"
     },
@@ -31,7 +31,7 @@
         "description": "ideas.createAStoryDescription",
         "thumbImage": "/images/ideas/activities/create-a-story-thumb.jpg",
         "modalImage": "/images/ideas/activities/create-a-story-modal.jpg",
-        "tutorialId": "tell-a-story",
+        "tutorialUrl": "tell-a-story",
         "cardsUrl": "cards.storyCardsLink",
         "guideUrl": "guides.storyGuideLink"
     },
@@ -40,7 +40,7 @@
         "description": "ideas.chaseGameDescription",
         "thumbImage": "/images/ideas/activities/chase-game-thumb.jpg",
         "modalImage": "/images/ideas/activities/chase-game-modal.jpg",
-        "tutorialId": "chase-game",
+        "tutorialUrl": "chase-game",
         "cardsUrl": "cards.chaseCardsLink",
         "guideUrl": "guides.chaseGuideLink"
     },
@@ -49,7 +49,7 @@
         "description": "ideas.videoSensingDescription",
         "thumbImage": "/images/ideas/activities/video-sensing-thumb.jpg",
         "modalImage": "/images/ideas/activities/video-sensing-modal.jpg",
-        "tutorialId": "video-sensing",
+        "tutorialUrl": "video-sensing",
         "cardsUrl": "cards.videoCardsLink",
         "guideUrl": "guides.videoGuideLink"
     }
