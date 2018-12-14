@@ -57,9 +57,9 @@ tap.test('checkExploreLinkWhenSignedOut', function (t) {
         });
 });
 
-tap.test('checkTipsLinkWhenSignedOut', function (t) {
-    var xPathLink = '//li[contains(@class, "link") and contains(@class, "tips")]/a';
-    var expectedHref = '/tips';
+tap.test('checkIdeasLinkWhenSignedOut', function (t) {
+    var xPathLink = '//li[contains(@class, "link") and contains(@class, "ideas")]/a';
+    var expectedHref = '/ideas';
     driver.findElement(webdriver.By.xpath(xPathLink))
         .then(function (element) {
             return element.getAttribute('href');
