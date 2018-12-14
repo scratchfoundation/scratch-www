@@ -481,7 +481,7 @@ module.exports.getTopLevelComments = (id, offset, isAdmin, token) => (dispatch =
 module.exports.getCommentById = (projectId, commentId, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
-        uri: `${isAdmin ? '/admin' : ''}/projects/comments/${commentId}`,
+        uri: `${isAdmin ? '/admin' : ''}/projects/${projectId}/comments/${commentId}`,
         authentication: isAdmin ? token : null
     }, (err, body) => {
         if (err) {
