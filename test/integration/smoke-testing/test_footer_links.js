@@ -162,10 +162,10 @@ tap.test('clickStatisticsLink', options, t => {
 
 // ==== SUPPORT column ====
 
-// TIPS PAGE
-tap.test('clickTipsPageLink', options, t => {
-    const linkText = 'Tips';
-    const expectedHref = '/tips';
+// IDEAS PAGE
+tap.test('clickIdeasPageLink', options, t => {
+    const linkText = 'Ideas';
+    const expectedHref = '/ideas';
     clickFooterLinks(linkText).then(url => {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
