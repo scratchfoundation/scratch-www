@@ -22,7 +22,7 @@
         border-radius: 8px;
         background-color: $ui-blue;
         cursor: pointer;
-        padding: 1rem;
+        padding: 1rem 2rem;
         color: $ui-white;
         font-size: 1rem;
     }
@@ -117,10 +117,8 @@
             text-align: center;
         }
 
-        .store-badge {
-            display: block;
-            width: 150px;
-            height: 80px;
+        .step-image {
+            height: 14rem;
         }
     }
 

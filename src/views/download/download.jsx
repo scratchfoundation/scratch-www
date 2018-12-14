@@ -52,7 +52,7 @@ class Download extends React.Component {
                                         alt={this.props.intl.formatMessage({id: 'download.iconAltText'})}
                                         className="icon"
                                         height="40"
-                                        src="/images/download/placeholder.png"
+                                        src="/images/download/icon.png"
                                         width="40"
                                     />
                                     <FormattedMessage id="download.title" />
@@ -107,14 +107,18 @@ class Download extends React.Component {
                                     number={1}
                                 >
                                     <span className="step-description">
-                                        <FormattedMessage id="download.downloadAndInstall" />
+                                        <FormattedMessage id="download.downloadScratchDesktop" />
                                     </span>
                                     <div className="downloads-container">
                                         <a
                                             className="download-button"
-                                            href="https://beta.scratch.mit.edu/"
+                                            href={
+                                                this.state.OS === OS_ENUM.WINDOWS ?
+                                                    'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop%20Setup%201.0.0.exe' :
+                                                    'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop-1.0.0.dmg'
+                                            }
                                         >
-                                            <span>Download Scratch Desktop</span>
+                                            <FormattedMessage id="download.downloadButton" />
                                         </a>
                                     </div>
                                 </Step>
@@ -135,9 +139,9 @@ class Download extends React.Component {
                                     <img
                                         alt=""
                                         className="screenshot"
-                                        src={`/images/scratchlink/${
+                                        src={`/images/download/${
                                             this.state.OS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                                        }-toolbar.png`}
+                                        }-install.png`}
                                     />
                                 </div>
                             </Step>
@@ -151,19 +155,35 @@ class Download extends React.Component {
                         </h2>
 
                         <h3 className="faq-question">
-                            <FormattedMessage id="download.whenSupportLinux" />
+                            <FormattedMessage id="download.canIUseScratchLink" />
                         </h3>
                         <p>
-                            <FormattedMessage id="download.supportLinuxAnswer" />
+                            <FormattedMessage id="download.canIUseScratchLinkAnswer" />
                         </p>
-
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.desktopAndBrowser" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.yesAnswer" />
+                        </p>
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.canIShare" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.canIShareAnswer" />
+                        </p>
                         <h3 className="faq-question">
                             <FormattedMessage id="download.supportChromeOS" />
                         </h3>
                         <p>
                             <FormattedMessage id="download.supportChromeOSAnswer" />
                         </p>
-
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.whenSupportLinux" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.supportLinuxAnswer" />
+                        </p>
                     </FlexRow>
                 </div>
                 <div className="download-section blue">
