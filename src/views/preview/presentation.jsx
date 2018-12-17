@@ -103,6 +103,7 @@ const PreviewPresentation = ({
     onToggleStudio,
     onUpdate,
     onUpdateProjectId,
+    onUpdateProjectThumbnail,
     originalInfo,
     parentInfo,
     showCloudDataAlert,
@@ -297,6 +298,7 @@ const PreviewPresentation = ({
                                     onGreenFlag={onGreenFlag}
                                     onRemixing={onRemixing}
                                     onUpdateProjectId={onUpdateProjectId}
+                                    onUpdateProjectThumbnail={onUpdateProjectThumbnail}
                                 />
                             </div>
                             <MediaQuery maxWidth={frameless.tablet - 1}>
@@ -643,6 +645,7 @@ PreviewPresentation.propTypes = {
     onToggleStudio: PropTypes.func,
     onUpdate: PropTypes.func,
     onUpdateProjectId: PropTypes.func,
+    onUpdateProjectThumbnail: PropTypes.func,
     originalInfo: projectShape,
     parentInfo: projectShape,
     projectHost: PropTypes.string,

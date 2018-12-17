@@ -640,6 +640,7 @@ class Preview extends React.Component {
                             onToggleStudio={this.handleToggleStudio}
                             onUpdate={this.handleUpdate}
                             onUpdateProjectId={this.handleUpdateProjectId}
+                            onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                         />
                     </Page> :
                     <React.Fragment>
