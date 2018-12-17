@@ -132,7 +132,8 @@ module.exports = {
             return new HtmlWebpackPlugin(defaults({}, {
                 title: route.title,
                 filename: route.name + '.html',
-                route: route
+                route: route,
+                dynamicMetaTags: route.dynamicMetaTags
             }, templateConfig));
         })
     ).concat([
