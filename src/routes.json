@@ -167,7 +167,8 @@
         "pattern": "^/projects(/editor|(/\\d+(/editor|/fullscreen|/embed)?)?)?/?(\\?.*)?$",
         "routeAlias": "/projects/?$",
         "view": "preview/preview",
-        "title": "Scratch Project"
+        "title": "Scratch Project",
+        "dynamicMetaTags": true
     },
     {
         "name": "3faq",
