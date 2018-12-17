@@ -191,9 +191,9 @@ class Download extends React.Component {
                         <h2 className="title">
                             <FormattedMessage id="download.olderVersionsTitle" />
                         </h2>
-                        <h3 className="faq-question">
+                        <p>
                             <FormattedMessage id="download.olderVersions" />
-                        </h3>
+                        </p>
                         <FlexRow>
                             <div className="older-version">
                                 <a href="/download/scratch2">
