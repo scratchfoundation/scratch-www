@@ -463,7 +463,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     >
                         {ShowSmallTopBanner ?
                             <SmallTopBanner /> :
-                            <TopBanner actionLink="/projects/editor/?tutorial=whatsnew" />
+                            <TopBanner actionLink="/projects/editor/" />
                         }
                     </MediaQuery>
                 }
