@@ -2,7 +2,6 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const classNames = require('classnames');
-const approx = require('approximate-number');
 
 const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -16,20 +15,20 @@ const Stats = props => (
             key="loves"
             onClick={props.onLoveClicked}
         >
-            {approx(Math.max(0, props.loveCount), {decimal: false})}
+            {Math.max(0, props.loveCount)}
         </div>
         <div
             className={classNames('project-favorites', {favorited: props.faved})}
             key="favorites"
             onClick={props.onFavoriteClicked}
         >
-            {approx(Math.max(0, props.favoriteCount), {decimal: false})}
+            {Math.max(0, props.favoriteCount)}
         </div>
         <div
             className="project-remixes"
             key="remixes"
         >
-            {approx(props.projectInfo.stats.remixes, {decimal: false})}
+            {props.projectInfo.stats.remixes}
         </div>
         <div
             className="project-views"
