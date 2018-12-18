@@ -49,6 +49,7 @@ const PreviewPresentation = ({
     adminModalOpen,
     adminPanelOpen,
     assetHost,
+    authorUsername,
     backpackHost,
     canAddToStudio,
     canDeleteComments,
@@ -477,6 +478,7 @@ const PreviewPresentation = ({
                         {showModInfo &&
                             <FlexRow className="preview-row">
                                 <ModInfo
+                                    authorUsername={authorUsername}
                                     revisedDate={revisedDate}
                                     scripts={modInfo.scriptCount}
                                     sprites={modInfo.spriteCount}
@@ -586,6 +588,7 @@ PreviewPresentation.propTypes = {
     adminModalOpen: PropTypes.bool,
     adminPanelOpen: PropTypes.bool,
     assetHost: PropTypes.string,
+    authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     backpackHost: PropTypes.string,
     canAddToStudio: PropTypes.bool,
     canDeleteComments: PropTypes.bool,

@@ -24,6 +24,27 @@
     }
 }
 
+.mod-username {
+
+    display: inline;
+    padding-right: 2rem;
+    font-size: .875rem;
+
+    &:before {
+        display: inline-block;
+        margin-right: .5rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: -.35rem;
+        content: "";
+        opacity: .5;
+        background-image: url("/svgs/project/username.svg");
+    }
+}
+
 .mod-date,
 .mod-sprites,
 .mod-scripts {
