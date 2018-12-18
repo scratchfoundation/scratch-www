@@ -14,6 +14,14 @@ const ModInfo = props => (
             <FormattedMessage id="project.moderationInfoLabel" />
         </div>
         <FlexRow className="mod-info">
+            {props.authorUsername &&
+                <div className="mod-username">
+                    {/* @todo: these profile links should be made into a shared library function */}
+                    <a href={`/users/${props.authorUsername}/`}>
+                        {props.authorUsername}
+                    </a>
+                </div>
+            }
             {/*  eslint-disable react/jsx-sort-props */}
             {props.revisedDate &&
                 <div className="mod-date">
@@ -54,6 +62,7 @@ const ModInfo = props => (
 );
 
 ModInfo.propTypes = {
+    authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     revisedDate: PropTypes.string,
     scripts: PropTypes.number,
     sprites: PropTypes.number

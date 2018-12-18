@@ -26,7 +26,8 @@
 
 .mod-date,
 .mod-sprites,
-.mod-scripts {
+.mod-scripts,
+.mod-username {
 
     display: inline;
     padding-right: 2rem;
@@ -66,5 +67,13 @@
     &:before {
         opacity: .5;
         background-image: url("/svgs/project/block-count.svg");
+    }
+}
+
+.mod-username {
+
+    &:before {
+        opacity: .5;
+        background-image: url("/svgs/project/username.svg");
     }
 }

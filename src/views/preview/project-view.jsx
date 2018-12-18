@@ -572,6 +572,7 @@ class Preview extends React.Component {
                             adminModalOpen={this.state.adminModalOpen}
                             adminPanelOpen={this.state.adminPanelOpen}
                             assetHost={this.props.assetHost}
+                            authorUsername={this.props.authorUsername}
                             backpackHost={this.props.backpackHost}
                             canAddToStudio={this.props.canAddToStudio}
                             canDeleteComments={this.props.isAdmin || this.props.userOwnsProject}
