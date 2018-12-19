@@ -18,6 +18,7 @@
     "general.dmca": "DMCA",
     "general.emailAddress": "Email Address",
     "general.error": "Oops! Something went wrong",
+    "general.errorIdentifier": "Your error was logged with id {errorId}",
     "general.explore": "Explore",
     "general.faq": "FAQ",
     "general.female": "Female",
