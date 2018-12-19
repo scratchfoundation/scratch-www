@@ -810,7 +810,8 @@ const mapStateToProps = state => {
         state.session.session.user.id.toString() === authorId;
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
-    const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
+    const isShared = !projectInfoPresent ||
+            (state.preview.projectInfo.is_published === true || state.preview.projectInfo.is_published === 'true');
 
     return {
         authorId: authorId,
