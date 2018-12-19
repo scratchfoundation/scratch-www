@@ -288,7 +288,7 @@ class Preview extends React.Component {
                 this.setState({
                     justRemixed: true,
                     justShared: false
-                });
+                }, this.handleSeeInside);
             }
         }
     }
