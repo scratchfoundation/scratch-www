@@ -655,7 +655,7 @@ class Preview extends React.Component {
                             basePath="/"
                             canCreateCopy={this.props.canCreateCopy}
                             canCreateNew={this.props.canCreateNew}
-                            canEditTitle={this.props.isEditable}
+                            canEditTitle={this.props.canEditTitleInEditor}
                             canRemix={this.props.canRemix}
                             canSave={this.props.canSave}
                             canShare={this.props.canShare}
@@ -700,6 +700,7 @@ Preview.propTypes = {
     canAddToStudio: PropTypes.bool,
     canCreateCopy: PropTypes.bool,
     canCreateNew: PropTypes.bool,
+    canEditTitleInEditor: PropTypes.bool,
     canRemix: PropTypes.bool,
     canReport: PropTypes.bool,
     canSave: PropTypes.bool,
@@ -808,6 +809,9 @@ const mapStateToProps = state => {
     const authorUsername = authorPresent && author.username;
     const userOwnsProject = isLoggedIn && authorPresent &&
         state.session.session.user.id.toString() === authorId;
+    const isEditable = isLoggedIn &&
+        (authorUsername === state.session.session.user.username ||
+        state.permissions.admin === true);
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
     const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
@@ -819,6 +823,8 @@ const mapStateToProps = state => {
         canAddToStudio: isLoggedIn && isShared,
         canCreateCopy: userOwnsProject && projectInfoPresent,
         canCreateNew: isLoggedIn,
+        // admins want to see author credit in editor; only let them edit title if they own project
+        canEditTitleInEditor: isEditable && (userOwnsProject || !isAdmin),
         canRemix: isLoggedIn && projectInfoPresent && !userOwnsProject,
         canReport: isLoggedIn && !userOwnsProject,
         canSave: isLoggedIn && userOwnsProject,
@@ -832,9 +838,7 @@ const mapStateToProps = state => {
         fullScreen: state.scratchGui.mode.isFullScreen,
         // project is editable iff logged in user is the author of the project, or
         // logged in user is an admin.
-        isEditable: isLoggedIn &&
-            (authorUsername === state.session.session.user.username ||
-            state.permissions.admin === true),
+        isEditable: isEditable,
         isLoggedIn: isLoggedIn,
         isAdmin: isAdmin,
         isNewScratcher: isLoggedIn && state.permissions.new_scratcher,
