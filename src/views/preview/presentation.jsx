@@ -187,7 +187,7 @@ const PreviewPresentation = ({
 
     const extensionChips = (
         <FlexRow className="extension-list">
-            {extensions && extensions.map(extension => (
+            {extensions.map(extension => (
                 <ExtensionChip
                     action={extension.action}
                     extensionL10n={extension.l10nId}
@@ -345,31 +345,35 @@ const PreviewPresentation = ({
                             </div>
                             <MediaQuery maxWidth={frameless.tablet - 1}>
                                 <FlexRow className="preview-row force-center">
-                                    <Stats
-                                        faved={faved}
-                                        favoriteCount={favoriteCount}
-                                        loveCount={loveCount}
-                                        loved={loved}
-                                        projectInfo={projectInfo}
-                                        onFavoriteClicked={onFavoriteClicked}
-                                        onLoveClicked={onLoveClicked}
-                                    />
-                                    <Subactions
-                                        addToStudioOpen={addToStudioOpen}
-                                        canReport={canReport}
-                                        isAdmin={isAdmin}
-                                        projectInfo={projectInfo}
-                                        reportOpen={reportOpen}
-                                        shareDate={shareDate}
-                                        userOwnsProject={userOwnsProject}
-                                        onAddToStudioClicked={onAddToStudioClicked}
-                                        onAddToStudioClosed={onAddToStudioClosed}
-                                        onCopyProjectLink={onCopyProjectLink}
-                                        onReportClicked={onReportClicked}
-                                        onReportClose={onReportClose}
-                                        onReportSubmit={onReportSubmit}
-                                        onToggleStudio={onToggleStudio}
-                                    />
+                                    <div className="wrappable-item">
+                                        <Stats
+                                            faved={faved}
+                                            favoriteCount={favoriteCount}
+                                            loveCount={loveCount}
+                                            loved={loved}
+                                            projectInfo={projectInfo}
+                                            onFavoriteClicked={onFavoriteClicked}
+                                            onLoveClicked={onLoveClicked}
+                                        />
+                                    </div>
+                                    <div className="wrappable-item">
+                                        <Subactions
+                                            addToStudioOpen={addToStudioOpen}
+                                            canReport={canReport}
+                                            isAdmin={isAdmin}
+                                            projectInfo={projectInfo}
+                                            reportOpen={reportOpen}
+                                            shareDate={shareDate}
+                                            userOwnsProject={userOwnsProject}
+                                            onAddToStudioClicked={onAddToStudioClicked}
+                                            onAddToStudioClosed={onAddToStudioClosed}
+                                            onCopyProjectLink={onCopyProjectLink}
+                                            onReportClicked={onReportClicked}
+                                            onReportClose={onReportClose}
+                                            onReportSubmit={onReportSubmit}
+                                            onToggleStudio={onToggleStudio}
+                                        />
+                                    </div>
                                 </FlexRow>
                             </MediaQuery>
                             <FlexRow className="project-notes">
@@ -377,9 +381,11 @@ const PreviewPresentation = ({
                                 <RemixCredit projectInfo={originalInfo} />
                                 {/*  eslint-disable max-len */}
                                 <MediaQuery maxWidth={frameless.tablet - 1}>
-                                    <FlexRow className="preview-row">
-                                        {extensionChips}
-                                    </FlexRow>
+                                    {extensions &&
+                                        <FlexRow className="preview-row">
+                                            {extensionChips}
+                                        </FlexRow>
+                                    }
                                 </MediaQuery>
                                 {showInstructions && (
                                     <div className="description-block">
