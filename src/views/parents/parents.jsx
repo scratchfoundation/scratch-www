@@ -25,7 +25,7 @@ const Landing = () => (
                         <iframe
                             allowFullScreen
                             frameBorder="0"
-                            src="https://www.youtube.com/embed/3dciD9FO9mc"
+                            src="https://www.youtube.com/embed/jXUZaf5D12A"
                         />
                     </div>
                 </FlexRow>
