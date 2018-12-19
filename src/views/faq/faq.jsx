@@ -21,18 +21,37 @@ const Faq = injectIntl(props => (
 
                     <dt><FormattedMessage id="faq.makeGameTitle" /></dt>
                     <dd><FormattedHTMLMessage id="faq.makeGameBody" /></dd>
+	
+                    <dt><FormattedMessage id="faq.whoUsesScratchTitle" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.whoUsesScratchBody" /></dd>
 
                     <dt><FormattedMessage id="faq.requirementsTitle" /></dt>
                     <dd><FormattedHTMLMessage id="faq.requirementsBody" /></dd>
-
+					<b><FormattedHTMLMessage id="faq.requirementsDesktop" /></b>
+					<ul>
+						<li><FormattedHTMLMessage id="faq.requirementsDesktopChrome" /></li>
+						<li><FormattedHTMLMessage id="faq.requirementsDesktopEdge" /></li>
+						<li><FormattedHTMLMessage id="faq.requirementsDesktopFirefox" /></li>
+						<li><FormattedHTMLMessage id="faq.requirementsDesktopSafari" /></li>
+						<li><FormattedHTMLMessage id="faq.requirementsDesktopIE" /></li>
+                     
+                    </ul>
+					<b><FormattedHTMLMessage id="faq.requirementsTablet" /></b>
+					<ul>
+						<li><FormattedHTMLMessage id="faq.requirementsTabletChrome" /></li>
+						<li><FormattedHTMLMessage id="faq.requirementsTabletSafari" /></li>
+                    </ul>
+					<FormattedMessage id="faq.requirementsNote" />
+					<ul>
+						<li><FormattedHTMLMessage id="faq.requirementsNoteDesktop" /></li>
+						<li><FormattedHTMLMessage id="faq.requirementsNoteWebGL" /></li>
+						<li><FormattedHTMLMessage id="faq.requirementsNoteTablets" /></li>
+                    </ul>
                     <dt><FormattedMessage id="faq.offlineTitle" /></dt>
                     <dd><FormattedHTMLMessage id="faq.offlineBody" /></dd>
 
                     <dt><FormattedMessage id="faq.uploadOldTitle" /></dt>
                     <dd><FormattedHTMLMessage id="faq.uploadOldBody" /></dd>
-
-                    <dt><FormattedMessage id="faq.recordVideoTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="faq.recordVideoBody" /></dd>
 
                     <dt><FormattedMessage id="faq.scratchCostTitle" /></dt>
                     <dd><FormattedHTMLMessage id="faq.scratchCostBody" /></dd>
@@ -41,26 +60,51 @@ const Faq = injectIntl(props => (
                     <dd><FormattedHTMLMessage id="faq.mediaLabBody" /></dd>
                 </dl>
             </section>
-            <section id="privacy">
+            <section id="scratch3">
                 <span className="nav-spacer" />
-                <h2><FormattedMessage id="faq.privacyTitle" /></h2>
+                <h2><FormattedMessage id="faq.scratch3Title" /></h2>
                 <dl>
-                    <dt><FormattedMessage id="faq.accountInfoTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="faq.accountInfoList" /></dd>
-                    <ul>
-                        <li><FormattedHTMLMessage id="faq.privacyUsername" /></li>
-                        <li><FormattedHTMLMessage id="faq.privacyCountry" /></li>
-                        <li><FormattedHTMLMessage id="faq.privacyBirthdate" /></li>
-                        <li><FormattedHTMLMessage id="faq.privacyGender" /></li>
-                        <li><FormattedHTMLMessage id="faq.privacyEmail" /></li>
+                    <dt><FormattedMessage id="faq.aboutScratch3Title" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.aboutScratch3Body" /></dd>
+                    <dt><FormattedMessage id="faq.reportBugsScratch3Title" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.reportBugsScratch3Body" /></dd>
+                    <dt><FormattedMessage id="faq.languagesScratch3Title" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.languagesScratch3Body" /></dd>
+                    <dt><FormattedMessage id="faq.removedBlocksScratch3Title" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.removedBlocksScratch3Body" /></dd>
+                    <dt><FormattedMessage id="faq.newBlocksScratch3Title" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.newBlocksScratch3Body" /></dd>
+					<ul>
+                        <li><FormattedHTMLMessage id="faq.newBlocksSoundEffect" /></li>
+						<li><FormattedHTMLMessage id="faq.newBlocksOperators" /></li>
+						<li><FormattedHTMLMessage id="faq.newBlocksPen" /></li>
+						<li><FormattedHTMLMessage id="faq.newBlocksGlide" /></li>
+						<li><FormattedHTMLMessage id="faq.newBlocksExtensions" /></li>
+                     
                     </ul>
-                    <dd><FormattedHTMLMessage id="faq.accountPublicInfo" /></dd>
-                    <dt><FormattedMessage id="faq.dataCollectionTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="faq.dataCollectionOne" /></dd>
-                    <dt><FormattedMessage id="faq.rentInfoTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="faq.rentInfoBody" /></dd>
-                    <dt><FormattedMessage id="faq.viewUnsharedTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="faq.viewUnsharedBody" /></dd>
+					<dt><FormattedMessage id="faq.biggerBlocksScratch3Title" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.biggerBlocksScratch3Body" /></dd>
+                    <dt><FormattedMessage id="faq.paintEditorScratch3Title" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.paintEditorScratch3Body" /></dd>
+					<ul>
+                        <li><FormattedHTMLMessage id="faq.paintEditorLayout" /></li>
+						<li><FormattedHTMLMessage id="faq.paintEditorTools" /></li>
+						<li><FormattedHTMLMessage id="faq.paintEditorColors" /></li>
+						<li><FormattedHTMLMessage id="faq.paintEditorVector" /></li>
+						<li><FormattedHTMLMessage id="faq.paintEditorLayers" /></li>
+						<li><FormattedHTMLMessage id="faq.paintEditorGradients" /></li>
+                     
+                    </ul>
+                    <dt><FormattedMessage id="faq.soundEditorScratch3Title" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.soundEditorScratch3Body" /></dd>
+					<ul>
+                        <li><FormattedHTMLMessage id="faq.soundEditorRecording" /></li>
+						<li><FormattedHTMLMessage id="faq.soundEditorTrimming" /></li>
+						<li><FormattedHTMLMessage id="faq.soundEditorEffects" /></li>              
+                    </ul>
+                    <dt><FormattedMessage id="faq.tipsWindwScratch3Title" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.tipsWindowScratch3Body" /></dd>
+                   
                 </dl>
             </section>
             <section id="remix">
@@ -81,12 +125,18 @@ const Faq = injectIntl(props => (
                 <span className="nav-spacer" />
                 <h2><FormattedMessage id="faq.accountsTitle" /></h2>
                 <dl>
-                    <dt><FormattedMessage id="faq.confirmedAccountTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="faq.confirmedAccountBody" /></dd>
-                    <dt><FormattedMessage id="faq.checkConfirmedTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="faq.checkConfirmedBody" /></dd>
+                    <dt><FormattedMessage id="faq.whyAccountTitle" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.whyAccountBody" /></dd>
+	
+                    <dt><FormattedMessage id="faq.createAccountTitle" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.createAccountBody" /></dd>
+	
                     <dt><FormattedMessage id="faq.howToConfirmTitle" /></dt>
                     <dd><FormattedHTMLMessage id="faq.howToConfirmBody" /></dd>
+	
+                    <dt><FormattedMessage id="faq.checkConfirmedTitle" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.checkConfirmedBody" /></dd>
+                   
                     <dt><FormattedMessage id="faq.requireConfirmTitle" /></dt>
                     <dd><FormattedHTMLMessage id="faq.requireConfirmBody" /></dd>
                     <dt><FormattedMessage id="faq.forgotPasswordTitle" /></dt>
@@ -147,6 +197,20 @@ const Faq = injectIntl(props => (
                     <dd><FormattedHTMLMessage id="faq.stolenAccountBody" /></dd>
                 </dl>
             </section>
+            <section id="scratch-extensions">
+                <span className="nav-spacer" />
+                <h2><FormattedMessage id="faq.scratchExtensionsTitle" /></h2>
+                <dl>
+                    <dt><FormattedMessage id="faq.aboutExtensionsTitle" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.aboutExtensionsBody" /></dd>
+                    <dt><FormattedMessage id="faq.howToAddExtensionsTitle" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.howToAddExtensionsBody" /></dd>
+                    <dt><FormattedMessage id="faq.createExtensionsTitle" /></dt>
+                    <dd><FormattedHTMLMessage id="faq.createExtensionsBody" /></dd>
+                    <dt><FormattedMessage id="faq.scratchXTitle" /></dt>
+                    <dd><FormattedMessage id="faq.scratchXBody" /></dd>  
+                </dl>
+            </section>
             <section id="clouddata">
                 <span className="nav-spacer" />
                 <h2><FormattedMessage id="faq.cloudDataTitle" /></h2>
@@ -169,8 +233,6 @@ const Faq = injectIntl(props => (
                     <dd><FormattedHTMLMessage id="faq.newScratcherCloudBody" /></dd>
                     <dt><FormattedMessage id="faq.multiplayerTitle" /></dt>
                     <dd><FormattedHTMLMessage id="faq.multiplayerBody" /></dd>
-                    <dt><FormattedMessage id="faq.cloudLagTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="faq.cloudLagBody" /></dd>
                 </dl>
             </section>
             <section id="schools">
@@ -179,35 +241,33 @@ const Faq = injectIntl(props => (
                 <dl>
                     <dt><FormattedMessage id="faq.howTitle" /></dt>
                     <dd><FormattedHTMLMessage id="faq.howBody" /></dd>
-                    <dt><FormattedMessage id="faq.ageTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="faq.ageBody" /></dd>
                     <dt><FormattedMessage id="faq.noInternetTitle" /></dt>
                     <dd><FormattedHTMLMessage id="faq.noInternetBody" /></dd>
                     <dt><FormattedMessage id="faq.communityTitle" /></dt>
-                    <dd><FormattedMessage id="faq.communityBody" /></dd>
+                    <dd><FormattedHTMLMessage id="faq.communityBody" /></dd>
                     <dt><FormattedMessage id="faq.teacherAccountTitle" /></dt>
-                    <dd><FormattedMessage id="faq.teacherAccountBody" /></dd>
+                    <dd><FormattedHTMLMessage id="faq.teacherAccountBody" /></dd>
                     <dt><FormattedMessage id="faq.requestTitle" /></dt>
                     <dd><FormattedHTMLMessage id="faq.requestBody" /></dd>
-                    <dt><FormattedMessage id="faq.edTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="faq.edBody" /></dd>
                     <dt><FormattedMessage id="faq.dataTitle" /></dt>
                     <dd><FormattedMessage id="faq.dataBody" /></dd>
                     <dt><FormattedMessage id="faq.lawComplianceTitle" /></dt>
-                    <dd><FormattedMessage id="faq.lawComplianceBody" /></dd>
+                    <dd><FormattedHTMLMessage id="faq.lawComplianceBody" /></dd>
                 </dl>
-                <i><FormattedHTMLMessage id="faq.schoolsMoreInfo" /></i>
             </section>
         </div>
         <nav>
             <ol>
                 <li><a href="#about-scratch"><FormattedMessage id="faq.aboutTitle" /></a></li>
-                <li><a href="#privacy"><FormattedMessage id="faq.privacyTitle" /></a></li>
+	<li><a href="#scratch3"><FormattedMessage id="faq.scratch3Title" /></a></li>
                 <li><a href="#remix"><FormattedMessage id="faq.remixTitle" /></a></li>
                 <li><a href="#accounts"><FormattedMessage id="faq.accountsTitle" /></a></li>
                 <li><a href="#permissions"><FormattedMessage id="faq.permissionsTitle" /></a></li>
                 <li><a href="#inappropriate-content">
                     <FormattedMessage id="faq.inappropriateContentTitle" />
+                </a></li>
+                <li><a href="#scratch-extensions">
+                    <FormattedMessage id="faq.scratchExtensionsTitle" />
                 </a></li>
                 <li><a href="#clouddata"><FormattedMessage id="faq.cloudDataTitle" /></a></li>
                 <li><a href="#schools"><FormattedMessage id="faq.schoolsTitle" /></a></li>
