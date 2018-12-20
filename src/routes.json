@@ -80,7 +80,7 @@
     },
     {
         "name": "credits",
-        "pattern": "^/info/credits/?$",
+        "pattern": "^/credits/?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
         "view": "credits/credits",
         "title": "Credits"
@@ -300,6 +300,12 @@
         "pattern": "^/3faq/?$",
         "routeAlias": "/3faq/?$",
         "redirect": "info/faq#scratch3"
+    },
+    {
+        "name" : "credits-redirect",
+        "pattern": "^/info/credits/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "redirect" : "/credits"
     },
     {
         "name": "donate-redirect",
