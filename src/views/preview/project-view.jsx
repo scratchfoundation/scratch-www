@@ -446,7 +446,10 @@ class Preview extends React.Component {
         }
     }
     handleRemix () {
-        this.props.remixProject();
+        // Update the state first before starting the remix to show spinner
+        this.setState({isRemixing: true}, () => {
+            this.props.remixProject();
+        });
     }
     handleSeeInside () {
         this.setState({ // Remove any project alerts so they don't show up later
