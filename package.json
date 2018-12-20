@@ -25,7 +25,6 @@
   "homepage": "https://github.com/llk/scratch-www#readme",
   "dependencies": {
     "@sentry/browser": "4.4.2",
-    "@sentry/webpack-plugin": "1.6.2",
     "bunyan": "1.7.1",
     "clipboard-copy": "2.0.1",
     "compression": "1.6.1",

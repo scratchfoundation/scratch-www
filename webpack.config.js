@@ -4,7 +4,6 @@ const defaults = require('lodash.defaults');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const gitsha = require('git-bundle-sha');
 const path = require('path');
-const SentryWebpackPlugin = require('@sentry/webpack-plugin');
 const webpack = require('webpack');
 
 let routes = require('./src/routes.json');
@@ -159,10 +158,6 @@ module.exports = {
         .concat(process.env.NODE_ENV === 'production' ? [
             new webpack.optimize.UglifyJsPlugin({
                 sourceMap: true
-            }),
-            new SentryWebpackPlugin({
-                include: '.',
-                ignore: ['node_modules', 'webpack.config.js']
             })
         ] : [])
         .concat([
