@@ -101,7 +101,7 @@ const Credits = () => (
                     <FormattedMessage id="credits.acknowledgementsIllustrations" />
                 </p>
                 <p>
-                  Natalie Rosalinda Hall, Wren McDonald, Andrew Rae, Daria Skrybchenko,
+                  Natalie Rosalinda Hall, Wren McDonald, Leigh McG, Andrew Rae, Daria Skrybchenko,
                   Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen Davey.
                 </p>
                 <h2>
