@@ -1,5 +1,6 @@
 const PropTypes = require('prop-types');
 const React = require('react');
+const Sentry = require('@sentry/browser');
 
 const CrashMessageComponent = require('../crashmessage/crashmessage.jsx');
 import log from '../../lib/log.js';
@@ -13,16 +14,19 @@ class ErrorBoundary extends React.Component {
         };
     }
 
-    componentDidCatch (error, info) {
+    componentDidCatch (error, errorInfo) {
         // Display fallback UI
+        Sentry.withScope(scope => {
+            Object.keys(errorInfo).forEach(key => {
+                scope.setExtra(key, errorInfo[key]);
+            });
+            Sentry.captureException(error);
+        });
         this.setState({
             hasError: true,
-            errorId: window.Raven ? window.Raven.lastEventId() : null
+            errorId: Sentry.lastEventId()
         });
-        if (window.Raven) {
-            window.Raven.captureException(error, {extra: info});
-        }
-        log.error(`Unhandled Error: ${error}, info: ${info}`);
+        log.error(`Unhandled Error: ${error}, info: ${errorInfo}`);
     }
 
     handleBack () {
@@ -33,7 +37,7 @@ class ErrorBoundary extends React.Component {
         if (this.state.hasError) {
             return (
                 <CrashMessageComponent
-                    eventId={this.state.eventId}
+                    eventId={this.state.errorId}
                     onBack={this.handleBack}
                 />
             );

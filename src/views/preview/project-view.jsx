@@ -35,6 +35,14 @@ const IntlGUI = injectIntl(GUI.default);
 
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
+const Sentry = require('@sentry/browser');
+if (`${process.env.SENTRY_DSN}` !== '') {
+    Sentry.init({
+        dsn: `${process.env.SENTRY_DSN}`
+    });
+    window.Sentry = Sentry; // Allow GUI access to Sentry via window
+}
+
 class Preview extends React.Component {
     constructor (props) {
         super(props);

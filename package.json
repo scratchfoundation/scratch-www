@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/llk/scratch-www#readme",
   "dependencies": {
+    "@sentry/browser": "4.4.2",
     "bunyan": "1.7.1",
     "clipboard-copy": "2.0.1",
     "compression": "1.6.1",
@@ -31,7 +32,6 @@
     "express-http-proxy": "1.1.0",
     "lodash.defaults": "4.0.1",
     "newrelic": "1.25.4",
-    "raven": "0.10.0",
     "react-helmet": "5.2.0",
     "scratch-docker": "^1.0.2",
     "scratch-parser": "^4.2.0",
@@ -87,7 +87,6 @@
     "po2icu": "0.0.2",
     "postcss-loader": "2.0.10",
     "prop-types": "15.6.0",
-    "raven-js": "3.0.4",
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-intl": "2.4.0",
