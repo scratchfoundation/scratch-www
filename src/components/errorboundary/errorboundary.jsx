@@ -17,10 +17,10 @@ class ErrorBoundary extends React.Component {
     componentDidCatch (error, errorInfo) {
         // Display fallback UI
         Sentry.withScope(scope => {
-          Object.keys(errorInfo).forEach(key => {
-            scope.setExtra(key, errorInfo[key]);
-          });
-          Sentry.captureException(error);
+            Object.keys(errorInfo).forEach(key => {
+                scope.setExtra(key, errorInfo[key]);
+            });
+            Sentry.captureException(error);
         });
         this.setState({
             hasError: true,
