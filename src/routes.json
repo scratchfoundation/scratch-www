@@ -171,13 +171,6 @@
         "dynamicMetaTags": true
     },
     {
-        "name": "3faq",
-        "pattern": "^/3faq/?$",
-        "routeAlias": "/3faq/?$",
-        "view": "preview-faq/preview-faq",
-        "title": "Scratch 3.0 FAQ"
-    },
-    {
         "name": "parents",
         "pattern": "^/parents/?$",
         "routeAlias": "/parents/",
@@ -301,6 +294,12 @@
         "routeAlias": "/microbit/?$",
         "view": "microbit/microbit",
         "title": "micro:bit"
+    },
+    {
+        "name":"3-faq-redirect",
+        "pattern": "^/3faq/?$",
+        "routeAlias": "/3faq/?$",
+        "redirect": "info/faq#scratch3"
     },
     {
         "name": "donate-redirect",
