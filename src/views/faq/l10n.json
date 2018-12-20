@@ -43,7 +43,7 @@
 	"faq.reportBugsScratch3Title":"How can I report bugs and share feedback on Scratch 3.0?",
     "faq.reportBugsScratch3Body":"You can report bugs and share feedback in the <a href=\"https://scratch.mit.edu/discuss/3/\">Bugs & Glitches</a> section of the Scratch discussion forums.",
 	"faq.languagesScratch3Title":"Is Scratch 3.0 available in multiple languages?",
-    "faq.languagesScratch3Body":"Yes. To change the language of the programming blocks, click on the “globe” icon in the top navigation bar of the programming editor, then click on the dropdown menu to select a language.<br /><br />All of our translations are done by volunteers. The Scratch 3.0 editor has already been translated into 40+ languages. You can view all the languages currently being translated and reviewed on our <a href=\"https://www.transifex.com/llk/scratch-editor/\">translation server</a>. If you want to help with translation or review, please contact <a href=\"mailto:ranslate@scratch.mit.edu\">translate@scratch.mit.edu</a>.",
+    "faq.languagesScratch3Body":"Yes. To change the language of the programming blocks, click on the “globe” icon in the top navigation bar of the programming editor, then click on the dropdown menu to select a language.<br /><br />All of our translations are done by volunteers. The Scratch 3.0 editor has already been translated into 40+ languages. You can view all the languages currently being translated and reviewed on our <a href=\"https://www.transifex.com/llk/scratch-editor/\">translation server</a>. If you want to help with translation or review, please contact <a href=\"mailto:translate@scratch.mit.edu\">translate@scratch.mit.edu</a>.",
 	"faq.removedBlocksScratch3Title":"Does Scratch 3.0 remove any coding blocks from earlier versions of Scratch?",
     "faq.removedBlocksScratch3Body":"No coding blocks have been removed in Scratch 3.0, but some have changed a bit and others have moved into \"Extensions\" (as described below, under \"Where did the Pen blocks go?..\").",
 	"faq.newBlocksScratch3Title":"Does Scratch 3.0 introduce new blocks?",
@@ -72,7 +72,6 @@
 	"faq.soundEditorEffects":"More options for selecting and adjusting colors",
 	"faq.soundEditorVector":"More control over vector points (curve handles and point modes)",
 	"faq.soundEditorLayers":"Additional controls for ordering layers (\"bring to front\", \"move to back\", etc.)",
-	"faq.paintEditorGradients":"New gradient controls",
 	"faq.tipsWindwScratch3Title":"What happened to the Scratch Tips Window?",
     "faq.tipsWindowScratch3Body":"Instead of the Tips Window, Scratch 3.0 provides similar material through the Tutorials Library, which can be accessed through the <i>Tutorials</i> link in the top navigation bar in the programming editor. You’ll find tutorials for entire projects (like \"Make a Chase Game\") or specific blocks and features (such as \"Record a Sound\" or \"Make it Spin\"). More tutorials will be added soon (such as \"Pong Game\" and \"Make It Fly\").",
 	"faq.remixDefinitionTitle":"What is a remix?",
@@ -178,5 +177,5 @@
     "faq.dataBody":"When a student first signs up on Scratch, we ask for basic demographic data including gender, age (birth month and year), country, and an email address for verification. This data is used (in aggregated form) in research studies intended to improve our understanding of how people learn with Scratch. When an educator uses a Scratch Teacher Account to create student accounts in bulk, students are not required to provide an email address for account setup.",
     "faq.lawComplianceTitle":"Is Scratch (online version) compliant with United States local and federal data privacy laws?",
     "faq.lawComplianceBody":"Scratch cares deeply about the privacy of students and of all individuals who use our platform. We have in place physical and electronic procedures to protect the information we collect on the Scratch website. Although we are not in a position to offer contractual guarantees with each entity that uses our free educational product, we are in compliance with all United States federal laws that are applicable to MIT and the Scratch Foundation, the organizations that have created and maintained Scratch. We encourage you to read the Scratch Privacy Policy for more information.<br /><br />If you would like to build projects with Scratch without submitting any Personal Information to us, you can download <a href=\"/download\">Scratch Desktop</a>. Projects created in Scratch Desktop are not accessible by the Scratch Team, and using Scratch Desktop  does not disclose any personally identifying information to Scratch unless you upload these projects to the Scratch online community.</p>"
- 
+
 }
