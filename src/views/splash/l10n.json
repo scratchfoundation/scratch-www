@@ -18,17 +18,14 @@
     "messages.remixText": "{profileLink} remixed {remixedProjectLink} as {projectLink}",
     "messages.shareText": "{profileLink} shared the project {projectLink}",
 
-    "intro.aboutScratch": "ABOUT SCRATCH",
-    "intro.forEducators": "FOR EDUCATORS",
-    "intro.forParents": "FOR PARENTS",
-    "intro.itsFree": "it's free!",
-    "intro.joinScratch": "JOIN SCRATCH",
-    "intro.seeExamples": "SEE EXAMPLES",
-    "intro.tagLine": "Create stories, games, and animations<br /> Share with others around the world",
-    "intro.tryItOut": "TRY IT OUT",
-    "intro.description": "A creative learning community with <span class=\"project-count\"> {value} </span>projects shared",
-    "intro.defaultDescription": "A creative learning community with <span class=\"project-count\"> over 20 million </span>projects shared",
-
+    "intro.aboutScratch": "About Scratch",
+    "intro.forEducators": "For Educators",
+    "intro.forParents": "For Parents",
+    "intro.join": "Join",
+    "intro.startCreating": "Start Creating",
+    "intro.tagLine1": "Create stories, games, and animations",
+    "intro.tagLine2": "Share with others around the world",
+    "intro.watchVideo": "Watch Video",
     "news.scratchNews": "Scratch News",
 
     "teacherbanner.greeting": "Hi",
@@ -43,5 +40,5 @@
 
     "featureBanner.title": "The new Scratch is here!",
     "featureBanner.subtitle": "not used",
-    "featureBanner.callToAction": "Start Creating"
+    "featureBanner.callToAction": "call to action"
 }

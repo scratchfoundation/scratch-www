@@ -21,7 +21,8 @@ const TopBanner = props => (
                 className="feature-call-to-action button"
                 href={props.actionLink}
             >
-                <FormattedMessage id="featureBanner.callToAction" />
+                {/* <FormattedMessage id="featureBanner.callToAction" /> */}
+                <FormattedMessage id="intro.startCreating" />
             </a>
         </FlexRow>
         <div className="feature-banner-images">
