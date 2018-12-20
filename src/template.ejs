@@ -8,6 +8,8 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=<%= htmlWebpackPlugin.options.viewportWidth %>, initial-scale=1">
 
+        <title>Scratch - <%= htmlWebpackPlugin.options.title %></title>
+        
         <!-- Prevent mobile Safari from making phone numbers -->
         <meta name="format-detection" content="telephone=no">
 
@@ -47,6 +49,7 @@
                 'sampleRate': 10
             });
             ga('send', 'pageview');
+            window.GA_ID = '<%- htmlWebpackPlugin.options.ga_tracker %>';
             /* eslint-enable */
         </script>
     </head>
