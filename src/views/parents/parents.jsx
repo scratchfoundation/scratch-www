@@ -25,7 +25,7 @@ const Landing = () => (
                         <iframe
                             allowFullScreen
                             frameBorder="0"
-                            src="https://www.youtube.com/embed/3dciD9FO9mc"
+                            src="https://www.youtube.com/embed/jXUZaf5D12A"
                         />
                     </div>
                 </FlexRow>
@@ -141,7 +141,16 @@ const Landing = () => (
                         <div className="faq column">
                             <h3><FormattedMessage id="parents.faqAgeRangeTitle" /></h3>
                             <p>
-                                <FormattedMessage id="parents.faqAgeRangeBody" />
+                                <FormattedMessage
+                                    id="parents.faqAgeRangeBody"
+                                    values={{
+                                        scratchJr: (
+                                            <a href="https://www.scratchjr.org/">
+                                                ScratchJr
+                                            </a>
+                                        )
+                                    }}
+                                />
                             </p>
                         </div>
                         <div className="faq column">
@@ -150,8 +159,15 @@ const Landing = () => (
                                 <FormattedMessage
                                     id="parents.faqResourcesBody"
                                     values={{
+                                        ideasPage: (
+                                            <a href="/ideas">
+                                                <FormattedMessage
+                                                    id="parents.faqIdeasLinkText"
+                                                />
+                                            </a>
+                                        ),
                                         stepByStepGuide: (
-                                            <a href="/projects/editor/?tip_bar=getStarted">
+                                            <a href="/projects/editor/?tutorial=getStarted">
                                                 <FormattedMessage
                                                     id="parents.faqStepByStepGuideLinkText"
                                                 />
@@ -214,10 +230,10 @@ const Landing = () => (
                                 <FormattedMessage
                                     id="parents.faqPrivacyPolicyBody"
                                     values={{
-                                        faqPage: (
-                                            <a href="/info/faq">
+                                        privacyPolicy: (
+                                            <a href="/privacy_policy">
                                                 <FormattedMessage
-                                                    id="parents.faqFAQLinkText"
+                                                    id="parents.privacyPolicyLinkText"
                                                 />
                                             </a>
                                         )
@@ -231,17 +247,10 @@ const Landing = () => (
                                 <FormattedMessage
                                     id="parents.faqOfflineBody"
                                     values={{
-                                        offline2: (
-                                            <a href="/scratch2download">
+                                        scratchDesktop: (
+                                            <a href="/download">
                                                 <FormattedMessage
-                                                    id="parents.faqOffline2LinkText"
-                                                />
-                                            </a>
-                                        ),
-                                        offline14: (
-                                            <a href="/scratch_1.4">
-                                                <FormattedMessage
-                                                    id="parents.faqOffline14LinkText"
+                                                    id="parents.faqScratchDesktop"
                                                 />
                                             </a>
                                         )
