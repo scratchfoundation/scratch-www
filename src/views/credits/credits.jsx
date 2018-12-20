@@ -164,17 +164,17 @@ const Credits = () => (
                     <FormattedMessage id="credits.acknowledgementsContributors" />
                 </p>
                 <p>
-                    Susan Abend, Robbie Berg, Lauren Bessen, Keith Braadfladt,
-                    Susan Carillo, Will Denton, Nathan Dinsmore, Catherine Feldman,
-                    Jodi Finch, Ioana Fineberg, JT Galla, Rachel Garber, Cassy Gibbs,
-                    Brian Harvey, Roland Hebert, Tracy Ho, Benjamin Howe, Kapaya Katongo,
+                    Susan Abend, Robbie Berg, Lauren Bessen, Keith Braadfladt, Katie Broida,
+                    Susan Carillo, Will Denton, Nathan Dinsmore, Catherine Feldman, Rachel Fenichel,
+                    Jodi Finch, Ioana Fineberg, Corey Frang, JT Galla, Rachel Garber, Cassy Gibbs,
+                    Z Goddard, Brian Harvey, Roland Hebert, Tracy Ho, Benjamin Howe, Kapaya Katongo,
                     Evan Karatzas, Christine Kim, Joren Lauwers, Mike Lee, Jeff Lieberman,
                     Mark Loughridge, Kelly Liu, Anthony Lu, Danny Lutz, David Malan
                     Wayne Marshall, John McIntosh, Paul Medlock-Walton, Dongfang (Tian) Mi,
                     Ximena Miranda, Jens Moenig, Evan Moore, Geetha Narayanan, Kate Nazemi,
                     Liddy Nevile, Wing Ngan, Derek O&apos;Connell, Tim Radvan, Karen Randall,
-                    Ian Reynolds, Miriam Ruiz, Chinua Shaw, Ed Shems, Cynthia Solomon,
-                    Daniel Strimpel, Kilmer Sweazy, John Henry Thompson, Ubong Ukoh,
+                    Ian Reynolds, Miriam Ruiz, Boaz Sender, Chinua Shaw, Ed Shems, Cynthia Solomon,
+                    Marie Staver, Daniel Strimpel, Kilmer Sweazy, John Henry Thompson, Ubong Ukoh,
                     Vladimir Vuksan, Han Xu.
                 </p>
                 <p>
