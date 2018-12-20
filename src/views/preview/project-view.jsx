@@ -40,7 +40,7 @@ if (`${process.env.SENTRY_DSN}` !== '') {
     Sentry.init({
         dsn: `${process.env.SENTRY_DSN}`
     });
-    window.Sentry = Sentry;  // Allow GUI access to Sentry via window
+    window.Sentry = Sentry; // Allow GUI access to Sentry via window
 }
 
 class Preview extends React.Component {
