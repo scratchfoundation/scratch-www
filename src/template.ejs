@@ -8,6 +8,16 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=<%= htmlWebpackPlugin.options.viewportWidth %>, initial-scale=1">
 
+        <title>Scratch - <%= htmlWebpackPlugin.options.title %></title>
+        
+        <% if (htmlWebpackPlugin.options.sentryConfig) { %>
+            <!-- Sentry error logging to help with finding bugs -->
+            <script src="https://cdn.ravenjs.com/3.26.4/raven.min.js" crossorigin="anonymous"></script>
+            <script>
+                Raven.config('<%= htmlWebpackPlugin.options.sentryConfig %>').install();
+            </script>
+        <% } %>
+
         <!-- Prevent mobile Safari from making phone numbers -->
         <meta name="format-detection" content="telephone=no">
 
