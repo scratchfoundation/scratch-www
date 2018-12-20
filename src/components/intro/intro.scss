@@ -1,253 +1,207 @@
 @import "../../colors";
+@import "../../frameless";
 
-.intro {
+.intro-banner {
     display: flex;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    position: relative;
+    padding: 0;
     justify-content: space-between;
-    align-content: flex-start;
-
-    h1 {
-        line-height: 2.125rem;
-        color: $ui-orange;
-        font-size: 1.625rem;
-        font-weight: 400;
+    background-color: $ui-white;
+    
+    .intro-container {
+        min-height: 24rem;
+        justify-content: space-between;
+        background-color: $ui-blue;
+        background-size: auto;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-image: url("/svgs/intro/background-cropped.svg");
     }
 
-    .content {
-        display: inline-block;
-        width: calc(66% - 30px);
-        vertical-align: top;
+    /* flex: column */
+    .intro-content {
+        flex: 1;
+        justify-content: center;
+        align-items: flex-start;
+        margin-left: 5%;
+        min-height: 20rem;
     }
-
-    .sprites {
-        position: relative;
-        clear: both;
-        margin: 20px 0;
-        overflow: hidden;
-
+    
+    .intro-video-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 0 0 29rem;
+        
+        .intro-video {
+            margin-right: 4rem;
+        }
+        
+        .video-image {
+            position: relative;
+            cursor: pointer;
+            margin-right: 4rem;
+            
+            .watch-button {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translate(-50%, 50%);
+                border-radius: 4px;
+                background-color: rgba(0,0,0,0.15);
+            	box-shadow: 0 0 0 4px rgba(0,0,0,0.15);
+                color: $ui-white;
+                padding: .625rem .75rem;
+                font-size: 1rem;
+            }
+        }
+        
         &:after {
             display: block;
-            clear: both;
-            visibility: hidden;
-            height: 0;
-            content: " ";
+            position: absolute;
+            bottom: .75rem;
+            right: 10%;
+            background-image: url("/svgs/intro/hat-block.svg");
+            background-repeat: no-repeat;
+            width: 122px;
+            height: 81px;
+            content: "";
         }
     }
 
-    .sprite {
-        position: relative;
-        float: left;
-        width: 193px;
-        height: 136px;
-        overflow: hidden;
+    .intro-header {
+        margin-bottom: .75rem;
+        font-size: 2rem;
+        color: $ui-white;
+        line-height: 1.5em;
+    }
 
-        .costume,
-        .circle,
-        .text {
-            position: absolute;
+    .intro-button {
+        border-radius: 4px;
+        background-color: $ui-white;
+        color: $ui-blue;
+        padding: .625rem .75rem;
+        font-size: 1rem;
+        margin-right: .75rem;
+        
+        &.create-button:before {
+            display: inline-block;
+            margin-right: .5rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            background-image: url("/svgs/intro/create.svg");
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: -.35rem;
+            content: "";
         }
-
-        .costume {
-            left: 0;
-            z-index: 2;
+        
+        &.join-button:before {
+            display: inline-block;
+            margin-right: .5rem;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: contain;
+            background-image: url("/svgs/intro/join.svg");
+            width: 1.5rem;
+            height: 1.5rem;
+            vertical-align: -.35rem;
+            content: "";
         }
-
-        .costume-2 {
-            display: none;
+    }
+    
+    .intro-subnav {
+        justify-content: center;
+        background-color: $ui-blue-10percent;
+        
+        .subnav-button {
+            margin: .625rem .5rem;
+            padding: .5rem 1.5rem;
+            border-radius: 1.5rem;
         }
+    }
+}
 
-        .circle {
-            display: block;
-            top: 15px;
-            left: 43px;
-            z-index: 0;
-            border-radius: 50%;
-            box-shadow: 0 0 5px $ui-white;
-            width: 112px;
-            height: 112px;
+$rowLayoutMin: 900px;
+$tabletPortrait: 768px;
+$tabletLandscape: 1024px;
+// $desktop: 942px;
+// $tablet: 640px; (should be renamed)
+// $mobile: 480px;
+
+@media only screen and (min-width: $rowLayoutMin) and (max-width: $tabletLandscape - 1) {
+    .intro-banner {
+        .intro-header {
+            max-width: 22rem;
+            text-align: left; // override #view text centering
         }
+    }
+}
 
-        .text {
-            $text-bg-color: $background-color;
-            left: 35px;
-            z-index: 1;
-            border: 2px solid $text-bg-color;
-            background-color: $text-bg-color;
-            padding-right: 10px;
-            padding-left: 40px;
-            white-space: nowrap;
-            font-size: 12px;
-            font-weight: 700;
+@media only screen and (min-width: $mobile) and (max-width: $rowLayoutMin - 1) {
+    .intro-banner {
+        justify-content: flex-start;
+        
+        .intro-header {
+            margin-top: 1.75rem;
+            font-size: 1.5rem;
         }
-
-        .subtext {
-            border: 0;
-            background-color: transparent;
-            text-shadow: 0;
-            font-size: 12px;
-            font-weight: 400;
-        }
-
-
-        &.sprite-1 {
-            .circle {
-                background-color: $ui-aqua;
-            }
-
-            .text {
-                top: 60px;
-                left: 50px;
-                color: $ui-aqua;
-            }
-        }
-
-        &.sprite-2 {
-            .circle {
-                background-color: $ui-purple;
-            }
-
-            .text {
-                top: 77px;
-                left: 50px;
-                color: $ui-purple;
-            }
-        }
-
-        &.sprite-3 {
-            .circle {
-                background-color: $ui-blue;
-            }
-
-            .text {
-                top: 37px;
-                left: 45px;
-                color: $ui-blue;
-            }
-
-            .subtext {
-                top: 63px;
-                left: 60px;
-                color: $ui-white;
+        
+        .intro-container {
+            flex-direction: column;
+            background-position: bottom 32px right 50%;
+            background-size: 40rem;
+            background-image: url("/svgs/intro/background.svg");
+            
+            .intro-content {
+                align-items: center;
+                min-height: 8rem;
+                margin: 0;
             }
         }
-
-        &:hover {
-            .costume-1 {
+        
+        .intro-video-container {
+            flex: 0 0 24rem;
+            
+            .video-image,
+            .video-player {
+                margin: 0;
+            }
+            &:after {
                 display: none;
             }
-
-            .costume-2 {
-                display: block;
-            }
-
-            &.sprite-1 {
-                .circle {
-                    box-shadow: 0 0 10px 2px $ui-aqua;
-                }
-            }
-
-            &.sprite-2 {
-                .circle {
-                    box-shadow: 0 0 10px 2px $ui-purple;
-                }
-            }
-
-            &.sprite-3 {
-                .circle {
-                    box-shadow: 0 0 10px 2px $ui-blue;
-                }
-            }
-        }
-    }
-
-    .description {
-        margin-top: 10px;
-        font-size: 17px;
-    }
-
-    .project-count {
-        $project-count-color: hsl(318, 50%, 52%); 
-        color: $project-count-color;
-        font-size: 18px;
-        font-weight: 700;
-    }
-
-    .links {
-        margin-top: 20px;
-        letter-spacing: .5px;
-        font-size: 12px; 
-
-        a {
-            border-right: 1px solid $type-gray;
-            padding: 0 5px;
-
-            &:last-child { border-right: 0; }
-
-            &:first-child { padding-left: 0; }
-        }
-    }
-
-    .video {
-        display: inline-block;
-        position: relative;
-        border: 1px solid $ui-border;
-        border-radius: 10px;
-        background-color: $ui-white;
-        padding: 14px 10px;
-        width: 34%;
-        height: 208px;
-        text-align: center;
-
-        img {
-            border-radius: 5px;
-        }
-    }
-
-    .play-button {
-        display: block;
-        top: calc(50% - 25px);
-        left: calc(50% - 35px);
-        opacity: .8;
-        border: 5px solid $ui-border;
-        border-radius: 20px;
-        background-color: $type-gray;
-        width: 70px;
-        height: 50px;
-
-        &,
-        &:after {
-            position: absolute;
-            margin: 0;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        &:after {
-            $play-arrow: rgba(255, 255, 255, 0);
-            top: 37px;
-            left: 28px;
-            margin-top: -30px;
-            border: solid transparent;
-            border-width: 18px;
-            border-color: $play-arrow;
-            border-left-color: $ui-white;
-            width: 0;
-            height: 0;
-            content: " ";
-            pointer-events: none;
+            
         }
     }
 }
 
-.modal-content.mod-intro-video {
-    padding: 15px;
-    width: 35.625rem;
+@media #{$medium-and-smaller} {
+    .intro-buttons,
+    .intro-subnav {
+        flex-direction: row; // override flexrow default
+    }
+    
 }
 
-.modal-content-iframe.mod-intro-video {
-    width: 35.625rem;
-    min-height: 22.3125rem;
+@media only screen and (max-width: $mobile - 1) {
+    .intro-banner {
+        .intro-container {
+            background-image: none;
+            
+            .intro-content.column {
+                margin: auto 5%;
+                align-items: center;
+            }
+            
+            .intro-header {
+                font-size: 1.5rem;
+            }
+            .intro-video-container {
+                display: none;
+            }
+        }
+    }
+    
 }

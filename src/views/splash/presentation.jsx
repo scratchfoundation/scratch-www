@@ -375,7 +375,6 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
         const featured = this.renderHomepageRows(ShowMiddleBanner);
 
         const formatHTMLMessage = this.props.intl.formatHTMLMessage;
-        const formatNumber = this.props.intl.formatNumber;
         const formatMessage = this.props.intl.formatMessage;
         const messages = {
             'general.viewAll': formatMessage({id: 'general.viewAll'}),
@@ -387,23 +386,17 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             'intro.aboutScratch': formatMessage({id: 'intro.aboutScratch'}),
             'intro.forEducators': formatMessage({id: 'intro.forEducators'}),
             'intro.forParents': formatMessage({id: 'intro.forParents'}),
-            'intro.itsFree': formatMessage({id: 'intro.itsFree'}),
-            'intro.joinScratch': formatMessage({id: 'intro.joinScratch'}),
-            'intro.seeExamples': formatMessage({id: 'intro.seeExamples'}),
-            'intro.tagLine': formatHTMLMessage({id: 'intro.tagLine'}),
-            'intro.tryItOut': formatMessage({id: 'intro.tryItOut'}),
+            'intro.join': formatMessage({id: 'intro.join'}),
+            'intro.startCreating': formatMessage({id: 'intro.startCreating'}),
+            'intro.tagLine1': formatHTMLMessage({id: 'intro.tagLine1'}),
+            'intro.tagLine2': formatHTMLMessage({id: 'intro.tagLine2'}),
+            'intro.watchVideo': formatMessage({id: 'intro.watchVideo'}),
             'teacherbanner.greeting': formatMessage({id: 'teacherbanner.greeting'}),
             'teacherbanner.subgreeting': formatMessage({id: 'teacherbanner.subgreeting'}),
             'teacherbanner.classesButton': formatMessage({id: 'teacherbanner.classesButton'}),
             'teacherbanner.resourcesButton': formatMessage({id: 'general.resourcesTitle'}),
             'teacherbanner.faqButton': formatMessage({id: 'teacherbanner.faqButton'})
         };
-        if (this.props.projectCount === 20000000) {
-            messages['intro.description'] = formatHTMLMessage({id: 'intro.defaultDescription'});
-        } else {
-            const count = formatNumber(this.props.projectCount);
-            messages['intro.description'] = formatHTMLMessage({id: 'intro.description'}, {value: count});
-        }
 
         return (
             <div className="splash">
@@ -445,13 +438,20 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 {
                     this.props.sessionStatus === sessionActions.Status.FETCHED &&
                     Object.keys(this.props.user).length === 0 && // if user is not logged in
-                    ShowTopBanner &&
-                    <MediaQuery
-                        key="frameless-tablet"
-                        minWidth={0}
-                    >
-                        <TopBanner actionLink="/create" />
-                    </MediaQuery>
+                    (ShowTopBanner ? [
+                        <MediaQuery
+                            key="frameless-tablet"
+                            minWidth={0}
+                        >
+                            <TopBanner actionLink="/create" />
+                        </MediaQuery>
+                    ] : [
+                        <Intro
+                            key="intro"
+                            messages={messages}
+                        />
+                    ]
+                    )
                 }
                 {
                     this.props.sessionStatus === sessionActions.Status.FETCHED &&
@@ -471,47 +471,32 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     className="inner mod-splash"
                     key="inner"
                 >
-                    {this.props.sessionStatus === sessionActions.Status.FETCHED ? (
-                        Object.keys(this.props.user).length > 0 ? [
-                            <div
-                                className="splash-header"
-                                key="header"
-                            >
-                                {this.props.shouldShowWelcome ? [
-                                    <Welcome
-                                        key="welcome"
-                                        messages={messages}
-                                        onDismiss={() => { // eslint-disable-line react/jsx-no-bind
-                                            this.props.onDismiss('welcome');
-                                        }}
-                                    />
-                                ] : [
-                                    <WrappedActivityList
-                                        items={this.props.activity}
-                                        key="activity"
-                                    />
-                                ]}
-                                <News
-                                    items={this.props.news}
+                    {
+                        this.props.sessionStatus === sessionActions.Status.FETCHED &&
+                        Object.keys(this.props.user).length > 0 && // user is logged in 
+                        <div
+                            className="splash-header"
+                            key="header"
+                        >
+                            {this.props.shouldShowWelcome ? [
+                                <Welcome
+                                    key="welcome"
                                     messages={messages}
+                                    onDismiss={() => { // eslint-disable-line react/jsx-no-bind
+                                        this.props.onDismiss('welcome');
+                                    }}
                                 />
-                            </div>
-                        ] : [
-                            <MediaQuery
-                                key="frameless-desktop"
-                                minWidth={frameless.desktop}
-                            >
-                                {
-                                    !ShowTopBanner && // show intro if not showing top banner
-                                    <Intro
-                                        key="intro"
-                                        messages={messages}
-                                        projectCount={this.props.projectCount}
-                                    />
-                                }
-                                
-                            </MediaQuery>
-                        ]) : []
+                            ] : [
+                                <WrappedActivityList
+                                    items={this.props.activity}
+                                    key="activity"
+                                />
+                            ]}
+                            <News
+                                items={this.props.news}
+                                messages={messages}
+                            />
+                        </div>
                     }
                     {featured}
 
@@ -610,7 +595,6 @@ SplashPresentation.propTypes = {
     onOpenAdminPanel: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
     onShowEmailConfirmationModal: PropTypes.func.isRequired,
-    projectCount: PropTypes.number,
     refreshCacheStatus: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     sessionStatus: PropTypes.string.isRequired,
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),
