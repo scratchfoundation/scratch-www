@@ -91,7 +91,7 @@ tap.test('clickForDevelopersScratchLink', options, t => {
 // CREDITS
 tap.test('clickCreditsLink', options, t => {
     const linkText = 'Credits';
-    const expectedHref = '/info/credits';
+    const expectedHref = '/credits';
     clickFooterLinks(linkText).then(url => {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
