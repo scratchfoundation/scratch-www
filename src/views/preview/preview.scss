@@ -18,6 +18,11 @@ $stage-width: 480px;
     margin: 0;
     width: 100%;
     height: 100%;
+
+    /* Setting min height/width makes the UI scroll below those sizes */
+    /* Copied from GUI playground index.css */
+    min-width: 1024px;
+    min-height: 640px; /* Min height to fit sprite/backdrop button */
 }
 
 .page-has-admin-panel {
