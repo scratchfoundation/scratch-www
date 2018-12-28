@@ -27,65 +27,69 @@ require('../../components/extension-landing/extension-landing.scss');
 require('./microbit.scss');
 
 class MicroBit extends ExtensionLanding {
-
     render () {
         return (
             <div className="extension-landing microbit">
                 <ExtensionHeader
-                    imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltMicrobitIllustration'})}
-                    imageSrc="/images/microbit/microbit-heart.png"
-                >
-                    <FlexRow className="column extension-copy">
-                        <h1><img
-                            alt=""
-                            src="/images/microbit/microbit.svg"
-                        />micro:bit</h1>
-                        <FormattedMessage
-                            id="microbit.headerText"
-                            values={{
-                                microbitLink: (
-                                    <a
-                                        href="http://microbit.org/"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                      micro:bit
-                                    </a>
-                                )
-                            }}
-                        />
-                    </FlexRow>
-                    <ExtensionRequirements>
-                        <span>
-                            <img
+                    renderCopy={
+                        <FlexRow className="extension-copy">
+                            <h1><img
                                 alt=""
-                                src="/svgs/extensions/windows.svg"
+                                src="/images/microbit/microbit.svg"
+                            />micro:bit</h1>
+                            <FormattedMessage
+                                id="microbit.headerText"
+                                values={{
+                                    microbitLink: (
+                                        <a
+                                            href="http://microbit.org/"
+                                            rel="noopener noreferrer"
+                                            target="_blank"
+                                        >
+                                            micro:bit
+                                        </a>
+                                    )
+                                }}
                             />
-                                        Windows 10+
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/mac.svg"
-                            />
-                                        macOS 10.13+
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/bluetooth.svg"
-                            />
-                                        Bluetooth 4.0
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/scratch-link.svg"
-                            />
-                                        Scratch Link
-                        </span>
-                    </ExtensionRequirements>
-                </ExtensionHeader>
+                        </FlexRow>
+                    }
+                    renderImage={<img
+                        alt={this.props.intl.formatMessage({id: 'microbit.imgAltMicrobitIllustration'})}
+                        src="/images/microbit/microbit-heart.png"
+                    />}
+                    renderRequirements={
+                        <ExtensionRequirements>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/windows.svg"
+                                />
+                                            Windows 10 version 1709+
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/mac.svg"
+                                />
+                                            macOS 10.13+
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/bluetooth.svg"
+                                />
+                                            Bluetooth 4.0
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/scratch-link.svg"
+                                />
+                                            Scratch Link
+                            </span>
+                        </ExtensionRequirements>
+                    }
+                />
                 <OSChooser
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
@@ -119,7 +123,7 @@ class MicroBit extends ExtensionLanding {
                                 <a
                                     download
                                     className="download"
-                                    href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.0.hex.zip"
+                                    href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.1.0.hex.zip"
                                 >
                                     <FormattedMessage id="microbit.downloadHex" />
                                 </a>
@@ -166,11 +170,11 @@ class MicroBit extends ExtensionLanding {
                                         values={{
                                             scratch3Link: (
                                                 <a
-                                                    href="https://beta.scratch.mit.edu/"
+                                                    href="/projects/editor/"
                                                     rel="noopener noreferrer"
                                                     target="_blank"
                                                 >
-                                                            Scratch 3.0
+                                                            Scratch
                                                 </a>
                                             )
                                         }}
@@ -243,21 +247,21 @@ class MicroBit extends ExtensionLanding {
                     <h3><FormattedMessage id="microbit.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239075756"
+                            cardUrl="/projects/239075756/editor"
                             description={this.props.intl.formatMessage({id: 'microbit.heartBeatDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltHeartBeat'})}
                             imageSrc="/images/microbit/starter-heart.png"
                             title={this.props.intl.formatMessage({id: 'microbit.heartBeat'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239075950"
+                            cardUrl="/projects/239075950/editor"
                             description={this.props.intl.formatMessage({id: 'microbit.tiltGuitarDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltTiltGuitar'})}
                             imageSrc="/images/microbit/starter-guitar.png"
                             title={this.props.intl.formatMessage({id: 'microbit.tiltGuitar'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239075973"
+                            cardUrl="/projects/239075973/editor"
                             description={this.props.intl.formatMessage({id: 'microbit.oceanAdventureDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltOceanAdventure'})}
                             imageSrc="/images/microbit/starter-fish.png"
@@ -267,6 +271,32 @@ class MicroBit extends ExtensionLanding {
                 </ExtensionSection>
                 <ExtensionSection className="faq">
                     <h2><FormattedMessage id="microbit.troubleshootingTitle" /></h2>
+                    <h3 className="faq-title"><FormattedMessage id="microbit.checkOSVersionTitle" /></h3>
+                    <p>
+                        <FormattedMessage
+                            id="microbit.checkOSVersionText"
+                            values={{
+                                winOSVersionLink: (
+                                    <a
+                                        href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="microbit.winOSVersionLinkText" />
+                                    </a>
+                                ),
+                                macOSVersionLink: (
+                                    <a
+                                        href="https://support.apple.com/en-us/HT201260"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="microbit.macOSVersionLinkText" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </p>
                     <h3 className="faq-title"><FormattedMessage id="microbit.closeScratchCopiesTitle" /></h3>
                     <p>
                         <FormattedMessage id="microbit.closeScratchCopiesText" />

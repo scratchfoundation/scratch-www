@@ -18,6 +18,7 @@
     "general.dmca": "DMCA",
     "general.emailAddress": "Email Address",
     "general.error": "Oops! Something went wrong",
+    "general.errorIdentifier": "Your error was logged with id {errorId}",
     "general.explore": "Explore",
     "general.faq": "FAQ",
     "general.female": "Female",
@@ -73,7 +74,7 @@
     "general.statistics": "Statistics",
     "general.studios": "Studios",
     "general.support": "Support",
-    "general.tips": "Tips",
+    "general.ideas": "Ideas",
     "general.tipsWindow": "Tips Window",
     "general.termsOfUse": "Terms of Use",
     "general.unhandledError": "We are so sorry, but it looks like Scratch has crashed. This bug has been automatically reported to the Scratch Team.",
@@ -86,6 +87,9 @@
     "general.wiki": "Scratch Wiki",
     "general.copyLink": "Copy Link",
     "general.report": "Report",
+    "general.notAvailableHeadline": "Whoops! Our server is Scratch'ing its head",
+    "general.notAvailableSubtitle": "We couldn't find the page you're looking for. Check to make sure you've typed the url correctly.",
+    "general.seeAllComments": "See all comments",
 
     "general.all": "All",
     "general.animations": "Animations",
@@ -97,6 +101,10 @@
     "general.tutorials": "Tutorials",
 
     "general.teacherAccounts": "Teacher Accounts",
+
+    "general.unsupportedBrowser": "This browser is not supported",
+    "general.unsupportedBrowserDescription": "We're very sorry, but Scratch 3.0 does not support Internet Explorer, Vivaldi, Opera or Silk. We recommend trying a newer browser such as Google Chrome, Mozilla Firefox, or Microsoft Edge.",
+    "general.3faq": "To learn more, go to the {faqLink}.",
 
     "footer.discuss": "Discussion Forums",
     "footer.scratchFamily": "Scratch Family",
@@ -115,8 +123,8 @@
 
     "installScratchLink.installHeaderTitle": "Install Scratch Link",
     "installScratchLink.downloadAndInstall": "Download and install Scratch Link.",
-    "installScratchLink.windowsDownload": "Download for Windows",
-    "installScratchLink.macosDownload": "Download for macOS",
+    "installScratchLink.or": "or",
+    "installScratchLink.directDownload": "Direct download",
     "installScratchLink.startScratchLink": "Start Scratch Link and make sure it is running. It should appear in your toolbar.",
 
     "parents.FaqAgeRangeA": "While Scratch is primarily designed for 8 to 16 year olds, it is also used by people of all ages, including younger children with their parents.",

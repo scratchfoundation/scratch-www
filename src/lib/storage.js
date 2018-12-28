@@ -11,12 +11,7 @@ class Storage extends ScratchStorage {
         super();
         this.addWebSource(
             [this.AssetType.Project],
-            projectAsset => {
-                const [projectId, revision] = projectAsset.assetId.split('.');
-                return revision ?
-                    `${PROJECT_HOST}/internalapi/project/${projectId}/get/${revision}` :
-                    `${PROJECT_HOST}/internalapi/project/${projectId}/get/`;
-            }
+            projectAsset => `${PROJECT_HOST}/${projectAsset.assetId}`
         );
     }
 }

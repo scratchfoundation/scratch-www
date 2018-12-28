@@ -79,15 +79,20 @@
         .inner {
             justify-content: space-between;
             flex-wrap: nowrap;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .extension-info {
-            max-width: $cols7;
-            align-items: flex-start;
+            margin-bottom: 3rem;
+            flex-wrap: nowrap;
+            flex-direction: row;
 
             .extension-copy {
-                margin-bottom: 5rem;
+                padding-right: 3.75em;
+                max-width: $cols7;
                 align-items: flex-start;
+                justify-content: start;
 
                 h1, h2 {
                     display: flex;
@@ -110,40 +115,45 @@
                 }
             }
 
-            .extension-requirements-container {
-                font-weight: 500;
-                align-items: flex-start;
-
-                .requirements-header {
-                    margin-bottom: 1.5rem;
-                }
-
-                .extension-requirements {
-                    justify-content: space-between;
-                }
-
-                .extension-requirements span {
-                    display: flex;
-                    margin-right: 1rem;
-                    font-size: 15px; // TODO: change to rem later
-                    align-items: center;
-                }
-
-                .extension-requirements span img {
-                    padding-right: .5rem;
-                }
+            .video-player {
+                border: .25rem solid $ui-white-15percent;
+                border-radius: .75rem;
+                height: 180px;
+                overflow: hidden;
             }
         }
 
         .extension-image {
-            width: 100%;
-            max-width: $cols5;
+            margin-top: auto;
 
             img {
-                max-width: 100%;
-                max-height: 100%;
+                max-width: $cols5;
+                max-height: $cols3;
+            }
+        }
+
+        .extension-requirements-container {
+            font-weight: 500;
+            align-items: flex-start;
+
+            .requirements-header {
+                margin-bottom: 1.5rem;
             }
 
+            .extension-requirements {
+                justify-content: space-between;
+            }
+
+            .extension-requirements span {
+                display: flex;
+                margin-right: 1rem;
+                font-size: 15px; // TODO: change to rem later
+                align-items: center;
+            }
+
+            .extension-requirements span img {
+                padding-right: .5rem;
+            }
         }
     }
 
@@ -158,17 +168,40 @@
             align-items: flex-start;
         }
 
-        .step-image.badge {
-            height: initial;
+        .downloads-container {
+            text-align: center;
         }
 
-        .download-button {
-            display: flex;
-            align-items: center;
+        .store-badge {
+            display: block;
+            width: 150px;
+            height: 80px;
+        }
 
-            img {
-                margin-left: .5rem;
-            }
+        .horizontal-divider {
+            display: block;
+            margin: 20px;
+        }
+
+        .horizontal-divider:before,
+        .horizontal-divider:after {
+            display: inline-block;
+            position: relative;
+            background-color: $ui-dark-gray;
+            width: 50%;
+            height: 1px;
+            vertical-align: middle;
+            content: "";
+        }
+
+        .horizontal-divider:before {
+            right: .5em;
+            margin-left: -50%;
+        }
+
+        .horizontal-divider:after {
+            left: .5em;
+            margin-right: -50%;
         }
     }
 

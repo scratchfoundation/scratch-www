@@ -1,0 +1,9 @@
+@import "../../colors";
+@import "../../frameless";
+
+.video-player {
+    border: .25rem solid $box-shadow-light-gray;
+    border-radius: .75rem;
+    height: 225px;
+    overflow: hidden;
+}

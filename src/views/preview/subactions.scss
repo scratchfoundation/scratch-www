@@ -39,6 +39,7 @@
     .action-buttons {
         display: flex;
         margin-top: 0;
+        margin-bottom: 0;
         color: $type-white;
         font-size: .8rem;
         font-weight: 500;
@@ -54,8 +55,11 @@
             text-decoration: none;
             line-height: .875rem;
             font-size: .75rem;
-            font-weight: normal;
+            font-weight: bold;
 
+            &:active {
+                filter: brightness(90%);
+            }
             &.studio-button,
             &.copy-link-button,
             &.report-button {

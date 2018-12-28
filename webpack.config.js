@@ -33,7 +33,7 @@ VersionPlugin.prototype.apply = function (compiler) {
         callback();
     };
     const options = this.options;
-    
+
     compiler.plugin('emit', function (compilation, callback) {
         const sha = process.env.WWW_VERSION;
         if (!sha) { // eslint-disable-line no-negated-condition
@@ -51,7 +51,6 @@ VersionPlugin.prototype.apply = function (compiler) {
 let entry = {
     common: [
         // Vendor
-        'raven-js',
         'react',
         'react-dom',
         'react-intl',
@@ -132,7 +131,8 @@ module.exports = {
             return new HtmlWebpackPlugin(defaults({}, {
                 title: route.title,
                 filename: route.name + '.html',
-                route: route
+                route: route,
+                dynamicMetaTags: route.dynamicMetaTags
             }, templateConfig));
         })
     ).concat([
@@ -163,13 +163,14 @@ module.exports = {
         .concat([
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': '"' + (process.env.NODE_ENV || 'development') + '"',
-                'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"',
                 'process.env.API_HOST': '"' + (process.env.API_HOST || 'https://api.scratch.mit.edu') + '"',
                 'process.env.ASSET_HOST': '"' + (process.env.ASSET_HOST || 'https://assets.scratch.mit.edu') + '"',
                 'process.env.BACKPACK_HOST': '"' + (process.env.BACKPACK_HOST || 'https://backpack.scratch.mit.edu') + '"',
                 'process.env.CLOUDDATA_HOST': '"' + (process.env.CLOUDDATA_HOST || 'clouddata.scratch.mit.edu') + '"',
                 'process.env.PROJECT_HOST': '"' + (process.env.PROJECT_HOST || 'https://projects.scratch.mit.edu') + '"',
-                'process.env.SCRATCH_ENV': '"' + (process.env.SCRATCH_ENV || 'development') + '"'
+                'process.env.STATIC_HOST': '"' + (process.env.STATIC_HOST || 'https://cdn2.scratch.mit.edu') + '"',
+                'process.env.SCRATCH_ENV': '"' + (process.env.SCRATCH_ENV || 'development') + '"',
+                'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"'
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'common',

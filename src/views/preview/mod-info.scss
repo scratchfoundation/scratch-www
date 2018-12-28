@@ -1,0 +1,79 @@
+@import "../../frameless";
+
+.mod-info-container {
+    margin-bottom: .625rem; /* Match the extra padding below extension chips */
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.mod-info {
+    line-height: 2rem;
+    justify-content: flex-start;
+
+    @media #{$medium-and-smaller} {
+        margin: 0;
+        width: 100%;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    & > div {
+        @media #{$medium-and-smaller} {
+            padding: 0 1rem;
+        }
+    }
+}
+
+.mod-date,
+.mod-sprites,
+.mod-scripts,
+.mod-username {
+
+    display: inline;
+    padding-right: 2rem;
+    font-size: .875rem;
+
+    &:before {
+        display: inline-block;
+        margin-right: .5rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: -.35rem;
+        content: "";
+    }
+}
+
+.mod-date {
+
+    &:before {
+        opacity: .5;
+        background-image: url("/svgs/project/last-revised.svg");
+    }
+}
+
+.mod-sprites {
+
+    &:before {
+        opacity: .5;
+        background-image: url("/svgs/project/sprite-count.svg");
+    }
+}
+
+.mod-scripts {
+
+    &:before {
+        opacity: .5;
+        background-image: url("/svgs/project/block-count.svg");
+    }
+}
+
+.mod-username {
+
+    &:before {
+        opacity: .5;
+        background-image: url("/svgs/project/username.svg");
+    }
+}

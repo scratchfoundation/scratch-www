@@ -5,8 +5,15 @@ $ui-blue-10percent: hsla(215, 100, 65, .1);
 $ui-blue-25percent:  hsla(215, 100, 65, .25);
 
 $ui-orange: hsla(38, 100, 55, 1); // #FFAB19 Control Primary
+$ui-orange-high-contrast: hsla(30, 100, 55, 1); // #FFAB19 Control Primary
 $ui-orange-10percent: hsla(35, 90, 55, .1);
 $ui-orange-25percent: hsla(35, 90, 55, .25);
+
+$ui-dark-orange: hsla(30, 100, 55, 1); // ##FF8C1A Variables Primary
+
+$ui-red: hsla(20, 100%, 55%, 1); /* #FF661A */
+$ui-red-25percent: hsla(20, 100%, 55%, .25);
+$ui-green-35percent: rgba(126, 225, 195, .35);
 
 $ui-light-gray: hsla(0, 0, 98, 1); //#FAFAFA
 $ui-gray: hsla(0, 0, 95, 1); //#F2F2F2
@@ -40,6 +47,7 @@ $ui-light-mint: hsl(163, 53, 67);
 $active-gray: hsla(0, 0, 0, .1);
 $active-dark-gray: hsla(0, 0, 0, .2);
 $box-shadow-gray: hsla(0, 0, 0, .25);
+$box-shadow-light-gray: hsla(0, 0, 0, .15);
 $overlay-gray: hsla(0, 0, 0, .75);
 $transparent-light-blue: rgba(229, 240, 254, 0);
 

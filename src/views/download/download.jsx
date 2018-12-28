@@ -1,16 +1,17 @@
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 const React = require('react');
 
-const api = require('../../lib/api');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
-const SubNavigation = require('../../components/subnavigation/subnavigation.jsx');
-const TitleBanner = require('../../components/title-banner/title-banner.jsx');
+const bindAll = require('lodash.bindall');
+const Steps = require('../../components/steps/steps.jsx');
+const Step = require('../../components/steps/step.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
+const OS_ENUM = require('../../components/extension-landing/os-enum.js');
+const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 
 require('./download.scss');
 require('../../components/forms/button.scss');
@@ -18,246 +19,239 @@ require('../../components/forms/button.scss');
 class Download extends React.Component {
     constructor (props) {
         super(props);
+        bindAll(this, [
+            'onSetOS'
+        ]);
+        let detectedOS = OS_ENUM.WINDOWS;
+        if (window.navigator && window.navigator.platform) {
+            if (window.navigator.platform === 'MacIntel') {
+                detectedOS = OS_ENUM.MACOS;
+            }
+        }
+
         this.state = {
-            swfVersion: ''
+            OS: detectedOS
         };
     }
-    componentDidMount () {
-        let uri = '/scratchr2/static/sa/version.xml';
-        if (this.props.intl.locale === 'pt-br') {
-            uri = '/scratchr2/static/sa/pt-br/version.xml';
-        }
 
-        api({
-            host: '',
-            uri: uri,
-            responseType: 'string'
-        }, (err, body, res) => {
-            if (err || res.statusCode >= 400) {
-                return this.setState({
-                    swfVersion: -1
-                });
-            }
-
-            const doc = new DOMParser().parseFromString(body, 'text/xml');
-            return this.setState({
-                swfVersion: doc.getElementsByTagName('versionNumber')[0].childNodes[0].nodeValue
-            });
+    onSetOS (os) {
+        this.setState({
+            OS: os
         });
     }
-    render () {
-        let downloadPath = '/scratchr2/static/sa/Scratch-';
-        let downloadUrls = null;
-        if (this.props.intl.locale === 'pt-br') {
-            downloadPath = '/scratchr2/static/sa/pt-br/Scratch-';
-        }
-        if (this.state.swfVersion.length > 0 && this.state.swfVersion !== -1) {
-            downloadUrls = {
-                mac: `${downloadPath}${this.state.swfVersion}.dmg`,
-                mac105: `${downloadPath}${this.state.swfVersion}.air`,
-                windows: `${downloadPath}${this.state.swfVersion}.exe`
-            };
-        }
 
+    render () {
         return (
             <div className="download">
-                <TitleBanner className="masthead">
-                    <div className="inner">
-                        <h1 className="title-banner-h1">
-                            <FormattedMessage id="download.title" />
-                        </h1>
-                        <p className="title-banner-p intro">
-                            <FormattedMessage id="download.intro" />
-                        </p>
-                    </div>
-                    <div className="band">
-                        <SubNavigation className="inner">
-                            <a
-                                className="sub-nav-item"
-                                href="#installation"
-                            >
-                                <li>
-                                    <FormattedMessage id="download.installation" />
-                                </li>
-                            </a>
-                            <a
-                                className="sub-nav-item"
-                                href="#updates"
-                            >
-                                <li>
-                                    <FormattedMessage id="download.updatesTitle" />
-                                </li>
-                            </a>
-                            <a
-                                className="sub-nav-item"
-                                href="#other"
-                            >
-                                <li>
-                                    <FormattedMessage id="download.otherVersionsTitle" />
-                                </li>
-                            </a>
-                            <a
-                                className="sub-nav-item"
-                                href="#issues"
-                            >
-                                <li>
-                                    <FormattedMessage id="download.knownIssuesTitle" />
-                                </li>
-                            </a>
-                        </SubNavigation>
-                    </div>
-                </TitleBanner>
-                <div className="download-content">
-                    <section
-                        className="installation"
-                        id="installation"
-                    >
-                        <div className="inner">
-                            <p className="callout">
-                                <FormattedHTMLMessage id="download.introMac" />
-                            </p>
-                            <FlexRow className="three-col-row">
-                                <div className="installation-column">
-                                    <div className="installation-column-number">
-                                        <h2 className="installation-column-number-text">{'1'}</h2>
-                                    </div>
-                                    <h3><FormattedMessage id="download.airTitle" /></h3>
-                                    <p><FormattedHTMLMessage id="download.airBody" /></p>
-                                    <ul className="installation-downloads">
-                                        <li className="installation-downloads-item">
-                                            <FormattedMessage id="download.macOSX" /> -
-                                            {' '}<a href="http://get.adobe.com/air/">
-                                                <FormattedMessage id="download.download" />
-                                            </a>
-                                        </li>
-                                        <li className="installation-downloads-item">
-                                            <FormattedMessage id="download.macOlder" /> -
-                                            {' '}<a href="http://airdownload.adobe.com/air/mac/download/2.6/AdobeAIR.zip">
-                                                <FormattedMessage id="download.download" />
-                                            </a>
-                                        </li>
-                                        <li className="installation-downloads-item">
-                                            <FormattedMessage id="download.windows" /> -
-                                            {' '}<a href="http://get.adobe.com/air/">
-                                                <FormattedMessage id="download.download" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="installation-column">
-                                    <div className="installation-column-number">
-                                        <h2 className="installation-column-number-text">{'2'}</h2>
-                                    </div>
-                                    <h3><FormattedMessage id="download.offlineEditorTitle" /></h3>
-                                    <p><FormattedMessage id="download.offlineEditorBody" /></p>
-                                    {downloadUrls === null ? [] : [
-                                        <ul
-                                            className="installation-downloads"
-                                            key="installation-downloads"
-                                        >
-                                            <li className="installation-downloads-item">
-                                                <FormattedMessage id="download.macOSX" /> -
-                                                {' '}<a href={downloadUrls.mac}>
-                                                    <FormattedMessage id="download.download" />
-                                                </a>
-                                            </li>
-                                            <li className="installation-downloads-item">
-                                                <FormattedMessage id="download.macOlder" /> -
-                                                {' '}<a href={downloadUrls.mac105}>
-                                                    <FormattedMessage id="download.download" />
-                                                </a>
-                                            </li>
-                                            <li className="installation-downloads-item">
-                                                <FormattedMessage id="download.windows" /> -
-                                                {' '}<a href={downloadUrls.windows}>
-                                                    <FormattedMessage id="download.download" />
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    ]}
-                                    {this.state.swfVersion === -1 ? [
-                                        <p key="not-available">
-                                            <i><FormattedMessage id="download.notAvailable" /></i>
-                                        </p>
-                                    ] : []}
-                                </div>
-                                <div className="installation-column">
-                                    <div className="installation-column-number">
-                                        <h2 className="installation-column-number-text">{'3'}</h2>
-                                    </div>
-                                    <h3><FormattedMessage id="download.supportMaterialsTitle" /></h3>
-                                    <p><FormattedMessage id="download.supportMaterialsBody" /></p>
-                                    <ul className="installation-downloads">
-                                        <li className="installation-downloads-item">
-                                            <FormattedMessage id="download.starterProjects" /> -
-                                            {' '}<a href="https://scratch.mit.edu/scratchr2/static/sa/Scratch2StarterProjects.zip">
-                                                <FormattedMessage id="download.download" />
-                                            </a>
-                                        </li>
-                                        <li className="installation-downloads-item">
-                                            <FormattedMessage id="download.gettingStarted" /> -
-                                            {' '}<a href="https://cdn.scratch.mit.edu/scratchr2/static/__709da8e5f3d72129538a4ccdbcbf5f2a__/pdfs/help/Getting-Started-Guide-Scratch2.pdf">
-                                                <FormattedMessage id="download.download" />
-                                            </a>
-                                        </li>
-                                        <li className="installation-downloads-item">
-                                            <FormattedMessage id="download.scratchCards" /> -
-                                            {' '}<a href="https://cdn.scratch.mit.edu/scratchr2/static/__709da8e5f3d72129538a4ccdbcbf5f2a__/pdfs/help/Scratch2Cards.pdf">
-                                                <FormattedMessage id="download.download" />
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </FlexRow>
-                        </div>
-                    </section>
-                    <div className="inner">
-                        <section id="updates">
-                            <span className="nav-spacer" />
-                            <h2><FormattedMessage id="download.updatesTitle" /></h2>
-                            <p><FormattedMessage id="download.updatesBody" /></p>
-                            {this.state.swfVersion === -1 ? [] : [
-                                <p key="current-version">
-                                    <FormattedMessage
-                                        id="download.currentVersion"
-                                        values={{
-                                            version: this.state.swfVersion
-                                        }}
+                <div className="download-header">
+                    <FlexRow className="inner">
+                        <FlexRow className="column download-info">
+                            <FlexRow className="column download-copy">
+                                <h1 className="download-title">
+                                    <img
+                                        alt={this.props.intl.formatMessage({id: 'download.iconAltText'})}
+                                        className="icon"
+                                        height="40"
+                                        src="/images/download/icon.png"
+                                        width="40"
                                     />
-                                </p>
-                            ]}
-                        </section>
+                                    <FormattedMessage id="download.title" />
+                                </h1>
+                                <span className="download-description">
+                                    <FormattedMessage id="download.intro" />
+                                </span>
+                            </FlexRow>
+                            <FlexRow className="column download-requirements-container">
+                                <span className="requirements-header">
+                                    <FormattedMessage id="download.requirements" />
+                                </span>
+                                <FlexRow className="download-requirements">
+                                    <span>
+                                        <img
+                                            alt=""
+                                            src="/svgs/extensions/windows.svg"
+                                        />
+                                                Windows 10+
+                                    </span>
+                                    <span>
+                                        <img
+                                            alt=""
+                                            src="svgs/extensions/mac.svg"
+                                        />
+                                                macOS 10.13+
+                                    </span>
+                                </FlexRow>
+                            </FlexRow>
+                        </FlexRow>
+                        <div className="download-image">
+                            <img
+                                alt={this.props.intl.formatMessage({id: 'download.imgAltDownloadIllustration'})}
+                                src="/images/download/download.png"
+                            />
+                        </div>
+                    </FlexRow>
+                </div>
+                <OSChooser
+                    currentOS={this.state.OS}
+                    handleSetOS={this.onSetOS}
+                />
+                <div className="blue install-scratch">
+                    <FlexRow className="inner column">
+                        <h2 className="title">
+                            <FormattedMessage id="download.installHeaderTitle" />
+                        </h2>
+                        <Steps>
+                            <div className="step">
+                                <Step
+                                    compact
+                                    number={1}
+                                >
+                                    <span className="step-description">
+                                        <FormattedMessage id="download.downloadScratchDesktop" />
+                                    </span>
+                                    <div className="downloads-container">
+                                        <a
+                                            className="download-button"
+                                            href={
+                                                this.state.OS === OS_ENUM.WINDOWS ?
+                                                    'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop%20Setup%201.0.0.exe' :
+                                                    'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop-1.0.0.dmg'
+                                            }
+                                        >
+                                            <FormattedMessage id="download.downloadButton" />
+                                        </a>
+                                    </div>
+                                </Step>
 
-                        <section id="other">
-                            <span className="nav-spacer" />
-                            <h2><FormattedMessage id="download.otherVersionsTitle" /></h2>
-                            <p><FormattedHTMLMessage id="download.otherVersionsOlder" /></p>
-                            <p><FormattedHTMLMessage id="download.otherVersionsAdmin" /></p>
-                        </section>
-
-                        <section id="issues">
-                            <span className="nav-spacer" />
-                            <h2><FormattedMessage id="download.knownIssuesTitle" /></h2>
-                            <p><FormattedMessage id="download.knownIssuesOne" /></p>
-                            <p><FormattedMessage id="download.knownIssuesTwo" /></p>
-                            <p><FormattedHTMLMessage id="download.knownIssuesThree" /></p>
-                            <p><FormattedMessage id="download.knownIssuesFour" /></p>
-                            <a
-                                className="button mod-link"
-                                href="https://scratch.mit.edu/discuss/3/"
+                            </div>
+                            <Step
+                                compact
+                                number={2}
                             >
-                                <FormattedMessage id="download.reportBugs" />
-                            </a>
-                        </section>
-                    </div>
+                                <span className="step-description">
+                                    {this.state.OS === OS_ENUM.WINDOWS ?
+                                        <FormattedMessage id="download.winMoveToApplications" /> :
+                                        <FormattedMessage id="download.macMoveToApplications" />
+                                    }
+                                </span>
+
+                                <div className="step-image">
+                                    <img
+                                        alt=""
+                                        className="screenshot"
+                                        src={`/images/download/${
+                                            this.state.OS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
+                                        }-install.png`}
+                                    />
+                                </div>
+                            </Step>
+                        </Steps>
+                    </FlexRow>
+                </div>
+                <div className="download-section faq">
+                    <FlexRow className="inner column">
+                        <h2 className="title">
+                            <FormattedMessage id="download.troubleshootingTitle" />
+                        </h2>
+
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.canIUseScratchLink" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.canIUseScratchLinkAnswer" />
+                        </p>
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.desktopAndBrowser" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.yesAnswer" />
+                        </p>
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.canIShare" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.canIShareAnswer" />
+                        </p>
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.supportChromeOS" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.supportChromeOSAnswer" />
+                        </p>
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.whenSupportLinux" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.supportLinuxAnswer" />
+                        </p>
+                    </FlexRow>
+                </div>
+                <div className="download-section blue">
+                    <FlexRow className="inner column">
+                        <h2 className="title">
+                            <FormattedMessage id="download.olderVersionsTitle" />
+                        </h2>
+                        <p>
+                            <FormattedMessage id="download.olderVersions" />
+                        </p>
+                        <FlexRow>
+                            <div className="older-version">
+                                <a href="/download/scratch2">
+                                    <img
+                                        alt=""
+                                        className="screenshot"
+                                        height="106"
+                                        src="/images/download/scratch2.png"
+                                        width="150"
+                                    />
+                                </a>
+                                <p>
+                                    <a
+                                        className="legacy-link"
+                                        href="/download/scratch2"
+                                    >
+                                        <FormattedMessage id="download.scratch2Desktop" />
+                                        <img
+                                            className="little-arrow"
+                                            src="/svgs/download/r-arrow.svg"
+                                        />
+                                    </a>
+                                </p>
+                            </div>
+                            <div className="older-version">
+                                <a href="/scratch_1.4">
+                                    <img
+                                        alt=""
+                                        className="screenshot"
+                                        height="106"
+                                        src="/images/download/scratch1-4.png"
+                                        width="150"
+                                    />
+                                </a>
+                                <p>
+                                    <a
+                                        className="legacy-link"
+                                        href="/scratch_1.4"
+                                    >
+                                        <FormattedMessage id="download.scratch1-4Desktop" />
+                                        <img
+                                            className="little-arrow"
+                                            src="/svgs/download/r-arrow.svg"
+                                        />
+                                    </a>
+                                </p>
+                            </div>
+                        </FlexRow>
+                    </FlexRow>
                 </div>
             </div>
         );
+
     }
 }
-
 Download.propTypes = {
     intl: intlShape
+
 };
 
 const WrappedDownload = injectIntl(Download);

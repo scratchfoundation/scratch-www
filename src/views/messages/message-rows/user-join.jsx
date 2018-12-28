@@ -24,7 +24,7 @@ const UserJoinMessage = props => (
                     </a>
                 ),
                 makeProjectLink: (
-                    <a href="/projects/editor/?tip_bar=getStarted">
+                    <a href="/projects/editor/?tutorial=getStarted">
                         {props.intl.formatMessage({id: 'messages.userJoinMakeProject'})}
                     </a>
                 )
