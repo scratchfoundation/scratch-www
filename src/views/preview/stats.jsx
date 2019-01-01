@@ -3,7 +3,6 @@ const React = require('react');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const classNames = require('classnames');
 
-const CappedNumber = require('../../components/cappednumber/cappednumber.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 
 require('./stats.scss');
@@ -34,7 +33,7 @@ const Stats = props => (
             className="project-views"
             key="views"
         >
-            <CappedNumber value={props.projectInfo.stats.views} />
+            {props.projectInfo.stats.views}
         </div>
     </FlexRow>
 );
