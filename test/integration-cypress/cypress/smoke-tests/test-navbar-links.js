@@ -22,7 +22,7 @@ describe('test links in nav bar while signed out', function (){
             .click();
         cy
             .url()
-            .should('eq', baseUrl + '/projects/editor/?tip_bar=home');
+            .should('eq', baseUrl + '/projects/editor/?tutorial=getStarted');
     });
 
     it('click Explore', function (){

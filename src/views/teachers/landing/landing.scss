@@ -50,10 +50,10 @@ $story-width: $cols3;
                 }
             }
 
-            .ted-talk {
+            .video-player {
                 position: relative;
                 margin-bottom: $gutter;
-                border: 2px solid $ui-border;
+                border: .25rem solid $ui-white-15percent;
                 border-radius: 10px;
                 width: $cols4;
                 height: $cols4 * .5625;
@@ -73,28 +73,6 @@ $story-width: $cols3;
                 background-color: $band-color;
                 padding: 1rem 0;
             }
-
-            .sub-nav {
-                text-align: left;
-
-                li {
-                    margin: 0 .5rem 0 0;
-                }
-            }
-
-        }
-
-        &.faq-banner {
-            margin-bottom: 0;
-            background-color: $ui-gray;
-        }
-    }
-
-    .general-usage {
-        justify-content: space-between;
-
-        p {
-            max-width: $cols4;
         }
     }
 
@@ -105,87 +83,29 @@ $story-width: $cols3;
         align-items: flex-start;
 
         div {
-            max-width: $cols6;
+            max-width: 24rem;
         }
     }
 
     .guides-and-tutorials {
         div {
-            max-width: $cols4;
+            max-width: 16rem;
             text-align: center;
         }
     }
 
     section {
-        margin-bottom: 3rem;
-    }
-
-    #in-practice,
-    #resources {
-        .nav-spacer {
+        .nav-spacer { // For making the anchors work.
             display: block;
             visibility: hidden;
-            margin-top: -50px; // height of  nav bar
+            margin-top: -50px;
             height: 50px;
         }
-    }
 
+        margin-bottom: 3rem;
 
-    #in-practice {
-        border-bottom: 1px solid $ui-border;
-        padding-bottom: 2rem;
-
-        .stories {
-            margin: auto;
-            align-items: center;
-            justify-content: space-between;
-            flex-direction: row;
-        }
-
-        .story {
-            margin: 10px auto;
-            border: 1px solid $ui-border;
-            border-radius: 10px;
-            background-color: $ui-white;
-            box-sizing: border-box;
-
-            img {
-                border-top-left-radius: 9px;
-                border-top-right-radius: 9px;
-                width: 100%;
-            }
-
-            .story-info {
-                padding-top: 10px;
-                padding-left: 10px;
-
-                .name {
-                    margin: 0;
-                    line-height: initial;
-                    color: $ui-blue;
-                    font-size: initial;
-                    font-weight: 500;
-                }
-
-                p {
-                    margin: 10px 0;
-                    font-size: .75rem;
-                }
-            }
-        }
-    }
-
-    #resources {
         h2 {
-            padding-bottom: 2rem;
-            text-align: center;
-        }
-
-        h3 {
-            font-weight: 300;
-        }
-
-        #guides-header {
+            margin-bottom: .75rem;
             text-align: center;
         }
     }
@@ -217,6 +137,7 @@ $story-width: $cols3;
         h2 {
             margin: 0 0 2rem 0;
             text-align: left;
+            line-height: normal;
             color: $ui-white;
         }
 
@@ -415,36 +336,10 @@ $story-width: $cols3;
         }
     }
 
-    #in-practice {
-        h2 {
-            text-align: center;
-        }
-
-        .intro {
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .general-usage {
-            margin-bottom: 2rem;
-
-            p {
-                margin: .25em 0;
-                max-width: $cols8;
-                text-align: center;
-            }
-        }
-    }
-
     .educators {
         #resources {
             margin: 0 auto;
             width: $cols6;
-
-            h2 {
-                margin: 0 auto;
-                text-align: left;
-            }
 
             .educator-community {
                 justify-content: center;
@@ -459,7 +354,7 @@ $story-width: $cols3;
             .guides-and-tutorials {
                 div {
                     display: flex;
-                    max-width: $cols8;
+                    max-width: 16rem;
                     text-align: left;
                     justify-content: space-between;
                 }

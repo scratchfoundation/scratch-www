@@ -91,7 +91,7 @@ tap.test('clickForDevelopersScratchLink', options, t => {
 // CREDITS
 tap.test('clickCreditsLink', options, t => {
     const linkText = 'Credits';
-    const expectedHref = '/info/credits';
+    const expectedHref = '/credits';
     clickFooterLinks(linkText).then(url => {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -162,10 +162,10 @@ tap.test('clickStatisticsLink', options, t => {
 
 // ==== SUPPORT column ====
 
-// TIPS PAGE
-tap.test('clickTipsPageLink', options, t => {
-    const linkText = 'Tips';
-    const expectedHref = '/tips';
+// IDEAS PAGE
+tap.test('clickIdeasPageLink', options, t => {
+    const linkText = 'Ideas';
+    const expectedHref = '/ideas';
     clickFooterLinks(linkText).then(url => {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
@@ -269,7 +269,7 @@ tap.test('clickScratchEdLink', options, t => {
 // SCRATCH JR (SCRATCHJR)
 tap.test('clickScratchJrLink', options, t => {
     const linkText = 'ScratchJr';
-    const expectedUrl = 'http://www.scratchjr.org/';
+    const expectedUrl = 'https://www.scratchjr.org/';
     clickFooterLinks(linkText).then(url => {
         t.equal(url, expectedUrl);
         t.end();

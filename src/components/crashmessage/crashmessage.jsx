@@ -20,6 +20,16 @@ const CrashMessage = props => (
             <p>
                 <FormattedMessage id="general.unhandledError" />
             </p>
+            {props.eventId && (
+                <p>
+                    <FormattedMessage
+                        id="general.errorIdentifier"
+                        values={{
+                            errorId: props.eventId
+                        }}
+                    />
+                </p>
+            )}
             <Button
                 className=""
                 onClick={props.onBack}
@@ -32,6 +42,7 @@ const CrashMessage = props => (
 
 CrashMessage.propTypes = {
     className: PropTypes.string,
+    eventId: PropTypes.string,
     onBack: PropTypes.func
 };
 

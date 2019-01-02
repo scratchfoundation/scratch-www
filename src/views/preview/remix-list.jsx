@@ -20,7 +20,7 @@ const RemixList = props => {
                 <ThumbnailColumn
                     cards
                     showAvatar
-                    itemType="preview"
+                    itemType="projects"
                     items={remixes.slice(0, 5)}
                     showFavorites={false}
                     showLoves={false}

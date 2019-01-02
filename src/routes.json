@@ -14,13 +14,6 @@
         "title": "Down Deep"
     },
     {
-        "name": "cards",
-        "pattern": "^/info/cards/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
-        "view": "cards/cards",
-        "title": "Cards"
-    },
-    {
         "name": "communityblocks-interviews",
         "pattern": "^/info/communityblocks-interviews/?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
@@ -87,7 +80,7 @@
     },
     {
         "name": "credits",
-        "pattern": "^/info/credits/?$",
+        "pattern": "^/credits/?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
         "view": "credits/credits",
         "title": "Credits"
@@ -108,7 +101,7 @@
     },
     {
         "name": "download",
-        "pattern": "^/download/?$",
+        "pattern": "^/download/?(.+)?$",
         "routeAlias": "/download",
         "view": "download/download",
         "title": "Scratch Offline Editor"
@@ -129,7 +122,7 @@
     },
     {
         "name": "faq",
-        "pattern": "^/info/faq/?$",
+        "pattern": "^/info/faq/?(.+)?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
         "view": "faq/faq",
         "title": "FAQ"
@@ -140,6 +133,13 @@
         "routeAlias": "/community_guidelines/?$",
         "view": "guidelines/guidelines",
         "title": "Scratch Community Guidelines"
+    },
+    {
+        "name": "ideas",
+        "pattern": "^/ideas/?(\\?.*)?$",
+        "routeAlias": "/ideas/?\\??",
+        "view": "ideas/ideas",
+        "title": "Ideas"
     },
     {
         "name": "jobs",
@@ -163,53 +163,19 @@
         "title": "Messages"
     },
     {
-        "name": "microworld-art",
-        "pattern": "^/microworlds/art",
-        "routeAlias": "/microworlds",
-        "view": "microworld/art/art",
-        "title": "Art"
-    },
-    {
-        "name": "microworld-fashion",
-        "pattern": "^/microworlds/fashion",
-        "routeAlias": "/microworlds",
-        "view": "microworld/fashion/fashion",
-        "title": "Fashion"
-    },
-    {
-        "name": "microworld-hiphop",
-        "pattern": "^/microworlds/hiphop",
-        "routeAlias": "/microworlds",
-        "view": "microworld/hiphop/hiphop",
-        "title": "Hip Hop Dance"
-    },
-    {
-        "name": "microworld-soccer",
-        "pattern": "^/microworlds/soccer",
-        "routeAlias": "/microworlds",
-        "view": "microworld/soccer/soccer",
-        "title": "Soccer"
-    },
-    {
-        "name": "microworlds-homepage",
-        "pattern": "^/microworlds/go/?(\\?.*)?$",
-        "routeAlias": "/microworlds",
-        "view": "microworldshomepage/microworldshomepage",
-        "title": "Microworlds"
-    },
-    {
-        "name": "preview",
-        "pattern": "^/preview(/editor|(/\\d+(/editor|/fullscreen)?)?)?/?$",
-        "routeAlias": "/preview/?$",
+        "name": "projects",
+        "pattern": "^/projects(/editor|(/\\d+(/editor|/fullscreen|/embed)?)?)?/?(\\?.*)?$",
+        "routeAlias": "/projects/?$",
         "view": "preview/preview",
-        "title": "Scratch 3.0 Preview"
+        "title": "Scratch Project",
+        "dynamicMetaTags": true
     },
     {
-        "name": "3faq",
-        "pattern": "^/3faq/?$",
-        "routeAlias": "/3faq/?$",
-        "view": "preview-faq/preview-faq",
-        "title": "Scratch 3.0 FAQ"
+        "name": "parents",
+        "pattern": "^/parents/?$",
+        "routeAlias": "/parents/",
+        "view": "parents/parents",
+        "title": "For Parents"
     },
     {
         "name": "preview-faq-redirect",
@@ -230,6 +196,20 @@
         "routeAlias": "/research",
         "view": "research/research",
         "title": "Research"
+    },
+    {
+        "name": "scratch_1.4",
+        "pattern": "^/scratch_1.4/?$",
+        "routeAlias": "/scratch_1.4",
+        "view": "scratch_1.4/scratch_1.4",
+        "title": "Scratch 1.4"
+    },
+    {
+        "name": "scratch2",
+        "pattern": "^/download/scratch2/?$",
+        "routeAlias": "/download/scratch2",
+        "view": "download/scratch2/download",
+        "title": "Scratch 2.0"
     },
     {
         "name": "search",
@@ -288,13 +268,6 @@
         "title": "Scratch Terms of Use"
     },
     {
-        "name": "tips",
-        "pattern": "^/tips/?(\\?.*)?$",
-        "routeAlias": "/tips/?\\??",
-        "view": "tips/tips",
-        "title": "Tips"
-    },
-    {
         "name": "wedo2",
         "pattern": "^/wedo/?$",
         "routeAlias": "/wedo/?$",
@@ -302,7 +275,7 @@
         "title": "LEGO WeDo 2.0"
     },
     {
-        "name": "wedo-legacy",
+        "name": "wedo2-legacy",
         "pattern": "^/wedo-legacy/?$",
         "routeAlias": "/wedo-legacy/?$",
         "view": "wedo2-legacy/wedo2",
@@ -321,6 +294,18 @@
         "routeAlias": "/microbit/?$",
         "view": "microbit/microbit",
         "title": "micro:bit"
+    },
+    {
+        "name":"3-faq-redirect",
+        "pattern": "^/3faq/?$",
+        "routeAlias": "/3faq/?$",
+        "redirect": "info/faq#scratch3"
+    },
+    {
+        "name" : "credits-redirect",
+        "pattern": "^/info/credits/?$",
+        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "redirect" : "/credits"
     },
     {
         "name": "donate-redirect",
@@ -359,28 +344,33 @@
         "redirect": "/explore/studios/all"
     },
     {
+        "name": "info-cards-redirect",
+        "pattern": "^/info/cards/?$",
+        "redirect": "/ideas"
+    },
+    {
         "name": "help-redirect",
         "pattern": "^/help/?(\\?.*)?$",
         "routeAlias": "/help/?(\\?.*)?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "hoc-redirect",
         "pattern": "^/hoc/?(\\?.*)?$",
         "routeAlias": "/hoc/?\\??",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "hoc2014-redirect",
         "pattern": "^/hoc2014/?(\\?.*)?$",
         "routeAlias": "/hoc2014/?\\??",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "info-redirect",
         "pattern": "^/info/?(\\?.*)?$",
         "routeAlias": "/info/?(\\?.*)?$",
-        "redirect": "/tips"
+        "redirect": "/ideas"
     },
     {
         "name": "research-redirect",
@@ -406,9 +396,157 @@
         "redirect": "https://scratch-foundation.myshopify.com"
     },
     {
+        "name": "tips-redirect",
+        "pattern": "^/tips/?(\\?.*)?$",
+        "routeAlias": "/tips/?\\??",
+        "redirect": "/ideas"
+    },
+    {
         "name": "things-to-try-redirect",
         "pattern": "^/go/?(\\?.*)?$",
         "routeAlias": "/go/?\\??",
-        "redirect": "/tips"
+        "redirect": "/ideas"
+    },
+    {
+        "name": "create-tutorial-redirect",
+        "pattern": "^/create/?$",
+        "redirect": "/projects/editor/?tutorial=getStarted"
+    },
+    {
+        "name": "name-tutorial-redirect",
+        "pattern": "^/name/?$",
+        "redirect": "/projects/editor/?tutorial=name"
+    },
+    {
+        "name": "music-tutorial-redirect",
+        "pattern": "^/music/?$",
+        "redirect": "/projects/editor/?tutorial=music"
+    },
+    {
+        "name": "story-tutorial-redirect",
+        "pattern": "^/story/?$",
+        "redirect": "/projects/editor/?tutorial=story"
+    },
+    {
+        "name": "pong-tutorial-redirect",
+        "pattern": "^/pong/?$",
+        "redirect": "/projects/editor/?tutorial=pong"
+    },
+    {
+        "name": "clicker-tutorial-redirect",
+        "pattern": "^/clicker/?$",
+        "redirect": "/projects/editor/?tutorial=clicker-game"
+    },
+    {
+        "name": "chase-tutorial-redirect",
+        "pattern": "^/chase/?$",
+        "redirect": "/projects/editor/?tutorial=chase-game"
+    },
+    {
+        "name": "jazz-tutorial-redirect",
+        "pattern": "^/jazz/?$",
+        "redirect": "/projects/editor/?tutorial=music"
+    },
+    {
+        "name": "catch-tutorial-redirect",
+        "pattern": "^/catch/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "dance-tutorial-redirect",
+        "pattern": "^/dance/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "fly-tutorial-redirect",
+        "pattern": "^/fly/?$",
+        "routeAlias": "/(makeit)?fly/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "makeitfly-tutorial-redirect",
+        "pattern": "^/makeitfly/?$",
+        "routeAlias": "/(makeit)?fly/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "pet-tutorial-redirect",
+        "pattern": "^/pet/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "racegame-tutorial-redirect",
+        "pattern": "^/racegame/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "hide-tutorial-redirect",
+        "pattern": "^/hide/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "fashion-tutorial-redirect",
+        "pattern": "^/fashion/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "dressup-tutorial-redirect",
+        "pattern": "^/dressup/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "card-tutorial-redirect",
+        "pattern": "^/card/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "valentines-tutorial-redirect",
+        "pattern": "^/valentines/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "bearstack-tutorial-redirect",
+        "pattern": "^/bearstack/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "favorite-tutorial-redirect",
+        "pattern": "^/favorite/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "hoops-tutorial-redirect",
+        "pattern": "^/hoops/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "soccer-tutorial-redirect",
+        "pattern": "^/soccer/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "codeweek-tutorial-redirect",
+        "pattern": "^/codeweekeu/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "madewithcode-tutorial-redirects",
+        "pattern": "^/madewithcode-(name|card)/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "odetocode-tutorial-redirect",
+        "pattern": "^/odetocode/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "makey-tutorial-redirects",
+        "pattern": "^/makey(piano|drum)?/?$",
+        "redirect": "/ideas"
+    },
+    {
+        "name": "bird-redirect",
+        "pattern": "^/bird/?$",
+        "redirect": "/ideas"
     }
 ]

@@ -1,39 +1,172 @@
 @import "../../colors";
 
-.credits {
-    p {
-        line-height: 1.5rem;
+#view {
+    padding: 0;
+    text-align: left;
+}
 
-        a {
-            white-space: normal;
-            word-wrap: break-word; /* Overrides: https://github.com/LLK/scratch-www/blob/develop/src/main.scss#L43-L47 */
+.credits {
+    .avatar-grid {
+        display: flex;
+        margin: 0 auto;
+        padding: 64px 0;
+        max-width: 864px;
+        list-style: none;
+        flex-wrap: wrap;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+
+    .content {
+        padding-top: 40px;
+    }
+
+    .avatar-item {
+        display: inline-block;
+        margin: 0;
+        padding-bottom: 32px;
+        text-align: center;
+        line-height: 1.25rem;
+
+        img {
+            $img-border: rgba(0, 0, 0, .05);
+            border: 2px solid $img-border;
+            border-radius: 8px;
+            background-color: $ui-white;
+            width: 80px;
+            height: 80px;
+        }
+
+        .avatar-text {
+            display: inline-block;
+            width: 144px;
+            font-size: .875rem;
+            word-wrap: break-word;
+
         }
     }
 
-    ul {
-        display: flex;
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        flex-wrap: wrap;
+    .acknowledge-content {
+        margin: 0 176px;
+        padding: 2.5rem 0 5.75rem 0;
+        max-width: 520px;
+
+        p {
+            margin: 0;
+            padding-bottom: 1.875rem;
+            line-height: 1.5rem;
+        }
+
+        h2 {
+            padding: 3rem 0 1.5rem;
+            line-height: 1.2em;
+            font-size: 2rem;
+        }
     }
 
-    li {
-        display: inline-block;
-        margin: 10px 0;
-        width: 188px;
-        text-align: center; 
+    .text-logo {
+        max-width: 140px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+    }
 
-        img {
-            margin: 10px 23px;
-            border: 2px;
-            border-style: solid;
-            border-radius: 50%;
-            border-color: $ui-dark-gray;
-            background-color: $ui-white;
-            padding: 20px;
-            width: 85px;
-            height: 85px;
+    .mid-header {
+        display: flex;
+        margin: 0 88px;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+            line-height: 1.2em;
+        }
+    }
+
+    .logo-grid {
+        display: flex;
+        margin: 0 auto;
+        max-width: 864px;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+
+    }
+
+    .supporters {
+        $bg-grey: #f7f6f8;
+        background-color: $bg-grey;
+        padding: 5.25rem 0;
+    }
+
+    .logo {
+        padding: 84px 24px 0;
+    }
+
+    .title-banner {
+        display: flex;
+        padding: 0;
+        height: 152px;
+        align-items: center;
+    }
+
+    .title-banner-h1 {
+        font-size: 2rem;
+    }
+
+}
+
+@media only screen and (min-width: 477px) and (max-width: 768px) {
+    .credits {
+        .acknowledge-content {
+            margin: 0 88px;
+        }
+    }
+}
+@media only screen and (min-width: 365px) and (max-width: 476px) {
+    .credits {
+        .avatar-item {
+            padding-bottom: 16px;
+
+            .avatar-text {
+                width: 112px;
+            }
+        }
+
+        .acknowledge-content,
+        .mid-header {
+            margin: 0 44px;
+        }
+    }
+}
+@media only screen and (max-width: 364px) {
+    .credits {
+        .avatar-item {
+            padding-bottom: 16px;
+
+            img {
+                width: 56px;
+                height: 56px;
+            }
+
+            .avatar-text {
+                width: 96px;
+            }
+        }
+
+        .logo-grid {
+            flex-direction: column;
+        }
+
+        .acknowledge-content {
+            margin: 0 12px;
+        }
+
+        .logo {
+            padding: 36px;
+        }
+
+        .avatar-grid {
+            margin: 0 12px;
         }
     }
 }

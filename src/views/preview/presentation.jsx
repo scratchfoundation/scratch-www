@@ -11,11 +11,13 @@ const classNames = require('classnames');
 const GUI = require('scratch-gui').default;
 const IntlGUI = injectIntl(GUI);
 
+const AdminPanel = require('../../components/adminpanel/adminpanel.jsx');
 const decorateText = require('../../lib/decorate-text.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
-const ShareBanner = require('./share-banner.jsx');
+const Banner = require('./banner.jsx');
+const ModInfo = require('./mod-info.jsx');
 const RemixCredit = require('./remix-credit.jsx');
 const RemixList = require('./remix-list.jsx');
 const Stats = require('./stats.jsx');
@@ -25,6 +27,7 @@ const InplaceInput = require('../../components/forms/inplace-input.jsx');
 const TopLevelComment = require('./comment/top-level-comment.jsx');
 const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
+const thumbnailUrl = require('../../lib/user-thumbnail');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -42,13 +45,21 @@ const onKeyPress = e => {
 };
 
 const PreviewPresentation = ({
+    addToStudioOpen,
+    adminModalOpen,
+    adminPanelOpen,
     assetHost,
-    backpackOptions,
+    authorUsername,
+    backpackHost,
     canAddToStudio,
     canDeleteComments,
+    canRemix,
     canReport,
     canRestoreComments,
+    canSave,
     canShare,
+    canToggleComments,
+    canUseBackpack,
     cloudHost,
     comments,
     editable,
@@ -58,55 +69,142 @@ const PreviewPresentation = ({
     intl,
     isFullScreen,
     isLoggedIn,
+    isNewScratcher,
+    isRemixing,
+    isScratcher,
     isShared,
-    loved,
+    justRemixed,
+    justShared,
     loveCount,
+    loved,
+    modInfo,
     moreCommentsToLoad,
-    originalInfo,
-    parentInfo,
-    projectHost,
-    projectId,
-    projectInfo,
-    remixes,
-    reportOpen,
-    replies,
-    addToStudioOpen,
-    projectStudios,
-    singleCommentId,
-    userOwnsProject,
     onAddComment,
+    onAddToStudioClicked,
+    onAddToStudioClosed,
+    onCloseAdminPanel,
+    onCopyProjectLink,
     onDeleteComment,
     onFavoriteClicked,
+    onGreenFlag,
     onLoadMore,
     onLoveClicked,
+    onOpenAdminPanel,
+    onRemix,
+    onRemixing,
     onReportClicked,
     onReportClose,
     onReportComment,
     onReportSubmit,
     onRestoreComment,
-    onAddToStudioClicked,
-    onAddToStudioClosed,
-    onToggleStudio,
-    onToggleComments,
+    onSeeAllComments,
     onSeeInside,
     onShare,
-    onUpdate
+    onToggleComments,
+    onToggleStudio,
+    onUpdate,
+    onUpdateProjectId,
+    onUpdateProjectThumbnail,
+    originalInfo,
+    parentInfo,
+    showCloudDataAlert,
+    showUsernameBlockAlert,
+    projectHost,
+    projectId,
+    projectInfo,
+    projectStudios,
+    remixes,
+    replies,
+    reportOpen,
+    showAdminPanel,
+    showModInfo,
+    singleCommentId,
+    visibilityInfo
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
+    const revisedDate = ((projectInfo.history && projectInfo.history.modified)) ? projectInfo.history.modified : '';
+
+    // Allow embedding html in banner messages coming from the server
+    const embedCensorMessage = message => (
+        // eslint-disable-next-line react/no-danger
+        <span dangerouslySetInnerHTML={{__html: message}} />
+    );
+
+    let banner;
+    if (visibilityInfo.deleted) { // If both censored and deleted, prioritize deleted banner
+        banner = (<Banner
+            className="banner-danger"
+            message={<FormattedMessage id="project.deletedBanner" />}
+        />);
+    } else if (visibilityInfo.censored) {
+        banner = (<Banner
+            className="banner-danger"
+            message={embedCensorMessage(visibilityInfo.message)}
+        />);
+    } else if (justRemixed) {
+        banner = (
+            <Banner
+                className="banner-success"
+                message={
+                    <FormattedMessage
+                        id="project.remix.justRemixed"
+                        values={{title: projectInfo.title}}
+                    />
+                }
+            />
+        );
+    } else if (canShare) {
+        if (isShared && justShared) { // if was shared a while ago, don't show any share banner
+            if (isNewScratcher) {
+                banner = (<Banner
+                    className="banner-success"
+                    message={<FormattedMessage id="project.share.sharedLong" />}
+                />);
+            } else {
+                banner = (<Banner
+                    className="banner-success"
+                    message={<FormattedMessage id="project.share.sharedShort" />}
+                />);
+            }
+        } else if (!isShared) {
+            banner = (<Banner
+                actionMessage={<FormattedMessage id="project.share.shareButton" />}
+                message={<FormattedMessage id="project.share.notShared" />}
+                onAction={onShare}
+            />);
+        }
+    }
+
     return (
         <div className="preview">
-            {canShare && !isShared && (
-                <ShareBanner onShare={onShare} />
+            {showAdminPanel && (
+                <AdminPanel
+                    className={classNames('project-admin-panel', {
+                        'admin-panel-open': adminPanelOpen,
+                        'modal-open': adminModalOpen
+                    })}
+                    isOpen={adminPanelOpen}
+                    onClose={onCloseAdminPanel}
+                    onOpen={onOpenAdminPanel}
+                >
+                    <iframe
+                        className={classNames('admin-iframe', {
+                            'modal-open': adminModalOpen
+                        })}
+                        src={`/scratch2/${projectId}/adminpanel/`}
+                    />
+                </AdminPanel>
             )}
             { projectInfo && projectInfo.author && projectInfo.author.id && (
                 <React.Fragment>
+                    {banner}
                     <div className="inner">
                         <FlexRow className="preview-row force-row">
                             <FlexRow className="project-header">
                                 <a href={`/users/${projectInfo.author.username}`}>
                                     <Avatar
                                         alt={projectInfo.author.username}
-                                        src={`https://cdn2.scratch.mit.edu/get_image/user/${projectInfo.author.id}_48x48.png`}
+                                        src={thumbnailUrl(projectInfo.author.id, 48)}
                                     />
                                 </a>
                                 <div className="title">
@@ -142,10 +240,24 @@ const PreviewPresentation = ({
                             </FlexRow>
                             <MediaQuery minWidth={frameless.mobile}>
                                 <div className="project-buttons">
-                                    {/* TODO: Hide Remix button for now until implemented */}
-                                    {(!userOwnsProject && false) &&
-                                        <Button className="button remix-button">
-                                            <FormattedMessage id="project.remixButton" />
+                                    {canRemix &&
+                                        <Button
+                                            alt={intl.formatMessage({id: 'project.remixButton.altText'})}
+                                            className={classNames([
+                                                'remix-button',
+                                                {
+                                                    remixing: isRemixing,
+                                                    spin: isRemixing
+                                                }
+                                            ])}
+                                            title={intl.formatMessage({id: 'project.remixButton.altText'})}
+                                            onClick={onRemix}
+                                        >
+                                            {isRemixing ? (
+                                                <FormattedMessage id="project.remixButton.remixing" />
+                                            ) : (
+                                                <FormattedMessage id="project.remixButton" />
+                                            )}
                                         </Button>
                                     }
                                     <Button
@@ -159,17 +271,35 @@ const PreviewPresentation = ({
                         </FlexRow>
                         <FlexRow className="preview-row">
                             <div className="guiPlayer">
+                                {showCloudDataAlert && (
+                                    <FlexRow className="project-info-alert">
+                                        <FormattedMessage id="project.cloudDataAlert" />
+                                    </FlexRow>
+                                )}
+                                {showUsernameBlockAlert && (
+                                    <FlexRow className="project-info-alert">
+                                        <FormattedMessage id="project.usernameBlockAlert" />
+                                    </FlexRow>
+                                )}
                                 <IntlGUI
                                     isPlayerOnly
                                     assetHost={assetHost}
-                                    backpackOptions={backpackOptions}
+                                    backpackHost={backpackHost}
+                                    backpackVisible={canUseBackpack}
                                     basePath="/"
+                                    canRemix={canRemix}
+                                    canSave={canSave}
                                     className="guiPlayer"
                                     cloudHost={cloudHost}
+                                    hasCloudPermission={isScratcher}
                                     isFullScreen={isFullScreen}
                                     previewInfoVisible="false"
                                     projectHost={projectHost}
                                     projectId={projectId}
+                                    onGreenFlag={onGreenFlag}
+                                    onRemixing={onRemixing}
+                                    onUpdateProjectId={onUpdateProjectId}
+                                    onUpdateProjectThumbnail={onUpdateProjectThumbnail}
                                 />
                             </div>
                             <MediaQuery maxWidth={frameless.tablet - 1}>
@@ -191,6 +321,7 @@ const PreviewPresentation = ({
                                         shareDate={shareDate}
                                         onAddToStudioClicked={onAddToStudioClicked}
                                         onAddToStudioClosed={onAddToStudioClosed}
+                                        onCopyProjectLink={onCopyProjectLink}
                                         onReportClicked={onReportClicked}
                                         onReportClose={onReportClose}
                                         onReportSubmit={onReportSubmit}
@@ -217,7 +348,7 @@ const PreviewPresentation = ({
                                         </FlexRow>
                                     </FlexRow>
                                 </MediaQuery>
-                                <FlexRow className="description-block">
+                                <div className="description-block">
                                     <div className="project-textlabel">
                                         <FormattedMessage id="project.instructionsLabel" />
                                     </div>
@@ -233,13 +364,14 @@ const PreviewPresentation = ({
                                                 )}
                                                 handleUpdate={onUpdate}
                                                 name="instructions"
-                                                placeholder="Tell people how to use your project (such as which keys to press)."
+                                                placeholder={intl.formatMessage({
+                                                    id: 'project.descriptionPlaceholder'
+                                                })}
                                                 type="textarea"
                                                 validationErrors={{
-                                                    maxLength: 'Sorry description is too long'
-                                                    // maxLength: props.intl.formatMessage({
-                                                    //     id: 'project.descriptionMaxLength'
-                                                    // })
+                                                    maxLength: intl.formatMessage({
+                                                        id: 'project.descriptionMaxLength'
+                                                    })
                                                 }}
                                                 validations={{
                                                     // TODO: actual 5000
@@ -256,8 +388,8 @@ const PreviewPresentation = ({
                                             })}
                                         </div>
                                     }
-                                </FlexRow>
-                                <FlexRow className="description-block">
+                                </div>
+                                <div className="description-block">
                                     <div className="project-textlabel">
                                         <FormattedMessage id="project.notesAndCreditsLabel" />
                                     </div>
@@ -274,13 +406,14 @@ const PreviewPresentation = ({
                                                 )}
                                                 handleUpdate={onUpdate}
                                                 name="description"
-                                                placeholder="How did you make this project? Did you use ideas scripts or artwork from other people? Thank them here."
+                                                placeholder={intl.formatMessage({
+                                                    id: 'project.notesPlaceholder'
+                                                })}
                                                 type="textarea"
                                                 validationErrors={{
-                                                    maxLength: 'Sorry description is too long'
-                                                    // maxLength: props.intl.formatMessage({
-                                                    //     id: 'project.descriptionMaxLength'
-                                                    // })
+                                                    maxLength: intl.formatMessage({
+                                                        id: 'project.descriptionMaxLength'
+                                                    })
                                                 }}
                                                 validations={{
                                                     // TODO: actual 5000
@@ -297,7 +430,7 @@ const PreviewPresentation = ({
                                             })}
                                         </div>
                                     }
-                                </FlexRow>
+                                </div>
                                 {/*  eslint-enable max-len */}
                             </FlexRow>
                         </FlexRow>
@@ -321,6 +454,7 @@ const PreviewPresentation = ({
                                     shareDate={shareDate}
                                     onAddToStudioClicked={onAddToStudioClicked}
                                     onAddToStudioClosed={onAddToStudioClosed}
+                                    onCopyProjectLink={onCopyProjectLink}
                                     onReportClicked={onReportClicked}
                                     onReportClose={onReportClose}
                                     onReportSubmit={onReportSubmit}
@@ -343,6 +477,16 @@ const PreviewPresentation = ({
                                 </FlexRow>
                             </FlexRow>
                         </MediaQuery>
+                        {showModInfo &&
+                            <FlexRow className="preview-row">
+                                <ModInfo
+                                    authorUsername={authorUsername}
+                                    revisedDate={revisedDate}
+                                    scripts={modInfo.scriptCount}
+                                    sprites={modInfo.spriteCount}
+                                />
+                            </FlexRow>
+                        }
                     </div>
                     <div className="project-lower-container">
                         <div className="inner">
@@ -350,7 +494,7 @@ const PreviewPresentation = ({
                                 <div className="comments-container">
                                     <FlexRow className="comments-header">
                                         <h4><FormattedMessage id="project.comments.header" /></h4>
-                                        {userOwnsProject ? (
+                                        {canToggleComments ? (
                                             <div>
                                                 <label>
                                                     <input
@@ -365,23 +509,26 @@ const PreviewPresentation = ({
                                         ) : null}
                                     </FlexRow>
 
-                                    <FlexRow className="comments-root-reply">
-                                        {projectInfo.comments_allowed ? (
-                                            isLoggedIn ? (
-                                                <ComposeComment
-                                                    projectId={projectId}
-                                                    onAddComment={onAddComment}
-                                                />
+                                    {/* Do not show the top-level comment form in single comment mode */}
+                                    {!singleCommentId && (
+                                        <FlexRow className="comments-root-reply">
+                                            {projectInfo.comments_allowed ? (
+                                                isLoggedIn ? (
+                                                    <ComposeComment
+                                                        projectId={projectId}
+                                                        onAddComment={onAddComment}
+                                                    />
+                                                ) : (
+                                                    /* TODO add box for signing in to leave a comment */
+                                                    null
+                                                )
                                             ) : (
-                                                /* TODO add box for signing in to leave a comment */
-                                                null
-                                            )
-                                        ) : (
-                                            <div className="comments-turned-off">
-                                                <FormattedMessage id="project.comments.turnedOff" />
-                                            </div>
-                                        )}
-                                    </FlexRow>
+                                                <div className="comments-turned-off">
+                                                    <FormattedMessage id="project.comments.turnedOff" />
+                                                </div>
+                                            )}
+                                        </FlexRow>
+                                    )}
 
                                     <FlexRow className="comments-list">
                                         {comments.map(comment => (
@@ -415,6 +562,14 @@ const PreviewPresentation = ({
                                             <FormattedMessage id="general.loadMore" />
                                         </Button>
                                         }
+                                        {!!singleCommentId &&
+                                            <Button
+                                                className="button load-more-button"
+                                                onClick={onSeeAllComments}
+                                            >
+                                                <FormattedMessage id="general.seeAllComments" />
+                                            </Button>
+                                        }
                                     </FlexRow>
                                 </div>
                                 <FlexRow className="column">
@@ -432,16 +587,20 @@ const PreviewPresentation = ({
 
 PreviewPresentation.propTypes = {
     addToStudioOpen: PropTypes.bool,
+    adminModalOpen: PropTypes.bool,
+    adminPanelOpen: PropTypes.bool,
     assetHost: PropTypes.string,
-    backpackOptions: PropTypes.shape({
-        host: PropTypes.string,
-        visible: PropTypes.bool
-    }),
+    authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    backpackHost: PropTypes.string,
     canAddToStudio: PropTypes.bool,
     canDeleteComments: PropTypes.bool,
+    canRemix: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestoreComments: PropTypes.bool,
+    canSave: PropTypes.bool,
     canShare: PropTypes.bool,
+    canToggleComments: PropTypes.bool,
+    canUseBackpack: PropTypes.bool,
     cloudHost: PropTypes.string,
     comments: PropTypes.arrayOf(PropTypes.object),
     editable: PropTypes.bool,
@@ -451,27 +610,45 @@ PreviewPresentation.propTypes = {
     intl: intlShape,
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
+    isNewScratcher: PropTypes.bool,
+    isRemixing: PropTypes.bool,
+    isScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
+    justRemixed: PropTypes.bool,
+    justShared: PropTypes.bool,
     loveCount: PropTypes.number,
     loved: PropTypes.bool,
+    modInfo: PropTypes.shape({
+        scriptCount: PropTypes.number,
+        spriteCount: PropTypes.number
+    }),
     moreCommentsToLoad: PropTypes.bool,
     onAddComment: PropTypes.func,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
+    onCloseAdminPanel: PropTypes.func,
+    onCopyProjectLink: PropTypes.func,
     onDeleteComment: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
+    onGreenFlag: PropTypes.func,
     onLoadMore: PropTypes.func,
     onLoveClicked: PropTypes.func,
+    onOpenAdminPanel: PropTypes.func,
+    onRemix: PropTypes.func,
+    onRemixing: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
     onReportComment: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
     onRestoreComment: PropTypes.func,
+    onSeeAllComments: PropTypes.func,
     onSeeInside: PropTypes.func,
     onShare: PropTypes.func,
     onToggleComments: PropTypes.func,
     onToggleStudio: PropTypes.func,
     onUpdate: PropTypes.func,
+    onUpdateProjectId: PropTypes.func,
+    onUpdateProjectThumbnail: PropTypes.func,
     originalInfo: projectShape,
     parentInfo: projectShape,
     projectHost: PropTypes.string,
@@ -481,8 +658,17 @@ PreviewPresentation.propTypes = {
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
     reportOpen: PropTypes.bool,
+    showAdminPanel: PropTypes.bool,
+    showCloudDataAlert: PropTypes.bool,
+    showModInfo: PropTypes.bool,
+    showUsernameBlockAlert: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    userOwnsProject: PropTypes.bool
+    visibilityInfo: PropTypes.shape({
+        censored: PropTypes.bool,
+        message: PropTypes.string,
+        deleted: PropTypes.bool,
+        reshareable: PropTypes.bool
+    })
 };
 
 module.exports = injectIntl(PreviewPresentation);

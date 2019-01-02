@@ -6,9 +6,12 @@ const Navigation = require('../../navigation/www/navigation.jsx');
 const Footer = require('../../footer/www/footer.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 
-const Page = props => (
+const Page = ({
+    children,
+    className
+}) => (
     <ErrorBoundary>
-        <div className="page">
+        <div className={classNames('page', className)}>
             <div
                 className={classNames({
                     staging: process.env.SCRATCH_ENV === 'staging'
@@ -18,7 +21,7 @@ const Page = props => (
                 <Navigation />
             </div>
             <div id="view">
-                {props.children}
+                {children}
             </div>
             <div id="footer">
                 <Footer />
@@ -28,7 +31,8 @@ const Page = props => (
 );
 
 Page.propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    className: PropTypes.string
 };
 
 module.exports = Page;

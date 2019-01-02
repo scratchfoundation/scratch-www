@@ -20,7 +20,7 @@ const StudioList = props => {
                 <ThumbnailColumn
                     cards
                     showAvatar
-                    itemType="studio"
+                    itemType="studios"
                     items={studios.slice(0, 5)}
                     showFavorites={false}
                     showLoves={false}

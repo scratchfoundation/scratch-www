@@ -19,11 +19,11 @@ const Welcome = props => (
     >
         <div className="welcome-col blue">
             <h4>
-                <a href="/projects/editor/?tip_bar=getStarted">
+                <a href="/projects/editor/?tutorial=getStarted">
                     {props.messages['welcome.learn']}
                 </a>
             </h4>
-            <a href="/projects/editor/?tip_bar=getStarted">
+            <a href="/projects/editor/?tutorial=getStarted">
                 <img
                     alt="Get Started"
                     src="/images/welcome-learn.png"

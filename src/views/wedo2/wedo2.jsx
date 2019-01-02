@@ -3,7 +3,6 @@ const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
-
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
@@ -13,6 +12,7 @@ const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 
 const ExtensionLanding = require('../../components/extension-landing/extension-landing.jsx');
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
+const ExtensionVideo = require('../../components/extension-landing/extension-video.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
@@ -29,60 +29,66 @@ class Wedo2 extends ExtensionLanding {
         return (
             <div className="extension-landing wedo2">
                 <ExtensionHeader
-                    imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltWeDoIllustration'})}
-                    imageSrc="/images/wedo2/wedo2-illustration.png"
-                >
-                    <FlexRow className="column extension-copy">
-                        <h1><img
-                            alt=""
-                            src="/images/wedo2/wedo2.svg"
-                        />LEGO WeDo 2.0</h1>
-                        <FormattedMessage
-                            id="wedo2.headerText"
-                            values={{
-                                wedo2Link: (
-                                    <a
-                                        href="https://education.lego.com/en-us/elementary/intro/wedo2"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                                LEGO Education WeDo 2.0
-                                    </a>
-                                )
-                            }}
+                    renderCopy={
+                        <FlexRow className="extension-copy">
+                            <h1><img
+                                alt=""
+                                src="/images/wedo2/wedo2.svg"
+                            />LEGO WeDo 2.0</h1>
+                            <FormattedMessage
+                                id="wedo2.headerText"
+                                values={{
+                                    wedo2Link: (
+                                        <a
+                                            href="https://education.lego.com/en-us/elementary/intro/wedo2"
+                                            rel="noopener noreferrer"
+                                            target="_blank"
+                                        >
+                                            LEGO Education WeDo 2.0
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </FlexRow>
+                    }
+                    renderImage={
+                        <ExtensionVideo
+                            videoId="4im7iizv47"
                         />
-                    </FlexRow>
-                    <ExtensionRequirements>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/windows.svg"
-                            />
-                                        Windows 10+
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/mac.svg"
-                            />
-                                        macOS 10.13+
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/bluetooth.svg"
-                            />
-                                        Bluetooth
-                        </span>
-                        <span>
-                            <img
-                                alt=""
-                                src="/svgs/extensions/scratch-link.svg"
-                            />
-                                        Scratch Link
-                        </span>
-                    </ExtensionRequirements>
-                </ExtensionHeader>
+                    }
+                    renderRequirements={
+                        <ExtensionRequirements>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/windows.svg"
+                                />
+                                            Windows 10 version 1709+
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/mac.svg"
+                                />
+                                            macOS 10.13+
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/bluetooth.svg"
+                                />
+                                            Bluetooth 4.0
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="/svgs/extensions/scratch-link.svg"
+                                />
+                                            Scratch Link
+                            </span>
+                        </ExtensionRequirements>
+                    }
+                />
                 <OSChooser
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
@@ -109,11 +115,11 @@ class Wedo2 extends ExtensionLanding {
                                         values={{
                                             scratch3Link: (
                                                 <a
-                                                    href="https://beta.scratch.mit.edu/"
+                                                    href="/projects/editor/?tutorial=wedo"
                                                     rel="noopener noreferrer"
                                                     target="_blank"
                                                 >
-                                                            Scratch 3.0
+                                                            Scratch
                                                 </a>
                                             )
                                         }}
@@ -177,30 +183,56 @@ class Wedo2 extends ExtensionLanding {
                     <h3><FormattedMessage id="wedo2.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239284992"
-                            description={this.props.intl.formatMessage({id: 'wedo2.starter1Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter1'})}
+                            cardUrl="/projects/269442111/editor?tutorial=wedo"
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter1PetDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter1Pet'})}
                             imageSrc="/images/wedo2/wedo2-starter1.png"
-                            title={this.props.intl.formatMessage({id: 'wedo2.starter1Title'})}
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter1PetTitle'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239284997"
-                            description={this.props.intl.formatMessage({id: 'wedo2.starter2Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter2'})}
+                            cardUrl="/projects/269442224/editor?tutorial=wedo"
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter2FoxDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter2Fox'})}
                             imageSrc="/images/wedo2/wedo2-starter2.png"
-                            title={this.props.intl.formatMessage({id: 'wedo2.starter2Title'})}
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter2FoxTitle'})}
                         />
                         <ProjectCard
-                            cardUrl="https://beta.scratch.mit.edu/#239285001"
-                            description={this.props.intl.formatMessage({id: 'wedo2.starter3Description'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter3'})}
+                            cardUrl="/projects/269442247/editor?tutorial=wedo"
+                            description={this.props.intl.formatMessage({id: 'wedo2.starter3PufferfishDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'wedo2.imgAltStarter3Pufferfish'})}
                             imageSrc="/images/wedo2/wedo2-starter3.png"
-                            title={this.props.intl.formatMessage({id: 'wedo2.starter3Title'})}
+                            title={this.props.intl.formatMessage({id: 'wedo2.starter3PufferfishTitle'})}
                         />
                     </Steps>
                 </ExtensionSection>
                 <ExtensionSection className="faq">
                     <h2><FormattedMessage id="wedo2.troubleshootingTitle" /></h2>
+                    <h3 className="faq-title"><FormattedMessage id="wedo2.checkOSVersionTitle" /></h3>
+                    <p>
+                        <FormattedMessage
+                            id="wedo2.checkOSVersionText"
+                            values={{
+                                winOSVersionLink: (
+                                    <a
+                                        href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="wedo2.winOSVersionLinkText" />
+                                    </a>
+                                ),
+                                macOSVersionLink: (
+                                    <a
+                                        href="https://support.apple.com/en-us/HT201260"
+                                        rel="noopener noreferrer"
+                                        target="_blank"
+                                    >
+                                        <FormattedMessage id="wedo2.macOSVersionLinkText" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </p>
                     <h3 className="faq-title"><FormattedMessage id="wedo2.closeScratchCopiesTitle" /></h3>
                     <p>
                         <FormattedMessage id="wedo2.closeScratchCopiesText" />

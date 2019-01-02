@@ -31,20 +31,13 @@ const LoveProjectMessage = require('./activity-rows/love-project.jsx');
 const RemixProjectMessage = require('./activity-rows/remix-project.jsx');
 const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 
-// Beta Banner Components
-// const TopBanner = require('./beta/top-banner.jsx');
-const SmallTopBanner = require('./beta/small-top-banner.jsx');
-// const MiddleBanner = require('./beta/middle-banner.jsx');
+// Featured Banner Components
+const TopBanner = require('./feature/top-banner.jsx');
+const SmallTopBanner = require('./feature/small-top-banner.jsx');
+const MiddleBanner = require('./feature/middle-banner.jsx');
 
-const BETA_LAUNCH_TIME = 1533128400000; // August 1 at 9am ET
-const SMALL_BANNER_TIME = 1534942800000; // August 22 at 9am ET
-
-// Hour of Code Banner Components
-const TopBanner = require('./hoc/top-banner.jsx');
-const MiddleBanner = require('./hoc/middle-banner.jsx');
-
-const HOC_START_TIME = 1543813201000; // 12:01 am Dec 3rd
-const HOC_END_TIME = 1544806799000; // 11:59 Dec 14th
+// Scratch 3.0 Launch Banner
+const LAUNCH_END_TIME = 1547873999000;
 
 require('./splash.scss');
 
@@ -238,7 +231,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             }
         }
     }
-    renderHomepageRows () {
+    renderHomepageRows (showBanner) {
         const rows = [
             <Box
                 key="community_featured_projects"
@@ -283,6 +276,21 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 >
                     <LegacyCarousel items={this.props.featuredGlobal.curator_top_projects} />
                 </Box>
+            );
+        }
+        
+        if (
+            this.props.sessionStatus === sessionActions.Status.FETCHED &&
+            Object.keys(this.props.user).length === 0 &&
+            showBanner // Show middle banner
+        ) {
+            rows.push(
+                <MediaQuery
+                    key="frameless-tablet"
+                    minWidth={frameless.tablet}
+                >
+                    <MiddleBanner />
+                </MediaQuery>
             );
         }
 
@@ -361,10 +369,12 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
         return rows;
     }
     render () {
-        const featured = this.renderHomepageRows();
+        const ShowTopBanner = Date.now() < LAUNCH_END_TIME;
+        const ShowMiddleBanner = false;
+        const ShowSmallTopBanner = false;
+        const featured = this.renderHomepageRows(ShowMiddleBanner);
 
         const formatHTMLMessage = this.props.intl.formatHTMLMessage;
-        const formatNumber = this.props.intl.formatNumber;
         const formatMessage = this.props.intl.formatMessage;
         const messages = {
             'general.viewAll': formatMessage({id: 'general.viewAll'}),
@@ -376,23 +386,17 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             'intro.aboutScratch': formatMessage({id: 'intro.aboutScratch'}),
             'intro.forEducators': formatMessage({id: 'intro.forEducators'}),
             'intro.forParents': formatMessage({id: 'intro.forParents'}),
-            'intro.itsFree': formatMessage({id: 'intro.itsFree'}),
-            'intro.joinScratch': formatMessage({id: 'intro.joinScratch'}),
-            'intro.seeExamples': formatMessage({id: 'intro.seeExamples'}),
-            'intro.tagLine': formatHTMLMessage({id: 'intro.tagLine'}),
-            'intro.tryItOut': formatMessage({id: 'intro.tryItOut'}),
+            'intro.join': formatMessage({id: 'intro.join'}),
+            'intro.startCreating': formatMessage({id: 'intro.startCreating'}),
+            'intro.tagLine1': formatHTMLMessage({id: 'intro.tagLine1'}),
+            'intro.tagLine2': formatHTMLMessage({id: 'intro.tagLine2'}),
+            'intro.watchVideo': formatMessage({id: 'intro.watchVideo'}),
             'teacherbanner.greeting': formatMessage({id: 'teacherbanner.greeting'}),
             'teacherbanner.subgreeting': formatMessage({id: 'teacherbanner.subgreeting'}),
             'teacherbanner.classesButton': formatMessage({id: 'teacherbanner.classesButton'}),
             'teacherbanner.resourcesButton': formatMessage({id: 'general.resourcesTitle'}),
             'teacherbanner.faqButton': formatMessage({id: 'teacherbanner.faqButton'})
         };
-        if (this.props.projectCount === 20000000) {
-            messages['intro.description'] = formatHTMLMessage({id: 'intro.defaultDescription'});
-        } else {
-            const count = formatNumber(this.props.projectCount);
-            messages['intro.description'] = formatHTMLMessage({id: 'intro.description'}, {value: count});
-        }
 
         return (
             <div className="splash">
@@ -433,27 +437,33 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 ] : []}
                 {
                     this.props.sessionStatus === sessionActions.Status.FETCHED &&
-                    Object.keys(this.props.user).length === 0 && // Only show top banner if user is not logged in
-                    Date.now() >= HOC_START_TIME &&
-                    Date.now() < HOC_END_TIME &&
-                    <MediaQuery
-                        key="frameless-tablet"
-                        minWidth={frameless.tablet}
-                    >
-                        <TopBanner />
-                    </MediaQuery>
+                    Object.keys(this.props.user).length === 0 && // if user is not logged in
+                    (ShowTopBanner ? [
+                        <MediaQuery
+                            key="frameless-tablet"
+                            minWidth={0}
+                        >
+                            <TopBanner actionLink="/create" />
+                        </MediaQuery>
+                    ] : [
+                        <Intro
+                            key="intro"
+                            messages={messages}
+                        />
+                    ]
+                    )
                 }
                 {
                     this.props.sessionStatus === sessionActions.Status.FETCHED &&
-                    Object.keys(this.props.user).length !== 0 && // Only show top banner if user is logged in
-                    Date.now() >= BETA_LAUNCH_TIME &&
+                    Object.keys(this.props.user).length !== 0 && // if user is logged in
+                    ShowTopBanner &&
                     <MediaQuery
                         key="frameless-tablet"
-                        minWidth={frameless.tablet}
+                        minWidth={0}
                     >
-                        {Date.now() >= SMALL_BANNER_TIME ?
-                            <SmallTopBanner /> : // Show small banner starting September 1 at 9am ET
-                            <TopBanner />
+                        {ShowSmallTopBanner ?
+                            <SmallTopBanner /> :
+                            <TopBanner actionLink="/projects/editor/" />
                         }
                     </MediaQuery>
                 }
@@ -461,109 +471,100 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     className="inner mod-splash"
                     key="inner"
                 >
-                    {this.props.sessionStatus === sessionActions.Status.FETCHED ? (
-                        Object.keys(this.props.user).length > 0 ? [
-                            <div
-                                className="splash-header"
-                                key="header"
-                            >
-                                {this.props.shouldShowWelcome ? [
-                                    <Welcome
-                                        key="welcome"
-                                        messages={messages}
-                                        onDismiss={() => { // eslint-disable-line react/jsx-no-bind
-                                            this.props.onDismiss('welcome');
-                                        }}
-                                    />
-                                ] : [
-                                    <WrappedActivityList
-                                        items={this.props.activity}
-                                        key="activity"
-                                    />
-                                ]}
-                                <News
-                                    items={this.props.news}
+                    {
+                        this.props.sessionStatus === sessionActions.Status.FETCHED &&
+                        Object.keys(this.props.user).length > 0 && // user is logged in 
+                        <div
+                            className="splash-header"
+                            key="header"
+                        >
+                            {this.props.shouldShowWelcome ? [
+                                <Welcome
+                                    key="welcome"
                                     messages={messages}
+                                    onDismiss={() => { // eslint-disable-line react/jsx-no-bind
+                                        this.props.onDismiss('welcome');
+                                    }}
                                 />
-                            </div>
-                        ] : [
-                            <MediaQuery
-                                key="frameless-desktop"
-                                minWidth={frameless.desktop}
-                            >
-                                {
-                                    (Date.now() < HOC_START_TIME || // Hide intro if HoC banner is showing
-                                    Date.now() > HOC_END_TIME) ?
-                                        [
-                                            <Intro
-                                                key="intro"
-                                                messages={messages}
-                                                projectCount={this.props.projectCount}
-                                            />
-                                        ] :
-                                        []
-                                }
-                                
-                            </MediaQuery>
-                        ]) : []
+                            ] : [
+                                <WrappedActivityList
+                                    items={this.props.activity}
+                                    key="activity"
+                                />
+                            ]}
+                            <News
+                                items={this.props.news}
+                                messages={messages}
+                            />
+                        </div>
                     }
-                    {featured.shift()}
-                    {featured.shift()}
-                </div>
-                {
-                    this.props.sessionStatus === sessionActions.Status.FETCHED &&
-                    Object.keys(this.props.user).length !== 0 && // Only show if user is logged in
-                    Date.now() >= HOC_START_TIME && // Show middle banner on and after Dec 3
-                    Date.now() < HOC_END_TIME && // Hide middle banner after Dec 14
-                    <MediaQuery
-                        key="frameless-desktop"
-                        minWidth={frameless.tablet}
-                    >
-                        <MiddleBanner />
-                    </MediaQuery>
-                }
-                
-                <div
-                    className="inner mod-splash"
-                    key="inner2"
-                >
                     {featured}
 
-                    {this.props.isAdmin ? [
-                        <AdminPanel key="admin-panel">
-                            <dt>Tools</dt>
-                            <dd>
-                                <ul>
-                                    <li>
-                                        <a href="/scratch_admin/tickets">Ticket Queue</a>
-                                    </li>
-                                    <li>
-                                        <a href="/scratch_admin/ip-search/">IP Search</a>
-                                    </li>
-                                    <li>
-                                        <a href="/scratch_admin/email-search/">Email Search</a>
-                                    </li>
-                                </ul>
-                            </dd>
-                            <dt>Homepage Cache</dt>
-                            <dd>
-                                <ul className="cache-list">
-                                    <li>
-                                        <div className="button-row">
-                                            <span>Refresh row data:</span>
-                                            <Button
-                                                className={this.props.refreshCacheStatus.status}
-                                                disabled={this.props.refreshCacheStatus.disabled}
-                                                onClick={this.props.onRefreshHomepageCache}
+                    {this.props.isAdmin && (
+                        <AdminPanel
+                            className="splash-admin-panel"
+                            isOpen={this.props.adminPanelOpen}
+                            onClose={this.props.onCloseAdminPanel}
+                            onOpen={this.props.onOpenAdminPanel}
+                        >
+                            <dl>
+                                <dt>Tools</dt>
+                                <dd>
+                                    <ul>
+                                        <li>
+                                            <a href="/scratch_admin/tickets">Ticket Queue</a>
+                                        </li>
+                                        <li>
+                                            <a href="/scratch_admin/ip-search/">IP Search</a>
+                                        </li>
+                                        <li>
+                                            <a href="/scratch_admin/email-search/">Email Search</a>
+                                        </li>
+                                    </ul>
+                                </dd>
+                                <dt>Homepage Cache</dt>
+                                <dd>
+                                    <ul className="cache-list">
+                                        <li>
+                                            <div className="button-row">
+                                                <span>Refresh row data:</span>
+                                                <Button
+                                                    className={this.props.refreshCacheStatus.status}
+                                                    disabled={this.props.refreshCacheStatus.disabled}
+                                                    onClick={this.props.onRefreshHomepageCache}
+                                                >
+                                                    <span>{this.props.refreshCacheStatus.content}</span>
+                                                </Button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </dd>
+                                <dt>Page Cache</dt>
+                                <dd>
+                                    <ul className="cache-list">
+                                        <li>
+                                            <form
+                                                action="/scratch_admin/page/clear-anon-cache/"
+                                                method="post"
                                             >
-                                                <span>{this.props.refreshCacheStatus.content}</span>
-                                            </Button>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </dd>
+                                                <input
+                                                    name="path"
+                                                    type="hidden"
+                                                    value="/"
+                                                />
+                                                <div className="button-row">
+                                                    <span>For anonymous users:</span>
+                                                    <Button type="submit">
+                                                        <span>Clear</span>
+                                                    </Button>
+                                                </div>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dl>
                         </AdminPanel>
-                    ] : []}
+                    )}
                 </div>
             </div>
         );
@@ -572,6 +573,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
 
 SplashPresentation.propTypes = {
     activity: PropTypes.arrayOf(PropTypes.object),
+    adminPanelOpen: PropTypes.bool,
     emailConfirmationModalOpen: PropTypes.bool.isRequired,
     featuredGlobal: PropTypes.shape({
         community_featured_projects: PropTypes.array,
@@ -587,11 +589,12 @@ SplashPresentation.propTypes = {
     isEducator: PropTypes.bool.isRequired,
     lovedByFollowing: PropTypes.arrayOf(PropTypes.object),
     news: PropTypes.arrayOf(PropTypes.object),
+    onCloseAdminPanel: PropTypes.func.isRequired,
     onDismiss: PropTypes.func.isRequired,
     onHideEmailConfirmationModal: PropTypes.func.isRequired,
+    onOpenAdminPanel: PropTypes.func.isRequired,
     onRefreshHomepageCache: PropTypes.func.isRequired,
     onShowEmailConfirmationModal: PropTypes.func.isRequired,
-    projectCount: PropTypes.number,
     refreshCacheStatus: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     sessionStatus: PropTypes.string.isRequired,
     sharedByFollowing: PropTypes.arrayOf(PropTypes.object),

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Player Controls/Turbo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M12.7465228,2.459606 C13.804317,1.48385475 14.8548295,2.16701773 14.4141054,3.52112549 L12.9207305,8.10946219 C12.8030233,8.47111293 12.9957208,8.84314115 13.3559016,8.95871573 L13.90044,9.13344687 C15.1002812,9.51845114 15.371114,10.7275224 14.4495532,11.5769599 L8.25062461,17.2907475 C7.19257415,18.2659928 6.14209654,17.5828115 6.58280341,16.2287567 L8.07617834,11.6404201 C8.19391207,11.2786877 8.0017643,10.9073258 7.6427156,10.79227 L7.09879453,10.6179725 C5.89933742,10.2336109 5.62934908,9.02476911 6.55027117,8.17527407 L12.7465228,2.459606 Z" id="path-1"></path>
+    </defs>
+    <g id="Player-Controls/Turbo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="turbo-bolt" fill="#FF8C1A" fill-rule="nonzero" xlink:href="#path-1"></use>
+        <g id="Color/1_Yellow" mask="url(#mask-2)" fill="#FFBF00">
+            <g id="Color/Yellow/1_Yellow">
+                <rect id="Color" x="0" y="0" width="20" height="20"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

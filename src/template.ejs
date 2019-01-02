@@ -8,23 +8,25 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=<%= htmlWebpackPlugin.options.viewportWidth %>, initial-scale=1">
 
-        <title>Scratch - <%= htmlWebpackPlugin.options.title %></title>
-
         <!-- Prevent mobile Safari from making phone numbers -->
         <meta name="format-detection" content="telephone=no">
 
-        <!-- Search & Open Graph-->
-        <meta name="description" content="<%= htmlWebpackPlugin.options.description %>" />
-        <meta name="google-site-verification" content="m_3TAXDreGTFyoYnEmU9mcKB4Xtw5mw6yRkuJtXRKxM" />
+        <% if (!htmlWebpackPlugin.options.dynamicMetaTags) { %>
+            <title>Scratch - <%= htmlWebpackPlugin.options.title %></title>
 
-        <meta property="og:url" content="https://scratch.mit.edu/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Scratch - <%= htmlWebpackPlugin.options.title %>" />
-        <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>" />
-        <meta property="og:image" content="<%- htmlWebpackPlugin.options.og_image %>" />
-        <meta property="og:image:type" content="<%- htmlWebpackPlugin.options.og_image_type %>" />
-        <meta property="og:image:width" content="<%- htmlWebpackPlugin.options.og_image_width %>" />
-        <meta property="og:image:height" content="<%- htmlWebpackPlugin.options.og_image_height %>" />
+            <!-- Search & Open Graph-->
+            <meta name="description" content="<%= htmlWebpackPlugin.options.description %>" />
+            <meta name="google-site-verification" content="m_3TAXDreGTFyoYnEmU9mcKB4Xtw5mw6yRkuJtXRKxM" />
+
+            <meta property="og:url" content="https://scratch.mit.edu/" />
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="Scratch - <%= htmlWebpackPlugin.options.title %>" />
+            <meta property="og:description" content="<%= htmlWebpackPlugin.options.description %>" />
+            <meta property="og:image" content="<%- htmlWebpackPlugin.options.og_image %>" />
+            <meta property="og:image:type" content="<%- htmlWebpackPlugin.options.og_image_type %>" />
+            <meta property="og:image:width" content="<%- htmlWebpackPlugin.options.og_image_width %>" />
+            <meta property="og:image:height" content="<%- htmlWebpackPlugin.options.og_image_height %>" />
+        <% } %>
 
         <!-- Favicon & CSS normalize -->
         <link rel="shortcut icon" href="/favicon.ico" />
@@ -45,6 +47,7 @@
                 'sampleRate': 10
             });
             ga('send', 'pageview');
+            window.GA_ID = '<%- htmlWebpackPlugin.options.ga_tracker %>';
             /* eslint-enable */
         </script>
     </head>
@@ -60,19 +63,21 @@
         <script src="/<%= htmlWebpackPlugin.files.chunks[htmlWebpackPlugin.options.route.name].entry %>"></script>
 
         <!-- Translate title element -->
-        <script>
-            var loc = window._locale || 'en';
-            if (typeof window._messages !== 'undefined' && loc !== 'en') {
-                if (typeof window._messages[loc] === 'undefined') {
-                    loc = loc.split('-')[0];
-                }
-                if (typeof window._messages[loc] !== 'undefined') {
-                    var localizedTitle = window._messages[loc]['general.' + '<%= htmlWebpackPlugin.options.title %>'.toLowerCase()] || '';
-                    if (localizedTitle.length > 0) {
-                        document.title = 'Scratch - ' + localizedTitle;
+        <% if (!htmlWebpackPlugin.options.dynamicMetaTags) { %>
+            <script>
+                var loc = window._locale || 'en';
+                if (typeof window._messages !== 'undefined' && loc !== 'en') {
+                    if (typeof window._messages[loc] === 'undefined') {
+                        loc = loc.split('-')[0];
+                    }
+                    if (typeof window._messages[loc] !== 'undefined') {
+                        var localizedTitle = window._messages[loc]['general.' + '<%= htmlWebpackPlugin.options.title %>'.toLowerCase()] || '';
+                        if (localizedTitle.length > 0) {
+                            document.title = 'Scratch - ' + localizedTitle;
+                        }
                     }
                 }
-            }
-        </script>
+            </script>
+        <% } %>
     </body>
 </html>

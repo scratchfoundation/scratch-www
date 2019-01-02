@@ -1,0 +1,53 @@
+@import "../../colors";
+
+$navigation-height: 50px;
+
+.banner-outer {
+    display: flex;
+    background-color: $ui-orange-25percent;
+    width: 100%;
+    min-height: 4rem;
+    overflow: hidden;
+    color: $ui-orange-high-contrast;
+    font-size: .875rem;
+    font-weight: bold;
+    align-self: center;
+}
+
+.banner-outer.banner-danger {
+    background-color: $ui-red-25percent;
+    color: $ui-red;
+}
+
+.banner-outer.banner-success {
+    background-color: $ui-green-35percent;
+    color: $ui-mint-green;
+}
+
+.banner-inner {
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.banner-text {
+    padding: .5rem 0;
+}
+
+.banner-button {
+    margin-top: .75rem;
+    margin-bottom: .75rem;
+    border-radius: .25rem;
+    background-color: $ui-orange;
+    padding-top: .6875rem;
+    padding-bottom: .75rem;
+    min-width: 6rem;
+    max-width: 16rem;
+    min-height: 2.5rem;
+    max-height: 6rem;
+    font-size: .875rem;
+}
+
+.banner-danger .banner-button {
+    background-color: $ui-red;
+}

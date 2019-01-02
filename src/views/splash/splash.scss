@@ -47,6 +47,33 @@
     }
 }
 
+.splash-admin-panel {
+    dl {
+        list-style: none;
+
+        dt {
+            margin: 2rem 0 1rem 0;
+            border-bottom: 1px solid $ui-dark-gray;
+            font-size: large;
+            font-weight: 700;
+        }
+
+        dd {
+            margin-left: 0;
+        }
+    }
+
+    ul {
+        padding: 0;
+
+        li {
+            margin: 0;
+            list-style: none;
+
+        }
+    }
+}
+
 .modal-content.mod-confirmation {
     width: 31.25rem;
 }

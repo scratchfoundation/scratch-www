@@ -1,0 +1,61 @@
+[
+	{
+		"logoSrc": "/images/credits/siegelfamily.png",
+		"logoDestination": "https://www.siegelendowment.org",
+		"width": "146px"
+	},
+	{
+		"logoSrc": "/images/credits/smilegate.png",
+		"logoDestination": "https://www.smilegate.com/",
+		"width": "162px"
+	},
+	{
+		"logoSrc": "/svgs/credits/google.svg",
+		"logoDestination": "https://google.com/",
+		"width": "124px"
+	},
+	{
+		"textLogo": "Little Bluebridge Foundation",
+		"logoDestination": ""
+	},
+	{
+		"logoSrc": "/images/credits/legofoundation.png",
+		"logoDestination": "https://www.legofoundation.com",
+		"width": "240px"
+	},
+	{
+		"logoSrc": "/images/credits/lemann.png",
+		"logoDestination": "https://fundacaolemann.org.br/en/co-invest",
+		"width": "156px"
+	},
+	{
+		"logoSrc": "/svgs/credits/fastly.svg",
+		"logoDestination": "https://www.fastly.com/",
+		"width": "108px"
+	},
+	{
+		"logoSrc": "/images/credits/taledu.png",
+		"logoDestination": "https://en.100tal.com/",
+		"width": "188px"
+	},
+	{
+		"logoSrc": "/images/credits/lego-education.png",
+		"logoDestination": "https://education.lego.com",
+		"width": "194px"
+	},
+	{
+		"logoSrc": "/svgs/credits/cartoonnetwork.svg",
+		"logoDestination": "https://www.cartoonnetwork.com/",
+		"width": "78px"
+	},
+	{
+		"logoSrc": "/images/credits/brainpop.png",
+		"logoDestination": "https://www.brainpop.com/",
+		"width": "78px"
+	},
+	{
+		"logoSrc": "/svgs/credits/amazonws.svg",
+		"logoDestination": "https://aws.amazon.com/",
+		"width": "82px"
+	}
+]

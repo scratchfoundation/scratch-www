@@ -1,0 +1,56 @@
+[
+    {
+        "title": "ideas.animateANameTitle",
+        "description": "ideas.animateANameDescription",
+        "thumbImage": "/images/ideas/activities/animate-a-name-thumb.jpg",
+        "modalImage": "/images/ideas/activities/animate-a-name-modal.jpg",
+        "tutorialUrl": "name",
+        "cardsUrl": "cards.name-cardsLink",
+        "guideUrl": "guides.NameGuideLink"
+    },
+    {
+        "title": "ideas.animateACharacterTitle",
+        "description": "ideas.animateACharacterDescription",
+        "thumbImage": "/images/ideas/activities/animate-a-character-thumb.jpg",
+        "modalImage": "/images/ideas/activities/animate-a-character-modal.jpg",
+        "tutorialUrl": "animate-a-character",
+        "cardsUrl": "cards.animation-cardsLink",
+        "guideUrl": "guides.AnimateGuideLink"
+    },
+    {
+        "title": "ideas.makeMusicTitle",
+        "description": "ideas.makeMusicDescription",
+        "thumbImage": "/images/ideas/activities/make-music-thumb.jpg",
+        "modalImage": "/images/ideas/activities/make-music-modal.jpg",
+        "tutorialUrl": "music",
+        "cardsUrl": "cards.music-cardsLink",
+        "guideUrl": "guides.MusicGuideLink"
+    },
+    {
+        "title": "ideas.createAStoryTitle",
+        "description": "ideas.createAStoryDescription",
+        "thumbImage": "/images/ideas/activities/create-a-story-thumb.jpg",
+        "modalImage": "/images/ideas/activities/create-a-story-modal.jpg",
+        "tutorialUrl": "tell-a-story",
+        "cardsUrl": "cards.story-cardsLink",
+        "guideUrl": "guides.StoryGuideLink"
+    },
+    {
+        "title": "ideas.chaseGameTitle",
+        "description": "ideas.chaseGameDescription",
+        "thumbImage": "/images/ideas/activities/chase-game-thumb.jpg",
+        "modalImage": "/images/ideas/activities/chase-game-modal.jpg",
+        "tutorialUrl": "chase-game",
+        "cardsUrl": "cards.chase-cardsLink",
+        "guideUrl": "guides.ChaseGuideLink"
+    },
+    {
+        "title": "ideas.videoSensingTitle",
+        "description": "ideas.videoSensingDescription",
+        "thumbImage": "/images/ideas/activities/video-sensing-thumb.jpg",
+        "modalImage": "/images/ideas/activities/video-sensing-modal.jpg",
+        "tutorialUrl": "video-sensing",
+        "cardsUrl": "cards.video-cardsLink",
+        "guideUrl": "guides.VideoGuideLink"
+    }
+]

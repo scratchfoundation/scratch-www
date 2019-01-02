@@ -18,6 +18,19 @@ $stage-width: 480px;
     margin: 0;
     width: 100%;
     height: 100%;
+
+    /* Setting min height/width makes the UI scroll below those sizes */
+    /* Copied from GUI playground index.css */
+    min-width: 1024px;
+    min-height: 640px; /* Min height to fit sprite/backdrop button */
+}
+
+.page-has-admin-panel {
+    padding-left: 20px;
+}
+
+.page-has-admin-panel.admin-panel-open {
+    padding-left: 250px;
 }
 
 .preview {
@@ -33,6 +46,35 @@ $stage-width: 480px;
             width: 90%;
             min-width: 640px;
         }
+    }
+
+    .project-admin-panel {
+        margin-top: 51px;
+        border: 0;
+        padding: 1rem;
+        overflow: hidden;
+    }
+
+    .project-admin-panel.admin-panel-open {
+        padding: 0;
+        width: 250px;
+    }
+
+    .admin-iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        margin: 0;
+        border: 0;
+        width: 250px;
+        height: 100%;
+    }
+
+    .admin-iframe.modal-open,
+    .project-admin-panel.admin-panel-open.modal-open {
+        background-color: transparent;
+        width: 100%;
     }
 
     .project-title {
@@ -163,11 +205,17 @@ $stage-width: 480px;
     }
 
     .project-buttons {
+        font-weight: bold;
         flex-shrink: 0;
     }
 
     .button {
         margin-left: 1rem;
+    }
+
+    .inplace-textarea::placeholder {
+        padding: 0;
+        text-align: start;
     }
 
     .comments-container {
@@ -206,17 +254,23 @@ $stage-width: 480px;
     .remix-button,
     .see-inside-button {
         margin-top: 0;
+        border-radius: .25rem;
+        padding-top: .6875rem;
+        padding-right: .9375rem;
+        padding-bottom: .6875rem;
+        padding-left: .875rem;
+        height: 2.5rem;
         font-size: .875rem;
-        font-weight: normal;
 
         &:before {
             display: inline-block;
-            margin-right: .5rem;
+            margin-top: -2px;
+            margin-right: .4375rem;
             background-repeat: no-repeat;
             background-position: center center;
             background-size: contain;
-            width: 1.25rem;
-            height: 1.25rem;
+            width: 1.125rem;
+            height: 1.125rem;
             vertical-align: middle;
             content: "";
         }
@@ -227,6 +281,43 @@ $stage-width: 480px;
 
         &:before {
             background-image: url("/svgs/project/remix-white.svg");
+        }
+    }
+
+    .remix-button.remixing {
+        opacity: .6;
+
+        &:before {
+            animation-name: remix-intro, remix-spin;
+            animation-duration: .25s, .75s;
+            animation-timing-function: cubic-bezier(.3, -3, .6, 3), ease-out;
+            animation-delay: 0s, .25s;
+            animation-iteration-count: 1, infinite;
+            animation-direction: normal;
+            width: 1.25rem;
+            height: 1.25rem;
+            transform-origin: 55% 55%;
+        }
+        @keyframes remix-intro {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes remix-spin {
+            0% {
+                transform: rotate(360deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
         }
     }
 
@@ -252,7 +343,20 @@ $stage-width: 480px;
 
     .guiPlayer {
         display: inline-block;
+        position: relative;
         width: $player-width;
+
+        $alert-bg: rgba(255, 255, 255, .85);
+        .project-info-alert {
+            position: absolute;
+            z-index: 8; // Below navbar
+            margin: 60px 15px;
+            border-radius: .25rem;
+            background: $alert-bg;
+            padding: .75rem;
+            text-align: center;
+            font-size: .95rem;
+        }
 
         @media #{$small} {
             width: 100%;
@@ -328,7 +432,7 @@ $stage-width: 480px;
         overflow: auto;
         white-space: pre-line;
         font-size: 1rem;
-        // flex-grow
+        line-height: 1.5rem;
         flex: 1;
     }
 
@@ -374,7 +478,43 @@ $stage-width: 480px;
             display: flex;
             flex: 1;
         }
+
+        & .inplace-textarea {
+            line-height: 1.5rem; /* Override 1.75 from form styling */
+        }
+
+        ::-webkit-input-placeholder { /* Chrome <=56, Safari < 10 */
+            transition: opacity .25s;
+            opacity: 1;
+            -webkit-transition: opacity .25s;
+        }
+        :-moz-placeholder { /* FF 4-18 */
+            transition: opacity .25s;
+            opacity: 1;
+            -moz-transition: opacity .25s;
+        }
+        ::-moz-placeholder { /* FF 19-51 */
+            transition: opacity .25s;
+            opacity: 1;
+            -moz-transition: opacity .25s;
+        }
+        :-ms-input-placeholder { /* IE 10+ */
+            transition: opacity .25s;
+            opacity: 1;
+            -ms-transition: opacity .25s;
+        }
+        ::placeholder { /* Modern Browsers */
+            transition: opacity .25s;
+            opacity: 1;
+        }
+
+        *:focus::-webkit-input-placeholder { opacity: 0; } /* Chrome <=56, Safari < 10 */
+        *:focus:-moz-placeholder { opacity: 0; } /* FF 4-18 */
+        *:focus::-moz-placeholder { opacity: 0; } /* FF 19-50 */
+        *:focus:-ms-input-placeholder { opacity: 0; } /* IE 10+ */
+        *:focus::placeholder { opacity: 0; } /* Modern Browsers */
     }
+
 
     .comments-header {
         padding: 0 0 1rem 0;

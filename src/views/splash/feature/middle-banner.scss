@@ -1,0 +1,99 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.feature-middle-banner {
+    display: flex;
+    margin-top: 20px;
+    border-radius: 16px;
+    background-color: $ui-orange;
+    background-image: url("/images/feature/bg-pattern.png");
+    background-size: cover;
+    padding: 0;
+    height: 17rem;
+    overflow: hidden;
+    box-sizing: border-box;
+    justify-content: space-between;
+
+    .feature-middle-container {
+        padding-left: 3rem;
+        align-items: flex-start;
+        flex-shrink: 0;
+    }
+
+    .feature-banner-images {
+        display: flex;
+        height: 100%;
+        align-self: flex-end;
+
+        .feature-banner-image {
+            display: flex;
+            margin-right: 2rem;
+            min-width: 0;
+            height: 100%;
+            align-self: flex-end;
+
+            img {
+                display: block;
+                max-width: 100%;
+                max-height: 100%;
+                align-self: flex-end;
+            }
+        }
+    }
+
+    .feature-header,
+    .feature-copy,
+    .feature-call-to-action {
+        color: $ui-white;
+    }
+
+    .feature-header {
+        font-size: 1.7rem;
+    }
+
+    .feature-copy {
+        margin-bottom: 1rem;
+        max-width: 350px;
+        line-height: 1.7rem;
+        font-size: 1.3rem;
+    }
+
+    .feature-call-to-action {
+        border-radius: 10px;
+        padding: 1em 2em;
+        font-size: 1em;
+    }
+}
+
+@media #{$intermediate} {
+    .feature-middle-banner {
+        margin: 20px auto 40px auto;
+        width: $cols8;
+        height: initial;
+        flex-direction: column;
+        justify-content: center;
+
+        .feature-middle-container {
+            padding-top: 4rem;
+            padding-left: 0;
+            align-items: center;
+        }
+
+        .feature-banner-images {
+            .feature-banner-image {
+                margin: 0;
+                padding: 0;
+
+                &.left {
+                    margin-left: -2.5rem;
+                }
+
+                &.right {
+                    margin-right: -2.5rem;
+                }
+            }
+        }
+    }
+}
+
+

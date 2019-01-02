@@ -8,23 +8,21 @@ require('./extension-landing.scss');
 const ExtensionHeader = props => (
     <div className="extension-header">
         <FlexRow className="inner">
-            <FlexRow className="column extension-info">
-                {props.children}
+            <FlexRow className="extension-info">
+                {props.renderCopy}
+                <div className="extension-image">
+                    {props.renderImage}
+                </div>
             </FlexRow>
-            <div className="extension-image">
-                <img
-                    alt={props.imageAlt}
-                    src={props.imageSrc}
-                />
-            </div>
+            {props.renderRequirements}
         </FlexRow>
     </div>
 );
 
 ExtensionHeader.propTypes = {
-    children: PropTypes.node,
-    imageAlt: PropTypes.string,
-    imageSrc: PropTypes.string
+    renderCopy: PropTypes.node,
+    renderImage: PropTypes.node,
+    renderRequirements: PropTypes.node
 };
 
 module.exports = ExtensionHeader;

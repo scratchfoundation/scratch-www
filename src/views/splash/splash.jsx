@@ -22,11 +22,14 @@ class Splash extends React.Component {
             'getHomepageRefreshStatus',
             'handleShowEmailConfirmationModal',
             'handleHideEmailConfirmationModal',
+            'handleCloseAdminPanel',
+            'handleOpenAdminPanel',
             'handleDismiss',
             'shouldShowWelcome',
             'shouldShowEmailConfirmation'
         ]);
         this.state = {
+            adminPanelOpen: false,
             projectCount: 30000000, // gets the shared project count
             news: [], // gets news posts from the scratch Tumblr
             emailConfirmationModalOpen: false, // flag that determines whether to show banner to request email conf.
@@ -118,6 +121,12 @@ class Splash extends React.Component {
         }
         return status;
     }
+    handleCloseAdminPanel () {
+        this.setState({adminPanelOpen: false});
+    }
+    handleOpenAdminPanel () {
+        this.setState({adminPanelOpen: true});
+    }
     handleShowEmailConfirmationModal () {
         this.setState({emailConfirmationModalOpen: true});
     }
@@ -156,6 +165,7 @@ class Splash extends React.Component {
         return (
             <SplashPresentation
                 activity={this.props.activity}
+                adminPanelOpen={this.state.adminPanelOpen}
                 emailConfirmationModalOpen={this.state.emailConfirmationModalOpen}
                 featuredGlobal={this.props.featured}
                 inStudiosFollowing={this.props.studios}
@@ -170,8 +180,10 @@ class Splash extends React.Component {
                 shouldShowEmailConfirmation={showEmailConfirmation}
                 shouldShowWelcome={showWelcome}
                 user={this.props.user}
+                onCloseAdminPanel={this.handleCloseAdminPanel}
                 onDismiss={this.handleDismiss}
                 onHideEmailConfirmationModal={this.handleHideEmailConfirmationModal}
+                onOpenAdminPanel={this.handleOpenAdminPanel}
                 onRefreshHomepageCache={this.handleRefreshHomepageCache}
                 onShowEmailConfirmationModal={this.handleShowEmailConfirmationModal}
             />
