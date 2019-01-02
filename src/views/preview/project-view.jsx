@@ -117,7 +117,8 @@ class Preview extends React.Component {
             showUsernameBlockAlert: false,
             projectId: parts[1] === 'editor' ? '0' : parts[1],
             reportOpen: false,
-            singleCommentId: singleCommentId
+            singleCommentId: singleCommentId,
+            greenFlagRecorded: false
         };
         /* In the beginning, if user is on mobile and landscape, go to fullscreen */
         this.setScreenFromOrientation();
@@ -357,11 +358,14 @@ class Preview extends React.Component {
         this.props.reportProject(this.state.projectId, formData, this.props.user.token);
     }
     handleGreenFlag () {
+        if (!this.state.greenFlagRecorded) {
+            this.props.logProjectView(this.props.projectInfo.id, this.props.authorUsername, this.props.user.token);
+        }
         this.setState({
             showUsernameBlockAlert: false,
-            showCloudDataAlert: false
+            showCloudDataAlert: false,
+            greenFlagRecorded: true
         });
-        this.props.logProjectView(this.props.projectInfo.id, this.props.authorUsername, this.props.user.token);
     }
     handlePopState () {
         const path = window.location.pathname.toLowerCase();
