@@ -101,7 +101,7 @@
     },
     {
         "name": "download",
-        "pattern": "^/download/?$",
+        "pattern": "^/download/?(.+)?$",
         "routeAlias": "/download",
         "view": "download/download",
         "title": "Scratch Offline Editor"
@@ -122,7 +122,7 @@
     },
     {
         "name": "faq",
-        "pattern": "^/info/faq/?$",
+        "pattern": "^/info/faq/?(.+)?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
         "view": "faq/faq",
         "title": "FAQ"
