@@ -101,7 +101,7 @@
     },
     {
         "name": "download",
-        "pattern": "^/download/?(.+)?$",
+        "pattern": "^/download/?(\\?.*)?$",
         "routeAlias": "/download",
         "view": "download/download",
         "title": "Scratch Offline Editor"
@@ -122,7 +122,7 @@
     },
     {
         "name": "faq",
-        "pattern": "^/info/faq/?(.+)?$",
+        "pattern": "^/info/faq/?(\\?.*)?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
         "view": "faq/faq",
         "title": "FAQ"
@@ -172,7 +172,7 @@
     },
     {
         "name": "parents",
-        "pattern": "^/parents/?$",
+        "pattern": "^/parents/?(\\?.*)?$",
         "routeAlias": "/parents/",
         "view": "parents/parents",
         "title": "For Parents"
@@ -206,7 +206,7 @@
     },
     {
         "name": "scratch2",
-        "pattern": "^/download/scratch2/?$",
+        "pattern": "^/download/scratch2/?(\\?.*)?$",
         "routeAlias": "/download/scratch2",
         "view": "download/scratch2/download",
         "title": "Scratch 2.0"
@@ -321,7 +321,7 @@
     },
     {
         "name": "download-redirect",
-        "pattern": "^/scratch2download/?$",
+        "pattern": "^/scratch2download/?(\\?.*)?$",
         "routeAlias": "/scratch2download",
         "redirect": "/download"
     },
