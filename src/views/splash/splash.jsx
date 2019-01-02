@@ -17,7 +17,6 @@ class Splash extends React.Component {
         super(props);
         bindAll(this, [
             'getNews',
-            'getProjectCount',
             'handleRefreshHomepageCache',
             'getHomepageRefreshStatus',
             'handleShowEmailConfirmationModal',
@@ -30,7 +29,6 @@ class Splash extends React.Component {
         ]);
         this.state = {
             adminPanelOpen: false,
-            projectCount: 30000000, // gets the shared project count
             news: [], // gets news posts from the scratch Tumblr
             emailConfirmationModalOpen: false, // flag that determines whether to show banner to request email conf.
             refreshCacheStatus: 'notrequested'
@@ -44,8 +42,6 @@ class Splash extends React.Component {
             this.props.getInStudiosFollowing(this.props.user.username, this.props.user.token);
             this.props.getLovedByFollowing(this.props.user.username, this.props.user.token);
             this.getNews();
-        } else {
-            this.getProjectCount();
         }
     }
     componentDidUpdate (prevProps) {
@@ -62,7 +58,6 @@ class Splash extends React.Component {
                 this.props.setRows('studios', []);
                 this.props.setRows('activity', []);
                 this.setState({news: []}); // eslint-disable-line react/no-did-update-set-state
-                this.getProjectCount();
             }
             if (this.shouldShowEmailConfirmation()) {
                 window.addEventListener('message', this.onMessage);
@@ -80,14 +75,6 @@ class Splash extends React.Component {
             }
             if (!body) return log.error('No response body');
             if (!err) return this.setState({news: body});
-        });
-    }
-    getProjectCount () {
-        api({
-            uri: '/projects/count/all'
-        }, (err, body) => {
-            if (!body) return log.error('No response body');
-            if (!err) return this.setState({projectCount: body.count});
         });
     }
     handleRefreshHomepageCache () {
@@ -173,7 +160,6 @@ class Splash extends React.Component {
                 isEducator={this.props.isEducator}
                 lovedByFollowing={this.props.loved}
                 news={this.state.news}
-                projectCount={this.state.projectCount}
                 refreshCacheStatus={homepageRefreshStatus}
                 sessionStatus={this.props.sessionStatus}
                 sharedByFollowing={this.props.shared}
