@@ -123,6 +123,10 @@ const PreviewPresentation = ({
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     const revisedDate = ((projectInfo.history && projectInfo.history.modified)) ? projectInfo.history.modified : '';
+    const showInstructions = editable || projectInfo.instructions ||
+        (!projectInfo.instructions && !projectInfo.description); // show if both are empty
+    const showNotesAndCredits = editable || projectInfo.description ||
+        (!projectInfo.instructions && !projectInfo.description); // show if both are empty
 
     // Allow embedding html in banner messages coming from the server
     const embedCensorMessage = message => (
@@ -348,89 +352,93 @@ const PreviewPresentation = ({
                                         </FlexRow>
                                     </FlexRow>
                                 </MediaQuery>
-                                <div className="description-block">
-                                    <div className="project-textlabel">
-                                        <FormattedMessage id="project.instructionsLabel" />
-                                    </div>
-                                    {editable ?
-                                        <Formsy
-                                            className="project-description-form"
-                                            onKeyPress={onKeyPress}
-                                        >
-                                            <InplaceInput
-                                                className={classNames(
-                                                    'project-description-edit',
-                                                    {remixes: parentInfo && parentInfo.author}
-                                                )}
-                                                handleUpdate={onUpdate}
-                                                name="instructions"
-                                                placeholder={intl.formatMessage({
-                                                    id: 'project.descriptionPlaceholder'
-                                                })}
-                                                type="textarea"
-                                                validationErrors={{
-                                                    maxLength: intl.formatMessage({
-                                                        id: 'project.descriptionMaxLength'
-                                                    })
-                                                }}
-                                                validations={{
-                                                    // TODO: actual 5000
-                                                    maxLength: 1000
-                                                }}
-                                                value={projectInfo.instructions}
-                                            />
-                                        </Formsy> :
-                                        <div className="project-description">
-                                            {decorateText(projectInfo.instructions, {
-                                                usernames: true,
-                                                hashtags: true,
-                                                scratchLinks: false
-                                            })}
+                                {showInstructions && (
+                                    <div className="description-block">
+                                        <div className="project-textlabel">
+                                            <FormattedMessage id="project.instructionsLabel" />
                                         </div>
-                                    }
-                                </div>
-                                <div className="description-block">
-                                    <div className="project-textlabel">
-                                        <FormattedMessage id="project.notesAndCreditsLabel" />
-                                    </div>
-                                    {editable ?
-                                        <Formsy
-                                            className="project-description-form"
-                                            onKeyPress={onKeyPress}
-                                        >
-                                            <InplaceInput
-                                                className={classNames(
-                                                    'project-description-edit',
-                                                    'last',
-                                                    {remixes: parentInfo && parentInfo.author}
-                                                )}
-                                                handleUpdate={onUpdate}
-                                                name="description"
-                                                placeholder={intl.formatMessage({
-                                                    id: 'project.notesPlaceholder'
+                                        {editable ?
+                                            <Formsy
+                                                className="project-description-form"
+                                                onKeyPress={onKeyPress}
+                                            >
+                                                <InplaceInput
+                                                    className={classNames(
+                                                        'project-description-edit',
+                                                        {remixes: parentInfo && parentInfo.author}
+                                                    )}
+                                                    handleUpdate={onUpdate}
+                                                    name="instructions"
+                                                    placeholder={intl.formatMessage({
+                                                        id: 'project.descriptionPlaceholder'
+                                                    })}
+                                                    type="textarea"
+                                                    validationErrors={{
+                                                        maxLength: intl.formatMessage({
+                                                            id: 'project.descriptionMaxLength'
+                                                        })
+                                                    }}
+                                                    validations={{
+                                                        // TODO: actual 5000
+                                                        maxLength: 1000
+                                                    }}
+                                                    value={projectInfo.instructions}
+                                                />
+                                            </Formsy> :
+                                            <div className="project-description">
+                                                {decorateText(projectInfo.instructions, {
+                                                    usernames: true,
+                                                    hashtags: true,
+                                                    scratchLinks: false
                                                 })}
-                                                type="textarea"
-                                                validationErrors={{
-                                                    maxLength: intl.formatMessage({
-                                                        id: 'project.descriptionMaxLength'
-                                                    })
-                                                }}
-                                                validations={{
-                                                    // TODO: actual 5000
-                                                    maxLength: 1000
-                                                }}
-                                                value={projectInfo.description}
-                                            />
-                                        </Formsy> :
-                                        <div className="project-description last">
-                                            {decorateText(projectInfo.description, {
-                                                usernames: true,
-                                                hashtags: true,
-                                                scratchLinks: false
-                                            })}
+                                            </div>
+                                        }
+                                    </div>
+                                )}
+                                {showNotesAndCredits && (
+                                    <div className="description-block">
+                                        <div className="project-textlabel">
+                                            <FormattedMessage id="project.notesAndCreditsLabel" />
                                         </div>
-                                    }
-                                </div>
+                                        {editable ?
+                                            <Formsy
+                                                className="project-description-form"
+                                                onKeyPress={onKeyPress}
+                                            >
+                                                <InplaceInput
+                                                    className={classNames(
+                                                        'project-description-edit',
+                                                        'last',
+                                                        {remixes: parentInfo && parentInfo.author}
+                                                    )}
+                                                    handleUpdate={onUpdate}
+                                                    name="description"
+                                                    placeholder={intl.formatMessage({
+                                                        id: 'project.notesPlaceholder'
+                                                    })}
+                                                    type="textarea"
+                                                    validationErrors={{
+                                                        maxLength: intl.formatMessage({
+                                                            id: 'project.descriptionMaxLength'
+                                                        })
+                                                    }}
+                                                    validations={{
+                                                        // TODO: actual 5000
+                                                        maxLength: 1000
+                                                    }}
+                                                    value={projectInfo.description}
+                                                />
+                                            </Formsy> :
+                                            <div className="project-description last">
+                                                {decorateText(projectInfo.description, {
+                                                    usernames: true,
+                                                    hashtags: true,
+                                                    scratchLinks: false
+                                                })}
+                                            </div>
+                                        }
+                                    </div>
+                                )}
                                 {/*  eslint-enable max-len */}
                             </FlexRow>
                         </FlexRow>
