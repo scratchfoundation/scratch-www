@@ -124,9 +124,9 @@ const PreviewPresentation = ({
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
     const revisedDate = ((projectInfo.history && projectInfo.history.modified)) ? projectInfo.history.modified : '';
     const showInstructions = editable || projectInfo.instructions ||
-        (!projectInfo.instructions && !projectInfo.description);
+        (!projectInfo.instructions && !projectInfo.description); // show if both are empty
     const showNotesAndCredits = editable || projectInfo.description ||
-        (!projectInfo.instructions && !projectInfo.description);
+        (!projectInfo.instructions && !projectInfo.description); // show if both are empty
 
     // Allow embedding html in banner messages coming from the server
     const embedCensorMessage = message => (
