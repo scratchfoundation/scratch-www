@@ -609,7 +609,6 @@ SplashPresentation.defaultProps = {
     inStudiosFollowing: [], // "Projects in Studios I'm Following"
     lovedByFollowing: [], // "Projects Loved by Scratchers I'm Following"
     news: [], // gets news posts from the scratch Tumblr
-    projectCount: 20000000, // gets the shared project count
     sharedByFollowing: [] // "Projects by Scratchers I'm Following"
 };
 
