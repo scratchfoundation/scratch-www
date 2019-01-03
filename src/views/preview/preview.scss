@@ -555,11 +555,22 @@ $stage-width: 480px;
     .studio-list {
         flex-direction: column;
 
+        .list-header {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
         .list-title {
             margin-left: 1rem;
             font-size: 1.2rem;
             font-weight: bold;
             align-self: flex-start;
+        }
+
+        .list-header-link {
+            margin-right: 1rem;
+            align-self: center;
         }
 
         .creator-image img {

@@ -10,8 +10,15 @@ const RemixList = props => {
     if (remixes.length === 0) return null;
     return (
         <FlexRow className="remix-list">
-            <div className="list-title">
-                <FormattedMessage id="project.remixes" />
+            <div className="list-header">
+                <div className="list-title">
+                    <FormattedMessage id="project.remixes" />
+                </div>
+                <div className="list-header-link">
+                    <a href={`/projects/${props.projectId}/remixes`}>
+                        <FormattedMessage id="project.viewAllRemixes" />
+                    </a>
+                </div>
             </div>
             {remixes.length === 0 ? (
                 // TODO: style remix invitation
@@ -32,6 +39,7 @@ const RemixList = props => {
 };
 
 RemixList.propTypes = {
+    projectId: PropTypes.string,
     remixes: PropTypes.arrayOf(projectShape)
 };
 
