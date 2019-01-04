@@ -581,8 +581,14 @@ const PreviewPresentation = ({
                                     </FlexRow>
                                 </div>
                                 <FlexRow className="column">
-                                    <RemixList remixes={remixes} />
-                                    <StudioList studios={projectStudios} />
+                                    <RemixList
+                                        projectId={projectId}
+                                        remixes={remixes}
+                                    />
+                                    <StudioList
+                                        projectId={projectId}
+                                        studios={projectStudios}
+                                    />
                                 </FlexRow>
                             </FlexRow>
                         </div>
