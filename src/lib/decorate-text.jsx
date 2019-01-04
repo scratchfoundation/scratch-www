@@ -32,11 +32,11 @@ module.exports = (text, opts) => {
 
     // Match hashtags
     if (opts.hashtags) {
-        replacedText = reactStringReplace(replacedText, /(#[\w-]+)/g, (match, i) => (
+        replacedText = reactStringReplace(replacedText, /#([\w-]+)/g, (match, i) => (
             <a
                 href={`/search/projects?q=${match}`}
                 key={match + i}
-            >{match}</a>
+            >#{match}</a>
         ));
     }
 
