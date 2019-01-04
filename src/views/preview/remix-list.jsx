@@ -17,7 +17,7 @@ const RemixList = props => {
                 <div className="list-header-spacer" />
                 <div className="list-header-link">
                     <a href={`/projects/${props.projectId}/remixes`}>
-                        <FormattedMessage id="project.viewAllRemixes" />
+                        <FormattedMessage id="project.viewAllInList" />
                     </a>
                 </div>
             </div>

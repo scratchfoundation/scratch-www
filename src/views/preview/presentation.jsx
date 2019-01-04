@@ -577,7 +577,10 @@ const PreviewPresentation = ({
                                         projectId={projectId}
                                         remixes={remixes}
                                     />
-                                    <StudioList studios={projectStudios} />
+                                    <StudioList
+                                        projectId={projectId}
+                                        studios={projectStudios}
+                                    />
                                 </FlexRow>
                             </FlexRow>
                         </div>
