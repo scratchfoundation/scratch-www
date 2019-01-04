@@ -554,6 +554,7 @@ $stage-width: 480px;
     .remix-list,
     .studio-list {
         flex-direction: column;
+        width: 14.625rem;
 
         .list-header {
             display: flex;
@@ -561,16 +562,25 @@ $stage-width: 480px;
             justify-content: space-between;
         }
 
+        .list-header-spacer {
+            flex: 1 0 1px;
+        }
+
         .list-title {
             margin-left: 1rem;
             font-size: 1.2rem;
             font-weight: bold;
             align-self: flex-start;
+            line-height: 110%;
+            text-align: left;
         }
 
         .list-header-link {
             margin-right: 1rem;
-            align-self: center;
+            align-self: flex-end;
+            font-size: .75rem;
+            line-height: 110%;
+            text-align: right;
         }
 
         .creator-image img {
@@ -596,6 +606,7 @@ $stage-width: 480px;
 
         @media #{$medium-and-smaller} {
             margin-top: 1rem;
+            width: 100%;
         }
     }
 }
