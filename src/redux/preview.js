@@ -574,6 +574,51 @@ module.exports.setFavedStatus = (faved, id, username, token) => (dispatch => {
     }
 });
 
+module.exports.setFavedStatusViaProxy = (faved, id, username, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHING));
+    if (faved) {
+        api({
+            uri: `/proxy/projects/${id}/favorites/user/${username}`,
+            authentication: token,
+            withCredentials: true,
+            method: 'POST',
+            useCsrf: true,
+            headers: {'X-Requested-With': 'XMLHttpRequest'}
+        }, (err, body, res) => {
+            if (err || res.statusCode !== 200) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set favorites returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setFaved(body.userFavorite));
+        });
+    } else {
+        api({
+            uri: `/proxy/projects/${id}/favorites/user/${username}`,
+            authentication: token,
+            withCredentials: true,
+            method: 'DELETE',
+            useCsrf: true,
+            headers: {'X-Requested-With': 'XMLHttpRequest'}
+        }, (err, body, res) => {
+            if (err || res.statusCode !== 200) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set favorites returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('faved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setFaved(false));
+        });
+    }
+});
+
 module.exports.getLovedStatus = (id, username, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHING));
     api({
@@ -621,6 +666,51 @@ module.exports.setLovedStatus = (loved, id, username, token) => (dispatch => {
             method: 'DELETE'
         }, (err, body) => {
             if (err) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set loved returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setLoved(body.userLove));
+        });
+    }
+});
+
+module.exports.setLovedStatusViaProxy = (loved, id, username, token) => (dispatch => {
+    dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHING));
+    if (loved) {
+        api({
+            uri: `/proxy/projects/${id}/loves/user/${username}`,
+            authentication: token,
+            withCredentials: true,
+            method: 'POST',
+            useCsrf: true,
+            headers: {'X-Requested-With': 'XMLHttpRequest'}
+        }, (err, body, res) => {
+            if (err || res.statusCode !== 200) {
+                dispatch(module.exports.setError(err));
+                return;
+            }
+            if (typeof body === 'undefined') {
+                dispatch(module.exports.setError('Set loved returned no data'));
+                return;
+            }
+            dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHED));
+            dispatch(module.exports.setLoved(body.userLove));
+        });
+    } else {
+        api({
+            uri: `/proxy/projects/${id}/loves/user/${username}`,
+            authentication: token,
+            withCredentials: true,
+            method: 'DELETE',
+            useCsrf: true,
+            headers: {'X-Requested-With': 'XMLHttpRequest'}
+        }, (err, body, res) => {
+            if (err || res.statusCode !== 200) {
                 dispatch(module.exports.setError(err));
                 return;
             }
