@@ -379,8 +379,7 @@ const PreviewPresentation = ({
                                                         })
                                                     }}
                                                     validations={{
-                                                        // TODO: actual 5000
-                                                        maxLength: 1000
+                                                        maxLength: 5000
                                                     }}
                                                     value={projectInfo.instructions}
                                                 />
@@ -423,8 +422,7 @@ const PreviewPresentation = ({
                                                         })
                                                     }}
                                                     validations={{
-                                                        // TODO: actual 5000
-                                                        maxLength: 1000
+                                                        maxLength: 5000
                                                     }}
                                                     value={projectInfo.description}
                                                 />
