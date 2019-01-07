@@ -470,7 +470,8 @@ $stage-width: 480px;
 
         &.has-error {
             .validation-message {
-                transform: translate(26rem, 0);
+                top: 100%;
+                right: 0;
             }
         }
 
