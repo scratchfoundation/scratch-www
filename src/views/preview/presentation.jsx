@@ -522,7 +522,7 @@ const PreviewPresentation = ({
                                         <FlexRow className="comments-root-reply">
                                             {projectInfo.comments_allowed ? (
                                                 isLoggedIn ? (
-                                                    <ComposeComment
+                                                    isShared && <ComposeComment
                                                         projectId={projectId}
                                                         onAddComment={onAddComment}
                                                     />
@@ -543,7 +543,7 @@ const PreviewPresentation = ({
                                             <TopLevelComment
                                                 author={comment.author}
                                                 canDelete={canDeleteComments}
-                                                canReply={isLoggedIn && projectInfo.comments_allowed}
+                                                canReply={isLoggedIn && projectInfo.comments_allowed && isShared}
                                                 canReport={isLoggedIn}
                                                 canRestore={canRestoreComments}
                                                 content={comment.content}
