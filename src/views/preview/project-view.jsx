@@ -948,7 +948,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(previewActions.getFavedStatus(id, username, token));
     },
     setFavedStatus: (faved, id, username, token) => {
-        dispatch(previewActions.setFavedStatus(faved, id, username, token));
+        dispatch(previewActions.setFavedStatusViaProxy(faved, id, username, token));
     },
     getLovedStatus: (id, username, token) => {
         dispatch(previewActions.getLovedStatus(id, username, token));
@@ -957,7 +957,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(previewActions.logProjectView(id, authorUsername, token));
     },
     setLovedStatus: (loved, id, username, token) => {
-        dispatch(previewActions.setLovedStatus(loved, id, username, token));
+        dispatch(previewActions.setLovedStatusViaProxy(loved, id, username, token));
     },
     shareProject: (id, token) => {
         dispatch(previewActions.shareProject(id, token));

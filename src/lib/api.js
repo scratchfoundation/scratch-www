@@ -12,7 +12,7 @@ const urlParams = require('./url-params');
  *       CSRF forgeries (see: https://www.squarefree.com/securitytips/web-developers.html#CSRF)
  *
  * It also takes in other arguments specified in the xhr library spec.
- * 
+ *
  * @param  {object}   opts     optional xhr args (see above)
  * @param  {Function} callback [description]
  */
