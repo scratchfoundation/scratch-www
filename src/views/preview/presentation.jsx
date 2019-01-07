@@ -379,8 +379,7 @@ const PreviewPresentation = ({
                                                         })
                                                     }}
                                                     validations={{
-                                                        // TODO: actual 5000
-                                                        maxLength: 1000
+                                                        maxLength: 5000
                                                     }}
                                                     value={projectInfo.instructions}
                                                 />
@@ -423,8 +422,7 @@ const PreviewPresentation = ({
                                                         })
                                                     }}
                                                     validations={{
-                                                        // TODO: actual 5000
-                                                        maxLength: 1000
+                                                        maxLength: 5000
                                                     }}
                                                     value={projectInfo.description}
                                                 />
@@ -522,7 +520,7 @@ const PreviewPresentation = ({
                                         <FlexRow className="comments-root-reply">
                                             {projectInfo.comments_allowed ? (
                                                 isLoggedIn ? (
-                                                    <ComposeComment
+                                                    isShared && <ComposeComment
                                                         projectId={projectId}
                                                         onAddComment={onAddComment}
                                                     />
@@ -543,7 +541,7 @@ const PreviewPresentation = ({
                                             <TopLevelComment
                                                 author={comment.author}
                                                 canDelete={canDeleteComments}
-                                                canReply={isLoggedIn && projectInfo.comments_allowed}
+                                                canReply={isLoggedIn && projectInfo.comments_allowed && isShared}
                                                 canReport={isLoggedIn}
                                                 canRestore={canRestoreComments}
                                                 content={comment.content}
