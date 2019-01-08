@@ -32,9 +32,15 @@
             iframe {
                 display: block;
                 border: 1px solid $ui-gray;
-                width: 100%;
                 height: 290px;
             }
+        }
+
+        div.video-container,
+        div.about-scratch-video {
+            height: 290px;
+            width: 400px;
+            min-width: 400px;
         }
     }
 
