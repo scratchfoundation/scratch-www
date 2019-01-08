@@ -6,10 +6,18 @@ import bowser from 'bowser';
  */
 export default function () {
     if (bowser.msie ||
-        bowser.vivaldi ||
         bowser.opera ||
         bowser.silk) {
         return false;
     }
-    return true;
+    // IMPORTANT: If you change versions here, also change them in gui
+    // minimum versions for recommended browsers
+    const minVersions = {
+        chrome: '63',
+        msedge: '15',
+        firefox: '57',
+        safari: '11'
+    };
+    // strict mode == false so any browser not mentioned in the min Versions is ok
+    return !bowser.isUnsupportedBrowser(minVersions, false);
 }
