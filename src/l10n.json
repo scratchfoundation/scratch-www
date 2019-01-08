@@ -103,7 +103,7 @@
     "general.teacherAccounts": "Teacher Accounts",
 
     "general.unsupportedBrowser": "This browser is not supported",
-    "general.unsupportedBrowserDescription": "We are very sorry, but Scratch does not support this browser version. We recommend updating to the latest version of a supported browser such as Google Chrome, Mozilla Firefox, Microsoft Edge, or Apple Safari.",
+    "general.unsupportedBrowserDescription": "We're very sorry, but Scratch 3.0 does not support Internet Explorer, Vivaldi, Opera or Silk. We recommend trying a newer browser such as Google Chrome, Mozilla Firefox, or Microsoft Edge.",
     "general.3faq": "To learn more, go to the {faqLink}.",
 
     "footer.discuss": "Discussion Forums",
