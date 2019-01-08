@@ -105,6 +105,12 @@ const Credits = () => (
                   Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen Davey.
                 </p>
                 <h2>
+                    <FormattedMessage id="credits.soundsTitle" />
+                </h2>
+                <p>
+                    <FormattedMessage id="credits.soundsThanks" />
+                </p>
+                <h2>
                     <FormattedMessage id="credits.pastContributors" />
                 </h2>
                 <p>
