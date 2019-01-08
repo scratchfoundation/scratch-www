@@ -3,6 +3,7 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const render = require('../../lib/render.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
+const Video = require('../../components/video/video.jsx');
 
 require('./about.scss');
 
@@ -22,14 +23,12 @@ const About = () => (
                 </ul>
             </div>
 
-            <div>
-                <iframe
-                    allowFullScreen
-                    frameBorder="0"
-                    mozallowfullscreen={'true'}
-                    src="https://player.vimeo.com/video/65583694?title=0&byline=0&portrait=0"
-                    title="Scratch Overview Video"
-                    webkitallowfullscreen={'true'}
+            <div className="video-container">
+                <Video
+                    className="about-scratch-video"
+                    height="290"
+                    videoId="joal01i8b1"
+                    width="400"
                 />
             </div>
         </div>
@@ -141,7 +140,7 @@ const About = () => (
                     <h3><FormattedMessage id="about.learnMore" /></h3>
                     <ul className="list">
                         <li>
-                            <a href="/tips"><FormattedMessage id="about.learnMoreHelp" /></a>
+                            <a href="/ideas"><FormattedMessage id="about.learnMoreHelp" /></a>
                         </li>
                         <li>
                             <a href="/info/faq"><FormattedMessage id="about.learnMoreFaq" /></a>
@@ -150,7 +149,7 @@ const About = () => (
                             <a href="/parents"><FormattedMessage id="about.learnMoreParents" /></a>
                         </li>
                         <li>
-                            <a href="/info/credits"><FormattedMessage id="about.learnMoreCredits" /></a>
+                            <a href="/credits"><FormattedMessage id="about.learnMoreCredits" /></a>
                         </li>
                     </ul>
                 </li>
@@ -162,7 +161,7 @@ const About = () => (
                         values={{
                             supportersList: 'National Science Foundation, Scratch Foundation, Siegel Family Endowment, Google, LEGO Foundation, Intel, Cartoon Network, Lemann Foundation, MacArthur Foundation', // eslint-disable-line max-len
                             creditsLink: (
-                                <a href="//scratch.mit.edu/info/credits">
+                                <a href="/credits">
                                     <FormattedMessage id="about.creditsLinkText" />
                                 </a>
                             ),
