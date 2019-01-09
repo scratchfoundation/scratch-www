@@ -43,6 +43,7 @@ if (`${process.env.SENTRY_DSN}` !== '') {
             // Do not collect global onerror, only collect specifically from React error boundaries.
             integrations.filter(i => i.name !== 'GlobalHandlers')
     });
+    window.onerror = () => {}; // Doesn't look like global handlers filtering works, just stub window onerror
     window.Sentry = Sentry; // Allow GUI access to Sentry via window
 }
 
