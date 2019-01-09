@@ -5,11 +5,5 @@ import bowser from 'bowser';
  * @returns {boolean} False if the platform is definitely not supported.
  */
 export default function () {
-    if (bowser.msie ||
-        bowser.vivaldi ||
-        bowser.opera ||
-        bowser.silk) {
-        return false;
-    }
-    return true;
+    return !bowser.msie;
 }
