@@ -108,7 +108,37 @@ const Credits = () => (
                     <FormattedMessage id="credits.soundsTitle" />
                 </h2>
                 <p>
-                    <FormattedMessage id="credits.soundsThanks" />
+                    <FormattedMessage id="credits.acknowledgementsSounds" />
+                </p>
+                <p>
+                    <FormattedMessage
+                        id="credits.soundsThanks"
+                        values={{
+                            acclivity: 'acclivity',
+                            belloisec: 'belloisec',
+                            Benboncan: 'Benboncan',
+                            Calcuttan: 'Calcuttan',
+                            coby12388: 'coby12388',
+                            copyc4t: 'copyc4t',
+                            cs272: 'cs272',
+                            Flick3r: 'Flick3r',
+                            FreqMan: 'FreqMan',
+                            gelo_papas: 'gelo_papas',
+                            han1: 'han1',
+                            InspectorJ: 'InspectorJ',
+                            jiserte: 'jiserte',
+                            junggle: 'junggle',
+                            juskiddink: 'juskiddink',
+                            klankbeeld: 'klankbeeld',
+                            LittleRobotSoundFactory: 'LittleRobotSoundFactory',
+                            LloydEvans09: 'LloydEvans09',
+                            lonemonk: 'lonemonk',
+                            rhodesmas: 'rhodesmas',
+                            sandyrb: 'sandyrb',
+                            themfish: 'themfish',
+                            tyops: 'tyops'
+                        }}
+                    />
                 </p>
                 <h2>
                     <FormattedMessage id="credits.pastContributors" />
