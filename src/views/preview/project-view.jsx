@@ -60,6 +60,7 @@ class Preview extends React.Component {
             'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoadMore',
+            'handleLoadMoreReplies',
             'handleLoveToggle',
             'handleMessage',
             'handlePopState',
@@ -440,6 +441,11 @@ class Preview extends React.Component {
         this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
             this.props.isAdmin, this.props.user && this.props.user.token);
     }
+    handleLoadMoreReplies (commentId, offset) {
+        this.props.getMoreReplies(this.state.projectId, commentId, offset,
+            this.props.isAdmin, this.props.user && this.props.user.token
+        );
+    }
     handleLoveToggle () {
         if (!this.props.lovedLoaded) return;
 
@@ -644,6 +650,7 @@ class Preview extends React.Component {
                             onFavoriteClicked={this.handleFavoriteToggle}
                             onGreenFlag={this.handleGreenFlag}
                             onLoadMore={this.handleLoadMore}
+                            onLoadMoreReplies={this.handleLoadMoreReplies}
                             onLoveClicked={this.handleLoveToggle}
                             onOpenAdminPanel={this.handleOpenAdminPanel}
                             onRemix={this.handleRemix}
@@ -736,6 +743,7 @@ Preview.propTypes = {
     getCuratedStudios: PropTypes.func.isRequired,
     getFavedStatus: PropTypes.func.isRequired,
     getLovedStatus: PropTypes.func.isRequired,
+    getMoreReplies: PropTypes.func.isRequired,
     getOriginalInfo: PropTypes.func.isRequired,
     getParentInfo: PropTypes.func.isRequired,
     getProjectInfo: PropTypes.func.isRequired,
@@ -947,6 +955,9 @@ const mapDispatchToProps = dispatch => ({
     },
     getCommentById: (projectId, commentId, isAdmin, token) => {
         dispatch(previewActions.getCommentById(projectId, commentId, isAdmin, token));
+    },
+    getMoreReplies: (projectId, commentId, offset, isAdmin, token) => {
+        dispatch(previewActions.getReplies(projectId, [commentId], offset, isAdmin, token));
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));

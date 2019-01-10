@@ -28,9 +28,11 @@ class TopLevelComment extends React.Component {
     }
 
     handleExpandThread () {
-        this.setState({
-            expanded: true
-        });
+        if (this.state.expanded) {
+            this.props.onLoadMoreReplies(this.props.id, this.props.replies.length);
+        } else {
+            this.setState({expanded: true});
+        }
     }
 
     handleDeleteReply (replyId) {
@@ -79,6 +81,7 @@ class TopLevelComment extends React.Component {
             datetimeCreated,
             highlightedCommentId,
             id,
+            moreRepliesToLoad,
             onDelete,
             onReport,
             onRestore,
@@ -143,17 +146,13 @@ class TopLevelComment extends React.Component {
                         ))}
                     </FlexRow>
                 }
-                {!this.state.expanded && replies.length > 3 &&
+                {((!this.state.expanded && replies.length > 3) ||
+                    (this.state.expanded && moreRepliesToLoad)) &&
                     <a
                         className="expand-thread"
                         onClick={this.handleExpandThread}
                     >
-                        <FormattedMessage
-                            id="comments.seeMoreReplies"
-                            values={{
-                                repliesCount: replies.length
-                            }}
-                        />
+                        <FormattedMessage id="comments.loadMoreReplies" />
                     </a>
                 }
             </FlexRow>
@@ -178,8 +177,10 @@ TopLevelComment.propTypes = {
     deletable: PropTypes.bool,
     highlightedCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
     id: PropTypes.number,
+    moreRepliesToLoad: PropTypes.bool,
     onAddComment: PropTypes.func,
     onDelete: PropTypes.func,
+    onLoadMoreReplies: PropTypes.func,
     onReport: PropTypes.func,
     onRestore: PropTypes.func,
     parentId: PropTypes.number,
@@ -189,7 +190,8 @@ TopLevelComment.propTypes = {
 };
 
 TopLevelComment.defaultProps = {
-    defaultExpanded: false
+    defaultExpanded: false,
+    moreRepliesToLoad: false
 };
 
 module.exports = TopLevelComment;
