@@ -283,9 +283,11 @@ $stage-width: 480px;
             background-image: url("/svgs/project/remix-white.svg");
         }
     }
+    .remix-button.disabled {
+        opacity: .6;
+    }
 
     .remix-button.remixing {
-        opacity: .6;
 
         &:before {
             animation-name: remix-intro, remix-spin;
