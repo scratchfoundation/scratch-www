@@ -24,7 +24,7 @@
 	"faq.requirementsDesktopSafari":"Safari (11+)",
 	"faq.requirementsDesktopIE":"Internet Explorer is NOT supported.",
 	"faq.requirementsTablet":"Tablet",
-	"faq.requirementsTabletChrome":"Mobile Chrome (62+)",
+	"faq.requirementsTabletChrome":"Mobile Chrome (63+)",
 	"faq.requirementsTabletSafari":"Mobile Safari (11+)",
 	"faq.requirementsNote":"Note:",
 	"faq.requirementsNoteDesktop":"If your computer doesn’t meet these requirements, you can try the <a href=\"/download\">Scratch Desktop</a> editor (see next item in FAQ). ",
