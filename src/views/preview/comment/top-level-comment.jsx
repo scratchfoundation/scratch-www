@@ -144,16 +144,16 @@ class TopLevelComment extends React.Component {
                                 onRestore={this.handleRestoreReply}
                             />
                         ))}
+                        {((!this.state.expanded && replies.length > 3) ||
+                            (this.state.expanded && moreRepliesToLoad)) &&
+                            <a
+                                className="expand-thread"
+                                onClick={this.handleExpandThread}
+                            >
+                                <FormattedMessage id="comments.loadMoreReplies" />
+                            </a>
+                        }
                     </FlexRow>
-                }
-                {((!this.state.expanded && replies.length > 3) ||
-                    (this.state.expanded && moreRepliesToLoad)) &&
-                    <a
-                        className="expand-thread"
-                        onClick={this.handleExpandThread}
-                    >
-                        <FormattedMessage id="comments.loadMoreReplies" />
-                    </a>
                 }
             </FlexRow>
         );
