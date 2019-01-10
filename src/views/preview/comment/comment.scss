@@ -235,22 +235,20 @@
 
 .replies {
     width: calc(100% - 4rem);
+}
 
-    &.collapsed .comment {
-        &:last-child {
-            &:after {
-                position: absolute;
-                bottom: 0;
-                background: linear-gradient(
-                    $ui-light-primary-transparent,
-                    $ui-light-primary
-                );
-                width: 100%;
-                height: 100%;
-                content: "";
-                pointer-events: none;
-            }
-        }
+.replies.collapsed > .comment:last-of-type {
+    &:after {
+        position: absolute;
+        bottom: 0;
+        background: linear-gradient(
+            $ui-light-primary-transparent,
+            $ui-light-primary
+        );
+        width: 100%;
+        height: 100%;
+        content: "";
+        pointer-events: none;
     }
 }
 

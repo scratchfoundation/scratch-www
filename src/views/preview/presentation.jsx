@@ -88,6 +88,7 @@ const PreviewPresentation = ({
     onFavoriteClicked,
     onGreenFlag,
     onLoadMore,
+    onLoadMoreReplies,
     onLoveClicked,
     onOpenAdminPanel,
     onRemix,
@@ -550,12 +551,14 @@ const PreviewPresentation = ({
                                                 highlightedCommentId={singleCommentId}
                                                 id={comment.id}
                                                 key={comment.id}
+                                                moreRepliesToLoad={comment.moreRepliesToLoad}
                                                 parentId={comment.parent_id}
                                                 projectId={projectId}
                                                 replies={replies && replies[comment.id] ? replies[comment.id] : []}
                                                 visibility={comment.visibility}
                                                 onAddComment={onAddComment}
                                                 onDelete={onDeleteComment}
+                                                onLoadMoreReplies={onLoadMoreReplies}
                                                 onReport={onReportComment}
                                                 onRestore={onRestoreComment}
                                             />
@@ -644,6 +647,7 @@ PreviewPresentation.propTypes = {
     onFavoriteClicked: PropTypes.func,
     onGreenFlag: PropTypes.func,
     onLoadMore: PropTypes.func,
+    onLoadMoreReplies: PropTypes.func,
     onLoveClicked: PropTypes.func,
     onOpenAdminPanel: PropTypes.func,
     onRemix: PropTypes.func,
