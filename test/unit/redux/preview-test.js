@@ -59,9 +59,9 @@ tap.test('setComments', t => {
     // Initial value
     t.deepEqual(initialState.comments, []);
 
-    state = reducer(initialState, Preview.setComments([1, 2]));
-    state = reducer(state, Preview.setComments([3, 4]));
-    t.deepEqual(state.comments, [1, 2, 3, 4]);
+    state = reducer(initialState, Preview.setComments([{id: 1}, {id: 2}]));
+    state = reducer(state, Preview.setComments([{id: 3}, {id: 4}]));
+    t.deepEqual(state.comments, [{id: 1}, {id: 2}, {id: 3}, {id: 4}]);
 
     t.end();
 });
@@ -79,6 +79,13 @@ const commentState = {
         ]
     }
 };
+
+tap.test('setComments, discards duplicates', t => {
+    state = reducer(commentState, Preview.setComments([{id: 'id1'}]));
+    // Does not increase the number of comments, still 3
+    t.equal(state.comments.length, 3);
+    t.end();
+});
 
 tap.test('setCommentDeleted, top level comment', t => {
     state = reducer(commentState, Preview.setCommentDeleted('id2'));
@@ -136,6 +143,11 @@ tap.test('setReplies', t => {
     }));
     t.equal(state.replies.id1[2].id, 'id6');
     t.equal(state.comments[0].moreRepliesToLoad, false);
+
+    // setReplies should ignore duplicates, do the same as above again
+    t.equal(state.replies.id1.length, 3);
+    state = reducer(state, Preview.setReplies({id1: {id: 'id6'}}));
+    t.equal(state.replies.id1.length, 3);
 
     // setReplies can add replies to a comment that didn't have any
     state = reducer(state, Preview.setReplies({

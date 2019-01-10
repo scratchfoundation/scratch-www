@@ -2,6 +2,7 @@ const defaults = require('lodash.defaults');
 const keyMirror = require('keymirror');
 const async = require('async');
 const mergeWith = require('lodash.mergewith');
+const uniqBy = require('lodash.uniqby');
 
 const api = require('../lib/api');
 const log = require('../lib/log');
@@ -102,7 +103,7 @@ module.exports.previewReducer = (state, action) => {
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
-            comments: [...state.comments, ...action.items] // TODO: consider a different way of doing this?
+            comments: uniqBy(state.comments.concat(action.items), 'id')
         });
     case 'UPDATE_COMMENT':
         if (action.topLevelCommentId) {
@@ -153,7 +154,7 @@ module.exports.previewReducer = (state, action) => {
         return Object.assign({}, state, {
             // Append new replies to the state.replies structure
             replies: mergeWith({}, state.replies, action.replies, (replies, newReplies) => (
-                (replies || []).concat(newReplies || [])
+                uniqBy((replies || []).concat(newReplies || []), 'id')
             )),
             // Also set the `moreRepliesToLoad` property on the top-level comments
             comments: state.comments.map(comment => {
