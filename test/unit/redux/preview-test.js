@@ -128,3 +128,37 @@ tap.test('addNewComment, reply comment', t => {
     t.equal(state.replies.id1[2].id, 'new comment');
     t.end();
 });
+
+tap.test('setReplies', t => {
+    // setReplies should append new replies
+    state = reducer(commentState, Preview.setReplies({
+        id1: {id: 'id6'}
+    }));
+    t.equal(state.replies.id1[2].id, 'id6');
+    t.equal(state.comments[0].moreRepliesToLoad, false);
+
+    // setReplies can add replies to a comment that didn't have any
+    state = reducer(state, Preview.setReplies({
+        id2: {id: 'id7'}
+    }));
+    t.equal(state.replies.id1.length, 3);
+    t.equal(state.replies.id2.length, 1);
+    t.equal(state.replies.id2[0].id, 'id7');
+    t.equal(state.comments[0].moreRepliesToLoad, false);
+    t.equal(state.comments[1].moreRepliesToLoad, false);
+
+    // Getting 20 (COMMENT_LIMIT) replies sets moreRepliesToLoad to true
+    state = reducer(state, Preview.setReplies({
+        id3: (new Array(20)).map((_, i) => ({id: `id${i + 1}`}))
+    }));
+    t.equal(state.comments[0].moreRepliesToLoad, false);
+    t.equal(state.comments[1].moreRepliesToLoad, false);
+    t.equal(state.comments[2].moreRepliesToLoad, true);
+
+    // Getting one more reply sets moreRepliesToLoad back to false
+    state = reducer(state, Preview.setReplies({
+        id3: {id: 'id21'}
+    }));
+    t.equal(state.comments[2].moreRepliesToLoad, false);
+    t.end();
+});
