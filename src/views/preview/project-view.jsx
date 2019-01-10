@@ -74,6 +74,7 @@ class Preview extends React.Component {
             'handleAddToStudioClick',
             'handleAddToStudioClose',
             'handleGreenFlag',
+            'handleProjectLoaded',
             'handleRemix',
             'handleSeeAllComments',
             'handleSeeInside',
@@ -108,6 +109,7 @@ class Preview extends React.Component {
             clientLoved: false,
             extensions: [],
             favoriteCount: 0,
+            isProjectLoaded: false,
             isRemixing: false,
             invalidProject: parts.length === 1,
             justRemixed: false,
@@ -382,6 +384,11 @@ class Preview extends React.Component {
             this.props.setFullScreen(fullScreen);
         }
     }
+    handleProjectLoaded () {
+        // Currently project view only needs to know when the project becomes loaded. It
+        // does not currently handle (or need to handle) the case where a project becomes unloaded.
+        this.setState({isProjectLoaded: true});
+    }
     pushHistory (push) {
         // update URI to match mode
         const idPath = this.state.projectId ? `${this.state.projectId}/` : '';
@@ -611,6 +618,7 @@ class Preview extends React.Component {
                             isFullScreen={this.state.isFullScreen}
                             isLoggedIn={this.props.isLoggedIn}
                             isNewScratcher={this.props.isNewScratcher}
+                            isProjectLoaded={this.state.isProjectLoaded}
                             isRemixing={this.state.isRemixing}
                             isScratcher={this.props.isScratcher}
                             isShared={this.props.isShared}
@@ -646,6 +654,7 @@ class Preview extends React.Component {
                             onLoadMore={this.handleLoadMore}
                             onLoveClicked={this.handleLoveToggle}
                             onOpenAdminPanel={this.handleOpenAdminPanel}
+                            onProjectLoaded={this.handleProjectLoaded}
                             onRemix={this.handleRemix}
                             onRemixing={this.handleIsRemixing}
                             onReportClicked={this.handleReportClick}
@@ -691,6 +700,7 @@ class Preview extends React.Component {
                             onGreenFlag={this.handleGreenFlag}
                             onLogOut={this.props.handleLogOut}
                             onOpenRegistration={this.props.handleOpenRegistration}
+                            onProjectLoaded={this.handleProjectLoaded}
                             onRemixing={this.handleIsRemixing}
                             onSetLanguage={this.handleSetLanguage}
                             onShare={this.handleShare}

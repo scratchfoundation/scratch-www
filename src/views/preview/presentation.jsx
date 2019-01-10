@@ -70,6 +70,7 @@ const PreviewPresentation = ({
     isFullScreen,
     isLoggedIn,
     isNewScratcher,
+    isProjectLoaded,
     isRemixing,
     isScratcher,
     isShared,
@@ -90,6 +91,7 @@ const PreviewPresentation = ({
     onLoadMore,
     onLoveClicked,
     onOpenAdminPanel,
+    onProjectLoaded,
     onRemix,
     onRemixing,
     onReportClicked,
@@ -250,10 +252,11 @@ const PreviewPresentation = ({
                                             className={classNames([
                                                 'remix-button',
                                                 {
-                                                    remixing: isRemixing,
-                                                    spin: isRemixing
+                                                    disabled: isRemixing || !isProjectLoaded,
+                                                    remixing: isRemixing
                                                 }
                                             ])}
+                                            disabled={isRemixing || !isProjectLoaded}
                                             title={intl.formatMessage({id: 'project.remixButton.altText'})}
                                             onClick={onRemix}
                                         >
@@ -301,6 +304,7 @@ const PreviewPresentation = ({
                                     projectHost={projectHost}
                                     projectId={projectId}
                                     onGreenFlag={onGreenFlag}
+                                    onProjectLoaded={onProjectLoaded}
                                     onRemixing={onRemixing}
                                     onUpdateProjectId={onUpdateProjectId}
                                     onUpdateProjectThumbnail={onUpdateProjectThumbnail}
@@ -623,6 +627,7 @@ PreviewPresentation.propTypes = {
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
+    isProjectLoaded: PropTypes.bool,
     isRemixing: PropTypes.bool,
     isScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
@@ -646,6 +651,7 @@ PreviewPresentation.propTypes = {
     onLoadMore: PropTypes.func,
     onLoveClicked: PropTypes.func,
     onOpenAdminPanel: PropTypes.func,
+    onProjectLoaded: PropTypes.func,
     onRemix: PropTypes.func,
     onRemixing: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
