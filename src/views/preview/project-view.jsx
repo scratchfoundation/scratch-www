@@ -39,11 +39,11 @@ const Sentry = require('@sentry/browser');
 if (`${process.env.SENTRY_DSN}` !== '') {
     Sentry.init({
         dsn: `${process.env.SENTRY_DSN}`,
-        integrations: integrations =>
-            // Do not collect global onerror, only collect specifically from React error boundaries.
-            integrations.filter(i => i.name !== 'GlobalHandlers')
+        // Do not collect global onerror, only collect specifically from React error boundaries.
+        // TryCatch plugin also includes errors from setTimeouts (i.e. the VM)
+        integrations: integrations => integrations.filter(i =>
+            !(i.name === 'GlobalHandlers' || i.name === 'TryCatch'))
     });
-    window.onerror = () => {}; // Doesn't look like global handlers filtering works, just stub window onerror
     window.Sentry = Sentry; // Allow GUI access to Sentry via window
 }
 
