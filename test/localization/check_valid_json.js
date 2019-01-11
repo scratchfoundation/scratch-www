@@ -11,17 +11,13 @@ const checkJson = (data, name) => {
     } catch (e) {
         tap.fail(name + ' has invalid Json.\n');
     }
-    tap.pass();
 };
 
-files.forEach(function (f) {
-    tap.test('check valid json', function (t) {
-        fs.readFile(f, function (err, data) {
-            if (err) {
-                throw err;
-            }
-            checkJson(data, f);
-        });
-        t.end();
+tap.test('check valid json', function (t) {
+    files.forEach(function (f) {
+        const data = fs.readFileSync(f);
+        checkJson(data, f);
     });
+    t.pass();
+    t.end();
 });
