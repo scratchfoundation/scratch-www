@@ -237,7 +237,7 @@
     "comments.post": "Post",
     "comments.cancel": "Cancel",
     "comments.lengthWarning": "{remainingCharacters, plural, one {1 character left} other {{remainingCharacters} characters left}}",
-    "comments.seeMoreReplies": "{repliesCount, plural, one {See 1 more reply} other {See all {repliesCount} replies}}",
+    "comments.loadMoreReplies": "See more replies",
     "comments.status.delbyusr": "Deleted by project owner",
     "comments.status.censbyfilter": "Censored by filter",
     "comments.status.delbyparentcomment": "Parent comment deleted",

@@ -1,10 +1,13 @@
 const defaults = require('lodash.defaults');
 const keyMirror = require('keymirror');
 const async = require('async');
-const merge = require('lodash.merge');
+const mergeWith = require('lodash.mergewith');
+const uniqBy = require('lodash.uniqby');
 
 const api = require('../lib/api');
 const log = require('../lib/log');
+
+const COMMENT_LIMIT = 20;
 
 module.exports.Status = keyMirror({
     FETCHED: null,
@@ -100,7 +103,7 @@ module.exports.previewReducer = (state, action) => {
         });
     case 'SET_COMMENTS':
         return Object.assign({}, state, {
-            comments: [...state.comments, ...action.items] // TODO: consider a different way of doing this?
+            comments: uniqBy(state.comments.concat(action.items), 'id')
         });
     case 'UPDATE_COMMENT':
         if (action.topLevelCommentId) {
@@ -149,7 +152,19 @@ module.exports.previewReducer = (state, action) => {
         });
     case 'SET_REPLIES':
         return Object.assign({}, state, {
-            replies: merge({}, state.replies, action.replies)
+            // Append new replies to the state.replies structure
+            replies: mergeWith({}, state.replies, action.replies, (replies, newReplies) => (
+                uniqBy((replies || []).concat(newReplies || []), 'id')
+            )),
+            // Also set the `moreRepliesToLoad` property on the top-level comments
+            comments: state.comments.map(comment => {
+                if (action.replies[comment.id]) {
+                    return Object.assign({}, comment, {
+                        moreRepliesToLoad: action.replies[comment.id].length === COMMENT_LIMIT
+                    });
+                }
+                return comment;
+            })
         });
     case 'SET_LOVED':
         return Object.assign({}, state, {
@@ -448,7 +463,6 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
 });
 
 module.exports.getTopLevelComments = (id, offset, isAdmin, token) => (dispatch => {
-    const COMMENT_LIMIT = 20;
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
         uri: `${isAdmin ? '/admin' : ''}/projects/${id}/comments`,
@@ -467,7 +481,7 @@ module.exports.getTopLevelComments = (id, offset, isAdmin, token) => (dispatch =
         }
         dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
         dispatch(module.exports.setComments(body));
-        dispatch(module.exports.getReplies(id, body.map(comment => comment.id), isAdmin, token));
+        dispatch(module.exports.getReplies(id, body.map(comment => comment.id), 0, isAdmin, token));
 
         // If we loaded a full page of comments, assume there are more to load.
         // This will be wrong (1 / COMMENT_LIMIT) of the time, but does not require
@@ -503,17 +517,18 @@ module.exports.getCommentById = (projectId, commentId, isAdmin, token) => (dispa
         // If the comment is not a reply, show it as top level and load replies
         dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
         dispatch(module.exports.setComments([body]));
-        dispatch(module.exports.getReplies(projectId, [body.id], isAdmin, token));
+        dispatch(module.exports.getReplies(projectId, [body.id], 0, isAdmin, token));
     });
 });
 
-module.exports.getReplies = (projectId, commentIds, isAdmin, token) => (dispatch => {
+module.exports.getReplies = (projectId, commentIds, offset, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('replies', module.exports.Status.FETCHING));
     const fetchedReplies = {};
     async.eachLimit(commentIds, 10, (parentId, callback) => {
         api({
             uri: `${isAdmin ? '/admin' : ''}/projects/${projectId}/comments/${parentId}/replies`,
-            authentication: isAdmin ? token : null
+            authentication: isAdmin ? token : null,
+            params: {offset: offset || 0, limit: COMMENT_LIMIT}
         }, (err, body) => {
             if (err) {
                 return callback(`Error fetching comment replies: ${err}`);

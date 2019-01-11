@@ -70,6 +70,7 @@ const PreviewPresentation = ({
     isFullScreen,
     isLoggedIn,
     isNewScratcher,
+    isProjectLoaded,
     isRemixing,
     isScratcher,
     isShared,
@@ -88,8 +89,10 @@ const PreviewPresentation = ({
     onFavoriteClicked,
     onGreenFlag,
     onLoadMore,
+    onLoadMoreReplies,
     onLoveClicked,
     onOpenAdminPanel,
+    onProjectLoaded,
     onRemix,
     onRemixing,
     onReportClicked,
@@ -250,10 +253,11 @@ const PreviewPresentation = ({
                                             className={classNames([
                                                 'remix-button',
                                                 {
-                                                    remixing: isRemixing,
-                                                    spin: isRemixing
+                                                    disabled: isRemixing || !isProjectLoaded,
+                                                    remixing: isRemixing
                                                 }
                                             ])}
+                                            disabled={isRemixing || !isProjectLoaded}
                                             title={intl.formatMessage({id: 'project.remixButton.altText'})}
                                             onClick={onRemix}
                                         >
@@ -301,6 +305,7 @@ const PreviewPresentation = ({
                                     projectHost={projectHost}
                                     projectId={projectId}
                                     onGreenFlag={onGreenFlag}
+                                    onProjectLoaded={onProjectLoaded}
                                     onRemixing={onRemixing}
                                     onUpdateProjectId={onUpdateProjectId}
                                     onUpdateProjectThumbnail={onUpdateProjectThumbnail}
@@ -550,12 +555,14 @@ const PreviewPresentation = ({
                                                 highlightedCommentId={singleCommentId}
                                                 id={comment.id}
                                                 key={comment.id}
+                                                moreRepliesToLoad={comment.moreRepliesToLoad}
                                                 parentId={comment.parent_id}
                                                 projectId={projectId}
                                                 replies={replies && replies[comment.id] ? replies[comment.id] : []}
                                                 visibility={comment.visibility}
                                                 onAddComment={onAddComment}
                                                 onDelete={onDeleteComment}
+                                                onLoadMoreReplies={onLoadMoreReplies}
                                                 onReport={onReportComment}
                                                 onRestore={onRestoreComment}
                                             />
@@ -623,6 +630,7 @@ PreviewPresentation.propTypes = {
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
+    isProjectLoaded: PropTypes.bool,
     isRemixing: PropTypes.bool,
     isScratcher: PropTypes.bool,
     isShared: PropTypes.bool,
@@ -644,8 +652,10 @@ PreviewPresentation.propTypes = {
     onFavoriteClicked: PropTypes.func,
     onGreenFlag: PropTypes.func,
     onLoadMore: PropTypes.func,
+    onLoadMoreReplies: PropTypes.func,
     onLoveClicked: PropTypes.func,
     onOpenAdminPanel: PropTypes.func,
+    onProjectLoaded: PropTypes.func,
     onRemix: PropTypes.func,
     onRemixing: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
