@@ -273,9 +273,28 @@ class Preview extends React.Component {
 
                     const helpers = ProjectInfo[projectData[0].projectVersion];
                     if (!helpers) return; // sb1 not handled
-                    newState.extensions = helpers.extensions(projectData[0]);
+                    newState.extensions = Array.from(helpers.extensions(projectData[0]));
                     newState.modInfo.scriptCount = helpers.scriptCount(projectData[0]);
                     newState.modInfo.spriteCount = helpers.spriteCount(projectData[0]);
+                    if (helpers.cloudData(projectData[0])) {
+                        if (this.props.isLoggedIn) {
+                            // show cloud variables log link if logged in
+                            newState.extensions.push({
+                                action: {
+                                    l10nId: 'project.cloudDataLink',
+                                    uri: `/cloudmonitor/${projectId}/`
+                                },
+                                icon: 'clouddata.svg',
+                                l10nId: 'project.cloudVariables',
+                                linked: true
+                            });
+                        } else {
+                            newState.extensions.push({
+                                icon: 'clouddata.svg',
+                                l10nId: 'project.cloudVariables'
+                            });
+                        }
+                    }
 
                     if (showAlerts) {
                         // Check for username block only if user is logged in

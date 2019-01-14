@@ -38,4 +38,21 @@
         color: $ui-white;
         font-size: .675rem;
     }
+    
+    .extension-action {
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: $ui-blue;
+        padding: 0 5px;
+        text-align: center;
+        color: $ui-white;
+        font-size: .675rem;
+        font-weight: normal;
+        
+        img {
+            width: 15px;
+            height: 15px;
+        }
+    }
 }
