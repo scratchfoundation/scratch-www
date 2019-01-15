@@ -78,7 +78,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="/info/credits">
+                        <a href="/credits">
                             <FormattedMessage id="general.credits" />
                         </a>
                     </dd>
