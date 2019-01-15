@@ -22,7 +22,7 @@ const Developers = () => (
                         id="developers.intro"
                         values={{
                             introLink: (
-                                <a href="/info/credits">
+                                <a href="/credits">
                                     <FormattedMessage id="developers.introLinkText" />
                                 </a>
                             )
