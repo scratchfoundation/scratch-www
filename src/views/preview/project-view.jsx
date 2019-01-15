@@ -276,7 +276,8 @@ class Preview extends React.Component {
                     newState.extensions = Array.from(helpers.extensions(projectData[0]));
                     newState.modInfo.scriptCount = helpers.scriptCount(projectData[0]);
                     newState.modInfo.spriteCount = helpers.spriteCount(projectData[0]);
-                    if (helpers.cloudData(projectData[0])) {
+                    const hasCloudData = helpers.cloudData(projectData[0]);
+                    if (hasCloudData) {
                         if (this.props.isLoggedIn) {
                             // show cloud variables log link if logged in
                             newState.extensions.push({
@@ -301,7 +302,7 @@ class Preview extends React.Component {
                         if (this.props.isLoggedIn) {
                             newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
                         } else { // Check for cloud vars only if user is logged out
-                            newState.showCloudDataAlert = helpers.cloudData(projectData[0]);
+                            newState.showCloudDataAlert = hasCloudData;
                         }
                     }
                     this.setState(newState);
