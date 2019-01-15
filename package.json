@@ -102,7 +102,7 @@
     "redux": "3.5.2",
     "redux-thunk": "2.0.1",
     "sass-loader": "6.0.6",
-    "scratch-gui": "0.1.0-prerelease.20190111141703",
+    "scratch-gui": "0.1.0-prerelease.20190115175637",
     "scratch-l10n": "latest",
     "scratchr2_translations": "git://github.com/LLK/scratchr2_translations.git#master",
     "slick-carousel": "1.6.0",
