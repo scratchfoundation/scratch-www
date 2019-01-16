@@ -15,7 +15,7 @@ const canRemove = (userOwnsProject, isAdmin, userIsCurator) => (
 
 // include a given studio in the list to show in add to studio modal.
 // only include it if user has the ability to remove the project from this studio.
-const showStudio = (consolidatedStudios, studio, currentStudioIds, userIsCurator, userOwnsProject, isAdmin) => {
+const showStudio = (studio, currentStudioIds, userIsCurator, userOwnsProject, isAdmin) => {
     const includesProject = (currentStudioIds.indexOf(studio.id) !== -1);
     const canAddToThisStudio = canAdd(studio, userIsCurator);
     const canRemoveFromThisStudio = canRemove(userOwnsProject, isAdmin, userIsCurator);
@@ -27,8 +27,9 @@ const showStudio = (consolidatedStudios, studio, currentStudioIds, userIsCurator
             canAdd: canAddToThisStudio,
             canRemove: canRemoveFromThisStudio
         });
-        consolidatedStudios.push(consolidatedStudio);
+        return consolidatedStudio;
     }
+    return null;
 };
 
 // Build consolidated curatedStudios object from all studio info.
@@ -42,13 +43,19 @@ const consolidateStudiosInfo = (userOwnsProject, isAdmin, curatedStudios, projec
     // for each studio the project is in, include it if user can add or remove project from it.
     projectStudios.forEach(projectStudio => {
         const userIsCurator = curatedStudios.some(curatedStudio => (curatedStudio.id === projectStudio.id));
-        showStudio(consolidatedStudios, projectStudio, currentStudioIds, userIsCurator, userOwnsProject, isAdmin);
+        const studioToShow = showStudio(projectStudio, currentStudioIds, userIsCurator, userOwnsProject, isAdmin);
+        if (studioToShow) {
+            consolidatedStudios.push(studioToShow);
+        }
     });
 
     // for each curated studio, if it was not already added to consolidatedStudios above, add it now.
     curatedStudios.forEach(curatedStudio => {
         if (!projectStudios.some(projectStudio => (projectStudio.id === curatedStudio.id))) {
-            showStudio(consolidatedStudios, curatedStudio, currentStudioIds, true, userOwnsProject, isAdmin);
+            const studioToShow = showStudio(curatedStudio, currentStudioIds, true, userOwnsProject, isAdmin);
+            if (studioToShow) {
+                consolidatedStudios.push(studioToShow);
+            }
         }
     });
 
