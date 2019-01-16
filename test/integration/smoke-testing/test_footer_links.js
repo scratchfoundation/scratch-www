@@ -18,7 +18,7 @@ const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 const options = {timeout: 30000};
 
 // number of tests in the plan
-tap.plan(25);
+tap.plan(24);
 
 tap.tearDown(function () {
     // quit the instance of the browser
@@ -140,15 +140,7 @@ tap.test('clickDiscussionForumsLink', options, t => {
     });
 });
 
-// SCRATCH WIKI
-tap.test('clickScratchWikiLink', options, t => {
-    const linkText = 'Scratch Wiki';
-    const expectedUrl = 'https://en.scratch-wiki.info/wiki/Scratch_Wiki_Home';
-    clickFooterLinks(linkText).then(url => {
-        t.equal(url, expectedUrl);
-        t.end();
-    });
-});
+// SCRATCH WIKI test has been removed.
 
 // STATISTICS
 tap.test('clickStatisticsLink', options, t => {
