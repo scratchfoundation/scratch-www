@@ -604,7 +604,7 @@ class Preview extends React.Component {
                             extensions={this.state.extensions}
                             faved={this.state.clientFaved}
                             favoriteCount={this.state.favoriteCount}
-                            isFullScreen={this.state.isFullScreen}
+                            isFullScreen={this.props.fullScreen}
                             isLoggedIn={this.props.isLoggedIn}
                             isNewScratcher={this.props.isNewScratcher}
                             isRemixing={this.state.isRemixing}
