@@ -292,7 +292,12 @@ const PreviewPresentation = ({
                             </MediaQuery>
                         </FlexRow>
                         <FlexRow className="preview-row">
-                            <div className="guiPlayer">
+                            <div
+                                className={classNames(
+                                    'guiPlayer',
+                                    {fullscreen: isFullScreen}
+                                )}
+                            >
                                 {showCloudDataAlert && (
                                     <FlexRow className="project-info-alert">
                                         <FormattedMessage id="project.cloudDataAlert" />

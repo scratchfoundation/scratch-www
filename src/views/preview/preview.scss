@@ -347,6 +347,7 @@ $stage-width: 480px;
         display: inline-block;
         position: relative;
         width: $player-width;
+        z-index: 1;
 
         $alert-bg: rgba(255, 255, 255, .85);
         .project-info-alert {
@@ -358,6 +359,10 @@ $stage-width: 480px;
             padding: .75rem;
             text-align: center;
             font-size: .95rem;
+        }
+
+        &.fullscreen {
+            z-index: 200;
         }
 
         @media #{$small} {
