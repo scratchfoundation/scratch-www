@@ -182,6 +182,20 @@ const PreviewPresentation = ({
         }
     }
 
+    const extensionChips = (
+        <FlexRow className="extension-list">
+            {extensions && extensions.map(extension => (
+                <ExtensionChip
+                    action={extension.action}
+                    extensionL10n={extension.l10nId}
+                    extensionName={extension.name}
+                    hasStatus={extension.hasStatus}
+                    iconURI={extension.icon && `/svgs/project/${extension.icon}`}
+                    key={extension.name || extension.l10nId}
+                />
+            ))}
+        </FlexRow>
+    );
     return (
         <div className="preview">
             {showAdminPanel && (
@@ -278,7 +292,12 @@ const PreviewPresentation = ({
                             </MediaQuery>
                         </FlexRow>
                         <FlexRow className="preview-row">
-                            <div className="guiPlayer">
+                            <div
+                                className={classNames(
+                                    'guiPlayer',
+                                    {fullscreen: isFullScreen}
+                                )}
+                            >
                                 {showCloudDataAlert && (
                                     <FlexRow className="project-info-alert">
                                         <FormattedMessage id="project.cloudDataAlert" />
@@ -344,17 +363,7 @@ const PreviewPresentation = ({
                                 {/*  eslint-disable max-len */}
                                 <MediaQuery maxWidth={frameless.tablet - 1}>
                                     <FlexRow className="preview-row">
-                                        <FlexRow className="extension-list">
-                                            {extensions && extensions.map(extension => (
-                                                <ExtensionChip
-                                                    extensionL10n={extension.l10nId}
-                                                    extensionName={extension.name}
-                                                    hasStatus={extension.hasStatus}
-                                                    iconURI={extension.icon && `/svgs/project/${extension.icon}`}
-                                                    key={extension.name || extension.l10nId}
-                                                />
-                                            ))}
-                                        </FlexRow>
+                                        {extensionChips}
                                     </FlexRow>
                                 </MediaQuery>
                                 {showInstructions && (
@@ -475,17 +484,7 @@ const PreviewPresentation = ({
                         </MediaQuery>
                         <MediaQuery minWidth={frameless.tablet}>
                             <FlexRow className="preview-row">
-                                <FlexRow className="extension-list">
-                                    {extensions && extensions.map(extension => (
-                                        <ExtensionChip
-                                            extensionL10n={extension.l10nId}
-                                            extensionName={extension.name}
-                                            hasStatus={extension.hasStatus}
-                                            iconURI={extension.icon && `/svgs/project/${extension.icon}`}
-                                            key={extension.name || extension.l10nId}
-                                        />
-                                    ))}
-                                </FlexRow>
+                                {extensionChips}
                             </FlexRow>
                         </MediaQuery>
                         {showModInfo &&

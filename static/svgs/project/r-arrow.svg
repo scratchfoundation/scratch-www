@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Tutorials/Navigation/Next</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M16.994992,10.6536457 L12.6535303,14.9951074 C12.2968115,15.3310867 11.796299,15.4209577 11.3663008,15.2343025 C10.9363025,15.04903 10.6708373,14.6397712 10.6708373,14.1655287 L10.6708373,12.5188151 L4.62873943,11.679558 C3.70375923,11.5592691 3,10.7545778 3,9.80747549 C3,9.72590025 3.00553052,9.64294239 3.01520894,9.56136715 C3.14932416,8.70690113 3.81575235,8.0473861 4.63565259,7.94368877 L10.6708373,7.0823096 L10.6708373,5.50749278 C10.6708373,5.02771979 10.9528941,4.60048678 11.3884229,4.4193621 C11.8267169,4.23823743 12.3120204,4.33640424 12.6535303,4.67791412 L16.994992,9.01937576 C17.2092998,9.23506621 17.3282061,9.52541874 17.3282061,9.83651074 C17.3282061,10.1476027 17.2092998,10.4379553 16.994992,10.6536457 Z" id="path-1"></path>
+    </defs>
+    <g id="Tutorials/Navigation/Next" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Fill-1" fill="#FFFFFF" xlink:href="#path-1"></use>
+        <g id="Color/White" mask="url(#mask-2)" fill="#FFFFFF">
+            <g id="Color">
+                <rect x="0" y="0" width="20" height="20"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

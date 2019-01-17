@@ -22,16 +22,27 @@ const ExtensionChip = props => (
                     <FormattedMessage id="project.needsConnection" />
                 </div>
             )}
+            {props.action && (
+                <a href={props.action.uri}>
+                    <div className="extension-action">
+                        <FormattedMessage id={props.action.l10nId} />
+                        <img src="/svgs/project/r-arrow.svg" />
+                    </div>
+                </a>
+            )}
         </div>
     </div>
 );
 
 ExtensionChip.propTypes = {
+    action: PropTypes.shape({
+        l10nId: PropTypes.string,
+        uri: PropTypes.string
+    }),
     extensionL10n: PropTypes.string,
     extensionName: PropTypes.string,
     hasStatus: PropTypes.bool,
     iconURI: PropTypes.string
 };
-
 
 module.exports = ExtensionChip;
