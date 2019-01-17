@@ -67,7 +67,6 @@ const PreviewPresentation = ({
     faved,
     favoriteCount,
     intl,
-    isAdmin,
     isFullScreen,
     isLoggedIn,
     isNewScratcher,
@@ -123,7 +122,6 @@ const PreviewPresentation = ({
     showAdminPanel,
     showModInfo,
     singleCommentId,
-    userOwnsProject,
     visibilityInfo
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
@@ -346,11 +344,9 @@ const PreviewPresentation = ({
                                     <Subactions
                                         addToStudioOpen={addToStudioOpen}
                                         canReport={canReport}
-                                        isAdmin={isAdmin}
                                         projectInfo={projectInfo}
                                         reportOpen={reportOpen}
                                         shareDate={shareDate}
-                                        userOwnsProject={userOwnsProject}
                                         onAddToStudioClicked={onAddToStudioClicked}
                                         onAddToStudioClosed={onAddToStudioClosed}
                                         onCopyProjectLink={onCopyProjectLink}
@@ -473,11 +469,9 @@ const PreviewPresentation = ({
                                     addToStudioOpen={addToStudioOpen}
                                     canAddToStudio={canAddToStudio}
                                     canReport={canReport}
-                                    isAdmin={isAdmin}
                                     projectInfo={projectInfo}
                                     reportOpen={reportOpen}
                                     shareDate={shareDate}
-                                    userOwnsProject={userOwnsProject}
                                     onAddToStudioClicked={onAddToStudioClicked}
                                     onAddToStudioClosed={onAddToStudioClosed}
                                     onCopyProjectLink={onCopyProjectLink}
@@ -632,7 +626,6 @@ PreviewPresentation.propTypes = {
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
     intl: intlShape,
-    isAdmin: PropTypes.bool,
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
@@ -691,7 +684,6 @@ PreviewPresentation.propTypes = {
     showModInfo: PropTypes.bool,
     showUsernameBlockAlert: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
-    userOwnsProject: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
         message: PropTypes.string,

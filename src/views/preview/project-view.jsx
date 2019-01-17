@@ -641,7 +641,6 @@ class Preview extends React.Component {
                             extensions={this.state.extensions}
                             faved={this.state.clientFaved}
                             favoriteCount={this.state.favoriteCount}
-                            isAdmin={this.props.isAdmin}
                             isFullScreen={this.props.fullScreen}
                             isLoggedIn={this.props.isLoggedIn}
                             isNewScratcher={this.props.isNewScratcher}
@@ -669,7 +668,6 @@ class Preview extends React.Component {
                             showModInfo={this.props.isAdmin}
                             showUsernameBlockAlert={this.state.showUsernameBlockAlert}
                             singleCommentId={this.state.singleCommentId}
-                            userOwnsProject={this.props.userOwnsProject}
                             visibilityInfo={this.props.visibilityInfo}
                             onAddComment={this.handleAddComment}
                             onAddToStudioClicked={this.handleAddToStudioClick}

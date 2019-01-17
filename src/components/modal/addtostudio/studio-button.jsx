@@ -8,8 +8,6 @@ const AnimateHOC = require('./animate-hoc.jsx');
 require('./modal.scss');
 
 const StudioButton = ({
-    canAdd,
-    canRemove,
     hasRequestOutstanding,
     includesProject,
     title,
@@ -40,12 +38,9 @@ const StudioButton = ({
         <div
             className={classNames(
                 'studio-selector-button',
-                {
-                    'studio-selector-button-waiting': hasRequestOutstanding,
-                    'studio-selector-button-selected': includesProject && !hasRequestOutstanding,
-                    'studio-selector-button-enabled': includesProject ? canRemove : canAdd,
-                    'studio-selector-button-disabled': includesProject ? !canRemove : !canAdd
-                }
+                {'studio-selector-button-waiting': hasRequestOutstanding},
+                {'studio-selector-button-selected':
+                    includesProject && !hasRequestOutstanding}
             )}
             onClick={onClick}
         >
@@ -74,8 +69,6 @@ const StudioButton = ({
 };
 
 StudioButton.propTypes = {
-    canAdd: PropTypes.bool,
-    canRemove: PropTypes.bool,
     hasRequestOutstanding: PropTypes.bool,
     includesProject: PropTypes.bool,
     onClick: PropTypes.func,
