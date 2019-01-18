@@ -61,19 +61,30 @@ const Credits = () => (
                             className="logo"
                             key={`logo-${index}`}
                         >
-                            <a href={supporter.logoDestination}>
+                            {supporter.logoDestination ? (<a href={supporter.logoDestination}>
                                 {supporter.logoSrc ? (
                                     <img
                                         alt=""
                                         src={supporter.logoSrc}
                                         width={supporter.width}
                                     />
-                                ) :
+                                ) : (
                                     <div className="text-logo">
                                         {supporter.textLogo}
                                     </div>
-                                }
-                            </a>
+                                )}
+                            </a>) : (supporter.logoSrc ? (
+                                <img
+                                    alt=""
+                                    src={supporter.logoSrc}
+                                    width={supporter.width}
+                                />
+                            ) : (
+                                <div className="text-logo">
+                                    {supporter.textLogo}
+                                </div>
+                            ))
+                            }
                         </span>
                     ))}
                 </div>
