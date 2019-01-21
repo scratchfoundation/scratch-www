@@ -108,7 +108,7 @@
     "slick-carousel": "1.6.0",
     "source-map-support": "0.3.2",
     "style-loader": "0.12.3",
-    "tap": "7.1.2",
+    "tap": "12.1.2",
     "url-loader": "0.5.6",
     "watch": "0.16.0",
     "webpack": "2.7.0",
