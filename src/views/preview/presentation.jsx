@@ -148,27 +148,40 @@ const PreviewPresentation = ({
         if (visibilityInfo.message) { // if message is present, set innerHTML with it
             censoredMessage = embedCensorMessage(visibilityInfo.message);
         } else { // if message is blank or missing, use default
-            censoredMessage = (
-                <React.Fragment>
-                    <FormattedMessage id="project.defaultCensoredMessage" />
-                    <br />
-                    <br />
-                    {visibilityInfo.reshareable ? (
-                        <FormattedMessage
-                            id="project.tempCensoredMessage"
-                            values={{
-                                communityGuidelinesLink: (
-                                    <a href="/community_guidelines/">
-                                        <FormattedMessage id="project.communityGuidelines" />
-                                    </a>
-                                )
-                            }}
-                        />
-                    ) : (
-                        <FormattedMessage id="project.permCensoredMessage" />
-                    )}
-                </React.Fragment>
+            const communityGuidelinesLink = (
+                <a href="/community_guidelines/">
+                    <FormattedMessage id="project.communityGuidelines" />
+                </a>
             );
+            if (visibilityInfo.censoredByCommunity) {
+                censoredMessage = (
+                    <React.Fragment>
+                        <FormattedMessage id="project.communityCensoredMessage" />
+                        <br />
+                        <br />
+                        <FormattedMessage
+                            id="project.willReviewCensoredMessage"
+                            values={{communityGuidelinesLink: communityGuidelinesLink}}
+                        />
+                    </React.Fragment>
+                );
+            } else {
+                censoredMessage = (
+                    <React.Fragment>
+                        <FormattedMessage id="project.defaultCensoredMessage" />
+                        <br />
+                        <br />
+                        {visibilityInfo.reshareable ? (
+                            <FormattedMessage
+                                id="project.tempCensoredMessage"
+                                values={{communityGuidelinesLink: communityGuidelinesLink}}
+                            />
+                        ) : (
+                            <FormattedMessage id="project.permCensoredMessage" />
+                        )}
+                    </React.Fragment>
+                );
+            }
         }
         banner = (<Banner
             className="banner-danger"

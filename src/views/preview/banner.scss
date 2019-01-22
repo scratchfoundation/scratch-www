@@ -2,7 +2,7 @@
 
 $navigation-height: 50px;
 
-.banner-outer{
+.banner-outer {
     display: flex;
     background-color: $ui-orange-25percent;
     width: 100%;
@@ -32,7 +32,7 @@ $navigation-height: 50px;
     flex-wrap: nowrap;
 }
 
-.banner-text{
+.banner-text {
     padding: .625rem 0;
     max-width: 50rem;
     line-height: 1.25rem;
