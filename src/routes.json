@@ -272,7 +272,7 @@
         "pattern": "^/wedo/?$",
         "routeAlias": "/wedo/?$",
         "view": "wedo2/wedo2",
-        "title": "LEGO WeDo 2.0"
+        "title": "WeDo 2.0"
     },
     {
         "name": "wedo2-legacy",
