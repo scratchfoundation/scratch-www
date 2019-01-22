@@ -144,9 +144,35 @@ const PreviewPresentation = ({
             message={<FormattedMessage id="project.deletedBanner" />}
         />);
     } else if (visibilityInfo.censored) {
+        let censoredMessage;
+        if (visibilityInfo.message) { // if message is present, set innerHTML with it
+            censoredMessage = embedCensorMessage(visibilityInfo.message);
+        } else { // if message is blank or missing, use default
+            censoredMessage = (
+                <React.Fragment>
+                    <FormattedMessage id="project.defaultCensoredMessage" />
+                    <br />
+                    <br />
+                    {visibilityInfo.reshareable ? (
+                        <FormattedMessage
+                            id="project.tempCensoredMessage"
+                            values={{
+                                communityGuidelinesLink: (
+                                    <a href="/community_guidelines/">
+                                        <FormattedMessage id="project.communityGuidelines" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    ) : (
+                        <FormattedMessage id="project.permCensoredMessage" />
+                    )}
+                </React.Fragment>
+            );
+        }
         banner = (<Banner
             className="banner-danger"
-            message={embedCensorMessage(visibilityInfo.message)}
+            message={censoredMessage}
         />);
     } else if (justRemixed) {
         banner = (

@@ -2,7 +2,7 @@
 
 $navigation-height: 50px;
 
-.banner-outer {
+.banner-outer{
     display: flex;
     background-color: $ui-orange-25percent;
     width: 100%;
@@ -25,18 +25,18 @@ $navigation-height: 50px;
 }
 
 .banner-inner {
+    padding-top: .325rem;
+    padding-bottom: .325rem;
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
 }
 
-.banner-text {
-    padding: .5rem 0;
+.banner-text{
+    padding: .625rem 0;
 }
 
 .banner-button {
-    margin-top: .75rem;
-    margin-bottom: .75rem;
     border-radius: .25rem;
     background-color: $ui-orange;
     padding-top: .6875rem;
