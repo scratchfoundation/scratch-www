@@ -26,6 +26,8 @@ const AddToStudioModalPresentation = ({
     const contentLabel = intl.formatMessage({id: 'addToStudio.title'});
     const studioButtons = studios.map(studio => (
         <StudioButton
+            canAdd={studio.canAdd}
+            canRemove={studio.canRemove}
             hasRequestOutstanding={studio.hasRequestOutstanding}
             id={studio.id}
             includesProject={studio.includesProject}
