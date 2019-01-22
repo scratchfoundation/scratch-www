@@ -15,8 +15,8 @@ $navigation-height: 50px;
 }
 
 .banner-outer.banner-danger {
-    background-color: $ui-red-25percent;
-    color: $ui-red;
+    background-color: $ui-orange-25percent;
+    color: $ui-orange-high-contrast;
 }
 
 .banner-outer.banner-success {
@@ -34,6 +34,8 @@ $navigation-height: 50px;
 
 .banner-text{
     padding: .625rem 0;
+    max-width: 50rem;
+    line-height: 1.25rem;
 }
 
 .banner-button {
