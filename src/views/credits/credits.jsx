@@ -116,6 +116,20 @@ const Credits = () => (
                   Robert Hunter, Alex Eben Meyer, Ding Ding Hu, Owen Davey.
                 </p>
                 <h2>
+                    <FormattedMessage id="credits.soundsTitle" />
+                </h2>
+                <p>
+                    <FormattedMessage id="credits.acknowledgementsSounds" />
+                </p>
+                <p>
+                    <FormattedMessage id="credits.soundsThanks" />
+                    {' '}
+                    acclivity, belloisec, Benboncan, Calcuttan, coby12388, copyc4t,
+                    cs272, Flick3r, FreqMan, gelo_papas, han1, InspectorJ, jiserte,
+                    junggle, juskiddink, klankbeeld, LittleRobotSoundFactory, LloydEvans09,
+                    lonemonk, rhodesmas, sandyrb, themfish, tyops.
+                </p>
+                <h2>
                     <FormattedMessage id="credits.pastContributors" />
                 </h2>
                 <p>
