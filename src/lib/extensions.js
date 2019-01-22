@@ -25,7 +25,7 @@ const EXTENSION_INFO = {
         icon: 'extension-translate.svg'
     },
     wedo2: {
-        name: 'LEGO WeDo 2.0',
+        name: 'WeDo 2.0',
         icon: 'extension-wedo2.svg',
         hasStatus: true
     },
