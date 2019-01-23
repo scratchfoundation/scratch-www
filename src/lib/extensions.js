@@ -13,7 +13,7 @@ const EXTENSION_INFO = {
         icon: 'extension-pen.svg'
     },
     videoSensing: {
-        l10nId: 'project.videoMotionChip',
+        l10nId: 'project.videoSensingChip',
         icon: 'extension-videosensing.svg'
     },
     text2speech: {
