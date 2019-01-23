@@ -1,7 +1,7 @@
 const EXTENSION_INFO = {
     microbit: {
         name: 'micro:bit',
-        icon: 'extension-microbit.svg',
+        icon: 'extension-microbit.png',
         hasStatus: true
     },
     music: {
@@ -13,7 +13,7 @@ const EXTENSION_INFO = {
         icon: 'extension-pen.svg'
     },
     videoSensing: {
-        l10nId: 'project.videoMotionChip',
+        l10nId: 'project.videoSensingChip',
         icon: 'extension-videosensing.svg'
     },
     text2speech: {
@@ -22,7 +22,7 @@ const EXTENSION_INFO = {
     },
     translate: {
         l10nId: 'project.translateChip',
-        icon: 'extension-translate.svg'
+        icon: 'extension-translate.png'
     },
     wedo2: {
         name: 'WeDo 2.0',
