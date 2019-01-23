@@ -17,6 +17,7 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
 const Banner = require('./banner.jsx');
+const CensoredMessage = require('./censored-message.jsx');
 const ModInfo = require('./mod-info.jsx');
 const RemixCredit = require('./remix-credit.jsx');
 const RemixList = require('./remix-list.jsx');
@@ -131,12 +132,6 @@ const PreviewPresentation = ({
     const showNotesAndCredits = editable || projectInfo.description ||
         (!projectInfo.instructions && !projectInfo.description); // show if both are empty
 
-    // Allow embedding html in banner messages coming from the server
-    const embedCensorMessage = message => (
-        // eslint-disable-next-line react/no-danger
-        <span dangerouslySetInnerHTML={{__html: message}} />
-    );
-
     let banner;
     if (visibilityInfo.deleted) { // If both censored and deleted, prioritize deleted banner
         banner = (<Banner
@@ -144,45 +139,12 @@ const PreviewPresentation = ({
             message={<FormattedMessage id="project.deletedBanner" />}
         />);
     } else if (visibilityInfo.censored) {
-        let censoredMessage;
-        if (visibilityInfo.message) { // if message is present, set innerHTML with it
-            censoredMessage = embedCensorMessage(visibilityInfo.message);
-        } else { // if message is blank or missing, use default
-            const communityGuidelinesLink = (
-                <a href="/community_guidelines/">
-                    <FormattedMessage id="project.communityGuidelines" />
-                </a>
-            );
-            if (visibilityInfo.censoredByCommunity) {
-                censoredMessage = (
-                    <React.Fragment>
-                        <FormattedMessage id="project.communityCensoredMessage" />
-                        <br />
-                        <br />
-                        <FormattedMessage
-                            id="project.willReviewCensoredMessage"
-                            values={{communityGuidelinesLink: communityGuidelinesLink}}
-                        />
-                    </React.Fragment>
-                );
-            } else {
-                censoredMessage = (
-                    <React.Fragment>
-                        <FormattedMessage id="project.defaultCensoredMessage" />
-                        <br />
-                        <br />
-                        {visibilityInfo.reshareable ? (
-                            <FormattedMessage
-                                id="project.tempCensoredMessage"
-                                values={{communityGuidelinesLink: communityGuidelinesLink}}
-                            />
-                        ) : (
-                            <FormattedMessage id="project.permCensoredMessage" />
-                        )}
-                    </React.Fragment>
-                );
-            }
-        }
+        const censoredMessage = (
+            <CensoredMessage
+                messageHTML={visibilityInfo.messageHTML}
+                reshareable={visibilityInfo.reshareable}
+            />
+        );
         banner = (<Banner
             className="banner-danger"
             message={censoredMessage}
