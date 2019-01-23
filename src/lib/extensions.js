@@ -1,7 +1,7 @@
 const EXTENSION_INFO = {
     microbit: {
         name: 'micro:bit',
-        icon: 'extension-microbit.svg',
+        icon: 'extension-microbit.png',
         hasStatus: true
     },
     music: {
@@ -22,7 +22,7 @@ const EXTENSION_INFO = {
     },
     translate: {
         l10nId: 'project.translateChip',
-        icon: 'extension-translate.svg'
+        icon: 'extension-translate.png'
     },
     wedo2: {
         name: 'WeDo 2.0',
