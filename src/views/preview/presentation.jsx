@@ -141,7 +141,7 @@ const PreviewPresentation = ({
     } else if (visibilityInfo.censored) {
         const censoredMessage = (
             <CensoredMessage
-                messageHTML={visibilityInfo.messageHTML}
+                messageHTML={visibilityInfo.message}
                 reshareable={visibilityInfo.reshareable}
             />
         );
