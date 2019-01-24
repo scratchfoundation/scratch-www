@@ -39,7 +39,9 @@ const Subactions = props => (
                     {props.addToStudioOpen && (
                         <AddToStudioModal
                             isOpen
+                            isAdmin={props.isAdmin}
                             key="add-to-studio-modal"
+                            userOwnsProject={props.userOwnsProject}
                             onRequestClose={props.onAddToStudioClosed}
                             onToggleStudio={props.onToggleStudio}
                         />
@@ -80,6 +82,7 @@ Subactions.propTypes = {
     addToStudioOpen: PropTypes.bool,
     canAddToStudio: PropTypes.bool,
     canReport: PropTypes.bool,
+    isAdmin: PropTypes.bool,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onCopyProjectLink: PropTypes.func,
@@ -88,7 +91,8 @@ Subactions.propTypes = {
     onReportSubmit: PropTypes.func.isRequired,
     onToggleStudio: PropTypes.func,
     reportOpen: PropTypes.bool,
-    shareDate: PropTypes.string
+    shareDate: PropTypes.string,
+    userOwnsProject: PropTypes.bool
 };
 
 module.exports = Subactions;

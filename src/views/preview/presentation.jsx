@@ -17,6 +17,7 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 const Avatar = require('../../components/avatar/avatar.jsx');
 const Banner = require('./banner.jsx');
+const CensoredMessage = require('./censored-message.jsx');
 const ModInfo = require('./mod-info.jsx');
 const RemixCredit = require('./remix-credit.jsx');
 const RemixList = require('./remix-list.jsx');
@@ -67,6 +68,7 @@ const PreviewPresentation = ({
     faved,
     favoriteCount,
     intl,
+    isAdmin,
     isFullScreen,
     isLoggedIn,
     isNewScratcher,
@@ -122,6 +124,7 @@ const PreviewPresentation = ({
     showAdminPanel,
     showModInfo,
     singleCommentId,
+    userOwnsProject,
     visibilityInfo
 }) => {
     const shareDate = ((projectInfo.history && projectInfo.history.shared)) ? projectInfo.history.shared : '';
@@ -131,12 +134,6 @@ const PreviewPresentation = ({
     const showNotesAndCredits = editable || projectInfo.description ||
         (!projectInfo.instructions && !projectInfo.description); // show if both are empty
 
-    // Allow embedding html in banner messages coming from the server
-    const embedCensorMessage = message => (
-        // eslint-disable-next-line react/no-danger
-        <span dangerouslySetInnerHTML={{__html: message}} />
-    );
-
     let banner;
     if (visibilityInfo.deleted) { // If both censored and deleted, prioritize deleted banner
         banner = (<Banner
@@ -144,9 +141,15 @@ const PreviewPresentation = ({
             message={<FormattedMessage id="project.deletedBanner" />}
         />);
     } else if (visibilityInfo.censored) {
+        const censoredMessage = (
+            <CensoredMessage
+                messageHTML={visibilityInfo.message}
+                reshareable={visibilityInfo.reshareable}
+            />
+        );
         banner = (<Banner
             className="banner-danger"
-            message={embedCensorMessage(visibilityInfo.message)}
+            message={censoredMessage}
         />);
     } else if (justRemixed) {
         banner = (
@@ -344,9 +347,11 @@ const PreviewPresentation = ({
                                     <Subactions
                                         addToStudioOpen={addToStudioOpen}
                                         canReport={canReport}
+                                        isAdmin={isAdmin}
                                         projectInfo={projectInfo}
                                         reportOpen={reportOpen}
                                         shareDate={shareDate}
+                                        userOwnsProject={userOwnsProject}
                                         onAddToStudioClicked={onAddToStudioClicked}
                                         onAddToStudioClosed={onAddToStudioClosed}
                                         onCopyProjectLink={onCopyProjectLink}
@@ -469,9 +474,11 @@ const PreviewPresentation = ({
                                     addToStudioOpen={addToStudioOpen}
                                     canAddToStudio={canAddToStudio}
                                     canReport={canReport}
+                                    isAdmin={isAdmin}
                                     projectInfo={projectInfo}
                                     reportOpen={reportOpen}
                                     shareDate={shareDate}
+                                    userOwnsProject={userOwnsProject}
                                     onAddToStudioClicked={onAddToStudioClicked}
                                     onAddToStudioClosed={onAddToStudioClosed}
                                     onCopyProjectLink={onCopyProjectLink}
@@ -626,6 +633,7 @@ PreviewPresentation.propTypes = {
     faved: PropTypes.bool,
     favoriteCount: PropTypes.number,
     intl: intlShape,
+    isAdmin: PropTypes.bool,
     isFullScreen: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
@@ -684,6 +692,7 @@ PreviewPresentation.propTypes = {
     showModInfo: PropTypes.bool,
     showUsernameBlockAlert: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+    userOwnsProject: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
         message: PropTypes.string,

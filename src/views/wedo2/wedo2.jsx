@@ -34,7 +34,7 @@ class Wedo2 extends ExtensionLanding {
                             <h1><img
                                 alt=""
                                 src="/images/wedo2/wedo2.svg"
-                            />LEGO WeDo 2.0</h1>
+                            />LEGO Education WeDo 2.0</h1>
                             <FormattedMessage
                                 id="wedo2.headerText"
                                 values={{

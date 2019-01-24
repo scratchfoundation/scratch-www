@@ -15,8 +15,8 @@ $navigation-height: 50px;
 }
 
 .banner-outer.banner-danger {
-    background-color: $ui-red-25percent;
-    color: $ui-red;
+    background-color: $ui-orange-25percent;
+    color: $ui-orange-high-contrast;
 }
 
 .banner-outer.banner-success {
@@ -25,18 +25,20 @@ $navigation-height: 50px;
 }
 
 .banner-inner {
+    padding-top: .325rem;
+    padding-bottom: .325rem;
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
 }
 
 .banner-text {
-    padding: .5rem 0;
+    padding: .625rem 0;
+    max-width: 50rem;
+    line-height: 1.25rem;
 }
 
 .banner-button {
-    margin-top: .75rem;
-    margin-bottom: .75rem;
     border-radius: .25rem;
     background-color: $ui-orange;
     padding-top: .6875rem;
