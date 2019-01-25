@@ -1,10 +1,12 @@
 const PropTypes = require('prop-types');
 const React = require('react');
 const bindAll = require('lodash.bindall');
-const api = require('../../lib/api');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
+
+const api = require('../../lib/api');
+const previewActions = require('../../redux/preview');
 
 class FormsyProjectUpdater extends React.Component {
     constructor (props) {
@@ -41,6 +43,7 @@ class FormsyProjectUpdater extends React.Component {
         }, (err, body, res) => {
             if (res.statusCode === 200) {
                 this.setState({value: body[this.props.field], error: false});
+                this.props.onUpdate(jsonData);
             } else {
                 this.setState({error: res.statusCode});
             }
@@ -63,6 +66,7 @@ FormsyProjectUpdater.propTypes = {
     field: PropTypes.string,
     initialValue: PropTypes.string,
     intl: intlShape,
+    onUpdate: PropTypes.func,
     projectInfo: PropTypes.shape({
         id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     }),
@@ -76,4 +80,12 @@ const mapStateToProps = state => ({
     user: state.session.session.user
 });
 
-module.exports = connect(mapStateToProps)(injectIntl(FormsyProjectUpdater));
+const mapDispatchToProps = dispatch => ({
+    onUpdate: info => {
+        dispatch(previewActions.updateProjectInfo(info));
+    }
+});
+
+module.exports = connect(mapStateToProps, mapDispatchToProps)(
+    injectIntl(FormsyProjectUpdater)
+);
