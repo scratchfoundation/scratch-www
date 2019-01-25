@@ -149,7 +149,7 @@ $stage-width: 480px;
         $arrow-border-width: 1rem;
         display: block;
         position: absolute;
-        z-index: 1;
+        z-index: 5;
         margin-top: $arrow-border-width;
         border: 1px solid $active-gray;
         border-radius: 5px;
