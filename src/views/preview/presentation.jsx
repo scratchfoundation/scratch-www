@@ -439,7 +439,7 @@ const PreviewPresentation = ({
                                         {editable ?
                                             <FormsyProjectUpdater
                                                 field="description"
-                                                initialValue={projectInfo.instructions}
+                                                initialValue={projectInfo.description}
                                             >
                                                 {(value, ref, handleUpdate) => (
                                                     <Formsy
