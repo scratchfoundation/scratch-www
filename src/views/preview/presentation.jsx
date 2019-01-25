@@ -29,6 +29,7 @@ const TopLevelComment = require('./comment/top-level-comment.jsx');
 const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
 const thumbnailUrl = require('../../lib/user-thumbnail');
+const FormsyProjectUpdater = require('./formsy-project-updater.jsx');
 
 const projectShape = require('./projectshape.jsx').projectShape;
 require('./preview.scss');
@@ -107,7 +108,6 @@ const PreviewPresentation = ({
     onShare,
     onToggleComments,
     onToggleStudio,
-    onUpdate,
     onUpdateProjectId,
     onUpdateProjectThumbnail,
     originalInfo,
@@ -233,22 +233,32 @@ const PreviewPresentation = ({
                                 </a>
                                 <div className="title">
                                     {editable ?
-                                        <Formsy onKeyPress={onKeyPress}>
-                                            <InplaceInput
-                                                className="project-title"
-                                                handleUpdate={onUpdate}
-                                                name="title"
-                                                validationErrors={{
-                                                    maxLength: intl.formatMessage({
-                                                        id: 'project.titleMaxLength'
-                                                    })
-                                                }}
-                                                validations={{
-                                                    maxLength: 100
-                                                }}
-                                                value={projectInfo.title}
-                                            />
-                                        </Formsy> :
+                                        <FormsyProjectUpdater
+                                            field="title"
+                                            initialValue={projectInfo.title}
+                                        >
+                                            {(value, ref, handleUpdate) => (
+                                                <Formsy
+                                                    ref={ref}
+                                                    onKeyPress={onKeyPress}
+                                                >
+                                                    <InplaceInput
+                                                        className="project-title"
+                                                        handleUpdate={handleUpdate}
+                                                        name="title"
+                                                        validationErrors={{
+                                                            maxLength: intl.formatMessage({
+                                                                id: 'project.titleMaxLength'
+                                                            })
+                                                        }}
+                                                        validations={{
+                                                            maxLength: 100
+                                                        }}
+                                                        value={value}
+                                                    />
+                                                </Formsy>
+                                            )}
+                                        </FormsyProjectUpdater> :
                                         <React.Fragment>
                                             <div
                                                 className="project-title no-edit"
@@ -377,32 +387,40 @@ const PreviewPresentation = ({
                                             <FormattedMessage id="project.instructionsLabel" />
                                         </div>
                                         {editable ?
-                                            <Formsy
-                                                className="project-description-form"
-                                                onKeyPress={onKeyPress}
+                                            <FormsyProjectUpdater
+                                                field="instructions"
+                                                initialValue={projectInfo.instructions}
                                             >
-                                                <InplaceInput
-                                                    className={classNames(
-                                                        'project-description-edit',
-                                                        {remixes: parentInfo && parentInfo.author}
-                                                    )}
-                                                    handleUpdate={onUpdate}
-                                                    name="instructions"
-                                                    placeholder={intl.formatMessage({
-                                                        id: 'project.descriptionPlaceholder'
-                                                    })}
-                                                    type="textarea"
-                                                    validationErrors={{
-                                                        maxLength: intl.formatMessage({
-                                                            id: 'project.descriptionMaxLength'
-                                                        })
-                                                    }}
-                                                    validations={{
-                                                        maxLength: 5000
-                                                    }}
-                                                    value={projectInfo.instructions}
-                                                />
-                                            </Formsy> :
+                                                {(value, ref, handleUpdate) => (
+                                                    <Formsy
+                                                        className="project-description-form"
+                                                        ref={ref}
+                                                        onKeyPress={onKeyPress}
+                                                    >
+                                                        <InplaceInput
+                                                            className={classNames(
+                                                                'project-description-edit',
+                                                                {remixes: parentInfo && parentInfo.author}
+                                                            )}
+                                                            handleUpdate={handleUpdate}
+                                                            name="instructions"
+                                                            placeholder={intl.formatMessage({
+                                                                id: 'project.descriptionPlaceholder'
+                                                            })}
+                                                            type="textarea"
+                                                            validationErrors={{
+                                                                maxLength: intl.formatMessage({
+                                                                    id: 'project.descriptionMaxLength'
+                                                                })
+                                                            }}
+                                                            validations={{
+                                                                maxLength: 5000
+                                                            }}
+                                                            value={value}
+                                                        />
+                                                    </Formsy>
+                                                )}
+                                            </FormsyProjectUpdater> :
                                             <div className="project-description">
                                                 {decorateText(projectInfo.instructions, {
                                                     usernames: true,
@@ -419,33 +437,41 @@ const PreviewPresentation = ({
                                             <FormattedMessage id="project.notesAndCreditsLabel" />
                                         </div>
                                         {editable ?
-                                            <Formsy
-                                                className="project-description-form"
-                                                onKeyPress={onKeyPress}
+                                            <FormsyProjectUpdater
+                                                field="description"
+                                                initialValue={projectInfo.instructions}
                                             >
-                                                <InplaceInput
-                                                    className={classNames(
-                                                        'project-description-edit',
-                                                        'last',
-                                                        {remixes: parentInfo && parentInfo.author}
-                                                    )}
-                                                    handleUpdate={onUpdate}
-                                                    name="description"
-                                                    placeholder={intl.formatMessage({
-                                                        id: 'project.notesPlaceholder'
-                                                    })}
-                                                    type="textarea"
-                                                    validationErrors={{
-                                                        maxLength: intl.formatMessage({
-                                                            id: 'project.descriptionMaxLength'
-                                                        })
-                                                    }}
-                                                    validations={{
-                                                        maxLength: 5000
-                                                    }}
-                                                    value={projectInfo.description}
-                                                />
-                                            </Formsy> :
+                                                {(value, ref, handleUpdate) => (
+                                                    <Formsy
+                                                        className="project-description-form"
+                                                        ref={ref}
+                                                        onKeyPress={onKeyPress}
+                                                    >
+                                                        <InplaceInput
+                                                            className={classNames(
+                                                                'project-description-edit',
+                                                                'last',
+                                                                {remixes: parentInfo && parentInfo.author}
+                                                            )}
+                                                            handleUpdate={handleUpdate}
+                                                            name="description"
+                                                            placeholder={intl.formatMessage({
+                                                                id: 'project.notesPlaceholder'
+                                                            })}
+                                                            type="textarea"
+                                                            validationErrors={{
+                                                                maxLength: intl.formatMessage({
+                                                                    id: 'project.descriptionMaxLength'
+                                                                })
+                                                            }}
+                                                            validations={{
+                                                                maxLength: 5000
+                                                            }}
+                                                            value={value}
+                                                        />
+                                                    </Formsy>
+                                                )}
+                                            </FormsyProjectUpdater> :
                                             <div className="project-description last">
                                                 {decorateText(projectInfo.description, {
                                                     usernames: true,
@@ -675,7 +701,6 @@ PreviewPresentation.propTypes = {
     onShare: PropTypes.func,
     onToggleComments: PropTypes.func,
     onToggleStudio: PropTypes.func,
-    onUpdate: PropTypes.func,
     onUpdateProjectId: PropTypes.func,
     onUpdateProjectThumbnail: PropTypes.func,
     originalInfo: projectShape,

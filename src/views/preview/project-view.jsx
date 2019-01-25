@@ -82,7 +82,6 @@ class Preview extends React.Component {
             'handleShare',
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
-            'handleUpdate',
             'handleToggleComments',
             'initCounts',
             'pushHistory',
@@ -523,18 +522,13 @@ class Preview extends React.Component {
             justShared: true
         });
     }
-    handleUpdate (jsonData) {
+    handleUpdateProjectTitle (title) {
         this.props.updateProject(
             this.props.projectInfo.id,
-            jsonData,
+            {title: title},
             this.props.user.username,
             this.props.user.token
         );
-    }
-    handleUpdateProjectTitle (title) {
-        this.handleUpdate({
-            title: title
-        });
     }
     handleSetLanguage (locale) {
         jar.set('scratchlanguage', locale);
@@ -696,7 +690,6 @@ class Preview extends React.Component {
                             onShare={this.handleShare}
                             onToggleComments={this.handleToggleComments}
                             onToggleStudio={this.handleToggleStudio}
-                            onUpdate={this.handleUpdate}
                             onUpdateProjectId={this.handleUpdateProjectId}
                             onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                         />
