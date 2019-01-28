@@ -205,7 +205,7 @@
         "title": "Scratch 1.4"
     },
     {
-        "name": "scratch2",
+        "name": "download-scratch2",
         "pattern": "^/download/scratch2/?(\\?.*)?$",
         "routeAlias": "/download/scratch2",
         "view": "download/scratch2/download",

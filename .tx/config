@@ -104,6 +104,12 @@ source_file = src/views/download/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
+[scratch-website.download-scratch2-l10njson]
+file_filter = localizations/download/scratch2/<lang>.json
+source_file = src/views/download/scratch2/l10n.json
+source_lang = en
+type = KEYVALUEJSON
+
 [scratch-website.camp-l10njson]
 file_filter = localizations/camp/<lang>.json
 source_file = src/views/camp/l10n.json
