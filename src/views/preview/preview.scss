@@ -612,6 +612,7 @@ $stage-width: 480px;
         .thumbnail-column {
             display: inline-block;
             width: 100%;
+            max-width: 300px;
 
             /* TODO: the following can be transferred to
             src/components/thumbnailcolumn/thumbnailcolumn.scss
