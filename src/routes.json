@@ -408,6 +408,11 @@
         "redirect": "/ideas"
     },
     {
+        "name": "all-tutorials-redirect",
+        "pattern": "^/tutorials/?$",
+        "redirect": "/projects/editor/?tutorial=all"
+    },
+    {
         "name": "create-tutorial-redirect",
         "pattern": "^/create/?$",
         "redirect": "/projects/editor/?tutorial=getStarted"
