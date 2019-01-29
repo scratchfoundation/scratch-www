@@ -187,7 +187,7 @@ const PreviewPresentation = ({
 
     const extensionChips = (
         <FlexRow className="extension-list">
-            {extensions.map(extension => (
+            {extensions && extensions.map(extension => (
                 <ExtensionChip
                     action={extension.action}
                     extensionL10n={extension.l10nId}
@@ -381,11 +381,11 @@ const PreviewPresentation = ({
                                 <RemixCredit projectInfo={originalInfo} />
                                 {/*  eslint-disable max-len */}
                                 <MediaQuery maxWidth={frameless.tablet - 1}>
-                                    {extensions &&
+                                    {(extensions && extensions.length) ? (
                                         <FlexRow className="preview-row">
                                             {extensionChips}
                                         </FlexRow>
-                                    }
+                                    ) : null}
                                 </MediaQuery>
                                 {showInstructions && (
                                     <div className="description-block">
@@ -522,9 +522,11 @@ const PreviewPresentation = ({
                             </FlexRow>
                         </MediaQuery>
                         <MediaQuery minWidth={frameless.tablet}>
-                            <FlexRow className="preview-row">
-                                {extensionChips}
-                            </FlexRow>
+                            {(extensions && extensions.length) ? (
+                                <FlexRow className="preview-row">
+                                    {extensionChips}
+                                </FlexRow>
+                            ) : null}
                         </MediaQuery>
                         {showModInfo &&
                             <FlexRow className="preview-row">
