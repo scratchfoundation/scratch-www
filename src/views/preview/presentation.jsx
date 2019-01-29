@@ -343,7 +343,7 @@ const PreviewPresentation = ({
                                     onUpdateProjectThumbnail={onUpdateProjectThumbnail}
                                 />
                             </div>
-                            <MediaQuery maxWidth={frameless.tablet - 1}>
+                            <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                 <FlexRow className="preview-row force-center">
                                     <div className="wrappable-item">
                                         <Stats
@@ -380,7 +380,7 @@ const PreviewPresentation = ({
                                 <RemixCredit projectInfo={parentInfo} />
                                 <RemixCredit projectInfo={originalInfo} />
                                 {/*  eslint-disable max-len */}
-                                <MediaQuery maxWidth={frameless.tablet - 1}>
+                                <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                     {(extensions && extensions.length) ? (
                                         <FlexRow className="preview-row">
                                             {extensionChips}
@@ -491,7 +491,7 @@ const PreviewPresentation = ({
                                 {/*  eslint-enable max-len */}
                             </FlexRow>
                         </FlexRow>
-                        <MediaQuery minWidth={frameless.tablet}>
+                        <MediaQuery minWidth={frameless.tabletPortrait}>
                             <FlexRow className="preview-row">
                                 <Stats
                                     faved={faved}
@@ -521,7 +521,7 @@ const PreviewPresentation = ({
                                 />
                             </FlexRow>
                         </MediaQuery>
-                        <MediaQuery minWidth={frameless.tablet}>
+                        <MediaQuery minWidth={frameless.tabletPortrait}>
                             {(extensions && extensions.length) ? (
                                 <FlexRow className="preview-row">
                                     {extensionChips}

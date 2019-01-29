@@ -106,7 +106,7 @@
     }
 }
 
-@media only screen and (min-width: $mobileIntermediary) {
+@media only screen and (min-width: $mobileIntermediate) {
     .feature-top-banner {
         margin-bottom: 80px; // double the normal banner 40px for the notch
 
@@ -161,7 +161,7 @@
     }
 }
 
-@media only screen and (min-width: $mobileIntermediary) and (max-width: $desktop - 1) {
+@media only screen and (min-width: $mobileIntermediate) and (max-width: $desktop - 1) {
     .feature-top-banner {
         .feature-banner-images {
             overflow: hidden; // make sure overflow is hidden to avoid scrolling with translated content
@@ -176,7 +176,7 @@
     }
 }
 
-@media only screen and (min-width: $mobile) and (max-width: $mobileIntermediary - 1) {
+@media only screen and (min-width: $mobile) and (max-width: $mobileIntermediate - 1) {
     .feature-top-banner {
         .feature-banner-image {
             &.right {

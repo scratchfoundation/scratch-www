@@ -352,6 +352,7 @@ $stage-width: 480px;
 
     @media #{$medium-and-smaller} {
         .preview-row {
+            margin-top: .5rem;
             align-items: center;
         }
     }
@@ -419,6 +420,7 @@ $stage-width: 480px;
 
         @media #{$medium-and-smaller} {
             flex-direction: row;
+            margin-bottom: .5rem;
         }
     }
 
