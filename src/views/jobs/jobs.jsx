@@ -26,19 +26,17 @@ const Jobs = () => (
         <div className="bottom">
             <div className="inner">
                 <h3><FormattedMessage id="jobs.openings" /></h3>
-                <FormattedMessage id="jobs.nojobs" />
-                {/*
+                {/* <FormattedMessage id="jobs.nojobs" /> */}
                 <ul>
                     <li>
-                        <a href="https://www.media.mit.edu/about/job-opportunities/full-stack-engineer-lifelong-kindergarten/">
-                            Full Stack Engineer
+                        <a href="https://scratch.mit.edu/jobs/moderator">
+                            Community Moderator
                         </a>
                         <span>
-                            MIT Media Lab, Cambridge, MA
+                            Remote
                         </span>
                     </li>
                 </ul>
-                */}
             </div>
         </div>
     </div>
