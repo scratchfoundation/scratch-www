@@ -2,7 +2,6 @@
 @import "../../frameless";
 
 .subactions {
-    margin-left: 1.5rem;
     justify-content: flex-end;
     align-items: flex-start;
     flex: 1;
@@ -20,7 +19,7 @@
         font-size: .875rem;
 
         @media #{$small} {
-            margin-top: 1rem;
+            margin-top: .5rem;
             width: 100%;
             order: 100;
         }

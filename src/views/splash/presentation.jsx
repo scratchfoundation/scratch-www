@@ -278,7 +278,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 </Box>
             );
         }
-        
+
         if (
             this.props.sessionStatus === sessionActions.Status.FETCHED &&
             Object.keys(this.props.user).length === 0 &&
@@ -287,7 +287,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             rows.push(
                 <MediaQuery
                     key="frameless-tablet"
-                    minWidth={frameless.tablet}
+                    minWidth={frameless.mobileIntermediate}
                 >
                     <MiddleBanner />
                 </MediaQuery>
@@ -473,7 +473,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 >
                     {
                         this.props.sessionStatus === sessionActions.Status.FETCHED &&
-                        Object.keys(this.props.user).length > 0 && // user is logged in 
+                        Object.keys(this.props.user).length > 0 && // user is logged in
                         <div
                             className="splash-header"
                             key="header"

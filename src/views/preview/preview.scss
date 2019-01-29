@@ -110,6 +110,9 @@ $stage-width: 480px;
 
         @media #{$medium-and-smaller} {
             flex-direction: row;
+            .inplace-input {
+                width: calc(100% - 4rem);
+            }
         }
 
         @media #{$small} {
@@ -141,7 +144,7 @@ $stage-width: 480px;
         flex-grow: 1;
 
         @media #{$medium-and-smaller} {
-            min-width: 100%;
+            min-width: calc(100% - 2rem);
         }
     }
 
@@ -341,6 +344,17 @@ $stage-width: 480px;
                 flex-direction: row;
             }
         }
+
+        .wrappable-item {
+            margin-bottom: .5rem;
+        }
+    }
+
+    @media #{$medium-and-smaller} {
+        .preview-row {
+            margin-top: .5rem;
+            align-items: center;
+        }
     }
 
     .guiPlayer {
@@ -384,7 +398,7 @@ $stage-width: 480px;
         flex-flow: column;
 
         @media #{$medium-and-smaller} {
-            margin-top: 1rem;
+            margin-top: .5rem;
             margin-left: 0;
             width: 100%;
         }
@@ -406,6 +420,7 @@ $stage-width: 480px;
 
         @media #{$medium-and-smaller} {
             flex-direction: row;
+            margin-bottom: .5rem;
         }
     }
 
@@ -537,7 +552,7 @@ $stage-width: 480px;
         margin-top: 1rem;
         background-color: $ui-blue-10percent;
         padding: 1rem 0;
-        min-height: 12rem;
+        min-height: 6rem;
     }
 
     .create-comment {
@@ -599,6 +614,7 @@ $stage-width: 480px;
         .thumbnail-column {
             display: inline-block;
             width: 100%;
+            max-width: 300px;
 
             /* TODO: the following can be transferred to
             src/components/thumbnailcolumn/thumbnailcolumn.scss

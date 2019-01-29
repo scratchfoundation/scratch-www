@@ -1,7 +1,7 @@
 @import "../../../colors";
 @import "../../../frameless";
 
-$medium-and-small: "screen and (max-width : #{$tablet}-1)";
+$medium-and-small: "screen and (max-width : #{$mobileIntermediate}-1)";
 
 .mod-report * {
     box-sizing: border-box;

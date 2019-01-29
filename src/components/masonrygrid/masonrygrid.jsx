@@ -39,12 +39,12 @@ class MasonryGrid extends React.Component {
     render () {
         return (
             <this.props.as className={classNames('masonry', this.props.className)}>
-                <MediaQuery maxWidth={frameless.tablet - 1}>
+                <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
                     {this.props.children}
                 </MediaQuery>
                 <MediaQuery
                     maxWidth={frameless.desktop - 1}
-                    minWidth={frameless.tablet}
+                    minWidth={frameless.mobileIntermediate}
                 >
                     {this.reorderColumns(this.props.children, 2)}
                 </MediaQuery>
