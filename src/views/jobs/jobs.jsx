@@ -26,6 +26,7 @@ const Jobs = () => (
         <div className="bottom">
             <div className="inner">
                 <h3><FormattedMessage id="jobs.openings" /></h3>
+                {/* <FormattedMessage id="jobs.nojobs" /> */}
                 <ul>
                     <li>
                         <a href="https://scratch.mit.edu/jobs/moderator">
