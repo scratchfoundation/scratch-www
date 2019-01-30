@@ -26,9 +26,7 @@ const About = () => (
             <div className="video-container">
                 <Video
                     className="about-scratch-video"
-                    height="290"
                     videoId="joal01i8b1"
-                    width="400"
                 />
             </div>
         </div>
