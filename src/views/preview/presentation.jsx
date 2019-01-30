@@ -431,7 +431,7 @@ const PreviewPresentation = ({
                                                 {decorateText(projectInfo.instructions, {
                                                     usernames: true,
                                                     hashtags: true,
-                                                    scratchLinks: false
+                                                    scratchLinks: true
                                                 })}
                                             </div>
                                         }
@@ -482,7 +482,7 @@ const PreviewPresentation = ({
                                                 {decorateText(projectInfo.description, {
                                                     usernames: true,
                                                     hashtags: true,
-                                                    scratchLinks: false
+                                                    scratchLinks: true
                                                 })}
                                             </div>
                                         }
