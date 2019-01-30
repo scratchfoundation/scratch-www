@@ -1,5 +1,4 @@
 @import "../../../colors";
-@import "../../../frameless";
 
 .compose-comment {
     margin-left: .5rem;
@@ -229,14 +228,6 @@
                     content: "";
                 }
             }
-
-            /* hide comment input on tablets and mobile */
-            @media #{$medium-and-smaller} {
-                .comment-reply {
-                    display: none;
-                }
-            }
-
         }
     }
 
@@ -263,13 +254,6 @@
 
 .comments-root-reply {
     margin-bottom: 1.5rem;
-}
-
-/* hide comment input on tablets and mobile */
-@media #{$medium-and-smaller} {
-    .comments-root-reply {
-        display: none;
-    }
 }
 
 .comment-reply-row {
