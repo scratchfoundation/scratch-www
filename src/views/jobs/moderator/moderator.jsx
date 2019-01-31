@@ -1,9 +1,9 @@
 const React = require('react');
 
-const InformationPage = require('../../../components/informationpage/informationpage.jsx');
-
 const Page = require('../../../components/page/www/page.jsx');
 const render = require('../../../lib/render.jsx');
+
+const InformationPage = require('../../../components/informationpage/informationpage.jsx');
 
 const Moderator = () => (
     <InformationPage title={'Community Moderator'}>
