@@ -150,7 +150,7 @@ $story-width: $cols3;
 }
 
 //6 columns
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+@media only screen and (min-width: $mobile) and (max-width: $mobileIntermediate - 1) {
     .flex-row {
         &.sidebar-row {
 
@@ -179,7 +179,7 @@ $story-width: $cols3;
 
 
 //8 columns
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+@media only screen and (min-width: $mobileIntermediate) and (max-width: $desktop - 1) {
     .masthead {
         h1 {
             text-align: center;

@@ -35,7 +35,8 @@ $cols11: (11 * ($column + $gutter) - $gutter) / $em;
 $cols12: (12 * ($column + $gutter) - $gutter) / $em;
 
 $desktop: 942px;
-$tablet: 640px;
+$mobileIntermediate: 640px;
+$tabletPortrait: 768px;
 $mobile: 480px;
 
 /* Media Queries */
@@ -48,11 +49,11 @@ $mobile: 480px;
 */
 
 $small: "only screen and (max-width : #{$mobile}-1)";
-$medium: "only screen and (min-width : #{$mobile}) and (max-width : #{$tablet}-1)";
-$intermediate: "only screen and (min-width : #{$tablet}) and (max-width : #{$desktop}-1)";
+$medium: "only screen and (min-width : #{$mobile}) and (max-width : #{$tabletPortrait}-1)";
+$intermediate: "only screen and (min-width : #{$tabletPortrait}) and (max-width : #{$desktop}-1)";
 $big: "only screen and (min-width : #{$desktop})";
 
-$medium-and-smaller: "only screen and (max-width : #{$tablet}-1)";
+$medium-and-smaller: "only screen and (max-width : #{$tabletPortrait}-1)";
 $intermediate-and-smaller: "only screen and (max-width : #{$desktop}-1)";
 
 $medium-and-intermediate: "only screen and (min-width : #{$mobile}) and (max-width : #{$desktop}-1)";
@@ -60,7 +61,7 @@ $medium-and-intermediate: "only screen and (min-width : #{$mobile}) and (max-wid
 /* Height */
 
 $small-height: "only screen and (max-height : #{$mobile} - 1)";
-$medium-height: "only screen and (min-height : #{$mobile}) and (max-height : #{$tablet} - 1)";
+$medium-height: "only screen and (min-height : #{$mobile}) and (max-height : #{$tabletPortrait} - 1)";
 
 
 //
@@ -112,7 +113,7 @@ $medium-height: "only screen and (min-height : #{$mobile}) and (max-height : #{$
 
         #{$child-selector} {
             margin: 0 auto;
-            width: $tablet;
+            width: $tabletPortrait;
         }
     }
 }

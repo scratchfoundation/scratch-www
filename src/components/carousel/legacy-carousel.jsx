@@ -35,7 +35,7 @@ const Carousel = props => {
                 }
             },
             {
-                breakpoint: frameless.tablet,
+                breakpoint: frameless.mobileIntermediate,
                 settings: {
                     slidesToScroll: 2,
                     slidesToShow: 2

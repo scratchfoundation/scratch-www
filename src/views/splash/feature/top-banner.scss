@@ -74,7 +74,7 @@
         background-color: $ui-dark-orange;
         padding: 1rem 1.5rem;
         font-size: 1rem;
-        
+
         &:before {
             display: inline-block;
             margin-right: .5rem;
@@ -106,10 +106,10 @@
     }
 }
 
-@media only screen and (min-width: $tablet) {
+@media only screen and (min-width: $mobileIntermediate) {
     .feature-top-banner {
         margin-bottom: 80px; // double the normal banner 40px for the notch
-        
+
         &:after{
             display: block;
             position: absolute;
@@ -121,7 +121,7 @@
             height: 56px;
             content: "";
         }
-        
+
         .feature-top-container {
             transform: translateX(-15%);
         }
@@ -140,19 +140,19 @@
 @media only screen and (min-width: $mobile) and (max-width: $desktop - 1) {
     .feature-top-banner {
         justify-content: flex-start;
-        
+
         .feature-header {
             text-align: left; // override #view text centering
         }
-        
+
         .feature-banner-images {
             justify-content: flex-end;
         }
-        
+
         .feature-top-container {
             transform: translateX(10%);
         }
-        
+
         .feature-banner-image {
             &.left {
                 display: none;
@@ -161,7 +161,7 @@
     }
 }
 
-@media only screen and (min-width: $tablet) and (max-width: $desktop - 1) {
+@media only screen and (min-width: $mobileIntermediate) and (max-width: $desktop - 1) {
     .feature-top-banner {
         .feature-banner-images {
             overflow: hidden; // make sure overflow is hidden to avoid scrolling with translated content
@@ -176,7 +176,7 @@
     }
 }
 
-@media only screen and (min-width: $mobile) and (max-width: $tablet - 1) {
+@media only screen and (min-width: $mobile) and (max-width: $mobileIntermediate - 1) {
     .feature-top-banner {
         .feature-banner-image {
             &.right {
@@ -191,7 +191,7 @@
     .feature-top-banner {
         overflow: hidden;
         min-height: 32rem;
-        
+
         .feature-top-container {
             right: 0;
             left: 0;
@@ -200,19 +200,19 @@
             justify-content: flex-start;
             align-items: center;
         }
-        
+
         .feature-header {
             margin: 2rem 0;
             text-align: center;
         }
-        
+
         .feature-banner-image {
             &.right {
                 margin-right: 0;
                 margin-bottom: -4rem;
                 width: 100%;
             }
-        
+
             &.left {
                 margin-bottom: .5rem;
                 display: block;
@@ -221,4 +221,3 @@
         }
     }
 }
-

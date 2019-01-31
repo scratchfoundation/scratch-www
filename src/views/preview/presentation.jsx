@@ -343,43 +343,49 @@ const PreviewPresentation = ({
                                     onUpdateProjectThumbnail={onUpdateProjectThumbnail}
                                 />
                             </div>
-                            <MediaQuery maxWidth={frameless.tablet - 1}>
+                            <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                 <FlexRow className="preview-row force-center">
-                                    <Stats
-                                        faved={faved}
-                                        favoriteCount={favoriteCount}
-                                        loveCount={loveCount}
-                                        loved={loved}
-                                        projectInfo={projectInfo}
-                                        onFavoriteClicked={onFavoriteClicked}
-                                        onLoveClicked={onLoveClicked}
-                                    />
-                                    <Subactions
-                                        addToStudioOpen={addToStudioOpen}
-                                        canReport={canReport}
-                                        isAdmin={isAdmin}
-                                        projectInfo={projectInfo}
-                                        reportOpen={reportOpen}
-                                        shareDate={shareDate}
-                                        userOwnsProject={userOwnsProject}
-                                        onAddToStudioClicked={onAddToStudioClicked}
-                                        onAddToStudioClosed={onAddToStudioClosed}
-                                        onCopyProjectLink={onCopyProjectLink}
-                                        onReportClicked={onReportClicked}
-                                        onReportClose={onReportClose}
-                                        onReportSubmit={onReportSubmit}
-                                        onToggleStudio={onToggleStudio}
-                                    />
+                                    <div className="wrappable-item">
+                                        <Stats
+                                            faved={faved}
+                                            favoriteCount={favoriteCount}
+                                            loveCount={loveCount}
+                                            loved={loved}
+                                            projectInfo={projectInfo}
+                                            onFavoriteClicked={onFavoriteClicked}
+                                            onLoveClicked={onLoveClicked}
+                                        />
+                                    </div>
+                                    <div className="wrappable-item">
+                                        <Subactions
+                                            addToStudioOpen={addToStudioOpen}
+                                            canReport={canReport}
+                                            isAdmin={isAdmin}
+                                            projectInfo={projectInfo}
+                                            reportOpen={reportOpen}
+                                            shareDate={shareDate}
+                                            userOwnsProject={userOwnsProject}
+                                            onAddToStudioClicked={onAddToStudioClicked}
+                                            onAddToStudioClosed={onAddToStudioClosed}
+                                            onCopyProjectLink={onCopyProjectLink}
+                                            onReportClicked={onReportClicked}
+                                            onReportClose={onReportClose}
+                                            onReportSubmit={onReportSubmit}
+                                            onToggleStudio={onToggleStudio}
+                                        />
+                                    </div>
                                 </FlexRow>
                             </MediaQuery>
                             <FlexRow className="project-notes">
                                 <RemixCredit projectInfo={parentInfo} />
                                 <RemixCredit projectInfo={originalInfo} />
                                 {/*  eslint-disable max-len */}
-                                <MediaQuery maxWidth={frameless.tablet - 1}>
-                                    <FlexRow className="preview-row">
-                                        {extensionChips}
-                                    </FlexRow>
+                                <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
+                                    {(extensions && extensions.length) ? (
+                                        <FlexRow className="preview-row">
+                                            {extensionChips}
+                                        </FlexRow>
+                                    ) : null}
                                 </MediaQuery>
                                 {showInstructions && (
                                     <div className="description-block">
@@ -425,7 +431,7 @@ const PreviewPresentation = ({
                                                 {decorateText(projectInfo.instructions, {
                                                     usernames: true,
                                                     hashtags: true,
-                                                    scratchLinks: false
+                                                    scratchLinks: true
                                                 })}
                                             </div>
                                         }
@@ -476,7 +482,7 @@ const PreviewPresentation = ({
                                                 {decorateText(projectInfo.description, {
                                                     usernames: true,
                                                     hashtags: true,
-                                                    scratchLinks: false
+                                                    scratchLinks: true
                                                 })}
                                             </div>
                                         }
@@ -485,7 +491,7 @@ const PreviewPresentation = ({
                                 {/*  eslint-enable max-len */}
                             </FlexRow>
                         </FlexRow>
-                        <MediaQuery minWidth={frameless.tablet}>
+                        <MediaQuery minWidth={frameless.tabletPortrait}>
                             <FlexRow className="preview-row">
                                 <Stats
                                     faved={faved}
@@ -515,10 +521,12 @@ const PreviewPresentation = ({
                                 />
                             </FlexRow>
                         </MediaQuery>
-                        <MediaQuery minWidth={frameless.tablet}>
-                            <FlexRow className="preview-row">
-                                {extensionChips}
-                            </FlexRow>
+                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                            {(extensions && extensions.length) ? (
+                                <FlexRow className="preview-row">
+                                    {extensionChips}
+                                </FlexRow>
+                            ) : null}
                         </MediaQuery>
                         {showModInfo &&
                             <FlexRow className="preview-row">

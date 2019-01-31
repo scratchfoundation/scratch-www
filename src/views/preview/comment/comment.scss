@@ -38,6 +38,7 @@
     .compose-bottom-row {
         width: 100%;
         justify-content: space-between;
+        flex-direction: row;
 
         .compose-post {
             margin-right: .5rem;

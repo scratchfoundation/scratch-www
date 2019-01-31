@@ -59,7 +59,7 @@
                 width: 100%;
             }
         }
-    } 
+    }
 
     section {
         margin-bottom: 50px;
@@ -72,7 +72,7 @@
         display: flex;
         justify-content: space-between;
 
-        .column { 
+        .column {
             margin: 15px;
             max-width: $cols4;
 
@@ -106,7 +106,7 @@
         margin: 0 auto;
         max-width: $cols9;
         justify-content: space-between;
-    } 
+    }
 
     .project-card {
         transition: transform .25s ease;
@@ -132,7 +132,7 @@
         &:hover {
             transform: scale(1.1, 1.1);
             transition: transform .25s ease;
-            cursor: pointer; 
+            cursor: pointer;
 
             p {
                 color: $ui-blue-dark;
@@ -162,7 +162,7 @@
             margin: 0 auto;
             width: calc(100% - 40px);
         }
-        
+
         .top-banner {
             text-align: center;
 
@@ -226,7 +226,7 @@
 
         .inner {
             margin: 0 auto;
-            width: $tablet;
+            width: $mobileIntermediate;
         }
     }
 }
