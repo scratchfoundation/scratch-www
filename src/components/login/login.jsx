@@ -7,6 +7,7 @@ const Form = require('../forms/form.jsx');
 const Input = require('../forms/input.jsx');
 const Button = require('../forms/button.jsx');
 const Spinner = require('../spinner/spinner.jsx');
+const FlexRow = require('../flex-row/flex-row.jsx');
 
 require('./login.scss');
 
@@ -59,34 +60,35 @@ class Login extends React.Component {
                         name="password"
                         type="password"
                     />
-                    {this.state.waiting ? [
-                        <Button
-                            className="submit-button white"
-                            disabled="disabled"
-                            key="submitButton"
-                            type="submit"
+                    <FlexRow className="submit-row">
+                        {this.state.waiting ? [
+                            <Button
+                                className="submit-button white"
+                                disabled="disabled"
+                                key="submitButton"
+                                type="submit"
+                            >
+                                <Spinner
+                                    className="spinner"
+                                    color="blue"
+                                />
+                            </Button>
+                        ] : [
+                            <Button
+                                className="submit-button white"
+                                key="submitButton"
+                                type="submit"
+                            >
+                                <FormattedMessage id="general.signIn" />
+                            </Button>
+                        ]}
+                        <a
+                            href="/accounts/password_reset/"
+                            key="passwordResetLink"
                         >
-                            <Spinner
-                                className="spinner"
-                                color="blue"
-                            />
-                        </Button>
-                    ] : [
-                        <Button
-                            className="submit-button white"
-                            key="submitButton"
-                            type="submit"
-                        >
-                            <FormattedMessage id="general.signIn" />
-                        </Button>
-                    ]}
-                    <a
-                        className="right"
-                        href="/accounts/password_reset/"
-                        key="passwordResetLink"
-                    >
-                        <FormattedMessage id="login.needHelp" />
-                    </a>
+                            <FormattedMessage id="login.needHelp" />
+                        </a>
+                    </FlexRow>
                     {error}
                 </Form>
             </div>
