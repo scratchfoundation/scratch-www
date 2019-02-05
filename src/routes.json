@@ -226,6 +226,19 @@
         "title": "Imagine, Program, Share"
     },
     {
+        "name": "starter-projects",
+        "pattern": "^/starter-projects/?$",
+        "routeAlias": "/starter-projects/?$",
+        "view": "starter-projects/starter-projects",
+        "title": "Starter Projects"
+    },
+    {
+        "name": "starter-projects-redirect",
+        "pattern": "^/starter_projects/?$",
+        "routeAlias": "/starter_projects/?$",
+        "redirect": "/starter-projects"
+    },
+    {
         "name": "student-complete-registration",
         "pattern": "^/classes/complete_registration",
         "routeAlias": "/classes/(complete_registration|.+/register/.+)",
