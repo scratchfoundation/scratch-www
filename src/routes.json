@@ -296,6 +296,13 @@
         "title": "micro:bit"
     },
     {
+        "name": "vernier-force-and-accel",
+        "pattern": "^/force-and-accel/?$",
+        "routeAlias": "/force-and-accel/?$",
+        "view": "gdxfor/gdxfor",
+        "title": "Vernier GoDirect Force and Acceleration"
+    },
+    {
         "name":"3-faq-redirect",
         "pattern": "^/3faq/?$",
         "routeAlias": "/3faq/?$",
