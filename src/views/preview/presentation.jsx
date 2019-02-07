@@ -25,6 +25,7 @@ const Stats = require('./stats.jsx');
 const StudioList = require('./studio-list.jsx');
 const Subactions = require('./subactions.jsx');
 const InplaceInput = require('../../components/forms/inplace-input.jsx');
+const ToggleSlider = require('../../components/forms/toggle-slider.jsx');
 const TopLevelComment = require('./comment/top-level-comment.jsx');
 const ComposeComment = require('./comment/compose-comment.jsx');
 const ExtensionChip = require('./extension-chip.jsx');
@@ -547,15 +548,16 @@ const PreviewPresentation = ({
                                         <h4><FormattedMessage id="project.comments.header" /></h4>
                                         {canToggleComments ? (
                                             <div>
-                                                <label>
-                                                    <input
-                                                        checked={!projectInfo.comments_allowed}
-                                                        className="comments-allowed-input"
-                                                        type="checkbox"
-                                                        onChange={onToggleComments}
-                                                    />
-                                                    <FormattedMessage id="project.comments.turnOff" />
-                                                </label>
+                                                {projectInfo.comments_allowed ? (
+                                                    <FormattedMessage id="project.comments.toggleOn" />
+                                                ) : (
+                                                    <FormattedMessage id="project.comments.toggleOff" />
+                                                )}
+                                                <ToggleSlider
+                                                    checked={projectInfo.comments_allowed}
+                                                    className="comments-allowed-input"
+                                                    onChange={onToggleComments}
+                                                />
                                             </div>
                                         ) : null}
                                     </FlexRow>
