@@ -53,7 +53,7 @@ class GdxFor extends ExtensionLanding {
                     }
                     renderImage={<img
                         alt={this.props.intl.formatMessage({id: 'gdxfor.imgAltGdxforIllustration'})}
-                        src="/images/gdxfor/gdxfor-header.png"
+                        src="/images/gdxfor/gdxfor-header.svg"
                     />}
                     renderRequirements={
                         <ExtensionRequirements>
@@ -104,7 +104,7 @@ class GdxFor extends ExtensionLanding {
                                 <div className="step-image">
                                     <img
                                         alt=""
-                                        src="/images/gdxfor/gdxfor-connect-1.png"
+                                        src="/images/gdxfor/gdxfor-connect-1.svg"
                                     />
                                 </div>
                                 <p><FormattedMessage id="gdxfor.powerGdxfor" /></p>
@@ -189,7 +189,7 @@ class GdxFor extends ExtensionLanding {
                             <div className="step-image">
                                 <img
                                     alt={this.props.intl.formatMessage({id: 'gdxfor.imgAltPushForce'})}
-                                    src="/images/gdxfor/gdxfor-push-force.png"
+                                    src="/images/gdxfor/gdxfor-push-force.svg"
                                 />
                             </div>
                         </Step>
