@@ -2,6 +2,7 @@ const keyMirror = require('keymirror');
 const defaults = require('lodash.defaults');
 
 const api = require('../lib/api');
+const jar = require('../lib/jar');
 const log = require('../lib/log.js');
 const sessionActions = require('./session.js');
 
@@ -138,16 +139,20 @@ module.exports.handleLogIn = (formData, callback) => (dispatch => {
     });
 });
 
-module.exports.handleLogOut = () => (dispatch => {
-    api({
-        host: '',
-        method: 'post',
-        uri: '/accounts/logout/',
-        useCsrf: true
-    }, err => {
-        if (err) log.error(err);
-        dispatch(module.exports.setLoginOpen(false));
-        dispatch(module.exports.setAccountNavOpen(false));
-        window.location = '/';
+module.exports.handleLogOut = () => (() => {
+    // POST to /accounts/logout using a dummy form instead of XHR. This ensures
+    // logout only happens AFTER onbeforeunload has the chance to prevent nagivation.
+    jar.use('scratchcsrftoken', '/csrf_token/', (err, csrftoken) => {
+        if (err) return log.error('Error while retrieving CSRF token', err);
+        const form = document.createElement('form');
+        form.setAttribute('method', 'POST');
+        form.setAttribute('action', '/accounts/logout/');
+        const csrfField = document.createElement('input');
+        csrfField.setAttribute('type', 'hidden');
+        csrfField.setAttribute('name', 'csrfmiddlewaretoken');
+        csrfField.setAttribute('value', csrftoken);
+        form.appendChild(csrfField);
+        document.body.appendChild(form);
+        form.submit();
     });
 });
