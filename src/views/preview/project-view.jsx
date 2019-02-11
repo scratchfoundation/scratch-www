@@ -410,6 +410,9 @@ class Preview extends React.Component {
         this.setState({isProjectLoaded: true});
     }
     pushHistory (push) {
+        // Do not push history for projects without a real ID
+        if (this.state.projectId === '0') return;
+
         // update URI to match mode
         const idPath = this.state.projectId ? `${this.state.projectId}/` : '';
         let modePath = '';
