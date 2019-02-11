@@ -28,14 +28,15 @@
         font-weight: bold;
     }
 
-    .right {
-        float: right;
-    }
-
     .spinner {
         margin: 0 .8rem;
         width: 1rem;
         vertical-align: middle;
+    }
+    
+    .submit-row {
+        justify-content: space-between;
+        flex-direction: row; // override 'column' layout at small widths
     }
 
     .submit-button {
@@ -43,7 +44,7 @@
     }
 
     a {
-        margin-top: 15px;
+        margin: auto 0;
         color: $ui-white;
 
         &:link,
