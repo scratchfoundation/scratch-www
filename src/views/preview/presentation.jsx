@@ -144,6 +144,7 @@ const PreviewPresentation = ({
     } else if (visibilityInfo.censored) {
         const censoredMessage = (
             <CensoredMessage
+                censoredByCommunity={visibilityInfo.censoredByCommunity}
                 messageHTML={visibilityInfo.message}
                 reshareable={visibilityInfo.reshareable}
             />
@@ -730,6 +731,8 @@ PreviewPresentation.propTypes = {
     userOwnsProject: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
+        censoredByAdmin: PropTypes.bool,
+        censoredByCommunity: PropTypes.bool,
         message: PropTypes.string,
         deleted: PropTypes.bool,
         reshareable: PropTypes.bool
