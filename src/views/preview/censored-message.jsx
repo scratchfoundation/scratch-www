@@ -15,29 +15,42 @@ const communityGuidelinesLink = (
     </a>
 );
 
-const CensoredMessage = ({messageHTML, reshareable}) => (
+const CensoredMessage = ({censoredByCommunity, messageHTML, reshareable}) => (
     <React.Fragment>
         {/* if message HTML is provided, set innerHTML with it */}
-        {messageHTML ? embedCensorMessage(messageHTML) : (
-            // if message is blank or missing, use default
-            <React.Fragment>
-                <FormattedMessage id="project.defaultCensoredMessage" />
-                <br />
-                <br />
-                {reshareable ? (
+        {messageHTML ? embedCensorMessage(messageHTML) :
+            (censoredByCommunity ? (
+                <React.Fragment>
+                    <FormattedMessage id="project.communityCensoredMessage" />
+                    <br />
+                    <br />
                     <FormattedMessage
-                        id="project.tempCensoredMessage"
+                        id="project.willReviewCensoredMessage"
                         values={{communityGuidelinesLink: communityGuidelinesLink}}
                     />
-                ) : (
-                    <FormattedMessage id="project.permCensoredMessage" />
-                )}
-            </React.Fragment>
-        )}
+                </React.Fragment>
+            ) : (
+                // if message is blank or missing, use default
+                <React.Fragment>
+                    <FormattedMessage id="project.defaultCensoredMessage" />
+                    <br />
+                    <br />
+                    {reshareable ? (
+                        <FormattedMessage
+                            id="project.tempCensoredMessage"
+                            values={{communityGuidelinesLink: communityGuidelinesLink}}
+                        />
+                    ) : (
+                        <FormattedMessage id="project.permCensoredMessage" />
+                    )}
+                </React.Fragment>
+            ))
+        }
     </React.Fragment>
 );
 
 CensoredMessage.propTypes = {
+    censoredByCommunity: PropTypes.bool,
     messageHTML: PropTypes.string,
     reshareable: PropTypes.bool
 };
