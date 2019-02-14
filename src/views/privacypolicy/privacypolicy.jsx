@@ -11,7 +11,7 @@ const Privacypolicy = () => (
             <section>
                 <p className="lastupdate">
                     <i>
-                        The Scratch Privacy Policy was last updated: May 23, 2018
+                        The Scratch Privacy Policy was last updated: February 14, 2019
                     </i>
                 </p>
                 <p className="intro">
@@ -384,12 +384,13 @@ const Privacypolicy = () => (
                     unauthorized alteration, unauthorized disclosure or access,
                     misuse, and any other unlawful form of processing of the
                     Personal Information in our possession. For example, we
-                    strictly limit access to the Scratch servers and the data we
-                    store on them. However, as effective as these measures are,
-                    no security system is impenetrable. We cannot completely
-                    guarantee the security of our databases, nor can we
-                    guarantee that the information you supply will not be
-                    intercepted while being transmitted to us over the Internet.
+                    use SSL/TLS for all data transfer and strictly limit access
+                    to the Scratch servers and the data we store on them. However,
+                    as effective as these measures are, no security system is
+                    impenetrable. We cannot completely guarantee the security of
+                    our databases, nor can we guarantee that the information you
+                    supply will not be intercepted while being transmitted to us
+                    over the Internet.
                 </p>
             </section>
             <section id="changes">
