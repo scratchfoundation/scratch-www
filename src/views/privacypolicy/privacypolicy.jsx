@@ -378,17 +378,19 @@ const Privacypolicy = () => (
                 <h3>How does the Scratch Team protect my personal information?</h3>
                 <p>
                     The Scratch Team has in place administrative, physical, and
-                    technical procedures that are intended to protect the information
-                    we collect on the Scratch website against accidental or unlawful
-                    destruction, accidental loss, unauthorized alteration, unauthorized
-                    disclosure or access, misuse, and any other unlawful form of
-                    processing of the Personal Information in our possession. For example,
-                    we use SSL/TLS for all data transfer and strictly limit access
+                    technical procedures that are intended to protect the
+                    information we collect on the Scratch website against
+                    accidental or unlawful destruction, accidental loss,
+                    unauthorized alteration, unauthorized disclosure or access,
+                    misuse, and any other unlawful form of processing of the
+                    Personal Information in our possession. For example, we
+                    use SSL/TLS for all data transfer and strictly limit access
                     to the Scratch servers and the data we store on them. However,
-                    as effective as these measures are, no security system is impenetrable.
-                    We cannot completely guarantee the security of our databases, nor
-                    can we guarantee that the information you supply will not be
-                    intercepted while being transmitted to us over the Internet.
+                    as effective as these measures are, no security system is
+                    impenetrable. We cannot completely guarantee the security of
+                    our databases, nor can we guarantee that the information you
+                    supply will not be intercepted while being transmitted to us
+                    over the Internet.
                 </p>
             </section>
             <section id="changes">
