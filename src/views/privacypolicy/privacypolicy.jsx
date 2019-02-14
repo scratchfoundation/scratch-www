@@ -11,7 +11,7 @@ const Privacypolicy = () => (
             <section>
                 <p className="lastupdate">
                     <i>
-                        The Scratch Privacy Policy was last updated: May 23, 2018
+                        The Scratch Privacy Policy was last updated: February 14, 2019
                     </i>
                 </p>
                 <p className="intro">
