@@ -55,7 +55,7 @@
     "faq.languagesScratch3Body2":"All of our translations are done by volunteers. The Scratch 3.0 editor has already been translated into 40+ languages. You can view all the languages currently being translated and reviewed on our {transifexLink}. If you want to help with translation or review, please contact {emailLink}.",
         "faq.transifexLinkText":"translation server",
 	"faq.removedBlocksScratch3Title":"Does Scratch 3.0 remove any coding blocks from earlier versions of Scratch?",
-    "faq.removedBlocksScratch3Body":"No coding blocks have been removed in Scratch 3.0, but some have changed a bit and others have moved into \"Extensions\".",
+    "faq.removedBlocksScratch3Body":"No coding blocks have been removed in Scratch 3.0, but some have changed a bit and others have moved into \"Extensions\" (as described below, in the {extensionsFAQLink} section).",
 	"faq.newBlocksScratch3Title":"Does Scratch 3.0 introduce new blocks?",
     "faq.newBlocksScratch3Body":"Yes! In Scratch 3.0 you’ll find:",
 	"faq.newBlocksSoundEffect":"New \"sound effect\" blocks",
