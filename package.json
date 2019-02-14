@@ -89,7 +89,7 @@
     "po2icu": "0.0.2",
     "postcss-loader": "2.0.10",
     "prop-types": "15.6.0",
-    "react": "16.2.0",
+    "react": "16.8.2",
     "react-dom": "16.2.0",
     "react-intl": "2.4.0",
     "react-modal": "3.1.11",
