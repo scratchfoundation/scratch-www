@@ -147,7 +147,14 @@ const Faq = injectIntl(props => (
                         />
                     </dd>
                     <dt><FormattedMessage id="faq.removedBlocksScratch3Title" /></dt>
-                    <dd><FormattedMessage id="faq.removedBlocksScratch3Body" /></dd>
+                    <dd>
+                        <FormattedMessage
+                            id="faq.removedBlocksScratch3Body"
+                            values={{extensionsFAQLink: (
+                                <a href="#scratch-extensions"><FormattedMessage id="faq.scratchExtensionsTitle" /></a>
+                            )}}
+                        />
+                    </dd>
                     <dt><FormattedMessage id="faq.newBlocksScratch3Title" /></dt>
                     <dd><FormattedMessage id="faq.newBlocksScratch3Body" /></dd>
                     <ul>
