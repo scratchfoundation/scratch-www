@@ -24,7 +24,7 @@
         "name": "conference-index",
         "pattern": "^/conference/?(\\?.*)?$",
         "routeAlias": "/conference(?!/201[4-5])",
-        "view": "conference/2018/index/index",
+        "view": "conference/2019/index/index",
         "title": "Scratch Conference",
         "viewportWidth": "device-width"
     },
@@ -71,6 +71,14 @@
         "routeAlias": "/conference(?!/201[4-5])",
         "view": "conference/2018/schedule/schedule",
         "title": "Conference Schedule"
+    },
+    {
+        "name": "conference-index-2019",
+        "pattern": "^/conference/2019/?$",
+        "routeAlias": "/conference(?!/201[4-5])",
+        "view": "conference/2019/index/index",
+        "title": "Scratch Conference",
+        "viewportWidth": "device-width"
     },
     {
         "name": "connect",

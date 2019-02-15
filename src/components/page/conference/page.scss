@@ -75,13 +75,13 @@
         font-size: 4.5rem;
     }
 
-    .title-banner-h1.mod-2017 {
+    .title-banner-h1.mod-2017, .title-banner-h1.mod-2019 {
         font-size: 4rem;
     }
 
     @media #{$medium-and-smaller} {
         h1,
-        .title-banner-h1.mod-2017 {
+        .title-banner-h1.mod-2017, .title-banner-h1.mod-2019 {
             font-size: 2.5rem;
         }
     }

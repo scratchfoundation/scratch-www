@@ -1,0 +1,41 @@
+{
+    "conference-2019.title": "Scratch Conferences 2019",
+    "conference-2019.desc": "Scratch conferences are playful gatherings of educators, researchers, developers, and other members of the worldwide Scratch community. These events, held in various locations around the world, provide opportunities for people of diverse backgrounds and practices to discuss and share the ways they use Scratch, to connect and collaborate with one another, and to bring creative learning back to their own communities.",
+    "conference-2019.nextMITConference": "The next Scratch@MIT conference will be held in Cambridge, Massachusetts, in 2020.",
+    "conference-2019.seeBelow": "Learn more about 2019 conference dates and locations below.",
+    "conference-2019.joinMailingListLinkText": "join our mailing list",
+    "conference-2019.joinMailingList": "To learn more about 2020’s Scratch@MIT conference in Cambridge, Massachusetts, and to receive updates about regional conferences around the world, {joinMailingListLink}.",
+
+    "conference-2019.date": "Date",
+    "conference-2019.location": "Location",
+    "conference-2019.audience": "Audience",
+    "conference-2019.language": "Language",
+    "conference-2019.hashtag": "Hashtag",
+    "conference-2019.website": "Visit Website",
+
+    "conference-2019.ukTitle": "Scratch Conference Europe",
+    "conference-2019.ukDesc": "The 2019 Scratch Conference Europe will take place in Cambridge, UK, from Friday 23 August to Sunday 25 August. We are putting together a full and exciting schedule of participatory activities led by members of the Scratch community, so you can look forward to workshops, talks and keynotes across a range of topics, including the new Scratch 3, as well as plenty of informal opportunities to chat and connect!",
+    "conference-2019.ukAudience": "All education professionals and volunteers",
+
+    "conference-2019.brasilTitle": "Conferência Scratch Brasil 2019",
+    "conference-2019.brasilDesc": "The Scratch Brazil Conference 2019 will be a meeting point for Brazilian educators, researchers, developers and makers who are interested in creating, sharing and learning with Scratch. The conference will foster discussions about the use of Scratch in and out of the classroom, creative computing, Scratch extensions, and other important themes related to Scratch's adoption in Brazil. We are planning something very participatory, with lots of hands-on workshops, poster sessions and opportunities for collaboration.",
+    "conference-2019.brasilAudience": "Educators, researchers, developers, and makers",
+
+    "conference-2019.kenyaTitle": "Scratch2019NBO",
+    "conference-2019.kenyaSubTitle": "Waves of Innovation",
+    "conference-2019.kenyaDesc": "In recognition of Africa's technological contributions and the potential of the youth of Africa, Scratch2019NBO will be in Nairobi, Kenya. Join educators from around the world to share lessons, empower young people, and celebrate accomplishments in creative coding.",
+    "conference-2019.kenyaAudience": "Educators, students, and enthusiasts",
+
+    "conference-2019.chileTitle": "Conferencia Scratch al Sur",
+    "conference-2019.chileDesc": "Scratch al Sur is an opportunity to learn about the importance of introducing programming languages in schools. All lectures and workshops will provide an opportunity to share different experiences, from higher levels to those who are beginning to participate in Scratch's global community.",
+    "conference-2019.chileAudience": "Teachers and Policy Makers",
+
+    "conference-2019.chinaTitle": "Scratch Conference: China*Love",
+    "conference-2019.chinaDesc": "Join us for a gathering to support creative expression with Scratch in China. Share ways to promote learning with passion for programming, animation, community, and life.",
+    "conference-2019.chinaAudience": "Educators, parents, developers, makers",
+
+    "conference-2019.costaricaTitle": "Scratch Conference Costa Rica",
+    "conference-2019.costaricaSubTitle": "People, Projects, and Places",
+    "conference-2019.costaricaDesc": "Scratch Conference Costa Rica is a global event taking place at a community level that unites teachers, students, businesses, and leaders, so that coding and design is part of every child's education, starting with Scratch.",
+    "conference-2019.costaricaAudience": "Scratch users, teachers, college professors, potential Scratchers, university students (future teachers and software developers) in Costa Rica and Spanish-speaking Latin America"
+}
