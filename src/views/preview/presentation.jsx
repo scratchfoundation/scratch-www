@@ -106,6 +106,7 @@ const PreviewPresentation = ({
     onRestoreComment,
     onSeeAllComments,
     onSeeInside,
+    onSetProjectThumbnailer,
     onShare,
     onToggleComments,
     onToggleStudio,
@@ -341,6 +342,7 @@ const PreviewPresentation = ({
                                     onGreenFlag={onGreenFlag}
                                     onProjectLoaded={onProjectLoaded}
                                     onRemixing={onRemixing}
+                                    onSetProjectThumbnailer={onSetProjectThumbnailer}
                                     onUpdateProjectId={onUpdateProjectId}
                                     onUpdateProjectThumbnail={onUpdateProjectThumbnail}
                                 />
@@ -709,6 +711,7 @@ PreviewPresentation.propTypes = {
     onRestoreComment: PropTypes.func,
     onSeeAllComments: PropTypes.func,
     onSeeInside: PropTypes.func,
+    onSetProjectThumbnailer: PropTypes.func,
     onShare: PropTypes.func,
     onToggleComments: PropTypes.func,
     onToggleStudio: PropTypes.func,
