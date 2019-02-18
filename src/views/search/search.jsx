@@ -18,7 +18,7 @@ const Tabs = require('../../components/tabs/tabs.jsx');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
-const ACCEPTABLE_MODES = ['trending', 'popular'];
+const ACCEPTABLE_MODES = ['trending', 'popular', 'recent'];
 
 require('./search.scss');
 
