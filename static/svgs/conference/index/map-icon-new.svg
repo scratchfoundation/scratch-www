@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Conference/Location</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15.3033009,3.18376618 C18.232233,6.09545443 18.232233,10.8162338 15.3033009,13.7279221 L11.4100321,17.5982694 C10.6299497,18.3737591 9.37005032,18.3737591 8.58996793,17.5982694 L4.69669914,13.7279221 C1.76776695,10.8162338 1.76776695,6.09545443 4.69669914,3.18376618 C7.62563133,0.272077939 12.3743687,0.272077939 15.3033009,3.18376618 Z M10,12.5 C12.209139,12.5 14,10.709139 14,8.5 C14,6.290861 12.209139,4.5 10,4.5 C7.790861,4.5 6,6.290861 6,8.5 C6,10.709139 7.790861,12.5 10,12.5 Z" id="path-1"></path>
+    </defs>
+    <g id="Conference/Location" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Location" fill="#575E75" xlink:href="#path-1"></use>
+        <g id="Blue/1_Blue" mask="url(#mask-2)" fill="#4D97FF">
+            <rect id="Primary-Blue" x="0" y="0" width="20" height="20"></rect>
+        </g>
+    </g>
+</svg>

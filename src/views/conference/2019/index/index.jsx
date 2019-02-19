@@ -27,6 +27,14 @@ const ConferenceSplash = () => (
             <FormattedMessage id="conference-2019.seeBelow" />
         </h3>
         <div className="inner">
+            <p>
+                <FormattedMessage
+                    id="conference-2019.joinMailingList"
+                    values={{joinMailingListLink: (
+                        <a href="/?????????????"><FormattedMessage id="conference-2019.joinMailingListLinkText" /></a>
+                    )}}
+                />
+            </p>
             <section className="conf2019-panel mod-chile">
                 <FlexRow className="conf2019-panel-title">
                     <img
@@ -48,7 +56,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Calendar Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/calendar-icon.svg"
+                                    src="/svgs/conference/index/calendar-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.date" /></td>
@@ -73,7 +81,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Map Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/map-icon.svg"
+                                    src="/svgs/conference/index/map-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.location" /></td>
@@ -84,7 +92,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Audience Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/audience-icon.svg"
+                                    src="/svgs/conference/index/audience-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.audience" /></td>
@@ -95,7 +103,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Language Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/language-icon.svg"
+                                    src="/svgs/conference/index/language-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.language" /></td>
@@ -106,7 +114,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Language Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/language-icon.svg"
+                                    src="/svgs/conference/index/hashtag-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.hashtag" /></td>
@@ -143,7 +151,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Calendar Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/calendar-icon.svg"
+                                    src="/svgs/conference/index/calendar-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.date" /></td>
@@ -168,7 +176,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Map Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/map-icon.svg"
+                                    src="/svgs/conference/index/map-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.location" /></td>
@@ -179,7 +187,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Audience Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/audience-icon.svg"
+                                    src="/svgs/conference/index/audience-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.audience" /></td>
@@ -190,7 +198,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Language Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/language-icon.svg"
+                                    src="/svgs/conference/index/language-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.language" /></td>
@@ -201,7 +209,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Language Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/language-icon.svg"
+                                    src="/svgs/conference/index/hashtag-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.hashtag" /></td>
@@ -216,7 +224,7 @@ const ConferenceSplash = () => (
                     <FormattedMessage id="conference-2019.website" />
                 </a>
             </section>
-            <section className="conf2019-panel mod-uk">
+            <section className="conf2019-panel mod-uk mod-last">
                 <FlexRow className="conf2019-panel-title">
                     <img
                         alt="EU Flag"
@@ -237,7 +245,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Calendar Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/calendar-icon.svg"
+                                    src="/svgs/conference/index/calendar-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.date" /></td>
@@ -262,7 +270,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Map Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/map-icon.svg"
+                                    src="/svgs/conference/index/map-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.location" /></td>
@@ -273,7 +281,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Audience Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/audience-icon.svg"
+                                    src="/svgs/conference/index/audience-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.audience" /></td>
@@ -284,7 +292,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Language Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/language-icon.svg"
+                                    src="/svgs/conference/index/language-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.language" /></td>
@@ -295,7 +303,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Language Icon"
                                     className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/language-icon.svg"
+                                    src="/svgs/conference/index/hashtag-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.hashtag" /></td>
@@ -303,15 +311,13 @@ const ConferenceSplash = () => (
                         </tr>
                     </tbody>
                 </table>
+                <a
+                    className="button mod-2019-panel"
+                    href="https://www.scratchafrica.com"
+                >
+                    <FormattedMessage id="conference-2019.website" />
+                </a>
             </section>
-            <p>
-                <FormattedMessage
-                    id="conference-2019.joinMailingList"
-                    values={{joinMailingListLink: (
-                        <a href="/?????????????"><FormattedMessage id="conference-2019.joinMailingListLinkText" /></a>
-                    )}}
-                />
-            </p>
         </div>
     </div>
 );

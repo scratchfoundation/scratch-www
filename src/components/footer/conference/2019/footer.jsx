@@ -55,7 +55,7 @@ const ConferenceFooter = props => (
                     </FlexRow>
                 </FlexRow>
                 <p className="legal">
-                    <FormattedMessage id="general.copyright" />
+                    <FormattedMessage id="general.copyrightDraft" />
                 </p>
             </div>
             <div className="media">
