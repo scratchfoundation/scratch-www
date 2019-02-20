@@ -13,28 +13,28 @@ require('./index.scss');
 const ConferenceSplash = () => (
     <div className="index mod-2019">
         <TitleBanner className="mod-conference mod-2019">
-            <div className="title-banner-image mod-2019" />
-            <h1 className="title-banner-h1 mod-2019">
-                <FormattedMessage id="conference-2019.title" />
-            </h1>
-            <h3 className="title-banner-h3 mod-2019 conf2019-description">
-                <FormattedMessage id="conference-2019.desc" />
-            </h3>
+            <div>
+                <h1 className="title-banner-h1 mod-2019">
+                    <FormattedMessage id="conference-2019.title" />
+                </h1>
+                <div className="title-banner-image mod-2019" />
+            </div>
         </TitleBanner>
+        <div className="conf2019-description conf2019-band">
+            <h3 className="conf2019-description title-banner-h3 mod-2019">
+                <FormattedMessage id="conference-2019.descA" />
+            </h3>
+            <h3 className="conf2019-description title-banner-h3 mod-2019">
+                <FormattedMessage id="conference-2019.descB" />
+            </h3>
+            <h3 className="conf2019-description title-banner-h3 mod-2019 conf2019-bold">
+                <FormattedMessage id="conference-2019.nextMITConference" />
+            </h3>
+        </div>
         <h3 className="conf2019-title-band">
-            <FormattedMessage id="conference-2019.nextMITConference" />
-            <br />
             <FormattedMessage id="conference-2019.seeBelow" />
         </h3>
         <div className="inner">
-            <p>
-                <FormattedMessage
-                    id="conference-2019.joinMailingList"
-                    values={{joinMailingListLink: (
-                        <a href="/?????????????"><FormattedMessage id="conference-2019.joinMailingListLinkText" /></a>
-                    )}}
-                />
-            </p>
             <section className="conf2019-panel mod-chile">
                 <FlexRow className="conf2019-panel-title">
                     <img
@@ -64,14 +64,14 @@ const ConferenceSplash = () => (
                                 <FormattedDate
                                     day="2-digit"
                                     month="long"
-                                    value={new Date(2019, 5, 30)}
+                                    value={new Date(2019, 4, 30)}
                                     year="numeric"
                                 />
                                 {' - '}
                                 <FormattedDate
                                     day="2-digit"
                                     month="long"
-                                    value={new Date(2019, 5, 31)}
+                                    value={new Date(2019, 4, 31)}
                                     year="numeric"
                                 />
                             </td>
@@ -123,7 +123,7 @@ const ConferenceSplash = () => (
                     </tbody>
                 </table>
                 <a
-                    className="button mod-2019-panel"
+                    className="button mod-2019-conf mod-2019-conf-website-button"
                     href="http://www.scratchalsur.org"
                 >
                     <FormattedMessage id="conference-2019.website" />
@@ -159,14 +159,14 @@ const ConferenceSplash = () => (
                                 <FormattedDate
                                     day="2-digit"
                                     month="long"
-                                    value={new Date(2019, 7, 8)}
+                                    value={new Date(2019, 6, 8)}
                                     year="numeric"
                                 />
                                 {' - '}
                                 <FormattedDate
                                     day="2-digit"
                                     month="long"
-                                    value={new Date(2019, 7, 13)}
+                                    value={new Date(2019, 6, 13)}
                                     year="numeric"
                                 />
                             </td>
@@ -218,7 +218,7 @@ const ConferenceSplash = () => (
                     </tbody>
                 </table>
                 <a
-                    className="button mod-2019-panel"
+                    className="button mod-2019-conf mod-2019-conf-website-button"
                     href="https://www.scratchafrica.com"
                 >
                     <FormattedMessage id="conference-2019.website" />
@@ -229,7 +229,7 @@ const ConferenceSplash = () => (
                     <img
                         alt="EU Flag"
                         className="conf2019-panel-flag"
-                        src="/svgs/conference/flags/fr.svg"
+                        src="/svgs/conference/flags/eu.svg"
                     />
                     <div className="conf2019-panel-title-text">
                         <h3><FormattedMessage id="conference-2019.ukTitle" /></h3>
@@ -253,14 +253,14 @@ const ConferenceSplash = () => (
                                 <FormattedDate
                                     day="2-digit"
                                     month="long"
-                                    value={new Date(2019, 6, 18)}
+                                    value={new Date(2019, 7, 23)}
                                     year="numeric"
                                 />
                                 {' - '}
                                 <FormattedDate
                                     day="2-digit"
                                     month="long"
-                                    value={new Date(2019, 6, 21)}
+                                    value={new Date(2019, 7, 25)}
                                     year="numeric"
                                 />
                             </td>
@@ -307,17 +307,28 @@ const ConferenceSplash = () => (
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.hashtag" /></td>
-                            <td>{'#scratchconference'}</td>
+                            <td>{'#ScratchEurope'}</td>
                         </tr>
                     </tbody>
                 </table>
                 <a
-                    className="button mod-2019-panel"
-                    href="https://www.scratchafrica.com"
+                    className="button mod-2019-conf mod-2019-conf-website-button"
+                    href="https://www.raspberrypi.org/blog/announcing-scratch-conference-europe-2019/"
                 >
                     <FormattedMessage id="conference-2019.website" />
                 </a>
             </section>
+        </div>
+        <div className="conf2019-title-band conf2019-mailing-list">
+            <h3 className="conf2019-mailing-list">
+                <FormattedMessage id="conference-2019.joinMailingList" />
+            </h3>
+            <a
+                className="button mod-2019-conf mod-2019-conf-maillist-button"
+                href="https://docs.google.com/document/d/1M_LJqOjAxxYFm3j-D8WbvFtWhZJgPCbZ5aNGSA2KZyc/edit?ts=5c65f2c4#"
+            >
+                <FormattedMessage id="conference-2019.joinMailingListButtonText" />
+            </a>
         </div>
     </div>
 );
