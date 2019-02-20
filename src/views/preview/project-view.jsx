@@ -79,6 +79,7 @@ class Preview extends React.Component {
             'handleRemix',
             'handleSeeAllComments',
             'handleSeeInside',
+            'handleSetProjectThumbnailer',
             'handleShare',
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
@@ -381,7 +382,18 @@ class Preview extends React.Component {
         this.setState({addToStudioOpen: false});
     }
     handleReportSubmit (formData) {
-        this.props.reportProject(this.state.projectId, formData, this.props.user.token);
+        const submit = data => this.props.reportProject(this.state.projectId, data, this.props.user.token);
+        if (this.getProjectThumbnail) {
+            this.getProjectThumbnail(thumbnail => {
+                const data = Object.assign({}, formData, {thumbnail});
+                submit(data);
+            });
+        } else {
+            submit(formData);
+        }
+    }
+    handleSetProjectThumbnailer (fn) {
+        this.getProjectThumbnail = fn;
     }
     handleGreenFlag () {
         if (!this.state.greenFlagRecorded) {
@@ -690,6 +702,7 @@ class Preview extends React.Component {
                             onRestoreComment={this.handleRestoreComment}
                             onSeeAllComments={this.handleSeeAllComments}
                             onSeeInside={this.handleSeeInside}
+                            onSetProjectThumbnailer={this.handleSetProjectThumbnailer}
                             onShare={this.handleShare}
                             onToggleComments={this.handleToggleComments}
                             onToggleStudio={this.handleToggleStudio}
