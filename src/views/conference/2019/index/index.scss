@@ -26,7 +26,7 @@ h1.title-banner-h1.mod-2019 {
     background-image: url("/images/conference/index/2019/title-banner.jpg");
     background-position: center;
     background-size: cover;
-    opacity: .75;
+    opacity: .4;
 }
 
 .conf2019-panel,
@@ -39,15 +39,35 @@ h1.title-banner-h1.mod-2019 {
 
 .conf2019-title-band {
     background-color: $ui-blue;
-    padding: 1.5rem;
     text-align: center;
-    color: $type-white;
-    font-size: 1.2rem;
+}
+
+.conf2019-title-band.conf2019-schedule-band {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 .conf2019-title-band.conf2019-mailing-list {
-    padding: 3rem;
+    padding-top: 2.25rem;
+    padding-bottom: 3rem;
     margin-top: 2rem;
+}
+
+.conf2019-title-band>h3 {
+    width: 48.75rem;
+    color: $type-white;
+    margin: auto;
+}
+
+.conf2019-title-band>h3.conf2019-schedule {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.conf2019-title-band>h3.conf2019-mailing-list {
+    font-weight: normal;
+    font-size: 1.15rem;
 }
 
 .conf2019-description.conf2019-band {
@@ -93,14 +113,6 @@ h1.title-banner-h1.mod-2019 {
     font-weight: normal;
 }
 
-h3.conf2019-mailing-list {
-    width: 48.75rem;
-    font-weight: normal;
-    color: $type-white;
-    font-size: 1.15rem;
-    margin: auto;
-}
-
 .conf2019-bold {
     font-weight: bold;
 }
@@ -112,9 +124,14 @@ td {
 
 .conf2019-panel-row-icon-image {
     margin-top: .125rem;
-    width: 1rem;
     height: 1rem;
 }
+
+.conf2019-large-icon-image {
+    height: 2.5rem;
+    margin: 1rem;
+}
+
 
 .button.mod-2019-conf {
     display: block;

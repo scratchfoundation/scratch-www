@@ -31,9 +31,16 @@ const ConferenceSplash = () => (
                 <FormattedMessage id="conference-2019.nextMITConference" />
             </h3>
         </div>
-        <h3 className="conf2019-title-band">
-            <FormattedMessage id="conference-2019.seeBelow" />
-        </h3>
+        <div className="conf2019-title-band conf2019-schedule-band">
+            <img
+                alt="Envelope Icon"
+                className="conf2019-large-icon-image"
+                src="/svgs/conference/index/calendar-icon-color.svg"
+            />
+            <h3 className="conf2019-title-band">
+                <FormattedMessage id="conference-2019.seeBelow" />
+            </h3>
+        </div>
         <div className="inner">
             <section className="conf2019-panel mod-chile">
                 <FlexRow className="conf2019-panel-title">
@@ -320,6 +327,11 @@ const ConferenceSplash = () => (
             </section>
         </div>
         <div className="conf2019-title-band conf2019-mailing-list">
+            <img
+                alt="Envelope Icon"
+                className="conf2019-large-icon-image"
+                src="/svgs/conference/index/envelope-icon.svg"
+            />
             <h3 className="conf2019-mailing-list">
                 <FormattedMessage id="conference-2019.joinMailingList" />
             </h3>
