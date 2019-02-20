@@ -1,1 +1,28 @@
-<svg width="62" height="56" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><rect id="a" width="53.76" height="48" rx="8"/></defs><g fill="none" fill-rule="evenodd"><g transform="translate(4 4)"><mask id="b" fill="#fff"><use xlink:href="#a"/></mask><rect stroke-opacity=".5" stroke="#4280D7" stroke-width="4" x="-2" y="-2" width="57.76" height="52" rx="8"/><path fill="#FF8000" mask="url(#b)" d="M0 0h53.76v18.24H0z"/></g><g stroke="#000" stroke-linecap="square" stroke-opacity=".15"><path d="M21.76 22.24V52M39.52 22.24V52M4 37.12h53.76"/></g></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="56px" viewBox="0 0 62 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Calendar</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="54" height="48" rx="8"></rect>
+        <rect id="path-3" x="0" y="0" width="54" height="48" rx="8"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-Copy-7" transform="translate(-688.000000, -721.000000)">
+            <g id="Calendar" transform="translate(692.000000, 725.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <rect stroke-opacity="0.5" stroke="#4280D7" stroke-width="4" x="-2" y="-2" width="58" height="52" rx="8"></rect>
+                <mask id="mask-4" fill="white">
+                    <use xlink:href="#path-3"></use>
+                </mask>
+                <use id="Mask" fill="#FFFFFF" xlink:href="#path-3"></use>
+                <path d="M17.8392857,18.24 L17.8392857,48" id="Line-4" stroke="#D9D9D9" stroke-linecap="square" mask="url(#mask-4)"></path>
+                <path d="M35.6785714,18.24 L35.6785714,48" id="Line" stroke="#D9D9D9" stroke-linecap="square" mask="url(#mask-4)"></path>
+                <path d="M0,33.12 L54,33.12" id="Line-2" stroke="#D9D9D9" stroke-linecap="square" mask="url(#mask-4)"></path>
+                <rect id="Top-part" fill="#FF8000" mask="url(#mask-4)" x="0" y="0" width="54" height="18.24"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
