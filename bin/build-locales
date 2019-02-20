@@ -123,6 +123,16 @@ var defaultLocales = {
 var views = [];
 var localizedAssetUrls = {};
 
+// Most views will have the same name for:
+//   - the view folder
+//   - the route name
+//   - the transifex resource
+// Add exceptions:
+//   - txMapping: if the name of the transifex resource is different from the route name 
+var txMapping = {
+    'projects': 'preview',
+    'scratch_1.4': 'scratch_14' // transifex doesn't allow dots in resource names
+};
 // start with english default for all views
 for (var v in routes) {
     if (typeof routes[v].redirect !== 'undefined') {
@@ -193,11 +203,12 @@ async.forEachLimit(views, 5, function (view, cb) {
 
     // merge view specific english strings, first then other languages
     async.forEach(allLangs, function (isoCode, cb) {
+        var txResource = txMapping[view] || view;
         var translationsFile = path.resolve(
             __dirname,
             '../',
             localesDir,
-            'scratch-website.' + view + '-l10njson',
+            'scratch-website.' + txResource + '-l10njson',
             isoCode + '.json'
         );
         fs.readFile(translationsFile, 'utf8', function (err, data) {
