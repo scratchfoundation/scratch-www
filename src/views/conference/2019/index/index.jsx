@@ -134,7 +134,7 @@ const ConferenceSplash = () => (
                     <img
                         alt="Kenya Flag"
                         className="conf2019-panel-flag"
-                        src="/svgs/conference/flags/hu.svg"
+                        src="/svgs/conference/flags/ke.svg"
                     />
                     <div className="conf2019-panel-title-text">
                         <h3><FormattedMessage id="conference-2019.kenyaTitle" /></h3>
