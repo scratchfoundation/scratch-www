@@ -29,12 +29,17 @@ h1.title-banner-h1.mod-2019 {
     opacity: .4;
 }
 
+.conf2019-panel {
+    margin: auto 2rem;
+}
+
 .conf2019-panel,
 .title-banner-h3.mod-2019 {
 }
 
 .title-banner-h3.mod-2019 {
     text-align: left;
+    font-size: 1.1rem;
 }
 
 .conf2019-title-band {
@@ -68,6 +73,10 @@ h1.title-banner-h1.mod-2019 {
 .conf2019-title-band>h3.conf2019-mailing-list {
     font-weight: normal;
     font-size: 1.15rem;
+}
+
+.conf2019-panel-title-text>h3 {
+    line-height: 1.7rem;
 }
 
 .conf2019-description.conf2019-band {
@@ -132,7 +141,6 @@ td {
     margin: 1rem;
 }
 
-
 .button.mod-2019-conf {
     display: block;
     margin: 2rem auto 0;
@@ -157,26 +165,45 @@ td {
         text-align: left;
     }
 
+    h1.title-banner-h1.mod-2019 {
+        padding-top: 1.5rem;
+    }
+
     .title-banner-image.mod-2019 {
         height: 10rem;
     }
 
-    .title-banner-h1.mod-2019 {
-        line-height: 1.25em;
-    }
-
-    .conf2019-panel,
-    .title-banner-h3.mod-2019 {
+    .conf2019-title-band>h3 {
         width: initial;
+        margin: 0 1rem;
     }
 
     .conf2019-panel {
-        margin: auto .5rem;
+        margin: auto 1rem;
     }
 
     .title-banner-h3.mod-2019 {
         margin: 1rem .5rem .5rem;
-        font-size: 1.1rem;
+        font-size: 1rem;
+        line-height: 1.6rem;
+    }
+
+    .conf2019-title-band>h3.conf2019-schedule {
+        font-size: 1.6rem;
+    }
+
+    .conf2019-title-band>h3.conf2019-mailing-list {
+        font-size: 1.15rem;
+    }
+
+    .conf2019-description.conf2019-band {
+        width: initial;
+    }
+
+    .conf2019-description {
+        line-height: 1.9rem;
+        font-size: 1rem;
+        margin: 0 .5rem 1.6rem;
     }
 
     .flex-row.conf2019-panel-title {
@@ -194,6 +221,11 @@ td {
     .conf2019-panel-row > td {
         padding: .75rem .375rem .75rem 0;
     }
+
+    .conf2019-large-icon-image {
+        height: 2.5rem;
+        margin: 1rem;
+    }
 }
 
 @media #{$medium} {
@@ -201,12 +233,15 @@ td {
         text-align: left;
     }
 
+    h1.title-banner-h1.mod-2019 {
+        padding-top: 2.75rem;
+    }
+
     .title-banner-image.mod-2019 {
         height: 10rem;
     }
 
-    .conf2019-panel,
-    .title-banner-h3.mod-2019 {
+    .conf2019-title-band>h3 {
         margin: auto .5rem ;
         width: initial;
     }
@@ -215,12 +250,31 @@ td {
         font-size: 1.1rem;
     }
 
+    .conf2019-title-band>h3.conf2019-schedule {
+        font-size: 1.6rem;
+    }
+
+    .conf2019-title-band>h3.conf2019-mailing-list {
+        font-size: 1.15rem;
+    }
+
+    .conf2019-description.conf2019-band {
+        width: initial;
+        margin: auto 1.5rem ;
+    }
+
+    .conf2019-description {
+        line-height: 1.9rem;
+        font-size: 1rem;
+        margin: 0 auto 1.6rem;
+    }
+
     .flex-row.conf2019-panel-title {
         flex-direction: row;
     }
 
     .conf2019-panel-flag {
-        margin-right: 5rem;
+        margin-right: 2rem;
     }
 
     .conf2019-panel-title-text {
@@ -230,6 +284,11 @@ td {
     .button.mod-2019-panel {
         width: 5.75rem;
     }
+
+    .conf2019-large-icon-image {
+        height: 2.5rem;
+        margin: 1rem;
+    }
 }
 
 @media #{$intermediate} {
@@ -237,13 +296,15 @@ td {
         text-align: left;
     }
 
+    h1.title-banner-h1.mod-2019 {
+        padding-top: 4.75rem;
+    }
+
     .title-banner-image.mod-2019 {
         height: 15rem;
     }
 
-    .conf2019-panel,
-    .title-banner-h3.mod-2019 {
-        margin: auto;
+    .conf2019-title-band>h3 {
         width: 38.75rem;
     }
 
@@ -251,7 +312,30 @@ td {
         font-size: 1.1rem;
     }
 
+    .conf2019-title-band>h3.conf2019-schedule {
+        font-size: 1.6rem;
+    }
+
+    .conf2019-title-band>h3.conf2019-mailing-list {
+        font-size: 1.15rem;
+    }
+
+    .conf2019-description.conf2019-band {
+        width: 38.75rem;
+    }
+
+    .conf2019-description {
+        line-height: 1.9rem;
+        font-size: 1rem;
+        margin: 0 auto 1.6rem;
+    }
+
     .button.mod-2019-panel {
         width: 8.75rem;
+    }
+
+    .conf2019-large-icon-image {
+        height: 2.5rem;
+        margin: 1rem;
     }
 }
