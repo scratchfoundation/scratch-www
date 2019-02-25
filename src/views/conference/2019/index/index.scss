@@ -30,7 +30,7 @@ h1.title-banner-h1.mod-2019 {
 }
 
 .conf2019-panel {
-    margin: auto 2rem;
+    margin: auto 5rem;
 }
 
 .conf2019-panel,
@@ -39,7 +39,7 @@ h1.title-banner-h1.mod-2019 {
 
 .title-banner-h3.mod-2019 {
     text-align: left;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .conf2019-title-band {
@@ -166,7 +166,11 @@ td {
     }
 
     h1.title-banner-h1.mod-2019 {
-        padding-top: 1.5rem;
+        padding-top: 3.25rem;
+        font-size: 1.75rem;
+    }
+
+    .title-banner.mod-conference.mod-2019 {
     }
 
     .title-banner-image.mod-2019 {
@@ -198,6 +202,7 @@ td {
 
     .conf2019-description.conf2019-band {
         width: initial;
+        margin: 0 .5rem;
     }
 
     .conf2019-description {
@@ -235,6 +240,10 @@ td {
 
     h1.title-banner-h1.mod-2019 {
         padding-top: 2.75rem;
+        font-size: 2.25rem;
+    }
+
+    .title-banner.mod-conference.mod-2019 {
     }
 
     .title-banner-image.mod-2019 {
@@ -246,10 +255,6 @@ td {
         width: initial;
     }
 
-    .title-banner-h3.mod-2019 {
-        font-size: 1.1rem;
-    }
-
     .conf2019-title-band>h3.conf2019-schedule {
         font-size: 1.6rem;
     }
@@ -259,8 +264,8 @@ td {
     }
 
     .conf2019-description.conf2019-band {
-        width: initial;
-        margin: auto 1.5rem ;
+        width: 464px;
+        margin: auto;
     }
 
     .conf2019-description {
@@ -271,6 +276,10 @@ td {
 
     .flex-row.conf2019-panel-title {
         flex-direction: row;
+    }
+
+    .conf2019-panel {
+        margin: auto .5rem;
     }
 
     .conf2019-panel-flag {
@@ -298,6 +307,10 @@ td {
 
     h1.title-banner-h1.mod-2019 {
         padding-top: 4.75rem;
+        font-size: 2.75rem;
+    }
+
+    .title-banner.mod-conference.mod-2019 {
     }
 
     .title-banner-image.mod-2019 {
@@ -308,8 +321,8 @@ td {
         width: 38.75rem;
     }
 
-    .title-banner-h3.mod-2019 {
-        font-size: 1.1rem;
+    .conf2019-panel {
+        margin: auto 4.5rem;
     }
 
     .conf2019-title-band>h3.conf2019-schedule {
