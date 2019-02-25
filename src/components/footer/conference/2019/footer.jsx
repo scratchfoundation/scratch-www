@@ -44,11 +44,6 @@ const ConferenceFooter = props => (
                         <li>
                             <a href="http://day.scratch.mit.edu">Scratch Day</a>
                         </li>
-                    </FlexRow>
-                    <FlexRow
-                        as="ul"
-                        className="column"
-                    >
                         <li>
                             <a href="http://sip.scratch.mit.edu">Scratch In Practice</a>
                         </li>
@@ -86,10 +81,26 @@ const ConferenceFooter = props => (
                             </a>
                         </li>
                         <li>
-                            <a href="http://medium.com/scratchfoundation-blog">
+                            <a href="https://medium.com/scratchteam-blog">
                                 <img
                                     alt="scratch foundation blog"
                                     src="/images/conference/footer/medium.png"
+                                />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/mitscratchteam/">
+                                <img
+                                    alt="scratch instagram"
+                                    src="/images/conference/footer/instagram.png"
+                                />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://scratch-foundation.myshopify.com/ ">
+                                <img
+                                    alt="scratch shopify"
+                                    src="/images/conference/footer/shopify-white.svg"
                                 />
                             </a>
                         </li>
