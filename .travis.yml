@@ -115,6 +115,7 @@ jobs:
         - develop
         - hotfix/*
         - release/*
+        - feature/test-vernier-build
     - provider: script
       skip_cleanup: $SKIP_CLEANUP
       script: env make sync
