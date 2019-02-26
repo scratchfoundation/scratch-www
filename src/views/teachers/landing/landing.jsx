@@ -92,6 +92,22 @@ const Landing = props => (
                     <div>
                         <p>
                             <FormattedMessage
+                                id="teacherlanding.sip"
+                                values={{
+                                    sipLink: (
+                                        <a
+                                            href="https://sip.scratch.mit.edu/"
+                                        >
+                                            <FormattedMessage id="teacherlanding.sipText" />
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <FormattedMessage
                                 id="teacherlanding.creativeComputing"
                                 values={{
                                     scratchEdLink: (
