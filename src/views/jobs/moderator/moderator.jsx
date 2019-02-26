@@ -60,7 +60,7 @@ const Moderator = () => (
                 </li>
                 <li>
                     Not required, but would be cool: Ability to read and
-                    write another language.
+                    write another language
                 </li>
             </ul>
             <br />
