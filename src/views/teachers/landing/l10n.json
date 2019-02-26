@@ -8,6 +8,8 @@
     "teacherlanding.educatorResourcesTitle": "Resources for Educators",
     "teacherlanding.educatorGuides": "{educatorLink} show you how to prepare and run Scratch classes and workshops.",
     "teacherlanding.educatorGuideLinkText" : "Educator Guides",
+    "teacherlanding.sip":"{sipLink} shares ideas and resources from Scratch Team and educators around the world, with a new theme each month.",
+    "teacherlanding.sipText":"Scratch in Practice",
     "teacherlanding.creativeComputing": "{scratchEdLink} from the ScratchEd team provides plans, activities, and strategies for introducing creative computing.",
     "teacherlanding.scratchEdLinkText" : "Creative Computing",
     "teacherlanding.studentResourcesTitle" : "Resources for Students",
