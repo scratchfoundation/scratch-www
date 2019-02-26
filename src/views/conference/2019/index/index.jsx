@@ -27,8 +27,11 @@ const ConferenceSplash = () => (
             <h3 className="conf2019-description title-banner-h3 mod-2019">
                 <FormattedMessage id="conference-2019.descB" />
             </h3>
-            <h3 className="conf2019-description title-banner-h3 mod-2019 conf2019-bold">
-                <FormattedMessage id="conference-2019.nextMITConference" />
+            <h3 className="conf2019-description title-banner-h3 mod-2019">
+                <FormattedMessage id="conference-2019.descC" />
+            </h3>
+            <h3 className="conf2019-description title-banner-h3 mod-2019">
+                <FormattedMessage id="conference-2019.descD" />
             </h3>
         </div>
         <div className="conf2019-title-band conf2019-schedule-band">
