@@ -53,7 +53,7 @@ const ConferenceSplash = () => (
                         src="/svgs/conference/flags/cl.svg"
                     />
                     <div className="conf2019-panel-title-text">
-                        <h3><FormattedMessage id="conference-2019.chileTitle" /></h3>
+                        <h3>Conferencia Scratch al Sur</h3>
                     </div>
                 </FlexRow>
                 <p className="conf2019-panel-desc">
@@ -117,7 +117,7 @@ const ConferenceSplash = () => (
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.language" /></td>
-                            <td>{'Español (Spanish) - simultaneous translation during plenary sessions'}</td>
+                            <td><FormattedMessage id="conference-2019.spanishWithSimultaneous" /></td>
                         </tr>
                         <tr className="conf2019-panel-row">
                             <td className="conf2019-panel-row-icon">
@@ -212,7 +212,7 @@ const ConferenceSplash = () => (
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.language" /></td>
-                            <td>{'English'}</td>
+                            <td><FormattedMessage id="general.english" /></td>
                         </tr>
                         <tr className="conf2019-panel-row">
                             <td className="conf2019-panel-row-icon">
@@ -306,7 +306,7 @@ const ConferenceSplash = () => (
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2019.language" /></td>
-                            <td>{'English'}</td>
+                            <td><FormattedMessage id="general.english" /></td>
                         </tr>
                         <tr className="conf2019-panel-row">
                             <td className="conf2019-panel-row-icon">

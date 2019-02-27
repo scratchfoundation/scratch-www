@@ -55,10 +55,12 @@ const ConferenceFooter = props => (
             </div>
             <div className="media">
                 <div className="contact-us">
-                    <h4>Contact</h4>
+                    <h4>
+                        <FormattedMessage id="general.contact" />
+                    </h4>
                     <p>
                         <a href="mailto:help@scratch.mit.edu">
-                            Email Us
+                            <FormattedMessage id="general.emailUs" />
                         </a>
                     </p>
                 </div>

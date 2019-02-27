@@ -1,4 +1,6 @@
+const injectIntl = require('react-intl').injectIntl;
 const React = require('react');
+const FormattedMessage = require('react-intl').FormattedMessage;
 
 const NavigationBox = require('../../base/navigation.jsx');
 
@@ -17,11 +19,13 @@ const Navigation = () => (
                         className="logo-a-image"
                         src="/images/logo_sm.png"
                     />
-                    <p className="logo-a-title">Conferences</p>
+                    <p className="logo-a-title">
+                        <FormattedMessage id="general.conferences" />
+                    </p>
                 </a>
             </li>
         </ul>
     </NavigationBox>
 );
 
-module.exports = Navigation;
+module.exports = injectIntl(Navigation);
