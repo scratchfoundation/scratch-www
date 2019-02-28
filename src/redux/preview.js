@@ -954,9 +954,8 @@ module.exports.shareProject = (projectId, token) => (dispatch => {
 
 module.exports.reportProject = (id, jsonData, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('report', module.exports.Status.FETCHING));
-    // scratchr2 will fail if no thumbnail base64 string provided. We don't yet have
-    // a way to get the actual project thumbnail in www/gui, so for now just submit
-    // a minimal base64 png string.
+    // scratchr2 will fail if no thumbnail base64 string provided. If there is not one
+    // included for any reason, include this minimal blank image.
     defaults(jsonData, {
         thumbnail: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC' +
             '0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII='
