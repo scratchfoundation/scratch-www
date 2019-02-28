@@ -85,7 +85,7 @@
     "minilog": "2.0.8",
     "node-dir": "0.1.16",
     "node-sass": "4.6.1",
-    "pako": "0.2.8",
+    "pako": "1.0.9",
     "po2icu": "0.0.2",
     "postcss-loader": "2.0.10",
     "prop-types": "15.6.0",
