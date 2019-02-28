@@ -135,6 +135,8 @@ const ConferenceSplash = () => (
                 <a
                     className="button mod-2019-conf mod-2019-conf-website-button"
                     href="http://www.scratchalsur.org"
+                    rel="noopener noreferrer"
+                    target="_blank"
                 >
                     <FormattedMessage id="conference-2019.website" />
                 </a>
@@ -230,6 +232,8 @@ const ConferenceSplash = () => (
                 <a
                     className="button mod-2019-conf mod-2019-conf-website-button"
                     href="https://www.scratchafrica.com"
+                    rel="noopener noreferrer"
+                    target="_blank"
                 >
                     <FormattedMessage id="conference-2019.website" />
                 </a>
@@ -324,6 +328,8 @@ const ConferenceSplash = () => (
                 <a
                     className="button mod-2019-conf mod-2019-conf-website-button"
                     href="https://www.raspberrypi.org/blog/announcing-scratch-conference-europe-2019/"
+                    rel="noopener noreferrer"
+                    target="_blank"
                 >
                     <FormattedMessage id="conference-2019.website" />
                 </a>
@@ -340,7 +346,9 @@ const ConferenceSplash = () => (
             </h3>
             <a
                 className="button mod-2019-conf mod-2019-conf-maillist-button"
-                href="https://docs.google.com/document/d/1M_LJqOjAxxYFm3j-D8WbvFtWhZJgPCbZ5aNGSA2KZyc/edit?ts=5c65f2c4#"
+                href="http://eepurl.com/cws7_f"
+                rel="noopener noreferrer"
+                target="_blank"
             >
                 <FormattedMessage id="conference-2019.joinMailingListButtonText" />
             </a>
