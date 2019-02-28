@@ -346,7 +346,7 @@ const ConferenceSplash = () => (
             </h3>
             <a
                 className="button mod-2019-conf mod-2019-conf-maillist-button"
-                href="http://eepurl.com/cws7_f"
+                href="https://us9.list-manage.com/subscribe?u=96e741c12c99f46f1f3e95e09&id=149bd1a4c2"
                 rel="noopener noreferrer"
                 target="_blank"
             >
