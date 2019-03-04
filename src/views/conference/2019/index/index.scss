@@ -1,0 +1,350 @@
+@import "../../../../colors";
+@import "../../../../frameless";
+
+h1.title-banner-h1.mod-2019 {
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    left: 0;
+    right: 0;
+    padding-top: 5rem;
+    font-size: 3rem;
+}
+
+.title-banner.mod-conference.mod-2019 {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 2.5rem;
+}
+
+.title-banner-image.mod-2019 {
+    position: relative;
+    z-index: 0;
+    margin-bottom: 1.75rem;
+    width: 100%;
+    height: 17rem;
+    background-image: url("/images/conference/index/2019/title-banner-3.jpg");
+    background-position: center;
+    background-size: cover;
+    opacity: .4;
+}
+
+.conf2019-panel {
+    margin: auto 5rem;
+}
+
+.conf2019-panel,
+.title-banner-h3.mod-2019 {
+}
+
+.title-banner-h3.mod-2019 {
+    text-align: left;
+    font-size: 1rem;
+}
+
+.conf2019-title-band {
+    background-color: $ui-blue;
+    text-align: center;
+}
+
+.conf2019-title-band.conf2019-schedule-band {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.conf2019-title-band.conf2019-mailing-list {
+    padding-top: 2.25rem;
+    padding-bottom: 3rem;
+    margin-top: 2rem;
+}
+
+.conf2019-title-band>h3 {
+    width: 48.75rem;
+    color: $type-white;
+    margin: auto;
+}
+
+.conf2019-title-band>h3.conf2019-schedule {
+    font-weight: bold;
+    font-size: 1.6rem;
+}
+
+.conf2019-title-band>h3.conf2019-mailing-list {
+    font-weight: normal;
+    font-size: 1.15rem;
+}
+
+.conf2019-panel-title-text>h3 {
+    line-height: 1.7rem;
+}
+
+.conf2019-description.conf2019-band {
+    margin-bottom: 2.5rem;
+    width: 48.75rem;
+}
+
+.conf2019-description {
+    line-height: 1.9rem;
+    // width: 60%;
+    font-weight: normal;
+    font-size: 1rem;
+    color: $type-gray;
+    margin: 0 auto 1.6rem;
+}
+
+.conf2019-panel {
+    border-bottom: 1px solid $ui-border;
+}
+
+.conf2019-panel.mod-last {
+    border-bottom: 0;
+}
+
+.flex-row.conf2019-panel-title {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.conf2019-panel-flag {
+    margin-right: 6.25rem;
+    border: 1px solid $ui-border;
+    border-radius: 1px;
+    background-color: $ui-border;
+    width: 3.75rem;
+}
+
+.conf2019-panel-desc {
+    margin: 2rem 0;
+}
+
+.conf2019-mailing-list {
+    font-weight: normal;
+}
+
+td {
+    padding: .75rem 1.25rem;
+    vertical-align: top;
+}
+
+.conf2019-panel-row-icon-image {
+    margin-top: .125rem;
+    height: 1rem;
+}
+
+.conf2019-large-icon-image {
+    height: 2.5rem;
+    margin: 1rem;
+}
+
+.button.mod-2019-conf {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 1rem 0;
+    width: 13.75rem;
+    text-align: center;
+    font-size: .9rem;
+}
+
+.button.mod-2019-conf-website-button {
+    background-color: $ui-orange;
+    color: $type-white;
+}
+
+.button.mod-2019-conf-maillist-button {
+    background-color: $ui-white;
+    color: $ui-blue-dark;
+}
+
+@media #{$small} {
+    .index.mod-2019 {
+        text-align: left;
+    }
+
+    h1.title-banner-h1.mod-2019 {
+        padding-top: 3.25rem;
+        font-size: 1.75rem;
+    }
+
+    .title-banner.mod-conference.mod-2019 {
+    }
+
+    .title-banner-image.mod-2019 {
+        height: 10rem;
+    }
+
+    .conf2019-title-band>h3 {
+        width: initial;
+        margin: 0 1rem;
+    }
+
+    .conf2019-panel {
+        margin: auto 1rem;
+    }
+
+    .title-banner-h3.mod-2019 {
+        margin: 1rem .5rem .5rem;
+        font-size: 1rem;
+        line-height: 1.6rem;
+    }
+
+    .conf2019-title-band>h3.conf2019-schedule {
+        font-size: 1.6rem;
+    }
+
+    .conf2019-title-band>h3.conf2019-mailing-list {
+        font-size: 1.15rem;
+    }
+
+    .conf2019-description.conf2019-band {
+        width: initial;
+        margin: 0 .5rem;
+    }
+
+    .conf2019-description {
+        line-height: 1.9rem;
+        font-size: 1rem;
+        margin: 0 .5rem 1.6rem;
+    }
+
+    .flex-row.conf2019-panel-title {
+        flex-direction: row;
+    }
+
+    .conf2019-panel-flag {
+        margin-right: 1.25rem;
+    }
+
+    .conf2019-panel-title-text {
+        max-width: 14rem;
+    }
+
+    .conf2019-panel-row > td {
+        padding: .75rem .375rem .75rem 0;
+    }
+
+    .conf2019-large-icon-image {
+        height: 2.5rem;
+        margin: 1rem;
+    }
+}
+
+@media #{$medium} {
+    .index.mod-2019 {
+        text-align: left;
+    }
+
+    h1.title-banner-h1.mod-2019 {
+        padding-top: 2.75rem;
+        font-size: 2.25rem;
+    }
+
+    .title-banner.mod-conference.mod-2019 {
+    }
+
+    .title-banner-image.mod-2019 {
+        height: 10rem;
+    }
+
+    .conf2019-title-band>h3 {
+        margin: auto .5rem ;
+        width: initial;
+    }
+
+    .conf2019-title-band>h3.conf2019-schedule {
+        font-size: 1.6rem;
+    }
+
+    .conf2019-title-band>h3.conf2019-mailing-list {
+        font-size: 1.15rem;
+    }
+
+    .conf2019-description.conf2019-band {
+        width: 464px;
+        margin: auto;
+    }
+
+    .conf2019-description {
+        line-height: 1.9rem;
+        font-size: 1rem;
+        margin: 0 auto 1.6rem;
+    }
+
+    .flex-row.conf2019-panel-title {
+        flex-direction: row;
+    }
+
+    .conf2019-panel {
+        margin: auto .5rem;
+    }
+
+    .conf2019-panel-flag {
+        margin-right: 2rem;
+    }
+
+    .conf2019-panel-title-text {
+        max-width: 18.75rem;
+    }
+
+    .button.mod-2019-panel {
+        width: 5.75rem;
+    }
+
+    .conf2019-large-icon-image {
+        height: 2.5rem;
+        margin: 1rem;
+    }
+}
+
+@media #{$intermediate} {
+    .index.mod-2019 {
+        text-align: left;
+    }
+
+    h1.title-banner-h1.mod-2019 {
+        padding-top: 4.75rem;
+        font-size: 2.75rem;
+    }
+
+    .title-banner.mod-conference.mod-2019 {
+    }
+
+    .title-banner-image.mod-2019 {
+        height: 15rem;
+    }
+
+    .conf2019-title-band>h3 {
+        width: 38.75rem;
+    }
+
+    .conf2019-panel {
+        margin: auto 4.5rem;
+    }
+
+    .conf2019-title-band>h3.conf2019-schedule {
+        font-size: 1.6rem;
+    }
+
+    .conf2019-title-band>h3.conf2019-mailing-list {
+        font-size: 1.15rem;
+    }
+
+    .conf2019-description.conf2019-band {
+        width: 38.75rem;
+    }
+
+    .conf2019-description {
+        line-height: 1.9rem;
+        font-size: 1rem;
+        margin: 0 auto 1.6rem;
+    }
+
+    .button.mod-2019-panel {
+        width: 8.75rem;
+    }
+
+    .conf2019-large-icon-image {
+        height: 2.5rem;
+        margin: 1rem;
+    }
+}
