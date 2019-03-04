@@ -31,12 +31,10 @@ const Moderator = () => (
                     Promote the values and core ideas of the Scratch
                     project (such as inclusiveness, creative collaboration,
                     and constructive feedback)
-
                 </li>
                 <li>
                     Review reported users, projects, studios, and comments
                     for appropriateness on the Scratch website
-
                 </li>
                 <li>
                     Work with young people to help them understand what they
