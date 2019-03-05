@@ -281,7 +281,7 @@ tap.test('clickScratchDayLink', options, t => {
 // SCRATCH CONFERENCE
 tap.test('clickScratchConferenceLink', options, t => {
     const linkText = 'Scratch Conference';
-    const expectedHref = '/conference';
+    const expectedHref = '/conference/2019';
     clickFooterLinks(linkText).then(url => {
         t.equal(url.substr(-expectedHref.length), expectedHref);
         t.end();
