@@ -74,24 +74,6 @@ const Landing = props => (
                     <div>
                         <p>
                             <FormattedMessage
-                                id="teacherlanding.educatorGuides"
-                                values={{
-                                    educatorLink: (
-                                        <a
-                                            href={props.intl.formatMessage({
-                                                id: 'guides.EducatorGuidesAllLink'
-                                            })}
-                                        >
-                                            <FormattedMessage id="teacherlanding.educatorGuideLinkText" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            <FormattedMessage
                                 id="teacherlanding.sip"
                                 values={{
                                     sipLink: (
@@ -113,6 +95,24 @@ const Landing = props => (
                                     scratchEdLink: (
                                         <a href="http://scratched.gse.harvard.edu/guide/">
                                             <FormattedMessage id="teacherlanding.scratchEdLinkText" />
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <FormattedMessage
+                                id="teacherlanding.educatorGuides"
+                                values={{
+                                    educatorLink: (
+                                        <a
+                                            href={props.intl.formatMessage({
+                                                id: 'guides.EducatorGuidesAllLink'
+                                            })}
+                                        >
+                                            <FormattedMessage id="teacherlanding.educatorGuideLinkText" />
                                         </a>
                                     )
                                 }}
