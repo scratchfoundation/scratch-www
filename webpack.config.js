@@ -149,6 +149,10 @@ module.exports = {
             to: 'static/blocks-media'
         }]),
         new CopyWebpackPlugin([{
+            from: 'node_modules/scratch-gui/dist/chunks',
+            to: 'static/chunks'
+        }]),
+        new CopyWebpackPlugin([{
             from: 'node_modules/scratch-gui/dist/extension-worker.js'
         }]),
         new CopyWebpackPlugin([{
