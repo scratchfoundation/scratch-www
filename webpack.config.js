@@ -78,7 +78,11 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
-                include: [path.resolve(__dirname, 'src'), /node_modules[\\/]scratch-[^\\/]+[\\/]src/]
+                include: [
+                    path.resolve(__dirname, 'src'),
+                    /node_modules[\\/]scratch-[^\\/]+[\\/]src/,
+                    /node_modules[\\/]pify/
+                ]
             },
             {
                 test: /\.scss$/,
@@ -143,6 +147,10 @@ module.exports = {
         new CopyWebpackPlugin([{
             from: 'node_modules/scratch-gui/dist/static/blocks-media',
             to: 'static/blocks-media'
+        }]),
+        new CopyWebpackPlugin([{
+            from: 'node_modules/scratch-gui/dist/chunks',
+            to: 'static/chunks'
         }]),
         new CopyWebpackPlugin([{
             from: 'node_modules/scratch-gui/dist/extension-worker.js'
