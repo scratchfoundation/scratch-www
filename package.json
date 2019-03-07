@@ -54,7 +54,7 @@
     "cookie": "0.2.2",
     "copy-webpack-plugin": "0.2.0",
     "create-react-class": "15.6.2",
-    "css-loader": "0.23.1",
+    "css-loader": "2.1.1",
     "eslint": "4.7.1",
     "eslint-config-scratch": "5.0.0",
     "eslint-plugin-cypress": "^2.0.1",
