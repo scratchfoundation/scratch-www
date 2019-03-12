@@ -92,6 +92,22 @@ $story-width: $cols3;
             max-width: 16rem;
             text-align: center;
         }
+        .icon-wrapper {
+            height: 150px;
+
+            img.sip-icon {
+                padding: 1.75rem;
+                width: 130px;
+            }
+            img.resources-icon {
+                padding: 1.5rem;
+                width: 100px;
+            }
+            img.creativecomputing-icon {
+                padding: 1.5rem;
+                width: 85px;
+            }
+        }
     }
 
     section {
