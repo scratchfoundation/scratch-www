@@ -106,7 +106,7 @@
     "scratch-l10n": "latest",
     "scratchr2_translations": "git://github.com/LLK/scratchr2_translations.git#master",
     "slick-carousel": "1.6.0",
-    "source-map-support": "0.3.2",
+    "source-map-support": "0.5.11",
     "style-loader": "0.12.3",
     "tap": "7.1.2",
     "url-loader": "0.5.6",
