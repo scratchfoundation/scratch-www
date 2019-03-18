@@ -34,7 +34,7 @@
     "newrelic": "1.25.4",
     "react-helmet": "5.2.0",
     "scratch-docker": "^1.0.2",
-    "scratch-parser": "^4.2.0",
+    "scratch-parser": "^5.0.0",
     "scratch-storage": "^0.5.1"
   },
   "devDependencies": {
