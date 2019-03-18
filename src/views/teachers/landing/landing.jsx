@@ -77,7 +77,7 @@ const Landing = props => (
                                 <img
                                     className="sip-icon"
                                     alt="tips window icon"
-                                    src="/images/teachers/sip.png"
+                                    src="/svgs/teachers/sip.svg"
                                 />
                             </a>
                         </div>
@@ -144,60 +144,6 @@ const Landing = props => (
                                     scratchEdLink: (
                                         <a href="http://scratched.gse.harvard.edu/guide/">
                                             <FormattedMessage id="teacherlanding.scratchEdLinkText" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                    </div>
-                </FlexRow>
-            </section>
-            <section id="resources">
-                <span className="nav-spacer" />
-                <h2><FormattedMessage id="teacherlanding.educatorResourcesTitle" /></h2>
-                <FlexRow className="educator-community">
-                    <div>
-                        <p>
-                            <FormattedMessage
-                                id="teacherlanding.sip"
-                                values={{
-                                    sipLink: (
-                                        <a
-                                            href="https://sip.scratch.mit.edu/"
-                                        >
-                                            <FormattedMessage id="teacherlanding.sipText" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            <FormattedMessage
-                                id="teacherlanding.creativeComputing"
-                                values={{
-                                    scratchEdLink: (
-                                        <a href="http://scratched.gse.harvard.edu/guide/">
-                                            <FormattedMessage id="teacherlanding.scratchEdLinkText" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            <FormattedMessage
-                                id="teacherlanding.educatorGuides"
-                                values={{
-                                    educatorLink: (
-                                        <a
-                                            href={props.intl.formatMessage({
-                                                id: 'guides.EducatorGuidesAllLink'
-                                            })}
-                                        >
-                                            <FormattedMessage id="teacherlanding.educatorGuideLinkText" />
                                         </a>
                                     )
                                 }}
