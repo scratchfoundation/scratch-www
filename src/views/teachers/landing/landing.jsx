@@ -78,6 +78,9 @@ const Landing = props => (
                                     <FormattedMessage
                                         id="teacherlanding.sip"
                                         values={{
+                                            abbreviatedSipName: (
+                                                <FormattedMessage id="teacherlanding.abbreviatedSipName" />
+                                            ),
                                             sipName: (
                                                 <FormattedMessage id="teacherlanding.sipName" />
                                             )
@@ -96,67 +99,7 @@ const Landing = props => (
                 </SubNavigation>
             </div>
         </TitleBanner>
-        {/*
-        <div className="feature">
-            <div className="inner">
-                <section id="sip">
-                    <FlexRow className="educators-using">
-                        <div className="using-scratch-image">
-                            <img src="images/teachers/makey-activity.png" />
-                        </div>
-                        <div className="sip-info">
-                            <h2><FormattedMessage id="teacherlanding.howUsingScratch" /></h2>
-                            <p>
-                                <FormattedMessage
-                                    id="teacherlanding.sip"
-                                    values={{
-                                        sipName: (
-                                            <FormattedMessage id="teacherlanding.sipName" />
-                                        )
-                                    }}
-                                />
-                            </p>
-                            <a href="https://sip.scratch.mit.edu/">
-                                <Button className="sip-button large icon-right">
-                                    <FormattedMessage id="teacherlanding.seeLatest" />
-                                    <img src="/svgs/project/r-arrow.svg" />
-                                </Button>
-                            </a>
-                        </div>
-                    </FlexRow>
-                </section>
-            </div>
-        </div>
-        */}
         <div className="inner">
-            {/*
-            <section id="sip">
-                <FlexRow className="educators-using">
-                    <div className="using-scratch-image">
-                        <img src="images/teachers/makey-activity.png" />
-                    </div>
-                    <div className="sip-info">
-                        <h2><FormattedMessage id="teacherlanding.howUsingScratch" /></h2>
-                        <p>
-                            <FormattedMessage
-                                id="teacherlanding.sip"
-                                values={{
-                                    sipName: (
-                                        <FormattedMessage id="teacherlanding.sipName" />
-                                    )
-                                }}
-                            />
-                        </p>
-                        <a href="https://sip.scratch.mit.edu/">
-                            <Button className="sip-button large icon-right">
-                                <FormattedMessage id="teacherlanding.seeLatest" />
-                                <img src="/svgs/project/r-arrow.svg" />
-                            </Button>
-                        </a>
-                    </div>
-                </FlexRow>
-            </section>
-            */}
             <section id="resources">
                 <span className="nav-spacer" />
                 <h2><FormattedMessage id="teacherlanding.educatorResourcesTitle" /></h2>
@@ -195,93 +138,6 @@ const Landing = props => (
                     </div>
                 </FlexRow>
             </section>
-            { /*
-            <section>
-                <span className="nav-spacer" />
-                <h2><FormattedMessage id="teacherlanding.educatorResourcesTitle" /></h2>
-                <FlexRow className="guides-and-tutorials">
-                    <div>
-                        <div className="icon-wrapper">
-                            <a href="/projects/editor/?tutorial=all">
-                                <img
-                                    className="sip-icon"
-                                    alt="tips window icon"
-                                    src="/svgs/teachers/sip.svg"
-                                />
-                            </a>
-                        </div>
-                        <p>
-                            <FormattedMessage
-                                id="teacherlanding.sip"
-                                values={{
-                                    sipLink: (
-                                        <a
-                                            href="https://sip.scratch.mit.edu/"
-                                        >
-                                            <FormattedMessage id="teacherlanding.sipText" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                    </div>
-                    <div>
-                        <div className="icon-wrapper">
-                            <a href="/ideas">
-                                <img
-                                    className="resources-icon"
-                                    alt="creative computing icon"
-                                    src="/svgs/teachers/resources.svg"
-                                />
-                            </a>
-                        </div>
-                        <p>
-                            <FormattedMessage
-                                id="teacherlanding.educatorGuides"
-                                values={{
-                                    educatorLink: (
-                                        <a
-                                            href={props.intl.formatMessage({
-                                                id: 'guides.EducatorGuidesAllLink'
-                                            })}
-                                        >
-                                            <FormattedMessage id="teacherlanding.educatorGuideLinkText" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                    </div>
-                    <div>
-                        <div className="icon-wrapper">
-                            <a
-                                href={props.intl.formatMessage({
-                                    id: 'cards.scratch-cards-allLink'
-                                })}
-                            >
-                                <img
-                                    className="creativecomputing-icon"
-                                    alt="cards icon"
-                                    src="/svgs/teachers/creative-computing.svg"
-                                />
-                            </a>
-                        </div>
-                        <p>
-                            <FormattedMessage
-                                id="teacherlanding.creativeComputing"
-                                values={{
-                                    scratchEdLink: (
-                                        <a href="http://scratched.gse.harvard.edu/guide/">
-                                            <FormattedMessage id="teacherlanding.scratchEdLinkText" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                    </div>
-                </FlexRow>
-            </section>
-            */}
             <section>
                 <span className="nav-spacer" />
                 <h2><FormattedMessage id="teacherlanding.studentResourcesTitle" /></h2>
