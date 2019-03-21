@@ -76,6 +76,47 @@ $story-width: $cols3;
         }
     }
 
+    .feature {
+        background-color: $ui-blue-very-light;
+
+        section#sip {
+            margin-bottom: .5rem;
+        }
+
+        .educators-using {
+            justify-content: flex-start;
+            align-items: start;
+
+            .using-scratch-image {
+                width: 420px;
+                padding: 2.75rem 2rem;
+
+                img {
+                    width: 100%;
+                    border-radius: .5rem;
+                }
+            }
+
+            .sip-info {
+                width: 21.75rem;
+                padding: 2rem;
+
+                h2 {
+                    line-height: 2.7rem;
+                }
+
+                p {
+                    margin-top: 1.25rem;
+                    margin-bottom: 1.25rem;
+                }
+            }
+
+            .sip-button {
+                font-size: 1rem;
+            }
+        }
+    }
+
     .educator-community {
         margin-bottom: 2rem;
         text-align: left;
@@ -218,6 +259,20 @@ $story-width: $cols3;
         }
     }
 
+    .feature {
+        .educators-using {
+            width: 484px;
+        }
+
+        .sip-info {
+            text-align: center;
+
+            h2 {
+                text-align: center;
+            }
+        }
+    }
+
     #teacher-icon {
         display: none;
     }
@@ -257,6 +312,20 @@ $story-width: $cols3;
 
     .story {
         width: $story-width;
+    }
+
+    .feature {
+        .educators-using {
+            width: 484px;
+        }
+
+        .sip-info {
+            text-align: center;
+
+            h2 {
+                text-align: center;
+            }
+        }
     }
 
     #teacher-icon {
@@ -337,6 +406,14 @@ $story-width: $cols3;
 
     #view {
         text-align: left;
+    }
+
+    .feature {
+        .sip-info {
+            h2 {
+                text-align: left;
+            }
+        }
     }
 
     .flex-row {
@@ -443,5 +520,13 @@ $story-width: $cols3;
 
     .account-flex {
         justify-content: space-between;
+    }
+
+    .feature {
+        .sip-info {
+            h2 {
+                text-align: left;
+            }
+        }
     }
 }
