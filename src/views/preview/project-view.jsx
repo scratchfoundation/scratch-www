@@ -159,9 +159,10 @@ class Preview extends React.Component {
             if (typeof this.props.projectInfo.id === 'undefined') {
                 this.initCounts(0, 0);
             } else {
+                const token = this.props.user ? this.props.user.token : null;
                 this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
                 this.props.getProjectStudios(this.props.projectInfo.id,
-                    this.props.authorUsername, this.props.user.token);
+                    this.props.authorUsername, this.props.isAdmin, token);
                 if (this.props.projectInfo.remix.parent !== null) {
                     this.props.getParentInfo(this.props.projectInfo.remix.parent);
                 }
@@ -980,8 +981,8 @@ const mapDispatchToProps = dispatch => ({
     getRemixes: id => {
         dispatch(previewActions.getRemixes(id));
     },
-    getProjectStudios: (id, username, token) => {
-        dispatch(previewActions.getProjectStudios(id, username, token));
+    getProjectStudios: (id, ownerUsername, isAdmin, token) => {
+        dispatch(previewActions.getProjectStudios(id, ownerUsername, isAdmin, token));
     },
     getCuratedStudios: (username, token) => {
         dispatch(previewActions.getCuratedStudios(username, token));
