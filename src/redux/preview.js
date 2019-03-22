@@ -765,10 +765,13 @@ module.exports.getRemixes = id => (dispatch => {
 
 module.exports.getProjectStudios = (id, username, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.FETCHING));
-    api({
-        uri: `/users/${username}/projects/${id}/studios`,
-        authentication: token
-    }, (err, body, res) => {
+    const apiOpts = {
+        uri: `/users/${username}/projects/${id}/studios`
+    };
+    if (token) {
+        apiOpts.authentication = token;
+    }
+    api(apiOpts, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
