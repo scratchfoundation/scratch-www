@@ -20,6 +20,8 @@ const render = require('../../lib/render.jsx');
 
 const ACCEPTABLE_MODES = ['trending', 'popular'];
 
+const piano = require('../../lib/piano');
+
 require('./search.scss');
 
 class Search extends React.Component {
@@ -29,7 +31,9 @@ class Search extends React.Component {
             'getSearchState',
             'handleChangeSortMode',
             'handleGetSearchMore',
-            'getTab'
+            'handlePianoHover',
+            'getTab',
+            'tick'
         ]);
         this.state = this.getSearchState();
         this.state.loaded = [];
@@ -37,6 +41,17 @@ class Search extends React.Component {
         this.state.mode = 'popular';
         this.state.offset = 0;
         this.state.loadMore = false;
+
+        this.state.isEgg = false;
+        this.state.isPiano = false;
+        this.state.isTutorial = false;
+        this.state.isSpin = false;
+        this.state.isColor = false;
+        this.state.isGhost = false;
+        this.state.isBrightness = false;
+        this.state.isPixelate = false;
+        this.state.isFisheye = false;
+        this.state.elapsed = 0;
 
         let mode = '';
         const query = window.location.search;
@@ -84,12 +99,53 @@ class Search extends React.Component {
             // Error means that term was not URI encoded and decoding failed.
             // We can silence this error because not all query strings are intended to be decoded.
         }
+
+        if (term.includes('egg')) {
+            this.makeSurprise('isEgg');
+        }
+        if (term.includes('piano') || term === 'music') {
+            this.makeSurprise('isPiano');
+        }
+        if (term.includes('cat fact') || term.includes('tutorial')) {
+            this.makeSurprise('isTutorial');
+        }
+        if (term.includes('spin') || term.includes('rotate') || term.includes('whirl')) {
+            this.makeSurprise('isSpin');
+            setInterval(this.tick, 5);
+        }
+        if (term.includes('color') || term.includes('rainbow') || term.includes('colour')) {
+            this.makeSurprise('isColor');
+            setInterval(this.tick, 50);
+        }
+        if (term.includes('ghost')) {
+            this.makeSurprise('isGhost');
+            setInterval(this.tick, 20);
+        }
+        if (term.includes('brightness')) {
+            this.makeSurprise('isBrightness');
+            setInterval(this.tick, 20);
+        }
+        if (term.includes('pixelate')) {
+            this.makeSurprise('isPixelate');
+            setInterval(this.tick, 20);
+        }
+        if (term.includes('fisheye') || term.includes('fish eye')) {
+            this.makeSurprise('isFisheye');
+        }
+
         this.props.dispatch(navigationActions.setSearchTerm(term));
     }
     componentDidUpdate (prevProps) {
         if (this.props.searchTerm !== prevProps.searchTerm) {
             this.handleGetSearchMore();
         }
+    }
+    makeSurprise (surprise) {
+        this.setState({[surprise]: true});
+    }
+    
+    handlePianoHover (noteNumber) {
+        piano(noteNumber, ACCEPTABLE_MODES.indexOf(this.state.mode));
     }
     getSearchState () {
         let pathname = window.location.pathname.toLowerCase();
@@ -136,6 +192,11 @@ class Search extends React.Component {
             });
         });
     }
+    tick () {
+        this.setState(prevState => (
+            {elapsed: (prevState.elapsed + 1)}
+        ));
+    }
     getTab (type) {
         const term = this.props.searchTerm.split(' ').join('+');
         let allTab = (
@@ -169,11 +230,13 @@ class Search extends React.Component {
             <Grid
                 cards
                 showAvatar
+                isEggShaped={this.state.isEgg}
                 itemType={this.state.tab}
                 items={this.state.loaded}
                 showFavorites={false}
                 showLoves={false}
                 showViews={false}
+                onPianoEnter={this.state.isPiano ? this.handlePianoHover : null}
             />
         );
         let searchAction = null;
@@ -190,6 +253,7 @@ class Search extends React.Component {
         }
         return (
             <div
+                className={this.state.isTutorial ? 'sillyTutorial' : this.state.isFisheye ? 'fisheye' : ''}
                 id="projectBox"
                 key="projectBox"
             >
@@ -198,9 +262,27 @@ class Search extends React.Component {
             </div>
         );
     }
+    fancyStyle () {
+        const style = {};
+        if (this.state.isSpin) {
+            style.transform = `rotate(${Math.min(this.state.elapsed, 360)}deg)`;
+        }
+        if (this.state.isColor) {
+            style.filter = `hue-rotate(${this.state.elapsed}deg) saturate(400%)`;
+        }
+        if (this.state.isGhost) {
+            style.opacity = `${Math.min(1, this.state.elapsed / 100)}`;
+        }
+        if (this.state.isBrightness) {
+            style.filter = `brightness(${Math.max(1, 2 - (this.state.elapsed / 100))})`;
+        }
+
+        return style;
+    }
+
     render () {
         return (
-            <div>
+            <div style={this.fancyStyle()} >
                 <div className="outer">
                     <TitleBanner className="masthead">
                         <div className="inner">

@@ -1,0 +1,30 @@
+@import "../../colors";
+@import "../../frameless";
+
+.mod-cats {
+    min-height: 15rem;
+    max-height: calc(100% - 8rem);
+    overflow: hidden;
+}
+
+.cats-modal-header {
+    box-shadow: inset 0 -1px 0 0 $ui-blue-dark;
+    background-color: $ui-blue;
+}
+
+.cats-modal-content {
+    margin: 0px auto;
+    box-shadow: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+.cats-modal-content img {
+    width: 400px;
+
+    @media #{$small}, #{$small-height} {
+        width: 100%;
+    }
+}

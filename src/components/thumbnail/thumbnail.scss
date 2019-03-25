@@ -108,4 +108,10 @@
             height: $gallery-height;
         }
     }
+
+    &.pianoKey {
+        &:hover {
+            box-shadow: 0 0 0 3px #4d97ff;
+        }
+    }
 }
