@@ -466,7 +466,7 @@ module.exports.getTopLevelComments = (id, offset, ownerUsername, isAdmin, token)
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
         uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${id}/comments`,
-        authentication: isAdmin ? token : null,
+        authentication: token ? token : null,
         params: {offset: offset || 0, limit: COMMENT_LIMIT}
     }, (err, body, res) => {
         if (err) {
@@ -496,7 +496,7 @@ module.exports.getCommentById = (projectId, commentId, ownerUsername, isAdmin, t
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
         uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${projectId}/comments/${commentId}`,
-        authentication: isAdmin ? token : null
+        authentication: token ? token : null
     }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
@@ -527,7 +527,7 @@ module.exports.getReplies = (projectId, commentIds, offset, ownerUsername, isAdm
     async.eachLimit(commentIds, 10, (parentId, callback) => {
         api({
             uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${projectId}/comments/${parentId}/replies`,
-            authentication: isAdmin ? token : null,
+            authentication: token ? token : null,
             params: {offset: offset || 0, limit: COMMENT_LIMIT}
         }, (err, body, res) => {
             if (err) {
@@ -767,7 +767,7 @@ module.exports.getProjectStudios = (id, ownerUsername, isAdmin, token) => (dispa
     dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.FETCHING));
     api({
         uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${id}/studios`,
-        authentication: token
+        authentication: token ? token : null
     }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.ERROR));
