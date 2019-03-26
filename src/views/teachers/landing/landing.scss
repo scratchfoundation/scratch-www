@@ -76,8 +76,12 @@ $story-width: $cols3;
         }
     }
 
-    .feature {
-        background-color: $ui-blue-very-light;
+    .sub-band-feature-outer {
+        background-color: $ui-white;
+
+        .sub-band-feature-inner {
+            background-color: $ui-blue-10percent;
+        }
 
         section#sip {
             margin-bottom: .5rem;
@@ -88,7 +92,7 @@ $story-width: $cols3;
             align-items: start;
 
             .using-scratch-image {
-                width: 420px;
+                max-width: 420px;
                 padding: 2.75rem 2rem;
 
                 img {
@@ -98,7 +102,7 @@ $story-width: $cols3;
             }
 
             .sip-info {
-                width: 21.75rem;
+                max-width: 21.75rem;
                 padding-left: 2rem;
                 padding-right: 2rem;
                 padding-bottom: 2rem;
@@ -262,9 +266,9 @@ $story-width: $cols3;
     }
 
     .educators {
-        .feature {
+        .sub-band-feature-outer {
             .educators-using {
-                width: 484px;
+                max-width: 484px;
             }
 
             .sip-info {
@@ -321,9 +325,9 @@ $story-width: $cols3;
     }
 
     .educators {
-        .feature {
+        .sub-band-feature-outer {
             .educators-using {
-                width: 484px;
+                max-width: 484px;
             }
 
             .sip-info {
@@ -465,11 +469,11 @@ $story-width: $cols3;
             }
         }
 
-        .feature {
+        .sub-band-feature-outer {
             .educators-using {
 
                 .using-scratch-image {
-                    width: 300px;
+                    max-width: 300px;
                     padding: 2.75rem 1.25rem;
                 }
 
@@ -542,7 +546,7 @@ $story-width: $cols3;
         justify-content: space-between;
     }
 
-    .feature {
+    .sub-band-feature-outer {
         .sip-info {
             padding-top: 2rem;
 

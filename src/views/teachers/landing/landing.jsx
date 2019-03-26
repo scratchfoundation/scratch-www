@@ -65,38 +65,40 @@ const Landing = props => (
                     </a>
                 </SubNavigation>
             </div>
-            <div className="feature">
-                <SubNavigation className="inner">
-                    <section id="sip">
-                        <FlexRow className="educators-using">
-                            <div className="using-scratch-image">
-                                <img src="images/teachers/makey-activity.png" />
-                            </div>
-                            <div className="sip-info">
-                                <h2><FormattedMessage id="teacherlanding.howUsingScratch" /></h2>
-                                <p>
-                                    <FormattedMessage
-                                        id="teacherlanding.sip"
-                                        values={{
-                                            abbreviatedSipName: (
-                                                <FormattedMessage id="teacherlanding.abbreviatedSipName" />
-                                            ),
-                                            sipName: (
-                                                <FormattedMessage id="teacherlanding.sipName" />
-                                            )
-                                        }}
-                                    />
-                                </p>
-                                <a href="https://sip.scratch.mit.edu/">
-                                    <Button className="sip-button large icon-right">
-                                        <FormattedMessage id="teacherlanding.seeLatest" />
-                                        <img src="/svgs/project/r-arrow.svg" />
-                                    </Button>
-                                </a>
-                            </div>
-                        </FlexRow>
-                    </section>
-                </SubNavigation>
+            <div className="sub-band-feature-outer">
+                <div className="sub-band-feature-inner">
+                    <SubNavigation className="inner">
+                        <section id="sip">
+                            <FlexRow className="educators-using">
+                                <div className="using-scratch-image">
+                                    <img src="images/teachers/makey-activity.png" />
+                                </div>
+                                <div className="sip-info">
+                                    <h2><FormattedMessage id="teacherlanding.howUsingScratch" /></h2>
+                                    <p>
+                                        <FormattedMessage
+                                            id="teacherlanding.sip"
+                                            values={{
+                                                abbreviatedSipName: (
+                                                    <FormattedMessage id="teacherlanding.abbreviatedSipName" />
+                                                ),
+                                                sipName: (
+                                                    <FormattedMessage id="teacherlanding.sipName" />
+                                                )
+                                            }}
+                                        />
+                                    </p>
+                                    <a href="https://sip.scratch.mit.edu/">
+                                        <Button className="sip-button large icon-right">
+                                            <FormattedMessage id="teacherlanding.seeLatest" />
+                                            <img src="/svgs/project/r-arrow.svg" />
+                                        </Button>
+                                    </a>
+                                </div>
+                            </FlexRow>
+                        </section>
+                    </SubNavigation>
+                </div>
             </div>
         </TitleBanner>
         <div className="inner">
