@@ -99,7 +99,9 @@ $story-width: $cols3;
 
             .sip-info {
                 width: 21.75rem;
-                padding: 2rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                padding-bottom: 2rem;
 
                 h2 {
                     line-height: 2.7rem;
@@ -259,16 +261,20 @@ $story-width: $cols3;
         }
     }
 
-    .feature {
-        .educators-using {
-            width: 484px;
-        }
+    .educators {
+        .feature {
+            .educators-using {
+                width: 484px;
+            }
 
-        .sip-info {
-            text-align: center;
-
-            h2 {
+            .sip-info {
                 text-align: center;
+                padding-top: 0;
+                margin: auto;
+
+                h2 {
+                    text-align: center;
+                }
             }
         }
     }
@@ -314,16 +320,20 @@ $story-width: $cols3;
         width: $story-width;
     }
 
-    .feature {
-        .educators-using {
-            width: 484px;
-        }
+    .educators {
+        .feature {
+            .educators-using {
+                width: 484px;
+            }
 
-        .sip-info {
-            text-align: center;
-
-            h2 {
+            .sip-info {
                 text-align: center;
+                padding-top: 0;
+                margin: auto;
+
+                h2 {
+                    text-align: center;
+                }
             }
         }
     }
@@ -408,14 +418,6 @@ $story-width: $cols3;
         text-align: left;
     }
 
-    .feature {
-        .sip-info {
-            h2 {
-                text-align: left;
-            }
-        }
-    }
-
     .flex-row {
         &.sidebar-row {
 
@@ -459,6 +461,24 @@ $story-width: $cols3;
                 img {
                     margin: 0;
                     width: $cols2;
+                }
+            }
+        }
+
+        .feature {
+            .educators-using {
+
+                .using-scratch-image {
+                    width: 300px;
+                    padding: 2.75rem 1.25rem;
+                }
+
+                .sip-info {
+                    padding-top: 2rem;
+
+                    h2 {
+                        text-align: left;
+                    }
                 }
             }
         }
@@ -524,6 +544,8 @@ $story-width: $cols3;
 
     .feature {
         .sip-info {
+            padding-top: 2rem;
+
             h2 {
                 text-align: left;
             }
