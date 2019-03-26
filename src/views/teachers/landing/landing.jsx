@@ -89,7 +89,11 @@ const Landing = props => (
                                     }}
                                 />
                             </p>
-                            <a href="https://sip.scratch.mit.edu/">
+                            <a
+                                href="https://sip.scratch.mit.edu/"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
                                 <Button className="sip-button large icon-right">
                                     <FormattedMessage id="teacherlanding.seeLatest" />
                                     <img src="/svgs/project/r-arrow.svg" />
