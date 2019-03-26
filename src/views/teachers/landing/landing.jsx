@@ -8,6 +8,7 @@ const React = require('react');
 const FlexRow = require('../../../components/flex-row/flex-row.jsx');
 const SubNavigation = require('../../../components/subnavigation/subnavigation.jsx');
 const TitleBanner = require('../../../components/title-banner/title-banner.jsx');
+const Button = require('../../../components/forms/button.jsx');
 
 const Page = require('../../../components/page/www/page.jsx');
 const render = require('../../../lib/render.jsx');
@@ -65,6 +66,44 @@ const Landing = props => (
                 </SubNavigation>
             </div>
         </TitleBanner>
+
+        <div className="feature">
+            <div className="inner">
+                <section id="sip">
+                    <FlexRow className="educators-using">
+                        <div className="using-scratch-image">
+                            <img src="images/teachers/makey-activity.png" />
+                        </div>
+                        <div className="sip-info">
+                            <h2><FormattedMessage id="teacherlanding.howUsingScratch" /></h2>
+                            <p>
+                                <FormattedMessage
+                                    id="teacherlanding.sip"
+                                    values={{
+                                        abbreviatedSipName: (
+                                            <FormattedMessage id="teacherlanding.abbreviatedSipName" />
+                                        ),
+                                        sipName: (
+                                            <FormattedMessage id="teacherlanding.sipName" />
+                                        )
+                                    }}
+                                />
+                            </p>
+                            <a
+                                href="https://sip.scratch.mit.edu/"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                <Button className="sip-button large icon-right">
+                                    <FormattedMessage id="teacherlanding.seeLatest" />
+                                    <img src="/svgs/project/r-arrow.svg" />
+                                </Button>
+                            </a>
+                        </div>
+                    </FlexRow>
+                </section>
+            </div>
+        </div>
 
         <div className="inner">
             <section id="resources">
