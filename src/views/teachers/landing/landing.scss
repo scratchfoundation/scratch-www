@@ -25,6 +25,7 @@ $story-width: $cols3;
         &.masthead {
             background-color: $teacher-spot;
             padding-bottom: 0;
+            margin-bottom: 0;
 
             h1 {
                 margin: 0;
@@ -76,14 +77,12 @@ $story-width: $cols3;
         }
     }
 
-    .sub-band-feature-outer {
-        background-color: $ui-white;
-
-        .sub-band-feature-inner {
-            background-color: $ui-blue-10percent;
-        }
+    .feature {
+        background-color: $ui-blue-10percent;
+        margin-bottom: 2.75rem;
 
         section#sip {
+            padding-top: .5rem;
             margin-bottom: .5rem;
         }
 
@@ -161,8 +160,8 @@ $story-width: $cols3;
         .nav-spacer { // For making the anchors work.
             display: block;
             visibility: hidden;
-            margin-top: -50px;
-            height: 50px;
+            margin-top: -2.5rem;
+            height: 2.5rem;
         }
 
         margin-bottom: 3rem;
@@ -266,7 +265,7 @@ $story-width: $cols3;
     }
 
     .educators {
-        .sub-band-feature-outer {
+        .feature {
             .educators-using {
                 max-width: 484px;
             }
@@ -325,7 +324,7 @@ $story-width: $cols3;
     }
 
     .educators {
-        .sub-band-feature-outer {
+        .feature {
             .educators-using {
                 max-width: 484px;
             }
@@ -469,7 +468,7 @@ $story-width: $cols3;
             }
         }
 
-        .sub-band-feature-outer {
+        .feature {
             .educators-using {
 
                 .using-scratch-image {
@@ -546,7 +545,7 @@ $story-width: $cols3;
         justify-content: space-between;
     }
 
-    .sub-band-feature-outer {
+    .feature {
         .sip-info {
             padding-top: 2rem;
 
