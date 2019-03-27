@@ -2,7 +2,7 @@ var fs = require('fs');
 var glob = require('glob');
 var tap = require('tap');
 
-var TRANSLATIONS_PATTERN = './node_modules/scratchr2_translations/www/**/*.json';
+var TRANSLATIONS_PATTERN = './node_modules/scratch-l10n/www/**/*.json';
 var files = glob.sync(TRANSLATIONS_PATTERN);
 
 const checkJson = (data, name) => {
