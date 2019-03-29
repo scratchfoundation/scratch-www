@@ -35,8 +35,7 @@
     "react-helmet": "5.2.0",
     "scratch-docker": "^1.0.2",
     "scratch-parser": "^5.0.0",
-    "scratch-storage": "^0.5.1",
-    "tone": "^13.4.9"
+    "scratch-storage": "^0.5.1"
   },
   "devDependencies": {
     "ajv": "6.4.0",
@@ -99,7 +98,7 @@
     "react-responsive": "3.0.0",
     "react-slick": "0.16.0",
     "react-string-replace": "0.4.1",
-    "scratch-gui": "github:LLK/scratch-gui#totally-normal",
+    "scratch-gui": "0.1.0-prerelease.20190321152316",
     "react-telephone-input": "4.3.4",
     "redux": "3.5.2",
     "redux-thunk": "2.0.1",

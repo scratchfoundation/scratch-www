@@ -88,15 +88,6 @@
         }
     }
 
-    &.egg {
-        .thumbnail {
-            margin: 7px 27px !important;
-            width: 180px !important;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40% !important;
-            overflow: hidden;
-        }
-    }
-
     &.column {
         flex-direction: column;
         justify-content: center;
