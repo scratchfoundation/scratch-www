@@ -481,7 +481,7 @@ module.exports.getTopLevelComments = (id, offset, ownerUsername, isAdmin, token)
         }
         dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
         dispatch(module.exports.setComments(body));
-        dispatch(module.exports.getReplies(id, body.map(comment => comment.id), 0, isAdmin, token));
+        dispatch(module.exports.getReplies(id, body.map(comment => comment.id), 0, ownerUsername, isAdmin, token));
 
         // If we loaded a full page of comments, assume there are more to load.
         // This will be wrong (1 / COMMENT_LIMIT) of the time, but does not require
@@ -511,13 +511,13 @@ module.exports.getCommentById = (projectId, commentId, ownerUsername, isAdmin, t
 
         if (body.parent_id) {
             // If the comment is a reply, load the parent
-            return dispatch(module.exports.getCommentById(projectId, body.parent_id, isAdmin, token));
+            return dispatch(module.exports.getCommentById(projectId, body.parent_id, ownerUsername, isAdmin, token));
         }
 
         // If the comment is not a reply, show it as top level and load replies
         dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHED));
         dispatch(module.exports.setComments([body]));
-        dispatch(module.exports.getReplies(projectId, [body.id], 0, isAdmin, token));
+        dispatch(module.exports.getReplies(projectId, [body.id], 0, ownerUsername, isAdmin, token));
     });
 });
 
