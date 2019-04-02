@@ -8,68 +8,52 @@ const thumbnailUrl = require('../../lib/user-thumbnail');
 
 require('./grid.scss');
 
-const Grid = props => {
-
-    const surpriseClass = props.isEggShaped ? 'egg' : '';
-
-    return (
-        <div
-            className={classNames(
-                'grid',
-                props.className,
-                surpriseClass
-            )}
-        >
-            <FlexRow>
-                {props.items.map((item, key) => {
-                    const href = `/${props.itemType}/${item.id}/`;
-                    const pianoFunc = props.onPianoEnter ? () => props.onPianoEnter(key) : null;
-                    if (props.itemType === 'projects') {
-                        return (
-                            <Thumbnail
-                                avatar={thumbnailUrl(item.author.id)}
-                                creator={item.author.username}
-                                favorites={item.stats.favorites}
-                                href={href}
-                                key={key}
-                                loves={item.stats.loves}
-                                remixes={item.stats.remixes}
-                                showAvatar={props.showAvatar}
-                                showFavorites={props.showFavorites}
-                                showLoves={props.showLoves}
-                                showRemixes={props.showRemixes}
-                                showViews={props.showViews}
-                                src={item.image}
-                                title={item.title}
-                                type={'project'}
-                                views={item.stats.views}
-                                onPianoEnter={pianoFunc}
-                            />
-                        );
-                    }
+const Grid = props => (
+    <div className={classNames('grid', props.className)}>
+        <FlexRow>
+            {props.items.map((item, key) => {
+                const href = `/${props.itemType}/${item.id}/`;
+                if (props.itemType === 'projects') {
                     return (
                         <Thumbnail
+                            avatar={thumbnailUrl(item.author.id)}
+                            creator={item.author.username}
+                            favorites={item.stats.favorites}
                             href={href}
                             key={key}
-                            owner={item.owner}
+                            loves={item.stats.loves}
+                            remixes={item.stats.remixes}
+                            showAvatar={props.showAvatar}
+                            showFavorites={props.showFavorites}
+                            showLoves={props.showLoves}
+                            showRemixes={props.showRemixes}
+                            showViews={props.showViews}
                             src={item.image}
                             title={item.title}
-                            type={'gallery'}
-                            onPianoEnter={pianoFunc}
+                            type={'project'}
+                            views={item.stats.views}
                         />
                     );
-                })}
-            </FlexRow>
-        </div>
-    );
-};
+                }
+                return (
+                    <Thumbnail
+                        href={href}
+                        key={key}
+                        owner={item.owner}
+                        src={item.image}
+                        title={item.title}
+                        type={'gallery'}
+                    />
+                );
+            })}
+        </FlexRow>
+    </div>
+);
 
 Grid.propTypes = {
     className: PropTypes.string,
-    isEggShaped: PropTypes.bool,
     itemType: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.object),
-    onPianoEnter: PropTypes.func,
+    items: PropTypes.arrayOf(PropTypes.object)
 };
 
 Grid.defaultProps = {

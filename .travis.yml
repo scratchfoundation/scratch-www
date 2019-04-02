@@ -102,17 +102,9 @@ install:
   - sudo -H pip install -r requirements.txt
   - npm --production=false install
   - npm --production=false update
-  - cd node_modules/scratch-gui
-  - npm --production=false install
-  - cd node_modules/scratch-blocks
-  - npm --production=false install
-  - cd ../..
-  - npm run build
-  - cd ../..
 jobs:
   include:
   - stage: test
-    script: env make build
     deploy:
     - provider: script
       skip_cleanup: $SKIP_CLEANUP
@@ -121,7 +113,6 @@ jobs:
         repo: LLK/scratch-www
         branch:
         - develop
-        - totally-normal
         - hotfix/*
         - release/*
     - provider: script

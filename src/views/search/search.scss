@@ -165,21 +165,6 @@ $base-bg: $ui-white;
             max-width: 500px;
             text-align: center;
         }
-
-        &.sillyTutorial {
-            background-image: url('computer-cat.jpg');
-            background-size: 50%;
-            .thumbnail {
-                opacity: .8;
-            }
-        }
-        &.fisheye {
-            background-image: url('fish.svg');
-            background-size: 100%;
-            .thumbnail {
-                opacity: .8;
-            }
-        }
     }
 }
 
