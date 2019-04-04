@@ -25,6 +25,7 @@ $story-width: $cols3;
         &.masthead {
             background-color: $teacher-spot;
             padding-bottom: 0;
+            margin-bottom: 0;
 
             h1 {
                 margin: 0;
@@ -76,6 +77,52 @@ $story-width: $cols3;
         }
     }
 
+    .feature {
+        background-color: $ui-blue-10percent;
+        margin-bottom: 2.75rem;
+
+        section#sip {
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            margin-bottom: .5rem;
+        }
+
+        .educators-using {
+            justify-content: flex-start;
+            align-items: start;
+
+            .using-scratch-image {
+                max-width: 420px;
+                padding: 2.75rem 2rem;
+
+                img {
+                    width: 100%;
+                    border-radius: .5rem;
+                }
+            }
+
+            .sip-info {
+                max-width: 21.75rem;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                padding-bottom: 2rem;
+
+                h2 {
+                    line-height: 2.7rem;
+                }
+
+                p {
+                    margin-top: 1.25rem;
+                    margin-bottom: 1.25rem;
+                }
+            }
+
+            .sip-button {
+                font-size: 1rem;
+            }
+        }
+    }
+
     .educator-community {
         margin-bottom: 2rem;
         text-align: left;
@@ -92,14 +139,30 @@ $story-width: $cols3;
             max-width: 16rem;
             text-align: center;
         }
+        .icon-wrapper {
+            height: 150px;
+
+            img.sip-icon {
+                padding: 1.75rem;
+                width: 130px;
+            }
+            img.resources-icon {
+                padding: 1.5rem;
+                width: 100px;
+            }
+            img.creativecomputing-icon {
+                padding: 1.5rem;
+                width: 85px;
+            }
+        }
     }
 
     section {
         .nav-spacer { // For making the anchors work.
             display: block;
             visibility: hidden;
-            margin-top: -50px;
-            height: 50px;
+            margin-top: -2.5rem;
+            height: 2.5rem;
         }
 
         margin-bottom: 3rem;
@@ -202,6 +265,24 @@ $story-width: $cols3;
         }
     }
 
+    .educators {
+        .feature {
+            .educators-using {
+                max-width: 484px;
+            }
+
+            .sip-info {
+                text-align: center;
+                padding-top: 0;
+                margin: auto;
+
+                h2 {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
     #teacher-icon {
         display: none;
     }
@@ -241,6 +322,24 @@ $story-width: $cols3;
 
     .story {
         width: $story-width;
+    }
+
+    .educators {
+        .feature {
+            .educators-using {
+                max-width: 484px;
+            }
+
+            .sip-info {
+                text-align: center;
+                padding-top: 0;
+                margin: auto;
+
+                h2 {
+                    text-align: center;
+                }
+            }
+        }
     }
 
     #teacher-icon {
@@ -369,6 +468,24 @@ $story-width: $cols3;
                 }
             }
         }
+
+        .feature {
+            .educators-using {
+
+                .using-scratch-image {
+                    max-width: 300px;
+                    padding: 2.75rem 1.25rem;
+                }
+
+                .sip-info {
+                    padding-top: 2rem;
+
+                    h2 {
+                        text-align: left;
+                    }
+                }
+            }
+        }
     }
 
     section {
@@ -427,5 +544,15 @@ $story-width: $cols3;
 
     .account-flex {
         justify-content: space-between;
+    }
+
+    .feature {
+        .sip-info {
+            padding-top: 2rem;
+
+            h2 {
+                text-align: left;
+            }
+        }
     }
 }

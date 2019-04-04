@@ -38,4 +38,18 @@ $pass-bg: $ui-aqua;
     &:disabled {
         box-shadow: none;
     }
+
+    &.large {
+        border-radius: .25rem;
+        font-size: 1rem;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        padding: .75rem 1.25rem .8125rem;
+    }
+
+    &.icon-right img {
+        height: 1.25rem;
+        margin-bottom: -.25rem;
+        margin-left: .5rem;
+        margin-right: -.25rem;
+    }
 }

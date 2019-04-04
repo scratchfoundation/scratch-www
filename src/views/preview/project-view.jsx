@@ -159,7 +159,10 @@ class Preview extends React.Component {
             if (typeof this.props.projectInfo.id === 'undefined') {
                 this.initCounts(0, 0);
             } else {
+                const token = this.props.user ? this.props.user.token : null;
                 this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
+                this.props.getProjectStudios(this.props.projectInfo.id,
+                    this.props.authorUsername, this.props.isAdmin, token);
                 if (this.props.projectInfo.remix.parent !== null) {
                     this.props.getParentInfo(this.props.projectInfo.remix.parent);
                 }
@@ -167,6 +170,13 @@ class Preview extends React.Component {
                     this.props.projectInfo.remix.root !== this.props.projectInfo.remix.parent
                 ) {
                     this.props.getOriginalInfo(this.props.projectInfo.remix.root);
+                }
+                if (this.state.singleCommentId) {
+                    this.props.getCommentById(this.state.projectId, this.state.singleCommentId,
+                        this.props.authorUsername, this.props.isAdmin, token);
+                } else {
+                    this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
+                        this.props.authorUsername, this.props.isAdmin, token);
                 }
             }
         }
@@ -206,28 +216,14 @@ class Preview extends React.Component {
         if (this.props.userPresent) {
             const username = this.props.user.username;
             const token = this.props.user.token;
-            if (this.state.singleCommentId) {
-                this.props.getCommentById(this.state.projectId, this.state.singleCommentId,
-                    this.props.isAdmin, token);
-            } else {
-                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
-                    this.props.isAdmin, token);
-            }
             this.props.getProjectInfo(this.state.projectId, token);
             this.props.getRemixes(this.state.projectId, token);
-            this.props.getProjectStudios(this.state.projectId, token);
             this.props.getCuratedStudios(username);
             this.props.getFavedStatus(this.state.projectId, username, token);
             this.props.getLovedStatus(this.state.projectId, username, token);
         } else {
-            if (this.state.singleCommentId) {
-                this.props.getCommentById(this.state.projectId, this.state.singleCommentId);
-            } else {
-                this.props.getTopLevelComments(this.state.projectId, this.props.comments.length);
-            }
             this.props.getProjectInfo(this.state.projectId);
             this.props.getRemixes(this.state.projectId);
-            this.props.getProjectStudios(this.state.projectId);
         }
     }
     setScreenFromOrientation () {
@@ -980,8 +976,8 @@ const mapDispatchToProps = dispatch => ({
     getRemixes: id => {
         dispatch(previewActions.getRemixes(id));
     },
-    getProjectStudios: id => {
-        dispatch(previewActions.getProjectStudios(id));
+    getProjectStudios: (id, ownerUsername, isAdmin, token) => {
+        dispatch(previewActions.getProjectStudios(id, ownerUsername, isAdmin, token));
     },
     getCuratedStudios: (username, token) => {
         dispatch(previewActions.getCuratedStudios(username, token));
@@ -993,14 +989,14 @@ const mapDispatchToProps = dispatch => ({
             dispatch(previewActions.leaveStudio(studioId, id, token));
         }
     },
-    getTopLevelComments: (id, offset, isAdmin, token) => {
-        dispatch(previewActions.getTopLevelComments(id, offset, isAdmin, token));
+    getTopLevelComments: (id, offset, ownerUsername, isAdmin, token) => {
+        dispatch(previewActions.getTopLevelComments(id, offset, ownerUsername, isAdmin, token));
     },
-    getCommentById: (projectId, commentId, isAdmin, token) => {
-        dispatch(previewActions.getCommentById(projectId, commentId, isAdmin, token));
+    getCommentById: (projectId, commentId, ownerUsername, isAdmin, token) => {
+        dispatch(previewActions.getCommentById(projectId, commentId, ownerUsername, isAdmin, token));
     },
-    getMoreReplies: (projectId, commentId, offset, isAdmin, token) => {
-        dispatch(previewActions.getReplies(projectId, [commentId], offset, isAdmin, token));
+    getMoreReplies: (projectId, commentId, offset, ownerUsername, isAdmin, token) => {
+        dispatch(previewActions.getReplies(projectId, [commentId], offset, ownerUsername, isAdmin, token));
     },
     getFavedStatus: (id, username, token) => {
         dispatch(previewActions.getFavedStatus(id, username, token));
