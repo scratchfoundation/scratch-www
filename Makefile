@@ -38,7 +38,7 @@ deploy:
 
 translations:
 	./bin/get-localized-urls localized-urls.json
-	./bin/build-locales node_modules/scratchr2_translations/www/translations intl
+	./bin/build-locales node_modules/scratch-l10n/www intl
 
 webpack:
 	$(WEBPACK) --bail

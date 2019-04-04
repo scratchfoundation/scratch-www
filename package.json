@@ -11,7 +11,10 @@
     "smoke-sauce": "SMOKE_REMOTE=true tap ./test/integration/smoke-testing/*.js --timeout=60000",
     "watch": "make watch",
     "build": "make build",
-    "dev": "make watch && make start &"
+    "dev": "make watch && make start &",
+    "translate:urls": "node ./bin/get-localized-urls localized-urls.json",
+    "translate:files": "node ./bin/build-locales node_modules/scratch-l10n/www intl",
+    "translate": "npm run translate:urls && npm run translate:files"
   },
   "repository": {
     "type": "git",
@@ -98,13 +101,12 @@
     "react-responsive": "3.0.0",
     "react-slick": "0.16.0",
     "react-string-replace": "0.4.1",
-    "scratch-gui": "0.1.0-prerelease.20190321152316",
+    "scratch-gui": "0.1.0-prerelease.20190404100408",
     "react-telephone-input": "4.3.4",
     "redux": "3.5.2",
     "redux-thunk": "2.0.1",
     "sass-loader": "6.0.6",
     "scratch-l10n": "latest",
-    "scratchr2_translations": "git://github.com/LLK/scratchr2_translations.git#master",
     "slick-carousel": "1.6.0",
     "source-map-support": "0.3.2",
     "style-loader": "0.12.3",
