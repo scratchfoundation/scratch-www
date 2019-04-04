@@ -159,10 +159,7 @@ class Preview extends React.Component {
             if (typeof this.props.projectInfo.id === 'undefined') {
                 this.initCounts(0, 0);
             } else {
-                const token = this.props.user ? this.props.user.token : null;
                 this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
-                this.props.getProjectStudios(this.props.projectInfo.id,
-                    this.props.authorUsername, this.props.isAdmin, token);
                 if (this.props.projectInfo.remix.parent !== null) {
                     this.props.getParentInfo(this.props.projectInfo.remix.parent);
                 }
@@ -218,6 +215,7 @@ class Preview extends React.Component {
             }
             this.props.getProjectInfo(this.state.projectId, token);
             this.props.getRemixes(this.state.projectId, token);
+            this.props.getProjectStudios(this.state.projectId, token);
             this.props.getCuratedStudios(username);
             this.props.getFavedStatus(this.state.projectId, username, token);
             this.props.getLovedStatus(this.state.projectId, username, token);
@@ -229,6 +227,7 @@ class Preview extends React.Component {
             }
             this.props.getProjectInfo(this.state.projectId);
             this.props.getRemixes(this.state.projectId);
+            this.props.getProjectStudios(this.state.projectId);
         }
     }
     setScreenFromOrientation () {
@@ -981,8 +980,8 @@ const mapDispatchToProps = dispatch => ({
     getRemixes: id => {
         dispatch(previewActions.getRemixes(id));
     },
-    getProjectStudios: (id, ownerUsername, isAdmin, token) => {
-        dispatch(previewActions.getProjectStudios(id, ownerUsername, isAdmin, token));
+    getProjectStudios: id => {
+        dispatch(previewActions.getProjectStudios(id));
     },
     getCuratedStudios: (username, token) => {
         dispatch(previewActions.getCuratedStudios(username, token));
