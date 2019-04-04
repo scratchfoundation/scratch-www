@@ -462,19 +462,19 @@ module.exports.getFavedStatus = (id, username, token) => (dispatch => {
     });
 });
 
-module.exports.getTopLevelComments = (id, offset, ownerUsername, isAdmin, token) => (dispatch => {
+module.exports.getTopLevelComments = (id, offset, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
-        uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${id}/comments`,
-        authentication: token ? token : null,
+        uri: `${isAdmin ? '/admin' : ''}/projects/${id}/comments`,
+        authentication: isAdmin ? token : null,
         params: {offset: offset || 0, limit: COMMENT_LIMIT}
-    }, (err, body, res) => {
+    }, (err, body) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
             return;
         }
-        if (typeof body === 'undefined' || res.statusCode >= 400) { // NotFound
+        if (typeof body === 'undefined') {
             dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
             dispatch(module.exports.setError('No comment info'));
             return;
@@ -492,18 +492,18 @@ module.exports.getTopLevelComments = (id, offset, ownerUsername, isAdmin, token)
     });
 });
 
-module.exports.getCommentById = (projectId, commentId, ownerUsername, isAdmin, token) => (dispatch => {
+module.exports.getCommentById = (projectId, commentId, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('comments', module.exports.Status.FETCHING));
     api({
-        uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${projectId}/comments/${commentId}`,
-        authentication: token ? token : null
-    }, (err, body, res) => {
+        uri: `${isAdmin ? '/admin' : ''}/projects/${projectId}/comments/${commentId}`,
+        authentication: isAdmin ? token : null
+    }, (err, body) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
             dispatch(module.exports.setError(err));
             return;
         }
-        if (!body || res.statusCode >= 400) { // NotFound
+        if (!body) {
             dispatch(module.exports.setFetchStatus('comments', module.exports.Status.ERROR));
             dispatch(module.exports.setError('No comment info'));
             return;
@@ -521,19 +521,19 @@ module.exports.getCommentById = (projectId, commentId, ownerUsername, isAdmin, t
     });
 });
 
-module.exports.getReplies = (projectId, commentIds, offset, ownerUsername, isAdmin, token) => (dispatch => {
+module.exports.getReplies = (projectId, commentIds, offset, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('replies', module.exports.Status.FETCHING));
     const fetchedReplies = {};
     async.eachLimit(commentIds, 10, (parentId, callback) => {
         api({
-            uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${projectId}/comments/${parentId}/replies`,
-            authentication: token ? token : null,
+            uri: `${isAdmin ? '/admin' : ''}/projects/${projectId}/comments/${parentId}/replies`,
+            authentication: isAdmin ? token : null,
             params: {offset: offset || 0, limit: COMMENT_LIMIT}
-        }, (err, body, res) => {
+        }, (err, body) => {
             if (err) {
                 return callback(`Error fetching comment replies: ${err}`);
             }
-            if (typeof body === 'undefined' || res.statusCode >= 400) { // NotFound
+            if (typeof body === 'undefined') {
                 return callback('No comment reply information');
             }
             fetchedReplies[parentId] = body;
@@ -767,7 +767,7 @@ module.exports.getProjectStudios = (id, ownerUsername, isAdmin, token) => (dispa
     dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.FETCHING));
     api({
         uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${id}/studios`,
-        authentication: token ? token : null
+        authentication: token
     }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.ERROR));
