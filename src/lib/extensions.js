@@ -37,6 +37,11 @@ const EXTENSION_INFO = {
     makeymakey: {
         name: 'Makey Makey',
         icon: 'extension-makeymakey.svg'
+    },
+    gdxfor: {
+        name: 'Force and Acceleration',
+        icon: 'extension-gdxfor.svg',
+        hasStatus: true
     }
 };
 
