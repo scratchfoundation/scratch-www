@@ -199,24 +199,24 @@ class GdxFor extends ExtensionLanding {
                     <Steps>
                         <ProjectCard
                             cardUrl="/projects//editor"
-                            description={this.props.intl.formatMessage({id: 'gdxfor.'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'gdxfor.'})}
-                            imageSrc="/images/gdxfor/starter-.png"
-                            title={this.props.intl.formatMessage({id: 'gdxfor.'})}
+                            description={this.props.intl.formatMessage({id: 'gdxfor.robotBandDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'gdxfor.imgAltRobotBand'})}
+                            imageSrc="/images/gdxfor/gdxfor-starter1.png"
+                            title={this.props.intl.formatMessage({id: 'gdxfor.robotBand'})}
                         />
                         <ProjectCard
                             cardUrl="/projects//editor"
-                            description={this.props.intl.formatMessage({id: 'gdxfor.'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'gdxfor.'})}
-                            imageSrc="/images/gdxfor/starter-.png"
-                            title={this.props.intl.formatMessage({id: 'gdxfor.'})}
+                            description={this.props.intl.formatMessage({id: 'gdxfor.dayAndNightDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'gdxfor.imgAltDayAndNight'})}
+                            imageSrc="/images/gdxfor/gdxfor-starter2.png"
+                            title={this.props.intl.formatMessage({id: 'gdxfor.dayAndNight'})}
                         />
                         <ProjectCard
                             cardUrl="/projects//editor"
-                            description={this.props.intl.formatMessage({id: 'gdxfor.'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'gdxfor.'})}
-                            imageSrc="/images/gdxfor/starter-.png"
-                            title={this.props.intl.formatMessage({id: 'gdxfor.'})}
+                            description={this.props.intl.formatMessage({id: 'gdxfor.underwaterRocketDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'gdxfor.imgAltUnderwaterRocket'})}
+                            imageSrc="/images/gdxfor/gdxfor-starter3.png"
+                            title={this.props.intl.formatMessage({id: 'gdxfor.underwaterRocket'})}
                         />
                     </Steps>
                 </ExtensionSection>
