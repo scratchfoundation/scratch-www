@@ -199,10 +199,10 @@ class GdxFor extends ExtensionLanding {
                     <Steps>
                         <ProjectCard
                             cardUrl="/projects//editor"
-                            description={this.props.intl.formatMessage({id: 'gdxfor.robotBandDescription'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'gdxfor.imgAltRobotBand'})}
+                            description={this.props.intl.formatMessage({id: 'gdxfor.frogBandDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'gdxfor.imgAltFrogBand'})}
                             imageSrc="/images/gdxfor/gdxfor-starter1.png"
-                            title={this.props.intl.formatMessage({id: 'gdxfor.robotBand'})}
+                            title={this.props.intl.formatMessage({id: 'gdxfor.frogBand'})}
                         />
                         <ProjectCard
                             cardUrl="/projects//editor"
