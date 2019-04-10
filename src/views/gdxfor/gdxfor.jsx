@@ -3,7 +3,6 @@ const intlShape = require('react-intl').intlShape;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
-
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
