@@ -296,7 +296,7 @@
         "title": "micro:bit"
     },
     {
-        "name": "vernier-force-and-accel",
+        "name": "vernier",
         "pattern": "^/vernier/?$",
         "routeAlias": "/vernier/?$",
         "view": "gdxfor/gdxfor",
