@@ -6,6 +6,7 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
 const Button = require('../../components/forms/button.jsx');
 const AddToStudioModal = require('./add-to-studio.jsx');
+const ExternalShareModal = require('../../components/modal/externalshare/container.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 
 require('./subactions.scss');
@@ -54,6 +55,19 @@ const Subactions = props => (
             >
                 <FormattedMessage id="general.copyLink" />
             </Button>
+            <Button
+                className="action-button external-share-button"
+                onClick={props.onExternalShareClicked}
+            >
+                <FormattedMessage id="general.externalShare" />
+            </Button>
+            {props.externalShareOpen && (
+                <ExternalShareModal
+                    isOpen
+                    key="external-share-modal"
+                    onRequestClose={props.onExternalShareClosed}
+                />
+            )}
             {(props.canReport) &&
             <React.Fragment>
                 <Button
@@ -82,10 +96,13 @@ Subactions.propTypes = {
     addToStudioOpen: PropTypes.bool,
     canAddToStudio: PropTypes.bool,
     canReport: PropTypes.bool,
+    externalShareOpen: PropTypes.bool,
     isAdmin: PropTypes.bool,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onCopyProjectLink: PropTypes.func,
+    onExternalShareClicked: PropTypes.func,
+    onExternalShareClosed: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,

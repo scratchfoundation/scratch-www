@@ -57,6 +57,8 @@ class Preview extends React.Component {
             'handleClickLogo',
             'handleCopyProjectLink',
             'handleDeleteComment',
+            'handleExternalShareClick',
+            'handleExternalShareClose',
             'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoadMore',
@@ -109,6 +111,7 @@ class Preview extends React.Component {
             clientFaved: false,
             clientLoved: false,
             extensions: [],
+            externalShareOpen: false,
             favoriteCount: 0,
             isProjectLoaded: false,
             isRemixing: false,
@@ -584,6 +587,12 @@ class Preview extends React.Component {
         // Also do not include hash or query params
         copy(`${window.location.origin}${window.location.pathname}`);
     }
+    handleExternalShareClick () {
+        this.setState({externalShareOpen: true});
+    }
+    handleExternalShareClose () {
+        this.setState({externalShareOpen: false});
+    }
     initCounts (favorites, loves) {
         this.setState({
             favoriteCount: favorites,
@@ -648,6 +657,7 @@ class Preview extends React.Component {
                             comments={this.props.comments}
                             editable={this.props.isEditable}
                             extensions={this.state.extensions}
+                            externalShareOpen={this.state.externalShareOpen}
                             faved={this.state.clientFaved}
                             favoriteCount={this.state.favoriteCount}
                             isAdmin={this.props.isAdmin}
@@ -686,6 +696,8 @@ class Preview extends React.Component {
                             onCloseAdminPanel={this.handleCloseAdminPanel}
                             onCopyProjectLink={this.handleCopyProjectLink}
                             onDeleteComment={this.handleDeleteComment}
+                            onExternalShareClicked={this.handleExternalShareClick}
+                            onExternalShareClosed={this.handleExternalShareClose}
                             onFavoriteClicked={this.handleFavoriteToggle}
                             onGreenFlag={this.handleGreenFlag}
                             onLoadMore={this.handleLoadMore}

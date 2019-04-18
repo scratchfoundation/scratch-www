@@ -87,6 +87,12 @@
                 }
             }
 
+            &.external-share-button {
+                &:before {
+                    background-image: url("/svgs/project/copy-link-white.svg");
+                }
+            }
+
             &.report-button {
                 background-color: $ui-coral;
 

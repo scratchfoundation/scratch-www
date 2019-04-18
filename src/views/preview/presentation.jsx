@@ -67,6 +67,7 @@ const PreviewPresentation = ({
     comments,
     editable,
     extensions,
+    externalShareOpen,
     faved,
     favoriteCount,
     intl,
@@ -90,6 +91,8 @@ const PreviewPresentation = ({
     onCloseAdminPanel,
     onCopyProjectLink,
     onDeleteComment,
+    onExternalShareClicked,
+    onExternalShareClosed,
     onFavoriteClicked,
     onGreenFlag,
     onLoadMore,
@@ -364,6 +367,7 @@ const PreviewPresentation = ({
                                         <Subactions
                                             addToStudioOpen={addToStudioOpen}
                                             canReport={canReport}
+                                            externalShareOpen={externalShareOpen}
                                             isAdmin={isAdmin}
                                             projectInfo={projectInfo}
                                             reportOpen={reportOpen}
@@ -372,6 +376,8 @@ const PreviewPresentation = ({
                                             onAddToStudioClicked={onAddToStudioClicked}
                                             onAddToStudioClosed={onAddToStudioClosed}
                                             onCopyProjectLink={onCopyProjectLink}
+                                            onExternalShareClicked={onExternalShareClicked}
+                                            onExternalShareClosed={onExternalShareClosed}
                                             onReportClicked={onReportClicked}
                                             onReportClose={onReportClose}
                                             onReportSubmit={onReportSubmit}
@@ -510,6 +516,7 @@ const PreviewPresentation = ({
                                     addToStudioOpen={addToStudioOpen}
                                     canAddToStudio={canAddToStudio}
                                     canReport={canReport}
+                                    externalShareOpen={externalShareOpen}
                                     isAdmin={isAdmin}
                                     projectInfo={projectInfo}
                                     reportOpen={reportOpen}
@@ -518,6 +525,8 @@ const PreviewPresentation = ({
                                     onAddToStudioClicked={onAddToStudioClicked}
                                     onAddToStudioClosed={onAddToStudioClosed}
                                     onCopyProjectLink={onCopyProjectLink}
+                                    onExternalShareClicked={onExternalShareClicked}
+                                    onExternalShareClosed={onExternalShareClosed}
                                     onReportClicked={onReportClicked}
                                     onReportClose={onReportClose}
                                     onReportSubmit={onReportSubmit}
@@ -695,6 +704,8 @@ PreviewPresentation.propTypes = {
     onCloseAdminPanel: PropTypes.func,
     onCopyProjectLink: PropTypes.func,
     onDeleteComment: PropTypes.func,
+    onExternalShareClicked: PropTypes.func,
+    onExternalShareClosed: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onGreenFlag: PropTypes.func,
     onLoadMore: PropTypes.func,
