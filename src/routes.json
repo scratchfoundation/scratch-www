@@ -319,7 +319,7 @@
         "pattern": "^/vernier/?$",
         "routeAlias": "/vernier/?$",
         "view": "gdxfor/gdxfor",
-        "title": "Vernier GoDirect Force and Acceleration"
+        "title": "Vernier Go Direct Force and Acceleration"
     },
     {
         "name":"3-faq-redirect",
