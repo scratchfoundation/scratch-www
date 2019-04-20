@@ -82,7 +82,7 @@
     "lodash.isarray": "3.0.4",
     "lodash.merge": "3.3.2",
     "lodash.mergewith": "4.6.1",
-    "lodash.omit": "3.1.0",
+    "lodash.omit": "4.5.0",
     "lodash.range": "3.0.1",
     "lodash.uniqby": "4.7.0",
     "minilog": "2.0.8",
