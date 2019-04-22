@@ -8,6 +8,7 @@ const Button = require('../../components/forms/button.jsx');
 const AddToStudioModal = require('./add-to-studio.jsx');
 const ExternalShareModal = require('../../components/modal/externalshare/container.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
+const projectShape = require('./projectshape.jsx').projectShape;
 
 require('./subactions.scss');
 
@@ -59,12 +60,13 @@ const Subactions = props => (
                 className="action-button external-share-button"
                 onClick={props.onExternalShareClicked}
             >
-                <FormattedMessage id="general.externalShare" />
+                <FormattedMessage id="general.externalShareButton" />
             </Button>
-            {props.externalShareOpen && (
+            {props.externalShareOpen && props.projectInfo && props.projectInfo.id && (
                 <ExternalShareModal
                     isOpen
                     key="external-share-modal"
+                    projectId={props.projectInfo && props.projectInfo.id}
                     onRequestClose={props.onExternalShareClosed}
                 />
             )}
@@ -107,6 +109,7 @@ Subactions.propTypes = {
     onReportClose: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
     onToggleStudio: PropTypes.func,
+    projectInfo: projectShape,
     reportOpen: PropTypes.bool,
     shareDate: PropTypes.string,
     userOwnsProject: PropTypes.bool

@@ -6,16 +6,17 @@
     max-height: calc(100% - 8rem);
 
     /* Some value for height must be set for scrolling to work */
-    height: 100%;
+    // height: 100%;
 
-    overflow: hidden;
-
-    @media #{$small}, #{$small-height} {
-        overflow: hidden;
-    }
+    // overflow: hidden;
+    //
+    // @media #{$small}, #{$small-height} {
+    //     overflow: hidden;
+    // }
 }
 
 .externalShare-modal-header {
+    border-radius: 1rem 1rem 0 0;
     box-shadow: inset 0 -1px 0 0 $ui-blue-dark;
     background-color: $ui-blue;
 }
@@ -23,172 +24,85 @@
 .externalShare-modal-content {
     margin: 0 auto;
     box-shadow: none;
+    width: 85%;
+    height: calc(100% - 0rem);
+    margin: 1rem auto;
+}
+
+.externalShare-embed-row {
+    justify-content: space-between;
     width: 100%;
-    height: calc(100% - 3rem);
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 
-.external-target-outer-scrollbox {
-    position: relative;
-    background-color: $ui-blue-10percent;
-    flex: 1;
-    height: calc(100% - 5rem);
-
-    @media #{$small-height} {
-        min-height: 0;
-    }
-}
-
-.external-target-inner-scrollbox {
-    margin-right: .5rem;
+.externalShare-embed-textarea {
+    width: calc(100% - 3rem);
+    height: 4rem;
+    padding-left: .5rem;
     padding-right: .5rem;
-    height: 100%;
-    overflow: scroll;
-    overflow-x: hidden;
 
-    &::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        border-radius: 4px;
-        background-color: $active-dark-gray;
-        height: 92px;
-    }
-
-    &::-webkit-scrollbar-track {
-        margin-top: 8px;
-        margin-bottom: 10px;
+    textarea {
+        min-height: 4rem;
     }
 }
 
-.external-target-container {
-    display: flex;
-    padding: .40625rem 0 0 1.46875rem;
-    justify-content: flex-start;
-    flex-flow: row wrap;
+.externalShare-copy-icon {
+    width: 2rem;
+    height: 2rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    // &:before {
+        background-image: url("/svgs/forms/temp-copy.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+    // }
 }
+
+// .external-target-outer-scrollbox {
+//     position: relative;
+//     background-color: $ui-blue-10percent;
+//     flex: 1;
+//     height: calc(100% - 0rem);
+//
+//     @media #{$small-height} {
+//         min-height: 0;
+//     }
+// }
+//
+// .external-target-inner-scrollbox {
+//     margin-right: .5rem;
+//     padding-right: .5rem;
+//     height: 100%;
+//     overflow: scroll;
+//     overflow-x: hidden;
+//
+//     &::-webkit-scrollbar {
+//         width: 8px;
+//     }
+//
+//     &::-webkit-scrollbar-thumb {
+//         border-radius: 4px;
+//         background-color: $active-dark-gray;
+//         height: 92px;
+//     }
+//
+//     &::-webkit-scrollbar-track {
+//         margin-top: 8px;
+//         margin-bottom: 10px;
+//     }
+// }
+//
+// .external-target-container {
+//     display: flex;
+//     padding: .40625rem 0 0 1.46875rem;
+//     justify-content: flex-start;
+//     flex-flow: row wrap;
+// }
 /* NOTE: force scrolling: add to above:
     min-height: 30rem;
 */
 
-.external-target-bottom-gradient {
-    position: absolute;
-    right: 1rem;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(
-        $transparent-light-blue,
-        $ui-light-primary
-    );
-    height: 32px;
-    pointer-events: none; /* pass clicks through to buttons underneath */
-}
-
-.studio-selector-button {
-    display: flex;
-    position: relative;
-    transition: all .5s;
-    margin: .21875rem;
-    border-radius: .5rem;
-    background-color: $ui-white;
-    cursor: pointer;
-    padding: 0;
-    width: 48%;
-    height: 2.5rem;
-    justify-content: space-between;
-    align-items: center;
-
-    @media #{$small} {
-        min-width: 98%;
-        flex-shrink: 1;
-    }
-}
-
-.studio-selector-button-text {
-    margin: auto 2.18375rem auto .6875rem;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: .875rem;
-    font-weight: regular;
-    flex-shrink: 1;
-}
-
-.studio-selector-button-selected {
-    background-color: $ui-mint-green;
-    color: $ui-white;
-}
-
-.studio-selector-button-waiting {
-    background-color: $ui-light-mint;
-    color: $ui-white;
-}
-
-.studio-selector-button-text-selected {
-    color: $ui-white;
-}
-
-.studio-selector-button-text-unselected {
-    color: $type-gray;
-}
-
-.studio-selector-button-enabled {
-    pointer-events: auto;
-}
-
-.studio-selector-button-disabled {
-    pointer-events: none;
-}
-
-.studio-status-icon {
-    position: absolute;
-    right: .625rem;
-    border-radius: .75rem;
-    padding: .0625rem .075rem;
-    width: 1.5rem;
-    height: 1.5rem;
-    color: $ui-white;
-    box-sizing: border-box;
-}
-
-.studio-status-icon-unselected {
-    background-color: $ui-blue;
-}
-
-.submit-button {
-    background-color: $ui-blue;
-}
-
-.submit-button-waiting {
-    background-color: $ui-blue;
-}
-
-.studio-status-icon-plus-img,
-.studio-status-icon-checkmark-img {
-    animation-direction: normal;
-    width: 1.4rem;
-    height: 1.4rem;
-    transform-origin: center;
-}
-
-.studio-status-icon-with-animation {
-    animation-name: bump;
-    animation-duration: .25s;
-    animation-timing-function: cubic-bezier(.3, -3, .6, 3);
-    animation-iteration-count: 1;
-}
-
-@keyframes bump {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-        -webkit-transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-        -webkit-transform: scale(1);
-    }
+.externalShare-form {
+    width: 100%;
 }
