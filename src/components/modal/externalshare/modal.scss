@@ -42,6 +42,9 @@
     align-items: start;
 }
 
+.externalShare-link-section {
+}
+
 .externalShare-embed-textarea {
     width: calc(100% - 3rem);
     height: 4rem;
@@ -58,11 +61,62 @@
     height: 2rem;
     padding-left: .5rem;
     padding-right: .5rem;
-    // &:before {
-        background-image: url("/svgs/forms/temp-copy.svg");
+    background-image: url("/svgs/forms/temp-copy.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+}
+
+.externalShare-social-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-right: .75rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: .5rem;
+}
+
+.externalShare-twitter-icon {
+    background-image: url("/svgs/social/twitter.svg");
+}
+
+.externalShare-facebook-icon {
+    background-image: url("/svgs/social/facebook.svg");
+}
+
+.externalShare-google-classroom-icon {
+    background-image: url("/svgs/social/google-classroom.svg");
+}
+
+.externalShare-wechat-icon {
+    background-image: url("/svgs/social/wechat.svg");
+}
+
+// NOTE: copied from subactions.scss. We should refactor to put this style in
+// only one place.
+.externalShare-copy-link-button {
+    margin: 0 0 0 .5rem;
+    border-radius: 19px;
+    background-color: $ui-blue;
+    padding: 0 .75rem;
+    height: 2rem;
+    text-decoration: none;
+    line-height: .875rem;
+    font-size: .75rem;
+    font-weight: bold;
+
+    &:before {
+        display: inline-block;
+        margin-right: .25rem;
         background-repeat: no-repeat;
+        background-position: center center;
         background-size: contain;
-    // }
+        width: .875rem;
+        height: .875rem;
+        vertical-align: bottom;
+        content: "";
+        background-image: url("/svgs/project/copy-link-white.svg");
+    }
 }
 
 // .external-target-outer-scrollbox {

@@ -23,6 +23,12 @@ module.exports.googleClassroomIntentLink = projectId => {
     return (`${baseUrl}url=${escapedScratchUrl}`);
 };
 
+module.exports.weChatIntentLink = projectId => {
+    const baseUrl = 'https://wechat.com/?';
+    const escapedScratchUrl = `https%3A%2F%2Fscratch.mit.edu%2Fprojects%2F${projectId}`;
+    return (`${baseUrl}url=${escapedScratchUrl}`);
+};
+
 module.exports.facebookIntentLink = projectId => {
     const baseUrl = 'https://www.facebook.com/sharer.php?';
     const escapedScratchUrl = `https%3A%2F%2Fscratch.mit.edu%2Fprojects%2F${projectId}`;

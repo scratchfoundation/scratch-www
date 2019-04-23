@@ -42,10 +42,11 @@ class ExternalShareModal extends React.Component {
             <ExternalShareModalPresentation
                 embedHtml={externalShare.embedHtml(projectId)}
                 fbUrl={externalShare.facebookIntentLink(projectId)}
-                googUrl={externalShare.googleClassroomIntentLink(projectId)}
+                googleClassroomUrl={externalShare.googleClassroomIntentLink(projectId)}
                 isOpen={this.props.isOpen}
                 setEmbedTextarea={this.setEmbedTextarea}
                 twitterUrl={externalShare.twitterIntentLink(projectId)}
+                weChatUrl={externalShare.weChatIntentLink(projectId)}
                 onCopyEmbed={this.handleCopyEmbed}
                 onCopyProjectLink={this.props.onCopyProjectLink}
                 onRequestClose={this.props.onRequestClose}
