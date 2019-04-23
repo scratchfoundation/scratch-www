@@ -1,0 +1,9 @@
+@import "../../colors";
+@import "../../frameless";
+
+.boost {
+    .extension-header {
+        background-color: $ui-blue;
+        background-image: url("/images/boost/boost-pattern.svg");
+    }
+}
