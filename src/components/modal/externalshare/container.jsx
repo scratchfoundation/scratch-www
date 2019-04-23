@@ -10,12 +10,15 @@ class ExternalShareModal extends React.Component {
         super(props);
         this.embedTextarea = {};
         bindAll(this, [
-            'handleClickCopyEmbed',
+            'handleCopyEmbed',
             'setEmbedTextarea'
         ]);
     }
     // componentDidMount () {
-    //     if (this.embedTextarea) this.embedTextarea.select();
+    //     if (this.embedTextarea) {
+    //         console.log('selecting on mount');
+    //         this.embedTextarea.select();
+    //     }
     // }
     componentDidUpdate () {
         if (this.embedTextarea) {
@@ -25,23 +28,26 @@ class ExternalShareModal extends React.Component {
             console.log('NOT selecting');
         }
     }
-    handleClickCopyEmbed () {
+    handleCopyEmbed () {
         if (this.embedTextarea) this.embedTextarea.select();
         clipboardCopy(this.embedTextarea.value);
     }
     setEmbedTextarea (textarea) {
         this.embedTextarea = textarea;
+        return textarea;
     }
     render () {
         const projectId = this.props.projectId;
         return (
             <ExternalShareModalPresentation
+                embedHtml={externalShare.embedHtml(projectId)}
                 fbUrl={externalShare.facebookIntentLink(projectId)}
                 googUrl={externalShare.googleClassroomIntentLink(projectId)}
                 isOpen={this.props.isOpen}
                 setEmbedTextarea={this.setEmbedTextarea}
                 twitterUrl={externalShare.twitterIntentLink(projectId)}
-                onClickCopyEmbed={this.handleClickCopyEmbed}
+                onCopyEmbed={this.handleCopyEmbed}
+                onCopyProjectLink={this.props.onCopyProjectLink}
                 onRequestClose={this.props.onRequestClose}
             />
         );
@@ -50,8 +56,9 @@ class ExternalShareModal extends React.Component {
 
 ExternalShareModal.propTypes = {
     isOpen: PropTypes.bool,
+    onCopyProjectLink: PropTypes.func,
     onRequestClose: PropTypes.func,
-    projectId: PropTypes.string
+    projectId: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 module.exports = ExternalShareModal;

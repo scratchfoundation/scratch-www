@@ -91,7 +91,7 @@
     "general.whatsHappening": "What's Happening?",
     "general.wiki": "Scratch Wiki",
     "general.copyLink": "Copy Link",
-    "general.externalShareButton": "Share outside Scratch",
+    "general.externalShareButton": "Social",
     "general.report": "Report",
     "general.notAvailableHeadline": "Whoops! Our server is Scratch'ing its head",
     "general.notAvailableSubtitle": "We couldn't find the page you're looking for. Check to make sure you've typed the URL correctly.",
@@ -259,6 +259,8 @@
     "comments.status.deleted": "Deleted",
     "comments.status.reported": "Reported",
 
-    "externalShare.title": "Share outside Scratch",
-    "externalShare.embedHtmlContent": "Embed this html yo"
+    "externalShare.title": "Social",
+    "externalShare.embedHtmlLabel": "Embed",
+    "externalShare.linkLabel": "Link",
+    "externalShare.socialMediaLabel": "Share"
 }

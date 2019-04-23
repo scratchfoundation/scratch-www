@@ -67,6 +67,7 @@ const Subactions = props => (
                     isOpen
                     key="external-share-modal"
                     projectId={props.projectInfo && props.projectInfo.id}
+                    onCopyProjectLink={props.onCopyProjectLink}
                     onRequestClose={props.onExternalShareClosed}
                 />
             )}

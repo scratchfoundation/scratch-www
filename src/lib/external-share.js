@@ -1,11 +1,12 @@
 module.exports = {};
 
 module.exports.embedHtml = projectId => {
-    return (
-        '<iframe allowtransparency="true" width="485" height="402" ' +
-        `src="//scratch.mit.edu/projects/${projectId}/embed?autostart=false" ` +
-        'frameborder="0" allowfullscreen></iframe>'
-    );
+    if (projectId) {
+        return `<iframe src="https://scratch.mit.edu/projects/${projectId}/embed?autostart=false" ` +
+            'allowtransparency="true" width="485" height="402" ' +
+            'frameborder="0" scrolling="no" allowfullscreen></iframe>';
+    }
+    return '';
 };
 
 module.exports.twitterIntentLink = projectId => {
@@ -14,6 +15,12 @@ module.exports.twitterIntentLink = projectId => {
     const escapedTweetText = 'Check%20out%20what%20you%20can%20make%20on%20Scratch%3A';
     const escapedHashtags = 'creativecode';
     return `${baseUrl}url=${escapedScratchUrl}&text=${escapedTweetText}&hashtags=${escapedHashtags}`;
+};
+
+module.exports.googleClassroomIntentLink = projectId => {
+    const baseUrl = 'https://classroom.google.com/share?';
+    const escapedScratchUrl = `https%3A%2F%2Fscratch.mit.edu%2Fprojects%2F${projectId}`;
+    return (`${baseUrl}url=${escapedScratchUrl}`);
 };
 
 module.exports.facebookIntentLink = projectId => {
@@ -28,10 +35,4 @@ module.exports.facebookIntentDialog = (scratchFBAppId, projectId) => {
     const escapedScratchUrl = `https%3A%2F%2Fscratch.mit.edu%2Fprojects%2F${projectId}`;
     const escapedHashtag = '%23creativecode';
     return `${baseUrl}app_id=${scratchFBAppId}href=${escapedScratchUrl}&hashtag=${escapedHashtag}`;
-};
-
-module.exports.googleClassroomIntentLink = projectId => {
-    const baseUrl = 'https://classroom.google.com/share?';
-    const escapedScratchUrl = `https%3A%2F%2Fscratch.mit.edu%2Fprojects%2F${projectId}`;
-    return (`${baseUrl}url=${escapedScratchUrl}`);
 };
