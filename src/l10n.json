@@ -261,6 +261,8 @@
 
     "social.title": "Social",
     "social.embedHtmlLabel": "Embed",
+    "social.copyEmbedLinkText": "Copy embed",
     "social.linkLabel": "Link",
-    "social.socialMediaLabel": "Share"
+    "social.socialMediaLabel": "Share",
+    "social.embedCopiedResultText": "Copied"
 }

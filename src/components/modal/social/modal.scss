@@ -4,6 +4,7 @@
 .mod-social {
     min-height: 15rem;
     max-height: calc(100% - 8rem);
+    overflow: hidden;
 
     /* Some value for height must be set for scrolling to work */
     // height: 100%;
@@ -24,99 +25,156 @@
 .social-modal-content {
     margin: 0 auto;
     box-shadow: none;
-    width: 85%;
+    width: 91%;
     height: calc(100% - 0rem);
-    margin: 1rem auto;
+    margin: 1rem auto 1.625rem;
+    font-size: .9375rem;
 }
 
-.social-label {
-    font-weight: bold;
-    width: 100%;
-}
-
-.social-embed-row {
-    justify-content: space-between;
+.social-row {
     width: 100%;
     margin-top: .5rem;
     margin-bottom: .5rem;
     align-items: start;
 }
 
+.social-spaced-row {
+    width: 100%;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.social-label-row {
+    font-weight: bold;
+    margin-bottom: .5rem;
+    justify-content: start;
+    align-items: start;
+}
+
+.social-label {
+    margin-right: 1.5rem;
+}
+
+.social-label-result {
+    color: $type-gray-75percent;
+    // animation: fadeIn 1s infinite alternate;
+    transition: opacity 100ms linear;
+}
+
 .social-link-section {
 }
 
+.embed-section {
+    margin-top: 2rem;
+}
+
+//
+// .social-copy-icon {
+//     width: 2rem;
+//     height: 2rem;
+//     padding-left: .5rem;
+//     padding-right: .5rem;
+//     background-image: url("/svgs/forms/temp-copy.svg");
+//     background-repeat: no-repeat;
+//     background-size: contain;
+//     content: "";
+// }
+
+.social-social-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-right: .75rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    // border-radius: .5rem;
+}
+
+.social-twitter-icon {
+    background-image: url("/images/social/twitter.png");
+}
+
+.social-facebook-icon {
+    background-image: url("/images/social/facebook.png");
+}
+
+.social-google-classroom-icon {
+    background-image: url("/images/social/google-classroom.png");
+}
+
+.social-wechat-icon {
+    background-image: url("/images/social/wechat.png");
+}
+
+// NOTE: copied from subactions.scss. We should refactor to put this style in
+// only one place.
+.social-copy-link-button {
+    background-color: $ui-blue;
+    height: 2rem;
+    text-decoration: none;
+    line-height: 1.1875rem;
+    font-weight: bold;
+
+    &:before {
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+        vertical-align: bottom;
+        content: "";
+        background-image: url("/svgs/project/copy-link-white.svg");
+    }
+
+    &.social-copy-link-button-large {
+        padding: 0 1.125rem .125rem 1rem;
+        border-radius: 1.3125rem;
+        height: 2.625rem;
+        font-size: .9375rem;
+
+        &:before {
+            width: 1.0625rem;
+            height: 1.0625rem;
+            margin-right: .5rem;
+        }
+    }
+}
+
+// NOTE: copied from inplace-input.scss. We should refactor to put this style in
+// only one place.
 .social-embed-textarea {
-    width: calc(100% - 3rem);
-    height: 4rem;
-    padding-left: .5rem;
-    padding-right: .5rem;
+    transition: all .2s ease;
+    // border: 2px solid rgba(0, 0, 0, 0.2);
+    border: 2px dashed $ui-blue-25percent;
+    border-radius: 8px;
+    background-color: $ui-light-gray;
+    padding: .75rem .875rem;
+    line-height: 1.25rem;
+    color: $type-gray;
+    font-size: .8125rem;
+    box-sizing: border-box;
+    resize: none;
+    overflow: hidden;
+
+    &:focus {
+        transition: all .2s ease;
+        outline: none;
+        border: 2px solid $ui-blue;
+        box-shadow: 0 0 0 4px $ui-blue-25percent;
+    }
+}
+
+.social-embed-textarea {
+    // width: calc(100% - 3rem);
+    width: 100%;
+    height: 6rem;
 
     textarea {
         min-height: 4rem;
     }
 }
 
-.social-copy-icon {
-    width: 2rem;
-    height: 2rem;
-    padding-left: .5rem;
-    padding-right: .5rem;
-    background-image: url("/svgs/forms/temp-copy.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    content: "";
-}
-
-.social-social-icon {
-    width: 3rem;
-    height: 3rem;
-    margin-right: .75rem;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border-radius: .5rem;
-}
-
-.social-twitter-icon {
-    background-image: url("/svgs/social/twitter.svg");
-}
-
-.social-facebook-icon {
-    background-image: url("/svgs/social/facebook.svg");
-}
-
-.social-google-classroom-icon {
-    background-image: url("/svgs/social/google-classroom.svg");
-}
-
-.social-wechat-icon {
-    background-image: url("/svgs/social/wechat.svg");
-}
-
-// NOTE: copied from subactions.scss. We should refactor to put this style in
-// only one place.
-.social-copy-link-button {
-    margin: 0 0 0 .5rem;
-    border-radius: 19px;
-    background-color: $ui-blue;
-    padding: 0 .75rem;
-    height: 2rem;
-    text-decoration: none;
-    line-height: .875rem;
-    font-size: .75rem;
-    font-weight: bold;
-
-    &:before {
-        display: inline-block;
-        margin-right: .25rem;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: contain;
-        width: .875rem;
-        height: .875rem;
-        vertical-align: bottom;
-        content: "";
-        background-image: url("/svgs/project/copy-link-white.svg");
-    }
+// NOTE: should probably be put in a shared css location
+.social-hidden {
+    opacity: 0.0;
 }
 
 // .external-target-outer-scrollbox {
