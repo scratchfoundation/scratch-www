@@ -1,11 +1,11 @@
 const bindAll = require('lodash.bindall');
 const PropTypes = require('prop-types');
 const React = require('react');
-const ExternalShareModalPresentation = require('./presentation.jsx');
+const SocialModalPresentation = require('./presentation.jsx');
 const clipboardCopy = require('clipboard-copy');
-const externalShare = require('../../../lib/external-share');
+const social = require('../../../lib/social');
 
-class ExternalShareModal extends React.Component {
+class SocialModal extends React.Component {
     constructor (props) {
         super(props);
         this.embedTextarea = {};
@@ -39,14 +39,14 @@ class ExternalShareModal extends React.Component {
     render () {
         const projectId = this.props.projectId;
         return (
-            <ExternalShareModalPresentation
-                embedHtml={externalShare.embedHtml(projectId)}
-                fbUrl={externalShare.facebookIntentLink(projectId)}
-                googleClassroomUrl={externalShare.googleClassroomIntentLink(projectId)}
+            <SocialModalPresentation
+                embedHtml={social.embedHtml(projectId)}
+                fbUrl={social.facebookIntentLink(projectId)}
+                googleClassroomUrl={social.googleClassroomIntentLink(projectId)}
                 isOpen={this.props.isOpen}
                 setEmbedTextarea={this.setEmbedTextarea}
-                twitterUrl={externalShare.twitterIntentLink(projectId)}
-                weChatUrl={externalShare.weChatIntentLink(projectId)}
+                twitterUrl={social.twitterIntentLink(projectId)}
+                weChatUrl={social.weChatIntentLink(projectId)}
                 onCopyEmbed={this.handleCopyEmbed}
                 onCopyProjectLink={this.props.onCopyProjectLink}
                 onRequestClose={this.props.onRequestClose}
@@ -55,11 +55,11 @@ class ExternalShareModal extends React.Component {
     }
 }
 
-ExternalShareModal.propTypes = {
+SocialModal.propTypes = {
     isOpen: PropTypes.bool,
     onCopyProjectLink: PropTypes.func,
     onRequestClose: PropTypes.func,
     projectId: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
-module.exports = ExternalShareModal;
+module.exports = SocialModal;

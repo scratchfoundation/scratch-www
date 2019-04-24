@@ -6,7 +6,7 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
 const Button = require('../../components/forms/button.jsx');
 const AddToStudioModal = require('./add-to-studio.jsx');
-const ExternalShareModal = require('../../components/modal/externalshare/container.jsx');
+const SocialModal = require('../../components/modal/social/container.jsx');
 const ReportModal = require('../../components/modal/report/modal.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 
@@ -57,18 +57,18 @@ const Subactions = props => (
                 <FormattedMessage id="general.copyLink" />
             </Button>
             <Button
-                className="action-button external-share-button"
-                onClick={props.onExternalShareClicked}
+                className="action-button social-button"
+                onClick={props.onsocialClicked}
             >
-                <FormattedMessage id="general.externalShareButton" />
+                <FormattedMessage id="general.socialButton" />
             </Button>
-            {props.externalShareOpen && props.projectInfo && props.projectInfo.id && (
-                <ExternalShareModal
+            {props.socialOpen && props.projectInfo && props.projectInfo.id && (
+                <SocialModal
                     isOpen
-                    key="external-share-modal"
+                    key="social-modal"
                     projectId={props.projectInfo && props.projectInfo.id}
                     onCopyProjectLink={props.onCopyProjectLink}
-                    onRequestClose={props.onExternalShareClosed}
+                    onRequestClose={props.onsocialClosed}
                 />
             )}
             {(props.canReport) &&
@@ -99,13 +99,13 @@ Subactions.propTypes = {
     addToStudioOpen: PropTypes.bool,
     canAddToStudio: PropTypes.bool,
     canReport: PropTypes.bool,
-    externalShareOpen: PropTypes.bool,
+    socialOpen: PropTypes.bool,
     isAdmin: PropTypes.bool,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onCopyProjectLink: PropTypes.func,
-    onExternalShareClicked: PropTypes.func,
-    onExternalShareClosed: PropTypes.func,
+    onsocialClicked: PropTypes.func,
+    onsocialClosed: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,

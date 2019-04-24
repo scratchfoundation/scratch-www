@@ -1,7 +1,7 @@
 @import "../../../colors";
 @import "../../../frameless";
 
-.mod-externalShare {
+.mod-social {
     min-height: 15rem;
     max-height: calc(100% - 8rem);
 
@@ -15,13 +15,13 @@
     // }
 }
 
-.externalShare-modal-header {
+.social-modal-header {
     border-radius: 1rem 1rem 0 0;
     box-shadow: inset 0 -1px 0 0 $ui-blue-dark;
     background-color: $ui-blue;
 }
 
-.externalShare-modal-content {
+.social-modal-content {
     margin: 0 auto;
     box-shadow: none;
     width: 85%;
@@ -29,12 +29,12 @@
     margin: 1rem auto;
 }
 
-.externalShare-label {
+.social-label {
     font-weight: bold;
     width: 100%;
 }
 
-.externalShare-embed-row {
+.social-embed-row {
     justify-content: space-between;
     width: 100%;
     margin-top: .5rem;
@@ -42,10 +42,10 @@
     align-items: start;
 }
 
-.externalShare-link-section {
+.social-link-section {
 }
 
-.externalShare-embed-textarea {
+.social-embed-textarea {
     width: calc(100% - 3rem);
     height: 4rem;
     padding-left: .5rem;
@@ -56,7 +56,7 @@
     }
 }
 
-.externalShare-copy-icon {
+.social-copy-icon {
     width: 2rem;
     height: 2rem;
     padding-left: .5rem;
@@ -67,7 +67,7 @@
     content: "";
 }
 
-.externalShare-social-icon {
+.social-social-icon {
     width: 3rem;
     height: 3rem;
     margin-right: .75rem;
@@ -76,25 +76,25 @@
     border-radius: .5rem;
 }
 
-.externalShare-twitter-icon {
+.social-twitter-icon {
     background-image: url("/svgs/social/twitter.svg");
 }
 
-.externalShare-facebook-icon {
+.social-facebook-icon {
     background-image: url("/svgs/social/facebook.svg");
 }
 
-.externalShare-google-classroom-icon {
+.social-google-classroom-icon {
     background-image: url("/svgs/social/google-classroom.svg");
 }
 
-.externalShare-wechat-icon {
+.social-wechat-icon {
     background-image: url("/svgs/social/wechat.svg");
 }
 
 // NOTE: copied from subactions.scss. We should refactor to put this style in
 // only one place.
-.externalShare-copy-link-button {
+.social-copy-link-button {
     margin: 0 0 0 .5rem;
     border-radius: 19px;
     background-color: $ui-blue;
@@ -163,6 +163,6 @@
     min-height: 30rem;
 */
 
-.externalShare-form {
+.social-form {
     width: 100%;
 }

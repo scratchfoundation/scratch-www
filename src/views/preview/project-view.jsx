@@ -57,8 +57,8 @@ class Preview extends React.Component {
             'handleClickLogo',
             'handleCopyProjectLink',
             'handleDeleteComment',
-            'handleExternalShareClick',
-            'handleExternalShareClose',
+            'handlesocialClick',
+            'handlesocialClose',
             'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoadMore',
@@ -111,7 +111,7 @@ class Preview extends React.Component {
             clientFaved: false,
             clientLoved: false,
             extensions: [],
-            externalShareOpen: false,
+            socialOpen: false,
             favoriteCount: 0,
             isProjectLoaded: false,
             isRemixing: false,
@@ -587,11 +587,11 @@ class Preview extends React.Component {
         // Also do not include hash or query params
         copy(`${window.location.origin}${window.location.pathname}`);
     }
-    handleExternalShareClick () {
-        this.setState({externalShareOpen: true});
+    handlesocialClick () {
+        this.setState({socialOpen: true});
     }
-    handleExternalShareClose () {
-        this.setState({externalShareOpen: false});
+    handlesocialClose () {
+        this.setState({socialOpen: false});
     }
     initCounts (favorites, loves) {
         this.setState({
@@ -657,7 +657,7 @@ class Preview extends React.Component {
                             comments={this.props.comments}
                             editable={this.props.isEditable}
                             extensions={this.state.extensions}
-                            externalShareOpen={this.state.externalShareOpen}
+                            socialOpen={this.state.socialOpen}
                             faved={this.state.clientFaved}
                             favoriteCount={this.state.favoriteCount}
                             isAdmin={this.props.isAdmin}
@@ -696,8 +696,8 @@ class Preview extends React.Component {
                             onCloseAdminPanel={this.handleCloseAdminPanel}
                             onCopyProjectLink={this.handleCopyProjectLink}
                             onDeleteComment={this.handleDeleteComment}
-                            onExternalShareClicked={this.handleExternalShareClick}
-                            onExternalShareClosed={this.handleExternalShareClose}
+                            onsocialClicked={this.handlesocialClick}
+                            onsocialClosed={this.handlesocialClose}
                             onFavoriteClicked={this.handleFavoriteToggle}
                             onGreenFlag={this.handleGreenFlag}
                             onLoadMore={this.handleLoadMore}

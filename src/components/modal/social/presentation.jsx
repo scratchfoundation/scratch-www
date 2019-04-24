@@ -17,7 +17,7 @@ const FlexRow = require('../../flex-row/flex-row.jsx');
 require('../../forms/button.scss');
 require('./modal.scss');
 
-const ExternalShareModalPresentation = ({
+const SocialModalPresentation = ({
     embedHtml,
     fbUrl,
     googleClassroomUrl,
@@ -30,47 +30,47 @@ const ExternalShareModalPresentation = ({
     twitterUrl,
     weChatUrl
 }) => {
-    const title = intl.formatMessage({id: 'externalshare.title'});
+    const title = intl.formatMessage({id: 'social.title'});
 
     return (
         <Modal
             useStandardSizes
-            className="mod-externalShare"
+            className="mod-social"
             contentLabel={title}
             isOpen={isOpen}
             onRequestClose={onRequestClose}
         >
-            <div className="externalShare-modal-header modal-header">
-                <div className="externalShare-content-label content-label">
-                    <FormattedMessage id="externalShare.title" />
+            <div className="social-modal-header modal-header">
+                <div className="social-content-label content-label">
+                    <FormattedMessage id="social.title" />
                 </div>
             </div>
-            <div className="externalShare-modal-content modal-content">
+            <div className="social-modal-content modal-content">
 
-                <div className="externalShare-label">
-                    {intl.formatMessage({id: 'externalShare.embedHtmlLabel'})}
+                <div className="social-label">
+                    {intl.formatMessage({id: 'social.embedHtmlLabel'})}
                 </div>
-                <FlexRow className="externalShare-embed-row">
+                <FlexRow className="social-embed-row">
                     <textarea
                         readOnly
-                        className="externalShare-embed-textarea"
+                        className="social-embed-textarea"
                         name="embed"
                         ref={textarea => setEmbedTextarea(textarea)}
                         value={embedHtml}
                         onClick={onCopyEmbed}
                     />
                     <div
-                        className="externalShare-copy-icon"
+                        className="social-copy-icon"
                         onClick={onCopyEmbed}
                     />
                 </FlexRow>
 
-                <FlexRow className="externalShare-embed-row">
+                <FlexRow className="social-embed-row">
                     <div>
-                        <div className="externalShare-label">
-                            {intl.formatMessage({id: 'externalShare.socialMediaLabel'})}
+                        <div className="social-label">
+                            {intl.formatMessage({id: 'social.socialMediaLabel'})}
                         </div>
-                        <FlexRow className="externalShare-embed-row">
+                        <FlexRow className="social-embed-row">
                             <a
                                 alt="Google Classroom"
                                 href={googleClassroomUrl}
@@ -78,8 +78,8 @@ const ExternalShareModalPresentation = ({
                             >
                                 <div
                                     className={classNames(
-                                        'externalShare-social-icon',
-                                        'externalShare-google-classroom-icon'
+                                        'social-social-icon',
+                                        'social-google-classroom-icon'
                                     )}
                                 />
                             </a>
@@ -90,8 +90,8 @@ const ExternalShareModalPresentation = ({
                             >
                                 <div
                                     className={classNames(
-                                        'externalShare-social-icon',
-                                        'externalShare-wechat-icon'
+                                        'social-social-icon',
+                                        'social-wechat-icon'
                                     )}
                                 />
                             </a>
@@ -102,8 +102,8 @@ const ExternalShareModalPresentation = ({
                             >
                                 <div
                                     className={classNames(
-                                        'externalShare-social-icon',
-                                        'externalShare-facebook-icon'
+                                        'social-social-icon',
+                                        'social-facebook-icon'
                                     )}
                                 />
                             </a>
@@ -114,21 +114,21 @@ const ExternalShareModalPresentation = ({
                             >
                                 <div
                                     className={classNames(
-                                        'externalShare-social-icon',
-                                        'externalShare-twitter-icon'
+                                        'social-social-icon',
+                                        'social-twitter-icon'
                                     )}
                                 />
                             </a>
                         </FlexRow>
                     </div>
 
-                    <div className="externalShare-link-section">
-                        <div className="externalShare-label">
-                            {intl.formatMessage({id: 'externalShare.linkLabel'})}
+                    <div className="social-link-section">
+                        <div className="social-label">
+                            {intl.formatMessage({id: 'social.linkLabel'})}
                         </div>
-                        <FlexRow className="externalShare-embed-row">
+                        <FlexRow className="social-embed-row">
                             <Button
-                                className="externalShare-copy-link-button"
+                                className="social-copy-link-button"
                                 onClick={onCopyProjectLink}
                             >
                                 <FormattedMessage id="general.copyLink" />
@@ -142,7 +142,7 @@ const ExternalShareModalPresentation = ({
     );
 };
 
-ExternalShareModalPresentation.propTypes = {
+SocialModalPresentation.propTypes = {
     embedHtml: PropTypes.string,
     fbUrl: PropTypes.string,
     googleClassroomUrl: PropTypes.string,
@@ -156,4 +156,4 @@ ExternalShareModalPresentation.propTypes = {
     weChatUrl: PropTypes.string
 };
 
-module.exports = injectIntl(ExternalShareModalPresentation);
+module.exports = injectIntl(SocialModalPresentation);
