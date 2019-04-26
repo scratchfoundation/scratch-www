@@ -763,10 +763,11 @@ module.exports.getRemixes = id => (dispatch => {
     });
 });
 
-module.exports.getProjectStudios = id => (dispatch => {
+module.exports.getProjectStudios = (id, ownerUsername, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.FETCHING));
     api({
-        uri: `/projects/${id}/studios`
+        uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${id}/studios`,
+        authentication: token
     }, (err, body, res) => {
         if (err) {
             dispatch(module.exports.setFetchStatus('projectStudios', module.exports.Status.ERROR));
