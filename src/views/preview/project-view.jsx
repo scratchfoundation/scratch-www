@@ -57,8 +57,8 @@ class Preview extends React.Component {
             'handleClickLogo',
             'handleCopyProjectLink',
             'handleDeleteComment',
-            'handlesocialClick',
-            'handlesocialClose',
+            'handleSocialClick',
+            'handleSocialClose',
             'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoadMore',
@@ -587,10 +587,10 @@ class Preview extends React.Component {
         // Also do not include hash or query params
         copy(`${window.location.origin}${window.location.pathname}`);
     }
-    handlesocialClick () {
+    handleSocialClick () {
         this.setState({socialOpen: true});
     }
-    handlesocialClose () {
+    handleSocialClose () {
         this.setState({socialOpen: false});
     }
     initCounts (favorites, loves) {
@@ -657,7 +657,6 @@ class Preview extends React.Component {
                             comments={this.props.comments}
                             editable={this.props.isEditable}
                             extensions={this.state.extensions}
-                            socialOpen={this.state.socialOpen}
                             faved={this.state.clientFaved}
                             favoriteCount={this.state.favoriteCount}
                             isAdmin={this.props.isAdmin}
@@ -688,6 +687,7 @@ class Preview extends React.Component {
                             showModInfo={this.props.isAdmin}
                             showUsernameBlockAlert={this.state.showUsernameBlockAlert}
                             singleCommentId={this.state.singleCommentId}
+                            socialOpen={this.state.socialOpen}
                             userOwnsProject={this.props.userOwnsProject}
                             visibilityInfo={this.props.visibilityInfo}
                             onAddComment={this.handleAddComment}
@@ -696,8 +696,6 @@ class Preview extends React.Component {
                             onCloseAdminPanel={this.handleCloseAdminPanel}
                             onCopyProjectLink={this.handleCopyProjectLink}
                             onDeleteComment={this.handleDeleteComment}
-                            onsocialClicked={this.handlesocialClick}
-                            onsocialClosed={this.handlesocialClose}
                             onFavoriteClicked={this.handleFavoriteToggle}
                             onGreenFlag={this.handleGreenFlag}
                             onLoadMore={this.handleLoadMore}
@@ -716,6 +714,8 @@ class Preview extends React.Component {
                             onSeeInside={this.handleSeeInside}
                             onSetProjectThumbnailer={this.handleSetProjectThumbnailer}
                             onShare={this.handleShare}
+                            onSocialClicked={this.handleSocialClick}
+                            onSocialClosed={this.handleSocialClose}
                             onToggleComments={this.handleToggleComments}
                             onToggleStudio={this.handleToggleStudio}
                             onUpdateProjectId={this.handleUpdateProjectId}

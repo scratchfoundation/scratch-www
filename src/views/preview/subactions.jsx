@@ -58,7 +58,7 @@ const Subactions = props => (
             </Button>
             <Button
                 className="action-button social-button"
-                onClick={props.onsocialClicked}
+                onClick={props.onSocialClicked}
             >
                 <FormattedMessage id="general.socialButton" />
             </Button>
@@ -68,7 +68,7 @@ const Subactions = props => (
                     key="social-modal"
                     projectId={props.projectInfo && props.projectInfo.id}
                     onCopyProjectLink={props.onCopyProjectLink}
-                    onRequestClose={props.onsocialClosed}
+                    onRequestClose={props.onSocialClosed}
                 />
             )}
             {(props.canReport) &&
@@ -99,20 +99,20 @@ Subactions.propTypes = {
     addToStudioOpen: PropTypes.bool,
     canAddToStudio: PropTypes.bool,
     canReport: PropTypes.bool,
-    socialOpen: PropTypes.bool,
     isAdmin: PropTypes.bool,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onCopyProjectLink: PropTypes.func,
-    onsocialClicked: PropTypes.func,
-    onsocialClosed: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
     onReportClose: PropTypes.func.isRequired,
     onReportSubmit: PropTypes.func.isRequired,
+    onSocialClicked: PropTypes.func,
+    onSocialClosed: PropTypes.func,
     onToggleStudio: PropTypes.func,
     projectInfo: projectShape,
     reportOpen: PropTypes.bool,
     shareDate: PropTypes.string,
+    socialOpen: PropTypes.bool,
     userOwnsProject: PropTypes.bool
 };
 

@@ -67,7 +67,6 @@ const PreviewPresentation = ({
     comments,
     editable,
     extensions,
-    socialOpen,
     faved,
     favoriteCount,
     intl,
@@ -91,8 +90,6 @@ const PreviewPresentation = ({
     onCloseAdminPanel,
     onCopyProjectLink,
     onDeleteComment,
-    onsocialClicked,
-    onsocialClosed,
     onFavoriteClicked,
     onGreenFlag,
     onLoadMore,
@@ -111,6 +108,8 @@ const PreviewPresentation = ({
     onSeeInside,
     onSetProjectThumbnailer,
     onShare,
+    onSocialClicked,
+    onSocialClosed,
     onToggleComments,
     onToggleStudio,
     onUpdateProjectId,
@@ -129,6 +128,7 @@ const PreviewPresentation = ({
     showAdminPanel,
     showModInfo,
     singleCommentId,
+    socialOpen,
     userOwnsProject,
     visibilityInfo
 }) => {
@@ -367,20 +367,20 @@ const PreviewPresentation = ({
                                         <Subactions
                                             addToStudioOpen={addToStudioOpen}
                                             canReport={canReport}
-                                            socialOpen={socialOpen}
                                             isAdmin={isAdmin}
                                             projectInfo={projectInfo}
                                             reportOpen={reportOpen}
                                             shareDate={shareDate}
+                                            socialOpen={socialOpen}
                                             userOwnsProject={userOwnsProject}
                                             onAddToStudioClicked={onAddToStudioClicked}
                                             onAddToStudioClosed={onAddToStudioClosed}
                                             onCopyProjectLink={onCopyProjectLink}
-                                            onsocialClicked={onsocialClicked}
-                                            onsocialClosed={onsocialClosed}
                                             onReportClicked={onReportClicked}
                                             onReportClose={onReportClose}
                                             onReportSubmit={onReportSubmit}
+                                            onSocialClicked={onSocialClicked}
+                                            onSocialClosed={onSocialClosed}
                                             onToggleStudio={onToggleStudio}
                                         />
                                     </div>
@@ -516,20 +516,20 @@ const PreviewPresentation = ({
                                     addToStudioOpen={addToStudioOpen}
                                     canAddToStudio={canAddToStudio}
                                     canReport={canReport}
-                                    socialOpen={socialOpen}
                                     isAdmin={isAdmin}
                                     projectInfo={projectInfo}
                                     reportOpen={reportOpen}
                                     shareDate={shareDate}
+                                    socialOpen={socialOpen}
                                     userOwnsProject={userOwnsProject}
                                     onAddToStudioClicked={onAddToStudioClicked}
                                     onAddToStudioClosed={onAddToStudioClosed}
                                     onCopyProjectLink={onCopyProjectLink}
-                                    onsocialClicked={onsocialClicked}
-                                    onsocialClosed={onsocialClosed}
                                     onReportClicked={onReportClicked}
                                     onReportClose={onReportClose}
                                     onReportSubmit={onReportSubmit}
+                                    onSocialClicked={onSocialClicked}
+                                    onSocialClosed={onSocialClosed}
                                     onToggleStudio={onToggleStudio}
                                 />
                             </FlexRow>
@@ -704,8 +704,6 @@ PreviewPresentation.propTypes = {
     onCloseAdminPanel: PropTypes.func,
     onCopyProjectLink: PropTypes.func,
     onDeleteComment: PropTypes.func,
-    onsocialClicked: PropTypes.func,
-    onsocialClosed: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onGreenFlag: PropTypes.func,
     onLoadMore: PropTypes.func,
@@ -724,6 +722,8 @@ PreviewPresentation.propTypes = {
     onSeeInside: PropTypes.func,
     onSetProjectThumbnailer: PropTypes.func,
     onShare: PropTypes.func,
+    onSocialClicked: PropTypes.func,
+    onSocialClosed: PropTypes.func,
     onToggleComments: PropTypes.func,
     onToggleStudio: PropTypes.func,
     onUpdateProjectId: PropTypes.func,
@@ -742,6 +742,7 @@ PreviewPresentation.propTypes = {
     showModInfo: PropTypes.bool,
     showUsernameBlockAlert: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+    socialOpen: PropTypes.bool,
     userOwnsProject: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,
