@@ -5,15 +5,6 @@
     min-height: 15rem;
     max-height: calc(100% - 8rem);
     overflow: hidden;
-
-    /* Some value for height must be set for scrolling to work */
-    // height: 100%;
-
-    // overflow: hidden;
-    //
-    // @media #{$small}, #{$small-height} {
-    //     overflow: hidden;
-    // }
 }
 
 .social-modal-header {
@@ -57,28 +48,12 @@
 
 .social-label-result {
     color: $type-gray-75percent;
-    // animation: fadeIn 1s infinite alternate;
     transition: opacity 100ms linear;
-}
-
-.social-link-section {
 }
 
 .embed-section {
     margin-top: 2rem;
 }
-
-//
-// .social-copy-icon {
-//     width: 2rem;
-//     height: 2rem;
-//     padding-left: .5rem;
-//     padding-right: .5rem;
-//     background-image: url("/svgs/forms/temp-copy.svg");
-//     background-repeat: no-repeat;
-//     background-size: contain;
-//     content: "";
-// }
 
 .social-social-icon {
     width: 2.75rem;
@@ -86,7 +61,6 @@
     margin-right: .75rem;
     background-repeat: no-repeat;
     background-size: contain;
-    // border-radius: .5rem;
 }
 
 .social-twitter-icon {
@@ -113,6 +87,7 @@
     text-decoration: none;
     line-height: 1.1875rem;
     font-weight: bold;
+    margin-top: 0;
 
     &:before {
         display: inline-block;
@@ -142,7 +117,6 @@
 // only one place.
 .social-embed-textarea {
     transition: all .2s ease;
-    // border: 2px solid rgba(0, 0, 0, 0.2);
     border: 2px dashed $ui-blue-25percent;
     border-radius: 8px;
     background-color: $ui-light-gray;
@@ -163,7 +137,6 @@
 }
 
 .social-embed-textarea {
-    // width: calc(100% - 3rem);
     width: 100%;
     height: 6rem;
 
@@ -175,52 +148,4 @@
 // NOTE: should probably be put in a shared css location
 .social-hidden {
     opacity: 0.0;
-}
-
-// .external-target-outer-scrollbox {
-//     position: relative;
-//     background-color: $ui-blue-10percent;
-//     flex: 1;
-//     height: calc(100% - 0rem);
-//
-//     @media #{$small-height} {
-//         min-height: 0;
-//     }
-// }
-//
-// .external-target-inner-scrollbox {
-//     margin-right: .5rem;
-//     padding-right: .5rem;
-//     height: 100%;
-//     overflow: scroll;
-//     overflow-x: hidden;
-//
-//     &::-webkit-scrollbar {
-//         width: 8px;
-//     }
-//
-//     &::-webkit-scrollbar-thumb {
-//         border-radius: 4px;
-//         background-color: $active-dark-gray;
-//         height: 92px;
-//     }
-//
-//     &::-webkit-scrollbar-track {
-//         margin-top: 8px;
-//         margin-bottom: 10px;
-//     }
-// }
-//
-// .external-target-container {
-//     display: flex;
-//     padding: .40625rem 0 0 1.46875rem;
-//     justify-content: flex-start;
-//     flex-flow: row wrap;
-// }
-/* NOTE: force scrolling: add to above:
-    min-height: 30rem;
-*/
-
-.social-form {
-    width: 100%;
 }

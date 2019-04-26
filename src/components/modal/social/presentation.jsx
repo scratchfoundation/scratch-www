@@ -7,12 +7,7 @@ const classNames = require('classnames');
 
 const Button = require('../../forms/button.jsx');
 const Modal = require('../base/modal.jsx');
-// const Form = require('../../forms/form.jsx');
-// const Button = require('../../forms/button.jsx');
 const FlexRow = require('../../flex-row/flex-row.jsx');
-// const Input = require('../../forms/input.jsx');
-// const TextArea = require('../../forms/textarea.jsx');
-// const InplaceInput = require('../../forms/inplace-input.jsx');
 
 require('../../forms/button.scss');
 require('./modal.scss');
@@ -48,7 +43,11 @@ const SocialModalPresentation = ({
                 </div>
             </div>
             <div className="modal-content social-modal-content">
+
+                {/* top row: social links and copy link button */}
                 <FlexRow className="social-row social-spaced-row">
+
+                    {/* social links */}
                     <div>
                         <FlexRow className="social-label-row">
                             {intl.formatMessage({id: 'social.socialMediaLabel'})}
@@ -105,7 +104,8 @@ const SocialModalPresentation = ({
                         </FlexRow>
                     </div>
 
-                    <div className="social-link-section">
+                    {/* copy link button */}
+                    <div>
                         <FlexRow className="social-label-row">
                             <div className="social-label">
                                 {intl.formatMessage({id: 'social.linkLabel'})}
@@ -129,8 +129,10 @@ const SocialModalPresentation = ({
                             </Button>
                         </FlexRow>
                     </div>
+
                 </FlexRow>
 
+                {/* bottom row: embed */}
                 <div className="embed-section">
                     <FlexRow className="social-row social-spaced-row">
                         <FlexRow className="social-label-row">
@@ -154,16 +156,6 @@ const SocialModalPresentation = ({
                                 {intl.formatMessage({id: 'social.embedCopiedResultText'})}
                             </div>
                         </FlexRow>
-                        {/*
-                        <InplaceInput
-                            className={classNames('compose-input', 'compose-valid')}
-                            name="embed"
-                            type="textarea"
-                            value={embedHtml}
-                            onClick={onCopyEmbed}
-                        />
-                        */}
-
                         <textarea
                             readOnly
                             className="social-embed-textarea"
@@ -174,6 +166,7 @@ const SocialModalPresentation = ({
                         />
                     </FlexRow>
                 </div>
+
             </div>
         </Modal>
     );

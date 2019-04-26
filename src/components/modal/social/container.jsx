@@ -24,17 +24,6 @@ class SocialModal extends React.Component {
             'setEmbedTextarea'
         ]);
     }
-    // componentDidMount () {
-    //     if (this.embedTextarea) {
-    //         console.log('selecting on mount');
-    //         this.embedTextarea.select();
-    //     }
-    // }
-    componentDidUpdate () {
-        // if (this.embedTextarea) {
-        //     this.embedTextarea.select();
-        // }
-    }
     componentWillUnmount () {
         this.clearEmbedCopyResultTimeout();
     }
