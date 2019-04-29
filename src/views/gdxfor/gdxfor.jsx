@@ -43,7 +43,7 @@ class GdxFor extends ExtensionLanding {
                                             rel="noopener noreferrer"
                                             target="_blank"
                                         >
-                                            Vernier GoDirect Force & Acceleration
+                                            Vernier Go Direct Force & Acceleration
                                         </a>
                                     )
                                 }}
