@@ -183,25 +183,25 @@ class Boost extends ExtensionLanding {
                     <h3><FormattedMessage id="boost.starterProjects" /></h3>
                     <Steps>
                         <ProjectCard
-                            cardUrl="/projects/301384031/editor"
-                            description={this.props.intl.formatMessage({id: 'boost.frogBandDescription'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'boost.imgAltFrogBand'})}
+                            cardUrl="/projects/305503180/editor"
+                            description={this.props.intl.formatMessage({id: 'boost.feedTheCatDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'boost.imgAltFeedTheCat'})}
                             imageSrc="/images/boost/boost-starter1.png"
-                            title={this.props.intl.formatMessage({id: 'boost.frogBand'})}
+                            title={this.props.intl.formatMessage({id: 'boost.feedTheCat'})}
                         />
                         <ProjectCard
-                            cardUrl="/projects/301385019/editor"
-                            description={this.props.intl.formatMessage({id: 'boost.dayAndNightDescription'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'boost.imgAltDayAndNight'})}
+                            cardUrl="/projects/305501694/editor"
+                            description={this.props.intl.formatMessage({id: 'boost.drivingDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'boost.imgAltDriving'})}
                             imageSrc="/images/boost/boost-starter2.png"
-                            title={this.props.intl.formatMessage({id: 'boost.dayAndNight'})}
+                            title={this.props.intl.formatMessage({id: 'boost.driving'})}
                         />
                         <ProjectCard
-                            cardUrl="/projects/301385331/editor"
-                            description={this.props.intl.formatMessage({id: 'boost.underwaterRocketDescription'})}
-                            imageAlt={this.props.intl.formatMessage({id: 'boost.imgAltUnderwaterRocket'})}
+                            cardUrl="/projects/305503649/editor"
+                            description={this.props.intl.formatMessage({id: 'boost.walkAroundDescription'})}
+                            imageAlt={this.props.intl.formatMessage({id: 'boost.imgAltwalkAround'})}
                             imageSrc="/images/boost/boost-starter3.png"
-                            title={this.props.intl.formatMessage({id: 'boost.underwaterRocket'})}
+                            title={this.props.intl.formatMessage({id: 'boost.walkAround'})}
                         />
                     </Steps>
                 </ExtensionSection>

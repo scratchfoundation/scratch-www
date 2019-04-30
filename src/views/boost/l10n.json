@@ -22,13 +22,13 @@
     "boost.otherComputerConnectedText": "Only one computer can be connected to a BOOST at a time. If you have another computer connected to your sensor, disconnect the sensor or close Scratch on that computer and try again.",
     "boost.imgAltBoostIllustration": "Illustration of the LEGO BOOST.",
     "boost.imgAltConnectALegoBeam": "A LEGO BOOST hub with an axle and a short beam connected to motor A.",
-    "boost.frogBand": "Frog Band",
-    "boost.frogBandDescription": "Shake, push and toss the sensor to make music.",
-    "boost.imgAltFrogBand": "A Scratch project with a frog and musical instruments",
-    "boost.dayAndNight": "Day and Night",
-    "boost.dayAndNightDescription": "Turn the sensor face down to change day into night.",
-    "boost.imgAltDayAndNight": "A Scratch project with an elf in a cloak",
-    "boost.underwaterRocket": "Underwater Rocket",
-    "boost.underwaterRocketDescription": "Spin and push the sensor to steer the ship.",
-    "boost.imgAltUnderwaterRocket": "A Scratch project with an underwater rocket ship"
+    "boost.feedTheCat": "Feed the Cat",
+    "boost.feedTheCatDescription": "Feed a robot cat with colored LEGO bricks.",
+    "boost.imgAltFeedTheCat": "A Scratch project with a white cat",
+    "boost.driving": "Driving",
+    "boost.drivingDescription": "Drive around a wheeled robot and make music.",
+    "boost.imgAltDriving": "A Scratch project with a wheeled robot with eyes",
+    "boost.walkAround": "Walk Around",
+    "boost.walkAroundDescription": "Make your own controller to move a character on the screen.",
+    "boost.imgAltwalkAround": "A Scratch project with character on a green background"
 }
