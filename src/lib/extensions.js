@@ -42,6 +42,11 @@ const EXTENSION_INFO = {
         name: 'Force and Acceleration',
         icon: 'extension-gdxfor.svg',
         hasStatus: true
+    },
+    boost: {
+        name: 'LEGO BOOST',
+        icon: 'extension-boost.svg',
+        hasStatus: true
     }
 };
 
