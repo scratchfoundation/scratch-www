@@ -14,18 +14,17 @@ require('./modal.scss');
 
 const SocialModalPresentation = ({
     embedHtml,
-    fbUrl,
-    googleClassroomUrl,
     intl,
     isOpen,
+    linkUrl,
+    onClickEmbedText,
     onCopyEmbed,
     onCopyProjectLink,
     onRequestClose,
     setEmbedTextarea,
+    setLinkTextarea,
     showEmbedResult,
-    showLinkResult,
-    twitterUrl,
-    weChatUrl
+    showLinkResult
 }) => {
     const title = intl.formatMessage({id: 'social.title'});
 
@@ -44,117 +43,68 @@ const SocialModalPresentation = ({
             </div>
             <div className="modal-content social-modal-content">
 
-                {/* top row: social links and copy link button */}
-                <FlexRow className="social-row social-spaced-row">
-
-                    {/* social links */}
-                    <div>
+                {/* top row: link */}
+                <div className="link-section">
+                    <FlexRow className="social-row social-spaced-row">
                         <FlexRow className="social-label-row">
-                            {intl.formatMessage({id: 'social.socialMediaLabel'})}
-                        </FlexRow>
-                        <FlexRow className="social-spaced-row">
-                            <a
-                                alt="Google Classroom"
-                                href={googleClassroomUrl}
-                                target="_blank"
-                            >
-                                <div
-                                    className={classNames(
-                                        'social-social-icon',
-                                        'social-google-classroom-icon'
-                                    )}
-                                />
-                            </a>
-                            <a
-                                alt="WeChat"
-                                href={weChatUrl}
-                                target="_blank"
-                            >
-                                <div
-                                    className={classNames(
-                                        'social-social-icon',
-                                        'social-wechat-icon'
-                                    )}
-                                />
-                            </a>
-                            <a
-                                alt="Facebook"
-                                href={fbUrl}
-                                target="_blank"
-                            >
-                                <div
-                                    className={classNames(
-                                        'social-social-icon',
-                                        'social-facebook-icon'
-                                    )}
-                                />
-                            </a>
-                            <a
-                                alt="Twitter"
-                                href={twitterUrl}
-                                target="_blank"
-                            >
-                                <div
-                                    className={classNames(
-                                        'social-social-icon',
-                                        'social-twitter-icon'
-                                    )}
-                                />
-                            </a>
-                        </FlexRow>
-                    </div>
-
-                    {/* copy link button */}
-                    <div>
-                        <FlexRow className="social-label-row">
-                            <div className="social-label">
+                            <div className="social-label-title">
                                 {intl.formatMessage({id: 'social.linkLabel'})}
                             </div>
-                            <div
-                                className={classNames(
-                                    'social-label',
-                                    'social-label-result',
-                                    {'social-hidden': !showLinkResult}
-                                )}
-                            >
-                                {intl.formatMessage({id: 'social.embedCopiedResultText'})}
-                            </div>
+                            <FlexRow className="social-spaced-row social-row-right">
+                                <div
+                                    className={classNames(
+                                        'social-label-item',
+                                        'social-label-result',
+                                        {'social-hidden': !showLinkResult}
+                                    )}
+                                >
+                                    {intl.formatMessage({id: 'social.embedCopiedResultText'})}
+                                </div>
+                                <div className="social-label-item">
+                                    <a
+                                        onClick={onCopyProjectLink}
+                                    >
+                                        {intl.formatMessage({id: 'general.copyLink'})}
+                                    </a>
+                                </div>
+                            </FlexRow>
                         </FlexRow>
-                        <FlexRow className="social-spaced-row">
-                            <Button
-                                className="social-copy-link-button social-copy-link-button-large"
-                                onClick={onCopyProjectLink}
-                            >
-                                <FormattedMessage id="general.copyLink" />
-                            </Button>
-                        </FlexRow>
-                    </div>
-
-                </FlexRow>
+                        <textarea
+                            readOnly
+                            className="social-link-textarea"
+                            name="link"
+                            ref={textarea => setLinkTextarea(textarea)}
+                            value={linkUrl}
+                            onClick={onClickProjectLinkText}
+                        />
+                    </FlexRow>
+                </div>
 
                 {/* bottom row: embed */}
                 <div className="embed-section">
                     <FlexRow className="social-row social-spaced-row">
                         <FlexRow className="social-label-row">
-                            <div className="social-label">
+                            <div className="social-label-title">
                                 {intl.formatMessage({id: 'social.embedHtmlLabel'})}
                             </div>
-                            <div className="social-label">
-                                <a
-                                    onClick={onCopyEmbed}
+                            <FlexRow className="social-spaced-row social-row-right">
+                                <div
+                                    className={classNames(
+                                        'social-label-item',
+                                        'social-label-result',
+                                        {'social-hidden': !showEmbedResult}
+                                    )}
                                 >
-                                    {intl.formatMessage({id: 'social.copyEmbedLinkText'})}
-                                </a>
-                            </div>
-                            <div
-                                className={classNames(
-                                    'social-label',
-                                    'social-label-result',
-                                    {'social-hidden': !showEmbedResult}
-                                )}
-                            >
-                                {intl.formatMessage({id: 'social.embedCopiedResultText'})}
-                            </div>
+                                    {intl.formatMessage({id: 'social.embedCopiedResultText'})}
+                                </div>
+                                <div className="social-label-item">
+                                    <a
+                                        onClick={onCopyEmbed}
+                                    >
+                                        {intl.formatMessage({id: 'social.copyEmbedLinkText'})}
+                                    </a>
+                                </div>
+                            </FlexRow>
                         </FlexRow>
                         <textarea
                             readOnly
@@ -162,7 +112,7 @@ const SocialModalPresentation = ({
                             name="embed"
                             ref={textarea => setEmbedTextarea(textarea)}
                             value={embedHtml}
-                            onClick={onCopyEmbed}
+                            onClick={onClickEmbedText}
                         />
                     </FlexRow>
                 </div>
@@ -174,18 +124,17 @@ const SocialModalPresentation = ({
 
 SocialModalPresentation.propTypes = {
     embedHtml: PropTypes.string,
-    fbUrl: PropTypes.string,
-    googleClassroomUrl: PropTypes.string,
     intl: intlShape,
     isOpen: PropTypes.bool,
+    linkUrl: PropTypes.string,
+    onClickEmbedText: PropTypes.func,
     onCopyEmbed: PropTypes.func,
     onCopyProjectLink: PropTypes.func,
     onRequestClose: PropTypes.func,
     setEmbedTextarea: PropTypes.func,
+    setLinkTextarea: PropTypes.func,
     showEmbedResult: PropTypes.bool,
-    showLinkResult: PropTypes.bool,
-    twitterUrl: PropTypes.string,
-    weChatUrl: PropTypes.string
+    showLinkResult: PropTypes.bool
 };
 
 module.exports = injectIntl(SocialModalPresentation);

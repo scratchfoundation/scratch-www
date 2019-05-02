@@ -258,7 +258,7 @@
     "comments.status.deleted": "Deleted",
     "comments.status.reported": "Reported",
 
-    "social.title": "Social",
+    "social.title": "Embed",
     "social.embedHtmlLabel": "Embed",
     "social.copyEmbedLinkText": "Copy embed",
     "social.linkLabel": "Link",

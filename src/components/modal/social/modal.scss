@@ -30,20 +30,31 @@
 }
 
 .social-spaced-row {
-    width: 100%;
+    // width: 100%;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-end;
+}
+
+.social-row-right {
+    margin-left: auto;
 }
 
 .social-label-row {
+    width: 100%;
     font-weight: bold;
     margin-bottom: .5rem;
-    justify-content: start;
-    align-items: start;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
-.social-label {
+.social-label-title {
+    font-size: 1rem;
     margin-right: 1.5rem;
+}
+
+.social-label-item {
+    margin-left: 1.5rem;
+    margin-right: .25rem;
 }
 
 .social-label-result {
@@ -51,7 +62,7 @@
     transition: opacity 100ms linear;
 }
 
-.embed-section {
+.embed-section, .link-section {
     margin-top: 2rem;
 }
 
@@ -115,7 +126,7 @@
 
 // NOTE: copied from inplace-input.scss. We should refactor to put this style in
 // only one place.
-.social-embed-textarea {
+.social-embed-textarea, .social-link-textarea {
     transition: all .2s ease;
     border: 2px dashed $ui-blue-25percent;
     border-radius: 8px;
@@ -128,20 +139,18 @@
     resize: none;
     overflow: hidden;
 
-    &:focus {
-        transition: all .2s ease;
-        outline: none;
-        border: 2px solid $ui-blue;
-        box-shadow: 0 0 0 4px $ui-blue-25percent;
-    }
-}
-
-.social-embed-textarea {
     width: 100%;
     height: 6rem;
 
     textarea {
         min-height: 4rem;
+    }
+
+    &:focus {
+        transition: all .2s ease;
+        outline: none;
+        border: 2px solid $ui-blue;
+        box-shadow: 0 0 0 4px $ui-blue-25percent;
     }
 }
 

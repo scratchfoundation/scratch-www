@@ -88,7 +88,6 @@ const PreviewPresentation = ({
     onAddToStudioClicked,
     onAddToStudioClosed,
     onCloseAdminPanel,
-    onCopyProjectLink,
     onDeleteComment,
     onFavoriteClicked,
     onGreenFlag,
@@ -375,7 +374,6 @@ const PreviewPresentation = ({
                                             userOwnsProject={userOwnsProject}
                                             onAddToStudioClicked={onAddToStudioClicked}
                                             onAddToStudioClosed={onAddToStudioClosed}
-                                            onCopyProjectLink={onCopyProjectLink}
                                             onReportClicked={onReportClicked}
                                             onReportClose={onReportClose}
                                             onReportSubmit={onReportSubmit}
@@ -524,7 +522,6 @@ const PreviewPresentation = ({
                                     userOwnsProject={userOwnsProject}
                                     onAddToStudioClicked={onAddToStudioClicked}
                                     onAddToStudioClosed={onAddToStudioClosed}
-                                    onCopyProjectLink={onCopyProjectLink}
                                     onReportClicked={onReportClicked}
                                     onReportClose={onReportClose}
                                     onReportSubmit={onReportSubmit}
@@ -702,7 +699,6 @@ PreviewPresentation.propTypes = {
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onCloseAdminPanel: PropTypes.func,
-    onCopyProjectLink: PropTypes.func,
     onDeleteComment: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onGreenFlag: PropTypes.func,

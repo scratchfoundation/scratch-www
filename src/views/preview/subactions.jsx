@@ -61,7 +61,6 @@ const Subactions = props => (
                     isOpen
                     key="social-modal"
                     projectId={props.projectInfo && props.projectInfo.id}
-                    onCopyProjectLink={props.onCopyProjectLink}
                     onRequestClose={props.onSocialClosed}
                 />
             )}

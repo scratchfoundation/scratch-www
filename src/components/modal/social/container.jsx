@@ -11,6 +11,7 @@ class SocialModal extends React.Component {
         this.embedTextarea = {};
         this.embedCopyTimeoutId = null;
         this.linkCopyTimeoutId = null;
+        this.linkTextarea = {};
         this.showCopyResultTimeout = 2000;
         this.state = {
             showEmbedResult: false,
@@ -21,11 +22,14 @@ class SocialModal extends React.Component {
             'handleCopyProjectLink',
             'hideEmbedResult',
             'hideLinkResult',
-            'setEmbedTextarea'
+            'linkUrl',
+            'setEmbedTextarea',
+            'setLinkTextarea'
         ]);
     }
     componentWillUnmount () {
         this.clearEmbedCopyResultTimeout();
+        this.clearLinkCopyResultTimeout();
     }
     handleCopyEmbed () {
         if (this.embedTextarea) {
@@ -42,14 +46,17 @@ class SocialModal extends React.Component {
         }
     }
     handleCopyProjectLink () {
-        this.props.onCopyProjectLink();
-        if (this.state.showLinkResult === false && this.linkCopyTimeoutId === null) {
-            this.setState({showLinkResult: true}, () => {
-                this.linkCopyTimeoutId = setTimeout(
-                    this.hideLinkResult,
-                    this.showCopyResultTimeout
-                );
-            });
+        if (this.linkTextarea) {
+            this.linkTextarea.select();
+            clipboardCopy(this.linkTextarea.value);
+            if (this.state.showLinkResult === false && this.linkCopyTimeoutId === null) {
+                this.setState({showLinkResult: true}, () => {
+                    this.linkCopyTimeoutId = setTimeout(
+                        this.hideLinkResult,
+                        this.showCopyResultTimeout
+                    );
+                });
+            }
         }
     }
     hideEmbedResult () {
@@ -60,14 +67,27 @@ class SocialModal extends React.Component {
         this.setState({showLinkResult: false});
         this.linkCopyTimeoutId = null;
     }
+    linkUrl () {
+        return `${window.location.origin}${window.location.pathname}`;
+    }
     setEmbedTextarea (textarea) {
         this.embedTextarea = textarea;
+        return textarea;
+    }
+    setLinkTextarea (textarea) {
+        this.linkTextarea = textarea;
         return textarea;
     }
     clearEmbedCopyResultTimeout () {
         if (this.embedCopyTimeoutId !== null) {
             clearTimeout(this.embedCopyTimeoutId);
             this.embedCopyTimeoutId = null;
+        }
+    }
+    clearLinkCopyResultTimeout () {
+        if (this.linkCopyTimeoutId !== null) {
+            clearTimeout(this.linkCopyTimeoutId);
+            this.linkCopyTimeoutId = null;
         }
     }
     render () {
@@ -78,7 +98,9 @@ class SocialModal extends React.Component {
                 fbUrl={social.facebookIntentLink(projectId)}
                 googleClassroomUrl={social.googleClassroomIntentLink(projectId)}
                 isOpen={this.props.isOpen}
+                linkUrl={this.linkUrl()}
                 setEmbedTextarea={this.setEmbedTextarea}
+                setLinkTextarea={this.setLinkTextarea}
                 showEmbedResult={this.state.showEmbedResult}
                 showLinkResult={this.state.showLinkResult}
                 twitterUrl={social.twitterIntentLink(projectId)}
@@ -93,7 +115,6 @@ class SocialModal extends React.Component {
 
 SocialModal.propTypes = {
     isOpen: PropTypes.bool,
-    onCopyProjectLink: PropTypes.func,
     onRequestClose: PropTypes.func,
     projectId: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
