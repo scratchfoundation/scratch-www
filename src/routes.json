@@ -322,6 +322,13 @@
         "title": "Vernier Go Direct Force and Acceleration"
     },
     {
+        "name": "boost",
+        "pattern": "^/boost/?$",
+        "routeAlias": "/boost/?$",
+        "view": "boost/boost",
+        "title": "LEGO BOOST"
+    },
+    {
         "name":"3-faq-redirect",
         "pattern": "^/3faq/?$",
         "routeAlias": "/3faq/?$",
