@@ -5,7 +5,6 @@ const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 const classNames = require('classnames');
 
-const Button = require('../../forms/button.jsx');
 const Modal = require('../base/modal.jsx');
 const FlexRow = require('../../flex-row/flex-row.jsx');
 
@@ -17,7 +16,6 @@ const SocialModalPresentation = ({
     intl,
     isOpen,
     linkUrl,
-    onClickEmbedText,
     onCopyEmbed,
     onCopyProjectLink,
     onRequestClose,
@@ -69,13 +67,12 @@ const SocialModalPresentation = ({
                                 </div>
                             </FlexRow>
                         </FlexRow>
-                        <textarea
+                        <input
                             readOnly
-                            className="social-link-textarea"
+                            className="social-form social-input"
                             name="link"
                             ref={textarea => setLinkTextarea(textarea)}
                             value={linkUrl}
-                            onClick={onClickProjectLinkText}
                         />
                     </FlexRow>
                 </div>
@@ -85,7 +82,7 @@ const SocialModalPresentation = ({
                     <FlexRow className="social-row social-spaced-row">
                         <FlexRow className="social-label-row">
                             <div className="social-label-title">
-                                {intl.formatMessage({id: 'social.embedHtmlLabel'})}
+                                {intl.formatMessage({id: 'social.title'})}
                             </div>
                             <FlexRow className="social-spaced-row social-row-right">
                                 <div
@@ -108,11 +105,10 @@ const SocialModalPresentation = ({
                         </FlexRow>
                         <textarea
                             readOnly
-                            className="social-embed-textarea"
+                            className="social-form social-textarea"
                             name="embed"
                             ref={textarea => setEmbedTextarea(textarea)}
                             value={embedHtml}
-                            onClick={onClickEmbedText}
                         />
                     </FlexRow>
                 </div>
@@ -127,7 +123,6 @@ SocialModalPresentation.propTypes = {
     intl: intlShape,
     isOpen: PropTypes.bool,
     linkUrl: PropTypes.string,
-    onClickEmbedText: PropTypes.func,
     onCopyEmbed: PropTypes.func,
     onCopyProjectLink: PropTypes.func,
     onRequestClose: PropTypes.func,

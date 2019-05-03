@@ -14,9 +14,8 @@
 }
 
 .social-modal-content {
-    margin: 0 auto;
     box-shadow: none;
-    width: 91%;
+    width: 92%;
     height: calc(100% - 0rem);
     margin: 1rem auto 1.625rem;
     font-size: .9375rem;
@@ -62,8 +61,12 @@
     transition: opacity 100ms linear;
 }
 
-.embed-section, .link-section {
-    margin-top: 2rem;
+.link-section {
+    margin-top: .5rem;
+}
+
+.embed-section {
+    margin-top: 1rem;
 }
 
 .social-social-icon {
@@ -126,31 +129,37 @@
 
 // NOTE: copied from inplace-input.scss. We should refactor to put this style in
 // only one place.
-.social-embed-textarea, .social-link-textarea {
+.social-form {
     transition: all .2s ease;
-    border: 2px dashed $ui-blue-25percent;
+    border: 2px solid $box-shadow-light-gray;
     border-radius: 8px;
-    background-color: $ui-light-gray;
+    background-color: $ui-blue-10percent;
+    color: $type-gray;
     padding: .75rem .875rem;
     line-height: 1.25rem;
-    color: $type-gray;
-    font-size: .8125rem;
+    font-size: .875rem;
     box-sizing: border-box;
     resize: none;
     overflow: hidden;
-
     width: 100%;
-    height: 6rem;
-
-    textarea {
-        min-height: 4rem;
-    }
 
     &:focus {
         transition: all .2s ease;
         outline: none;
         border: 2px solid $ui-blue;
         box-shadow: 0 0 0 4px $ui-blue-25percent;
+    }
+
+    &.social-textarea {
+        height: 6rem;
+    }
+
+    .social-input {
+        height: 2.75rem;
+    }
+
+    textarea {
+        min-height: 4rem;
     }
 }
 
