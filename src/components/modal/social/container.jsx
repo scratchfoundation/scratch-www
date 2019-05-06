@@ -22,7 +22,6 @@ class SocialModal extends React.Component {
             'handleCopyProjectLink',
             'hideEmbedResult',
             'hideLinkResult',
-            'linkUrl',
             'setEmbedTextarea',
             'setLinkTextarea'
         ]);
@@ -67,9 +66,6 @@ class SocialModal extends React.Component {
         this.setState({showLinkResult: false});
         this.linkCopyTimeoutId = null;
     }
-    linkUrl () {
-        return `${window.location.origin}${window.location.pathname}`;
-    }
     setEmbedTextarea (textarea) {
         this.embedTextarea = textarea;
         return textarea;
@@ -98,7 +94,7 @@ class SocialModal extends React.Component {
                 fbUrl={social.facebookIntentLink(projectId)}
                 googleClassroomUrl={social.googleClassroomIntentLink(projectId)}
                 isOpen={this.props.isOpen}
-                linkUrl={this.linkUrl()}
+                projectUrl={social.projectUrl(projectId)}
                 setEmbedTextarea={this.setEmbedTextarea}
                 setLinkTextarea={this.setLinkTextarea}
                 showEmbedResult={this.state.showEmbedResult}

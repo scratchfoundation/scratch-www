@@ -1,5 +1,12 @@
 module.exports = {};
 
+module.exports.projectUrl = projectId => {
+    if (projectId) {
+        return `https://scratch.mit.edu/projects/${projectId}`;
+    }
+    return '';
+};
+
 module.exports.embedHtml = projectId => {
     if (projectId) {
         return `<iframe src="https://scratch.mit.edu/projects/${projectId}/embed" ` +

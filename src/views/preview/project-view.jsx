@@ -382,6 +382,12 @@ class Preview extends React.Component {
     handleAddToStudioClose () {
         this.setState({addToStudioOpen: false});
     }
+    handleSocialClick () {
+        this.setState({socialOpen: true});
+    }
+    handleSocialClose () {
+        this.setState({socialOpen: false});
+    }
     handleReportSubmit (formData) {
         const submit = data => this.props.reportProject(this.state.projectId, data, this.props.user.token);
         if (this.getProjectThumbnail) {
@@ -579,12 +585,6 @@ class Preview extends React.Component {
             this.props.isAdmin,
             this.props.user.token
         );
-    }
-    handleSocialClick () {
-        this.setState({socialOpen: true});
-    }
-    handleSocialClose () {
-        this.setState({socialOpen: false});
     }
     initCounts (favorites, loves) {
         this.setState({

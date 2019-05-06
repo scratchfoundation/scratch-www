@@ -15,10 +15,10 @@ const SocialModalPresentation = ({
     embedHtml,
     intl,
     isOpen,
-    linkUrl,
     onCopyEmbed,
     onCopyProjectLink,
     onRequestClose,
+    projectUrl,
     setEmbedTextarea,
     setLinkTextarea,
     showEmbedResult,
@@ -72,7 +72,7 @@ const SocialModalPresentation = ({
                             className="social-form social-input"
                             name="link"
                             ref={textarea => setLinkTextarea(textarea)}
-                            value={linkUrl}
+                            value={projectUrl}
                         />
                     </FlexRow>
                 </div>
@@ -122,10 +122,10 @@ SocialModalPresentation.propTypes = {
     embedHtml: PropTypes.string,
     intl: intlShape,
     isOpen: PropTypes.bool,
-    linkUrl: PropTypes.string,
     onCopyEmbed: PropTypes.func,
     onCopyProjectLink: PropTypes.func,
     onRequestClose: PropTypes.func,
+    projectUrl: PropTypes.string,
     setEmbedTextarea: PropTypes.func,
     setLinkTextarea: PropTypes.func,
     showEmbedResult: PropTypes.bool,
