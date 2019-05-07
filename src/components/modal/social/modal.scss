@@ -93,42 +93,6 @@
     background-image: url("/images/social/wechat.png");
 }
 
-// NOTE: copied from subactions.scss. We should refactor to put this style in
-// only one place.
-.social-copy-link-button {
-    background-color: $ui-blue;
-    height: 2rem;
-    text-decoration: none;
-    line-height: 1.1875rem;
-    font-weight: bold;
-    margin-top: 0;
-
-    &:before {
-        display: inline-block;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: contain;
-        vertical-align: bottom;
-        content: "";
-        background-image: url("/svgs/project/copy-link-white.svg");
-    }
-
-    &.social-copy-link-button-large {
-        padding: 0 1.125rem .125rem 1rem;
-        border-radius: 1.3125rem;
-        height: 2.625rem;
-        font-size: .9375rem;
-
-        &:before {
-            width: 1.0625rem;
-            height: 1.0625rem;
-            margin-right: .5rem;
-        }
-    }
-}
-
-// NOTE: copied from inplace-input.scss. We should refactor to put this style in
-// only one place.
 .social-form {
     transition: all .2s ease;
     border: 2px solid $box-shadow-light-gray;
@@ -154,7 +118,7 @@
         height: 6rem;
     }
 
-    .social-input {
+    &.social-input {
         height: 2.75rem;
     }
 
@@ -163,7 +127,6 @@
     }
 }
 
-// NOTE: should probably be put in a shared css location
 .social-hidden {
     opacity: 0.0;
 }
