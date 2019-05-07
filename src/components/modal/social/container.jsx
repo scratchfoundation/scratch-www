@@ -91,16 +91,12 @@ class SocialModal extends React.Component {
         return (
             <SocialModalPresentation
                 embedHtml={social.embedHtml(projectId)}
-                fbUrl={social.facebookIntentLink(projectId)}
-                googleClassroomUrl={social.googleClassroomIntentLink(projectId)}
                 isOpen={this.props.isOpen}
                 projectUrl={social.projectUrl(projectId)}
                 setEmbedTextarea={this.setEmbedTextarea}
                 setLinkTextarea={this.setLinkTextarea}
                 showEmbedResult={this.state.showEmbedResult}
                 showLinkResult={this.state.showLinkResult}
-                twitterUrl={social.twitterIntentLink(projectId)}
-                weChatUrl={social.weChatIntentLink(projectId)}
                 onCopyEmbed={this.handleCopyEmbed}
                 onCopyProjectLink={this.handleCopyProjectLink}
                 onRequestClose={this.props.onRequestClose}
