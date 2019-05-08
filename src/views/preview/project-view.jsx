@@ -8,7 +8,6 @@ const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
-const copy = require('clipboard-copy');
 
 const Page = require('../../components/page/www/page.jsx');
 const storage = require('../../lib/storage.js').default;
@@ -55,8 +54,9 @@ class Preview extends React.Component {
             'fetchCommunityData',
             'handleAddComment',
             'handleClickLogo',
-            'handleCopyProjectLink',
             'handleDeleteComment',
+            'handleSocialClick',
+            'handleSocialClose',
             'handleToggleStudio',
             'handleFavoriteToggle',
             'handleLoadMore',
@@ -109,6 +109,7 @@ class Preview extends React.Component {
             clientFaved: false,
             clientLoved: false,
             extensions: [],
+            socialOpen: false,
             favoriteCount: 0,
             isProjectLoaded: false,
             isRemixing: false,
@@ -381,6 +382,12 @@ class Preview extends React.Component {
     handleAddToStudioClose () {
         this.setState({addToStudioOpen: false});
     }
+    handleSocialClick () {
+        this.setState({socialOpen: true});
+    }
+    handleSocialClose () {
+        this.setState({socialOpen: false});
+    }
     handleReportSubmit (formData) {
         const submit = data => this.props.reportProject(this.state.projectId, data, this.props.user.token);
         if (this.getProjectThumbnail) {
@@ -579,11 +586,6 @@ class Preview extends React.Component {
             this.props.user.token
         );
     }
-    handleCopyProjectLink () {
-        // Use the pathname so we do not have to update this if path changes
-        // Also do not include hash or query params
-        copy(`${window.location.origin}${window.location.pathname}`);
-    }
     initCounts (favorites, loves) {
         this.setState({
             favoriteCount: favorites,
@@ -678,13 +680,13 @@ class Preview extends React.Component {
                             showModInfo={this.props.isAdmin}
                             showUsernameBlockAlert={this.state.showUsernameBlockAlert}
                             singleCommentId={this.state.singleCommentId}
+                            socialOpen={this.state.socialOpen}
                             userOwnsProject={this.props.userOwnsProject}
                             visibilityInfo={this.props.visibilityInfo}
                             onAddComment={this.handleAddComment}
                             onAddToStudioClicked={this.handleAddToStudioClick}
                             onAddToStudioClosed={this.handleAddToStudioClose}
                             onCloseAdminPanel={this.handleCloseAdminPanel}
-                            onCopyProjectLink={this.handleCopyProjectLink}
                             onDeleteComment={this.handleDeleteComment}
                             onFavoriteClicked={this.handleFavoriteToggle}
                             onGreenFlag={this.handleGreenFlag}
@@ -704,6 +706,8 @@ class Preview extends React.Component {
                             onSeeInside={this.handleSeeInside}
                             onSetProjectThumbnailer={this.handleSetProjectThumbnailer}
                             onShare={this.handleShare}
+                            onSocialClicked={this.handleSocialClick}
+                            onSocialClosed={this.handleSocialClose}
                             onToggleComments={this.handleToggleComments}
                             onToggleStudio={this.handleToggleStudio}
                             onUpdateProjectId={this.handleUpdateProjectId}
