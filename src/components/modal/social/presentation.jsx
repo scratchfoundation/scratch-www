@@ -24,7 +24,7 @@ const SocialModalPresentation = ({
     showEmbedResult,
     showLinkResult
 }) => {
-    const title = intl.formatMessage({id: 'social.title'});
+    const title = intl.formatMessage({id: 'general.copyLink'});
 
     return (
         <Modal
@@ -36,7 +36,7 @@ const SocialModalPresentation = ({
         >
             <div className="social-modal-header modal-header">
                 <div className="social-content-label content-label">
-                    <FormattedMessage id="social.title" />
+                    <FormattedMessage id="general.copyLink" />
                 </div>
             </div>
             <div className="modal-content social-modal-content">
@@ -62,7 +62,7 @@ const SocialModalPresentation = ({
                                     <a
                                         onClick={onCopyProjectLink}
                                     >
-                                        {intl.formatMessage({id: 'general.copyLink'})}
+                                        {intl.formatMessage({id: 'social.copyLinkLinkText'})}
                                     </a>
                                 </div>
                             </FlexRow>
@@ -82,7 +82,7 @@ const SocialModalPresentation = ({
                     <FlexRow className="social-row social-spaced-row">
                         <FlexRow className="social-label-row">
                             <div className="social-label-title">
-                                {intl.formatMessage({id: 'social.title'})}
+                                {intl.formatMessage({id: 'social.embedLabel'})}
                             </div>
                             <FlexRow className="social-spaced-row social-row-right">
                                 <div

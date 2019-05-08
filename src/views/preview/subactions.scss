@@ -61,8 +61,7 @@
             }
             &.studio-button,
             &.copy-link-button,
-            &.report-button,
-            &.social-button {
+            &.report-button {
                 &:before {
                     display: inline-block;
                     margin-right: .25rem;
@@ -85,12 +84,6 @@
             &.copy-link-button {
                 &:before {
                     background-image: url("/svgs/project/copy-link-white.svg");
-                }
-            }
-
-            &.social-button {
-                &:before {
-                    background-image: url("/svgs/project/embed-icon.svg");
                 }
             }
 

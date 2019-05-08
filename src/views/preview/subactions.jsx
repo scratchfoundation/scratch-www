@@ -51,10 +51,10 @@ const Subactions = props => (
                 </React.Fragment>
             }
             <Button
-                className="action-button social-button"
+                className="action-button copy-link-button"
                 onClick={props.onSocialClicked}
             >
-                <FormattedMessage id="social.title" />
+                <FormattedMessage id="general.copyLink" />
             </Button>
             {props.socialOpen && props.projectInfo && props.projectInfo.id && (
                 <SocialModal
