@@ -53,7 +53,7 @@ const ConferenceSplash = () => (
                         src="/svgs/conference/flags/cl.svg"
                     />
                     <div className="conf2019-panel-title-text">
-                        <h3>Conferencia Scratch al Sur</h3>
+                        <h3>Scratch al Sur Conferencia Chile 2019</h3>
                     </div>
                 </FlexRow>
                 <p className="conf2019-panel-desc">
@@ -141,104 +141,7 @@ const ConferenceSplash = () => (
                     <FormattedMessage id="conference-2019.website" />
                 </a>
             </section>
-            <section className="conf2019-panel mod-kenya">
-                <FlexRow className="conf2019-panel-title">
-                    <img
-                        alt="Kenya Flag"
-                        className="conf2019-panel-flag"
-                        src="/svgs/conference/flags/ke.svg"
-                    />
-                    <div className="conf2019-panel-title-text">
-                        <h3><FormattedMessage id="conference-2019.kenyaTitle" /></h3>
-                        <h4><FormattedMessage id="conference-2019.kenyaSubTitle" /></h4>
-                    </div>
-                </FlexRow>
-                <p className="conf2019-panel-desc">
-                    <FormattedMessage id="conference-2019.kenyaDesc" />
-                </p>
-                <table className="conf2019-panel-details">
-                    <tbody>
-                        <tr className="conf2019-panel-row">
-                            <td className="conf2019-panel-row-icon">
-                                <img
-                                    alt="Calendar Icon"
-                                    className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/calendar-icon-solid.svg"
-                                />
-                            </td>
-                            <td><FormattedMessage id="conference-2019.date" /></td>
-                            <td>
-                                <FormattedDate
-                                    day="2-digit"
-                                    month="long"
-                                    value={new Date(2019, 6, 8)}
-                                    year="numeric"
-                                />
-                                {' - '}
-                                <FormattedDate
-                                    day="2-digit"
-                                    month="long"
-                                    value={new Date(2019, 6, 13)}
-                                    year="numeric"
-                                />
-                            </td>
-                        </tr>
-                        <tr className="conf2019-panel-row">
-                            <td className="conf2019-panel-row-icon">
-                                <img
-                                    alt="Map Icon"
-                                    className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/map-icon-solid.svg"
-                                />
-                            </td>
-                            <td><FormattedMessage id="conference-2019.location" /></td>
-                            <td>{'Nairobi, Kenya'}</td>
-                        </tr>
-                        <tr className="conf2019-panel-row">
-                            <td className="conf2019-panel-row-icon">
-                                <img
-                                    alt="Audience Icon"
-                                    className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/audience-icon-solid.svg"
-                                />
-                            </td>
-                            <td><FormattedMessage id="conference-2019.audience" /></td>
-                            <td><FormattedMessage id="conference-2019.kenyaAudience" /></td>
-                        </tr>
-                        <tr className="conf2019-panel-row">
-                            <td className="conf2019-panel-row-icon">
-                                <img
-                                    alt="Language Icon"
-                                    className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/language-icon-solid.svg"
-                                />
-                            </td>
-                            <td><FormattedMessage id="conference-2019.language" /></td>
-                            <td><FormattedMessage id="general.english" /></td>
-                        </tr>
-                        <tr className="conf2019-panel-row">
-                            <td className="conf2019-panel-row-icon">
-                                <img
-                                    alt="Language Icon"
-                                    className="conf2019-panel-row-icon-image"
-                                    src="/svgs/conference/index/hashtag-icon-solid.svg"
-                                />
-                            </td>
-                            <td><FormattedMessage id="conference-2019.hashtag" /></td>
-                            <td>{'#Scratch2019AFR'}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <a
-                    className="button mod-2019-conf mod-2019-conf-website-button"
-                    href="https://www.scratchafrica.com"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                >
-                    <FormattedMessage id="conference-2019.website" />
-                </a>
-            </section>
-            <section className="conf2019-panel mod-uk mod-last">
+            <section className="conf2019-panel mod-uk">
                 <FlexRow className="conf2019-panel-title">
                     <img
                         alt="EU Flag"
@@ -327,12 +230,27 @@ const ConferenceSplash = () => (
                 </table>
                 <a
                     className="button mod-2019-conf mod-2019-conf-website-button"
-                    href="https://www.raspberrypi.org/blog/announcing-scratch-conference-europe-2019/"
+                    href="https://scratchconferenceeurope.raspberrypi.org/"
                     rel="noopener noreferrer"
                     target="_blank"
                 >
                     <FormattedMessage id="conference-2019.website" />
                 </a>
+            </section>
+            <section className="conf2019-panel mod-kenya mod-last">
+                <FlexRow className="conf2019-panel-title">
+                    <img
+                        alt="Kenya Flag"
+                        className="conf2019-panel-flag"
+                        src="/svgs/conference/flags/ke.svg"
+                    />
+                    <div className="conf2019-panel-title-text">
+                        <h3><FormattedMessage id="conference-2019.kenyaTitle" /></h3>
+                    </div>
+                </FlexRow>
+                <p className="conf2019-panel-desc">
+                    <FormattedMessage id="conference-2019.kenyaPostpone" />
+                </p>
             </section>
         </div>
         <div className="conf2019-title-band conf2019-mailing-list">
