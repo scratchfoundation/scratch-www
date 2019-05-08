@@ -256,5 +256,11 @@
     "comments.status.suspended": "Suspended",
     "comments.status.acctdel": "Account deleted",
     "comments.status.deleted": "Deleted",
-    "comments.status.reported": "Reported"
+    "comments.status.reported": "Reported",
+
+    "social.embedLabel": "Embed",
+    "social.copyEmbedLinkText": "Copy embed",
+    "social.linkLabel": "Link",
+    "social.copyLinkLinkText": "Copy link",
+    "social.embedCopiedResultText": "Copied"
 }
