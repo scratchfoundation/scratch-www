@@ -111,7 +111,10 @@ class Comment extends React.Component {
             visibility
         } = this.props;
 
-        const visible = visibility === 'visible';
+        // we allow comments that are fully visible, or markedByFilter (flagged by
+        // our bad words filter, but not at the critical level of offensiveness)
+        const markedByFilter = visibility === 'markedbyfilter';
+        const visible = markedByFilter || visibility === 'visible';
 
         let commentText = content;
         if (replyUsername) {
@@ -182,6 +185,7 @@ class Comment extends React.Component {
                     <div
                         className={classNames({
                             'comment-bubble': true,
+                            'comment-bubble-markedbyfilter': markedByFilter,
                             'comment-bubble-reported': !visible
                         })}
                     >
