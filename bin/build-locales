@@ -106,7 +106,9 @@ for ( var l in languages ) {
             l + '.json'
         );
         fs.accessSync(langTranslations);
-        generalLocales[l] = JSON.parse(fs.readFileSync(langTranslations, 'utf8'));
+        if (l !== 'en') {
+            generalLocales[l] = JSON.parse(fs.readFileSync(langTranslations, 'utf8'));
+        }
     } catch (err) {
         // just use english
         generalLocales[l] = generalLocales['en'];
@@ -228,8 +230,11 @@ async.forEachLimit(views, 5, function (view, cb) {
                 }
             }
             try {
-                viewLocales[isoCode] = merge({}, generalLocales[isoCode], JSON.parse(data));
-                defaults(viewLocales[isoCode], viewLocales['en']);
+                // don't overwrite english view strings
+                if (isoCode !== 'en') {
+                    viewLocales[isoCode] = merge({}, generalLocales[isoCode], JSON.parse(data));
+                    defaults(viewLocales[isoCode], viewLocales['en']);
+                }
             } catch (e) {
                 return cb(e);
             }
