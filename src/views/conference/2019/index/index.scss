@@ -99,6 +99,7 @@ h1.title-banner-h1.mod-2019 {
 
 .conf2019-panel.mod-last {
     border-bottom: 0;
+    padding-bottom: 1rem;
 }
 
 .flex-row.conf2019-panel-title {
@@ -116,6 +117,12 @@ h1.title-banner-h1.mod-2019 {
 
 .conf2019-panel-desc {
     margin: 2rem 0;
+}
+
+.mod-kenya {
+    .conf2019-panel-desc {
+        font-style: italic;
+    }
 }
 
 .conf2019-mailing-list {
