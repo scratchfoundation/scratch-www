@@ -50,19 +50,24 @@ const Subactions = props => (
                     )}
                 </React.Fragment>
             }
-            <Button
-                className="action-button copy-link-button"
-                onClick={props.onSocialClicked}
-            >
-                <FormattedMessage id="general.copyLink" />
-            </Button>
-            {props.socialOpen && props.projectInfo && props.projectInfo.id && (
-                <SocialModal
-                    isOpen
-                    key="social-modal"
-                    projectId={props.projectInfo && props.projectInfo.id}
-                    onRequestClose={props.onSocialClosed}
-                />
+            {/* only show copy link button, modal if project is shared */}
+            {props.isShared && props.projectInfo && props.projectInfo.id && (
+                <React.Fragment>
+                    <Button
+                        className="action-button copy-link-button"
+                        onClick={props.onSocialClicked}
+                    >
+                        <FormattedMessage id="general.copyLink" />
+                    </Button>
+                    {props.socialOpen && (
+                        <SocialModal
+                            isOpen
+                            key="social-modal"
+                            projectId={props.projectInfo && props.projectInfo.id}
+                            onRequestClose={props.onSocialClosed}
+                        />
+                    )}
+                </React.Fragment>
             )}
             {(props.canReport) &&
             <React.Fragment>
@@ -93,6 +98,7 @@ Subactions.propTypes = {
     canAddToStudio: PropTypes.bool,
     canReport: PropTypes.bool,
     isAdmin: PropTypes.bool,
+    isShared: PropTypes.bool,
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onReportClicked: PropTypes.func.isRequired,
