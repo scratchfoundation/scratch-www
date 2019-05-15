@@ -129,9 +129,10 @@ $stage-width: 480px;
             height: 3rem;
 
             &.remix {
-                margin-right: .5em;
+                margin-right: .75em;
                 width: 2rem;
                 height: 2rem;
+                align-self: flex-start;
             }
         }
     }
@@ -403,8 +404,12 @@ $stage-width: 480px;
             width: 100%;
         }
 
-        > .description-block:first-child {
-            margin-top: 1rem;
+        > * {
+            margin-bottom: .75rem;
+        }
+
+        > .description-block:last-child {
+            margin-bottom: 0;
         }
     }
 
@@ -413,10 +418,11 @@ $stage-width: 480px;
         border: 1px solid $ui-blue-10percent;
         border-radius: 8px;
         background-color: $ui-blue-10percent;
-        padding: .5rem;
-        width: calc(100% - 1rem);
+        padding: .75rem;
+        width: calc(100% - 1.5rem);
         flex-wrap: nowrap;
         align-items: center;
+        justify-content: flex-start;
 
         @media #{$medium-and-smaller} {
             flex-direction: row;
@@ -427,15 +433,15 @@ $stage-width: 480px;
     .credit-text {
         font-size: .875rem;
         flex-shrink: 1;
+        text-align: left;
     }
 
     .description-block {
         display: flex;
         width: 100%;
-        min-height: 0;
+        height: 100%;
         flex-direction: column;
         align-items: flex-start;
-        flex: 1;
     }
 
     .project-textlabel {
@@ -465,12 +471,13 @@ $stage-width: 480px;
     .project-description-form {
         display: flex;
         width: 100%;
+        height: 100%;
+        min-height: 2rem;
         flex-grow: 1;
     }
 
     .project-description-edit {
         display: flex;
-        margin-bottom: .75rem;
         border: 1px solid $ui-blue-10percent;
         border-radius: 8px;
         background-color: $ui-blue-10percent;
