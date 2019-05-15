@@ -38,9 +38,11 @@ $stage-width: 480px;
 
     .inner {
         margin: 0 auto;
+        overflow: auto;
 
         @media #{$medium-and-smaller} {
-            max-width: 90%;
+            // subtract page padding
+            max-width: calc(100% - 1rem);
         }
 
         @media #{$intermediate} {
@@ -146,7 +148,8 @@ $stage-width: 480px;
         flex-grow: 1;
 
         @media #{$medium-and-smaller} {
-            min-width: calc(100% - 2rem);
+            // subtract margin and border
+            min-width: calc(100% - 2rem - 4px);
         }
     }
 
@@ -421,7 +424,7 @@ $stage-width: 480px;
         border-radius: 8px;
         background-color: $ui-blue-10percent;
         padding: .75rem;
-        width: calc(100% - 1.5rem);
+        width: calc(100% - 1.5rem - 2px);
         flex-wrap: nowrap;
         align-items: center;
         justify-content: flex-start;
