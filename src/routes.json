@@ -463,7 +463,7 @@
     {
         "name": "story-tutorial-redirect",
         "pattern": "^/story/?$",
-        "redirect": "/projects/editor/?tutorial=story"
+        "redirect": "/projects/editor/?tutorial=tell-a-story"
     },
     {
         "name": "pong-tutorial-redirect",
