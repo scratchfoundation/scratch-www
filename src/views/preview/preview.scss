@@ -471,8 +471,14 @@ $stage-width: 480px;
     .project-description-form {
         display: flex;
         width: 100%;
+        // surprisingly, without setting height: 100% here, flex-grow causes the
+        // height to be too large
         height: 100%;
+        // surprisingly, just having some min-height actually reduces the height
+        // of the element when it is being vertically crowded by other elements
         min-height: 2rem;
+        // necessary to cause the element to take up the maximum height
+        // available
         flex-grow: 1;
     }
 
