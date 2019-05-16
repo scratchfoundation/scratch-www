@@ -88,7 +88,6 @@ const PreviewPresentation = ({
     onAddToStudioClicked,
     onAddToStudioClosed,
     onCloseAdminPanel,
-    onCopyProjectLink,
     onDeleteComment,
     onFavoriteClicked,
     onGreenFlag,
@@ -108,6 +107,8 @@ const PreviewPresentation = ({
     onSeeInside,
     onSetProjectThumbnailer,
     onShare,
+    onSocialClicked,
+    onSocialClosed,
     onToggleComments,
     onToggleStudio,
     onUpdateProjectId,
@@ -126,6 +127,7 @@ const PreviewPresentation = ({
     showAdminPanel,
     showModInfo,
     singleCommentId,
+    socialOpen,
     userOwnsProject,
     visibilityInfo
 }) => {
@@ -365,16 +367,19 @@ const PreviewPresentation = ({
                                             addToStudioOpen={addToStudioOpen}
                                             canReport={canReport}
                                             isAdmin={isAdmin}
+                                            isShared={isShared}
                                             projectInfo={projectInfo}
                                             reportOpen={reportOpen}
                                             shareDate={shareDate}
+                                            socialOpen={socialOpen}
                                             userOwnsProject={userOwnsProject}
                                             onAddToStudioClicked={onAddToStudioClicked}
                                             onAddToStudioClosed={onAddToStudioClosed}
-                                            onCopyProjectLink={onCopyProjectLink}
                                             onReportClicked={onReportClicked}
                                             onReportClose={onReportClose}
                                             onReportSubmit={onReportSubmit}
+                                            onSocialClicked={onSocialClicked}
+                                            onSocialClosed={onSocialClosed}
                                             onToggleStudio={onToggleStudio}
                                         />
                                     </div>
@@ -511,16 +516,19 @@ const PreviewPresentation = ({
                                     canAddToStudio={canAddToStudio}
                                     canReport={canReport}
                                     isAdmin={isAdmin}
+                                    isShared={isShared}
                                     projectInfo={projectInfo}
                                     reportOpen={reportOpen}
                                     shareDate={shareDate}
+                                    socialOpen={socialOpen}
                                     userOwnsProject={userOwnsProject}
                                     onAddToStudioClicked={onAddToStudioClicked}
                                     onAddToStudioClosed={onAddToStudioClosed}
-                                    onCopyProjectLink={onCopyProjectLink}
                                     onReportClicked={onReportClicked}
                                     onReportClose={onReportClose}
                                     onReportSubmit={onReportSubmit}
+                                    onSocialClicked={onSocialClicked}
+                                    onSocialClosed={onSocialClosed}
                                     onToggleStudio={onToggleStudio}
                                 />
                             </FlexRow>
@@ -693,7 +701,6 @@ PreviewPresentation.propTypes = {
     onAddToStudioClicked: PropTypes.func,
     onAddToStudioClosed: PropTypes.func,
     onCloseAdminPanel: PropTypes.func,
-    onCopyProjectLink: PropTypes.func,
     onDeleteComment: PropTypes.func,
     onFavoriteClicked: PropTypes.func,
     onGreenFlag: PropTypes.func,
@@ -713,6 +720,8 @@ PreviewPresentation.propTypes = {
     onSeeInside: PropTypes.func,
     onSetProjectThumbnailer: PropTypes.func,
     onShare: PropTypes.func,
+    onSocialClicked: PropTypes.func,
+    onSocialClosed: PropTypes.func,
     onToggleComments: PropTypes.func,
     onToggleStudio: PropTypes.func,
     onUpdateProjectId: PropTypes.func,
@@ -731,6 +740,7 @@ PreviewPresentation.propTypes = {
     showModInfo: PropTypes.bool,
     showUsernameBlockAlert: PropTypes.bool,
     singleCommentId: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
+    socialOpen: PropTypes.bool,
     userOwnsProject: PropTypes.bool,
     visibilityInfo: PropTypes.shape({
         censored: PropTypes.bool,

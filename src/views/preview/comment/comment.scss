@@ -197,6 +197,19 @@
                     background: $reported-background;
                 }
             }
+
+            &.comment-bubble-markedbyfilter {
+                $markedbyfilter-outline:  $ui-yellow;
+                $markedbyfilter-background: rgb(255, 254, 210);
+
+                border-color: $markedbyfilter-outline;
+                background-color: $markedbyfilter-background;
+
+                &:before {
+                    border-color: $markedbyfilter-outline transparent $markedbyfilter-outline $markedbyfilter-outline;
+                    background: $markedbyfilter-background;
+                }
+            }
         }
 
         .comment-content {
