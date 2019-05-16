@@ -19,6 +19,10 @@
         "locale": "ja-hr",
         "parentLocale": "ja"
     },
+    "rap": {
+        "locale": "rap",
+        "parentLocale": "es"
+    },
     "la": {
         "locale": "la",
         "parentLocale": "it"
