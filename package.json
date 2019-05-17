@@ -31,7 +31,7 @@
     "bunyan": "1.7.1",
     "clipboard-copy": "2.0.1",
     "compression": "1.6.1",
-    "express": "4.16.1",
+    "express": "4.17.0",
     "express-http-proxy": "1.1.0",
     "lodash.defaults": "4.0.1",
     "newrelic": "1.25.4",
