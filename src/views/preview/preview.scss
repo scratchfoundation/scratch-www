@@ -397,6 +397,7 @@ $stage-width: 480px;
         align-items: flex-start;
         flex: 1;
         flex-flow: column;
+        padding-top: .25rem;
 
         @media #{$medium-and-smaller} {
             margin-top: .5rem;
