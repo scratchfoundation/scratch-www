@@ -3,7 +3,8 @@
 
 /* stage size constants */
 $player-width: 482px;
-$player-height: 406px;
+$player-height: 362px;
+$player-header: 44px;
 $stage-width: 480px;
 
 /* override view padding for share banner */
@@ -393,11 +394,11 @@ $stage-width: 480px;
 
     .project-notes {
         margin-left: 1rem;
-        height: $player-height;
+        height: calc(#{$player-height} + #{$player-header} - .3125rem);
         align-items: flex-start;
         flex: 1;
         flex-flow: column;
-        padding-top: .25rem;
+        margin-top: .3125rem;
 
         @media #{$medium-and-smaller} {
             margin-top: .5rem;
