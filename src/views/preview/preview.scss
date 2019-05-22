@@ -3,7 +3,8 @@
 
 /* stage size constants */
 $player-width: 482px;
-$player-height: 406px;
+$player-height: 362px;
+$player-header: 44px;
 $stage-width: 480px;
 
 /* override view padding for share banner */
@@ -129,9 +130,10 @@ $stage-width: 480px;
             height: 3rem;
 
             &.remix {
-                margin-right: .5em;
+                margin-right: .75em;
                 width: 2rem;
                 height: 2rem;
+                align-self: flex-start;
             }
         }
     }
@@ -392,10 +394,11 @@ $stage-width: 480px;
 
     .project-notes {
         margin-left: 1rem;
-        height: $player-height;
+        height: calc(#{$player-height} + #{$player-header} - .3125rem);
         align-items: flex-start;
         flex: 1;
         flex-flow: column;
+        margin-top: .3125rem;
 
         @media #{$medium-and-smaller} {
             margin-top: .5rem;
@@ -403,8 +406,12 @@ $stage-width: 480px;
             width: 100%;
         }
 
-        > .description-block:first-child {
-            margin-top: 1rem;
+        > * {
+            margin-bottom: .75rem;
+        }
+
+        > .description-block:last-child {
+            margin-bottom: 0;
         }
     }
 
@@ -413,10 +420,11 @@ $stage-width: 480px;
         border: 1px solid $ui-blue-10percent;
         border-radius: 8px;
         background-color: $ui-blue-10percent;
-        padding: .5rem;
-        width: calc(100% - 1rem);
+        padding: .75rem;
+        width: calc(100% - 1.5rem);
         flex-wrap: nowrap;
         align-items: center;
+        justify-content: flex-start;
 
         @media #{$medium-and-smaller} {
             flex-direction: row;
@@ -427,15 +435,15 @@ $stage-width: 480px;
     .credit-text {
         font-size: .875rem;
         flex-shrink: 1;
+        text-align: left;
     }
 
     .description-block {
         display: flex;
         width: 100%;
-        min-height: 0;
+        height: 100%;
         flex-direction: column;
         align-items: flex-start;
-        flex: 1;
     }
 
     .project-textlabel {
@@ -465,12 +473,19 @@ $stage-width: 480px;
     .project-description-form {
         display: flex;
         width: 100%;
+        // surprisingly, without setting height: 100% here, flex-grow causes the
+        // height to be too large
+        height: 100%;
+        // surprisingly, just having some min-height actually reduces the height
+        // of the element when it is being vertically crowded by other elements
+        min-height: 2rem;
+        // necessary to cause the element to take up the maximum height
+        // available
         flex-grow: 1;
     }
 
     .project-description-edit {
         display: flex;
-        margin-bottom: .75rem;
         border: 1px solid $ui-blue-10percent;
         border-radius: 8px;
         background-color: $ui-blue-10percent;
