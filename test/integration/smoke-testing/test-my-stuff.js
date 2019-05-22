@@ -101,6 +101,7 @@ test('clicking a project title should take you to the project page', t => {
 
 test('Add To button should bring up a list of studios', t => {
     clickXpath('//a[contains(@class, "mystuff-icon")]')
+        .then(() => clickXpath('//div[@id="sidebar"]/ul/li[@data-tab="shared"]'))
         .then(() => findByXpath('//div[@data-control="add-to"]'))
         .then((element) => element.getText('span'))
         .then((text) => t.equal(text, 'Add to', 'there should be an "Add to" button'))

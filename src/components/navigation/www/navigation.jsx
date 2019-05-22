@@ -78,7 +78,11 @@ class Navigation extends React.Component {
         return `/users/${this.props.user.username}/`;
     }
     handleSearchSubmit (formData) {
-        window.location.href = `/search/projects?q=${encodeURIComponent(formData.q)}`;
+        let targetUrl = '/search/projects';
+        if (formData.q) {
+            targetUrl += `?q=${encodeURIComponent(formData.q)}`;
+        }
+        window.location.href = targetUrl;
     }
     render () {
         const createLink = this.props.user ? '/projects/editor/' : '/projects/editor/?tutorial=getStarted';

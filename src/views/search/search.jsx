@@ -57,7 +57,9 @@ class Search extends React.Component {
 
     }
     componentDidMount () {
-        const query = decodeURIComponent(window.location.search);
+        // just in case there's a URL in the wild with pluses to indicate spaces,
+        // convert pluses to url-encoded spaces before decoding.
+        const query = decodeURIComponent(window.location.search.split('+').join('%20'));
         let term = query;
 
         const stripQueryValue = function (queryTerm) {
@@ -91,6 +93,13 @@ class Search extends React.Component {
             this.handleGetSearchMore();
         }
     }
+    encodeSearchTerm () {
+        let termText = '';
+        if (this.props.searchTerm) {
+            termText = encodeURIComponent(this.props.searchTerm);
+        }
+        return termText;
+    }
     getSearchState () {
         let pathname = window.location.pathname.toLowerCase();
         if (pathname[pathname.length - 1] === '/') {
@@ -105,21 +114,24 @@ class Search extends React.Component {
     }
     handleChangeSortMode (name, value) {
         if (ACCEPTABLE_MODES.indexOf(value) !== -1) {
-            const term = this.props.searchTerm.split(' ').join('+');
-            window.location =
-                `${window.location.origin}/search/${this.state.tab}?q=${term}&mode=${value}`;
+            const termText = this.encodeSearchTerm();
+            let newLocation = `${window.location.origin}/search/${this.state.tab}?mode=${value}`;
+            if (termText) {
+                newLocation += `&q=${termText}`;
+            }
+            window.location = newLocation;
         }
     }
     handleGetSearchMore () {
-        let termText = '';
-        if (this.props.searchTerm !== '') {
-            termText = `&q=${encodeURIComponent(this.props.searchTerm.split(' ').join('+'))}`;
-        }
+        const termText = this.encodeSearchTerm();
         const locale = this.props.intl.locale;
         const loadNumber = this.state.loadNumber;
         const offset = this.state.offset;
         const mode = this.state.mode;
-        const queryString = `limit=${loadNumber}&offset=${offset}&language=${locale}&mode=${mode}${termText}`;
+        let queryString = `limit=${loadNumber}&offset=${offset}&language=${locale}&mode=${mode}`;
+        if (termText) {
+            queryString += `&q=${termText}`;
+        }
 
         api({
             uri: `/search/${this.state.tab}?${queryString}`
@@ -137,9 +149,13 @@ class Search extends React.Component {
         });
     }
     getTab (type) {
-        const term = this.props.searchTerm.split(' ').join('+');
+        const termText = this.encodeSearchTerm();
+        let targetUrl = `/search/${type}`;
+        if (termText) {
+            targetUrl += `?q=${termText}`;
+        }
         let allTab = (
-            <a href={`/search/${type}?q=${term}/`}>
+            <a href={targetUrl}>
                 <li>
                     <img
                         className={`tab-icon ${type}`}
@@ -151,7 +167,7 @@ class Search extends React.Component {
         );
         if (this.state.tab === type) {
             allTab = (
-                <a href={`/search/${type}?q=${term}/`}>
+                <a href={targetUrl}>
                     <li className="active">
                         <img
                             className={`tab-icon ${type}`}
