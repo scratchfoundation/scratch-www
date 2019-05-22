@@ -487,7 +487,7 @@ const PreviewPresentation = ({
                                                     </Formsy>
                                                 )}
                                             </FormsyProjectUpdater> :
-                                            <div className="project-description last">
+                                            <div className="project-description">
                                                 {decorateText(projectInfo.description, {
                                                     usernames: true,
                                                     hashtags: true,

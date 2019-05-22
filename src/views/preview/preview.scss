@@ -466,7 +466,7 @@ $stage-width: 480px;
         flex: 1;
     }
 
-    .project-description.last {
+    .project-description:last-of-type {
         margin-bottom: 0;
     }
 
