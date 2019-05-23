@@ -72,7 +72,7 @@ const Landing = props => (
                 <section id="sip">
                     <FlexRow className="educators-using">
                         <div className="using-scratch-image">
-                            <img src="images/teachers/makey-activity.png" />
+                            <img src="/images/teachers/makey-activity.png" />
                         </div>
                         <div className="sip-info">
                             <h2><FormattedMessage id="teacherlanding.howUsingScratch" /></h2>
