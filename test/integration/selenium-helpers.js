@@ -7,13 +7,14 @@ const remote = process.env.SMOKE_REMOTE || false;
 const ci = process.env.CI || false;
 const buildID = process.env.TRAVIS_BUILD_NUMBER;
 const {SAUCE_USERNAME, SAUCE_ACCESS_KEY} = process.env;
-const {By, until} = webdriver;
+const {By, Key, until} = webdriver;
 
 class SeleniumHelper {
     constructor () {
         bindAll(this, [
             'getDriver',
             'getSauceDriver',
+            'getKey',
             'buildDriver',
             'clickXpath',
             'findByXpath',
@@ -22,6 +23,7 @@ class SeleniumHelper {
             'clickButton',
             'findByCss',
             'clickCss',
+            'urlMatches',
             'getLogs'
         ]);
     }
@@ -79,6 +81,10 @@ class SeleniumHelper {
         return driver;
     }
 
+    getKey (keyName) {
+        return Key[keyName];
+    }
+
     findByXpath (xpath) {
         return this.driver.wait(until.elementLocated(By.xpath(xpath), 5 * 1000));
     }
@@ -105,6 +111,10 @@ class SeleniumHelper {
 
     clickCss (css) {
         return this.findByCss(css).then(el => el.click());
+    }
+
+    urlMatches (regex) {
+        return this.driver.wait(until.urlMatches(regex), 1000 * 5);
     }
 
     getLogs (whitelist) {
