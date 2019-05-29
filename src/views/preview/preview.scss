@@ -444,6 +444,12 @@ $stage-width: 480px;
         height: 100%;
         flex-direction: column;
         align-items: flex-start;
+        /*
+        necessary to fix flexbox sizing issue that caused instructions
+        to flow over the top and bottom of the project notes section.
+        see https://stackoverflow.com/a/36247448
+        */
+        min-height: 0;
     }
 
     .project-textlabel {
