@@ -425,6 +425,11 @@ $stage-width: 480px;
         flex-wrap: nowrap;
         align-items: center;
         justify-content: flex-start;
+        /*
+        Necessary to force Mac Safari to apply padding to the height of the
+        child elements. See https://stackoverflow.com/a/52273082/2308190
+        */
+        min-height: max-content;
 
         @media #{$medium-and-smaller} {
             flex-direction: row;
