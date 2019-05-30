@@ -425,6 +425,11 @@ $stage-width: 480px;
         flex-wrap: nowrap;
         align-items: center;
         justify-content: flex-start;
+        /*
+        Necessary to force Mac Safari to apply padding to the height of the
+        child elements. See https://stackoverflow.com/a/52273082/2308190
+        */
+        min-height: max-content;
 
         @media #{$medium-and-smaller} {
             flex-direction: row;
@@ -444,6 +449,12 @@ $stage-width: 480px;
         height: 100%;
         flex-direction: column;
         align-items: flex-start;
+        /*
+        necessary to fix flexbox sizing issue that caused instructions
+        to flow over the top and bottom of the project notes section.
+        see https://stackoverflow.com/a/36247448
+        */
+        min-height: 0;
     }
 
     .project-textlabel {
