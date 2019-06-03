@@ -13,7 +13,7 @@ const tap = require('tap');
 const test = tap.test;
 
 // Set test url through environment variable
-const rootUrl = process.env.ROOT_URL || 'http://localhost:8333';
+const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 const searchBaseUrl = `${rootUrl}/search/`;
 
 // chrome driver
