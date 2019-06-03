@@ -97,7 +97,7 @@ class SeleniumHelper {
             ));
     }
 
-    waitUntilGone(element) {
+    waitUntilGone (element) {
         return this.driver.wait(until.stalenessOf(element));
     }
 
