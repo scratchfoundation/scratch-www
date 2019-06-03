@@ -9,6 +9,8 @@ const buildID = process.env.TRAVIS_BUILD_NUMBER;
 const {SAUCE_USERNAME, SAUCE_ACCESS_KEY} = process.env;
 const {By, Key, until} = webdriver;
 
+const DEFAULT_TIMEOUT_MILLISECONDS = 20 * 1000;
+
 class SeleniumHelper {
     constructor () {
         bindAll(this, [
@@ -86,8 +88,13 @@ class SeleniumHelper {
         return Key[keyName];
     }
 
-    findByXpath (xpath) {
-        return this.driver.wait(until.elementLocated(By.xpath(xpath), 5 * 1000));
+    findByXpath (xpath, timeoutMessage = `findByXpath timed out for path: ${xpath}`) {
+        return this.driver.wait(until.elementLocated(By.xpath(xpath)), DEFAULT_TIMEOUT_MILLISECONDS, timeoutMessage)
+            .then(el => (
+                this.driver.wait(el.isDisplayed(), DEFAULT_TIMEOUT_MILLISECONDS, `${xpath} is not visible`)
+                    .then(() => el)
+            ));
+    }
     }
 
     clickXpath (xpath) {
