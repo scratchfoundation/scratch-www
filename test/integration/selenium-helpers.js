@@ -27,7 +27,8 @@ class SeleniumHelper {
             'getDriver',
             'getLogs',
             'getSauceDriver',
-            'urlMatches'
+            'urlMatches',
+            'waitUntilGone'
         ]);
     }
     buildDriver (name) {
@@ -95,6 +96,9 @@ class SeleniumHelper {
                     .then(() => el)
             ));
     }
+
+    waitUntilGone(element) {
+        return this.driver.wait(until.stalenessOf(element));
     }
 
     clickXpath (xpath) {
