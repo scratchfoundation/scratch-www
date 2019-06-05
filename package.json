@@ -65,7 +65,7 @@
     "eslint-plugin-react": "7.4.0",
     "exenv": "1.2.0",
     "fastly": "1.2.1",
-    "file-loader": "0.8.4",
+    "file-loader": "4.0.0",
     "formsy-react": "1.1.4",
     "formsy-react-components": "1.0.0",
     "git-bundle-sha": "0.0.2",
