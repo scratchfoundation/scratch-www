@@ -71,7 +71,7 @@ describe('test About links in footer', function () {
             .should('eq', baseUrl + '/jobs');
     });
 
-    it('click Press', function (){
+    it.skip('click Press', function (){
         cy
             .get('.lists :first-child :nth-child(8) :first-child :first-child')
             .click();
@@ -112,7 +112,7 @@ describe('test Community links in footer', function () {
             .should('eq', baseUrl + '/discuss/');
     });
 
-    it('click Scratch Wiki', function (){
+    it.skip('click Scratch Wiki', function (){
         cy
             .get('.lists :nth-child(2) :nth-child(4) :first-child :first-child')
             .click();
@@ -247,7 +247,7 @@ describe('test Scratch Family links in footer', function () {
         cy.visit('/');
     });
 
-    it('click ScratchEd', function (){
+    it.skip('click ScratchEd', function (){
         cy
             .get('.lists :nth-child(5) :nth-child(2) a')
             .click();
@@ -256,7 +256,7 @@ describe('test Scratch Family links in footer', function () {
             .should('match', /^http:\/\/scratched\.gse\.harvard\.edu\/?$/);
     });
 
-    it('click For ScratchJr', function (){
+    it.skip('click For ScratchJr', function (){
         cy
             .get('.lists :nth-child(5) :nth-child(3) a')
             .click();
@@ -285,7 +285,7 @@ describe('test Scratch Family links in footer', function () {
             .should('eq', baseUrl + '/conference');
     });
 
-    it('click Scratch Foundation', function (){
+    it.skip('click Scratch Foundation', function (){
         cy
             .get('.lists :nth-child(5) :nth-child(6) :first-child :first-child')
             .click();
