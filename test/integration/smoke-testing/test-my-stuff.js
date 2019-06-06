@@ -26,6 +26,8 @@ var password = process.env.SMOKE_PASSWORD;
 var rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 var url = rootUrl + '/users/' + username;
 
+tap.plan(7);
+
 tap.tearDown(function () {
     driver.quit();
 });
