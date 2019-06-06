@@ -12,19 +12,20 @@ const {By, Key, until} = webdriver;
 class SeleniumHelper {
     constructor () {
         bindAll(this, [
-            'getDriver',
-            'getSauceDriver',
-            'getKey',
             'buildDriver',
-            'clickXpath',
-            'findByXpath',
-            'clickText',
-            'findText',
             'clickButton',
-            'findByCss',
             'clickCss',
-            'urlMatches',
-            'getLogs'
+            'clickText',
+            'clickXpath',
+            'dragFromXpathToXpath',
+            'findByCss',
+            'findByXpath',
+            'findText',
+            'getKey',
+            'getDriver',
+            'getLogs',
+            'getSauceDriver',
+            'urlMatches'
         ]);
     }
     buildDriver (name) {
@@ -111,6 +112,16 @@ class SeleniumHelper {
 
     clickCss (css) {
         return this.findByCss(css).then(el => el.click());
+    }
+
+    dragFromXpathToXpath (startXpath, endXpath) {
+        return this.findByXpath(startXpath).then(startEl => {
+            return this.findByXpath(endXpath).then(endEl => {
+                return this.driver.actions()
+                    .dragAndDrop(startEl, endEl)
+                    .perform();
+            });
+        });
     }
 
     urlMatches (regex) {
