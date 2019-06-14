@@ -35,11 +35,13 @@ const DEFAULT_COUNTRY = 'us';
 /**
  * Return a list of options to give to frc select
  * @param  {object} reactIntl      react-intl, used to localize strings
+ * @param  {Array.<string>} countries  optional list of countries to use
  * @param  {string} defaultCountry optional string of default country to put at top of list
  * @return {object}                ordered set of county options formatted for frc select
  */
-const getCountryOptions = (reactIntl, defaultCountry) => {
-    const options = countryData.countryOptions.concat({
+const getCountryOptions = (reactIntl, countries, defaultCountry) => {
+    if (typeof countries === 'undefined') countries = countryData.countryOptions;
+    const options = countries.concat({
         label: reactIntl.formatMessage({id: 'registration.selectCountry'}),
         disabled: true,
         value: ''
@@ -460,7 +462,11 @@ class DemographicsStep extends React.Component {
         return isValid ? true : this.props.intl.formatMessage({id: 'teacherRegistration.validationAge'});
     }
     render () {
-        const countryOptions = getCountryOptions(this.props.intl, DEFAULT_COUNTRY);
+        const countryOptions = getCountryOptions(
+            this.props.intl,
+            countryData.scratchAccountCountryOptions,
+            'United States'
+        );
         return (
             <Slide className="registration-step demographics-step">
                 <h2>
@@ -970,7 +976,7 @@ class AddressStep extends React.Component {
                                 this.props.intl.formatMessage({id: 'general.country'})
                             }
                             name="address.country"
-                            options={getCountryOptions(this.props.intl)}
+                            options={getCountryOptions(this.props.intl, countryData.countryData)}
                             value={this.props.defaultCountry}
                             onChange={this.handleChangeCountry}
                         />
