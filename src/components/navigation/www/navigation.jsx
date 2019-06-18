@@ -18,9 +18,12 @@ const LoginDropdown = require('../../login/login-dropdown.jsx');
 const CanceledDeletionModal = require('../../login/canceled-deletion-modal.jsx');
 const NavigationBox = require('../base/navigation.jsx');
 const Registration = require('../../registration/registration.jsx');
+const Scratch3Registration = require('../../registration/scratch3-registration.jsx');
 const AccountNav = require('./accountnav.jsx');
 
 require('./navigation.scss');
+
+const USE_SCRATCH3_REGISTRATION = false;
 
 class Navigation extends React.Component {
     constructor (props) {
@@ -195,9 +198,17 @@ class Navigation extends React.Component {
                                     <FormattedMessage id="general.joinScratch" />
                                 </a>
                             </li>,
-                            <Registration
-                                key="registration"
-                            />,
+                            (
+                                USE_SCRATCH3_REGISTRATION ? (
+                                    <Scratch3Registration
+                                        key="scratch3registration"
+                                    />
+                                ) : (
+                                    <Registration
+                                        key="registration"
+                                    />
+                                )
+                            ),
                             <li
                                 className="link right login-item"
                                 key="login"
