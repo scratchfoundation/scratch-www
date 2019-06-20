@@ -71,28 +71,25 @@ lint:
 	$(ESLINT) . --ext .js,.jsx,.json
 
 unit:
-	$(TAP) ./test/unit/*.js
-
-functional:
-	$(TAP) ./test/functional/*.js
+	$(TAP) ./test/unit/*.js --no-coverage -R classic
 
 integration:
-	$(TAP) ./test/integration/*.js
+	$(TAP) ./test/integration/*.js --no-coverage -R classic
 
 smoke:
-	$(TAP) ./test/integration/smoke-testing/*.js --timeout=3600
+	$(TAP) ./test/integration/smoke-testing/*.js --timeout=3600 --no-coverage -R classic
 
 smoke-verbose:
-	$(TAP) ./test/integration/smoke-testing/*.js --timeout=3600 -R spec
+	$(TAP) ./test/integration/smoke-testing/*.js --timeout=3600 -R spec --no-coverage -R classic
 
 localization:
-	$(TAP) ./test/localization/*.js
+	$(TAP) ./test/localization/*.js --no-coverage -R classic
 
 tap:
-	$(TAP) ./test/{unit,functional,localization}/*.js
+	$(TAP) ./test/{unit,localization}/*.js --no-coverage -R classic
 
 coverage:
-	$(TAP) ./test/{unit,functional,localization}/*.js --coverage --coverage-report=lcov
+	$(TAP) ./test/{unit,localization}/*.js --coverage --coverage-report=lcov
 
 # ------------------------------------
 
