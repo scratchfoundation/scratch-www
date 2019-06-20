@@ -144,6 +144,16 @@ source_file = src/views/microbit/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
+[scratch-website.boost-l10njson]
+source_file = src/views/boost/l10n.json
+source_lang = en
+type = KEYVALUEJSON
+
+[scratch-website.gdxfor-l10njson]
+source_file = src/views/gdxfor/l10n.json
+source_lang = en
+type = KEYVALUEJSON
+
 [scratch-website.search-l10njson]
 file_filter = localizations/search/<lang>.json
 source_file = src/views/search/l10n.json
