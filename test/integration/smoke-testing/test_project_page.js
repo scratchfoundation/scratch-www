@@ -9,7 +9,9 @@ const driver = helper.buildDriver('www-smoke test_sign_in_out_homepage');
 const {
     clickText,
     clickXpath,
-    dragFromXpathToXpath
+    dragFromXpathToXpath,
+    findByXpath,
+    waitUntilGone
 } = helper;
 
 const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
@@ -27,14 +29,17 @@ tap.beforeEach(function () {
 });
 
 test('Find fullscreen button', t => {
-    clickXpath('//div[starts-with(@class, "loader_background")]')
+    findByXpath('//div[starts-with(@class, "loader_background")]')
+        .then(el => waitUntilGone(el))
         .then(() => clickXpath('//div[starts-with(@class, "stage_green-flag-overlay")]'))
         .then(() => clickXpath('//img[contains(@alt, "Enter full screen mode")]'))
         .then(() => t.end());
 });
 
 test('Open and close Copy Link modal', t => {
-    clickText('Copy Link')
+    findByXpath('//div[starts-with(@class, "loader_background")]')
+        .then(el => waitUntilGone(el))
+        .then(() => clickText('Copy Link'))
         .then(() => clickXpath('//div[contains(@class, "social-label-title")]'))
         .then(() => clickXpath('//img[contains(@alt, "close-icon")]'))
         .then(() => clickXpath('//img[contains(@alt, "Enter full screen mode")]'))
@@ -42,7 +47,8 @@ test('Open and close Copy Link modal', t => {
 });
 
 test('Dragging out of modal should not close modal', t => {
-    clickXpath('//div[starts-with(@class, "loader_background")]')
+    findByXpath('//div[starts-with(@class, "loader_background")]')
+        .then(el => waitUntilGone(el))
         .then(() => clickXpath('//div[starts-with(@class, "stage_green-flag-overlay")]'))
         .then(() => clickText('Copy Link'))
         .then(() => clickXpath('//div[contains(@class, "social-label-title")]'))

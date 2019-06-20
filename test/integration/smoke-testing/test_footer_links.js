@@ -194,8 +194,9 @@ tap.test('clickContactUsLink', options, t => {
     });
 });
 
+// skip this test since it points to an external site
 // SCRATCH STORE
-tap.test('clickScratchStoreLink', options, t => {
+tap.test('clickScratchStoreLink', {skip: true}, t => {
     const linkText = 'Scratch Store';
     const expectedUrl = 'https://scratch-foundation.myshopify.com/';
     clickFooterLinks(linkText).then(url => {
@@ -204,8 +205,9 @@ tap.test('clickScratchStoreLink', options, t => {
     });
 });
 
+// skip this test since it points to an external site
 // DONATE
-tap.test('clickDonateLink', options, t => {
+tap.test('clickDonateLink', {skip: true}, t => {
     const linkText = 'Donate';
     const expectedUrl = 'https://secure.donationpay.org/scratchfoundation/';
     clickFooterLinks(linkText).then(url => {
@@ -248,8 +250,9 @@ tap.test('clickDMCALink', options, t => {
 
 // ==== SCRATCH FAMILY column ====
 
+// skip this test since it points to an external site
 // SCRATCH ED (SCRATCHED)
-tap.test('clickScratchEdLink', options, t => {
+tap.test('clickScratchEdLink', {skip: true}, t => {
     const linkText = 'ScratchEd';
     const expectedUrl = 'http://scratched.gse.harvard.edu/';
     clickFooterLinks(linkText).then(url => {
@@ -258,8 +261,9 @@ tap.test('clickScratchEdLink', options, t => {
     });
 });
 
+// skip this test since it points to an external site
 // SCRATCH JR (SCRATCHJR)
-tap.test('clickScratchJrLink', options, t => {
+tap.test('clickScratchJrLink', {skip: true}, t => {
     const linkText = 'ScratchJr';
     const expectedUrl = 'https://www.scratchjr.org/';
     clickFooterLinks(linkText).then(url => {
@@ -268,8 +272,9 @@ tap.test('clickScratchJrLink', options, t => {
     });
 });
 
+// skip this test since it points to an external site
 // SCRATCH DAY
-tap.test('clickScratchDayLink', options, t => {
+tap.test('clickScratchDayLink', {skip: true}, t => {
     const linkText = 'Scratch Day';
     const expectedUrl = 'https://day.scratch.mit.edu/';
     clickFooterLinks(linkText).then(url => {
@@ -288,8 +293,9 @@ tap.test('clickScratchConferenceLink', options, t => {
     });
 });
 
+// skip this test since it points to an external site
 // SCRATCH FOUNDATION
-tap.test('clickScratchFoundationLink', options, t => {
+tap.test('clickScratchFoundationLink', {skip: true}, t => {
     const linkText = 'Scratch Foundation';
     const expectedUrl = 'https://www.scratchfoundation.org/';
     clickFooterLinks(linkText).then(url => {
