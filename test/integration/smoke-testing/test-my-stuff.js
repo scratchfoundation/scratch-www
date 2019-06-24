@@ -115,7 +115,7 @@ test('Add To button should bring up a list of studios', t => {
         .then(() => t.end());
 });
 
-test('+ New Studio button should take you to the studio page', t => {
+test('+ New Studio button should take you to the studio page', {skip: true}, t => {
     clickXpath('//a[contains(@class, "mystuff-icon")]')
         .then(() => clickXpath('//form[@id="new_studio"]/button[@type="submit"]'))
         .then(() => findByXpath('//div[@id="show-add-project"]'))
