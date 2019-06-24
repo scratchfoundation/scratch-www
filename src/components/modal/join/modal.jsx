@@ -1,6 +1,7 @@
 const PropTypes = require('prop-types');
 const React = require('react');
 const Modal = require('../base/modal.jsx');
+const JoinFlow = require('../../join-flow/join-flow.jsx');
 
 require('./modal.scss');
 
@@ -16,7 +17,11 @@ const JoinModal = ({
         isOpen={isOpen}
         onRequestClose={onRequestClose}
         {...modalProps}
-    />
+    >
+        <JoinFlow
+            onCompleteRegistration={onCompleteRegistration}
+        />
+    </Modal>
 );
 
 JoinModal.propTypes = {
