@@ -1,4 +1,3 @@
-const connect = require('react-redux').connect;
 const PropTypes = require('prop-types');
 const React = require('react');
 
