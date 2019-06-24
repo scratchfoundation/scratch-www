@@ -3,6 +3,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 require('./card.scss');
+require('../forms/validation-message.scss');
 
 const Card = props => (
     <div className={classNames(['card', props.className])}>
