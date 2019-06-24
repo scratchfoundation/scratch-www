@@ -21,43 +21,6 @@
         }
     }
 
-    .validation-message {
-        $arrow-border-width: 1rem;
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: translate(16rem, 0);
-        margin-left: $arrow-border-width;
-        border: 1px solid $active-gray;
-        border-radius: 5px;
-        background-color: $ui-orange;
-        padding: 1rem;
-        max-width: 18.75rem;
-        min-height: 1rem;
-        overflow: visible;
-        color: $type-white;
-
-        &:before {
-            display: block;
-            position: absolute;
-            top: 1rem;
-            left: -$arrow-border-width / 2;
-
-            transform: rotate(45deg);
-
-            border-bottom: 1px solid $active-gray;
-            border-left: 1px solid $active-gray;
-            border-radius: 5px;
-
-            background-color: $ui-orange;
-            width: $arrow-border-width;
-            height: $arrow-border-width;
-
-            content: "";
-        }
-    }
-
     .form {
         padding: 3rem 4rem;
 
@@ -99,22 +62,6 @@
     .card {
         .input {
             width: 90%;
-        }
-    }
-}
-
-@media #{$intermediate-and-smaller} {
-    .card {
-        .validation-message {
-            position: relative;
-            transform: none;
-            margin: inherit;
-            width: 100%;
-            height: inherit;
-
-            &:before {
-                display: none;
-            }
         }
     }
 }
