@@ -4,10 +4,10 @@ const injectIntl = require('react-intl').injectIntl;
 import {Formik, Form} from 'formik';
 
 /*
- * Example step
+ * Username step
  */
 /* eslint-disable react/prefer-stateless-function, no-useless-constructor */
-class ExampleStep extends React.Component {
+class UsernameStep extends React.Component {
     constructor (props) {
         super(props);
     }
@@ -27,14 +27,12 @@ class ExampleStep extends React.Component {
 }
 /* eslint-enable */
 
-ExampleStep.propTypes = {
+UsernameStep.propTypes = {
 };
 
-ExampleStep.defaultProps = {
-    showPassword: false,
-    waiting: false
+UsernameStep.defaultProps = {
 };
 
-const IntlExampleStep = injectIntl(ExampleStep);
+const IntlUsernameStep = injectIntl(UsernameStep);
 
-module.exports.ExampleStep = IntlExampleStep;
+module.exports.UsernameStep = IntlUsernameStep;
