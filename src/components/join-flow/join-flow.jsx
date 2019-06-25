@@ -6,7 +6,7 @@ const React = require('react');
 const injectIntl = require('../../lib/intl.jsx').injectIntl;
 const intlShape = require('../../lib/intl.jsx').intlShape;
 
-const JoinFlowSteps = require('../registration/join-flow-steps.jsx');
+const JoinFlowSteps = require('./join-flow-steps.jsx');
 
 /*
 eslint-disable react/prefer-stateless-function, react/no-unused-prop-types, no-useless-constructor
