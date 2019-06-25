@@ -1,7 +1,10 @@
 /* eslint-disable react/no-multi-comp */
 const React = require('react');
-const injectIntl = require('react-intl').injectIntl;
-import {Formik, Form} from 'formik';
+const PropTypes = require('prop-types');
+import {Formik} from 'formik';
+const {injectIntl, intlShape} = require('react-intl');
+
+const JoinFlowStep = require('../join-flow/join-flow-step.jsx');
 
 /*
  * Username step
@@ -11,16 +14,22 @@ class UsernameStep extends React.Component {
     constructor (props) {
         super(props);
     }
-
     render () {
         return (
             <Formik
                 initialValues={{
+                    username: '',
+                    password: '',
+                    passwordConfirm: ''
                 }}
                 validateOnBlur={false}
                 validateOnChange={false}
             >
-                <Form className="join-modal-form" />
+                <JoinFlowStep
+                    description={this.props.intl.formatMessage({id: 'registration.usernameStepDescription'})}
+                    title={this.props.intl.formatMessage({id: 'general.joinScratch'})}
+                    waiting={this.props.waiting}
+                />
             </Formik>
         );
     }
@@ -28,11 +37,12 @@ class UsernameStep extends React.Component {
 /* eslint-enable */
 
 UsernameStep.propTypes = {
+    intl: intlShape,
+    waiting: PropTypes.bool
 };
 
 UsernameStep.defaultProps = {
+    waiting: false
 };
 
-const IntlUsernameStep = injectIntl(UsernameStep);
-
-module.exports.UsernameStep = IntlUsernameStep;
+module.exports.UsernameStep = injectIntl(UsernameStep);
