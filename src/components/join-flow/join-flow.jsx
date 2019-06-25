@@ -28,7 +28,7 @@ class JoinFlow extends React.Component {
     render () {
         return (
             <React.Fragment>
-                <JoinFlowSteps.ExampleStep />
+                <JoinFlowSteps.UsernameStep />
             </React.Fragment>
         );
     }
