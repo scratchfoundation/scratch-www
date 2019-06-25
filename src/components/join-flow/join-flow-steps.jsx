@@ -4,7 +4,7 @@ const PropTypes = require('prop-types');
 import {Formik} from 'formik';
 const {injectIntl, intlShape} = require('react-intl');
 
-const JoinFlowStep = require('../join-flow/join-flow-step.jsx');
+const JoinFlowStep = require('./join-flow-step.jsx');
 
 /*
  * Username step
