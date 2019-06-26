@@ -22,9 +22,7 @@ const FormikInput = ({
             {...props}
         />
         {error && (
-            <ValidationMessage>
-                {error}
-            </ValidationMessage>
+            <ValidationMessage message={error} />
         )}
     </div>
 );
