@@ -27,9 +27,7 @@ class UsernameStep extends React.Component {
             'validateForm'
         ]);
         this.state = {
-            showPassword: props.showPassword,
-            waiting: false,
-            validUsername: ''
+            showPassword: false
         };
     }
     handleChangeShowPassword () {
@@ -65,9 +63,7 @@ class UsernameStep extends React.Component {
                 }
                 switch (body.msg) {
                 case 'valid username':
-                    this.setState({validUsername: 'pass'}, () => {
-                        resolve(null);
-                    });
+                    resolve(null);
                     break;
                 case 'username exists':
                     reject(this.props.intl.formatMessage({
@@ -158,15 +154,9 @@ class UsernameStep extends React.Component {
             throw new Error({username: error});
         });
     }
-    handleValidSubmit (formData) {
-        this.setState({waiting: true});
-        this.validateUsername(formData.username, true).then(result => {
-            this.setState({waiting: false});
-            this.props.onNextStep(formData);
-        }, error => {
-            console.log('username validation ERROR promise value:');
-            console.log(error);
-        });
+    handleValidSubmit (formData, formikBag) {
+        formikBag.setSubmitting(false);
+        this.props.onNextStep(formData);
     }
     render () {
         return (
@@ -184,6 +174,8 @@ class UsernameStep extends React.Component {
                 {props => {
                     const {
                         errors,
+                        handleSubmit,
+                        isSubmitting,
                         validateField,
                         values
                     } = props;
@@ -191,7 +183,8 @@ class UsernameStep extends React.Component {
                         <JoinFlowStep
                             description={this.props.intl.formatMessage({id: 'registration.usernameStepDescription'})}
                             title={this.props.intl.formatMessage({id: 'general.joinScratch'})}
-                            waiting={this.props.waiting || this.state.waiting}
+                            waiting={isSubmitting}
+                            onSubmit={handleSubmit}
                         >
                             <div>
                                 <div className="username-label">
@@ -200,12 +193,12 @@ class UsernameStep extends React.Component {
                                     </b>
                                 </div>
                                 <FormikInput
-                                    className={this.state.validUsername}
+                                    className={errors.username ? 'fail' : ''}
                                     error={errors.username}
                                     id="username"
                                     name="username"
                                     validate={this.validateUsername}
-                                    onBlur={() => validateField('username')}
+                                    onBlur={() => validateField('username')} // eslint-disable-line react/jsx-no-bind
                                 />
                                 <b>
                                     {this.props.intl.formatMessage({id: 'general.password'})}
@@ -218,25 +211,31 @@ class UsernameStep extends React.Component {
                                     )}
                                 </div>
                                 <FormikInput
-                                    className={this.state.validUsername}
+                                    className={errors.password ? 'fail' : ''}
                                     error={errors.password}
                                     id="password"
                                     name="password"
                                     type={this.state.showPassword ? 'text' : 'password'}
                                     validate={this.validatePassword}
-                                    onBlur={() => validateField('password')}
+                                    onBlur={() => validateField('password')} // eslint-disable-line react/jsx-no-bind
                                 />
                                 <b>
                                     {this.props.intl.formatMessage({id: 'general.error'})}
                                 </b>
                                 <FormikInput
-                                    className={this.state.validUsername}
+                                    className={errors.passwordConfirm ? 'fail' : ''}
                                     error={errors.passwordConfirm}
                                     id="passwordConfirm"
                                     name="passwordConfirm"
                                     type={this.state.showPassword ? 'text' : 'password'}
-                                    validate={() => this.validatePasswordConfirmLocally(values.password, values.passwordConfirm)}
-                                    onBlur={() => validateField('passwordConfirm')}
+                                    /* eslint-disable react/jsx-no-bind */
+                                    validate={() =>
+                                        this.validatePasswordConfirmLocally(values.password, values.passwordConfirm)
+                                    }
+                                    onBlur={() =>
+                                        validateField('passwordConfirm')
+                                    }
+                                    /* eslint-enable react/jsx-no-bind */
                                 />
                             </div>
                         </JoinFlowStep>
@@ -250,14 +249,7 @@ class UsernameStep extends React.Component {
 
 UsernameStep.propTypes = {
     intl: intlShape,
-    onNextStep: PropTypes.func,
-    showPassword: PropTypes.bool,
-    waiting: PropTypes.bool
-};
-
-UsernameStep.defaultProps = {
-    showPassword: false,
-    waiting: false
+    onNextStep: PropTypes.func
 };
 
 const IntlUsernameStep = injectIntl(UsernameStep);
