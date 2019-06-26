@@ -38,6 +38,9 @@ class JoinFlow extends React.Component {
                     <JoinFlowSteps.UsernameStep
                         onNextStep={this.handleAdvanceStep}
                     />
+                    <JoinFlowSteps.BirthDateStep
+                        onNextStep={this.handleAdvanceStep}
+                    />
                 </Progression>
             </React.Fragment>
         );
