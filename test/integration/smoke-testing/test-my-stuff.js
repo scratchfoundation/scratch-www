@@ -130,7 +130,7 @@ test('+ New Studio button should take you to the studio page', {skip: true}, t =
         .then(() => t.end());
 });
 
-test('+ New Project button should open the editor', t => {
+test('+ New Project button should open the editor', {skip: true}, t => {
     clickXpath('//a[contains(@class, "mystuff-icon")]')
         .then(() => clickText('+ New Project'))
         .then(() => driver.getCurrentUrl())
