@@ -1,16 +1,16 @@
 const React = require('react');
 const PropTypes = require('prop-types');
-import {Form} from 'formik';
 
 const NextStepButton = require('./next-step-button.jsx');
 
 const JoinFlowStep = ({
     children,
     description,
+    onSubmit,
     title,
     waiting
 }) => (
-    <Form>
+    <form onSubmit={onSubmit}>
         <div>
             {title && (
                 <h2>
@@ -27,12 +27,13 @@ const JoinFlowStep = ({
             {children}
         </div>
         <NextStepButton waiting={waiting} />
-    </Form>
+    </form>
 );
 
 JoinFlowStep.propTypes = {
     children: PropTypes.node,
     description: PropTypes.string,
+    onSubmit: PropTypes.func,
     title: PropTypes.string,
     waiting: PropTypes.bool
 };
