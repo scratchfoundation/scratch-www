@@ -28,7 +28,7 @@ tap.beforeEach(function () {
     return driver.get(projectUrl);
 });
 
-test('Find fullscreen button', t => {
+test('Find fullscreen button', {skip: true}, t => {
     findByXpath('//div[starts-with(@class, "loader_background")]')
         .then(el => waitUntilGone(el))
         .then(() => clickXpath('//div[starts-with(@class, "stage_green-flag-overlay")]'))
@@ -36,7 +36,7 @@ test('Find fullscreen button', t => {
         .then(() => t.end());
 });
 
-test('Open and close Copy Link modal', t => {
+test('Open and close Copy Link modal', {skip: true}, t => {
     findByXpath('//div[starts-with(@class, "loader_background")]')
         .then(el => waitUntilGone(el))
         .then(() => clickText('Copy Link'))
@@ -46,7 +46,7 @@ test('Open and close Copy Link modal', t => {
         .then(() => t.end());
 });
 
-test('Dragging out of modal should not close modal', t => {
+test('Dragging out of modal should not close modal', {skip: true}, t => {
     findByXpath('//div[starts-with(@class, "loader_background")]')
         .then(el => waitUntilGone(el))
         .then(() => clickXpath('//div[starts-with(@class, "stage_green-flag-overlay")]'))

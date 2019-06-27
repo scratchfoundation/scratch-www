@@ -35,7 +35,7 @@ tap.beforeEach(function () {
     return driver.get(rootUrl);
 });
 
-test('Sign in to Scratch using scratch-www navbar', t => {
+test('Sign in to Scratch using scratch-www navbar', {skip: true}, t => {
     clickText('Sign in')
         .then(() => findByXpath('//input[@id="frc-username-1088"]'))
         .then((element) => element.sendKeys(username))
@@ -50,7 +50,7 @@ test('Sign in to Scratch using scratch-www navbar', t => {
         .then(() => t.end());
 });
 
-test('Sign out of Scratch using scratch-www navbar', t => {
+test('Sign out of Scratch using scratch-www navbar', {skip: true}, t => {
     clickXpath('//a[contains(@class, "user-info")]')
         .then(() => clickText('Sign out'))
         .then(() => findText('Sign in'))
