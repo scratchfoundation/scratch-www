@@ -483,11 +483,11 @@ class Preview extends React.Component {
     }
     handleLoadMore () {
         this.props.getTopLevelComments(this.state.projectId, this.props.comments.length,
-            this.props.isAdmin, this.props.user && this.props.user.token);
+            this.props.authorUsername, this.props.isAdmin, this.props.user && this.props.user.token);
     }
     handleLoadMoreReplies (commentId, offset) {
         this.props.getMoreReplies(this.state.projectId, commentId, offset,
-            this.props.isAdmin, this.props.user && this.props.user.token
+            this.props.authorUsername, this.props.isAdmin, this.props.user && this.props.user.token
         );
     }
     handleLoveToggle () {
@@ -578,6 +578,7 @@ class Preview extends React.Component {
         this.setState({singleCommentId: null});
         this.props.handleSeeAllComments(
             this.props.projectInfo.id,
+            this.props.authorUsername,
             this.props.isAdmin,
             this.props.user.token
         );
@@ -961,9 +962,9 @@ const mapDispatchToProps = dispatch => ({
         event.preventDefault();
         dispatch(navigationActions.toggleLoginOpen());
     },
-    handleSeeAllComments: (id, isAdmin, token) => {
+    handleSeeAllComments: (id, ownerUsername, isAdmin, token) => {
         dispatch(previewActions.resetComments());
-        dispatch(previewActions.getTopLevelComments(id, 0, isAdmin, token));
+        dispatch(previewActions.getTopLevelComments(id, 0, ownerUsername, isAdmin, token));
     },
     handleUpdateProjectThumbnail: (id, blob) => {
         dispatch(previewActions.updateProjectThumbnail(id, blob));
