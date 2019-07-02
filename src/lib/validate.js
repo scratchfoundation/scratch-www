@@ -52,7 +52,10 @@ module.exports.validatePassword = password => {
 };
 
 module.exports.validatePasswordConfirm = (password, passwordConfirm) => {
-    if (password !== passwordConfirm) {
+    if (!passwordConfirm) {
+        return {valid: false, errMsgId: 'form.validationRequired'};
+    } else if (password !== passwordConfirm) {
+        // TODO: add a new string for this case
         return {valid: false, errMsgId: 'general.error'};
     }
     return {valid: true};
