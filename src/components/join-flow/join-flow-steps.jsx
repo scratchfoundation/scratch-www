@@ -5,7 +5,7 @@ const PropTypes = require('prop-types');
 import {Formik} from 'formik';
 const {injectIntl, intlShape} = require('react-intl');
 
-const api = require('../../lib/api');
+const validate = require('../../lib/validate');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
 const JoinFlowStep = require('./join-flow-step.jsx');
 
@@ -18,12 +18,10 @@ class UsernameStep extends React.Component {
         super(props);
         bindAll(this, [
             'handleChangeShowPassword',
-            'validateUsernameLocally',
-            'validateUsernameRemotely',
             'handleValidSubmit',
-            'validatePassword',
-            'validatePasswordConfirmLocally',
-            'validateUsername',
+            'validatePasswordIfPresent',
+            'validatePasswordConfirmIfPresent',
+            'validateUsernameIfPresent',
             'validateForm'
         ]);
         this.state = {
@@ -33,129 +31,156 @@ class UsernameStep extends React.Component {
     handleChangeShowPassword () {
         this.setState({showPassword: !this.state.showPassword});
     }
-    validateUsernameLocally (username, require) {
-        let error;
-        if (username.length === 0 && !require) { // allow blank username if not submitting yet
-            return null;
-        }
-        if (!username || username === '') {
-            error = this.props.intl.formatMessage({id: 'form.validationRequiredNice'});
-        } else if (username.length < 3) {
-            error = this.props.intl.formatMessage({id: 'registration.validationUsernameMinLength'});
-        } else if (username.length > 20) {
-            error = this.props.intl.formatMessage({id: 'registration.validationUsernameMaxLength'});
-        } else if (!/^[\w-]+$/i.test(username)) {
-            error = this.props.intl.formatMessage({id: 'registration.validationUsernameRegexp'});
-        }
-        return error;
-    }
+    // validateUsernameLocally (username, require) {
+    //     let error;
+    //     if (username.length === 0 && !require) { // allow blank username if not submitting yet
+    //         return null;
+    //     }
+    //     if (!username || username === '') {
+    //         error = this.props.intl.formatMessage({id: 'form.validationRequiredNice'});
+    //     } else if (username.length < 3) {
+    //         error = this.props.intl.formatMessage({id: 'registration.validationUsernameMinLength'});
+    //     } else if (username.length > 20) {
+    //         error = this.props.intl.formatMessage({id: 'registration.validationUsernameMaxLength'});
+    //     } else if (!/^[\w-]+$/i.test(username)) {
+    //         error = this.props.intl.formatMessage({id: 'registration.validationUsernameRegexp'});
+    //     }
+    //     return error;
+    // }
 
-    validateUsernameRemotely (username, require) {
-        if (username.length === 0 && !require) { // allow blank username if not submitting yet
-            return null;
-        }
-        return new Promise((resolve, reject) => {
-            api({
-                uri: `/accounts/checkusername/${username}/`
-            }, (err, body, res) => {
-                if (err || res.statusCode !== 200) {
-                    reject('api error');
+    // validateUsernameRemotely (username, require) {
+    //     if (username.length === 0 && !require) { // allow blank username if not submitting yet
+    //         return null;
+    //     }
+    //     return new Promise((resolve, reject) => {
+    //         api({
+    //             uri: `/accounts/checkusername/${username}/`
+    //         }, (err, body, res) => {
+    //             if (err || res.statusCode !== 200) {
+    //                 reject('api error');
+    //             }
+    //             switch (body.msg) {
+    //             case 'valid username':
+    //                 resolve(null);
+    //                 break;
+    //             case 'username exists':
+    //                 reject(this.props.intl.formatMessage({
+    //                     id: 'registration.validationUsernameExists'
+    //                 }));
+    //                 break;
+    //             case 'bad username':
+    //                 reject(this.props.intl.formatMessage({
+    //                     id: 'registration.validationUsernameVulgar'
+    //                 }));
+    //                 break;
+    //             case 'invalid username':
+    //             default:
+    //                 reject(this.props.intl.formatMessage({
+    //                     id: 'registration.validationUsernameInvalid'
+    //                 }));
+    //             }
+    //         });
+    //     });
+    // }
+    // we allow username to be empty on blur, since you might not have typed anything yet
+    validateUsernameIfPresent (username) {
+        if (!username) return null; // skip validation if username is blank; null indicates valid
+        const localResult = validate.validateUsernameLocally(username);
+        if (localResult.valid) {
+            return validate.validateUsernameRemotely(username).then(
+                remoteResult => {
+                    if (remoteResult.valid) return null;
+                    return this.props.intl.formatMessage({id: remoteResult.errMsgId});
                 }
-                switch (body.msg) {
-                case 'valid username':
-                    resolve(null);
-                    break;
-                case 'username exists':
-                    reject(this.props.intl.formatMessage({
-                        id: 'registration.validationUsernameExists'
-                    }));
-                    break;
-                case 'bad username':
-                    reject(this.props.intl.formatMessage({
-                        id: 'registration.validationUsernameVulgar'
-                    }));
-                    break;
-                case 'invalid username':
-                default:
-                    reject(this.props.intl.formatMessage({
-                        id: 'registration.validationUsernameInvalid'
-                    }));
-                }
-            });
-        });
+            );
+        }
+        return this.props.intl.formatMessage({id: localResult.errMsgId});
     }
-    validateUsername (username, require) {
-        const localResult = this.validateUsernameLocally(username, require);
-        // if error, return that
-        if (localResult) {
-            return new Promise((resolve, reject) => {
-                reject(localResult);
-            });
-        }
-        return this.validateUsernameRemotely(username, require);
+    // validateUsernameAdditionallyOnSubmit (username) {
+    //     const localResult = validate.validateUsernameLocally(username);
+    //     if (localResult.valid) return null
+    //     return new Promise((resolve, reject) => {
+    //         reject(this.props.intl.formatMessage({id: localResult.errMsgId}));
+    //     });
+    // }
+    // validateUsername (username, require) {
+    //     if (!require && !username) {
+    //         return new Promise(resolve => { resolve(null); });
+    //     }
+    //     const localResult = validate.validateUsernameLocally(username);
+    //     // if error, return that
+    //     if (!localResult.valid && (require || !username)) {
+    //         return new Promise((resolve, reject) => {
+    //             reject(localResult);
+    //         });
+    //     }
+    //     return this.validateUsernameRemotely(username, require);
+    // }
+    validatePasswordIfPresent (password) {
+        if (!password) return null; // skip validation if password is blank; null indicates valid
+        const localResult = validate.validatePassword(password);
+        if (localResult.valid) return null;
+        return this.props.intl.formatMessage({id: localResult.errMsgId});
     }
-    validatePasswordLocally (password, require) {
-        let error;
-        if (password.length === 0) {
-            if (require) {
-                return this.props.intl.formatMessage({id: 'form.validationRequiredNice'});
-            }
-            // not submitting yet, so allow blank password, and don't throw error
-            return null;
-        }
-        if (password.length < 6) {
-            error = this.props.intl.formatMessage({id: 'registration.validationPasswordLength'});
-        }
-        if (password === 'password') {
-            error = this.props.intl.formatMessage({id: 'registration.validationPasswordNotEquals'});
-        }
-        return error;
+    // validatePassword (password, require) {
+    //     let error;
+    //     if (password.length === 0) {
+    //         if (require) {
+    //             return this.props.intl.formatMessage({id: 'form.validationRequired'});
+    //         }
+    //         // not submitting yet, so allow blank password, and don't throw error
+    //         return null;
+    //     }
+    //     if (password.length < 6) {
+    //         error = this.props.intl.formatMessage({id: 'registration.validationPasswordLength'});
+    //     }
+    //     if (password === 'password') {
+    //         error = this.props.intl.formatMessage({id: 'registration.validationPasswordNotEquals'});
+    //     }
+    //     return error;
+    // }
+    // validatePassword (password, require) {
+    //     return new Promise((resolve, reject) => {
+    //         const localResult = this.validatePassword(password, require);
+    //         if (localResult) {
+    //             reject(localResult);
+    //         } else {
+    //             resolve(null);
+    //         }
+    //     });
+    // }
+    validatePasswordConfirmIfPresent (password, passwordConfirm) {
+        if (!passwordConfirm) return null; // allow blank password if not submitting yet
+        const localResult = validate.validatePasswordConfirm(password, passwordConfirm);
+        if (localResult.valid) return null;
+        return this.props.intl.formatMessage({id: localResult.errMsgId});
     }
-    validatePassword (password, require) {
-        return new Promise((resolve, reject) => {
-            const localResult = this.validatePasswordLocally(password, require);
-            if (localResult) {
-                reject(localResult);
-            } else {
-                resolve(null);
-            }
-        });
-    }
-    validatePasswordConfirmLocally (password, passwordConfirm, require) {
-        let error;
-        if (passwordConfirm.length === 0 && !require) { // allow blank password if not submitting yet
-            return null;
-        }
-        if (password !== passwordConfirm) {
-            error = this.props.intl.formatMessage({id: 'general.error'});
-        }
-        return error;
-    }
+    // called asynchonously when form submit is initially requested,
+    // along with all of the individual field validation functions
     validateForm (values) {
-        return this.validateUsername(values.username, true).then(() => (
-            this.validatePassword(values.password, true).then(() => {
-                if (values.password === values.username) {
-                    throw new Error({
-                        password: this.props.intl.formatMessage({id: 'registration.validationPasswordNotUsername'})
-                    });
-                }
-                const passwordConfirmFieldError =
-                    this.validatePasswordConfirmLocally(values.password, values.passwordConfirm, true);
-                if (passwordConfirmFieldError) {
-                    throw new Error({
-                        passwordConfirm: passwordConfirmFieldError
-                    });
-                }
-                return null; // not necessary, but just to be clear
-            }, passReject => {
-                throw new Error({password: passReject});
-            })
-        ), error => { // username error
-            throw new Error({username: error});
-        });
+        // in addition to field-level username/password validations, we need to additionally
+        // check that these values aren't blank.
+        const errors = {};
+        const usernameResult = validate.validateUsernameLocally(values.username);
+        if (!usernameResult.valid) {
+            errors.username = this.props.intl.formatMessage({id: usernameResult.errMsgId});
+        }
+        const passwordResult = validate.validatePassword(values.password);
+        if (!passwordResult.valid) {
+            errors.password = this.props.intl.formatMessage({id: passwordResult.errMsgId});
+        }
+        if (values.password === values.username) {
+            errors.password = this.props.intl.formatMessage({id: 'registration.validationPasswordNotUsername'});
+        }
+        const passwordConfirmResult = validate.validatePasswordConfirm(values.password, values.passwordConfirm);
+        if (!passwordConfirmResult.valid) {
+            errors.passwordConfirm = this.props.intl.formatMessage({id: passwordConfirmResult.errMsgId});
+        }
+        return errors;
     }
+    // called after all validations pass with no errors
     handleValidSubmit (formData, formikBag) {
-        formikBag.setSubmitting(false);
+        formikBag.setSubmitting(false); // formik makes us do this ourselves
         this.props.onNextStep(formData);
     }
     render () {
@@ -197,7 +222,7 @@ class UsernameStep extends React.Component {
                                     error={errors.username}
                                     id="username"
                                     name="username"
-                                    validate={this.validateUsername}
+                                    validate={this.validateUsernameIfPresent}
                                     onBlur={() => validateField('username')} // eslint-disable-line react/jsx-no-bind
                                 />
                                 <b>
@@ -216,7 +241,7 @@ class UsernameStep extends React.Component {
                                     id="password"
                                     name="password"
                                     type={this.state.showPassword ? 'text' : 'password'}
-                                    validate={this.validatePassword}
+                                    validate={this.validatePasswordIfPresent}
                                     onBlur={() => validateField('password')} // eslint-disable-line react/jsx-no-bind
                                 />
                                 <b>
@@ -230,7 +255,7 @@ class UsernameStep extends React.Component {
                                     type={this.state.showPassword ? 'text' : 'password'}
                                     /* eslint-disable react/jsx-no-bind */
                                     validate={() =>
-                                        this.validatePasswordConfirmLocally(values.password, values.passwordConfirm)
+                                        this.validatePasswordConfirmIfPresent(values.password, values.passwordConfirm)
                                     }
                                     onBlur={() =>
                                         validateField('passwordConfirm')
