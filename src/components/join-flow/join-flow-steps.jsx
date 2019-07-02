@@ -179,6 +179,4 @@ UsernameStep.propTypes = {
     onNextStep: PropTypes.func
 };
 
-const IntlUsernameStep = injectIntl(UsernameStep);
-
-module.exports.UsernameStep = IntlUsernameStep;
+module.exports.UsernameStep = injectIntl(UsernameStep);
