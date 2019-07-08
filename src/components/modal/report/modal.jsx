@@ -8,6 +8,7 @@ const intlShape = require('react-intl').intlShape;
 const Modal = require('../base/modal.jsx');
 const classNames = require('classnames');
 
+const ModalTitle = require('../base/modal-title.jsx');
 const Form = require('../../forms/form.jsx');
 const Button = require('../../forms/button.jsx');
 const Select = require('../../forms/select.jsx');
@@ -120,9 +121,7 @@ class ReportModal extends React.Component {
             >
                 <div>
                     <div className="report-modal-header modal-header">
-                        <div className="report-content-label content-label">
-                            {contentLabel}
-                        </div>
+                        <ModalTitle title={contentLabel} />
                     </div>
 
                     <Form
