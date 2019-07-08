@@ -114,7 +114,7 @@ class UsernameStep extends React.Component {
                             onSubmit={handleSubmit}
                         >
                             <div>
-                                <div className="username-label">
+                                <div>
                                     <b>
                                         {this.props.intl.formatMessage({id: 'registration.createUsername'})}
                                     </b>
@@ -133,6 +133,7 @@ class UsernameStep extends React.Component {
                                 <div
                                     onClick={this.handleChangeShowPassword}
                                 >
+                                    {/* TODO: should localize 'Hide password' if we use that */}
                                     {this.state.showPassword ? 'Hide password' : (
                                         this.props.intl.formatMessage({id: 'registration.showPassword'})
                                     )}
