@@ -5,19 +5,22 @@ const injectIntl = require('react-intl').injectIntl;
 
 const intl = require('../../lib/intl.jsx');
 const Spinner = require('../../components/spinner/spinner.jsx');
+const ModalTitle = require('../modal/base/modal-title.jsx');
+
+require('./next-step-button.scss');
 
 const NextStepButton = props => (
     <button
+        className="modal-flush-bottom-button"
         disabled={props.waiting}
         type="submit"
-        {...omit(props, ['text', 'waiting'])}
+        {...omit(props, ['intl', 'text', 'waiting'])}
     >
         {props.waiting ?
-            <Spinner /> :
-            (props.text ?
-                props.text : (
-                    <intl.FormattedMessage id="registration.nextStep" />
-                )
+            <Spinner /> : (
+                <ModalTitle
+                    title={props.text ? props.text : props.intl.formatMessage({id: 'registration.nextStep'})}
+                />
             )
         }
     </button>

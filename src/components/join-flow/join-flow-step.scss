@@ -1,0 +1,14 @@
+@import "../../colors";
+@import "../../frameless";
+
+.join-flow-title {
+    color: $type-gray;
+    font-size: 1.875rem;
+}
+
+.join-flow-inner-content {
+    box-shadow: none;
+    width: calc(100% - 5.875rem);
+    margin: 2.3125rem auto 2.5rem;
+    font-size: .875rem;
+}
