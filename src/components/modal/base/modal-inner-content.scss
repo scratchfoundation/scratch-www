@@ -1,0 +1,9 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.modal-inner-content { /* content inside of content */
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 0;
+    flex-direction: column;
+}
