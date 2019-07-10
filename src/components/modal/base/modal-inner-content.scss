@@ -1,7 +1,15 @@
 @import "../../../colors";
 @import "../../../frameless";
 
-.modal-inner-content { /* content inside of content */
+/*
+necessary to prevent modal-inner-content's margins from
+unexpectedly collapsing with a parent
+*/
+.modal-inner-clear {
+    overflow: auto;
+}
+
+.modal-inner-content {
     box-sizing: border-box;
     display: flex;
     border-radius: 0;

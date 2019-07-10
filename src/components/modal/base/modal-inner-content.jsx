@@ -8,13 +8,15 @@ const ModalInnerContent = ({
     children,
     className
 }) => (
-    <div
-        className={classNames(
-            'modal-inner-content',
-            className
-        )}
-    >
-        {children}
+    <div className="modal-inner-clear">
+        <div
+            className={classNames(
+                'modal-inner-content',
+                className
+            )}
+        >
+            {children}
+        </div>
     </div>
 );
 
