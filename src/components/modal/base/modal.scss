@@ -16,12 +16,6 @@
     padding: 0;
     width: 48.75rem;
 
-    .modal-content { /* content inside of content */
-        display: flex;
-        border-radius: 0;
-        flex-direction: column;
-    }
-
     &:focus {
         outline: none;
     }
