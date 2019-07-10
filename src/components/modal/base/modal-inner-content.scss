@@ -6,7 +6,7 @@ necessary to prevent modal-inner-content's margins from
 unexpectedly collapsing with a parent
 */
 .modal-inner-clear {
-    overflow: auto;
+    float: left;
 }
 
 .modal-inner-content {
