@@ -11,10 +11,9 @@ require('../forms/row.scss');
 const FormikInput = ({
     className,
     error,
-    validationClassName,
     ...props
 }) => (
-    <div className="col-sm-9 row row-relative">
+    <div className="col-sm-9 row">
         <Field
             className={classNames(
                 'input',
@@ -23,10 +22,7 @@ const FormikInput = ({
             {...props}
         />
         {error && (
-            <ValidationMessage
-                className={validationClassName}
-                message={error}
-            />
+            <ValidationMessage message={error} />
         )}
     </div>
 );
@@ -35,8 +31,7 @@ const FormikInput = ({
 FormikInput.propTypes = {
     className: PropTypes.string,
     error: PropTypes.string,
-    type: PropTypes.string,
-    validationClassName: PropTypes.string
+    type: PropTypes.string
 };
 
 module.exports = FormikInput;
