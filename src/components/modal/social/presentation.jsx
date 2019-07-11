@@ -6,8 +6,6 @@ const classNames = require('classnames');
 
 const Modal = require('../base/modal.jsx');
 const ModalTitle = require('../base/modal-title.jsx');
-const ModalInnerContent = require('../base/modal-inner-content.jsx');
-
 const FlexRow = require('../../flex-row/flex-row.jsx');
 
 require('../../forms/button.scss');
@@ -39,7 +37,7 @@ const SocialModalPresentation = ({
             <div className="social-modal-header modal-header">
                 <ModalTitle title={intl.formatMessage({id: 'general.copyLink'})} />
             </div>
-            <ModalInnerContent className="social-modal-content">
+            <div className="modal-content social-modal-content">
 
                 {/* top row: link */}
                 <div className="link-section">
@@ -113,7 +111,7 @@ const SocialModalPresentation = ({
                     </FlexRow>
                 </div>
 
-            </ModalInnerContent>
+            </div>
         </Modal>
     );
 };
