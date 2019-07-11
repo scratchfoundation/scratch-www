@@ -1,11 +1,11 @@
 const PropTypes = require('prop-types');
 const React = require('react');
-const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 const classNames = require('classnames');
 
 const Modal = require('../base/modal.jsx');
+const ModalTitle = require('../base/modal-title.jsx');
 const FlexRow = require('../../flex-row/flex-row.jsx');
 
 require('../../forms/button.scss');
@@ -35,9 +35,7 @@ const SocialModalPresentation = ({
             onRequestClose={onRequestClose}
         >
             <div className="social-modal-header modal-header">
-                <div className="social-content-label content-label">
-                    <FormattedMessage id="general.copyLink" />
-                </div>
+                <ModalTitle title={intl.formatMessage({id: 'general.copyLink'})} />
             </div>
             <div className="modal-content social-modal-content">
 
