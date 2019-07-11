@@ -16,12 +16,6 @@
     padding: 0;
     width: 48.75rem;
 
-    .modal-content { /* content inside of content */
-        display: flex;
-        border-radius: 0;
-        flex-direction: column;
-    }
-
     &:focus {
         outline: none;
     }
@@ -149,14 +143,6 @@ row to appear to contain overflow. */
         @media #{$small}, #{$small-height} {
             border-radius: 0;
         }
-    }
-
-    .content-label {
-        text-align: center;
-        color: $type-white;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 1rem;
-        font-weight: bold;
     }
 
     .modal-content {

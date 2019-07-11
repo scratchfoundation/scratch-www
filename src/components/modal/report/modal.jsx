@@ -8,6 +8,8 @@ const intlShape = require('react-intl').intlShape;
 const Modal = require('../base/modal.jsx');
 const classNames = require('classnames');
 
+const ModalTitle = require('../base/modal-title.jsx');
+const ModalInnerContent = require('../base/modal-inner-content.jsx');
 const Form = require('../../forms/form.jsx');
 const Button = require('../../forms/button.jsx');
 const Select = require('../../forms/select.jsx');
@@ -120,9 +122,7 @@ class ReportModal extends React.Component {
             >
                 <div>
                     <div className="report-modal-header modal-header">
-                        <div className="report-content-label content-label">
-                            {contentLabel}
-                        </div>
+                        <ModalTitle title={contentLabel} />
                     </div>
 
                     <Form
@@ -131,7 +131,7 @@ class ReportModal extends React.Component {
                         onValid={this.handleValid}
                         onValidSubmit={onReport}
                     >
-                        <div className="report-modal-content modal-content">
+                        <ModalInnerContent className="report-modal-content">
                             {isConfirmed ? (
                                 <div className="received">
                                     <div className="received-header">
@@ -199,7 +199,7 @@ class ReportModal extends React.Component {
                                     <FormattedMessage id="report.error" />
                                 </div>
                             )}
-                        </div>
+                        </ModalInnerContent>
                         <FlexRow className="action-buttons">
                             <div className="action-buttons-overflow-fix">
                                 {isConfirmed ? (

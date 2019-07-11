@@ -10,6 +10,8 @@ const Button = require('../../forms/button.jsx');
 const Spinner = require('../../spinner/spinner.jsx');
 const FlexRow = require('../../flex-row/flex-row.jsx');
 const StudioButton = require('./studio-button.jsx');
+const ModalTitle = require('../base/modal-title.jsx');
+const ModalInnerContent = require('../base/modal-inner-content.jsx');
 
 require('../../forms/button.scss');
 require('./modal.scss');
@@ -46,11 +48,9 @@ const AddToStudioModalPresentation = ({
             onRequestClose={onRequestClose}
         >
             <div className="addToStudio-modal-header modal-header">
-                <div className="addToStudio-content-label content-label">
-                    {contentLabel}
-                </div>
+                <ModalTitle title={contentLabel} />
             </div>
-            <div className="addToStudio-modal-content modal-content">
+            <ModalInnerContent className="addToStudio-modal-content">
                 <div className="studio-list-outer-scrollbox">
                     <div className="studio-list-inner-scrollbox">
                         <div className="studio-list-container">
@@ -102,7 +102,7 @@ const AddToStudioModalPresentation = ({
                         ]}
                     </FlexRow>
                 </Form>
-            </div>
+            </ModalInnerContent>
         </Modal>
     );
 };

@@ -1,0 +1,10 @@
+@import "../../../colors";
+
+.modal-title {
+    box-sizing: border-box;
+    text-align: center;
+    color: $type-white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
