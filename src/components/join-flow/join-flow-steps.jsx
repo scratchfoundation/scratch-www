@@ -9,8 +9,6 @@ const validate = require('../../lib/validate');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
 const JoinFlowStep = require('./join-flow-step.jsx');
 
-require('./join-flow-steps.scss');
-
 /*
  * Username step
  */
@@ -127,7 +125,6 @@ class UsernameStep extends React.Component {
                                     id="username"
                                     name="username"
                                     validate={this.validateUsernameIfPresent}
-                                    validationClassName="validation-full-width-input"
                                     onBlur={() => validateField('username')} // eslint-disable-line react/jsx-no-bind
                                 />
                                 <b>
@@ -148,7 +145,6 @@ class UsernameStep extends React.Component {
                                     name="password"
                                     type={this.state.showPassword ? 'text' : 'password'}
                                     validate={this.validatePasswordIfPresent}
-                                    validationClassName="validation-full-width-input"
                                     onBlur={() => validateField('password')} // eslint-disable-line react/jsx-no-bind
                                 />
                                 <b>
@@ -164,7 +160,6 @@ class UsernameStep extends React.Component {
                                     validate={() =>
                                         this.validatePasswordConfirmIfPresent(values.password, values.passwordConfirm)
                                     }
-                                    validationClassName="validation-full-width-input"
                                     onBlur={() =>
                                         validateField('passwordConfirm')
                                     }
