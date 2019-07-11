@@ -59,7 +59,7 @@
     "create-react-class": "15.6.2",
     "css-loader": "0.23.1",
     "eslint": "4.7.1",
-    "eslint-config-scratch": "5.0.0",
+    "eslint-config-scratch": "5.1.0",
     "eslint-plugin-cypress": "^2.0.1",
     "eslint-plugin-json": "1.2.0",
     "eslint-plugin-react": "7.4.0",
