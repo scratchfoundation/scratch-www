@@ -196,11 +196,12 @@ class Comment extends React.Component {
                           */}
 
                         <span className="comment-content">
-                            {commentText.map(fragment => {
+                            {commentText.map((fragment, index) => {
                                 if (typeof fragment === 'string') {
                                     return (
                                         <EmojiText
                                             as="span"
+                                            key={`comments-${id}-fragment-${index}`}
                                             text={fragment}
                                         />
                                     );
