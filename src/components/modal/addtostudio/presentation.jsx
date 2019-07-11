@@ -11,7 +11,6 @@ const Spinner = require('../../spinner/spinner.jsx');
 const FlexRow = require('../../flex-row/flex-row.jsx');
 const StudioButton = require('./studio-button.jsx');
 const ModalTitle = require('../base/modal-title.jsx');
-const ModalInnerContent = require('../base/modal-inner-content.jsx');
 
 require('../../forms/button.scss');
 require('./modal.scss');
@@ -50,7 +49,7 @@ const AddToStudioModalPresentation = ({
             <div className="addToStudio-modal-header modal-header">
                 <ModalTitle title={contentLabel} />
             </div>
-            <ModalInnerContent className="addToStudio-modal-content">
+            <div className="addToStudio-modal-content modal-content">
                 <div className="studio-list-outer-scrollbox">
                     <div className="studio-list-inner-scrollbox">
                         <div className="studio-list-container">
@@ -102,7 +101,7 @@ const AddToStudioModalPresentation = ({
                         ]}
                     </FlexRow>
                 </Form>
-            </ModalInnerContent>
+            </div>
         </Modal>
     );
 };
