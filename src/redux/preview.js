@@ -1,6 +1,6 @@
 const defaults = require('lodash.defaults');
 const keyMirror = require('keymirror');
-const async = require('async');
+const eachLimit = require('async/eachLimit');
 const mergeWith = require('lodash.mergewith');
 const uniqBy = require('lodash.uniqby');
 
@@ -524,7 +524,7 @@ module.exports.getCommentById = (projectId, commentId, ownerUsername, isAdmin, t
 module.exports.getReplies = (projectId, commentIds, offset, ownerUsername, isAdmin, token) => (dispatch => {
     dispatch(module.exports.setFetchStatus('replies', module.exports.Status.FETCHING));
     const fetchedReplies = {};
-    async.eachLimit(commentIds, 10, (parentId, callback) => {
+    eachLimit(commentIds, 10, (parentId, callback) => {
         api({
             uri: `${isAdmin ? '/admin' : `/users/${ownerUsername}`}/projects/${projectId}/comments/${parentId}/replies`,
             authentication: token ? token : null,
