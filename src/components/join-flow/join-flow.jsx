@@ -6,6 +6,7 @@ const React = require('react');
 const injectIntl = require('../../lib/intl.jsx').injectIntl;
 const intlShape = require('../../lib/intl.jsx').intlShape;
 
+const Progression = require('../progression/progression.jsx');
 const JoinFlowSteps = require('./join-flow-steps.jsx');
 
 /*
@@ -17,6 +18,11 @@ class JoinFlow extends React.Component {
         bindAll(this, [
             'handleAdvanceStep'
         ]);
+        this.state = {
+            formData: {},
+            registrationError: null,
+            step: 0
+        };
     }
     handleAdvanceStep (formData) {
         formData = formData || {};
@@ -28,7 +34,11 @@ class JoinFlow extends React.Component {
     render () {
         return (
             <React.Fragment>
-                <JoinFlowSteps.UsernameStep />
+                <Progression step={this.state.step}>
+                    <JoinFlowSteps.UsernameStep
+                        onNextStep={this.handleAdvanceStep}
+                    />
+                </Progression>
             </React.Fragment>
         );
     }
