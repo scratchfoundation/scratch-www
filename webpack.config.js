@@ -81,7 +81,8 @@ module.exports = {
                 include: [
                     path.resolve(__dirname, 'src'),
                     /node_modules[\\/]scratch-[^\\/]+[\\/]src/,
-                    /node_modules[\\/]pify/
+                    /node_modules[\\/]pify/,
+                    /node_modules[\\/]async/
                 ]
             },
             {
