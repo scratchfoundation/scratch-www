@@ -24,7 +24,7 @@ const FormikSelect = ({
         </option>
     ));
     return (
-        <div className="col-sm-9 row row-relative">
+        <div className="col-sm-9 row">
             <Field
                 className={classNames(
                     'select',
@@ -49,13 +49,13 @@ const FormikSelect = ({
 FormikSelect.propTypes = {
     className: PropTypes.string,
     error: PropTypes.string,
-    // expect structure like: [
-    //    {value: 'US', label: 'United States'}
-    //    {value: 'AG', label: 'Angola'}
-    //    ...
-    // ]
-    options: PropTypes.arrayOf(PropTypes.any),
+    options: PropTypes.arrayOf(PropTypes.shape({
+        disabled: PropTypes.bool,
+        label: PropTypes.string.isRequired,
+        value: PropTypes.string.isRequired
+    })).isRequired,
     validationClassName: PropTypes.string,
+    // selected value
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
