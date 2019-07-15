@@ -14,7 +14,7 @@ const FormikInput = ({
     validationClassName,
     ...props
 }) => (
-    <div className="col-sm-9 row row-relative">
+    <div className="col-sm-9 row row-with-tooltip">
         <Field
             className={classNames(
                 'input',
