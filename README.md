@@ -109,7 +109,7 @@ npm install
 virtualenv ENV
 . ENV/bin/activate
 pip install -r requirements.txt
-make deploy
+npm run build && npm run deploy
 ```
 
 | Variable                 | Default | Description                                      |
