@@ -1,5 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
+const classNames = require('classnames');
 const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
@@ -114,57 +115,70 @@ class UsernameStep extends React.Component {
                             onSubmit={handleSubmit}
                         >
                             <div>
-                                <div>
-                                    <b>
-                                        {this.props.intl.formatMessage({id: 'registration.createUsername'})}
-                                    </b>
+                                <div className="join-flow-input-title">
+                                    {this.props.intl.formatMessage({id: 'registration.createUsername'})}
                                 </div>
                                 <FormikInput
-                                    className={errors.username ? 'fail' : ''}
+                                    className={classNames(
+                                        'join-flow-input',
+                                        {fail: errors.username}
+                                    )}
                                     error={errors.username}
                                     id="username"
                                     name="username"
                                     validate={this.validateUsernameIfPresent}
                                     onBlur={() => validateField('username')} // eslint-disable-line react/jsx-no-bind
                                 />
-                                <b>
-                                    {this.props.intl.formatMessage({id: 'general.password'})}
-                                </b>
-                                <div
-                                    onClick={this.handleChangeShowPassword}
-                                >
-                                    {/* TODO: should localize 'Hide password' if we use that */}
-                                    {this.state.showPassword ? 'Hide password' : (
-                                        this.props.intl.formatMessage({id: 'registration.showPassword'})
-                                    )}
+                                <div className="join-flow-password-section">
+                                    <div className="join-flow-input-title">
+                                        {this.props.intl.formatMessage({id: 'general.password'})}
+                                    </div>
+                                    <FormikInput
+                                        className={classNames(
+                                            'join-flow-input',
+                                            {fail: errors.password}
+                                        )}
+                                        error={errors.password}
+                                        id="password"
+                                        name="password"
+                                        type={this.state.showPassword ? 'text' : 'password'}
+                                        validate={this.validatePasswordIfPresent}
+                                        validationClassName="validation-full-width-input"
+                                        /* eslint-disable react/jsx-no-bind */
+                                        onBlur={() => validateField('password')}
+                                        /* eslint-enable react/jsx-no-bind */
+                                    />
+                                    <FormikInput
+                                        className={classNames(
+                                            'join-flow-input',
+                                            {fail: errors.passwordConfirm}
+                                        )}
+                                        error={errors.passwordConfirm}
+                                        id="passwordConfirm"
+                                        name="passwordConfirm"
+                                        type={this.state.showPassword ? 'text' : 'password'}
+                                        /* eslint-disable react/jsx-no-bind */
+                                        validate={() =>
+                                            this.validatePasswordConfirmIfPresent(values.password,
+                                                values.passwordConfirm)
+                                        }
+                                        validationClassName="validation-full-width-input"
+                                        onBlur={() =>
+                                            validateField('passwordConfirm')
+                                        }
+                                        /* eslint-enable react/jsx-no-bind */
+                                    />
+                                    <div className="join-flow-input-title">
+                                        <div
+                                            onClick={this.handleChangeShowPassword}
+                                        >
+                                            {/* TODO: should localize 'Hide password' if we use that */}
+                                            {this.state.showPassword ? 'Hide password' : (
+                                                this.props.intl.formatMessage({id: 'registration.showPassword'})
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
-                                <FormikInput
-                                    className={errors.password ? 'fail' : ''}
-                                    error={errors.password}
-                                    id="password"
-                                    name="password"
-                                    type={this.state.showPassword ? 'text' : 'password'}
-                                    validate={this.validatePasswordIfPresent}
-                                    onBlur={() => validateField('password')} // eslint-disable-line react/jsx-no-bind
-                                />
-                                <b>
-                                    {this.props.intl.formatMessage({id: 'general.error'})}
-                                </b>
-                                <FormikInput
-                                    className={errors.passwordConfirm ? 'fail' : ''}
-                                    error={errors.passwordConfirm}
-                                    id="passwordConfirm"
-                                    name="passwordConfirm"
-                                    type={this.state.showPassword ? 'text' : 'password'}
-                                    /* eslint-disable react/jsx-no-bind */
-                                    validate={() =>
-                                        this.validatePasswordConfirmIfPresent(values.password, values.passwordConfirm)
-                                    }
-                                    onBlur={() =>
-                                        validateField('passwordConfirm')
-                                    }
-                                    /* eslint-enable react/jsx-no-bind */
-                                />
                             </div>
                         </JoinFlowStep>
                     );
