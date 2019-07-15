@@ -1,0 +1,11 @@
+@import "../../colors";
+@import "../../frameless";
+
+.modal-flush-bottom-button {
+    margin: 0;
+    width: 100%;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    height: 4rem;
+    background-color: $ui-orange;
+}
