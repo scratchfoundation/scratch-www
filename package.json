@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./dev-server/index.js",
     "test": "npm run test:lint && npm run build && npm run test:tap",
-    "test:lint": "eslint --ext .js,.jsx,.json",
+    "test:lint": "eslint . --ext .js,.jsx,.json",
     "test:smoke": "tap ./test/integration/smoke-testing/*.js --timeout=3600 --no-coverage -R classic",
     "test:smoke:verbose": "tap ./test/integration/smoke-testing/*.js --timeout=3600 --no-coverage -R spec",
     "test:smoke:sauce": "SMOKE_REMOTE=true tap ./test/integration/smoke-testing/*.js --timeout=60000 --no-coverage -R classic",
