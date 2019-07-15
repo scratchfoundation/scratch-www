@@ -114,7 +114,7 @@ jobs:
     deploy:
     - provider: script
       skip_cleanup: $SKIP_CLEANUP
-      script: env make sync
+      script: npm run deploy
       on:
         repo: LLK/scratch-www
         branch:
@@ -123,7 +123,7 @@ jobs:
         - release/*
     - provider: script
       skip_cleanup: $SKIP_CLEANUP
-      script: env make sync
+      script: npm run deploy
       on:
         repo: LLK/scratch-www
         branch:
@@ -133,7 +133,7 @@ jobs:
     - cd test/integration
     - npm install
     - cd -
-    script: npm run smoke-sauce
+    script: npm run test:smoke:sauce
 stages:
 - test
 - name: smoke
