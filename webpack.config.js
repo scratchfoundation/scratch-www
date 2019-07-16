@@ -180,17 +180,10 @@ module.exports = {
                 'process.env.STATIC_HOST': '"' + (process.env.STATIC_HOST || 'https://cdn2.scratch.mit.edu') + '"',
                 'process.env.SCRATCH_ENV': '"' + (process.env.SCRATCH_ENV || 'development') + '"',
                 'process.env.SENTRY_DSN': '"' + (process.env.SENTRY_DSN || '') + '"'
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'common',
+                filename: 'js/common.bundle.js'
             })
-        ]),
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    name: 'commons',
-                    chunks: 'initial',
-                    minChunks: 2
-                }
-            }
-        }
-    }
+        ])
 };
