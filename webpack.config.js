@@ -186,8 +186,8 @@ module.exports = {
         splitChunks: {
             cacheGroups: {
                 commons: {
-                    name: "commons",
-                    chunks: "initial",
+                    name: 'commons',
+                    chunks: 'initial',
                     minChunks: 2
                 }
             }
