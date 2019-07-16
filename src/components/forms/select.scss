@@ -1,53 +1,51 @@
 @import "../../colors";
 @import "../../frameless";
 
-.select {
-    label {
-        font-weight: 500;
+.select label {
+    font-weight: 500;
+}
+
+select.select, .select select {
+    transition: border .5s ease;
+    margin-bottom: .75rem;
+    border: 1px solid $active-gray;
+    border-radius: 5px;
+    background: $ui-light-gray url("../../../static/svgs/forms/carot.svg") no-repeat right center;
+    padding-right: 4rem;
+    padding-left: 1rem;
+    width: 100%;
+    height: 3rem;
+    color: $type-gray;
+    font-size: .875rem;
+    appearance: none;
+
+    &::-ms-expand {
+        display: none;
     }
 
-    select {
-        transition: border .5s ease;
-        margin-bottom: .75rem;
-        border: 1px solid $active-gray;
-        border-radius: 5px;
-        background: $ui-light-gray url("../../../static/svgs/forms/carot.svg") no-repeat right center;
-        padding-right: 4rem;
+    &::-ms-value {
+        background-color: inherit;
         padding-left: 1rem;
+        color: inherit;
+    }
+
+    &:focus {
+        outline: none;
+        border: 1px solid $ui-blue;
+    }
+
+    &:-moz-focusring {
+        text-shadow: 0 0 0 $type-gray;
+        color: transparent;
+    }
+
+    &:focus,
+    &:hover {
+        background: $ui-light-gray url("../../../static/svgs/forms/carot-hover.svg") no-repeat right center;
+    }
+
+    > option {
+        background-color: $ui-white;
         width: 100%;
-        height: 3rem;
-        color: $type-gray;
-        font-size: .875rem;
-        appearance: none;
-
-        &::-ms-expand {
-            display: none;
-        }
-
-        &::-ms-value {
-            background-color: inherit;
-            padding-left: 1rem;
-            color: inherit;
-        }
-
-        &:focus {
-            outline: none;
-            border: 1px solid $ui-blue;
-        }
-
-        &:-moz-focusring {
-            text-shadow: 0 0 0 $type-gray;
-            color: transparent;
-        }
-
-        &:focus,
-        &:hover {
-            background: $ui-light-gray url("../../../static/svgs/forms/carot-hover.svg") no-repeat right center;
-        }
-
-        > option {
-            background-color: $ui-white;
-            width: 100%;
-        }
     }
 }
