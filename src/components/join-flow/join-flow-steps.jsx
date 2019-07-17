@@ -205,26 +205,26 @@ module.exports.UsernameStep = IntlUsernameStep;
  * BirthDateStep
  */
 
-const birthMonthIds = [
-    {value: 'null', id: 'general.month'},
-    {value: '1', id: 'general.monthJanuary'},
-    {value: '2', id: 'general.monthFebruary'},
-    {value: '3', id: 'general.monthMarch'},
-    {value: '4', id: 'general.monthApril'},
-    {value: '5', id: 'general.monthMay'},
-    {value: '6', id: 'general.monthJune'},
-    {value: '7', id: 'general.monthJuly'},
-    {value: '8', id: 'general.monthAugust'},
-    {value: '9', id: 'general.monthSeptember'},
-    {value: '10', id: 'general.monthOctober'},
-    {value: '11', id: 'general.monthNovember'},
-    {value: '12', id: 'general.monthDecember'}
-];
+const getBirthMonthOptions = intl => ([
+    {value: 'null', label: intl.formatMessage({id: 'general.month'})},
+    {value: '1', label: intl.formatMessage({id: 'general.monthJanuary'})},
+    {value: '2', label: intl.formatMessage({id: 'general.monthFebruary'})},
+    {value: '3', label: intl.formatMessage({id: 'general.monthMarch'})},
+    {value: '4', label: intl.formatMessage({id: 'general.monthApril'})},
+    {value: '5', label: intl.formatMessage({id: 'general.monthMay'})},
+    {value: '6', label: intl.formatMessage({id: 'general.monthJune'})},
+    {value: '7', label: intl.formatMessage({id: 'general.monthJuly'})},
+    {value: '8', label: intl.formatMessage({id: 'general.monthAugust'})},
+    {value: '9', label: intl.formatMessage({id: 'general.monthSeptember'})},
+    {value: '10', label: intl.formatMessage({id: 'general.monthOctober'})},
+    {value: '11', label: intl.formatMessage({id: 'general.monthNovember'})},
+    {value: '12', label: intl.formatMessage({id: 'general.monthDecember'})}
+]);
 const curYearRaw = (new Date()).getYear();
 const curYear = curYearRaw + 1900;
 const birthYearOptions = Array(curYearRaw + 2).fill()
     .map((_, i) => (
-        {value: String(curYear - i), label: String(curYear - i)}
+        {value: String(curYear + 1 - i), label: String(curYear + 1 - i)}
     ));
 
 class BirthDateStep extends React.Component {
@@ -250,9 +250,7 @@ class BirthDateStep extends React.Component {
         this.props.onNextStep(formData);
     }
     render () {
-        const birthMonthOptions = birthMonthIds.map(item => (
-            {value: item.value, label: this.props.intl.formatMessage({id: item.id})}
-        ));
+        const birthMonthOptions = getBirthMonthOptions(this.props.intl);
         birthYearOptions[0] = {
             value: 'null',
             label: this.props.intl.formatMessage({id: 'general.year'})
