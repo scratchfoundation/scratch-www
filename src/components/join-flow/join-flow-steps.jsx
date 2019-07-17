@@ -274,6 +274,7 @@ class BirthDateStep extends React.Component {
                     return (
                         <JoinFlowStep
                             description={this.props.intl.formatMessage({id: 'registration.birthDateStepDescription'})}
+                            headerImgSrc="/images/hoc/getting-started.jpg"
                             title={this.props.intl.formatMessage({id: 'general.joinScratch'})}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
