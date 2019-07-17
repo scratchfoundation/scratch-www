@@ -273,12 +273,19 @@ class BirthDateStep extends React.Component {
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
                         >
-                            <div>
-                                <div className="join-flow-input-title">
-                                    {this.props.intl.formatMessage({id: 'general.birthMonth'})}
-                                </div>
+                            <div
+                                className={classNames(
+                                    'col-sm-9',
+                                    'row',
+                                    'birthdate-select-row'
+                                )}
+                            >
                                 <FormikSelect
-                                    className={errors.birth_month ? 'fail' : ''}
+                                    className={classNames(
+                                        'join-flow-select',
+                                        'join-flow-select-month',
+                                        {fail: errors.birth_month}
+                                    )}
                                     error={errors.birth_month}
                                     id="birth_month"
                                     name="birth_month"
@@ -287,7 +294,10 @@ class BirthDateStep extends React.Component {
                                     validationClassName="validation-full-width-input"
                                 />
                                 <FormikSelect
-                                    className={errors.birth_year ? 'fail' : ''}
+                                    className={classNames(
+                                        'join-flow-select',
+                                        {fail: errors.birth_year}
+                                    )}
                                     error={errors.birth_year}
                                     id="birth_year"
                                     name="birth_year"
