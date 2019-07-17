@@ -1,8 +1,6 @@
 # Requirements
 
-* Selenium
-  * See this directory's package.json
-* TAP
+* TAP and Selenium
   * In the scratch-www repo's package.json
 * [Chromedriver](https://sites.google.com/a/chromium.org/chromedriver/)
 
