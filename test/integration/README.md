@@ -12,10 +12,10 @@
 * Tests can be run using Saucelabs, an online service that can test browser/os combinations remotely. Currently all tests are written for use for chrome on mac.
 
 ## Using tap
-* Run all tests in the smoke-testing directory from the command-line: `$ SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu npm run smoke`
+* Run all tests in the smoke-testing directory from the command-line: `$ SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu npm run test:smoke`
 * To run a single file from the command-line: `$ SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu node_modules/.bin/tap ./test/integration/smoke-testing/filename.js --timeout=3600`
   * The timeout var is for the length of the entire tap test-suite; if you are getting a timeout error, you may need to adjust this value (some of the Selenium tests take a while to run)
-* To run tests using saucelabs run this command `$ SMOKE_USERNAME=username SMOKE_PASSWORD=password SAUCE_USERNAME=saucelabsUsername SAUCE_ACCESS_KEY=saucelabsAccessKey ROOT_URL=https://scratch.mit.edu npm run smoke-sauce`
+* To run tests using saucelabs run this command `$ SMOKE_USERNAME=username SMOKE_PASSWORD=password SAUCE_USERNAME=saucelabsUsername SAUCE_ACCESS_KEY=saucelabsAccessKey ROOT_URL=https://scratch.mit.edu npm run test:smoke:sauce`
 
 
 ### Configuration
@@ -25,7 +25,7 @@
 | `ROOT_URL`			| `scratch.ly`			| Location you want to run the tests against                |
 | `SMOKE_USERNAME`    	| `None` 				| Username for Scratch user you're signing in with to test 	|
 | `SMOKE_PASSWORD`  	| `None`                | Password for Scratch user you're signing in with to test  |
-| `SMOKE_REMOTE`        | `false`               | Tests with Sauce Labs or not. True if running smoke-sauce |
+| `SMOKE_REMOTE`        | `false`               | Tests with Sauce Labs or not. True if running test:smoke:sauce |
 | `SMOKE_HEADLESS`      | `false`               | Run browser in headless mode. Flaky at the moment         |
 | `SAUCE_USERNAME`      | `None`                | Username for your Sauce Labs account                      |
 | `SAUCE_ACCESS_KEY`    | `None`                | Access Key for Sauce Labs found under User Settings       |

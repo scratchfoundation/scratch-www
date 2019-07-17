@@ -37,11 +37,11 @@ async.auto({
             }
         });
     },
-    recvCustomVCL: ['version', function (cb, results) {
+    recvCustomVCL: ['version', function (results, cb) {
         // For all the routes in routes.json, construct a varnish-style regex that matches
         // on any of those route conditions.
         var notPassStatement = fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname);
-        
+
         // For a non-pass condition, point backend at s3
         var recvCondition = '' +
             'if (' + notPassStatement + ') {\n' +
@@ -74,7 +74,7 @@ async.auto({
             '        return(pass);\n' +
             '    }\n' +
             '}\n';
- 
+
 
         fastly.setCustomVCL(
             results.version,
@@ -83,14 +83,14 @@ async.auto({
             cb
         );
     }],
-    fetchCustomVCL: ['version', function (cb, results) {
+    fetchCustomVCL: ['version', function (results, cb) {
         var passStatement = fastlyConfig.negateConditionStatement(
             fastlyConfig.getAppRouteCondition('../build/*', routes, extraAppRoutes, __dirname)
         );
         var ttlCondition = fastlyConfig.setResponseTTL(passStatement);
         fastly.setCustomVCL(results.version, 'fetch-condition', ttlCondition, cb);
     }],
-    appRouteRequestConditions: ['version', function (cb, results) {
+    appRouteRequestConditions: ['version', function (results, cb) {
         var conditions = {};
         async.forEachOf(routes, function (route, id, cb2) {
             var condition = {
@@ -110,7 +110,7 @@ async.auto({
             cb(null, conditions);
         });
     }],
-    appRouteHeaders: ['version', 'appRouteRequestConditions', function (cb, results) {
+    appRouteHeaders: ['version', 'appRouteRequestConditions', function (results, cb) {
         var headers = {};
         async.forEachOf(routes, function (route, id, cb2) {
             if (route.redirect) {
@@ -133,7 +133,7 @@ async.auto({
                         };
                         fastly.setResponseObject(results.version, responseObject, cb3);
                     },
-                    redirectHeader: ['responseCondition', function (cb3, redirectResults) {
+                    redirectHeader: ['responseCondition', function (redirectResults, cb3) {
                         var header = {
                             name: fastlyConfig.getHeaderNameForRoute(route),
                             action: 'set',
@@ -172,7 +172,7 @@ async.auto({
             cb(null, headers);
         });
     }],
-    tipbarRedirectHeaders: ['version', function (cb, results) {
+    tipbarRedirectHeaders: ['version', function (results, cb) {
         async.auto({
             requestCondition: function (cb2) {
                 var condition = {
@@ -192,7 +192,7 @@ async.auto({
                 };
                 fastly.setCondition(results.version, condition, cb2);
             },
-            responseObject: ['requestCondition', function (cb2, redirectResults) {
+            responseObject: ['requestCondition', function (redirectResults, cb2) {
                 var responseObject = {
                     name: 'redirects/?tip_bar=',
                     status: 301,
@@ -201,7 +201,7 @@ async.auto({
                 };
                 fastly.setResponseObject(results.version, responseObject, cb2);
             }],
-            redirectHeader: ['responseCondition', function (cb2, redirectResults) {
+            redirectHeader: ['responseCondition', function (redirectResults, cb2) {
                 var header = {
                     name: 'redirects/?tip_bar=',
                     action: 'set',
@@ -218,7 +218,7 @@ async.auto({
             cb(null, redirectResults);
         });
     }],
-    embedRedirectHeaders: ['version', function (cb, results) {
+    embedRedirectHeaders: ['version', function (results, cb) {
         async.auto({
             requestCondition: function (cb2) {
                 var condition = {
@@ -238,7 +238,7 @@ async.auto({
                 };
                 fastly.setCondition(results.version, condition, cb2);
             },
-            responseObject: ['requestCondition', function (cb2, redirectResults) {
+            responseObject: ['requestCondition', function (redirectResults, cb2) {
                 var responseObject = {
                     name: 'redirects/projects/embed',
                     status: 301,
@@ -247,7 +247,7 @@ async.auto({
                 };
                 fastly.setResponseObject(results.version, responseObject, cb2);
             }],
-            redirectHeader: ['responseCondition', function (cb2, redirectResults) {
+            redirectHeader: ['responseCondition', function (redirectResults, cb2) {
                 var header = {
                     name: 'redirects/projects/embed',
                     action: 'set',
