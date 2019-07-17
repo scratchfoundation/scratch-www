@@ -206,24 +206,25 @@ module.exports.UsernameStep = IntlUsernameStep;
  */
 
 const birthMonthIds = [
-    {value: 'null', id: 'general.monthJanuary'},
-    {value: 1, id: 'general.monthJanuary'},
-    {value: 2, id: 'general.monthFebruary'},
-    {value: 3, id: 'general.monthMarch'},
-    {value: 4, id: 'general.monthApril'},
-    {value: 5, id: 'general.monthMay'},
-    {value: 6, id: 'general.monthJune'},
-    {value: 7, id: 'general.monthJuly'},
-    {value: 8, id: 'general.monthAugust'},
-    {value: 9, id: 'general.monthSeptember'},
-    {value: 10, id: 'general.monthOctober'},
-    {value: 11, id: 'general.monthNovember'},
-    {value: 12, id: 'general.monthDecember'}
+    {value: 'null', id: 'general.month'},
+    {value: '1', id: 'general.monthJanuary'},
+    {value: '2', id: 'general.monthFebruary'},
+    {value: '3', id: 'general.monthMarch'},
+    {value: '4', id: 'general.monthApril'},
+    {value: '5', id: 'general.monthMay'},
+    {value: '6', id: 'general.monthJune'},
+    {value: '7', id: 'general.monthJuly'},
+    {value: '8', id: 'general.monthAugust'},
+    {value: '9', id: 'general.monthSeptember'},
+    {value: '10', id: 'general.monthOctober'},
+    {value: '11', id: 'general.monthNovember'},
+    {value: '12', id: 'general.monthDecember'}
 ];
-const curYear = (new Date()).getYear() + 1900;
-const birthYearOptions = Array(120).fill()
+const curYearRaw = (new Date()).getYear();
+const curYear = curYearRaw + 1900;
+const birthYearOptions = Array(curYearRaw + 2).fill()
     .map((_, i) => (
-        {value: curYear - i, label: curYear - i}
+        {value: String(curYear - i), label: String(curYear - i)}
     ));
 
 class BirthDateStep extends React.Component {
@@ -249,11 +250,15 @@ class BirthDateStep extends React.Component {
         const birthMonthOptions = birthMonthIds.map(item => (
             {value: item.value, label: this.props.intl.formatMessage({id: item.id})}
         ));
+        birthYearOptions[0] = {
+            value: 'null',
+            label: this.props.intl.formatMessage({id: 'general.year'})
+        };
         return (
             <Formik
                 initialValues={{
-                    birth_month: '3',
-                    birth_year: '2000'
+                    birth_month: 'null',
+                    birth_year: 'null'
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
