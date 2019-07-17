@@ -24,11 +24,9 @@ const JoinFlowStep = ({
                     />
                 )}
                 {description && (
-                    <p>
-                        <span>
-                            {description}
-                        </span>
-                    </p>
+                    <div className="join-flow-description">
+                        {description}
+                    </div>
                 )}
                 {children}
             </ModalInnerContent>

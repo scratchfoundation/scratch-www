@@ -19,6 +19,7 @@ const NextStepButton = props => (
         {props.waiting ?
             <Spinner /> : (
                 <ModalTitle
+                    className="next-step-title-large"
                     title={props.text ? props.text : props.intl.formatMessage({id: 'registration.nextStep'})}
                 />
             )
