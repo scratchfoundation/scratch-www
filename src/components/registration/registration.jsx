@@ -1,4 +1,5 @@
 const bindAll = require('lodash.bindall');
+const classNames = require('classnames');
 const PropTypes = require('prop-types');
 const React = require('react');
 const connect = require('react-redux').connect;
@@ -15,12 +16,14 @@ class Registration extends React.Component {
             'handleMessage',
             'toggleMessageListener'
         ]);
+        this.state = {recaptchaOpen: false};
     }
     componentDidMount () {
         if (this.props.isOpen) this.toggleMessageListener(true);
     }
     componentDidUpdate (prevProps) {
-        this.toggleMessageListener(this.props.isOpen && !prevProps.isOpen);
+        if (this.props.isOpen && !prevProps.isOpen) this.toggleMessageListener(true);
+        if (!this.props.isOpen && prevProps.isOpen) this.toggleMessageListener(false);
     }
     componentWillUnmount () {
         this.toggleMessageListener(false);
@@ -32,6 +35,8 @@ class Registration extends React.Component {
         if (e.data === 'registration-relaunch') {
             this.registrationIframe.contentWindow.location.reload();
         }
+        if (e.data === 'recaptcha-opened') this.setState({recaptchaOpen: true});
+        if (e.data === 'recaptcha-closed') this.setState({recaptchaOpen: false});
     }
     toggleMessageListener (present) {
         if (present) {
@@ -43,7 +48,7 @@ class Registration extends React.Component {
     render () {
         return (
             <IframeModal
-                className="mod-registration"
+                className={classNames('mod-registration', {'recaptcha-open': this.state.recaptchaOpen})}
                 componentRef={iframe => { // eslint-disable-line react/jsx-no-bind
                     this.registrationIframe = iframe;
                 }}
