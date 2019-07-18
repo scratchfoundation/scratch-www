@@ -113,7 +113,7 @@
     "redux": "3.5.2",
     "redux-thunk": "2.0.1",
     "sass-loader": "6.0.6",
-    "scratch-gui": "0.1.0-prerelease.20190717220516",
+    "scratch-gui": "0.1.0-prerelease.20190718181300",
     "scratch-l10n": "latest",
     "slick-carousel": "1.6.0",
     "source-map-support": "0.3.2",
