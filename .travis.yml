@@ -98,17 +98,23 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
+before_install:
+# package-lock.json was introduced in npm@5
+- '[[ $(node -v) =~ ^v9.*$ ]] || npm install -g npm@latest' # skipped when using node 9
+- npm install -g greenkeeper-lockfile
 install:
   - sudo -H pip install -r requirements.txt
   - npm --production=false install
   - npm --production=false update
+before_script: greenkeeper-lockfile-update
+after_script: greenkeeper-lockfile-upload
 jobs:
   include:
   - stage: test
     deploy:
     - provider: script
       skip_cleanup: $SKIP_CLEANUP
-      script: env make sync
+      script: npm run deploy
       on:
         repo: LLK/scratch-www
         branch:
@@ -117,7 +123,7 @@ jobs:
         - release/*
     - provider: script
       skip_cleanup: $SKIP_CLEANUP
-      script: env make sync
+      script: npm run deploy
       on:
         repo: LLK/scratch-www
         branch:
@@ -127,7 +133,7 @@ jobs:
     - cd test/integration
     - npm install
     - cd -
-    script: npm run smoke-sauce
+    script: npm run test:smoke:sauce
 stages:
 - test
 - name: smoke

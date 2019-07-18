@@ -2,6 +2,10 @@ const React = require('react');
 const PropTypes = require('prop-types');
 
 const NextStepButton = require('./next-step-button.jsx');
+const ModalTitle = require('../modal/base/modal-title.jsx');
+const ModalInnerContent = require('../modal/base/modal-inner-content.jsx');
+
+require('./join-flow-step.scss');
 
 const JoinFlowStep = ({
     children,
@@ -12,19 +16,20 @@ const JoinFlowStep = ({
 }) => (
     <form onSubmit={onSubmit}>
         <div>
-            {title && (
-                <h2>
-                    {title}
-                </h2>
-            )}
-            {description && (
-                <p>
-                    <span>
+            <ModalInnerContent className="join-flow-inner-content">
+                {title && (
+                    <ModalTitle
+                        className="join-flow-title"
+                        title={title}
+                    />
+                )}
+                {description && (
+                    <div className="join-flow-description">
                         {description}
-                    </span>
-                </p>
-            )}
-            {children}
+                    </div>
+                )}
+                {children}
+            </ModalInnerContent>
         </div>
         <NextStepButton waiting={waiting} />
     </form>

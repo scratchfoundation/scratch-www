@@ -1,0 +1,27 @@
+@import "../../colors";
+@import "../../frameless";
+
+.join-flow-input {
+    width: 100%;
+    height: 2.75rem;
+    border-radius: .5rem;
+    background-color: $ui-white;
+    margin-bottom: .5rem;
+
+    &:focus {
+        box-shadow: 0 0 0 .25rem $ui-blue-25percent;
+    }
+}
+
+.join-flow-input-title {
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+
+.validation-full-width-input {
+    transform: translate(21.5625rem, 0);
+}
+
+.join-flow-password-section {
+    margin-top: 1.125rem;
+}
