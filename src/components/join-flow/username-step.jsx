@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
 const React = require('react');
@@ -8,7 +7,6 @@ const {injectIntl, intlShape} = require('react-intl');
 
 const validate = require('../../lib/validate');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
-const FormikSelect = require('../../components/formik-forms/formik-select.jsx');
 const JoinFlowStep = require('./join-flow-step.jsx');
 
 require('./join-flow-steps.scss');
@@ -199,135 +197,4 @@ UsernameStep.propTypes = {
 
 const IntlUsernameStep = injectIntl(UsernameStep);
 
-module.exports.UsernameStep = IntlUsernameStep;
-
-/*
- * BirthDateStep
- */
-
-const getBirthMonthOptions = intl => ([
-    {value: 'null', label: intl.formatMessage({id: 'general.month'})},
-    {value: '1', label: intl.formatMessage({id: 'general.monthJanuary'})},
-    {value: '2', label: intl.formatMessage({id: 'general.monthFebruary'})},
-    {value: '3', label: intl.formatMessage({id: 'general.monthMarch'})},
-    {value: '4', label: intl.formatMessage({id: 'general.monthApril'})},
-    {value: '5', label: intl.formatMessage({id: 'general.monthMay'})},
-    {value: '6', label: intl.formatMessage({id: 'general.monthJune'})},
-    {value: '7', label: intl.formatMessage({id: 'general.monthJuly'})},
-    {value: '8', label: intl.formatMessage({id: 'general.monthAugust'})},
-    {value: '9', label: intl.formatMessage({id: 'general.monthSeptember'})},
-    {value: '10', label: intl.formatMessage({id: 'general.monthOctober'})},
-    {value: '11', label: intl.formatMessage({id: 'general.monthNovember'})},
-    {value: '12', label: intl.formatMessage({id: 'general.monthDecember'})}
-]);
-const curYearRaw = (new Date()).getYear();
-const curYear = curYearRaw + 1900;
-const birthYearOptions = Array(curYearRaw + 2).fill()
-    .map((_, i) => (
-        {value: String(curYear + 1 - i), label: String(curYear + 1 - i)}
-    ));
-
-class BirthDateStep extends React.Component {
-    constructor (props) {
-        super(props);
-        bindAll(this, [
-            'handleValidSubmit',
-            'validateForm',
-            'validateSelect'
-        ]);
-    }
-    validateSelect (selection) {
-        if (selection === 'null') {
-            return this.props.intl.formatMessage({id: 'form.validationRequired'});
-        }
-        return null;
-    }
-    validateForm () {
-        return {};
-    }
-    handleValidSubmit (formData, formikBag) {
-        formikBag.setSubmitting(false);
-        this.props.onNextStep(formData);
-    }
-    render () {
-        const birthMonthOptions = getBirthMonthOptions(this.props.intl);
-        birthYearOptions[0] = {
-            value: 'null',
-            label: this.props.intl.formatMessage({id: 'general.year'})
-        };
-        return (
-            <Formik
-                initialValues={{
-                    birth_month: 'null',
-                    birth_year: 'null'
-                }}
-                validate={this.validateForm}
-                validateOnBlur={false}
-                validateOnChange={false}
-                onSubmit={this.handleValidSubmit}
-            >
-                {props => {
-                    const {
-                        errors,
-                        handleSubmit,
-                        isSubmitting
-                    } = props;
-                    return (
-                        <JoinFlowStep
-                            description={this.props.intl.formatMessage({id: 'registration.birthDateStepDescription'})}
-                            headerImgSrc="/images/hoc/getting-started.jpg"
-                            title={this.props.intl.formatMessage({id: 'general.joinScratch'})}
-                            waiting={isSubmitting}
-                            onSubmit={handleSubmit}
-                        >
-                            <div
-                                className={classNames(
-                                    'col-sm-9',
-                                    'row',
-                                    'birthdate-select-row'
-                                )}
-                            >
-                                <FormikSelect
-                                    className={classNames(
-                                        'join-flow-select',
-                                        'join-flow-select-month',
-                                        {fail: errors.birth_month}
-                                    )}
-                                    error={errors.birth_month}
-                                    id="birth_month"
-                                    name="birth_month"
-                                    options={birthMonthOptions}
-                                    validate={this.validateSelect}
-                                    validationClassName="validation-full-width-input"
-                                />
-                                <FormikSelect
-                                    className={classNames(
-                                        'join-flow-select',
-                                        {fail: errors.birth_year}
-                                    )}
-                                    error={errors.birth_year}
-                                    id="birth_year"
-                                    name="birth_year"
-                                    options={birthYearOptions}
-                                    validate={this.validateSelect}
-                                    validationClassName="validation-full-width-input"
-                                />
-                            </div>
-                        </JoinFlowStep>
-                    );
-                }}
-            </Formik>
-        );
-    }
-}
-
-BirthDateStep.propTypes = {
-    intl: intlShape,
-    onNextStep: PropTypes.func
-};
-
-const IntlBirthDateStep = injectIntl(BirthDateStep);
-
-module.exports.BirthDateStep = IntlBirthDateStep;
-
-/* eslint-enable */
+module.exports = IntlUsernameStep;

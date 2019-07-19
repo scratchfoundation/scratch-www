@@ -7,7 +7,8 @@ const injectIntl = require('../../lib/intl.jsx').injectIntl;
 const intlShape = require('../../lib/intl.jsx').intlShape;
 
 const Progression = require('../progression/progression.jsx');
-const JoinFlowSteps = require('./join-flow-steps.jsx');
+const UsernameStep = require('./username-step.jsx');
+const BirthDateStep = require('./birthdate-step.jsx');
 
 /*
 eslint-disable react/prefer-stateless-function, react/no-unused-prop-types, no-useless-constructor
@@ -35,12 +36,8 @@ class JoinFlow extends React.Component {
         return (
             <React.Fragment>
                 <Progression step={this.state.step}>
-                    <JoinFlowSteps.UsernameStep
-                        onNextStep={this.handleAdvanceStep}
-                    />
-                    <JoinFlowSteps.BirthDateStep
-                        onNextStep={this.handleAdvanceStep}
-                    />
+                    <UsernameStep onNextStep={this.handleAdvanceStep} />
+                    <BirthDateStep onNextStep={this.handleAdvanceStep} />
                 </Progression>
             </React.Fragment>
         );
