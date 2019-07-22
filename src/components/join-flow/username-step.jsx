@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
 const React = require('react');
@@ -190,11 +189,12 @@ class UsernameStep extends React.Component {
         );
     }
 }
-/* eslint-enable */
 
 UsernameStep.propTypes = {
     intl: intlShape,
     onNextStep: PropTypes.func
 };
 
-module.exports.UsernameStep = injectIntl(UsernameStep);
+const IntlUsernameStep = injectIntl(UsernameStep);
+
+module.exports = IntlUsernameStep;
