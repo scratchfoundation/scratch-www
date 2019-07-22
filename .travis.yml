@@ -129,11 +129,7 @@ jobs:
         branch:
         - master
   - stage: smoke
-    install:
-    - cd test/integration
-    - npm install
-    - cd -
-    script: npm run test:smoke:sauce
+    script: npm run test:integration:remote
 stages:
 - test
 - name: smoke
