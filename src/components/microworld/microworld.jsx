@@ -29,7 +29,7 @@ class Microworld extends React.Component {
         };
     }
     markVideoOpen (key) {
-        /* 
+        /*
             When a video is clicked, mark it as an open video, so the video Modal will open.
             Key is the number of the video, so distinguish between different videos on the page
         */
@@ -88,7 +88,7 @@ class Microworld extends React.Component {
     }
     renderEditorWindow () {
         const projectId = this.props.microworldData.microworld_project_id;
-        
+
         if (!projectId) {
             return null;
         }
