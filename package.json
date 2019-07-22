@@ -13,7 +13,7 @@
     "test:smoke:verbose": "tap ./test/integration-legacy/smoke-testing/*.js --timeout=3600 --no-coverage -R spec",
     "test:smoke:sauce": "SMOKE_REMOTE=true tap ./test/integration-legacy/smoke-testing/*.js --timeout=60000 --no-coverage -R classic",
     "test:unit": "npm run test:unit:jest && npm run test:unit:tap",
-    "test:unit:jest": "jest ./test/unit/*.test.js && jest ./test/localization/*.test.js",
+    "test:unit:jest": "jest ./test/unit/ && jest ./test/localization/*.test.js",
     "test:unit:tap": "tap ./test/{unit-legacy,localization-legacy}/*.js --no-coverage -R classic",
     "test:coverage": "tap ./test/{unit-legacy,localization-legacy}/*.js --coverage --coverage-report=lcov",
     "build": "npm run clean && npm run translate && webpack --bail",
