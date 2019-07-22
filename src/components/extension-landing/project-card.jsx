@@ -5,6 +5,7 @@ const ProjectCard = props => (
     <a
         className="project-card"
         href={props.cardUrl}
+        rel="noopener noreferrer"
         target="_blank"
     >
         <div className="project-card-image">
