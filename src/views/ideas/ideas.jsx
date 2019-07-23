@@ -158,6 +158,7 @@ class Ideas extends React.Component {
                                     href={this.props.intl.formatMessage({
                                         id: 'cards.scratch-cards-allLink'
                                     })}
+                                    rel="noopener noreferrer"
                                     target="_blank"
                                 >
                                     <Button className="ideas-button">
