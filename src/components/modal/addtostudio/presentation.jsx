@@ -56,6 +56,7 @@ const AddToStudioModalPresentation = ({
                         <div className="studio-list-container">
                             {studioButtons}
                         </div>
+                        <div className="studio-list-footer-spacer" />
                         <div className="studio-list-bottom-gradient" />
                     </div>
                 </div>

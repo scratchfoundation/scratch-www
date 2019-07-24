@@ -31,6 +31,7 @@ const InstallScratchLink = ({
                                         'https://www.microsoft.com/store/productId/9N48XLLCZH0X' :
                                         'https://itunes.apple.com/us/app/scratch-link/id1408863490'
                                 }
+                                rel="noopener noreferrer"
                                 target="_blank"
                             >
                                 <img

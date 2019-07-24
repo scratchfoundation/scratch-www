@@ -56,6 +56,7 @@ const TTTModal = props => (
                         <div className="ttt-item">
                             <a
                                 href={props.cardsUrl}
+                                rel="noopener noreferrer"
                                 target="_blank"
                             >
                                 <FormattedMessage id="ideas.downloadPDF" />
@@ -72,6 +73,7 @@ const TTTModal = props => (
                         <div className="ttt-item">
                             <a
                                 href={props.guideUrl}
+                                rel="noopener noreferrer"
                                 target="_blank"
                             >
                                 <FormattedMessage id="ideas.downloadPDF" />

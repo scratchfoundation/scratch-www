@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp */
 const bindAll = require('lodash.bindall');
 const classNames = require('classnames');
 const React = require('react');
@@ -9,6 +8,8 @@ const {injectIntl, intlShape} = require('react-intl');
 const validate = require('../../lib/validate');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
 const JoinFlowStep = require('./join-flow-step.jsx');
+
+require('./join-flow-steps.scss');
 
 /*
  * Username step
@@ -127,6 +128,7 @@ class UsernameStep extends React.Component {
                                     id="username"
                                     name="username"
                                     validate={this.validateUsernameIfPresent}
+                                    validationClassName="validation-full-width-input"
                                     onBlur={() => validateField('username')} // eslint-disable-line react/jsx-no-bind
                                 />
                                 <div className="join-flow-password-section">
@@ -187,11 +189,12 @@ class UsernameStep extends React.Component {
         );
     }
 }
-/* eslint-enable */
 
 UsernameStep.propTypes = {
     intl: intlShape,
     onNextStep: PropTypes.func
 };
 
-module.exports.UsernameStep = injectIntl(UsernameStep);
+const IntlUsernameStep = injectIntl(UsernameStep);
+
+module.exports = IntlUsernameStep;

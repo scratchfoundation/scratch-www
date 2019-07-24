@@ -95,10 +95,43 @@ To stop the process that is making the site available to your web browser (creat
 
 **NOTE:** Because by default `API_HOST=https://api.scratch.mit.edu`, please be aware that, by default, you will be seeing and interacting with real data on the Scratch website.
 
-### To Test
+### Unit Tests
+To run:
 ```bash
 npm test
 ```
+This will build the application and run the unit and localization tests.  Some of the tests are run using the TAP framework and others run using Jest.
+
+### Integration tests
+We are transitioning from using TAP to using Jest as our testing framework so for the time being our tests run using both.  
+
+#### Running the tests
+
+* By default, tests run against our Staging instance, but you can pass in a different location with the ROOT_URL environment variable (see below) if you want to run the tests against e.g. your local build
+
+#### Running the tests
+* Run all tests from the command-line: `$ SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu npm run test:integration`
+* To run a single file from the command-line using TAP: `$ SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu node_modules/.bin/tap ./test/integration-legacy/smoke-testing/filename.js --timeout=3600`
+  * The timeout var is for the length of the entire tap test-suite; if you are getting a timeout error, you may need to adjust this value (some of the Selenium tests take a while to run)
+* To run a single file from the command-line using Jest: `$ SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu node_modules/.bin/jest ./test/integration/filename.test.js`
+
+#### Running Remote tests
+* TAP tests can be run using Saucelabs, an online service that can test browser/os combinations remotely. Currently all tests are written for use for chrome on mac.
+* You will need a Saucelabs account in order to use it for testing. To find the Access Key, click your username and select User Settings from the dropdown menu.  Near the bottom of the page is your access key that you can copy and use in the command line.
+* Currently Jest tests will not run with Saucelabs.
+* To run tests using saucelabs run this command `$ SMOKE_USERNAME=username SMOKE_PASSWORD=password SAUCE_USERNAME=saucelabsUsername SAUCE_ACCESS_KEY=saucelabsAccessKey ROOT_URL=https://scratch.mit.edu npm run test:integration:remote`
+
+#### Configuration
+
+| Variable      		| Default               | Description                                 			    |
+| ---------------------	| --------------------- | --------------------------------------------------------- |
+| `ROOT_URL`			| `scratch.ly`			| Location you want to run the tests against                |
+| `SMOKE_USERNAME`    	| `None` 				| Username for Scratch user you're signing in with to test 	|
+| `SMOKE_PASSWORD`  	| `None`                | Password for Scratch user you're signing in with to test  |
+| `SMOKE_REMOTE`        | `false`               | Tests with Sauce Labs or not. True if running test:smoke:sauce |
+| `SMOKE_HEADLESS`      | `false`               | Run browser in headless mode. Flaky at the moment         |
+| `SAUCE_USERNAME`      | `None`                | Username for your Sauce Labs account                      |
+| `SAUCE_ACCESS_KEY`    | `None`                | Access Key for Sauce Labs found under User Settings       |
 
 ### To Deploy
 
