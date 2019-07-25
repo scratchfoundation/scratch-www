@@ -51,7 +51,12 @@ const ThumbnailColumn = props => (
 ThumbnailColumn.propTypes = {
     className: PropTypes.string,
     itemType: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.object)
+    items: PropTypes.arrayOf(PropTypes.object),
+    showAvatar: PropTypes.bool,
+    showFavorites: PropTypes.bool,
+    showLoves: PropTypes.bool,
+    showRemixes: PropTypes.bool,
+    showViews: PropTypes.bool
 };
 
 ThumbnailColumn.defaultProps = {

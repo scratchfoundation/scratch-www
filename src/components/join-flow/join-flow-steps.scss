@@ -22,6 +22,19 @@
     transform: translate(21.5625rem, 0);
 }
 
+select.join-flow-select {
+    width: 9.125rem;
+}
+
+.join-flow-select-month {
+    margin-right: .5rem;
+}
+
 .join-flow-password-section {
     margin-top: 1.125rem;
+}
+
+.birthdate-select-row {
+    display: flex;
+    margin: 0 auto;
 }

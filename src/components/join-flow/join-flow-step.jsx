@@ -10,11 +10,17 @@ require('./join-flow-step.scss');
 const JoinFlowStep = ({
     children,
     description,
+    headerImgSrc,
     onSubmit,
     title,
     waiting
 }) => (
     <form onSubmit={onSubmit}>
+        {headerImgSrc && (
+            <div className="join-flow-header-image">
+                <img src={headerImgSrc} />
+            </div>
+        )}
         <div>
             <ModalInnerContent className="join-flow-inner-content">
                 {title && (
@@ -38,6 +44,7 @@ const JoinFlowStep = ({
 JoinFlowStep.propTypes = {
     children: PropTypes.node,
     description: PropTypes.string,
+    headerImgSrc: PropTypes.string,
     onSubmit: PropTypes.func,
     title: PropTypes.string,
     waiting: PropTypes.bool

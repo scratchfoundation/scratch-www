@@ -24,10 +24,9 @@ const FormikSelect = ({
         </option>
     ));
     return (
-        <div className="col-sm-9 row">
+        <div className="select">
             <Field
                 className={classNames(
-                    'select',
                     className
                 )}
                 component="select"

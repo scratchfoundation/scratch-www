@@ -33,18 +33,24 @@ tap.tearDown(function () {
 });
 
 tap.beforeEach(function () {
-    return driver.get(url);
-});
-
-test('Sign in to Scratch using scratchr2 navbar', t => {
-    clickText('Sign in')
+    return driver.get(url)
+        .then(() => clickText('Sign in'))
         .then(() => findByXpath('//input[@id="login_dropdown_username"]'))
         .then((element) => element.sendKeys(username))
         .then(() => findByXpath('//input[@name="password"]'))
         .then((element) => element.sendKeys(password))
-        .then(() => clickButton('Sign in'))
-        .then(() => findByXpath('//li[contains(@class, "logged-in-user")' +
-            'and contains(@class, "dropdown")]/span'))
+        .then(() => clickButton('Sign in'));
+});
+
+tap.afterEach(function () {
+    return clickXpath('//span[@class="user-name dropdown-toggle"]')
+        .then(() => clickXpath('//li[@id="logout"] '))
+        .then(() => findByXpath('//div[@class="title-banner intro-banner"]'));
+});
+
+test('Sign in to Scratch using scratchr2 navbar', t => {
+    findByXpath('//li[contains(@class, "logged-in-user")' +
+        'and contains(@class, "dropdown")]/span')
         .then((element) => element.getText('span'))
         .then((text) => t.match(text.toLowerCase(), username.substring(0, 10).toLowerCase(),
             'first part of username should be displayed in navbar'))
@@ -85,6 +91,7 @@ test('clicking See Inside should take you to the editor', t => {
             var expectedUrl = '/editor';
             t.equal(u.substr(-expectedUrl.length), expectedUrl, 'after clicking, the URL should end in #editor');
         })
+        .then(() => driver.get(url))
         .then(() => t.end());
 });
 
@@ -96,6 +103,7 @@ test('clicking a project title should take you to the project page', t => {
             var expectedUrlRegExp = new RegExp('/projects/.*[0-9].*/?');
             t.match(u, expectedUrlRegExp, 'after clicking, the URL should end in projects/PROJECT_ID/');
         })
+        .then(() => driver.get(url))
         .then(() => t.end());
 });
 
