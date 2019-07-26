@@ -68,7 +68,8 @@ class GenderStep extends React.Component {
         return (
             <Formik
                 initialValues={{
-                    gender: 'null'
+                    gender: 'null',
+                    other: ''
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
@@ -80,6 +81,8 @@ class GenderStep extends React.Component {
                         errors,
                         handleSubmit,
                         isSubmitting,
+                        setFieldValue,
+                        setValues,
                         values
                     } = props;
                     return (
@@ -106,18 +109,25 @@ class GenderStep extends React.Component {
                                 className={classNames(
                                     'col-sm-9',
                                     'row',
-                                    'birthdate-select-row'
+                                    'row-inline',
+                                    'gender-radio-row',
+                                    {'gender-radio-row-selected': (values.gender === values.other)}
                                 )}
+                                /* eslint-disable react/jsx-no-bind */
+                                onClick={() => setFieldValue('gender', values.other, false)}
+                                /* eslint-enable react/jsx-no-bind */
                             >
-                                {values.gender}
                                 <FormikRadioButton
-                                    buttonValue="Prefer not to say"
+                                    isOther
+                                    buttonValue={values.other}
                                     className={classNames(
-                                        'join-flow-radio',
-                                        {fail: errors.birth_month}
+                                        'join-flow-radio'
                                     )}
-                                    label="Prefer not to say"
+                                    label={this.props.intl.formatMessage({id: 'registration.genderOptionAnother'})}
                                     name="gender"
+                                    /* eslint-disable react/jsx-no-bind */
+                                    onSetOther={newOtherVal => setValues({gender: newOtherVal, other: newOtherVal})}
+                                    /* eslint-enable react/jsx-no-bind */
                                 />
                             </div>
                             <GenderOption
