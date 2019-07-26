@@ -10,6 +10,42 @@ const JoinFlowStep = require('./join-flow-step.jsx');
 
 require('./join-flow-steps.scss');
 
+const GenderOption = ({
+    label,
+    onSetFieldValue,
+    selectedValue,
+    value
+}) => (
+    <div
+        className={classNames(
+            'col-sm-9',
+            'row',
+            'row-inline',
+            'gender-radio-row',
+            {'gender-radio-row-selected': (selectedValue === value)}
+        )}
+        /* eslint-disable react/jsx-no-bind */
+        onClick={() => onSetFieldValue('gender', value, false)}
+        /* eslint-enable react/jsx-no-bind */
+    >
+        <FormikRadioButton
+            buttonValue={value}
+            className={classNames(
+                'join-flow-radio'
+            )}
+            label={label}
+            name="gender"
+        />
+    </div>
+);
+
+GenderOption.propTypes = {
+    label: PropTypes.string,
+    onSetFieldValue: PropTypes.function,
+    selectedValue: PropTypes.string,
+    value: PropTypes.string
+};
+
 class GenderStep extends React.Component {
     constructor (props) {
         super(props);
@@ -58,6 +94,18 @@ class GenderStep extends React.Component {
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
                         >
+                            <GenderOption
+                                label={this.props.intl.formatMessage({id: 'registration.genderOptionFemale'})}
+                                selectedValue={values.gender}
+                                value="Female"
+                                onSetFieldValue={setFieldValue}
+                            />
+                            <GenderOption
+                                label={this.props.intl.formatMessage({id: 'registration.genderOptionMale'})}
+                                selectedValue={values.gender}
+                                value="Male"
+                                onSetFieldValue={setFieldValue}
+                            />
                             <div
                                 className={classNames(
                                     'col-sm-9',
@@ -67,34 +115,6 @@ class GenderStep extends React.Component {
                             >
                                 {values.gender}
                                 <FormikRadioButton
-                                    buttonValue="he"
-                                    className={classNames(
-                                        'join-flow-radio',
-                                        {fail: errors.birth_month}
-                                    )}
-                                    label="He/him"
-                                    name="gender"
-                                />
-                                <FormikRadioButton
-                                    buttonValue="she"
-                                    className={classNames(
-                                        'join-flow-radio',
-                                        {fail: errors.birth_month}
-                                    )}
-                                    label="She/her"
-                                    name="gender"
-                                />
-                                <FormikRadioButton
-                                    buttonValue="other"
-                                    className={classNames(
-                                        'join-flow-radio',
-                                        {fail: errors.birth_month}
-                                    )}
-                                    label="other"
-                                    name="gender"
-                                    type="other"
-                                />
-                                <FormikRadioButton
                                     buttonValue="Prefer not to say"
                                     className={classNames(
                                         'join-flow-radio',
@@ -103,40 +123,13 @@ class GenderStep extends React.Component {
                                     label="Prefer not to say"
                                     name="gender"
                                 />
-                                {/*
-                                // <Field
-                                //   component={RadioButton}
-                                //   name="genderRadioGroup"
-                                //   id="radioOption2"
-                                //   label="Or choose this one"
-                                // />
-                                // <FormikSelect
-                                //     className={classNames(
-                                //         'join-flow-select',
-                                //         'join-flow-select-month',
-                                //         {fail: errors.birth_month}
-                                //     )}
-                                //     error={errors.birth_month}
-                                //     id="birth_month"
-                                //     name="birth_month"
-                                //     options={birthMonthOptions}
-                                //     validate={this.validateSelect}
-                                //     validationClassName="validation-full-width-input"
-                                // />
-                                // <FormikSelect
-                                //     className={classNames(
-                                //         'join-flow-select',
-                                //         {fail: errors.birth_year}
-                                //     )}
-                                //     error={errors.birth_year}
-                                //     id="birth_year"
-                                //     name="birth_year"
-                                //     options={birthYearOptions}
-                                //     validate={this.validateSelect}
-                                //     validationClassName="validation-full-width-input"
-                                // />
-                                // */}
                             </div>
+                            <GenderOption
+                                label={this.props.intl.formatMessage({id: 'registration.genderOptionPreferNotToSay'})}
+                                selectedValue={values.gender}
+                                value="Prefer not to say"
+                                onSetFieldValue={setFieldValue}
+                            />
                         </JoinFlowStep>
                     );
                 }}
