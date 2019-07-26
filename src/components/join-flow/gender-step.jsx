@@ -51,17 +51,13 @@ class GenderStep extends React.Component {
         super(props);
         bindAll(this, [
             'handleValidSubmit',
-            'validateForm',
-            'validateSelect'
+            'validateForm'
         ]);
     }
-    validateSelect (selection) {
-        if (selection === 'null') {
-            return this.props.intl.formatMessage({id: 'form.validationRequired'});
+    validateForm (values) {
+        if (!values.gender || values.gender === 'null') {
+            values.gender = 'Prefer not to say';
         }
-        return null;
-    }
-    validateForm () {
         return {};
     }
     handleValidSubmit (formData, formikBag) {

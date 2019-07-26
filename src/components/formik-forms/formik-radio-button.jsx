@@ -5,23 +5,24 @@ import {Field} from 'formik';
 
 const FormikInput = require('./formik-input.jsx');
 
+require('./formik-radio-button.scss');
 require('../forms/row.scss');
 
 const FormikRadioButtonSubComponent = ({
     buttonValue,
+    children,
     className,
     field,
     label,
+    labelClassName,
     ...props
 }) => (
-    <div>
+    <React.Fragment>
         <input
-            // className={classNames(
-            //     'select',
-            //     className
-            // )}
-
-            className={className}
+            className={classNames(
+                'formik-radio-button',
+                className
+            )}
             name={field.name}
             type="radio"
             value={buttonValue}
@@ -30,12 +31,24 @@ const FormikRadioButtonSubComponent = ({
             onBlur={field.onBlur}
             {...props}
         />
-        <label htmlFor={buttonValue}>{label}</label>
-    </div>
+        {label && (
+            <label
+                className={classNames(
+                    'formik-radio-label',
+                    labelClassName
+                )}
+                htmlFor={buttonValue}
+            >
+                {label}
+            </label>
+        )}
+        {children}
+    </React.Fragment>
 );
 
 FormikRadioButtonSubComponent.propTypes = {
     buttonValue: PropTypes.string,
+    children: PropTypes.node,
     className: PropTypes.string,
     field: PropTypes.shape({
         name: PropTypes.string,
@@ -43,15 +56,7 @@ FormikRadioButtonSubComponent.propTypes = {
         onChange: PropTypes.function,
         value: PropTypes.string
     }),
-    // error: PropTypes.string,
-    // options: PropTypes.arrayOf(PropTypes.shape({
-    //     className: PropTypes.string,
-    //     disabled: PropTypes.bool,
-    //     label: PropTypes.string.isRequired,
-    //     value: PropTypes.string.isRequired
-    // })).isRequired,
-    // validationClassName: PropTypes.string,
-    // selected value
+    label: PropTypes.string,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
@@ -60,43 +65,39 @@ const FormikRadioButton = ({
     buttonValue,
     className,
     isOther,
+    label,
+    onSetOther,
     ...props
 }) => (
-    <div className="row">
-        <div className="col-sm-9">
-            <Field
-                buttonValue={buttonValue}
-                className={className}
-                component={FormikRadioButtonSubComponent}
-                id="radioOption1"
-                label="Choose this option"
-                {...props}
+    <Field
+        buttonValue={buttonValue}
+        className={className}
+        component={FormikRadioButtonSubComponent}
+        id="radioOption1"
+        label={label}
+        labelClassName={isOther ? 'formik-radio-label-other' : ''}
+        {...props}
+    >
+        {isOther && (
+            <FormikInput
+                inline
+                className='formik-radio-input'
+                id="other"
+                name="other"
+                wrapperClassName="formik-radio-input-wrapper"
+                onChange={event => onSetOther(event.target.value)}
+                onFocus={event => onSetOther(event.target.value)}
             />
-            {isOther && (
-                <FormikInput
-                    className={className}
-                    id={"other"}
-                    name="other"
-                    onFocus={() => {}}
-                />
-            )}
-        </div>
-    </div>
+        )}
+    </Field>
 );
 
 FormikRadioButton.propTypes = {
     buttonValue: PropTypes.string,
     className: PropTypes.string,
-    // error: PropTypes.string,
-    // options: PropTypes.arrayOf(PropTypes.shape({
-    //     className: PropTypes.string,
-    //     disabled: PropTypes.bool,
-    //     label: PropTypes.string.isRequired,
-    //     value: PropTypes.string.isRequired
-    // })).isRequired,
-    // validationClassName: PropTypes.string,
-    // selected value
     isOther: PropTypes.bool,
+    label: PropTypes.string,
+    onSetOther: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
