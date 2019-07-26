@@ -30,3 +30,13 @@
     margin-bottom: .75rem;
     line-height: 1.7rem;
 }
+
+.row-inline {
+    display: flex;
+}
+
+/* override margin-bottom so placing a label next to a radio button does not
+mess up vertical alignment */
+.row-inline label {
+    margin-bottom: 0;
+}

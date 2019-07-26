@@ -5,12 +5,14 @@ import {Field} from 'formik';
 
 const ValidationMessage = require('../forms/validation-message.jsx');
 
+require('./forms.scss');
 require('../forms/input.scss');
 require('../forms/row.scss');
 
 const FormikInput = ({
     className,
     error,
+    inline,
     validationClassName,
     wrapperClassName,
     ...props
@@ -43,9 +45,14 @@ const FormikInput = ({
 FormikInput.propTypes = {
     className: PropTypes.string,
     error: PropTypes.string,
+    inline: PropTypes.bool,
     type: PropTypes.string,
-    validationClassName: PropTypes.string
+    validationClassName: PropTypes.string,
     wrapperClassName: PropTypes.string
+};
+
+FormikInput.defaultProps = {
+    inline: false
 };
 
 module.exports = FormikInput;
