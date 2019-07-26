@@ -80,7 +80,6 @@ const FormikRadioButton = ({
     >
         {isOther && (
             <FormikInput
-                inline
                 className='formik-radio-input'
                 id="other"
                 name="other"
