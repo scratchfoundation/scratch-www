@@ -41,7 +41,7 @@ const GenderOption = ({
 
 GenderOption.propTypes = {
     label: PropTypes.string,
-    onSetFieldValue: PropTypes.function,
+    onSetFieldValue: PropTypes.func,
     selectedValue: PropTypes.string,
     value: PropTypes.string
 };
