@@ -64,6 +64,27 @@
     margin: 0 auto;
 }
 
+.join-flow-gender-step {
+    height: 27.375rem;
+}
+
+.gender-radio-row {
+    transition: all .125s ease;
+    width: 20.875rem;
+    height: 2.85rem;
+    background-color: $ui-gray;
+    border-radius: .5rem;
+    margin-bottom: 0.375rem;
+    padding-left: 0.8125rem;
+    display: flex;
+    align-items: center;
+}
+
+.gender-radio-row-selected {
+    transition: all .125s ease;
+    background-color: $ui-blue-25percent;
+}
+
 .join-flow-next-button-arrow {
     width: 2rem;
     height: 2rem;

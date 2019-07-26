@@ -52,9 +52,9 @@ class GenderStep extends React.Component {
                     } = props;
                     return (
                         <JoinFlowStep
+                            className="join-flow-gender-step"
                             description={this.props.intl.formatMessage({id: 'registration.genderStepDescription'})}
-                            headerImgSrc="/images/hoc/getting-started.jpg"
-                            title={this.props.intl.formatMessage({id: 'general.joinScratch'})}
+                            title={this.props.intl.formatMessage({id: 'registration.genderStepTitle'})}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
                         >
