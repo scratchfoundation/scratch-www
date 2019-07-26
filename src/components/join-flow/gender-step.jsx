@@ -50,18 +50,15 @@ class GenderStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleValidSubmit',
-            'validateForm'
+            'handleValidSubmit'
         ]);
-    }
-    validateForm (values) {
-        if (!values.gender || values.gender === 'null') {
-            values.gender = 'Prefer not to say';
-        }
-        return {};
     }
     handleValidSubmit (formData, formikBag) {
         formikBag.setSubmitting(false);
+        if (!formData.gender || formData.gender === 'null') {
+            formData.gender = 'Prefer not to say';
+        }
+        delete formData.other;
         this.props.onNextStep(formData);
     }
     render () {
@@ -71,14 +68,10 @@ class GenderStep extends React.Component {
                     gender: 'null',
                     other: ''
                 }}
-                validate={this.validateForm}
-                validateOnBlur={false}
-                validateOnChange={false}
                 onSubmit={this.handleValidSubmit}
             >
                 {props => {
                     const {
-                        errors,
                         handleSubmit,
                         isSubmitting,
                         setFieldValue,
