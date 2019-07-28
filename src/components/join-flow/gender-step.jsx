@@ -87,13 +87,13 @@ class GenderStep extends React.Component {
                             onSubmit={handleSubmit}
                         >
                             <GenderOption
-                                label={this.props.intl.formatMessage({id: 'registration.genderOptionFemale'})}
+                                label={this.props.intl.formatMessage({id: 'general.female'})}
                                 selectedValue={values.gender}
                                 value="Female"
                                 onSetFieldValue={setFieldValue}
                             />
                             <GenderOption
-                                label={this.props.intl.formatMessage({id: 'registration.genderOptionMale'})}
+                                label={this.props.intl.formatMessage({id: 'general.male'})}
                                 selectedValue={values.gender}
                                 value="Male"
                                 onSetFieldValue={setFieldValue}

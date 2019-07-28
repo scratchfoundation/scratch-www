@@ -155,8 +155,6 @@
     "registration.createUsername": "Create a username",
     "registration.genderStepTitle": "What's your gender?",
     "registration.genderStepDescription": "Scratch welcomes people of all genders. We will always keep this information private.",
-    "registration.genderOptionFemale": "Female",
-    "registration.genderOptionMale": "Male",
     "registration.genderOptionAnother": "Another gender:",
     "registration.genderOptionPreferNotToSay": "Prefer not to say",
     "registration.emailStepTitle": "What's your email?",
