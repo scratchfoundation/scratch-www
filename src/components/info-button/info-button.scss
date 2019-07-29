@@ -1,0 +1,13 @@
+@import "../../colors";
+@import "../../frameless";
+
+.info-button {
+    width: 1rem;
+    height: 1rem;
+    background-color: $ui-blue;
+
+    &:after {
+        color: $ui-white;
+        content: "?"
+    }
+}
