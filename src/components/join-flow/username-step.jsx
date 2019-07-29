@@ -110,7 +110,9 @@ class UsernameStep extends React.Component {
                     } = props;
                     return (
                         <JoinFlowStep
-                            description={this.props.intl.formatMessage({id: 'registration.usernameStepDescription'})}
+                            description={this.props.intl.formatMessage({
+                                id: 'registration.usernameStepDescriptionNonEducator'
+                            })}
                             title={this.props.intl.formatMessage({id: 'general.joinScratch'})}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
@@ -133,7 +135,7 @@ class UsernameStep extends React.Component {
                                 />
                                 <div className="join-flow-password-section">
                                     <div className="join-flow-input-title">
-                                        {this.props.intl.formatMessage({id: 'general.password'})}
+                                        {this.props.intl.formatMessage({id: 'registration.choosePasswordStepTitle'})}
                                     </div>
                                     <FormikInput
                                         className={classNames(
