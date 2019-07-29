@@ -110,7 +110,7 @@ class BirthDateStep extends React.Component {
                                     name="birth_month"
                                     options={birthMonthOptions}
                                     validate={this.validateSelect}
-                                    validationClassName="validation-full-width-input"
+                                    validationClassName="validation-birthdate-input"
                                 />
                                 <FormikSelect
                                     className={classNames(
@@ -122,7 +122,7 @@ class BirthDateStep extends React.Component {
                                     name="birth_year"
                                     options={birthYearOptions}
                                     validate={this.validateSelect}
-                                    validationClassName="validation-full-width-input"
+                                    validationClassName="validation-birthdate-input"
                                 />
                             </div>
                         </JoinFlowStep>
