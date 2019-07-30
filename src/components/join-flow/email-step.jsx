@@ -27,8 +27,6 @@ class EmailStep extends React.Component {
         return (
             <Formik
                 initialValues={{
-                    birth_month: 'null',
-                    birth_year: 'null'
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
