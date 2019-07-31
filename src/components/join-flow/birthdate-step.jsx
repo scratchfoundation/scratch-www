@@ -86,9 +86,9 @@ class BirthDateStep extends React.Component {
                     } = props;
                     return (
                         <JoinFlowStep
-                            description={this.props.intl.formatMessage({id: 'registration.birthDateStepDescription'})}
+                            description={this.props.intl.formatMessage({id: 'registration.private'})}
                             headerImgSrc="/images/hoc/getting-started.jpg"
-                            title={this.props.intl.formatMessage({id: 'general.joinScratch'})}
+                            title={this.props.intl.formatMessage({id: 'registration.birthDateStepTitle'})}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
                         >
@@ -110,7 +110,7 @@ class BirthDateStep extends React.Component {
                                     name="birth_month"
                                     options={birthMonthOptions}
                                     validate={this.validateSelect}
-                                    validationClassName="validation-full-width-input"
+                                    validationClassName="validation-birthdate-input"
                                 />
                                 <FormikSelect
                                     className={classNames(
@@ -122,7 +122,7 @@ class BirthDateStep extends React.Component {
                                     name="birth_year"
                                     options={birthYearOptions}
                                     validate={this.validateSelect}
-                                    validationClassName="validation-full-width-input"
+                                    validationClassName="validation-birthdate-input"
                                 />
                             </div>
                         </JoinFlowStep>

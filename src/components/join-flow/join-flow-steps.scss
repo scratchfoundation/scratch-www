@@ -22,7 +22,24 @@
     transform: translate(21.5625rem, 0);
 }
 
-select.join-flow-select {
+.validation-birthdate-input {
+    transform: translate(8.75rem, .25rem);
+    width: 7.25rem;
+}
+
+@media #{$intermediate-and-smaller} {
+    .validation-full-width-input {
+        transform: unset;
+        margin-bottom: .75rem;
+    }
+
+    .validation-birthdate-input {
+        transform: unset;
+        width: 8rem;
+    }
+}
+
+.select .join-flow-select {
     width: 9.125rem;
 }
 

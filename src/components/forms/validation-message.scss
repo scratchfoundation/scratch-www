@@ -17,6 +17,7 @@
     min-height: 1rem;
     overflow: visible;
     color: $type-white;
+    z-index: 1;
 
     &:before {
         display: block;
