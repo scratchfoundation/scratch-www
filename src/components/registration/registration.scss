@@ -10,6 +10,14 @@
     min-height: 27.375rem;
 }
 
+.modal-content.recaptcha-open {
+    min-height: 500px;
+}
+
+.modal-content-iframe.recaptcha-open {
+    min-height: 500px;
+}
+
 @media #{$intermediate-and-smaller} {
     .modal-content.mod-registration {
         width: 100%;
