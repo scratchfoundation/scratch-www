@@ -58,7 +58,7 @@ class GenderStep extends React.Component {
         if (!formData.gender || formData.gender === 'null') {
             formData.gender = 'Prefer not to say';
         }
-        delete formData.other;
+        delete formData.custom;
         this.props.onNextStep(formData);
     }
     render () {
@@ -66,7 +66,7 @@ class GenderStep extends React.Component {
             <Formik
                 initialValues={{
                     gender: 'null',
-                    other: ''
+                    custom: ''
                 }}
                 onSubmit={this.handleValidSubmit}
             >
@@ -104,22 +104,25 @@ class GenderStep extends React.Component {
                                     'row',
                                     'row-inline',
                                     'gender-radio-row',
-                                    {'gender-radio-row-selected': (values.gender === values.other)}
+                                    {'gender-radio-row-selected': (values.gender === values.custom)}
                                 )}
                                 /* eslint-disable react/jsx-no-bind */
-                                onClick={() => setFieldValue('gender', values.other, false)}
+                                onClick={() => setFieldValue('gender', values.custom, false)}
                                 /* eslint-enable react/jsx-no-bind */
                             >
                                 <FormikRadioButton
-                                    isOther
-                                    buttonValue={values.other}
+                                    isCustomInput
+                                    buttonValue={values.custom}
                                     className={classNames(
                                         'join-flow-radio'
                                     )}
                                     label={this.props.intl.formatMessage({id: 'registration.genderOptionAnother'})}
                                     name="gender"
                                     /* eslint-disable react/jsx-no-bind */
-                                    onSetOther={newOtherVal => setValues({gender: newOtherVal, other: newOtherVal})}
+                                    onSetCustom={newCustomVal => setValues({
+                                        gender: newCustomVal,
+                                        custom: newCustomVal
+                                    })}
                                     /* eslint-enable react/jsx-no-bind */
                                 />
                             </div>
