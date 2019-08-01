@@ -57,10 +57,10 @@ These currently exist in static/js/lib
 ### To Run
 If you would like to create a temporary version of the site on your machine that you can access through your web browser run the command below.  Building (see To Build above) is not necessary for this step and the temporary server can be turned off (see To Stop below).
 
-The intl directory must be built separately with the `make translations` line below in order for the text to appear properly.
+The intl directory must be built separately with the `npm run translate` line below in order for the text to appear properly.
 
 ```bash
-make translations
+npm run translate
 npm start
 ```
 

@@ -24,7 +24,7 @@ const FormikSelect = ({
         </option>
     ));
     return (
-        <div className="select">
+        <div className="select row-with-tooltip">
             <Field
                 className={classNames(
                     className
