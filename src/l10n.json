@@ -196,6 +196,7 @@
     "registration.validationUsernameExists": "Sorry, that username already exists",
     "registration.validationUsernameVulgar": "Hmm, that looks inappropriate",
     "registration.validationUsernameInvalid": "Invalid username",
+    "registration.validationEmailInvalid": "Email doesn’t look right. Try another?",
     "registration.waitForApproval": "Wait for Approval",
     "registration.waitForApprovalDescription": "You can log into your Scratch Account now, but the features specific to Teachers are not yet available. Your information is being reviewed. Please be patient, the approval process can take up to one day. You will receive an email indicating your account has been upgraded once your account has been approved.",
     "registration.welcomeStepDescription": "You have successfully set up a Scratch account! You are now a member of the class:",

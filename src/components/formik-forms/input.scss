@@ -1,0 +1,7 @@
+@import "../../colors";
+@import "../../frameless";
+
+.input::placeholder {
+    font-style: italic;
+    color: $type-gray-75percent;
+}

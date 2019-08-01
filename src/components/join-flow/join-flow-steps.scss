@@ -13,6 +13,10 @@
     }
 }
 
+.join-flow-input-tall {
+    height: 3rem;
+}
+
 .join-flow-input-title {
     font-weight: bold;
     margin-bottom: .5rem;
@@ -92,4 +96,8 @@
     width: 2rem;
     height: 2rem;
     margin-left: .5rem;
+}
+
+.modal-inner-content-email {
+    padding-top: 2.9rem;
 }
