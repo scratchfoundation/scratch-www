@@ -42,6 +42,7 @@ class JoinFlow extends React.Component {
                     <BirthDateStep onNextStep={this.handleAdvanceStep} />
                     <EmailStep onNextStep={this.handleAdvanceStep} />
                     <WelcomeStep
+                        email={this.state.formData.email}
                         username={this.state.formData.username}
                         onNextStep={this.handleAdvanceStep}
                     />

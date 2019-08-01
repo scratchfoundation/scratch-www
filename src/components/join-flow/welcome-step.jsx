@@ -2,6 +2,7 @@ const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
+const FormattedMessage = require('react-intl').FormattedMessage;
 const {injectIntl, intlShape} = require('react-intl');
 
 const JoinFlowStep = require('./join-flow-step.jsx');
@@ -50,7 +51,16 @@ class WelcomeStep extends React.Component {
                             )}`}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
-                        />
+                        >
+                            <div className="join-flow-instructions">
+                                <FormattedMessage
+                                    id="registration.welcomeStepInstructions"
+                                    values={{
+                                        email: this.props.email
+                                    }}
+                                />
+                            </div>
+                        </JoinFlowStep>
                     );
                 }}
             </Formik>
@@ -59,6 +69,7 @@ class WelcomeStep extends React.Component {
 }
 
 WelcomeStep.propTypes = {
+    email: PropTypes.string,
     intl: intlShape,
     onNextStep: PropTypes.func,
     username: PropTypes.string
