@@ -2,6 +2,7 @@ const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
+const FormattedMessage = require('react-intl').FormattedMessage;
 const {injectIntl, intlShape} = require('react-intl');
 
 const JoinFlowStep = require('./join-flow-step.jsx');
@@ -44,6 +45,15 @@ class WelcomeStep extends React.Component {
                                 id: 'registration.welcomeStepDescriptionNonEducator'
                             })}
                             headerImgSrc="/images/hoc/getting-started.jpg"
+                            nextButton={
+                                <React.Fragment>
+                                    <FormattedMessage id="registration.makeProject" />
+                                    <img
+                                        className="join-flow-next-button-arrow"
+                                        src="/svgs/project/r-arrow.svg"
+                                    />
+                                </React.Fragment>
+                            }
                             title={`${this.props.intl.formatMessage(
                                 {id: 'registration.welcomeStepTitleNonEducator'},
                                 {username: this.props.username}

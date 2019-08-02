@@ -11,6 +11,7 @@ const JoinFlowStep = ({
     children,
     description,
     headerImgSrc,
+    nextButton,
     onSubmit,
     title,
     waiting
@@ -37,7 +38,10 @@ const JoinFlowStep = ({
                 {children}
             </ModalInnerContent>
         </div>
-        <NextStepButton waiting={waiting} />
+        <NextStepButton
+            content={nextButton}
+            waiting={waiting}
+        />
     </form>
 );
 
@@ -45,6 +49,7 @@ JoinFlowStep.propTypes = {
     children: PropTypes.node,
     description: PropTypes.string,
     headerImgSrc: PropTypes.string,
+    nextButton: PropTypes.node,
     onSubmit: PropTypes.func,
     title: PropTypes.string,
     waiting: PropTypes.bool
