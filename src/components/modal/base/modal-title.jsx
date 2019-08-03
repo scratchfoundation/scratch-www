@@ -20,7 +20,7 @@ const ModalTitle = ({
 
 ModalTitle.propTypes = {
     className: PropTypes.string,
-    title: PropTypes.string
+    title: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
 };
 
 module.exports = ModalTitle;

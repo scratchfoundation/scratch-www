@@ -19,8 +19,8 @@ const NextStepButton = props => (
         {props.waiting ?
             <Spinner /> : (
                 <ModalTitle
-                    className="next-step-title-large"
-                    title={props.text ? props.text : props.intl.formatMessage({id: 'registration.nextStep'})}
+                    className="next-step-title"
+                    title={props.content ? props.content : props.intl.formatMessage({id: 'general.next'})}
                 />
             )
         }
@@ -28,8 +28,8 @@ const NextStepButton = props => (
 );
 
 NextStepButton.propTypes = {
+    content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     intl: intl.intlShape,
-    text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     waiting: PropTypes.bool
 };
 
