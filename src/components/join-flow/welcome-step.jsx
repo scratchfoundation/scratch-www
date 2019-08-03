@@ -60,7 +60,16 @@ class WelcomeStep extends React.Component {
                             )}`}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
-                        />
+                        >
+                            <div className="join-flow-instructions">
+                                <FormattedMessage
+                                    id="registration.welcomeStepInstructions"
+                                    values={{
+                                        email: this.props.email
+                                    }}
+                                />
+                            </div>
+                        </JoinFlowStep>
                     );
                 }}
             </Formik>
@@ -69,6 +78,7 @@ class WelcomeStep extends React.Component {
 }
 
 WelcomeStep.propTypes = {
+    email: PropTypes.string,
     intl: intlShape,
     onNextStep: PropTypes.func,
     username: PropTypes.string
