@@ -10,8 +10,13 @@ const {
 
 let username = process.env.SMOKE_USERNAME;
 let password = process.env.SMOKE_PASSWORD;
+let remote = process.env.SMOKE_REMOTE || false;
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 let url = rootUrl + '/users/' + username;
+
+if (remote){
+    jest.setTimeout(60000);
+}
 
 let driver;
 
@@ -36,8 +41,9 @@ describe('www-integration my-stuff', () => {
             .then(() => findByXpath('//div[@class="title-banner intro-banner"]'));
     });
 
-    afterAll(() => {
-        driver.quit();
+    // afterAll must be async in order to actually call driver.quit
+    afterAll(async () => {
+        await driver.quit();
     });
 
 
