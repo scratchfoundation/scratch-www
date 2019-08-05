@@ -94,7 +94,7 @@ async.auto({
     }],
     appRouteRequestConditions: ['version', function (results, cb) {
         var conditions = {};
-        async.eachLimit(routes, ASYNC_CONCURRENCY, function (route, id, cb2) {
+        async.eachOfLimit(routes, ASYNC_CONCURRENCY, function (route, id, cb2) {
             var condition = {
                 name: fastlyConfig.getConditionNameForRoute(route, 'request'),
                 statement: 'req.url ~ "' + route.pattern + '"',
@@ -114,7 +114,7 @@ async.auto({
     }],
     appRouteHeaders: ['version', 'appRouteRequestConditions', function (results, cb) {
         var headers = {};
-        async.eachLimit(routes, ASYNC_CONCURRENCY, function (route, id, cb2) {
+        async.eachOfLimit(routes, ASYNC_CONCURRENCY, function (route, id, cb2) {
             if (route.redirect) {
                 async.auto({
                     responseCondition: function (cb3) {
