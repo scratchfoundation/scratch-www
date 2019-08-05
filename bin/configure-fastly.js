@@ -8,7 +8,7 @@ var routeJson = require('../src/routes.json');
 const FASTLY_SERVICE_ID = process.env.FASTLY_SERVICE_ID || '';
 const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || '';
 
-const ASYNC_CONCURRENCY = 1;
+const FASTLY_CONCURRENCY = process.env.FASTLY_CONCURRENCY || 1;
 
 var fastly = require('./lib/fastly-extended')(process.env.FASTLY_API_KEY, FASTLY_SERVICE_ID);
 
@@ -94,7 +94,7 @@ async.auto({
     }],
     appRouteRequestConditions: ['version', function (results, cb) {
         var conditions = {};
-        async.eachOfLimit(routes, ASYNC_CONCURRENCY, function (route, id, cb2) {
+        async.eachOfLimit(routes, FASTLY_CONCURRENCY, function (route, id, cb2) {
             var condition = {
                 name: fastlyConfig.getConditionNameForRoute(route, 'request'),
                 statement: 'req.url ~ "' + route.pattern + '"',
@@ -114,7 +114,7 @@ async.auto({
     }],
     appRouteHeaders: ['version', 'appRouteRequestConditions', function (results, cb) {
         var headers = {};
-        async.eachOfLimit(routes, ASYNC_CONCURRENCY, function (route, id, cb2) {
+        async.eachOfLimit(routes, FASTLY_CONCURRENCY, function (route, id, cb2) {
             if (route.redirect) {
                 async.auto({
                     responseCondition: function (cb3) {
@@ -147,7 +147,7 @@ async.auto({
                         };
                         fastly.setFastlyHeader(results.version, header, cb3);
                     }]
-                }, ASYNC_CONCURRENCY, function (err, redirectResults) {
+                }, FASTLY_CONCURRENCY, function (err, redirectResults) {
                     if (err) return cb2(err);
                     headers[id] = redirectResults.redirectHeader;
                     cb2(null, redirectResults);
@@ -215,7 +215,7 @@ async.auto({
                 };
                 fastly.setFastlyHeader(results.version, header, cb2);
             }]
-        }, ASYNC_CONCURRENCY, function (err, redirectResults) {
+        }, FASTLY_CONCURRENCY, function (err, redirectResults) {
             if (err) return cb(err);
             cb(null, redirectResults);
         });
@@ -261,12 +261,12 @@ async.auto({
                 };
                 fastly.setFastlyHeader(results.version, header, cb2);
             }]
-        }, ASYNC_CONCURRENCY, function (err, redirectResults) {
+        }, FASTLY_CONCURRENCY, function (err, redirectResults) {
             if (err) return cb(err);
             cb(null, redirectResults);
         });
     }]
-}, ASYNC_CONCURRENCY, function (err, results) {
+}, FASTLY_CONCURRENCY, function (err, results) {
     if (err) throw new Error(err);
     if (process.env.FASTLY_ACTIVATE_CHANGES) {
         fastly.activateVersion(results.version, function (e, resp) {
