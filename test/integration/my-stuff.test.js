@@ -15,9 +15,9 @@ let url = rootUrl + '/users/' + username;
 
 let driver;
 
-describe('www-smoke my-stuff', () => {
+describe('www-integration my-stuff', () => {
     beforeAll(() => {
-        driver = buildDriver('www-smoke my-stuff');
+        driver = buildDriver('www-integration my-stuff');
     });
 
     beforeEach(() => {
