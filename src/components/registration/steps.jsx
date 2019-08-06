@@ -33,29 +33,20 @@ require('./steps.scss');
 const DEFAULT_COUNTRY = 'us';
 
 /**
- * Return a list of options to give to frc select
+ * Return a list of options to give to select
  * @param  {object} reactIntl      react-intl, used to localize strings
- * @param  {string} defaultCountry optional string of default country to put at top of list
- * @return {object}                ordered set of county options formatted for frc select
+ * @return {object}                ordered set of county options formatted for select
  */
-const getCountryOptions = (reactIntl, defaultCountry) => {
-    const options = countryData.countryOptions.concat({
-        label: reactIntl.formatMessage({id: 'registration.selectCountry'}),
-        disabled: true,
-        value: ''
-    });
-
-    if (typeof defaultCountry !== 'undefined') {
-        return options.sort((a, b) => {
-            if (a.disabled) return -1;
-            if (b.disabled) return 1;
-            if (a.value === defaultCountry) return -1;
-            if (b.value === defaultCountry) return 1;
-            return 0;
-        });
-    }
-    return options;
-};
+const getCountryOptions = reactIntl => (
+    [
+        {
+            label: reactIntl.formatMessage({id: 'registration.selectCountry'}),
+            disabled: true,
+            value: ''
+        },
+        ...countryData.registrationCountryOptions
+    ]
+);
 
 const NextStepButton = props => (
     <Button
@@ -445,6 +436,13 @@ class DemographicsStep extends React.Component {
         this.setState({otherDisabled: gender !== 'other'});
     }
     handleValidSubmit (formData) {
+        // look up country name using user's country code selection
+        if (formData.countryCode) {
+            const countryInfo = countryData.lookupCountryInfo(formData.countryCode);
+            if (countryInfo) {
+                formData.user.country = countryInfo.name;
+            }
+        }
         return this.props.onNextStep(formData);
     }
     isValidBirthdate (year, month) {
@@ -460,7 +458,7 @@ class DemographicsStep extends React.Component {
         return isValid ? true : this.props.intl.formatMessage({id: 'teacherRegistration.validationAge'});
     }
     render () {
-        const countryOptions = getCountryOptions(this.props.intl, DEFAULT_COUNTRY);
+        const countryOptions = getCountryOptions(this.props.intl);
         return (
             <Slide className="registration-step demographics-step">
                 <h2>
@@ -539,7 +537,7 @@ class DemographicsStep extends React.Component {
                         <Select
                             required
                             label={this.props.intl.formatMessage({id: 'general.country'})}
-                            name="user.country"
+                            name="countryCode"
                             options={countryOptions}
                             value={countryOptions[0].value}
                         />
@@ -948,6 +946,7 @@ class AddressStep extends React.Component {
     render () {
         let stateOptions = countryData.subdivisionOptions[this.state.countryChoice];
         stateOptions = [{}].concat(stateOptions);
+        const countryOptions = getCountryOptions(this.props.intl);
         return (
             <Slide className="registration-step address-step">
                 <h2>
@@ -970,7 +969,7 @@ class AddressStep extends React.Component {
                                 this.props.intl.formatMessage({id: 'general.country'})
                             }
                             name="address.country"
-                            options={getCountryOptions(this.props.intl)}
+                            options={countryOptions}
                             value={this.props.defaultCountry}
                             onChange={this.handleChangeCountry}
                         />
