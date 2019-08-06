@@ -408,10 +408,14 @@ class DemographicsStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
+            'birthDateValidator',
+            'countryValidator',
+            'getCountryName',
             'getMonthOptions',
             'getYearOptions',
             'handleChooseGender',
-            'handleValidSubmit'
+            'handleValidSubmit',
+            'isValidBirthdate'
         ]);
         this.state = {
             otherDisabled: true
@@ -435,15 +439,23 @@ class DemographicsStep extends React.Component {
     handleChooseGender (name, gender) {
         this.setState({otherDisabled: gender !== 'other'});
     }
-    handleValidSubmit (formData) {
-        // look up country name using user's country code selection
-        if (formData.countryCode) {
-            const countryInfo = countryData.lookupCountryInfo(formData.countryCode);
+    // look up country name using user's country code selection
+    getCountryName (values) {
+        if (values.countryCode) {
+            const countryInfo = countryData.lookupCountryInfo(values.countryCode);
             if (countryInfo) {
-                formData.user.country = countryInfo.name;
+                return countryInfo.name;
             }
         }
-        return this.props.onNextStep(formData);
+        return null;
+    }
+    handleValidSubmit (formData) {
+        const countryName = this.getCountryName(formData);
+        if (countryName && formData.user) {
+            formData.user.country = countryName;
+            return this.props.onNextStep(formData);
+        }
+        return false;
     }
     isValidBirthdate (year, month) {
         const birthdate = new Date(
@@ -456,6 +468,11 @@ class DemographicsStep extends React.Component {
     birthDateValidator (values) {
         const isValid = this.isValidBirthdate(values['user.birth.year'], values['user.birth.month']);
         return isValid ? true : this.props.intl.formatMessage({id: 'teacherRegistration.validationAge'});
+    }
+    countryValidator (values) {
+        const countryName = this.getCountryName(values);
+        if (countryName) return true;
+        return this.props.intl.formatMessage({id: 'general.invalidSelection'});
     }
     render () {
         const countryOptions = getCountryOptions(this.props.intl);
@@ -539,6 +556,9 @@ class DemographicsStep extends React.Component {
                             label={this.props.intl.formatMessage({id: 'general.country'})}
                             name="countryCode"
                             options={countryOptions}
+                            validations={{
+                                countryVal: values => this.countryValidator(values)
+                            }}
                             value={countryOptions[0].value}
                         />
                         <Checkbox
