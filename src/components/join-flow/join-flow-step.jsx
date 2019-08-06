@@ -29,7 +29,7 @@ const JoinFlowStep = ({
             <ModalInnerContent
                 className={classNames(
                     'join-flow-inner-content',
-                    className
+                    className,
                     innerContentClassName
                 )}
             >
