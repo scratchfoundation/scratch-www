@@ -388,7 +388,10 @@ class Preview extends React.Component {
         const submit = data => this.props.reportProject(this.state.projectId, data, this.props.user.token);
         if (this.getProjectThumbnail) {
             this.getProjectThumbnail(thumbnail => {
-                const data = Object.assign({}, formData, {thumbnail});
+                const data = Object.assign({}, formData, {
+                    // Strip the data:image prefix, server just wants the b64 encoded image
+                    thumbnail: thumbnail.replace('data:image/png;base64,', '')
+                });
                 submit(data);
             });
         } else {
