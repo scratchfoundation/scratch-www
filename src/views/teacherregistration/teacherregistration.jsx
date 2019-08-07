@@ -115,9 +115,7 @@ class TeacherRegistration extends React.Component {
                             onNextStep={this.handleAdvanceStep}
                         />
                         <Steps.PhoneNumberStep
-                            defaultCountry={
-                                this.state.formData.user && this.state.formData.user.country
-                            }
+                            defaultCountry={this.state.formData.countryCode}
                             waiting={this.state.waiting}
                             onNextStep={this.handleAdvanceStep}
                         />
@@ -126,9 +124,7 @@ class TeacherRegistration extends React.Component {
                             onNextStep={this.handleAdvanceStep}
                         />
                         <Steps.AddressStep
-                            defaultCountry={
-                                this.state.formData.user && this.state.formData.user.country
-                            }
+                            defaultCountry={this.state.formData.countryCode}
                             waiting={this.state.waiting}
                             onNextStep={this.handleAdvanceStep}
                         />
