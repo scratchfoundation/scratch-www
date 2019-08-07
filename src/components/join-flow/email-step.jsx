@@ -4,7 +4,7 @@ const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
 const {injectIntl, intlShape} = require('react-intl');
-const isEmail = require('isemail');
+const emailValidator = require('email-validator');
 
 const JoinFlowStep = require('./join-flow-step.jsx');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
@@ -22,7 +22,7 @@ class EmailStep extends React.Component {
     }
     validateEmailIfPresent (email) {
         if (!email) return null; // skip validation if email is blank; null indicates valid
-        const localResult = isEmail.validate(email);
+        const localResult = emailValidator.validate(email);
         if (localResult) {
             return null; // TODO: validate email address remotely
         }
@@ -87,5 +87,6 @@ EmailStep.propTypes = {
     intl: intlShape,
     onNextStep: PropTypes.func
 };
+
 
 module.exports = injectIntl(EmailStep);
