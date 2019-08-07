@@ -1052,13 +1052,10 @@ module.exports.lookupCountryInfo = countryCode => (
  * @returns {array} revised array of country objects, with duplicates inserted at beginning
  */
 const dupeCommonCountries = module.exports.dupeCommonCountries = (startingCountryInfo, commonCountryCodes) => {
-    const newCountryInfo = startingCountryInfo.map(item => ({...item}));
-    commonCountryCodes.reverse().forEach(commonCountryCode => {
-        const existing = newCountryInfo
-            .find(country => country.code === commonCountryCode.toLowerCase());
-        if (existing) newCountryInfo.unshift(existing);
-    });
-    return newCountryInfo;
+    const commonCountriesInfo = commonCountryCodes.map(commonCountryCode => (
+        startingCountryInfo.find(country => country.code === commonCountryCode.toLowerCase())
+    ));
+    return [...commonCountriesInfo, ...startingCountryInfo];
 };
 
 /*
