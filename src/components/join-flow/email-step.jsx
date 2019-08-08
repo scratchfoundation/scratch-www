@@ -22,8 +22,8 @@ class EmailStep extends React.Component {
     }
     validateEmailIfPresent (email) {
         if (!email) return null; // skip validation if email is blank; null indicates valid
-        const localResult = emailValidator.validate(email);
-        if (localResult) {
+        const isValidLocally = emailValidator.validate(email);
+        if (isValidLocally) {
             return null; // TODO: validate email address remotely
         }
         return this.props.intl.formatMessage({id: 'registration.validationEmailInvalid'});
