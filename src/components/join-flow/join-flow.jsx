@@ -9,6 +9,7 @@ const intlShape = require('../../lib/intl.jsx').intlShape;
 const Progression = require('../progression/progression.jsx');
 const UsernameStep = require('./username-step.jsx');
 const BirthDateStep = require('./birthdate-step.jsx');
+const GenderStep = require('./gender-step.jsx');
 const EmailStep = require('./email-step.jsx');
 const WelcomeStep = require('./welcome-step.jsx');
 
@@ -40,8 +41,10 @@ class JoinFlow extends React.Component {
                 <Progression step={this.state.step}>
                     <UsernameStep onNextStep={this.handleAdvanceStep} />
                     <BirthDateStep onNextStep={this.handleAdvanceStep} />
+                    <GenderStep onNextStep={this.handleAdvanceStep} />
                     <EmailStep onNextStep={this.handleAdvanceStep} />
                     <WelcomeStep
+                        email={this.state.formData.email}
                         username={this.state.formData.username}
                         onNextStep={this.handleAdvanceStep}
                     />

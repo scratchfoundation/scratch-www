@@ -12,9 +12,17 @@ const FormikInput = ({
     className,
     error,
     validationClassName,
+    wrapperClassName,
     ...props
 }) => (
-    <div className="col-sm-9 row row-with-tooltip">
+    <div
+        className={classNames(
+            'col-sm-9',
+            'row',
+            'row-with-tooltip',
+            wrapperClassName
+        )}
+    >
         <Field
             className={classNames(
                 'input',
@@ -36,7 +44,8 @@ FormikInput.propTypes = {
     className: PropTypes.string,
     error: PropTypes.string,
     type: PropTypes.string,
-    validationClassName: PropTypes.string
+    validationClassName: PropTypes.string,
+    wrapperClassName: PropTypes.string
 };
 
 module.exports = FormikInput;

@@ -1,3 +1,4 @@
+const classNames = require('classnames');
 const React = require('react');
 const PropTypes = require('prop-types');
 
@@ -9,8 +10,10 @@ require('./join-flow-step.scss');
 
 const JoinFlowStep = ({
     children,
+    className,
     description,
     headerImgSrc,
+    nextButton,
     onSubmit,
     title,
     waiting
@@ -22,7 +25,12 @@ const JoinFlowStep = ({
             </div>
         )}
         <div>
-            <ModalInnerContent className="join-flow-inner-content">
+            <ModalInnerContent
+                className={classNames(
+                    'join-flow-inner-content',
+                    className
+                )}
+            >
                 {title && (
                     <ModalTitle
                         className="join-flow-title"
@@ -37,14 +45,19 @@ const JoinFlowStep = ({
                 {children}
             </ModalInnerContent>
         </div>
-        <NextStepButton waiting={waiting} />
+        <NextStepButton
+            content={nextButton}
+            waiting={waiting}
+        />
     </form>
 );
 
 JoinFlowStep.propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
     description: PropTypes.string,
     headerImgSrc: PropTypes.string,
+    nextButton: PropTypes.node,
     onSubmit: PropTypes.func,
     title: PropTypes.string,
     waiting: PropTypes.bool

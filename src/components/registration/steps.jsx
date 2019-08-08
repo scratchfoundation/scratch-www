@@ -33,29 +33,20 @@ require('./steps.scss');
 const DEFAULT_COUNTRY = 'us';
 
 /**
- * Return a list of options to give to frc select
+ * Return a list of options to give to select
  * @param  {object} reactIntl      react-intl, used to localize strings
- * @param  {string} defaultCountry optional string of default country to put at top of list
- * @return {object}                ordered set of county options formatted for frc select
+ * @return {object}                ordered set of county options formatted for select
  */
-const getCountryOptions = (reactIntl, defaultCountry) => {
-    const options = countryData.countryOptions.concat({
-        label: reactIntl.formatMessage({id: 'registration.selectCountry'}),
-        disabled: true,
-        value: ''
-    });
-
-    if (typeof defaultCountry !== 'undefined') {
-        return options.sort((a, b) => {
-            if (a.disabled) return -1;
-            if (b.disabled) return 1;
-            if (a.value === defaultCountry) return -1;
-            if (b.value === defaultCountry) return 1;
-            return 0;
-        });
-    }
-    return options;
-};
+const getCountryOptions = reactIntl => (
+    [
+        {
+            label: reactIntl.formatMessage({id: 'registration.selectCountry'}),
+            disabled: true,
+            value: ''
+        },
+        ...countryData.registrationCountryOptions
+    ]
+);
 
 const NextStepButton = props => (
     <Button
@@ -417,10 +408,14 @@ class DemographicsStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
+            'birthDateValidator',
+            'countryValidator',
+            'getCountryName',
             'getMonthOptions',
             'getYearOptions',
             'handleChooseGender',
-            'handleValidSubmit'
+            'handleValidSubmit',
+            'isValidBirthdate'
         ]);
         this.state = {
             otherDisabled: true
@@ -444,8 +439,23 @@ class DemographicsStep extends React.Component {
     handleChooseGender (name, gender) {
         this.setState({otherDisabled: gender !== 'other'});
     }
+    // look up country name using user's country code selection
+    getCountryName (values) {
+        if (values.countryCode) {
+            const countryInfo = countryData.lookupCountryInfo(values.countryCode);
+            if (countryInfo) {
+                return countryInfo.name;
+            }
+        }
+        return null;
+    }
     handleValidSubmit (formData) {
-        return this.props.onNextStep(formData);
+        const countryName = this.getCountryName(formData);
+        if (countryName && formData.user) {
+            formData.user.country = countryName;
+            return this.props.onNextStep(formData);
+        }
+        return false;
     }
     isValidBirthdate (year, month) {
         const birthdate = new Date(
@@ -459,8 +469,13 @@ class DemographicsStep extends React.Component {
         const isValid = this.isValidBirthdate(values['user.birth.year'], values['user.birth.month']);
         return isValid ? true : this.props.intl.formatMessage({id: 'teacherRegistration.validationAge'});
     }
+    countryValidator (values) {
+        const countryName = this.getCountryName(values);
+        if (countryName) return true;
+        return this.props.intl.formatMessage({id: 'general.invalidSelection'});
+    }
     render () {
-        const countryOptions = getCountryOptions(this.props.intl, DEFAULT_COUNTRY);
+        const countryOptions = getCountryOptions(this.props.intl);
         return (
             <Slide className="registration-step demographics-step">
                 <h2>
@@ -539,8 +554,11 @@ class DemographicsStep extends React.Component {
                         <Select
                             required
                             label={this.props.intl.formatMessage({id: 'general.country'})}
-                            name="user.country"
+                            name="countryCode"
                             options={countryOptions}
+                            validations={{
+                                countryVal: values => this.countryValidator(values)
+                            }}
                             value={countryOptions[0].value}
                         />
                         <Checkbox
@@ -948,6 +966,7 @@ class AddressStep extends React.Component {
     render () {
         let stateOptions = countryData.subdivisionOptions[this.state.countryChoice];
         stateOptions = [{}].concat(stateOptions);
+        const countryOptions = getCountryOptions(this.props.intl);
         return (
             <Slide className="registration-step address-step">
                 <h2>
@@ -970,7 +989,7 @@ class AddressStep extends React.Component {
                                 this.props.intl.formatMessage({id: 'general.country'})
                             }
                             name="address.country"
-                            options={getCountryOptions(this.props.intl)}
+                            options={countryOptions}
                             value={this.props.defaultCountry}
                             onChange={this.handleChangeCountry}
                         />
