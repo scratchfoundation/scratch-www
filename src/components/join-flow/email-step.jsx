@@ -70,7 +70,7 @@ class EmailStep extends React.Component {
                                 error={errors.email}
                                 id="email"
                                 name="email"
-                                placeholder="Email address"
+                                placeholder={this.props.intl.formatMessage({id: 'general.emailAddress'})}
                                 validate={this.validateEmailIfPresent}
                                 validationClassName="validation-full-width-input"
                                 onBlur={() => validateField('email')} // eslint-disable-line react/jsx-no-bind
