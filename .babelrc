@@ -1,6 +1,7 @@
 {
     "plugins": [
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        "transform-require-context"
     ],
     "presets": ["es2015", "react"],
 }

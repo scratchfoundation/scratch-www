@@ -1,0 +1,61 @@
+@import "../../colors";
+
+.formik-radio-label {
+    font-weight: 300;
+    margin-left: 1rem;
+}
+
+input[type="radio"].formik-radio-button {
+    margin-top: 1px;
+    border: 1px solid $box-shadow-light-gray;
+    border-radius: 50%;
+    width: 1rem;
+    min-width: 1rem; /* necessary to prevent width from being too small in 'other' case */
+    height: 1rem;
+    appearance: none;
+    background-color: $ui-white;
+
+    &:checked,
+    &:focus {
+        outline: none;
+    }
+
+    &:checked {
+        transition: all .25s ease;
+        box-shadow: 0 0 0 2px $ui-blue-25percent;
+        border: 1px solid $ui-blue;
+        background-color: $ui-white;
+
+        &:after {
+            display: block;
+            transform: translate(.125rem, .125rem);
+            border-radius: 50%;
+            background-color: $ui-blue;
+            width: .625rem;
+            height: .625rem;
+            content: "";
+        }
+    }
+}
+
+input.formik-radio-input, .formik-radio-input input {
+    height: 2.1875rem;
+    width: 10.25rem;
+    margin-bottom: 0;
+    border-radius: .5rem;
+    background-color: $ui-white;
+
+    &:focus {
+        box-shadow: 0 0 0 .25rem $ui-blue-25percent;
+    }
+}
+
+.formik-radio-input-wrapper {
+    margin-left: auto;
+    margin-right: .25rem;
+}
+
+.formik-radio-label-other {
+    max-width: 7rem;
+    margin-right: .25rem;
+}

@@ -10,6 +10,9 @@
     background-color: $ui-orange;
 }
 
-.next-step-title-large {
+.next-step-title {
     font-size: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
