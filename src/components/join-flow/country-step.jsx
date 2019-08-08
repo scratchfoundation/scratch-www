@@ -11,21 +11,6 @@ const JoinFlowStep = require('./join-flow-step.jsx');
 
 require('./join-flow-steps.scss');
 
-/**
- * Return a list of country options to give to select
- * @param  {object} reactIntl      react-intl, used to localize strings
- * @return {object}                ordered set of county options select
- */
-const getCountryOptions = reactIntl => {
-    const processedCountryData = countryData.registrationCountryOptions;
-    processedCountryData.unshift({
-        disabled: true,
-        label: reactIntl.formatMessage({id: 'registration.selectCountry'}),
-        value: 'null'
-    });
-    return processedCountryData;
-};
-
 class CountryStep extends React.Component {
     constructor (props) {
         super(props);
@@ -34,6 +19,20 @@ class CountryStep extends React.Component {
             'validateForm',
             'validateSelect'
         ]);
+        this.countryOptions = [];
+    }
+    componentDidMount () {
+        this.setCountryOptions();
+    }
+    setCountryOptions () {
+        if (this.countryOptions.length === 0) {
+            this.countryOptions = [...countryData.registrationCountryOptions];
+            this.countryOptions.unshift({
+                disabled: true,
+                label: this.props.intl.formatMessage({id: 'registration.selectCountry'}),
+                value: 'null'
+            });
+        }
     }
     validateSelect (selection) {
         if (selection === 'null') {
@@ -49,7 +48,7 @@ class CountryStep extends React.Component {
         this.props.onNextStep(formData);
     }
     render () {
-        const countryOptions = getCountryOptions(this.props.intl);
+        this.setCountryOptions();
         return (
             <Formik
                 initialValues={{
@@ -89,7 +88,7 @@ class CountryStep extends React.Component {
                                     error={errors.country}
                                     id="country"
                                     name="country"
-                                    options={countryOptions}
+                                    options={this.countryOptions}
                                     validate={this.validateSelect}
                                     validationClassName="validation-full-width-input"
                                 />
