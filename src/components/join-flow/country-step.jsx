@@ -12,16 +12,15 @@ const JoinFlowStep = require('./join-flow-step.jsx');
 require('./join-flow-steps.scss');
 
 /**
- * Return a list of options to give to select
+ * Return a list of country options to give to select
  * @param  {object} reactIntl      react-intl, used to localize strings
- * @param  {string} defaultCountry optional string of default country to put at top of list
- * @return {object}                ordered set of county options formatted for frc select
+ * @return {object}                ordered set of county options select
  */
 const getCountryOptions = reactIntl => {
     const processedCountryData = countryData.registrationCountryOptions;
     processedCountryData.unshift({
-        label: reactIntl.formatMessage({id: 'registration.selectCountry'}),
         disabled: true,
+        label: reactIntl.formatMessage({id: 'registration.selectCountry'}),
         value: 'null'
     });
     return processedCountryData;
