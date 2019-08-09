@@ -21,7 +21,9 @@ let VersionPlugin = function (options) {
 };
 
 VersionPlugin.prototype.apply = function (compiler) {
+    process.stdout.write('apply\n')
     const addVersion = function (compilation, versionId, callback) {
+        process.stdout.write('addversion: ' + versionId + '\n');
         compilation.assets['version.txt'] = {
             source: function () {
                 return versionId;
@@ -36,7 +38,7 @@ VersionPlugin.prototype.apply = function (compiler) {
 
     compiler.plugin('emit', function (compilation, callback) {
         const sha = process.env.WWW_VERSION;
-        process.stdout.write('beginning emit\n');
+        process.stdout.write('beginning emit callback\n');
         if (!sha) { // eslint-disable-line no-negated-condition
             gitsha(options, function (err, _sha) {
                 if (err) return callback(err);
@@ -45,7 +47,7 @@ VersionPlugin.prototype.apply = function (compiler) {
         } else {
             return addVersion(compilation, sha, callback);
         }
-        process.stdout.write('end of emit: \n');
+        process.stdout.write('end of emit caallback: \n');
     });
 };
 
@@ -62,6 +64,7 @@ let entry = {
     ]
 };
 routes.forEach(function (route) {
+    process.stdout.write('route: ' + route + '\n');
     if (!route.redirect) {
         entry[route.name] = `./src/views/${route.view}.jsx`;
     }
