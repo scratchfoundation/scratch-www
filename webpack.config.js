@@ -12,7 +12,7 @@ const templateConfig = require('./src/template-config.js'); // eslint-disable-li
 if (process.env.NODE_ENV !== 'production') {
     routes = routes.concat(require('./src/routes-dev.json')); // eslint-disable-line global-require
 }
-
+process.stdout.write('\n\n\n**********I AM IN YOUR CODE. DOING THINGS.\n\n\n');
 routes = routes.filter(route => !process.env.VIEW || process.env.VIEW === route.view);
 
 let VersionPlugin = function (options) {
@@ -133,6 +133,7 @@ module.exports = {
             return !route.redirect;
         })
         .map(function (route) {
+            process.stdout.write('mapping route: ' + route.name + '\n');
             return new HtmlWebpackPlugin(defaults({}, {
                 title: route.title,
                 filename: route.name + '.html',
