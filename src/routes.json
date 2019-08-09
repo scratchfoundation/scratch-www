@@ -7,9 +7,9 @@
         "title": "About"
     },
     {
-        "name": "register",
-        "pattern": "^/register/?$",
-        "routeAlias": "/register/?$",
+        "name": "joinme",
+        "pattern": "^/joinme/?$",
+        "routeAlias": "/joinme/?$",
         "view": "register/register",
         "title": "Register"
     },
