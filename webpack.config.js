@@ -21,7 +21,7 @@ let VersionPlugin = function (options) {
 };
 
 VersionPlugin.prototype.apply = function (compiler) {
-    process.stdout.write('apply\n')
+    process.stdout.write('apply\n');
     const addVersion = function (compilation, versionId, callback) {
         process.stdout.write('addversion: ' + versionId + '\n');
         compilation.assets['version.txt'] = {
