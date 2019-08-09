@@ -142,6 +142,7 @@ for (var v in routes) {
     }
 
     views.push(routes[v].name);
+    process.stdout.write('Processing route name: ' + routes[v].name + '\n');
     try {
         var subdir = routes[v].view.split('/');
         subdir.pop();
@@ -149,13 +150,16 @@ for (var v in routes) {
         var viewIds = JSON.parse(fs.readFileSync(l10n, 'utf8'));
         defaultLocales[routes[v].name] = viewIds;
     } catch (err) {
+
         if (err.code !== 'ENOENT') {
+            process.stdout.write('Route name ENOENT: ' + routes[v].name + '\n');            
             throw err;
         }
 
         try {
             fs.accessSync(path.resolve(__dirname, '../src/views/' + routes[v].view + '.jsx'));
         } catch (err) {
+            process.stdout.write('Route ' + routes[v].name + 'has error');
             // the config for the view is not set up correctly, so throw the error.
             throw err;
         }
@@ -236,6 +240,7 @@ async.forEachLimit(views, 5, function (view, cb) {
                     defaults(viewLocales[isoCode], viewLocales['en']);
                 }
             } catch (e) {
+                process.stdout.write('caught e: ' + e);
                 return cb(e);
             }
             cb();
