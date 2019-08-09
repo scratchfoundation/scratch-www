@@ -47,12 +47,14 @@
     }
 }
 
-.select .join-flow-select {
+.select .join-flow-select-month {
     width: 9.125rem;
+    margin-right: .5rem;
 }
 
-.join-flow-select-month {
-    margin-right: .5rem;
+.select .join-flow-select-country {
+    width: 100%;
+    margin: 0 auto;
 }
 
 .join-flow-password-section {

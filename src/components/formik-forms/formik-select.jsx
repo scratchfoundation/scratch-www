@@ -17,6 +17,7 @@ const FormikSelect = ({
 }) => {
     const optionsList = options.map((item, index) => (
         <option
+            disabled={item.disabled}
             key={index}
             value={item.value}
         >
