@@ -61,6 +61,7 @@
     "general.noDeletionTitle": "Your Account Will Not Be Deleted",
     "general.noDeletionDescription": "Your account was scheduled for deletion but you logged in. Your account has been reactivated. If you didn’t request for your account to be deleted, you should {resetLink} to make sure your account is secure.",
     "general.noDeletionLink": "change your password",
+    "general.nonBinary": "Non-binary",
     "general.notRequired": "Not Required",
     "general.okay": "Okay",
     "general.other": "Other",
