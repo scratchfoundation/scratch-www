@@ -1,24 +1,10 @@
 [
     {
-        "name": "about",
-        "pattern": "^/about/?$",
-        "routeAlias": "/about/?$",
-        "view": "about/about",
-        "title": "About"
-    },
-    {
         "name": "joinme",
         "pattern": "^/joinme/?$",
         "routeAlias": "/joinme/?$",
         "view": "register/register",
         "title": "Register"
-    },
-    {
-        "name": "camp",
-        "pattern": "^/camp/?$",
-        "routeAlias": "/camp/?$",
-        "view": "camp/camp",
-        "title": "Down Deep"
     },
     {
         "name": "communityblocks-interviews",
@@ -313,27 +299,6 @@
         "routeAlias": "/ev3/?$",
         "view": "ev3/ev3",
         "title": "LEGO MINDSTORMS EV3"
-    },
-    {
-        "name": "microbit",
-        "pattern": "^/microbit/?$",
-        "routeAlias": "/microbit/?$",
-        "view": "microbit/microbit",
-        "title": "micro:bit"
-    },
-    {
-        "name": "vernier",
-        "pattern": "^/vernier/?$",
-        "routeAlias": "/vernier/?$",
-        "view": "gdxfor/gdxfor",
-        "title": "Vernier Go Direct Force and Acceleration"
-    },
-    {
-        "name": "boost",
-        "pattern": "^/boost/?$",
-        "routeAlias": "/boost/?$",
-        "view": "boost/boost",
-        "title": "LEGO BOOST"
     },
     {
         "name":"3-faq-redirect",

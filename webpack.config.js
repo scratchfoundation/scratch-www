@@ -36,6 +36,7 @@ VersionPlugin.prototype.apply = function (compiler) {
 
     compiler.plugin('emit', function (compilation, callback) {
         const sha = process.env.WWW_VERSION;
+        process.stdout.write('beginning emit\n');
         if (!sha) { // eslint-disable-line no-negated-condition
             gitsha(options, function (err, _sha) {
                 if (err) return callback(err);
@@ -44,6 +45,7 @@ VersionPlugin.prototype.apply = function (compiler) {
         } else {
             return addVersion(compilation, sha, callback);
         }
+        process.stdout.write('end of emit: \n');
     });
 };
 
