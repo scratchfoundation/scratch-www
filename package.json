@@ -122,7 +122,7 @@
     "react-telephone-input": "4.3.4",
     "redux": "3.5.2",
     "redux-thunk": "2.0.1",
-    "sass-loader": "6.0.6",
+    "sass-loader": "7.2.0",
     "scratch-gui": "0.1.0-prerelease.20190807160203",
     "scratch-l10n": "latest",
     "selenium-webdriver": "3.6.0",
