@@ -7,6 +7,7 @@ const {injectIntl, intlShape} = require('react-intl');
 
 const validate = require('../../lib/validate');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
+const FormikCheckbox = require('../../components/formik-forms/formik-checkbox.jsx');
 const JoinFlowStep = require('./join-flow-step.jsx');
 
 require('./join-flow-steps.scss');
@@ -26,9 +27,6 @@ class UsernameStep extends React.Component {
             'validateUsernameIfPresent',
             'validateForm'
         ]);
-        this.state = {
-            showPassword: false
-        };
     }
     handleChangeShowPassword () {
         this.setState({showPassword: !this.state.showPassword});
@@ -88,6 +86,7 @@ class UsernameStep extends React.Component {
     // called after all validations pass with no errors
     handleValidSubmit (formData, formikBag) {
         formikBag.setSubmitting(false); // formik makes us do this ourselves
+        delete formData.showPassword;
         this.props.onNextStep(formData);
     }
     render () {
@@ -96,7 +95,8 @@ class UsernameStep extends React.Component {
                 initialValues={{
                     username: '',
                     password: '',
-                    passwordConfirm: ''
+                    passwordConfirm: '',
+                    showPassword: false
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
@@ -154,7 +154,7 @@ class UsernameStep extends React.Component {
                                         error={errors.password}
                                         id="password"
                                         name="password"
-                                        type={this.state.showPassword ? 'text' : 'password'}
+                                        type={values.showPassword ? 'text' : 'password'}
                                         /* eslint-disable react/jsx-no-bind */
                                         validate={password => this.validatePasswordIfPresent(password, values.username)}
                                         validationClassName="validation-full-width-input"
@@ -167,12 +167,14 @@ class UsernameStep extends React.Component {
                                     />
                                     <FormikInput
                                         className={classNames(
-                                            'join-flow-input'
+                                            'join-flow-input',
+                                            'join-flow-password-confirm',
+                                            {fail: errors.passwordConfirm}
                                         )}
                                         error={errors.passwordConfirm}
                                         id="passwordConfirm"
                                         name="passwordConfirm"
-                                        type={this.state.showPassword ? 'text' : 'password'}
+                                        type={values.showPassword ? 'text' : 'password'}
                                         /* eslint-disable react/jsx-no-bind */
                                         validate={() =>
                                             this.validatePasswordConfirmIfPresent(values.password,
@@ -189,14 +191,11 @@ class UsernameStep extends React.Component {
                                         /* eslint-enable react/jsx-no-bind */
                                     />
                                     <div className="join-flow-input-title">
-                                        <div
-                                            onClick={this.handleChangeShowPassword}
-                                        >
-                                            {/* TODO: should localize 'Hide password' if we use that */}
-                                            {this.state.showPassword ? 'Hide password' : (
-                                                this.props.intl.formatMessage({id: 'registration.showPassword'})
-                                            )}
-                                        </div>
+                                        <FormikCheckbox
+                                            id="showPassword"
+                                            label={this.props.intl.formatMessage({id: 'registration.showPassword'})}
+                                            name="showPassword"
+                                        />
                                     </div>
                                 </div>
                             </div>
