@@ -55,8 +55,10 @@ class EmailStep extends React.Component {
                     return (
                         <JoinFlowStep
                             description={this.props.intl.formatMessage({id: 'registration.emailStepDescription'})}
+                            footerMessage={this.props.intl.formatMessage({id: 'registration.acceptTermsOfService'})}
                             headerImgSrc="/images/hoc/getting-started.jpg"
                             innerContentClassName="modal-inner-content-email"
+                            nextButton={this.props.intl.formatMessage({id: 'registration.createAccount'})}
                             title={this.props.intl.formatMessage({id: 'registration.emailStepTitle'})}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
