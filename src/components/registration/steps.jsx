@@ -139,7 +139,7 @@ class UsernameStep extends React.Component {
             default:
                 this.form.formsy.updateInputsWithError({
                     'user.username': this.props.intl.formatMessage({
-                        id: 'registration.validationUsernameInvalid'
+                        id: 'registration.validationUsernameNotAllowed'
                     })
                 });
                 return callback(false);

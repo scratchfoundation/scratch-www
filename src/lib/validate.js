@@ -5,11 +5,11 @@ module.exports.validateUsernameLocally = username => {
     if (!username || username === '') {
         return {valid: false, errMsgId: 'general.required'};
     } else if (username.length < 3) {
-        return {valid: false, errMsgId: 'form.validationUsernameMinLength'};
+        return {valid: false, errMsgId: 'registration.validationUsernameMinLength'};
     } else if (username.length > 20) {
-        return {valid: false, errMsgId: 'form.validationUsernameMaxLength'};
+        return {valid: false, errMsgId: 'registration.validationUsernameMaxLength'};
     } else if (!/^[\w-]+$/i.test(username)) {
-        return {valid: false, errMsgId: 'form.validationUsernameRegexp'};
+        return {valid: false, errMsgId: 'registration.validationUsernameRegexp'};
     }
     return {valid: true};
 };
@@ -29,12 +29,12 @@ module.exports.validateUsernameRemotely = username => (
             case 'username exists':
                 resolve({valid: false, errMsgId: 'registration.validationUsernameExists'});
                 break;
-            case 'bad username':
-                resolve({valid: false, errMsgId: 'registration.validationUsernameVulgar'});
+            case 'bad username': // i.e., vulgar
+                resolve({valid: false, errMsgId: 'registration.validationUsernameNotAllowed'});
                 break;
             case 'invalid username':
             default:
-                resolve({valid: false, errMsgId: 'registration.validationUsernameInvalid'});
+                resolve({valid: false, errMsgId: 'registration.validationUsernameNotAllowed'});
             }
         });
     })
@@ -55,8 +55,7 @@ module.exports.validatePasswordConfirm = (password, passwordConfirm) => {
     if (!passwordConfirm) {
         return {valid: false, errMsgId: 'general.required'};
     } else if (password !== passwordConfirm) {
-        // TODO: add a new string for this case
-        return {valid: false, errMsgId: 'general.error'};
+        return {valid: false, errMsgId: 'registration.validationPasswordConfirmNotEquals'};
     }
     return {valid: true};
 };
