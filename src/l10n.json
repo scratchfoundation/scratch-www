@@ -141,6 +141,7 @@
     "parents.FaqResourcesQ": "What resources are available for learning Scratch?",
     "parents.introDescription": "Scratch is a programming language and an online community where children can program and share interactive media such as stories, games, and animation with people from all over the world. As children create with Scratch, they learn to think creatively, work collaboratively, and reason systematically. Scratch is designed and maintained by the Lifelong Kindergarten group at the MIT Media Lab.",
 
+    "registration.birthDateStepInfo": "This helps us understand the age range of people who use Scratch. We use this to confirm account ownership if you contact our team. This information will not be made public on your account.",
     "registration.birthDateStepTitle": "When were you born?",
     "registration.checkOutResources": "Get Started with Resources",
     "registration.checkOutResourcesDescription": "Explore materials for educators and facilitators written by the Scratch Team, including <a href='/educators#resources'>tips, tutorials, and guides</a>.",
@@ -156,6 +157,7 @@
     "registration.createUsername": "Create a username",
     "registration.genderStepTitle": "What's your gender?",
     "registration.genderStepDescription": "Scratch welcomes people of all genders. We will always keep this information private.",
+    "registration.genderStepInfo": "This helps us understand who uses Scratch, so that we can broaden participation. This information will not be made public on your account.",
     "registration.genderOptionAnother": "Another gender:",
     "registration.genderOptionPreferNotToSay": "Prefer not to say",
     "registration.emailStepTitle": "What's your email?",
