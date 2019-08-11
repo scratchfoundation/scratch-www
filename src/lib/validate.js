@@ -3,7 +3,7 @@ const api = require('./api');
 
 module.exports.validateUsernameLocally = username => {
     if (!username || username === '') {
-        return {valid: false, errMsgId: 'form.validationRequired'};
+        return {valid: false, errMsgId: 'general.required'};
     } else if (username.length < 3) {
         return {valid: false, errMsgId: 'form.validationUsernameMinLength'};
     } else if (username.length > 20) {
@@ -42,7 +42,7 @@ module.exports.validateUsernameRemotely = username => (
 
 module.exports.validatePassword = password => {
     if (!password) {
-        return {valid: false, errMsgId: 'form.validationRequired'};
+        return {valid: false, errMsgId: 'general.required'};
     } else if (password.length < 6) {
         return {valid: false, errMsgId: 'registration.validationPasswordLength'};
     } else if (password === 'password') {
@@ -53,7 +53,7 @@ module.exports.validatePassword = password => {
 
 module.exports.validatePasswordConfirm = (password, passwordConfirm) => {
     if (!passwordConfirm) {
-        return {valid: false, errMsgId: 'form.validationRequired'};
+        return {valid: false, errMsgId: 'general.required'};
     } else if (password !== passwordConfirm) {
         // TODO: add a new string for this case
         return {valid: false, errMsgId: 'general.error'};

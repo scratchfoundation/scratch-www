@@ -36,7 +36,7 @@ class CountryStep extends React.Component {
     }
     validateSelect (selection) {
         if (selection === 'null') {
-            return this.props.intl.formatMessage({id: 'form.validationRequired'});
+            return this.props.intl.formatMessage({id: 'general.required'});
         }
         return null;
     }
