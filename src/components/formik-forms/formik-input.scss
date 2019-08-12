@@ -25,9 +25,4 @@
             outline: none;
         }
     }
-
-    /* IE10/11-specific style resets */
-    &::-ms-reveal, &::-ms-clear {
-        display: none;
-    }
 }
