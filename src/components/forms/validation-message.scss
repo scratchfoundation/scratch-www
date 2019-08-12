@@ -11,7 +11,6 @@
     margin-left: $arrow-border-width;
     border: 1px solid $active-gray;
     border-radius: 5px;
-    background-color: $ui-orange;
     padding: 1rem;
     max-width: 18.75rem;
     min-height: 1rem;
@@ -31,7 +30,6 @@
         border-left: 1px solid $active-gray;
         border-radius: 5px;
 
-        background-color: $ui-orange;
         width: $arrow-border-width;
         height: $arrow-border-width;
 
@@ -50,5 +48,21 @@
         &:before {
             display: none;
         }
+    }
+}
+
+.validation-error {
+    background-color: $ui-orange;
+
+    &:before {
+        background-color: $ui-orange;
+    }
+}
+
+.validation-ok {
+    background-color: $ui-blue;
+
+    &:before {
+        background-color: $ui-blue;
     }
 }
