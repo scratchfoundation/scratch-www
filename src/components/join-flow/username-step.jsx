@@ -36,16 +36,22 @@ class UsernameStep extends React.Component {
     // we allow username to be empty on blur, since you might not have typed anything yet
     validateUsernameIfPresent (username) {
         if (!username) return null; // skip validation if username is blank; null indicates valid
+        // if username is not blank, run both local and remote validations
         const localResult = validate.validateUsernameLocally(username);
-        if (localResult.valid) {
-            return validate.validateUsernameRemotely(username).then(
-                remoteResult => {
-                    if (remoteResult.valid) return null;
+        return validate.validateUsernameRemotely(username).then(
+            remoteResult => {
+                // there may be multiple validation errors. Prioritize vulgarity, then
+                // length, then having invalid chars, then all other remote reports
+                if (remoteResult.valid === false && remoteResult.errMsgId === 'registration.validationUsernameVulgar') {
+                    return this.props.intl.formatMessage({id: remoteResult.errMsgId});
+                } else if (localResult.valid === false) {
+                    return this.props.intl.formatMessage({id: localResult.errMsgId});
+                } else if (remoteResult.valid === false) {
                     return this.props.intl.formatMessage({id: remoteResult.errMsgId});
                 }
-            );
-        }
-        return this.props.intl.formatMessage({id: localResult.errMsgId});
+                return null;
+            }
+        );
     }
     validatePasswordIfPresent (password, username) {
         if (!password) return null; // skip validation if password is blank; null indicates valid
@@ -103,6 +109,7 @@ class UsernameStep extends React.Component {
                         handleSubmit,
                         isSubmitting,
                         setFieldError,
+                        setFieldValue,
                         validateField,
                         values
                     } = props;
@@ -130,7 +137,10 @@ class UsernameStep extends React.Component {
                                     validationClassName="validation-full-width-input"
                                     /* eslint-disable react/jsx-no-bind */
                                     onBlur={() => validateField('username')}
-                                    onFocus={() => setFieldError('username', null)}
+                                    onChange={e => {
+                                        setFieldValue('username', e.target.value);
+                                        setFieldError('username', null);
+                                    }}
                                     /* eslint-enable react/jsx-no-bind */
                                 />
                                 <div className="join-flow-password-section">
@@ -149,7 +159,10 @@ class UsernameStep extends React.Component {
                                         validate={password => this.validatePasswordIfPresent(password, values.username)}
                                         validationClassName="validation-full-width-input"
                                         onBlur={() => validateField('password')}
-                                        onFocus={() => setFieldError('password', null)}
+                                        onChange={e => {
+                                            setFieldValue('password', e.target.value);
+                                            setFieldError('password', null);
+                                        }}
                                         /* eslint-enable react/jsx-no-bind */
                                     />
                                     <FormikInput
@@ -169,7 +182,10 @@ class UsernameStep extends React.Component {
                                         onBlur={() =>
                                             validateField('passwordConfirm')
                                         }
-                                        onFocus={() => setFieldError('passwordConfirm', null)}
+                                        onChange={e => {
+                                            setFieldValue('passwordConfirm', e.target.value);
+                                            setFieldError('passwordConfirm', null);
+                                        }}
                                         /* eslint-enable react/jsx-no-bind */
                                     />
                                     <div className="join-flow-input-title">
