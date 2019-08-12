@@ -170,11 +170,11 @@ module.exports = {
             to: 'static/assets'
         }])
     ])
-        .concat(process.env.NODE_ENV === 'production' ? [
-            new webpack.optimize.UglifyJsPlugin({
-                sourceMap: true
-            })
-        ] : [])
+        // .concat(process.env.NODE_ENV === 'production' ? [
+        //     new webpack.optimize.UglifyJsPlugin({
+        //         sourceMap: true
+        //     })
+        // ] : [])
         .concat([
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': '"' + (process.env.NODE_ENV || 'development') + '"',
