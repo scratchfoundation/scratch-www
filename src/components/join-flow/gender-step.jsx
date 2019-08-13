@@ -11,10 +11,12 @@ const JoinFlowStep = require('./join-flow-step.jsx');
 require('./join-flow-steps.scss');
 
 const GenderOption = ({
+    id,
     label,
     onSetFieldValue,
     selectedValue,
-    value
+    value,
+    ...props
 }) => (
     <div
         className={classNames(
@@ -29,17 +31,20 @@ const GenderOption = ({
         /* eslint-enable react/jsx-no-bind */
     >
         <FormikRadioButton
-            buttonValue={value}
             className={classNames(
                 'join-flow-radio'
             )}
+            id={id}
             label={label}
             name="gender"
+            value={value}
+            {...props}
         />
     </div>
 );
 
 GenderOption.propTypes = {
+    id: PropTypes.string,
     label: PropTypes.string,
     onSetFieldValue: PropTypes.func,
     selectedValue: PropTypes.string,
@@ -89,12 +94,14 @@ class GenderStep extends React.Component {
                             onSubmit={handleSubmit}
                         >
                             <GenderOption
+                                id="GenderRadioOptionFemale"
                                 label={this.props.intl.formatMessage({id: 'general.female'})}
                                 selectedValue={values.gender}
                                 value="Female"
                                 onSetFieldValue={setFieldValue}
                             />
                             <GenderOption
+                                id="GenderRadioOptionMale"
                                 label={this.props.intl.formatMessage({id: 'general.male'})}
                                 selectedValue={values.gender}
                                 value="Male"
@@ -120,12 +127,13 @@ class GenderStep extends React.Component {
                             >
                                 <FormikRadioButton
                                     isCustomInput
-                                    buttonValue={values.custom}
                                     className={classNames(
                                         'join-flow-radio'
                                     )}
+                                    id="GenderRadioOptionCustom"
                                     label={this.props.intl.formatMessage({id: 'registration.genderOptionAnother'})}
                                     name="gender"
+                                    value={values.custom}
                                     /* eslint-disable react/jsx-no-bind */
                                     onSetCustom={newCustomVal => setValues({
                                         gender: newCustomVal,
@@ -135,6 +143,7 @@ class GenderStep extends React.Component {
                                 />
                             </div>
                             <GenderOption
+                                id="GenderRadioOptionPreferNot"
                                 label={this.props.intl.formatMessage({id: 'registration.genderOptionPreferNotToSay'})}
                                 selectedValue={values.gender}
                                 value="Prefer not to say"
