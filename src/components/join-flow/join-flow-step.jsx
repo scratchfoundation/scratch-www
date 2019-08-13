@@ -13,6 +13,7 @@ const JoinFlowStep = ({
     children,
     className,
     description,
+    footerContent,
     headerImgSrc,
     infoMessage,
     innerContentClassName,
@@ -52,6 +53,11 @@ const JoinFlowStep = ({
                 {children}
             </ModalInnerContent>
         </div>
+        {footerContent && (
+            <div className="join-flow-footer-message">
+                {footerContent}
+            </div>
+        )}
         <NextStepButton
             content={nextButton}
             waiting={waiting}
@@ -63,6 +69,7 @@ JoinFlowStep.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     description: PropTypes.string,
+    footerContent: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     headerImgSrc: PropTypes.string,
     infoMessage: PropTypes.string,
     innerContentClassName: PropTypes.string,
