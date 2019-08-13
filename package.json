@@ -8,7 +8,7 @@
     "test:lint": "eslint . --ext .js,.jsx,.json",
     "test:integration": "npm run test:integration:jest && npm run test:smoke",
     "test:integration:jest": "jest ./test/integration/*.test.js",
-    "test:integration:remote": "npm run test:integration:jest && npm run test:smoke:sauce",
+    "test:integration:remote": "npm run test:integration:jest:remote && npm run test:smoke:sauce",
     "test:integration:jest:remote": "SMOKE_REMOTE=true jest ./test/integration/*.test.js",
     "test:smoke": "tap ./test/integration-legacy/smoke-testing/*.js --timeout=3600 --no-coverage -R classic",
     "test:smoke:verbose": "tap ./test/integration-legacy/smoke-testing/*.js --timeout=3600 --no-coverage -R spec",
