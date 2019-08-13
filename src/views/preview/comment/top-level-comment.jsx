@@ -74,6 +74,7 @@ class TopLevelComment extends React.Component {
         const {
             author,
             canDelete,
+            canDeleteWithoutConfirm,
             canReply,
             canReport,
             canRestore,
@@ -103,6 +104,7 @@ class TopLevelComment extends React.Component {
                         content,
                         datetimeCreated,
                         canDelete,
+                        canDeleteWithoutConfirm,
                         canReply,
                         canReport,
                         canRestore,
@@ -126,6 +128,7 @@ class TopLevelComment extends React.Component {
                             <Comment
                                 author={reply.author}
                                 canDelete={canDelete}
+                                canDeleteWithoutConfirm={canDeleteWithoutConfirm}
                                 canReply={canReply}
                                 canReport={canReport}
                                 canRestore={canRestore && parentVisible}
@@ -168,6 +171,7 @@ TopLevelComment.propTypes = {
         username: PropTypes.string
     }),
     canDelete: PropTypes.bool,
+    canDeleteWithoutConfirm: PropTypes.bool,
     canReply: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestore: PropTypes.bool,
@@ -190,6 +194,7 @@ TopLevelComment.propTypes = {
 };
 
 TopLevelComment.defaultProps = {
+    canDeleteWithoutConfirm: false,
     defaultExpanded: false,
     moreRepliesToLoad: false
 };

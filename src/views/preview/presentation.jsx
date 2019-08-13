@@ -599,6 +599,7 @@ const PreviewPresentation = ({
                                             <TopLevelComment
                                                 author={comment.author}
                                                 canDelete={canDeleteComments}
+                                                canDeleteWithoutConfirm={isAdmin}
                                                 canReply={isLoggedIn && projectInfo.comments_allowed && isShared}
                                                 canReport={isLoggedIn}
                                                 canRestore={canRestoreComments}
