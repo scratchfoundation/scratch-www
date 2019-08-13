@@ -5,6 +5,7 @@ const PropTypes = require('prop-types');
 import {Formik} from 'formik';
 const {injectIntl, intlShape} = require('react-intl');
 const emailValidator = require('email-validator');
+const FormattedMessage = require('react-intl').FormattedMessage;
 
 const JoinFlowStep = require('./join-flow-step.jsx');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
@@ -55,7 +56,22 @@ class EmailStep extends React.Component {
                     return (
                         <JoinFlowStep
                             description={this.props.intl.formatMessage({id: 'registration.emailStepDescription'})}
-                            footerMessage={this.props.intl.formatMessage({id: 'registration.acceptTermsOfService'})}
+                            footerContent={(
+                                <FormattedMessage
+                                    id="registration.acceptTermsOfUse"
+                                    values={{
+                                        touLink: (
+                                            <a
+                                                className="join-flow-link"
+                                                href="/terms_of_use"
+                                                target="_blank"
+                                            >
+                                                <FormattedMessage id="general.termsOfUse" />
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            )}
                             headerImgSrc="/images/hoc/getting-started.jpg"
                             innerContentClassName="modal-inner-content-email"
                             nextButton={this.props.intl.formatMessage({id: 'registration.createAccount'})}
