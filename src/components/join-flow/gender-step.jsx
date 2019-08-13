@@ -55,8 +55,12 @@ class GenderStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
+            'handleSetCustomRef',
             'handleValidSubmit'
         ]);
+    }
+    handleSetCustomRef (customInputRef) {
+        this.customInput = customInputRef;
     }
     handleValidSubmit (formData, formikBag) {
         formikBag.setSubmitting(false);
@@ -122,7 +126,10 @@ class GenderStep extends React.Component {
                                     {'gender-radio-row-selected': (values.gender === values.custom)}
                                 )}
                                 /* eslint-disable react/jsx-no-bind */
-                                onClick={() => setFieldValue('gender', values.custom, false)}
+                                onClick={() => {
+                                    setFieldValue('gender', values.custom, false);
+                                    if (this.customInput) this.customInput.focus();
+                                }}
                                 /* eslint-enable react/jsx-no-bind */
                             >
                                 <FormikRadioButton
@@ -139,6 +146,7 @@ class GenderStep extends React.Component {
                                         gender: newCustomVal,
                                         custom: newCustomVal
                                     })}
+                                    onSetCustomRef={this.handleSetCustomRef}
                                     /* eslint-enable react/jsx-no-bind */
                                 />
                             </div>
