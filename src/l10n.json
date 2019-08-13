@@ -185,7 +185,7 @@
     "registration.studentUsernameStepHelpText": "Already have a Scratch account?",
     "registration.studentUsernameStepTooltip": "You'll need to create a new Scratch account to join this class.",
     "registration.studentUsernameFieldHelpText": "For safety, don't use your real name!",
-    "registration.acceptTermsOfService": "By creating an account, I accept and agree to the Terms of Service.",
+    "registration.acceptTermsOfUse": "By creating an account, I accept and agree to the {touLink}.",
     "registration.usernameStepTitle": "Request a Teacher Account",
     "registration.usernameStepTitleScratcher": "Create a Scratch Account",
     "registration.validationMaxLength": "Sorry, you have exceeded the maximum character limit.",
