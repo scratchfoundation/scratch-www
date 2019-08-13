@@ -4,7 +4,7 @@ import JoinFlowStep from '../../../src/components/join-flow/join-flow-step';
 
 describe('JoinFlowStep', () => {
 
-    test('test components exist when props present', () => {
+    test('components exist when props present', () => {
         const props = {
             children: null,
             className: 'join-flow-step-class',
@@ -33,15 +33,27 @@ describe('JoinFlowStep', () => {
         expect(component.find('div.join-flow-description').text()).toEqual(props.description);
 
 
-        component.find('button[type="submit"]').simulate('submit');
-        expect(props.onSubmit).toHaveBeenCalled();
-
         expect(component.find('NextStepButton').prop('waiting')).toEqual(true);
         expect(component.find('NextStepButton').prop('content')).toEqual(props.nextButton);
+
         component.unmount();
     });
 
-    test('test components do not exist when props not present', () => {
+    test('components do not exist when props not present', () => {
+        const component = mountWithIntl(
+            <JoinFlowStep />
+        );
+
+        expect(component.find('div.join-flow-header-image').exists()).toEqual(false);
+        expect(component.find('.join-flow-inner-content').exists()).toEqual(true);
+        expect(component.find('.join-flow-title').exists()).toEqual(false);
+        expect(component.find('div.join-flow-description').exists()).toEqual(false);
+        expect(component.find('NextStepButton').prop('waiting')).toEqual(false);
+
+        component.unmount();
+    });
+
+    test('clicking submit calls passed in function', () => {
         const props = {
             onSubmit: jest.fn()
         };
@@ -50,20 +62,8 @@ describe('JoinFlowStep', () => {
                 {...props}
             />
         );
-        expect(component.find('div.join-flow-header-image').exists()).toEqual(false);
-
-        expect(component.find('.join-flow-inner-content').exists()).toEqual(true);
-        expect(component.find('.join-flow-title').exists()).toEqual(false);
-
-
-        expect(component.find('div.join-flow-description').exists()).toEqual(false);
-
         component.find('button[type="submit"]').simulate('submit');
         expect(props.onSubmit).toHaveBeenCalled();
-
-        expect(component.find('NextStepButton').prop('waiting')).toEqual(false);
-
-
         component.unmount();
     });
 });
