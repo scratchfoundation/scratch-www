@@ -329,13 +329,6 @@
         "title": "LEGO BOOST"
     },
     {
-        "name": "join",
-        "pattern": "^/join/?$",
-        "routeAlias": "/join/?$",
-        "view": "join/join",
-        "title": "Join Scratch"
-    },
-    {
         "name":"3-faq-redirect",
         "pattern": "^/3faq/?$",
         "routeAlias": "/3faq/?$",
