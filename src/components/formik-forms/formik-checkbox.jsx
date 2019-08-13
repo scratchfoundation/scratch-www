@@ -52,8 +52,7 @@ FormikCheckboxSubComponent.propTypes = {
         value: PropTypes.bool
     }),
     id: PropTypes.string,
-    label: PropTypes.string,
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    label: PropTypes.string
 };
 
 
