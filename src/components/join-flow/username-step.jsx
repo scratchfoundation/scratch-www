@@ -36,20 +36,26 @@ class UsernameStep extends React.Component {
     // we allow username to be empty on blur, since you might not have typed anything yet
     validateUsernameIfPresent (username) {
         if (!username) return null; // skip validation if username is blank; null indicates valid
+        // if username is not blank, run both local and remote validations
         const localResult = validate.validateUsernameLocally(username);
-        if (localResult.valid) {
-            return validate.validateUsernameRemotely(username).then(
-                remoteResult => {
-                    if (remoteResult.valid) return null;
+        return validate.validateUsernameRemotely(username).then(
+            remoteResult => {
+                // there may be multiple validation errors. Prioritize vulgarity, then
+                // length, then having invalid chars, then all other remote reports
+                if (remoteResult.valid === false && remoteResult.errMsgId === 'registration.validationUsernameVulgar') {
+                    return this.props.intl.formatMessage({id: remoteResult.errMsgId});
+                } else if (localResult.valid === false) {
+                    return this.props.intl.formatMessage({id: localResult.errMsgId});
+                } else if (remoteResult.valid === false) {
                     return this.props.intl.formatMessage({id: remoteResult.errMsgId});
                 }
-            );
-        }
-        return this.props.intl.formatMessage({id: localResult.errMsgId});
+                return null;
+            }
+        );
     }
-    validatePasswordIfPresent (password) {
+    validatePasswordIfPresent (password, username) {
         if (!password) return null; // skip validation if password is blank; null indicates valid
-        const localResult = validate.validatePassword(password);
+        const localResult = validate.validatePassword(password, username);
         if (localResult.valid) return null;
         return this.props.intl.formatMessage({id: localResult.errMsgId});
     }
@@ -69,12 +75,9 @@ class UsernameStep extends React.Component {
         if (!usernameResult.valid) {
             errors.username = this.props.intl.formatMessage({id: usernameResult.errMsgId});
         }
-        const passwordResult = validate.validatePassword(values.password);
+        const passwordResult = validate.validatePassword(values.password, values.username);
         if (!passwordResult.valid) {
             errors.password = this.props.intl.formatMessage({id: passwordResult.errMsgId});
-        }
-        if (values.password === values.username) {
-            errors.password = this.props.intl.formatMessage({id: 'registration.validationPasswordNotUsername'});
         }
         const passwordConfirmResult = validate.validatePasswordConfirm(values.password, values.passwordConfirm);
         if (!passwordConfirmResult.valid) {
@@ -105,6 +108,8 @@ class UsernameStep extends React.Component {
                         errors,
                         handleSubmit,
                         isSubmitting,
+                        setFieldError,
+                        setFieldValue,
                         validateField,
                         values
                     } = props;
@@ -123,15 +128,20 @@ class UsernameStep extends React.Component {
                                 </div>
                                 <FormikInput
                                     className={classNames(
-                                        'join-flow-input',
-                                        {fail: errors.username}
+                                        'join-flow-input'
                                     )}
                                     error={errors.username}
                                     id="username"
                                     name="username"
                                     validate={this.validateUsernameIfPresent}
                                     validationClassName="validation-full-width-input"
-                                    onBlur={() => validateField('username')} // eslint-disable-line react/jsx-no-bind
+                                    /* eslint-disable react/jsx-no-bind */
+                                    onBlur={() => validateField('username')}
+                                    onChange={e => {
+                                        setFieldValue('username', e.target.value);
+                                        setFieldError('username', null);
+                                    }}
+                                    /* eslint-enable react/jsx-no-bind */
                                 />
                                 <div className="join-flow-password-section">
                                     <div className="join-flow-input-title">
@@ -139,23 +149,25 @@ class UsernameStep extends React.Component {
                                     </div>
                                     <FormikInput
                                         className={classNames(
-                                            'join-flow-input',
-                                            {fail: errors.password}
+                                            'join-flow-input'
                                         )}
                                         error={errors.password}
                                         id="password"
                                         name="password"
                                         type={this.state.showPassword ? 'text' : 'password'}
-                                        validate={this.validatePasswordIfPresent}
-                                        validationClassName="validation-full-width-input"
                                         /* eslint-disable react/jsx-no-bind */
+                                        validate={password => this.validatePasswordIfPresent(password, values.username)}
+                                        validationClassName="validation-full-width-input"
                                         onBlur={() => validateField('password')}
+                                        onChange={e => {
+                                            setFieldValue('password', e.target.value);
+                                            setFieldError('password', null);
+                                        }}
                                         /* eslint-enable react/jsx-no-bind */
                                     />
                                     <FormikInput
                                         className={classNames(
-                                            'join-flow-input',
-                                            {fail: errors.passwordConfirm}
+                                            'join-flow-input'
                                         )}
                                         error={errors.passwordConfirm}
                                         id="passwordConfirm"
@@ -170,6 +182,10 @@ class UsernameStep extends React.Component {
                                         onBlur={() =>
                                             validateField('passwordConfirm')
                                         }
+                                        onChange={e => {
+                                            setFieldValue('passwordConfirm', e.target.value);
+                                            setFieldError('passwordConfirm', null);
+                                        }}
                                         /* eslint-enable react/jsx-no-bind */
                                     />
                                     <div className="join-flow-input-title">

@@ -5,9 +5,8 @@ import {Field} from 'formik';
 
 const ValidationMessage = require('../forms/validation-message.jsx');
 
-require('./input.scss');
-require('../forms/input.scss');
 require('../forms/row.scss');
+require('./formik-input.scss');
 
 const FormikInput = ({
     className,
@@ -27,6 +26,7 @@ const FormikInput = ({
         <Field
             className={classNames(
                 'input',
+                {fail: error},
                 className
             )}
             {...props}

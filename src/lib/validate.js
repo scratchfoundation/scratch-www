@@ -40,13 +40,21 @@ module.exports.validateUsernameRemotely = username => (
     })
 );
 
-module.exports.validatePassword = password => {
+/**
+ * Validate password value, optionally also considering username value
+ * @param  {string} password     password value to validate
+ * @param  {string} username     username value to compare
+ * @return {object}              {valid: boolean, errMsgId: string}
+ */
+module.exports.validatePassword = (password, username) => {
     if (!password) {
         return {valid: false, errMsgId: 'general.required'};
     } else if (password.length < 6) {
         return {valid: false, errMsgId: 'registration.validationPasswordLength'};
     } else if (password === 'password') {
         return {valid: false, errMsgId: 'registration.validationPasswordNotEquals'};
+    } else if (username && password === username) {
+        return {valid: false, errMsgId: 'registration.validationPasswordNotUsername'};
     }
     return {valid: true};
 };
