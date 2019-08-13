@@ -5,6 +5,7 @@ import {Field} from 'formik';
 
 const ValidationMessage = require('../forms/validation-message.jsx');
 
+require('./input.scss');
 require('../forms/input.scss');
 require('../forms/row.scss');
 

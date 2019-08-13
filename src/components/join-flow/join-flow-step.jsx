@@ -13,6 +13,7 @@ const JoinFlowStep = ({
     className,
     description,
     headerImgSrc,
+    innerContentClassName,
     nextButton,
     onSubmit,
     title,
@@ -28,7 +29,8 @@ const JoinFlowStep = ({
             <ModalInnerContent
                 className={classNames(
                     'join-flow-inner-content',
-                    className
+                    className,
+                    innerContentClassName
                 )}
             >
                 {title && (
@@ -57,6 +59,7 @@ JoinFlowStep.propTypes = {
     className: PropTypes.string,
     description: PropTypes.string,
     headerImgSrc: PropTypes.string,
+    innerContentClassName: PropTypes.string,
     nextButton: PropTypes.node,
     onSubmit: PropTypes.func,
     title: PropTypes.string,

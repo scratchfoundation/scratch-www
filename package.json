@@ -72,6 +72,7 @@
     "copy-webpack-plugin": "0.2.0",
     "create-react-class": "15.6.2",
     "css-loader": "0.23.1",
+    "email-validator": "2.0.4",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "eslint": "5.16.0",
