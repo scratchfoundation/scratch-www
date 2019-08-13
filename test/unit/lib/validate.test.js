@@ -11,17 +11,17 @@ describe('unit test lib/validate.js', () => {
         response = validate.validateUsernameLocally('abc-def-ghi');
         expect(response).toEqual({valid: true});
         response = validate.validateUsernameLocally('');
-        expect(response).toEqual({valid: false, errMsgId: 'form.validationRequired'});
+        expect(response).toEqual({valid: false, errMsgId: 'general.required'});
         response = validate.validateUsernameLocally('ab');
-        expect(response).toEqual({valid: false, errMsgId: 'form.validationUsernameMinLength'});
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameMinLength'});
         response = validate.validateUsernameLocally('abcdefghijklmnopqrstu');
-        expect(response).toEqual({valid: false, errMsgId: 'form.validationUsernameMaxLength'});
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameMaxLength'});
         response = validate.validateUsernameLocally('abc def');
-        expect(response).toEqual({valid: false, errMsgId: 'form.validationUsernameRegexp'});
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
         response = validate.validateUsernameLocally('abc!def');
-        expect(response).toEqual({valid: false, errMsgId: 'form.validationUsernameRegexp'});
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
         response = validate.validateUsernameLocally('abc😄def');
-        expect(response).toEqual({valid: false, errMsgId: 'form.validationUsernameRegexp'});
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
     });
 
     test('validate password', () => {
@@ -34,7 +34,7 @@ describe('unit test lib/validate.js', () => {
         response = validate.validatePassword('passwo');
         expect(response).toEqual({valid: true});
         response = validate.validatePassword('');
-        expect(response).toEqual({valid: false, errMsgId: 'form.validationRequired'});
+        expect(response).toEqual({valid: false, errMsgId: 'general.required'});
         response = validate.validatePassword('abcde');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
         response = validate.validatePassword('password');
@@ -51,12 +51,12 @@ describe('unit test lib/validate.js', () => {
         response = validate.validatePasswordConfirm('passwo', 'passwo');
         expect(response).toEqual({valid: true});
         response = validate.validatePasswordConfirm('', '');
-        expect(response).toEqual({valid: false, errMsgId: 'form.validationRequired'});
+        expect(response).toEqual({valid: false, errMsgId: 'general.required'});
         response = validate.validatePasswordConfirm('abcdef', 'abcdefg');
-        expect(response).toEqual({valid: false, errMsgId: 'general.error'});
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordConfirmNotEquals'});
         response = validate.validatePasswordConfirm('abcdef', '123456');
-        expect(response).toEqual({valid: false, errMsgId: 'general.error'});
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordConfirmNotEquals'});
         response = validate.validatePasswordConfirm('', 'abcdefg');
-        expect(response).toEqual({valid: false, errMsgId: 'general.error'});
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordConfirmNotEquals'});
     });
 });
