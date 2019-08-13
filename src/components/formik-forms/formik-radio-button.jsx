@@ -41,6 +41,7 @@ const FormikRadioButtonSubComponent = ({
                     'formik-radio-label',
                     labelClassName
                 )}
+                htmlFor={id}
             >
                 {label}
             </label>
