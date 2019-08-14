@@ -165,9 +165,7 @@ module.exports = {
         }])
     ])
         .concat(process.env.NODE_ENV === 'production' ? [
-            new webpack.optimize.UglifyJsPlugin({
-                sourceMap: true
-            })
+            new webpack.optimize.UglifyJsPlugin()
         ] : [])
         .concat([
             new webpack.DefinePlugin({
