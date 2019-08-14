@@ -22,17 +22,12 @@ describe('JoinFlowStep', () => {
         );
         expect(component.find('div.join-flow-header-image').exists()).toEqual(true);
         expect(component.find({src: props.headerImgSrc}).exists()).toEqual(true);
-
         expect(component.find('.join-flow-inner-content').exists()).toEqual(true);
         expect(component.find('.join-flow-title').exists()).toEqual(true);
-
         expect(component.find('.join-flow-title').first()
             .prop('title')).toEqual(props.title);
-
         expect(component.find('div.join-flow-description').exists()).toEqual(true);
         expect(component.find('div.join-flow-description').text()).toEqual(props.description);
-
-
         expect(component.find('NextStepButton').prop('waiting')).toEqual(true);
         expect(component.find('NextStepButton').prop('content')).toEqual(props.nextButton);
 
