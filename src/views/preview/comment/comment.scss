@@ -83,6 +83,13 @@
         width: calc(100% + 1rem);
         height: 100%;
         content: "";
+        
+        /* 
+            Because this :before is absolutely positioned, it will eat clicks
+            from non-absolute elements after it (like the author link).
+            Prevent this by explicitly disabling pointer events on this background element.
+        */
+        pointer-events: none;
     }
 
     .comment-top-row {

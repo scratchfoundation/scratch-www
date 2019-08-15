@@ -54,7 +54,11 @@ class Comment extends React.Component {
     }
 
     handleDelete () {
-        this.setState({deleting: true});
+        if (this.props.canDeleteWithoutConfirm) {
+            this.props.onDelete(this.props.id);
+        } else {
+            this.setState({deleting: true});
+        }
     }
 
     handleConfirmDelete () {
@@ -267,6 +271,7 @@ Comment.propTypes = {
         username: PropTypes.string
     }),
     canDelete: PropTypes.bool,
+    canDeleteWithoutConfirm: PropTypes.bool,
     canReply: PropTypes.bool,
     canReport: PropTypes.bool,
     canRestore: PropTypes.bool,

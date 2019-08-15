@@ -1,0 +1,78 @@
+@import "../../colors";
+@import "../../frameless";
+
+.info-button {
+    position: relative;
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-left: .375rem;
+    border-radius: 50%;
+    background-color: $ui-blue;
+
+    &:after {
+        position: absolute;
+        content: "?";
+        color: $ui-white;
+        font-family: verdana;
+        font-weight: 400;
+        top: -.125rem;
+        left: .325rem;
+        font-size: .75rem;
+    }
+}
+
+.info-button-message {
+    $arrow-border-width: 1rem;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(1rem, -1rem);
+    width: 16.5rem;
+    min-height: 1rem;
+    margin-left: $arrow-border-width;
+    border: 1px solid $active-gray;
+    border-radius: 5px;
+    padding: .75rem;
+    overflow: visible;
+    background-color: $ui-blue;
+    color: $type-white;
+    line-height: 1.25rem;
+    text-align: left;
+    font-size: .875rem;
+    z-index: 1;
+
+    &:before {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        left: -$arrow-border-width / 2;
+
+        transform: rotate(45deg);
+
+        border-bottom: 1px solid $active-gray;
+        border-left: 1px solid $active-gray;
+        border-radius: 5px;
+
+        background-color: $ui-blue;
+        width: $arrow-border-width;
+        height: $arrow-border-width;
+
+        content: "";
+    }
+}
+
+@media #{$intermediate-and-smaller} {
+    .info-button-message {
+        position: relative;
+        transform: none;
+        margin: inherit;
+        width: 100%;
+        height: inherit;
+
+        &:before {
+            display: none;
+        }
+    }
+}
