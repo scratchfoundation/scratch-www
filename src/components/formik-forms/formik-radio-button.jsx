@@ -5,6 +5,7 @@ import {Field} from 'formik';
 
 const FormikInput = require('./formik-input.jsx');
 
+require('./formik-forms.scss');
 require('./formik-radio-button.scss');
 require('../forms/row.scss');
 
@@ -34,6 +35,7 @@ const FormikRadioButtonSubComponent = ({
         {label && (
             <label
                 className={classNames(
+                    'formik-label',
                     'formik-radio-label',
                     labelClassName
                 )}

@@ -82,6 +82,7 @@ class GenderStep extends React.Component {
                         <JoinFlowStep
                             className="join-flow-gender-step"
                             description={this.props.intl.formatMessage({id: 'registration.genderStepDescription'})}
+                            infoMessage={this.props.intl.formatMessage({id: 'registration.genderStepInfo'})}
                             title={this.props.intl.formatMessage({id: 'registration.genderStepTitle'})}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}

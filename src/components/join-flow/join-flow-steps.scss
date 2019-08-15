@@ -13,6 +13,14 @@
     }
 }
 
+.join-flow-password-confirm {
+    margin-bottom: .6875rem;
+}
+
+.join-flow-input-tall {
+    height: 3rem;
+}
+
 .join-flow-input-title {
     font-weight: bold;
     margin-bottom: .5rem;
@@ -47,12 +55,14 @@
     }
 }
 
-.select .join-flow-select {
+.select .join-flow-select-month {
     width: 9.125rem;
+    margin-right: .5rem;
 }
 
-.join-flow-select-month {
-    margin-right: .5rem;
+.select .join-flow-select-country {
+    width: 100%;
+    margin: 0 auto;
 }
 
 .join-flow-password-section {
@@ -90,4 +100,12 @@
     width: 2rem;
     height: 2rem;
     margin-left: .5rem;
+}
+
+.modal-inner-content-email {
+    padding-top: 2.9rem;
+}
+
+a.join-flow-link:link, a.join-flow-link:visited, a.join-flow-link:active {
+    text-decoration: underline;
 }

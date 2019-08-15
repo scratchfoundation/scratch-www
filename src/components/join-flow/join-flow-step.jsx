@@ -5,6 +5,7 @@ const PropTypes = require('prop-types');
 const NextStepButton = require('./next-step-button.jsx');
 const ModalTitle = require('../modal/base/modal-title.jsx');
 const ModalInnerContent = require('../modal/base/modal-inner-content.jsx');
+const InfoButton = require('../info-button/info-button.jsx');
 
 require('./join-flow-step.scss');
 
@@ -12,7 +13,10 @@ const JoinFlowStep = ({
     children,
     className,
     description,
+    footerContent,
     headerImgSrc,
+    infoMessage,
+    innerContentClassName,
     nextButton,
     onSubmit,
     title,
@@ -28,7 +32,8 @@ const JoinFlowStep = ({
             <ModalInnerContent
                 className={classNames(
                     'join-flow-inner-content',
-                    className
+                    className,
+                    innerContentClassName
                 )}
             >
                 {title && (
@@ -40,11 +45,19 @@ const JoinFlowStep = ({
                 {description && (
                     <div className="join-flow-description">
                         {description}
+                        {infoMessage && (
+                            <InfoButton message={infoMessage} />
+                        )}
                     </div>
                 )}
                 {children}
             </ModalInnerContent>
         </div>
+        {footerContent && (
+            <div className="join-flow-footer-message">
+                {footerContent}
+            </div>
+        )}
         <NextStepButton
             content={nextButton}
             waiting={waiting}
@@ -56,7 +69,10 @@ JoinFlowStep.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     description: PropTypes.string,
+    footerContent: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     headerImgSrc: PropTypes.string,
+    infoMessage: PropTypes.string,
+    innerContentClassName: PropTypes.string,
     nextButton: PropTypes.node,
     onSubmit: PropTypes.func,
     title: PropTypes.string,
