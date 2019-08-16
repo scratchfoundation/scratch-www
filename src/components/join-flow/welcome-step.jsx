@@ -44,7 +44,7 @@ class WelcomeStep extends React.Component {
                             description={this.props.intl.formatMessage({
                                 id: 'registration.welcomeStepDescriptionNonEducator'
                             })}
-                            headerImgSrc="/images/hoc/getting-started.jpg"
+                            headerImgSrc="/images/join-flow/welcome-header.png"
                             innerClassName="join-flow-inner-welcome-step"
                             nextButton={
                                 <React.Fragment>
