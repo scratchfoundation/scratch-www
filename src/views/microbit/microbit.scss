@@ -14,4 +14,60 @@
             }
         }
     }
+
+    .cards {
+        /* ends with <hr>, so no need for extra padding */
+        padding-bottom: 0;
+        /* slightly more padding on top, since <hr> at bottom has its own extra padding */
+        padding-top: 4.5rem;
+    }
+
+    .cards-row {
+        flex-wrap: nowrap;
+    }
+
+    .cards-image-column {
+        width: 50%;
+    }
+
+    .cards-image {
+        width: calc(100% - 4rem);
+        margin-top: 1rem;
+        margin-right: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .cards-description-column {
+        width: 50%;
+
+        p {
+            font-size: 1.2rem;
+        }
+    }
+
+    .download-cards-button {
+        min-width: 10rem;
+
+        &:before {
+            display: inline-block;
+            background-image: url("/svgs/extensions/download-white.svg");
+            background-repeat: no-repeat;
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: .75rem;
+            vertical-align: text-top;
+            content: "";
+        }
+    }
+}
+
+@media #{$medium-and-smaller} {
+    .microbit {
+        .cards-image-column {
+            width: calc(100% - 2rem);
+        }
+        .cards-description-column {
+            width: calc(100% - 2rem);
+        }
+    }
 }
