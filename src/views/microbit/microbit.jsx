@@ -289,7 +289,7 @@ class MicroBit extends ExtensionLanding {
                                 <FormattedMessage id="microbit.cardsDescription" />
                             </p>
                             <p>
-                                <a href="/starter_projects">
+                                <a href={this.props.intl.formatMessage({id: 'cards.microbit-cardsLink'})}>
                                     <Button className="download-cards-button large">
                                         <FormattedMessage id="general.downloadPDF" />
                                     </Button>

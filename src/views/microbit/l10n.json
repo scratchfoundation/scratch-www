@@ -40,5 +40,6 @@
     "microbit.imgAltDisplayH": "A micro:bit displaying an H.",
     "microbit.imgAltHeartBeat" : "A Scratch project with a heart.",
     "microbit.imgAltTiltGuitar": "A Scratch project with a guitar.",
-    "microbit.imgAltOceanAdventure": "A Scratch project with a clown fish and a saxophone under water."
+    "microbit.imgAltOceanAdventure": "A Scratch project with a clown fish and a saxophone under water.",
+    "cards.microbit-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/microbit-cards.pdf"
 }
