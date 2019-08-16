@@ -99,6 +99,12 @@ class GenderStep extends React.Component {
                                 value="Male"
                                 onSetFieldValue={setFieldValue}
                             />
+                            <GenderOption
+                                label={this.props.intl.formatMessage({id: 'general.nonBinary'})}
+                                selectedValue={values.gender}
+                                value="Non-binary"
+                                onSetFieldValue={setFieldValue}
+                            />
                             <div
                                 className={classNames(
                                     'col-sm-9',
