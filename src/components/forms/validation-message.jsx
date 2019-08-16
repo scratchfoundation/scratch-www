@@ -9,8 +9,8 @@ const ValidationMessage = props => (
         className={classNames(
             'validation-message',
             {
-                'validation-error': props.isError,
-                'validation-ok': props.isOk
+                'validation-error': props.mode === 'error',
+                'validation-info': props.mode === 'info'
             },
             props.className
         )}
@@ -21,9 +21,8 @@ const ValidationMessage = props => (
 
 ValidationMessage.propTypes = {
     className: PropTypes.string,
-    isError: PropTypes.bool,
-    isOk: PropTypes.bool,
-    message: PropTypes.string
+    message: PropTypes.string,
+    mode: PropTypes.string
 };
 
 module.exports = ValidationMessage;

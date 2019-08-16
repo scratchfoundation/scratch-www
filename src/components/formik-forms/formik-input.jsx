@@ -34,15 +34,15 @@ const FormikInput = ({
         />
         {error ? (
             <ValidationMessage
-                isError
                 className={validationClassName}
                 message={error}
+                mode="error"
             />
         ) : toolTip && (
             <ValidationMessage
-                isOk
                 className={validationClassName}
                 message={toolTip}
+                mode="info"
             />
         )}
     </div>
@@ -52,7 +52,7 @@ const FormikInput = ({
 FormikInput.propTypes = {
     className: PropTypes.string,
     error: PropTypes.string,
-    toolTip: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+    toolTip: PropTypes.string,
     type: PropTypes.string,
     validationClassName: PropTypes.string,
     wrapperClassName: PropTypes.string
