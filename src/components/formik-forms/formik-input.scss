@@ -25,4 +25,9 @@
             outline: none;
         }
     }
+
+    &::placeholder {
+        font-style: italic;
+        color: $type-gray-75percent;
+    }
 }
