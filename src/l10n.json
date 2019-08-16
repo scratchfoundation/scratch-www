@@ -182,6 +182,7 @@
     "registration.personalStepTitle": "Personal Information",
     "registration.personalStepDescription": "Your individual responses will not be displayed publicly, and will be kept confidential and secure",
     "registration.private": "Scratch will always keep this information private.",
+    "registration.receiveEmails": "I'd like to receive emails from the Scratch Team about project ideas, events, and more.",
     "registration.selectCountry": "select country",
     "registration.studentPersonalStepDescription": "This information will not appear on the Scratch website.",
     "registration.showPassword": "Show password",

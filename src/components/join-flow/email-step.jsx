@@ -9,6 +9,7 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 
 const JoinFlowStep = require('./join-flow-step.jsx');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
+const FormikCheckbox = require('../../components/formik-forms/formik-checkbox.jsx');
 
 require('./join-flow-steps.scss');
 
@@ -97,6 +98,13 @@ class EmailStep extends React.Component {
                                 onFocus={() => setFieldError('email', null)}
                                 /* eslint-enable react/jsx-no-bind */
                             />
+                            <div className="join-flow-email-checkbox-row">
+                                <FormikCheckbox
+                                    id="subscribeCheckbox"
+                                    label={this.props.intl.formatMessage({id: 'registration.receiveEmails'})}
+                                    name="subscribe"
+                                />
+                            </div>
                         </JoinFlowStep>
                     );
                 }}
