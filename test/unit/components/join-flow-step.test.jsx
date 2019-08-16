@@ -20,7 +20,7 @@ describe('JoinFlowStep', () => {
                 {...props}
             />
         );
-        expect(component.find('div.join-flow-header-image').exists()).toEqual(true);
+        expect(component.find('img.join-flow-header-image').exists()).toEqual(true);
         expect(component.find({src: props.headerImgSrc}).exists()).toEqual(true);
         expect(component.find('.join-flow-inner-content').exists()).toEqual(true);
         expect(component.find('.join-flow-title').exists()).toEqual(true);
@@ -39,7 +39,7 @@ describe('JoinFlowStep', () => {
             <JoinFlowStep />
         );
 
-        expect(component.find('div.join-flow-header-image').exists()).toEqual(false);
+        expect(component.find('img.join-flow-header-image').exists()).toEqual(false);
         expect(component.find('.join-flow-inner-content').exists()).toEqual(true);
         expect(component.find('.join-flow-title').exists()).toEqual(false);
         expect(component.find('div.join-flow-description').exists()).toEqual(false);
