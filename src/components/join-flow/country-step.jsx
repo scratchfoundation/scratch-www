@@ -69,6 +69,7 @@ class CountryStep extends React.Component {
                         <JoinFlowStep
                             description={this.props.intl.formatMessage({id: 'registration.countryStepDescription'})}
                             headerImgSrc="/images/hoc/getting-started.jpg"
+                            innerClassName="join-flow-inner-country-step"
                             title={this.props.intl.formatMessage({id: 'registration.countryStepTitle'})}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}

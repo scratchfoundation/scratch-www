@@ -74,8 +74,29 @@
     margin: 0 auto;
 }
 
-.join-flow-gender-step {
+.join-flow-inner-username-step {
+    padding-top: 2.75rem;
+}
+
+.join-flow-inner-birthdate-step {
+    padding-top: 3.5rem;
+}
+
+.join-flow-inner-gender-step {
+    /* need height so that flex will adjust children proportionately */
     height: 27.375rem;
+    padding-top: 2.5rem;
+}
+
+.join-flow-inner-country-step {
+    padding-top: 3.25rem;
+}
+
+.join-flow-inner-email-step {
+    padding-top: 3rem;
+}
+
+.join-flow-inner-welcome-step {
     padding-top: 3rem;
 }
 

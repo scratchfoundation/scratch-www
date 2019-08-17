@@ -118,6 +118,7 @@ class UsernameStep extends React.Component {
                             description={this.props.intl.formatMessage({
                                 id: 'registration.usernameStepDescriptionNonEducator'
                             })}
+                            innerClassName="join-flow-inner-username-step"
                             title={this.props.intl.formatMessage({id: 'general.joinScratch'})}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
