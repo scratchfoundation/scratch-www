@@ -2,7 +2,11 @@
 @import "../../frameless";
 
 .join-flow-outer-content {
-    height: 32.5rem;
+    /* hopefully this lets text expand the height of the modal, if need be */
+    min-height: 32.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 .join-flow-inner-content {
