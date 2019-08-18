@@ -11,6 +11,15 @@ describe('InfoButton', () => {
         );
         expect(component.find('div.info-button-message').exists()).toEqual(false);
     });
+    test('mouseOver on info button makes info message visible', () => {
+        const component = mountWithIntl(
+            <InfoButton
+                message="Here is some info about something!"
+            />
+        );
+        component.find('div.info-button').simulate('mouseOver');
+        expect(component.find('div.info-button-message').exists()).toEqual(true);
+    });
     test('clicking on info button makes info message visible', () => {
         const component = mountWithIntl(
             <InfoButton
@@ -26,7 +35,7 @@ describe('InfoButton', () => {
                 message="Here is some info about something!"
             />
         );
-        component.find('div.info-button').simulate('click');
+        component.find('div.info-button').simulate('mouseOver');
         expect(component.find('div.info-button-message').exists()).toEqual(true);
         component.find('div.info-button').simulate('mouseOut');
         expect(component.find('div.info-button-message').exists()).toEqual(false);
