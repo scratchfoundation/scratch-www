@@ -81,6 +81,7 @@ class GenderStep extends React.Component {
                     return (
                         <JoinFlowStep
                             description={this.props.intl.formatMessage({id: 'registration.genderStepDescription'})}
+                            descriptionClassName="join-flow-gender-description"
                             infoMessage={this.props.intl.formatMessage({id: 'registration.genderStepInfo'})}
                             innerClassName="join-flow-inner-gender-step"
                             title={this.props.intl.formatMessage({id: 'registration.genderStepTitle'})}

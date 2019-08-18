@@ -86,6 +86,7 @@
     /* need height so that flex will adjust children proportionately */
     height: 27.375rem;
     padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
 }
 
 .join-flow-inner-country-step {
@@ -98,6 +99,11 @@
 
 .join-flow-inner-welcome-step {
     padding-top: 3rem;
+}
+
+.join-flow-gender-description {
+    margin-top: .625rem;
+    margin-bottom: 1.25rem;
 }
 
 .gender-radio-row {
