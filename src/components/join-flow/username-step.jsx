@@ -133,6 +133,7 @@ class UsernameStep extends React.Component {
                                     error={errors.username}
                                     id="username"
                                     name="username"
+                                    placeholder={this.props.intl.formatMessage({id: 'general.username'})}
                                     validate={this.validateUsernameIfPresent}
                                     validationClassName="validation-full-width-input"
                                     /* eslint-disable react/jsx-no-bind */
@@ -154,6 +155,7 @@ class UsernameStep extends React.Component {
                                         error={errors.password}
                                         id="password"
                                         name="password"
+                                        placeholder={this.props.intl.formatMessage({id: 'general.password'})}
                                         type={values.showPassword ? 'text' : 'password'}
                                         /* eslint-disable react/jsx-no-bind */
                                         validate={password => this.validatePasswordIfPresent(password, values.username)}
@@ -174,6 +176,9 @@ class UsernameStep extends React.Component {
                                         error={errors.passwordConfirm}
                                         id="passwordConfirm"
                                         name="passwordConfirm"
+                                        placeholder={this.props.intl.formatMessage({
+                                            id: 'registration.confirmPasswordInstruction'
+                                        })}
                                         type={values.showPassword ? 'text' : 'password'}
                                         /* eslint-disable react/jsx-no-bind */
                                         validate={() =>
