@@ -13,6 +13,7 @@ const JoinFlowStep = ({
     children,
     innerClassName,
     description,
+    descriptionClassName,
     footerContent,
     headerImgSrc,
     infoMessage,
@@ -42,7 +43,12 @@ const JoinFlowStep = ({
                         />
                     )}
                     {description && (
-                        <div className="join-flow-description">
+                        <div
+                            className={classNames(
+                                'join-flow-description',
+                                descriptionClassName
+                            )}
+                        >
                             {description}
                             {infoMessage && (
                                 <InfoButton message={infoMessage} />
@@ -68,6 +74,7 @@ const JoinFlowStep = ({
 JoinFlowStep.propTypes = {
     children: PropTypes.node,
     description: PropTypes.string,
+    descriptionClassName: PropTypes.string,
     footerContent: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     headerImgSrc: PropTypes.string,
     infoMessage: PropTypes.string,
