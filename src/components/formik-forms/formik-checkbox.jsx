@@ -8,19 +8,16 @@ require('./formik-forms.scss');
 require('../forms/row.scss');
 
 const FormikCheckboxSubComponent = ({
-    className,
     field,
     id,
     label,
+    labelClassName,
     ...props
 }) => (
     <div className="checkbox">
         <input
             checked={field.value}
-            className={classNames(
-                'formik-checkbox',
-                className
-            )}
+            className="formik-checkbox"
             id={id}
             name={field.name}
             type="checkbox"
@@ -32,8 +29,9 @@ const FormikCheckboxSubComponent = ({
         {label && (
             <label
                 className={classNames(
+                    'formik-checkbox-label',
                     'formik-label',
-                    'formik-checkbox-label'
+                    labelClassName
                 )}
                 htmlFor={id}
             >
@@ -44,7 +42,6 @@ const FormikCheckboxSubComponent = ({
 );
 
 FormikCheckboxSubComponent.propTypes = {
-    className: PropTypes.string,
     field: PropTypes.shape({
         name: PropTypes.string,
         onBlur: PropTypes.function,
@@ -52,31 +49,32 @@ FormikCheckboxSubComponent.propTypes = {
         value: PropTypes.bool
     }),
     id: PropTypes.string,
-    label: PropTypes.string
+    label: PropTypes.string,
+    labelClassName: PropTypes.string
 };
 
 
 const FormikCheckbox = ({
-    className,
     id,
     label,
+    labelClassName,
     name,
     ...props
 }) => (
     <Field
-        className={className}
         component={FormikCheckboxSubComponent}
         id={id}
         label={label}
+        labelClassName={labelClassName}
         name={name}
         {...props}
     />
 );
 
 FormikCheckbox.propTypes = {
-    className: PropTypes.string,
     id: PropTypes.string,
     label: PropTypes.string,
+    labelClassName: PropTypes.string,
     name: PropTypes.string
 };
 

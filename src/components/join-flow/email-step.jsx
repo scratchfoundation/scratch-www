@@ -9,6 +9,7 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 
 const JoinFlowStep = require('./join-flow-step.jsx');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
+const FormikCheckbox = require('../../components/formik-forms/formik-checkbox.jsx');
 
 require('./join-flow-steps.scss');
 
@@ -17,12 +18,12 @@ class EmailStep extends React.Component {
         super(props);
         bindAll(this, [
             'handleValidSubmit',
-            'validateEmailIfPresent',
+            'validateEmail',
             'validateForm'
         ]);
     }
-    validateEmailIfPresent (email) {
-        if (!email) return null; // skip validation if email is blank; null indicates valid
+    validateEmail (email) {
+        if (!email) return this.props.intl.formatMessage({id: 'general.required'});
         const isValidLocally = emailValidator.validate(email);
         if (isValidLocally) {
             return null; // TODO: validate email address remotely
@@ -51,6 +52,7 @@ class EmailStep extends React.Component {
                         errors,
                         handleSubmit,
                         isSubmitting,
+                        setFieldError,
                         validateField
                     } = props;
                     return (
@@ -89,10 +91,20 @@ class EmailStep extends React.Component {
                                 id="email"
                                 name="email"
                                 placeholder={this.props.intl.formatMessage({id: 'general.emailAddress'})}
-                                validate={this.validateEmailIfPresent}
+                                validate={this.validateEmail}
                                 validationClassName="validation-full-width-input"
-                                onBlur={() => validateField('email')} // eslint-disable-line react/jsx-no-bind
+                                /* eslint-disable react/jsx-no-bind */
+                                onBlur={() => validateField('email')}
+                                onFocus={() => setFieldError('email', null)}
+                                /* eslint-enable react/jsx-no-bind */
                             />
+                            <div className="join-flow-email-checkbox-row">
+                                <FormikCheckbox
+                                    id="subscribeCheckbox"
+                                    label={this.props.intl.formatMessage({id: 'registration.receiveEmails'})}
+                                    name="subscribe"
+                                />
+                            </div>
                         </JoinFlowStep>
                     );
                 }}
