@@ -9,17 +9,8 @@
     margin-left: .375rem;
     border-radius: 50%;
     background-color: $ui-blue;
-
-    &:after {
-        position: absolute;
-        content: "?";
-        color: $ui-white;
-        font-family: verdana;
-        font-weight: 400;
-        top: -.125rem;
-        left: .325rem;
-        font-size: .75rem;
-    }
+    background-image: url("/svgs/info-button/info-button.svg");
+    background-size: cover;
 }
 
 .info-button-message {
