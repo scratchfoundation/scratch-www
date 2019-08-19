@@ -203,7 +203,7 @@ class UsernameStep extends React.Component {
                                         toolTip={
                                             this.state.focused === 'passwordConfirm' && !touched.passwordConfirm &&
                                                 this.props.intl.formatMessage({
-                                                    id: 'registration.passwordConfirmAdviceShort'
+                                                    id: 'registration.confirmPasswordInstruction'
                                                 })
                                         }
                                         type={values.showPassword ? 'text' : 'password'}
