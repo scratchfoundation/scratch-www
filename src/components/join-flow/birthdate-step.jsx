@@ -87,7 +87,7 @@ class BirthDateStep extends React.Component {
                     return (
                         <JoinFlowStep
                             description={this.props.intl.formatMessage({id: 'registration.private'})}
-                            headerImgSrc="/images/hoc/getting-started.jpg"
+                            headerImgSrc="/images/join-flow/birthdate-header.png"
                             infoMessage={this.props.intl.formatMessage({id: 'registration.birthDateStepInfo'})}
                             innerClassName="join-flow-inner-birthdate-step"
                             title={this.props.intl.formatMessage({id: 'registration.birthDateStepTitle'})}

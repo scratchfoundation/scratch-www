@@ -25,8 +25,11 @@ const JoinFlowStep = ({
     <form onSubmit={onSubmit}>
         <div className="join-flow-outer-content">
             {headerImgSrc && (
-                <div className="join-flow-header-image">
-                    <img src={headerImgSrc} />
+                <div className="join-flow-header-image-wrapper">
+                    <img
+                        className="join-flow-header-image"
+                        src={headerImgSrc}
+                    />
                 </div>
             )}
             <div>

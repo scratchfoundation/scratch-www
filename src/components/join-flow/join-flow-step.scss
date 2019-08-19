@@ -33,13 +33,18 @@
 }
 
 /* overflow will only work if this class is set on parent of img, not img itself */
-.join-flow-header-image {
+.join-flow-header-image-wrapper {
     width: 100%;
-    height: 7.5rem;
+    min-height: 7.5rem;
+    max-height: 8.75rem;
     overflow: hidden;
     margin: 0;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
+}
+
+.join-flow-header-image {
+    width: 27.5rem;
 }
 
 .join-flow-footer-message {
