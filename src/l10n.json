@@ -157,6 +157,7 @@
     "registration.generalError": "Sorry, an unexpected error occurred.",
     "registration.classroomInviteExistingStudentStepDescription": "you have been invited to join the class:",
     "registration.classroomInviteNewStudentStepDescription": "Your teacher has invited you to join a class:",
+    "registration.confirmPasswordInstruction": "Type password again",
     "registration.confirmYourEmail": "Confirm Your Email",
     "registration.confirmYourEmailDescription": "If you haven't already, please click the link in the confirmation email sent to:",
     "registration.createAccount": "Create Your Account",
