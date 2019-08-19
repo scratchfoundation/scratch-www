@@ -74,9 +74,36 @@
     margin: 0 auto;
 }
 
-.join-flow-gender-step {
-    height: 27.375rem;
+.join-flow-inner-username-step {
+    padding-top: 2.75rem;
+}
+
+.join-flow-inner-birthdate-step {
+    padding-top: 3.5rem;
+}
+
+.join-flow-inner-gender-step {
+    /* need height so that flex will adjust children proportionately */
+    height: 27.25rem;
+    padding-top: 2.625rem;
+    padding-bottom: 1rem;
+}
+
+.join-flow-inner-country-step {
+    padding-top: 3.25rem;
+}
+
+.join-flow-inner-email-step {
     padding-top: 3rem;
+}
+
+.join-flow-inner-welcome-step {
+    padding-top: 3rem;
+}
+
+.join-flow-gender-description {
+    margin-top: .625rem;
+    margin-bottom: 1.25rem;
 }
 
 .gender-radio-row {
@@ -100,10 +127,6 @@
     width: 2rem;
     height: 2rem;
     margin-left: .5rem;
-}
-
-.modal-inner-content-email {
-    padding-top: 2.9rem;
 }
 
 a.join-flow-link:link, a.join-flow-link:visited, a.join-flow-link:active {

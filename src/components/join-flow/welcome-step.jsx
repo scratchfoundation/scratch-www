@@ -45,6 +45,7 @@ class WelcomeStep extends React.Component {
                                 id: 'registration.welcomeStepDescriptionNonEducator'
                             })}
                             headerImgSrc="/images/hoc/getting-started.jpg"
+                            innerClassName="join-flow-inner-welcome-step"
                             nextButton={
                                 <React.Fragment>
                                     <FormattedMessage id="registration.makeProject" />
