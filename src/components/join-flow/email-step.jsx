@@ -19,13 +19,30 @@ class EmailStep extends React.Component {
         bindAll(this, [
             'handleSetEmailRef',
             'handleValidSubmit',
-            'validateEmail',
-            'validateForm'
+            'validateEmailIfPresent',
+            'validateForm',
+            'setCaptchaRef',
+            'captchaSolved'
         ]);
     }
+
     componentDidMount () {
         // automatically start with focus on username field
         if (this.emailInput) this.emailInput.focus();
+        this.grecaptcha = window.grecaptcha;
+        if (!this.grecaptcha) {
+            // Captcha doesn't exist on the window. There must have been a
+            // problem downloading the script. There isn't much we can do about it though.
+            // TODO: put up the error screen when we have it.
+            return;
+        }
+        // TODO: Add in error callback for this once we have an error screen.
+        this.widgetId = this.grecaptcha.render(this.captchaRef,
+            {
+                callback: this.captchaSolved,
+                sitekey: ''
+            },
+            true);
     }
     handleSetEmailRef (emailInputRef) {
         this.emailInput = emailInputRef;
@@ -42,8 +59,17 @@ class EmailStep extends React.Component {
         return {};
     }
     handleValidSubmit (formData, formikBag) {
-        formikBag.setSubmitting(false);
-        this.props.onNextStep(formData);
+        this.formData = formData;
+        this.formikBag = formikBag;
+        this.grecaptcha.execute(this.widgetId);
+    }
+    captchaSolved (token) {
+        this.formData['g-recaptcha-response'] = token;
+        this.formikBag.setSubmitting(false);
+        this.props.onNextStep(this.formData);
+    }
+    setCaptchaRef (ref) {
+        this.captchaRef = ref;
     }
     render () {
         return (
@@ -116,6 +142,13 @@ class EmailStep extends React.Component {
                                     name="subscribe"
                                 />
                             </div>
+                            <div
+                                className="g-recaptcha"
+                                data-badge="inline"
+                                data-sitekey=""
+                                data-size="invisible"
+                                ref={this.setCaptchaRef}
+                            />
                         </JoinFlowStep>
                     );
                 }}
