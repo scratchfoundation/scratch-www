@@ -1,4 +1,5 @@
 const bindAll = require('lodash.bindall');
+const connect = require('react-redux').connect;
 const defaults = require('lodash.defaultsdeep');
 const PropTypes = require('prop-types');
 const React = require('react');
@@ -6,6 +7,7 @@ const React = require('react');
 const api = require('../../lib/api');
 const injectIntl = require('../../lib/intl.jsx').injectIntl;
 const intlShape = require('../../lib/intl.jsx').intlShape;
+const sessionActions = require('../../redux/session.js');
 
 const Progression = require('../progression/progression.jsx');
 const UsernameStep = require('./username-step.jsx');
@@ -68,7 +70,7 @@ class JoinFlow extends React.Component {
                         if (body && body[0]) {
                             if (body[0].success) {
                                 console.log('SUCCESS! refreshing session:');
-                                this.props.dispatch(sessionActions.refreshSession());
+                                this.props.refreshSession();
                                 console.log('advancing step');
                                 return this.handleAdvanceStep(formData);
                             }
@@ -131,11 +133,24 @@ class JoinFlow extends React.Component {
 
 JoinFlow.propTypes = {
     intl: intlShape,
-    onCompleteRegistration: PropTypes.func
+    onCompleteRegistration: PropTypes.func,
+    refreshSession: PropTypes.func
 };
 
-module.exports = injectIntl(JoinFlow);
+const IntlJoinFlow = injectIntl(JoinFlow);
 
+const mapDispatchToProps = dispatch => ({
+    refreshSession: () => {
+        dispatch(sessionActions.refreshSession());
+    }
+});
+
+const ConnectedJoinFlow = connect(
+    () => {},
+    mapDispatchToProps
+)(IntlJoinFlow);
+
+module.exports = ConnectedJoinFlow;
 /*
 eslint-enable
 */
