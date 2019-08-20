@@ -118,7 +118,11 @@
     align-items: center;
 }
 
-.gender-radio-row-selected {
+.gender-radio-row:hover {
+    background-color: $ui-blue-10percent;
+}
+
+.gender-radio-row-selected, .gender-radio-row-selected:hover {
     transition: all .125s ease;
     background-color: $ui-blue-25percent;
 }
