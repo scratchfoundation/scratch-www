@@ -112,11 +112,22 @@ class JoinFlow extends React.Component {
             this.handleRegister(accumFormData);
         }
     }
+    handleResetForm () {
+        this.setState({
+            formData: {},
+            registrationError: null,
+            step: 0,
+            waiting: false
+        });
+    }
     render () {
         return (
             <React.Fragment>
                 {this.state.registrationError ? (
-                    <RegistrationError errorMsg={this.state.registrationError} />
+                    <RegistrationError
+                        errorMsg={this.state.registrationError}
+                        onTryAgain={this.handleResetForm}
+                    />
                 ) : (
                     <Progression step={this.state.step}>
                         <UsernameStep onNextStep={this.handleAdvanceStep} />
