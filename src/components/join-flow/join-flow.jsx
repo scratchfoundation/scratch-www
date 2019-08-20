@@ -25,7 +25,8 @@ class JoinFlow extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleAdvanceStep'
+            'handleAdvanceStep',
+            'handleRegister'
         ]);
         this.state = {
             formData: {},
@@ -97,12 +98,17 @@ class JoinFlow extends React.Component {
             });
         });
     }
-    handleAdvanceStep (formData) {
-        formData = formData || {};
-        this.setState({
-            step: this.state.step + 1,
-            formData: defaults({}, formData, this.state.formData)
-        });
+    handleAdvanceStep (newFormData) {
+        newFormData = newFormData || {};
+        const accumFormData = defaults({}, newFormData, this.state.formData);
+        if (this.state.step < 4) { // through country step, just advance
+            this.setState({
+                step: this.state.step + 1,
+                formData: accumFormData
+            });
+        } else if (this.state.step === 4) {
+            this.handleRegister(accumFormData);
+        }
     }
     render () {
         return (
