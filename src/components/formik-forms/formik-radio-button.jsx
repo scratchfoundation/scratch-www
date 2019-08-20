@@ -10,24 +10,26 @@ require('./formik-radio-button.scss');
 require('../forms/row.scss');
 
 const FormikRadioButtonSubComponent = ({
-    buttonValue,
     children,
     className,
-    field,
+    field, // field.value is the current selected value of the entire radio group
+    id,
     label,
     labelClassName,
+    value,
     ...props
 }) => (
     <React.Fragment>
         <input
-            checked={buttonValue === field.value}
+            checked={value === field.value}
             className={classNames(
                 'formik-radio-button',
                 className
             )}
+            id={id}
             name={field.name}
             type="radio"
-            value={buttonValue}
+            value={value}
             onBlur={field.onBlur} /* eslint-disable-line react/jsx-handler-names */
             onChange={field.onChange} /* eslint-disable-line react/jsx-handler-names */
             {...props}
@@ -39,7 +41,7 @@ const FormikRadioButtonSubComponent = ({
                     'formik-radio-label',
                     labelClassName
                 )}
-                htmlFor={buttonValue}
+                htmlFor={id}
             >
                 {label}
             </label>
@@ -49,7 +51,6 @@ const FormikRadioButtonSubComponent = ({
 );
 
 FormikRadioButtonSubComponent.propTypes = {
-    buttonValue: PropTypes.string,
     children: PropTypes.node,
     className: PropTypes.string,
     field: PropTypes.shape({
@@ -58,6 +59,7 @@ FormikRadioButtonSubComponent.propTypes = {
         onChange: PropTypes.function,
         value: PropTypes.string
     }),
+    id: PropTypes.string,
     label: PropTypes.string,
     labelClassName: PropTypes.string,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
@@ -65,27 +67,31 @@ FormikRadioButtonSubComponent.propTypes = {
 
 
 const FormikRadioButton = ({
-    buttonValue,
     className,
+    id,
     isCustomInput,
     label,
     name,
     onSetCustom,
+    onSetCustomRef,
+    value,
     ...props
 }) => (
     <Field
-        buttonValue={buttonValue}
         className={className}
         component={FormikRadioButtonSubComponent}
+        id={id}
         label={label}
         labelClassName={isCustomInput ? 'formik-radio-label-other' : ''}
         name={name}
+        value={value}
         {...props}
     >
         {isCustomInput && (
             <FormikInput
                 className="formik-radio-input"
                 name="custom"
+                setRef={onSetCustomRef}
                 wrapperClassName="formik-radio-input-wrapper"
                 /* eslint-disable react/jsx-no-bind */
                 onChange={event => onSetCustom(event.target.value)}
@@ -97,12 +103,13 @@ const FormikRadioButton = ({
 );
 
 FormikRadioButton.propTypes = {
-    buttonValue: PropTypes.string,
     className: PropTypes.string,
+    id: PropTypes.string,
     isCustomInput: PropTypes.bool,
     label: PropTypes.string,
     name: PropTypes.string,
     onSetCustom: PropTypes.func,
+    onSetCustomRef: PropTypes.func,
     value: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
