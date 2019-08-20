@@ -14,6 +14,7 @@ const GenderStep = require('./gender-step.jsx');
 const CountryStep = require('./country-step.jsx');
 const EmailStep = require('./email-step.jsx');
 const WelcomeStep = require('./welcome-step.jsx');
+const RegistrationError = require('./registration-error.jsx');
 
 /*
 eslint-disable react/prefer-stateless-function, react/no-unused-prop-types, no-useless-constructor
@@ -27,7 +28,8 @@ class JoinFlow extends React.Component {
         this.state = {
             formData: {},
             registrationError: null,
-            step: 0
+            step: 0,
+            waiting: false
         };
     }
     handleRegister (formData) {
@@ -103,18 +105,25 @@ class JoinFlow extends React.Component {
     render () {
         return (
             <React.Fragment>
-                <Progression step={this.state.step}>
-                    <UsernameStep onNextStep={this.handleAdvanceStep} />
-                    <BirthDateStep onNextStep={this.handleAdvanceStep} />
-                    <GenderStep onNextStep={this.handleAdvanceStep} />
-                    <CountryStep onNextStep={this.handleAdvanceStep} />
-                    <EmailStep onNextStep={this.handleAdvanceStep} />
-                    <WelcomeStep
-                        email={this.state.formData.email}
-                        username={this.state.formData.username}
-                        onNextStep={this.handleAdvanceStep}
-                    />
-                </Progression>
+                {this.state.registrationError ? (
+                    <RegistrationError errorMsg={this.state.registrationError} />
+                ) : (
+                    <Progression step={this.state.step}>
+                        <UsernameStep onNextStep={this.handleAdvanceStep} />
+                        <BirthDateStep onNextStep={this.handleAdvanceStep} />
+                        <GenderStep onNextStep={this.handleAdvanceStep} />
+                        <CountryStep onNextStep={this.handleAdvanceStep} />
+                        <EmailStep
+                            waiting={this.state.waiting}
+                            onNextStep={this.handleAdvanceStep}
+                        />
+                        <WelcomeStep
+                            email={this.state.formData.email}
+                            username={this.state.formData.username}
+                            onNextStep={this.props.onCompleteRegistration}
+                        />
+                    </Progression>
+                )}
             </React.Fragment>
         );
     }
