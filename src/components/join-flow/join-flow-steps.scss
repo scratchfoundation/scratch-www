@@ -101,6 +101,11 @@
     padding-top: 3rem;
 }
 
+.join-flow-birthdate-description {
+    margin-left: -.5rem;
+    margin-right: -.5rem;
+}
+
 .join-flow-gender-description {
     margin-top: .625rem;
     margin-bottom: 1.25rem;
@@ -118,7 +123,11 @@
     align-items: center;
 }
 
-.gender-radio-row-selected {
+.gender-radio-row:hover {
+    background-color: $ui-blue-10percent;
+}
+
+.gender-radio-row-selected, .gender-radio-row-selected:hover {
     transition: all .125s ease;
     background-color: $ui-blue-25percent;
 }
