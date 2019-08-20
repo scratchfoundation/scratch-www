@@ -138,7 +138,7 @@ class EmailStep extends React.Component {
                             </div>
                             <div
                                 className="g-recaptcha"
-                                data-badge="inline"
+                                data-badge="bottomright"
                                 data-sitekey=""
                                 data-size="invisible"
                                 ref={this.setCaptchaRef}
