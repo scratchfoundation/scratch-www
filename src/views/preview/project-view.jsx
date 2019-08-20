@@ -18,6 +18,7 @@ const ProjectInfo = require('../../lib/project-info');
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 const Registration = require('../../components/registration/registration.jsx');
+const Scratch3Registration = require('../../components/registration/scratch3-registration.jsx');
 const ConnectedLogin = require('../../components/login/connected-login.jsx');
 const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 const NotAvailable = require('../../components/not-available/not-available.jsx');
@@ -31,6 +32,8 @@ const frameless = require('../../lib/frameless');
 
 const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
+
+const USE_SCRATCH3_REGISTRATION = false;
 
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
@@ -751,7 +754,11 @@ class Preview extends React.Component {
                             onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                             onUpdateProjectTitle={this.handleUpdateProjectTitle}
                         />
-                        <Registration />
+                        {USE_SCRATCH3_REGISTRATION ? (
+                            <Scratch3Registration />
+                        ) : (
+                            <Registration />
+                        )}
                         <CanceledDeletionModal />
                     </React.Fragment>
                 }
