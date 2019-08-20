@@ -8,6 +8,7 @@ const {injectIntl, intlShape} = require('react-intl');
 const countryData = require('../../lib/country-data');
 const FormikSelect = require('../../components/formik-forms/formik-select.jsx');
 const JoinFlowStep = require('./join-flow-step.jsx');
+const FormikCheckbox = require('../../components/formik-forms/formik-checkbox.jsx');
 
 require('./join-flow-steps.scss');
 
@@ -93,6 +94,12 @@ class CountryStep extends React.Component {
                                     options={this.countryOptions}
                                     validate={this.validateSelect}
                                     validationClassName="validation-full-width-input"
+                                />
+                                <FormikCheckbox
+                                    id="yesno"
+                                    label={this.props.intl.formatMessage({id: 'registration.receiveEmails'})}
+                                    name="yesno"
+                                    outerClassName="yesNoCheckbox"
                                 />
                             </div>
                         </JoinFlowStep>
