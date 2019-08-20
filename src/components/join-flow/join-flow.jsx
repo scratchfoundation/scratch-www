@@ -35,6 +35,7 @@ class JoinFlow extends React.Component {
             waiting: false
         };
     }
+<<<<<<< HEAD
     handleRegister (formData) {
         console.log('submitting registration in handleRegister:');
         this.setState({waiting: true}, () => {
@@ -113,6 +114,20 @@ class JoinFlow extends React.Component {
         }
     }
     handleResetForm () {
+=======
+
+    componentDidMount () {
+        // Load Google Captcha script so that it is ready to go when we get to
+        // the last step.
+        const script = document.createElement('script');
+        script.src = `https://www.recaptcha.net/recaptcha/api.js?render=explicit&hl=${window._locale}`;
+        script.async = true;
+        document.body.appendChild(script);
+    }
+
+    handleAdvanceStep (formData) {
+        formData = formData || {};
+>>>>>>> dbd2b8393... Initial work for captcha in new join flow.
         this.setState({
             formData: {},
             registrationError: null,
