@@ -44,20 +44,19 @@ class JoinFlow extends React.Component {
                 method: 'post',
                 useCsrf: true,
                 formData: {
-                    username: this.state.formData.username,
+                    username: formData.username,
                     email: formData.email,
-                    password: this.state.formData.password,
-                    birth_month: this.state.formData.birth_month,
-                    birth_year: this.state.formData.birth_year,
+                    password: formData.password,
+                    birth_month: formData.birth_month,
+                    birth_year: formData.birth_year,
                     gender: (
-                        this.state.formData.gender === 'other' ?
-                            this.state.formData.genderOther :
-                            this.state.formData.gender
+                        formData.gender === 'other' ?
+                            formData.genderOther :
+                            formData.gender
                     ),
-                    country: this.state.formData.country,
+                    country: formData.country,
                     subscribe: true,
-                    is_robot: false // NOTE: must actually set.
-                    // use this.state.formData.isRobot
+                    is_robot: formData.yesno
                     // csrfmiddlewaretoken: 'abc'
                 }
             }, (err, body, res) => {
@@ -73,7 +72,10 @@ class JoinFlow extends React.Component {
                                 console.log('SUCCESS! refreshing session:');
                                 this.props.refreshSession();
                                 console.log('advancing step');
-                                return this.handleAdvanceStep(formData);
+                                this.setState({
+                                    step: this.state.step + 1
+                                });
+                                return;
                             }
                             if (body[0].errors) {
                                 const errorKeys = Object.keys(body[0].errors);
