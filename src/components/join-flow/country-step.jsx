@@ -94,6 +94,7 @@ class CountryStep extends React.Component {
                                     validate={this.validateSelect}
                                     validationClassName="validation-full-width-input"
                                 />
+                                <input id="yesno" name="yesno" type="checkbox" value="yes" />
                             </div>
                         </JoinFlowStep>
                     );
