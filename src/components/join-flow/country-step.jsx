@@ -29,7 +29,7 @@ class CountryStep extends React.Component {
             this.countryOptions = [...countryData.registrationCountryOptions];
             this.countryOptions.unshift({
                 disabled: true,
-                label: this.props.intl.formatMessage({id: 'registration.selectCountry'}),
+                label: this.props.intl.formatMessage({id: 'general.country'}),
                 value: 'null'
             });
         }
