@@ -5,14 +5,24 @@ const React = require('react');
 require('./validation-message.scss');
 
 const ValidationMessage = props => (
-    <div className={classNames(['validation-message', props.className])}>
+    <div
+        className={classNames(
+            'validation-message',
+            {
+                'validation-error': props.mode === 'error',
+                'validation-info': props.mode === 'info'
+            },
+            props.className
+        )}
+    >
         {props.message}
     </div>
 );
 
 ValidationMessage.propTypes = {
     className: PropTypes.string,
-    message: PropTypes.string
+    message: PropTypes.string,
+    mode: PropTypes.string
 };
 
 module.exports = ValidationMessage;

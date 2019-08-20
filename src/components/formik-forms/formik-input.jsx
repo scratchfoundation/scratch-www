@@ -11,6 +11,7 @@ require('./formik-input.scss');
 const FormikInput = ({
     className,
     error,
+    toolTip,
     validationClassName,
     wrapperClassName,
     ...props
@@ -31,10 +32,17 @@ const FormikInput = ({
             )}
             {...props}
         />
-        {error && (
+        {error ? (
             <ValidationMessage
                 className={validationClassName}
                 message={error}
+                mode="error"
+            />
+        ) : toolTip && (
+            <ValidationMessage
+                className={validationClassName}
+                message={toolTip}
+                mode="info"
             />
         )}
     </div>
@@ -44,6 +52,7 @@ const FormikInput = ({
 FormikInput.propTypes = {
     className: PropTypes.string,
     error: PropTypes.string,
+    toolTip: PropTypes.string,
     type: PropTypes.string,
     validationClassName: PropTypes.string,
     wrapperClassName: PropTypes.string

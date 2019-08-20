@@ -39,6 +39,7 @@ const FormikSelect = ({
                 <ValidationMessage
                     className={validationClassName}
                     message={error}
+                    mode="error"
                 />
             )}
         </div>
