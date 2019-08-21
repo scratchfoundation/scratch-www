@@ -1,8 +1,9 @@
 @import "../../colors";
 @import "../../frameless";
 
+$arrow-border-width: 1rem;
+
 .validation-message {
-    $arrow-border-width: 1rem;
     display: block;
     position: absolute;
     top: 0;
@@ -34,6 +35,23 @@
         height: $arrow-border-width;
 
         content: "";
+    }
+}
+
+.validation-left {
+    left: unset;
+    right: 0;
+    margin-left: unset;
+    margin-right: $arrow-border-width;
+    transform: translate(-16rem, 0);
+
+    &:before {
+        left: unset;
+        right: -$arrow-border-width / 2;
+        border-top: 1px solid $active-gray;
+        border-right: 1px solid $active-gray;
+        border-bottom: none;
+        border-left: none;
     }
 }
 
