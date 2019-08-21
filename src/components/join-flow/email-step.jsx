@@ -40,7 +40,7 @@ class EmailStep extends React.Component {
         this.widgetId = this.grecaptcha.render(this.captchaRef,
             {
                 callback: this.captchaSolved,
-                sitekey: ''
+                sitekey: process.env.RECAPTCHA_SITE_KEY
             },
             true);
     }
@@ -145,7 +145,7 @@ class EmailStep extends React.Component {
                             <div
                                 className="g-recaptcha"
                                 data-badge="bottomright"
-                                data-sitekey=""
+                                data-sitekey={process.env.RECAPTCHA_SITE_KEY}
                                 data-size="invisible"
                                 ref={this.setCaptchaRef}
                             />
