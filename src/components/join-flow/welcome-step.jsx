@@ -27,8 +27,6 @@ class WelcomeStep extends React.Component {
     render () {
         return (
             <Formik
-                initialValues={{
-                }}
                 validate={this.validateForm}
                 validateOnBlur={false}
                 validateOnChange={false}
