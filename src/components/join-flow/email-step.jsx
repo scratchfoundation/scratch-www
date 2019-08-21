@@ -41,6 +41,8 @@ class EmailStep extends React.Component {
         return (
             <Formik
                 initialValues={{
+                    email: '',
+                    subscribe: false
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
