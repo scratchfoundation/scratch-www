@@ -97,7 +97,8 @@
 }
 
 .join-flow-inner-birthdate-step {
-    padding-top: 3.5rem;
+    padding-top: 1rem;
+    padding-bottom: 2.25rem;
 }
 
 .join-flow-inner-gender-step {
@@ -108,7 +109,8 @@
 }
 
 .join-flow-inner-country-step {
-    padding-top: 3.25rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
 }
 
 .join-flow-inner-email-step {
@@ -120,13 +122,19 @@
 }
 
 .join-flow-birthdate-description {
-    margin-left: -.5rem;
+    margin-top: 1.25rem;
     margin-right: -.5rem;
+    margin-bottom: 2rem;
+    margin-left: -.5rem;
 }
 
 .join-flow-gender-description {
     margin-top: .625rem;
     margin-bottom: 1.25rem;
+}
+
+.join-flow-country-description {
+    margin-top: 1rem;
 }
 
 .gender-radio-row {
