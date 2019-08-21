@@ -134,7 +134,7 @@ class Tips extends React.Component {
                                         })}
                                     >
                                         <Button className="tips-button">
-                                            <FormattedMessage id="tips.cardsDownload" />
+                                            <FormattedMessage id="general.downloadPDF" />
                                         </Button>
                                     </a>
                                     <a
