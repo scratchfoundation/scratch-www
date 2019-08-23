@@ -33,8 +33,6 @@ const frameless = require('../../lib/frameless');
 const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
-const USE_SCRATCH3_REGISTRATION = false;
-
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
 const Sentry = require('@sentry/browser');
@@ -754,10 +752,12 @@ class Preview extends React.Component {
                             onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                             onUpdateProjectTitle={this.handleUpdateProjectTitle}
                         />
-                        {USE_SCRATCH3_REGISTRATION ? (
-                            <Scratch3Registration />
-                        ) : (
-                            <Registration />
+                        {this.props.registrationOpen && (
+                            this.props.useScratch3Registration ? (
+                                <Scratch3Registration />
+                            ) : (
+                                <Registration />
+                            )
                         )}
                         <CanceledDeletionModal />
                     </React.Fragment>
@@ -829,6 +829,7 @@ Preview.propTypes = {
     projectInfo: projectShape,
     projectNotAvailable: PropTypes.bool,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
+    registrationOpen: PropTypes.bool,
     remixProject: PropTypes.func,
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
@@ -842,6 +843,7 @@ Preview.propTypes = {
     shareProject: PropTypes.func.isRequired,
     toggleStudio: PropTypes.func.isRequired,
     updateProject: PropTypes.func.isRequired,
+    useScratch3Registration: PropTypes.bool,
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,
@@ -934,9 +936,11 @@ const mapStateToProps = state => {
         projectInfo: state.preview.projectInfo,
         projectNotAvailable: state.preview.projectNotAvailable,
         projectStudios: state.preview.projectStudios,
+        registrationOpen: state.navigation.registrationOpen,
         remixes: state.preview.remixes,
         replies: state.preview.replies,
         sessionStatus: state.session.status, // check if used
+        useScratch3Registration: state.navigation.useScratch3Registration,
         user: state.session.session.user,
         userOwnsProject: userOwnsProject,
         userPresent: userPresent,

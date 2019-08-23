@@ -18,6 +18,7 @@ const Types = keyMirror({
 });
 
 module.exports.getInitialState = () => ({
+    useScratch3Registration: true,
     accountNavOpen: false,
     canceledDeletionOpen: false,
     loginError: null,

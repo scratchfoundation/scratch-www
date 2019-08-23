@@ -23,8 +23,6 @@ const AccountNav = require('./accountnav.jsx');
 
 require('./navigation.scss');
 
-const USE_SCRATCH3_REGISTRATION = false;
-
 class Navigation extends React.Component {
     constructor (props) {
         super(props);
@@ -217,7 +215,7 @@ class Navigation extends React.Component {
                         ]) : []
                     }
                     {this.props.registrationOpen && (
-                        USE_SCRATCH3_REGISTRATION ? (
+                        this.props.useScratch3Registration ? (
                             <Scratch3Registration
                                 key="scratch3registration"
                             />
@@ -262,7 +260,8 @@ Navigation.propTypes = {
         classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         thumbnailUrl: PropTypes.string,
         username: PropTypes.string
-    })
+    }),
+    useScratch3Registration: PropTypes.bool
 };
 
 Navigation.defaultProps = {
@@ -278,7 +277,8 @@ const mapStateToProps = state => ({
     registrationOpen: state.navigation.registrationOpen,
     searchTerm: state.navigation.searchTerm,
     unreadMessageCount: state.messageCount.messageCount,
-    user: state.session && state.session.session && state.session.session.user
+    user: state.session && state.session.session && state.session.session.user,
+    useScratch3Registration: state.navigation.useScratch3Registration
 });
 
 const mapDispatchToProps = dispatch => ({
