@@ -198,17 +198,6 @@ class Navigation extends React.Component {
                                     <FormattedMessage id="general.joinScratch" />
                                 </a>
                             </li>,
-                            (
-                                USE_SCRATCH3_REGISTRATION ? (
-                                    <Scratch3Registration
-                                        key="scratch3registration"
-                                    />
-                                ) : (
-                                    <Registration
-                                        key="registration"
-                                    />
-                                )
-                            ),
                             <li
                                 className="link right login-item"
                                 key="login"
@@ -225,7 +214,19 @@ class Navigation extends React.Component {
                                     key="login-dropdown"
                                 />
                             </li>
-                        ]) : []}
+                        ]) : []
+                    }
+                    {this.props.registrationOpen && (
+                        USE_SCRATCH3_REGISTRATION ? (
+                            <Scratch3Registration
+                                key="scratch3registration"
+                            />
+                        ) : (
+                            <Registration
+                                key="registration"
+                            />
+                        )
+                    )}
                 </ul>
                 <CanceledDeletionModal />
             </NavigationBox>
@@ -250,6 +251,7 @@ Navigation.propTypes = {
         educator_invitee: PropTypes.bool,
         student: PropTypes.bool
     }),
+    registrationOpen: PropTypes.bool,
     searchTerm: PropTypes.string,
     session: PropTypes.shape({
         status: PropTypes.string
@@ -273,6 +275,7 @@ const mapStateToProps = state => ({
     accountNavOpen: state.navigation && state.navigation.accountNavOpen,
     session: state.session,
     permissions: state.permissions,
+    registrationOpen: state.navigation.registrationOpen,
     searchTerm: state.navigation.searchTerm,
     unreadMessageCount: state.messageCount.messageCount,
     user: state.session && state.session.session && state.session.session.user
