@@ -46,7 +46,7 @@ class Navigation extends React.Component {
     }
     componentDidUpdate (prevProps) {
         if (prevProps.user !== this.props.user) {
-            this.props.closeAccountMenus();
+            this.props.handleCloseAccountNav();
             if (this.props.user) {
                 const intervalId = setInterval(() => {
                     this.props.getMessageCount(this.props.user.username);
@@ -234,7 +234,6 @@ class Navigation extends React.Component {
 
 Navigation.propTypes = {
     accountNavOpen: PropTypes.bool,
-    closeAccountMenus: PropTypes.func,
     getMessageCount: PropTypes.func,
     handleCloseAccountNav: PropTypes.func,
     handleLogOut: PropTypes.func,
@@ -256,12 +255,12 @@ Navigation.propTypes = {
     }),
     setMessageCount: PropTypes.func,
     unreadMessageCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    useScratch3Registration: PropTypes.bool,
     user: PropTypes.shape({
         classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         thumbnailUrl: PropTypes.string,
         username: PropTypes.string
-    }),
-    useScratch3Registration: PropTypes.bool
+    })
 };
 
 Navigation.defaultProps = {
@@ -282,9 +281,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    closeAccountMenus: () => {
-        dispatch(navigationActions.closeAccountMenus());
-    },
     getMessageCount: username => {
         dispatch(messageCountActions.getCount(username));
     },

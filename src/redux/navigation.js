@@ -97,11 +97,6 @@ module.exports.handleCompleteRegistration = () => (dispatch => {
     dispatch(module.exports.setRegistrationOpen(false));
 });
 
-module.exports.closeAccountMenus = () => (dispatch => {
-    dispatch(module.exports.setAccountNavOpen(false));
-    dispatch(module.exports.setRegistrationOpen(false));
-});
-
 module.exports.handleLogIn = (formData, callback) => (dispatch => {
     dispatch(module.exports.setLoginError(null));
     formData.useMessages = true; // NOTE: this may or may not be being used anywhere else
