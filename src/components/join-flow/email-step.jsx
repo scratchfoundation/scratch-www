@@ -124,6 +124,8 @@ class EmailStep extends React.Component {
                         handleSubmit,
                         isSubmitting,
                         setFieldError,
+                        setFieldTouched,
+                        setFieldValue,
                         validateField
                     } = props;
                     return (
@@ -166,7 +168,11 @@ class EmailStep extends React.Component {
                                 validationClassName="validation-full-width-input"
                                 /* eslint-disable react/jsx-no-bind */
                                 onBlur={() => validateField('email')}
-                                onFocus={() => setFieldError('email', null)}
+                                onChange={e => {
+                                    setFieldValue('email', e.target.value);
+                                    setFieldTouched('email');
+                                    setFieldError('email', null);
+                                }}
                                 /* eslint-enable react/jsx-no-bind */
                                 onSetRef={this.handleSetEmailRef}
                             />
