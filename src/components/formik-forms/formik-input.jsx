@@ -53,9 +53,9 @@ const FormikInput = ({
 
 FormikInput.propTypes = {
     className: PropTypes.string,
-    error: PropTypes.string,
+    // error and toolTip can be false, in which case we ignore them
+    error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     onSetRef: PropTypes.func,
-    // toolTip can be false, in which case we ignore it
     toolTip: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     type: PropTypes.string,
     validationClassName: PropTypes.string,
