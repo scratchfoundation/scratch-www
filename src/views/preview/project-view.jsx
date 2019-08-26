@@ -754,7 +754,9 @@ class Preview extends React.Component {
                         />
                         {this.props.registrationOpen && (
                             this.props.useScratch3Registration ? (
-                                <Scratch3Registration />
+                                <Scratch3Registration
+                                    isOpen
+                                />
                             ) : (
                                 <Registration />
                             )
