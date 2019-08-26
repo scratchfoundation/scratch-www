@@ -23,17 +23,22 @@ const Registration = ({
 );
 
 Registration.propTypes = {
+    createProjectOnComplete: PropTypes.bool,
     handleCloseRegistration: PropTypes.func,
     handleCompleteRegistration: PropTypes.func,
     isOpen: PropTypes.bool
 };
 
-const mapDispatchToProps = dispatch => ({
+Registration.defaultProps = {
+    createProjectOnComplete: false
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
     handleCloseRegistration: () => {
         dispatch(navigationActions.setRegistrationOpen(false));
     },
     handleCompleteRegistration: () => {
-        dispatch(navigationActions.handleCompleteRegistration());
+        dispatch(navigationActions.handleCompleteRegistration(ownProps.createProjectOnComplete));
     }
 });
 
