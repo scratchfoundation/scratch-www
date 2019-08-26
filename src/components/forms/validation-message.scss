@@ -1,9 +1,8 @@
 @import "../../colors";
 @import "../../frameless";
 
-$arrow-border-width: 1rem;
-
 .validation-message {
+    $arrow-border-width: 1rem;
     display: block;
     position: absolute;
     top: 0;
@@ -39,6 +38,7 @@ $arrow-border-width: 1rem;
 }
 
 .validation-left {
+    $arrow-border-width: 1rem;
     left: unset;
     right: 0;
     margin-left: unset;
