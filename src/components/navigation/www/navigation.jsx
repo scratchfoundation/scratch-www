@@ -217,7 +217,6 @@ class Navigation extends React.Component {
                     {this.props.registrationOpen && (
                         this.props.useScratch3Registration ? (
                             <Scratch3Registration
-                                createProjectOnComplete
                                 isOpen
                                 key="scratch3registration"
                             />
