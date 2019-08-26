@@ -43,12 +43,14 @@ class JoinFlow extends React.Component {
                 uri: '/accounts/register_new_user/',
                 method: 'post',
                 useCsrf: true,
+                /* eslint-disable quote-props */
                 formData: {
                     username: formData.username,
                     email: formData.email,
                     password: formData.password,
                     birth_month: formData.birth_month,
                     birth_year: formData.birth_year,
+                    'g-recaptcha-response': null,
                     gender: (
                         formData.gender === 'other' ?
                             formData.genderOther :
@@ -59,6 +61,7 @@ class JoinFlow extends React.Component {
                     is_robot: formData.yesno
                     // csrfmiddlewaretoken: 'abc'
                 }
+                /* eslint-enable quote-props */
             }, (err, body, res) => {
                 this.setState({waiting: false}, () => {
                     let errStr = '';
