@@ -326,7 +326,7 @@ const ConferenceSplash = () => (
                 </table>
                 <a
                     className="button mod-2019-conf mod-2019-conf-website-button"
-                    href="https://scratchconferenceeurope.raspberrypi.org/"
+                    href="https://www.scratchafrica.com/"
                     rel="noopener noreferrer"
                     target="_blank"
                 >
