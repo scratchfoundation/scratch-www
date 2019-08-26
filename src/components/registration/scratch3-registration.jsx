@@ -28,10 +28,6 @@ Registration.propTypes = {
     isOpen: PropTypes.bool
 };
 
-const mapStateToProps = state => ({
-    isOpen: state.navigation.registrationOpen
-});
-
 const mapDispatchToProps = dispatch => ({
     handleCloseRegistration: () => {
         dispatch(navigationActions.setRegistrationOpen(false));
@@ -42,6 +38,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 module.exports = connect(
-    mapStateToProps,
+    () => ({}),
     mapDispatchToProps
 )(Registration);
