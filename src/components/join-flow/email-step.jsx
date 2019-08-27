@@ -107,7 +107,7 @@ class EmailStep extends React.Component {
         this.grecaptcha.execute(this.widgetId);
     }
     captchaSolved (token) {
-        // Now thatcaptcha is done, we can tell Formik we're submitting.
+        // Now that captcha is done, we can tell Formik we're submitting.
         this.formikBag.setSubmitting(true);
         this.formData['g-recaptcha-response'] = token;
         this.props.onNextStep(this.formData);

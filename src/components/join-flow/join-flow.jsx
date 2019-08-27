@@ -29,7 +29,6 @@ class JoinFlow extends React.Component {
             step: 0
         };
     }
-
     handleAdvanceStep (formData) {
         formData = formData || {};
         this.setState({
