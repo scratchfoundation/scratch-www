@@ -33,6 +33,7 @@ class EmailStep extends React.Component {
 
     componentDidMount () {
 <<<<<<< HEAD
+<<<<<<< HEAD
         // automatically start with focus on username field
         if (this.emailInput) this.emailInput.focus();
 =======
@@ -45,6 +46,20 @@ class EmailStep extends React.Component {
         script.onerror = this.onCaptchaError;
         script.src = `https://www.recaptcha.net/recaptcha/api.js?onload=grecaptchaOnLoad&render=explicit&hl=${window._locale}`;
         document.body.appendChild(script);
+=======
+        // If grecaptcha doesn't exist on window, we havent loaded the captcha js yet. Load it.
+        if (!window.grecaptcha) {
+            // ReCaptcha calls a callback when the grecatpcha object is usable. That callback
+            // needs to be global so set it on the window.
+            window.grecaptchaOnLoad = this.onCaptchaLoad;
+            // Load Google ReCaptcha script.
+            const script = document.createElement('script');
+            script.async = true;
+            script.onerror = this.onCaptchaError;
+            script.src = `https://www.recaptcha.net/recaptcha/api.js?onload=grecaptchaOnLoad&render=explicit&hl=${window._locale}`;
+            document.body.appendChild(script);
+        }
+>>>>>>> Only load the captcha js if it hasn't been loaded yet.
     }
     componentWillUnmount () {
         window.grecaptchaOnLoad = null;
