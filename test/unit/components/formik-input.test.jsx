@@ -4,12 +4,12 @@ import FormikInput from '../../../src/components/formik-forms/formik-input.jsx';
 import {Formik} from 'formik';
 
 describe('FormikInput', () => {
-    test('No validation message without an error or a tooltip', () => {
+    test('No validation message with empty error, empty toolTip', () => {
         const component = mountWithIntl(
             <Formik>
                 <FormikInput
                     error=""
-                    tooltip=""
+                    toolTip=""
                 />
             </Formik>
         );
@@ -18,7 +18,21 @@ describe('FormikInput', () => {
         expect(component.find('div.validation-info').exists()).toEqual(false);
     });
 
-    test('No validation message with blank error or tooltip', () => {
+    test('No validation message with false error, false toolTip', () => {
+        const component = mountWithIntl(
+            <Formik>
+                <FormikInput
+                    error={false}
+                    toolTip={false}
+                />
+            </Formik>
+        );
+        expect(component.find('ValidationMessage').exists()).toEqual(false);
+        expect(component.find('div.validation-error').exists()).toEqual(false);
+        expect(component.find('div.validation-info').exists()).toEqual(false);
+    });
+
+    test('No validation message with nonexistent error or toolTip', () => {
         const component = mountWithIntl(
             <Formik>
                 <FormikInput />
@@ -42,7 +56,7 @@ describe('FormikInput', () => {
         expect(component.find('div.validation-info').exists()).toEqual(false);
     });
 
-    test('Tooltip shown when tooltip given', () => {
+    test('Tooltip shown when toolTip given', () => {
         const component = mountWithIntl(
             <Formik>
                 <FormikInput
@@ -55,7 +69,7 @@ describe('FormikInput', () => {
         expect(component.find('div.validation-info').exists()).toEqual(true);
     });
 
-    test('If both error and tooltip messages, error takes precedence', () => {
+    test('If both error and toolTip messages, error takes precedence', () => {
         const component = mountWithIntl(
             <Formik>
                 <FormikInput
