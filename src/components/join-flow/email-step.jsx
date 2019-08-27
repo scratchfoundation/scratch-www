@@ -17,10 +17,18 @@ class EmailStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
+            'handleSetEmailRef',
             'handleValidSubmit',
             'validateEmail',
             'validateForm'
         ]);
+    }
+    componentDidMount () {
+        // automatically start with focus on username field
+        if (this.emailInput) this.emailInput.focus();
+    }
+    handleSetEmailRef (emailInputRef) {
+        this.emailInput = emailInputRef;
     }
     validateEmail (email) {
         if (!email) return this.props.intl.formatMessage({id: 'general.required'});
@@ -99,6 +107,7 @@ class EmailStep extends React.Component {
                                 onBlur={() => validateField('email')}
                                 onFocus={() => setFieldError('email', null)}
                                 /* eslint-enable react/jsx-no-bind */
+                                onSetRef={this.handleSetEmailRef}
                             />
                             <div className="join-flow-email-checkbox-row">
                                 <FormikCheckbox

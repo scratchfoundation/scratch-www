@@ -91,12 +91,12 @@ const FormikRadioButton = ({
             <FormikInput
                 className="formik-radio-input"
                 name="custom"
-                setRef={onSetCustomRef}
                 wrapperClassName="formik-radio-input-wrapper"
                 /* eslint-disable react/jsx-no-bind */
                 onChange={event => onSetCustom(event.target.value)}
                 onFocus={event => onSetCustom(event.target.value)}
                 /* eslint-enable react/jsx-no-bind */
+                onSetRef={onSetCustomRef}
             />
         )}
     </Field>
