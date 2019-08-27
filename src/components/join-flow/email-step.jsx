@@ -62,11 +62,15 @@ class EmailStep extends React.Component {
     handleValidSubmit (formData, formikBag) {
         this.formData = formData;
         this.formikBag = formikBag;
+        // Change set submitting to false so that if the user clicks out of
+        // the captcha, the button is clickable again (instead of a disabled button with a spinner).
+        this.formikBag.setSubmitting(false);
         this.grecaptcha.execute(this.widgetId);
     }
     captchaSolved (token) {
+        // Now thatcaptcha is done, we can tell Formik we're submitting.
+        this.formikBag.setSubmitting(true);
         this.formData['g-recaptcha-response'] = token;
-        this.formikBag.setSubmitting(false);
         this.props.onNextStep(this.formData);
     }
     setCaptchaRef (ref) {
