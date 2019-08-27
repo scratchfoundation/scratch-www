@@ -26,11 +26,35 @@ class EmailStep extends React.Component {
             'onCaptchaLoad',
             'onCaptchaError'
         ]);
+        this.state = {
+            captchaIsLoading: true
+        };
     }
 
     componentDidMount () {
+<<<<<<< HEAD
         // automatically start with focus on username field
         if (this.emailInput) this.emailInput.focus();
+=======
+        // ReCaptcha calls a callback when the grecatpcha object is usable. That callback
+        // needs to be global so set it on the window.
+        window.grecaptchaOnLoad = this.onCaptchaLoad;
+        // Load Google ReCaptcha script.
+        const script = document.createElement('script');
+        script.async = true;
+        script.onerror = this.onCaptchaError;
+        script.src = `https://www.recaptcha.net/recaptcha/api.js?onload=grecaptchaOnLoad&render=explicit&hl=${window._locale}`;
+        document.body.appendChild(script);
+    }
+    componentWillUnmount () {
+        window.grecaptchaOnLoad = null;
+    }
+    onCaptchaError () {
+        // TODO send user to error step once we have one.
+    }
+    onCaptchaLoad () {
+        this.setState({captchaIsLoading: false});
+>>>>>>> Make it so Create Account button is not clickable until captcha js loads.
         this.grecaptcha = window.grecaptcha;
         if (!this.grecaptcha) {
             // According to the reCaptcha documentation, this callback shouldn't get
@@ -119,7 +143,7 @@ class EmailStep extends React.Component {
                             innerClassName="join-flow-inner-email-step"
                             nextButton={this.props.intl.formatMessage({id: 'registration.createAccount'})}
                             title={this.props.intl.formatMessage({id: 'registration.emailStepTitle'})}
-                            waiting={isSubmitting}
+                            waiting={isSubmitting || this.state.captchaIsLoading}
                             onSubmit={handleSubmit}
                         >
                             <FormikInput
