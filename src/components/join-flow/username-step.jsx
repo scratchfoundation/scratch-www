@@ -27,12 +27,15 @@ class UsernameStep extends React.Component {
             'validatePasswordIfPresent',
             'validatePasswordConfirmIfPresent',
             'validateUsernameIfPresent',
+            'validateUsernameRemotelyWithCache',
             'validateForm'
         ]);
         this.state = {
             focused: null,
             showPassword: false
         };
+        // keeps us from submitting multiple remote requests for a single username
+        this.usernameRemoteCache = {};
     }
     componentDidMount () {
         // automatically start with focus on username field
@@ -49,12 +52,24 @@ class UsernameStep extends React.Component {
     handleSetUsernameRef (usernameInputRef) {
         this.usernameInput = usernameInputRef;
     }
+    validateUsernameRemotelyWithCache (username) {
+        if (this.usernameRemoteCache.hasOwnProperty(username)) {
+            return Promise.resolve(this.usernameRemoteCache[username]);
+        }
+        // username is not in our cache
+        return validate.validateUsernameRemotely(username).then(
+            remoteResult => {
+                this.usernameRemoteCache[username] = remoteResult;
+                return remoteResult;
+            }
+        );
+    }
     // we allow username to be empty on blur, since you might not have typed anything yet
     validateUsernameIfPresent (username) {
         if (!username) return null; // skip validation if username is blank; null indicates valid
         // if username is not blank, run both local and remote validations
         const localResult = validate.validateUsernameLocally(username);
-        return validate.validateUsernameRemotely(username).then(
+        return this.validateUsernameRemotelyWithCache(username).then(
             remoteResult => {
                 // there may be multiple validation errors. Prioritize vulgarity, then
                 // length, then having invalid chars, then all other remote reports
