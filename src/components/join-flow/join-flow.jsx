@@ -30,15 +30,6 @@ class JoinFlow extends React.Component {
         };
     }
 
-    componentDidMount () {
-        // Load Google Captcha script so that it is ready to go when we get to
-        // the last step.
-        const script = document.createElement('script');
-        script.src = `https://www.recaptcha.net/recaptcha/api.js?render=explicit&hl=${window._locale}`;
-        script.async = true;
-        document.body.appendChild(script);
-    }
-
     handleAdvanceStep (formData) {
         formData = formData || {};
         this.setState({

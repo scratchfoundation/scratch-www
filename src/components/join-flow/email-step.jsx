@@ -19,10 +19,12 @@ class EmailStep extends React.Component {
         bindAll(this, [
             'handleSetEmailRef',
             'handleValidSubmit',
-            'validateEmailIfPresent',
+            'validateEmail',
             'validateForm',
             'setCaptchaRef',
-            'captchaSolved'
+            'captchaSolved',
+            'onCaptchaLoad',
+            'onCaptchaError'
         ]);
     }
 
@@ -31,12 +33,11 @@ class EmailStep extends React.Component {
         if (this.emailInput) this.emailInput.focus();
         this.grecaptcha = window.grecaptcha;
         if (!this.grecaptcha) {
-            // Captcha doesn't exist on the window. There must have been a
-            // problem downloading the script. There isn't much we can do about it though.
-            // TODO: put up the error screen when we have it.
-            return;
+            // According to the reCaptcha documentation, this callback shouldn't get
+            // called unless window.grecaptcha exists. This is just here to be extra defensive.
+            // TODO: Put up the error screen when we have one.
         }
-        // TODO: Add in error callback for this once we have an error screen.
+        // TODO: Add in error callback for render once we have an error screen.
         this.widgetId = this.grecaptcha.render(this.captchaRef,
             {
                 callback: this.captchaSolved,
