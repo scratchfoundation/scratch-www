@@ -93,9 +93,11 @@ module.exports.setSearchTerm = searchTerm => ({
 });
 
 module.exports.handleCompleteRegistration = createProject => (dispatch => {
-    dispatch(sessionActions.refreshSession());
-    dispatch(module.exports.setRegistrationOpen(false));
-    if (createProject) window.location = '/projects/editor/?tutorial=getStarted';
+    if (createProject) {
+        window.location = '/projects/editor/?tutorial=getStarted';
+    } else {
+        dispatch(module.exports.setRegistrationOpen(false));
+    }
 });
 
 module.exports.handleLogIn = (formData, callback) => (dispatch => {
