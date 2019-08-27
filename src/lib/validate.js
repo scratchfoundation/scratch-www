@@ -81,8 +81,9 @@ module.exports.validateEmailLocally = email => {
 module.exports.validateEmailRemotely = email => (
     new Promise(resolve => {
         api({
-            uri: `/accounts/check_email/?email=${email}`,
-            host: '' // Not handled by the API, use existing infrastructure
+            host: '', // not handled by API; use existing infrastructure
+            params: {email: email},
+            uri: '/accounts/check_email/'
         }, (err, body, res) => {
             if (err || res.statusCode !== 200 || !body || body.length < 1 || !body[0].msg) {
                 resolve({valid: false, errMsgId: 'general.apiError'});
