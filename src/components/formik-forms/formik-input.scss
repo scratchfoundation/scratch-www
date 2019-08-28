@@ -5,7 +5,7 @@
     border-radius: .5rem;
     background-color: $ui-white;
     margin-bottom: .5rem;
-    transition: all .5s ease;
+    transition: all .5s ease, font-size 0s;
     border: 1px solid $active-gray;
     padding: 0 1rem;
     color: $type-gray;
@@ -15,6 +15,7 @@
         box-shadow: 0 0 0 .25rem $ui-blue-25percent;
         outline: none;
         border: 1px solid $ui-blue;
+        transition: all .5s ease, font-size 0s;
     }
 
     &.fail {

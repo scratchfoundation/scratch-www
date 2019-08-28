@@ -176,7 +176,9 @@ class UsernameStep extends React.Component {
                                     </div>
                                     <FormikInput
                                         className={classNames(
-                                            'join-flow-input'
+                                            'join-flow-input',
+                                            {'join-flow-input-password':
+                                                !values.showPassword && values.password.length > 0}
                                         )}
                                         error={errors.password}
                                         id="password"
@@ -201,7 +203,11 @@ class UsernameStep extends React.Component {
                                         className={classNames(
                                             'join-flow-input',
                                             'join-flow-password-confirm',
-                                            {fail: errors.passwordConfirm}
+                                            {
+                                                'join-flow-input-password':
+                                                    !values.showPassword && values.passwordConfirm.length > 0,
+                                                'fail': errors.passwordConfirm
+                                            }
                                         )}
                                         error={errors.passwordConfirm}
                                         id="passwordConfirm"
