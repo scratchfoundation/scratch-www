@@ -93,8 +93,6 @@ module.exports.validateEmailRemotely = email => (
                 resolve({valid: true});
                 break;
             case 'Scratch is not allowed to send email to this address.': // e.g., bad TLD or block-listed
-                resolve({valid: false, errMsgId: 'registration.validationEmailInvalid'});
-                break;
             case 'Enter a valid email address.':
             default:
                 resolve({valid: false, errMsgId: 'registration.validationEmailInvalid'});
