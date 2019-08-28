@@ -4,10 +4,15 @@
 .modal-flush-bottom-button {
     margin: 0;
     width: 100%;
+    border: none;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
     height: 5.1875rem;
     background-color: $ui-orange;
+
+    &:hover {
+        background-color: $ui-orange-75percent;
+    }
 }
 
 .next-step-title {
