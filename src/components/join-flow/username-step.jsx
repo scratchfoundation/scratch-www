@@ -177,10 +177,13 @@ class UsernameStep extends React.Component {
                                     <FormikInput
                                         className={classNames(
                                             'join-flow-input',
-                                            {'join-flow-input-password':
-                                                !values.showPassword && values.password.length > 0}
+                                            {
+                                                'join-flow-input-password':
+                                                    !values.showPassword && values.password.length > 0,
+                                                'fail': !errors.username && errors.password
+                                            }
                                         )}
-                                        error={errors.password}
+                                        error={!errors.username && errors.password}
                                         id="password"
                                         name="password"
                                         placeholder={this.props.intl.formatMessage({id: 'general.password'})}
@@ -206,10 +209,10 @@ class UsernameStep extends React.Component {
                                             {
                                                 'join-flow-input-password':
                                                     !values.showPassword && values.passwordConfirm.length > 0,
-                                                'fail': errors.passwordConfirm
+                                                'fail': !errors.username && !errors.password && errors.passwordConfirm
                                             }
                                         )}
-                                        error={errors.passwordConfirm}
+                                        error={!errors.username && !errors.password && errors.passwordConfirm}
                                         id="passwordConfirm"
                                         name="passwordConfirm"
                                         placeholder={this.props.intl.formatMessage({
