@@ -81,6 +81,8 @@
 
 .validation-info {
     background-color: $ui-blue;
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, .15);
+    font-weight: 500;
 
     &:before {
         background-color: $ui-blue;
