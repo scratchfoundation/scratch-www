@@ -289,7 +289,7 @@ class MicroBit extends ExtensionLanding {
                                 <FormattedMessage id="microbit.cardsDescription" />
                             </p>
                             <p>
-                                <a 
+                                <a
                                     href={this.props.intl.formatMessage({
                                         id: 'cards.microbit-cardsLink'
                                     })}
