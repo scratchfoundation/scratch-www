@@ -32,21 +32,9 @@ class EmailStep extends React.Component {
     }
 
     componentDidMount () {
-<<<<<<< HEAD
-<<<<<<< HEAD
         // automatically start with focus on username field
         if (this.emailInput) this.emailInput.focus();
-=======
-        // ReCaptcha calls a callback when the grecatpcha object is usable. That callback
-        // needs to be global so set it on the window.
-        window.grecaptchaOnLoad = this.onCaptchaLoad;
-        // Load Google ReCaptcha script.
-        const script = document.createElement('script');
-        script.async = true;
-        script.onerror = this.onCaptchaError;
-        script.src = `https://www.recaptcha.net/recaptcha/api.js?onload=grecaptchaOnLoad&render=explicit&hl=${window._locale}`;
-        document.body.appendChild(script);
-=======
+
         // If grecaptcha doesn't exist on window, we havent loaded the captcha js yet. Load it.
         if (!window.grecaptcha) {
             // ReCaptcha calls a callback when the grecatpcha object is usable. That callback
@@ -59,17 +47,18 @@ class EmailStep extends React.Component {
             script.src = `https://www.recaptcha.net/recaptcha/api.js?onload=grecaptchaOnLoad&render=explicit&hl=${window._locale}`;
             document.body.appendChild(script);
         }
->>>>>>> Only load the captcha js if it hasn't been loaded yet.
     }
     componentWillUnmount () {
         window.grecaptchaOnLoad = null;
+    }
+    handleSetEmailRef (emailInputRef) {
+        this.emailInput = emailInputRef;
     }
     onCaptchaError () {
         // TODO send user to error step once we have one.
     }
     onCaptchaLoad () {
         this.setState({captchaIsLoading: false});
->>>>>>> Make it so Create Account button is not clickable until captcha js loads.
         this.grecaptcha = window.grecaptcha;
         if (!this.grecaptcha) {
             // According to the reCaptcha documentation, this callback shouldn't get
@@ -83,9 +72,6 @@ class EmailStep extends React.Component {
                 sitekey: process.env.RECAPTCHA_SITE_KEY
             },
             true);
-    }
-    handleSetEmailRef (emailInputRef) {
-        this.emailInput = emailInputRef;
     }
     validateEmail (email) {
         if (!email) return this.props.intl.formatMessage({id: 'general.required'});
@@ -107,7 +93,7 @@ class EmailStep extends React.Component {
         this.grecaptcha.execute(this.widgetId);
     }
     captchaSolved (token) {
-        // Now that captcha is done, we can tell Formik we're submitting.
+        // Now thatcaptcha is done, we can tell Formik we're submitting.
         this.formikBag.setSubmitting(true);
         this.formData['g-recaptcha-response'] = token;
         this.props.onNextStep(this.formData);
