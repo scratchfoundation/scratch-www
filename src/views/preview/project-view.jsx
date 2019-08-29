@@ -18,6 +18,7 @@ const ProjectInfo = require('../../lib/project-info');
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 const Registration = require('../../components/registration/registration.jsx');
+const Scratch3Registration = require('../../components/registration/scratch3-registration.jsx');
 const ConnectedLogin = require('../../components/login/connected-login.jsx');
 const CanceledDeletionModal = require('../../components/login/canceled-deletion-modal.jsx');
 const NotAvailable = require('../../components/not-available/not-available.jsx');
@@ -751,7 +752,15 @@ class Preview extends React.Component {
                             onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                             onUpdateProjectTitle={this.handleUpdateProjectTitle}
                         />
-                        <Registration />
+                        {this.props.registrationOpen && (
+                            this.props.useScratch3Registration ? (
+                                <Scratch3Registration
+                                    isOpen
+                                />
+                            ) : (
+                                <Registration />
+                            )
+                        )}
                         <CanceledDeletionModal />
                     </React.Fragment>
                 }
@@ -822,6 +831,7 @@ Preview.propTypes = {
     projectInfo: projectShape,
     projectNotAvailable: PropTypes.bool,
     projectStudios: PropTypes.arrayOf(PropTypes.object),
+    registrationOpen: PropTypes.bool,
     remixProject: PropTypes.func,
     remixes: PropTypes.arrayOf(PropTypes.object),
     replies: PropTypes.objectOf(PropTypes.array),
@@ -835,6 +845,7 @@ Preview.propTypes = {
     shareProject: PropTypes.func.isRequired,
     toggleStudio: PropTypes.func.isRequired,
     updateProject: PropTypes.func.isRequired,
+    useScratch3Registration: PropTypes.bool,
     user: PropTypes.shape({
         id: PropTypes.number,
         banned: PropTypes.bool,
@@ -927,9 +938,11 @@ const mapStateToProps = state => {
         projectInfo: state.preview.projectInfo,
         projectNotAvailable: state.preview.projectNotAvailable,
         projectStudios: state.preview.projectStudios,
+        registrationOpen: state.navigation.registrationOpen,
         remixes: state.preview.remixes,
         replies: state.preview.replies,
         sessionStatus: state.session.status, // check if used
+        useScratch3Registration: state.navigation.useScratch3Registration,
         user: state.session.session.user,
         userOwnsProject: userOwnsProject,
         userPresent: userPresent,

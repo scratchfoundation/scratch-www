@@ -21,15 +21,33 @@ class UsernameStep extends React.Component {
         super(props);
         bindAll(this, [
             'handleChangeShowPassword',
+            'handleFocused',
+            'handleSetUsernameRef',
             'handleValidSubmit',
             'validatePasswordIfPresent',
             'validatePasswordConfirmIfPresent',
             'validateUsernameIfPresent',
             'validateForm'
         ]);
+        this.state = {
+            focused: null,
+            showPassword: false
+        };
+    }
+    componentDidMount () {
+        // automatically start with focus on username field
+        if (this.usernameInput) this.usernameInput.focus();
     }
     handleChangeShowPassword () {
         this.setState({showPassword: !this.state.showPassword});
+    }
+    // track the currently focused input field, to determine whether each field should
+    // display a tooltip. (We only display it if a field is focused and has never been touched.)
+    handleFocused (fieldName) {
+        this.setState({focused: fieldName});
+    }
+    handleSetUsernameRef (usernameInputRef) {
+        this.usernameInput = usernameInputRef;
     }
     // we allow username to be empty on blur, since you might not have typed anything yet
     validateUsernameIfPresent (username) {
@@ -109,7 +127,9 @@ class UsernameStep extends React.Component {
                         handleSubmit,
                         isSubmitting,
                         setFieldError,
+                        setFieldTouched,
                         setFieldValue,
+                        touched,
                         validateField,
                         values
                     } = props;
@@ -118,6 +138,7 @@ class UsernameStep extends React.Component {
                             description={this.props.intl.formatMessage({
                                 id: 'registration.usernameStepDescriptionNonEducator'
                             })}
+                            innerClassName="join-flow-inner-username-step"
                             title={this.props.intl.formatMessage({id: 'general.joinScratch'})}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
@@ -133,15 +154,21 @@ class UsernameStep extends React.Component {
                                     error={errors.username}
                                     id="username"
                                     name="username"
+                                    placeholder={this.props.intl.formatMessage({id: 'general.username'})}
+                                    toolTip={this.state.focused === 'username' && !touched.username &&
+                                        this.props.intl.formatMessage({id: 'registration.usernameAdviceShort'})}
                                     validate={this.validateUsernameIfPresent}
                                     validationClassName="validation-full-width-input"
                                     /* eslint-disable react/jsx-no-bind */
                                     onBlur={() => validateField('username')}
                                     onChange={e => {
                                         setFieldValue('username', e.target.value);
+                                        setFieldTouched('username');
                                         setFieldError('username', null);
                                     }}
+                                    onFocus={() => this.handleFocused('username')}
                                     /* eslint-enable react/jsx-no-bind */
+                                    onSetRef={this.handleSetUsernameRef}
                                 />
                                 <div className="join-flow-password-section">
                                     <div className="join-flow-input-title">
@@ -149,11 +176,16 @@ class UsernameStep extends React.Component {
                                     </div>
                                     <FormikInput
                                         className={classNames(
-                                            'join-flow-input'
+                                            'join-flow-input',
+                                            {'join-flow-input-password':
+                                                !values.showPassword && values.password.length > 0}
                                         )}
                                         error={errors.password}
                                         id="password"
                                         name="password"
+                                        placeholder={this.props.intl.formatMessage({id: 'general.password'})}
+                                        toolTip={this.state.focused === 'password' && !touched.password &&
+                                            this.props.intl.formatMessage({id: 'registration.passwordAdviceShort'})}
                                         type={values.showPassword ? 'text' : 'password'}
                                         /* eslint-disable react/jsx-no-bind */
                                         validate={password => this.validatePasswordIfPresent(password, values.username)}
@@ -161,19 +193,34 @@ class UsernameStep extends React.Component {
                                         onBlur={() => validateField('password')}
                                         onChange={e => {
                                             setFieldValue('password', e.target.value);
+                                            setFieldTouched('password');
                                             setFieldError('password', null);
                                         }}
+                                        onFocus={() => this.handleFocused('password')}
                                         /* eslint-enable react/jsx-no-bind */
                                     />
                                     <FormikInput
                                         className={classNames(
                                             'join-flow-input',
                                             'join-flow-password-confirm',
-                                            {fail: errors.passwordConfirm}
+                                            {
+                                                'join-flow-input-password':
+                                                    !values.showPassword && values.passwordConfirm.length > 0,
+                                                'fail': errors.passwordConfirm
+                                            }
                                         )}
                                         error={errors.passwordConfirm}
                                         id="passwordConfirm"
                                         name="passwordConfirm"
+                                        placeholder={this.props.intl.formatMessage({
+                                            id: 'registration.confirmPasswordInstruction'
+                                        })}
+                                        toolTip={
+                                            this.state.focused === 'passwordConfirm' && !touched.passwordConfirm &&
+                                                this.props.intl.formatMessage({
+                                                    id: 'registration.confirmPasswordInstruction'
+                                                })
+                                        }
                                         type={values.showPassword ? 'text' : 'password'}
                                         /* eslint-disable react/jsx-no-bind */
                                         validate={() =>
@@ -181,13 +228,13 @@ class UsernameStep extends React.Component {
                                                 values.passwordConfirm)
                                         }
                                         validationClassName="validation-full-width-input"
-                                        onBlur={() =>
-                                            validateField('passwordConfirm')
-                                        }
+                                        onBlur={() => validateField('passwordConfirm')}
                                         onChange={e => {
                                             setFieldValue('passwordConfirm', e.target.value);
+                                            setFieldTouched('passwordConfirm');
                                             setFieldError('passwordConfirm', null);
                                         }}
+                                        onFocus={() => this.handleFocused('passwordConfirm')}
                                         /* eslint-enable react/jsx-no-bind */
                                     />
                                     <div className="join-flow-input-title">

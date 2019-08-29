@@ -59,7 +59,7 @@ const TTTModal = props => (
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
-                                <FormattedMessage id="ideas.downloadPDF" />
+                                <FormattedMessage id="general.downloadPDF" />
                             </a>
                         </div>
                     </div>
@@ -76,7 +76,7 @@ const TTTModal = props => (
                                 rel="noopener noreferrer"
                                 target="_blank"
                             >
-                                <FormattedMessage id="ideas.downloadPDF" />
+                                <FormattedMessage id="general.downloadPDF" />
                             </a>
                         </div>
                     </div>

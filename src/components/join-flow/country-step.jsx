@@ -29,7 +29,7 @@ class CountryStep extends React.Component {
             this.countryOptions = [...countryData.registrationCountryOptions];
             this.countryOptions.unshift({
                 disabled: true,
-                label: this.props.intl.formatMessage({id: 'registration.selectCountry'}),
+                label: this.props.intl.formatMessage({id: 'general.country'}),
                 value: 'null'
             });
         }
@@ -68,7 +68,9 @@ class CountryStep extends React.Component {
                     return (
                         <JoinFlowStep
                             description={this.props.intl.formatMessage({id: 'registration.countryStepDescription'})}
-                            headerImgSrc="/images/hoc/getting-started.jpg"
+                            descriptionClassName="join-flow-country-description"
+                            headerImgSrc="/images/join-flow/country-header.png"
+                            innerClassName="join-flow-inner-country-step"
                             title={this.props.intl.formatMessage({id: 'registration.countryStepTitle'})}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}

@@ -140,7 +140,7 @@ const Credits = () => (
                     {' '}
                     Ben Berg, Amos Blanton, Karen Brennan, Juanita Buitrago, Leo Burd,
                     Gaia Carini, Kasia Chmielinski, Michelle Chung, Shane Clements,
-                    Hannah Cole, Sayamindu Dasgupta, Margarita Dekoli, Evelyn Eastmond,
+                    Hannah Cole, Sayamindu Dasgupta, Margarita Dekoli,
                     Dave Feinberg, Chris Graves, Megan Haddadi, Connor Hudson,
                     Christina Huang, Tony Hwang, Abdulrahman Idlbi, Randy Jou, Lily Kim,
                     Tauntaun Kim, Saskia Leggett, Tim Mickel, Amon Millner, Ricarose Roque,

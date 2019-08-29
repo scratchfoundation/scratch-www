@@ -20,7 +20,7 @@ module.exports.validateUsernameRemotely = username => (
             uri: `/accounts/checkusername/${username}/`
         }, (err, body, res) => {
             if (err || res.statusCode !== 200) {
-                resolve({valid: false, errMsgId: 'general.apiError'});
+                resolve({valid: false, errMsgId: 'general.error'});
             }
             switch (body.msg) {
             case 'valid username':
