@@ -296,7 +296,6 @@ class MicroBit extends ExtensionLanding {
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
-                                    >
                                     <Button className="download-cards-button large">
                                         <FormattedMessage id="general.downloadPDF" />
                                     </Button>
