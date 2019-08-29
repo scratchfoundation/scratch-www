@@ -13,6 +13,10 @@
     }
 }
 
+.join-flow-input-password {
+    font-size: 1.5rem;
+}
+
 .join-flow-password-confirm {
     margin-bottom: .6875rem;
 }
@@ -38,8 +42,13 @@
     transform: translate(21.5625rem, 0);
 }
 
-.validation-birthdate-input {
-    transform: translate(8.75rem, .25rem);
+.validation-birthdate-month {
+    transform: translate(-9.25rem, 0);
+    width: 7.25rem;
+}
+
+.validation-birthdate-year {
+    transform: translate(8.75rem, 0);
     width: 7.25rem;
 }
 
@@ -55,9 +64,22 @@
     }
 }
 
+.select .join-flow-select {
+    height: 3.5rem;
+    background-color: white;
+    border-color: $box-shadow-light-gray;
+    font-size: 1rem;
+    font-weight: 500;
+    padding-right: 3.25rem;
+}
+
 .select .join-flow-select-month {
-    width: 9.125rem;
     margin-right: .5rem;
+    width: 9.125rem;
+}
+
+.select .join-flow-select-year {
+    width: 9.125rem;
 }
 
 .select .join-flow-select-country {
@@ -74,9 +96,49 @@
     margin: 0 auto;
 }
 
-.join-flow-gender-step {
-    height: 27.375rem;
+.join-flow-inner-username-step {
+    padding-top: 2.75rem;
+}
+
+.join-flow-inner-birthdate-step {
+    padding-top: 1rem;
+    padding-bottom: 2.25rem;
+}
+
+.join-flow-inner-gender-step {
+    /* need height so that flex will adjust children proportionately */
+    height: 27.25rem;
+    padding-top: 2.625rem;
+    padding-bottom: 1rem;
+}
+
+.join-flow-inner-country-step {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.join-flow-inner-email-step {
     padding-top: 3rem;
+}
+
+.join-flow-inner-welcome-step {
+    padding-top: 3rem;
+}
+
+.join-flow-birthdate-description {
+    margin-top: 1.25rem;
+    margin-right: -.5rem;
+    margin-bottom: 2rem;
+    margin-left: -.5rem;
+}
+
+.join-flow-gender-description {
+    margin-top: .625rem;
+    margin-bottom: 1.25rem;
+}
+
+.join-flow-country-description {
+    margin-top: 1rem;
 }
 
 .gender-radio-row {
@@ -85,13 +147,17 @@
     height: 2.85rem;
     background-color: $ui-gray;
     border-radius: .5rem;
-    margin-bottom: 0.375rem;
+    margin: 0 auto 0.375rem;
     padding-left: 0.8125rem;
     display: flex;
     align-items: center;
 }
 
-.gender-radio-row-selected {
+.gender-radio-row:hover {
+    background-color: $ui-blue-10percent;
+}
+
+.gender-radio-row-selected, .gender-radio-row-selected:hover {
     transition: all .125s ease;
     background-color: $ui-blue-25percent;
 }
@@ -104,6 +170,11 @@
 
 .modal-inner-content-email {
     padding-top: 2.9rem;
+}
+
+.join-flow-email-checkbox-row {
+    font-size: .75rem;
+    margin: .25rem .125rem;
 }
 
 a.join-flow-link:link, a.join-flow-link:visited, a.join-flow-link:active {

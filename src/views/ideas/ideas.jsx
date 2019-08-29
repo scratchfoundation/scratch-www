@@ -163,7 +163,7 @@ class Ideas extends React.Component {
                                 >
                                     <Button className="ideas-button">
                                         <img src="/images/ideas/download-icon.svg" />
-                                        <FormattedMessage id="ideas.downloadPDF" />
+                                        <FormattedMessage id="general.downloadPDF" />
                                     </Button>
                                 </a>
                             </div>

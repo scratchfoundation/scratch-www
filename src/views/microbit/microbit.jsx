@@ -17,6 +17,7 @@ const ExtensionRequirements = require('../../components/extension-landing/extens
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
+const Button = require('../../components/forms/button.jsx');
 
 const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');
@@ -268,6 +269,41 @@ class MicroBit extends ExtensionLanding {
                             title={this.props.intl.formatMessage({id: 'microbit.oceanAdventure'})}
                         />
                     </Steps>
+                </ExtensionSection>
+                <ExtensionSection className="cards">
+                    <FlexRow
+                        as="section"
+                        className="cards-row"
+                    >
+                        <div className="cards-image-column">
+                            <img
+                                className="cards-image"
+                                src="/images/microbit/microbit-with-scratch.png"
+                            />
+                        </div>
+                        <div className="cards-description-column">
+                            <h2>
+                                <FormattedMessage id="microbit.downloadCardsTitle" />
+                            </h2>
+                            <p>
+                                <FormattedMessage id="microbit.cardsDescription" />
+                            </p>
+                            <p>
+                                <a
+                                    href={this.props.intl.formatMessage({
+                                        id: 'cards.microbit-cardsLink'
+                                    })}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    <Button className="download-cards-button large">
+                                        <FormattedMessage id="general.downloadPDF" />
+                                    </Button>
+                                </a>
+                            </p>
+                        </div>
+                    </FlexRow>
+                    <hr />
                 </ExtensionSection>
                 <ExtensionSection className="faq">
                     <h2><FormattedMessage id="microbit.troubleshootingTitle" /></h2>

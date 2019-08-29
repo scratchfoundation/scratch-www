@@ -87,8 +87,10 @@ class BirthDateStep extends React.Component {
                     return (
                         <JoinFlowStep
                             description={this.props.intl.formatMessage({id: 'registration.private'})}
-                            headerImgSrc="/images/hoc/getting-started.jpg"
+                            descriptionClassName="join-flow-birthdate-description"
+                            headerImgSrc="/images/join-flow/birthdate-header.png"
                             infoMessage={this.props.intl.formatMessage({id: 'registration.birthDateStepInfo'})}
+                            innerClassName="join-flow-inner-birthdate-step"
                             title={this.props.intl.formatMessage({id: 'registration.birthDateStepTitle'})}
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
@@ -106,16 +108,21 @@ class BirthDateStep extends React.Component {
                                         'join-flow-select-month',
                                         {fail: errors.birth_month}
                                     )}
-                                    error={errors.birth_month}
+                                    /* hide month (left side) error, if year (right side) error exists */
+                                    error={errors.birth_year ? null : errors.birth_month}
                                     id="birth_month"
                                     name="birth_month"
                                     options={birthMonthOptions}
                                     validate={this.validateSelect}
-                                    validationClassName="validation-birthdate-input"
+                                    validationClassName={classNames(
+                                        'validation-birthdate-month',
+                                        'validation-left'
+                                    )}
                                 />
                                 <FormikSelect
                                     className={classNames(
                                         'join-flow-select',
+                                        'join-flow-select-year',
                                         {fail: errors.birth_year}
                                     )}
                                     error={errors.birth_year}
@@ -123,7 +130,7 @@ class BirthDateStep extends React.Component {
                                     name="birth_year"
                                     options={birthYearOptions}
                                     validate={this.validateSelect}
-                                    validationClassName="validation-birthdate-input"
+                                    validationClassName="validation-birthdate-year"
                                 />
                             </div>
                         </JoinFlowStep>

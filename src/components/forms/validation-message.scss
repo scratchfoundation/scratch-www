@@ -39,6 +39,24 @@
     }
 }
 
+.validation-left {
+    $arrow-border-width: 1rem;
+    left: unset;
+    right: 0;
+    margin-left: unset;
+    margin-right: $arrow-border-width;
+    transform: translate(-16rem, 0);
+
+    &:before {
+        left: unset;
+        right: -$arrow-border-width / 2;
+        border-top: 1px solid $active-gray;
+        border-right: 1px solid $active-gray;
+        border-bottom: none;
+        border-left: none;
+    }
+}
+
 @media #{$intermediate-and-smaller} {
     .validation-message {
         position: relative;
@@ -50,5 +68,23 @@
         &:before {
             display: none;
         }
+    }
+}
+
+.validation-error {
+    background-color: $ui-orange;
+
+    &:before {
+        background-color: $ui-orange;
+    }
+}
+
+.validation-info {
+    background-color: $ui-blue;
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, .15);
+    font-weight: 500;
+
+    &:before {
+        background-color: $ui-blue;
     }
 }

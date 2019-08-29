@@ -1,6 +1,9 @@
 const bindAll = require('lodash.bindall');
 const PropTypes = require('prop-types');
 const React = require('react');
+const MediaQuery = require('react-responsive').default;
+
+const frameless = require('../../lib/frameless');
 
 require('./info-button.scss');
 
@@ -22,25 +25,38 @@ class InfoButton extends React.Component {
         this.setState({visible: true});
     }
     render () {
-        return (
-            <div
-                className="info-button"
-                onClick={this.handleShowMessage}
-                onMouseOut={this.handleHideMessage}
-                onMouseOver={this.handleShowMessage}
-            >
-                {this.state.visible && (
-                    <div className="info-button-message">
-                        {this.props.message}
-                    </div>
-                )}
+        const messageJsx = this.state.visible && (
+            <div className="info-button-message">
+                {this.props.message}
             </div>
+        );
+        return (
+            <React.Fragment>
+                <div
+                    className="info-button"
+                    onClick={this.handleShowMessage}
+                    onMouseOut={this.handleHideMessage}
+                    onMouseOver={this.handleShowMessage}
+                >
+                    <MediaQuery minWidth={frameless.desktop}>
+                        {messageJsx}
+                    </MediaQuery>
+                </div>
+                {/* for small screens, add additional position: relative element,
+                    so info message can position itself relative to the width which
+                    encloses info-button -- rather than relative to info-button itself */}
+                <MediaQuery maxWidth={frameless.desktop - 1}>
+                    <div style={{position: 'relative'}}>
+                        {messageJsx}
+                    </div>
+                </MediaQuery>
+            </React.Fragment>
         );
     }
 }
 
 InfoButton.propTypes = {
-    message: PropTypes.string
+    message: PropTypes.string.isRequired
 };
 
 module.exports = InfoButton;

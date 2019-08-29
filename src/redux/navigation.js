@@ -18,6 +18,7 @@ const Types = keyMirror({
 });
 
 module.exports.getInitialState = () => ({
+    useScratch3Registration: false,
     accountNavOpen: false,
     canceledDeletionOpen: false,
     loginError: null,
@@ -93,11 +94,6 @@ module.exports.setSearchTerm = searchTerm => ({
 
 module.exports.handleCompleteRegistration = () => (dispatch => {
     dispatch(sessionActions.refreshSession());
-    dispatch(module.exports.setRegistrationOpen(false));
-});
-
-module.exports.closeAccountMenus = () => (dispatch => {
-    dispatch(module.exports.setAccountNavOpen(false));
     dispatch(module.exports.setRegistrationOpen(false));
 });
 

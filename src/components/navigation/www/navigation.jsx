@@ -23,8 +23,6 @@ const AccountNav = require('./accountnav.jsx');
 
 require('./navigation.scss');
 
-const USE_SCRATCH3_REGISTRATION = false;
-
 class Navigation extends React.Component {
     constructor (props) {
         super(props);
@@ -48,7 +46,7 @@ class Navigation extends React.Component {
     }
     componentDidUpdate (prevProps) {
         if (prevProps.user !== this.props.user) {
-            this.props.closeAccountMenus();
+            this.props.handleCloseAccountNav();
             if (this.props.user) {
                 const intervalId = setInterval(() => {
                     this.props.getMessageCount(this.props.user.username);
@@ -198,17 +196,6 @@ class Navigation extends React.Component {
                                     <FormattedMessage id="general.joinScratch" />
                                 </a>
                             </li>,
-                            (
-                                USE_SCRATCH3_REGISTRATION ? (
-                                    <Scratch3Registration
-                                        key="scratch3registration"
-                                    />
-                                ) : (
-                                    <Registration
-                                        key="registration"
-                                    />
-                                )
-                            ),
                             <li
                                 className="link right login-item"
                                 key="login"
@@ -225,7 +212,20 @@ class Navigation extends React.Component {
                                     key="login-dropdown"
                                 />
                             </li>
-                        ]) : []}
+                        ]) : []
+                    }
+                    {this.props.registrationOpen && (
+                        this.props.useScratch3Registration ? (
+                            <Scratch3Registration
+                                isOpen
+                                key="scratch3registration"
+                            />
+                        ) : (
+                            <Registration
+                                key="registration"
+                            />
+                        )
+                    )}
                 </ul>
                 <CanceledDeletionModal />
             </NavigationBox>
@@ -235,7 +235,6 @@ class Navigation extends React.Component {
 
 Navigation.propTypes = {
     accountNavOpen: PropTypes.bool,
-    closeAccountMenus: PropTypes.func,
     getMessageCount: PropTypes.func,
     handleCloseAccountNav: PropTypes.func,
     handleLogOut: PropTypes.func,
@@ -250,12 +249,14 @@ Navigation.propTypes = {
         educator_invitee: PropTypes.bool,
         student: PropTypes.bool
     }),
+    registrationOpen: PropTypes.bool,
     searchTerm: PropTypes.string,
     session: PropTypes.shape({
         status: PropTypes.string
     }),
     setMessageCount: PropTypes.func,
     unreadMessageCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    useScratch3Registration: PropTypes.bool,
     user: PropTypes.shape({
         classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         thumbnailUrl: PropTypes.string,
@@ -273,15 +274,14 @@ const mapStateToProps = state => ({
     accountNavOpen: state.navigation && state.navigation.accountNavOpen,
     session: state.session,
     permissions: state.permissions,
+    registrationOpen: state.navigation.registrationOpen,
     searchTerm: state.navigation.searchTerm,
     unreadMessageCount: state.messageCount.messageCount,
-    user: state.session && state.session.session && state.session.session.user
+    user: state.session && state.session.session && state.session.session.user,
+    useScratch3Registration: state.navigation.useScratch3Registration
 });
 
 const mapDispatchToProps = dispatch => ({
-    closeAccountMenus: () => {
-        dispatch(navigationActions.closeAccountMenus());
-    },
     getMessageCount: username => {
         dispatch(messageCountActions.getCount(username));
     },

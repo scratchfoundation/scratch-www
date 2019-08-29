@@ -6,15 +6,14 @@ const JoinFlow = require('../../join-flow/join-flow.jsx');
 require('./modal.scss');
 
 const JoinModal = ({
-    isOpen,
     onCompleteRegistration, // eslint-disable-line no-unused-vars
     onRequestClose,
     ...modalProps
 }) => (
     <Modal
+        isOpen
         useStandardSizes
         className="mod-join"
-        isOpen={isOpen}
         onRequestClose={onRequestClose}
         {...modalProps}
     >
@@ -25,7 +24,6 @@ const JoinModal = ({
 );
 
 JoinModal.propTypes = {
-    isOpen: PropTypes.bool,
     onCompleteRegistration: PropTypes.func,
     onRequestClose: PropTypes.func
 };

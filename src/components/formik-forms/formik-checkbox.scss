@@ -1,9 +1,5 @@
 @import "../../colors";
 
-.formik-checkbox-label {
-    font-weight: 300;
-}
-
 input[type="checkbox"].formik-checkbox {
     display: block;
     float: left;
@@ -14,14 +10,10 @@ input[type="checkbox"].formik-checkbox {
     height: 1.25rem;
     appearance: none;
 
-    &:focus:checked {
-        transition: all .5s ease;
+    &:focus {
+        transition: all .25s ease;
         outline: none;
         box-shadow: 0 0 0 .25rem $ui-blue-25percent;
-    }
-
-    &:focus:not(:checked) {
-        outline: none;
     }
 
     &:checked {
@@ -30,10 +22,7 @@ input[type="checkbox"].formik-checkbox {
         text-indent: .125rem;
         line-height: 1.25rem;
         font-size: .75rem;
-
-        &:after {
-            color: $type-white;
-            content: "\2714";
-        }
+        background-image: url("/svgs/forms/checkmark.svg");
+        background-position: center;
     }
 }

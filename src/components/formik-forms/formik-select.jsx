@@ -1,4 +1,3 @@
-const classNames = require('classnames');
 const PropTypes = require('prop-types');
 const React = require('react');
 import {Field} from 'formik';
@@ -7,6 +6,7 @@ const ValidationMessage = require('../forms/validation-message.jsx');
 
 require('../forms/select.scss');
 require('../forms/row.scss');
+require('./formik-select.scss');
 
 const FormikSelect = ({
     className,
@@ -27,9 +27,7 @@ const FormikSelect = ({
     return (
         <div className="select row-with-tooltip">
             <Field
-                className={classNames(
-                    className
-                )}
+                className={className}
                 component="select"
                 {...props}
             >
@@ -39,6 +37,7 @@ const FormikSelect = ({
                 <ValidationMessage
                     className={validationClassName}
                     message={error}
+                    mode="error"
                 />
             )}
         </div>

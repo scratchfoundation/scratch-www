@@ -1,6 +1,24 @@
 @import "../../colors";
 @import "../../frameless";
 
+.join-flow-outer-content {
+    /* hopefully this lets text expand the height of the modal, if need be */
+    min-height: 32.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow-wrap: break-word;
+}
+
+.join-flow-inner-content {
+    box-shadow: none;
+    width: calc(100% - 5.875rem);
+    /* must use padding for top, rather than margin, because margins will collapse */
+    margin: 0 auto;
+    padding: 2.3125rem 0 2.5rem;
+    font-size: .875rem;
+}
+
 .join-flow-title {
     color: $type-gray;
     font-size: 1.875rem;
@@ -15,23 +33,19 @@
     text-align: center;
 }
 
-.join-flow-inner-content {
-    box-shadow: none;
-    width: calc(100% - 5.875rem);
-    /* must use padding for top, rather than margin, because margins will collapse */
-    margin: 0 auto;
-    padding: 2.3125rem 0 2.5rem;
-    font-size: .875rem;
-}
-
 /* overflow will only work if this class is set on parent of img, not img itself */
-.join-flow-header-image {
+.join-flow-header-image-wrapper {
     width: 100%;
-    height: 7.5rem;
+    min-height: 7.5rem;
+    max-height: 8.75rem;
     overflow: hidden;
     margin: 0;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
+}
+
+.join-flow-header-image {
+    width: 27.5rem;
 }
 
 .join-flow-footer-message {

@@ -27,8 +27,6 @@ class WelcomeStep extends React.Component {
     render () {
         return (
             <Formik
-                initialValues={{
-                }}
                 validate={this.validateForm}
                 validateOnBlur={false}
                 validateOnChange={false}
@@ -44,7 +42,8 @@ class WelcomeStep extends React.Component {
                             description={this.props.intl.formatMessage({
                                 id: 'registration.welcomeStepDescriptionNonEducator'
                             })}
-                            headerImgSrc="/images/hoc/getting-started.jpg"
+                            headerImgSrc="/images/join-flow/welcome-header.png"
+                            innerClassName="join-flow-inner-welcome-step"
                             nextButton={
                                 <React.Fragment>
                                     <FormattedMessage id="registration.makeProject" />
