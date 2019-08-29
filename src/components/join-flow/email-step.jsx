@@ -20,15 +20,58 @@ class EmailStep extends React.Component {
             'handleSetEmailRef',
             'handleValidSubmit',
             'validateEmail',
-            'validateForm'
+            'validateForm',
+            'setCaptchaRef',
+            'captchaSolved',
+            'onCaptchaLoad',
+            'onCaptchaError'
         ]);
+        this.state = {
+            captchaIsLoading: true
+        };
     }
+
     componentDidMount () {
         // automatically start with focus on username field
         if (this.emailInput) this.emailInput.focus();
+
+        // If grecaptcha doesn't exist on window, we havent loaded the captcha js yet. Load it.
+        if (!window.grecaptcha) {
+            // ReCaptcha calls a callback when the grecatpcha object is usable. That callback
+            // needs to be global so set it on the window.
+            window.grecaptchaOnLoad = this.onCaptchaLoad;
+            // Load Google ReCaptcha script.
+            const script = document.createElement('script');
+            script.async = true;
+            script.onerror = this.onCaptchaError;
+            script.src = `https://www.recaptcha.net/recaptcha/api.js?onload=grecaptchaOnLoad&render=explicit&hl=${window._locale}`;
+            document.body.appendChild(script);
+        }
+    }
+    componentWillUnmount () {
+        window.grecaptchaOnLoad = null;
     }
     handleSetEmailRef (emailInputRef) {
         this.emailInput = emailInputRef;
+    }
+    onCaptchaError () {
+        // TODO send user to error step once we have one.
+    }
+    onCaptchaLoad () {
+        this.setState({captchaIsLoading: false});
+        this.grecaptcha = window.grecaptcha;
+        if (!this.grecaptcha) {
+            // According to the reCaptcha documentation, this callback shouldn't get
+            // called unless window.grecaptcha exists. This is just here to be extra defensive.
+            // TODO: Put up the error screen when we have one.
+        }
+        // TODO: Add in error callback for render once we have an error screen.
+        this.widgetId = this.grecaptcha.render(this.captchaRef,
+            {
+                callback: this.captchaSolved,
+                sitekey: process.env.RECAPTCHA_SITE_KEY
+            },
+            true);
     }
     validateEmail (email) {
         if (!email) return this.props.intl.formatMessage({id: 'general.required'});
@@ -42,8 +85,21 @@ class EmailStep extends React.Component {
         return {};
     }
     handleValidSubmit (formData, formikBag) {
-        formikBag.setSubmitting(false);
-        this.props.onNextStep(formData);
+        this.formData = formData;
+        this.formikBag = formikBag;
+        // Change set submitting to false so that if the user clicks out of
+        // the captcha, the button is clickable again (instead of a disabled button with a spinner).
+        this.formikBag.setSubmitting(false);
+        this.grecaptcha.execute(this.widgetId);
+    }
+    captchaSolved (token) {
+        // Now thatcaptcha is done, we can tell Formik we're submitting.
+        this.formikBag.setSubmitting(true);
+        this.formData['g-recaptcha-response'] = token;
+        this.props.onNextStep(this.formData);
+    }
+    setCaptchaRef (ref) {
+        this.captchaRef = ref;
     }
     render () {
         return (
@@ -88,7 +144,7 @@ class EmailStep extends React.Component {
                             innerClassName="join-flow-inner-email-step"
                             nextButton={this.props.intl.formatMessage({id: 'registration.createAccount'})}
                             title={this.props.intl.formatMessage({id: 'registration.emailStepTitle'})}
-                            waiting={isSubmitting}
+                            waiting={isSubmitting || this.state.captchaIsLoading}
                             onSubmit={handleSubmit}
                         >
                             <FormikInput
@@ -116,6 +172,13 @@ class EmailStep extends React.Component {
                                     name="subscribe"
                                 />
                             </div>
+                            <div
+                                className="g-recaptcha"
+                                data-badge="bottomright"
+                                data-sitekey={process.env.RECAPTCHA_SITE_KEY}
+                                data-size="invisible"
+                                ref={this.setCaptchaRef}
+                            />
                         </JoinFlowStep>
                     );
                 }}
