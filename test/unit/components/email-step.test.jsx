@@ -67,7 +67,7 @@ describe('EmailStep test', () => {
         const formikBag = {
             setSubmitting: jest.fn()
         };
-        global.window.grecaptcha = {
+        global.grecaptcha = {
             execute: jest.fn(),
             render: jest.fn()
         };
@@ -80,7 +80,7 @@ describe('EmailStep test', () => {
         formikWrapper.instance().handleValidSubmit(formData, formikBag);
 
         expect(formikBag.setSubmitting).toHaveBeenCalledWith(false);
-        expect(global.window.grecaptcha.execute).toHaveBeenCalled();
+        expect(global.grecaptcha.execute).toHaveBeenCalled();
     });
     test('captchaSolved sets token and goes to next step', () => {
         const props = {
@@ -89,7 +89,7 @@ describe('EmailStep test', () => {
         const formikBag = {
             setSubmitting: jest.fn()
         };
-        global.window.grecaptcha = {
+        global.grecaptcha = {
             execute: jest.fn(),
             render: jest.fn()
         };
