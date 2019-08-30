@@ -16,7 +16,7 @@ const GenderStep = require('./gender-step.jsx');
 const CountryStep = require('./country-step.jsx');
 const EmailStep = require('./email-step.jsx');
 const WelcomeStep = require('./welcome-step.jsx');
-const RegistrationError = require('./registration-error.jsx');
+const RegistrationErrorStep = require('./registration-error-step.jsx');
 
 /*
 eslint-disable react/prefer-stateless-function, react/no-unused-prop-types, no-useless-constructor
@@ -128,7 +128,7 @@ class JoinFlow extends React.Component {
         return (
             <React.Fragment>
                 {this.state.registrationError ? (
-                    <RegistrationError
+                    <RegistrationErrorStep
                         errorMsg={this.state.registrationError}
                         /* eslint-disable react/jsx-no-bind */
                         onTryAgain={() => this.handleRegister(this.state.formData)}

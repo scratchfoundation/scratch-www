@@ -7,14 +7,12 @@ const JoinFlowStep = require('./join-flow-step.jsx');
 
 require('./join-flow-steps.scss');
 
-class RegistrationError extends React.Component {
+class RegistrationErrorStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
             'handleSubmit'
         ]);
-        this.state = {
-        };
     }
     handleSubmit (e) {
         e.preventDefault(); // prevent page reload
@@ -33,12 +31,12 @@ class RegistrationError extends React.Component {
     }
 }
 
-RegistrationError.propTypes = {
+RegistrationErrorStep.propTypes = {
     errorMsg: PropTypes.string,
     intl: intlShape,
     onTryAgain: PropTypes.func
 };
 
-const IntlRegistrationError = injectIntl(RegistrationError);
+const IntlRegistrationErrorStep = injectIntl(RegistrationErrorStep);
 
-module.exports = IntlRegistrationError;
+module.exports = IntlRegistrationErrorStep;
