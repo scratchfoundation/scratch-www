@@ -95,6 +95,7 @@ class CountryStep extends React.Component {
                                     validate={this.validateSelect}
                                     validationClassName="validation-full-width-input"
                                 />
+                                {/* note that this is a hidden checkbox the user will never see */}
                                 <FormikCheckbox
                                     id="yesno"
                                     label={this.props.intl.formatMessage({id: 'registration.receiveEmails'})}

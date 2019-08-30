@@ -59,7 +59,9 @@ class JoinFlow extends React.Component {
                     country: formData.country,
                     subscribe: true,
                     is_robot: formData.yesno
-                    // csrfmiddlewaretoken: 'abc'
+                    // no need to include csrfmiddlewaretoken; will be provided in
+                    // X-CSRFToken header, which scratchr2 looks for in
+                    // scratchr2/middleware/csrf.py line 237.
                 }
                 /* eslint-enable quote-props */
             }, (err, body, res) => {
@@ -75,6 +77,9 @@ class JoinFlow extends React.Component {
                                 return;
                             }
                             if (body[0].errors) {
+                                // body can include zero or more error objects, each
+                                // with its own key and description. Here we assemble
+                                // all of them into a single string, errStr.
                                 const errorKeys = Object.keys(body[0].errors);
                                 errorKeys.forEach(key => {
                                     const val = body[0].errors[key];
