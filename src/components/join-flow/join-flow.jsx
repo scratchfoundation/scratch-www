@@ -26,8 +26,8 @@ class JoinFlow extends React.Component {
         super(props);
         bindAll(this, [
             'handleAdvanceStep',
-            'handleRegister',
-            'handleResetForm'
+            'handlePrepareToRegister',
+            'handleSubmitRegistration'
         ]);
         this.state = {
             formData: {},
@@ -36,7 +36,16 @@ class JoinFlow extends React.Component {
             waiting: false
         };
     }
-    handleRegister (formData) {
+    handlePrepareToRegister (newFormData) {
+        newFormData = newFormData || {};
+        const newState = {
+            formData: defaults({}, newFormData, this.state.formData)
+        };
+        this.setState(newState, () => {
+            this.handleSubmitRegistration(this.state.formData);
+        });
+    }
+    handleSubmitRegistration (formData) {
         this.setState({waiting: true}, () => {
             api({
                 host: '',
@@ -104,24 +113,9 @@ class JoinFlow extends React.Component {
     }
     handleAdvanceStep (newFormData) {
         newFormData = newFormData || {};
-        const newState = {
-            formData: defaults({}, newFormData, this.state.formData)
-        };
-        // for the first 4 steps, automatically advance to next step.
-        // but for email step, we need to submit registration and wait.
-        const shouldAdvance = (this.state.step < 4);
-        const shouldRegister = (this.state.step === 4);
-        if (shouldAdvance) newState.step = this.state.step + 1;
-        this.setState(newState, () => {
-            if (shouldRegister) this.handleRegister(this.state.formData);
-        });
-    }
-    handleResetForm () {
         this.setState({
-            formData: {},
-            registrationError: null,
-            step: 0,
-            waiting: false
+            formData: defaults({}, newFormData, this.state.formData),
+            step: this.state.step + 1
         });
     }
     render () {
@@ -131,7 +125,7 @@ class JoinFlow extends React.Component {
                     <RegistrationErrorStep
                         errorMsg={this.state.registrationError}
                         /* eslint-disable react/jsx-no-bind */
-                        onTryAgain={() => this.handleRegister(this.state.formData)}
+                        onTryAgain={() => this.handleSubmitRegistration(this.state.formData)}
                         /* eslint-enable react/jsx-no-bind */
                     />
                 ) : (
@@ -142,7 +136,7 @@ class JoinFlow extends React.Component {
                         <CountryStep onNextStep={this.handleAdvanceStep} />
                         <EmailStep
                             waiting={this.state.waiting}
-                            onNextStep={this.handleAdvanceStep}
+                            onNextStep={this.handlePrepareToRegister}
                         />
                         <WelcomeStep
                             email={this.state.formData.email}
