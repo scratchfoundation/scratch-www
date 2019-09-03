@@ -1,7 +1,7 @@
-import React from 'react';
-import {shallowWithIntl} from '../../helpers/intl-helpers.jsx';
-import EmailStep from '../../../src/components/join-flow/email-step.jsx';
-import JoinFlowStep from '../../../src/components/join-flow/join-flow-step.jsx';
+const React = require('react');
+const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
+const EmailStep = require('../../../src/components/join-flow/email-step.jsx');
+const JoinFlowStep = require('../../../src/components/join-flow/join-flow-step.jsx');
 const FormikInput = require('../../../src/components/formik-forms/formik-input.jsx');
 const FormikCheckbox = require('../../../src/components/formik-forms/formik-checkbox.jsx');
 
@@ -71,7 +71,7 @@ describe('EmailStep test', () => {
             execute: jest.fn(),
             render: jest.fn()
         };
-        const formData = {some: 'data}', is: 'here'};
+        const formData = {item1: 'thing', item2: 'otherthing'};
         const wrapper = shallowWithIntl(
             <EmailStep />);
 
@@ -93,7 +93,7 @@ describe('EmailStep test', () => {
             execute: jest.fn(),
             render: jest.fn()
         };
-        const formData = {some: 'data}', is: 'here'};
+        const formData = {item1: 'thing', item2: 'otherthing'};
         const wrapper = shallowWithIntl(
             <EmailStep
                 {...props}
@@ -106,8 +106,14 @@ describe('EmailStep test', () => {
 
         const captchaToken = 'abcd';
         formikWrapper.instance().captchaSolved(captchaToken);
-        formData['gre-captcha-response'] = captchaToken;
-        expect(props.onNextStep).toHaveBeenCalledWith(formData);
+        // Make sure captchaSolved calls onNextStep  with formData that has
+        // a captcha token and left everything else in the object in place.
+        expect(props.onNextStep).toHaveBeenCalledWith(
+            expect.objectContaining({
+                'item1': formData.item1,
+                'item2': formData.item2,
+                'g-recaptcha-response': captchaToken
+            }));
         expect(formikBag.setSubmitting).toHaveBeenCalledWith(true);
     });
     test('validateEmail test email empty', () => {
