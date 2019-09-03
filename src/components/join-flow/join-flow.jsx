@@ -27,6 +27,7 @@ class JoinFlow extends React.Component {
         bindAll(this, [
             'handleAdvanceStep',
             'handlePrepareToRegister',
+            'handleRegistrationResponse',
             'handleSubmitRegistration'
         ]);
         this.state = {
@@ -43,6 +44,42 @@ class JoinFlow extends React.Component {
         };
         this.setState(newState, () => {
             this.handleSubmitRegistration(this.state.formData);
+        });
+    }
+    handleRegistrationResponse (err, body, res) {
+        this.setState({waiting: false}, () => {
+            let errStr = '';
+            if (!err && res.statusCode === 200) {
+                if (body && body[0]) {
+                    if (body[0].success) {
+                        this.props.refreshSession();
+                        this.setState({
+                            step: this.state.step + 1
+                        });
+                        return;
+                    }
+                    if (body[0].errors) {
+                        // body can include zero or more error objects, each
+                        // with its own key and description. Here we assemble
+                        // all of them into a single string, errStr.
+                        const errorKeys = Object.keys(body[0].errors);
+                        errorKeys.forEach(key => {
+                            const val = body[0].errors[key];
+                            if (val && val[0]) {
+                                if (errStr.length) errStr += '; ';
+                                errStr += `${key}: ${val[0]}`;
+                            }
+                        });
+                    }
+                    if (!errStr.length && body[0].msg) errStr = body[0].msg;
+                }
+            }
+            this.setState({
+                registrationError: errStr ||
+                    `${this.props.intl.formatMessage({
+                        id: 'registration.generalError'
+                    })} (${res.statusCode})`
+            });
         });
     }
     handleSubmitRegistration (formData) {
@@ -68,40 +105,7 @@ class JoinFlow extends React.Component {
                     // scratchr2/middleware/csrf.py line 237.
                 }
             }, (err, body, res) => {
-                this.setState({waiting: false}, () => {
-                    let errStr = '';
-                    if (!err && res.statusCode === 200) {
-                        if (body && body[0]) {
-                            if (body[0].success) {
-                                this.props.refreshSession();
-                                this.setState({
-                                    step: this.state.step + 1
-                                });
-                                return;
-                            }
-                            if (body[0].errors) {
-                                // body can include zero or more error objects, each
-                                // with its own key and description. Here we assemble
-                                // all of them into a single string, errStr.
-                                const errorKeys = Object.keys(body[0].errors);
-                                errorKeys.forEach(key => {
-                                    const val = body[0].errors[key];
-                                    if (val && val[0]) {
-                                        if (errStr.length) errStr += '; ';
-                                        errStr += `${key}: ${val[0]}`;
-                                    }
-                                });
-                            }
-                            if (!errStr.length && body[0].msg) errStr = body[0].msg;
-                        }
-                    }
-                    this.setState({
-                        registrationError: errStr ||
-                            `${this.props.intl.formatMessage({
-                                id: 'registration.generalError'
-                            })} (${res.statusCode})`
-                    });
-                });
+                this.handleRegistrationResponse(err, body, res);
             });
         });
     }
