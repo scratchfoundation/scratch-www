@@ -15,7 +15,10 @@ class RegistrationErrorStep extends React.Component {
         ]);
     }
     handleSubmit (e) {
-        e.preventDefault(); // prevent page reload
+        // JoinFlowStep includes a <form> that handles a submit action.
+        // But here, we're not really submitting, so we need to prevent
+        // the form from navigating away from the current page.
+        e.preventDefault();
         this.props.onTryAgain();
     }
     render () {
