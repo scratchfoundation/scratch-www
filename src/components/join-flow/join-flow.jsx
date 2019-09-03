@@ -52,27 +52,21 @@ class JoinFlow extends React.Component {
                 uri: '/accounts/register_new_user/',
                 method: 'post',
                 useCsrf: true,
-                /* eslint-disable quote-props */
                 formData: {
-                    username: formData.username,
-                    email: formData.email,
-                    password: formData.password,
-                    birth_month: formData.birth_month,
-                    birth_year: formData.birth_year,
+                    'username': formData.username,
+                    'email': formData.email,
+                    'password': formData.password,
+                    'birth_month': formData.birth_month,
+                    'birth_year': formData.birth_year,
                     'g-recaptcha-response': null,
-                    gender: (
-                        formData.gender === 'other' ?
-                            formData.genderOther :
-                            formData.gender
-                    ),
-                    country: formData.country,
-                    subscribe: true,
-                    is_robot: formData.yesno
+                    'gender': formData.gender,
+                    'country': formData.country,
+                    'subscribe': true,
+                    'is_robot': formData.yesno
                     // no need to include csrfmiddlewaretoken; will be provided in
                     // X-CSRFToken header, which scratchr2 looks for in
                     // scratchr2/middleware/csrf.py line 237.
                 }
-                /* eslint-enable quote-props */
             }, (err, body, res) => {
                 this.setState({waiting: false}, () => {
                     let errStr = '';
