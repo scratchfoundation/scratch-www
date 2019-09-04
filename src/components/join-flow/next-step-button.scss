@@ -11,7 +11,8 @@
     background-color: $ui-orange;
 
     &:hover {
-        background-color: $ui-orange-75percent;
+        transition: background-color .25s ease;
+        background-color: $ui-orange-90percent;
     }
 }
 
