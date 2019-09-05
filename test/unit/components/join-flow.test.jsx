@@ -2,6 +2,8 @@ import React from 'react';
 const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
 import configureStore from 'redux-mock-store';
 import JoinFlow from '../../../src/components/join-flow/join-flow';
+import Progression from '../../../src/components/progression/progression.jsx';
+import RegistrationErrorStep from '../../../src/components/join-flow/registration-error-step';
 
 describe('JoinFlow', () => {
     const mockStore = configureStore();
@@ -13,23 +15,23 @@ describe('JoinFlow', () => {
         }});
     });
 
-    const getJoinFlowInstance = props => {
+    const getJoinFlowWrapper = props => {
         const wrapper = shallowWithIntl(
             <JoinFlow
                 {...props}
             />
-            , {context: {store}});
+            , {context: {store}}
+        );
         return wrapper
             .dive() // unwrap redux connect(injectIntl(JoinFlow))
-            .dive() // unwrap injectIntl(JoinFlow)
-            .instance(); // JoinFlow
-    }
+            .dive(); // unwrap injectIntl(JoinFlow)
+    };
 
     test('handleRegistrationResponse with successful response', () => {
         const props = {
             refreshSession: jest.fn()
         };
-        const joinFlowInstance = getJoinFlowInstance(props);
+        const joinFlowInstance = getJoinFlowWrapper(props).instance();
         const responseErr = null;
         const responseBody = [
             {
@@ -48,7 +50,7 @@ describe('JoinFlow', () => {
         const props = {
             refreshSession: jest.fn()
         };
-        const joinFlowInstance = getJoinFlowInstance(props);
+        const joinFlowInstance = getJoinFlowWrapper(props).instance();
         const responseErr = null;
         const responseBody = [
             {
@@ -71,7 +73,7 @@ describe('JoinFlow', () => {
         const props = {
             refreshSession: jest.fn()
         };
-        const joinFlowInstance = getJoinFlowInstance(props);
+        const joinFlowInstance = getJoinFlowWrapper(props).instance();
         const responseErr = null;
         const responseBody = [
             {
@@ -91,7 +93,7 @@ describe('JoinFlow', () => {
         const props = {
             refreshSession: jest.fn()
         };
-        const joinFlowInstance = getJoinFlowInstance(props);
+        const joinFlowInstance = getJoinFlowWrapper(props).instance();
         const responseErr = null;
         const responseBody = [
             {
@@ -110,7 +112,7 @@ describe('JoinFlow', () => {
         const props = {
             refreshSession: jest.fn()
         };
-        const joinFlowInstance = getJoinFlowInstance(props);
+        const joinFlowInstance = getJoinFlowWrapper(props).instance();
         const responseErr = null;
         const responseBody = [
             {
@@ -126,11 +128,38 @@ describe('JoinFlow', () => {
     });
 
     test('handleAdvanceStep', () => {
-        const joinFlowInstance = getJoinFlowInstance();
+        const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.setState({formData: {username: 'ScratchCat123'}, step: 2});
         joinFlowInstance.handleAdvanceStep({email: 'scratchcat123@scratch.mit.edu'});
         expect(joinFlowInstance.state.formData.username).toBe('ScratchCat123');
         expect(joinFlowInstance.state.formData.email).toBe('scratchcat123@scratch.mit.edu');
         expect(joinFlowInstance.state.step).toBe(3);
+    });
+
+    test('when state.registrationError has error message, we show RegistrationErrorStep', () => {
+        const joinFlowWrapper = getJoinFlowWrapper();
+        joinFlowWrapper.instance().setState({registrationError: 'halp there is a errors!!'});
+        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
+        const progressionWrapper = joinFlowWrapper.find(Progression);
+        expect(registrationErrorWrapper).toHaveLength(1);
+        expect(progressionWrapper).toHaveLength(0);
+    });
+
+    test('when state.registrationError has null error message, we show Progression', () => {
+        const joinFlowWrapper = getJoinFlowWrapper();
+        joinFlowWrapper.instance().setState({registrationError: null});
+        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
+        const progressionWrapper = joinFlowWrapper.find(Progression);
+        expect(registrationErrorWrapper).toHaveLength(0);
+        expect(progressionWrapper).toHaveLength(1);
+    });
+
+    test('when state.registrationError has empty error message, we show Progression', () => {
+        const joinFlowWrapper = getJoinFlowWrapper();
+        joinFlowWrapper.instance().setState({registrationError: ''});
+        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
+        const progressionWrapper = joinFlowWrapper.find(Progression);
+        expect(registrationErrorWrapper).toHaveLength(0);
+        expect(progressionWrapper).toHaveLength(1);
     });
 });
