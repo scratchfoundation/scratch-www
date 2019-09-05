@@ -162,9 +162,15 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
+// Allow incoming props to override redux-provided props. Used to mock in tests.
+const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(
+    {}, stateProps, dispatchProps, ownProps
+);
+
 const ConnectedJoinFlow = connect(
     () => ({}),
-    mapDispatchToProps
+    mapDispatchToProps,
+    mergeProps
 )(IntlJoinFlow);
 
 module.exports = ConnectedJoinFlow;
