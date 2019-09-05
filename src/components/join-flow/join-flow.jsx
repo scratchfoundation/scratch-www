@@ -18,9 +18,6 @@ const EmailStep = require('./email-step.jsx');
 const WelcomeStep = require('./welcome-step.jsx');
 const RegistrationErrorStep = require('./registration-error-step.jsx');
 
-/*
-eslint-disable react/prefer-stateless-function, react/no-unused-prop-types, no-useless-constructor
-*/
 class JoinFlow extends React.Component {
     constructor (props) {
         super(props);
@@ -174,6 +171,3 @@ const ConnectedJoinFlow = connect(
 )(IntlJoinFlow);
 
 module.exports = ConnectedJoinFlow;
-/*
-eslint-enable
-*/
