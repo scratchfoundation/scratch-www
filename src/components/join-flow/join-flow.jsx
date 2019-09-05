@@ -44,6 +44,17 @@ class JoinFlow extends React.Component {
         });
     }
     handleRegistrationResponse (err, body, res) {
+        // example of failing response:
+        // [
+        //   {
+        //     "msg": "This field is required.",
+        //     "errors": {
+        //       "username": ["This field is required."],
+        //       "recaptcha": ["Incorrect, please try again."]
+        //     },
+        //     "success": false
+        //   }
+        // ]
         this.setState({waiting: false}, () => {
             let errStr = '';
             if (!err && res.statusCode === 200) {
