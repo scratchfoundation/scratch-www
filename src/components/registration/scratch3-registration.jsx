@@ -23,17 +23,19 @@ const Registration = ({
 );
 
 Registration.propTypes = {
+    // used in mapDispatchToProps; eslint doesn't understand that this prop is used
+    createProjectOnComplete: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     handleCloseRegistration: PropTypes.func,
     handleCompleteRegistration: PropTypes.func,
     isOpen: PropTypes.bool
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, ownProps) => ({
     handleCloseRegistration: () => {
         dispatch(navigationActions.setRegistrationOpen(false));
     },
     handleCompleteRegistration: () => {
-        dispatch(navigationActions.handleCompleteRegistration());
+        dispatch(navigationActions.handleCompleteRegistration(ownProps.createProjectOnComplete));
     }
 });
 
