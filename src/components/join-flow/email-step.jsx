@@ -4,9 +4,9 @@ const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
 const {injectIntl, intlShape} = require('react-intl');
-const emailValidator = require('email-validator');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
+const validate = require('../../lib/validate');
 const JoinFlowStep = require('./join-flow-step.jsx');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
 const FormikCheckbox = require('../../components/formik-forms/formik-checkbox.jsx');
@@ -75,11 +75,16 @@ class EmailStep extends React.Component {
     }
     validateEmail (email) {
         if (!email) return this.props.intl.formatMessage({id: 'general.required'});
-        const isValidLocally = emailValidator.validate(email);
-        if (isValidLocally) {
-            return null; // TODO: validate email address remotely
-        }
-        return this.props.intl.formatMessage({id: 'registration.validationEmailInvalid'});
+        const localResult = validate.validateEmailLocally(email);
+        if (!localResult.valid) return this.props.intl.formatMessage({id: localResult.errMsgId});
+        return validate.validateEmailRemotely(email).then(
+            remoteResult => {
+                if (remoteResult.valid === true) {
+                    return null;
+                }
+                return this.props.intl.formatMessage({id: remoteResult.errMsgId});
+            }
+        );
     }
     validateForm () {
         return {};
@@ -119,6 +124,8 @@ class EmailStep extends React.Component {
                         handleSubmit,
                         isSubmitting,
                         setFieldError,
+                        setFieldTouched,
+                        setFieldValue,
                         validateField
                     } = props;
                     return (
@@ -161,7 +168,11 @@ class EmailStep extends React.Component {
                                 validationClassName="validation-full-width-input"
                                 /* eslint-disable react/jsx-no-bind */
                                 onBlur={() => validateField('email')}
-                                onFocus={() => setFieldError('email', null)}
+                                onChange={e => {
+                                    setFieldValue('email', e.target.value);
+                                    setFieldTouched('email');
+                                    setFieldError('email', null);
+                                }}
                                 /* eslint-enable react/jsx-no-bind */
                                 onSetRef={this.handleSetEmailRef}
                             />
