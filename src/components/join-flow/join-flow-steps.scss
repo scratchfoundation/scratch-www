@@ -132,6 +132,10 @@
     margin-left: -.5rem;
 }
 
+.join-flow-registration-error {
+    padding-top: 5.5rem;
+}
+
 .join-flow-gender-description {
     margin-top: .625rem;
     margin-bottom: 1.25rem;
@@ -179,4 +183,8 @@
 
 a.join-flow-link:link, a.join-flow-link:visited, a.join-flow-link:active {
     text-decoration: underline;
+}
+
+.yesNoCheckbox {
+    display: none;
 }

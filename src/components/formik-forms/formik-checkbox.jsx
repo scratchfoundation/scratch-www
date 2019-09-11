@@ -12,9 +12,10 @@ const FormikCheckboxSubComponent = ({
     id,
     label,
     labelClassName,
+    outerClassName,
     ...props
 }) => (
-    <div className="checkbox">
+    <div className={classNames('checkbox', outerClassName)}>
         <input
             checked={field.value}
             className="formik-checkbox"
@@ -50,7 +51,8 @@ FormikCheckboxSubComponent.propTypes = {
     }),
     id: PropTypes.string,
     label: PropTypes.string,
-    labelClassName: PropTypes.string
+    labelClassName: PropTypes.string,
+    outerClassName: PropTypes.string
 };
 
 
@@ -59,6 +61,7 @@ const FormikCheckbox = ({
     label,
     labelClassName,
     name,
+    outerClassName,
     ...props
 }) => (
     <Field
@@ -67,6 +70,7 @@ const FormikCheckbox = ({
         label={label}
         labelClassName={labelClassName}
         name={name}
+        outerClassName={outerClassName}
         {...props}
     />
 );
@@ -75,7 +79,8 @@ FormikCheckbox.propTypes = {
     id: PropTypes.string,
     label: PropTypes.string,
     labelClassName: PropTypes.string,
-    name: PropTypes.string
+    name: PropTypes.string,
+    outerClassName: PropTypes.string
 };
 
 module.exports = FormikCheckbox;

@@ -63,4 +63,52 @@ describe('unit test lib/validate.js', () => {
         response = validate.validatePasswordConfirm('', 'abcdefg');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordConfirmNotEquals'});
     });
+
+    test('validate email address locally', () => {
+        let response;
+        expect(typeof validate.validateEmailLocally).toBe('function');
+
+        // permitted addresses:
+        response = validate.validateEmailLocally('abc@def.com');
+        expect(response).toEqual({valid: true});
+        response = validate.validateEmailLocally('abcdefghijklmnopqrst@abcdefghijklmnopqrst.info');
+        expect(response).toEqual({valid: true});
+        response = validate.validateEmailLocally('abc-def-ghi@jkl-mno.org');
+        expect(response).toEqual({valid: true});
+        response = validate.validateEmailLocally('_______@example.com');
+        expect(response).toEqual({valid: true});
+        response = validate.validateEmailLocally('email@example.museum');
+        expect(response).toEqual({valid: true});
+        response = validate.validateEmailLocally('email@example.co.jp');
+        expect(response).toEqual({valid: true});
+
+        // non-permitted addresses:
+        response = validate.validateEmailLocally('');
+        expect(response).toEqual({valid: false, errMsgId: 'general.required'});
+        response = validate.validateEmailLocally('a');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+        response = validate.validateEmailLocally('abc@def');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+        response = validate.validateEmailLocally('abc@def.c');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+        response = validate.validateEmailLocally('abc😄def@emoji.pizza');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+        response = validate.validateEmailLocally('あいうえお@example.com');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+        response = validate.validateEmailLocally('Abc..123@example.com');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+        response = validate.validateEmailLocally('Joe Smith <email@example.com>');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+        response = validate.validateEmailLocally('email@example@example.com');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+        response = validate.validateEmailLocally('email@example..com');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+
+        // edge cases:
+        // these are strictly legal according to email addres spec, but rejected by library we use:
+        response = validate.validateEmailLocally('email@123.123.123.123');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+        response = validate.validateEmailLocally('much."more unusual"@example.com');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+    });
 });
