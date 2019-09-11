@@ -17,6 +17,16 @@ class ExtensionLanding extends React.Component {
                 detectedOS = OS_ENUM.MACOS;
             }
         }
+        // ChromeOS reports platform as Linux, Android devices are inconsistent
+        // need to use userAgent instead
+        if (window.navigator && window.navigator.userAgent) {
+            if (window.navigator.userAgent.indexOf('Android') > -1) {
+                detectedOS = OS_ENUM.ANDROID;
+            }
+            if (window.navigator.userAgent.indexOf('CrOS') > -1) {
+                detectedOS = OS_ENUM.CHROMEOS;
+            }
+        }
 
         this.state = {
             OS: detectedOS
