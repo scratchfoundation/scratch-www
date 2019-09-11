@@ -5,18 +5,13 @@ const React = require('react');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const bindAll = require('lodash.bindall');
-const Steps = require('../../components/steps/steps.jsx');
-const Step = require('../../components/steps/step.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 const OS_ENUM = require('../../components/extension-landing/os-enum.js');
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
-
-const INSTALL_ENUM = {
-    DOWNLOAD: 'download', // Windows and Mac App stores
-    GOOGLEPLAY: 'Google Play' // Play store for ChromeOS and Android
-};
+const InstallScratch = require('../../components/install-scratch/install-scratch.jsx');
+const {installType, INSTALL_ENUM} = require('../../components/install-scratch/install-util.js');
 
 require('./download.scss');
 require('../../components/forms/button.scss');
@@ -25,7 +20,6 @@ class Download extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'installType',
             'onSetOS'
         ]);
         let detectedOS = OS_ENUM.WINDOWS;
@@ -54,11 +48,6 @@ class Download extends React.Component {
         this.setState({
             OS: os
         });
-    }
-
-    installType () {
-        if (this.state.OS === OS_ENUM.ANDROID || this.state.OS === OS_ENUM.CHROMEOS) return INSTALL_ENUM.GOOGLEPLAY;
-        return INSTALL_ENUM.DOWNLOAD;
     }
 
     render () {
@@ -130,93 +119,8 @@ class Download extends React.Component {
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
                 />
-                <div className="blue install-scratch">
-                    <FlexRow className="inner column">
-                        <h2 className="title">
-                            {this.installType() === INSTALL_ENUM.DOWNLOAD && (
-                                <FormattedMessage id="download.installHeaderTitle" />
-                            )}
-                            {this.installType() === INSTALL_ENUM.GOOGLEPLAY && (
-                                <FormattedMessage id="download.installAppHeaderTitle" />
-                            )}
-                        </h2>
-                        <Steps>
-                            <div className="step">
-                                <Step
-                                    compact
-                                    number={1}
-                                >
-                                    <span className="step-description">
-                                        {this.installType() === INSTALL_ENUM.DOWNLOAD && (
-                                            <FormattedMessage id="download.downloadScratchDesktop" />
-                                        )}
-                                        {this.installType() === INSTALL_ENUM.GOOGLEPLAY && (
-                                            <FormattedMessage id="download.getScratchAppPlay" />
-                                        )}
-                                    </span>
-                                    <div className="downloads-container">
-                                        {this.state.OS === OS_ENUM.WINDOWS && (
-                                            <a
-                                                className="ms-badge"
-                                                href="https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge"
-                                            >
-                                                <img
-                                                    src="svgs/download/ms-badge.svg"
-                                                />
-                                            </a>
-                                        )}
-                                        {this.state.OS === OS_ENUM.MACOS && (
-                                            <a
-                                                className="macos-badge"
-                                                href="https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12"
-                                            >
-                                                <img
-                                                    src="svgs/download/mac-badge.svg"
-                                                />
-                                            </a>
-                                        )}
-                                        {this.installType() === INSTALL_ENUM.GOOGLEPLAY && (
-                                            <a
-                                                className="play-badge"
-                                                href="https://play.google.com/store/apps/details?id=org.scratch"
-                                            >
-                                                <img
-                                                    src="images/download/google-play-badge.png"
-                                                />
-                                            </a>
-
-                                        )}
-                                    </div>
-                                </Step>
-
-                            </div>
-                            {this.installType() === INSTALL_ENUM.DOWNLOAD && (
-                                <Step
-                                    compact
-                                    number={2}
-                                >
-                                    <span className="step-description">
-                                        {this.state.OS === OS_ENUM.WINDOWS ?
-                                            <FormattedMessage id="download.winMoveToApplications" /> :
-                                            <FormattedMessage id="download.macMoveToApplications" />
-                                        }
-                                    </span>
-
-                                    <div className="step-image">
-                                        <img
-                                            alt=""
-                                            className="screenshot"
-                                            src={`/images/download/${
-                                                this.state.OS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
-                                            }-install.png`}
-                                        />
-                                    </div>
-                                </Step>
-                            )}
-                        </Steps>
-                    </FlexRow>
-                </div>
-                {this.installType() === INSTALL_ENUM.DOWNLOAD && (
+                <InstallScratch currentOS={this.state.OS} />
+                {installType(this.state.OS) === INSTALL_ENUM.DOWNLOAD && (
                     <div className="download-section">
                         <FlexRow className="inner column">
                             <h2 className="title">
@@ -282,7 +186,7 @@ class Download extends React.Component {
                             <FormattedMessage id="download.troubleshootingTitle" />
                         </h2>
 
-                        {this.installType() === INSTALL_ENUM.DOWNLOAD && (
+                        {installType(this.state.OS) === INSTALL_ENUM.DOWNLOAD && (
                             <React.Fragment>
                                 <h3 className="faq-question">
                                     <FormattedMessage id="download.canIUseScratchLink" />
@@ -292,7 +196,7 @@ class Download extends React.Component {
                                 </p>
                             </React.Fragment>
                         )}
-                        {this.installType() === INSTALL_ENUM.GOOGLEPLAY && (
+                        {installType(this.state.OS) === INSTALL_ENUM.GOOGLEPLAY && (
                             <React.Fragment>
                                 <h3 className="faq-question">
                                     <FormattedMessage id="download.canIUseExtensions" />
@@ -303,12 +207,15 @@ class Download extends React.Component {
                             </React.Fragment>
                         )}
                         <h3 className="faq-question">
-                            <FormattedMessage id="download.desktopAndBrowser" />
+                            {installType(this.state.OS) === INSTALL_ENUM.GOOGLEPLAY ?
+                                <FormattedMessage id="download.appAndBrowser" /> :
+                                <FormattedMessage id="download.desktopAndBrowser" />
+                            }
                         </h3>
                         <p>
                             <FormattedMessage id="download.yesAnswer" />
                         </p>
-                        {this.installType() === INSTALL_ENUM.DOWNLOAD && (
+                        {installType(this.state.OS) === INSTALL_ENUM.DOWNLOAD && (
                             <React.Fragment>
                                 <h3 className="faq-question">
                                     <FormattedMessage id="download.canIShare" />
@@ -318,10 +225,13 @@ class Download extends React.Component {
                                 </p>
                             </React.Fragment>
                         )}
-                        {this.installType() === INSTALL_ENUM.GOOGLEPLAY && (
+                        {installType(this.state.OS) === INSTALL_ENUM.GOOGLEPLAY && (
                             <React.Fragment>
                                 <h3 className="faq-question">
-                                    <FormattedMessage id="download.canIShareApp" />
+                                    <FormattedMessage
+                                        id="download.canIShareApp"
+                                        values={{operatingsystem: this.state.OS}}
+                                    />
                                 </h3>
                                 <p>
                                     <FormattedMessage id="download.canIShareAppAnswer" />

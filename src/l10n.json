@@ -134,10 +134,15 @@
 
     "oschooser.choose": "Choose your OS:",
 
+    "installScratch.or": "or",
+    "installScratch.directDownload": "Direct download",
+    "installScratch.desktopHeaderTitle": "Install Scratch Desktop",
+    "installScratch.appHeaderTitle": "Install Scratch for {operatingsystem}",
+    "installScratch.downloadScratchDesktop": "Download Scratch Desktop",
+    "installScratch.getScratchAppPlay": "Get Scratch on the Google Play Store",
+
     "installScratchLink.installHeaderTitle": "Install Scratch Link",
     "installScratchLink.downloadAndInstall": "Download and install Scratch Link.",
-    "installScratchLink.or": "or",
-    "installScratchLink.directDownload": "Direct download",
     "installScratchLink.startScratchLink": "Start Scratch Link and make sure it is running. It should appear in your toolbar.",
 
     "parents.FaqAgeRangeA": "While Scratch is primarily designed for 8 to 16 year olds, it is also used by people of all ages, including younger children with their parents.",
