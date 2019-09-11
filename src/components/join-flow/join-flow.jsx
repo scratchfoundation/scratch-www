@@ -103,7 +103,7 @@ class JoinFlow extends React.Component {
                     'password': formData.password,
                     'birth_month': formData.birth_month,
                     'birth_year': formData.birth_year,
-                    'g-recaptcha-response': null,
+                    'g-recaptcha-response': formData['g-recaptcha-response'],
                     'gender': formData.gender,
                     'country': formData.country,
                     'subscribe': true,
