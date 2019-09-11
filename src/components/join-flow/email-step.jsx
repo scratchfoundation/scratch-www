@@ -151,7 +151,7 @@ class EmailStep extends React.Component {
                             innerClassName="join-flow-inner-email-step"
                             nextButton={this.props.intl.formatMessage({id: 'registration.createAccount'})}
                             title={this.props.intl.formatMessage({id: 'registration.emailStepTitle'})}
-                            waiting={isSubmitting || this.state.captchaIsLoading}
+                            waiting={this.props.waiting || isSubmitting || this.state.captchaIsLoading}
                             onSubmit={handleSubmit}
                         >
                             <FormikInput
@@ -200,7 +200,8 @@ class EmailStep extends React.Component {
 
 EmailStep.propTypes = {
     intl: intlShape,
-    onNextStep: PropTypes.func
+    onNextStep: PropTypes.func,
+    waiting: PropTypes.bool
 };
 
 
