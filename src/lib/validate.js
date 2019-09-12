@@ -1,5 +1,6 @@
 module.exports = {};
 const api = require('./api');
+const emailValidator = require('email-validator');
 
 module.exports.validateUsernameLocally = username => {
     if (!username || username === '') {
@@ -67,3 +68,36 @@ module.exports.validatePasswordConfirm = (password, passwordConfirm) => {
     }
     return {valid: true};
 };
+
+module.exports.validateEmailLocally = email => {
+    if (!email || email === '') {
+        return {valid: false, errMsgId: 'general.required'};
+    } else if (emailValidator.validate(email)) {
+        return {valid: true};
+    }
+    return ({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+};
+
+module.exports.validateEmailRemotely = email => (
+    new Promise(resolve => {
+        api({
+            host: '', // not handled by API; use existing infrastructure
+            params: {email: email},
+            uri: '/accounts/check_email/'
+        }, (err, body, res) => {
+            if (err || res.statusCode !== 200 || !body || body.length < 1 || !body[0].msg) {
+                resolve({valid: false, errMsgId: 'general.apiError'});
+            }
+            switch (body[0].msg) {
+            case 'valid email':
+                resolve({valid: true});
+                break;
+            case 'Scratch is not allowed to send email to this address.': // e.g., bad TLD or block-listed
+            case 'Enter a valid email address.':
+            default:
+                resolve({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+                break;
+            }
+        });
+    })
+);
