@@ -96,6 +96,7 @@ module.exports.handleCompleteRegistration = createProject => (dispatch => {
     if (createProject) {
         window.location = '/projects/editor/?tutorial=getStarted';
     } else {
+        dispatch(sessionActions.refreshSession());
         dispatch(module.exports.setRegistrationOpen(false));
     }
 });
