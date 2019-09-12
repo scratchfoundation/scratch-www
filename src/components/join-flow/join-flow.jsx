@@ -137,9 +137,9 @@ class JoinFlow extends React.Component {
                 ) : (
                     <Progression step={this.state.step}>
                         <UsernameStep onNextStep={this.handleAdvanceStep} />
+                        <CountryStep onNextStep={this.handleAdvanceStep} />
                         <BirthDateStep onNextStep={this.handleAdvanceStep} />
                         <GenderStep onNextStep={this.handleAdvanceStep} />
-                        <CountryStep onNextStep={this.handleAdvanceStep} />
                         <EmailStep
                             waiting={this.state.waiting}
                             onNextStep={this.handlePrepareToRegister}
