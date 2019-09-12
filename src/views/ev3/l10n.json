@@ -4,6 +4,7 @@
     "ev3.connectingEV3": "Connecting EV3 to Scratch",
     "ev3.turnOnEV3": "Turn on your EV3 by holding down the center button.",
     "ev3.useScratch3": "Use the {scratch3Link} editor.",
+    "ev3.useScratch3app": "Open the Scratch app on your device.",
     "ev3.addExtension": "Add the EV3 extension.",
     "ev3.firstTimeConnecting": "First time connecting your EV3?",
     "ev3.pairingDescription": "After clicking the connect button in Scratch, you will need to pair it with your computer:",

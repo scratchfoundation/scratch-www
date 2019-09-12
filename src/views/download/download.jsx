@@ -8,10 +8,10 @@ const bindAll = require('lodash.bindall');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
-const OS_ENUM = require('../../components/extension-landing/os-enum.js');
+const detectOS = require('../../lib/detect-os.js').default;
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 const InstallScratch = require('../../components/install-scratch/install-scratch.jsx');
-const {installType, INSTALL_ENUM} = require('../../components/install-scratch/install-util.js');
+const {isDownloaded, isFromGooglePlay} = require('../../components/install-scratch/install-util.js');
 
 require('./download.scss');
 require('../../components/forms/button.scss');
@@ -22,25 +22,9 @@ class Download extends React.Component {
         bindAll(this, [
             'onSetOS'
         ]);
-        let detectedOS = OS_ENUM.WINDOWS;
-        if (window.navigator && window.navigator.platform) {
-            if (window.navigator.platform === 'MacIntel') {
-                detectedOS = OS_ENUM.MACOS;
-            }
-        }
-        // ChromeOS reports platform as Linux, Android devices are inconsistent
-        // need to use userAgent instead
-        if (window.navigator && window.navigator.userAgent) {
-            if (window.navigator.userAgent.indexOf('Android') > -1) {
-                detectedOS = OS_ENUM.ANDROID;
-            }
-            if (window.navigator.userAgent.indexOf('CrOS') > -1) {
-                detectedOS = OS_ENUM.CHROMEOS;
-            }
-        }
 
         this.state = {
-            OS: detectedOS
+            OS: detectOS()
         };
     }
 
@@ -95,7 +79,7 @@ class Download extends React.Component {
                                             alt=""
                                             src="svgs/extensions/chromeos.svg"
                                         />
-                                                ChromeOs
+                                                ChromeOS
                                     </span>
                                     <span>
                                         <img
@@ -120,7 +104,7 @@ class Download extends React.Component {
                     handleSetOS={this.onSetOS}
                 />
                 <InstallScratch currentOS={this.state.OS} />
-                {installType(this.state.OS) === INSTALL_ENUM.DOWNLOAD && (
+                {isDownloaded(this.state.OS) && (
                     <div className="download-section">
                         <FlexRow className="inner column">
                             <h2 className="title">
@@ -186,7 +170,7 @@ class Download extends React.Component {
                             <FormattedMessage id="download.troubleshootingTitle" />
                         </h2>
 
-                        {installType(this.state.OS) === INSTALL_ENUM.DOWNLOAD && (
+                        {isDownloaded(this.state.OS) && (
                             <React.Fragment>
                                 <h3 className="faq-question">
                                     <FormattedMessage id="download.canIUseScratchLink" />
@@ -196,7 +180,7 @@ class Download extends React.Component {
                                 </p>
                             </React.Fragment>
                         )}
-                        {installType(this.state.OS) === INSTALL_ENUM.GOOGLEPLAY && (
+                        {isFromGooglePlay(this.state.OS) && (
                             <React.Fragment>
                                 <h3 className="faq-question">
                                     <FormattedMessage id="download.canIUseExtensions" />
@@ -207,7 +191,7 @@ class Download extends React.Component {
                             </React.Fragment>
                         )}
                         <h3 className="faq-question">
-                            {installType(this.state.OS) === INSTALL_ENUM.GOOGLEPLAY ?
+                            {isFromGooglePlay(this.state.OS) ?
                                 <FormattedMessage id="download.appAndBrowser" /> :
                                 <FormattedMessage id="download.desktopAndBrowser" />
                             }
@@ -215,7 +199,7 @@ class Download extends React.Component {
                         <p>
                             <FormattedMessage id="download.yesAnswer" />
                         </p>
-                        {installType(this.state.OS) === INSTALL_ENUM.DOWNLOAD && (
+                        {isDownloaded(this.state.OS) && (
                             <React.Fragment>
                                 <h3 className="faq-question">
                                     <FormattedMessage id="download.canIShare" />
@@ -225,7 +209,7 @@ class Download extends React.Component {
                                 </p>
                             </React.Fragment>
                         )}
-                        {installType(this.state.OS) === INSTALL_ENUM.GOOGLEPLAY && (
+                        {isFromGooglePlay(this.state.OS) && (
                             <React.Fragment>
                                 <h3 className="faq-question">
                                     <FormattedMessage

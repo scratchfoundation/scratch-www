@@ -22,7 +22,7 @@ const Button = require('../../components/forms/button.jsx');
 const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');
 
-const OS_ENUM = require('../../components/extension-landing/os-enum.js');
+const OS_ENUM = require('../../lib/os-enum.js');
 
 require('../../components/extension-landing/extension-landing.scss');
 require('./microbit.scss');

@@ -2,7 +2,7 @@ const PropTypes = require('prop-types');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
-const OS_ENUM = require('./os-enum.js');
+const OS_ENUM = require('../../lib/os-enum.js');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');

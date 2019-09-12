@@ -24,8 +24,8 @@ const ProjectCard = require('../../components/extension-landing/project-card.jsx
 const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');
 
-const OS_ENUM = require('../../components/extension-landing/os-enum.js');
-const {installType, INSTALL_ENUM} = require('../../components/install-scratch/install-util.js');
+const OS_ENUM = require('../../lib/os-enum.js');
+const {isDownloaded, isFromGooglePlay} = require('../../components/install-scratch/install-util.js');
 
 require('../../components/extension-landing/extension-landing.scss');
 require('./ev3.scss');
@@ -82,7 +82,7 @@ class EV3 extends ExtensionLanding {
                                     alt=""
                                     src="svgs/extensions/chromeos.svg"
                                 />
-                                        ChromeOs
+                                        ChromeOS
                             </span>
                             <span>
                                 <img
@@ -109,12 +109,12 @@ class EV3 extends ExtensionLanding {
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
                 />
-                {(installType(this.state.OS) === INSTALL_ENUM.DOWNLOAD) && (
+                {(isDownloaded(this.state.OS)) && (
                     <InstallScratchLink
                         currentOS={this.state.OS}
                     />
                 )}
-                {(installType(this.state.OS) === INSTALL_ENUM.GOOGLEPLAY) && (
+                {(isFromGooglePlay(this.state.OS)) && (
                     <InstallScratch
                         currentOS={this.state.OS}
                     />
@@ -142,20 +142,25 @@ class EV3 extends ExtensionLanding {
                                     />
                                 </div>
                                 <p>
-                                    <FormattedMessage
-                                        id="ev3.useScratch3"
-                                        values={{
-                                            scratch3Link: (
-                                                <a
-                                                    href="/projects/editor/?tutorial=ev3"
-                                                    rel="noopener noreferrer"
-                                                    target="_blank"
-                                                >
-                                                            Scratch
-                                                </a>
-                                            )
-                                        }}
-                                    />
+                                    {(isDownloaded(this.state.OS)) && (
+                                        <FormattedMessage
+                                            id="ev3.useScratch3"
+                                            values={{
+                                                scratch3Link: (
+                                                    <a
+                                                        href="/projects/editor/?tutorial=ev3"
+                                                        rel="noopener noreferrer"
+                                                        target="_blank"
+                                                    >
+                                                                Scratch
+                                                    </a>
+                                                )
+                                            }}
+                                        />
+                                    )}
+                                    {(isFromGooglePlay(this.state.OS)) && (
+                                        <FormattedMessage id="ev3.useScratch3app" />
+                                    )}
                                 </p>
                             </Step>
                             <Step number={3}>
@@ -316,7 +321,7 @@ class EV3 extends ExtensionLanding {
                 </ExtensionSection>
                 <ExtensionSection className="faq">
                     <h2><FormattedMessage id="ev3.troubleshootingTitle" /></h2>
-                    {installType(this.state.OS) === INSTALL_ENUM.DOWNLOAD && (
+                    {isDownloaded(this.state.OS) && (
                         <React.Fragment>
                             <h3 className="faq-title"><FormattedMessage id="ev3.checkOSVersionTitle" /></h3>
                             <p>

@@ -2,8 +2,8 @@ const PropTypes = require('prop-types');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
-const OS_ENUM = require('../../components/extension-landing/os-enum.js');
-const {INSTALL_ENUM, installType} = require('./install-util.js');
+const OS_ENUM = require('../../lib/os-enum.js');
+const {isDownloaded, isFromGooglePlay} = require('./install-util.js');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Steps = require('../../components/steps/steps.jsx');
@@ -17,10 +17,10 @@ const InstallScratch = ({
     <div className="blue install-scratch">
         <FlexRow className="inner column">
             <h2 className="title">
-                {installType(currentOS) === INSTALL_ENUM.DOWNLOAD && (
+                {isDownloaded(currentOS) && (
                     <FormattedMessage id="installScratch.desktopHeaderTitle" />
                 )}
-                {installType(currentOS) === INSTALL_ENUM.GOOGLEPLAY && (
+                {isFromGooglePlay(currentOS) && (
                     <FormattedMessage
                         id="installScratch.appHeaderTitle"
                         values={{operatingsystem: currentOS}}
@@ -34,10 +34,10 @@ const InstallScratch = ({
                         number={1}
                     >
                         <span className="step-description">
-                            {installType(currentOS) === INSTALL_ENUM.DOWNLOAD && (
+                            {isDownloaded(currentOS) && (
                                 <FormattedMessage id="installScratch.downloadScratchDesktop" />
                             )}
-                            {installType(currentOS) === INSTALL_ENUM.GOOGLEPLAY && (
+                            {isFromGooglePlay(currentOS) && (
                                 <FormattedMessage id="installScratch.getScratchAppPlay" />
                             )}
                         </span>
@@ -62,7 +62,7 @@ const InstallScratch = ({
                                     />
                                 </a>
                             )}
-                            {installType(currentOS) === INSTALL_ENUM.GOOGLEPLAY && (
+                            {isFromGooglePlay(currentOS) && (
                                 <a
                                     className="play-badge"
                                     href="https://play.google.com/store/apps/details?id=org.scratch"
@@ -73,7 +73,7 @@ const InstallScratch = ({
                                 </a>
 
                             )}
-                            {installType(currentOS) === INSTALL_ENUM.DOWNLOAD && (
+                            {isDownloaded(currentOS) && (
                                 <React.Fragment>
                                     <span className="horizontal-divider">
                                         <FormattedMessage id="installScratch.or" />
@@ -94,7 +94,7 @@ const InstallScratch = ({
                     </Step>
 
                 </div>
-                {installType(currentOS) === INSTALL_ENUM.DOWNLOAD && (
+                {isDownloaded(currentOS) && (
                     <Step
                         compact
                         number={2}

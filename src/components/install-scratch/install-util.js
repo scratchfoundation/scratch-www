@@ -1,15 +1,13 @@
-const OS_ENUM = require('../../components/extension-landing/os-enum.js');
+const OS_ENUM = require('../../lib/os-enum.js');
 
 module.exports = {};
 
-const INSTALL_ENUM = {
-    DOWNLOAD: 'download', // Windows and Mac App stores
-    GOOGLEPLAY: 'Google Play' // Play store for ChromeOS and Android
+module.exports.isDownloaded = os => {
+    if (os === OS_ENUM.WINDOWS || os === OS_ENUM.MACOS) return true;
+    return false;
 };
 
-module.exports.installType = os => {
-    if (os === OS_ENUM.ANDROID || os === OS_ENUM.CHROMEOS) return INSTALL_ENUM.GOOGLEPLAY;
-    return INSTALL_ENUM.DOWNLOAD;
+module.exports.isFromGooglePlay = os => {
+    if (os === OS_ENUM.ANDROID || os === OS_ENUM.CHROMEOS) return true;
+    return false;
 };
-
-module.exports.INSTALL_ENUM = INSTALL_ENUM;

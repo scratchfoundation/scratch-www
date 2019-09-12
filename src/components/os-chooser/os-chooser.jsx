@@ -8,7 +8,7 @@ const React = require('react');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Button = require('../../components/forms/button.jsx');
 
-const OS_ENUM = require('../../components/extension-landing/os-enum.js');
+const OS_ENUM = require('../../lib/os-enum.js');
 
 require('./os-chooser.scss');
 
