@@ -81,8 +81,8 @@ const InstallScratch = ({
                                     <a
                                         href={
                                             currentOS === OS_ENUM.WINDOWS ?
-                                                'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop%20Setup%203.5.0.exe' :
-                                                'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop-3.5.0.dmg'
+                                                'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop%20Setup%203.6.0.exe' :
+                                                'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop-3.6.0.dmg'
                                         }
 
                                     >

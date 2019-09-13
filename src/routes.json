@@ -162,6 +162,13 @@
         "title": "Community Moderator"
     },
     {
+        "name": "join",
+        "pattern": "^/join/?$",
+        "routeAlias": "/join/?$",
+        "view": "join/join",
+        "title": "Join Scratch"
+    },
+    {
         "name": "messages",
         "pattern": "^/messages/?$",
         "routeAlias": "/messages(?!/ajax)",
