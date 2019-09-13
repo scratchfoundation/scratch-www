@@ -1,3 +1,6 @@
 {
-    "cards.microbit-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/microbit-cards.pdf"
+    "cards.microbit-cardsLink": "https://resources.scratch.mit.edu/www/cards/en/microbit-cards.pdf",
+    "projects.microbit-fishLink": "https://resources.scratch.mit.edu/www/projects/en/microbit-fish.sb3",
+    "projects.microbit-guitarLink": "https://resources.scratch.mit.edu/www/projects/en/microbit-guitar.sb3",
+    "projects.microbit-heartbeatLink": "https://resources.scratch.mit.edu/www/projects/en/microbit-heartbeat.sb3"
 }

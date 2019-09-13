@@ -10,12 +10,14 @@ const render = require('../../lib/render.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
+const {isDownloaded, isFromGooglePlay} = require('../../components/install-scratch/install-util.js');
 
 const ExtensionLanding = require('../../components/extension-landing/extension-landing.jsx');
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
+const InstallScratch = require('../../components/install-scratch/install-scratch.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
 const Button = require('../../components/forms/button.jsx');
 
@@ -77,6 +79,20 @@ class MicroBit extends ExtensionLanding {
                             <span>
                                 <img
                                     alt=""
+                                    src="svgs/extensions/chromeos.svg"
+                                />
+                                        ChromeOS
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
+                                    src="svgs/extensions/android.svg"
+                                />
+                                        Android 5.0+
+                            </span>
+                            <span>
+                                <img
+                                    alt=""
                                     src="/svgs/extensions/bluetooth.svg"
                                 />
                                             Bluetooth 4.0
@@ -95,54 +111,89 @@ class MicroBit extends ExtensionLanding {
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
                 />
-                <InstallScratchLink
-                    currentOS={this.state.OS}
-                />
+                {(isDownloaded(this.state.OS)) && (
+                    <InstallScratchLink
+                        currentOS={this.state.OS}
+                    />
+                )}
+                {(isFromGooglePlay(this.state.OS)) && (
+                    <InstallScratch
+                        currentOS={this.state.OS}
+                    />
+                )}
                 <ExtensionSection className="getting-started">
                     <h2><FormattedMessage id="microbit.gettingStarted" /></h2>
                     <FlexRow className="column getting-started-section">
                         <h3><FormattedMessage id="microbit.installMicrobitHex" /></h3>
-                        <Steps>
-                            <Step number={1}>
-                                <div className="step-image">
-                                    <img
-                                        alt=""
-                                        src="/images/microbit/mbit-usb.png"
-                                    />
-                                </div>
-                                <p>
-                                    <FormattedMessage id="microbit.connectUSB" />
-                                </p>
-                            </Step>
-                            <Step number={2}>
-                                <div className="step-image">
-                                    <img
-                                        alt=""
-                                        src="/images/microbit/mbit-hex-download.png"
-                                    />
-                                </div>
-                                <a
-                                    download
-                                    className="download"
-                                    href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.1.0.hex.zip"
-                                >
-                                    <FormattedMessage id="microbit.downloadHex" />
-                                </a>
-                            </Step>
-                            <Step number={3}>
-                                <div className="step-image">
-                                    <img
-                                        alt={this.props.intl.formatMessage({id: 'microbit.imgAltDragDropHex'})}
-                                        src={`/images/microbit/${
-                                            this.state.OS === OS_ENUM.WINDOWS ? 'win' : 'mac'
-                                        }-copy-hex.png`}
-                                    />
-                                </div>
-                                <p>
-                                    <FormattedMessage id="microbit.dragDropHex" />
-                                </p>
-                            </Step>
-                        </Steps>
+                        {this.state.OS !== OS_ENUM.ANDROID && (
+                            <Steps>
+                                <Step number={1}>
+                                    <div className="step-image">
+                                        <img
+                                            alt=""
+                                            src="/images/microbit/mbit-usb.png"
+                                        />
+                                    </div>
+                                    <p>
+                                        <FormattedMessage id="microbit.connectUSB" />
+                                    </p>
+                                </Step>
+                                <Step number={2}>
+                                    <div className="step-image">
+                                        <img
+                                            alt=""
+                                            src="/images/microbit/mbit-hex-download.png"
+                                        />
+                                    </div>
+                                    <a
+                                        download
+                                        className="download"
+                                        href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.1.0.hex.zip"
+                                    >
+                                        <FormattedMessage id="microbit.downloadHex" />
+                                    </a>
+                                </Step>
+                                <Step number={3}>
+                                    {this.state.OS === OS_ENUM.WINDOWS && (
+                                        <div className="step-image">
+                                            <img
+                                                alt={this.props.intl.formatMessage({id: 'microbit.imgAltDragDropHex'})}
+                                                src="/images/microbit/win-copy-hex.png"
+                                            />
+                                        </div>
+                                    )}
+                                    {this.state.OS === OS_ENUM.MACOS && (
+                                        <div className="step-image">
+                                            <img
+                                                alt={this.props.intl.formatMessage({id: 'microbit.imgAltDragDropHex'})}
+                                                src="/images/microbit/mac-copy-hex.png"
+                                            />
+                                        </div>
+                                    )}
+                                    {this.state.OS === OS_ENUM.CHROMEOS && (
+                                        <div className="step-image">
+                                            <img
+                                                alt={this.props.intl.formatMessage({id: 'microbit.imgAltDragDropHex'})}
+                                                src="/images/microbit/chromeos-copy-hex.png"
+                                            />
+                                        </div>
+                                    )}
+                                    <p>
+                                        <FormattedMessage id="microbit.dragDropHex" />
+                                    </p>
+                                </Step>
+                            </Steps>
+                        )}
+                        {this.state.OS === OS_ENUM.ANDROID && (
+                            <Steps>
+                                <Step>
+                                    <p>
+                                        <FormattedMessage id="microbit.installHexAndroid" />
+                                    </p>
+                                </Step>
+                            </Steps>
+                        )}
+
                     </FlexRow>
                     <hr />
                     <FlexRow className="column getting-started-section">
@@ -252,6 +303,7 @@ class MicroBit extends ExtensionLanding {
                             description={this.props.intl.formatMessage({id: 'microbit.heartBeatDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltHeartBeat'})}
                             imageSrc="/images/microbit/starter-heart.png"
+                            projectURL={this.props.intl.formatMessage({id: 'projects.microbit-heartbeatLink'})}
                             title={this.props.intl.formatMessage({id: 'microbit.heartBeat'})}
                         />
                         <ProjectCard
@@ -259,6 +311,7 @@ class MicroBit extends ExtensionLanding {
                             description={this.props.intl.formatMessage({id: 'microbit.tiltGuitarDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltTiltGuitar'})}
                             imageSrc="/images/microbit/starter-guitar.png"
+                            projectURL={this.props.intl.formatMessage({id: 'projects.microbit-guitarLink'})}
                             title={this.props.intl.formatMessage({id: 'microbit.tiltGuitar'})}
                         />
                         <ProjectCard
@@ -266,6 +319,7 @@ class MicroBit extends ExtensionLanding {
                             description={this.props.intl.formatMessage({id: 'microbit.oceanAdventureDescription'})}
                             imageAlt={this.props.intl.formatMessage({id: 'microbit.imgAltOceanAdventure'})}
                             imageSrc="/images/microbit/starter-fish.png"
+                            projectURL={this.props.intl.formatMessage({id: 'projects.microbit-fishLink'})}
                             title={this.props.intl.formatMessage({id: 'microbit.oceanAdventure'})}
                         />
                     </Steps>

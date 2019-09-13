@@ -256,6 +256,23 @@
         }
     }
 
+    .project-card-download-button {
+        margin: .5em auto;
+        border: 0;
+        border-radius: 8px;
+        background-color: $ui-blue;
+        cursor: pointer;
+        padding: 1rem 2rem;
+        color: $ui-white;
+        font-size: 1rem;
+        width: 50%;
+        text-align: center;
+
+        a {
+            color: $ui-white;
+        }
+    }
+
     div.cards + div.faq {
         padding-top: 2rem;
     }
