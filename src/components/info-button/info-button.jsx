@@ -26,7 +26,7 @@ class InfoButton extends React.Component {
     }
     render () {
         const messageJsx = this.state.visible && (
-            <div className="info-button-message">
+            <div className="info-button-message validation-info">
                 {this.props.message}
             </div>
         );
