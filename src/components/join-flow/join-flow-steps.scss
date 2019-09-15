@@ -126,7 +126,9 @@
 }
 
 .join-flow-inner-email-step {
-    padding-top: 3rem;
+    padding-top: 1.25rem;
+    padding-bottom: 0;
+    min-height: 16.625rem;
 }
 
 .join-flow-inner-welcome-step {
@@ -203,7 +205,7 @@
 
 .join-flow-email-checkbox-row {
     font-size: .75rem;
-    margin: .25rem .125rem;
+    margin: 1.5rem .125rem .25rem;
 }
 
 a.join-flow-link:link, a.join-flow-link:visited, a.join-flow-link:active {

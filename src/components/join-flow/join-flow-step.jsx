@@ -60,15 +60,17 @@ const JoinFlowStep = ({
                     {children}
                 </ModalInnerContent>
             </div>
-            {footerContent && (
-                <div className="join-flow-footer-message">
-                    {footerContent}
-                </div>
-            )}
-            <NextStepButton
-                content={nextButton}
-                waiting={waiting}
-            />
+            <div>
+                {footerContent && (
+                    <div className="join-flow-footer-message">
+                        {footerContent}
+                    </div>
+                )}
+                <NextStepButton
+                    content={nextButton}
+                    waiting={waiting}
+                />
+            </div>
         </div>
     </form>
 );
