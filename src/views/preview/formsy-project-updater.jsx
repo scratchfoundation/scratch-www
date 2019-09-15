@@ -20,7 +20,13 @@ class FormsyProjectUpdater extends React.Component {
             error: false
         };
     }
-    componentDidUpdate () {
+    componentDidUpdate (prevProps) {
+        // listen for changes to initialValue; incoming changes override state.value
+        // NOTE: the problem is that on a slow connection, it can override your typing!!!!!!
+        if (this.props.initialValue != prevProps.initialValue &&
+            this.props.initialValue != this.state.value) {
+            this.setState({value: this.props.initialValue});
+        }
         if (this.state.error !== false) {
             const errorMessageId = this.state.error === 400 ?
                 'project.inappropriateUpdate' : 'general.notAvailableHeadline';
