@@ -18,6 +18,7 @@ const JoinFlowStep = ({
     nextButton,
     onSubmit,
     title,
+    titleClassName,
     waiting
 }) => (
     <form onSubmit={onSubmit}>
@@ -39,7 +40,10 @@ const JoinFlowStep = ({
                 >
                     {title && (
                         <ModalTitle
-                            className="join-flow-title"
+                            className={classNames(
+                                'join-flow-title',
+                                titleClassName
+                            )}
                             title={title}
                         />
                     )}
@@ -79,6 +83,7 @@ JoinFlowStep.propTypes = {
     nextButton: PropTypes.node,
     onSubmit: PropTypes.func,
     title: PropTypes.string,
+    titleClassName: PropTypes.string,
     waiting: PropTypes.bool
 };
 

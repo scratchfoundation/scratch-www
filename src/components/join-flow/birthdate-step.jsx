@@ -91,6 +91,7 @@ class BirthDateStep extends React.Component {
                             headerImgSrc="/images/join-flow/birthdate-header.png"
                             innerClassName="join-flow-inner-birthdate-step"
                             title={this.props.intl.formatMessage({id: 'registration.birthDateStepTitle'})}
+                            titleClassName="join-flow-birthdate-title"
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
                         >

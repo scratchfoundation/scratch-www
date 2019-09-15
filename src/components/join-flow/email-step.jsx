@@ -151,6 +151,7 @@ class EmailStep extends React.Component {
                             innerClassName="join-flow-inner-email-step"
                             nextButton={this.props.intl.formatMessage({id: 'registration.createAccount'})}
                             title={this.props.intl.formatMessage({id: 'registration.emailStepTitle'})}
+                            titleClassName="join-flow-email-title"
                             waiting={this.props.waiting || isSubmitting || this.state.captchaIsLoading}
                             onSubmit={handleSubmit}
                         >

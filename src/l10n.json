@@ -154,7 +154,6 @@
     "registration.choosePasswordStepTitle": "Create a password",
     "registration.choosePasswordStepTooltip": "Don't use your name or anything that's easy for someone else to guess.",
     "registration.classroomApiGeneralError": "Sorry, we could not find the registration information for this class",
-    "registration.countryStepDescription": "We’ll display your country on your profile.",
     "registration.countryStepTitle": "What country do you live in?",
     "registration.generalError": "Sorry, an unexpected error occurred.",
     "registration.classroomInviteExistingStudentStepDescription": "you have been invited to join the class:",
