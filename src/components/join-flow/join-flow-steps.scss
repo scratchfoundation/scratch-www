@@ -66,11 +66,12 @@
 
 .select .join-flow-select {
     height: 3.5rem;
+    margin-bottom: 0; // override default for select
+    padding-right: 3.25rem;
     background-color: white;
     border-color: $box-shadow-light-gray;
     font-size: 1rem;
     font-weight: 500;
-    padding-right: 3.25rem;
 }
 
 .select .join-flow-select-month {
@@ -152,8 +153,6 @@
     margin-bottom: 1.25rem;
 }
 
-.join-flow-country-description {
-    margin-top: 1rem;
 .join-flow-gender-privacy {
     margin-top: .5rem;
 }

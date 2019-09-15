@@ -131,7 +131,6 @@ class EmailStep extends React.Component {
                     } = props;
                     return (
                         <JoinFlowStep
-                            description={this.props.intl.formatMessage({id: 'registration.emailStepDescription'})}
                             footerContent={(
                                 <FormattedMessage
                                     id="registration.acceptTermsOfUse"
