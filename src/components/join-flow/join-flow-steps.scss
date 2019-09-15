@@ -96,6 +96,13 @@
     margin: 0 auto;
 }
 
+.join-flow-privacy-message {
+    margin: 1rem auto;
+    font-size: .75rem;
+    font-weight: 500;
+    color: $type-gray-60percent;
+}
+
 .join-flow-inner-username-step {
     padding-top: 2.75rem;
 }
@@ -132,6 +139,10 @@
     margin-left: -.5rem;
 }
 
+.join-flow-email-privacy {
+    margin-top: 0;
+}
+
 .join-flow-registration-error {
     padding-top: 5.5rem;
 }
@@ -143,6 +154,10 @@
 
 .join-flow-country-description {
     margin-top: 1rem;
+.join-flow-gender-privacy {
+    margin-top: .5rem;
+}
+
 }
 
 .gender-radio-row {

@@ -4,9 +4,11 @@ const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
 const {injectIntl, intlShape} = require('react-intl');
+const FormattedMessage = require('react-intl').FormattedMessage;
 
 const FormikRadioButton = require('../../components/formik-forms/formik-radio-button.jsx');
 const JoinFlowStep = require('./join-flow-step.jsx');
+const InfoButton = require('../info-button/info-button.jsx');
 
 require('./join-flow-steps.scss');
 
@@ -91,7 +93,6 @@ class GenderStep extends React.Component {
                         <JoinFlowStep
                             description={this.props.intl.formatMessage({id: 'registration.genderStepDescription'})}
                             descriptionClassName="join-flow-gender-description"
-                            infoMessage={this.props.intl.formatMessage({id: 'registration.genderStepInfo'})}
                             innerClassName="join-flow-inner-gender-step"
                             title={this.props.intl.formatMessage({id: 'registration.genderStepTitle'})}
                             waiting={isSubmitting}
@@ -157,6 +158,12 @@ class GenderStep extends React.Component {
                                 value="Prefer not to say"
                                 onSetFieldValue={setFieldValue}
                             />
+                            <div className="join-flow-privacy-message join-flow-gender-privacy">
+                                <FormattedMessage id="registration.private" />
+                                <InfoButton
+                                    message={this.props.intl.formatMessage({id: 'registration.genderStepInfo'})}
+                                />
+                            </div>
                         </JoinFlowStep>
                     );
                 }}
