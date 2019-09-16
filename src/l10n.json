@@ -169,7 +169,7 @@
     "registration.genderOptionAnother": "Another gender:",
     "registration.genderOptionPreferNotToSay": "Prefer not to say",
     "registration.emailStepTitle": "What's your email?",
-    "registration.emailStepInfo": "NEED EMAIL STEP HERE",
+    "registration.emailStepInfo": "This will help if you forget your password, or if you want updates in your inbox. This information will not be made public on your account.",
     "registration.goToClass": "Go to Class",
     "registration.invitedBy": "invited by",
     "registration.lastStepTitle": "Thank you for requesting a Scratch Teacher Account",
