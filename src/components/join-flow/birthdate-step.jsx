@@ -133,7 +133,7 @@ class BirthDateStep extends React.Component {
                                     validationClassName="validation-birthdate-year"
                                 />
                             </div>
-                            <div className="join-flow-privacy-message join-flow-birthdate-privacy">
+                            <div className="join-flow-privacy-message">
                                 <FormattedMessage id="registration.private" />
                                 <InfoButton
                                     message={this.props.intl.formatMessage({id: 'registration.birthDateStepInfo'})}
