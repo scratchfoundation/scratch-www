@@ -26,6 +26,7 @@
     margin-left: $arrow-border-width;
     border: 1px solid $active-gray;
     border-radius: 5px;
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, .15);
     padding: .75rem;
     overflow: visible;
     background-color: $ui-blue;
@@ -33,6 +34,7 @@
     line-height: 1.25rem;
     text-align: left;
     font-size: .875rem;
+    font-weight: 500;
     z-index: 2;
 
     &:before {
