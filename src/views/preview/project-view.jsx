@@ -160,7 +160,7 @@ class Preview extends React.Component {
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             if (typeof this.props.projectInfo.id === 'undefined') {
                 this.initCounts(0, 0);
-            } else {
+            } else if (!this.props.isEmbed) { // skip fetching comments, etc. for embeds
                 const token = this.props.user ? this.props.user.token : null;
                 this.initCounts(this.props.projectInfo.stats.favorites, this.props.projectInfo.stats.loves);
                 this.props.getProjectStudios(this.props.projectInfo.id,
@@ -225,7 +225,9 @@ class Preview extends React.Component {
             this.props.getLovedStatus(this.state.projectId, username, token);
         } else {
             this.props.getProjectInfo(this.state.projectId);
-            this.props.getRemixes(this.state.projectId);
+            if (!this.props.isEmbed) { // no need to get remixes if embed
+                this.props.getRemixes(this.state.projectId);
+            }
         }
     }
     setScreenFromOrientation () {
@@ -260,51 +262,53 @@ class Preview extends React.Component {
                     // TODO not sure if we need to check that it also isn't a data view
                     input = JSON.stringify(input);
                 }
-                parser(projectAsset.data, false, (err, projectData) => {
-                    if (err) {
-                        log.error(`Unhandled project parsing error: ${err}`);
-                        return;
-                    }
-                    const newState = {
-                        modInfo: {} // Filled in below
-                    };
-
-                    const helpers = ProjectInfo[projectData[0].projectVersion];
-                    if (!helpers) return; // sb1 not handled
-                    newState.extensions = Array.from(helpers.extensions(projectData[0]));
-                    newState.modInfo.scriptCount = helpers.scriptCount(projectData[0]);
-                    newState.modInfo.spriteCount = helpers.spriteCount(projectData[0]);
-                    const hasCloudData = helpers.cloudData(projectData[0]);
-                    if (hasCloudData) {
-                        if (this.props.isLoggedIn) {
-                            // show cloud variables log link if logged in
-                            newState.extensions.push({
-                                action: {
-                                    l10nId: 'project.cloudDataLink',
-                                    uri: `/cloudmonitor/${projectId}/`
-                                },
-                                icon: 'clouddata.svg',
-                                l10nId: 'project.cloudVariables',
-                                linked: true
-                            });
-                        } else {
-                            newState.extensions.push({
-                                icon: 'clouddata.svg',
-                                l10nId: 'project.cloudVariables'
-                            });
+                if (!this.props.isEmbed) { // no need to parse if embed
+                    parser(projectAsset.data, false, (err, projectData) => {
+                        if (err) {
+                            log.error(`Unhandled project parsing error: ${err}`);
+                            return;
                         }
-                    }
+                        const newState = {
+                            modInfo: {} // Filled in below
+                        };
 
-                    if (showAlerts) {
-                        // Check for username block only if user is logged in
-                        if (this.props.isLoggedIn) {
-                            newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
-                        } else { // Check for cloud vars only if user is logged out
-                            newState.showCloudDataAlert = hasCloudData;
+                        const helpers = ProjectInfo[projectData[0].projectVersion];
+                        if (!helpers) return; // sb1 not handled
+                        newState.extensions = Array.from(helpers.extensions(projectData[0]));
+                        newState.modInfo.scriptCount = helpers.scriptCount(projectData[0]);
+                        newState.modInfo.spriteCount = helpers.spriteCount(projectData[0]);
+                        const hasCloudData = helpers.cloudData(projectData[0]);
+                        if (hasCloudData) {
+                            if (this.props.isLoggedIn) {
+                                // show cloud variables log link if logged in
+                                newState.extensions.push({
+                                    action: {
+                                        l10nId: 'project.cloudDataLink',
+                                        uri: `/cloudmonitor/${projectId}/`
+                                    },
+                                    icon: 'clouddata.svg',
+                                    l10nId: 'project.cloudVariables',
+                                    linked: true
+                                });
+                            } else {
+                                newState.extensions.push({
+                                    icon: 'clouddata.svg',
+                                    l10nId: 'project.cloudVariables'
+                                });
+                            }
                         }
-                    }
-                    this.setState(newState);
-                });
+
+                        if (showAlerts) {
+                            // Check for username block only if user is logged in
+                            if (this.props.isLoggedIn) {
+                                newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
+                            } else { // Check for cloud vars only if user is logged out
+                                newState.showCloudDataAlert = hasCloudData;
+                            }
+                        }
+                        this.setState(newState);
+                    });
+                }
             });
     }
     handleToggleComments () {
@@ -816,6 +820,7 @@ Preview.propTypes = {
     handleUpdateProjectThumbnail: PropTypes.func,
     isAdmin: PropTypes.bool,
     isEditable: PropTypes.bool,
+    isEmbed: PropTypes.bool,
     isLoggedIn: PropTypes.bool,
     isNewScratcher: PropTypes.bool,
     isScratcher: PropTypes.bool,
@@ -882,9 +887,11 @@ Preview.defaultProps = {
 const mapStateToProps = state => {
     const projectInfoPresent = state.preview.projectInfo &&
         Object.keys(state.preview.projectInfo).length > 0 && state.preview.projectInfo.id > 0;
+    const isEmbed = state.scratchGui.mode.isEmbed;
     const userPresent = state.session.session.user !== null &&
         typeof state.session.session.user !== 'undefined' &&
-        Object.keys(state.session.session.user).length > 0;
+        Object.keys(state.session.session.user).length > 0 &&
+        !isEmbed;
     const isLoggedIn = state.session.status === sessionActions.Status.FETCHED &&
         userPresent;
     const isAdmin = isLoggedIn && state.session.session.permissions.admin;
@@ -921,11 +928,12 @@ const mapStateToProps = state => {
         faved: state.preview.faved,
         favedLoaded: state.preview.status.faved === previewActions.Status.FETCHED,
         fullScreen: state.scratchGui.mode.isFullScreen,
+        isAdmin: isAdmin,
         // project is editable iff logged in user is the author of the project, or
         // logged in user is an admin.
         isEditable: isEditable,
+        isEmbed: isEmbed,
         isLoggedIn: isLoggedIn,
-        isAdmin: isAdmin,
         isNewScratcher: isLoggedIn && state.permissions.new_scratcher,
         isScratcher: isLoggedIn && state.permissions.scratcher,
         isShared: isShared,
