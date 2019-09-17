@@ -25,12 +25,12 @@ describe('EmailStep test', () => {
         // Dive to get past the anonymous component.
         const joinFlowWrapper = formikWrapper.dive().find(JoinFlowStep);
         expect(joinFlowWrapper).toHaveLength(1);
-        expect(joinFlowWrapper.props().description).toBe('registration.emailStepDescription');
         expect(joinFlowWrapper.props().footerContent.props.id).toBe('registration.acceptTermsOfUse');
         expect(joinFlowWrapper.props().headerImgSrc).toBe('/images/join-flow/email-header.png');
         expect(joinFlowWrapper.props().innerClassName).toBe('join-flow-inner-email-step');
         expect(joinFlowWrapper.props().nextButton).toBe('registration.createAccount');
         expect(joinFlowWrapper.props().title).toBe('registration.emailStepTitle');
+        expect(joinFlowWrapper.props().titleClassName).toBe('join-flow-email-title');
         expect(joinFlowWrapper.props().waiting).toBe(true);
     });
 
