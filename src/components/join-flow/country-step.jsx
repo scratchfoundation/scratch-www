@@ -68,11 +68,10 @@ class CountryStep extends React.Component {
                     } = props;
                     return (
                         <JoinFlowStep
-                            description={this.props.intl.formatMessage({id: 'registration.countryStepDescription'})}
-                            descriptionClassName="join-flow-country-description"
                             headerImgSrc="/images/join-flow/country-header.png"
                             innerClassName="join-flow-inner-country-step"
                             title={this.props.intl.formatMessage({id: 'registration.countryStepTitle'})}
+                            titleClassName="join-flow-country-title"
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
                         >
