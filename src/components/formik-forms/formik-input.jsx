@@ -27,7 +27,7 @@ const FormikInput = ({
     >
         <Field
             className={classNames(
-                'input',
+                'formik-input',
                 {fail: error},
                 className
             )}
