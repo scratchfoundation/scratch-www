@@ -64,7 +64,8 @@ class CountryStep extends React.Component {
                     const {
                         errors,
                         handleSubmit,
-                        isSubmitting
+                        isSubmitting,
+                        setFieldError
                     } = props;
                     return (
                         <JoinFlowStep
@@ -93,6 +94,9 @@ class CountryStep extends React.Component {
                                     options={this.countryOptions}
                                     validate={this.validateSelect}
                                     validationClassName="validation-full-width-input"
+                                    /* eslint-disable react/jsx-no-bind */
+                                    onFocus={() => setFieldError('country', null)}
+                                    /* eslint-enable react/jsx-no-bind */
                                 />
                                 {/* note that this is a hidden checkbox the user will never see */}
                                 <FormikCheckbox
