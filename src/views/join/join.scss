@@ -1,0 +1,30 @@
+@import "../../colors";
+@import "../../frameless";
+
+.join-standalone {
+    position: relative;
+    margin: 3.75rem auto;
+    border-radius: 1rem;
+    box-shadow: 0 0 0 4px $ui-white-15percent;
+    background-color: $ui-white;
+    padding: 0;
+    width: 27.4375rem;
+    &:focus {
+        outline: none;
+    }
+    @media #{$intermediate-and-smaller} {
+        margin-top: 0;
+        width: 100%;
+        overflow: auto;
+    }
+
+    @media #{$small}, #{$small-height} {
+        border-radius: 0;
+        box-shadow: none;
+        height: 100%;
+    }
+}
+
+.join-standalone * {
+    box-sizing: border-box;
+}
