@@ -30,7 +30,7 @@ class CountryStep extends React.Component {
             this.countryOptions = [...countryData.registrationCountryOptions];
             this.countryOptions.unshift({ // add placeholder as first option
                 disabled: true,
-                label: this.props.intl.formatMessage({id: 'general.country'}),
+                label: this.props.intl.formatMessage({id: 'registration.selectCountry'}),
                 value: 'null'
             });
         }
