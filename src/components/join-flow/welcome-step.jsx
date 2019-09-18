@@ -42,6 +42,7 @@ class WelcomeStep extends React.Component {
                             description={this.props.intl.formatMessage({
                                 id: 'registration.welcomeStepDescriptionNonEducator'
                             })}
+                            descriptionClassName="join-flow-welcome-description"
                             headerImgSrc="/images/join-flow/welcome-header.png"
                             innerClassName="join-flow-inner-welcome-step"
                             nextButton={
@@ -57,6 +58,7 @@ class WelcomeStep extends React.Component {
                                 {id: 'registration.welcomeStepTitleNonEducator'},
                                 {username: this.props.username}
                             )}`}
+                            titleClassName="join-flow-welcome-title"
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
                         >

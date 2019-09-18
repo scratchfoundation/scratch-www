@@ -132,18 +132,12 @@
 }
 
 .join-flow-inner-welcome-step {
-    padding-top: 3rem;
+    padding-top: 0;
+    padding-bottom: 1rem;
 }
 
 .join-flow-birthdate-title {
     margin-bottom: 2.875rem;
-}
-
-.join-flow-birthdate-description {
-    margin-top: 1.25rem;
-    margin-right: -.5rem;
-    margin-bottom: 2rem;
-    margin-left: -.5rem;
 }
 
 .join-flow-email-title {
@@ -170,6 +164,14 @@
 .join-flow-country-title {
     margin-top: 0;
     margin-bottom: 1.75rem;
+}
+
+.join-flow-welcome-title {
+    margin-bottom: .25rem;
+}
+
+.join-flow-welcome-description {
+    margin-bottom: 1.25rem;
 }
 
 .gender-radio-row {
