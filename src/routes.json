@@ -177,9 +177,17 @@
     },
     {
         "name": "projects",
-        "pattern": "^/projects(/editor|(/\\d+(/editor|/fullscreen|/embed)?)?)?/?(\\?.*)?$",
+        "pattern": "^/projects(/editor|(/\\d+(/editor|/fullscreen)?)?)?/?(\\?.*)?$",
         "routeAlias": "/projects/?$",
         "view": "preview/preview",
+        "title": "Scratch Project",
+        "dynamicMetaTags": true
+    },
+    {
+        "name": "projects",
+        "pattern": "^/projects/\\d+/embed/?(\\?.*)?$",
+        "routeAlias": "/projects/?$",
+        "view": "preview/embed",
         "title": "Scratch Project",
         "dynamicMetaTags": true
     },

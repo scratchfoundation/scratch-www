@@ -1092,15 +1092,12 @@ module.exports.initGuiState = guiInitialState => {
     const parts = pathname.split('/').filter(Boolean);
     // parts[0]: 'projects'
     // parts[1]: either :id or 'editor'
-    // parts[2]: undefined if no :id, otherwise either 'editor', 'fullscreen' or 'embed'
+    // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
     if (parts.indexOf('editor') === -1) {
         guiInitialState = GUI.initPlayer(guiInitialState);
     }
     if (parts.indexOf('fullscreen') !== -1) {
         guiInitialState = GUI.initFullScreen(guiInitialState);
-    }
-    if (parts.indexOf('embed') !== -1) {
-        guiInitialState = GUI.initEmbedded(guiInitialState);
     }
     return guiInitialState;
 };
