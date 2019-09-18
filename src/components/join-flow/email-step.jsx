@@ -56,7 +56,11 @@ class EmailStep extends React.Component {
         this.emailInput = emailInputRef;
     }
     onCaptchaError () {
-        // TODO send user to error step once we have one.
+        this.props.onMidRegistrationError(
+            this.props.intl.formatMessage({
+                id: 'registation.troubleReload'
+            })
+        );
     }
     onCaptchaLoad () {
         this.setState({captchaIsLoading: false});
@@ -64,9 +68,9 @@ class EmailStep extends React.Component {
         if (!this.grecaptcha) {
             // According to the reCaptcha documentation, this callback shouldn't get
             // called unless window.grecaptcha exists. This is just here to be extra defensive.
-            // TODO: Put up the error screen when we have one.
+            this.onCaptchaError();
+            return;
         }
-        // TODO: Add in error callback for render once we have an error screen.
         this.widgetId = this.grecaptcha.render(this.captchaRef,
             {
                 callback: this.captchaSolved,
@@ -207,6 +211,7 @@ class EmailStep extends React.Component {
 
 EmailStep.propTypes = {
     intl: intlShape,
+    onMidRegistrationError: PropTypes.func,
     onNextStep: PropTypes.func,
     waiting: PropTypes.bool
 };
