@@ -13,7 +13,7 @@ const InfoButton = require('../info-button/info-button.jsx');
 require('./join-flow-steps.scss');
 
 const getBirthMonthOptions = intl => ([
-    {value: 'null', label: intl.formatMessage({id: 'general.month'})},
+    {value: 'null', label: intl.formatMessage({id: 'general.month'}), disabled: true},
     {value: '1', label: intl.formatMessage({id: 'general.monthJanuary'})},
     {value: '2', label: intl.formatMessage({id: 'general.monthFebruary'})},
     {value: '3', label: intl.formatMessage({id: 'general.monthMarch'})},
@@ -37,7 +37,8 @@ const getBirthYearOptions = intl => {
         .map((defaultVal, i) => (
             {value: String(curYear - i), label: String(curYear - i)}
         ));
-    birthYearOptions.unshift({
+    birthYearOptions.unshift({ // set placeholder as first option
+        disabled: true,
         value: 'null',
         label: intl.formatMessage({id: 'general.year'})
     });
