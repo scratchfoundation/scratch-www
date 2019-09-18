@@ -66,11 +66,12 @@
 
 .select .join-flow-select {
     height: 3.5rem;
+    margin-bottom: 0; // override default for select
+    padding-right: 3.25rem;
     background-color: white;
     border-color: $box-shadow-light-gray;
     font-size: 1rem;
     font-weight: 500;
-    padding-right: 3.25rem;
 }
 
 .select .join-flow-select-month {
@@ -96,6 +97,13 @@
     margin: 0 auto;
 }
 
+.join-flow-privacy-message {
+    margin: 1rem auto;
+    font-size: .75rem;
+    font-weight: 500;
+    color: $type-gray-60percent;
+}
+
 .join-flow-inner-username-step {
     padding-top: 2.75rem;
 }
@@ -113,23 +121,31 @@
 }
 
 .join-flow-inner-country-step {
-    padding-top: 1rem;
-    padding-bottom: 2rem;
+    padding-top: 0;
+    padding-bottom: 2.5rem;
 }
 
 .join-flow-inner-email-step {
-    padding-top: 3rem;
+    padding-top: 1.25rem;
+    padding-bottom: 0;
+    min-height: 16.625rem;
 }
 
 .join-flow-inner-welcome-step {
-    padding-top: 3rem;
+    padding-top: 0;
+    padding-bottom: 1rem;
 }
 
-.join-flow-birthdate-description {
-    margin-top: 1.25rem;
-    margin-right: -.5rem;
+.join-flow-birthdate-title {
+    margin-bottom: 2.875rem;
+}
+
+.join-flow-email-title {
     margin-bottom: 2rem;
-    margin-left: -.5rem;
+}
+
+.join-flow-email-privacy {
+    margin-top: 0;
 }
 
 .join-flow-registration-error {
@@ -141,8 +157,21 @@
     margin-bottom: 1.25rem;
 }
 
-.join-flow-country-description {
-    margin-top: 1rem;
+.join-flow-gender-privacy {
+    margin-top: .5rem;
+}
+
+.join-flow-country-title {
+    margin-top: 0;
+    margin-bottom: 1.75rem;
+}
+
+.join-flow-welcome-title {
+    margin-bottom: .25rem;
+}
+
+.join-flow-welcome-description {
+    margin-bottom: 1.25rem;
 }
 
 .gender-radio-row {
@@ -178,7 +207,7 @@
 
 .join-flow-email-checkbox-row {
     font-size: .75rem;
-    margin: .25rem .125rem;
+    margin: 1.5rem .125rem .25rem;
 }
 
 a.join-flow-link:link, a.join-flow-link:visited, a.join-flow-link:active {

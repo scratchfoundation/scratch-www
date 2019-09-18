@@ -4,14 +4,16 @@ const React = require('react');
 const PropTypes = require('prop-types');
 import {Formik} from 'formik';
 const {injectIntl, intlShape} = require('react-intl');
+const FormattedMessage = require('react-intl').FormattedMessage;
 
 const FormikSelect = require('../../components/formik-forms/formik-select.jsx');
 const JoinFlowStep = require('./join-flow-step.jsx');
+const InfoButton = require('../info-button/info-button.jsx');
 
 require('./join-flow-steps.scss');
 
 const getBirthMonthOptions = intl => ([
-    {value: 'null', label: intl.formatMessage({id: 'general.month'})},
+    {value: 'null', label: intl.formatMessage({id: 'general.month'}), disabled: true},
     {value: '1', label: intl.formatMessage({id: 'general.monthJanuary'})},
     {value: '2', label: intl.formatMessage({id: 'general.monthFebruary'})},
     {value: '3', label: intl.formatMessage({id: 'general.monthMarch'})},
@@ -35,7 +37,8 @@ const getBirthYearOptions = intl => {
         .map((defaultVal, i) => (
             {value: String(curYear - i), label: String(curYear - i)}
         ));
-    birthYearOptions.unshift({
+    birthYearOptions.unshift({ // set placeholder as first option
+        disabled: true,
         value: 'null',
         label: intl.formatMessage({id: 'general.year'})
     });
@@ -86,12 +89,10 @@ class BirthDateStep extends React.Component {
                     } = props;
                     return (
                         <JoinFlowStep
-                            description={this.props.intl.formatMessage({id: 'registration.private'})}
-                            descriptionClassName="join-flow-birthdate-description"
                             headerImgSrc="/images/join-flow/birthdate-header.png"
-                            infoMessage={this.props.intl.formatMessage({id: 'registration.birthDateStepInfo'})}
                             innerClassName="join-flow-inner-birthdate-step"
                             title={this.props.intl.formatMessage({id: 'registration.birthDateStepTitle'})}
+                            titleClassName="join-flow-birthdate-title"
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
                         >
@@ -131,6 +132,12 @@ class BirthDateStep extends React.Component {
                                     options={birthYearOptions}
                                     validate={this.validateSelect}
                                     validationClassName="validation-birthdate-year"
+                                />
+                            </div>
+                            <div className="join-flow-privacy-message">
+                                <FormattedMessage id="registration.private" />
+                                <InfoButton
+                                    message={this.props.intl.formatMessage({id: 'registration.birthDateStepInfo'})}
                                 />
                             </div>
                         </JoinFlowStep>

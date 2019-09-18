@@ -103,9 +103,6 @@ const ConferenceFooter = () => (
                         </li>
                     </FlexRow>
                 </FlexRow>
-                <p className="legal">
-                    Scratch is a project of the Lifelong Kindergarten Group at the MIT Media Lab.
-                </p>
             </div>
             <div className="media">
                 <div className="contact-us">
