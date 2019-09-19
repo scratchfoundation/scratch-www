@@ -24,11 +24,11 @@ module.exports = function (apiKey, serviceId) {
     };
 
     /*
-     * getLatestVersion: Get the most recent version for the configured service
+     * getLatestActiveVersion: Get the most recent version for the configured service
      *
      * @param {callback} Callback with signature *err, latestVersion)
      */
-    fastly.getLatestVersion = function (cb) {
+    fastly.getLatestActiveVersion = function (cb) {
         if (!this.serviceId) {
             return cb('Failed to get latest version. No serviceId configured');
         }
@@ -39,7 +39,14 @@ module.exports = function (apiKey, serviceId) {
             }
             var latestVersion = versions.reduce(function (lateVersion, version) {
                 if (!lateVersion) return version;
-                if (version.number > lateVersion.number) return version;
+                // if versions we're comparing are both active, or both inactive, prefer
+                // whichever has a higher version number
+                if (lateVersion.active === version.active) {
+                    if (version.number > lateVersion.number) return version;
+                    return lateVersion;
+                }
+                // if only one of the versions is active, prefer that one
+                if (version.active === true) return version;
                 return lateVersion;
             });
             return cb(null, latestVersion);

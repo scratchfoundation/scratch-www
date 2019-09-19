@@ -24,7 +24,7 @@ var routes = routeJson.map(function (route) {
 
 async.auto({
     version: function (cb) {
-        fastly.getLatestVersion(function (err, response) {
+        fastly.getLatestActiveVersion(function (err, response) {
             if (err) return cb(err);
             // Validate latest version before continuing
             if (response.active || response.locked) {
