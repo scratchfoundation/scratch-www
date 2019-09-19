@@ -1,12 +1,12 @@
 @import "../../colors";
 
-.input {
+.formik-input {
     height: 2.75rem;
     border-radius: .5rem;
     background-color: $ui-white;
     margin-bottom: .5rem;
     transition: all .5s ease, font-size 0s;
-    border: 1px solid $active-gray;
+    border: 1px solid $active-dark-gray;
     padding: 0 1rem;
     color: $type-gray;
     font-size: .875rem;
@@ -29,6 +29,6 @@
 
     &::placeholder {
         font-style: italic;
-        color: $type-gray-75percent;
+        color: $type-gray-60percent;
     }
 }

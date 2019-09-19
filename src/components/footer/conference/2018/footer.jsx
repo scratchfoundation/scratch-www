@@ -145,9 +145,6 @@ const ConferenceFooter = props => (
                         </li>
                     </FlexRow>
                 </FlexRow>
-                <p className="legal">
-                    <FormattedMessage id="general.copyright" />
-                </p>
             </div>
             <div className="media">
                 <div className="contact-us">
