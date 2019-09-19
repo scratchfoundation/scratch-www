@@ -122,7 +122,7 @@ describe('EmailStep test', () => {
 
     test('onCaptchaError calls error function with correct message', () => {
         const props = {
-            onMidRegistrationError: jest.fn()
+            onRegistrationError: jest.fn()
         };
 
         const wrapper = shallowWithIntl(
@@ -132,12 +132,12 @@ describe('EmailStep test', () => {
 
         const formikWrapper = wrapper.dive();
         formikWrapper.instance().onCaptchaError();
-        expect(props.onMidRegistrationError).toHaveBeenCalledWith('registation.troubleReload');
+        expect(props.onRegistrationError).toHaveBeenCalledWith('registation.troubleReload');
     });
 
     test('Captcha load error calls error function', () => {
         const props = {
-            onMidRegistrationError: jest.fn()
+            onRegistrationError: jest.fn()
         };
         // Set this to null to force an error.
         global.grecaptcha = null;
@@ -148,7 +148,7 @@ describe('EmailStep test', () => {
 
         const formikWrapper = wrapper.dive();
         formikWrapper.instance().onCaptchaLoad();
-        expect(props.onMidRegistrationError).toHaveBeenCalledWith('registation.troubleReload');
+        expect(props.onRegistrationError).toHaveBeenCalledWith('registation.troubleReload');
     });
 
     test('validateEmail test email empty', () => {

@@ -126,17 +126,17 @@ describe('JoinFlow', () => {
         expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toBe('registration.generalError (400)');
     });
-    test('handleMidRegistrationError with no message ', () => {
+    test('handleRegistrationError with no message ', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.setState({});
-        joinFlowInstance.handleMidRegistrationError();
+        joinFlowInstance.handleRegistrationError();
         expect(joinFlowInstance.state.registrationError).toBe('registration.generalError');
     });
 
-    test('handleMidRegistrationError with message ', () => {
+    test('handleRegistrationError with message ', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.setState({});
-        joinFlowInstance.handleMidRegistrationError('my message');
+        joinFlowInstance.handleRegistrationError('my message');
         expect(joinFlowInstance.state.registrationError).toBe('my message');
     });
 

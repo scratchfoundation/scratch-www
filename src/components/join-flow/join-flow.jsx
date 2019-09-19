@@ -23,7 +23,7 @@ class JoinFlow extends React.Component {
         super(props);
         bindAll(this, [
             'handleAdvanceStep',
-            'handleMidRegistrationError',
+            'handleRegistrationError',
             'handlePrepareToRegister',
             'handleRegistrationResponse',
             'handleSubmitRegistration'
@@ -35,7 +35,7 @@ class JoinFlow extends React.Component {
             waiting: false
         };
     }
-    handleMidRegistrationError (message) {
+    handleRegistrationError (message) {
         if (!message) {
             message = this.props.intl.formatMessage({
                 id: 'registration.generalError'
@@ -151,8 +151,8 @@ class JoinFlow extends React.Component {
                         <GenderStep onNextStep={this.handleAdvanceStep} />
                         <EmailStep
                             waiting={this.state.waiting}
-                            onMidRegistrationError={this.handleMidRegistrationError}
                             onNextStep={this.handlePrepareToRegister}
+                            onRegistrationError={this.handleRegistrationError}
                         />
                         <WelcomeStep
                             email={this.state.formData.email}

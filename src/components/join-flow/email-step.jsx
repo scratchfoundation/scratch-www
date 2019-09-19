@@ -56,7 +56,7 @@ class EmailStep extends React.Component {
         this.emailInput = emailInputRef;
     }
     onCaptchaError () {
-        this.props.onMidRegistrationError(
+        this.props.onRegistrationError(
             this.props.intl.formatMessage({
                 id: 'registation.troubleReload'
             })
@@ -211,8 +211,8 @@ class EmailStep extends React.Component {
 
 EmailStep.propTypes = {
     intl: intlShape,
-    onMidRegistrationError: PropTypes.func,
     onNextStep: PropTypes.func,
+    onRegistrationError: PropTypes.func,
     waiting: PropTypes.bool
 };
 
