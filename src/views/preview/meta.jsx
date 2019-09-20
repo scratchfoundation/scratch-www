@@ -30,8 +30,8 @@ const Meta = props => {
                 property="og:description"
             />
             <link
-                rel="canonical"
                 href={`https://scratch.mit.edu/projects/${id}`}
+                rel="canonical"
             />
         </Helmet>
     );
