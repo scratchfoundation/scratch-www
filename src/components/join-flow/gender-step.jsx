@@ -67,7 +67,7 @@ class GenderStep extends React.Component {
     handleValidSubmit (formData, formikBag) {
         formikBag.setSubmitting(false);
         if (!formData.gender || formData.gender === 'null') {
-            formData.gender = 'Prefer not to say';
+            formData.gender = ''; // default to blank
         }
         delete formData.custom;
         this.props.onNextStep(formData);
@@ -102,20 +102,20 @@ class GenderStep extends React.Component {
                                 id="GenderRadioOptionFemale"
                                 label={this.props.intl.formatMessage({id: 'general.female'})}
                                 selectedValue={values.gender}
-                                value="Female"
+                                value="female"
                                 onSetFieldValue={setFieldValue}
                             />
                             <GenderOption
                                 id="GenderRadioOptionMale"
                                 label={this.props.intl.formatMessage({id: 'general.male'})}
                                 selectedValue={values.gender}
-                                value="Male"
+                                value="male"
                                 onSetFieldValue={setFieldValue}
                             />
                             <GenderOption
                                 label={this.props.intl.formatMessage({id: 'general.nonBinary'})}
                                 selectedValue={values.gender}
-                                value="Non-binary"
+                                value="non-binary"
                                 onSetFieldValue={setFieldValue}
                             />
                             <div
