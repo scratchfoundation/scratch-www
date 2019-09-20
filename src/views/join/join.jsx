@@ -6,11 +6,13 @@ const ErrorBoundary = require('../../components/errorboundary/errorboundary.jsx'
 const Page = require('../../components/page/www/page.jsx'); // eslint-disable-line no-unused-vars
 
 const openModal = true;
+const showCloseButton = false;
 const Register = () => (
     <ErrorBoundary>
         <JoinModal
             isOpen={openModal}
             key="scratch3registration"
+            showCloseButton={showCloseButton}
         />
     </ErrorBoundary>
 );

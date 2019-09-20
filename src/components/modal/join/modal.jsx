@@ -12,6 +12,7 @@ const JoinModal = ({
 }) => (
     <Modal
         isOpen
+        showCloseButton
         useStandardSizes
         className="mod-join"
         shouldCloseOnOverlayClick={false}
@@ -26,7 +27,8 @@ const JoinModal = ({
 
 JoinModal.propTypes = {
     onCompleteRegistration: PropTypes.func,
-    onRequestClose: PropTypes.func
+    onRequestClose: PropTypes.func,
+    showCloseButton: PropTypes.bool
 };
 
 module.exports = JoinModal;
