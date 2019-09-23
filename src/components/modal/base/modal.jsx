@@ -56,6 +56,7 @@ class Modal extends React.Component {
                     <img
                         alt="close-icon"
                         className="modal-content-close-img"
+                        draggable="false"
                         src="/svgs/modal/close-x.svg"
                     />
                 </div>
