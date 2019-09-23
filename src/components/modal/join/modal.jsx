@@ -14,6 +14,7 @@ const JoinModal = ({
         isOpen
         useStandardSizes
         className="mod-join"
+        shouldCloseOnOverlayClick={false}
         onRequestClose={onRequestClose}
         {...modalProps}
     >
