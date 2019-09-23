@@ -208,9 +208,9 @@ class Boost extends ExtensionLanding {
                 </ExtensionSection>
                 <ExtensionSection className="faq">
                     <h2><FormattedMessage id="boost.troubleshootingTitle" /></h2>
-                    <h3 className="faq-title"><FormattedMessage id="boost.avoidFirmwareUpdateTitle" /></h3>
+                    <h3 className="faq-title"><FormattedMessage id="boost.updateScratchLinkTitle" /></h3>
                     <p>
-                        <FormattedMessage id="boost.avoidFirmwareUpdateText" />
+                        <FormattedMessage id="boost.updateScratchLinkText" />
                     </p>
                     <h3 className="faq-title"><FormattedMessage id="boost.checkOSVersionTitle" /></h3>
                     <p>
