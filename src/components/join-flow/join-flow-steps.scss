@@ -56,11 +56,25 @@
     .validation-full-width-input {
         transform: unset;
         margin-bottom: .75rem;
+        max-width: 100%;
     }
 
-    .validation-birthdate-input {
+    .validation-country {
+        top: .5rem;
+    }
+
+    .validation-birthdate {
         transform: unset;
-        width: 8rem;
+        top: .5rem;
+        width: 19rem;
+    }
+
+    .validation-birthdate-month {
+        margin-right: -9.25rem;
+    }
+
+    .validation-birthdate-year {
+        margin-left: -9.625rem;
     }
 }
 

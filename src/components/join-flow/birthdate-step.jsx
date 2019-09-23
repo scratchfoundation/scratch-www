@@ -117,6 +117,7 @@ class BirthDateStep extends React.Component {
                                     options={birthMonthOptions}
                                     validate={this.validateSelect}
                                     validationClassName={classNames(
+                                        'validation-birthdate',
                                         'validation-birthdate-month',
                                         'validation-left'
                                     )}
@@ -135,7 +136,10 @@ class BirthDateStep extends React.Component {
                                     name="birth_year"
                                     options={birthYearOptions}
                                     validate={this.validateSelect}
-                                    validationClassName="validation-birthdate-year"
+                                    validationClassName={classNames(
+                                        'validation-birthdate',
+                                        'validation-birthdate-year'
+                                    )}
                                     /* eslint-disable react/jsx-no-bind */
                                     onFocus={() => setFieldError('birth_year', null)}
                                     /* eslint-enable react/jsx-no-bind */

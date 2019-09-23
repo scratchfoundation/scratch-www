@@ -93,7 +93,10 @@ class CountryStep extends React.Component {
                                     name="country"
                                     options={this.countryOptions}
                                     validate={this.validateSelect}
-                                    validationClassName="validation-full-width-input"
+                                    validationClassName={classNames(
+                                        'validation-full-width-input',
+                                        'validation-country'
+                                    )}
                                     /* eslint-disable react/jsx-no-bind */
                                     onFocus={() => setFieldError('country', null)}
                                     /* eslint-enable react/jsx-no-bind */
