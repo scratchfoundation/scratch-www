@@ -39,17 +39,15 @@
 }
 
 .validation-full-width-input {
-    transform: translate(21.5625rem, 0);
+    transform: translate(21.8125rem, 0);
 }
 
 .validation-birthdate-month {
-    transform: translate(-9.25rem, 0);
-    width: 7.25rem;
+    transform: translate(-9.875rem, 0);
 }
 
 .validation-birthdate-year {
-    transform: translate(8.75rem, 0);
-    width: 7.25rem;
+    transform: translate(9.375rem, 0);
 }
 
 @media #{$intermediate-and-smaller} {
