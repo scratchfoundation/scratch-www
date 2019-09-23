@@ -99,6 +99,7 @@
     "keymirror": "0.1.1",
     "lodash.bindall": "4.4.0",
     "lodash.clone": "3.0.3",
+    "lodash.debounce": "4.0.8",
     "lodash.defaultsdeep": "3.10.0",
     "lodash.isarray": "3.0.4",
     "lodash.merge": "3.3.2",

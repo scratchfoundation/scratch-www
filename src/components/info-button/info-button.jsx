@@ -2,6 +2,7 @@ const bindAll = require('lodash.bindall');
 const PropTypes = require('prop-types');
 const React = require('react');
 const MediaQuery = require('react-responsive').default;
+const debounce = require('lodash.debounce');
 
 const frameless = require('../../lib/frameless');
 
@@ -11,18 +12,48 @@ class InfoButton extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleHideMessage',
-            'handleShowMessage'
+            'handleClick',
+            'handleMouseOut',
+            'handleShowMessage',
+            'setButtonRef'
         ]);
         this.state = {
+            requireClickToClose: false, // default to closing on mouseout
             visible: false
         };
+        this.setVisibleWithDebounce = debounce(this.setVisible, 100);
     }
-    handleHideMessage () {
-        this.setState({visible: false});
+    componentWillMount () {
+        window.addEventListener('mousedown', this.handleClick, false);
+    }
+    componentWillUnmount () {
+        window.removeEventListener('mousedown', this.handleClick, false);
+    }
+    handleClick (e) {
+        if (this.buttonRef) { // only handle click if we can tell whether it happened in this component
+            let newVisibleState = false; // for most clicks, hide the info message
+            if (this.buttonRef.contains(e.target)) { // if the click was inside the info icon...
+                newVisibleState = !this.state.requireClickToClose; // toggle it
+            }
+            this.setState({
+                requireClickToClose: newVisibleState,
+                visible: newVisibleState
+            });
+        }
+    }
+    handleMouseOut () {
+        if (this.state.visible && !this.state.requireClickToClose) {
+            this.setVisibleWithDebounce(false);
+        }
     }
     handleShowMessage () {
-        this.setState({visible: true});
+        this.setVisibleWithDebounce(true);
+    }
+    setButtonRef (element) {
+        this.buttonRef = element;
+    }
+    setVisible (newVisibleState) {
+        this.setState({visible: newVisibleState});
     }
     render () {
         const messageJsx = this.state.visible && (
@@ -34,8 +65,8 @@ class InfoButton extends React.Component {
             <React.Fragment>
                 <div
                     className="info-button"
-                    onClick={this.handleShowMessage}
-                    onMouseOut={this.handleHideMessage}
+                    ref={this.setButtonRef}
+                    onMouseOut={this.handleMouseOut}
                     onMouseOver={this.handleShowMessage}
                 >
                     <MediaQuery minWidth={frameless.desktop}>
