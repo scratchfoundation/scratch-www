@@ -187,6 +187,7 @@
     "registration.selectCountry": "select country",
     "registration.studentPersonalStepDescription": "This information will not appear on the Scratch website.",
     "registration.showPassword": "Show password",
+    "registration.troubleReload": "Scratch is having trouble finishing registration. Try reloading the page or try again in another browser.",
     "registration.usernameStepDescription": "Fill in the following forms to request an account. The approval process may take up to one day.",
     "registration.usernameStepDescriptionNonEducator": "Create projects, share ideas, make friends. It’s free!",
     "registration.usernameStepRealName": "Please do not use any portion of your real name in your username.",
