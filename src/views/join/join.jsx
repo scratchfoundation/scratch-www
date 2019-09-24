@@ -5,12 +5,12 @@ const ErrorBoundary = require('../../components/errorboundary/errorboundary.jsx'
 // Require this even though we don't use it because, without it, webpack runs out of memory...
 const Page = require('../../components/page/www/page.jsx'); // eslint-disable-line no-unused-vars
 
-const openModal = true;
 const Register = () => (
     <ErrorBoundary>
         <JoinModal
-            isOpen={openModal}
+            isOpen
             key="scratch3registration"
+            showCloseButton={false}
         />
     </ErrorBoundary>
 );

@@ -49,17 +49,20 @@ class Modal extends React.Component {
                 }}
                 {...omit(this.props, ['className', 'overlayClassName'])}
             >
-                <div
-                    className="modal-content-close"
-                    onClick={this.handleRequestClose}
-                >
-                    <img
-                        alt="close-icon"
-                        className="modal-content-close-img"
-                        draggable="false"
-                        src="/svgs/modal/close-x.svg"
-                    />
-                </div>
+
+                {this.props.showCloseButton && (
+                    <div
+                        className="modal-content-close"
+                        onClick={this.handleRequestClose}
+                    >
+                        <img
+                            alt="close-icon"
+                            className="modal-content-close-img"
+                            draggable="false"
+                            src="/svgs/modal/close-x.svg"
+                        />
+                    </div>
+                )}
                 {this.props.children}
             </ReactModal>
         );
@@ -70,7 +73,11 @@ Modal.propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
     overlayClassName: PropTypes.string,
+    showCloseButton: PropTypes.bool,
     useStandardSizes: PropTypes.bool
 };
 
+Modal.defaultProps = {
+    showCloseButton: true
+};
 module.exports = Modal;
