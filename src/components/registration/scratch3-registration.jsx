@@ -11,13 +11,15 @@ const Registration = ({
     createProjectOnComplete,
     handleCloseRegistration,
     handleCompleteRegistration,
-    isOpen
+    isOpen,
+    showCloseButton
 }) => (
     <div>
         <JoinModal
             createProjectOnComplete={createProjectOnComplete}
             isOpen={isOpen}
             key="join-modal"
+            showCloseButton={showCloseButton}
             onCompleteRegistration={handleCompleteRegistration}
             onRequestClose={handleCloseRegistration}
         />
@@ -28,7 +30,8 @@ Registration.propTypes = {
     createProjectOnComplete: PropTypes.bool,
     handleCloseRegistration: PropTypes.func,
     handleCompleteRegistration: PropTypes.func,
-    isOpen: PropTypes.bool
+    isOpen: PropTypes.bool,
+    showCloseButton: PropTypes.bool
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
