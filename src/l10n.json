@@ -140,7 +140,8 @@
     "installScratch.downloadScratchDesktop": "Download Scratch Desktop",
     "installScratch.downloadScratchAppGeneric": "Download Scratch for {operatingsystem}",
     "installScratch.getScratchAppPlay": "Get Scratch on the Google Play Store",
-
+    "installScratch.useScratchApp": "Open the Scratch app on your device.",
+    
     "installScratchLink.installHeaderTitle": "Install Scratch Link",
     "installScratchLink.downloadAndInstall": "Download and install Scratch Link.",
     "installScratchLink.startScratchLink": "Start Scratch Link and make sure it is running. It should appear in your toolbar.",
