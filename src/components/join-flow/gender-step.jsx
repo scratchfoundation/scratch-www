@@ -66,8 +66,14 @@ class GenderStep extends React.Component {
     }
     handleValidSubmit (formData, formikBag) {
         formikBag.setSubmitting(false);
-        if (!formData.gender || formData.gender === 'null') {
-            formData.gender = ''; // default to blank
+        // handle defaults:
+        // when gender is specifically made blank, use "(blank)"
+        if (!formData.gender || formData.gender === '') {
+            formData.gender = '(blank)';
+        }
+        // when user clicks Next without making any selection, use "(skipped)"
+        if (formData.gender === 'null') {
+            formData.gender = '(skipped)';
         }
         delete formData.custom;
         this.props.onNextStep(formData);
@@ -155,7 +161,7 @@ class GenderStep extends React.Component {
                                 id="GenderRadioOptionPreferNot"
                                 label={this.props.intl.formatMessage({id: 'registration.genderOptionPreferNotToSay'})}
                                 selectedValue={values.gender}
-                                value="Prefer not to say"
+                                value="(Prefer not to say)"
                                 onSetFieldValue={setFieldValue}
                             />
                             <div className="join-flow-privacy-message join-flow-gender-privacy">
