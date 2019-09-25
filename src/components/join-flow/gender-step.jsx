@@ -66,8 +66,14 @@ class GenderStep extends React.Component {
     }
     handleValidSubmit (formData, formikBag) {
         formikBag.setSubmitting(false);
-        if (!formData.gender || formData.gender === 'null') {
-            formData.gender = 'Prefer not to say';
+        // handle defaults:
+        // when gender is specifically made blank, use "(blank)"
+        if (!formData.gender || formData.gender === '') {
+            formData.gender = '(blank)';
+        }
+        // when user clicks Next without making any selection, use "(skipped)"
+        if (formData.gender === 'null') {
+            formData.gender = '(skipped)';
         }
         delete formData.custom;
         this.props.onNextStep(formData);
@@ -102,20 +108,20 @@ class GenderStep extends React.Component {
                                 id="GenderRadioOptionFemale"
                                 label={this.props.intl.formatMessage({id: 'general.female'})}
                                 selectedValue={values.gender}
-                                value="Female"
+                                value="female"
                                 onSetFieldValue={setFieldValue}
                             />
                             <GenderOption
                                 id="GenderRadioOptionMale"
                                 label={this.props.intl.formatMessage({id: 'general.male'})}
                                 selectedValue={values.gender}
-                                value="Male"
+                                value="male"
                                 onSetFieldValue={setFieldValue}
                             />
                             <GenderOption
                                 label={this.props.intl.formatMessage({id: 'general.nonBinary'})}
                                 selectedValue={values.gender}
-                                value="Non-binary"
+                                value="non-binary"
                                 onSetFieldValue={setFieldValue}
                             />
                             <div
@@ -155,7 +161,7 @@ class GenderStep extends React.Component {
                                 id="GenderRadioOptionPreferNot"
                                 label={this.props.intl.formatMessage({id: 'registration.genderOptionPreferNotToSay'})}
                                 selectedValue={values.gender}
-                                value="Prefer not to say"
+                                value="(Prefer not to say)"
                                 onSetFieldValue={setFieldValue}
                             />
                             <div className="join-flow-privacy-message join-flow-gender-privacy">

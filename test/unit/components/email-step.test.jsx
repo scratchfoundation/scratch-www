@@ -50,6 +50,7 @@ describe('EmailStep test', () => {
         expect(emailInputWrapper.props().onSetRef).toEqual(formikWrapper.instance().handleSetEmailRef);
         expect(emailInputWrapper.props().validate).toEqual(formikWrapper.instance().validateEmail);
     });
+
     test('props sent to FormikCheckbox for subscribe', () => {
         const wrapper = shallowWithIntl(<EmailStep />);
         // Dive to get past the intl wrapper
@@ -63,6 +64,7 @@ describe('EmailStep test', () => {
         expect(checkboxWrapper.first().props().label).toEqual('registration.receiveEmails');
         expect(checkboxWrapper.first().props().name).toEqual('subscribe');
     });
+
     test('handleValidSubmit passes formData to next step', () => {
         const formikBag = {
             setSubmitting: jest.fn()
@@ -82,6 +84,7 @@ describe('EmailStep test', () => {
         expect(formikBag.setSubmitting).toHaveBeenCalledWith(false);
         expect(global.grecaptcha.execute).toHaveBeenCalled();
     });
+
     test('captchaSolved sets token and goes to next step', () => {
         const props = {
             onNextStep: jest.fn()
@@ -116,6 +119,38 @@ describe('EmailStep test', () => {
             }));
         expect(formikBag.setSubmitting).toHaveBeenCalledWith(true);
     });
+
+    test('onCaptchaError calls error function with correct message', () => {
+        const props = {
+            onRegistrationError: jest.fn()
+        };
+
+        const wrapper = shallowWithIntl(
+            <EmailStep
+                {...props}
+            />);
+
+        const formikWrapper = wrapper.dive();
+        formikWrapper.instance().onCaptchaError();
+        expect(props.onRegistrationError).toHaveBeenCalledWith('registation.troubleReload');
+    });
+
+    test('Captcha load error calls error function', () => {
+        const props = {
+            onRegistrationError: jest.fn()
+        };
+        // Set this to null to force an error.
+        global.grecaptcha = null;
+        const wrapper = shallowWithIntl(
+            <EmailStep
+                {...props}
+            />);
+
+        const formikWrapper = wrapper.dive();
+        formikWrapper.instance().onCaptchaLoad();
+        expect(props.onRegistrationError).toHaveBeenCalledWith('registation.troubleReload');
+    });
+
     test('validateEmail test email empty', () => {
         const wrapper = shallowWithIntl(
             <EmailStep />);
@@ -123,6 +158,7 @@ describe('EmailStep test', () => {
         const val = formikWrapper.instance().validateEmail('');
         expect(val).toBe('general.required');
     });
+
     test('validateEmail test email null', () => {
         const wrapper = shallowWithIntl(
             <EmailStep />);
@@ -130,6 +166,7 @@ describe('EmailStep test', () => {
         const val = formikWrapper.instance().validateEmail(null);
         expect(val).toBe('general.required');
     });
+
     test('validateEmail test email undefined', () => {
         const wrapper = shallowWithIntl(
             <EmailStep />);

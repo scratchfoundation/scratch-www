@@ -9,12 +9,14 @@ const render = require('../../lib/render.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
+const {isDownloaded, isFromGooglePlay} = require('../../components/install-scratch/install-util.js');
 
 const ExtensionLanding = require('../../components/extension-landing/extension-landing.jsx');
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
+const InstallScratch = require('../../components/install-scratch/install-scratch.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
 
 const Steps = require('../../components/steps/steps.jsx');
@@ -55,45 +57,23 @@ class GdxFor extends ExtensionLanding {
                         src="/images/gdxfor/gdxfor-header.svg"
                     />}
                     renderRequirements={
-                        <ExtensionRequirements>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/windows.svg"
-                                />
-                                            Windows 10 version 1709+
-                            </span>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/mac.svg"
-                                />
-                                            macOS 10.13+
-                            </span>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/bluetooth.svg"
-                                />
-                                            Bluetooth 4.0
-                            </span>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/scratch-link.svg"
-                                />
-                                            Scratch Link
-                            </span>
-                        </ExtensionRequirements>
+                        <ExtensionRequirements bluetoothStandard />
                     }
                 />
                 <OSChooser
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
                 />
-                <InstallScratchLink
-                    currentOS={this.state.OS}
-                />
+                {(isDownloaded(this.state.OS)) && (
+                    <InstallScratchLink
+                        currentOS={this.state.OS}
+                    />
+                )}
+                {(isFromGooglePlay(this.state.OS)) && (
+                    <InstallScratch
+                        currentOS={this.state.OS}
+                    />
+                )}
                 <ExtensionSection className="getting-started">
                     <h2><FormattedMessage id="gdxfor.gettingStarted" /></h2>
                     <FlexRow className="column getting-started-section">
@@ -117,20 +97,25 @@ class GdxFor extends ExtensionLanding {
                                     />
                                 </div>
                                 <p>
-                                    <FormattedMessage
-                                        id="gdxfor.useScratch3"
-                                        values={{
-                                            scratch3Link: (
-                                                <a
-                                                    href="/projects/editor/"
-                                                    rel="noopener noreferrer"
-                                                    target="_blank"
-                                                >
-                                                            Scratch
-                                                </a>
-                                            )
-                                        }}
-                                    />
+                                    {isDownloaded(this.state.OS) && (
+                                        <FormattedMessage
+                                            id="gdxfor.useScratch3"
+                                            values={{
+                                                scratch3Link: (
+                                                    <a
+                                                        href="/projects/editor/"
+                                                        rel="noopener noreferrer"
+                                                        target="_blank"
+                                                    >
+                                                        Scratch
+                                                    </a>
+                                                )
+                                            }}
+                                        />
+                                    )}
+                                    {isFromGooglePlay(this.state.OS) && (
+                                        <FormattedMessage id="installScratch.useScratchApp" />
+                                    )}
                                 </p>
                             </Step>
                             <Step number={3}>
@@ -221,32 +206,36 @@ class GdxFor extends ExtensionLanding {
                 </ExtensionSection>
                 <ExtensionSection className="faq">
                     <h2><FormattedMessage id="gdxfor.troubleshootingTitle" /></h2>
-                    <h3 className="faq-title"><FormattedMessage id="gdxfor.checkOSVersionTitle" /></h3>
-                    <p>
-                        <FormattedMessage
-                            id="gdxfor.checkOSVersionText"
-                            values={{
-                                winOSVersionLink: (
-                                    <a
-                                        href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                        <FormattedMessage id="gdxfor.winOSVersionLinkText" />
-                                    </a>
-                                ),
-                                macOSVersionLink: (
-                                    <a
-                                        href="https://support.apple.com/en-us/HT201260"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                        <FormattedMessage id="gdxfor.macOSVersionLinkText" />
-                                    </a>
-                                )
-                            }}
-                        />
-                    </p>
+                    {isDownloaded(this.state.OS) && (
+                        <React.Fragment>
+                            <h3 className="faq-title"><FormattedMessage id="gdxfor.checkOSVersionTitle" /></h3>
+                            <p>
+                                <FormattedMessage
+                                    id="gdxfor.checkOSVersionText"
+                                    values={{
+                                        winOSVersionLink: (
+                                            <a
+                                                href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                            >
+                                                <FormattedMessage id="gdxfor.winOSVersionLinkText" />
+                                            </a>
+                                        ),
+                                        macOSVersionLink: (
+                                            <a
+                                                href="https://support.apple.com/en-us/HT201260"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                            >
+                                                <FormattedMessage id="gdxfor.macOSVersionLinkText" />
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </p>
+                        </React.Fragment>
+                    )}
                     <h3 className="faq-title"><FormattedMessage id="gdxfor.closeScratchCopiesTitle" /></h3>
                     <p>
                         <FormattedMessage id="gdxfor.closeScratchCopiesText" />

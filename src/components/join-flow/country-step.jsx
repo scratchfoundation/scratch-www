@@ -30,7 +30,7 @@ class CountryStep extends React.Component {
             this.countryOptions = [...countryData.registrationCountryOptions];
             this.countryOptions.unshift({ // add placeholder as first option
                 disabled: true,
-                label: this.props.intl.formatMessage({id: 'general.country'}),
+                label: this.props.intl.formatMessage({id: 'registration.selectCountry'}),
                 value: 'null'
             });
         }
@@ -64,7 +64,8 @@ class CountryStep extends React.Component {
                     const {
                         errors,
                         handleSubmit,
-                        isSubmitting
+                        isSubmitting,
+                        setFieldError
                     } = props;
                     return (
                         <JoinFlowStep
@@ -92,7 +93,13 @@ class CountryStep extends React.Component {
                                     name="country"
                                     options={this.countryOptions}
                                     validate={this.validateSelect}
-                                    validationClassName="validation-full-width-input"
+                                    validationClassName={classNames(
+                                        'validation-full-width-input',
+                                        'validation-country'
+                                    )}
+                                    /* eslint-disable react/jsx-no-bind */
+                                    onFocus={() => setFieldError('country', null)}
+                                    /* eslint-enable react/jsx-no-bind */
                                 />
                                 {/* note that this is a hidden checkbox the user will never see */}
                                 <FormikCheckbox
