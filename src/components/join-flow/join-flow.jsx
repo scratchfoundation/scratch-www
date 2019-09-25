@@ -155,6 +155,7 @@ class JoinFlow extends React.Component {
                             onRegistrationError={this.handleRegistrationError}
                         />
                         <WelcomeStep
+                            createProjectOnComplete={this.props.createProjectOnComplete}
                             email={this.state.formData.email}
                             username={this.state.formData.username}
                             onNextStep={this.props.onCompleteRegistration}
@@ -167,6 +168,7 @@ class JoinFlow extends React.Component {
 }
 
 JoinFlow.propTypes = {
+    createProjectOnComplete: PropTypes.bool,
     intl: intlShape,
     onCompleteRegistration: PropTypes.func,
     refreshSession: PropTypes.func
