@@ -37,18 +37,15 @@ module.exports = function (apiKey, serviceId) {
             if (err) {
                 return cb('Failed to fetch versions: ' + err);
             }
-            var latestVersion = versions.reduce(function (lateVersion, version) {
-                if (!lateVersion) return version;
-                // if versions we're comparing are both active, or both inactive, prefer
-                // whichever has a higher version number
-                if (lateVersion.active === version.active) {
-                    if (version.number > lateVersion.number) return version;
-                    return lateVersion;
-                }
-                // if only one of the versions is active, prefer that one
-                if (version.active === true) return version;
-                return lateVersion;
-            });
+            var latestVersion = versions.reduce((latestActiveSoFar, cur) => {
+                // if one of [latestActiveSoFar, cur] is active and the other isn't,
+                // return whichever is active. If both are not active, return
+                // latestActiveSoFar.
+                if (!cur || !cur.active) return latestActiveSoFar;
+                if (!latestActiveSoFar || !latestActiveSoFar.active) return cur;
+                // when both are active, prefer whichever has a higher version number.
+                return (cur.number > latestActiveSoFar.number) ? cur : latestActiveSoFar;
+            }, null);
             return cb(null, latestVersion);
         });
     };
