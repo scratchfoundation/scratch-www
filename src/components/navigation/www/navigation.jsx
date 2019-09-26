@@ -196,7 +196,10 @@ class Navigation extends React.Component {
                                 className="link right join"
                                 key="join"
                             >
+                                {/* there's no css class registrationLink -- this is
+                                just to make the link findable for testing */}
                                 <a
+                                    className="registrationLink"
                                     href="#"
                                     onClick={this.handleClickRegistration}
                                 >
@@ -307,16 +310,22 @@ const mapDispatchToProps = dispatch => ({
     },
     navigateToRegistration: event => {
         event.preventDefault();
-        dispatch(navigationActions.navigateToRegistration());
+        navigationActions.navigateToRegistration();
     },
     setMessageCount: newCount => {
         dispatch(messageCountActions.setCount(newCount));
     }
 });
 
+// Allow incoming props to override redux-provided props. Used to mock in tests.
+const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(
+    {}, stateProps, dispatchProps, ownProps
+);
+
 const ConnectedNavigation = connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
+    mergeProps
 )(Navigation);
 
 module.exports = injectIntl(ConnectedNavigation);
