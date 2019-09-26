@@ -22,6 +22,7 @@ class UsernameStep extends React.Component {
         bindAll(this, [
             'handleChangeShowPassword',
             'handleFocused',
+            'handleSetUsernameRef',
             'handleValidSubmit',
             'validatePasswordIfPresent',
             'validatePasswordConfirmIfPresent',
@@ -33,6 +34,10 @@ class UsernameStep extends React.Component {
             showPassword: false
         };
     }
+    componentDidMount () {
+        // automatically start with focus on username field
+        if (this.usernameInput) this.usernameInput.focus();
+    }
     handleChangeShowPassword () {
         this.setState({showPassword: !this.state.showPassword});
     }
@@ -40,6 +45,9 @@ class UsernameStep extends React.Component {
     // display a tooltip. (We only display it if a field is focused and has never been touched.)
     handleFocused (fieldName) {
         this.setState({focused: fieldName});
+    }
+    handleSetUsernameRef (usernameInputRef) {
+        this.usernameInput = usernameInputRef;
     }
     // we allow username to be empty on blur, since you might not have typed anything yet
     validateUsernameIfPresent (username) {
@@ -160,6 +168,7 @@ class UsernameStep extends React.Component {
                                     }}
                                     onFocus={() => this.handleFocused('username')}
                                     /* eslint-enable react/jsx-no-bind */
+                                    onSetRef={this.handleSetUsernameRef}
                                 />
                                 <div className="join-flow-password-section">
                                     <div className="join-flow-input-title">
@@ -167,7 +176,9 @@ class UsernameStep extends React.Component {
                                     </div>
                                     <FormikInput
                                         className={classNames(
-                                            'join-flow-input'
+                                            'join-flow-input',
+                                            {'join-flow-input-password':
+                                                !values.showPassword && values.password.length > 0}
                                         )}
                                         error={errors.password}
                                         id="password"
@@ -192,7 +203,11 @@ class UsernameStep extends React.Component {
                                         className={classNames(
                                             'join-flow-input',
                                             'join-flow-password-confirm',
-                                            {fail: errors.passwordConfirm}
+                                            {
+                                                'join-flow-input-password':
+                                                    !values.showPassword && values.passwordConfirm.length > 0,
+                                                'fail': errors.passwordConfirm
+                                            }
                                         )}
                                         error={errors.passwordConfirm}
                                         id="passwordConfirm"

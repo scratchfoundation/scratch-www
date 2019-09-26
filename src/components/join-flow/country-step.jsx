@@ -8,6 +8,7 @@ const {injectIntl, intlShape} = require('react-intl');
 const countryData = require('../../lib/country-data');
 const FormikSelect = require('../../components/formik-forms/formik-select.jsx');
 const JoinFlowStep = require('./join-flow-step.jsx');
+const FormikCheckbox = require('../../components/formik-forms/formik-checkbox.jsx');
 
 require('./join-flow-steps.scss');
 
@@ -27,9 +28,9 @@ class CountryStep extends React.Component {
     setCountryOptions () {
         if (this.countryOptions.length === 0) {
             this.countryOptions = [...countryData.registrationCountryOptions];
-            this.countryOptions.unshift({
+            this.countryOptions.unshift({ // add placeholder as first option
                 disabled: true,
-                label: this.props.intl.formatMessage({id: 'general.country'}),
+                label: this.props.intl.formatMessage({id: 'registration.selectCountry'}),
                 value: 'null'
             });
         }
@@ -63,15 +64,15 @@ class CountryStep extends React.Component {
                     const {
                         errors,
                         handleSubmit,
-                        isSubmitting
+                        isSubmitting,
+                        setFieldError
                     } = props;
                     return (
                         <JoinFlowStep
-                            description={this.props.intl.formatMessage({id: 'registration.countryStepDescription'})}
-                            descriptionClassName="join-flow-country-description"
                             headerImgSrc="/images/join-flow/country-header.png"
                             innerClassName="join-flow-inner-country-step"
                             title={this.props.intl.formatMessage({id: 'registration.countryStepTitle'})}
+                            titleClassName="join-flow-country-title"
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
                         >
@@ -92,7 +93,20 @@ class CountryStep extends React.Component {
                                     name="country"
                                     options={this.countryOptions}
                                     validate={this.validateSelect}
-                                    validationClassName="validation-full-width-input"
+                                    validationClassName={classNames(
+                                        'validation-full-width-input',
+                                        'validation-country'
+                                    )}
+                                    /* eslint-disable react/jsx-no-bind */
+                                    onFocus={() => setFieldError('country', null)}
+                                    /* eslint-enable react/jsx-no-bind */
+                                />
+                                {/* note that this is a hidden checkbox the user will never see */}
+                                <FormikCheckbox
+                                    id="yesno"
+                                    label={this.props.intl.formatMessage({id: 'registration.receiveEmails'})}
+                                    name="yesno"
+                                    outerClassName="yesNoCheckbox"
                                 />
                             </div>
                         </JoinFlowStep>

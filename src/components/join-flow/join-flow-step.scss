@@ -7,6 +7,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    overflow-wrap: break-word;
 }
 
 .join-flow-inner-content {
@@ -26,7 +27,7 @@
 .join-flow-description {
     font-size: .875rem;
     font-weight: bold;
-    line-height: 1.37500rem;
+    line-height: 1.125rem;
     margin-top: 0.78125rem;
     margin-bottom: 1.875rem;
     text-align: center;
@@ -49,7 +50,7 @@
 
 .join-flow-footer-message {
     width: 100%;
-    padding: 1.125rem 1.5rem 1.125rem;
+    padding: 0.875rem 1.5rem;
     background-color: $ui-blue-25percent;
     font-size: .75rem;
     font-weight: 600;

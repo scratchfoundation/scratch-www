@@ -11,7 +11,7 @@ require('./formik-input.scss');
 const FormikInput = ({
     className,
     error,
-    setRef,
+    onSetRef,
     toolTip,
     validationClassName,
     wrapperClassName,
@@ -27,12 +27,12 @@ const FormikInput = ({
     >
         <Field
             className={classNames(
-                'input',
+                'formik-input',
                 {fail: error},
                 className
             )}
             /* formik uses "innerRef" to return the actual input element */
-            innerRef={setRef}
+            innerRef={onSetRef}
             {...props}
         />
         {error ? (
@@ -53,9 +53,10 @@ const FormikInput = ({
 
 FormikInput.propTypes = {
     className: PropTypes.string,
-    error: PropTypes.string,
-    setRef: PropTypes.func,
-    toolTip: PropTypes.string,
+    // error and toolTip can be false, in which case we ignore them
+    error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    onSetRef: PropTypes.func,
+    toolTip: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     type: PropTypes.string,
     validationClassName: PropTypes.string,
     wrapperClassName: PropTypes.string

@@ -11,7 +11,7 @@
         margin-bottom: .75rem;
         border: 1px solid $active-gray;
         border-radius: 5px;
-        background: $ui-light-gray url("../../../static/svgs/forms/carot.svg") no-repeat right center;
+        background: $ui-light-gray url("../../../static/svgs/forms/caret.svg") no-repeat right center;
         padding-right: 4rem;
         padding-left: 1rem;
         width: 100%;
@@ -42,7 +42,7 @@
 
         &:focus,
         &:hover {
-            background: $ui-light-gray url("../../../static/svgs/forms/carot-hover.svg") no-repeat right center;
+            background: $ui-light-gray url("../../../static/svgs/forms/caret-hover.svg") no-repeat right center;
         }
 
         > option {

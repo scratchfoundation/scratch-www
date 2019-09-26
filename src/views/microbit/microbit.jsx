@@ -10,19 +10,21 @@ const render = require('../../lib/render.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
+const {isDownloaded, isFromGooglePlay} = require('../../components/install-scratch/install-util.js');
 
 const ExtensionLanding = require('../../components/extension-landing/extension-landing.jsx');
 const ExtensionHeader = require('../../components/extension-landing/extension-header.jsx');
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
+const InstallScratch = require('../../components/install-scratch/install-scratch.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
 const Button = require('../../components/forms/button.jsx');
 
 const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');
 
-const OS_ENUM = require('../../components/extension-landing/os-enum.js');
+const OS_ENUM = require('../../lib/os-enum.js');
 
 require('../../components/extension-landing/extension-landing.scss');
 require('./microbit.scss');
@@ -59,90 +61,96 @@ class MicroBit extends ExtensionLanding {
                         src="/images/microbit/microbit-heart.png"
                     />}
                     renderRequirements={
-                        <ExtensionRequirements>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/windows.svg"
-                                />
-                                            Windows 10 version 1709+
-                            </span>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/mac.svg"
-                                />
-                                            macOS 10.13+
-                            </span>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/bluetooth.svg"
-                                />
-                                            Bluetooth 4.0
-                            </span>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/scratch-link.svg"
-                                />
-                                            Scratch Link
-                            </span>
-                        </ExtensionRequirements>
+                        <ExtensionRequirements bluetoothStandard />
                     }
                 />
                 <OSChooser
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
                 />
-                <InstallScratchLink
-                    currentOS={this.state.OS}
-                />
+                {(isDownloaded(this.state.OS)) && (
+                    <InstallScratchLink
+                        currentOS={this.state.OS}
+                    />
+                )}
+                {(isFromGooglePlay(this.state.OS)) && (
+                    <InstallScratch
+                        currentOS={this.state.OS}
+                    />
+                )}
                 <ExtensionSection className="getting-started">
                     <h2><FormattedMessage id="microbit.gettingStarted" /></h2>
                     <FlexRow className="column getting-started-section">
                         <h3><FormattedMessage id="microbit.installMicrobitHex" /></h3>
-                        <Steps>
-                            <Step number={1}>
-                                <div className="step-image">
-                                    <img
-                                        alt=""
-                                        src="/images/microbit/mbit-usb.png"
-                                    />
-                                </div>
-                                <p>
-                                    <FormattedMessage id="microbit.connectUSB" />
-                                </p>
-                            </Step>
-                            <Step number={2}>
-                                <div className="step-image">
-                                    <img
-                                        alt=""
-                                        src="/images/microbit/mbit-hex-download.png"
-                                    />
-                                </div>
-                                <a
-                                    download
-                                    className="download"
-                                    href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.1.0.hex.zip"
-                                >
-                                    <FormattedMessage id="microbit.downloadHex" />
-                                </a>
-                            </Step>
-                            <Step number={3}>
-                                <div className="step-image">
-                                    <img
-                                        alt={this.props.intl.formatMessage({id: 'microbit.imgAltDragDropHex'})}
-                                        src={`/images/microbit/${
-                                            this.state.OS === OS_ENUM.WINDOWS ? 'win' : 'mac'
-                                        }-copy-hex.png`}
-                                    />
-                                </div>
-                                <p>
-                                    <FormattedMessage id="microbit.dragDropHex" />
-                                </p>
-                            </Step>
-                        </Steps>
+                        {this.state.OS !== OS_ENUM.ANDROID && (
+                            <Steps>
+                                <Step number={1}>
+                                    <div className="step-image">
+                                        <img
+                                            alt=""
+                                            src="/images/microbit/mbit-usb.png"
+                                        />
+                                    </div>
+                                    <p>
+                                        <FormattedMessage id="microbit.connectUSB" />
+                                    </p>
+                                </Step>
+                                <Step number={2}>
+                                    <div className="step-image">
+                                        <img
+                                            alt=""
+                                            src="/images/microbit/mbit-hex-download.png"
+                                        />
+                                    </div>
+                                    <a
+                                        download
+                                        className="download"
+                                        href="https://downloads.scratch.mit.edu/microbit/scratch-microbit-1.1.0.hex.zip"
+                                    >
+                                        <FormattedMessage id="microbit.downloadHex" />
+                                    </a>
+                                </Step>
+                                <Step number={3}>
+                                    {this.state.OS === OS_ENUM.WINDOWS && (
+                                        <div className="step-image">
+                                            <img
+                                                alt={this.props.intl.formatMessage({id: 'microbit.imgAltDragDropHex'})}
+                                                src="/images/microbit/win-copy-hex.png"
+                                            />
+                                        </div>
+                                    )}
+                                    {this.state.OS === OS_ENUM.MACOS && (
+                                        <div className="step-image">
+                                            <img
+                                                alt={this.props.intl.formatMessage({id: 'microbit.imgAltDragDropHex'})}
+                                                src="/images/microbit/mac-copy-hex.png"
+                                            />
+                                        </div>
+                                    )}
+                                    {this.state.OS === OS_ENUM.CHROMEOS && (
+                                        <div className="step-image">
+                                            <img
+                                                alt={this.props.intl.formatMessage({id: 'microbit.imgAltDragDropHex'})}
+                                                src="/images/microbit/chromeos-copy-hex.png"
+                                            />
+                                        </div>
+                                    )}
+                                    <p>
+                                        <FormattedMessage id="microbit.dragDropHex" />
+                                    </p>
+                                </Step>
+                            </Steps>
+                        )}
+                        {this.state.OS === OS_ENUM.ANDROID && (
+                            <Steps>
+                                <Step>
+                                    <p>
+                                        <FormattedMessage id="microbit.installHexAndroid" />
+                                    </p>
+                                </Step>
+                            </Steps>
+                        )}
+
                     </FlexRow>
                     <hr />
                     <FlexRow className="column getting-started-section">
@@ -166,20 +174,25 @@ class MicroBit extends ExtensionLanding {
                                     />
                                 </div>
                                 <p>
-                                    <FormattedMessage
-                                        id="microbit.useScratch3"
-                                        values={{
-                                            scratch3Link: (
-                                                <a
-                                                    href="/projects/editor/"
-                                                    rel="noopener noreferrer"
-                                                    target="_blank"
-                                                >
-                                                            Scratch
-                                                </a>
-                                            )
-                                        }}
-                                    />
+                                    {isDownloaded(this.state.OS) && (
+                                        <FormattedMessage
+                                            id="microbit.useScratch3"
+                                            values={{
+                                                scratch3Link: (
+                                                    <a
+                                                        href="/projects/editor/"
+                                                        rel="noopener noreferrer"
+                                                        target="_blank"
+                                                    >
+                                                        Scratch
+                                                    </a>
+                                                )
+                                            }}
+                                        />
+                                    )}
+                                    {isFromGooglePlay(this.state.OS) && (
+                                        <FormattedMessage id="installScratch.useScratchApp" />
+                                    )}
                                 </p>
                             </Step>
                             <Step number={3}>
@@ -289,7 +302,13 @@ class MicroBit extends ExtensionLanding {
                                 <FormattedMessage id="microbit.cardsDescription" />
                             </p>
                             <p>
-                                <a href={this.props.intl.formatMessage({id: 'cards.microbit-cardsLink'})}>
+                                <a
+                                    href={this.props.intl.formatMessage({
+                                        id: 'cards.microbit-cardsLink'
+                                    })}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
                                     <Button className="download-cards-button large">
                                         <FormattedMessage id="general.downloadPDF" />
                                     </Button>
@@ -301,32 +320,36 @@ class MicroBit extends ExtensionLanding {
                 </ExtensionSection>
                 <ExtensionSection className="faq">
                     <h2><FormattedMessage id="microbit.troubleshootingTitle" /></h2>
-                    <h3 className="faq-title"><FormattedMessage id="microbit.checkOSVersionTitle" /></h3>
-                    <p>
-                        <FormattedMessage
-                            id="microbit.checkOSVersionText"
-                            values={{
-                                winOSVersionLink: (
-                                    <a
-                                        href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                        <FormattedMessage id="microbit.winOSVersionLinkText" />
-                                    </a>
-                                ),
-                                macOSVersionLink: (
-                                    <a
-                                        href="https://support.apple.com/en-us/HT201260"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                        <FormattedMessage id="microbit.macOSVersionLinkText" />
-                                    </a>
-                                )
-                            }}
-                        />
-                    </p>
+                    {isDownloaded(this.state.OS) && (
+                        <React.Fragment>
+                            <h3 className="faq-title"><FormattedMessage id="microbit.checkOSVersionTitle" /></h3>
+                            <p>
+                                <FormattedMessage
+                                    id="microbit.checkOSVersionText"
+                                    values={{
+                                        winOSVersionLink: (
+                                            <a
+                                                href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                            >
+                                                <FormattedMessage id="microbit.winOSVersionLinkText" />
+                                            </a>
+                                        ),
+                                        macOSVersionLink: (
+                                            <a
+                                                href="https://support.apple.com/en-us/HT201260"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                            >
+                                                <FormattedMessage id="microbit.macOSVersionLinkText" />
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </p>
+                        </React.Fragment>
+                    )}
                     <h3 className="faq-title"><FormattedMessage id="microbit.closeScratchCopiesTitle" /></h3>
                     <p>
                         <FormattedMessage id="microbit.closeScratchCopiesText" />

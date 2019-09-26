@@ -42,9 +42,10 @@ class WelcomeStep extends React.Component {
                             description={this.props.intl.formatMessage({
                                 id: 'registration.welcomeStepDescriptionNonEducator'
                             })}
+                            descriptionClassName="join-flow-welcome-description"
                             headerImgSrc="/images/join-flow/welcome-header.png"
                             innerClassName="join-flow-inner-welcome-step"
-                            nextButton={
+                            nextButton={this.props.createProjectOnComplete ? (
                                 <React.Fragment>
                                     <FormattedMessage id="registration.makeProject" />
                                     <img
@@ -52,11 +53,14 @@ class WelcomeStep extends React.Component {
                                         src="/svgs/project/r-arrow.svg"
                                     />
                                 </React.Fragment>
-                            }
+                            ) : (
+                                <FormattedMessage id="general.done" />
+                            )}
                             title={`${this.props.intl.formatMessage(
                                 {id: 'registration.welcomeStepTitleNonEducator'},
                                 {username: this.props.username}
                             )}`}
+                            titleClassName="join-flow-welcome-title"
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
                         >
@@ -77,6 +81,7 @@ class WelcomeStep extends React.Component {
 }
 
 WelcomeStep.propTypes = {
+    createProjectOnComplete: PropTypes.bool,
     email: PropTypes.string,
     intl: intlShape,
     onNextStep: PropTypes.func,

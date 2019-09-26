@@ -5,7 +5,6 @@ const PropTypes = require('prop-types');
 const NextStepButton = require('./next-step-button.jsx');
 const ModalTitle = require('../modal/base/modal-title.jsx');
 const ModalInnerContent = require('../modal/base/modal-inner-content.jsx');
-const InfoButton = require('../info-button/info-button.jsx');
 
 require('./join-flow-step.scss');
 
@@ -16,10 +15,10 @@ const JoinFlowStep = ({
     descriptionClassName,
     footerContent,
     headerImgSrc,
-    infoMessage,
     nextButton,
     onSubmit,
     title,
+    titleClassName,
     waiting
 }) => (
     <form onSubmit={onSubmit}>
@@ -41,7 +40,10 @@ const JoinFlowStep = ({
                 >
                     {title && (
                         <ModalTitle
-                            className="join-flow-title"
+                            className={classNames(
+                                'join-flow-title',
+                                titleClassName
+                            )}
                             title={title}
                         />
                     )}
@@ -53,23 +55,22 @@ const JoinFlowStep = ({
                             )}
                         >
                             {description}
-                            {infoMessage && (
-                                <InfoButton message={infoMessage} />
-                            )}
                         </div>
                     )}
                     {children}
                 </ModalInnerContent>
             </div>
-            {footerContent && (
-                <div className="join-flow-footer-message">
-                    {footerContent}
-                </div>
-            )}
-            <NextStepButton
-                content={nextButton}
-                waiting={waiting}
-            />
+            <div>
+                {footerContent && (
+                    <div className="join-flow-footer-message">
+                        {footerContent}
+                    </div>
+                )}
+                <NextStepButton
+                    content={nextButton}
+                    waiting={waiting}
+                />
+            </div>
         </div>
     </form>
 );
@@ -80,11 +81,11 @@ JoinFlowStep.propTypes = {
     descriptionClassName: PropTypes.string,
     footerContent: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
     headerImgSrc: PropTypes.string,
-    infoMessage: PropTypes.string,
     innerClassName: PropTypes.string,
     nextButton: PropTypes.node,
     onSubmit: PropTypes.func,
     title: PropTypes.string,
+    titleClassName: PropTypes.string,
     waiting: PropTypes.bool
 };
 

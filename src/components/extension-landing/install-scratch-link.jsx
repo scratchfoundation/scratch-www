@@ -2,13 +2,14 @@ const PropTypes = require('prop-types');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
-const OS_ENUM = require('./os-enum.js');
+const OS_ENUM = require('../../lib/os-enum.js');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');
 
 require('./extension-landing.scss');
 
+// Assumes this will only be called with an OS that needs Scratch Link
 const InstallScratchLink = ({
     currentOS
 }) => (
@@ -37,20 +38,20 @@ const InstallScratchLink = ({
                                 <img
                                     alt=""
                                     className="store-badge"
-                                    src={`/images/scratchlink/${
+                                    src={`/images/badges/${
                                         currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
                                     }-store-badge.svg`}
                                 />
                             </a>
                             <span className="horizontal-divider">
-                                <FormattedMessage id="installScratchLink.or" />
+                                <FormattedMessage id="installScratch.or" />
                             </span>
                             <a
                                 href={`https://downloads.scratch.mit.edu/link/${
                                     currentOS === OS_ENUM.WINDOWS ? 'windows' : 'mac'
                                 }.zip`}
                             >
-                                <FormattedMessage id="installScratchLink.directDownload" />
+                                <FormattedMessage id="installScratch.directDownload" />
                             </a>
                         </div>
                     </Step>

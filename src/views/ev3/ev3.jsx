@@ -17,13 +17,15 @@ const ExtensionVideo = require('../../components/extension-landing/extension-vid
 const ExtensionRequirements = require('../../components/extension-landing/extension-requirements.jsx');
 const ExtensionSection = require('../../components/extension-landing/extension-section.jsx');
 const InstallScratchLink = require('../../components/extension-landing/install-scratch-link.jsx');
+const InstallScratch = require('../../components/install-scratch/install-scratch.jsx');
 const TipBox = require('../../components/extension-landing/tip-box.jsx');
 const ProjectCard = require('../../components/extension-landing/project-card.jsx');
 
 const Steps = require('../../components/steps/steps.jsx');
 const Step = require('../../components/steps/step.jsx');
 
-const OS_ENUM = require('../../components/extension-landing/os-enum.js');
+const OS_ENUM = require('../../lib/os-enum.js');
+const {isDownloaded, isFromGooglePlay} = require('../../components/install-scratch/install-util.js');
 
 require('../../components/extension-landing/extension-landing.scss');
 require('./ev3.scss');
@@ -60,42 +62,23 @@ class EV3 extends ExtensionLanding {
                             videoId="0huu6wfiki"
                         />}
                     renderRequirements={
-                        <ExtensionRequirements>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/windows.svg"
-                                />
-                                            Windows 10 version 1709+
-                            </span>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/mac.svg"
-                                />
-                                            macOS 10.13+
-                            </span>
-                            <span>
-                                <img src="/svgs/extensions/bluetooth.svg" />
-                                            Bluetooth
-                            </span>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/scratch-link.svg"
-                                />
-                                            Scratch Link
-                            </span>
-                        </ExtensionRequirements>
+                        <ExtensionRequirements bluetoothStandard />
                     }
                 />
                 <OSChooser
                     currentOS={this.state.OS}
                     handleSetOS={this.onSetOS}
                 />
-                <InstallScratchLink
-                    currentOS={this.state.OS}
-                />
+                {(isDownloaded(this.state.OS)) && (
+                    <InstallScratchLink
+                        currentOS={this.state.OS}
+                    />
+                )}
+                {(isFromGooglePlay(this.state.OS)) && (
+                    <InstallScratch
+                        currentOS={this.state.OS}
+                    />
+                )}
                 <ExtensionSection className="getting-started">
                     <h2><FormattedMessage id="ev3.gettingStarted" /></h2>
                     <FlexRow className="column getting-started-section">
@@ -119,20 +102,25 @@ class EV3 extends ExtensionLanding {
                                     />
                                 </div>
                                 <p>
-                                    <FormattedMessage
-                                        id="ev3.useScratch3"
-                                        values={{
-                                            scratch3Link: (
-                                                <a
-                                                    href="/projects/editor/?tutorial=ev3"
-                                                    rel="noopener noreferrer"
-                                                    target="_blank"
-                                                >
-                                                            Scratch
-                                                </a>
-                                            )
-                                        }}
-                                    />
+                                    {(isDownloaded(this.state.OS)) && (
+                                        <FormattedMessage
+                                            id="ev3.useScratch3"
+                                            values={{
+                                                scratch3Link: (
+                                                    <a
+                                                        href="/projects/editor/?tutorial=ev3"
+                                                        rel="noopener noreferrer"
+                                                        target="_blank"
+                                                    >
+                                                                Scratch
+                                                    </a>
+                                                )
+                                            }}
+                                        />
+                                    )}
+                                    {(isFromGooglePlay(this.state.OS)) && (
+                                        <FormattedMessage id="installScratch.useScratchApp" />
+                                    )}
                                 </p>
                             </Step>
                             <Step number={3}>
@@ -168,27 +156,51 @@ class EV3 extends ExtensionLanding {
                                     <p><FormattedMessage id="ev3.acceptPasscode" /></p>
                                 </Step>
                                 <Step>
-                                    <div className="step-image">
-                                        <img
-                                            alt={this.props.intl.formatMessage({id: `ev3.imgAlt${
-                                                this.state.OS === OS_ENUM.WINDOWS ?
-                                                    'WaitForWindows' :
-                                                    'EnterPasscodeMac'
-                                            }`})}
-                                            className="screenshot"
-                                            src={`/images/ev3/${
-                                                this.state.OS === OS_ENUM.WINDOWS ?
-                                                    'win-device-ready.png' :
-                                                    'mac-enter-passcode.png'
-                                            }`}
-                                        />
-                                    </div>
-                                    <p>
-                                        {this.state.OS === OS_ENUM.WINDOWS ?
-                                            <FormattedMessage id="ev3.windowsFinalizePairing" /> :
-                                            <FormattedMessage id="ev3.macosFinalizePairing" />
-                                        }
-                                    </p>
+                                    {this.state.OS === OS_ENUM.WINDOWS && (
+                                        <React.Fragment>
+                                            <div className="step-image">
+                                                <img
+                                                    alt={this.props.intl.formatMessage(
+                                                        {id: 'ev3.imgAltWaitForWindows'})}
+                                                    className="screenshot"
+                                                    src="/images/ev3/win-device-ready.png"
+                                                />
+                                            </div>
+                                            <p>
+                                                <FormattedMessage id="ev3.windowsFinalizePairing" />
+                                            </p>
+                                        </React.Fragment>
+                                    )}
+                                    {this.state.OS === OS_ENUM.MACOS && (
+                                        <React.Fragment>
+                                            <div className="step-image">
+                                                <img
+                                                    alt={this.props.intl.formatMessage(
+                                                        {id: 'ev3.imgAltEnterPasscodeMac'})}
+                                                    className="screenshot"
+                                                    src="/images/ev3/mac-enter-passcode.png"
+                                                />
+                                            </div>
+                                            <p>
+                                                <FormattedMessage id="ev3.macosFinalizePairing" />
+                                            </p>
+                                        </React.Fragment>
+                                    )}
+                                    {this.state.OS === OS_ENUM.CHROMEOS && (
+                                        <React.Fragment>
+                                            <div className="step-image tall">
+                                                <img
+                                                    alt={this.props.intl.formatMessage(
+                                                        {id: 'ev3.imgAltEnterPasscodeChrome'})}
+                                                    className="screenshot"
+                                                    src="/images/ev3/chromeos-enter-passcode.png"
+                                                />
+                                            </div>
+                                            <p>
+                                                <FormattedMessage id="ev3.chromeosFinalizePairing" />
+                                            </p>
+                                        </React.Fragment>
+                                    )}
                                 </Step>
                             </Steps>
                         </TipBox>
@@ -269,32 +281,36 @@ class EV3 extends ExtensionLanding {
                 </ExtensionSection>
                 <ExtensionSection className="faq">
                     <h2><FormattedMessage id="ev3.troubleshootingTitle" /></h2>
-                    <h3 className="faq-title"><FormattedMessage id="ev3.checkOSVersionTitle" /></h3>
-                    <p>
-                        <FormattedMessage
-                            id="ev3.checkOSVersionText"
-                            values={{
-                                winOSVersionLink: (
-                                    <a
-                                        href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                        <FormattedMessage id="ev3.winOSVersionLinkText" />
-                                    </a>
-                                ),
-                                macOSVersionLink: (
-                                    <a
-                                        href="https://support.apple.com/en-us/HT201260"
-                                        rel="noopener noreferrer"
-                                        target="_blank"
-                                    >
-                                        <FormattedMessage id="ev3.macOSVersionLinkText" />
-                                    </a>
-                                )
-                            }}
-                        />
-                    </p>
+                    {isDownloaded(this.state.OS) && (
+                        <React.Fragment>
+                            <h3 className="faq-title"><FormattedMessage id="ev3.checkOSVersionTitle" /></h3>
+                            <p>
+                                <FormattedMessage
+                                    id="ev3.checkOSVersionText"
+                                    values={{
+                                        winOSVersionLink: (
+                                            <a
+                                                href="https://support.microsoft.com/en-us/help/13443/windows-which-operating-system"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                            >
+                                                <FormattedMessage id="ev3.winOSVersionLinkText" />
+                                            </a>
+                                        ),
+                                        macOSVersionLink: (
+                                            <a
+                                                href="https://support.apple.com/en-us/HT201260"
+                                                rel="noopener noreferrer"
+                                                target="_blank"
+                                            >
+                                                <FormattedMessage id="ev3.macOSVersionLinkText" />
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </p>
+                        </React.Fragment>
+                    )}
                     <h3 className="faq-title"><FormattedMessage id="ev3.makeSurePairedTitle" /></h3>
                     <p>
                         <FormattedMessage

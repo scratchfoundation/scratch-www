@@ -223,6 +223,8 @@
             font-size: 1rem;
             line-height: 1.5rem;
             overflow-wrap: break-word;
+            display: block;
+            overflow: hidden;
         }
 
         .comment-bottom-row {
