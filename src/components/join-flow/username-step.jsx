@@ -20,7 +20,6 @@ class UsernameStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleChangeShowPassword',
             'handleFocused',
             'handleSetUsernameRef',
             'handleValidSubmit',
@@ -30,16 +29,12 @@ class UsernameStep extends React.Component {
             'validateForm'
         ]);
         this.state = {
-            focused: null,
-            showPassword: false
+            focused: null
         };
     }
     componentDidMount () {
         // automatically start with focus on username field
         if (this.usernameInput) this.usernameInput.focus();
-    }
-    handleChangeShowPassword () {
-        this.setState({showPassword: !this.state.showPassword});
     }
     // track the currently focused input field, to determine whether each field should
     // display a tooltip. (We only display it if a field is focused and has never been touched.)
@@ -114,7 +109,7 @@ class UsernameStep extends React.Component {
                     username: '',
                     password: '',
                     passwordConfirm: '',
-                    showPassword: false
+                    showPassword: true
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
