@@ -295,7 +295,7 @@
     },
     {
         "name": "wedo2",
-        "pattern": "^/wedo/?$",
+        "pattern": "^/wedo/?(\\?.*)?$",
         "routeAlias": "/wedo/?$",
         "view": "wedo2/wedo2",
         "title": "WeDo 2.0"
@@ -309,28 +309,28 @@
     },
     {
         "name": "ev3",
-        "pattern": "^/ev3/?$",
+        "pattern": "^/ev3/?(\\?.*)?$",
         "routeAlias": "/ev3/?$",
         "view": "ev3/ev3",
         "title": "LEGO MINDSTORMS EV3"
     },
     {
         "name": "microbit",
-        "pattern": "^/microbit/?$",
+        "pattern": "^/microbit/?(\\?.*)?$",
         "routeAlias": "/microbit/?$",
         "view": "microbit/microbit",
         "title": "micro:bit"
     },
     {
         "name": "vernier",
-        "pattern": "^/vernier/?$",
+        "pattern": "^/vernier/?(\\?.*)?$",
         "routeAlias": "/vernier/?$",
         "view": "gdxfor/gdxfor",
         "title": "Vernier Go Direct Force and Acceleration"
     },
     {
         "name": "boost",
-        "pattern": "^/boost/?$",
+        "pattern": "^/boost/?(\\?.*)?$",
         "routeAlias": "/boost/?$",
         "view": "boost/boost",
         "title": "LEGO BOOST"
