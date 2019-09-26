@@ -63,6 +63,8 @@ const InstallScratch = ({
                                 <a
                                     className="ms-badge"
                                     href="https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
                                 >
                                     <img
                                         src="images/badges/windows-store-badge.svg"
@@ -73,6 +75,8 @@ const InstallScratch = ({
                                 <a
                                     className="macos-badge"
                                     href="https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
                                 >
                                     <img
                                         src="images/badges/mac-store-badge.svg"
@@ -83,6 +87,8 @@ const InstallScratch = ({
                                 <a
                                     className="play-badge"
                                     href="https://play.google.com/store/apps/details?id=org.scratch"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
                                 >
                                     <img
                                         src="images/badges/google-play-badge.png"
