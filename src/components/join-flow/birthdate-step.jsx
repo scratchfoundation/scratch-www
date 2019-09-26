@@ -85,7 +85,8 @@ class BirthDateStep extends React.Component {
                     const {
                         errors,
                         handleSubmit,
-                        isSubmitting
+                        isSubmitting,
+                        setFieldError
                     } = props;
                     return (
                         <JoinFlowStep
@@ -116,9 +117,13 @@ class BirthDateStep extends React.Component {
                                     options={birthMonthOptions}
                                     validate={this.validateSelect}
                                     validationClassName={classNames(
+                                        'validation-birthdate',
                                         'validation-birthdate-month',
                                         'validation-left'
                                     )}
+                                    /* eslint-disable react/jsx-no-bind */
+                                    onFocus={() => setFieldError('birth_month', null)}
+                                    /* eslint-enable react/jsx-no-bind */
                                 />
                                 <FormikSelect
                                     className={classNames(
@@ -131,7 +136,13 @@ class BirthDateStep extends React.Component {
                                     name="birth_year"
                                     options={birthYearOptions}
                                     validate={this.validateSelect}
-                                    validationClassName="validation-birthdate-year"
+                                    validationClassName={classNames(
+                                        'validation-birthdate',
+                                        'validation-birthdate-year'
+                                    )}
+                                    /* eslint-disable react/jsx-no-bind */
+                                    onFocus={() => setFieldError('birth_year', null)}
+                                    /* eslint-enable react/jsx-no-bind */
                                 />
                             </div>
                             <div className="join-flow-privacy-message">

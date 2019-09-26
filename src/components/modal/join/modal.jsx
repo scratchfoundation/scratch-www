@@ -6,26 +6,32 @@ const JoinFlow = require('../../join-flow/join-flow.jsx');
 require('./modal.scss');
 
 const JoinModal = ({
-    onCompleteRegistration, // eslint-disable-line no-unused-vars
+    createProjectOnComplete,
+    onCompleteRegistration,
     onRequestClose,
     ...modalProps
 }) => (
     <Modal
         isOpen
+        showCloseButton
         useStandardSizes
         className="mod-join"
+        shouldCloseOnOverlayClick={false}
         onRequestClose={onRequestClose}
         {...modalProps}
     >
         <JoinFlow
+            createProjectOnComplete={createProjectOnComplete}
             onCompleteRegistration={onCompleteRegistration}
         />
     </Modal>
 );
 
 JoinModal.propTypes = {
+    createProjectOnComplete: PropTypes.bool,
     onCompleteRegistration: PropTypes.func,
-    onRequestClose: PropTypes.func
+    onRequestClose: PropTypes.func,
+    showCloseButton: PropTypes.bool
 };
 
 module.exports = JoinModal;

@@ -23,6 +23,7 @@ class JoinFlow extends React.Component {
         super(props);
         bindAll(this, [
             'handleAdvanceStep',
+            'handleRegistrationError',
             'handlePrepareToRegister',
             'handleRegistrationResponse',
             'handleSubmitRegistration'
@@ -33,6 +34,14 @@ class JoinFlow extends React.Component {
             step: 0,
             waiting: false
         };
+    }
+    handleRegistrationError (message) {
+        if (!message) {
+            message = this.props.intl.formatMessage({
+                id: 'registration.generalError'
+            });
+        }
+        this.setState({registrationError: message});
     }
     handlePrepareToRegister (newFormData) {
         newFormData = newFormData || {};
@@ -143,8 +152,10 @@ class JoinFlow extends React.Component {
                         <EmailStep
                             waiting={this.state.waiting}
                             onNextStep={this.handlePrepareToRegister}
+                            onRegistrationError={this.handleRegistrationError}
                         />
                         <WelcomeStep
+                            createProjectOnComplete={this.props.createProjectOnComplete}
                             email={this.state.formData.email}
                             username={this.state.formData.username}
                             onNextStep={this.props.onCompleteRegistration}
@@ -157,6 +168,7 @@ class JoinFlow extends React.Component {
 }
 
 JoinFlow.propTypes = {
+    createProjectOnComplete: PropTypes.bool,
     intl: intlShape,
     onCompleteRegistration: PropTypes.func,
     refreshSession: PropTypes.func

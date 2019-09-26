@@ -8,14 +8,18 @@ const JoinModal = require('../modal/join/modal.jsx');
 require('./registration.scss');
 
 const Registration = ({
+    createProjectOnComplete,
     handleCloseRegistration,
     handleCompleteRegistration,
-    isOpen
+    isOpen,
+    showCloseButton
 }) => (
     <div>
         <JoinModal
+            createProjectOnComplete={createProjectOnComplete}
             isOpen={isOpen}
             key="join-modal"
+            showCloseButton={showCloseButton}
             onCompleteRegistration={handleCompleteRegistration}
             onRequestClose={handleCloseRegistration}
         />
@@ -23,11 +27,11 @@ const Registration = ({
 );
 
 Registration.propTypes = {
-    // used in mapDispatchToProps; eslint doesn't understand that this prop is used
-    createProjectOnComplete: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+    createProjectOnComplete: PropTypes.bool,
     handleCloseRegistration: PropTypes.func,
     handleCompleteRegistration: PropTypes.func,
-    isOpen: PropTypes.bool
+    isOpen: PropTypes.bool,
+    showCloseButton: PropTypes.bool
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

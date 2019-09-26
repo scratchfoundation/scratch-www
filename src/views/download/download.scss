@@ -27,6 +27,18 @@
         font-size: 1rem;
     }
 
+    .macos-badge img {
+        height: 50px;
+    }
+
+    .ms-badge img {
+        height: 50px;
+    }
+
+    .play-badge img {
+        height: 50px;
+    }
+
     .download-header {
         background-color: $ui-blue;
         padding: 4rem 0;
@@ -80,6 +92,7 @@
 
                 .download-requirements {
                     justify-content: space-between;
+                    line-height: 2rem;
                 }
 
                 .download-requirements span {

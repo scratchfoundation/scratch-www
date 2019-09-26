@@ -1,0 +1,95 @@
+@import "../../colors";
+@import "../../frameless";
+
+#view {
+    padding: 0;
+}
+
+.install-scratch {
+    padding: 2rem 0;
+
+    .inner {
+        align-items: flex-start;
+    }
+
+    .downloads-container {
+        text-align: center;
+
+        .horizontal-divider {
+            display: block;
+            margin: 20px;
+        }
+
+        .horizontal-divider:before,
+        .horizontal-divider:after {
+            display: inline-block;
+            position: relative;
+            background-color: $ui-dark-gray;
+            width: 50%;
+            height: 1px;
+            vertical-align: middle;
+            content: "";
+        }
+
+        .horizontal-divider:before {
+            right: .5em;
+            margin-left: -50%;
+        }
+
+        .horizontal-divider:after {
+            left: .5em;
+            margin-right: -50%;
+        }
+    }
+
+    .step-image {
+        height: 14rem;
+    }
+
+    .title {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+    }
+
+    .legacy-link {
+        display: flex;
+    }
+
+    .download-button {
+        display: inline-block;
+        margin: .5em 0;
+        border: 0;
+        border-radius: 8px;
+        background-color: $ui-blue;
+        cursor: pointer;
+        padding: 1rem 2rem;
+        color: $ui-white;
+        font-size: 1rem;
+    }
+
+    .macos-badge img {
+        height: 50px;
+    }
+
+    .ms-badge img {
+        height: 50px;
+    }
+
+    .play-badge img {
+        height: 50px;
+    }
+
+    .download-image {
+        width: 100%;
+        max-width: $cols6;
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+
+    .blue {
+        background-color: $ui-blue-10percent;
+    }
+}
