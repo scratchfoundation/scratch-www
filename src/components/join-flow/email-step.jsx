@@ -21,6 +21,7 @@ class EmailStep extends React.Component {
             'handleSetEmailRef',
             'handleValidSubmit',
             'validateEmail',
+            'validateEmailRemotelyWithCache',
             'validateForm',
             'setCaptchaRef',
             'captchaSolved',
@@ -30,8 +31,10 @@ class EmailStep extends React.Component {
         this.state = {
             captchaIsLoading: true
         };
+        // simple object to memoize remote requests for email addresses.
+        // keeps us from submitting multiple requests for same data.
+        this.emailRemoteCache = {};
     }
-
     componentDidMount () {
         // automatically start with focus on username field
         if (this.emailInput) this.emailInput.focus();
@@ -78,11 +81,24 @@ class EmailStep extends React.Component {
             },
             true);
     }
+    // simple function to memoize remote requests for usernames
+    validateEmailRemotelyWithCache (email) {
+        if (this.emailRemoteCache.hasOwnProperty(email)) {
+            return Promise.resolve(this.emailRemoteCache[email]);
+        }
+        // email is not in our cache
+        return validate.validateEmailRemotely(email).then(
+            remoteResult => {
+                this.emailRemoteCache[email] = remoteResult;
+                return remoteResult;
+            }
+        );
+    }
     validateEmail (email) {
         if (!email) return this.props.intl.formatMessage({id: 'general.required'});
         const localResult = validate.validateEmailLocally(email);
         if (!localResult.valid) return this.props.intl.formatMessage({id: localResult.errMsgId});
-        return validate.validateEmailRemotely(email).then(
+        return this.validateEmailRemotelyWithCache(email).then(
             remoteResult => {
                 if (remoteResult.valid === true) {
                     return null;
