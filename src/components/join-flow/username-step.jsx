@@ -34,7 +34,8 @@ class UsernameStep extends React.Component {
             focused: null,
             showPassword: false
         };
-        // keeps us from submitting multiple remote requests for a single username
+        // simple object to memoize remote requests for usernames.
+        // keeps us from submitting multiple requests for same data.
         this.usernameRemoteCache = {};
     }
     componentDidMount () {
@@ -52,6 +53,7 @@ class UsernameStep extends React.Component {
     handleSetUsernameRef (usernameInputRef) {
         this.usernameInput = usernameInputRef;
     }
+    // simple function to memoize remote requests for usernames
     validateUsernameRemotelyWithCache (username) {
         if (this.usernameRemoteCache.hasOwnProperty(username)) {
             return Promise.resolve(this.usernameRemoteCache[username]);
