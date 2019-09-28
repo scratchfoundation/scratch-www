@@ -10,10 +10,10 @@ const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
 
 const Page = require('../../components/page/www/page.jsx');
-const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
 const jar = require('../../lib/jar.js');
 const thumbnailUrl = require('../../lib/user-thumbnail');
+const ProjectViewHOC = require('./project-view-hoc.jsx');
 const ProjectInfo = require('../../lib/project-info');
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -34,18 +34,6 @@ const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
-
-const Sentry = require('@sentry/browser');
-if (`${process.env.SENTRY_DSN}` !== '') {
-    Sentry.init({
-        dsn: `${process.env.SENTRY_DSN}`,
-        // Do not collect global onerror, only collect specifically from React error boundaries.
-        // TryCatch plugin also includes errors from setTimeouts (i.e. the VM)
-        integrations: integrations => integrations.filter(i =>
-            !(i.name === 'GlobalHandlers' || i.name === 'TryCatch'))
-    });
-    window.Sentry = Sentry; // Allow GUI access to Sentry via window
-}
 
 class Preview extends React.Component {
     constructor (props) {
@@ -134,12 +122,17 @@ class Preview extends React.Component {
     }
     componentDidMount () {
         this.addEventListeners();
+        console.log(`componentDidMount: session status: ${this.props.sessionStatus}`);
+
     }
     componentDidUpdate (prevProps, prevState) {
+        console.log(`componentDidUpdate: session status: ${this.props.sessionStatus}`);
         if (this.state.projectId > 0 &&
             ((this.props.sessionStatus !== prevProps.sessionStatus &&
             this.props.sessionStatus === sessionActions.Status.FETCHED) ||
             (this.state.projectId !== prevState.projectId))) {
+            console.log("got here A");
+            console.log(`this: ${this.state.projectId} prev: ${prevState.projectId}`);
             this.fetchCommunityData();
             this.getProjectData(this.state.projectId, true /* Show cloud/username alerts */);
             if (this.state.justShared) {
@@ -245,67 +238,53 @@ class Preview extends React.Component {
         }
     }
     getProjectData (projectId, showAlerts) {
-        if (projectId <= 0) return 0;
-        storage
-            .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
-            .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
-                let input = projectAsset.data;
-                if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
-                !ArrayBuffer.isView(input)) { // taken from scratch-vm
-                    // If the input is an object and not any ArrayBuffer
-                    // or an ArrayBuffer view (this includes all typed arrays and DataViews)
-                    // turn the object into a JSON string, because we suspect
-                    // this is a project.json as an object
-                    // validate expects a string or buffer as input
-                    // TODO not sure if we need to check that it also isn't a data view
-                    input = JSON.stringify(input);
+        this.props.fetchProjectData(projectId).then(projectAsset => {
+            parser(projectAsset.data, false, (err, projectData) => {
+                if (err) {
+                    log.error(`Unhandled project parsing error: ${err}`);
+                    return;
                 }
-                parser(projectAsset.data, false, (err, projectData) => {
-                    if (err) {
-                        log.error(`Unhandled project parsing error: ${err}`);
-                        return;
-                    }
-                    const newState = {
-                        modInfo: {} // Filled in below
-                    };
+                const newState = {
+                    modInfo: {} // Filled in below
+                };
 
-                    const helpers = ProjectInfo[projectData[0].projectVersion];
-                    if (!helpers) return; // sb1 not handled
-                    newState.extensions = Array.from(helpers.extensions(projectData[0]));
-                    newState.modInfo.scriptCount = helpers.scriptCount(projectData[0]);
-                    newState.modInfo.spriteCount = helpers.spriteCount(projectData[0]);
-                    const hasCloudData = helpers.cloudData(projectData[0]);
-                    if (hasCloudData) {
-                        if (this.props.isLoggedIn) {
-                            // show cloud variables log link if logged in
-                            newState.extensions.push({
-                                action: {
-                                    l10nId: 'project.cloudDataLink',
-                                    uri: `/cloudmonitor/${projectId}/`
-                                },
-                                icon: 'clouddata.svg',
-                                l10nId: 'project.cloudVariables',
-                                linked: true
-                            });
-                        } else {
-                            newState.extensions.push({
-                                icon: 'clouddata.svg',
-                                l10nId: 'project.cloudVariables'
-                            });
-                        }
+                const helpers = ProjectInfo[projectData[0].projectVersion];
+                if (!helpers) return; // sb1 not handled
+                newState.extensions = Array.from(helpers.extensions(projectData[0]));
+                newState.modInfo.scriptCount = helpers.scriptCount(projectData[0]);
+                newState.modInfo.spriteCount = helpers.spriteCount(projectData[0]);
+                const hasCloudData = helpers.cloudData(projectData[0]);
+                if (hasCloudData) {
+                    if (this.props.isLoggedIn) {
+                        // show cloud variables log link if logged in
+                        newState.extensions.push({
+                            action: {
+                                l10nId: 'project.cloudDataLink',
+                                uri: `/cloudmonitor/${projectId}/`
+                            },
+                            icon: 'clouddata.svg',
+                            l10nId: 'project.cloudVariables',
+                            linked: true
+                        });
+                    } else {
+                        newState.extensions.push({
+                            icon: 'clouddata.svg',
+                            l10nId: 'project.cloudVariables'
+                        });
                     }
+                }
 
-                    if (showAlerts) {
-                        // Check for username block only if user is logged in
-                        if (this.props.isLoggedIn) {
-                            newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
-                        } else { // Check for cloud vars only if user is logged out
-                            newState.showCloudDataAlert = hasCloudData;
-                        }
+                if (showAlerts) {
+                    // Check for username block only if user is logged in
+                    if (this.props.isLoggedIn) {
+                        newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
+                    } else { // Check for cloud vars only if user is logged out
+                        newState.showCloudDataAlert = hasCloudData;
                     }
-                    this.setState(newState);
-                });
+                }
+                this.setState(newState);
             });
+        });
     }
     handleToggleComments () {
         this.props.updateProject(
@@ -792,6 +771,7 @@ Preview.propTypes = {
     enableCommunity: PropTypes.bool,
     faved: PropTypes.bool,
     favedLoaded: PropTypes.bool,
+    fetchProjectData: PropTypes.func.isRequired,
     fullScreen: PropTypes.bool,
     getCommentById: PropTypes.func.isRequired,
     getCuratedStudios: PropTypes.func.isRequired,
@@ -879,17 +859,17 @@ Preview.defaultProps = {
     userPresent: false
 };
 
-const mapStateToProps = state => {
-    const projectInfoPresent = state.preview.projectInfo &&
-        Object.keys(state.preview.projectInfo).length > 0 && state.preview.projectInfo.id > 0;
+const mapStateToProps = (state, ownProps) => {
+    const projectInfoPresent = ownProps.projectInfo &&
+        Object.keys(ownProps.projectInfo).length > 0 && ownProps.projectInfo.id > 0;
     const userPresent = state.session.session.user !== null &&
         typeof state.session.session.user !== 'undefined' &&
         Object.keys(state.session.session.user).length > 0;
     const isLoggedIn = state.session.status === sessionActions.Status.FETCHED &&
         userPresent;
     const isAdmin = isLoggedIn && state.session.session.permissions.admin;
-    const author = projectInfoPresent && state.preview.projectInfo.author;
-    const authorPresent = author && Object.keys(state.preview.projectInfo.author).length > 0;
+    const author = projectInfoPresent && ownProps.projectInfo.author;
+    const authorPresent = author && Object.keys(ownProps.projectInfo.author).length > 0;
     const authorId = authorPresent && author.id && author.id.toString();
     const authorUsername = authorPresent && author.username;
     const userOwnsProject = isLoggedIn && authorPresent &&
@@ -899,7 +879,7 @@ const mapStateToProps = state => {
         state.permissions.admin === true);
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
-    const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
+    const isShared = !projectInfoPresent || ownProps.projectInfo.is_published;
 
     return {
         authorId: authorId,
@@ -935,8 +915,8 @@ const mapStateToProps = state => {
         original: state.preview.original,
         parent: state.preview.parent,
         playerMode: state.scratchGui.mode.isPlayerOnly,
-        projectInfo: state.preview.projectInfo,
-        projectNotAvailable: state.preview.projectNotAvailable,
+        projectInfo: ownProps.projectInfo,
+        projectNotAvailable: ownProps.projectNotAvailable,
         projectStudios: state.preview.projectStudios,
         registrationOpen: state.navigation.registrationOpen,
         remixes: state.preview.remixes,
@@ -990,9 +970,6 @@ const mapDispatchToProps = dispatch => ({
     },
     getParentInfo: id => {
         dispatch(previewActions.getParentInfo(id));
-    },
-    getProjectInfo: (id, token) => {
-        dispatch(previewActions.getProjectInfo(id, token));
     },
     getRemixes: id => {
         dispatch(previewActions.getRemixes(id));
@@ -1064,10 +1041,12 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-module.exports.View = connect(
+const ConnectedPreview = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Preview);
+
+module.exports.View = ProjectViewHOC(ConnectedPreview);
 
 // replace old Scratch 2.0-style hashtag URLs with updated format
 if (window.location.hash) {

@@ -1,7 +1,5 @@
-// preview view can show either project page or editor page;
-// idea is that we shouldn't require a page reload to switch back and forth
 const React = require('react');
-const Page = require('../../components/page/www/page.jsx');
+const ErrorBoundary = require('../../components/errorboundary/errorboundary.jsx');
 const render = require('../../lib/render.jsx');
 
 const previewActions = require('../../redux/preview.js');
@@ -25,5 +23,5 @@ if (isSupportedBrowser()) {
         EmbedView.guiMiddleware
     );
 } else {
-    render(<Page><UnsupportedBrowser /></Page>, document.getElementById('app'));
+    render(<ErrorBoundary><UnsupportedBrowser /></ErrorBoundary>, document.getElementById('app'));
 }
