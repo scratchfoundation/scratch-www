@@ -184,7 +184,7 @@
         "dynamicMetaTags": true
     },
     {
-        "name": "projects",
+        "name": "embed",
         "pattern": "^/projects/\\d+/embed/?(\\?.*)?$",
         "routeAlias": "/projects/?$",
         "view": "preview/embed",
