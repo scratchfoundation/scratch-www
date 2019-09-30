@@ -123,17 +123,12 @@ class Preview extends React.Component {
     }
     componentDidMount () {
         this.addEventListeners();
-        console.log(`componentDidMount: session status: ${this.props.sessionStatus}`);
-
     }
     componentDidUpdate (prevProps, prevState) {
-        console.log(`componentDidUpdate: session status: ${this.props.sessionStatus}`);
         if (this.state.projectId > 0 &&
             ((this.props.sessionStatus !== prevProps.sessionStatus &&
             this.props.sessionStatus === sessionActions.Status.FETCHED) ||
             (this.state.projectId !== prevState.projectId))) {
-            console.log("got here A");
-            console.log(`this: ${this.state.projectId} prev: ${prevState.projectId}`);
             this.fetchCommunityData();
             this.getProjectData(this.state.projectId, true /* Show cloud/username alerts */);
             if (this.state.justShared) {
