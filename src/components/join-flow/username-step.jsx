@@ -237,13 +237,12 @@ class UsernameStep extends React.Component {
                                         onFocus={() => this.handleFocused('passwordConfirm')}
                                         /* eslint-enable react/jsx-no-bind */
                                     />
-                                    <div className="join-flow-input-title">
-                                        <FormikCheckbox
-                                            id="showPassword"
-                                            label={this.props.intl.formatMessage({id: 'registration.showPassword'})}
-                                            name="showPassword"
-                                        />
-                                    </div>
+                                    <FormikCheckbox
+                                        id="showPassword"
+                                        label={this.props.intl.formatMessage({id: 'registration.showPassword'})}
+                                        labelClassName="join-flow-input-title"
+                                        name="showPassword"
+                                    />
                                 </div>
                             </div>
                         </JoinFlowStep>
