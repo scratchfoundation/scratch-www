@@ -5,18 +5,6 @@ const connect = require('react-redux').connect;
 
 const previewActions = require('../../redux/preview.js');
 
-const Sentry = require('@sentry/browser');
-if (`${process.env.SENTRY_DSN}` !== '') {
-    Sentry.init({
-        dsn: `${process.env.SENTRY_DSN}`,
-        // Do not collect global onerror, only collect specifically from React error boundaries.
-        // TryCatch plugin also includes errors from setTimeouts (i.e. the VM)
-        integrations: integrations => integrations.filter(i =>
-            !(i.name === 'GlobalHandlers' || i.name === 'TryCatch'))
-    });
-    window.Sentry = Sentry; // Allow GUI access to Sentry via window
-}
-
 /**
  * Higher-order component for presenting a project view.
  * @param  {React.Component} Component a project view component
@@ -24,6 +12,19 @@ if (`${process.env.SENTRY_DSN}` !== '') {
  */
 
 const ProjectViewHOC = Component => {
+    // initialize Sentry instance, making sure it hasn't been initialized already
+    if (!window.Sentry && `${process.env.SENTRY_DSN}` !== '') {
+        const Sentry = require('@sentry/browser');
+        Sentry.init({
+            dsn: `${process.env.SENTRY_DSN}`,
+            // Do not collect global onerror, only collect specifically from React error boundaries.
+            // TryCatch plugin also includes errors from setTimeouts (i.e. the VM)
+            integrations: integrations => integrations.filter(i =>
+                !(i.name === 'GlobalHandlers' || i.name === 'TryCatch'))
+        });
+        window.Sentry = Sentry; // Allow GUI access to Sentry via window
+    }
+
     class WrappedComponent extends React.Component {
         constructor (props) {
             super(props);
