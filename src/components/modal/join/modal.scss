@@ -4,3 +4,10 @@
 .mod-join {
     width: 27.4375rem;
 }
+
+/* lower the modal slightly to accomodate Scratch logo above it */
+.modal-sizes {
+    @media #{$medium}, #{$medium-height} {
+        margin: 3.5rem auto;
+    }
+}
