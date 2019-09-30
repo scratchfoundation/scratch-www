@@ -9,6 +9,7 @@ describe('Navigation', () => {
     let store;
 
     beforeEach(() => {
+        store = null;
     });
 
     const getNavigationWrapper = props => {
