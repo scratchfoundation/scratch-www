@@ -3,7 +3,6 @@ const React = require('react');
 const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 
-const storage = require('../../lib/storage.js').default;
 const previewActions = require('../../redux/preview.js');
 
 const Sentry = require('@sentry/browser');
@@ -29,30 +28,10 @@ const ProjectViewHOC = Component => {
         constructor (props) {
             super(props);
             bindAll(this, [
-                'fetchProjectData'
             ]);
-        }
-        fetchProjectData (projectId) {
-            if (projectId <= 0) return Promise.reject(null);
-            return storage
-                .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
-                .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
-                    let input = projectAsset.data;
-                    if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
-                    !ArrayBuffer.isView(input)) { // taken from scratch-vm
-                        // If the input is an object and not any ArrayBuffer
-                        // or an ArrayBuffer view (this includes all typed arrays and DataViews)
-                        // turn the object into a JSON string, because we suspect
-                        // this is a project.json as an object
-                        // validate expects a string or buffer as input
-                        // TODO not sure if we need to check that it also isn't a data view
-                        input = JSON.stringify(input); // NOTE: what is the point of doing this??
-                    }
-                });
         }
         render () {
             return (<Component
-                fetchProjectData={this.fetchProjectData}
                 {...this.props}
             />);
         }

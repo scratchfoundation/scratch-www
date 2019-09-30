@@ -10,6 +10,7 @@ const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
 
 const Page = require('../../components/page/www/page.jsx');
+const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
 const jar = require('../../lib/jar.js');
 const thumbnailUrl = require('../../lib/user-thumbnail');
@@ -238,53 +239,67 @@ class Preview extends React.Component {
         }
     }
     getProjectData (projectId, showAlerts) {
-        this.props.fetchProjectData(projectId).then(projectAsset => {
-            parser(projectAsset.data, false, (err, projectData) => {
-                if (err) {
-                    log.error(`Unhandled project parsing error: ${err}`);
-                    return;
+        if (projectId <= 0) return 0;
+        return storage
+            .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
+            .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
+                let input = projectAsset.data;
+                if (typeof input === 'object' && !(input instanceof ArrayBuffer) &&
+                !ArrayBuffer.isView(input)) { // taken from scratch-vm
+                    // If the input is an object and not any ArrayBuffer
+                    // or an ArrayBuffer view (this includes all typed arrays and DataViews)
+                    // turn the object into a JSON string, because we suspect
+                    // this is a project.json as an object
+                    // validate expects a string or buffer as input
+                    // TODO not sure if we need to check that it also isn't a data view
+                    input = JSON.stringify(input); // NOTE: what is the point of doing this??
                 }
-                const newState = {
-                    modInfo: {} // Filled in below
-                };
-
-                const helpers = ProjectInfo[projectData[0].projectVersion];
-                if (!helpers) return; // sb1 not handled
-                newState.extensions = Array.from(helpers.extensions(projectData[0]));
-                newState.modInfo.scriptCount = helpers.scriptCount(projectData[0]);
-                newState.modInfo.spriteCount = helpers.spriteCount(projectData[0]);
-                const hasCloudData = helpers.cloudData(projectData[0]);
-                if (hasCloudData) {
-                    if (this.props.isLoggedIn) {
-                        // show cloud variables log link if logged in
-                        newState.extensions.push({
-                            action: {
-                                l10nId: 'project.cloudDataLink',
-                                uri: `/cloudmonitor/${projectId}/`
-                            },
-                            icon: 'clouddata.svg',
-                            l10nId: 'project.cloudVariables',
-                            linked: true
-                        });
-                    } else {
-                        newState.extensions.push({
-                            icon: 'clouddata.svg',
-                            l10nId: 'project.cloudVariables'
-                        });
+                parser(projectAsset.data, false, (err, projectData) => {
+                    if (err) {
+                        log.error(`Unhandled project parsing error: ${err}`);
+                        return;
                     }
-                }
+                    const newState = {
+                        modInfo: {} // Filled in below
+                    };
 
-                if (showAlerts) {
-                    // Check for username block only if user is logged in
-                    if (this.props.isLoggedIn) {
-                        newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
-                    } else { // Check for cloud vars only if user is logged out
-                        newState.showCloudDataAlert = hasCloudData;
+                    const helpers = ProjectInfo[projectData[0].projectVersion];
+                    if (!helpers) return; // sb1 not handled
+                    newState.extensions = Array.from(helpers.extensions(projectData[0]));
+                    newState.modInfo.scriptCount = helpers.scriptCount(projectData[0]);
+                    newState.modInfo.spriteCount = helpers.spriteCount(projectData[0]);
+                    const hasCloudData = helpers.cloudData(projectData[0]);
+                    if (hasCloudData) {
+                        if (this.props.isLoggedIn) {
+                            // show cloud variables log link if logged in
+                            newState.extensions.push({
+                                action: {
+                                    l10nId: 'project.cloudDataLink',
+                                    uri: `/cloudmonitor/${projectId}/`
+                                },
+                                icon: 'clouddata.svg',
+                                l10nId: 'project.cloudVariables',
+                                linked: true
+                            });
+                        } else {
+                            newState.extensions.push({
+                                icon: 'clouddata.svg',
+                                l10nId: 'project.cloudVariables'
+                            });
+                        }
                     }
-                }
-                this.setState(newState);
+
+                    if (showAlerts) {
+                        // Check for username block only if user is logged in
+                        if (this.props.isLoggedIn) {
+                            newState.showUsernameBlockAlert = helpers.usernameBlock(projectData[0]);
+                        } else { // Check for cloud vars only if user is logged out
+                            newState.showCloudDataAlert = hasCloudData;
+                        }
+                    }
+                    this.setState(newState);
+                });
             });
-        });
     }
     handleToggleComments () {
         this.props.updateProject(
@@ -771,7 +786,6 @@ Preview.propTypes = {
     enableCommunity: PropTypes.bool,
     faved: PropTypes.bool,
     favedLoaded: PropTypes.bool,
-    fetchProjectData: PropTypes.func.isRequired,
     fullScreen: PropTypes.bool,
     getCommentById: PropTypes.func.isRequired,
     getCuratedStudios: PropTypes.func.isRequired,

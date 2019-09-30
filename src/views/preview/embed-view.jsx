@@ -29,7 +29,6 @@ class EmbedView extends React.Component {
     }
     componentDidMount () {
         this.props.getProjectInfo(this.state.projectId);
-        this.props.fetchProjectData(this.state.projectId);
     }
     render () {
         if (this.props.projectNotAvailable || this.state.invalidProject) {
@@ -60,7 +59,6 @@ class EmbedView extends React.Component {
 
 EmbedView.propTypes = {
     assetHost: PropTypes.string.isRequired,
-    fetchProjectData: PropTypes.func.isRequired,
     getProjectInfo: PropTypes.func.isRequired,
     projectHost: PropTypes.string.isRequired,
     projectInfo: projectShape,
