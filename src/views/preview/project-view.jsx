@@ -14,7 +14,6 @@ const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
 const jar = require('../../lib/jar.js');
 const thumbnailUrl = require('../../lib/user-thumbnail');
-const ProjectViewHOC = require('./project-view-hoc.jsx');
 const ProjectInfo = require('../../lib/project-info');
 const PreviewPresentation = require('./presentation.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
@@ -35,6 +34,9 @@ const GUI = require('scratch-gui');
 const IntlGUI = injectIntl(GUI.default);
 
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
+
+const initSentry = require('../../lib/sentry.js');
+initSentry();
 
 class Preview extends React.Component {
     constructor (props) {
@@ -868,17 +870,17 @@ Preview.defaultProps = {
     userPresent: false
 };
 
-const mapStateToProps = (state, ownProps) => {
-    const projectInfoPresent = ownProps.projectInfo &&
-        Object.keys(ownProps.projectInfo).length > 0 && ownProps.projectInfo.id > 0;
+const mapStateToProps = state => {
+    const projectInfoPresent = state.preview.projectInfo &&
+        Object.keys(state.preview.projectInfo).length > 0 && state.preview.projectInfo.id > 0;
     const userPresent = state.session.session.user !== null &&
         typeof state.session.session.user !== 'undefined' &&
         Object.keys(state.session.session.user).length > 0;
     const isLoggedIn = state.session.status === sessionActions.Status.FETCHED &&
         userPresent;
     const isAdmin = isLoggedIn && state.session.session.permissions.admin;
-    const author = projectInfoPresent && ownProps.projectInfo.author;
-    const authorPresent = author && Object.keys(ownProps.projectInfo.author).length > 0;
+    const author = projectInfoPresent && state.preview.projectInfo.author;
+    const authorPresent = author && Object.keys(state.preview.projectInfo.author).length > 0;
     const authorId = authorPresent && author.id && author.id.toString();
     const authorUsername = authorPresent && author.username;
     const userOwnsProject = isLoggedIn && authorPresent &&
@@ -888,7 +890,7 @@ const mapStateToProps = (state, ownProps) => {
         state.permissions.admin === true);
 
     // if we don't have projectInfo, assume it's shared until we know otherwise
-    const isShared = !projectInfoPresent || ownProps.projectInfo.is_published;
+    const isShared = !projectInfoPresent || state.preview.projectInfo.is_published;
 
     return {
         authorId: authorId,
@@ -924,8 +926,8 @@ const mapStateToProps = (state, ownProps) => {
         original: state.preview.original,
         parent: state.preview.parent,
         playerMode: state.scratchGui.mode.isPlayerOnly,
-        projectInfo: ownProps.projectInfo,
-        projectNotAvailable: ownProps.projectNotAvailable,
+        projectInfo: state.preview.projectInfo,
+        projectNotAvailable: state.preview.projectNotAvailable,
         projectStudios: state.preview.projectStudios,
         registrationOpen: state.navigation.registrationOpen,
         remixes: state.preview.remixes,
@@ -979,6 +981,9 @@ const mapDispatchToProps = dispatch => ({
     },
     getParentInfo: id => {
         dispatch(previewActions.getParentInfo(id));
+    },
+    getProjectInfo: (id, token) => {
+        dispatch(previewActions.getProjectInfo(id, token));
     },
     getRemixes: id => {
         dispatch(previewActions.getRemixes(id));
@@ -1050,12 +1055,10 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-const ConnectedPreview = connect(
+module.exports.View = connect(
     mapStateToProps,
     mapDispatchToProps
 )(Preview);
-
-module.exports.View = ProjectViewHOC(ConnectedPreview);
 
 // replace old Scratch 2.0-style hashtag URLs with updated format
 if (window.location.hash) {
