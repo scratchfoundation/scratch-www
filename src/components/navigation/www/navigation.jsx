@@ -18,7 +18,6 @@ const LoginDropdown = require('../../login/login-dropdown.jsx');
 const CanceledDeletionModal = require('../../login/canceled-deletion-modal.jsx');
 const NavigationBox = require('../base/navigation.jsx');
 const Registration = require('../../registration/registration.jsx');
-const Scratch3Registration = require('../../registration/scratch3-registration.jsx');
 const AccountNav = require('./accountnav.jsx');
 
 require('./navigation.scss');
@@ -28,6 +27,7 @@ class Navigation extends React.Component {
         super(props);
         bindAll(this, [
             'getProfileUrl',
+            'handleClickRegistration',
             'handleSearchSubmit'
         ]);
         this.state = {
@@ -77,6 +77,13 @@ class Navigation extends React.Component {
     getProfileUrl () {
         if (!this.props.user) return;
         return `/users/${this.props.user.username}/`;
+    }
+    handleClickRegistration (event) {
+        if (this.props.useScratch3Registration) {
+            this.props.navigateToRegistration(event);
+        } else {
+            this.props.handleOpenRegistration(event);
+        }
     }
     handleSearchSubmit (formData) {
         let targetUrl = '/search/projects';
@@ -189,9 +196,12 @@ class Navigation extends React.Component {
                                 className="link right join"
                                 key="join"
                             >
+                                {/* there's no css class registrationLink -- this is
+                                just to make the link findable for testing */}
                                 <a
+                                    className="registrationLink"
                                     href="#"
-                                    onClick={this.props.handleOpenRegistration}
+                                    onClick={this.handleClickRegistration}
                                 >
                                     <FormattedMessage id="general.joinScratch" />
                                 </a>
@@ -214,18 +224,10 @@ class Navigation extends React.Component {
                             </li>
                         ]) : []
                     }
-                    {this.props.registrationOpen && (
-                        this.props.useScratch3Registration ? (
-                            <Scratch3Registration
-                                createProjectOnComplete
-                                isOpen
-                                key="scratch3registration"
-                            />
-                        ) : (
-                            <Registration
-                                key="registration"
-                            />
-                        )
+                    {this.props.registrationOpen && !this.props.useScratch3Registration && (
+                        <Registration
+                            key="registration"
+                        />
                     )}
                 </ul>
                 <CanceledDeletionModal />
@@ -243,6 +245,7 @@ Navigation.propTypes = {
     handleToggleAccountNav: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     intl: intlShape,
+    navigateToRegistration: PropTypes.func,
     permissions: PropTypes.shape({
         admin: PropTypes.bool,
         social: PropTypes.bool,
@@ -305,14 +308,24 @@ const mapDispatchToProps = dispatch => ({
         event.preventDefault();
         dispatch(navigationActions.toggleLoginOpen());
     },
+    navigateToRegistration: event => {
+        event.preventDefault();
+        navigationActions.navigateToRegistration();
+    },
     setMessageCount: newCount => {
         dispatch(messageCountActions.setCount(newCount));
     }
 });
 
+// Allow incoming props to override redux-provided props. Used to mock in tests.
+const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(
+    {}, stateProps, dispatchProps, ownProps
+);
+
 const ConnectedNavigation = connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
+    mergeProps
 )(Navigation);
 
 module.exports = injectIntl(ConnectedNavigation);
