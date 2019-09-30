@@ -45,16 +45,14 @@ class EmbedView extends React.Component {
         return (
             <React.Fragment>
                 <Meta projectInfo={this.props.projectInfo} />
-                <React.Fragment>
-                    <IntlGUI
-                        assetHost={this.props.assetHost}
-                        basePath="/"
-                        className="gui"
-                        projectHost={this.props.projectHost}
-                        projectId={this.state.projectId}
-                        projectTitle={this.props.projectInfo.title}
-                    />
-                </React.Fragment>
+                <IntlGUI
+                    assetHost={this.props.assetHost}
+                    basePath="/"
+                    className="gui"
+                    projectHost={this.props.projectHost}
+                    projectId={this.state.projectId}
+                    projectTitle={this.props.projectInfo.title}
+                />
             </React.Fragment>
         );
     }
