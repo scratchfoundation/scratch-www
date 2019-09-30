@@ -237,7 +237,7 @@ class Preview extends React.Component {
     }
     getProjectData (projectId, showAlerts) {
         if (projectId <= 0) return 0;
-        return storage
+        storage
             .load(storage.AssetType.Project, projectId, storage.DataFormat.JSON)
             .then(projectAsset => { // NOTE: this is turning up null, breaking the line below.
                 let input = projectAsset.data;
