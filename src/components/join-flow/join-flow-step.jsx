@@ -21,10 +21,7 @@ const JoinFlowStep = ({
     titleClassName,
     waiting
 }) => (
-    <form
-        autoComplete="off"
-        onSubmit={onSubmit}
-    >
+    <form onSubmit={onSubmit}>
         <div className="join-flow-outer-content">
             {headerImgSrc && (
                 <div className="join-flow-header-image-wrapper">

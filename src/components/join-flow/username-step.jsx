@@ -143,9 +143,6 @@ class UsernameStep extends React.Component {
                                     {this.props.intl.formatMessage({id: 'registration.createUsername'})}
                                 </div>
                                 <FormikInput
-                                    autoCapitalize="off"
-                                    autoComplete="off"
-                                    autoCorrect="off"
                                     className={classNames(
                                         'join-flow-input'
                                     )}
@@ -153,7 +150,6 @@ class UsernameStep extends React.Component {
                                     id="username"
                                     name="username"
                                     placeholder={this.props.intl.formatMessage({id: 'general.username'})}
-                                    spellCheck={false}
                                     toolTip={this.state.focused === 'username' && !touched.username &&
                                         this.props.intl.formatMessage({id: 'registration.usernameAdviceShort'})}
                                     validate={this.validateUsernameIfPresent}
@@ -174,9 +170,6 @@ class UsernameStep extends React.Component {
                                         {this.props.intl.formatMessage({id: 'registration.choosePasswordStepTitle'})}
                                     </div>
                                     <FormikInput
-                                        autoCapitalize="off"
-                                        autoComplete={values.showPassword ? 'off' : 'new-password'}
-                                        autoCorrect="off"
                                         className={classNames(
                                             'join-flow-input',
                                             {'join-flow-input-password':
@@ -186,7 +179,6 @@ class UsernameStep extends React.Component {
                                         id="password"
                                         name="password"
                                         placeholder={this.props.intl.formatMessage({id: 'general.password'})}
-                                        spellCheck={false}
                                         toolTip={this.state.focused === 'password' && !touched.password &&
                                             this.props.intl.formatMessage({id: 'registration.passwordAdviceShort'})}
                                         type={values.showPassword ? 'text' : 'password'}
@@ -203,9 +195,6 @@ class UsernameStep extends React.Component {
                                         /* eslint-enable react/jsx-no-bind */
                                     />
                                     <FormikInput
-                                        autoCapitalize="off"
-                                        autoComplete={values.showPassword ? 'off' : 'new-password'}
-                                        autoCorrect="off"
                                         className={classNames(
                                             'join-flow-input',
                                             'join-flow-password-confirm',
@@ -221,7 +210,6 @@ class UsernameStep extends React.Component {
                                         placeholder={this.props.intl.formatMessage({
                                             id: 'registration.confirmPasswordInstruction'
                                         })}
-                                        spellCheck={false}
                                         toolTip={
                                             this.state.focused === 'passwordConfirm' && !touched.passwordConfirm &&
                                                 this.props.intl.formatMessage({
