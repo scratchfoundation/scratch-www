@@ -15,11 +15,19 @@ class Intro extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
+            'handleClickRegistration',
             'handleShowVideo'
         ]);
         this.state = {
             videoOpen: false
         };
+    }
+    handleClickRegistration (event) {
+        if (this.props.useScratch3Registration) {
+            this.props.navigateToRegistration(event);
+        } else {
+            this.props.handleOpenRegistration(event);
+        }
     }
     handleShowVideo () {
         this.setState({videoOpen: true});
@@ -44,12 +52,12 @@ class Intro extends React.Component {
                             <a
                                 className="intro-button join-button button"
                                 href="#"
-                                onClick={this.props.handleOpenRegistration}
+                                onClick={this.handleClickRegistration}
                             >
                                 {this.props.messages['intro.join']}
                             </a>
                         </FlexRow>
-                        
+
                     </FlexRow>
                     <FlexRow className="intro-video-container">
                         {this.state.videoOpen ?
@@ -77,7 +85,7 @@ class Intro extends React.Component {
                         }
                     </FlexRow>
                 </FlexRow>
-                
+
                 <FlexRow className="intro-subnav">
                     <a
                         href="/about"
@@ -117,7 +125,9 @@ Intro.propTypes = {
         'intro.tagLine1': PropTypes.string,
         'intro.tagLine2': PropTypes.string,
         'intro.watchVideo': PropTypes.string
-    })
+    }),
+    navigateToRegistration: PropTypes.func,
+    useScratch3Registration: PropTypes.bool
 };
 
 Intro.defaultProps = {
@@ -135,13 +145,18 @@ Intro.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-    session: state.session
+    session: state.session,
+    useScratch3Registration: state.navigation.useScratch3Registration
 });
 
 const mapDispatchToProps = dispatch => ({
     handleOpenRegistration: event => {
         event.preventDefault();
         dispatch(navigationActions.setRegistrationOpen(true));
+    },
+    navigateToRegistration: event => {
+        event.preventDefault();
+        navigationActions.navigateToRegistration();
     }
 });
 
