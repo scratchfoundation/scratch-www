@@ -89,8 +89,12 @@ const FormikRadioButton = ({
     >
         {isCustomInput && (
             <FormikInput
+                autoCapitalize="off"
+                autoComplete="off"
+                autoCorrect="off"
                 className="formik-radio-input"
                 name="custom"
+                spellCheck={false}
                 wrapperClassName="formik-radio-input-wrapper"
                 /* eslint-disable react/jsx-no-bind */
                 onChange={event => onSetCustom(event.target.value)}

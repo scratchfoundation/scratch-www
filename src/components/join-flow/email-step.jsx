@@ -160,6 +160,9 @@ class EmailStep extends React.Component {
                             onSubmit={handleSubmit}
                         >
                             <FormikInput
+                                autoCapitalize="off"
+                                autoComplete="off"
+                                autoCorrect="off"
                                 className={classNames(
                                     'join-flow-input',
                                     'join-flow-input-tall',
@@ -169,6 +172,7 @@ class EmailStep extends React.Component {
                                 id="email"
                                 name="email"
                                 placeholder={this.props.intl.formatMessage({id: 'general.emailAddress'})}
+                                type="email"
                                 validate={this.validateEmail}
                                 validationClassName="validation-full-width-input"
                                 /* eslint-disable react/jsx-no-bind */
