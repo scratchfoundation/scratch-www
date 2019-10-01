@@ -29,7 +29,7 @@ describe('UsernameStep test', () => {
         expect(formikWrapper.props().initialValues.username).toBe('');
         expect(formikWrapper.props().initialValues.password).toBe('');
         expect(formikWrapper.props().initialValues.passwordConfirm).toBe('');
-        expect(formikWrapper.props().initialValues.showPassword).toBe(false);
+        expect(formikWrapper.props().initialValues.showPassword).toBe(true);
         expect(formikWrapper.props().validateOnBlur).toBe(false);
         expect(formikWrapper.props().validateOnChange).toBe(false);
         expect(formikWrapper.props().validate).toBe(formikWrapper.instance().validateForm);
