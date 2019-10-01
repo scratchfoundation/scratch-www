@@ -2,6 +2,9 @@ const React = require('react');
 const ErrorBoundary = require('../../components/errorboundary/errorboundary.jsx');
 const render = require('../../lib/render.jsx');
 
+// Require this even though we don't use it because, without it, webpack runs out of memory...
+const Page = require('../../components/page/www/page.jsx'); // eslint-disable-line no-unused-vars
+
 const previewActions = require('../../redux/preview.js');
 
 const isSupportedBrowser = require('../../lib/supported-browser').default;
