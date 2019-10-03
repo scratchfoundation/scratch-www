@@ -89,10 +89,18 @@
 .select .join-flow-select-month {
     margin-right: .5rem;
     width: 9.125rem;
+
+    @media #{$small} {
+        width: 8.25rem;
+    }
 }
 
 .select .join-flow-select-year {
     width: 9.125rem;
+
+    @media #{$small} {
+        width: 8.25rem;
+    }
 }
 
 .select .join-flow-select-country {
