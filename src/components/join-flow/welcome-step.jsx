@@ -43,6 +43,7 @@ class WelcomeStep extends React.Component {
                                 id: 'registration.welcomeStepDescriptionNonEducator'
                             })}
                             descriptionClassName="join-flow-welcome-description"
+                            headerImgClass="welcome-step-image"
                             headerImgSrc="/images/join-flow/welcome-header.png"
                             innerClassName="join-flow-inner-welcome-step"
                             nextButton={this.props.createProjectOnComplete ? (
