@@ -56,7 +56,7 @@
 
         .download-info {
             padding-right: $cols1;
-            max-width: $cols6 + ($gutter / $em);
+            max-width: $cols7 + ($gutter / $em);
             align-items: flex-start;
 
             .download-copy {
@@ -110,7 +110,7 @@
 
         .download-image {
             width: 100%;
-            max-width: $cols6;
+            max-width: $cols5;
 
             img {
                 max-width: 100%;

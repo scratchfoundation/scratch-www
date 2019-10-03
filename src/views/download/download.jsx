@@ -95,7 +95,7 @@ class Download extends React.Component {
                                                     alt=""
                                                     src="svgs/extensions/android.svg"
                                                 />
-                                                Android 5.0+
+                                                Android 6.0+
                                             </span>
                                         </React.Fragment>
                                     )}
@@ -181,7 +181,17 @@ class Download extends React.Component {
                             <FormattedMessage id="download.troubleshootingTitle" />
                         </h2>
 
-                        {isDownloaded(this.state.OS) && (
+                        {CHROME_APP_RELEASED && (
+                            <React.Fragment>
+                                <h3 className="faq-question">
+                                    <FormattedMessage id="download.doIHaveToDownload" />
+                                </h3>
+                                <p>
+                                    <FormattedMessage id="download.doIHaveToDownloadAnswer" />
+                                </p>
+                            </React.Fragment>
+                        )}
+                        {!CHROME_APP_RELEASED && (
                             <React.Fragment>
                                 <h3 className="faq-question">
                                     <FormattedMessage id="download.canIUseScratchLink" />
@@ -191,25 +201,29 @@ class Download extends React.Component {
                                 </p>
                             </React.Fragment>
                         )}
-                        {isFromGooglePlay(this.state.OS) && (
+                        {CHROME_APP_RELEASED && (
                             <React.Fragment>
                                 <h3 className="faq-question">
-                                    <FormattedMessage id="download.canIUseExtensions" />
+                                    <FormattedMessage id="download.howConnectHardwareDevices" />
                                 </h3>
-                                <p>
-                                    <FormattedMessage id="download.canIUseExtensionsAnswer" />
-                                </p>
+                                {isDownloaded(this.state.OS) && (
+                                    <p>
+                                        <FormattedMessage
+                                            id="download.howConnectHardwareDevicesAnswerLink"
+                                            values={{operatingsystem: this.state.OS}}
+                                        />
+                                    </p>
+                                )}
+                                {isFromGooglePlay(this.state.OS) && (
+                                    <p>
+                                        <FormattedMessage
+                                            id="download.howConnectHardwareDevicesAnswerApp"
+                                            values={{operatingsystem: this.state.OS}}
+                                        />
+                                    </p>
+                                )}
                             </React.Fragment>
                         )}
-                        <h3 className="faq-question">
-                            {isFromGooglePlay(this.state.OS) ?
-                                <FormattedMessage id="download.appAndBrowser" /> :
-                                <FormattedMessage id="download.desktopAndBrowser" />
-                            }
-                        </h3>
-                        <p>
-                            <FormattedMessage id="download.yesAnswer" />
-                        </p>
                         {isDownloaded(this.state.OS) && (CHROME_APP_RELEASED ? (
                             <React.Fragment>
                                 <h3 className="faq-question">
@@ -248,6 +262,25 @@ class Download extends React.Component {
                                 </p>
                             </React.Fragment>
                         )}
+                        <h3 className="faq-question">
+                            {CHROME_APP_RELEASED ?
+                                <FormattedMessage id="download.appAndBrowser" /> :
+                                <FormattedMessage id="download.desktopAndBrowser" />
+                            }
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.yesAnswer" />
+                        </p>
+                        {CHROME_APP_RELEASED && (
+                            <React.Fragment>
+                                <h3 className="faq-question">
+                                    <FormattedMessage id="download.onPhone" />
+                                </h3>
+                                <p>
+                                    <FormattedMessage id="download.onPhoneAnswer" />
+                                </p>
+                            </React.Fragment>
+                        )}
                         {!CHROME_APP_RELEASED && (
                             <React.Fragment>
                                 <h3 className="faq-question">
@@ -259,10 +292,16 @@ class Download extends React.Component {
                             </React.Fragment>
                         )}
                         <h3 className="faq-question">
-                            <FormattedMessage id="download.whenSupportLinux" />
+                            {CHROME_APP_RELEASED ?
+                                <FormattedMessage id="download.whenSupportLinuxApp" /> :
+                                <FormattedMessage id="download.whenSupportLinux" />
+                            }
                         </h3>
                         <p>
-                            <FormattedMessage id="download.supportLinuxAnswer" />
+                            {CHROME_APP_RELEASED ?
+                                <FormattedMessage id="download.whenSupportLinuxAppAnswer" /> :
+                                <FormattedMessage id="download.supportLinuxAnswer" />
+                            }
                         </p>
                     </FlexRow>
                 </div>
