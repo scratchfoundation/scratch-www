@@ -42,10 +42,16 @@
     margin: 0;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
+
+    /* match the small window setting for modal as a whole */
+    @media #{$small}, #{$small-height} {
+        border-top-left-radius: 0rem;
+        border-top-right-radius: 0rem;
+    }
 }
 
 .join-flow-header-image {
-    width: 27.5rem;
+    width: 100%;
 }
 
 .join-flow-footer-message {
