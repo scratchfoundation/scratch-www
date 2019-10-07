@@ -24,7 +24,7 @@ describe('Navigation', () => {
             .dive(); // unwrap injectIntl(JoinFlow)
     };
 
-    test('when using old join flow, clicking Join Scratch attemps to open registration', () => {
+    test('when using old join flow, clicking Join Scratch calls handleRegistrationRequested', () => {
         store = mockStore({
             navigation: {
                 useScratch3Registration: false
@@ -37,16 +37,16 @@ describe('Navigation', () => {
             }
         });
         const props = {
-            handleOpenRegistration: jest.fn()
+            handleRegistrationRequested: jest.fn()
         };
         const navWrapper = getNavigationWrapper(props);
         const navInstance = navWrapper.instance();
 
         navWrapper.find('a.registrationLink').simulate('click');
-        expect(navInstance.props.handleOpenRegistration).toHaveBeenCalled();
+        expect(navInstance.props.handleRegistrationRequested).toHaveBeenCalled();
     });
 
-    test('when using new join flow, clicking Join Scratch attemps to navigate to registration', () => {
+    test('when using new join flow, clicking Join Scratch calls handleRegistrationRequested', () => {
         store = mockStore({
             navigation: {
                 useScratch3Registration: true
@@ -59,12 +59,12 @@ describe('Navigation', () => {
             }
         });
         const props = {
-            navigateToRegistration: jest.fn()
+            handleRegistrationRequested: jest.fn()
         };
         const navWrapper = getNavigationWrapper(props);
         const navInstance = navWrapper.instance();
 
         navWrapper.find('a.registrationLink').simulate('click');
-        expect(navInstance.props.navigateToRegistration).toHaveBeenCalled();
+        expect(navInstance.props.handleRegistrationRequested).toHaveBeenCalled();
     });
 });
