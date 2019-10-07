@@ -27,7 +27,6 @@ class Navigation extends React.Component {
         super(props);
         bindAll(this, [
             'getProfileUrl',
-            'handleClickRegistration',
             'handleSearchSubmit'
         ]);
         this.state = {
@@ -77,13 +76,6 @@ class Navigation extends React.Component {
     getProfileUrl () {
         if (!this.props.user) return;
         return `/users/${this.props.user.username}/`;
-    }
-    handleClickRegistration (event) {
-        if (this.props.useScratch3Registration) {
-            this.props.navigateToRegistration(event);
-        } else {
-            this.props.handleOpenRegistration(event);
-        }
     }
     handleSearchSubmit (formData) {
         let targetUrl = '/search/projects';
@@ -201,7 +193,7 @@ class Navigation extends React.Component {
                                 <a
                                     className="registrationLink"
                                     href="#"
-                                    onClick={this.handleClickRegistration}
+                                    onClick={this.props.handleClickRegistration}
                                 >
                                     <FormattedMessage id="general.joinScratch" />
                                 </a>
@@ -239,13 +231,12 @@ class Navigation extends React.Component {
 Navigation.propTypes = {
     accountNavOpen: PropTypes.bool,
     getMessageCount: PropTypes.func,
+    handleClickRegistration: PropTypes.func,
     handleCloseAccountNav: PropTypes.func,
     handleLogOut: PropTypes.func,
-    handleOpenRegistration: PropTypes.func,
     handleToggleAccountNav: PropTypes.func,
     handleToggleLoginOpen: PropTypes.func,
     intl: intlShape,
-    navigateToRegistration: PropTypes.func,
     permissions: PropTypes.shape({
         admin: PropTypes.bool,
         social: PropTypes.bool,
@@ -296,9 +287,9 @@ const mapDispatchToProps = dispatch => ({
     handleCloseAccountNav: () => {
         dispatch(navigationActions.setAccountNavOpen(false));
     },
-    handleOpenRegistration: event => {
+    handleClickRegistration: event => {
         event.preventDefault();
-        dispatch(navigationActions.setRegistrationOpen(true));
+        dispatch(navigationActions.handleRegistrationRequested());
     },
     handleLogOut: event => {
         event.preventDefault();
@@ -307,10 +298,6 @@ const mapDispatchToProps = dispatch => ({
     handleToggleLoginOpen: event => {
         event.preventDefault();
         dispatch(navigationActions.toggleLoginOpen());
-    },
-    navigateToRegistration: event => {
-        event.preventDefault();
-        navigationActions.navigateToRegistration();
     },
     setMessageCount: newCount => {
         dispatch(messageCountActions.setCount(newCount));

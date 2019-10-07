@@ -15,19 +15,11 @@ class Intro extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleClickRegistration',
             'handleShowVideo'
         ]);
         this.state = {
             videoOpen: false
         };
-    }
-    handleClickRegistration (event) {
-        if (this.props.useScratch3Registration) {
-            this.props.navigateToRegistration(event);
-        } else {
-            this.props.handleOpenRegistration(event);
-        }
     }
     handleShowVideo () {
         this.setState({videoOpen: true});
@@ -52,7 +44,7 @@ class Intro extends React.Component {
                             <a
                                 className="intro-button join-button button"
                                 href="#"
-                                onClick={this.handleClickRegistration}
+                                onClick={this.props.handleClickRegistration}
                             >
                                 {this.props.messages['intro.join']}
                             </a>
@@ -115,7 +107,7 @@ class Intro extends React.Component {
 }
 
 Intro.propTypes = {
-    handleOpenRegistration: PropTypes.func,
+    handleClickRegistration: PropTypes.func,
     messages: PropTypes.shape({
         'intro.aboutScratch': PropTypes.string,
         'intro.forEducators': PropTypes.string,
@@ -125,9 +117,7 @@ Intro.propTypes = {
         'intro.tagLine1': PropTypes.string,
         'intro.tagLine2': PropTypes.string,
         'intro.watchVideo': PropTypes.string
-    }),
-    navigateToRegistration: PropTypes.func,
-    useScratch3Registration: PropTypes.bool
+    })
 };
 
 Intro.defaultProps = {
@@ -145,18 +135,13 @@ Intro.defaultProps = {
 };
 
 const mapStateToProps = state => ({
-    session: state.session,
-    useScratch3Registration: state.navigation.useScratch3Registration
+    session: state.session
 });
 
 const mapDispatchToProps = dispatch => ({
-    handleOpenRegistration: event => {
+    handleClickRegistration: event => {
         event.preventDefault();
-        dispatch(navigationActions.setRegistrationOpen(true));
-    },
-    navigateToRegistration: event => {
-        event.preventDefault();
-        navigationActions.navigateToRegistration();
+        dispatch(navigationActions.handleRegistrationRequested());
     }
 });
 
