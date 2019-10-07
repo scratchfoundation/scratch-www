@@ -14,7 +14,8 @@ const Types = keyMirror({
     SET_LOGIN_OPEN: null,
     TOGGLE_LOGIN_OPEN: null,
     SET_CANCELED_DELETION_OPEN: null,
-    SET_REGISTRATION_OPEN: null
+    SET_REGISTRATION_OPEN: null,
+    HANDLE_REGISTRATION_REQUESTED: null
 });
 
 module.exports.getInitialState = () => ({
@@ -49,6 +50,12 @@ module.exports.navigationReducer = (state, action) => {
         return defaults({canceledDeletionOpen: action.isOpen}, state);
     case Types.SET_REGISTRATION_OPEN:
         return defaults({registrationOpen: action.isOpen}, state);
+    case Types.HANDLE_REGISTRATION_REQUESTED:
+        if (state.useScratch3Registration) {
+            window.location = '/join';
+            return state;
+        }
+        return defaults({registrationOpen: true}, state);
     default:
         return state;
     }
@@ -92,9 +99,9 @@ module.exports.setSearchTerm = searchTerm => ({
     searchTerm: searchTerm
 });
 
-module.exports.navigateToRegistration = () => {
-    window.location = '/join';
-};
+module.exports.handleRegistrationRequested = () => ({
+    type: Types.HANDLE_REGISTRATION_REQUESTED
+});
 
 module.exports.handleCompleteRegistration = createProject => (dispatch => {
     if (createProject) {
