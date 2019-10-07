@@ -157,7 +157,7 @@ class UsernameStep extends React.Component {
                                     /* eslint-disable react/jsx-no-bind */
                                     onBlur={() => validateField('username')}
                                     onChange={e => {
-                                        setFieldValue('username', e.target.value);
+                                        setFieldValue('username', e.target.value.substring(0, 30));
                                         setFieldTouched('username');
                                         setFieldError('username', null);
                                     }}
@@ -187,7 +187,7 @@ class UsernameStep extends React.Component {
                                         validationClassName="validation-full-width-input"
                                         onBlur={() => validateField('password')}
                                         onChange={e => {
-                                            setFieldValue('password', e.target.value);
+                                            setFieldValue('password', e.target.value.substring(0, 128));
                                             setFieldTouched('password');
                                             setFieldError('password', null);
                                         }}
@@ -225,7 +225,7 @@ class UsernameStep extends React.Component {
                                         validationClassName="validation-full-width-input"
                                         onBlur={() => validateField('passwordConfirm')}
                                         onChange={e => {
-                                            setFieldValue('passwordConfirm', e.target.value);
+                                            setFieldValue('passwordConfirm', e.target.value.substring(0, 128));
                                             setFieldTouched('passwordConfirm');
                                             setFieldError('passwordConfirm', null);
                                         }}
