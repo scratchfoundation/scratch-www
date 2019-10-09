@@ -247,10 +247,10 @@ const Landing = () => (
                                 <FormattedMessage
                                     id="parents.faqOfflineBody"
                                     values={{
-                                        scratchDesktop: (
+                                        scratchApp: (
                                             <a href="/download">
                                                 <FormattedMessage
-                                                    id="parents.faqScratchDesktop"
+                                                    id="parents.faqScratchApp"
                                                 />
                                             </a>
                                         )

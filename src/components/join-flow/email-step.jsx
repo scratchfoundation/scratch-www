@@ -174,7 +174,7 @@ class EmailStep extends React.Component {
                                 /* eslint-disable react/jsx-no-bind */
                                 onBlur={() => validateField('email')}
                                 onChange={e => {
-                                    setFieldValue('email', e.target.value);
+                                    setFieldValue('email', e.target.value.substring(0, 254));
                                     setFieldTouched('email');
                                     setFieldError('email', null);
                                 }}

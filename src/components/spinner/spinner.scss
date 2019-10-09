@@ -2,18 +2,13 @@
     /* This class can be used on an icon that should spin.
     It first plays the intro animation, then spins forever. */
     animation-name: intro, spin;
-    animation-duration: .25s, .5s;
-    animation-timing-function: cubic-bezier(.3, -3, .6, 3), linear;
+    animation-duration: .25s, 1s;
+    animation-timing-function: cubic-bezier(.3, -3, .6, 3), cubic-bezier(0.4, 0.1, 0.4, 1);
     animation-delay: 0s, .25s;
     animation-iteration-count: 1, infinite;
     animation-direction: normal;
     width: 1.4rem; /* standard is 1.4 rem but can be overwritten by parent */
     height: 1.4rem;
-    -webkit-animation-name: intro, spin;
-    -webkit-animation-duration: .25s, .5s;
-    -webkit-animation-iteration-count: 1, infinite;
-    -webkit-animation-delay: 0s, .25s;
-    -webkit-animation-timing-function: cubic-bezier(.3, -3, .6, 3), linear;
     transform-origin: center;
 }
 
@@ -21,24 +16,20 @@
     0% {
         transform: scale(0);
         opacity: 0;
-        -webkit-transform: scale(0);
     }
     
     100% {
         transform: scale(1);
         opacity: 1;
-        -webkit-transform: scale(1);
     }
 }
 
 @keyframes spin {
     0% {
         transform: rotate(0);
-        -webkit-transform: rotate(0);
     }
 
     100% {
         transform: rotate(359deg);
-        -webkit-transform: rotate(359deg);
     }
 }

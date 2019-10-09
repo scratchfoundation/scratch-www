@@ -42,10 +42,16 @@
     margin: 0;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
+
+    /* match the small window setting for modal as a whole */
+    @media #{$small}, #{$small-height} {
+        border-top-left-radius: 0rem;
+        border-top-right-radius: 0rem;
+    }
 }
 
 .join-flow-header-image {
-    width: 27.5rem;
+    width: 100%;
 }
 
 .join-flow-footer-message {
@@ -53,7 +59,11 @@
     padding: 0.875rem 1.5rem;
     background-color: $ui-blue-25percent;
     font-size: .75rem;
-    font-weight: 600;
+    font-weight: 500;
     text-align: center;
     color: $ui-blue;
+}
+
+.join-flow-footer-message a {
+    font-weight: 500;
 }

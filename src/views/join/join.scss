@@ -8,21 +8,11 @@
     left: calc(25% - 76px);
 
     .logo {
-      width: 76px;
-  }
+        width: 76px;
+    }
 }
 
-@media #{$small} {
-    .join {
-        left: calc(50% - 38px);
-    }
-}
-@media #{$medium} {
-    .join {
-        left: calc(50% - 38px);
-    }
-}
-@media #{$intermediate} {
+@media #{$small}, #{$medium}, #{$intermediate} {
     .join {
         left: calc(50% - 38px);
     }

@@ -135,7 +135,7 @@ const Footer = props => (
                     </dd>
                     <dd>
                         <a href="/download">
-                            <FormattedMessage id="general.offlineEditor" />
+                            <FormattedMessage id="general.download" />
                         </a>
                     </dd>
                     <dd>

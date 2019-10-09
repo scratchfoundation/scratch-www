@@ -92,6 +92,10 @@ module.exports.setSearchTerm = searchTerm => ({
     searchTerm: searchTerm
 });
 
+module.exports.navigateToRegistration = () => {
+    window.location = '/join';
+};
+
 module.exports.handleCompleteRegistration = createProject => (dispatch => {
     if (createProject) {
         window.location = '/projects/editor/?tutorial=getStarted';

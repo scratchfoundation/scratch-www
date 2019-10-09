@@ -20,7 +20,6 @@ class UsernameStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleChangeShowPassword',
             'handleFocused',
             'handleSetUsernameRef',
             'handleValidSubmit',
@@ -30,16 +29,12 @@ class UsernameStep extends React.Component {
             'validateForm'
         ]);
         this.state = {
-            focused: null,
-            showPassword: false
+            focused: null
         };
     }
     componentDidMount () {
         // automatically start with focus on username field
         if (this.usernameInput) this.usernameInput.focus();
-    }
-    handleChangeShowPassword () {
-        this.setState({showPassword: !this.state.showPassword});
     }
     // track the currently focused input field, to determine whether each field should
     // display a tooltip. (We only display it if a field is focused and has never been touched.)
@@ -114,7 +109,7 @@ class UsernameStep extends React.Component {
                     username: '',
                     password: '',
                     passwordConfirm: '',
-                    showPassword: false
+                    showPassword: true
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
@@ -162,7 +157,7 @@ class UsernameStep extends React.Component {
                                     /* eslint-disable react/jsx-no-bind */
                                     onBlur={() => validateField('username')}
                                     onChange={e => {
-                                        setFieldValue('username', e.target.value);
+                                        setFieldValue('username', e.target.value.substring(0, 30));
                                         setFieldTouched('username');
                                         setFieldError('username', null);
                                     }}
@@ -192,7 +187,7 @@ class UsernameStep extends React.Component {
                                         validationClassName="validation-full-width-input"
                                         onBlur={() => validateField('password')}
                                         onChange={e => {
-                                            setFieldValue('password', e.target.value);
+                                            setFieldValue('password', e.target.value.substring(0, 128));
                                             setFieldTouched('password');
                                             setFieldError('password', null);
                                         }}
@@ -230,20 +225,19 @@ class UsernameStep extends React.Component {
                                         validationClassName="validation-full-width-input"
                                         onBlur={() => validateField('passwordConfirm')}
                                         onChange={e => {
-                                            setFieldValue('passwordConfirm', e.target.value);
+                                            setFieldValue('passwordConfirm', e.target.value.substring(0, 128));
                                             setFieldTouched('passwordConfirm');
                                             setFieldError('passwordConfirm', null);
                                         }}
                                         onFocus={() => this.handleFocused('passwordConfirm')}
                                         /* eslint-enable react/jsx-no-bind */
                                     />
-                                    <div className="join-flow-input-title">
-                                        <FormikCheckbox
-                                            id="showPassword"
-                                            label={this.props.intl.formatMessage({id: 'registration.showPassword'})}
-                                            name="showPassword"
-                                        />
-                                    </div>
+                                    <FormikCheckbox
+                                        id="showPassword"
+                                        label={this.props.intl.formatMessage({id: 'registration.showPassword'})}
+                                        labelClassName="join-flow-input-title"
+                                        name="showPassword"
+                                    />
                                 </div>
                             </div>
                         </JoinFlowStep>

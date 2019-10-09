@@ -46,11 +46,16 @@ const InstallScratch = ({
                     >
                         <span className="step-description">
                             <React.Fragment>
-                                {isDownloaded(currentOS) && (
+                                {currentOS === OS_ENUM.WINDOWS && (
                                     <FormattedMessage
-                                        id={CHROME_APP_RELEASED ? 'installScratch.downloadScratchAppGeneric' :
+                                        id={CHROME_APP_RELEASED ? 'installScratch.getScratchAppWindows' :
                                             'installScratch.downloadScratchDesktop'}
-                                        values={{operatingsystem: currentOS}}
+                                    />
+                                )}
+                                {currentOS === OS_ENUM.MACOS && (
+                                    <FormattedMessage
+                                        id={CHROME_APP_RELEASED ? 'installScratch.getScratchAppMacOs' :
+                                            'installScratch.downloadScratchDesktop'}
                                     />
                                 )}
                                 {isFromGooglePlay(currentOS) && (

@@ -35,17 +35,8 @@ const IntlGUI = injectIntl(GUI.default);
 
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
-const Sentry = require('@sentry/browser');
-if (`${process.env.SENTRY_DSN}` !== '') {
-    Sentry.init({
-        dsn: `${process.env.SENTRY_DSN}`,
-        // Do not collect global onerror, only collect specifically from React error boundaries.
-        // TryCatch plugin also includes errors from setTimeouts (i.e. the VM)
-        integrations: integrations => integrations.filter(i =>
-            !(i.name === 'GlobalHandlers' || i.name === 'TryCatch'))
-    });
-    window.Sentry = Sentry; // Allow GUI access to Sentry via window
-}
+const initSentry = require('../../lib/sentry.js');
+initSentry();
 
 class Preview extends React.Component {
     constructor (props) {
@@ -258,7 +249,7 @@ class Preview extends React.Component {
                     // this is a project.json as an object
                     // validate expects a string or buffer as input
                     // TODO not sure if we need to check that it also isn't a data view
-                    input = JSON.stringify(input);
+                    input = JSON.stringify(input); // NOTE: what is the point of doing this??
                 }
                 parser(projectAsset.data, false, (err, projectData) => {
                     if (err) {
@@ -1092,15 +1083,12 @@ module.exports.initGuiState = guiInitialState => {
     const parts = pathname.split('/').filter(Boolean);
     // parts[0]: 'projects'
     // parts[1]: either :id or 'editor'
-    // parts[2]: undefined if no :id, otherwise either 'editor', 'fullscreen' or 'embed'
+    // parts[2]: undefined if no :id, otherwise either 'editor' or 'fullscreen'
     if (parts.indexOf('editor') === -1) {
         guiInitialState = GUI.initPlayer(guiInitialState);
     }
     if (parts.indexOf('fullscreen') !== -1) {
         guiInitialState = GUI.initFullScreen(guiInitialState);
-    }
-    if (parts.indexOf('embed') !== -1) {
-        guiInitialState = GUI.initEmbedded(guiInitialState);
     }
     return guiInitialState;
 };

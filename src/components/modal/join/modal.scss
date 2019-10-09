@@ -1,6 +1,32 @@
 @import "../../../colors";
 @import "../../../frameless";
 
+/* unusually for a modal, the join flow modal cares about the screen around it
+being clickable, because of the standalone join view. */
 .mod-join {
     width: 27.4375rem;
+
+    @media #{$small} {
+        width: auto;
+    }
+}
+
+/* enable vertical scrolling when modal showing, if page is short */
+.modal-overlay {
+    @media #{$small-height}, #{$medium-height} {
+        overflow: auto;
+    }
+}
+
+.modal-content {
+    @media #{$small}, #{$small-height} {
+        height: unset;
+    }
+}
+
+/* lower the modal slightly to accomodate Scratch logo above it */
+.modal-sizes {
+    @media #{$small}, #{$small-height}, #{$medium}, #{$medium-height} {
+        margin: 3.5rem auto;
+    }
 }
