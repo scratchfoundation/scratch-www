@@ -17,6 +17,7 @@ class ErrorBoundary extends React.Component {
     componentDidCatch (error, errorInfo) {
         // Display fallback UI
         Sentry.withScope(scope => {
+            scope.setTag('project', 'www');
             if (this.props.name) {
                 scope.setTag('errorboundary', this.props.name);
             }
