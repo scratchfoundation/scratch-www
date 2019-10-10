@@ -16,14 +16,14 @@ const NextStepButton = props => (
         type="submit"
         {...omit(props, ['intl', 'text', 'waiting'])}
     >
-        {props.waiting ?
-            <Spinner /> : (
-                <ModalTitle
-                    className="next-step-title"
-                    title={props.content ? props.content : props.intl.formatMessage({id: 'general.next'})}
-                />
-            )
-        }
+        {props.waiting ? (
+            <Spinner className="next-step-spinner" />
+        ) : (
+            <ModalTitle
+                className="next-step-title"
+                title={props.content ? props.content : props.intl.formatMessage({id: 'general.next'})}
+            />
+        )}
     </button>
 );
 

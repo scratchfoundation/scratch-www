@@ -150,8 +150,8 @@ class GenderStep extends React.Component {
                                     value={values.custom}
                                     /* eslint-disable react/jsx-no-bind */
                                     onSetCustom={newCustomVal => setValues({
-                                        gender: newCustomVal,
-                                        custom: newCustomVal
+                                        gender: newCustomVal.substring(0, 25),
+                                        custom: newCustomVal.substring(0, 25)
                                     })}
                                     onSetCustomRef={this.handleSetCustomRef}
                                     /* eslint-enable react/jsx-no-bind */

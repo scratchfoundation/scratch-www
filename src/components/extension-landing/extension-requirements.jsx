@@ -44,7 +44,7 @@ const ExtensionRequirements = props => (
                                     alt=""
                                     src="svgs/extensions/android.svg"
                                 />
-                                Android 5.0+
+                                Android 6.0+
                             </span>
                         </React.Fragment>
                     )}

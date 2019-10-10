@@ -59,7 +59,7 @@ const Faq = injectIntl(props => (
                         <li><FormattedMessage
                             id="faq.requirementsNoteDesktop"
                             values={{downloadLink: (
-                                <a href="/download"><FormattedMessage id="faq.scratchDesktop" /></a>
+                                <a href="/download"><FormattedMessage id="faq.scratchApp" /></a>
                             )}}
                         /></li>
                         <li><FormattedMessage id="faq.requirementsNoteWebGL" /></li>
@@ -69,7 +69,7 @@ const Faq = injectIntl(props => (
                     <dd><FormattedMessage
                         id="faq.offlineBody"
                         values={{downloadLink: (
-                            <a href="/download"><FormattedMessage id="faq.scratchDesktop" /></a>
+                            <a href="/download"><FormattedMessage id="faq.scratchApp" /></a>
                         )}}
                     /></dd>
 
@@ -482,7 +482,7 @@ const Faq = injectIntl(props => (
                         id="faq.noInternetBody"
                         values={{downloadLink: (
                             <a href="/download">
-                                <FormattedMessage id="faq.scratchDesktop" />
+                                <FormattedMessage id="faq.scratchApp" />
                             </a>
                         )}}
                     /></dd>
@@ -523,7 +523,7 @@ const Faq = injectIntl(props => (
                             id="faq.lawComplianceBody2"
                             values={{downloadLink: (
                                 <a href="/download">
-                                    <FormattedMessage id="faq.scratchDesktop" />
+                                    <FormattedMessage id="faq.scratchApp" />
                                 </a>
                             )}}
                         />
