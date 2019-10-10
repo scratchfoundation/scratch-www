@@ -5,6 +5,7 @@ const initSentry = () => {
 
         Sentry.init({
             dsn: `${process.env.SENTRY_DSN}`,
+            environment: 'www',
             // Do not collect global onerror, only collect specifically from React error boundaries.
             // TryCatch plugin also includes errors from setTimeouts (i.e. the VM)
             integrations: integrations => integrations.filter(i =>
