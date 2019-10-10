@@ -35,7 +35,7 @@ class EmbedView extends React.Component {
     render () {
         if (this.props.projectNotAvailable || this.state.invalidProject) {
             return (
-                <ErrorBoundary>
+                <ErrorBoundary name="embed">
                     <div className="preview">
                         <NotAvailable />
                     </div>

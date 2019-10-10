@@ -26,5 +26,8 @@ if (isSupportedBrowser()) {
         EmbedView.guiMiddleware
     );
 } else {
-    render(<ErrorBoundary><UnsupportedBrowser /></ErrorBoundary>, document.getElementById('app'));
+    render(
+        <ErrorBoundary name="unsupportedbrowser"><UnsupportedBrowser /></ErrorBoundary>,
+        document.getElementById('app')
+    );
 }

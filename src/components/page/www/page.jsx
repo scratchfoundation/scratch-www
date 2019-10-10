@@ -10,7 +10,7 @@ const Page = ({
     children,
     className
 }) => (
-    <ErrorBoundary>
+    <ErrorBoundary name="page">
         <div className={classNames('page', className)}>
             <div
                 className={classNames({
