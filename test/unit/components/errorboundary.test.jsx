@@ -30,43 +30,37 @@ const Sentry = require('@sentry/browser');
 import ErrorBoundary from '../../../src/components/errorboundary/errorboundary.jsx';
 
 describe('ErrorBoundary', () => {
-    test('calling ErrorBoundary\'s componentDidCatch() calls Sentry.withScope()', () => {
-        const errorBoundaryWrapper = mountWithIntl(
-            <ErrorBoundary>
-                <div>
-                    Children here
-                </div>
+    let errorBoundaryWrapper;
+
+    const ChildClass = () => (
+        <div>
+            Children here
+        </div>
+    );
+
+    beforeEach(() => {
+        errorBoundaryWrapper = mountWithIntl(
+            <ErrorBoundary
+                name="TestEBName"
+            >
+                <ChildClass id="childClass" />
             </ErrorBoundary>
         );
+    });
+
+    test('calling ErrorBoundary\'s componentDidCatch() calls Sentry.withScope()', () => {
         const errorBoundaryInstance = errorBoundaryWrapper.instance();
         errorBoundaryInstance.componentDidCatch('error', {});
         expect(Sentry.withScope).toHaveBeenCalled();
     });
 
     test('calling ErrorBoundary\'s componentDidCatch() calls Sentry.captureException()', () => {
-        const errorBoundaryWrapper = mountWithIntl(
-            <ErrorBoundary>
-                <div>
-                    Children here
-                </div>
-            </ErrorBoundary>
-        );
         const errorBoundaryInstance = errorBoundaryWrapper.instance();
         errorBoundaryInstance.componentDidCatch('error', {});
         expect(Sentry.captureException).toHaveBeenCalledWith('error');
     });
 
     test('throwing error under ErrorBoundary calls Sentry.withScope()', () => {
-        const ChildClass = () => (
-            <div>
-                Children here
-            </div>
-        );
-        const errorBoundaryWrapper = mountWithIntl(
-            <ErrorBoundary>
-                <ChildClass id="childClass" />
-            </ErrorBoundary>
-        );
         const child = errorBoundaryWrapper.find('#childClass');
         expect(child.exists()).toEqual(true);
         child.simulateError({}, {});
@@ -74,21 +68,9 @@ describe('ErrorBoundary', () => {
     });
 
     test('ErrorBoundary with name prop causes Sentry to setTag with that name', () => {
-        const ChildClass = () => (
-            <div>
-                Children here
-            </div>
-        );
-        const errorBoundaryWrapper = mountWithIntl(
-            <ErrorBoundary
-                name="testEB"
-            >
-                <ChildClass id="childClass" />
-            </ErrorBoundary>
-        );
         const child = errorBoundaryWrapper.find('#childClass');
         expect(child.exists()).toEqual(true);
         child.simulateError({});
-        expect(Sentry.setTag).toHaveBeenCalledWith('errorboundary', 'testEB');
+        expect(Sentry.setTag).toHaveBeenCalledWith('component', 'TestEBName');
     });
 });
