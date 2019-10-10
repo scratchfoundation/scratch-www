@@ -13,7 +13,9 @@ const UnsupportedBrowser = require('./unsupported-browser.jsx');
 if (isSupportedBrowser()) {
     const EmbedView = require('./embed-view.jsx');
     render(
-        <EmbedView.View />,
+        <ErrorBoundary name="EmbedView">
+            <EmbedView.View />
+        </ErrorBoundary>,
         document.getElementById('app'),
         {
             preview: previewActions.previewReducer,
@@ -27,7 +29,7 @@ if (isSupportedBrowser()) {
     );
 } else {
     render(
-        <ErrorBoundary name="unsupportedbrowser"><UnsupportedBrowser /></ErrorBoundary>,
+        <ErrorBoundary name="UnsupportedBrowser"><UnsupportedBrowser /></ErrorBoundary>,
         document.getElementById('app')
     );
 }

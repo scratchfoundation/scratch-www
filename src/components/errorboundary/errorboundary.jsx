@@ -19,7 +19,7 @@ class ErrorBoundary extends React.Component {
         Sentry.withScope(scope => {
             scope.setTag('project', 'scratch-www');
             if (this.props.name) {
-                scope.setTag('errorboundary', this.props.name);
+                scope.setTag('component', this.props.name);
             }
             Object.keys(errorInfo).forEach(key => {
                 scope.setExtra(key, errorInfo[key]);

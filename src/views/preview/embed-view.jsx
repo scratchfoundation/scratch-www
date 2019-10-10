@@ -5,7 +5,6 @@ const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
 
-const ErrorBoundary = require('../../components/errorboundary/errorboundary.jsx');
 const projectShape = require('./projectshape.jsx').projectShape;
 const NotAvailable = require('../../components/not-available/not-available.jsx');
 const Meta = require('./meta.jsx');
@@ -35,11 +34,9 @@ class EmbedView extends React.Component {
     render () {
         if (this.props.projectNotAvailable || this.state.invalidProject) {
             return (
-                <ErrorBoundary name="embed">
-                    <div className="preview">
-                        <NotAvailable />
-                    </div>
-                </ErrorBoundary>
+                <div className="preview">
+                    <NotAvailable />
+                </div>
             );
         }
 
