@@ -100,6 +100,10 @@
     margin: 0 auto;
 }
 
+.country-step-image {
+    background-color: $ui-purple;
+}
+
 .join-flow-password-section {
     margin-top: 1.125rem;
 }
@@ -107,6 +111,10 @@
 .birthdate-select-row {
     display: flex;
     margin: 0 auto;
+}
+
+.birthdate-step-image {
+    background-color: $ui-magenta;
 }
 
 .join-flow-privacy-message {
@@ -157,6 +165,10 @@
     margin-top: 0;
 }
 
+.email-step-image {
+    background-color: $dd-medium-blue;
+}
+
 .join-flow-registration-error {
     padding-top: 5.5rem;
 }
@@ -181,6 +193,10 @@
 
 .join-flow-welcome-description {
     margin-bottom: 1.25rem;
+}
+
+.welcome-step-image {
+    background-color: $ui-yellow;
 }
 
 .gender-radio-row {

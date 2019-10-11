@@ -36,8 +36,7 @@
 /* overflow will only work if this class is set on parent of img, not img itself */
 .join-flow-header-image-wrapper {
     width: 100%;
-    min-height: 7.5rem;
-    max-height: 8.75rem;
+    height: 7.5rem;
     overflow: hidden;
     margin: 0;
     border-top-left-radius: 1rem;
