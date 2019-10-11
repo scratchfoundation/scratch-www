@@ -18,8 +18,8 @@ class ErrorBoundary extends React.Component {
         // Display fallback UI
         Sentry.withScope(scope => {
             scope.setTag('project', 'scratch-www');
-            if (this.props.name) {
-                scope.setTag('component', this.props.name);
+            if (this.props.componentName) {
+                scope.setTag('component', this.props.componentName);
             }
             Object.keys(errorInfo).forEach(key => {
                 scope.setExtra(key, errorInfo[key]);
@@ -51,7 +51,7 @@ class ErrorBoundary extends React.Component {
 }
 ErrorBoundary.propTypes = {
     children: PropTypes.node,
-    name: PropTypes.string
+    componentName: PropTypes.string
 };
 
 module.exports = ErrorBoundary;

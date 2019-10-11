@@ -10,7 +10,7 @@ initSentry();
 
 require('./join.scss');
 const Register = () => (
-    <ErrorBoundary name="Join">
+    <ErrorBoundary componentName="Join">
         <div className="join">
             <a
                 aria-label="Scratch"

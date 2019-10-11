@@ -41,7 +41,7 @@ describe('ErrorBoundary', () => {
     beforeEach(() => {
         errorBoundaryWrapper = mountWithIntl(
             <ErrorBoundary
-                name="TestEBName"
+                componentName="TestEBName"
             >
                 <ChildClass id="childClass" />
             </ErrorBoundary>

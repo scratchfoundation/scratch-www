@@ -13,7 +13,7 @@ const UnsupportedBrowser = require('./unsupported-browser.jsx');
 if (isSupportedBrowser()) {
     const EmbedView = require('./embed-view.jsx');
     render(
-        <ErrorBoundary name="EmbedView">
+        <ErrorBoundary componentName="EmbedView">
             <EmbedView.View />
         </ErrorBoundary>,
         document.getElementById('app'),
@@ -29,7 +29,7 @@ if (isSupportedBrowser()) {
     );
 } else {
     render(
-        <ErrorBoundary name="UnsupportedBrowser"><UnsupportedBrowser /></ErrorBoundary>,
+        <ErrorBoundary componentName="UnsupportedBrowser"><UnsupportedBrowser /></ErrorBoundary>,
         document.getElementById('app')
     );
 }
