@@ -42,7 +42,8 @@ describe('Navigation', () => {
         const navWrapper = getNavigationWrapper(props);
         const navInstance = navWrapper.instance();
 
-        navWrapper.find('a.registrationLink').simulate('click');
+        // simulate click, with mocked event
+        navWrapper.find('a.registrationLink').simulate('click', {preventDefault () {}});
         expect(navInstance.props.handleRegistrationRequested).toHaveBeenCalled();
     });
 
@@ -64,7 +65,7 @@ describe('Navigation', () => {
         const navWrapper = getNavigationWrapper(props);
         const navInstance = navWrapper.instance();
 
-        navWrapper.find('a.registrationLink').simulate('click');
+        navWrapper.find('a.registrationLink').simulate('click', {preventDefault () {}});
         expect(navInstance.props.handleRegistrationRequested).toHaveBeenCalled();
     });
 });
