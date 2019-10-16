@@ -89,10 +89,18 @@
 .select .join-flow-select-month {
     margin-right: .5rem;
     width: 9.125rem;
+
+    @media #{$small} {
+        width: 8.25rem;
+    }
 }
 
 .select .join-flow-select-year {
     width: 9.125rem;
+
+    @media #{$small} {
+        width: 8.25rem;
+    }
 }
 
 .select .join-flow-select-country {
@@ -201,7 +209,7 @@
 
 .gender-radio-row {
     transition: all .125s ease;
-    width: 20.875rem;
+    width: 97%;
     min-height: 2.85rem;
     background-color: $ui-gray;
     border-radius: .5rem;
