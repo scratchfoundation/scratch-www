@@ -37,14 +37,14 @@ describe('Navigation', () => {
             }
         });
         const props = {
-            handleRegistrationRequested: jest.fn()
+            handleClickRegistration: jest.fn()
         };
         const navWrapper = getNavigationWrapper(props);
         const navInstance = navWrapper.instance();
 
         // simulate click, with mocked event
         navWrapper.find('a.registrationLink').simulate('click', {preventDefault () {}});
-        expect(navInstance.props.handleRegistrationRequested).toHaveBeenCalled();
+        expect(navInstance.props.handleClickRegistration).toHaveBeenCalled();
     });
 
     test('when using new join flow, clicking Join Scratch calls handleRegistrationRequested', () => {
@@ -60,12 +60,12 @@ describe('Navigation', () => {
             }
         });
         const props = {
-            handleRegistrationRequested: jest.fn()
+            handleClickRegistration: jest.fn()
         };
         const navWrapper = getNavigationWrapper(props);
         const navInstance = navWrapper.instance();
 
         navWrapper.find('a.registrationLink').simulate('click', {preventDefault () {}});
-        expect(navInstance.props.handleRegistrationRequested).toHaveBeenCalled();
+        expect(navInstance.props.handleClickRegistration).toHaveBeenCalled();
     });
 });
