@@ -204,6 +204,10 @@ const PreviewPresentation = ({
             ))}
         </FlexRow>
     );
+    // NOTE: this should not be merged to the develop or master branches!
+    const customSentryTestErr = new Error('Test of Sentry catching from wrapper around project editor');
+    customSentryTestErr.code = 'PROJECT_VIEW_EDITOR_CUSTOM_ERROR_CODE';
+    if (canRemix) throw customSentryTestErr;
     return (
         <div className="preview">
             {showAdminPanel && (
