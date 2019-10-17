@@ -512,15 +512,14 @@
     },
     {
         "name": "fly-tutorial-redirect",
-        "pattern": "^/fly/?$",
+        "pattern": "^/(makeit)?fly/?$",
         "routeAlias": "/(makeit)?fly/?$",
-        "redirect": "/ideas"
+        "redirect": "/projects/editor/?tutorial=make-it-fly"
     },
     {
-        "name": "makeitfly-tutorial-redirect",
-        "pattern": "^/makeitfly/?$",
-        "routeAlias": "/(makeit)?fly/?$",
-        "redirect": "/ideas"
+        "name": "imagine-if-tutorial-redirect",
+        "pattern": "^/imagine/?$",
+        "redirect": "/projects/editor/?tutorial=imagine"
     },
     {
         "name": "pet-tutorial-redirect",
