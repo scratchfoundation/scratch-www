@@ -1,11 +1,30 @@
 const React = require('react');
 const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
-const EmailStep = require('../../../src/components/join-flow/email-step.jsx');
 const JoinFlowStep = require('../../../src/components/join-flow/join-flow-step.jsx');
 const FormikInput = require('../../../src/components/formik-forms/formik-input.jsx');
 const FormikCheckbox = require('../../../src/components/formik-forms/formik-checkbox.jsx');
 
+const mockedValidateEmailRemotely = jest.fn(() => (
+    /* eslint-disable no-undef */
+    Promise.resolve({valid: false, errMsgId: 'registration.validationEmailInvalid'})
+    /* eslint-enable no-undef */
+));
+
+jest.mock('../../../src/lib/validate.js', () => (
+    {
+        ...(jest.requireActual('../../../src/lib/validate.js')),
+        validateEmailRemotely: mockedValidateEmailRemotely
+    }
+));
+
+// must come after validation mocks, so validate.js will be mocked before it is required
+const EmailStep = require('../../../src/components/join-flow/email-step.jsx');
+
 describe('EmailStep test', () => {
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     test('send correct props to formik', () => {
         const wrapper = shallowWithIntl(<EmailStep />);
 
@@ -173,5 +192,67 @@ describe('EmailStep test', () => {
         const formikWrapper = wrapper.dive();
         const val = formikWrapper.instance().validateEmail();
         expect(val).toBe('general.required');
+    });
+
+    test('validateEmailRemotelyWithCache calls validate.validateEmailRemotely', done => {
+        const wrapper = shallowWithIntl(
+            <EmailStep />);
+        const instance = wrapper.dive().instance();
+
+        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+            .then(response => {
+                expect(mockedValidateEmailRemotely).toHaveBeenCalled();
+                expect(response.valid).toBe(false);
+                expect(response.errMsgId).toBe('registration.validationEmailInvalid');
+                done();
+            });
+    });
+
+    test('validateEmailRemotelyWithCache, called twice with different data, makes two remote requests', done => {
+        const wrapper = shallowWithIntl(
+            <EmailStep />
+        );
+        const instance = wrapper.dive().instance();
+
+        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+            .then(response => {
+                expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(1);
+                expect(response.valid).toBe(false);
+                expect(response.errMsgId).toBe('registration.validationEmailInvalid');
+            })
+            .then(() => {
+                // make the same request a second time
+                instance.validateEmailRemotelyWithCache('different-email@some-domain.org')
+                    .then(response => {
+                        expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(2);
+                        expect(response.valid).toBe(false);
+                        expect(response.errMsgId).toBe('registration.validationEmailInvalid');
+                        done();
+                    });
+            });
+    });
+
+    test('validateEmailRemotelyWithCache, called twice with same data, only makes one remote request', done => {
+        const wrapper = shallowWithIntl(
+            <EmailStep />
+        );
+        const instance = wrapper.dive().instance();
+
+        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+            .then(response => {
+                expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(1);
+                expect(response.valid).toBe(false);
+                expect(response.errMsgId).toBe('registration.validationEmailInvalid');
+            })
+            .then(() => {
+                // make the same request a second time
+                instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+                    .then(response => {
+                        expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(1);
+                        expect(response.valid).toBe(false);
+                        expect(response.errMsgId).toBe('registration.validationEmailInvalid');
+                        done();
+                    });
+            });
     });
 });
