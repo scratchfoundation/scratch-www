@@ -34,6 +34,10 @@ class CountryStep extends React.Component {
                 value: 'null'
             });
         }
+        // NOTE: this should not be merged to the develop or master branches!
+        const customSentryTestErr = new Error('Test of Sentry catching from join flow country step');
+        customSentryTestErr.code = 'JOIN_FLOW_CUSTOM_ERROR_CODE';
+        throw customSentryTestErr;
     }
     validateSelect (selection) {
         if (selection === 'null') {

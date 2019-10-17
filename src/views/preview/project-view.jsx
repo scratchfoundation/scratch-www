@@ -611,6 +611,12 @@ class Preview extends React.Component {
                 </Page>
             );
         }
+        // NOTE: this should not be merged to the develop or master branches!
+        if (!this.props.playerMode) {
+            const customSentryTestErr = new Error('Test of Sentry catching from wrapper around project editor');
+            customSentryTestErr.code = 'PROJECT_VIEW_EDITOR_CUSTOM_ERROR_CODE';
+            throw customSentryTestErr;
+        }
 
         return (
             <React.Fragment>
