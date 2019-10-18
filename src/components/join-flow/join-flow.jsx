@@ -36,6 +36,9 @@ class JoinFlow extends React.Component {
             step: 0,
             waiting: false
         };
+        // it's ok to set state by reference, because state is treated as immutable,
+        // so any changes to its fields will result in a new state which does not
+        // reference its past fields
         this.state = this.initialState;
     }
     canTryAgain () {
