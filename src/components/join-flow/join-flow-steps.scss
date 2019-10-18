@@ -178,6 +178,7 @@
 }
 
 .join-flow-registration-error {
+    user-select: text; /* make text selectable, so users can copy errors */
     padding-top: 5.5rem;
 }
 
