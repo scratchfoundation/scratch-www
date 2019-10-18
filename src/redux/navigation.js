@@ -52,7 +52,7 @@ module.exports.navigationReducer = (state, action) => {
         return defaults({registrationOpen: action.isOpen}, state);
     case Types.HANDLE_REGISTRATION_REQUESTED:
         if (state.useScratch3Registration) {
-            window.location = '/join';
+            window.location.assign('/join');
             return state;
         }
         return defaults({registrationOpen: true}, state);
