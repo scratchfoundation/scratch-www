@@ -29,13 +29,14 @@ class JoinFlow extends React.Component {
             'handleRegistrationResponse',
             'handleSubmitRegistration'
         ]);
-        this.state = {
+        this.initialState = {
             numAttempts: 0,
             formData: {},
             registrationError: null,
             step: 0,
             waiting: false
         };
+        this.state = this.initialState;
     }
     canTryAgain () {
         return (this.state.numAttempts <= 1);
@@ -152,14 +153,7 @@ class JoinFlow extends React.Component {
         }
     }
     resetState () {
-        // TODO: refactor this to have initial state live in one place only
-        this.setState({
-            numAttempts: 0,
-            formData: {},
-            registrationError: null,
-            step: 0,
-            waiting: false
-        });
+        this.setState(this.initialState);
     }
     render () {
         return (
