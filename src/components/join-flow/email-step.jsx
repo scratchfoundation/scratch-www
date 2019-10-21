@@ -39,8 +39,10 @@ class EmailStep extends React.Component {
         // automatically start with focus on username field
         if (this.emailInput) this.emailInput.focus();
 
-        // If grecaptcha doesn't exist on window, we havent loaded the captcha js yet. Load it.
-        if (!window.grecaptcha) {
+        if (window.grecaptcha) {
+            this.onCaptchaLoad();
+        } else {
+            // If grecaptcha doesn't exist on window, we havent loaded the captcha js yet. Load it.
             // ReCaptcha calls a callback when the grecatpcha object is usable. That callback
             // needs to be global so set it on the window.
             window.grecaptchaOnLoad = this.onCaptchaLoad;
