@@ -8,6 +8,7 @@ const api = require('../../lib/api');
 const injectIntl = require('../../lib/intl.jsx').injectIntl;
 const intlShape = require('../../lib/intl.jsx').intlShape;
 const sessionActions = require('../../redux/session.js');
+const validate = require('../../lib/validate');
 
 const Progression = require('../progression/progression.jsx');
 const UsernameStep = require('./username-step.jsx');
@@ -41,8 +42,8 @@ class JoinFlow extends React.Component {
         // reference its past fields
         this.state = this.initialState;
     }
-    canTryAgain () {
-        return (this.state.numAttempts <= 1);
+    canTryAgain (errorTypeAllowsTryAgain) {
+        return (errorTypeAllowsTryAgain && this.state.numAttempts <= 1);
     }
     handleRegistrationError (message) {
         if (!message) {
@@ -61,54 +62,105 @@ class JoinFlow extends React.Component {
             this.handleSubmitRegistration(this.state.formData);
         });
     }
+    getBodyErrors (err, body, res) {
+        return (!err && res.statusCode === 200 && body && body[0] && body[0].errors);
+    }
+    getSingleError (bodyErrors) {
+        if (Object.keys(bodyErrors).length === 1) {
+            const fieldName = Object.keys(bodyErrors)[0];
+            if (bodyErrors[fieldName].length === 1) {
+                return {fieldName: fieldName, errorStr: bodyErrors[fieldName][0]};
+            }
+        }
+        return null;
+    }
+    getCustomErrMsg (bodyErrors) {
+        let customErrMsg = '';
+        // body can include zero or more error objects, each
+        // with its own key and description. Here we assemble
+        // all of them into a single string, customErrMsg.
+        const errorKeys = Object.keys(bodyErrors);
+        errorKeys.forEach(key => {
+            const vals = bodyErrors[key];
+            vals.forEach(val => {
+                if (customErrMsg.length) customErrMsg += '; ';
+                customErrMsg += `${key}: ${val}`;
+            });
+        });
+        if (!customErrMsg) return null; // if no key-val pairs
+        const problemsStr = this.props.intl.formatMessage({id: 'registration.problemsAre'});
+        return `${problemsStr} "${customErrMsg}"`;
+    }
+    getRegistrationSuccess (err, body, res) {
+        return !!(!err && res.statusCode === 200 && body && body[0] && body[0].success);
+    }
+    // example of failing response:
+    // [
+    //   {
+    //     "msg": "This field is required.",
+    //     "errors": {
+    //       "username": ["This field is required."],
+    //       "recaptcha": ["Incorrect, please try again."]
+    //     },
+    //     "success": false
+    //   }
+    // ]
+    //
+    // username messages:
+    //   * "username": ["username exists"]
+    //   * "username": ["invalid username"] (length, charset)
+    //   * "username": ["bad username"] (cleanspeak)
+    // password messages:
+    //   * "password": ["Ensure this value has at least 6 characters (it has LENGTH_NUM_HERE)."]
+    // recaptcha messages:
+    //   * "recaptcha": ["This field is required."]
+    //   * "recaptcha": ["Incorrect, please try again."]
+    //   * "recaptcha": [some timeout message?]
+    // other messages:
+    //   * "birth_month": ["Ensure this value is less than or equal to 12."]
+    //   * "birth_month": ["Ensure this value is greater than or equal to 1."]
     handleRegistrationResponse (err, body, res) {
-        // example of failing response:
-        // [
-        //   {
-        //     "msg": "This field is required.",
-        //     "errors": {
-        //       "username": ["This field is required."],
-        //       "recaptcha": ["Incorrect, please try again."]
-        //     },
-        //     "success": false
-        //   }
-        // ]
-        // username: 'username exists'
         this.setState({
             numAttempts: this.state.numAttempts + 1,
             waiting: false
         }, () => {
-            let errStr = '';
-            if (!err && res.statusCode === 200) {
-                if (body && body[0]) {
-                    if (body[0].success) {
-                        this.props.refreshSession();
-                        this.setState({
-                            step: this.state.step + 1
-                        });
-                        return;
-                    }
-                    if (body[0].errors) {
-                        // body can include zero or more error objects, each
-                        // with its own key and description. Here we assemble
-                        // all of them into a single string, errStr.
-                        const errorKeys = Object.keys(body[0].errors);
-                        errorKeys.forEach(key => {
-                            const val = body[0].errors[key];
-                            if (val && val[0]) {
-                                if (errStr.length) errStr += '; ';
-                                errStr += `${key}: ${val[0]}`;
-                            }
-                        });
-                    }
-                    if (!errStr.length && body[0].msg) errStr = body[0].msg;
+            const success = this.getRegistrationSuccess(err, body, res);
+            if (success) {
+                this.props.refreshSession();
+                this.setState({step: this.state.step + 1});
+                return;
+            }
+            // now we know there was some error.
+            // if the error was client-side, prompt user to try again
+            if (err || (res.statusCode >= 400 && res.statusCode < 500)) {
+                this.setState({registrationError: {canTryAgain: true}});
+                return;
+            }
+            // now we know error was server-side.
+            // if server provided us info on why registration failed,
+            // build a summary explanation string
+            let errorMsg = null;
+            const bodyErrors = this.getBodyErrors(err, body, res);
+            if (bodyErrors) {
+                const singleError = this.getSingleError(bodyErrors);
+                let singleErrMsgId = null;
+                if (singleError) {
+                    singleErrMsgId = validate.responseErrorMsg(
+                        singleError.fieldName,
+                        singleError.errorStr
+                    );
+                }
+                if (singleErrMsgId) { // one error that we have a predefined explanation string for
+                    errorMsg = this.props.intl.formatMessage({id: singleErrMsgId});
+                } else { // multiple errors, or unusual error; need custom message
+                    errorMsg = this.getCustomErrMsg(bodyErrors);
                 }
             }
             this.setState({
-                registrationError: errStr ||
-                    `${this.props.intl.formatMessage({
-                        id: 'registration.generalError'
-                    })} (${res.statusCode})`
+                registrationError: {
+                    canTryAgain: false,
+                    errorMsg: errorMsg
+                }
             });
         });
     }
@@ -163,8 +215,8 @@ class JoinFlow extends React.Component {
             <React.Fragment>
                 {this.state.registrationError ? (
                     <RegistrationErrorStep
-                        canTryAgain={this.canTryAgain()}
-                        errorMsg={this.state.registrationError}
+                        canTryAgain={this.canTryAgain(this.state.registrationError.canTryAgain)}
+                        errorMsg={this.state.registrationError.errorMsg}
                         /* eslint-disable react/jsx-no-bind */
                         onSubmit={this.handleErrorNext}
                         /* eslint-enable react/jsx-no-bind */
