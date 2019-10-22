@@ -1,6 +1,7 @@
 const bindAll = require('lodash.bindall');
 const React = require('react');
 const PropTypes = require('prop-types');
+const FormattedMessage = require('react-intl').FormattedMessage;
 const {injectIntl, intlShape} = require('react-intl');
 
 const JoinFlowStep = require('./join-flow-step.jsx');
@@ -24,24 +25,42 @@ class RegistrationErrorStep extends React.Component {
     render () {
         return (
             <JoinFlowStep
-                description={this.props.errorMsg}
-                innerClassName="join-flow-registration-error"
+                innerClassName="join-flow-inner-error-step"
                 nextButton={this.props.canTryAgain ?
                     this.props.intl.formatMessage({id: 'general.tryAgain'}) :
                     this.props.intl.formatMessage({id: 'general.startOver'})
                 }
-                title={this.props.intl.formatMessage({id: 'registration.generalError'})}
+                title={this.props.intl.formatMessage({id: 'general.error'})}
+                titleClassName="join-flow-error-title"
                 onSubmit={this.handleSubmit}
-            />
+            >
+                <p className="join-flow-instructions">
+                    <FormattedMessage id="registration.cantCreateAccount" />
+                </p>
+                {this.props.errorMsg && (
+                    <p className="join-flow-instructions">
+                        <FormattedMessage id={this.props.errorMsg} />
+                    </p>
+                )}
+                {this.props.canTryAgain ? (
+                    <p className="join-flow-instructions">
+                        <FormattedMessage id="registration.tryAgainInstruction" />
+                    </p>
+                ) : (
+                    <p className="join-flow-instructions">
+                        <FormattedMessage id="registration.startOverInstruction" />
+                    </p>
+                )}
+            </JoinFlowStep>
         );
     }
 }
 
 RegistrationErrorStep.propTypes = {
-    canTryAgain: PropTypes.bool,
+    canTryAgain: PropTypes.bool.isRequired,
     errorMsg: PropTypes.string,
     intl: intlShape,
-    onSubmit: PropTypes.func
+    onSubmit: PropTypes.func.isRequired
 };
 
 const IntlRegistrationErrorStep = injectIntl(RegistrationErrorStep);
