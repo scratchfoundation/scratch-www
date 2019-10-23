@@ -25,8 +25,7 @@ class EmailStep extends React.Component {
             'validateForm',
             'setCaptchaRef',
             'captchaSolved',
-            'onCaptchaLoad',
-            'onCaptchaError'
+            'onCaptchaLoad'
         ]);
         this.state = {
             captchaIsLoading: true
