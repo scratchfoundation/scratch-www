@@ -33,7 +33,7 @@ describe('RegistrationErrorStep', () => {
         };
         const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
         const joinFlowStepInstance = joinFlowStepWrapper.dive();
-        const errMsgElement = joinFlowStepInstance.find('#registration-error-msg');
+        const errMsgElement = joinFlowStepInstance.find('.registration-error-msg');
         expect(errMsgElement).toHaveLength(1);
         expect(errMsgElement.text()).toEqual('halp there is a errors!!');
     });
@@ -45,7 +45,7 @@ describe('RegistrationErrorStep', () => {
         };
         const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
         const joinFlowStepInstance = joinFlowStepWrapper.dive();
-        const errMsgElement = joinFlowStepInstance.find('#registration-error-msg');
+        const errMsgElement = joinFlowStepInstance.find('.registration-error-msg');
         expect(errMsgElement).toHaveLength(0);
     });
 

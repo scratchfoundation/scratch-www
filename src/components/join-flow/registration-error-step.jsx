@@ -38,7 +38,7 @@ class RegistrationErrorStep extends React.Component {
                     <FormattedMessage id="registration.cantCreateAccount" />
                 </p>
                 {this.props.errorMsg && (
-                    <p className="join-flow-instructions" id="registration-error-msg">
+                    <p className="join-flow-instructions registration-error-msg">
                         {this.props.errorMsg}
                     </p>
                 )}
