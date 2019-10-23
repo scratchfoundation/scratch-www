@@ -108,7 +108,7 @@ const responseErrorMsgs = module.exports.responseErrorMsgs = {
         'bad username': {errMsgId: 'registration.errorBadUsername'}
     },
     password: {
-        'Ensure this value has at least 6 characters (it has %d).': {
+        'Ensure this value has at least 6 characters \\(it has \\d\\).': {
             errMsgId: 'registration.errorPasswordTooShort'
         }
     },
@@ -127,3 +127,4 @@ module.exports.responseErrorMsg = (fieldName, serverRawErr) => {
         if (matchingKey) return responseErrorMsgs[fieldName][matchingKey].errMsgId;
     }
     return null;
+};
