@@ -42,8 +42,8 @@ class JoinFlow extends React.Component {
         // reference its past fields
         this.state = this.initialState;
     }
-    canTryAgain (errorTypeAllowsTryAgain) {
-        return (errorTypeAllowsTryAgain && this.state.numAttempts <= 1);
+    canTryAgain () {
+        return (this.state.registrationError.canTryAgain && this.state.numAttempts <= 1);
     }
     handleCaptchaError () {
         this.setState({
@@ -168,6 +168,7 @@ class JoinFlow extends React.Component {
     }
     handleSubmitRegistration (formData) {
         this.setState({
+            registrationError: null, // clear any existing error
             waiting: true
         }, () => {
             api({
@@ -217,7 +218,7 @@ class JoinFlow extends React.Component {
             <React.Fragment>
                 {this.state.registrationError ? (
                     <RegistrationErrorStep
-                        canTryAgain={this.canTryAgain(this.state.registrationError.canTryAgain)}
+                        canTryAgain={this.canTryAgain()}
                         errorMsg={this.state.registrationError.errorMsg}
                         /* eslint-disable react/jsx-no-bind */
                         onSubmit={this.handleErrorNext}
