@@ -21,6 +21,7 @@ class EmailStep extends React.Component {
             'handleSetEmailRef',
             'handleValidSubmit',
             'validateEmail',
+            'validateEmailRemotelyWithCache',
             'validateForm',
             'setCaptchaRef',
             'captchaSolved',
@@ -30,14 +31,18 @@ class EmailStep extends React.Component {
         this.state = {
             captchaIsLoading: true
         };
+        // simple object to memoize remote requests for email addresses.
+        // keeps us from submitting multiple requests for same data.
+        this.emailRemoteCache = {};
     }
-
     componentDidMount () {
         // automatically start with focus on username field
         if (this.emailInput) this.emailInput.focus();
 
-        // If grecaptcha doesn't exist on window, we havent loaded the captcha js yet. Load it.
-        if (!window.grecaptcha) {
+        if (window.grecaptcha) {
+            this.onCaptchaLoad();
+        } else {
+            // If grecaptcha doesn't exist on window, we havent loaded the captcha js yet. Load it.
             // ReCaptcha calls a callback when the grecatpcha object is usable. That callback
             // needs to be global so set it on the window.
             window.grecaptchaOnLoad = this.onCaptchaLoad;
@@ -78,11 +83,24 @@ class EmailStep extends React.Component {
             },
             true);
     }
+    // simple function to memoize remote requests for usernames
+    validateEmailRemotelyWithCache (email) {
+        if (this.emailRemoteCache.hasOwnProperty(email)) {
+            return Promise.resolve(this.emailRemoteCache[email]);
+        }
+        // email is not in our cache
+        return validate.validateEmailRemotely(email).then(
+            remoteResult => {
+                this.emailRemoteCache[email] = remoteResult;
+                return remoteResult;
+            }
+        );
+    }
     validateEmail (email) {
         if (!email) return this.props.intl.formatMessage({id: 'general.required'});
         const localResult = validate.validateEmailLocally(email);
         if (!localResult.valid) return this.props.intl.formatMessage({id: localResult.errMsgId});
-        return validate.validateEmailRemotely(email).then(
+        return this.validateEmailRemotelyWithCache(email).then(
             remoteResult => {
                 if (remoteResult.valid === true) {
                     return null;
@@ -151,6 +169,7 @@ class EmailStep extends React.Component {
                                     }}
                                 />
                             )}
+                            headerImgClass="email-step-image"
                             headerImgSrc="/images/join-flow/email-header.png"
                             innerClassName="join-flow-inner-email-step"
                             nextButton={this.props.intl.formatMessage({id: 'registration.createAccount'})}
@@ -160,6 +179,9 @@ class EmailStep extends React.Component {
                             onSubmit={handleSubmit}
                         >
                             <FormikInput
+                                autoCapitalize="off"
+                                autoComplete="off"
+                                autoCorrect="off"
                                 className={classNames(
                                     'join-flow-input',
                                     'join-flow-input-tall',
@@ -169,6 +191,7 @@ class EmailStep extends React.Component {
                                 id="email"
                                 name="email"
                                 placeholder={this.props.intl.formatMessage({id: 'general.emailAddress'})}
+                                type="email"
                                 validate={this.validateEmail}
                                 validationClassName="validation-full-width-input"
                                 /* eslint-disable react/jsx-no-bind */

@@ -4,30 +4,46 @@ import JoinFlowStep from '../../../src/components/join-flow/join-flow-step';
 import RegistrationErrorStep from '../../../src/components/join-flow/registration-error-step';
 
 describe('RegistrationErrorStep', () => {
-    const onTryAgain = jest.fn();
-    let wrapper;
+    const onSubmit = jest.fn();
 
-    beforeEach(() => {
-        wrapper = shallowWithIntl(
+    const getRegistrationErrorStepWrapper = props => {
+        const wrapper = shallowWithIntl(
             <RegistrationErrorStep
                 errorMsg={'error message'}
-                onTryAgain={onTryAgain}
+                onSubmit={onSubmit}
+                {...props}
             />
         );
-    });
+        return wrapper
+            .dive(); // unwrap injectIntl()
+    };
 
-    test('shows JoinFlowStep with props', () => {
-        // Dive to get past the anonymous component.
-        const joinFlowStepWrapper = wrapper.dive().find(JoinFlowStep);
+    test('when canTryAgain is true, show tryAgain message', () => {
+        const props = {canTryAgain: true};
+        const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
         expect(joinFlowStepWrapper).toHaveLength(1);
         expect(joinFlowStepWrapper.props().description).toBe('error message');
         expect(joinFlowStepWrapper.props().nextButton).toBe('general.tryAgain');
     });
 
-    test('when submitted, onTryAgain is called', () => {
-        // Dive to get past the anonymous component.
-        const joinFlowStepWrapper = wrapper.dive().find(JoinFlowStep);
+    test('when canTryAgain is false, show startOver message', () => {
+        const props = {canTryAgain: false};
+        const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
+        expect(joinFlowStepWrapper).toHaveLength(1);
+        expect(joinFlowStepWrapper.props().description).toBe('error message');
+        expect(joinFlowStepWrapper.props().nextButton).toBe('general.startOver');
+    });
+
+    test('when canTryAgain is missing, show startOver message', () => {
+        const joinFlowStepWrapper = getRegistrationErrorStepWrapper().find(JoinFlowStep);
+        expect(joinFlowStepWrapper).toHaveLength(1);
+        expect(joinFlowStepWrapper.props().description).toBe('error message');
+        expect(joinFlowStepWrapper.props().nextButton).toBe('general.startOver');
+    });
+
+    test('when submitted, onSubmit is called', () => {
+        const joinFlowStepWrapper = getRegistrationErrorStepWrapper().find(JoinFlowStep);
         joinFlowStepWrapper.props().onSubmit(new Event('event')); // eslint-disable-line no-undef
-        expect(onTryAgain).toHaveBeenCalled();
+        expect(onSubmit).toHaveBeenCalled();
     });
 });
