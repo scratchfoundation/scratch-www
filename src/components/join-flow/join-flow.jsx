@@ -24,8 +24,8 @@ class JoinFlow extends React.Component {
         super(props);
         bindAll(this, [
             'handleAdvanceStep',
+            'handleCaptchaError',
             'handleErrorNext',
-            'handleRegistrationError',
             'handlePrepareToRegister',
             'handleRegistrationResponse',
             'handleSubmitRegistration'
@@ -45,13 +45,15 @@ class JoinFlow extends React.Component {
     canTryAgain (errorTypeAllowsTryAgain) {
         return (errorTypeAllowsTryAgain && this.state.numAttempts <= 1);
     }
-    handleRegistrationError (message) {
-        if (!message) {
-            message = this.props.intl.formatMessage({
-                id: 'registration.generalError'
-            });
-        }
-        this.setState({registrationError: message});
+    handleCaptchaError () {
+        this.setState({
+            registrationError: {
+                canTryAgain: false,
+                errorMsg: this.props.intl.formatMessage({
+                    id: 'registration.errorCaptcha'
+                })
+            }
+        });
     }
     handlePrepareToRegister (newFormData) {
         newFormData = newFormData || {};
@@ -229,8 +231,8 @@ class JoinFlow extends React.Component {
                         <GenderStep onNextStep={this.handleAdvanceStep} />
                         <EmailStep
                             waiting={this.state.waiting}
+                            onCaptchaError={this.handleCaptchaError}
                             onNextStep={this.handlePrepareToRegister}
-                            onRegistrationError={this.handleRegistrationError}
                         />
                         <WelcomeStep
                             createProjectOnComplete={this.props.createProjectOnComplete}
