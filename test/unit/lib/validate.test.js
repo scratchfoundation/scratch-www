@@ -139,4 +139,11 @@ describe('unit test lib/validate.js', () => {
         response = validate.validateEmailLocally('much."more unusual"@example.com');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
     });
+
+    test('get responseErrorMsg', () => {
+        let response = validate.responseErrorMsg('username', 'bad username');
+        expect(response).toEqual('registration.errorBadUsername');
+        response = validate.responseErrorMsg('password', 'Ensure this value has at least 6 characters (it has 3).');
+        expect(response).toEqual('registration.errorPasswordTooShort');
+    });
 });
