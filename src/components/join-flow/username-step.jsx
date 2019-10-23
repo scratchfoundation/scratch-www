@@ -56,7 +56,10 @@ class UsernameStep extends React.Component {
         // username is not in our cache
         return validate.validateUsernameRemotely(username).then(
             remoteResult => {
-                this.usernameRemoteCache[username] = remoteResult;
+                // cache result, if it successfully heard back from server
+                if (remoteResult.requestSucceeded) {
+                    this.usernameRemoteCache[username] = remoteResult;
+                }
                 return remoteResult;
             }
         );

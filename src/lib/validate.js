@@ -21,21 +21,21 @@ module.exports.validateUsernameRemotely = username => (
             uri: `/accounts/checkusername/${username}/`
         }, (err, body, res) => {
             if (err || res.statusCode !== 200) {
-                resolve({valid: false, errMsgId: 'general.error'});
+                resolve({requestSucceeded: false, valid: false, errMsgId: 'general.error'});
             }
             switch (body.msg) {
             case 'valid username':
-                resolve({valid: true});
+                resolve({requestSucceeded: true, valid: true});
                 break;
             case 'username exists':
-                resolve({valid: false, errMsgId: 'registration.validationUsernameExists'});
+                resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationUsernameExists'});
                 break;
             case 'bad username': // i.e., vulgar
-                resolve({valid: false, errMsgId: 'registration.validationUsernameNotAllowed'});
+                resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationUsernameNotAllowed'});
                 break;
             case 'invalid username':
             default:
-                resolve({valid: false, errMsgId: 'registration.validationUsernameNotAllowed'});
+                resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationUsernameNotAllowed'});
             }
         });
     })
@@ -50,7 +50,9 @@ module.exports.validateUsernameRemotely = username => (
 module.exports.validatePassword = (password, username) => {
     if (!password) {
         return {valid: false, errMsgId: 'general.required'};
-    } else if (password.length < 6) {
+    // get length of password, considering unicode symbols as single chars.
+    // see discussion at https://stackoverflow.com/a/54370584/2308190
+    } else if (Array.from(password).length < 6) {
         return {valid: false, errMsgId: 'registration.validationPasswordLength'};
     } else if (password === 'password') {
         return {valid: false, errMsgId: 'registration.validationPasswordNotEquals'};
@@ -86,16 +88,16 @@ module.exports.validateEmailRemotely = email => (
             uri: '/accounts/check_email/'
         }, (err, body, res) => {
             if (err || res.statusCode !== 200 || !body || body.length < 1 || !body[0].msg) {
-                resolve({valid: false, errMsgId: 'general.apiError'});
+                resolve({requestSucceeded: false, valid: false, errMsgId: 'general.apiError'});
             }
             switch (body[0].msg) {
             case 'valid email':
-                resolve({valid: true});
+                resolve({requestSucceeded: true, valid: true});
                 break;
             case 'Scratch is not allowed to send email to this address.': // e.g., bad TLD or block-listed
             case 'Enter a valid email address.':
             default:
-                resolve({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+                resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationEmailInvalid'});
                 break;
             }
         });
