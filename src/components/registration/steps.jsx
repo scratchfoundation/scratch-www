@@ -196,16 +196,14 @@ class UsernameStep extends React.Component {
                         onValidSubmit={this.handleValidSubmit}
                     >
                         <div>
-                            <div className="username-label">
-                                <b>
-                                    {this.props.intl.formatMessage({id: 'registration.createUsername'})}
-                                </b>
+                            <label className="username-label">
+                                {this.props.intl.formatMessage({id: 'registration.createUsername'})}
                                 {this.props.usernameHelp ? (
                                     <p className="help-text">{this.props.usernameHelp}</p>
                                 ) : (
                                     null
                                 )}
-                            </div>
+                            </label>
                             <Input
                                 required
                                 className={this.state.validUsername}
