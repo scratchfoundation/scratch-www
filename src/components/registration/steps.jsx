@@ -195,8 +195,8 @@ class UsernameStep extends React.Component {
                         }}
                         onValidSubmit={this.handleValidSubmit}
                     >
-                        <div>
-                            <label className="username-label">
+                        <div className="form-group row">
+                            <label className="username-label col-sm-3">
                                 {this.props.intl.formatMessage({id: 'registration.createUsername'})}
                                 {this.props.usernameHelp ? (
                                     <p className="help-text">{this.props.usernameHelp}</p>
