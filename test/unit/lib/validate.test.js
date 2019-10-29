@@ -39,6 +39,14 @@ describe('unit test lib/validate.js', () => {
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
         response = validate.validatePassword('password');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordNotEquals'});
+        response = validate.validatePassword('😺');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
+        response = validate.validatePassword('😺🦆🐝');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
+        response = validate.validatePassword('😺🦆🐝🐮🐠');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
+        response = validate.validatePassword('😺🦆🐝🐮🐠🐻');
+        expect(response).toEqual({valid: true});
         response = validate.validatePassword('abcdefg', 'abcdefg');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordNotUsername'});
         response = validate.validatePassword('abcdefg', 'abcdefG');

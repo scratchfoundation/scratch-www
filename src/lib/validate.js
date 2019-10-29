@@ -50,7 +50,9 @@ module.exports.validateUsernameRemotely = username => (
 module.exports.validatePassword = (password, username) => {
     if (!password) {
         return {valid: false, errMsgId: 'general.required'};
-    } else if (password.length < 6) {
+    // get length of password, considering unicode symbols as single chars.
+    // see discussion at https://stackoverflow.com/a/54370584/2308190
+    } else if (Array.from(password).length < 6) {
         return {valid: false, errMsgId: 'registration.validationPasswordLength'};
     } else if (password === 'password') {
         return {valid: false, errMsgId: 'registration.validationPasswordNotEquals'};
