@@ -1,9 +1,24 @@
 const React = require('react');
 const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
 
+const requestSuccessResponse = {
+    requestSucceeded: true,
+    valid: false,
+    errMsgId: 'registration.validationUsernameNotAllowed'
+};
+const requestFailureResponse = {
+    requestSucceeded: false,
+    valid: false,
+    errMsgId: 'general.error'
+};
+// mockedValidateUsernameRemotely will return a promise resolving with remoteRequestResponse.
+// Using remoteRequestResponse, rather than using requestSuccessResponse directly,
+// lets us change where remoteRequestResponse points later, without actually changing
+// mockedValidateUsernameRemotely.
+let remoteRequestResponse = requestSuccessResponse;
 let mockedValidateUsernameRemotely = jest.fn(() => (
     /* eslint-disable no-undef */
-    Promise.resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationUsernameNotAllowed'})
+    Promise.resolve(remoteRequestResponse)
     /* eslint-enable no-undef */
 ));
 
@@ -18,10 +33,6 @@ jest.mock('../../../src/lib/validate.js', () => (
 const UsernameStep = require('../../../src/components/join-flow/username-step.jsx');
 
 describe('UsernameStep tests', () => {
-
-    afterEach(() => {
-        jest.clearAllMocks();
-    });
 
     test('send correct props to formik', () => {
         const wrapper = shallowWithIntl(<UsernameStep />);
@@ -56,13 +67,11 @@ describe('UsernameStep tests', () => {
 
 });
 
-describe('validateUsernameRemotelyWithCache test', () => {
+describe('validateUsernameRemotelyWithCache test with successful requests', () => {
 
-    // mockedValidateUsernameRemotely = jest.fn(() => (
-    //     /* eslint-disable no-undef */
-    //     Promise.resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationUsernameNotAllowed'})
-    //     /* eslint-enable no-undef */
-    // ));
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     test('validateUsernameRemotelyWithCache calls validate.validateUsernameRemotely', done => {
         const wrapper = shallowWithIntl(<UsernameStep />);
@@ -71,6 +80,7 @@ describe('validateUsernameRemotelyWithCache test', () => {
         instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
             .then(response => {
                 expect(mockedValidateUsernameRemotely).toHaveBeenCalled();
+                expect(response.requestSucceeded).toBe(true);
                 expect(response.valid).toBe(false);
                 expect(response.errMsgId).toBe('registration.validationUsernameNotAllowed');
                 done();
@@ -86,6 +96,7 @@ describe('validateUsernameRemotelyWithCache test', () => {
         instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
             .then(response => {
                 expect(mockedValidateUsernameRemotely).toHaveBeenCalledTimes(1);
+                expect(response.requestSucceeded).toBe(true);
                 expect(response.valid).toBe(false);
                 expect(response.errMsgId).toBe('registration.validationUsernameNotAllowed');
             })
@@ -94,6 +105,7 @@ describe('validateUsernameRemotelyWithCache test', () => {
                 instance.validateUsernameRemotelyWithCache('secondDifferent66')
                     .then(response => {
                         expect(mockedValidateUsernameRemotely).toHaveBeenCalledTimes(2);
+                        expect(response.requestSucceeded).toBe(true);
                         expect(response.valid).toBe(false);
                         expect(response.errMsgId).toBe('registration.validationUsernameNotAllowed');
                         done();
@@ -110,6 +122,7 @@ describe('validateUsernameRemotelyWithCache test', () => {
         instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
             .then(response => {
                 expect(mockedValidateUsernameRemotely).toHaveBeenCalledTimes(1);
+                expect(response.requestSucceeded).toBe(true);
                 expect(response.valid).toBe(false);
                 expect(response.errMsgId).toBe('registration.validationUsernameNotAllowed');
             })
@@ -118,8 +131,88 @@ describe('validateUsernameRemotelyWithCache test', () => {
                 instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
                     .then(response => {
                         expect(mockedValidateUsernameRemotely).toHaveBeenCalledTimes(1);
+                        expect(response.requestSucceeded).toBe(true);
                         expect(response.valid).toBe(false);
                         expect(response.errMsgId).toBe('registration.validationUsernameNotAllowed');
+                        done();
+                    });
+            });
+    });
+});
+
+describe('validateUsernameRemotelyWithCache test with failing requests', () => {
+
+    beforeEach(() => {
+        // needs to be wrapped inside beforeEach, because if not, it gets run as this
+        // test file is loaded, and goes into effect before any of the earlier tests run!
+        remoteRequestResponse = requestFailureResponse;
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test('validateUsernameRemotelyWithCache calls validate.validateUsernameRemotely', done => {
+        const wrapper = shallowWithIntl(<UsernameStep />);
+        const instance = wrapper.dive().instance();
+
+        instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
+            .then(response => {
+                expect(mockedValidateUsernameRemotely).toHaveBeenCalled();
+                expect(response.requestSucceeded).toBe(false);
+                expect(response.valid).toBe(false);
+                expect(response.errMsgId).toBe('general.error');
+                done();
+            });
+    });
+
+    test('validateUsernameRemotelyWithCache, called twice with different data, makes two remote requests', done => {
+        const wrapper = shallowWithIntl(
+            <UsernameStep />
+        );
+        const instance = wrapper.dive().instance();
+
+        instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
+            .then(response => {
+                expect(mockedValidateUsernameRemotely).toHaveBeenCalledTimes(1);
+                expect(response.requestSucceeded).toBe(false);
+                expect(response.valid).toBe(false);
+                expect(response.errMsgId).toBe('general.error');
+            })
+            .then(() => {
+                // make the same request a second time
+                instance.validateUsernameRemotelyWithCache('secondDifferent66')
+                    .then(response => {
+                        expect(mockedValidateUsernameRemotely).toHaveBeenCalledTimes(2);
+                        expect(response.requestSucceeded).toBe(false);
+                        expect(response.valid).toBe(false);
+                        expect(response.errMsgId).toBe('general.error');
+                        done();
+                    });
+            });
+    });
+
+    test('validateUsernameRemotelyWithCache, called 2x w/same data, makes 2 requests, since 1st not stored', done => {
+        const wrapper = shallowWithIntl(
+            <UsernameStep />
+        );
+        const instance = wrapper.dive().instance();
+
+        instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
+            .then(response => {
+                expect(mockedValidateUsernameRemotely).toHaveBeenCalledTimes(1);
+                expect(response.requestSucceeded).toBe(false);
+                expect(response.valid).toBe(false);
+                expect(response.errMsgId).toBe('general.error');
+            })
+            .then(() => {
+                // make the same request a second time
+                instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
+                    .then(response => {
+                        expect(mockedValidateUsernameRemotely).toHaveBeenCalledTimes(2);
+                        expect(response.requestSucceeded).toBe(false);
+                        expect(response.valid).toBe(false);
+                        expect(response.errMsgId).toBe('general.error');
                         done();
                     });
             });
