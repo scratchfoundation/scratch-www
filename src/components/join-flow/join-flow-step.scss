@@ -12,7 +12,7 @@
 
 .join-flow-inner-content {
     box-shadow: none;
-    width: calc(100% - 5.875rem);
+    width: calc(50% + 7.84375rem);
     /* must use padding for top, rather than margin, because margins will collapse */
     margin: 0 auto;
     padding: 2.3125rem 0 2.5rem;
@@ -36,8 +36,7 @@
 /* overflow will only work if this class is set on parent of img, not img itself */
 .join-flow-header-image-wrapper {
     width: 100%;
-    min-height: 7.5rem;
-    max-height: 8.75rem;
+    height: 7.5rem;
     overflow: hidden;
     margin: 0;
     border-top-left-radius: 1rem;

@@ -44,12 +44,12 @@ class Intro extends React.Component {
                             <a
                                 className="intro-button join-button button"
                                 href="#"
-                                onClick={this.props.handleOpenRegistration}
+                                onClick={this.props.handleClickRegistration}
                             >
                                 {this.props.messages['intro.join']}
                             </a>
                         </FlexRow>
-                        
+
                     </FlexRow>
                     <FlexRow className="intro-video-container">
                         {this.state.videoOpen ?
@@ -77,7 +77,7 @@ class Intro extends React.Component {
                         }
                     </FlexRow>
                 </FlexRow>
-                
+
                 <FlexRow className="intro-subnav">
                     <a
                         href="/about"
@@ -107,7 +107,7 @@ class Intro extends React.Component {
 }
 
 Intro.propTypes = {
-    handleOpenRegistration: PropTypes.func,
+    handleClickRegistration: PropTypes.func,
     messages: PropTypes.shape({
         'intro.aboutScratch': PropTypes.string,
         'intro.forEducators': PropTypes.string,
@@ -139,9 +139,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    handleOpenRegistration: event => {
+    handleClickRegistration: event => {
         event.preventDefault();
-        dispatch(navigationActions.setRegistrationOpen(true));
+        dispatch(navigationActions.handleRegistrationRequested());
     }
 });
 

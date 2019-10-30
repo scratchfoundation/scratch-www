@@ -89,15 +89,27 @@
 .select .join-flow-select-month {
     margin-right: .5rem;
     width: 9.125rem;
+
+    @media #{$small} {
+        width: 8.25rem;
+    }
 }
 
 .select .join-flow-select-year {
     width: 9.125rem;
+
+    @media #{$small} {
+        width: 8.25rem;
+    }
 }
 
 .select .join-flow-select-country {
     width: 100%;
     margin: 0 auto;
+}
+
+.country-step-image {
+    background-color: $ui-purple;
 }
 
 .join-flow-password-section {
@@ -107,6 +119,10 @@
 .birthdate-select-row {
     display: flex;
     margin: 0 auto;
+}
+
+.birthdate-step-image {
+    background-color: $ui-magenta;
 }
 
 .join-flow-privacy-message {
@@ -157,7 +173,12 @@
     margin-top: 0;
 }
 
+.email-step-image {
+    background-color: $dd-medium-blue;
+}
+
 .join-flow-registration-error {
+    user-select: text; /* make text selectable, so users can copy errors */
     padding-top: 5.5rem;
 }
 
@@ -183,9 +204,13 @@
     margin-bottom: 1.25rem;
 }
 
+.welcome-step-image {
+    background-color: $ui-yellow;
+}
+
 .gender-radio-row {
     transition: all .125s ease;
-    width: 20.875rem;
+    width: 97%;
     min-height: 2.85rem;
     background-color: $ui-gray;
     border-radius: .5rem;

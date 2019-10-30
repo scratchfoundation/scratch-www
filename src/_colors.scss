@@ -28,8 +28,9 @@ $background-color: hsla(0, 0, 99, 1); //#FDFDFD
 $ui-aqua: hsla(163, 85, 40, 1); // #0FBD8C Extension Primary
 $ui-purple: hsla(260, 100, 70, 1); // #9966FF Looks Primary
 $ui-purple-dark: hsla(260, 60, 60, 1); // #774DCB Looks Secondary
+$ui-magenta: hsla(300, 53%, 60%, 1); /* #CF63CF Sounds Primary */
 
-$ui-yellow: hsla(45, 100, 50, 1); // #FFBF00 Control Primary
+$ui-yellow: hsla(45, 100, 50, 1); // #FFBF00 Events Primary
 $ui-coral: hsla(350, 100, 70, 1); // #FF6680 More Blocks Primary
 $ui-coral-dark: hsla(350, 100, 60, 1); // #FF3355 More Blocks tertiary
 
@@ -63,3 +64,4 @@ $link-blue: $ui-blue;
 
 /* Down Deep */
 $dd-darkblue: hsla(195, 72.4, 17.1, 1);
+$dd-medium-blue: hsla(195, 72.4, 42, .65);

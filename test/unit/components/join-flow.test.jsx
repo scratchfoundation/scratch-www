@@ -1,5 +1,6 @@
 import React from 'react';
 const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
+const defaults = require('lodash.defaultsdeep');
 import configureStore from 'redux-mock-store';
 import JoinFlow from '../../../src/components/join-flow/join-flow';
 import Progression from '../../../src/components/progression/progression.jsx';
@@ -126,6 +127,7 @@ describe('JoinFlow', () => {
         expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toBe('registration.generalError (400)');
     });
+
     test('handleRegistrationError with no message ', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.setState({});
@@ -174,5 +176,72 @@ describe('JoinFlow', () => {
         const progressionWrapper = joinFlowWrapper.find(Progression);
         expect(registrationErrorWrapper).toHaveLength(0);
         expect(progressionWrapper).toHaveLength(1);
+    });
+
+    test('when numAttempts is 0, RegistrationErrorStep receives canTryAgain prop with value true', () => {
+        const joinFlowWrapper = getJoinFlowWrapper();
+        joinFlowWrapper.instance().setState({
+            numAttempts: 0,
+            registrationError: 'halp there is a errors!!'
+        });
+        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
+        expect(registrationErrorWrapper.first().props().canTryAgain).toEqual(true);
+    });
+
+    test('when numAttempts is 1, RegistrationErrorStep receives canTryAgain prop with value true', () => {
+        const joinFlowWrapper = getJoinFlowWrapper();
+        joinFlowWrapper.instance().setState({
+            numAttempts: 1,
+            registrationError: 'halp there is a errors!!'
+        });
+        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
+        expect(registrationErrorWrapper.first().props().canTryAgain).toEqual(true);
+    });
+
+    test('when numAttempts is 2, RegistrationErrorStep receives canTryAgain prop with value false', () => {
+        const joinFlowWrapper = getJoinFlowWrapper();
+        joinFlowWrapper.instance().setState({
+            numAttempts: 2,
+            registrationError: 'halp there is a errors!!'
+        });
+        const registrationErrorWrapper = joinFlowWrapper.find(RegistrationErrorStep);
+        expect(registrationErrorWrapper.first().props().canTryAgain).toEqual(false);
+    });
+
+    test('resetState resets entire state, does not leave any state keys out', () => {
+        const joinFlowWrapper = getJoinFlowWrapper();
+        const joinFlowInstance = joinFlowWrapper.instance();
+        Object.keys(joinFlowInstance.state).forEach(key => {
+            joinFlowInstance.setState({[key]: 'Different than the initial value'});
+        });
+        joinFlowInstance.resetState();
+        Object.keys(joinFlowInstance.state).forEach(key => {
+            expect(joinFlowInstance.state[key]).not.toEqual('Different than the initial value');
+        });
+    });
+
+    test('resetState makes each state field match initial state', () => {
+        const joinFlowWrapper = getJoinFlowWrapper();
+        const joinFlowInstance = joinFlowWrapper.instance();
+        const stateSnapshot = {};
+        Object.keys(joinFlowInstance.state).forEach(key => {
+            stateSnapshot[key] = joinFlowInstance.state[key];
+        });
+        joinFlowInstance.resetState();
+        Object.keys(joinFlowInstance.state).forEach(key => {
+            expect(stateSnapshot[key]).toEqual(joinFlowInstance.state[key]);
+        });
+    });
+
+    test('calling resetState results in state.formData which is not same reference as before', () => {
+        const joinFlowWrapper = getJoinFlowWrapper();
+        const joinFlowInstance = joinFlowWrapper.instance();
+        joinFlowInstance.setState({
+            formData: defaults({}, {username: 'abcdef'})
+        });
+        const formDataReference = joinFlowInstance.state.formData;
+        joinFlowInstance.resetState();
+        expect(formDataReference).not.toBe(joinFlowInstance.state.formData);
+        expect(formDataReference).not.toEqual(joinFlowInstance.state.formData);
     });
 });

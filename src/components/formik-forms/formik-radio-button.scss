@@ -39,7 +39,7 @@ input[type="radio"].formik-radio-button {
 
 input.formik-radio-input, .formik-radio-input input {
     height: 2.1875rem;
-    width: 10.25rem;
+    width: 100%;
     margin-bottom: 0;
     border-radius: .5rem;
     background-color: $ui-white;
@@ -52,6 +52,7 @@ input.formik-radio-input, .formik-radio-input input {
 .formik-radio-input-wrapper {
     margin-left: auto;
     margin-right: .25rem;
+    width: 10.25rem;
 }
 
 .formik-radio-label-other {
