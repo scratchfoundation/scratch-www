@@ -23,17 +23,26 @@ class JoinFlow extends React.Component {
         super(props);
         bindAll(this, [
             'handleAdvanceStep',
+            'handleErrorNext',
             'handleRegistrationError',
             'handlePrepareToRegister',
             'handleRegistrationResponse',
             'handleSubmitRegistration'
         ]);
-        this.state = {
+        this.initialState = {
+            numAttempts: 0,
             formData: {},
             registrationError: null,
             step: 0,
             waiting: false
         };
+        // it's ok to set state by reference, because state is treated as immutable,
+        // so any changes to its fields will result in a new state which does not
+        // reference its past fields
+        this.state = this.initialState;
+    }
+    canTryAgain () {
+        return (this.state.numAttempts <= 1);
     }
     handleRegistrationError (message) {
         if (!message) {
@@ -64,7 +73,11 @@ class JoinFlow extends React.Component {
         //     "success": false
         //   }
         // ]
-        this.setState({waiting: false}, () => {
+        // username: 'username exists'
+        this.setState({
+            numAttempts: this.state.numAttempts + 1,
+            waiting: false
+        }, () => {
             let errStr = '';
             if (!err && res.statusCode === 200) {
                 if (body && body[0]) {
@@ -100,7 +113,9 @@ class JoinFlow extends React.Component {
         });
     }
     handleSubmitRegistration (formData) {
-        this.setState({waiting: true}, () => {
+        this.setState({
+            waiting: true
+        }, () => {
             api({
                 host: '',
                 uri: '/accounts/register_new_user/',
@@ -133,14 +148,25 @@ class JoinFlow extends React.Component {
             step: this.state.step + 1
         });
     }
+    handleErrorNext () {
+        if (this.canTryAgain()) {
+            this.handleSubmitRegistration(this.state.formData);
+        } else {
+            this.resetState();
+        }
+    }
+    resetState () {
+        this.setState(this.initialState);
+    }
     render () {
         return (
             <React.Fragment>
                 {this.state.registrationError ? (
                     <RegistrationErrorStep
+                        canTryAgain={this.canTryAgain()}
                         errorMsg={this.state.registrationError}
                         /* eslint-disable react/jsx-no-bind */
-                        onTryAgain={() => this.handleSubmitRegistration(this.state.formData)}
+                        onSubmit={this.handleErrorNext}
                         /* eslint-enable react/jsx-no-bind */
                     />
                 ) : (

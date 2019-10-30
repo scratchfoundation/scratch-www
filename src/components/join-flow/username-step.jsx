@@ -26,11 +26,15 @@ class UsernameStep extends React.Component {
             'validatePasswordIfPresent',
             'validatePasswordConfirmIfPresent',
             'validateUsernameIfPresent',
+            'validateUsernameRemotelyWithCache',
             'validateForm'
         ]);
         this.state = {
             focused: null
         };
+        // simple object to memoize remote requests for usernames.
+        // keeps us from submitting multiple requests for same data.
+        this.usernameRemoteCache = {};
     }
     componentDidMount () {
         // automatically start with focus on username field
@@ -44,12 +48,25 @@ class UsernameStep extends React.Component {
     handleSetUsernameRef (usernameInputRef) {
         this.usernameInput = usernameInputRef;
     }
+    // simple function to memoize remote requests for usernames
+    validateUsernameRemotelyWithCache (username) {
+        if (this.usernameRemoteCache.hasOwnProperty(username)) {
+            return Promise.resolve(this.usernameRemoteCache[username]);
+        }
+        // username is not in our cache
+        return validate.validateUsernameRemotely(username).then(
+            remoteResult => {
+                this.usernameRemoteCache[username] = remoteResult;
+                return remoteResult;
+            }
+        );
+    }
     // we allow username to be empty on blur, since you might not have typed anything yet
     validateUsernameIfPresent (username) {
         if (!username) return null; // skip validation if username is blank; null indicates valid
         // if username is not blank, run both local and remote validations
         const localResult = validate.validateUsernameLocally(username);
-        return validate.validateUsernameRemotely(username).then(
+        return this.validateUsernameRemotelyWithCache(username).then(
             remoteResult => {
                 // there may be multiple validation errors. Prioritize vulgarity, then
                 // length, then having invalid chars, then all other remote reports
@@ -143,6 +160,9 @@ class UsernameStep extends React.Component {
                                     {this.props.intl.formatMessage({id: 'registration.createUsername'})}
                                 </div>
                                 <FormikInput
+                                    autoCapitalize="off"
+                                    autoComplete="off"
+                                    autoCorrect="off"
                                     className={classNames(
                                         'join-flow-input'
                                     )}
@@ -150,6 +170,7 @@ class UsernameStep extends React.Component {
                                     id="username"
                                     name="username"
                                     placeholder={this.props.intl.formatMessage({id: 'general.username'})}
+                                    spellCheck={false}
                                     toolTip={this.state.focused === 'username' && !touched.username &&
                                         this.props.intl.formatMessage({id: 'registration.usernameAdviceShort'})}
                                     validate={this.validateUsernameIfPresent}
@@ -170,6 +191,9 @@ class UsernameStep extends React.Component {
                                         {this.props.intl.formatMessage({id: 'registration.choosePasswordStepTitle'})}
                                     </div>
                                     <FormikInput
+                                        autoCapitalize="off"
+                                        autoComplete={values.showPassword ? 'off' : 'new-password'}
+                                        autoCorrect="off"
                                         className={classNames(
                                             'join-flow-input',
                                             {'join-flow-input-password':
@@ -179,6 +203,7 @@ class UsernameStep extends React.Component {
                                         id="password"
                                         name="password"
                                         placeholder={this.props.intl.formatMessage({id: 'general.password'})}
+                                        spellCheck={false}
                                         toolTip={this.state.focused === 'password' && !touched.password &&
                                             this.props.intl.formatMessage({id: 'registration.passwordAdviceShort'})}
                                         type={values.showPassword ? 'text' : 'password'}
@@ -195,6 +220,9 @@ class UsernameStep extends React.Component {
                                         /* eslint-enable react/jsx-no-bind */
                                     />
                                     <FormikInput
+                                        autoCapitalize="off"
+                                        autoComplete={values.showPassword ? 'off' : 'new-password'}
+                                        autoCorrect="off"
                                         className={classNames(
                                             'join-flow-input',
                                             'join-flow-password-confirm',
@@ -210,6 +238,7 @@ class UsernameStep extends React.Component {
                                         placeholder={this.props.intl.formatMessage({
                                             id: 'registration.confirmPasswordInstruction'
                                         })}
+                                        spellCheck={false}
                                         toolTip={
                                             this.state.focused === 'passwordConfirm' && !touched.passwordConfirm &&
                                                 this.props.intl.formatMessage({
