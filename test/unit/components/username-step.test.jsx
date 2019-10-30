@@ -1,9 +1,9 @@
 const React = require('react');
 const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
 
-const mockedValidateUsernameRemotely = jest.fn(() => (
+let mockedValidateUsernameRemotely = jest.fn(() => (
     /* eslint-disable no-undef */
-    Promise.resolve({valid: false, errMsgId: 'registration.validationUsernameNotAllowed'})
+    Promise.resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationUsernameNotAllowed'})
     /* eslint-enable no-undef */
 ));
 
@@ -17,7 +17,7 @@ jest.mock('../../../src/lib/validate.js', () => (
 // must come after validation mocks, so validate.js will be mocked before it is required
 const UsernameStep = require('../../../src/components/join-flow/username-step.jsx');
 
-describe('UsernameStep test', () => {
+describe('UsernameStep tests', () => {
 
     afterEach(() => {
         jest.clearAllMocks();
@@ -54,9 +54,18 @@ describe('UsernameStep test', () => {
         expect(mockedOnNextStep).toHaveBeenCalledWith(formData);
     });
 
+});
+
+describe('validateUsernameRemotelyWithCache test', () => {
+
+    // mockedValidateUsernameRemotely = jest.fn(() => (
+    //     /* eslint-disable no-undef */
+    //     Promise.resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationUsernameNotAllowed'})
+    //     /* eslint-enable no-undef */
+    // ));
+
     test('validateUsernameRemotelyWithCache calls validate.validateUsernameRemotely', done => {
-        const wrapper = shallowWithIntl(
-            <UsernameStep />);
+        const wrapper = shallowWithIntl(<UsernameStep />);
         const instance = wrapper.dive().instance();
 
         instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
