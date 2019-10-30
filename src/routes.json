@@ -568,6 +568,16 @@
         "redirect": "/ideas"
     },
     {
+        "name": "talking-tales-tutorial-redirect",
+        "pattern": "^/talking-tales/?$",
+        "redirect": "/projects/editor?tutorial=talking"
+    },
+    {
+        "name": "code-a-cartoon-tutorial-redirect",
+        "pattern": "^/code-a-cartoon/?$",
+        "redirect": "/projects/331474033/editor/?tutorial=code-cartoon"
+    },
+    {
         "name": "favorite-tutorial-redirect",
         "pattern": "^/favorite/?$",
         "redirect": "/ideas"
