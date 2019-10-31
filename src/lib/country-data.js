@@ -1060,25 +1060,23 @@ const dupeCommonCountries = module.exports.dupeCommonCountries = (startingCountr
 
 /*
  * registrationCountryOptions is the result of taking the standard countryInfo,
- * setting a 'value' key and a 'label' key both to the country data's 'name' value,
- * but using the 'display' value for 'label' instead of 'name' if 'display' exists;
- * then duplicating 'United States of America' and 'United Kingdom' at the top of the list.
+ * and duplicating 'United States of America' and 'United Kingdom' at the top of the list.
  * The result is an array like:
  * [
- *    {value: 'United States', label: 'United States of America'},
- *    {value: 'United Kingdom', label: 'United Kingdom'},
- *    {value: 'Afghanistan', label: 'Afghanistan'},
+ *    {code: 'us', name: 'United States', display: 'United States of America'},
+ *    {code: 'gb', name: 'United Kingdom'},
+ *    {code: 'af', name: 'Afghanistan'},
  *    ...
- *    {value: 'United Arab Emirates', label: 'United Arab Emirates'},
- *    {value: 'United States', label: 'United States of America'},
- *    {value: 'United Kingdom', label: 'United Kingdom'},
- *    {value: 'Uzbekistan', label: 'Uzbekistan'},
+ *    {code: 'ae', name: 'United Arab Emirates'},
+ *    {code: 'us', name: 'United States', display: 'United States of America'},
+ *    {code: 'gb', name: 'United Kingdom'},
+ *    {code: 'uz', name: 'Uzbekistan'},
  *    ...
- *    {value: 'Zimbabwe', label: 'Zimbabwe'}
+ *    {code: 'zm', name: 'Zimbabwe'}
  * ]
  */
 module.exports.registrationCountryOptions =
-    countryOptions(dupeCommonCountries(countryInfo, ['us', 'gb']), 'name');
+    countryOptions(dupeCommonCountries(countryInfo, ['us', 'gb']), 'code');
 
 /* subdivisionOptions uses iso-3166 data to produce an array like:
  * [
