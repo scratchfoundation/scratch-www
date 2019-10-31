@@ -512,7 +512,13 @@
     },
     {
         "name": "fly-tutorial-redirect",
-        "pattern": "^/(makeit)?fly/?$",
+        "pattern": "^/fly/?$",
+        "routeAlias": "/(makeit)?fly/?$",
+        "redirect": "/projects/editor/?tutorial=make-it-fly"
+    },
+    {
+        "name": "makeitfly-tutorial-redirect",
+        "pattern": "^/makeitfly/?$",
         "routeAlias": "/(makeit)?fly/?$",
         "redirect": "/projects/editor/?tutorial=make-it-fly"
     },
@@ -560,6 +566,16 @@
         "name": "bearstack-tutorial-redirect",
         "pattern": "^/bearstack/?$",
         "redirect": "/ideas"
+    },
+    {
+        "name": "talking-tales-tutorial-redirect",
+        "pattern": "^/talking-tales/?$",
+        "redirect": "/projects/editor?tutorial=talking"
+    },
+    {
+        "name": "code-a-cartoon-tutorial-redirect",
+        "pattern": "^/code-a-cartoon/?$",
+        "redirect": "/projects/331474033/editor/?tutorial=code-cartoon"
     },
     {
         "name": "favorite-tutorial-redirect",

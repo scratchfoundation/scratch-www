@@ -133,6 +133,8 @@ var localizedAssetUrls = {};
 //   - txMapping: if the name of the transifex resource is different from the route name
 var txMapping = {
     'projects': 'preview',
+    'embed': 'preview',
+    'vernier': 'gdxfor',
     'scratch_1.4': 'scratch_14' // transifex doesn't allow dots in resource names
 };
 // start with english default for all views

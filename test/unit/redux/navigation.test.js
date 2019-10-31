@@ -7,11 +7,17 @@ const {
     setLoginOpen,
     setRegistrationOpen,
     setSearchTerm,
-    toggleLoginOpen
+    toggleLoginOpen,
+    handleRegistrationRequested
 } = require('../../../src/redux/navigation');
 
 
 describe('unit test lib/validate.js', () => {
+    beforeEach(() => {
+        // mock window navigation
+        global.window.location.assign = jest.fn();
+    });
+
     test('initialState', () => {
         let defaultState;
         /* navigationReducer(state, action) */
@@ -237,5 +243,29 @@ describe('unit test lib/validate.js', () => {
         const action = toggleLoginOpen();
         const resultState = navigationReducer(initialState, action);
         expect(resultState.loginOpen).toBe(false);
+    });
+
+    test('handleRegistrationRequested with useScratch3Registration true navigates user to /join, ' +
+        'and does NOT open scratch 2 registration', () => {
+        const initialState = {
+            registrationOpen: false,
+            useScratch3Registration: true
+        };
+        const action = handleRegistrationRequested();
+        const resultState = navigationReducer(initialState, action);
+        expect(resultState.registrationOpen).toBe(false);
+        expect(global.window.location.assign).toHaveBeenCalledWith('/join');
+    });
+
+    test('handleRegistrationRequested with useScratch3Registration false does NOT navigate user away, ' +
+        'DOES open scratch 2 registration', () => {
+        const initialState = {
+            registrationOpen: false,
+            useScratch3Registration: false
+        };
+        const action = handleRegistrationRequested();
+        const resultState = navigationReducer(initialState, action);
+        expect(resultState.registrationOpen).toBe(true);
+        expect(global.window.location.assign).not.toHaveBeenCalled();
     });
 });

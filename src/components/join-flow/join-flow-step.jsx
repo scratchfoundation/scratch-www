@@ -14,6 +14,7 @@ const JoinFlowStep = ({
     description,
     descriptionClassName,
     footerContent,
+    headerImgClass,
     headerImgSrc,
     nextButton,
     onSubmit,
@@ -21,10 +22,18 @@ const JoinFlowStep = ({
     titleClassName,
     waiting
 }) => (
-    <form onSubmit={onSubmit}>
+    <form
+        autoComplete="off"
+        onSubmit={onSubmit}
+    >
         <div className="join-flow-outer-content">
             {headerImgSrc && (
-                <div className="join-flow-header-image-wrapper">
+                <div
+                    className={classNames(
+                        'join-flow-header-image-wrapper',
+                        headerImgClass
+                    )}
+                >
                     <img
                         className="join-flow-header-image"
                         src={headerImgSrc}
@@ -80,6 +89,7 @@ JoinFlowStep.propTypes = {
     description: PropTypes.string,
     descriptionClassName: PropTypes.string,
     footerContent: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    headerImgClass: PropTypes.string,
     headerImgSrc: PropTypes.string,
     innerClassName: PropTypes.string,
     nextButton: PropTypes.node,

@@ -2,6 +2,7 @@ const React = require('react');
 const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
 import configureStore from 'redux-mock-store';
 const Navigation = require('../../../src/components/navigation/www/navigation.jsx');
+const Registration = require('../../../src/components/registration/registration.jsx');
 const sessionActions = require('../../../src/redux/session.js');
 
 describe('Navigation', () => {
@@ -24,7 +25,41 @@ describe('Navigation', () => {
             .dive(); // unwrap injectIntl(JoinFlow)
     };
 
-    test('when using old join flow, clicking Join Scratch attemps to open registration', () => {
+    test('when using old join flow, when registrationOpen is true, iframe shows', () => {
+        store = mockStore({
+            navigation: {
+                registrationOpen: true,
+                useScratch3Registration: false
+            },
+            session: {
+                status: sessionActions.Status.FETCHED
+            },
+            messageCount: {
+                messageCount: 0
+            }
+        });
+        const navWrapper = getNavigationWrapper();
+        expect(navWrapper.contains(<Registration />)).toEqual(true);
+    });
+
+    test('when using new join flow, when registrationOpen is true, iframe does not show', () => {
+        store = mockStore({
+            navigation: {
+                registrationOpen: true,
+                useScratch3Registration: true
+            },
+            session: {
+                status: sessionActions.Status.FETCHED
+            },
+            messageCount: {
+                messageCount: 0
+            }
+        });
+        const navWrapper = getNavigationWrapper();
+        expect(navWrapper.contains(<Registration />)).toEqual(false);
+    });
+
+    test('when using old join flow, clicking Join Scratch calls handleRegistrationRequested', () => {
         store = mockStore({
             navigation: {
                 useScratch3Registration: false
@@ -37,16 +72,17 @@ describe('Navigation', () => {
             }
         });
         const props = {
-            handleOpenRegistration: jest.fn()
+            handleClickRegistration: jest.fn()
         };
         const navWrapper = getNavigationWrapper(props);
         const navInstance = navWrapper.instance();
 
-        navWrapper.find('a.registrationLink').simulate('click');
-        expect(navInstance.props.handleOpenRegistration).toHaveBeenCalled();
+        // simulate click, with mocked event
+        navWrapper.find('a.registrationLink').simulate('click', {preventDefault () {}});
+        expect(navInstance.props.handleClickRegistration).toHaveBeenCalled();
     });
 
-    test('when using new join flow, clicking Join Scratch attemps to navigate to registration', () => {
+    test('when using new join flow, clicking Join Scratch calls handleRegistrationRequested', () => {
         store = mockStore({
             navigation: {
                 useScratch3Registration: true
@@ -59,12 +95,12 @@ describe('Navigation', () => {
             }
         });
         const props = {
-            navigateToRegistration: jest.fn()
+            handleClickRegistration: jest.fn()
         };
         const navWrapper = getNavigationWrapper(props);
         const navInstance = navWrapper.instance();
 
-        navWrapper.find('a.registrationLink').simulate('click');
-        expect(navInstance.props.navigateToRegistration).toHaveBeenCalled();
+        navWrapper.find('a.registrationLink').simulate('click', {preventDefault () {}});
+        expect(navInstance.props.handleClickRegistration).toHaveBeenCalled();
     });
 });
