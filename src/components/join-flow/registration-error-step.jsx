@@ -34,22 +34,22 @@ class RegistrationErrorStep extends React.Component {
                 titleClassName="join-flow-error-title"
                 onSubmit={this.handleSubmit}
             >
-                <p className="join-flow-instructions">
+                <div className="join-flow-instructions">
                     <FormattedMessage id="registration.cantCreateAccount" />
-                </p>
+                </div>
                 {this.props.errorMsg && (
-                    <p className="join-flow-instructions registration-error-msg">
+                    <div className="join-flow-instructions registration-error-msg">
                         {this.props.errorMsg}
-                    </p>
+                    </div>
                 )}
                 {this.props.canTryAgain ? (
-                    <p className="join-flow-instructions">
+                    <div className="join-flow-instructions">
                         <FormattedMessage id="registration.tryAgainInstruction" />
-                    </p>
+                    </div>
                 ) : (
-                    <p className="join-flow-instructions">
+                    <div className="join-flow-instructions">
                         <FormattedMessage id="registration.startOverInstruction" />
-                    </p>
+                    </div>
                 )}
             </JoinFlowStep>
         );
@@ -61,6 +61,10 @@ RegistrationErrorStep.propTypes = {
     errorMsg: PropTypes.string,
     intl: intlShape,
     onSubmit: PropTypes.func.isRequired
+};
+
+RegistrationErrorStep.defaultProps = {
+    canTryAgain: false
 };
 
 const IntlRegistrationErrorStep = injectIntl(RegistrationErrorStep);
