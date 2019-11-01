@@ -63,7 +63,7 @@ class EmailStep extends React.Component {
     onCaptchaError () {
         this.props.onRegistrationError(
             this.props.intl.formatMessage({
-                id: 'registation.troubleReload'
+                id: 'registration.troubleReload'
             })
         );
     }

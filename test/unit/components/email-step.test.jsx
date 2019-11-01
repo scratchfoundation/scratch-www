@@ -151,7 +151,7 @@ describe('EmailStep test', () => {
 
         const formikWrapper = wrapper.dive();
         formikWrapper.instance().onCaptchaError();
-        expect(props.onRegistrationError).toHaveBeenCalledWith('registation.troubleReload');
+        expect(props.onRegistrationError).toHaveBeenCalledWith('registration.troubleReload');
     });
 
     test('Captcha load error calls error function', () => {
@@ -167,7 +167,7 @@ describe('EmailStep test', () => {
 
         const formikWrapper = wrapper.dive();
         formikWrapper.instance().onCaptchaLoad();
-        expect(props.onRegistrationError).toHaveBeenCalledWith('registation.troubleReload');
+        expect(props.onRegistrationError).toHaveBeenCalledWith('registration.troubleReload');
     });
 
     test('validateEmail test email empty', () => {
