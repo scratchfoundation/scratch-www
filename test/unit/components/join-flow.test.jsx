@@ -97,8 +97,8 @@ describe('JoinFlow', () => {
         joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
         expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toEqual({
-            canTryAgain: false,
-            errorMsg: 'registration.problemsAre "username: This field is required."'
+            errorAllowsTryAgain: false,
+            errorMsg: 'registration.problemsAre: "username: This field is required."'
         });
     });
 
@@ -120,7 +120,7 @@ describe('JoinFlow', () => {
         joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
         expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toEqual({
-            canTryAgain: false,
+            errorAllowsTryAgain: false,
             errorMsg: null
         });
     });
@@ -142,7 +142,7 @@ describe('JoinFlow', () => {
         joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
         expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toEqual({
-            canTryAgain: false,
+            errorAllowsTryAgain: false,
             errorMsg: null
         });
     });
@@ -164,7 +164,7 @@ describe('JoinFlow', () => {
         joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
         expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toEqual({
-            canTryAgain: true
+            errorAllowsTryAgain: true
         });
     });
 
@@ -173,7 +173,7 @@ describe('JoinFlow', () => {
         joinFlowInstance.setState({});
         joinFlowInstance.handleCaptchaError();
         expect(joinFlowInstance.state.registrationError).toEqual({
-            canTryAgain: false,
+            errorAllowsTryAgain: false,
             errorMsg: 'registration.errorCaptcha'
         });
     });
@@ -214,13 +214,13 @@ describe('JoinFlow', () => {
         expect(progressionWrapper).toHaveLength(1);
     });
 
-    test('when numAttempts is 0 and registrationError canTryAgain is true, ' +
-        'RegistrationErrorStep receives canTryAgain prop with value true', () => {
+    test('when numAttempts is 0 and registrationError errorAllowsTryAgain is true, ' +
+        'RegistrationErrorStep receives errorAllowsTryAgain prop with value true', () => {
         const joinFlowWrapper = getJoinFlowWrapper();
         joinFlowWrapper.instance().setState({
             numAttempts: 0,
             registrationError: {
-                canTryAgain: true,
+                errorAllowsTryAgain: true,
                 errorMsg: 'halp there is a errors!!'
             }
         });
@@ -228,13 +228,13 @@ describe('JoinFlow', () => {
         expect(registrationErrorWrapper.first().props().canTryAgain).toEqual(true);
     });
 
-    test('when numAttempts is 1 and registrationError canTryAgain is true, ' +
-        'RegistrationErrorStep receives canTryAgain prop with value true', () => {
+    test('when numAttempts is 1 and registrationError errorAllowsTryAgain is true, ' +
+        'RegistrationErrorStep receives errorAllowsTryAgain prop with value true', () => {
         const joinFlowWrapper = getJoinFlowWrapper();
         joinFlowWrapper.instance().setState({
             numAttempts: 1,
             registrationError: {
-                canTryAgain: true,
+                errorAllowsTryAgain: true,
                 errorMsg: 'halp there is a errors!!'
             }
         });
@@ -242,13 +242,13 @@ describe('JoinFlow', () => {
         expect(registrationErrorWrapper.first().props().canTryAgain).toEqual(true);
     });
 
-    test('when numAttempts is 2 and registrationError canTryAgain is true, ' +
-        'RegistrationErrorStep receives canTryAgain prop with value false', () => {
+    test('when numAttempts is 2 and registrationError errorAllowsTryAgain is true, ' +
+        'RegistrationErrorStep receives errorAllowsTryAgain prop with value false', () => {
         const joinFlowWrapper = getJoinFlowWrapper();
         joinFlowWrapper.instance().setState({
             numAttempts: 2,
             registrationError: {
-                canTryAgain: true,
+                errorAllowsTryAgain: true,
                 errorMsg: 'halp there is a errors!!'
             }
         });
@@ -256,13 +256,13 @@ describe('JoinFlow', () => {
         expect(registrationErrorWrapper.first().props().canTryAgain).toEqual(false);
     });
 
-    test('when numAttempts is 0 and registrationError canTryAgain is false, ' +
-        'RegistrationErrorStep receives canTryAgain prop with value false', () => {
+    test('when numAttempts is 0 and registrationError errorAllowsTryAgain is false, ' +
+        'RegistrationErrorStep receives errorAllowsTryAgain prop with value false', () => {
         const joinFlowWrapper = getJoinFlowWrapper();
         joinFlowWrapper.instance().setState({
             numAttempts: 0,
             registrationError: {
-                canTryAgain: false,
+                errorAllowsTryAgain: false,
                 errorMsg: 'halp there is a errors!!'
             }
         });
@@ -304,80 +304,80 @@ describe('JoinFlow', () => {
         expect(formDataReference).not.toEqual(joinFlowInstance.state.formData);
     });
 
-    test('getBodyErrors returns object of errors', () => {
+    test('getErrorsFromResponse returns object of errors', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        const bodyErrors = joinFlowInstance.getBodyErrors(null, responseBodyMultipleErrs, {statusCode: 200});
-        expect(bodyErrors).toEqual({
-            username: ['This field is required.'],
-            recaptcha: ['Incorrect, please try again.']
-        });
+        const errorsFromResponse =
+            joinFlowInstance.getErrorsFromResponse(null, responseBodyMultipleErrs, {statusCode: 200});
+        expect(errorsFromResponse).toEqual([
+            {
+                fieldName: 'username',
+                errorStr: 'This field is required.'
+            }, {
+                fieldName: 'recaptcha',
+                errorStr: 'Incorrect, please try again.'
+            }
+        ]);
     });
 
-    test('getBodyErrors called with non-null err returns falsy', () => {
+    test('getErrorsFromResponse called with non-null err returns empty array', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        const bodyErrors = joinFlowInstance.getBodyErrors({}, responseBodyMultipleErrs, {statusCode: 200});
-        expect(bodyErrors).toBeFalsy();
+        const errorsFromResponse =
+            joinFlowInstance.getErrorsFromResponse({}, responseBodyMultipleErrs, {statusCode: 200});
+        expect(errorsFromResponse).toEqual([]);
     });
 
-    test('getBodyErrors called with non-200 status code returns falsy', () => {
+    test('getErrorsFromResponse called with non-200 status code returns empty array', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        const bodyErrors = joinFlowInstance.getBodyErrors({}, responseBodyMultipleErrs, {statusCode: 400});
-        expect(bodyErrors).toBeFalsy();
+        const errorsFromResponse =
+            joinFlowInstance.getErrorsFromResponse({}, responseBodyMultipleErrs, {statusCode: 400});
+        expect(errorsFromResponse).toEqual([]);
     });
 
-    test('getSingleError returns single error, when given response body with only one error', () => {
+    test('getErrorsFromResponse gets single error, when given response body with only one error', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        const bodyErrors = joinFlowInstance.getBodyErrors(null, responseBodySingleErr, {statusCode: 200});
-        const singleError = joinFlowInstance.getSingleError(bodyErrors);
-        expect(singleError).toEqual({
-            fieldName: 'recaptcha',
-            errorStr: 'Incorrect, please try again.'
-        });
-    });
-
-    test('getSingleError returns falsy, when given response body with multiple errors', () => {
-        const joinFlowInstance = getJoinFlowWrapper().instance();
-        const bodyErrors = joinFlowInstance.getBodyErrors(null, responseBodyMultipleErrs, {statusCode: 200});
-        const singleError = joinFlowInstance.getSingleError(bodyErrors);
-        expect(singleError).toBeFalsy();
+        const errorsFromResponse =
+            joinFlowInstance.getErrorsFromResponse(null, responseBodySingleErr, {statusCode: 200});
+        expect(errorsFromResponse.length).toEqual(1);
     });
 
     test('getCustomErrMsg string when given response body with multiple errors', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        const bodyErrors = joinFlowInstance.getBodyErrors(null, responseBodyMultipleErrs, {statusCode: 200});
-        const customErrMsg = joinFlowInstance.getCustomErrMsg(bodyErrors);
-        expect(customErrMsg).toEqual('registration.problemsAre "username: This field is required.; ' +
+        const errorsFromResponse =
+            joinFlowInstance.getErrorsFromResponse(null, responseBodyMultipleErrs, {statusCode: 200});
+        const customErrMsg = joinFlowInstance.getCustomErrMsg(errorsFromResponse);
+        expect(customErrMsg).toEqual('registration.problemsAre: "username: This field is required.; ' +
             'recaptcha: Incorrect, please try again."');
     });
 
     test('getCustomErrMsg string when given response body with single error', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        const bodyErrors = joinFlowInstance.getBodyErrors(null, responseBodySingleErr, {statusCode: 200});
-        const customErrMsg = joinFlowInstance.getCustomErrMsg(bodyErrors);
-        expect(customErrMsg).toEqual('registration.problemsAre "recaptcha: Incorrect, please try again."');
+        const errorsFromResponse =
+            joinFlowInstance.getErrorsFromResponse(null, responseBodySingleErr, {statusCode: 200});
+        const customErrMsg = joinFlowInstance.getCustomErrMsg(errorsFromResponse);
+        expect(customErrMsg).toEqual('registration.problemsAre: "recaptcha: Incorrect, please try again."');
     });
 
-    test('getRegistrationSuccess returns true when given response body with single error', () => {
+    test('registrationIsSuccessful returns true when given response body with single error', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        const success = joinFlowInstance.getRegistrationSuccess(null, responseBodySuccess, {statusCode: 200});
+        const success = joinFlowInstance.registrationIsSuccessful(null, responseBodySuccess, {statusCode: 200});
         expect(success).toEqual(true);
     });
 
-    test('getRegistrationSuccess returns false when given status code not 200', () => {
+    test('registrationIsSuccessful returns false when given status code not 200', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        const success = joinFlowInstance.getRegistrationSuccess(null, responseBodySuccess, {statusCode: 500});
+        const success = joinFlowInstance.registrationIsSuccessful(null, responseBodySuccess, {statusCode: 500});
         expect(success).toEqual(false);
     });
 
-    test('getRegistrationSuccess returns false when given body with success field false', () => {
+    test('registrationIsSuccessful returns false when given body with success field false', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        const success = joinFlowInstance.getRegistrationSuccess(null, responseBodySingleErr, {statusCode: 200});
+        const success = joinFlowInstance.registrationIsSuccessful(null, responseBodySingleErr, {statusCode: 200});
         expect(success).toEqual(false);
     });
 
-    test('getRegistrationSuccess returns false when given non null err', () => {
+    test('registrationIsSuccessful returns false when given non null err', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
-        const success = joinFlowInstance.getRegistrationSuccess({}, responseBodySuccess, {statusCode: 200});
+        const success = joinFlowInstance.registrationIsSuccessful({}, responseBodySuccess, {statusCode: 200});
         expect(success).toEqual(false);
     });
 
@@ -396,7 +396,7 @@ describe('JoinFlow', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.handleRegistrationResponse(null, responseBodySingleErr, {statusCode: 200});
         expect(joinFlowInstance.state.registrationError).toEqual({
-            canTryAgain: false,
+            errorAllowsTryAgain: false,
             errorMsg: 'registration.errorCaptcha'
         });
     });
@@ -405,8 +405,8 @@ describe('JoinFlow', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.handleRegistrationResponse(null, responseBodyMultipleErrs, {statusCode: 200});
         expect(joinFlowInstance.state.registrationError).toEqual({
-            canTryAgain: false,
-            errorMsg: 'registration.problemsAre "username: This field is required.; ' +
+            errorAllowsTryAgain: false,
+            errorMsg: 'registration.problemsAre: "username: This field is required.; ' +
                 'recaptcha: Incorrect, please try again."'
         });
     });
@@ -415,7 +415,7 @@ describe('JoinFlow', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.handleRegistrationResponse({}, responseBodyMultipleErrs, {statusCode: 200});
         expect(joinFlowInstance.state.registrationError).toEqual({
-            canTryAgain: true
+            errorAllowsTryAgain: true
         });
     });
 
@@ -423,7 +423,7 @@ describe('JoinFlow', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.handleRegistrationResponse({}, responseBodyMultipleErrs, {statusCode: 400});
         expect(joinFlowInstance.state.registrationError).toEqual({
-            canTryAgain: true
+            errorAllowsTryAgain: true
         });
     });
 
@@ -431,8 +431,7 @@ describe('JoinFlow', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.handleRegistrationResponse(null, responseBodyMultipleErrs, {statusCode: 500});
         expect(joinFlowInstance.state.registrationError).toEqual({
-            canTryAgain: false,
-            errorMsg: null
+            errorAllowsTryAgain: true
         });
     });
 
