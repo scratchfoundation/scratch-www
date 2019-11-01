@@ -43,12 +43,12 @@ class JoinFlow extends React.Component {
         this.state = this.initialState;
     }
     canTryAgain () {
-        return (this.state.registrationError.canTryAgain && this.state.numAttempts <= 1);
+        return (this.state.registrationError.errorAllowsTryAgain && this.state.numAttempts <= 1);
     }
     handleCaptchaError () {
         this.setState({
             registrationError: {
-                canTryAgain: false,
+                errorAllowsTryAgain: false,
                 errorMsg: this.props.intl.formatMessage({
                     id: 'registration.errorCaptcha'
                 })
@@ -64,36 +64,34 @@ class JoinFlow extends React.Component {
             this.handleSubmitRegistration(this.state.formData);
         });
     }
-    getBodyErrors (err, body, res) {
-        return (!err && res.statusCode === 200 && body && body[0] && body[0].errors);
-    }
-    getSingleError (bodyErrors) {
-        if (Object.keys(bodyErrors).length === 1) {
-            const fieldName = Object.keys(bodyErrors)[0];
-            if (bodyErrors[fieldName].length === 1) {
-                return {fieldName: fieldName, errorStr: bodyErrors[fieldName][0]};
+    getErrorsFromResponse (err, body, res) {
+        const errorsFromResponse = [];
+        if (!err && res.statusCode === 200 && body && body[0]) {
+            const responseBodyErrors = body[0].errors;
+            if (responseBodyErrors) {
+                Object.keys(responseBodyErrors).forEach(fieldName => {
+                    const errorStrs = responseBodyErrors[fieldName];
+                    errorStrs.forEach(errorStr => {
+                        errorsFromResponse.push({fieldName: fieldName, errorStr: errorStr});
+                    });
+                });
             }
         }
-        return null;
+        return errorsFromResponse;
     }
-    getCustomErrMsg (bodyErrors) {
+    getCustomErrMsg (errorsFromResponse) {
+        if (!errorsFromResponse || errorsFromResponse.length === 0) return null;
         let customErrMsg = '';
-        // body can include zero or more error objects, each
-        // with its own key and description. Here we assemble
+        // body can include zero or more error objects. Here we assemble
         // all of them into a single string, customErrMsg.
-        const errorKeys = Object.keys(bodyErrors);
-        errorKeys.forEach(key => {
-            const vals = bodyErrors[key];
-            vals.forEach(val => {
-                if (customErrMsg.length) customErrMsg += '; ';
-                customErrMsg += `${key}: ${val}`;
-            });
+        errorsFromResponse.forEach(errorFromResponse => {
+            if (customErrMsg.length) customErrMsg += '; ';
+            customErrMsg += `${errorFromResponse.fieldName}: ${errorFromResponse.errorStr}`;
         });
-        if (!customErrMsg) return null; // if no key-val pairs
         const problemsStr = this.props.intl.formatMessage({id: 'registration.problemsAre'});
-        return `${problemsStr} "${customErrMsg}"`;
+        return `${problemsStr}: "${customErrMsg}"`;
     }
-    getRegistrationSuccess (err, body, res) {
+    registrationIsSuccessful (err, body, res) {
         return !!(!err && res.statusCode === 200 && body && body[0] && body[0].success);
     }
     // example of failing response:
@@ -126,41 +124,45 @@ class JoinFlow extends React.Component {
             numAttempts: this.state.numAttempts + 1,
             waiting: false
         }, () => {
-            const success = this.getRegistrationSuccess(err, body, res);
+            const success = this.registrationIsSuccessful(err, body, res);
             if (success) {
                 this.props.refreshSession();
                 this.setState({step: this.state.step + 1});
                 return;
             }
-            // now we know there was some error.
-            // if the error was client-side, prompt user to try again
-            if (err || (res.statusCode >= 400 && res.statusCode < 500)) {
-                this.setState({registrationError: {canTryAgain: true}});
+            // now we know something went wrong -- either an actual error (client-side
+            // or server-side), or just a problem with the registration content.
+
+            // if an actual error, prompt user to try again.
+            if (err || res.statusCode !== 200) {
+                this.setState({registrationError: {errorAllowsTryAgain: true}});
                 return;
             }
-            // now we know error was server-side.
-            // if server provided us info on why registration failed,
+
+            // now we know there was a problem with the registration content.
+            // If the server provided us info on why registration failed,
             // build a summary explanation string
             let errorMsg = null;
-            const bodyErrors = this.getBodyErrors(err, body, res);
-            if (bodyErrors) {
-                const singleError = this.getSingleError(bodyErrors);
-                let singleErrMsgId = null;
-                if (singleError) {
-                    singleErrMsgId = validate.responseErrorMsg(
-                        singleError.fieldName,
-                        singleError.errorStr
-                    );
-                }
+            const errorsFromResponse = this.getErrorsFromResponse(err, body, res);
+            // if there was exactly one error, check if we have a pre-written message
+            // about that precise error
+            if (errorsFromResponse.length === 1) {
+                const singleErrMsgId = validate.responseErrorMsg(
+                    errorsFromResponse[0].fieldName,
+                    errorsFromResponse[0].errorStr
+                );
                 if (singleErrMsgId) { // one error that we have a predefined explanation string for
                     errorMsg = this.props.intl.formatMessage({id: singleErrMsgId});
-                } else { // multiple errors, or unusual error; need custom message
-                    errorMsg = this.getCustomErrMsg(bodyErrors);
                 }
+            }
+            // if we have more than one error, build a custom message with all of the
+            // server-provided error messages
+            if (!errorMsg && errorsFromResponse.length > 0) {
+                errorMsg = this.getCustomErrMsg(errorsFromResponse);
             }
             this.setState({
                 registrationError: {
-                    canTryAgain: false,
+                    errorAllowsTryAgain: false,
                     errorMsg: errorMsg
                 }
             });
