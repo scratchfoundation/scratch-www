@@ -140,10 +140,15 @@ describe('unit test lib/validate.js', () => {
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
     });
 
-    test('get responseErrorMsg', () => {
+    test('get responseErrorMsg in cases where there is a dedicated string for that case', () => {
         let response = validate.responseErrorMsg('username', 'bad username');
         expect(response).toEqual('registration.errorBadUsername');
         response = validate.responseErrorMsg('password', 'Ensure this value has at least 6 characters (it has 3).');
         expect(response).toEqual('registration.errorPasswordTooShort');
+    });
+
+    test('responseErrorMsg is null in case where there is no dedicated string for that case', () => {
+        let response = validate.responseErrorMsg('username', 'some error that is not covered');
+        expect(response).toEqual(null);
     });
 });
