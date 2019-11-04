@@ -35,6 +35,7 @@ class EmailStep extends React.Component {
         this.emailRemoteCache = {};
     }
     componentDidMount () {
+        this.props.sendAnalytics('join-email');
         // automatically start with focus on username field
         if (this.emailInput) this.emailInput.focus();
 
@@ -231,6 +232,11 @@ EmailStep.propTypes = {
     intl: intlShape,
     onCaptchaError: PropTypes.func,
     onNextStep: PropTypes.func,
+<<<<<<< HEAD
+=======
+    onRegistrationError: PropTypes.func,
+    sendAnalytics: PropTypes.func,
+>>>>>>> Add analytics logging to join flow.  Adding page views for each step in the flow.
     waiting: PropTypes.bool
 };
 

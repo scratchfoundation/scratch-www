@@ -37,6 +37,12 @@ class UsernameStep extends React.Component {
         this.usernameRemoteCache = {};
     }
     componentDidMount () {
+        // Send info to analytics when we aren't on the standalone page.
+        // If we are on the standalone join page, the page load will take care of this.
+        if (!window.location.pathname.includes('/join')) {
+            this.props.sendAnalytics('join-email');
+        }
+
         // automatically start with focus on username field
         if (this.usernameInput) this.usernameInput.focus();
     }
@@ -282,7 +288,8 @@ class UsernameStep extends React.Component {
 
 UsernameStep.propTypes = {
     intl: intlShape,
-    onNextStep: PropTypes.func
+    onNextStep: PropTypes.func,
+    sendAnalytics: PropTypes.func
 };
 
 const IntlUsernameStep = injectIntl(UsernameStep);

@@ -215,6 +215,18 @@ class JoinFlow extends React.Component {
     resetState () {
         this.setState(this.initialState);
     }
+    sendAnalytics (path) {
+        const gaID = window.GA_ID;
+        if (!window.ga) {
+            return;
+        }
+        window.ga('send', {
+            hitType: 'pageview',
+            page: path,
+            tid: gaID
+        });
+    }
+
     render () {
         return (
             <React.Fragment>
@@ -228,11 +240,26 @@ class JoinFlow extends React.Component {
                     />
                 ) : (
                     <Progression step={this.state.step}>
-                        <UsernameStep onNextStep={this.handleAdvanceStep} />
-                        <CountryStep onNextStep={this.handleAdvanceStep} />
-                        <BirthDateStep onNextStep={this.handleAdvanceStep} />
-                        <GenderStep onNextStep={this.handleAdvanceStep} />
+                        <UsernameStep
+                            sendAnalytics={this.sendAnalytics}
+                            onNextStep={this.handleAdvanceStep}
+                        />
+                        <CountryStep
+                            sendAnalytics={this.sendAnalytics}
+                            onNextStep={this.handleAdvanceStep}
+                        />
+                        <BirthDateStep
+                            sendAnalytics={this.sendAnalytics}
+                            onNextStep={this.handleAdvanceStep}
+                        />
+
+                        <GenderStep
+                            sendAnalytics={this.sendAnalytics}
+                            onNextStep={this.handleAdvanceStep}
+                        />
+
                         <EmailStep
+                            sendAnalytics={this.sendAnalytics}
                             waiting={this.state.waiting}
                             onCaptchaError={this.handleCaptchaError}
                             onNextStep={this.handlePrepareToRegister}
@@ -240,6 +267,7 @@ class JoinFlow extends React.Component {
                         <WelcomeStep
                             createProjectOnComplete={this.props.createProjectOnComplete}
                             email={this.state.formData.email}
+                            sendAnalytics={this.sendAnalytics}
                             username={this.state.formData.username}
                             onNextStep={this.props.onCompleteRegistration}
                         />

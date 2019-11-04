@@ -17,6 +17,12 @@ class WelcomeStep extends React.Component {
             'validateForm'
         ]);
     }
+    componentDidMount () {
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-welcome');
+        }
+    }
+
     validateForm () {
         return {};
     }
@@ -87,6 +93,7 @@ WelcomeStep.propTypes = {
     email: PropTypes.string,
     intl: intlShape,
     onNextStep: PropTypes.func,
+    sendAnalytics: PropTypes.func,
     username: PropTypes.string
 };
 

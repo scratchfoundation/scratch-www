@@ -9,6 +9,12 @@ describe('RegistrationErrorStep', () => {
     const getRegistrationErrorStepWrapper = props => {
         const wrapper = shallowWithIntl(
             <RegistrationErrorStep
+<<<<<<< HEAD
+=======
+                errorMsg={'error message'}
+                sendAnalytics={jest.fn()}
+                onSubmit={onSubmit}
+>>>>>>> Add analytics logging to join flow.  Adding page views for each step in the flow.
                 {...props}
             />
         );

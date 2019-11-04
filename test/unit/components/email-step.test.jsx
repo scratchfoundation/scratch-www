@@ -1,5 +1,6 @@
 const React = require('react');
 const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
+const {mountWithIntl} = require('../../helpers/intl-helpers.jsx');
 const JoinFlowStep = require('../../../src/components/join-flow/join-flow-step.jsx');
 const FormikInput = require('../../../src/components/formik-forms/formik-input.jsx');
 const FormikCheckbox = require('../../../src/components/formik-forms/formik-checkbox.jsx');
@@ -36,13 +37,17 @@ jest.mock('../../../src/lib/validate.js', () => (
 const EmailStep = require('../../../src/components/join-flow/email-step.jsx');
 
 describe('EmailStep test', () => {
+    const defaultProps = () => ({
+        sendAnalytics: jest.fn()
+    });
     afterEach(() => {
         jest.clearAllMocks();
     });
 
     test('send correct props to formik', () => {
-        const intlWrapper = shallowWithIntl(<EmailStep />);
-
+        const intlWrapper = shallowWithIntl(<EmailStep
+            {...defaultProps()}
+        />);
         const emailStepWrapper = intlWrapper.dive();
         expect(emailStepWrapper.props().initialValues.subscribe).toBe(false);
         expect(emailStepWrapper.props().initialValues.email).toBe('');
@@ -53,7 +58,9 @@ describe('EmailStep test', () => {
     });
 
     test('props sent to JoinFlowStep', () => {
-        const intlWrapper = shallowWithIntl(<EmailStep />);
+        const intlWrapper = shallowWithIntl(<EmailStep
+            {...defaultProps()}
+        />);
         // Dive to get past the intl wrapper
         const emailStepWrapper = intlWrapper.dive();
         // Dive to get past the anonymous component.
@@ -69,7 +76,9 @@ describe('EmailStep test', () => {
     });
 
     test('props sent to FormikInput for email', () => {
-        const intlWrapper = shallowWithIntl(<EmailStep />);
+        const intlWrapper = shallowWithIntl(<EmailStep
+            {...defaultProps()}
+        />);
         // Dive to get past the intl wrapper
         const emailStepWrapper = intlWrapper.dive();
         // Dive to get past the anonymous component.
@@ -86,7 +95,10 @@ describe('EmailStep test', () => {
     });
 
     test('props sent to FormikCheckbox for subscribe', () => {
-        const intlWrapper = shallowWithIntl(<EmailStep />);
+        const intlWrapper = shallowWithIntl(<EmailStep
+            {...defaultProps()}
+        />);
+
         // Dive to get past the intl wrapper
         const emailStepWrapper = intlWrapper.dive();
         // Dive to get past the anonymous component.
@@ -109,7 +121,10 @@ describe('EmailStep test', () => {
         };
         const formData = {item1: 'thing', item2: 'otherthing'};
         const intlWrapper = shallowWithIntl(
-            <EmailStep />);
+            <EmailStep
+                {...defaultProps()}
+            />);
+
 
         const emailStepWrapper = intlWrapper.dive();
         emailStepWrapper.instance().onCaptchaLoad(); // to setup catpcha state
@@ -133,6 +148,7 @@ describe('EmailStep test', () => {
         const formData = {item1: 'thing', item2: 'otherthing'};
         const intlWrapper = shallowWithIntl(
             <EmailStep
+                {...defaultProps()}
                 {...props}
             />);
 
@@ -162,6 +178,7 @@ describe('EmailStep test', () => {
         global.grecaptcha = null;
         const intlWrapper = shallowWithIntl(
             <EmailStep
+                {...defaultProps()}
                 {...props}
             />
         );
@@ -171,9 +188,20 @@ describe('EmailStep test', () => {
         expect(props.onCaptchaError).toHaveBeenCalled();
     });
 
+    test('Component logs analytics', () => {
+        const sendAnalyticsFn = jest.fn();
+        mountWithIntl(
+            <EmailStep
+                sendAnalytics={sendAnalyticsFn}
+            />);
+        expect(sendAnalyticsFn).toHaveBeenCalledWith('join-email');
+    });
+
     test('validateEmail test email empty', () => {
         const intlWrapper = shallowWithIntl(
-            <EmailStep />);
+            <EmailStep
+                {...defaultProps()}
+            />);
         const emailStepWrapper = intlWrapper.dive();
         const val = emailStepWrapper.instance().validateEmail('');
         expect(val).toBe('general.required');
@@ -181,7 +209,9 @@ describe('EmailStep test', () => {
 
     test('validateEmail test email null', () => {
         const intlWrapper = shallowWithIntl(
-            <EmailStep />);
+            <EmailStep
+                {...defaultProps()}
+            />);
         const emailStepWrapper = intlWrapper.dive();
         const val = emailStepWrapper.instance().validateEmail(null);
         expect(val).toBe('general.required');
@@ -189,7 +219,9 @@ describe('EmailStep test', () => {
 
     test('validateEmail test email undefined', () => {
         const intlWrapper = shallowWithIntl(
-            <EmailStep />);
+            <EmailStep
+                {...defaultProps()}
+            />);
         const emailStepWrapper = intlWrapper.dive();
         const val = emailStepWrapper.instance().validateEmail();
         expect(val).toBe('general.required');
@@ -204,7 +236,9 @@ describe('validateEmailRemotelyWithCache test with successful requests', () => {
 
     test('validateEmailRemotelyWithCache calls validate.validateEmailRemotely', done => {
         const intlWrapper = shallowWithIntl(
-            <EmailStep />);
+            <EmailStep
+                {...defaultProps()}
+            />);
         const instance = intlWrapper.dive().instance();
 
         instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
@@ -218,8 +252,10 @@ describe('validateEmailRemotelyWithCache test with successful requests', () => {
 
     test('validateEmailRemotelyWithCache, called twice with different data, makes two remote requests', done => {
         const intlWrapper = shallowWithIntl(
-            <EmailStep />
-        );
+            <EmailStep
+                {...defaultProps()}
+            />);
+
         const instance = intlWrapper.dive().instance();
 
         instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
@@ -242,8 +278,10 @@ describe('validateEmailRemotelyWithCache test with successful requests', () => {
 
     test('validateEmailRemotelyWithCache, called twice with same data, only makes one remote request', done => {
         const intlWrapper = shallowWithIntl(
-            <EmailStep />
-        );
+            <EmailStep
+                {...defaultProps()}
+            />);
+
         const instance = intlWrapper.dive().instance();
 
         instance.validateEmailRemotelyWithCache('some-email@some-domain.com')

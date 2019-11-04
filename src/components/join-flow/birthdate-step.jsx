@@ -54,6 +54,10 @@ class BirthDateStep extends React.Component {
             'validateSelect'
         ]);
     }
+    componentDidMount () {
+        this.props.sendAnalytics('join-birthdate');
+    }
+
     validateSelect (selection) {
         if (selection === 'null') {
             return this.props.intl.formatMessage({id: 'general.required'});
@@ -162,7 +166,8 @@ class BirthDateStep extends React.Component {
 
 BirthDateStep.propTypes = {
     intl: intlShape,
-    onNextStep: PropTypes.func
+    onNextStep: PropTypes.func,
+    sendAnalytics: PropTypes.func
 };
 
 const IntlBirthDateStep = injectIntl(BirthDateStep);
