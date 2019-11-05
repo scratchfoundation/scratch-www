@@ -1059,7 +1059,7 @@ const dupeCommonCountries = module.exports.dupeCommonCountries = (startingCountr
 };
 
 /*
- * registrationCountryOptions is the result of taking the standard countryInfo,
+ * registrationCountryNameOptions is the result of taking the standard countryInfo,
  * setting a 'value' key and a 'label' key both to the country data's 'name' value,
  * but using the 'display' value for 'label' instead of 'name' if 'display' exists;
  * then duplicating 'United States of America' and 'United Kingdom' at the top of the list.
@@ -1077,8 +1077,11 @@ const dupeCommonCountries = module.exports.dupeCommonCountries = (startingCountr
  *    {value: 'Zimbabwe', label: 'Zimbabwe'}
  * ]
  */
-module.exports.registrationCountryOptions =
+module.exports.registrationCountryNameOptions =
     countryOptions(dupeCommonCountries(countryInfo, ['us', 'gb']), 'name');
+// use country code for value, instead of country name:
+module.exports.registrationCountryCodeOptions =
+    countryOptions(dupeCommonCountries(countryInfo, ['us', 'gb']), 'code');
 
 /* subdivisionOptions uses iso-3166 data to produce an array like:
  * [
