@@ -4,9 +4,24 @@ const JoinFlowStep = require('../../../src/components/join-flow/join-flow-step.j
 const FormikInput = require('../../../src/components/formik-forms/formik-input.jsx');
 const FormikCheckbox = require('../../../src/components/formik-forms/formik-checkbox.jsx');
 
-const mockedValidateEmailRemotely = jest.fn(() => (
+const requestSuccessResponse = {
+    requestSucceeded: true,
+    valid: false,
+    errMsgId: 'registration.validationEmailInvalid'
+};
+const requestFailureResponse = {
+    requestSucceeded: false,
+    valid: false,
+    errMsgId: 'general.error'
+};
+// mockedValidateEmailRemotely will return a promise resolving with remoteRequestResponse.
+// Using remoteRequestResponse, rather than using requestSuccessResponse directly,
+// lets us change where remoteRequestResponse points later, without actually changing
+// mockedValidateEmailRemotely.
+let remoteRequestResponse = requestSuccessResponse;
+let mockedValidateEmailRemotely = jest.fn(() => (
     /* eslint-disable no-undef */
-    Promise.resolve({valid: false, errMsgId: 'registration.validationEmailInvalid'})
+    Promise.resolve(remoteRequestResponse)
     /* eslint-enable no-undef */
 ));
 
@@ -179,6 +194,13 @@ describe('EmailStep test', () => {
         const val = emailStepWrapper.instance().validateEmail();
         expect(val).toBe('general.required');
     });
+});
+
+describe('validateEmailRemotelyWithCache test with successful requests', () => {
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     test('validateEmailRemotelyWithCache calls validate.validateEmailRemotely', done => {
         const intlWrapper = shallowWithIntl(
@@ -237,6 +259,82 @@ describe('EmailStep test', () => {
                         expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(1);
                         expect(response.valid).toBe(false);
                         expect(response.errMsgId).toBe('registration.validationEmailInvalid');
+                        done();
+                    });
+            });
+    });
+});
+
+
+describe('validateEmailRemotelyWithCache test with failing requests', () => {
+
+    beforeEach(() => {
+        // needs to be wrapped inside beforeEach, because if not, it gets run as this
+        // test file is loaded, and goes into effect before any of the earlier tests run!
+        remoteRequestResponse = requestFailureResponse;
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test('validateEmailRemotelyWithCache calls validate.validateEmailRemotely', done => {
+        const wrapper = shallowWithIntl(
+            <EmailStep />);
+        const instance = wrapper.dive().instance();
+
+        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+            .then(response => {
+                expect(mockedValidateEmailRemotely).toHaveBeenCalled();
+                expect(response.valid).toBe(false);
+                expect(response.errMsgId).toBe('general.error');
+                done();
+            });
+    });
+
+    test('validateEmailRemotelyWithCache, called twice with different data, makes two remote requests', done => {
+        const wrapper = shallowWithIntl(
+            <EmailStep />
+        );
+        const instance = wrapper.dive().instance();
+
+        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+            .then(response => {
+                expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(1);
+                expect(response.valid).toBe(false);
+                expect(response.errMsgId).toBe('general.error');
+            })
+            .then(() => {
+                // make the same request a second time
+                instance.validateEmailRemotelyWithCache('different-email@some-domain.org')
+                    .then(response => {
+                        expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(2);
+                        expect(response.valid).toBe(false);
+                        expect(response.errMsgId).toBe('general.error');
+                        done();
+                    });
+            });
+    });
+
+    test('validateEmailRemotelyWithCache, called 2x w/same data, makes 2 requests, since 1st not stored', done => {
+        const wrapper = shallowWithIntl(
+            <EmailStep />
+        );
+        const instance = wrapper.dive().instance();
+
+        instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+            .then(response => {
+                expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(1);
+                expect(response.valid).toBe(false);
+                expect(response.errMsgId).toBe('general.error');
+            })
+            .then(() => {
+                // make the same request a second time
+                instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
+                    .then(response => {
+                        expect(mockedValidateEmailRemotely).toHaveBeenCalledTimes(2);
+                        expect(response.valid).toBe(false);
+                        expect(response.errMsgId).toBe('general.error');
                         done();
                     });
             });

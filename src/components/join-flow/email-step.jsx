@@ -83,7 +83,10 @@ class EmailStep extends React.Component {
         // email is not in our cache
         return validate.validateEmailRemotely(email).then(
             remoteResult => {
-                this.emailRemoteCache[email] = remoteResult;
+                // cache result, if it successfully heard back from server
+                if (remoteResult.requestSucceeded) {
+                    this.emailRemoteCache[email] = remoteResult;
+                }
                 return remoteResult;
             }
         );
