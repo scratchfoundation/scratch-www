@@ -167,7 +167,7 @@ class BirthDateStep extends React.Component {
 BirthDateStep.propTypes = {
     intl: intlShape,
     onNextStep: PropTypes.func,
-    sendAnalytics: PropTypes.func
+    sendAnalytics: PropTypes.func.isRequired
 };
 
 const IntlBirthDateStep = injectIntl(BirthDateStep);

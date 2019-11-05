@@ -63,12 +63,17 @@ RegistrationErrorStep.propTypes = {
     canTryAgain: PropTypes.bool.isRequired,
     errorMsg: PropTypes.string,
     intl: intlShape,
+<<<<<<< HEAD
     onSubmit: PropTypes.func.isRequired,
     sendAnalytics: PropTypes.func.isRequired
 };
 
 RegistrationErrorStep.defaultProps = {
     canTryAgain: false
+=======
+    onSubmit: PropTypes.func,
+    sendAnalytics: PropTypes.func.isRequired
+>>>>>>> Set sendAnalytics to be required and send the right props to the error step. Also add a test for the error step.
 };
 
 const IntlRegistrationErrorStep = injectIntl(RegistrationErrorStep);

@@ -289,7 +289,7 @@ class UsernameStep extends React.Component {
 UsernameStep.propTypes = {
     intl: intlShape,
     onNextStep: PropTypes.func,
-    sendAnalytics: PropTypes.func
+    sendAnalytics: PropTypes.func.isRequired
 };
 
 const IntlUsernameStep = injectIntl(UsernameStep);

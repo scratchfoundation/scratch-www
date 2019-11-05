@@ -122,7 +122,7 @@ class CountryStep extends React.Component {
 CountryStep.propTypes = {
     intl: intlShape,
     onNextStep: PropTypes.func,
-    sendAnalytics: PropTypes.func
+    sendAnalytics: PropTypes.func.isRequired
 };
 
 const IntlCountryStep = injectIntl(CountryStep);

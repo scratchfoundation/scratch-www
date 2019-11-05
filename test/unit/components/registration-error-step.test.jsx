@@ -1,5 +1,6 @@
 import React from 'react';
 import {shallowWithIntl} from '../../helpers/intl-helpers.jsx';
+import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 import JoinFlowStep from '../../../src/components/join-flow/join-flow-step';
 import RegistrationErrorStep from '../../../src/components/join-flow/registration-error-step';
 
@@ -21,6 +22,7 @@ describe('RegistrationErrorStep', () => {
         return wrapper
             .dive(); // unwrap injectIntl()
     };
+<<<<<<< HEAD
 
     test('registrationError has JoinFlowStep', () => {
         const props = {
@@ -67,6 +69,16 @@ describe('RegistrationErrorStep', () => {
         expect(errMsgElement).toHaveLength(0);
     });
 
+=======
+    test('logs to analytics', () => {
+        const analyticsFn = jest.fn();
+        mountWithIntl(
+            <RegistrationErrorStep
+                sendAnalytics={analyticsFn}
+            />);
+        expect(analyticsFn).toHaveBeenCalledWith('join-error');
+    });
+>>>>>>> Set sendAnalytics to be required and send the right props to the error step. Also add a test for the error step.
     test('when canTryAgain is true, show tryAgain message', () => {
         const props = {
             canTryAgain: true,

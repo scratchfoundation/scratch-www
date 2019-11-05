@@ -184,7 +184,7 @@ class GenderStep extends React.Component {
 GenderStep.propTypes = {
     intl: intlShape,
     onNextStep: PropTypes.func,
-    sendAnalytics: PropTypes.func
+    sendAnalytics: PropTypes.func.isRequired
 };
 
 module.exports = injectIntl(GenderStep);
