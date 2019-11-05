@@ -38,6 +38,18 @@ describe('RegistrationErrorStep', () => {
         expect(errMsgElement.text()).toEqual('halp there is a errors!!');
     });
 
+    test('when errorMsg is null, registrationError does not show it', () => {
+        const props = {
+            canTryAgain: true,
+            errorMsg: null,
+            onSubmit: onSubmit
+        };
+        const joinFlowStepWrapper = getRegistrationErrorStepWrapper(props).find(JoinFlowStep);
+        const joinFlowStepInstance = joinFlowStepWrapper.dive();
+        const errMsgElement = joinFlowStepInstance.find('.registration-error-msg');
+        expect(errMsgElement).toHaveLength(0);
+    });
+
     test('when no errorMsg provided, registrationError does not show it', () => {
         const props = {
             canTryAgain: true,

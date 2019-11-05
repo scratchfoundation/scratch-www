@@ -57,117 +57,6 @@ describe('JoinFlow', () => {
             .dive(); // unwrap injectIntl(JoinFlow)
     };
 
-    test('handleRegistrationResponse with successful response', () => {
-        const props = {
-            refreshSession: jest.fn()
-        };
-        const joinFlowInstance = getJoinFlowWrapper(props).instance();
-        const responseErr = null;
-        const responseBody = [
-            {
-                success: true
-            }
-        ];
-        const responseObj = {
-            statusCode: 200
-        };
-        joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
-        expect(joinFlowInstance.props.refreshSession).toHaveBeenCalled();
-        expect(joinFlowInstance.state.registrationError).toBe(null);
-    });
-
-    test('handleRegistrationResponse with healthy response, indicating failure', () => {
-        const props = {
-            refreshSession: jest.fn()
-        };
-        const joinFlowInstance = getJoinFlowWrapper(props).instance();
-        const responseErr = null;
-        const responseBody = [
-            {
-                msg: 'This field is required.',
-                errors: {
-                    username: ['This field is required.']
-                },
-                success: false
-            }
-        ];
-        const responseObj = {
-            statusCode: 200
-        };
-        joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
-        expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
-        expect(joinFlowInstance.state.registrationError).toEqual({
-            errorAllowsTryAgain: false,
-            errorMsg: 'registration.problemsAre: "username: This field is required."'
-        });
-    });
-
-    test('handleRegistrationResponse with failure response, with error fields missing', () => {
-        const props = {
-            refreshSession: jest.fn()
-        };
-        const joinFlowInstance = getJoinFlowWrapper(props).instance();
-        const responseErr = null;
-        const responseBody = [
-            {
-                msg: 'This field is required.',
-                success: false
-            }
-        ];
-        const responseObj = {
-            statusCode: 200
-        };
-        joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
-        expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
-        expect(joinFlowInstance.state.registrationError).toEqual({
-            errorAllowsTryAgain: false,
-            errorMsg: null
-        });
-    });
-
-    test('handleRegistrationResponse with failure response, with no text explanation', () => {
-        const props = {
-            refreshSession: jest.fn()
-        };
-        const joinFlowInstance = getJoinFlowWrapper(props).instance();
-        const responseErr = null;
-        const responseBody = [
-            {
-                success: false
-            }
-        ];
-        const responseObj = {
-            statusCode: 200
-        };
-        joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
-        expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
-        expect(joinFlowInstance.state.registrationError).toEqual({
-            errorAllowsTryAgain: false,
-            errorMsg: null
-        });
-    });
-
-    test('handleRegistrationResponse with failure status code', () => {
-        const props = {
-            refreshSession: jest.fn()
-        };
-        const joinFlowInstance = getJoinFlowWrapper(props).instance();
-        const responseErr = null;
-        const responseBody = [
-            {
-                success: false
-            }
-        ];
-        const responseObj = {
-            statusCode: 400
-        };
-        joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
-        expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
-        expect(joinFlowInstance.state.registrationError).toEqual({
-            errorAllowsTryAgain: true
-        });
-    });
-
     test('handleCaptchaError gives state with captcha message', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.setState({});
@@ -388,6 +277,7 @@ describe('JoinFlow', () => {
         const joinFlowInstance = getJoinFlowWrapper(props).instance();
         joinFlowInstance.handleRegistrationResponse(null, responseBodySuccess, {statusCode: 200});
         expect(joinFlowInstance.state.registrationError).toEqual(null);
+        expect(joinFlowInstance.props.refreshSession).toHaveBeenCalled();
         expect(joinFlowInstance.state.step).toEqual(1);
         expect(joinFlowInstance.state.waiting).toBeFalsy();
     });
@@ -401,6 +291,29 @@ describe('JoinFlow', () => {
         });
     });
 
+    test('handleRegistrationResponse with failure response, with error fields missing', () => {
+        const props = {
+            refreshSession: jest.fn()
+        };
+        const joinFlowInstance = getJoinFlowWrapper(props).instance();
+        const responseErr = null;
+        const responseBody = [
+            {
+                msg: 'This field is required.',
+                success: false
+            }
+        ];
+        const responseObj = {
+            statusCode: 200
+        };
+        joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
+        expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
+        expect(joinFlowInstance.state.registrationError).toEqual({
+            errorAllowsTryAgain: false,
+            errorMsg: null
+        });
+    });
+
     test('handleRegistrationResponse when passed body with unfamiliar server error', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.handleRegistrationResponse(null, responseBodyMultipleErrs, {statusCode: 200});
@@ -408,6 +321,28 @@ describe('JoinFlow', () => {
             errorAllowsTryAgain: false,
             errorMsg: 'registration.problemsAre: "username: This field is required.; ' +
                 'recaptcha: Incorrect, please try again."'
+        });
+    });
+
+    test('handleRegistrationResponse with failure response, with no text explanation', () => {
+        const props = {
+            refreshSession: jest.fn()
+        };
+        const joinFlowInstance = getJoinFlowWrapper(props).instance();
+        const responseErr = null;
+        const responseBody = [
+            {
+                success: false
+            }
+        ];
+        const responseObj = {
+            statusCode: 200
+        };
+        joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
+        expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
+        expect(joinFlowInstance.state.registrationError).toEqual({
+            errorAllowsTryAgain: false,
+            errorMsg: null
         });
     });
 
@@ -420,8 +355,12 @@ describe('JoinFlow', () => {
     });
 
     test('handleRegistrationResponse when passed status 400', () => {
-        const joinFlowInstance = getJoinFlowWrapper().instance();
+        const props = {
+            refreshSession: jest.fn()
+        };
+        const joinFlowInstance = getJoinFlowWrapper(props).instance();
         joinFlowInstance.handleRegistrationResponse({}, responseBodyMultipleErrs, {statusCode: 400});
+        expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: true
         });
@@ -433,8 +372,5 @@ describe('JoinFlow', () => {
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: true
         });
-    });
-
-    test('handleErrorNext', () => {
     });
 });
