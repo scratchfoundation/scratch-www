@@ -55,7 +55,9 @@ class BirthDateStep extends React.Component {
         ]);
     }
     componentDidMount () {
-        this.props.sendAnalytics('join-birthdate');
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-birthdate');
+        }
     }
 
     validateSelect (selection) {

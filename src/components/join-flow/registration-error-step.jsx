@@ -16,7 +16,9 @@ class RegistrationErrorStep extends React.Component {
         ]);
     }
     componentDidMount () {
-        this.props.sendAnalytics('join-error');
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-error');
+        }
     }
     handleSubmit (e) {
         // JoinFlowStep includes a <form> that handles a submit action.

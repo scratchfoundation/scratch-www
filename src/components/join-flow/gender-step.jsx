@@ -62,7 +62,9 @@ class GenderStep extends React.Component {
         ]);
     }
     componentDidMount () {
-        this.props.sendAnalytics('join-gender');
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-gender');
+        }
     }
     handleSetCustomRef (customInputRef) {
         this.customInput = customInputRef;

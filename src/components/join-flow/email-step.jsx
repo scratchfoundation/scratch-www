@@ -35,7 +35,9 @@ class EmailStep extends React.Component {
         this.emailRemoteCache = {};
     }
     componentDidMount () {
-        this.props.sendAnalytics('join-email');
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-email');
+        }
         // automatically start with focus on username field
         if (this.emailInput) this.emailInput.focus();
 

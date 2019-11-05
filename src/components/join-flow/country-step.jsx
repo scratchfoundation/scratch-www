@@ -23,7 +23,9 @@ class CountryStep extends React.Component {
         this.countryOptions = [];
     }
     componentDidMount () {
-        this.props.sendAnalytics('join-country');
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-country');
+        }
         this.setCountryOptions();
     }
     setCountryOptions () {

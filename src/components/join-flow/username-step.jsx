@@ -40,7 +40,9 @@ class UsernameStep extends React.Component {
         // Send info to analytics when we aren't on the standalone page.
         // If we are on the standalone join page, the page load will take care of this.
         if (!window.location.pathname.includes('/join')) {
-            this.props.sendAnalytics('join-email');
+            if (this.props.sendAnalytics) {
+                this.props.sendAnalytics('join-username-modal');
+            }
         }
 
         // automatically start with focus on username field

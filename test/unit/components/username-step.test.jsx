@@ -80,7 +80,7 @@ describe('UsernameStep test', () => {
             <UsernameStep
                 sendAnalytics={sendAnalyticsFn}
             />);
-        expect(sendAnalyticsFn).toHaveBeenCalledWith('join-email');
+        expect(sendAnalyticsFn).toHaveBeenCalledWith('join-username-modal');
     });
 
     test('handleValidSubmit passes formData to next step', () => {
