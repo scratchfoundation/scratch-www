@@ -25,8 +25,7 @@ class EmailStep extends React.Component {
             'validateForm',
             'setCaptchaRef',
             'captchaSolved',
-            'onCaptchaLoad',
-            'onCaptchaError'
+            'onCaptchaLoad'
         ]);
         this.state = {
             captchaIsLoading: true
@@ -49,7 +48,7 @@ class EmailStep extends React.Component {
             // Load Google ReCaptcha script.
             const script = document.createElement('script');
             script.async = true;
-            script.onerror = this.onCaptchaError;
+            script.onerror = this.props.onCaptchaError;
             script.src = `https://www.recaptcha.net/recaptcha/api.js?onload=grecaptchaOnLoad&render=explicit&hl=${window._locale}`;
             document.body.appendChild(script);
         }
@@ -60,20 +59,13 @@ class EmailStep extends React.Component {
     handleSetEmailRef (emailInputRef) {
         this.emailInput = emailInputRef;
     }
-    onCaptchaError () {
-        this.props.onRegistrationError(
-            this.props.intl.formatMessage({
-                id: 'registration.troubleReload'
-            })
-        );
-    }
     onCaptchaLoad () {
         this.setState({captchaIsLoading: false});
         this.grecaptcha = window.grecaptcha;
         if (!this.grecaptcha) {
             // According to the reCaptcha documentation, this callback shouldn't get
             // called unless window.grecaptcha exists. This is just here to be extra defensive.
-            this.onCaptchaError();
+            this.props.onCaptchaError();
             return;
         }
         this.widgetId = this.grecaptcha.render(this.captchaRef,
@@ -234,8 +226,8 @@ class EmailStep extends React.Component {
 
 EmailStep.propTypes = {
     intl: intlShape,
+    onCaptchaError: PropTypes.func,
     onNextStep: PropTypes.func,
-    onRegistrationError: PropTypes.func,
     waiting: PropTypes.bool
 };
 

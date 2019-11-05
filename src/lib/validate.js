@@ -101,3 +101,30 @@ module.exports.validateEmailRemotely = email => (
         });
     })
 );
+
+const responseErrorMsgs = module.exports.responseErrorMsgs = {
+    username: {
+        'username exists': {errMsgId: 'registration.errorUsernameExists'},
+        'bad username': {errMsgId: 'registration.errorBadUsername'}
+    },
+    password: {
+        'Ensure this value has at least 6 characters \\(it has \\d\\).': {
+            errMsgId: 'registration.errorPasswordTooShort'
+        }
+    },
+    recaptcha: {
+        'Incorrect, please try again.': {errMsgId: 'registration.errorCaptcha'}
+    }
+};
+
+module.exports.responseErrorMsg = (fieldName, serverRawErr) => {
+    if (fieldName && responseErrorMsgs[fieldName]) {
+        const serverErrPatterns = responseErrorMsgs[fieldName];
+        // use regex compare to find matching error string in responseErrorMsgs
+        const matchingKey = Object.keys(serverErrPatterns).find(errPattern => (
+            RegExp(errPattern).test(serverRawErr)
+        ));
+        if (matchingKey) return responseErrorMsgs[fieldName][matchingKey].errMsgId;
+    }
+    return null;
+};

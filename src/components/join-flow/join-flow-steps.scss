@@ -33,8 +33,9 @@
 .join-flow-instructions {
     font-size: .875rem;
     font-weight: bold;
-    line-height: 1.37500rem;
-    margin-bottom: 1rem;
+    line-height: 1.375rem;
+    margin-top: 1.25rem;
+    margin-bottom: .5rem;
     text-align: center;
 }
 
@@ -161,6 +162,15 @@
     padding-bottom: 1rem;
 }
 
+.join-flow-inner-error-step {
+    user-select: text; /* make text selectable, so users can copy errors */
+    padding-top: 5.5rem;
+}
+
+.join-flow-error-title {
+    margin-bottom: 2rem;
+}
+
 .join-flow-birthdate-title {
     margin-bottom: 2.875rem;
 }
@@ -175,11 +185,6 @@
 
 .email-step-image {
     background-color: $dd-medium-blue;
-}
-
-.join-flow-registration-error {
-    user-select: text; /* make text selectable, so users can copy errors */
-    padding-top: 5.5rem;
 }
 
 .join-flow-gender-description {
@@ -197,11 +202,7 @@
 }
 
 .join-flow-welcome-title {
-    margin-bottom: .25rem;
-}
-
-.join-flow-welcome-description {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .welcome-step-image {
