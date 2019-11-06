@@ -1,5 +1,6 @@
 import React from 'react';
 import {shallowWithIntl} from '../../helpers/intl-helpers.jsx';
+import {mountWithIntl} from '../../helpers/intl-helpers.jsx';
 import JoinFlowStep from '../../../src/components/join-flow/join-flow-step';
 import RegistrationErrorStep from '../../../src/components/join-flow/registration-error-step';
 
@@ -9,6 +10,7 @@ describe('RegistrationErrorStep', () => {
     const getRegistrationErrorStepWrapper = props => {
         const wrapper = shallowWithIntl(
             <RegistrationErrorStep
+                sendAnalytics={jest.fn()}
                 {...props}
             />
         );
@@ -61,6 +63,14 @@ describe('RegistrationErrorStep', () => {
         expect(errMsgElement).toHaveLength(0);
     });
 
+    test('logs to analytics', () => {
+        const analyticsFn = jest.fn();
+        mountWithIntl(
+            <RegistrationErrorStep
+                sendAnalytics={analyticsFn}
+            />);
+        expect(analyticsFn).toHaveBeenCalledWith('join-error');
+    });
     test('when canTryAgain is true, show tryAgain message', () => {
         const props = {
             canTryAgain: true,

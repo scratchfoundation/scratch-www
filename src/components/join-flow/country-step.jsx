@@ -23,6 +23,9 @@ class CountryStep extends React.Component {
         this.countryOptions = [];
     }
     componentDidMount () {
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-country');
+        }
         this.setCountryOptions();
     }
     setCountryOptions () {
@@ -120,7 +123,8 @@ class CountryStep extends React.Component {
 
 CountryStep.propTypes = {
     intl: intlShape,
-    onNextStep: PropTypes.func
+    onNextStep: PropTypes.func,
+    sendAnalytics: PropTypes.func.isRequired
 };
 
 const IntlCountryStep = injectIntl(CountryStep);

@@ -1,5 +1,6 @@
 const React = require('react');
 const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
+const {mountWithIntl} = require('../../helpers/intl-helpers.jsx');
 
 const requestSuccessResponse = {
     requestSucceeded: true,
@@ -22,6 +23,7 @@ let mockedValidateUsernameRemotely = jest.fn(() => (
     /* eslint-enable no-undef */
 ));
 
+
 jest.mock('../../../src/lib/validate.js', () => (
     {
         ...(jest.requireActual('../../../src/lib/validate.js')),
@@ -32,10 +34,19 @@ jest.mock('../../../src/lib/validate.js', () => (
 // must come after validation mocks, so validate.js will be mocked before it is required
 const UsernameStep = require('../../../src/components/join-flow/username-step.jsx');
 
+
 describe('UsernameStep tests', () => {
+    const defaultProps = () => ({
+        sendAnalytics: jest.fn()
+    });
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     test('send correct props to formik', () => {
-        const wrapper = shallowWithIntl(<UsernameStep />);
+        const wrapper = shallowWithIntl(<UsernameStep
+            {...defaultProps()}
+        />);
         const formikWrapper = wrapper.dive();
         expect(formikWrapper.props().initialValues.username).toBe('');
         expect(formikWrapper.props().initialValues.password).toBe('');
@@ -47,6 +58,28 @@ describe('UsernameStep tests', () => {
         expect(formikWrapper.props().onSubmit).toBe(formikWrapper.instance().handleValidSubmit);
     });
 
+    test('Component does not log if path is /join', () => {
+        const sendAnalyticsFn = jest.fn();
+
+        global.window.history.pushState({}, '', '/join');
+        mountWithIntl(
+            <UsernameStep
+                sendAnalytics={sendAnalyticsFn}
+            />);
+        expect(sendAnalyticsFn).not.toHaveBeenCalled();
+    });
+
+    test('Component logs analytics', () => {
+        // Make sure '/join' is NOT in the path
+        global.window.history.pushState({}, '', '/');
+        const sendAnalyticsFn = jest.fn();
+        mountWithIntl(
+            <UsernameStep
+                sendAnalytics={sendAnalyticsFn}
+            />);
+        expect(sendAnalyticsFn).toHaveBeenCalledWith('join-username-modal');
+    });
+
     test('handleValidSubmit passes formData to next step', () => {
         const formikBag = {
             setSubmitting: jest.fn()
@@ -55,6 +88,7 @@ describe('UsernameStep tests', () => {
         const mockedOnNextStep = jest.fn();
         const wrapper = shallowWithIntl(
             <UsernameStep
+                {...defaultProps()}
                 onNextStep={mockedOnNextStep}
             />
         );

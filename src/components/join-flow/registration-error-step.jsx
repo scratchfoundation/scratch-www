@@ -15,6 +15,11 @@ class RegistrationErrorStep extends React.Component {
             'handleSubmit'
         ]);
     }
+    componentDidMount () {
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-error');
+        }
+    }
     handleSubmit (e) {
         // JoinFlowStep includes a <form> that handles a submit action.
         // But here, we're not really submitting, so we need to prevent
@@ -60,7 +65,8 @@ RegistrationErrorStep.propTypes = {
     canTryAgain: PropTypes.bool.isRequired,
     errorMsg: PropTypes.string,
     intl: intlShape,
-    onSubmit: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired,
+    sendAnalytics: PropTypes.func.isRequired
 };
 
 RegistrationErrorStep.defaultProps = {

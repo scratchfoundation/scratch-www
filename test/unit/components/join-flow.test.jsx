@@ -67,6 +67,19 @@ describe('JoinFlow', () => {
         });
     });
 
+    test('sendAnalytics calls google analytics with correct params', () => {
+        const joinFlowInstance = getJoinFlowWrapper().instance();
+        global.window.ga = jest.fn();
+        global.window.GA_ID = '1234';
+        joinFlowInstance.sendAnalytics('page-path');
+        const obj = {
+            hitType: 'pageview',
+            page: 'page-path',
+            tid: '1234'
+        };
+        expect(global.window.ga).toHaveBeenCalledWith('send', obj);
+    });
+
     test('handleAdvanceStep', () => {
         const joinFlowInstance = getJoinFlowWrapper().instance();
         joinFlowInstance.setState({formData: {username: 'ScratchCat123'}, step: 2});
