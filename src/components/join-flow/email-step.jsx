@@ -155,6 +155,15 @@ class EmailStep extends React.Component {
                                 <FormattedMessage
                                     id="registration.acceptTermsOfUse"
                                     values={{
+                                        privacyPolicyLink: (
+                                            <a
+                                                className="join-flow-link"
+                                                href="/privacy_policy"
+                                                target="_blank"
+                                            >
+                                                <FormattedMessage id="general.privacyPolicy" />
+                                            </a>
+                                        ),
                                         touLink: (
                                             <a
                                                 className="join-flow-link"
