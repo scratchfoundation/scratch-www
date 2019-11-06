@@ -236,9 +236,8 @@ describe('validateEmailRemotelyWithCache test with successful requests', () => {
 
     test('validateEmailRemotelyWithCache calls validate.validateEmailRemotely', done => {
         const intlWrapper = shallowWithIntl(
-            <EmailStep
-                {...defaultProps()}
-            />);
+            <EmailStep />
+        );
         const instance = intlWrapper.dive().instance();
 
         instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
@@ -252,10 +251,8 @@ describe('validateEmailRemotelyWithCache test with successful requests', () => {
 
     test('validateEmailRemotelyWithCache, called twice with different data, makes two remote requests', done => {
         const intlWrapper = shallowWithIntl(
-            <EmailStep
-                {...defaultProps()}
-            />);
-
+            <EmailStep />
+        );
         const instance = intlWrapper.dive().instance();
 
         instance.validateEmailRemotelyWithCache('some-email@some-domain.com')
@@ -278,10 +275,8 @@ describe('validateEmailRemotelyWithCache test with successful requests', () => {
 
     test('validateEmailRemotelyWithCache, called twice with same data, only makes one remote request', done => {
         const intlWrapper = shallowWithIntl(
-            <EmailStep
-                {...defaultProps()}
-            />);
-
+            <EmailStep />
+        );
         const instance = intlWrapper.dive().instance();
 
         instance.validateEmailRemotelyWithCache('some-email@some-domain.com')

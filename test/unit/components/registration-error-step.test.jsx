@@ -10,19 +10,13 @@ describe('RegistrationErrorStep', () => {
     const getRegistrationErrorStepWrapper = props => {
         const wrapper = shallowWithIntl(
             <RegistrationErrorStep
-<<<<<<< HEAD
-=======
-                errorMsg={'error message'}
                 sendAnalytics={jest.fn()}
-                onSubmit={onSubmit}
->>>>>>> Add analytics logging to join flow.  Adding page views for each step in the flow.
                 {...props}
             />
         );
         return wrapper
             .dive(); // unwrap injectIntl()
     };
-<<<<<<< HEAD
 
     test('registrationError has JoinFlowStep', () => {
         const props = {
@@ -69,7 +63,6 @@ describe('RegistrationErrorStep', () => {
         expect(errMsgElement).toHaveLength(0);
     });
 
-=======
     test('logs to analytics', () => {
         const analyticsFn = jest.fn();
         mountWithIntl(
@@ -78,7 +71,6 @@ describe('RegistrationErrorStep', () => {
             />);
         expect(analyticsFn).toHaveBeenCalledWith('join-error');
     });
->>>>>>> Set sendAnalytics to be required and send the right props to the error step. Also add a test for the error step.
     test('when canTryAgain is true, show tryAgain message', () => {
         const props = {
             canTryAgain: true,

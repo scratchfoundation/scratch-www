@@ -234,15 +234,7 @@ EmailStep.propTypes = {
     intl: intlShape,
     onCaptchaError: PropTypes.func,
     onNextStep: PropTypes.func,
-<<<<<<< HEAD
-=======
-    onRegistrationError: PropTypes.func,
-<<<<<<< HEAD
-    sendAnalytics: PropTypes.func,
->>>>>>> Add analytics logging to join flow.  Adding page views for each step in the flow.
-=======
     sendAnalytics: PropTypes.func.isRequired,
->>>>>>> Set sendAnalytics to be required and send the right props to the error step. Also add a test for the error step.
     waiting: PropTypes.bool
 };
 

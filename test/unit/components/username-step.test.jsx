@@ -34,17 +34,14 @@ jest.mock('../../../src/lib/validate.js', () => (
 // must come after validation mocks, so validate.js will be mocked before it is required
 const UsernameStep = require('../../../src/components/join-flow/username-step.jsx');
 
-<<<<<<< HEAD
+
 describe('UsernameStep tests', () => {
-=======
-describe('UsernameStep test', () => {
     const defaultProps = () => ({
         sendAnalytics: jest.fn()
     });
     afterEach(() => {
         jest.clearAllMocks();
     });
->>>>>>> Add analytics logging to join flow.  Adding page views for each step in the flow.
 
     test('send correct props to formik', () => {
         const wrapper = shallowWithIntl(<UsernameStep
@@ -111,14 +108,7 @@ describe('validateUsernameRemotelyWithCache test with successful requests', () =
     });
 
     test('validateUsernameRemotelyWithCache calls validate.validateUsernameRemotely', done => {
-<<<<<<< HEAD
         const wrapper = shallowWithIntl(<UsernameStep />);
-=======
-        const wrapper = shallowWithIntl(
-            <UsernameStep
-                {...defaultProps()}
-            />);
->>>>>>> Add analytics logging to join flow.  Adding page views for each step in the flow.
         const instance = wrapper.dive().instance();
 
         instance.validateUsernameRemotelyWithCache('newUniqueUsername55')
@@ -133,9 +123,7 @@ describe('validateUsernameRemotelyWithCache test with successful requests', () =
 
     test('validateUsernameRemotelyWithCache, called twice with different data, makes two remote requests', done => {
         const wrapper = shallowWithIntl(
-            <UsernameStep
-                {...defaultProps()}
-            />
+            <UsernameStep />
         );
         const instance = wrapper.dive().instance();
 
@@ -161,9 +149,7 @@ describe('validateUsernameRemotelyWithCache test with successful requests', () =
 
     test('validateUsernameRemotelyWithCache, called twice with same data, only makes one remote request', done => {
         const wrapper = shallowWithIntl(
-            <UsernameStep
-                {...defaultProps()}
-            />
+            <UsernameStep />
         );
         const instance = wrapper.dive().instance();
 

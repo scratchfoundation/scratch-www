@@ -233,12 +233,8 @@ class JoinFlow extends React.Component {
                 {this.state.registrationError ? (
                     <RegistrationErrorStep
                         canTryAgain={this.canTryAgain()}
-<<<<<<< HEAD
                         errorMsg={this.state.registrationError.errorMsg}
-=======
-                        errorMsg={this.state.registrationError}
                         sendAnalytics={this.sendAnalytics}
->>>>>>> Set sendAnalytics to be required and send the right props to the error step. Also add a test for the error step.
                         /* eslint-disable react/jsx-no-bind */
                         onSubmit={this.handleErrorNext}
                         /* eslint-enable react/jsx-no-bind */
