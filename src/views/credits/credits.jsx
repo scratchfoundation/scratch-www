@@ -32,12 +32,20 @@ const Credits = () => (
                             key={`person-${index}`}
                         >
                             <div>
-                                <a href={`https://scratch.mit.edu/users/${person.userName}/`}>
+                                {person.userName ? (
+                                    <a href={`https://scratch.mit.edu/users/${person.userName}/`}>
+                                        <Avatar
+                                            alt=""
+                                            src={`https://cdn.scratch.mit.edu/get_image/user/${person.userId || 'default'}_80x80.png`}
+                                        />
+                                    </a>
+                                ) : (
+                                    /* if userName is not given, there's no chance userId is given */
                                     <Avatar
                                         alt=""
-                                        src={`https://cdn.scratch.mit.edu/get_image/user/${person.userId || 'default'}_80x80.png`}
+                                        src={`https://cdn.scratch.mit.edu/get_image/user/default_80x80.png`}
                                     />
-                                </a>
+                                )}
                             </div>
                             <span className="avatar-text">
                                 {person.name}
