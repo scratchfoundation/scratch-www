@@ -145,7 +145,8 @@ const Credits = () => (
                     Christina Huang, Tony Hwang, Abdulrahman Idlbi, Randy Jou, Lily Kim,
                     Tauntaun Kim, Saskia Leggett, Tim Mickel, Amon Millner, Ricarose Roque,
                     Andrea Saxman, Jay Silver, Tammy Stern, Lis Sylvan, Hanako Tjia, Claudia
-                    Urrea, Oren Zuckerman.
+                    Urrea, Oren Zuckerman, Tina Quach, My Nguyen, Lisa O&apos;Brien, Joel Gritter,
+                    Linda Fernsel, Ellen Daoust, Julia Zimmerman.
                 </p>
                 <p>
                     <FormattedMessage id="credits.partnersBody" />

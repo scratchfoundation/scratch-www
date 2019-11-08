@@ -40,11 +40,6 @@
         "name": "Karishma Chadha"
     },
     {
-        "userName": "SunnyDay4aBlueJay",
-        "userId": 24164779,
-        "name": "Ellen Daoust"
-    },
-    {
         "userName": "shruti",
         "userId": 3714374,
         "name": "Shruti Dhariwal"
@@ -53,11 +48,6 @@
         "userName": "Champ99",
         "userId": 900283,
         "name": "Champika Fernando"
-    },
-    {
-        "userName": "LiFaytheGoblin",
-        "userId": 1048810,
-        "name": "Linda Fernsel"
     },
     {
         "userName": "dietbacon",
@@ -85,11 +75,6 @@
         "name": "Mark Goff"
     },
     {
-        "userName": "GulpTea",
-        "userId": 26249744,
-        "name": "Joel Gritter"
-    },
-    {
         "userName": "codubee",
         "userId": 10866958,
         "name": "Colby Gutierrez-Kraybill"
@@ -103,11 +88,6 @@
         "userName": "pizzafordessert",
         "userId": 22183577,
         "name": "Sean Hickey"
-    },
-    {
-        "userName": "theladynico",
-        "userId": 35550237,
-        "name": "Nicole Hughes"
     },
     {
         "userName": "sgcc_",
@@ -135,16 +115,6 @@
         "name": "Marian Muthui"
     },
     {
-        "userName": "me_win",
-        "userId": 7664502,
-        "name": "My Nguyen"
-    },
-    {
-        "userName": "lob12",
-        "userId": 2860339,
-        "name": "Lisa O'Brien"
-    },
-    {
         "userName": "",
         "userId": "",
         "name": "Abisola Okuk"
@@ -163,11 +133,6 @@
         "userName": "tarmelop",
         "userId": 2286560,
         "name": "Carmelo Presicce"
-    },
-    {
-        "userName": "quacht",
-        "userId": 25500116,
-        "name": "Tina Quach"
     },
     {
         "userName": "mres",
@@ -235,8 +200,28 @@
         "name": "Kathy Wu"
     },
     {
-        "userName": "stymphalianbirb",
-        "userId": 2796185,
-        "name": "Julia Zimmerman"
+        "userName": "amylaser",
+        "userId": 17462181,
+        "name": "Amy Lee"
+    },
+    {
+        "userName": "algorithmar",
+        "userId": 43013126,
+        "name": "Maren Vernon"
+    },
+    {
+        "userName": "bluecrazie",
+        "userId": 50257624,
+        "name": "JT Galla"
+    },
+    {
+        "userName": "Za-Chary",
+        "userId": 974363,
+        "name": "Zachary Deiman"
+    },
+    {
+        "userName": "",
+        "userId": "",
+        "name": "Joan Fusco"
     }
 ]
