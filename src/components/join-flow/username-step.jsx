@@ -223,7 +223,7 @@ class UsernameStep extends React.Component {
                                         validationClassName="validation-full-width-input"
                                         onBlur={() => validateField('password')}
                                         onChange={e => {
-                                            setFieldValue('password', e.target.value.substring(0, 128));
+                                            setFieldValue('password', e);
                                             setFieldTouched('password');
                                             setFieldError('password', null);
                                         }}
@@ -265,7 +265,7 @@ class UsernameStep extends React.Component {
                                         validationClassName="validation-full-width-input"
                                         onBlur={() => validateField('passwordConfirm')}
                                         onChange={e => {
-                                            setFieldValue('passwordConfirm', e.target.value.substring(0, 128));
+                                            setFieldValue('passwordConfirm', e);
                                             setFieldTouched('passwordConfirm');
                                             setFieldError('passwordConfirm', null);
                                         }}
