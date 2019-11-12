@@ -9,6 +9,7 @@ const bindAll = require('lodash.bindall');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 const detectOS = require('../../lib/detect-os.js').default;
+const OS_ENUM = require('../../lib/os-enum.js');
 const {CHROME_APP_RELEASED} = require('../../lib/feature-flags.js');
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 const InstallScratch = require('../../components/install-scratch/install-scratch.jsx');
@@ -303,6 +304,43 @@ class Download extends React.Component {
                                 <FormattedMessage id="download.supportLinuxAnswer" />
                             }
                         </p>
+                        {CHROME_APP_RELEASED && isFromGooglePlay(this.state.OS) && (
+                            <React.Fragment>
+                                <h3 className="faq-question">
+                                    <FormattedMessage id="download.whyNoDevicesVisible" />
+                                </h3>
+                                <p>
+                                    <FormattedMessage
+                                        id="download.whyNoDevicesVisibleAnswer"
+                                        values={{
+                                            devicePosessive: (
+                                                this.state.OS === OS_ENUM.ANDROID ?
+                                                    <FormattedMessage id="download.androidPossessive" /> :
+                                                    <FormattedMessage id="download.chromebookPossessive" />
+                                            ),
+                                            whyNoDevicesContactUsLink: (
+                                                <a href="//scratch.mit.edu/contact-us/">
+                                                    <FormattedMessage id="download.whyNoDevicesContactUsLink" />
+                                                </a>
+                                            )
+                                        }}
+                                    />
+                                </p>
+                            </React.Fragment>
+                        )}
+                        {CHROME_APP_RELEASED && isFromGooglePlay(this.state.OS) && (
+                            <React.Fragment>
+                                <h3 className="faq-question">
+                                    <FormattedMessage
+                                        id="download.whyAskForLocation"
+                                        values={{operatingsystem: this.state.OS}}
+                                    />
+                                </h3>
+                                <p>
+                                    <FormattedMessage id="download.whyAskForLocationAnswer" />
+                                </p>
+                            </React.Fragment>
+                        )}
                     </FlexRow>
                 </div>
 
