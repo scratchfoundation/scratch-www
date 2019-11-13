@@ -47,5 +47,5 @@
   "download.chromebookPossessive": "Chromebook's",
   "download.androidPossessive": "Android tablet's",
   "download.whyAskForLocation" : "Why is {operatingsystem} asking for my location?",
-  "download.whyAskForLocationAnswer" : "Scratch uses bluetooth to connect to other devices, such as a Micro:Bit or Lego Boost.  Bluetooth can be used to provide location data to the app, so Google requires every app that uses bluetooth ask users for permission to access their location. Scratch will not use bluetooth to track your location."
+  "download.whyAskForLocationAnswer" : "Scratch uses bluetooth to connect to other devices, such as a micro:bit or LEGO BOOST.  Bluetooth can be used to provide location data to the app, so Google requires every app that uses bluetooth ask users for permission to access their location. Scratch will not use bluetooth to track your location."
 }
