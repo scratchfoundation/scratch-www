@@ -17,6 +17,12 @@ class WelcomeStep extends React.Component {
             'validateForm'
         ]);
     }
+    componentDidMount () {
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-welcome');
+        }
+    }
+
     validateForm () {
         return {};
     }
@@ -39,10 +45,6 @@ class WelcomeStep extends React.Component {
                     } = props;
                     return (
                         <JoinFlowStep
-                            description={this.props.intl.formatMessage({
-                                id: 'registration.welcomeStepDescriptionNonEducator'
-                            })}
-                            descriptionClassName="join-flow-welcome-description"
                             headerImgClass="welcome-step-image"
                             headerImgSrc="/images/join-flow/welcome-header.png"
                             innerClassName="join-flow-inner-welcome-step"
@@ -67,6 +69,11 @@ class WelcomeStep extends React.Component {
                         >
                             <div className="join-flow-instructions">
                                 <FormattedMessage
+                                    id="registration.welcomeStepDescriptionNonEducator"
+                                />
+                            </div>
+                            <div className="join-flow-instructions">
+                                <FormattedMessage
                                     id="registration.welcomeStepInstructions"
                                     values={{
                                         email: this.props.email
@@ -86,6 +93,7 @@ WelcomeStep.propTypes = {
     email: PropTypes.string,
     intl: intlShape,
     onNextStep: PropTypes.func,
+    sendAnalytics: PropTypes.func,
     username: PropTypes.string
 };
 

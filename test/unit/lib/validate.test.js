@@ -1,26 +1,54 @@
 const validate = require('../../../src/lib/validate');
 
 describe('unit test lib/validate.js', () => {
-    test('validate username locally', () => {
+
+    test('validate username exists locally', () => {
         let response;
         expect(typeof validate.validateUsernameLocally).toBe('function');
         response = validate.validateUsernameLocally('abc');
         expect(response).toEqual({valid: true});
-        response = validate.validateUsernameLocally('abcdefghijklmnopqrst');
-        expect(response).toEqual({valid: true});
-        response = validate.validateUsernameLocally('abc-def-ghi');
-        expect(response).toEqual({valid: true});
         response = validate.validateUsernameLocally('');
         expect(response).toEqual({valid: false, errMsgId: 'general.required'});
+    });
+
+    test('validate username length locally', () => {
+        let response;
+        response = validate.validateUsernameLocally('abcdefghijklmnopqrst');
+        expect(response).toEqual({valid: true});
         response = validate.validateUsernameLocally('ab');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameMinLength'});
         response = validate.validateUsernameLocally('abcdefghijklmnopqrstu');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameMaxLength'});
-        response = validate.validateUsernameLocally('abc def');
+    });
+
+    test('validate username hyphens allowed', () => {
+        const response = validate.validateUsernameLocally('-abc-def-ghi-');
+        expect(response).toEqual({valid: true});
+    });
+
+    test('validate username underscores allowed', () => {
+        const response = validate.validateUsernameLocally('_abc_def_ghi_');
+        expect(response).toEqual({valid: true});
+    });
+
+    test('validate username spaces not allowed', () => {
+        const response = validate.validateUsernameLocally('abc def');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
+    });
+
+    test('validate username special chars not allowed', () => {
+        let response;
         response = validate.validateUsernameLocally('abc!def');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
+        response = validate.validateUsernameLocally('amiascratcher?');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
+    });
+
+    test('validate username unicode chars not allowed', () => {
+        let response;
         response = validate.validateUsernameLocally('abc😄def');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
+        response = validate.validateUsernameLocally('🦆🦆🦆😺😺😺');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
     });
 
@@ -110,5 +138,17 @@ describe('unit test lib/validate.js', () => {
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
         response = validate.validateEmailLocally('much."more unusual"@example.com');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+    });
+
+    test('get responseErrorMsg in cases where there is a dedicated string for that case', () => {
+        let response = validate.responseErrorMsg('username', 'bad username');
+        expect(response).toEqual('registration.errorBadUsername');
+        response = validate.responseErrorMsg('password', 'Ensure this value has at least 6 characters (it has 3).');
+        expect(response).toEqual('registration.errorPasswordTooShort');
+    });
+
+    test('responseErrorMsg is null in case where there is no dedicated string for that case', () => {
+        let response = validate.responseErrorMsg('username', 'some error that is not covered');
+        expect(response).toEqual(null);
     });
 });

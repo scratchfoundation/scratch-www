@@ -37,6 +37,14 @@ class UsernameStep extends React.Component {
         this.usernameRemoteCache = {};
     }
     componentDidMount () {
+        // Send info to analytics when we aren't on the standalone page.
+        // If we are on the standalone join page, the page load will take care of this.
+        if (!window.location.pathname.includes('/join')) {
+            if (this.props.sendAnalytics) {
+                this.props.sendAnalytics('join-username-modal');
+            }
+        }
+
         // automatically start with focus on username field
         if (this.usernameInput) this.usernameInput.focus();
     }
@@ -56,7 +64,10 @@ class UsernameStep extends React.Component {
         // username is not in our cache
         return validate.validateUsernameRemotely(username).then(
             remoteResult => {
-                this.usernameRemoteCache[username] = remoteResult;
+                // cache result, if it successfully heard back from server
+                if (remoteResult.requestSucceeded) {
+                    this.usernameRemoteCache[username] = remoteResult;
+                }
                 return remoteResult;
             }
         );
@@ -212,7 +223,7 @@ class UsernameStep extends React.Component {
                                         validationClassName="validation-full-width-input"
                                         onBlur={() => validateField('password')}
                                         onChange={e => {
-                                            setFieldValue('password', e.target.value.substring(0, 128));
+                                            setFieldValue('password', e.target.value);
                                             setFieldTouched('password');
                                             setFieldError('password', null);
                                         }}
@@ -254,7 +265,7 @@ class UsernameStep extends React.Component {
                                         validationClassName="validation-full-width-input"
                                         onBlur={() => validateField('passwordConfirm')}
                                         onChange={e => {
-                                            setFieldValue('passwordConfirm', e.target.value.substring(0, 128));
+                                            setFieldValue('passwordConfirm', e.target.value);
                                             setFieldTouched('passwordConfirm');
                                             setFieldError('passwordConfirm', null);
                                         }}
@@ -279,7 +290,8 @@ class UsernameStep extends React.Component {
 
 UsernameStep.propTypes = {
     intl: intlShape,
-    onNextStep: PropTypes.func
+    onNextStep: PropTypes.func,
+    sendAnalytics: PropTypes.func.isRequired
 };
 
 const IntlUsernameStep = injectIntl(UsernameStep);

@@ -3,7 +3,8 @@ const {
     countryOptions,
     lookupCountryInfo,
     dupeCommonCountries,
-    registrationCountryOptions,
+    registrationCountryCodeOptions,
+    registrationCountryNameOptions,
     subdivisionOptions
 } = require('../../../src/lib/country-data');
 
@@ -74,24 +75,42 @@ describe('unit test lib/country-data.js', () => {
         expect(ukItems.length).toEqual(2);
     });
 
-    test('registrationCountryOptions object places USA and UK at start, with display name versions', () => {
-        expect(typeof registrationCountryOptions).toBe('object');
+    test('registrationCountryNameOptions object uses country names for both option label and option value', () => {
+        expect(typeof registrationCountryNameOptions).toBe('object');
+        // test that there is one option with label and value === 'Brazil'
+        const brazilOptions = registrationCountryNameOptions.reduce((acc, thisCountry) => (
+            (thisCountry.value === 'Brazil' && thisCountry.label === 'Brazil') ? [...acc, thisCountry] : acc
+        ), []);
+        expect(brazilOptions.length).toEqual(1);
+    });
+
+    test('registrationCountryCodeOptions object uses country codes for option value', () => {
+        expect(typeof registrationCountryCodeOptions).toBe('object');
+        // test that there is one option with label and value === 'Brazil'
+        const brazilOptions = registrationCountryCodeOptions.reduce((acc, thisCountry) => (
+            (thisCountry.value === 'br' && thisCountry.label === 'Brazil') ? [...acc, thisCountry] : acc
+        ), []);
+        expect(brazilOptions.length).toEqual(1);
+    });
+
+    test('registrationCountryNameOptions object places USA and UK at start, with display name versions', () => {
+        expect(typeof registrationCountryNameOptions).toBe('object');
         const numCountries = countryInfo.length;
 
         // test that the two entries have been added to the start of the array, and that
         // the name of the USA includes "America"
-        expect(registrationCountryOptions.length).toEqual(numCountries + 2);
-        expect(registrationCountryOptions[0]).toEqual({value: 'us', label: 'United States of America'});
-        expect(registrationCountryOptions[1]).toEqual({value: 'gb', label: 'United Kingdom'});
+        expect(registrationCountryNameOptions.length).toEqual(numCountries + 2);
+        expect(registrationCountryNameOptions[0]).toEqual({value: 'United States', label: 'United States of America'});
+        expect(registrationCountryNameOptions[1]).toEqual({value: 'United Kingdom', label: 'United Kingdom'});
 
         // test that there are now two entries for USA
-        const usaOptions = registrationCountryOptions.reduce((acc, thisCountry) => (
-            thisCountry.value === 'us' ? [...acc, thisCountry] : acc
+        const usaOptions = registrationCountryNameOptions.reduce((acc, thisCountry) => (
+            thisCountry.value === 'United States' ? [...acc, thisCountry] : acc
         ), []);
         expect(usaOptions.length).toEqual(2);
         // test that there are now two entries for UK
-        const ukOptions = registrationCountryOptions.reduce((acc, thisCountry) => (
-            thisCountry.value === 'gb' ? [...acc, thisCountry] : acc
+        const ukOptions = registrationCountryNameOptions.reduce((acc, thisCountry) => (
+            thisCountry.value === 'United Kingdom' ? [...acc, thisCountry] : acc
         ), []);
         expect(ukOptions.length).toEqual(2);
     });
