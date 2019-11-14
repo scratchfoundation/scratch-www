@@ -18,24 +18,29 @@ module.exports.validateUsernameLocally = username => {
 module.exports.validateUsernameRemotely = username => (
     new Promise(resolve => {
         api({
-            uri: `/accounts/checkusername/${username}/`
+            host: '', // not handled by API; use existing infrastructure
+            uri: `/accounts/check_username/${username}/`
         }, (err, body, res) => {
             if (err || res.statusCode !== 200) {
-                resolve({valid: false, errMsgId: 'general.error'});
+                resolve({requestSucceeded: false, valid: false, errMsgId: 'general.error'});
             }
-            switch (body.msg) {
+            let msg = '';
+            if (body && body[0]) {
+                msg = body[0].msg;
+            }
+            switch (msg) {
             case 'valid username':
-                resolve({valid: true});
+                resolve({requestSucceeded: true, valid: true});
                 break;
             case 'username exists':
-                resolve({valid: false, errMsgId: 'registration.validationUsernameExists'});
+                resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationUsernameExists'});
                 break;
             case 'bad username': // i.e., vulgar
-                resolve({valid: false, errMsgId: 'registration.validationUsernameNotAllowed'});
+                resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationUsernameNotAllowed'});
                 break;
             case 'invalid username':
             default:
-                resolve({valid: false, errMsgId: 'registration.validationUsernameNotAllowed'});
+                resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationUsernameNotAllowed'});
             }
         });
     })
@@ -86,18 +91,45 @@ module.exports.validateEmailRemotely = email => (
             uri: '/accounts/check_email/'
         }, (err, body, res) => {
             if (err || res.statusCode !== 200 || !body || body.length < 1 || !body[0].msg) {
-                resolve({valid: false, errMsgId: 'general.apiError'});
+                resolve({requestSucceeded: false, valid: false, errMsgId: 'general.apiError'});
             }
             switch (body[0].msg) {
             case 'valid email':
-                resolve({valid: true});
+                resolve({requestSucceeded: true, valid: true});
                 break;
             case 'Scratch is not allowed to send email to this address.': // e.g., bad TLD or block-listed
             case 'Enter a valid email address.':
             default:
-                resolve({valid: false, errMsgId: 'registration.validationEmailInvalid'});
+                resolve({requestSucceeded: true, valid: false, errMsgId: 'registration.validationEmailInvalid'});
                 break;
             }
         });
     })
 );
+
+const responseErrorMsgs = module.exports.responseErrorMsgs = {
+    username: {
+        'username exists': {errMsgId: 'registration.errorUsernameExists'},
+        'bad username': {errMsgId: 'registration.errorBadUsername'}
+    },
+    password: {
+        'Ensure this value has at least 6 characters \\(it has \\d\\).': {
+            errMsgId: 'registration.errorPasswordTooShort'
+        }
+    },
+    recaptcha: {
+        'Incorrect, please try again.': {errMsgId: 'registration.errorCaptcha'}
+    }
+};
+
+module.exports.responseErrorMsg = (fieldName, serverRawErr) => {
+    if (fieldName && responseErrorMsgs[fieldName]) {
+        const serverErrPatterns = responseErrorMsgs[fieldName];
+        // use regex compare to find matching error string in responseErrorMsgs
+        const matchingKey = Object.keys(serverErrPatterns).find(errPattern => (
+            RegExp(errPattern).test(serverRawErr)
+        ));
+        if (matchingKey) return responseErrorMsgs[fieldName][matchingKey].errMsgId;
+    }
+    return null;
+};

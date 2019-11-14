@@ -23,11 +23,14 @@ class CountryStep extends React.Component {
         this.countryOptions = [];
     }
     componentDidMount () {
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-country');
+        }
         this.setCountryOptions();
     }
     setCountryOptions () {
         if (this.countryOptions.length === 0) {
-            this.countryOptions = [...countryData.registrationCountryOptions];
+            this.countryOptions = [...countryData.registrationCountryNameOptions];
             this.countryOptions.unshift({ // add placeholder as first option
                 disabled: true,
                 label: this.props.intl.formatMessage({id: 'registration.selectCountry'}),
@@ -120,7 +123,8 @@ class CountryStep extends React.Component {
 
 CountryStep.propTypes = {
     intl: intlShape,
-    onNextStep: PropTypes.func
+    onNextStep: PropTypes.func,
+    sendAnalytics: PropTypes.func.isRequired
 };
 
 const IntlCountryStep = injectIntl(CountryStep);

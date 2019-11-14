@@ -25,8 +25,7 @@ class EmailStep extends React.Component {
             'validateForm',
             'setCaptchaRef',
             'captchaSolved',
-            'onCaptchaLoad',
-            'onCaptchaError'
+            'onCaptchaLoad'
         ]);
         this.state = {
             captchaIsLoading: true
@@ -36,6 +35,9 @@ class EmailStep extends React.Component {
         this.emailRemoteCache = {};
     }
     componentDidMount () {
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-email');
+        }
         // automatically start with focus on username field
         if (this.emailInput) this.emailInput.focus();
 
@@ -49,7 +51,7 @@ class EmailStep extends React.Component {
             // Load Google ReCaptcha script.
             const script = document.createElement('script');
             script.async = true;
-            script.onerror = this.onCaptchaError;
+            script.onerror = this.props.onCaptchaError;
             script.src = `https://www.recaptcha.net/recaptcha/api.js?onload=grecaptchaOnLoad&render=explicit&hl=${window._locale}`;
             document.body.appendChild(script);
         }
@@ -60,20 +62,13 @@ class EmailStep extends React.Component {
     handleSetEmailRef (emailInputRef) {
         this.emailInput = emailInputRef;
     }
-    onCaptchaError () {
-        this.props.onRegistrationError(
-            this.props.intl.formatMessage({
-                id: 'registation.troubleReload'
-            })
-        );
-    }
     onCaptchaLoad () {
         this.setState({captchaIsLoading: false});
         this.grecaptcha = window.grecaptcha;
         if (!this.grecaptcha) {
             // According to the reCaptcha documentation, this callback shouldn't get
             // called unless window.grecaptcha exists. This is just here to be extra defensive.
-            this.onCaptchaError();
+            this.props.onCaptchaError();
             return;
         }
         this.widgetId = this.grecaptcha.render(this.captchaRef,
@@ -91,7 +86,10 @@ class EmailStep extends React.Component {
         // email is not in our cache
         return validate.validateEmailRemotely(email).then(
             remoteResult => {
-                this.emailRemoteCache[email] = remoteResult;
+                // cache result, if it successfully heard back from server
+                if (remoteResult.requestSucceeded) {
+                    this.emailRemoteCache[email] = remoteResult;
+                }
                 return remoteResult;
             }
         );
@@ -157,6 +155,15 @@ class EmailStep extends React.Component {
                                 <FormattedMessage
                                     id="registration.acceptTermsOfUse"
                                     values={{
+                                        privacyPolicyLink: (
+                                            <a
+                                                className="join-flow-link"
+                                                href="/privacy_policy"
+                                                target="_blank"
+                                            >
+                                                <FormattedMessage id="general.privacyPolicy" />
+                                            </a>
+                                        ),
                                         touLink: (
                                             <a
                                                 className="join-flow-link"
@@ -234,8 +241,9 @@ class EmailStep extends React.Component {
 
 EmailStep.propTypes = {
     intl: intlShape,
+    onCaptchaError: PropTypes.func,
     onNextStep: PropTypes.func,
-    onRegistrationError: PropTypes.func,
+    sendAnalytics: PropTypes.func.isRequired,
     waiting: PropTypes.bool
 };
 

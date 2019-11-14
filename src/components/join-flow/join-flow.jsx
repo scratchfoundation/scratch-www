@@ -8,6 +8,7 @@ const api = require('../../lib/api');
 const injectIntl = require('../../lib/intl.jsx').injectIntl;
 const intlShape = require('../../lib/intl.jsx').intlShape;
 const sessionActions = require('../../redux/session.js');
+const validate = require('../../lib/validate');
 
 const Progression = require('../progression/progression.jsx');
 const UsernameStep = require('./username-step.jsx');
@@ -23,8 +24,8 @@ class JoinFlow extends React.Component {
         super(props);
         bindAll(this, [
             'handleAdvanceStep',
+            'handleCaptchaError',
             'handleErrorNext',
-            'handleRegistrationError',
             'handlePrepareToRegister',
             'handleRegistrationResponse',
             'handleSubmitRegistration'
@@ -42,15 +43,17 @@ class JoinFlow extends React.Component {
         this.state = this.initialState;
     }
     canTryAgain () {
-        return (this.state.numAttempts <= 1);
+        return (this.state.registrationError.errorAllowsTryAgain && this.state.numAttempts <= 1);
     }
-    handleRegistrationError (message) {
-        if (!message) {
-            message = this.props.intl.formatMessage({
-                id: 'registration.generalError'
-            });
-        }
-        this.setState({registrationError: message});
+    handleCaptchaError () {
+        this.setState({
+            registrationError: {
+                errorAllowsTryAgain: false,
+                errorMsg: this.props.intl.formatMessage({
+                    id: 'registration.errorCaptcha'
+                })
+            }
+        });
     }
     handlePrepareToRegister (newFormData) {
         newFormData = newFormData || {};
@@ -61,59 +64,113 @@ class JoinFlow extends React.Component {
             this.handleSubmitRegistration(this.state.formData);
         });
     }
+    getErrorsFromResponse (err, body, res) {
+        const errorsFromResponse = [];
+        if (!err && res.statusCode === 200 && body && body[0]) {
+            const responseBodyErrors = body[0].errors;
+            if (responseBodyErrors) {
+                Object.keys(responseBodyErrors).forEach(fieldName => {
+                    const errorStrs = responseBodyErrors[fieldName];
+                    errorStrs.forEach(errorStr => {
+                        errorsFromResponse.push({fieldName: fieldName, errorStr: errorStr});
+                    });
+                });
+            }
+        }
+        return errorsFromResponse;
+    }
+    getCustomErrMsg (errorsFromResponse) {
+        if (!errorsFromResponse || errorsFromResponse.length === 0) return null;
+        let customErrMsg = '';
+        // body can include zero or more error objects. Here we assemble
+        // all of them into a single string, customErrMsg.
+        errorsFromResponse.forEach(errorFromResponse => {
+            if (customErrMsg.length) customErrMsg += '; ';
+            customErrMsg += `${errorFromResponse.fieldName}: ${errorFromResponse.errorStr}`;
+        });
+        const problemsStr = this.props.intl.formatMessage({id: 'registration.problemsAre'});
+        return `${problemsStr}: "${customErrMsg}"`;
+    }
+    registrationIsSuccessful (err, body, res) {
+        return !!(!err && res.statusCode === 200 && body && body[0] && body[0].success);
+    }
+    // example of failing response:
+    // [
+    //   {
+    //     "msg": "This field is required.",
+    //     "errors": {
+    //       "username": ["This field is required."],
+    //       "recaptcha": ["Incorrect, please try again."]
+    //     },
+    //     "success": false
+    //   }
+    // ]
+    //
+    // username messages:
+    //   * "username": ["username exists"]
+    //   * "username": ["invalid username"] (length, charset)
+    //   * "username": ["bad username"] (cleanspeak)
+    // password messages:
+    //   * "password": ["Ensure this value has at least 6 characters (it has LENGTH_NUM_HERE)."]
+    // recaptcha messages:
+    //   * "recaptcha": ["This field is required."]
+    //   * "recaptcha": ["Incorrect, please try again."]
+    //   * "recaptcha": [some timeout message?]
+    // other messages:
+    //   * "birth_month": ["Ensure this value is less than or equal to 12."]
+    //   * "birth_month": ["Ensure this value is greater than or equal to 1."]
     handleRegistrationResponse (err, body, res) {
-        // example of failing response:
-        // [
-        //   {
-        //     "msg": "This field is required.",
-        //     "errors": {
-        //       "username": ["This field is required."],
-        //       "recaptcha": ["Incorrect, please try again."]
-        //     },
-        //     "success": false
-        //   }
-        // ]
-        // username: 'username exists'
         this.setState({
             numAttempts: this.state.numAttempts + 1,
             waiting: false
         }, () => {
-            let errStr = '';
-            if (!err && res.statusCode === 200) {
-                if (body && body[0]) {
-                    if (body[0].success) {
-                        this.props.refreshSession();
-                        this.setState({
-                            step: this.state.step + 1
-                        });
-                        return;
-                    }
-                    if (body[0].errors) {
-                        // body can include zero or more error objects, each
-                        // with its own key and description. Here we assemble
-                        // all of them into a single string, errStr.
-                        const errorKeys = Object.keys(body[0].errors);
-                        errorKeys.forEach(key => {
-                            const val = body[0].errors[key];
-                            if (val && val[0]) {
-                                if (errStr.length) errStr += '; ';
-                                errStr += `${key}: ${val[0]}`;
-                            }
-                        });
-                    }
-                    if (!errStr.length && body[0].msg) errStr = body[0].msg;
+            const success = this.registrationIsSuccessful(err, body, res);
+            if (success) {
+                this.props.refreshSession();
+                this.setState({step: this.state.step + 1});
+                return;
+            }
+            // now we know something went wrong -- either an actual error (client-side
+            // or server-side), or just a problem with the registration content.
+
+            // if an actual error, prompt user to try again.
+            if (err || res.statusCode !== 200) {
+                this.setState({registrationError: {errorAllowsTryAgain: true}});
+                return;
+            }
+
+            // now we know there was a problem with the registration content.
+            // If the server provided us info on why registration failed,
+            // build a summary explanation string
+            let errorMsg = null;
+            const errorsFromResponse = this.getErrorsFromResponse(err, body, res);
+            // if there was exactly one error, check if we have a pre-written message
+            // about that precise error
+            if (errorsFromResponse.length === 1) {
+                const singleErrMsgId = validate.responseErrorMsg(
+                    errorsFromResponse[0].fieldName,
+                    errorsFromResponse[0].errorStr
+                );
+                if (singleErrMsgId) { // one error that we have a predefined explanation string for
+                    errorMsg = this.props.intl.formatMessage({id: singleErrMsgId});
                 }
             }
+            // if we have more than one error, build a custom message with all of the
+            // server-provided error messages
+            if (!errorMsg && errorsFromResponse.length > 0) {
+                errorMsg = this.getCustomErrMsg(errorsFromResponse);
+            }
             this.setState({
-                registrationError: errStr ||
-                    `${this.props.intl.formatMessage({
-                        id: 'registration.generalError'
-                    })} (${res.statusCode})`
+                registrationError: {
+                    errorAllowsTryAgain: false,
+                    errorMsg: errorMsg
+                }
             });
         });
     }
     handleSubmitRegistration (formData) {
         this.setState({
+            registrationError: null, // clear any existing error
             waiting: true
         }, () => {
             api({
@@ -158,31 +215,60 @@ class JoinFlow extends React.Component {
     resetState () {
         this.setState(this.initialState);
     }
+    sendAnalytics (path) {
+        const gaID = window.GA_ID;
+        if (!window.ga) {
+            return;
+        }
+        window.ga('send', {
+            hitType: 'pageview',
+            page: path,
+            tid: gaID
+        });
+    }
+
     render () {
         return (
             <React.Fragment>
                 {this.state.registrationError ? (
                     <RegistrationErrorStep
                         canTryAgain={this.canTryAgain()}
-                        errorMsg={this.state.registrationError}
+                        errorMsg={this.state.registrationError.errorMsg}
+                        sendAnalytics={this.sendAnalytics}
                         /* eslint-disable react/jsx-no-bind */
                         onSubmit={this.handleErrorNext}
                         /* eslint-enable react/jsx-no-bind */
                     />
                 ) : (
                     <Progression step={this.state.step}>
-                        <UsernameStep onNextStep={this.handleAdvanceStep} />
-                        <CountryStep onNextStep={this.handleAdvanceStep} />
-                        <BirthDateStep onNextStep={this.handleAdvanceStep} />
-                        <GenderStep onNextStep={this.handleAdvanceStep} />
+                        <UsernameStep
+                            sendAnalytics={this.sendAnalytics}
+                            onNextStep={this.handleAdvanceStep}
+                        />
+                        <CountryStep
+                            sendAnalytics={this.sendAnalytics}
+                            onNextStep={this.handleAdvanceStep}
+                        />
+                        <BirthDateStep
+                            sendAnalytics={this.sendAnalytics}
+                            onNextStep={this.handleAdvanceStep}
+                        />
+
+                        <GenderStep
+                            sendAnalytics={this.sendAnalytics}
+                            onNextStep={this.handleAdvanceStep}
+                        />
+
                         <EmailStep
+                            sendAnalytics={this.sendAnalytics}
                             waiting={this.state.waiting}
+                            onCaptchaError={this.handleCaptchaError}
                             onNextStep={this.handlePrepareToRegister}
-                            onRegistrationError={this.handleRegistrationError}
                         />
                         <WelcomeStep
                             createProjectOnComplete={this.props.createProjectOnComplete}
                             email={this.state.formData.email}
+                            sendAnalytics={this.sendAnalytics}
                             username={this.state.formData.username}
                             onNextStep={this.props.onCompleteRegistration}
                         />

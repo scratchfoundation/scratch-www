@@ -61,6 +61,11 @@ class GenderStep extends React.Component {
             'handleValidSubmit'
         ]);
     }
+    componentDidMount () {
+        if (this.props.sendAnalytics) {
+            this.props.sendAnalytics('join-gender');
+        }
+    }
     handleSetCustomRef (customInputRef) {
         this.customInput = customInputRef;
     }
@@ -180,7 +185,8 @@ class GenderStep extends React.Component {
 
 GenderStep.propTypes = {
     intl: intlShape,
-    onNextStep: PropTypes.func
+    onNextStep: PropTypes.func,
+    sendAnalytics: PropTypes.func.isRequired
 };
 
 module.exports = injectIntl(GenderStep);

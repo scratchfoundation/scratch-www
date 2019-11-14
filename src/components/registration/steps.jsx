@@ -44,7 +44,7 @@ const getCountryOptions = reactIntl => (
             disabled: true,
             value: ''
         },
-        ...countryData.registrationCountryOptions
+        ...countryData.registrationCountryCodeOptions
     ]
 );
 
