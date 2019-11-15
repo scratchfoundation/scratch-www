@@ -28,7 +28,7 @@ describe('unit test lib/validate.js', () => {
         expect(navigationReducer(defaultState, {type: 'anything'}).loginOpen).toBe(false);
         expect(navigationReducer(defaultState, {type: 'anything'}).registrationOpen).toBe(false);
         expect(navigationReducer(defaultState, {type: 'anything'}).searchTerm).toBe('');
-        expect(navigationReducer(defaultState, {type: 'anything'}).useScratch3Registration).toBe(false);
+        expect(navigationReducer(defaultState, {type: 'anything'}).useScratch3Registration).toBe(true);
     });
 
     // handleToggleAccountNav
