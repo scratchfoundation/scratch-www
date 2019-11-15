@@ -105,7 +105,10 @@ module.exports.handleRegistrationRequested = () => ({
 
 module.exports.handleCompleteRegistration = createProject => (dispatch => {
     if (createProject) {
-        window.location = '/projects/editor/?tutorial=getStarted';
+        // TODO: Ideally this would take you to the editor with the getting started
+        // tutorial open. We need to do some extra work to wait for the user
+        // to be logged in before we try creating a project due to replication lag.
+        window.location = '/';
     } else {
         dispatch(sessionActions.refreshSession());
         dispatch(module.exports.setRegistrationOpen(false));
