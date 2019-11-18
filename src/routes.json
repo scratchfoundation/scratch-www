@@ -148,18 +148,16 @@
         "title": "Ideas"
     },
     {
-        "name": "jobs",
+        "name": "jobs-redirect",
         "pattern": "^/jobs/?$",
         "routeAlias": "/jobs(/moderator)?/?$",
-        "view": "jobs/jobs",
-        "title": "Jobs"
+        "redirect": "https://www.scratchfoundation.org/opportunities/"
     },
     {
-        "name": "jobs-moderator",
+        "name": "jobs-redirect2",
         "pattern": "^/jobs/moderator/?$",
         "routeAlias": "/jobs(/moderator)?/?$",
-        "view": "jobs/moderator/moderator",
-        "title": "Community Moderator"
+        "redirect": "https://www.scratchfoundation.org/opportunities/"
     },
     {
         "name": "join",
