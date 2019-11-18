@@ -23,7 +23,9 @@ tap.beforeEach(function () {
     return driver.get(rootUrl);
 });
 
-test('Clicking Join Scratch opens scratchr2 iframe', t => {
+// Skipping this test while launching new join flow.
+// TODO: Add new smoke tests for the new Join flow!
+test('Clicking Join Scratch opens scratchr2 iframe', {skip: true}, t => {
     clickText('Join Scratch')
         .then(() => findByXpath('//iframe[contains(@class, "mod-registration")]'))
         .then(() => t.end());
