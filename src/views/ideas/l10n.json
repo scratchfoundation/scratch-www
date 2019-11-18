@@ -35,7 +35,7 @@
 
     "ideas.cardsPurchase": "Purchase Printed Set",
     "ideas.MakeItFlyTitle": "Make It Fly",
-    "ideas.MakeItFlyDescription": "Animate the Scratch Cat, The Powerpuff Girls, or even a taco!",
+    "ideas.MakeItFlyDescription": "Choose any character and make it fly!",
     "ideas.RaceTitle": "Race to the Finish",
     "ideas.RaceDescription": "Make a game where two characters race each other.",
     "ideas.HideAndSeekTitle": "Hide and Seek",
@@ -44,6 +44,8 @@
     "ideas.FashionDescription": "Make a game where you dress a character with different clothes and styles.",
     "ideas.PongTitle": "Pong Game",
     "ideas.PongDescription": "Make a bouncing ball game with sounds, points, and other effects.",
+    "ideas.ImagineTitle": "Imagine a World",
+    "ideas.ImagineDescription": "Imagine a world where anything is possible.",
     "ideas.DanceTitle": "Let's Dance",
     "ideas.DanceDescription": "Design an animated dance scene with music and dance moves.",
     "ideas.CatchTitle": "Catch Game",
