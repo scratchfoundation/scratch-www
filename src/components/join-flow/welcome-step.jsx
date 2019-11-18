@@ -50,7 +50,7 @@ class WelcomeStep extends React.Component {
                             innerClassName="join-flow-inner-welcome-step"
                             nextButton={this.props.createProjectOnComplete ? (
                                 <React.Fragment>
-                                    <FormattedMessage id="registration.makeProject" />
+                                    <FormattedMessage id="general.getStarted" />
                                     <img
                                         className="join-flow-next-button-arrow"
                                         src="/svgs/project/r-arrow.svg"
