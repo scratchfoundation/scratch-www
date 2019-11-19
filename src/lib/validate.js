@@ -9,6 +9,8 @@ module.exports.validateUsernameLocally = username => {
         return {valid: false, errMsgId: 'registration.validationUsernameMinLength'};
     } else if (username.length > 20) {
         return {valid: false, errMsgId: 'registration.validationUsernameMaxLength'};
+    } else if (/\s/i.test(username)) {
+        return {valid: false, errMsgId: 'registration.validationUsernameSpaces'};
     } else if (!/^[\w-]+$/i.test(username)) {
         return {valid: false, errMsgId: 'registration.validationUsernameRegexp'};
     }
