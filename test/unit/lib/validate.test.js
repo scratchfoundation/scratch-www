@@ -33,7 +33,7 @@ describe('unit test lib/validate.js', () => {
 
     test('validate username spaces not allowed', () => {
         const response = validate.validateUsernameLocally('abc def');
-        expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameSpaces'});
     });
 
     test('validate username special chars not allowed', () => {
