@@ -9,13 +9,22 @@
         "guideUrl": "guides.NameGuideLink"
     },
     {
-        "title": "ideas.animateACharacterTitle",
-        "description": "ideas.animateACharacterDescription",
-        "thumbImage": "/images/ideas/activities/animate-a-character-thumb.jpg",
-        "modalImage": "/images/ideas/activities/animate-a-character-modal.jpg",
-        "tutorialUrl": "animate-a-character",
-        "cardsUrl": "cards.animation-cardsLink",
-        "guideUrl": "guides.AnimateGuideLink"
+        "title": "ideas.ImagineTitle",
+        "description": "ideas.ImagineDescription",
+        "thumbImage": "/images/ideas/activities/imagine-thumb.jpg",
+        "modalImage": "/images/ideas/activities/imagine-modal.jpg",
+        "tutorialUrl": "imagine",
+        "cardsUrl": "cards.imagine-cardsLink",
+        "guideUrl": "guides.ImagineGuideLink"
+    },
+    {
+        "title": "ideas.chaseGameTitle",
+        "description": "ideas.chaseGameDescription",
+        "thumbImage": "/images/ideas/activities/chase-game-thumb.jpg",
+        "modalImage": "/images/ideas/activities/chase-game-modal.jpg",
+        "tutorialUrl": "chase-game",
+        "cardsUrl": "cards.chase-cardsLink",
+        "guideUrl": "guides.ChaseGuideLink"
     },
     {
         "title": "ideas.makeMusicTitle",
@@ -36,13 +45,31 @@
         "guideUrl": "guides.StoryGuideLink"
     },
     {
-        "title": "ideas.chaseGameTitle",
-        "description": "ideas.chaseGameDescription",
-        "thumbImage": "/images/ideas/activities/chase-game-thumb.jpg",
-        "modalImage": "/images/ideas/activities/chase-game-modal.jpg",
-        "tutorialUrl": "chase-game",
-        "cardsUrl": "cards.chase-cardsLink",
-        "guideUrl": "guides.ChaseGuideLink"
+        "title": "ideas.MakeItFlyTitle",
+        "description": "ideas.MakeItFlyDescription",
+        "thumbImage": "/images/ideas/activities/fly-thumb.jpg",
+        "modalImage": "/images/ideas/activities/fly-modal.jpg",
+        "tutorialUrl": "make-it-fly",
+        "cardsUrl": "cards.fly-cardsLink",
+        "guideUrl": "guides.FlyGuideLink"
+    },
+    {
+        "title": "ideas.PongTitle",
+        "description": "ideas.PongDescription",
+        "thumbImage": "/images/ideas/activities/pong-thumb.jpg",
+        "modalImage": "/images/ideas/activities/pong-modal.jpg",
+        "tutorialUrl": "pong",
+        "cardsUrl": "cards.pong-cardsLink",
+        "guideUrl": "guides.PongGuideLink"
+    },
+    {
+        "title": "ideas.animateACharacterTitle",
+        "description": "ideas.animateACharacterDescription",
+        "thumbImage": "/images/ideas/activities/animate-a-character-thumb.jpg",
+        "modalImage": "/images/ideas/activities/animate-a-character-modal.jpg",
+        "tutorialUrl": "animate-a-character",
+        "cardsUrl": "cards.animation-cardsLink",
+        "guideUrl": "guides.AnimateGuideLink"
     },
     {
         "title": "ideas.videoSensingTitle",
