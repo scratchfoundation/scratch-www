@@ -149,14 +149,7 @@
     },
     {
         "name": "jobs-redirect",
-        "pattern": "^/jobs/?$",
-        "routeAlias": "/jobs(/moderator)?/?$",
-        "redirect": "https://www.scratchfoundation.org/opportunities/"
-    },
-    {
-        "name": "jobs-redirect2",
-        "pattern": "^/jobs/moderator/?$",
-        "routeAlias": "/jobs(/moderator)?/?$",
+        "pattern": "^/jobs/?(\\?.*)?$",
         "redirect": "https://www.scratchfoundation.org/opportunities/"
     },
     {
