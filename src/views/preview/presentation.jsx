@@ -111,6 +111,7 @@ const PreviewPresentation = ({
     onSocialClosed,
     onToggleComments,
     onToggleStudio,
+    onUpdateProjectData,
     onUpdateProjectId,
     onUpdateProjectThumbnail,
     originalInfo,
@@ -345,6 +346,7 @@ const PreviewPresentation = ({
                                     onProjectLoaded={onProjectLoaded}
                                     onRemixing={onRemixing}
                                     onSetProjectThumbnailer={onSetProjectThumbnailer}
+                                    onUpdateProjectData={onUpdateProjectData}
                                     onUpdateProjectId={onUpdateProjectId}
                                     onUpdateProjectThumbnail={onUpdateProjectThumbnail}
                                 />
@@ -725,6 +727,7 @@ PreviewPresentation.propTypes = {
     onSocialClosed: PropTypes.func,
     onToggleComments: PropTypes.func,
     onToggleStudio: PropTypes.func,
+    onUpdateProjectData: PropTypes.func,
     onUpdateProjectId: PropTypes.func,
     onUpdateProjectThumbnail: PropTypes.func,
     originalInfo: projectShape,
