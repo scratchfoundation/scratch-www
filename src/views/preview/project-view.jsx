@@ -8,7 +8,9 @@ const PropTypes = require('prop-types');
 const connect = require('react-redux').connect;
 const injectIntl = require('react-intl').injectIntl;
 const parser = require('scratch-parser');
+const queryString = require('query-string');
 
+const api = require('../../lib/api');
 const Page = require('../../components/page/www/page.jsx');
 const storage = require('../../lib/storage.js').default;
 const log = require('../../lib/log');
@@ -36,6 +38,7 @@ const IntlGUI = injectIntl(GUI.default);
 const localStorageAvailable = 'localStorage' in window && window.localStorage !== null;
 
 const initSentry = require('../../lib/sentry.js');
+const xhr = require('xhr');
 initSentry();
 
 class Preview extends React.Component {
@@ -73,6 +76,7 @@ class Preview extends React.Component {
             'handleSeeInside',
             'handleSetProjectThumbnailer',
             'handleShare',
+            'handleUpdateProjectData',
             'handleUpdateProjectId',
             'handleUpdateProjectTitle',
             'handleToggleComments',
@@ -218,6 +222,84 @@ class Preview extends React.Component {
             this.props.getProjectInfo(this.state.projectId);
             this.props.getRemixes(this.state.projectId);
         }
+    }
+
+    // This is copy of what is in save-project-to-server in GUI that adds
+    // an extra get of the project info from api.  We  do this to wait for replication
+    // lag to pass.  This is intended to be a temporary fix until we use the data
+    // from the create request to fill the projectInfo state.
+    handleUpdateProjectData (projectId, vmState, params) {
+        const opts = {
+            body: vmState,
+            // If we set json:true then the body is double-stringified, so don't
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            withCredentials: true
+        };
+        const creatingProject = projectId === null || typeof projectId === 'undefined';
+        const queryParams = {};
+        if (params.hasOwnProperty('originalId')) queryParams.original_id = params.originalId;
+        if (params.hasOwnProperty('isCopy')) queryParams.is_copy = params.isCopy;
+        if (params.hasOwnProperty('isRemix')) queryParams.is_remix = params.isRemix;
+        if (params.hasOwnProperty('title')) queryParams.title = params.title;
+        let qs = queryString.stringify(queryParams);
+        if (qs) qs = `?${qs}`;
+        if (creatingProject) {
+            Object.assign(opts, {
+                method: 'post',
+                url: `${this.props.projectHost}/${qs}`
+            });
+        } else {
+            Object.assign(opts, {
+                method: 'put',
+                url: `${this.props.projectHost}/${projectId}${qs}`
+            });
+        }
+        return new Promise((resolve, reject) => {
+            xhr(opts, (err, response) => {
+                if (err) return reject(err);
+                if (response.statusCode !== 200) return reject(response.statusCode);
+                let body;
+                try {
+                    // Since we didn't set json: true, we have to parse manually
+                    body = JSON.parse(response.body);
+                } catch (e) {
+                    return reject(e);
+                }
+                body.id = projectId;
+                if (creatingProject) {
+                    body.id = body['content-name'];
+                }
+                resolve(body);
+            });
+        }).then(body => {
+            const fetchProjectInfo = (count, resolve) => {
+                api({
+                    uri: `/projects/${body.id}`,
+                    authentication: this.props.user.token
+                }, (err, projectInfo, response) => {
+                    if (err) {
+                        log.error(`Could not fetch project after creating: ${err}`);
+                        return resolve(body);
+                    }
+                    if (typeof body === 'undefined' || response.statusCode === 404) {
+                        // Retry after 500ms, 1.5s, 3.5s, 7.5s and then stop.
+                        if (count > 4) {
+                            return resolve(body);
+                        }
+                        return setTimeout(
+                            fetchProjectInfo.bind(this, count + 1, resolve),
+                            500 * Math.pow(2, count));
+                    }
+                    return resolve(body);
+                });
+            };
+            if (creatingProject) {
+                return new Promise((resolve, reject) => fetchProjectInfo(1, resolve, reject));
+            }
+            return body;
+        });
     }
     setScreenFromOrientation () {
         /*
@@ -702,6 +784,7 @@ class Preview extends React.Component {
                             onSocialClosed={this.handleSocialClose}
                             onToggleComments={this.handleToggleComments}
                             onToggleStudio={this.handleToggleStudio}
+                            onUpdateProjectData={this.handleUpdateProjectData}
                             onUpdateProjectId={this.handleUpdateProjectId}
                             onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                         />
@@ -739,6 +822,7 @@ class Preview extends React.Component {
                             onSetLanguage={this.handleSetLanguage}
                             onShare={this.handleShare}
                             onToggleLoginOpen={this.props.handleToggleLoginOpen}
+                            onUpdateProjectData={this.handleUpdateProjectData}
                             onUpdateProjectId={this.handleUpdateProjectId}
                             onUpdateProjectThumbnail={this.props.handleUpdateProjectThumbnail}
                             onUpdateProjectTitle={this.handleUpdateProjectTitle}
