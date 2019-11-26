@@ -36,9 +36,5 @@
     "welcome.welcomeToScratch": "Welcome to Scratch!",
     "welcome.learn": "Learn how to make a project in Scratch",
     "welcome.tryOut": "Try out starter projects",
-    "welcome.connect": "Connect with other Scratchers",
-
-    "featureBanner.title": "The new Scratch is here!",
-    "featureBanner.subtitle": "not used",
-    "featureBanner.callToAction": "call to action"
+    "welcome.connect": "Connect with other Scratchers"
 }
