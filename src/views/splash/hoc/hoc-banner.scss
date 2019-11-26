@@ -1,0 +1,113 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+$tile-height: 244px;
+
+.hoc-banner {
+    display: flex;
+    position: relative;
+    background-color: $ui-aqua;
+    background-image: url("/images/hoc/bg-pattern.png");
+    background-size: cover;
+    padding: 0;
+    height: 25rem;
+    overflow: hidden;
+    justify-content: center;
+
+    &.mod-middle-banner {
+        background-color: $ui-purple;
+    }
+
+    .hoc-container {
+        margin: auto;
+        width: $desktop;
+        height: 25rem;
+        justify-content: flex-start;
+
+        .hoc-title-container {
+            margin: 1.5rem 0;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+
+    .hoc-banner-images {
+        display: flex;
+        width: $desktop;
+        justify-content: space-between;
+    }
+
+    .hoc-banner-image {
+        border: 2px solid $ui-aqua;
+        border-radius: 16px;
+        background-color: $ui-white;
+        width: $cols4;
+        height: $tile-height;
+        overflow: hidden;
+        box-sizing: border-box;
+        justify-content: flex-start;
+
+        &.mod-middle-image {
+            border: 2px solid $ui-purple;
+        }
+
+        img {
+            width: $cols4;
+            height: auto;
+        }
+
+        .hoc-image-text {
+            margin: auto auto; 
+            color: $ui-blue;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+    }
+
+    .hoc-header{
+        color: $ui-white;
+    }
+
+    .hoc-header {
+        font-size: 2rem;
+    }
+
+    .hoc-more-activities {
+        border-radius: 10px;
+        background-color: $ui-white;
+        padding: .5rem 1rem .75rem 1rem;
+        color: $ui-blue;
+        font-size: .75rem;
+        font-weight: bold;
+
+        img {
+            margin-right: .25rem;
+            width: 20px;
+            height: 20px;
+            vertical-align: text-bottom;
+        }
+    }
+}
+
+@media only screen and (min-width: $tabletPortrait) and (max-width: $desktop) {
+    .hoc-banner {
+        height: 23.5rem;
+
+        .hoc-container {
+            bottom: 4rem;
+            width: $tabletPortrait;
+        }
+
+        .hoc-banner-images {
+            width: $tabletPortrait;
+        }
+
+        .hoc-banner-image {
+            width: $cols4;
+        }
+    }
+
+    .hoc-hideable {
+        display: none;
+    }
+}

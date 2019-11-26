@@ -2,9 +2,11 @@ const bindAll = require('lodash.bindall');
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
+const MediaQuery = require('react-responsive').default;
 const PropTypes = require('prop-types');
 const React = require('react');
 
+const frameless = require('../../lib/frameless');
 const sessionActions = require('../../redux/session.js');
 const shuffle = require('../../lib/shuffle.js').shuffle;
 
@@ -28,6 +30,13 @@ const FollowMessage = require('./activity-rows/follow.jsx');
 const LoveProjectMessage = require('./activity-rows/love-project.jsx');
 const RemixProjectMessage = require('./activity-rows/remix-project.jsx');
 const ShareProjectMessage = require('./activity-rows/share-project.jsx');
+
+// Hour of Code Banner Components
+const TopBanner = require('./hoc/top-banner.jsx');
+const MiddleBanner = require('./hoc/middle-banner.jsx');
+
+const HOC_START_TIME = 1575262800000; // 2019-12-02 00:00:00
+const HOC_END_TIME = 1577077200000; // 2019-12-23 00:00:00
 
 require('./splash.scss');
 
@@ -268,7 +277,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 </Box>
             );
         }
-
+        
         if (this.props.featuredGlobal.scratch_design_studio &&
             this.props.featuredGlobal.scratch_design_studio.length > 4) {
 
@@ -409,11 +418,21 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 ] : []}
                 {
                     this.props.sessionStatus === sessionActions.Status.FETCHED &&
-                    Object.keys(this.props.user).length === 0 && // if user is not logged in
-                    <Intro
-                        key="intro"
-                        messages={messages}
-                    />
+                    Object.keys(this.props.user).length === 0 && (// Only show top banner if user is not logged in
+                      (Date.now() >= HOC_START_TIME && Date.now() < HOC_END_TIME) ? (
+                        <MediaQuery
+                          key="frameless-tablet"
+                          minWidth={frameless.tabletPortrait}
+                        >
+                          <TopBanner />
+                        </MediaQuery>
+                      ) : (
+                        <Intro
+                          key="intro"
+                          messages={messages}
+                        />
+                      )
+                    )
                 }
                 <div
                     className="inner mod-splash"
@@ -446,6 +465,26 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                             />
                         </div>
                     }
+                    {featured.shift()}
+                    {featured.shift()}
+                </div>
+                {
+                    this.props.sessionStatus === sessionActions.Status.FETCHED &&
+                    Object.keys(this.props.user).length !== 0 && // Only show if user is logged in
+                    Date.now() >= HOC_START_TIME && // Show middle banner on and after Dec 3
+                    Date.now() < HOC_END_TIME && // Hide middle banner after Dec 14
+                    <MediaQuery
+                        key="frameless-desktop"
+                        minWidth={frameless.tabletPortrait}
+                    >
+                        <MiddleBanner />
+                    </MediaQuery>
+                }
+
+                <div
+                    className="inner mod-splash"
+                    key="inner2"
+                >
                     {featured}
 
                     {this.props.isAdmin && (
