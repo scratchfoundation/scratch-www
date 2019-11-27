@@ -31,13 +31,12 @@ const LoveProjectMessage = require('./activity-rows/love-project.jsx');
 const RemixProjectMessage = require('./activity-rows/remix-project.jsx');
 const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 
-// Featured Banner Components
-const TopBanner = require('./feature/top-banner.jsx');
-const SmallTopBanner = require('./feature/small-top-banner.jsx');
-const MiddleBanner = require('./feature/middle-banner.jsx');
+// Hour of Code Banner Components
+const TopBanner = require('./hoc/top-banner.jsx');
+const MiddleBanner = require('./hoc/middle-banner.jsx');
 
-// Scratch 3.0 Launch Banner
-const LAUNCH_END_TIME = 1547873999000;
+const HOC_START_TIME = 1575262800000; // 2019-12-02 00:00:00
+const HOC_END_TIME = 1577077200000; // 2019-12-23 00:00:00
 
 require('./splash.scss');
 
@@ -231,7 +230,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
             }
         }
     }
-    renderHomepageRows (showBanner) {
+    renderHomepageRows () {
         const rows = [
             <Box
                 key="community_featured_projects"
@@ -278,22 +277,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 </Box>
             );
         }
-
-        if (
-            this.props.sessionStatus === sessionActions.Status.FETCHED &&
-            Object.keys(this.props.user).length === 0 &&
-            showBanner // Show middle banner
-        ) {
-            rows.push(
-                <MediaQuery
-                    key="frameless-tablet"
-                    minWidth={frameless.mobileIntermediate}
-                >
-                    <MiddleBanner />
-                </MediaQuery>
-            );
-        }
-
+        
         if (this.props.featuredGlobal.scratch_design_studio &&
             this.props.featuredGlobal.scratch_design_studio.length > 4) {
 
@@ -369,10 +353,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
         return rows;
     }
     render () {
-        const ShowTopBanner = Date.now() < LAUNCH_END_TIME;
-        const ShowMiddleBanner = false;
-        const ShowSmallTopBanner = false;
-        const featured = this.renderHomepageRows(ShowMiddleBanner);
+        const featured = this.renderHomepageRows();
 
         const formatHTMLMessage = this.props.intl.formatHTMLMessage;
         const formatMessage = this.props.intl.formatMessage;
@@ -437,35 +418,21 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 ] : []}
                 {
                     this.props.sessionStatus === sessionActions.Status.FETCHED &&
-                    Object.keys(this.props.user).length === 0 && // if user is not logged in
-                    (ShowTopBanner ? [
-                        <MediaQuery
-                            key="frameless-tablet"
-                            minWidth={0}
-                        >
-                            <TopBanner actionLink="/create" />
-                        </MediaQuery>
-                    ] : [
-                        <Intro
-                            key="intro"
-                            messages={messages}
-                        />
-                    ]
+                    Object.keys(this.props.user).length === 0 && (// Only show top banner if user is not logged in
+                        (Date.now() >= HOC_START_TIME && Date.now() < HOC_END_TIME) ? (
+                            <MediaQuery
+                                key="frameless-tablet"
+                                minWidth={frameless.tabletPortrait}
+                            >
+                                <TopBanner />
+                            </MediaQuery>
+                        ) : (
+                            <Intro
+                                key="intro"
+                                messages={messages}
+                            />
+                        )
                     )
-                }
-                {
-                    this.props.sessionStatus === sessionActions.Status.FETCHED &&
-                    Object.keys(this.props.user).length !== 0 && // if user is logged in
-                    ShowTopBanner &&
-                    <MediaQuery
-                        key="frameless-tablet"
-                        minWidth={0}
-                    >
-                        {ShowSmallTopBanner ?
-                            <SmallTopBanner /> :
-                            <TopBanner actionLink="/projects/editor/" />
-                        }
-                    </MediaQuery>
                 }
                 <div
                     className="inner mod-splash"
@@ -498,6 +465,26 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                             />
                         </div>
                     }
+                    {featured.shift()}
+                    {featured.shift()}
+                </div>
+                {
+                    this.props.sessionStatus === sessionActions.Status.FETCHED &&
+                    Object.keys(this.props.user).length !== 0 && // Only show if user is logged in
+                    Date.now() >= HOC_START_TIME && // Show middle banner on and after Dec 3
+                    Date.now() < HOC_END_TIME && // Hide middle banner after Dec 14
+                    <MediaQuery
+                        key="frameless-desktop"
+                        minWidth={frameless.tabletPortrait}
+                    >
+                        <MiddleBanner />
+                    </MediaQuery>
+                }
+
+                <div
+                    className="inner mod-splash"
+                    key="inner2"
+                >
                     {featured}
 
                     {this.props.isAdmin && (
