@@ -18,26 +18,26 @@ const MiddleBanner = () => (
                 </h1>
                 <a
                     className="hoc-more-activities button"
-                    href="/tips"
+                    href="/projects/editor?tutorial=all"
                 >
                     <img src="/svgs/tutorials.svg" />
                     <FormattedMessage id="hocbanner.moreActivities" />
                 </a>
             </FlexRow>
             <FlexRow className="hoc-banner-images">
-                <a href="http://localhost:8333/projects/editor/?tip_bar=name">
+                <a href="/projects/editor?tutorial=imagine">
                     <FlexRow className="hoc-banner-image mod-middle-image column">
-                        <img src="/images/ttt/animate-your-name.jpg" />
+                        <img src="/images/hoc/imagine.jpg" />
                         <div className="hoc-image-text">
-                            <FormattedMessage id="hocbanner.name" />
+                            <FormattedMessage id="hocbanner.imagine" />
                         </div>
                     </FlexRow>
                 </a>
-                <a href="http://localhost:8333/projects/editor/?tip_bar=fly">
+                <a href="/projects/331474033/editor?tutorial=code-cartoon">
                     <FlexRow className="hoc-banner-image mod-middle-image column">
-                        <img src="/images/ttt/make-it-fly.jpg" />
+                        <img src="/images/hoc/code-a-cartoon.jpg" />
                         <div className="hoc-image-text">
-                            <FormattedMessage id="hocbanner.fly" />
+                            <FormattedMessage id="hocbanner.codeACartoon" />
                         </div>
                     </FlexRow>
                 </a>
@@ -45,11 +45,11 @@ const MiddleBanner = () => (
                     key="frameless-desktop"
                     minWidth={frameless.desktop}
                 >
-                    <a href="http://localhost:8333/projects/editor/?tip_bar=pong">
+                    <a href="/projects/editor?tutorial=talking">
                         <FlexRow className="hoc-banner-image mod-middle-image column">
-                            <img src="/images/ttt/pong-game.jpg" />
+                            <img src="/images/hoc/talking.png" />
                             <div className="hoc-image-text">
-                                <FormattedMessage id="hocbanner.pong" />
+                                <FormattedMessage id="hocbanner.talking" />
                             </div>
                         </FlexRow>
                     </a>

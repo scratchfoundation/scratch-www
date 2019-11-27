@@ -35,7 +35,7 @@ const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 const TopBanner = require('./hoc/top-banner.jsx');
 const MiddleBanner = require('./hoc/middle-banner.jsx');
 
-const HOC_START_TIME = 1575262800000; // 2019-12-02 00:00:00
+const HOC_START_TIME = 157526280000; // 2019-12-02 00:00:00
 const HOC_END_TIME = 1577077200000; // 2019-12-23 00:00:00
 
 require('./splash.scss');
@@ -419,6 +419,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 {
                     this.props.sessionStatus === sessionActions.Status.FETCHED &&
                     Object.keys(this.props.user).length === 0 && (// Only show top banner if user is not logged in
+                    /* eslint-disable indent, react/jsx-indent, react/jsx-indent-props */
                       (Date.now() >= HOC_START_TIME && Date.now() < HOC_END_TIME) ? (
                         <MediaQuery
                           key="frameless-tablet"
@@ -433,6 +434,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                         />
                       )
                     )
+                    /* eslint-enable indent, react/jsx-indent, react/jsx-indent-props */
                 }
                 <div
                     className="inner mod-splash"

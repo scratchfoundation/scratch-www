@@ -19,7 +19,7 @@ const TopBanner = () => (
                 </h1>
                 <a
                     className="hoc-more-activities button"
-                    href="https://beta.scratch.mit.edu/?tutorial=all"
+                    href="/projects/editor?tutorial=all"
                 >
                     <img src="/svgs/tutorials.svg" />
                     <FormattedMessage id="hocbanner.moreActivities" />
@@ -30,28 +30,28 @@ const TopBanner = () => (
                     key="frameless-desktop"
                     minWidth={frameless.desktop}
                 >
-                    <a href="https://beta.scratch.mit.edu/?tutorial=getStarted">
+                    <a href="/projects/editor?tutorial=imagine">
                         <FlexRow className="hoc-banner-image column">
-                            <img src="/images/hoc/getting-started.jpg" />
+                            <img src="/images/hoc/imagine.jpg" />
                             <div className="hoc-image-text">
-                                <FormattedMessage id="hocbanner.gettingStarted" />
+                                <FormattedMessage id="hocbanner.imagine" />
                             </div>
                         </FlexRow>
                     </a>
                 </MediaQuery>
-                <a href="https://beta.scratch.mit.edu/?tutorial=animations-that-talk">
+                <a href="/projects/331474033/editor?tutorial=code-cartoon">
                     <FlexRow className="hoc-banner-image column">
-                        <img src="/images/hoc/create-animations-that-talk.png" />
+                        <img src="/images/hoc/code-a-cartoon.jpg" />
                         <div className="hoc-image-text">
-                            <FormattedMessage id="hocbanner.animationTalk" />
+                            <FormattedMessage id="hocbanner.codeACartoon" />
                         </div>
                     </FlexRow>
                 </a>
-                <a href="https://beta.scratch.mit.edu/?tutorial=animate-an-adventure-game">
+                <a href="/projects/editor?tutorial=talking">
                     <FlexRow className="hoc-banner-image column">
-                        <img src="/images/hoc/create-an-adventure-game.jpg" />
+                        <img src="/images/hoc/talking.png" />
                         <div className="hoc-image-text">
-                            <FormattedMessage id="hocbanner.adventureGame" />
+                            <FormattedMessage id="hocbanner.talking" />
                         </div>
                     </FlexRow>
                 </a>
