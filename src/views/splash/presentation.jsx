@@ -419,22 +419,20 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 {
                     this.props.sessionStatus === sessionActions.Status.FETCHED &&
                     Object.keys(this.props.user).length === 0 && (// Only show top banner if user is not logged in
-                    /* eslint-disable indent, react/jsx-indent, react/jsx-indent-props */
-                      (Date.now() >= HOC_START_TIME && Date.now() < HOC_END_TIME) ? (
-                        <MediaQuery
-                          key="frameless-tablet"
-                          minWidth={frameless.tabletPortrait}
-                        >
-                          <TopBanner />
-                        </MediaQuery>
-                      ) : (
-                        <Intro
-                          key="intro"
-                          messages={messages}
-                        />
-                      )
+                        (Date.now() >= HOC_START_TIME && Date.now() < HOC_END_TIME) ? (
+                            <MediaQuery
+                                key="frameless-tablet"
+                                minWidth={frameless.tabletPortrait}
+                            >
+                                <TopBanner />
+                            </MediaQuery>
+                        ) : (
+                            <Intro
+                                key="intro"
+                                messages={messages}
+                            />
+                        )
                     )
-                    /* eslint-enable indent, react/jsx-indent, react/jsx-indent-props */
                 }
                 <div
                     className="inner mod-splash"
