@@ -9,7 +9,7 @@ const SeleniumHelper = require('../selenium-helpers.js');
 const helper = new SeleniumHelper();
 
 var tap = require('tap');
-const test = tap.test;
+const test = tap.skip;
 
 const driver = helper.buildDriver('www-smoke test-my-stuff');
 
