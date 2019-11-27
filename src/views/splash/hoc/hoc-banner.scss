@@ -15,7 +15,7 @@ $tile-height: 244px;
     justify-content: center;
 
     &.mod-middle-banner {
-        background-color: $ui-purple;
+        background-color: $ui-magenta;
     }
 
     .hoc-container {
@@ -48,7 +48,7 @@ $tile-height: 244px;
         justify-content: flex-start;
 
         &.mod-middle-image {
-            border: 2px solid $ui-purple;
+            border: 2px solid $ui-magenta;
         }
 
         img {
