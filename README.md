@@ -13,9 +13,46 @@ In particular, this codebase includes code for:
 * the "project page", which shows a playable version of the project, along with the project's title, description, comments, remixes and studios; this page operates in the background when you "See inside" a project
 * the site's home page
 * the Ideas page
-* landing pages for various Scratch extensions, such as LEGO Mindstorms and Micro:bit
+* landing pages for various Scratch extensions, such as LEGO MINDSTORMS and micro:bit
 * the info page for Scratch Desktop
 * and other pages such as Credits and FAQ.
+
+### How this fits in with other Scratch repos
+
+The scratch-www project has lots of aspects of its design that are particular to our backend systems.
+To use it for your own project, you would have to look at all the places it makes backend calls, and
+create your own backend systems to perform those functions.
+
+The [scratch-gui](https://github.com/LLK/scratch-gui) project, on the other hand, is designed to be
+able to be used by anyone, without needing to create backend systems, though it also can support
+backend systems for project and asset saving.
+
+### Contributing
+
+We welcome your contributions to this codebase! You may want to start by browsing [the current
+list of open issues labeled "help wanted"](https://github.com/LLK/scratch-www/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
+
+Contributing to scratch-www can be more difficult than contributing to
+[scratch-gui](https://github.com/LLK/scratch-gui). This is because scratch-gui can be run on its
+own, without needing any other services to be running, while scratch-www needs to communicate
+with several backend systems that the Scratch team runs (see "How this fits in with other Scratch
+repos" above). If you are new to contributing to Scratch's source code, we suggest you start
+by becoming familiar with scratch-gui and its [list of open issues labeled "help
+wanted"](https://github.com/LLK/scratch-gui/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22).
+
+To contribute, please follow the [standard steps for contributing to a project on
+GitHub](https://github.com/firstcontributions/first-contributions).
+
+### Using scratch-www for your own project
+
+If you're thinking of using scratch-www for your own project, you might want to think about what parts
+of the codebase you really need for your project. Is it the layout of the project page? Is it
+the way the project page manages the information it passes to the scratch-gui instance? You may wish
+to use just those parts, and work out the rest your own way.
+
+### License
+
+See the [LICENSE](https://github.com/LLK/scratch-www/blob/master/LICENSE) file in this repo.
 
 ## Understanding this codebase
 
@@ -34,18 +71,20 @@ Significant core technologies this codebase uses include:
 
 #### Development technologies
 
-* Node
-* Webpack
+* [Node](https://nodejs.org/)
+* [Webpack](https://webpack.js.org/)
 * [React](https://facebook.github.io/react/)
-* Redux
-* [SCSS](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
+* [Redux](https://redux.js.org/)
+* [Sass](http://sass-lang.com/documentation/file.SASS_REFERENCE.html)
 
 #### Testing technologies
 
-* Jest
-* Enzyme
-* Tap
-* Selenium
+Our tests use:
+
+* [Jest](https://jestjs.io/) (we are writing most new tests in Jest)
+* [Tap](https://node-tap.org/) (we are moving away from using Tap, but many tests still use it)
+* [Enzyme](https://airbnb.io/enzyme/)
+* [Selenium](https://selenium.dev/)
 
 ## Developing scratch-www
 
@@ -269,7 +308,7 @@ Setting `FALLBACK=https://scratch.mit.edu` allows the web client to retrieve dat
 * Login on the splash page (*In the process of being fixed*)
 * Some update attempts to production data made through a development version of the web client
 
-Additionally, if you set `FALLBACK=https://scratch.mit.edu`, be aware that clicking on links to parts of the website not yet migrated over (currently such as `Explore`, `Discuss`, `Profile`, etc.) will take you to the Scratch website itself.
+Additionally, if you set `FALLBACK=https://scratch.mit.edu`, be aware that clicking on links to parts of the website not yet migrated over (currently such as `Discuss`, `Profile`, `My Stuff`, etc.) will take you to the Scratch website itself.
 
 ### Windows
 
