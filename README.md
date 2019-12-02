@@ -43,13 +43,6 @@ wanted"](https://github.com/LLK/scratch-gui/issues?q=is%3Aopen+is%3Aissue+label%
 To contribute, please follow the [standard steps for contributing to a project on
 GitHub](https://github.com/firstcontributions/first-contributions).
 
-### Using scratch-www for your own project
-
-If you're thinking of using scratch-www for your own project, you might want to think about what parts
-of the codebase you really need for your project. Is it the layout of the project page? Is it
-the way the project page manages the information it passes to the scratch-gui instance? You may wish
-to use just those parts, and work out the rest your own way.
-
 ### License
 
 See the [LICENSE](https://github.com/LLK/scratch-www/blob/master/LICENSE) file in this repo.
