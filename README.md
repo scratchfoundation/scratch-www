@@ -91,7 +91,7 @@ Our tests use:
 ### Before Getting Started
 
 Make sure you have installed:
-* [node](https://docs.npmjs.com/getting-started/installing-node): v4.2 or higher
+* [node](https://docs.npmjs.com/getting-started/installing-node): version 8 or higher
 * npm (Node Package Manager): used to maintain and update packages required to build the site
 
 ### Update Packages
@@ -292,6 +292,17 @@ npm run build && npm run deploy
 | `AWS_SECRET_ACCESS_KEY`  | `''`    | AWS secret access key for S3                     |
 | `S3_BUCKET_NAME`         | `''`    | S3 bucket name to deploy into                    |
 
+## Windows
+
+For development on Windows, you will probably need to use a program that provides you a Unix interface.
+
+There are several options for doing this:
+
+* Use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to run Linux inside Windows
+* Use [Cygwin](https://www.cygwin.com/)
+* Use Wubi, a Windows Installer for Ubuntu that allows you to have Ubuntu and Windows on one disk, without the need of an extra partition. There is a [version for Windows XP, Vista, or 7](https://wiki.ubuntu.com/WubiGuide) and a [version for Windows 8 or higher](https://github.com/hakuna-m/wubiuefi).
+
+In addition, you will need to install Node; [here are instructions for installing Node on WSL](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-wsl2#install-nvm-nodejs-and-npm).
 
 ## Current issues with developing scratch-www
 
@@ -299,7 +310,7 @@ We're currently in the process of transitioning into this web client from Scratc
 
 ### FALLBACK
 
-On top of migrating to using this as our web client, Scratch is also transitioning into using a new API backend, Scratch REST API. As that is also currently in development and incomplete, we are set up to fall back to using existing Scratch endpoints if an API endpoint does not exist – which is where the `FALLBACK` comes in.
+On top of migrating to using this as our web client, Scratch is also transitioning into using a new API backend, Scratch REST API (closed-source). As that is also currently in development and incomplete, we are set up to fall back to using existing Scratch endpoints if an API endpoint does not exist – which is where the `FALLBACK` comes in.
 
 Most of the issues we have currently revolve around the use of `FALLBACK`. This variable is used to specify what URL to fall back onto should a request fail within the context of this web client, or when using the `API_HOST`. If not specified in the process, it will not be used, and any request that is not made through the web client or the API will be unreachable.
 
@@ -309,9 +320,3 @@ Setting `FALLBACK=https://scratch.mit.edu` allows the web client to retrieve dat
 * Some update attempts to production data made through a development version of the web client
 
 Additionally, if you set `FALLBACK=https://scratch.mit.edu`, be aware that clicking on links to parts of the website not yet migrated over (currently such as `Discuss`, `Profile`, `My Stuff`, etc.) will take you to the Scratch website itself.
-
-### Windows
-
-Some users have experienced difficulties when trying to get our web client to work on Windows.
-
-One solution could be to use [Cygwin](https://www.cygwin.com/). If that doesn't work, you might want to use [Wubi](https://wiki.ubuntu.com/WubiGuide) (Windows XP, Vista, 7) or [Wubiuefi](https://github.com/hakuna-m/wubiuefi) (Windows 8 or higher). Wubi(uefi) is a Windows Installer for Ubuntu that allows you to have Ubuntu and Windows on one disk, without the need of an extra partition.
