@@ -46,7 +46,10 @@ const Credits = () => (
                     ))}
                 </ul>
             </div>
-            <div className="supporters">
+            <div
+                className="supporters"
+                id="donors"
+            >
                 <div className="mid-header">
                     <h2>
                         <FormattedMessage id="credits.currentSponsors" />
