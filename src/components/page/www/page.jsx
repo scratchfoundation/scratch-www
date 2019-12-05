@@ -4,11 +4,13 @@ const React = require('react');
 
 const Navigation = require('../../navigation/www/navigation.jsx');
 const Footer = require('../../footer/www/footer.jsx');
+const DonorRecognition = require('./donor-recognition.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
 
 const Page = ({
     children,
-    className
+    className,
+    showDonorRecognition
 }) => (
     <ErrorBoundary componentName="Page">
         <div className={classNames('page', className)}>
@@ -26,13 +28,19 @@ const Page = ({
             <div id="footer">
                 <Footer />
             </div>
+            {showDonorRecognition &&
+                <div id="donor">
+                    <DonorRecognition />
+                </div>
+            }
         </div>
     </ErrorBoundary>
 );
 
 Page.propTypes = {
     children: PropTypes.node,
-    className: PropTypes.string
+    className: PropTypes.string,
+    showDonorRecognition: PropTypes.bool
 };
 
 module.exports = Page;

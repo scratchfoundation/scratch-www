@@ -32,12 +32,20 @@ const Credits = () => (
                             key={`person-${index}`}
                         >
                             <div>
-                                <a href={`https://scratch.mit.edu/users/${person.userName}/`}>
+                                {person.userName ? (
+                                    <a href={`https://scratch.mit.edu/users/${person.userName}/`}>
+                                        <Avatar
+                                            alt=""
+                                            src={`https://cdn.scratch.mit.edu/get_image/user/${person.userId || 'default'}_80x80.png`}
+                                        />
+                                    </a>
+                                ) : (
+                                    /* if userName is not given, there's no chance userId is given */
                                     <Avatar
                                         alt=""
-                                        src={`https://cdn.scratch.mit.edu/get_image/user/${person.userId || 'default'}_80x80.png`}
+                                        src={`https://cdn.scratch.mit.edu/get_image/user/default_80x80.png`}
                                     />
-                                </a>
+                                )}
                             </div>
                             <span className="avatar-text">
                                 {person.name}
@@ -46,7 +54,10 @@ const Credits = () => (
                     ))}
                 </ul>
             </div>
-            <div className="supporters">
+            <div
+                className="supporters"
+                id="donors"
+            >
                 <div className="mid-header">
                     <h2>
                         <FormattedMessage id="credits.currentSponsors" />
@@ -145,7 +156,8 @@ const Credits = () => (
                     Christina Huang, Tony Hwang, Abdulrahman Idlbi, Randy Jou, Lily Kim,
                     Tauntaun Kim, Saskia Leggett, Tim Mickel, Amon Millner, Ricarose Roque,
                     Andrea Saxman, Jay Silver, Tammy Stern, Lis Sylvan, Hanako Tjia, Claudia
-                    Urrea, Oren Zuckerman.
+                    Urrea, Oren Zuckerman, Tina Quach, My Nguyen, Lisa O&apos;Brien, Joel Gritter,
+                    Linda Fernsel, Ellen Daoust, Julia Zimmerman.
                 </p>
                 <p>
                     <FormattedMessage id="credits.partnersBody" />

@@ -101,9 +101,9 @@ tap.test('clickCreditsLink', options, t => {
 // JOBS
 tap.test('clickJobsLink', options, t => {
     const linkText = 'Jobs';
-    const expectedHref = '/jobs';
+    const expectedUrl = 'https://www.scratchfoundation.org/opportunities/';
     clickFooterLinks(linkText).then(url => {
-        t.equal(url.substr(-expectedHref.length), expectedHref);
+        t.equal(url, expectedUrl);
         t.end();
     });
 });

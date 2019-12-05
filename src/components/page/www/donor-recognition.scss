@@ -1,0 +1,38 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+#donor {
+   color: $type-gray;
+   font-size: .875rem;
+   line-height: 1.5em;
+   background-color: $ui-gray;
+   padding-bottom: 2.5rem;
+   padding-top: 1rem;
+   #donor-text {
+       text-align: center;
+       width: $cols12;
+       margin: 0 auto;
+   }
+}
+
+@media only screen and (min-width: $tabletPortrait) and (max-width: $desktop) {
+    #donor {
+        #donor-text {
+            width: $cols11;
+        }
+    }
+}
+@media only screen and (min-width: $mobile) and (max-width: $tabletPortrait) {
+    #donor {
+        #donor-text {
+            width: $cols6;
+        }
+    }
+}
+@media only screen and (max-width: $mobile) {
+    #donor {
+        #donor-text {
+            width: $cols4;
+        }
+    }
+}
