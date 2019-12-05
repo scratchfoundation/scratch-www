@@ -124,7 +124,7 @@
     "footer.scratchFamily": "Scratch Family",
     "footer.donorRecognition": "Scratch is available for free, thanks to generous support from our {donorLink}. We are grateful to our Founding Partners:",
     "footer.donors": "donors",
-    "footer.donorList": "{donor1}, {donor2}, and {donor3}",
+    "footer.donorList": "{donor1}, {donor2}, and {donor3}.",
 
     "form.validationRequired": "This field is required",
 
