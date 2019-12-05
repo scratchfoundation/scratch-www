@@ -24,7 +24,7 @@ const DonorRecognition = () => (
             <FormattedMessage
                 id="footer.donorList"
                 values={{
-                    donor1: 'Massachusetts Institue of Technology',
+                    donor1: 'Massachusetts Institute of Technology',
                     donor2: 'National Science Foundation',
                     donor3: 'Siegel Family Endowment'
                 }}
