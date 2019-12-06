@@ -149,15 +149,17 @@ const Credits = () => (
                 <p>
                     <FormattedMessage id="credits.otherContributors" />
                     {' '}
-                    Ben Berg, Amos Blanton, Karen Brennan, Juanita Buitrago, Leo Burd,
-                    Gaia Carini, Kasia Chmielinski, Michelle Chung, Shane Clements,
-                    Hannah Cole, Sayamindu Dasgupta, Margarita Dekoli,
-                    Dave Feinberg, Chris Graves, Megan Haddadi, Connor Hudson,
-                    Christina Huang, Tony Hwang, Abdulrahman Idlbi, Randy Jou, Lily Kim,
-                    Tauntaun Kim, Saskia Leggett, Tim Mickel, Amon Millner, Ricarose Roque,
-                    Andrea Saxman, Jay Silver, Tammy Stern, Lis Sylvan, Hanako Tjia, Claudia
-                    Urrea, Oren Zuckerman, Tina Quach, My Nguyen, Lisa O&apos;Brien, Joel Gritter,
-                    Linda Fernsel, Ellen Daoust, Julia Zimmerman.
+                    Ben Berg, Amos Blanton, Karen Brennan, Juanita Buitrago,
+                    Leo Burd, Gaia Carini, Kasia Chmielinski, Michelle Chung,
+                    Shane Clements, Hannah Cole, Ellen Daoust, Sayamindu Dasgupta,
+                    Margarita Dekoli, Dave Feinberg, Linda Fernsel,
+                    Chris Graves, Joel Gritter, Megan Haddadi, Connor Hudson,
+                    Christina Huang, Tony Hwang, Abdulrahman Idlbi, Randy Jou,
+                    Lily Kim, Tauntaun Kim, Saskia Leggett, Tim Mickel,
+                    Amon Millner, My Nguyen, Lisa O&apos;Brien, Tina Quach,
+                    Ricarose Roque, Andrea Saxman, Jay Silver, Tammy Stern,
+                    Lis Sylvan, Hanako Tjia, Claudia Urrea, Julia Zimmerman,
+                    Oren Zuckerman.
                 </p>
                 <p>
                     <FormattedMessage id="credits.partnersBody" />
