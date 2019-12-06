@@ -20,6 +20,11 @@
         "name": "Zo\u00eb Bentley"
     },
     {
+        "userName": "binnieb",
+        "userId": 53715539,
+        "name": "Robyn Bosic"
+    },
+    {
         "userName": "designerd",
         "userId": 3581881,
         "name": "Carl Bowman"
@@ -40,9 +45,19 @@
         "name": "Karishma Chadha"
     },
     {
+        "userName": "Za-Chary",
+        "userId": 974363,
+        "name": "Zachary Deiman"
+    },
+    {
         "userName": "shruti",
         "userId": 3714374,
         "name": "Shruti Dhariwal"
+    },
+    {
+        "userName": "pixelmoth",
+        "userId": 2408962,
+        "name": "Jacy Edelman"
     },
     {
         "userName": "Champ99",
@@ -60,9 +75,19 @@
         "name": "Elizabeth Foster"
     },
     {
+        "userName": "Mos20",
+        "userId": 52545208,
+        "name": "Joan Fusco"
+    },
+    {
         "userName": "lilyland",
         "userId": 17184580,
         "name": "Lily Gabaree"
+    },
+    {
+        "userName": "bluecrazie",
+        "userId": 50257624,
+        "name": "JT Galla"
     },
     {
         "userName": "chrisg",
@@ -93,6 +118,11 @@
         "userName": "sgcc_",
         "userId": 21986973,
         "name": "Paul Kaplan"
+    },
+    {
+        "userName": "amylaser",
+        "userId": 17462181,
+        "name": "Amy Lee"
     },
     {
         "userName": "dsquare",
@@ -175,6 +205,11 @@
         "name": "Jaleesa Trapp"
     },
     {
+        "userName": "algorithmar",
+        "userId": 43013126,
+        "name": "Maren Vernon"
+    },
+    {
         "userName": "cheddargirl",
         "userId": 159139,
         "name": "Franchette Viloria"
@@ -198,40 +233,5 @@
         "userName": "pondermake",
         "userId": 26779669,
         "name": "Kathy Wu"
-    },
-    {
-        "userName": "amylaser",
-        "userId": 17462181,
-        "name": "Amy Lee"
-    },
-    {
-        "userName": "algorithmar",
-        "userId": 43013126,
-        "name": "Maren Vernon"
-    },
-    {
-        "userName": "bluecrazie",
-        "userId": 50257624,
-        "name": "JT Galla"
-    },
-    {
-        "userName": "Za-Chary",
-        "userId": 974363,
-        "name": "Zachary Deiman"
-    },
-    {
-        "userName": "Mos20",
-        "userId": 52545208,
-        "name": "Joan Fusco"
-    },
-    {
-        "userName": "pixelmoth",
-        "userId": 2408962,
-        "name": "Jacy Edelman"
-    },
-    {
-        "userName": "binnieb",
-        "userId": 53715539,
-        "name": "Robyn Bosic"
     }
 ]
