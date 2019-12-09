@@ -181,130 +181,70 @@ class Download extends React.Component {
                         <h2 className="title">
                             <FormattedMessage id="download.troubleshootingTitle" />
                         </h2>
-
-                        {CHROME_APP_RELEASED && (
-                            <React.Fragment>
-                                <h3 className="faq-question">
-                                    <FormattedMessage id="download.doIHaveToDownload" />
-                                </h3>
-                                <p>
-                                    <FormattedMessage id="download.doIHaveToDownloadAnswer" />
-                                </p>
-                            </React.Fragment>
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.doIHaveToDownload" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.doIHaveToDownloadAnswer" />
+                        </p>
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.howConnectHardwareDevices" />
+                        </h3>
+                        {isDownloaded(this.state.OS) && (
+                            <p>
+                                <FormattedMessage
+                                    id="download.howConnectHardwareDevicesAnswerLink"
+                                    values={{operatingsystem: this.state.OS}}
+                                />
+                            </p>
                         )}
-                        {!CHROME_APP_RELEASED && (
-                            <React.Fragment>
-                                <h3 className="faq-question">
-                                    <FormattedMessage id="download.canIUseScratchLink" />
-                                </h3>
-                                <p>
-                                    <FormattedMessage id="download.canIUseScratchLinkAnswer" />
-                                </p>
-                            </React.Fragment>
-                        )}
-                        {CHROME_APP_RELEASED && (
-                            <React.Fragment>
-                                <h3 className="faq-question">
-                                    <FormattedMessage id="download.howConnectHardwareDevices" />
-                                </h3>
-                                {isDownloaded(this.state.OS) && (
-                                    <p>
-                                        <FormattedMessage
-                                            id="download.howConnectHardwareDevicesAnswerLink"
-                                            values={{operatingsystem: this.state.OS}}
-                                        />
-                                    </p>
-                                )}
-                                {isFromGooglePlay(this.state.OS) && (
-                                    <p>
-                                        <FormattedMessage
-                                            id="download.howConnectHardwareDevicesAnswerApp"
-                                            values={{operatingsystem: this.state.OS}}
-                                        />
-                                    </p>
-                                )}
-                            </React.Fragment>
-                        )}
-                        {isDownloaded(this.state.OS) && (CHROME_APP_RELEASED ? (
-                            <React.Fragment>
-                                <h3 className="faq-question">
-                                    <FormattedMessage
-                                        id="download.canIShareApp"
-                                        values={{operatingsystem: this.state.OS}}
-                                    />
-                                </h3>
-                                <p>
-                                    <FormattedMessage
-                                        id="download.canIShareAnswerDownloaded"
-                                        values={{operatingsystem: this.state.OS}}
-                                    />
-                                </p>
-                            </React.Fragment>
-                        ) : (
-                            <React.Fragment>
-                                <h3 className="faq-question">
-                                    <FormattedMessage id="download.canIShare" />
-                                </h3>
-                                <p>
-                                    <FormattedMessage id="download.canIShareAnswer" />
-                                </p>
-                            </React.Fragment>
-                        ))}
                         {isFromGooglePlay(this.state.OS) && (
-                            <React.Fragment>
-                                <h3 className="faq-question">
-                                    <FormattedMessage
-                                        id="download.canIShareApp"
-                                        values={{operatingsystem: this.state.OS}}
-                                    />
-                                </h3>
-                                <p>
-                                    <FormattedMessage id="download.canIShareAnswerPlayStore" />
-                                </p>
-                            </React.Fragment>
+                            <p>
+                                <FormattedMessage
+                                    id="download.howConnectHardwareDevicesAnswerApp"
+                                    values={{operatingsystem: this.state.OS}}
+                                />
+                            </p>
                         )}
                         <h3 className="faq-question">
-                            {CHROME_APP_RELEASED ?
-                                <FormattedMessage id="download.appAndBrowser" /> :
-                                <FormattedMessage id="download.desktopAndBrowser" />
-                            }
+                            <FormattedMessage
+                                id="download.canIShareApp"
+                                values={{operatingsystem: this.state.OS}}
+                            />
+                        </h3>
+                        {isDownloaded(this.state.OS) && (
+                            <p>
+                                <FormattedMessage
+                                    id="download.canIShareAnswerDownloaded"
+                                    values={{operatingsystem: this.state.OS}}
+                                />
+                            </p>
+                        )}
+                        {isFromGooglePlay(this.state.OS) && (
+                            <p>
+                                <FormattedMessage id="download.canIShareAnswerPlayStore" />
+                            </p>
+                        )}
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.appAndBrowser" />
                         </h3>
                         <p>
                             <FormattedMessage id="download.yesAnswer" />
                         </p>
-                        {CHROME_APP_RELEASED && (
-                            <React.Fragment>
-                                <h3 className="faq-question">
-                                    <FormattedMessage id="download.onPhone" />
-                                </h3>
-                                <p>
-                                    <FormattedMessage id="download.onPhoneAnswer" />
-                                </p>
-                            </React.Fragment>
-                        )}
-                        {!CHROME_APP_RELEASED && (
-                            <React.Fragment>
-                                <h3 className="faq-question">
-                                    <FormattedMessage id="download.supportChromeOS" />
-                                </h3>
-                                <p>
-                                    <FormattedMessage id="download.supportChromeOSAnswer" />
-                                </p>
-                            </React.Fragment>
-                        )}
                         <h3 className="faq-question">
-                            {CHROME_APP_RELEASED ?
-                                <FormattedMessage id="download.whenSupportLinuxApp" /> :
-                                <FormattedMessage id="download.whenSupportLinux" />
-                            }
+                            <FormattedMessage id="download.onPhone" />
                         </h3>
                         <p>
-                            {CHROME_APP_RELEASED ?
-                                <FormattedMessage id="download.whenSupportLinuxAppAnswer" /> :
-                                <FormattedMessage id="download.supportLinuxAnswer" />
-                            }
+                            <FormattedMessage id="download.onPhoneAnswer" />
                         </p>
-                        {CHROME_APP_RELEASED && isFromGooglePlay(this.state.OS) && (
+
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.whenSupportLinuxApp" />
+                        </h3>
+                        <p>
+                            <FormattedMessage id="download.whenSupportLinuxAppAnswer" />
+                        </p>
+                        {isFromGooglePlay(this.state.OS) && (
                             <React.Fragment>
                                 <h3 className="faq-question">
                                     <FormattedMessage id="download.whyNoDevicesVisible" />
@@ -328,7 +268,7 @@ class Download extends React.Component {
                                 </p>
                             </React.Fragment>
                         )}
-                        {CHROME_APP_RELEASED && isFromGooglePlay(this.state.OS) && (
+                        {isFromGooglePlay(this.state.OS) && (
                             <React.Fragment>
                                 <h3 className="faq-question">
                                     <FormattedMessage
@@ -338,6 +278,19 @@ class Download extends React.Component {
                                 </h3>
                                 <p>
                                     <FormattedMessage id="download.whyAskForLocationAnswer" />
+                                </p>
+                            </React.Fragment>
+                        )}
+                        {isFromGooglePlay(this.state.OS) && (
+                            <React.Fragment>
+                                <h3 className="faq-question">
+                                    <FormattedMessage
+                                        id="download.whereProjectStored"
+                                        values={{operatingsystem: this.state.OS}}
+                                    />
+                                </h3>
+                                <p>
+                                    <FormattedMessage id="download.whereProjectStoredAnswer" />
                                 </p>
                             </React.Fragment>
                         )}
