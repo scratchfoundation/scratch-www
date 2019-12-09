@@ -1,0 +1,164 @@
+@import "../../../../colors";
+@import "../../../../frameless";
+
+.title-banner.mod-conference.mod-2020 {
+    padding-top: 0;
+}
+
+.title-banner-image.mod-2020 {
+    opacity: .75;
+    margin-bottom: 1.75rem;
+    background-image: url("/images/conference/index/2019/title-banner.jpg");
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 20rem;
+}
+
+.title-banner-h1.mod-2020 {
+    line-height: 1.25em;
+}
+
+.conf2020-panel,
+.title-banner-h3.mod-2020 {
+    margin: auto;
+    width: 48.75rem;
+}
+
+.title-banner-h3.mod-2020 {
+    text-align: center;
+    color: $type-white;
+}
+
+.conf2020-panel {
+    border-bottom: 1px solid $ui-border;
+}
+
+.conf2020-panel.mod-last {
+    border-bottom: 0;
+}
+
+.flex-row.conf2020-panel-title {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.conf2020-panel-desc {
+    margin: 2rem 0;
+}
+
+td {
+    padding: .75rem 1.25rem;
+    vertical-align: top;
+}
+
+.conf2020-panel-row-icon-image {
+    margin-top: .125rem;
+    width: 1rem;
+    height: 1rem;
+}
+
+.button.mod-2020-panel {
+    display: block;
+    margin: 2rem auto 0;
+    background-color: $ui-orange;
+    padding: 1rem 0;
+    width: 13.75rem;
+    text-align: center;
+    color: $type-white;
+}
+.conf2020-organizedby {
+    font-size: .8rem;
+}
+
+@media only screen and (max-width: $mobile - 1) {
+    .index.mod-2020 {
+        text-align: left;
+    }
+
+    .title-banner-image.mod-2020 {
+        height: 10rem;
+    }
+
+    .conf2020-panel,
+    .title-banner-h3.mod-2020 {
+        width: initial;
+    }
+
+    .conf2020-panel {
+        margin: auto .5rem;
+    }
+
+    .title-banner-h3.mod-2020 {
+        margin: 1rem .5rem .5rem;
+        font-size: 1.1rem;
+    }
+
+    .flex-row.conf2020-panel-title {
+        flex-direction: row;
+    }
+
+    .conf2020-panel-title-text {
+        max-width: 14rem;
+    }
+
+    .conf2020-panel-row > td {
+        padding: .75rem .375rem .75rem 0;
+    }
+}
+
+@media only screen and (min-width: $mobile) and (max-width: $tabletPortrait - 1) {
+    .index.mod-2020 {
+        text-align: left;
+    }
+
+    .title-banner-image.mod-2020 {
+        height: 10rem;
+    }
+
+    .conf2020-panel,
+    .title-banner-h3.mod-2020 {
+        margin: auto .5rem ;
+        width: initial;
+    }
+
+    .title-banner-h3.mod-2020 {
+        font-size: 1.1rem;
+    }
+
+    .flex-row.conf2020-panel-title {
+        flex-direction: row;
+    }
+
+    .conf2020-panel-title-text {
+        max-width: 18.75rem;
+    }
+
+    .button.mod-2020-panel {
+        width: 5.75rem;
+    }
+}
+
+@media only screen and (min-width: $tabletPortrait) and (max-width: $desktop - 1) {
+    .index.mod-2020 {
+        text-align: left;
+    }
+
+    .title-banner-image.mod-2020 {
+        height: 15rem;
+    }
+
+    .conf2020-panel,
+    .title-banner-h3.mod-2020 {
+        margin: auto;
+        width: 38.75rem;
+    }
+
+    .title-banner-h3.mod-2020 {
+        font-size: 1.1rem;
+    }
+
+    .button.mod-2020-panel {
+        width: 8.75rem;
+    }
+}
