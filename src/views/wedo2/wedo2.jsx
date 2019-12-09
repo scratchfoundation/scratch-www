@@ -251,6 +251,10 @@ class Wedo2 extends ExtensionLanding {
                             }}
                         />
                     </p>
+                    <h3 className="faq-title"><FormattedMessage id="bluetooth.enableLocationServicesTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="bluetooth.enableLocationServicesText" />
+                    </p>
                 </ExtensionSection>
             </div>
         );
