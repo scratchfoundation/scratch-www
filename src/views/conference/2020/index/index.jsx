@@ -40,7 +40,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Calendar Icon"
                                     className="conf2020-panel-row-icon-image"
-                                    src="/svgs/conference/index/calendar-icon.svg"
+                                    src="/svgs/conference/index/calendar-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2020.date" /></td>
@@ -66,7 +66,7 @@ const ConferenceSplash = () => (
                                 <img
                                     alt="Map Icon"
                                     className="conf2020-panel-row-icon-image"
-                                    src="/svgs/conference/index/map-icon.svg"
+                                    src="/svgs/conference/index/map-icon-solid.svg"
                                 />
                             </td>
                             <td><FormattedMessage id="conference-2020.location" /></td>
