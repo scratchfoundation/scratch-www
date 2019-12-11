@@ -144,10 +144,10 @@ const ConferenceFooter = props => (
                 </div>
             </div>
         </FlexRow>
+        <LanguageChooser locale={props.intl.locale} />
         <div className="conf2020-organized">
             <FormattedMessage id="conference-2020.organizedBy" />
         </div>
-        <LanguageChooser locale={props.intl.locale} />
     </FooterBox>
 );
 

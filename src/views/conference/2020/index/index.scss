@@ -20,9 +20,13 @@
 }
 
 .conf2020-panel,
-.title-banner-h3.mod-2020 {
-    margin: auto;
+.title-banner-h3.mod-2020  {
     width: 48.75rem;
+    margin: auto;
+}
+
+.title-banner-h3.mod-2020 {
+    margin: 2rem auto 0;
 }
 
 .title-banner-h3.mod-2020 {
@@ -47,6 +51,10 @@
     margin: 2rem 0;
 }
 
+section  {
+    padding-top: 3rem;
+}
+
 td {
     padding: .75rem 1.25rem;
     vertical-align: middle;
@@ -56,7 +64,9 @@ td {
     width: 1.5rem;
     height: 1.5rem;
 }
-
+.mod-registration .conf2020-panel-desc {
+    margin-bottom: 0;
+}
 .button.mod-2020-panel {
     display: block;
     margin: 2rem auto 0;
@@ -66,8 +76,12 @@ td {
     text-align: center;
     color: $type-white;
 }
-.conf2020-organizedby {
-    font-size: .8rem;
+.conf2020-organized {
+    font-size: .875rem;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1rem 0 2.5rem;
+    line-height: 1.5em;
 }
 
 @media only screen and (max-width: $mobile - 1) {
