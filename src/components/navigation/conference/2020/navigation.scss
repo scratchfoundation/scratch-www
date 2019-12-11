@@ -1,0 +1,78 @@
+@import "../../../../colors";
+@import "../../../../frameless";
+
+#navigation {
+    .ul.mod-2020,
+    .li-left-ul.mod-2020 {
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row nowrap;
+        align-items: center;
+        list-style-type: none;
+    }
+
+    .li-left-ul.mod-2020 {
+        padding-left: 0;
+    }
+
+    .li-left,
+    .link {
+        margin-top: 0;
+        margin-right: 10px;
+        color: $type-white;
+    }
+
+    .logo-a {
+        display: flex;
+        height: 100%;
+        align-items: center;
+    }
+
+    .logo-a-image {
+        margin-right: 10px;
+        border-right: 2px solid $active-gray;
+        padding-right: 10px;
+        width: 80px;
+    }
+
+    .logo-a-title {
+        text-decoration: none;
+        white-space: nowrap;
+        color: $type-white;
+        font-size: .85rem;
+        font-weight: bold;
+    }
+
+    @media #{$small} {
+        .link {
+            margin: 0;
+            padding: 0;
+        }
+
+        .link-a {
+            font-size: .75rem;
+        }
+    }
+
+    @media #{$medium-and-smaller} {
+        height: 100px;
+
+        .ul.mod-2020 {
+            justify-content: center;
+            flex-flow: row wrap;
+        }
+
+        .li-left,
+        .link {
+            align-self: center;
+        }
+
+        .logo-a {
+            padding-top: 6px;
+        }
+
+        .logo-a-image {
+            padding-left: 15px;
+        }
+    }
+}
