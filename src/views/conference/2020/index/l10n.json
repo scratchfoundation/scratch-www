@@ -1,0 +1,34 @@
+{
+    "conference-2020.title": "Scratch Conference 2020:",
+    "conference-2020.subtitle": "Let's Create Together!",
+    "conference-2020.dateDesc": "July 22-25, 2020 | Cambridge, MA, USA",
+    "conference-2020.dateDescMore": " (with opening reception the evening of July 22)",
+    "conference-2020.locationDetails": "MIT Media Lab, Cambridge, MA",
+    "conference-2020.seeBelow": "Learn more about conference dates and locations below.",
+
+    "conference-2020.date": "When:",
+    "conference-2020.location": "Where:",
+
+    "conference-2020.desc1": "Join us for the Scratch Conference 2020, a playful gathering of educators, researchers, developers, and other members of the worldwide Scratch community. The conference comes at a time of great opportunity but also great challenge for education and learning—so we're excited to come together to share ideas about how to support creative learning experiences for young people around the world.",
+    "conference-2020.desc2": "We're planning a very participatory conference, with an entire day of hands-on workshops and lots of opportunities for peer-to-peer discussion and collaboration.",
+
+    "conference-2020.sessionDesc": "Interested in offering a session? We invite four types of proposals:",
+    "conference-2020.sessionItem1Title": "Poster/demonstration (90 minutes).",
+    "conference-2020.sessionItem1Desc": "Share your project in an exhibition setting, alongside other presenters. For example, show new ways you’ve been using Scratch in your classroom, or new ways to connect Scratch with the physical world. You will be provided with space for a poster and a table for a computer or handouts.",
+    "conference-2020.sessionItem2Title": "Hands-on workshop (60 or 90 minutes).",
+    "conference-2020.sessionItem2Desc": "Engage participants in hands-on activities, highlighting new ways of creating and collaborating with Scratch.",
+    "conference-2020.sessionItem3Title": "Interactive panel (60 minutes).",
+    "conference-2020.sessionItem3Desc": "Discuss a Scratch-related topic in a panel with three or more people. Your proposal should describe how you will engage the audience during the session.",
+    "conference-2020.sessionItem4Title": "Ignite talk (5 minutes).",
+    "conference-2020.sessionItem4Desc": "Share what you've been doing in a short, lively presentation. For example, tell a story of how young people have been creating with Scratch in your community.",
+
+    "conference-2020.proposal": "Submit Your Proposal",
+    "conference-2020.proposalDeadline": "The due date for proposals is February 3, 2020.",
+
+    "conference-2020.registrationTitle": "Registration:",
+    "conference-2020.registrationFee": "Registration Fee: $250",
+    "conference-2020.registrationOpen": "Registration will open on March 3.",
+
+    "conference-2020.questions": "Questions? Contact the Scratch Conference Team at {emailLink}",
+    "conference-2020.organizedBy": "The Scratch Conference is organized by the Lifelong Kindergarten group at the MIT Media Lab in collaboration with the Scratch Foundation."
+}
