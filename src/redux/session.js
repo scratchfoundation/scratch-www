@@ -62,87 +62,59 @@ module.exports.setStatus = status => ({
     status: status
 });
 
+const handleSessionResponse = (dispatch, body) => {
+    if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
+    if (
+        body.user &&
+        body.user.banned &&
+        banWhitelistPaths.indexOf(window.location.pathname) === -1
+    ) {
+        window.location = '/accounts/banned-response/';
+        return;
+    } else if (
+        body.flags &&
+        body.flags.must_complete_registration &&
+        window.location.pathname !== '/classes/complete_registration'
+    ) {
+        window.location = '/classes/complete_registration';
+        return;
+    } else if (
+        body.flags &&
+        body.flags.must_reset_password &&
+        !body.flags.must_complete_registration &&
+        window.location.pathname !== '/classes/student_password_reset/'
+    ) {
+        window.location = '/classes/student_password_reset/';
+        return;
+    }
+    dispatch(module.exports.setSession(body));
+    dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
+
+    // get the permissions from the updated session
+    dispatch(permissionsActions.storePermissions(body.permissions));
+    if (typeof body.user !== 'undefined') {
+        dispatch(messageCountActions.getCount(body.user.username));
+    }
+    return;
+};
+
 module.exports.refreshSession = () => (dispatch => {
     dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
-    api({
-        host: '',
-        uri: '/session/'
-    }, (err, body) => {
-        if (err) return dispatch(module.exports.setSessionError(err));
-        if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
-        if (
-            body.user &&
-            body.user.banned &&
-            banWhitelistPaths.indexOf(window.location.pathname) === -1
-        ) {
-            window.location = '/accounts/banned-response/';
-            return;
-        } else if (
-            body.flags &&
-            body.flags.must_complete_registration &&
-            window.location.pathname !== '/classes/complete_registration'
-        ) {
-            window.location = '/classes/complete_registration';
-            return;
-        } else if (
-            body.flags &&
-            body.flags.must_reset_password &&
-            !body.flags.must_complete_registration &&
-            window.location.pathname !== '/classes/student_password_reset/'
-        ) {
-            window.location = '/classes/student_password_reset/';
-            return;
-        }
-        dispatch(module.exports.setSession(body));
-        dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
-
-        // get the permissions from the updated session
-        dispatch(permissionsActions.storePermissions(body.permissions));
-        if (typeof body.user !== 'undefined') {
-            dispatch(messageCountActions.getCount(body.user.username));
-        }
-        return;
-    });
+    return new Promise((resolve, reject) => (
+        sessionLib.requestSessionOnce(resolve, reject).then(body => {
+            handleSessionResponse(dispatch, body);
+        }, err => {
+            dispatch(module.exports.setSessionError(err));
+        })
+    ));
 });
 
 module.exports.refreshSessionWithRetry = () => (dispatch => {
     dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
     return new Promise((resolve, reject) => (
-        sessionLib.requestSessionWithRetry(1, resolve, reject)
+        sessionLib.requestSessionWithRetry(4, resolve, reject)
     )).then(body => {
-        if (typeof body === 'undefined') return dispatch(module.exports.setSessionError('No session content'));
-        if (
-            body.user &&
-            body.user.banned &&
-            banWhitelistPaths.indexOf(window.location.pathname) === -1
-        ) {
-            window.location = '/accounts/banned-response/';
-            return;
-        } else if (
-            body.flags &&
-            body.flags.must_complete_registration &&
-            window.location.pathname !== '/classes/complete_registration'
-        ) {
-            window.location = '/classes/complete_registration';
-            return;
-        } else if (
-            body.flags &&
-            body.flags.must_reset_password &&
-            !body.flags.must_complete_registration &&
-            window.location.pathname !== '/classes/student_password_reset/'
-        ) {
-            window.location = '/classes/student_password_reset/';
-            return;
-        }
-        dispatch(module.exports.setSession(body));
-        dispatch(module.exports.setStatus(module.exports.Status.FETCHED));
-
-        // get the permissions from the updated session
-        dispatch(permissionsActions.storePermissions(body.permissions));
-        if (typeof body.user !== 'undefined') {
-            dispatch(messageCountActions.getCount(body.user.username));
-        }
-        return;
+        handleSessionResponse(dispatch, body);
     }, err => {
         dispatch(module.exports.setSessionError(err));
     });
