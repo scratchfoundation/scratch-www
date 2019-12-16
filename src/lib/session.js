@@ -48,7 +48,7 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
         if (err || (response && response.statusCode === 404)) {
             return reject(err);
         }
-        if (typeof body === 'undefined' || !body.user) {
+        if (typeof body === 'undefined' || body === null || !body.user) {
             if (retriesLeft < 1) {
                 return resolve(body);
             }
