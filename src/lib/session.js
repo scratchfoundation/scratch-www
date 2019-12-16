@@ -64,6 +64,6 @@ module.exports.requestSessionWithRetry = (resolve, reject, retriesLeft, totalDel
     });
 };
 
-module.exports.requestSessionOnce = (resolve, reject) => (
+module.exports.requestSession = (resolve, reject) => (
     module.exports.requestSessionWithRetry(resolve, reject, 0, 0)
 );

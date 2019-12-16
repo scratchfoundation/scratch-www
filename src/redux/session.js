@@ -1,7 +1,7 @@
 const keyMirror = require('keymirror');
 const defaults = require('lodash.defaults');
 
-const sessionLib = require('../lib/session');
+const {requestSession, requestSessionWithRetry} = require('../lib/session');
 const messageCountActions = require('./message-count.js');
 const permissionsActions = require('./permissions.js');
 
@@ -100,7 +100,7 @@ const handleSessionResponse = (dispatch, body) => {
 module.exports.refreshSession = () => (dispatch => {
     dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
     return new Promise((resolve, reject) => (
-        sessionLib.requestSessionOnce(resolve, reject).then(body => {
+        requestSession(resolve, reject).then(body => {
             handleSessionResponse(dispatch, body);
         }, err => {
             dispatch(module.exports.setSessionError(err));
@@ -111,7 +111,7 @@ module.exports.refreshSession = () => (dispatch => {
 module.exports.refreshSessionWithRetry = () => (dispatch => {
     dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
     return new Promise((resolve, reject) => (
-        sessionLib.requestSessionWithRetry(4, resolve, reject)
+        requestSessionWithRetry(resolve, reject, 4, 7500)
     )).then(body => {
         handleSessionResponse(dispatch, body);
     }, err => {

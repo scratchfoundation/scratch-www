@@ -43,10 +43,10 @@ describe('session library', () => {
         jest.clearAllMocks();
     });
 
-    test('requestSessionOnce can call api 1 time, when session found', done => {
+    test('requestSession can call api 1 time, when session found', done => {
         whichMockAPIRequest = sessionYesUser;
         new Promise((resolve, reject) => { // eslint-disable-line no-undef
-            sessionLib.requestSessionOnce(resolve, reject);
+            sessionLib.requestSession(resolve, reject);
         }).then(body => {
             expect(sessionYesUser).toHaveBeenCalledTimes(1);
             expect(body).toEqual({user: {username: 'test_username'}});
@@ -54,10 +54,10 @@ describe('session library', () => {
         });
     });
 
-    test('requestSessionOnce can call api 1 time, when session not found', done => {
+    test('requestSession can call api 1 time, when session not found', done => {
         whichMockAPIRequest = sessionNoUser;
         new Promise((resolve, reject) => { // eslint-disable-line no-undef
-            sessionLib.requestSessionOnce(resolve, reject);
+            sessionLib.requestSession(resolve, reject);
         }).then(body => {
             expect(sessionNoUser).toHaveBeenCalledTimes(1);
             expect(body).toEqual({});
