@@ -235,6 +235,10 @@ class Boost extends ExtensionLanding {
                     <p>
                         <FormattedMessage id="boost.otherComputerConnectedText" />
                     </p>
+                    <h3 className="faq-title"><FormattedMessage id="bluetooth.enableLocationServicesTitle" /></h3>
+                    <p>
+                        <FormattedMessage id="bluetooth.enableLocationServicesText" />
+                    </p>
                 </ExtensionSection>
             </div>
         );
