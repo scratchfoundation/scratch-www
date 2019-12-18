@@ -318,5 +318,8 @@
     "social.copyEmbedLinkText": "Copy embed",
     "social.linkLabel": "Link",
     "social.copyLinkLinkText": "Copy link",
-    "social.embedCopiedResultText": "Copied"
+    "social.embedCopiedResultText": "Copied",
+
+    "bluetooth.enableLocationServicesTitle": "Make sure you have location services enabled on Chromebooks or Android tablets",
+    "bluetooth.enableLocationServicesText": "Bluetooth can be used to provide location data to the app. In addition to granting the Scratch App permission to access location, location must be enabled in your general device settings. Search for 'Location' in your settings, and make sure it is on. On Chromebooks search for 'Location' in the Google Play Store Android preferences."
 }
