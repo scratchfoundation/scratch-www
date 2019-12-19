@@ -32,12 +32,6 @@ source_file = src/views/dmca/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
-[scratch-website.jobs-l10njson]
-file_filter = localizations/jobs/<lang>.json
-source_file = src/views/jobs/l10n.json
-source_lang = en
-type = KEYVALUEJSON
-
 [scratch-website.faq-l10njson]
 file_filter = localizations/faq/<lang>.json
 source_file = src/views/faq/l10n.json
@@ -77,6 +71,12 @@ type = KEYVALUEJSON
 [scratch-website.splash-l10njson]
 file_filter = localizations/splash/<lang>.json
 source_file = src/views/splash/l10n.json
+source_lang = en
+type = KEYVALUEJSON
+
+[scratch-website.conference-index-2020-l10njson]
+file_filter = localizations/conference-index-2020/<lang>.json
+source_file = src/views/conference/2020/index/l10n.json
 source_lang = en
 type = KEYVALUEJSON
 
