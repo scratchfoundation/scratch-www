@@ -211,7 +211,7 @@ module.exports.getMessages = (username, token, opts) => {
             }
             if (typeof body === 'undefined') {
                 dispatch(module.exports.setStatus('MESSAGE_STATUS', module.exports.Status.MESSAGES_ERROR));
-                dispatch(module.exports.setMessagesError('No session content'));
+                dispatch(module.exports.setMessagesError('getMessages: response had no content'));
                 return;
             }
             dispatch(module.exports.setStatus('MESSAGE_STATUS', module.exports.Status.FETCHED));
@@ -244,7 +244,7 @@ module.exports.getAdminMessages = (username, token) => (dispatch => {
         }
         if (typeof body === 'undefined') {
             dispatch(module.exports.setStatus('ADMIN_STATUS', module.exports.Status.ADMIN_ERROR));
-            dispatch(module.exports.setMessagesError('No session content'));
+            dispatch(module.exports.setMessagesError('getAdminMessages: response had no content'));
             dispatch(module.exports.setAdminMessages([]));
             return;
         }
@@ -270,7 +270,9 @@ module.exports.getScratcherInvite = (username, token) => (dispatch => {
             dispatch(module.exports.setScratcherInvite({}));
             return;
         }
-        if (typeof body === 'undefined') return dispatch(module.exports.setMessagesError('No session content'));
+        if (typeof body === 'undefined') {
+            return dispatch(module.exports.setMessagesError('getScratcherInvite: response had no content'));
+        }
         dispatch(module.exports.setScratcherInvite(body));
     });
 });
