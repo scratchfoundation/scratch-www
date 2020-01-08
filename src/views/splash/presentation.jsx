@@ -34,9 +34,14 @@ const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 // Hour of Code Banner Components
 const TopBanner = require('./hoc/top-banner.jsx');
 const MiddleBanner = require('./hoc/middle-banner.jsx');
+const WarningBanner = require('../../components/title-banner/warning-banner.jsx');
 
 const HOC_START_TIME = 1575262800000; // 2019-12-02 00:00:00
 const HOC_END_TIME = 1577077200000; // 2019-12-23 00:00:00
+
+// Mandrill outage banner
+const MANDRILL_OUTAGE_START_TIME = 1578718800000; // 2020-01-11 12:00:00
+const MANDRILL_OUTAGE_END_TIME = 1578747600000; // 2020-01-11 08:00:00
 
 require('./splash.scss');
 
@@ -277,7 +282,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 </Box>
             );
         }
-        
+
         if (this.props.featuredGlobal.scratch_design_studio &&
             this.props.featuredGlobal.scratch_design_studio.length > 4) {
 
@@ -416,6 +421,17 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                         messages={messages}
                     />
                 ] : []}
+                {(Date.now() >= MANDRILL_OUTAGE_START_TIME && Date.now() < MANDRILL_OUTAGE_END_TIME) && (
+                    <MediaQuery
+                        key="frameless-tablet"
+                        minWidth={frameless.tabletPortrait}
+                    >
+                        <WarningBanner>
+                            We are experiencing a disruption with email delivery.
+                            If you are not receiving emails from us, please try later.
+                        </WarningBanner>
+                    </MediaQuery>
+                )}
                 {
                     this.props.sessionStatus === sessionActions.Status.FETCHED &&
                     Object.keys(this.props.user).length === 0 && (// Only show top banner if user is not logged in
