@@ -85,7 +85,7 @@ module.exports.getActivity = (username, token) => (dispatch => {
         }
         if (typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('activity', module.exports.Status.ERROR));
-            dispatch(module.exports.setError('No session content'));
+            dispatch(module.exports.setError('getActivity: request failed or response had no content'));
             return;
         }
         dispatch(module.exports.setFetchStatus('activity', module.exports.Status.FETCHED));
@@ -108,7 +108,7 @@ module.exports.getFeaturedGlobal = () => (dispatch => {
         }
         if (typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('featured', module.exports.Status.ERROR));
-            dispatch(module.exports.setError('No session content'));
+            dispatch(module.exports.setError('getFeaturedGlobal: request failed or response had no content'));
             return;
         }
         dispatch(module.exports.setFetchStatus('featured', module.exports.Status.FETCHED));
@@ -134,7 +134,7 @@ module.exports.getSharedByFollowing = (username, token) => (dispatch => {
         }
         if (typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('shared', module.exports.Status.ERROR));
-            dispatch(module.exports.setError('No session content'));
+            dispatch(module.exports.setError('getSharedByFollowing: request failed or response had no content'));
             return;
         }
         dispatch(module.exports.setFetchStatus('shared', module.exports.Status.FETCHED));
@@ -160,7 +160,7 @@ module.exports.getInStudiosFollowing = (username, token) => (dispatch => {
         }
         if (typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('studios', module.exports.Status.ERROR));
-            dispatch(module.exports.setError('No session content'));
+            dispatch(module.exports.setError('getInStudiosFollowing: request failed or response had no content'));
             return;
         }
         dispatch(module.exports.setFetchStatus('studios', module.exports.Status.FETCHED));
@@ -186,7 +186,7 @@ module.exports.getLovedByFollowing = (username, token) => (dispatch => {
         }
         if (typeof body === 'undefined' || res.statusCode !== 200) {
             dispatch(module.exports.setFetchStatus('loved', module.exports.Status.ERROR));
-            dispatch(module.exports.setError('No session content'));
+            dispatch(module.exports.setError('getLovedByFollowing: request failed or response had no content'));
             return;
         }
         dispatch(module.exports.setFetchStatus('loved', module.exports.Status.FETCHED));

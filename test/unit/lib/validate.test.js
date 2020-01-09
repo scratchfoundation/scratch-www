@@ -52,21 +52,38 @@ describe('unit test lib/validate.js', () => {
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationUsernameRegexp'});
     });
 
-    test('validate password', () => {
+    test('validate password existence', () => {
         let response;
         expect(typeof validate.validatePassword).toBe('function');
         response = validate.validatePassword('abcdef');
         expect(response).toEqual({valid: true});
-        response = validate.validatePassword('abcdefghijklmnopqrst');
-        expect(response).toEqual({valid: true});
-        response = validate.validatePassword('passwo');
-        expect(response).toEqual({valid: true});
         response = validate.validatePassword('');
         expect(response).toEqual({valid: false, errMsgId: 'general.required'});
+    });
+
+    test('validate password length', () => {
+        let response;
+        response = validate.validatePassword('abcdefghijklmnopqrst');
+        expect(response).toEqual({valid: true});
         response = validate.validatePassword('abcde');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
-        response = validate.validatePassword('password');
+        response = validate.validatePassword('😺');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
+        response = validate.validatePassword('😺🦆🐝');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
+        response = validate.validatePassword('😺🦆🐝🐮🐠');
+        expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordLength'});
+        response = validate.validatePassword('😺🦆🐝🐮🐠🐻');
+        expect(response).toEqual({valid: true});
+    });
+
+    test('validate password cannot be "password"', () => {
+        const response = validate.validatePassword('password');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordNotEquals'});
+    });
+
+    test('validate password cannot be same as username', () => {
+        let response;
         response = validate.validatePassword('abcdefg', 'abcdefg');
         expect(response).toEqual({valid: false, errMsgId: 'registration.validationPasswordNotUsername'});
         response = validate.validatePassword('abcdefg', 'abcdefG');

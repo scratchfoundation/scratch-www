@@ -57,7 +57,15 @@ module.exports.validateUsernameRemotely = username => (
 module.exports.validatePassword = (password, username) => {
     if (!password) {
         return {valid: false, errMsgId: 'general.required'};
-    } else if (password.length < 6) {
+    // Using Array.from(string).length, instead of string.length, improves unicode
+    // character counting for a subset of unicode characters, so that they are counted
+    // as single characters by js.
+    // However, this only helps with a subset of unicode. Characters combinations,
+    // including diacritical marks or skintone/gender variations, will still appear
+    // to be multiple characters. See discussions:
+    // https://blog.jonnew.com/posts/poo-dot-length-equals-two
+    // https://stackoverflow.com/a/54370584/2308190
+    } else if (Array.from(password).length < 6) {
         return {valid: false, errMsgId: 'registration.validationPasswordLength'};
     } else if (password === 'password') {
         return {valid: false, errMsgId: 'registration.validationPasswordNotEquals'};
