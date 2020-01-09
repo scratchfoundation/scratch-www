@@ -99,20 +99,20 @@ const handleSessionResponse = (dispatch, body) => {
 
 module.exports.refreshSession = () => (dispatch => {
     dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
-    return new Promise((resolve, reject) => (
-        requestSession(resolve, reject).then(body => {
-            handleSessionResponse(dispatch, body);
-        }, err => {
-            dispatch(module.exports.setSessionError(err));
-        })
-    ));
+    return new Promise((resolve, reject) => {
+        requestSession(resolve, reject);
+    }).then(body => {
+        handleSessionResponse(dispatch, body);
+    }, err => {
+        dispatch(module.exports.setSessionError(err));
+    });
 });
 
 module.exports.refreshSessionWithRetry = () => (dispatch => {
     dispatch(module.exports.setStatus(module.exports.Status.FETCHING));
-    return new Promise((resolve, reject) => (
-        requestSessionWithRetry(resolve, reject, 4, 7500)
-    )).then(body => {
+    return new Promise((resolve, reject) => {
+        requestSessionWithRetry(resolve, reject, 4, 7500);
+    }).then(body => {
         handleSessionResponse(dispatch, body);
     }, err => {
         dispatch(module.exports.setSessionError(err));
