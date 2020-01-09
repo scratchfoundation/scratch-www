@@ -41,7 +41,7 @@ describe('JoinFlow', () => {
 
     beforeEach(() => {
         store = mockStore({sessionActions: {
-            refreshSessionWithRetry: jest.fn()
+            refreshSession: jest.fn()
         }});
     });
 
@@ -283,31 +283,16 @@ describe('JoinFlow', () => {
         expect(success).toEqual(false);
     });
 
-    test('handleRegistrationResponse calls refreshSessionWithRetry() when passed body with success', done => {
+    test('handleRegistrationResponse when passed body with success', () => {
         const props = {
-            refreshSessionWithRetry: () => (new Promise(() => { // eslint-disable-line no-undef
-                done(); // ensures that joinFlowInstance.props.refreshSessionWithRetry() was called
-            }))
+            refreshSession: jest.fn()
         };
         const joinFlowInstance = getJoinFlowWrapper(props).instance();
         joinFlowInstance.handleRegistrationResponse(null, responseBodySuccess, {statusCode: 200});
-    });
-
-    test('handleRegistrationResponse advances to next step when passed body with success', () => {
-        const props = {
-            refreshSessionWithRetry: () => (new Promise(resolve => { // eslint-disable-line no-undef
-                resolve();
-            }))
-        };
-        const joinFlowInstance = getJoinFlowWrapper(props).instance();
-        joinFlowInstance.handleRegistrationResponse(null, responseBodySuccess, {statusCode: 200});
-        process.nextTick(
-            () => {
-                expect(joinFlowInstance.state.registrationError).toEqual(null);
-                expect(joinFlowInstance.state.step).toEqual(1);
-                expect(joinFlowInstance.state.waiting).toBeFalsy();
-            }
-        );
+        expect(joinFlowInstance.state.registrationError).toEqual(null);
+        expect(joinFlowInstance.props.refreshSession).toHaveBeenCalled();
+        expect(joinFlowInstance.state.step).toEqual(1);
+        expect(joinFlowInstance.state.waiting).toBeFalsy();
     });
 
     test('handleRegistrationResponse when passed body with preset server error', () => {
@@ -321,7 +306,7 @@ describe('JoinFlow', () => {
 
     test('handleRegistrationResponse with failure response, with error fields missing', () => {
         const props = {
-            refreshSessionWithRetry: jest.fn()
+            refreshSession: jest.fn()
         };
         const joinFlowInstance = getJoinFlowWrapper(props).instance();
         const responseErr = null;
@@ -335,7 +320,7 @@ describe('JoinFlow', () => {
             statusCode: 200
         };
         joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
-        expect(joinFlowInstance.props.refreshSessionWithRetry).not.toHaveBeenCalled();
+        expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: false,
             errorMsg: null
@@ -354,7 +339,7 @@ describe('JoinFlow', () => {
 
     test('handleRegistrationResponse with failure response, with no text explanation', () => {
         const props = {
-            refreshSessionWithRetry: jest.fn()
+            refreshSession: jest.fn()
         };
         const joinFlowInstance = getJoinFlowWrapper(props).instance();
         const responseErr = null;
@@ -367,7 +352,7 @@ describe('JoinFlow', () => {
             statusCode: 200
         };
         joinFlowInstance.handleRegistrationResponse(responseErr, responseBody, responseObj);
-        expect(joinFlowInstance.props.refreshSessionWithRetry).not.toHaveBeenCalled();
+        expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: false,
             errorMsg: null
@@ -384,11 +369,11 @@ describe('JoinFlow', () => {
 
     test('handleRegistrationResponse when passed status 400', () => {
         const props = {
-            refreshSessionWithRetry: jest.fn()
+            refreshSession: jest.fn()
         };
         const joinFlowInstance = getJoinFlowWrapper(props).instance();
         joinFlowInstance.handleRegistrationResponse({}, responseBodyMultipleErrs, {statusCode: 400});
-        expect(joinFlowInstance.props.refreshSessionWithRetry).not.toHaveBeenCalled();
+        expect(joinFlowInstance.props.refreshSession).not.toHaveBeenCalled();
         expect(joinFlowInstance.state.registrationError).toEqual({
             errorAllowsTryAgain: true
         });
