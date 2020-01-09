@@ -121,16 +121,13 @@ class JoinFlow extends React.Component {
     //   * "birth_month": ["Ensure this value is greater than or equal to 1."]
     handleRegistrationResponse (err, body, res) {
         this.setState({
-            numAttempts: this.state.numAttempts + 1
+            numAttempts: this.state.numAttempts + 1,
+            waiting: false
         }, () => {
             const success = this.registrationIsSuccessful(err, body, res);
             if (success) {
-                this.props.refreshSessionWithRetry().then(() => {
-                    this.setState({
-                        step: this.state.step + 1,
-                        waiting: false
-                    });
-                });
+                this.props.refreshSession();
+                this.setState({step: this.state.step + 1});
                 return;
             }
             // now we know something went wrong -- either an actual error (client-side
@@ -138,10 +135,7 @@ class JoinFlow extends React.Component {
 
             // if an actual error, prompt user to try again.
             if (err || res.statusCode !== 200) {
-                this.setState({
-                    registrationError: {errorAllowsTryAgain: true},
-                    waiting: false
-                });
+                this.setState({registrationError: {errorAllowsTryAgain: true}});
                 return;
             }
 
@@ -170,8 +164,7 @@ class JoinFlow extends React.Component {
                 registrationError: {
                     errorAllowsTryAgain: false,
                     errorMsg: errorMsg
-                },
-                waiting: false
+                }
             });
         });
     }
@@ -290,15 +283,15 @@ JoinFlow.propTypes = {
     createProjectOnComplete: PropTypes.bool,
     intl: intlShape,
     onCompleteRegistration: PropTypes.func,
-    refreshSessionWithRetry: PropTypes.func
+    refreshSession: PropTypes.func
 };
 
 const IntlJoinFlow = injectIntl(JoinFlow);
 
 const mapDispatchToProps = dispatch => ({
-    refreshSessionWithRetry: () => (
-        dispatch(sessionActions.refreshSessionWithRetry())
-    )
+    refreshSession: () => {
+        dispatch(sessionActions.refreshSession());
+    }
 });
 
 // Allow incoming props to override redux-provided props. Used to mock in tests.
