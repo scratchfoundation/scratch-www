@@ -277,7 +277,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                 </Box>
             );
         }
-        
+
         if (this.props.featuredGlobal.scratch_design_studio &&
             this.props.featuredGlobal.scratch_design_studio.length > 4) {
 
