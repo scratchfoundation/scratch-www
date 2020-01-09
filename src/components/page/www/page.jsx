@@ -30,8 +30,8 @@ const Page = ({
             <div id="view">
                 {(Date.now() >= MANDRILL_OUTAGE_START_TIME && Date.now() < MANDRILL_OUTAGE_END_TIME) && (
                     <WarningBanner>
-                    We are experiencing a disruption with email delivery.
-                    If you are not receiving emails from us, please try later.
+                        We are experiencing a disruption with email delivery.
+                        If you are not receiving emails from us, please try after 8am EST.
                     </WarningBanner>
                 )}
                 {children}
