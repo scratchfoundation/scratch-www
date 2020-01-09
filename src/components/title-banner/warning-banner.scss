@@ -1,0 +1,10 @@
+@import "../../colors";
+
+.warning-banner {
+    background-color: $ui-red;
+    margin-bottom: 0;
+
+    .warning-banner-container {
+        justify-content: center;
+    }
+}
