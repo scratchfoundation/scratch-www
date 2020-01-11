@@ -6,6 +6,11 @@ const Navigation = require('../../navigation/www/navigation.jsx');
 const Footer = require('../../footer/www/footer.jsx');
 const DonorRecognition = require('./donor-recognition.jsx');
 const ErrorBoundary = require('../../errorboundary/errorboundary.jsx');
+const WarningBanner = require('../../title-banner/warning-banner.jsx');
+
+// Mandrill outage banner
+const MANDRILL_OUTAGE_START_TIME = 1578718800000; // 2020-01-11 12:00:00
+const MANDRILL_OUTAGE_END_TIME = 1578747600000; // 2020-01-11 08:00:00
 
 const Page = ({
     children,
@@ -23,6 +28,12 @@ const Page = ({
                 <Navigation />
             </div>
             <div id="view">
+                {(Date.now() >= MANDRILL_OUTAGE_START_TIME && Date.now() < MANDRILL_OUTAGE_END_TIME) && (
+                    <WarningBanner>
+                    We are experiencing a disruption with email delivery.
+                    If you are not receiving emails from us, please try later.
+                    </WarningBanner>
+                )}
                 {children}
             </div>
             <div id="footer">
