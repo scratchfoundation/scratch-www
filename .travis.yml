@@ -139,3 +139,9 @@ stages:
 - test
 - name: smoke
   if: type != pull_request
+- provider: script
+  on:
+    branch: develop
+    condition: $TRAVIS_EVENT_TYPE == cron
+  skip_cleanup: true
+  script: npm run i18n:push
