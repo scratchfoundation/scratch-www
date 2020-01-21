@@ -35,9 +35,8 @@ if (args[0] === 'execute') {
     process.stdout.write('executing tx initializtion\n');
     execute = '--execute';
 } else {
-    process.stdout.write('Dry run: pass "execute" as a parameter to add --execute switch to commands\n');
+    process.stdout.write('Dry run: pass "--execute" as a parameter to execute push files to transifex\n');
 }
-
 
 // set up l10n resources for the scratch-website project as
 // [scratch-website.<view>_l10njson]
