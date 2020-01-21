@@ -1,0 +1,81 @@
+#!/usr/bin/env node
+
+/*
+Push www strings to Transifex, using scratch-l10n's tx-push-src.js script
+
+1. for every file like src/views/.../l10n.json, call tx-push-src.js
+2. also call tx-push-src.js on the general file, src/l10n.json
+
+The format of tx-push-src.js's arguments is:
+$ tx-push-src.js tx-project tx-resource english-json-file
+So, for example, src/views/parents/l10n.json will use:
+$ tx-push-src.js scratch-website parents-l10njson src/views/parents/l10n.json
+
+*/
+
+const glob = require('glob');
+const execSync = require('child_process').execSync;
+
+// determine if this is a dry run, or if we're really pushing to transifex
+let execute = false;
+const args = process.argv.slice(2);
+if (args[0] === '--execute') {
+    process.stdout.write('pushing to transifex...\n');
+    execute = true;
+} else {
+    process.stdout.write('Dry run: pass "execute" as a parameter to add --execute switch to commands\n');
+}
+
+// exceptions to the usual relationship between file path and corresponding
+// transifex resource name
+const overrides = {
+    'src/views/teachers/faq/l10n.json': 'teacher-faq-l10njson',
+    'src/views/teachers/landing/l10n.json': 'educator-landing-l10njson',
+    'src/views/conference/2020/index/l10n.json': 'conference-index-2020-l10njson',
+    'src/views/conference/2019/index/l10n.json': 'conference-index-2019-l10njson',
+    'src/views/conference/2017/index/l10n.json': 'conference-index-2017-l10njson'
+};
+
+// convert an l10n file path to the usual format of the corresponding
+// transifex resource name. E.g., for file path src/views/parents/l10n.json ,
+// return parents-l10njson.
+const txResourceNameFromPath = l10nFilePath => {
+    const pathRegexp = /(src\/views\/)?(.*)/g;
+    const match = pathRegexp.exec(l10nFilePath);
+    let resourceName = match[2];
+    resourceName = resourceName.replace(/\//g, '-');
+    resourceName = resourceName.replace(/\./g, '');
+    return resourceName;
+};
+
+// start with the general l10n file, which is an exception to the format
+let resources = [{
+    filename: 'src/l10n.json',
+    resourceName: 'general-l10njson'
+}];
+
+glob('src/views/**/l10n.json', {}, function (er, files) {
+    files.forEach(filename => {
+        // figure out likely resource name from file path
+        let resourceName = txResourceNameFromPath(filename);
+        if (filename in overrides) { // see if it needs overriding
+            resourceName = overrides[filename];
+        }
+        resources.push({
+            filename: filename,
+            resourceName: resourceName
+        });
+    });
+
+    let cmd;
+    resources.forEach(resource => {
+        cmd = `$(npm bin)/tx-push-src scratch-website ${resource.resourceName} ${resource.filename}`;
+        if (execute) {
+            // push all the source files to transifex - force update
+            process.stdout.write(`running command: ${cmd}\n`);
+            execSync(cmd, {stdio: 'inherit'});
+        } else {
+            process.stdout.write(`command we would run: ${cmd}\n`);
+        }
+    });
+});
