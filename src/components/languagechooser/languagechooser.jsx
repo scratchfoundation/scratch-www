@@ -21,7 +21,7 @@ class LanguageChooser extends React.Component {
         ]);
     }
     handleSetLanguage (name, value) {
-        jar.set('scratchlanguage', value);
+        jar.set('scratchlanguage', value, {domain: `.${window.location.hostname}`});
         window.location.reload();
     }
     render () {
