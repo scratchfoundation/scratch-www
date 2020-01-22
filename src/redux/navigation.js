@@ -110,8 +110,9 @@ module.exports.handleCompleteRegistration = createProject => (dispatch => {
         // to be logged in before we try creating a project due to replication lag.
         window.location = '/';
     } else {
-        dispatch(sessionActions.refreshSession());
-        dispatch(module.exports.setRegistrationOpen(false));
+        dispatch(sessionActions.refreshSessionWithRetry()).then(
+            dispatch(module.exports.setRegistrationOpen(false))
+        );
     }
 });
 
