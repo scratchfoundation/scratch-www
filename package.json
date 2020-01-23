@@ -26,6 +26,7 @@
     "deploy:s3:all": "npm run deploy:s3cmd -- --exclude '.DS_Store' --exclude '*.svg' --exclude '*.js' ./build/ s3://$S3_BUCKET_NAME/",
     "deploy:s3:svg": "npm run deploy:s3cmd -- --exclude '*' --include '*.svg' --mime-type 'image/svg+xml' ./build/ s3://$S3_BUCKET_NAME/",
     "deploy:s3:js": "npm run deploy:s3cmd -- --exclude '*' --include '*.js' --mime-type 'application/javascript' ./build/ s3://$S3_BUCKET_NAME/",
+    "i18n:push": "tx-push-www --execute",
     "translate:urls": "node ./bin/get-localized-urls localized-urls.json",
     "translate:files": "node ./bin/build-locales node_modules/scratch-l10n/www intl",
     "translate": "npm run translate:urls && npm run translate:files"
@@ -127,7 +128,7 @@
     "redux-mock-store": "^1.2.3",
     "redux-thunk": "2.0.1",
     "sass-loader": "6.0.6",
-    "scratch-gui": "0.1.0-prerelease.20200113203847",
+    "scratch-gui": "0.1.0-prerelease.20200122215224",
     "scratch-l10n": "latest",
     "selenium-webdriver": "3.6.0",
     "slick-carousel": "1.6.0",
