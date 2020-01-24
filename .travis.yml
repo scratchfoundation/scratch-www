@@ -122,7 +122,6 @@ jobs:
       script: npm run deploy
       on:
         repo: LLK/scratch-www
-        condition: $TRAVIS_EVENT_TYPE != cron
         branch:
         - develop
         - hotfix/*
@@ -138,8 +137,10 @@ jobs:
     script: npm run test:integration:remote
   - stage: update translations
     script: npm run i18n:push
-    if: branch == develop AND type == cron
 stages:
 - test
+  if: type != cron
 - name: smoke
-  if: type != pull_request
+  if: type NOT IN (cron, pull_request)
+- name: update translations
+  if: branch == develop AND type == cron
