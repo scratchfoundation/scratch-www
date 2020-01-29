@@ -626,7 +626,11 @@ class Preview extends React.Component {
         );
     }
     handleSetLanguage (locale) {
-        jar.set('scratchlanguage', locale);
+        let opts = {};
+        if (window.location.hostname !== 'localhost') {
+            opts = {domain: `.${window.location.hostname}`};
+        }
+        jar.set('scratchlanguage', locale, opts);
     }
     handleUpdateProjectId (projectId, callback) {
         this.setState({projectId: projectId}, () => {
