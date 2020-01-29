@@ -135,13 +135,12 @@ jobs:
         - master
   - stage: smoke
     script: npm run test:integration:remote
+  - stage: update translations
+    script: npm run i18n:push
 stages:
-- test
+- name: test
+  if: type != cron
 - name: smoke
-  if: type != pull_request
-- provider: script
-  on:
-    branch: develop
-    condition: $TRAVIS_EVENT_TYPE == cron
-  skip_cleanup: true
-  script: npm run i18n:push
+  if: type NOT IN (cron, pull_request)
+- name: update translations
+  if: branch == develop AND type == cron
