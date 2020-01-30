@@ -21,7 +21,7 @@ const jar = require('./lib/jar');
         } else {
             // delete the old cookie (just hostname) by setting it to null and expiring in the past
             /* eslint-disable max-len */
-            document.cookie = `scratchlanguage=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=${window.location.hostname}`;
+            document.cookie = `scratchlanguage=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
             /* eslint-enable max-len */
             // create the new cookie
             let opts = {};
