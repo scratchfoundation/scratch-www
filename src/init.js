@@ -18,6 +18,17 @@ const jar = require('./lib/jar');
             if (['pt', 'pt-pt', 'PT', 'PT-PT'].indexOf(obj) !== -1) {
                 obj = 'pt-br'; // default Portuguese users to Brazilian Portuguese due to our user base. Added in 2.2.5.
             }
+        } else {
+            // delete the old cookie (just hostname) by setting it to null and expiring in the past
+            /* eslint-disable max-len */
+            document.cookie = `scratchlanguage=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+            /* eslint-enable max-len */
+            // create the new cookie
+            let opts = {};
+            if (window.location.hostname !== 'localhost') {
+                opts = {domain: `.${window.location.hostname}`};
+            }
+            jar.set('scratchlanguage', obj, opts);
         }
         return obj;
     };
