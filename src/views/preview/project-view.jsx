@@ -152,6 +152,8 @@ class Preview extends React.Component {
                 });
             }
         }
+        // detect that api request for project info has returned. If successful,
+        // request secondary data: studios, comments, etc.
         if (this.props.projectInfo.id !== prevProps.projectInfo.id) {
             if (typeof this.props.projectInfo.id === 'undefined') {
                 this.initCounts(0, 0);
@@ -225,8 +227,8 @@ class Preview extends React.Component {
     }
 
     // This is copy of what is in save-project-to-server in GUI that adds
-    // an extra get of the project info from api.  We  do this to wait for replication
-    // lag to pass.  This is intended to be a temporary fix until we use the data
+    // an extra get of the project info from api. We do this to wait for replication
+    // lag to pass. This is intended to be a temporary fix until we use the data
     // from the create request to fill the projectInfo state.
     handleUpdateProjectData (projectId, vmState, params) {
         const opts = {
