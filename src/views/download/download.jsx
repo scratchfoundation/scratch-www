@@ -251,7 +251,7 @@ class Download extends React.Component {
                         {isFromGooglePlay(this.state.OS) && (
                             <p>
                                 <FormattedMessage
-                                    id="download.howUpdateAppAnswerApp"
+                                    id="download.howUpdateAppAnswerPlayStore"
                                 />
                             </p>
                         )}
