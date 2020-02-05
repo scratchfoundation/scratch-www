@@ -293,6 +293,7 @@
     "comments.isDisallowed": "Hmm, it looks like comments have been turned off for this page. :/",
     "comments.isIPMuted": "Sorry, the Scratch Team had to prevent your network from sharing comments or projects because it was used to break our community guidelines too many times. You can still share comments and projects from another network. If you'd like to appeal this block, you can contact appeals@scratch.mit.edu and reference Case Number {appealId}.",
     "comments.isTooLong": "That comment is too long! Please find a way to shorten your text.",
+    "comments.isNotPermitted": "Sorry, you need to confirm your email address before commenting.",
     "comments.error": "Oops! Something went wrong posting your comment",
     "comments.posting": "Posting...",
     "comments.post": "Post",
