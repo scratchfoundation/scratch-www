@@ -20,16 +20,14 @@ module.exports.validateUsernameLocally = username => {
 module.exports.validateUsernameRemotely = username => (
     new Promise(resolve => {
         api({
-            host: '', // not handled by API; use existing infrastructure
-            uri: `/accounts/check_username/${username}/`
+            uri: `/accounts/checkusername/${username}/`
         }, (err, body, res) => {
             if (err || res.statusCode !== 200) {
                 resolve({requestSucceeded: false, valid: false, errMsgId: 'general.error'});
             }
             let msg = '';
-            if (body && body[0]) {
-                msg = body[0].msg;
-            }
+            if (body && body.msg) msg = body.msg;
+            else if (body && body[0]) msg = body[0].msg;
             switch (msg) {
             case 'valid username':
                 resolve({requestSucceeded: true, valid: true});
