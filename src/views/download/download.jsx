@@ -237,7 +237,24 @@ class Download extends React.Component {
                         <p>
                             <FormattedMessage id="download.onPhoneAnswer" />
                         </p>
-
+                        <h3 className="faq-question">
+                            <FormattedMessage id="download.howUpdateApp" />
+                        </h3>
+                        {isDownloaded(this.state.OS) && (
+                            <p>
+                                <FormattedMessage
+                                    id="download.howUpdateAppAnswerDownload"
+                                    values={{operatingsystem: this.state.OS}}
+                                />
+                            </p>
+                        )}
+                        {isFromGooglePlay(this.state.OS) && (
+                            <p>
+                                <FormattedMessage
+                                    id="download.howUpdateAppAnswerPlayStore"
+                                />
+                            </p>
+                        )}
                         <h3 className="faq-question">
                             <FormattedMessage id="download.whenSupportLinuxApp" />
                         </h3>
