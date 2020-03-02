@@ -85,7 +85,7 @@ const ConferenceSplash = () => (
                     </div>
                 </FlexRow>
                 <p className="conf2020-panel-desc">
-                    <FormattedMessage id="conference-2020.registrationFee" />
+                    <FormattedMessage id="conference-2020.conferenceFee" />
                     <br />
                     <FormattedMessage id="conference-2020.registrationOpen" />
                 </p>
@@ -102,7 +102,7 @@ const ConferenceSplash = () => (
                         id="conference-2020.stayDesc1"
                         values={{
                             hyattLink: <a href="https://www.hyatt.com/en-US/group-booking/BOSRC/G-SCRA">Hyatt Regency Cambridge Hotel​</a>,
-                            acLink: <a href="https://www.hyatt.com/en-US/group-booking/BOSRC/G-SCRA">AC Hotel Boston Cambridge​</a>,
+                            acLink: <a href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1582152189255&key=GRP&app=resvlink">AC Hotel Boston Cambridge​</a>,
                             allstonLink: <a href="https://hotelstudioallston.reztrip.com/ext/promoRate?property=1604&mode=b&pm=true&sr=556197&vr=3">Studio Allston Hotel​</a>
                         }}
                     />
