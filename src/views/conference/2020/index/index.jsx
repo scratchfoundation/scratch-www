@@ -32,6 +32,9 @@ const ConferenceSplash = () => (
                     <br />
                     <br />
                     <FormattedMessage id="conference-2020.desc2" />
+                    <br />
+                    <br />
+                    <FormattedMessage id="conference-2020.desc3" />
                 </p>
                 <table className="conf2020-panel-details">
                     <tbody>
@@ -48,7 +51,7 @@ const ConferenceSplash = () => (
                                 <FormattedDate
                                     day="2-digit"
                                     month="long"
-                                    value={new Date(2020, 6, 22)}
+                                    value={new Date(2020, 6, 23)}
                                     year="numeric"
                                 />
                                 {' - '}
@@ -75,46 +78,6 @@ const ConferenceSplash = () => (
                     </tbody>
                 </table>
             </section>
-            <section className="conf2020-panel">
-                <p className="conf2020-panel-desc">
-                    <FormattedMessage id="conference-2020.sessionDesc" />
-                </p>
-                <p className="conf2020-panel-session">
-                    <p className="conf2020-panel-session">
-                        <b>
-                            <FormattedMessage id="conference-2020.sessionItem1Title" />
-                        </b>{' '}
-                        <FormattedMessage id="conference-2020.sessionItem1Desc" />
-                    </p>
-                    <p className="conf2020-panel-session">
-                        <b>
-                            <FormattedMessage id="conference-2020.sessionItem2Title" />
-                        </b>{' '}
-                        <FormattedMessage id="conference-2020.sessionItem2Desc" />
-                    </p>
-                    <p className="conf2020-panel-session">
-                        <b>
-                            <FormattedMessage id="conference-2020.sessionItem3Title" />
-                        </b>{' '}
-                        <FormattedMessage id="conference-2020.sessionItem3Desc" />
-                    </p>
-                    <p className="conf2020-panel-session">
-                        <b>
-                            <FormattedMessage id="conference-2020.sessionItem4Title" />
-                        </b>{' '}
-                        <FormattedMessage id="conference-2020.sessionItem4Desc" />
-                    </p>
-                    <p className="conf2020-panel-deadline">
-                        <FormattedMessage id="conference-2020.proposalDeadline" />
-                    </p>
-                </p>
-                <a
-                    className="button mod-2020-panel"
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSdVH_izvaWsAtDsAnKbYauDZinsGo2YpCIhp2c4sly8UHmcyA/viewform"
-                >
-                    <FormattedMessage id="conference-2020.proposal" />
-                </a>
-            </section>
             <section className="conf2020-panel mod-registration">
                 <FlexRow className="conf2020-panel-title">
                     <div className="conf2020-panel-title-text">
@@ -126,17 +89,39 @@ const ConferenceSplash = () => (
                     <br />
                     <FormattedMessage id="conference-2020.registrationOpen" />
                 </p>
+                <a
+                    className="button mod-2020-panel"
+                    href="http://scratch2020.eventbrite.com/"
+                >
+                    <FormattedMessage id="conference-2020.register" />
+                </a>
             </section>
-            <section className="conf2020-panel mod-questions">
+            <section className="conf2020-panel mod-stay">
                 <p className="conf2020-panel-desc">
                     <FormattedMessage
-                        id="conference-2020.questions"
+                        id="conference-2020.stayDesc1"
+                        values={{
+                            hyattLink: <a href="https://www.hyatt.com/en-US/group-booking/BOSRC/G-SCRA">Hyatt Regency Cambridge Hotel​</a>,
+                            acLink: <a href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1582152189255&key=GRP&app=resvlink">AC Hotel Boston Cambridge​</a>,
+                            allstonLink: <a href="https://hotelstudioallston.reztrip.com/ext/promoRate?property=1604&mode=b&pm=true&sr=556197&vr=3">Studio Allston Hotel​</a>
+                        }}
+                    />
+                    <br />
+                    <br />
+                    <FormattedMessage
+                        id="conference-2020.stayDesc2"
                         values={{
                             emailLink: <a href="mailto:conference@scratch.mit.edu">
                                 conference@scratch.mit.edu
+                            </a>,
+                            registrationLink: <a href="http://scratch2020.eventbrite.com/">
+                                <FormattedMessage id="conference-2020.registrationLinkText" />
                             </a>
                         }}
                     />
+                    <br />
+                    <br />
+                    <FormattedMessage id="conference-2020.organizedBy" />
                 </p>
             </section>
         </div>
