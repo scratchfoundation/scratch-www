@@ -28,13 +28,13 @@ const ConferenceSplash = () => (
         <div className="inner">
             <section className="conf2020-panel mod-desc">
                 <p className="conf2020-panel-desc">
+                    <FormattedMessage id="conference-2020.desc1" />
+                    <br />
+                    <br />
+                    <FormattedMessage id="conference-2020.desc2" />
+                    <br />
+                    <br />
                     <FormattedMessage id="conference-2020.desc3" />
-                    <br />
-                    <br />
-                    <FormattedMessage id="conference-2020.desc4" />
-                    <br />
-                    <br />
-                    <FormattedMessage id="conference-2020.desc5" />
                 </p>
                 <table className="conf2020-panel-details">
                     <tbody>
@@ -51,7 +51,7 @@ const ConferenceSplash = () => (
                                 <FormattedDate
                                     day="2-digit"
                                     month="long"
-                                    value={new Date(2020, 6, 22)}
+                                    value={new Date(2020, 6, 23)}
                                     year="numeric"
                                 />
                                 {' - '}
@@ -85,7 +85,7 @@ const ConferenceSplash = () => (
                     </div>
                 </FlexRow>
                 <p className="conf2020-panel-desc">
-                    <FormattedMessage id="conference-2020.conferenceFee" />
+                    <FormattedMessage id="conference-2020.registrationFee" />
                     <br />
                     <FormattedMessage id="conference-2020.registrationOpen" />
                 </p>
