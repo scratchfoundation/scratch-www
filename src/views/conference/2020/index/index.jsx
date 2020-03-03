@@ -88,6 +88,9 @@ const ConferenceSplash = () => (
                     <FormattedMessage id="conference-2020.registrationFee" />
                     <br />
                     <FormattedMessage id="conference-2020.registrationOpen" />
+                    <br />
+                    <br />
+                    <FormattedMessage id="conference-2020.registrationDelayed" />
                 </p>
                 <a
                     className="button mod-2020-panel"
