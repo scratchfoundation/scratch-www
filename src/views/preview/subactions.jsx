@@ -29,6 +29,26 @@ const Subactions = props => (
             {/*  eslint-enable react/jsx-sort-props */}
         </div>
         <FlexRow className="action-buttons">
+            {(props.canReport) &&
+                <React.Fragment>
+                    <Button
+                        className="action-button report-button"
+                        key="report-button"
+                        onClick={props.onReportClicked}
+                    >
+                        <FormattedMessage id="general.report" />
+                    </Button>
+                    {props.reportOpen && (
+                        <ReportModal
+                            isOpen
+                            key="report-modal"
+                            type="project"
+                            onReport={props.onReportSubmit}
+                            onRequestClose={props.onReportClose}
+                        />
+                    )}
+                </React.Fragment>
+            }
             {props.canAddToStudio &&
                 <React.Fragment>
                     <Button
@@ -69,26 +89,6 @@ const Subactions = props => (
                     )}
                 </React.Fragment>
             )}
-            {(props.canReport) &&
-            <React.Fragment>
-                <Button
-                    className="action-button report-button"
-                    key="report-button"
-                    onClick={props.onReportClicked}
-                >
-                    <FormattedMessage id="general.report" />
-                </Button>
-                {props.reportOpen && (
-                    <ReportModal
-                        isOpen
-                        key="report-modal"
-                        type="project"
-                        onReport={props.onReportSubmit}
-                        onRequestClose={props.onReportClose}
-                    />
-                )}
-            </React.Fragment>
-            }
         </FlexRow>
     </FlexRow>
 );
