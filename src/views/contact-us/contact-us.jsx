@@ -43,17 +43,9 @@ const ContactUs = injectIntl(props => (
                     /></li>
                 </ul>
                 <p><FormattedMessage id="contactUs.formIntro" /></p>
-                <HelpForm title={props.intl.formatMessage({id: 'contactUs.contactScratch'})} />
             </section>
-            <span className="nav-spacer" />
         </div>
-        <nav>
-            <ol>
-                <li className="nav-header"><FormattedMessage id="contactUs.findHelp" /></li>
-                <li><a href="/faq"><FormattedMessage id="contactUs.faqLinkText" /></a></li>
-                <li><a href="/discuss/"><FormattedMessage id="contactUs.forumsLinkText" /></a></li>
-            </ol>
-        </nav>
+        <HelpForm title={props.intl.formatMessage({id: 'contactUs.contactScratch'})} />
     </InformationPage>
 ));
 
