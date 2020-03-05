@@ -10,6 +10,21 @@ const HelpForm = require('../../components/helpform/helpform.jsx');
 
 const InformationPage = require('../../components/informationpage/informationpage.jsx');
 
+let subject = '';
+let body = '';
+const url = (window.location && window.location.search) || '';
+// assumes that scratchr2 will only ever send one parameter
+const params = url.split('?')[1];
+if (typeof (params) !== 'undefined' && params.indexOf('studio') !== -1) {
+    subject = `Inappropriate content reported in studio ${params.split('=')[1]}`;
+    body = `https://scratch.mit.edu/studios/${params.split('=')[1]}`;
+} else if (typeof (params) !== 'undefined' && params.indexOf('profile') !== -1) {
+    subject = `Inappropriate content reported in profile ${params.split('=')[1]}`;
+    body = `https://scratch.mit.edu/users/${params.split('=')[1]}`;
+} else if (typeof (params) !== 'undefined' && params.indexOf('confirmation') !== -1) {
+    subject = 'Problem with email confirmation';
+}
+
 const ContactUs = injectIntl(props => (
     <InformationPage title={props.intl.formatMessage({id: 'contactUs.title'})}>
         <div className="inner info-inner">
@@ -45,7 +60,11 @@ const ContactUs = injectIntl(props => (
                 <p><FormattedMessage id="contactUs.formIntro" /></p>
             </section>
         </div>
-        <HelpForm title={props.intl.formatMessage({id: 'contactUs.contactScratch'})} />
+        <HelpForm
+            body={body}
+            subject={subject}
+            title={props.intl.formatMessage({id: 'contactUs.contactScratch'})}
+        />
     </InformationPage>
 ));
 

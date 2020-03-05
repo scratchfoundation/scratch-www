@@ -9,6 +9,8 @@ const HelpForm = props => {
     const username = `helpdesk_ticket[custom_field][cf_scratch_name_40167]=${props.user.username || ''}`;
     const agentText = encodeURI(window.navigator.userAgent.replace(';', ' -'));
     const browser = `helpdesk_ticket[custom_field][cf_browser_40167]=${agentText}`;
+    const formSubject = `helpdesk_ticket[subject]=${props.subject}`;
+    const formDescription = `helpdesk_ticket[description]=${props.body}`;
     return (
         <div>
             <script
@@ -27,7 +29,7 @@ const HelpForm = props => {
                 height="505px"
                 id="freshwidget-embedded-form"
                 scrolling="no"
-                src={`${prefix}&${title}&${username}&${browser}`}
+                src={`${prefix}&${title}&${username}&${browser}&${formSubject}&${formDescription}`}
                 title={<FormattedMessage id="contactUs.questionsForum" />}
                 width="100%"
             />
@@ -37,6 +39,8 @@ const HelpForm = props => {
 
 
 HelpForm.propTypes = {
+    body: PropTypes.string,
+    subject: PropTypes.string,
     title: PropTypes.string.isRequired,
     user: PropTypes.shape({
         classroomId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -46,6 +50,8 @@ HelpForm.propTypes = {
 };
 
 HelpForm.defaultProps = {
+    body: '',
+    subject: '',
     title: '',
     user: {username: ''}
 };
