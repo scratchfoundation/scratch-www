@@ -14,6 +14,8 @@ const HelpForm = props => {
     return (
         <div>
             <script
+                async
+                defer
                 src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"
                 type="text/javascript"
             />
@@ -26,7 +28,7 @@ const HelpForm = props => {
             <iframe
                 className="freshwidget-embedded-form"
                 frameBorder="0"
-                height="505px"
+                height="744px"
                 id="freshwidget-embedded-form"
                 scrolling="no"
                 src={`${prefix}&${title}&${username}&${browser}&${formSubject}&${formDescription}`}
