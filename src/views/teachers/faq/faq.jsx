@@ -136,11 +136,11 @@ const TeacherFaq = props => (
                     <dd><FormattedHTMLMessage id="teacherfaq.commWhoBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.commTurnOffCommentsTitle" /></dt>
                     <dd>
-                        <FormattedHTMLMessage
+                        <FormattedMessage
                             id="teacherfaq.commTurnOffCommentsBody"
                             values={{
                                 desktopLink: (
-                                    <a href="https://scratch.mit.edu/download/">
+                                    <a href="https://scratch.mit.edu/download">
                                         Scratch Desktop app
                                     </a>
                                 )
