@@ -93,6 +93,14 @@
         "redirect": "https://eepurl.com/cws7_f"
     },
     {
+        "name": "contact-us",
+        "pattern": "^/contact-us/?$",
+        "routeAlias": "/contact-us/?$",
+        "view": "contact-us/contact-us",
+        "title": "Contact Us",
+        "viewportWidth": "device-width"
+    },
+    {
         "name": "credits",
         "pattern": "^/credits/?$",
         "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
