@@ -17,7 +17,7 @@ const TeacherFaq = props => (
                 <h2><FormattedMessage id="teacherfaq.title" /></h2>
                 <dl>
                     <dt><FormattedMessage id="teacherfaq.teacherWhatTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherWhatBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.teacherWhatBody" /></dd>
                     <iframe
                         allowFullscreen
                         mozallowfullscreen
@@ -30,7 +30,7 @@ const TeacherFaq = props => (
                     <dt><FormattedMessage id="teacherfaq.teacherSignUpTitle" /></dt>
                     <dd><FormattedHTMLMessage id="teacherfaq.teacherSignUpBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.teacherWaitTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherWaitBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.teacherWaitBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.classMultipleTeachersTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.classMultipleTeachersBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.convertToTeacherTitle" /></dt>
@@ -53,9 +53,9 @@ const TeacherFaq = props => (
                     </ul>
 
                     <dt><FormattedMessage id="teacherfaq.teacherPersonalTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherPersonalBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.teacherPersonalBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.teacherGoogleTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherGoogleBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.teacherGoogleBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentDiscussTitle" /></dt>
                     <dd>
                         <FormattedMessage
@@ -81,17 +81,17 @@ const TeacherFaq = props => (
                 <h2><FormattedMessage id="teacherfaq.studentAccountsTitle" /></h2>
                 <dl>
                     <dt><FormattedMessage id="teacherfaq.studentVerifyTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentVerifyBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.studentVerifyBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentAddExistingTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentAddExistingBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.studentAddExistingBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentForgetTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentForgetBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.studentForgetBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentUnsharedTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentUnsharedBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.studentUnsharedBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentDeleteTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentDeleteBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.studentDeleteBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentMultipleTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentMultipleBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.studentMultipleBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentTransferTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.studentTransferBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentEndTitle" /></dt>
@@ -131,9 +131,9 @@ const TeacherFaq = props => (
                 <h2><FormattedMessage id="teacherfaq.commTitle" /></h2>
                 <dl>
                     <dt><FormattedMessage id="teacherfaq.commHiddenTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.commHiddenBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.commHiddenBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.commWhoTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.commWhoBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.commWhoBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.commTurnOffCommentsTitle" /></dt>
                     <dd>
                         <FormattedMessage
@@ -148,10 +148,10 @@ const TeacherFaq = props => (
                         />
                     </dd>
                     <dt><FormattedMessage id="teacherfaq.commBlockGamesTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.commBlockGamesBody1" /></dd>
-                    <dd><FormattedHTMLMessage id="teacherfaq.commBlockGamesBody2" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.commBlockGamesBody1" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.commBlockGamesBody2" /></dd>
                     <dt><FormattedMessage id="teacherfaq.commInappropriateTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.commInappropriateBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.commInappropriateBody" /></dd>
                 </dl>
             </section>
         </div>
