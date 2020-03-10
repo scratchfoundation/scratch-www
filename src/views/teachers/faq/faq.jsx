@@ -111,6 +111,18 @@ const TeacherFaq = props => (
                     </dd>
                     <dt><FormattedMessage id="teacherfaq.studentDataTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.studentDataBody" /></dd>
+                    <dd>
+                        <FormattedMessage
+                            id="teacherfaq.studentDataBody2"
+                            values={{
+                                privacyPolicyLink: (
+                                    <a href="https://scratch.mit.edu/privacy_policy">
+                                        <FormattedMessage id="teacherfaq.privacyPolicy" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
                     <dt><FormattedMessage id="teacherfaq.studentPrivacyLawsTitle" /></dt>
                     <dd>
                         <FormattedMessage
