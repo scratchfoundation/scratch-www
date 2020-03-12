@@ -13,6 +13,14 @@ const Step = require('../../components/steps/step.jsx');
 
 require('./install-scratch.scss');
 
+const downloadUrls = {
+    mac: 'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop-3.6.0.dmg',
+    win: 'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop%20Setup%203.9.0.exe',
+    googlePlayStore: 'https://play.google.com/store/apps/details?id=org.scratch',
+    microsoftStore: 'https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge',
+    macAppStore: 'https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12'
+};
+
 const InstallScratch = ({
     currentOS
 }) => (
@@ -67,7 +75,7 @@ const InstallScratch = ({
                             {currentOS === OS_ENUM.WINDOWS && (
                                 <a
                                     className="ms-badge"
-                                    href="https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge"
+                                    href={downloadUrls.microsoftStore}
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -79,7 +87,7 @@ const InstallScratch = ({
                             {currentOS === OS_ENUM.MACOS && (
                                 <a
                                     className="macos-badge"
-                                    href="https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12"
+                                    href={downloadUrls.macAppStore}
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -91,7 +99,7 @@ const InstallScratch = ({
                             {isFromGooglePlay(currentOS) && (
                                 <a
                                     className="play-badge"
-                                    href="https://play.google.com/store/apps/details?id=org.scratch"
+                                    href={downloadUrls.googlePlayStore}
                                     rel="noopener noreferrer"
                                     target="_blank"
                                 >
@@ -106,14 +114,7 @@ const InstallScratch = ({
                                     <span className="horizontal-divider">
                                         <FormattedMessage id="installScratch.or" />
                                     </span>
-                                    <a
-                                        href={
-                                            currentOS === OS_ENUM.WINDOWS ?
-                                                'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop%20Setup%203.6.0.exe' :
-                                                'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop-3.6.0.dmg'
-                                        }
-
-                                    >
+                                    <a href={currentOS === OS_ENUM.WINDOWS ? downloadUrls.win : downloadUrls.mac}>
                                         <FormattedMessage id="installScratch.directDownload" />
                                     </a>
                                 </React.Fragment>
