@@ -89,7 +89,18 @@ const TeacherFaq = props => (
                     <dt><FormattedMessage id="teacherfaq.studentUnsharedTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.studentUnsharedBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentDeleteTitle" /></dt>
-                    <dd><FormattedMessage id="teacherfaq.studentDeleteBody" /></dd>
+                    <dd>
+                        <FormattedMessage
+                            id="teacherfaq.studentDeleteBody"
+                            values={{
+                                accountSettingsLink: (
+                                    <a href="https://scratch.mit.edu/accounts/settings/">
+                                        <FormattedMessage id="teacherfaq.accountSettings" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
                     <dt><FormattedMessage id="teacherfaq.studentMultipleTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.studentMultipleBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentTransferTitle" /></dt>
