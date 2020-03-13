@@ -39,7 +39,7 @@ class ContactUs extends React.Component {
                         <p><FormattedMessage
                             id="contactUs.intro"
                             values={{faqLink: (
-                                <a href="/faq"><FormattedMessage id="contactUs.faqLinkText" /></a>
+                                <a href="/info/faq"><FormattedMessage id="contactUs.faqLinkText" /></a>
                             )}}
                         /></p>
                         <p><FormattedMessage id="contactUs.forumsInfo" /></p>
@@ -53,13 +53,13 @@ class ContactUs extends React.Component {
                             <li><FormattedMessage
                                 id="contactUs.scriptsForum"
                                 values={{scriptsLink: (
-                                    <a href="/discuss/4/"><FormattedMessage id="contactUs.scriptsLinkText" /></a>
+                                    <a href="/discuss/7/"><FormattedMessage id="contactUs.scriptsLinkText" /></a>
                                 )}}
                             /></li>
                             <li><FormattedMessage
                                 id="contactUs.bugsForum"
                                 values={{bugsLink: (
-                                    <a href="/discuss/4/"><FormattedMessage id="contactUs.bugsLinkText" /></a>
+                                    <a href="/discuss/3/"><FormattedMessage id="contactUs.bugsLinkText" /></a>
                                 )}}
                             /></li>
                         </ul>
@@ -69,7 +69,7 @@ class ContactUs extends React.Component {
                 <nav>
                     <ol>
                         <li className="nav-header"><FormattedMessage id="contactUs.findHelp" /></li>
-                        <li><a href="/faq"><FormattedMessage id="contactUs.faqLinkText" /></a></li>
+                        <li><a href="/info/faq"><FormattedMessage id="contactUs.faqLinkText" /></a></li>
                     </ol>
                 </nav>
                 <HelpForm
