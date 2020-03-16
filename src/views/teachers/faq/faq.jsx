@@ -59,7 +59,7 @@ const TeacherFaq = props => (
                     <dt><FormattedMessage id="teacherfaq.studentDiscussTitle" /></dt>
                     <dd>
                         <FormattedMessage
-                            id="teacherfaq.studentDiscussBody"
+                            id="teacherfaq.studentDiscussionBody"
                             values={{
                                 scratchEdLink: (
                                     <a href="http://scratched.gse.harvard.edu/">ScratchEd</a>
@@ -174,7 +174,7 @@ const TeacherFaq = props => (
                     <dd><FormattedMessage id="teacherfaq.commBlockGamesBody1" /></dd>
                     <dd><FormattedMessage id="teacherfaq.commBlockGamesBody2" /></dd>
                     <dt><FormattedMessage id="teacherfaq.commInappropriateTitle" /></dt>
-                    <dd><FormattedMessage id="teacherfaq.commInappropriateBody" /></dd>
+                    <dd><FormattedHTMLMessage id="teacherfaq.commInappropriateBody" /></dd>
                 </dl>
             </section>
         </div>

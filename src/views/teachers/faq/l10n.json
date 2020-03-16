@@ -38,7 +38,7 @@
     "teacherfaq.studentMultipleTitle": "Can a student be in multiple classes? ",
     "teacherfaq.studentMultipleBody": "A student can only be a part of one class.",
     "teacherfaq.studentDiscussTitle": "Is there a space to discuss Teacher Accounts with other teachers?",
-    "teacherfaq.studentDiscussBody": "Yes, you can engage in discussions with other teachers at {scratchEdLink}, an online community for Scratch educators. Check out their {forumsLink} to join conversations about a number of topics, including but not limited to Teacher Accounts. ScratchEd is developed and supported by the Harvard Graduate School of Education.",
+    "teacherfaq.studentDiscussionBody": "Yes, you can engage in discussions with other teachers at {scratchEdLink}, an online community for Scratch educators. Check out their {forumsLink} to join conversations about a number of topics, including but not limited to Teacher Accounts. ScratchEd is developed and supported by the Harvard Graduate School of Education.",
     "teacherfaq.forums": "forums",
     "teacherfaq.privacyPolicy": "Scratch Privacy Policy",
     "teacherfaq.studentDataTitle": "What data does Scratch collect about students?",
