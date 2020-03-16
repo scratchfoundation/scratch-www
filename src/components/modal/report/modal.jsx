@@ -19,8 +19,8 @@ const {reportOptionsShape, REPORT_OPTIONS} = require('./report-options.js');
 require('../../forms/button.scss');
 require('./modal.scss');
 
-// Progression component only addresses steps by number, but this flow
-// may skip steps so the code is easier to read with a map.
+// The Progression component uses numbers to track which step it's on, but that's
+// hard to read. Make the code easier to read by giving each step number a label.
 const STEPS = {
     category: 0,
     textInput: 1,
@@ -66,6 +66,11 @@ class ReportModal extends React.Component {
         const contentLabel = intl.formatMessage({id: `report.${type}`});
         const categoryRequiredMessage = intl.formatMessage({id: 'report.reasonMissing'});
         const category = reportOptions.find(o => o.value === this.state.categoryValue) || reportOptions[0];
+
+        // Confirmation step is shown if a report has been submitted, even if state is reset by closing the modal.
+        // This prevents multiple report submission within the same session because submission is stored in redux.
+        const step = isConfirmed ? STEPS.confirmation : this.state.step;
+
         return (
             <Modal
                 useStandardSizes
@@ -85,7 +90,8 @@ class ReportModal extends React.Component {
                                 <FormattedMessage id="report.error" />
                             </div>
                         )}
-                        <Progression step={isConfirmed ? STEPS.confirmation : this.state.step}>
+                        <Progression step={step}>
+                            {/* Category selection step */}
                             <FormStep
                                 nextLabel={{id: 'general.next'}}
                                 onNext={this.handleSetCategory}
@@ -118,6 +124,8 @@ class ReportModal extends React.Component {
                                     }}
                                 />
                             </FormStep>
+
+                            {/* Text input step */}
                             <FormStep
                                 isWaiting={isWaiting}
                                 nextLabel={{id: 'report.send'}}
@@ -147,6 +155,8 @@ class ReportModal extends React.Component {
                                     }}
                                 />
                             </FormStep>
+
+                            {/* Confirmation step */}
                             <FormStep
                                 submitEnabled
                                 nextLabel={{id: 'general.close'}}

@@ -34,8 +34,8 @@ class FormStep extends React.Component {
     }
     render () {
         const {onNext, children, isWaiting, nextLabel} = this.props;
-        // Allow submit to be force-enabled by submitEnabled prop. Otherwise use form validation,
-        // with default being not-submittable.
+        // Submit button is enabled if form isn't already submitting, and either the form passes validation,
+        // or the submitEnabled prop is true. This lets submitEnabled prop override validation.
         const submitEnabled = (this.props.submitEnabled || this.state.valid) && !isWaiting;
         const submitDisabledParam = submitEnabled ? {} : {disabled: 'disabled'};
         return (
