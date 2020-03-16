@@ -4,10 +4,10 @@ const React = require('react');
 const FormattedMessage = require('react-intl').FormattedMessage;
 
 const HelpForm = props => {
-    const prefix = 'https://mitscratch.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&widgetView=yes&screenshot=No&searchArea=No&captcha=yes';
+    const prefix = 'https://mitscratch.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&widgetView=yes&screenshot=No&searchArea=No';
     const title = `formTitle=${props.title}`;
     const username = `helpdesk_ticket[custom_field][cf_scratch_name_40167]=${props.user.username || ''}`;
-    const agentText = encodeURI(window.navigator.userAgent.replace(';', ' -'));
+    const agentText = encodeURIComponent(window.navigator.userAgent);
     const browser = `helpdesk_ticket[custom_field][cf_browser_40167]=${agentText}`;
     const formSubject = `helpdesk_ticket[subject]=${props.subject}`;
     const formDescription = `helpdesk_ticket[description]=${props.body}`;
