@@ -45,7 +45,7 @@ class FormStep extends React.Component {
                 onValidSubmit={onNext}
             >
                 {children}
-                <FlexRow className="action-buttons">
+                <FlexRow className={classNames('action-buttons', 'action-buttons-no-inset')}>
                     <Button
                         className={classNames(
                             'action-button',
