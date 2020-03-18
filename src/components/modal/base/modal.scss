@@ -84,6 +84,12 @@ row to appear to contain overflow. */
     margin-bottom: .9375rem;
 }
 
+/* For action button row where left/right margin is handled by parent element */
+.action-buttons.action-buttons-no-inset {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .action-button {
     margin: 0 0 0 .54625rem;
     border-radius: .25rem;
