@@ -80,7 +80,7 @@ const InstallScratch = ({
                                     target="_blank"
                                 >
                                     <img
-                                        src="images/badges/windows-store-badge.svg"
+                                        src="/images/badges/windows-store-badge.svg"
                                     />
                                 </a>
                             )}
@@ -92,7 +92,7 @@ const InstallScratch = ({
                                     target="_blank"
                                 >
                                     <img
-                                        src="images/badges/mac-store-badge.svg"
+                                        src="/images/badges/mac-store-badge.svg"
                                     />
                                 </a>
                             )}
@@ -104,7 +104,7 @@ const InstallScratch = ({
                                     target="_blank"
                                 >
                                     <img
-                                        src="images/badges/google-play-badge.png"
+                                        src="/images/badges/google-play-badge.png"
                                     />
                                 </a>
 

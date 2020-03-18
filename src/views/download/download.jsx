@@ -78,7 +78,7 @@ class Download extends React.Component {
                                     <span>
                                         <img
                                             alt=""
-                                            src="svgs/extensions/mac.svg"
+                                            src="/svgs/extensions/mac.svg"
                                         />
                                                 macOS 10.13+
                                     </span>
@@ -87,14 +87,14 @@ class Download extends React.Component {
                                             <span>
                                                 <img
                                                     alt=""
-                                                    src="svgs/extensions/chromeos.svg"
+                                                    src="/svgs/extensions/chromeos.svg"
                                                 />
                                                 ChromeOS
                                             </span>
                                             <span>
                                                 <img
                                                     alt=""
-                                                    src="svgs/extensions/android.svg"
+                                                    src="/svgs/extensions/android.svg"
                                                 />
                                                 Android 6.0+
                                             </span>

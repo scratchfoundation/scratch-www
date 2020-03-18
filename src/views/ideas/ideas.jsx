@@ -92,7 +92,7 @@ class Ideas extends React.Component {
                             className="tips-info-section tips-left"
                         >
                             <div className="ideas-image">
-                                <img src="images/ideas/getting-started-illustration.svg" />
+                                <img src="/images/ideas/getting-started-illustration.svg" />
                             </div>
                             <div>
                                 <h2>
