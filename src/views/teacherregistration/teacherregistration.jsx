@@ -23,7 +23,8 @@ class TeacherRegistration extends React.Component {
         super(props);
         bindAll(this, [
             'handleAdvanceStep',
-            'handleRegister'
+            'handleRegister',
+            'setRegistrationError'
         ]);
         this.state = {
             formData: {},
@@ -31,6 +32,9 @@ class TeacherRegistration extends React.Component {
             step: 0,
             waiting: false
         };
+    }
+    setRegistrationError (err) {
+        this.setState({registrationError: err});
     }
     handleAdvanceStep (formData) {
         formData = formData || {};
@@ -49,6 +53,7 @@ class TeacherRegistration extends React.Component {
             formData: {
                 username: this.state.formData.user.username,
                 email: formData.user.email,
+                'g-recaptcha-response': formData['g-recaptcha-response'],
                 password: this.state.formData.user.password,
                 birth_month: this.state.formData.user.birth.month,
                 birth_year: this.state.formData.user.birth.year,
@@ -135,6 +140,7 @@ class TeacherRegistration extends React.Component {
                         <Steps.EmailStep
                             waiting={this.state.waiting}
                             onNextStep={this.handleRegister}
+                            setRegistrationError={this.setRegistrationError}
                         />
                         <Steps.TeacherApprovalStep
                             confirmed={permissions.social}

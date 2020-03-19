@@ -1198,12 +1198,68 @@ class EmailStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
+            'handleValidSubmit',
+            'onCaptchaLoad',
+            'onCaptchaError',
+            'setCaptchaRef',
+            'captchaSolved',
             'handleValidSubmit'
         ]);
         this.state = {
             waiting: false
         };
     }
+    componentDidMount () {
+        if (window.grecaptcha) {
+            this.onCaptchaLoad();
+        } else {
+            // If grecaptcha doesn't exist on window, we havent loaded the captcha js yet. Load it.
+            // ReCaptcha calls a callback when the grecatpcha object is usable. That callback
+            // needs to be global so set it on the window.
+            window.grecaptchaOnLoad = this.onCaptchaLoad;
+            // Load Google ReCaptcha script.
+            const script = document.createElement('script');
+            script.async = true;
+            script.onerror = this.onCaptchaError;
+            script.src = `https://www.recaptcha.net/recaptcha/api.js?onload=grecaptchaOnLoad&render=explicit&hl=${window._locale}`;
+            document.body.appendChild(script);
+        }
+    }
+    componentWillUnmount () {
+        window.grecaptchaOnLoad = null;
+    }
+    captchaSolved (token) {
+        this.setState({
+            waiting: false
+        });
+        this.formData['g-recaptcha-response'] = token;
+        this.setState({'g-recaptcha-response': token});
+        this.props.onNextStep(this.formData);
+    }
+    onCaptchaLoad () {
+        this.setState({captchaIsLoading: false});
+        this.grecaptcha = window.grecaptcha;
+        if (!this.grecaptcha) {
+            // According to the reCaptcha documentation, this callback shouldn't get
+            // called unless window.grecaptcha exists. This is just here to be extra defensive.
+            this.onCaptchaError();
+            return;
+        }
+        this.widgetId = this.grecaptcha.render(this.captchaRef,
+            {
+                callback: this.captchaSolved,
+                sitekey: process.env.RECAPTCHA_SITE_KEY
+            },
+            true);
+    }
+    onCaptchaError () {
+        this.props.setRegistrationError(this.props.intl.formatMessage({id: 'registration.errorCaptcha'}));
+    }
+    setCaptchaRef (ref) {
+        this.captchaRef = ref;
+    }
+
+
     handleValidSubmit (formData, reset, invalidate) {
         this.setState({waiting: true});
         api({
@@ -1211,15 +1267,12 @@ class EmailStep extends React.Component {
             uri: '/accounts/check_email/',
             params: {email: formData.user.email}
         }, (err, res) => {
-            this.setState({
-                waiting: false
-            });
-
             if (err) return invalidate({all: err});
             res = res[0];
             switch (res.msg) {
             case 'valid email':
-                return this.props.onNextStep(formData);
+                this.formData = formData;
+                return this.grecaptcha.execute();
             default:
                 return invalidate({'user.email': res.msg});
             }
@@ -1283,6 +1336,13 @@ class EmailStep extends React.Component {
                     active={this.props.activeStep}
                     steps={this.props.totalSteps - 1}
                 />
+                <div
+                    className="g-recaptcha"
+                    data-badge="bottomright"
+                    data-sitekey={process.env.RECAPTCHA_SITE_KEY}
+                    data-size="invisible"
+                    ref={this.setCaptchaRef}
+                />
             </Slide>
         );
     }
@@ -1292,6 +1352,7 @@ EmailStep.propTypes = {
     activeStep: PropTypes.number,
     intl: intlShape,
     onNextStep: PropTypes.func,
+    setRegistrationError: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
 };
