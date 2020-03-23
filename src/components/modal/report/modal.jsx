@@ -23,8 +23,9 @@ require('./modal.scss');
 // hard to read. Make the code easier to read by giving each step number a label.
 const STEPS = {
     category: 0,
-    textInput: 1,
-    confirmation: 2
+    subcategory: 1,
+    textInput: 2,
+    confirmation: 3
 };
 
 class ReportModal extends React.Component {
@@ -32,22 +33,32 @@ class ReportModal extends React.Component {
         super(props);
         bindAll(this, [
             'handleSetCategory',
-            'handleSubmit'
+            'handleSubmit',
+            'handleSetSubcategory'
         ]);
         this.state = {
             step: STEPS.category,
-            categoryValue: ''
+            categoryValue: '',
+            subcategoryValue: null
         };
     }
     handleSetCategory (formData) {
+        const category = this.props.reportOptions.find(o => o.value === formData.category) || this.props.reportOptions[0];
+
         return this.setState({
             categoryValue: formData.category,
+            step: category.subcategories ? STEPS.subcategory : STEPS.textInput
+        });
+    }
+    handleSetSubcategory (formData) {
+        return this.setState({
+            subcategoryValue: formData.subcategory,
             step: STEPS.textInput
         });
     }
     handleSubmit (formData) {
         this.props.onReport({
-            report_category: this.state.categoryValue,
+            report_category: this.state.subcategoryValue ? this.state.subcategoryValue : this.state.categoryValue,
             notes: formData.notes
         });
     }
@@ -66,6 +77,12 @@ class ReportModal extends React.Component {
         const contentLabel = intl.formatMessage({id: `report.${type}`});
         const categoryRequiredMessage = intl.formatMessage({id: 'report.reasonMissing'});
         const category = reportOptions.find(o => o.value === this.state.categoryValue) || reportOptions[0];
+        let finalCategory = category;
+
+        if (category.subcategories) {
+           finalCategory = category.subcategories.find(o => o.value === this.state.subcategoryValue) || category.subcategories[0];
+        }
+
 
         // Confirmation step is shown if a report has been submitted, even if state is reset by closing the modal.
         // This prevents multiple report submission within the same session because submission is stored in redux.
@@ -125,6 +142,33 @@ class ReportModal extends React.Component {
                                 />
                             </FormStep>
 
+                            {/* Subcategory selection step */}
+                            <FormStep
+                                nextLabel={{id: 'general.next'}}
+                                onNext={this.handleSetSubcategory}
+                            >
+                                <div className="instructions">
+                                    <div className="instructions-header">
+                                        <FormattedMessage {...category.label} />
+                                    </div>
+                                    <FormattedMessage {...category.prompt} />
+                                </div>
+                                <Select
+                                    required
+                                    elementWrapperClassName="report-modal-field"
+                                    label={null}
+                                    name="subcategory"
+                                    options={category.subcategories ? category.subcategories.map(option => ({
+                                        value: option.value,
+                                        label: intl.formatMessage(option.label),
+                                        key: option.value
+                                    })) : []}
+                                    validationErrors={{
+                                        isDefaultRequiredValue: categoryRequiredMessage
+                                    }}
+                                />
+                            </FormStep>
+
                             {/* Text input step */}
                             <FormStep
                                 isWaiting={isWaiting}
@@ -133,9 +177,9 @@ class ReportModal extends React.Component {
                             >
                                 <div className="instructions">
                                     <div className="instructions-header">
-                                        <FormattedMessage {...category.label} />
+                                        <FormattedMessage {...subcategory.label} />
                                     </div>
-                                    <FormattedMessage {...category.prompt} />
+                                    <FormattedMessage {...subcategory.prompt} />
                                 </div>
                                 <TextArea
                                     autoFocus

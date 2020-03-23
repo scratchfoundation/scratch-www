@@ -3,7 +3,8 @@ const PropTypes = require('prop-types');
 const {
     arrayOf,
     string,
-    shape
+    shape,
+    bool
 } = PropTypes;
 
 /**
@@ -15,10 +16,18 @@ const messageShape = shape({
     id: string.isRequired
 });
 
+const subcategoryShape = shape({
+    value: string.isRequired,
+    label: messageShape.isRequired,
+    prompt: messageShape.isRequired,
+    preventSubmission: bool
+});
+
 const categoryShape = shape({
     value: string.isRequired,
     label: messageShape.isRequired,
-    prompt: messageShape.isRequired
+    prompt: messageShape.isRequired,
+    subcategories: arrayOf(subcategoryShape)
 });
 
 const reportOptionsShape = arrayOf(categoryShape);
@@ -67,7 +76,25 @@ const REPORT_OPTIONS = [
     {
         value: '6',
         label: {id: 'general.other'},
-        prompt: {id: 'report.promptGuidelines'}
+        prompt: {id: 'report.promptGuidelines'},
+        subcategories: [
+            {
+                value: '',
+                label: {id: 'report.reasonPlaceHolder'},
+                prompt: {id: 'report.promptPlaceholder'}
+            },
+            {
+                value: '11',
+                label: {id: 'report.reasonCopy'},
+                prompt: {id: 'report.promptCopy'}
+            },
+            {
+                value: '12',
+                label: {id: 'report.reasonPersonal'},
+                prompt: {id: 'report.promptPersonal'},
+                preventSubmission: true
+            }
+        ]
     }
 ];
 
