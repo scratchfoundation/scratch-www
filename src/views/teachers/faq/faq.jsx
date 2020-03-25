@@ -17,7 +17,7 @@ const TeacherFaq = props => (
                 <h2><FormattedMessage id="teacherfaq.title" /></h2>
                 <dl>
                     <dt><FormattedMessage id="teacherfaq.teacherWhatTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherWhatBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.teacherWhatBody" /></dd>
                     <iframe
                         allowFullscreen
                         mozallowfullscreen
@@ -30,17 +30,50 @@ const TeacherFaq = props => (
                     <dt><FormattedMessage id="teacherfaq.teacherSignUpTitle" /></dt>
                     <dd><FormattedHTMLMessage id="teacherfaq.teacherSignUpBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.teacherWaitTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherWaitBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.teacherWaitBody" /></dd>
+                    <dt><FormattedMessage id="teacherfaq.classMultipleTeachersTitle" /></dt>
+                    <dd><FormattedMessage id="teacherfaq.classMultipleTeachersBody" /></dd>
+                    <dt><FormattedMessage id="teacherfaq.convertToTeacherTitle" /></dt>
+                    <dd>
+                        <FormattedMessage
+                            id="teacherfaq.convertToTeacherList"
+                            values={{
+                                helpEmail: (
+                                    <a href="mailto:help@scratch.mit.edu">
+                                        help@scratch.mit.edu
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
+                    <ul>
+                        <li><FormattedMessage id="teacherfaq.convertToTeacherUsername" /></li>
+                        <li><FormattedMessage id="teacherfaq.convertToTeacherEmail" /></li>
+                        <li><FormattedMessage id="teacherfaq.convertToTeacherBirth" /></li>
+                    </ul>
+
                     <dt><FormattedMessage id="teacherfaq.teacherPersonalTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherPersonalBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.teacherPersonalBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.teacherGoogleTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherGoogleBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.teacherGoogleBody" /></dd>
+                    <dt><FormattedMessage id="teacherfaq.studentDiscussTitle" /></dt>
+                    <dd>
+                        <FormattedMessage
+                            id="teacherfaq.studentDiscussionBody"
+                            values={{
+                                scratchEdLink: (
+                                    <a href="http://scratched.gse.harvard.edu/">ScratchEd</a>
+                                ),
+                                forumsLink: (
+                                    <a href="http://scratched.gse.harvard.edu/discussions.html">
+                                        <FormattedMessage id="teacherfaq.forums" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
                     <dt><FormattedMessage id="teacherfaq.teacherEdTitle" /></dt>
                     <dd><FormattedHTMLMessage id="teacherfaq.teacherEdBody" /></dd>
-                    <dt><FormattedMessage id="teacherfaq.teacherMultipleTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherMultipleBody" /></dd>
-                    <dt><FormattedMessage id="teacherfaq.teacherQuestionsTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.teacherQuestionsBody" /></dd>
                 </dl>
             </section>
             <section id="student-accounts">
@@ -48,25 +81,72 @@ const TeacherFaq = props => (
                 <h2><FormattedMessage id="teacherfaq.studentAccountsTitle" /></h2>
                 <dl>
                     <dt><FormattedMessage id="teacherfaq.studentVerifyTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentVerifyBody" /></dd>
-                    <dt><FormattedMessage id="teacherfaq.studentEndTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentEndBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.studentVerifyBody" /></dd>
+                    <dt><FormattedMessage id="teacherfaq.studentAddExistingTitle" /></dt>
+                    <dd><FormattedMessage id="teacherfaq.studentAddExistingBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentForgetTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentForgetBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.studentForgetBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentUnsharedTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentUnsharedBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.studentUnsharedBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.studentDeleteTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentDeleteBody" /></dd>
-                    <dt><FormattedMessage id="teacherfaq.studentAddTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentAddBody" /></dd>
+                    <dd>
+                        <FormattedMessage
+                            id="teacherfaq.studentDeleteBody"
+                            values={{
+                                accountSettingsLink: (
+                                    <a href="https://scratch.mit.edu/accounts/settings/">
+                                        <FormattedMessage id="teacherfaq.accountSettings" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
                     <dt><FormattedMessage id="teacherfaq.studentMultipleTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentMultipleBody" /></dd>
-                    <dt><FormattedMessage id="teacherfaq.studentDiscussTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.studentDiscussBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.studentMultipleBody" /></dd>
+                    <dt><FormattedMessage id="teacherfaq.studentTransferTitle" /></dt>
+                    <dd><FormattedMessage id="teacherfaq.studentTransferBody" /></dd>
+                    <dt><FormattedMessage id="teacherfaq.studentEndTitle" /></dt>
+                    <dd><FormattedMessage id="teacherfaq.studentEndBody" /></dd>
+                    <dt><FormattedMessage id="teacherfaq.student250Title" /></dt>
+                    <dd>
+                        <FormattedMessage
+                            id="teacherfaq.student250Body"
+                            values={{
+                                myClassesLink: (
+                                    <a href="https://scratch.mit.edu/educators/classes/">
+                                        <FormattedMessage id="teacherfaq.myClasses" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
                     <dt><FormattedMessage id="teacherfaq.studentDataTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.studentDataBody" /></dd>
+                    <dd>
+                        <FormattedMessage
+                            id="teacherfaq.studentDataBody2"
+                            values={{
+                                privacyPolicyLink: (
+                                    <a href="https://scratch.mit.edu/privacy_policy">
+                                        <FormattedMessage id="teacherfaq.privacyPolicy" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
                     <dt><FormattedMessage id="teacherfaq.studentPrivacyLawsTitle" /></dt>
-                    <dd><FormattedMessage id="teacherfaq.studentPrivacyLawsBody" /></dd>
+                    <dd>
+                        <FormattedMessage
+                            id="teacherfaq.studentPrivacyLawsBody"
+                            values={{
+                                privacyPolicyLink: (
+                                    <a href="https://scratch.mit.edu/privacy_policy">
+                                        <FormattedMessage id="teacherfaq.privacyPolicy" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
                 </dl>
             </section>
             <section id="community">
@@ -74,9 +154,25 @@ const TeacherFaq = props => (
                 <h2><FormattedMessage id="teacherfaq.commTitle" /></h2>
                 <dl>
                     <dt><FormattedMessage id="teacherfaq.commHiddenTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.commHiddenBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.commHiddenBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.commWhoTitle" /></dt>
-                    <dd><FormattedHTMLMessage id="teacherfaq.commWhoBody" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.commWhoBody" /></dd>
+                    <dt><FormattedMessage id="teacherfaq.commTurnOffCommentsTitle" /></dt>
+                    <dd>
+                        <FormattedMessage
+                            id="teacherfaq.commTurnOffCommentsBody"
+                            values={{
+                                desktopLink: (
+                                    <a href="https://scratch.mit.edu/download">
+                                        Scratch Desktop app
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
+                    <dt><FormattedMessage id="teacherfaq.commBlockGamesTitle" /></dt>
+                    <dd><FormattedMessage id="teacherfaq.commBlockGamesBody1" /></dd>
+                    <dd><FormattedMessage id="teacherfaq.commBlockGamesBody2" /></dd>
                     <dt><FormattedMessage id="teacherfaq.commInappropriateTitle" /></dt>
                     <dd><FormattedHTMLMessage id="teacherfaq.commInappropriateBody" /></dd>
                 </dl>
