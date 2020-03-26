@@ -23,7 +23,8 @@ class TeacherRegistration extends React.Component {
         super(props);
         bindAll(this, [
             'handleAdvanceStep',
-            'handleRegister'
+            'handleRegister',
+            'setRegistrationError'
         ]);
         this.state = {
             formData: {},
@@ -31,6 +32,9 @@ class TeacherRegistration extends React.Component {
             step: 0,
             waiting: false
         };
+    }
+    setRegistrationError (err) {
+        this.setState({registrationError: err});
     }
     handleAdvanceStep (formData) {
         formData = formData || {};
@@ -47,34 +51,35 @@ class TeacherRegistration extends React.Component {
             method: 'post',
             useCsrf: true,
             formData: {
-                username: this.state.formData.user.username,
-                email: formData.user.email,
-                password: this.state.formData.user.password,
-                birth_month: this.state.formData.user.birth.month,
-                birth_year: this.state.formData.user.birth.year,
-                gender: (
+                'username': this.state.formData.user.username,
+                'email': formData.user.email,
+                'g-recaptcha-response': formData['g-recaptcha-response'],
+                'password': this.state.formData.user.password,
+                'birth_month': this.state.formData.user.birth.month,
+                'birth_year': this.state.formData.user.birth.year,
+                'gender': (
                     this.state.formData.user.gender === 'other' ?
                         this.state.formData.user.genderOther :
                         this.state.formData.user.gender
                 ),
-                country: this.state.formData.user.country,
-                subscribe: formData.subscribe,
-                is_robot: this.state.formData.user.isRobot,
-                first_name: this.state.formData.user.name.first,
-                last_name: this.state.formData.user.name.last,
-                phone_number: this.state.formData.phone.national_number,
-                organization_name: this.state.formData.organization.name,
-                organization_title: this.state.formData.organization.title,
-                organization_type: this.state.formData.organization.type,
-                organization_other: this.state.formData.organization.other,
-                organization_url: this.state.formData.organization.url,
-                address_country: this.state.formData.address.country,
-                address_line1: this.state.formData.address.line1,
-                address_line2: this.state.formData.address.line2,
-                address_city: this.state.formData.address.city,
-                address_state: this.state.formData.address.state,
-                address_zip: this.state.formData.address.zip,
-                how_use_scratch: this.state.formData.useScratch
+                'country': this.state.formData.user.country,
+                'subscribe': formData.subscribe,
+                'is_robot': this.state.formData.user.isRobot,
+                'first_name': this.state.formData.user.name.first,
+                'last_name': this.state.formData.user.name.last,
+                'phone_number': this.state.formData.phone.national_number,
+                'organization_name': this.state.formData.organization.name,
+                'organization_title': this.state.formData.organization.title,
+                'organization_type': this.state.formData.organization.type,
+                'organization_other': this.state.formData.organization.other,
+                'organization_url': this.state.formData.organization.url,
+                'address_country': this.state.formData.address.country,
+                'address_line1': this.state.formData.address.line1,
+                'address_line2': this.state.formData.address.line2,
+                'address_city': this.state.formData.address.city,
+                'address_state': this.state.formData.address.state,
+                'address_zip': this.state.formData.address.zip,
+                'how_use_scratch': this.state.formData.useScratch
             }
         }, (err, body, res) => {
             this.setState({waiting: false});
@@ -133,6 +138,7 @@ class TeacherRegistration extends React.Component {
                             onNextStep={this.handleAdvanceStep}
                         />
                         <Steps.EmailStep
+                            setRegistrationError={this.setRegistrationError}
                             waiting={this.state.waiting}
                             onNextStep={this.handleRegister}
                         />

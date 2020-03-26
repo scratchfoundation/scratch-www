@@ -12,6 +12,7 @@ const intl = require('../../lib/intl.jsx');
 
 const Avatar = require('../../components/avatar/avatar.jsx');
 const Button = require('../../components/forms/button.jsx');
+const Captcha = require('../../components/captcha/captcha.jsx');
 const Card = require('../../components/card/card.jsx');
 const CharCount = require('../../components/forms/charcount.jsx');
 const Checkbox = require('../../components/forms/checkbox.jsx');
@@ -1198,11 +1199,35 @@ class EmailStep extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleValidSubmit'
+            'handleCaptchaError',
+            'handleCaptchaLoad',
+            'handleCaptchaSolved',
+            'handleValidSubmit',
+            'setCaptchaRef'
         ]);
         this.state = {
             waiting: false
         };
+    }
+    handleCaptchaLoad () {
+        this.setState({
+            waiting: true
+        });
+    }
+    handleCaptchaSolved (token) {
+        this.setState({
+            waiting: false
+        });
+        this.formData['g-recaptcha-response'] = token;
+        this.setState({'g-recaptcha-response': token});
+        this.props.onNextStep(this.formData);
+    }
+    handleCaptchaError () {
+        this.props.setRegistrationError(
+            this.props.intl.formatMessage({id: 'registration.errorCaptcha'}));
+    }
+    setCaptchaRef (ref) {
+        this.captchaRef = ref;
     }
     handleValidSubmit (formData, reset, invalidate) {
         this.setState({waiting: true});
@@ -1219,7 +1244,8 @@ class EmailStep extends React.Component {
             res = res[0];
             switch (res.msg) {
             case 'valid email':
-                return this.props.onNextStep(formData);
+                this.formData = formData;
+                return this.captchaRef.executeCaptcha();
             default:
                 return invalidate({'user.email': res.msg});
             }
@@ -1283,6 +1309,12 @@ class EmailStep extends React.Component {
                     active={this.props.activeStep}
                     steps={this.props.totalSteps - 1}
                 />
+                <Captcha
+                    ref={this.setCaptchaRef}
+                    onCaptchaError={this.handleCaptchaError}
+                    onCaptchaLoad={this.handleCaptchaLoad}
+                    onCaptchaSolved={this.handleCaptchaSolved}
+                />
             </Slide>
         );
     }
@@ -1292,6 +1324,7 @@ EmailStep.propTypes = {
     activeStep: PropTypes.number,
     intl: intlShape,
     onNextStep: PropTypes.func,
+    setRegistrationError: PropTypes.func,
     totalSteps: PropTypes.number,
     waiting: PropTypes.bool
 };
