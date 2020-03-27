@@ -69,8 +69,8 @@ class Captcha extends React.Component {
     }
 }
 Captcha.propTypes = {
-    onCaptchaError: PropTypes.func,
-    onCaptchaLoad: PropTypes.func,
-    onCaptchaSolved: PropTypes.func
+    onCaptchaError: PropTypes.func.isRequired,
+    onCaptchaLoad: PropTypes.func.isRequired,
+    onCaptchaSolved: PropTypes.func.isRequired
 };
 module.exports = Captcha;
