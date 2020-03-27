@@ -39,7 +39,18 @@ const catImages = [
     '/images/cats/Cat1.jpg',
     '/images/cats/Cat2.jpg',
     '/images/cats/Cat3.jpg',
-    '/images/cats/Cat4.jpg'
+    '/images/cats/Cat4.jpg',
+    '/images/cats/Cat5.jpg',
+    '/images/cats/Cat6.png',
+    '/images/cats/Cat7.jpg',
+    '/images/cats/Cat8.jpg',
+    '/images/cats/Cat9.jpg',
+    '/images/cats/Cat10.png',
+    '/images/cats/Cat11.png',
+    '/images/cats/Cat12.png',
+    '/images/cats/IMG_2167.jpg',
+    '/images/cats/IMG_4316.jpg',
+    '/images/cats/IMG_5396.jpg'
 ];
 
 /* eslint-disable max-len */
@@ -122,7 +133,7 @@ class Cats extends React.Component {
                 onRequestClose={this.handleClose}
             >
                 <div className="cats-modal-header modal-header">
-                    <ModalTitle title={'Hmmm...'} />
+                    <ModalTitle title={'Hmmm... 🤔'} />
                 </div>
                 <div className="cats-modal-content modal-content">
                     <p> {this.pickRandomFact()} </p>
