@@ -25,7 +25,8 @@ const STEPS = {
     category: 0,
     subcategory: 1,
     textInput: 2,
-    confirmation: 3
+    confirmation: 3,
+    deadend: 4
 };
 
 class ReportModal extends React.Component {
@@ -51,9 +52,13 @@ class ReportModal extends React.Component {
         });
     }
     handleSetSubcategory (formData) {
+        const category = this.props.reportOptions.find(o => o.value === this.state.categoryValue) || this.props.reportOptions[0];
+
+        const subcategory = category.subcategories.find(o => o.value === formData.subcategory) || category.subcategories[0];
+        
         return this.setState({
-            subcategoryValue: formData.subcategory,
-            step: STEPS.textInput
+            subcategoryValue: subcategory.value,
+            step: subcategory.preventSubmission ? STEPS.deadend : STEPS.textInput
         });
     }
     handleSubmit (formData) {
@@ -177,9 +182,9 @@ class ReportModal extends React.Component {
                             >
                                 <div className="instructions">
                                     <div className="instructions-header">
-                                        <FormattedMessage {...subcategory.label} />
+                                        <FormattedMessage {...finalCategory.label} />
                                     </div>
-                                    <FormattedMessage {...subcategory.prompt} />
+                                    <FormattedMessage {...finalCategory.prompt} />
                                 </div>
                                 <TextArea
                                     autoFocus
@@ -211,6 +216,20 @@ class ReportModal extends React.Component {
                                         <FormattedMessage id="report.receivedHeader" />
                                     </div>
                                     <FormattedMessage id="report.receivedBody" />
+                                </div>
+                            </FormStep>
+
+                            {/* Deadend */}
+                            <FormStep
+                                submitEnabled
+                                nextLabel={{id: 'general.close'}}
+                                onNext={onRequestClose}
+                            >
+                                <div className="instructions">
+                                    <div className="instructions-header">
+                                        <FormattedMessage {...finalCategory.label} />
+                                    </div>
+                                    <FormattedMessage {...finalCategory.prompt} />
                                 </div>
                             </FormStep>
                         </Progression>
