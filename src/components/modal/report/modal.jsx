@@ -85,10 +85,16 @@ class ReportModal extends React.Component {
         const category = reportOptions.find(o => o.value === this.state.categoryValue) || reportOptions[0];
         let finalCategory = category;
 
+
         if (category.subcategories) {
            finalCategory = category.subcategories.find(o => o.value === this.state.subcategoryValue) || category.subcategories[0];
         }
 
+        const promptList = finalCategory.list && finalCategory.list.map((listItem, index) =>
+          <li key={index}>
+            <FormattedMessage {...listItem} />
+          </li>
+        );
 
         // Confirmation step is shown if a report has been submitted, even if state is reset by closing the modal.
         // This prevents multiple report submission within the same session because submission is stored in redux.
@@ -230,7 +236,19 @@ class ReportModal extends React.Component {
                                     <div className="instructions-header">
                                         <FormattedMessage {...finalCategory.label} />
                                     </div>
-                                    <FormattedMessage {...finalCategory.prompt} />
+                                    <p>
+                                        <FormattedMessage {...finalCategory.prompt} />
+                                    </p>
+                                    {finalCategory.prompt2 && (
+                                        <p>
+                                            <FormattedMessage {...finalCategory.prompt2} />
+                                        </p>
+                                    )}
+                                    {promptList && (
+                                        <ul>
+                                            {promptList}
+                                        </ul>
+                                    )}
                                 </div>
                             </FormStep>
                         </Progression>
