@@ -2,6 +2,7 @@ const bindAll = require('lodash.bindall');
 const PropTypes = require('prop-types');
 const React = require('react');
 const connect = require('react-redux').connect;
+const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
@@ -156,7 +157,7 @@ class ReportModal extends React.Component {
                                     <div className="instructions-header">
                                         <FormattedMessage {...category.label} />
                                     </div>
-                                    <FormattedMessage {...category.prompt} />
+                                    <FormattedHTMLMessage {...category.prompt} />
                                 </div>
                                 <Select
                                     required
@@ -184,7 +185,7 @@ class ReportModal extends React.Component {
                                     <div className="instructions-header">
                                         <FormattedMessage {...finalCategory.label} />
                                     </div>
-                                    <FormattedMessage {...finalCategory.prompt} />
+                                    <FormattedHTMLMessage {...finalCategory.prompt} />
                                 </div>
                                 <TextArea
                                     autoFocus
@@ -224,7 +225,7 @@ class ReportModal extends React.Component {
                                 submitEnabled
                                 nextLabel={{id: 'general.close'}}
                                 onNext={onRequestClose}
-                            >
+                            >   
                                 <div className="instructions">
                                     <div className="instructions-header">
                                         <FormattedMessage {...finalCategory.label} />
