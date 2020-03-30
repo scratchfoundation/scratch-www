@@ -20,6 +20,8 @@ const subcategoryShape = shape({
     value: string.isRequired,
     label: messageShape.isRequired,
     prompt: messageShape.isRequired,
+    prompt2: messageShape,
+    list: arrayOf(messageShape),
     preventSubmission: bool
 });
 
@@ -84,17 +86,63 @@ const REPORT_OPTIONS = [
                 prompt: {id: 'report.promptPlaceholder'}
             },
             {
+                value: 'report.reasonDontLikeIt',
+                label: {id: 'report.reasonDontLikeIt'},
+                prompt: {id: 'report.promptDontLikeIt'},
+                prompt2: {id: 'report.promptDontLikeIt'},
+                list: [
+                    {id: 'report.itemSupportive'},
+                    {id: 'report.itemConstructive'},
+                    {id: 'report.itemSpecific'}
+                ],
+                preventSubmission: true
+            },
+            {
+                value: 'report.reasonDoesntWork',
+                label: {id: 'report.reasonDoesntWork'},
+                prompt: {id: 'report.promptDoesntWork'},
+                preventSubmission: true
+            },
+            {
+                value: 'report.reasonCouldImprove',
+                label: {id: 'report.reasonCouldImprove'},
+                prompt: {id: 'report.promptCouldImprove'},
+                preventSubmission: true
+            },
+            {
+                value: 'report.reasonTooHard',
+                label: {id: 'report.reasonTooHard'},
+                prompt: {id: 'report.promptTooHard'},
+                preventSubmission: true
+            },
+            {
+                value: '9',
+                label: {id: 'report.reasonMisleading'},
+                prompt: {id: 'report.promptMisleading'}
+            },
+            {
+                value: '10',
+                label: {id: 'report.reasonFaceReveal'},
+                prompt: {id: 'report.promptFaceReveal'}
+            },
+            {
                 value: '11',
-                label: {id: 'report.reasonCopy'},
-                prompt: {id: 'report.promptCopy'}
+                label: {id: 'report.reasonNoRemixingAllowed'},
+                prompt: {id: 'report.promptNoRemixingAllowed'}
             },
             {
                 value: '12',
-                label: {id: 'report.reasonPersonal'},
-                prompt: {id: 'report.promptPersonal'},
-                preventSubmission: true
+                label: {id: 'report.reasonCreatorsSafety'},
+                prompt: {id: 'report.promptCreatorsSafety'}
+            },
+            {
+                value: '13',
+                label: {id: 'report.reasonSomethingElse'},
+                prompt: {id: 'report.promptSomethingElse'}
             }
         ]
+
+
     }
 ];
 
