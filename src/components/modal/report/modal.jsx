@@ -15,7 +15,7 @@ const TextArea = require('../../forms/textarea.jsx');
 const previewActions = require('../../../redux/preview.js');
 const Progression = require('../../progression/progression.jsx');
 const FormStep = require('./form-step.jsx');
-const {reportOptionsShape, REPORT_OPTIONS} = require('./report-options.js');
+const {reportOptionsShape, REPORT_OPTIONS} = require('./report-options.jsx');
 
 require('../../forms/button.scss');
 require('./modal.scss');
@@ -163,7 +163,7 @@ class ReportModal extends React.Component {
                                     <div className="instructions-header">
                                         <FormattedMessage {...category.label} />
                                     </div>
-                                    <FormattedHTMLMessage {...category.prompt} />
+                                    {category.prompt}
                                 </div>
                                 <Select
                                     required
@@ -191,7 +191,7 @@ class ReportModal extends React.Component {
                                     <div className="instructions-header">
                                         <FormattedMessage {...finalCategory.label} />
                                     </div>
-                                    <FormattedHTMLMessage {...finalCategory.prompt} />
+                                    {finalCategory.prompt}
                                 </div>
                                 <TextArea
                                     autoFocus
@@ -236,19 +236,7 @@ class ReportModal extends React.Component {
                                     <div className="instructions-header">
                                         <FormattedMessage {...finalCategory.label} />
                                     </div>
-                                    <p>
-                                        <FormattedMessage {...finalCategory.prompt} />
-                                    </p>
-                                    {finalCategory.prompt2 && (
-                                        <p>
-                                            <FormattedMessage {...finalCategory.prompt2} />
-                                        </p>
-                                    )}
-                                    {promptList && (
-                                        <ul>
-                                            {promptList}
-                                        </ul>
-                                    )}
+                                    {finalCategory.prompt}
                                 </div>
                             </FormStep>
                         </Progression>
