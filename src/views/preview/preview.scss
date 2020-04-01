@@ -479,6 +479,7 @@ $stage-width: 480px;
         line-height: 1.5rem;
         flex: 1;
         overflow-wrap: break-word;
+        word-break: break-word;
     }
 
     .project-description:last-of-type {
