@@ -291,7 +291,7 @@
     "report.promptFaceReveal": "Scratch allows people to use pictures of their face in creative projects like games, stories, or animations. However, projects that are just a picture of their face, or which focus entirely on their physical appearance, aren't allowed on Scratch. If this is a 'face reveal', or the project focuses on the person's appearance, please click report.",
     "report.promptNoRemixingAllowed": "Please let us know where the project says it is not okay to remix — such as in the Notes & Credits, project title, etc.  ",
     "report.promptCreatorsSafety": "It's important that everyone on Scratch remains safe online and in real life. Please let us know why you are worried about the safety of this user.",
-    "report.promptSomethingElse": "We encourage you to double check if your report fits any of the other available categories. If you strongly feel it does not, please explain why this project breaks the {communityGuidelinesLink}.",
+    "report.promptSomethingElse": "We encourage you to double check if your report fits any of the other available categories. If you strongly feel it does not, please explain why this project breaks the {CommunityGuidelinesLink}.",
     "report.tooLongError": "That's too long! Please find a way to shorten your text.",
     "report.tooShortError": "That's too short. Please describe in detail what's inappropriate or disrespectful about the project.",
     "report.send": "Send",

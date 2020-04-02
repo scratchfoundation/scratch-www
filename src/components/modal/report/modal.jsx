@@ -2,7 +2,6 @@ const bindAll = require('lodash.bindall');
 const PropTypes = require('prop-types');
 const React = require('react');
 const connect = require('react-redux').connect;
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
@@ -45,7 +44,8 @@ class ReportModal extends React.Component {
         };
     }
     handleSetCategory (formData) {
-        const category = this.props.reportOptions.find(o => o.value === formData.category) || this.props.reportOptions[0];
+        const category = this.props.reportOptions.find(o => o.value === formData.category) ||
+        this.props.reportOptions[0];
 
         return this.setState({
             categoryValue: formData.category,
@@ -53,9 +53,11 @@ class ReportModal extends React.Component {
         });
     }
     handleSetSubcategory (formData) {
-        const category = this.props.reportOptions.find(o => o.value === this.state.categoryValue) || this.props.reportOptions[0];
+        const category = this.props.reportOptions.find(o => o.value === this.state.categoryValue) ||
+        this.props.reportOptions[0];
 
-        const subcategory = category.subcategories.find(o => o.value === formData.subcategory) || category.subcategories[0];
+        const subcategory = category.subcategories.find(o => o.value === formData.subcategory) ||
+        category.subcategories[0];
         
         return this.setState({
             subcategoryValue: subcategory.value,
@@ -87,14 +89,9 @@ class ReportModal extends React.Component {
 
 
         if (category.subcategories) {
-           finalCategory = category.subcategories.find(o => o.value === this.state.subcategoryValue) || category.subcategories[0];
+            finalCategory = category.subcategories.find(o => o.value === this.state.subcategoryValue) ||
+            category.subcategories[0];
         }
-
-        const promptList = finalCategory.list && finalCategory.list.map((listItem, index) =>
-          <li key={index}>
-            <FormattedMessage {...listItem} />
-          </li>
-        );
 
         // Confirmation step is shown if a report has been submitted, even if state is reset by closing the modal.
         // This prevents multiple report submission within the same session because submission is stored in redux.
@@ -231,7 +228,7 @@ class ReportModal extends React.Component {
                                 submitEnabled
                                 nextLabel={{id: 'general.close'}}
                                 onNext={onRequestClose}
-                            >   
+                            >
                                 <div className="instructions">
                                     <div className="instructions-header">
                                         <FormattedMessage {...finalCategory.label} />
