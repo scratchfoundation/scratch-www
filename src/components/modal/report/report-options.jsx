@@ -144,7 +144,14 @@ const REPORT_OPTIONS = [
             {
                 value: '10',
                 label: {id: 'report.reasonFaceReveal'},
-                prompt: <FormattedMessage id="report.promptFaceReveal" />
+                prompt: (
+                    <FormattedMessage
+                        id={`report.promptFaceReveal`}
+                        values={{
+                            send: <FormattedMessage id="report.send" />
+                        }}
+                    />
+                )
             },
             {
                 value: '11',
