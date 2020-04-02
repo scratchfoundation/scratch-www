@@ -32,11 +32,22 @@ class StudentRegistration extends React.Component {
     }
     componentDidMount () {
         this.setState({waiting: true}); // eslint-disable-line react/no-did-mount-set-state
+
+        // set uri and params
+        let uri;
+        let params;
+        if (this.props.classroomId === null || typeof this.props.classroomId === 'undefined') {
+            // configure for token-only endpoint
+            uri = `/classtoken/${this.props.classroomToken}`;
+        } else {
+            // configure for endpoint expecting classroomId and token
+            uri = `/classrooms/${this.props.classroomId}`;
+            params = {token: this.props.classroomToken};
+        }
+
         api({
-            uri: `/classrooms/${this.props.classroomId}`,
-            params: {
-                token: this.props.classroomToken
-            }
+            uri: uri,
+            params: params
         }, (err, body, res) => {
             this.setState({waiting: false});
             if (err) {
@@ -164,14 +175,23 @@ StudentRegistration.defaultProps = {
 
 const IntlStudentRegistration = injectIntl(StudentRegistration);
 
-const [classroomId, _, classroomToken] = document.location.pathname.split('/').filter(p => {
-    if (p) {
-        return p;
+// parse either format of student registration url:
+// "class register": http://scratch.mit.edu/classes/3/register/c0256654e1be
+// "join token": http://scratch.mit.edu/join/c025r54ebe
+let classroomId = null;
+let classroomToken = null;
+const classRegisterRegexp = /^\/?classes\/(\d*)\/register\/([a-zA-Z0-9]*)\/?$/;
+const classRegisterMatch = classRegisterRegexp.exec(document.location.pathname);
+if (classRegisterMatch) {
+    classroomId = classRegisterMatch[1];
+    classroomToken = classRegisterMatch[2];
+} else {
+    const joinTokenRegexp = /^\/?join\/([a-zA-Z0-9]*)\/?$/;
+    const joinTokenMatch = joinTokenRegexp.exec(document.location.pathname);
+    if (joinTokenMatch) {
+        classroomToken = joinTokenMatch[1];
     }
-    return null;
-})
-    .slice(-3);
-
+}
 const props = {classroomId, classroomToken};
 
 render(<IntlStudentRegistration {...props} />, document.getElementById('app'));

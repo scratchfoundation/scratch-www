@@ -281,6 +281,13 @@
         "title": "Class Registration"
     },
     {
+        "name": "student-registration-token-only",
+        "pattern": "^/join/:token",
+        "routeAlias": "/classes/(complete_registration|.+/register/.+)",
+        "view": "studentregistration/studentregistration",
+        "title": "Class Registration"
+    },
+    {
         "name": "teacher-faq",
         "pattern": "^/educators/faq/?$",
         "routeAlias": "/educators(?:/(faq|register|waiting))?/?$",
