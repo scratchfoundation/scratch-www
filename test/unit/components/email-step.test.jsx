@@ -115,9 +115,9 @@ describe('EmailStep test', () => {
         const formikBag = {
             setSubmitting: jest.fn()
         };
-        global.grecaptcha = {
-            execute: jest.fn(),
-            render: jest.fn()
+
+        const captchaRef = {
+            executeCaptcha: jest.fn()
         };
         const formData = {item1: 'thing', item2: 'otherthing'};
         const intlWrapper = shallowWithIntl(
@@ -125,13 +125,12 @@ describe('EmailStep test', () => {
                 {...defaultProps()}
             />);
 
-
         const emailStepWrapper = intlWrapper.dive();
-        emailStepWrapper.instance().onCaptchaLoad(); // to setup catpcha state
+        emailStepWrapper.instance().setCaptchaRef(captchaRef);
         emailStepWrapper.instance().handleValidSubmit(formData, formikBag);
 
         expect(formikBag.setSubmitting).toHaveBeenCalledWith(false);
-        expect(global.grecaptcha.execute).toHaveBeenCalled();
+        expect(captchaRef.executeCaptcha).toHaveBeenCalled();
     });
 
     test('captchaSolved sets token and goes to next step', () => {
@@ -141,9 +140,8 @@ describe('EmailStep test', () => {
         const formikBag = {
             setSubmitting: jest.fn()
         };
-        global.grecaptcha = {
-            execute: jest.fn(),
-            render: jest.fn()
+        const captchaRef = {
+            executeCaptcha: jest.fn()
         };
         const formData = {item1: 'thing', item2: 'otherthing'};
         const intlWrapper = shallowWithIntl(
@@ -154,11 +152,11 @@ describe('EmailStep test', () => {
 
         const emailStepWrapper = intlWrapper.dive();
         // Call these to setup captcha.
-        emailStepWrapper.instance().onCaptchaLoad(); // to setup catpcha state
+        emailStepWrapper.instance().setCaptchaRef(captchaRef); // to setup catpcha state
         emailStepWrapper.instance().handleValidSubmit(formData, formikBag);
 
         const captchaToken = 'abcd';
-        emailStepWrapper.instance().captchaSolved(captchaToken);
+        emailStepWrapper.instance().handleCaptchaSolved(captchaToken);
         // Make sure captchaSolved calls onNextStep  with formData that has
         // a captcha token and left everything else in the object in place.
         expect(props.onNextStep).toHaveBeenCalledWith(
@@ -170,29 +168,13 @@ describe('EmailStep test', () => {
         expect(formikBag.setSubmitting).toHaveBeenCalledWith(true);
     });
 
-    test('Captcha load error calls error function', () => {
-        const props = {
-            onCaptchaError: jest.fn()
-        };
-        // Set this to null to force an error.
-        global.grecaptcha = null;
-        const intlWrapper = shallowWithIntl(
-            <EmailStep
-                {...defaultProps()}
-                {...props}
-            />
-        );
-
-        const emailStepWrapper = intlWrapper.dive();
-        emailStepWrapper.instance().onCaptchaLoad();
-        expect(props.onCaptchaError).toHaveBeenCalled();
-    });
-
     test('Component logs analytics', () => {
         const sendAnalyticsFn = jest.fn();
+        const onCaptchaError = jest.fn();
         mountWithIntl(
             <EmailStep
                 sendAnalytics={sendAnalyticsFn}
+                onCaptchaError={onCaptchaError}
             />);
         expect(sendAnalyticsFn).toHaveBeenCalledWith('join-email');
     });
