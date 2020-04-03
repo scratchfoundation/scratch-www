@@ -171,7 +171,7 @@ const REPORT_OPTIONS = [
                         id={`report.promptSomethingElse`}
                         values={{
                             CommunityGuidelinesLink: (
-                                <a href="/community_guidelines">
+                                <a href="/community_guidelines" target="_blank">
                                     <FormattedMessage id="report.CommunityGuidelinesLinkText" />
                                 </a>
                             )
