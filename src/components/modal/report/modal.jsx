@@ -128,7 +128,10 @@ class ReportModal extends React.Component {
                                         key={`report.${type}Instructions`}
                                         values={{
                                             CommunityGuidelinesLink: (
-                                                <a href="/community_guidelines" target="_blank">
+                                                <a
+                                                    href="/community_guidelines"
+                                                    target="_blank"
+                                                >
                                                     <FormattedMessage id="report.CommunityGuidelinesLinkText" />
                                                 </a>
                                             )
