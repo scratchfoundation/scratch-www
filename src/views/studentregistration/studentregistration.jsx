@@ -6,6 +6,7 @@ const React = require('react');
 const api = require('../../lib/api');
 const injectIntl = require('../../lib/intl.jsx').injectIntl;
 const intlShape = require('../../lib/intl.jsx').intlShape;
+const route = require('../../lib/route');
 
 const Deck = require('../../components/deck/deck.jsx');
 const Progression = require('../../components/progression/progression.jsx');
@@ -33,21 +34,8 @@ class StudentRegistration extends React.Component {
     componentDidMount () {
         this.setState({waiting: true}); // eslint-disable-line react/no-did-mount-set-state
 
-        // set uri and params
-        let uri;
-        let params;
-        if (this.props.classroomId === null || typeof this.props.classroomId === 'undefined') {
-            // configure for token-only endpoint
-            uri = `/classtoken/${this.props.classroomToken}`;
-        } else {
-            // configure for endpoint expecting classroomId and token
-            uri = `/classrooms/${this.props.classroomId}`;
-            params = {token: this.props.classroomToken};
-        }
-
         api({
-            uri: uri,
-            params: params
+            uri: `/classtoken/${this.props.classroomToken}`
         }, (err, body, res) => {
             this.setState({waiting: false});
             if (err) {
@@ -57,7 +45,7 @@ class StudentRegistration extends React.Component {
                     })
                 });
             }
-            if (res.statusCode === 404) {
+            if (res.statusCode >= 400) {
                 // TODO: Use react-router for this
                 window.location = '/404';
             }
@@ -178,20 +166,6 @@ const IntlStudentRegistration = injectIntl(StudentRegistration);
 // parse either format of student registration url:
 // "class register": http://scratch.mit.edu/classes/3/register/c0256654e1be
 // "join token": http://scratch.mit.edu/join/c025r54ebe
-let classroomId = null;
-let classroomToken = null;
-const classRegisterRegexp = /^\/?classes\/(\d*)\/register\/([a-zA-Z0-9]*)\/?$/;
-const classRegisterMatch = classRegisterRegexp.exec(document.location.pathname);
-if (classRegisterMatch) {
-    classroomId = classRegisterMatch[1];
-    classroomToken = classRegisterMatch[2];
-} else {
-    const joinTokenRegexp = /^\/?join\/([a-zA-Z0-9]*)\/?$/;
-    const joinTokenMatch = joinTokenRegexp.exec(document.location.pathname);
-    if (joinTokenMatch) {
-        classroomToken = joinTokenMatch[1];
-    }
-}
-const props = {classroomId, classroomToken};
+const props = {classroomToken: route.getURIClassroomToken(document.location.pathname)};
 
 render(<IntlStudentRegistration {...props} />, document.getElementById('app'));
