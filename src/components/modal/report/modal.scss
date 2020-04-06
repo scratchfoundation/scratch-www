@@ -10,6 +10,8 @@
 .report-modal-content {
     margin: 1rem auto;
     width: 80%;
+    font-size: .875rem;
+
 
     .instructions {
         line-height: 1.5rem;
@@ -68,6 +70,10 @@
                 display: none;
             }
         }
+    }
+
+    ul, p {
+        font-size: .875rem;
     }
 }
 
