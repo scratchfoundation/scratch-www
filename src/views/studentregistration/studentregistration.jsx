@@ -75,7 +75,7 @@ class StudentRegistration extends React.Component {
                 ),
                 country: formData.user.country,
                 is_robot: formData.user.isRobot,
-                classroom_id: this.props.classroomId,
+                classroom_id: this.state.classroom.id,
                 classroom_token: this.props.classroomToken
             }
         }, (err, body, res) => {
@@ -100,7 +100,7 @@ class StudentRegistration extends React.Component {
         });
     }
     handleGoToClass () {
-        window.location = `/classes/${this.props.classroomId}/`;
+        window.location = `/classes/${this.state.classroom.id}/`;
     }
     render () {
         const usernameDescription = this.props.intl.formatMessage({id: 'registration.studentUsernameStepDescription'});
@@ -151,13 +151,11 @@ class StudentRegistration extends React.Component {
 }
 
 StudentRegistration.propTypes = {
-    classroomId: PropTypes.string.isRequired,
     classroomToken: PropTypes.string.isRequired,
     intl: intlShape
 };
 
 StudentRegistration.defaultProps = {
-    classroomId: null,
     classroomToken: null
 };
 
