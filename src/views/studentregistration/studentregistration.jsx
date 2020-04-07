@@ -163,7 +163,7 @@ const IntlStudentRegistration = injectIntl(StudentRegistration);
 
 // parse either format of student registration url:
 // "class register": http://scratch.mit.edu/classes/3/register/c0256654e1be
-// "join token": http://scratch.mit.edu/join/c025r54ebe
+// "signup token": http://scratch.mit.edu/signup/c025r54ebe
 const props = {classroomToken: route.getURIClassroomToken(document.location.pathname)};
 
 render(<IntlStudentRegistration {...props} />, document.getElementById('app'));

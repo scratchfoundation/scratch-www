@@ -282,8 +282,8 @@
     },
     {
         "name": "student-registration-token-only",
-        "pattern": "^/join/:token",
-        "routeAlias": "/classes/(complete_registration|.+/register/.+)",
+        "pattern": "^/signup/:token",
+        "routeAlias": "/signup/.+)",
         "view": "studentregistration/studentregistration",
         "title": "Class Registration"
     },
