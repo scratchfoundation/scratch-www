@@ -82,7 +82,7 @@ const REPORT_OPTIONS = [
         label: {id: 'general.other'},
         prompt: (
             <FormattedMessage
-                id={`report.promptGuidelines`}
+                id="report.promptGuidelines"
                 values={{
                     CommunityGuidelinesLink: (
                         <a
