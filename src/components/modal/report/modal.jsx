@@ -132,7 +132,7 @@ class ReportModal extends React.Component {
                                                     href="/community_guidelines"
                                                     target="_blank"
                                                 >
-                                                    <FormattedMessage id="report.CommunityGuidelinesLinkText" />
+                                                    <FormattedMessage id="report.shortCommunityGuidelinesLinkText" />
                                                 </a>
                                             )
                                         }}

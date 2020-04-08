@@ -80,7 +80,21 @@ const REPORT_OPTIONS = [
     {
         value: '6',
         label: {id: 'general.other'},
-        prompt: <FormattedMessage id="report.promptGuidelines" />,
+        prompt: (
+            <FormattedMessage
+                id={`report.promptGuidelines`}
+                values={{
+                    CommunityGuidelinesLink: (
+                        <a
+                            href="/community_guidelines"
+                            target="_blank"
+                        >
+                            <FormattedMessage id="report.shortCommunityGuidelinesLinkText" />
+                        </a>
+                    )
+                }}
+            />
+        ),
         subcategories: [
             {
                 value: '',
@@ -110,6 +124,12 @@ const REPORT_OPTIONS = [
                     <div>
                         <p><FormattedMessage id="report.promptDoesntWork" /></p>
                         <p><FormattedMessage id="report.promptDoesntWorkTips" /></p>
+                        <p><FormattedMessage id="report.promptTips" /></p>
+                        <ul>
+                            <li><FormattedMessage id="report.tipsSupportive" /></li>
+                            <li><FormattedMessage id="report.tipsConstructive" /></li>
+                            <li><FormattedMessage id="report.tipsSpecific" /></li>
+                        </ul>
                     </div>
                 ),
                 preventSubmission: true
@@ -133,7 +153,17 @@ const REPORT_OPTIONS = [
             {
                 value: 'report.reasonTooHard',
                 label: {id: 'report.reasonTooHard'},
-                prompt: <FormattedMessage id="report.promptTooHard" />,
+                prompt: (
+                    <div>
+                        <p><FormattedMessage id="report.promptTooHard" /></p>
+                        <p><FormattedMessage id="report.promptTips" /></p>
+                        <ul>
+                            <li><FormattedMessage id="report.tipsSupportive" /></li>
+                            <li><FormattedMessage id="report.tipsConstructive" /></li>
+                            <li><FormattedMessage id="report.tipsSpecific" /></li>
+                        </ul>
+                    </div>
+                ),
                 preventSubmission: true
             },
             {
