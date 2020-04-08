@@ -249,7 +249,6 @@
     "report.project": "Report Project",
     "report.projectInstructions": "When you send a report, it lets the Scratch Team know about projects that break the {CommunityGuidelinesLink}. Does something in this project break the {CommunityGuidelinesLink}? If you think it does, please tell us more.",
     "report.CommunityGuidelinesLinkText": "Scratch Community Guidelines",
-    "report.shortCommunityGuidelinesLinkText": "Community Guidelines",
     "report.reasonPlaceHolder": "Select a reason",
     "report.reasonCopy": "Exact Copy of Project",
     "report.reasonUncredited": "Uses Image/Music Without Credit",
