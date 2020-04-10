@@ -700,7 +700,10 @@ class Preview extends React.Component {
 
         return (
             <React.Fragment>
-                <Meta projectInfo={this.props.projectInfo} />
+                <Meta
+                    projectInfo={this.props.projectInfo}
+                    userPresent={this.props.userPresent}
+                />
                 {this.props.playerMode ?
                     <Page
                         className={classNames({
