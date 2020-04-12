@@ -96,8 +96,8 @@ const ConferenceSplash = () => (
                         id="conference-2020.connectNow"
                         values={{
                             scratchInPracticeLink: <a href="https://sip.scratch.mit.edu/">
-                                 <FormattedMessage id="conference-2020.scratchInPracticeText" />
-                           </a>
+                                <FormattedMessage id="conference-2020.scratchInPracticeText" />
+                            </a>
                         }}
                     />
                 </p>
