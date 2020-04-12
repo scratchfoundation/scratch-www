@@ -92,13 +92,13 @@ const ConferenceSplash = () => (
                     <br />
                     <FormattedMessage id="conference-2020.registrationDelayed" />
                     <br />
-                    <FormattedMessage 
+                    <FormattedMessage
                         id="conference-2020.connectNow"
                         values={{
-                           scratchInPracticeLink: <a href="https://sip.scratch.mit.edu/">
-                                <FormattedMessage id="conference-2020.scratchInPracticeText" />
-                            </a> 
-                        }} 
+                            scratchInPracticeLink: <a href="https://sip.scratch.mit.edu/">
+                                 <FormattedMessage id="conference-2020.scratchInPracticeText" />
+                           </a>
+                        }}
                     />
                 </p>
                 <a
