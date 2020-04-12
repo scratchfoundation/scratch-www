@@ -51,14 +51,14 @@ const ConferenceSplash = () => (
                                 <FormattedDate
                                     day="2-digit"
                                     month="long"
-                                    value={new Date(2020, 6, 23)}
+                                    value={new Date(2021, 6, 22)}
                                     year="numeric"
                                 />
                                 {' - '}
                                 <FormattedDate
                                     day="2-digit"
                                     month="long"
-                                    value={new Date(2020, 6, 25)}
+                                    value={new Date(2021, 6, 24)}
                                     year="numeric"
                                 />
                                 <FormattedMessage id="conference-2020.dateDescMore" />
@@ -91,6 +91,15 @@ const ConferenceSplash = () => (
                     <br />
                     <br />
                     <FormattedMessage id="conference-2020.registrationDelayed" />
+                    <br />
+                    <FormattedMessage 
+                        id="conference-2020.connectNow"
+                        values={{
+                           scratchInPracticeLink: <a href="https://sip.scratch.mit.edu/">
+                                <FormattedMessage id="conference-2020.scratchInPracticeText" />
+                            </a> 
+                        }} 
+                    />
                 </p>
                 <a
                     className="button mod-2020-panel"
@@ -101,14 +110,7 @@ const ConferenceSplash = () => (
             </section>
             <section className="conf2020-panel mod-stay">
                 <p className="conf2020-panel-desc">
-                    <FormattedMessage
-                        id="conference-2020.stayDesc1"
-                        values={{
-                            hyattLink: <a href="https://www.hyatt.com/en-US/group-booking/BOSRC/G-SCRA">Hyatt Regency Cambridge Hotel​</a>,
-                            acLink: <a href="https://www.marriott.com/event-reservations/reservation-link.mi?id=1582152189255&key=GRP&app=resvlink">AC Hotel Boston Cambridge​</a>,
-                            allstonLink: <a href="https://hotelstudioallston.reztrip.com/ext/promoRate?property=1604&mode=b&pm=true&sr=556197&vr=3">Studio Allston Hotel​</a>
-                        }}
-                    />
+                    <FormattedMessage id="conference-2020.stayDesc1" />
                     <br />
                     <br />
                     <FormattedMessage
@@ -116,9 +118,6 @@ const ConferenceSplash = () => (
                         values={{
                             emailLink: <a href="mailto:conference@scratch.mit.edu">
                                 conference@scratch.mit.edu
-                            </a>,
-                            registrationLink: <a href="http://scratch2020.eventbrite.com/">
-                                <FormattedMessage id="conference-2020.registrationLinkText" />
                             </a>
                         }}
                     />
