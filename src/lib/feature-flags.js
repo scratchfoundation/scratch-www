@@ -8,5 +8,4 @@ const flagInUrl = flag => {
 };
 
 module.exports = {
-    CHROME_APP_RELEASED: true
 };

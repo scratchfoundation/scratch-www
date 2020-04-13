@@ -140,10 +140,7 @@
 
     "installScratch.or": "or",
     "installScratch.directDownload": "Direct download",
-    "installScratch.desktopHeaderTitle": "Install Scratch Desktop",
     "installScratch.appHeaderTitle": "Install the Scratch app for {operatingsystem}",
-    "installScratch.downloadScratchDesktop": "Download Scratch Desktop",
-    "installScratch.downloadScratchAppGeneric": "Download Scratch for {operatingsystem}",
     "installScratch.getScratchAppPlay": "Get the Scratch app on the Google Play Store",
     "installScratch.getScratchAppMacOs": "Get the Scratch app on the Mac App Store",
     "installScratch.getScratchAppWindows": "Get the Scratch app on the Microsoft Store",
