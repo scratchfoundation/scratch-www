@@ -12,5 +12,13 @@
     "contactUs.bugsLinkText":"Bugs and Glitches",
     "contactUs.formIntro":"If you still need to contact us, please fill out the form below with as much detail as you can. If you have any screenshots, attachments or links that help to explain your problem, please include them. We get a lot of mail, so we may not be able to respond to your message.",
     "contactUs.findHelp":"Where to find help:",
-    "contactUs.contactScratch":"Contact the Scratch Team"
+    "contactUs.contactScratch":"Contact the Scratch Team",
+    "contactUs.qTitle":"Questions",
+    "contactUs.seeFaq":"See the FAQ",
+    "contactUs.faqInfo":"You can find a list of answers to many questions about Scratch on our {faqLink} page.",
+    "contactUs.askCommunity":"Ask the Community",
+    "contactUs.forumsIntro":"You can also look through and post questions in the Scratch Discussion forums.",
+    "contactUs.forumsHelp":"There are many friendly and experienced Scratch community members who can help with the following topics and more:",
+    "contactUs.needSupport":"Need Support?",
+    "contactUs.supportInfo":"Click {helpLink} to type in a question about anything related to Scratch or to contact us. The Scratch Team receives lots of messages each day and is not able to answer each one individually, so we encourage you to read our online support articles and participate in the Discussion forums."
 }

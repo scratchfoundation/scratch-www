@@ -7,8 +7,6 @@ const HelpForm = props => {
     const prefix = 'https://mitscratch.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&widgetView=yes&screenshot=No&searchArea=No';
     const title = `formTitle=${props.title}`;
     const username = `helpdesk_ticket[custom_field][cf_scratch_name_40167]=${props.user.username || ''}`;
-    const agentText = encodeURIComponent(window.navigator.userAgent);
-    const browser = `helpdesk_ticket[custom_field][cf_browser_40167]=${agentText}`;
     const formSubject = `helpdesk_ticket[subject]=${props.subject}`;
     const formDescription = `helpdesk_ticket[description]=${props.body}`;
     return (
@@ -28,10 +26,10 @@ const HelpForm = props => {
             <iframe
                 className="freshwidget-embedded-form"
                 frameBorder="0"
-                height="744px"
+                height="594px"
                 id="freshwidget-embedded-form"
                 scrolling="no"
-                src={`${prefix}&${title}&${username}&${browser}&${formSubject}&${formDescription}`}
+                src={`${prefix}&${title}&${username}&${formSubject}&${formDescription}`}
                 title={<FormattedMessage id="contactUs.questionsForum" />}
                 width="100%"
             />
