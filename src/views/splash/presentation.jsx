@@ -178,16 +178,10 @@ class ActivityList extends React.Component {
                         key="activity-empty"
                     >
                         <h4>
-                            <FormattedMessage
-                                defaultMessage="This is where you will see updates from Scratchers you follow"
-                                id="activity.seeUpdates"
-                            />
+                            <FormattedMessage id="activity.seeUpdates" />
                         </h4>
                         <a href="/studios/146521/">
-                            <FormattedMessage
-                                defaultMessage="Check out some Scratchers you might like to follow"
-                                id="activity.checkOutScratchers"
-                            />
+                            <FormattedMessage id="activity.checkOutScratchers" />
                         </a>
                     </div>
                 ]}
