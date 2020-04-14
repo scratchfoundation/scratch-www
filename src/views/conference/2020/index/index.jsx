@@ -29,6 +29,7 @@ const ConferenceSplash = () => (
             <section className="conf2020-panel mod-desc">
                 <p className="conf2020-panel-desc">
                     <FormattedMessage id="conference-2020.desc1" />
+                    <strong><FormattedMessage id="conference-2020.desc1a" /></strong>
                     <br />
                     <br />
                     <FormattedMessage id="conference-2020.desc2" />
@@ -91,6 +92,7 @@ const ConferenceSplash = () => (
                     <br />
                     <br />
                     <FormattedMessage id="conference-2020.registrationDelayed" />
+                    <br />
                     <br />
                     <FormattedMessage
                         id="conference-2020.connectNow"
