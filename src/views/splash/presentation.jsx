@@ -66,9 +66,9 @@ class ActivityList extends React.Component {
                 <FollowStudioMessage
                     followDateTime={message.datetime_created}
                     followeeId={message.gallery_id}
-                    followeeTitle={message.title}
-                    followerUsername={message.actor_username}
                     key={key}
+                    studioTitle={message.title}
+                    stufioUsername={message.actor_username}
                 />
             );
         case 'loveproject':

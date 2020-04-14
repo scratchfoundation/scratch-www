@@ -15,7 +15,7 @@ const FollowUserMessage = props => (
         datetime={props.followDateTime}
     >
         <FormattedMessage
-            id="messages.followText"
+            id="messages.followProfileText"
             values={{
                 profileLink: (
                     <a href={`/users/${props.followerUsername}/`}>

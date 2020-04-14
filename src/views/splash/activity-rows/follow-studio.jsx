@@ -23,8 +23,8 @@ const FollowStudioMessage = props => (
                     </a>
                 ),
                 studioLink: (
-                    <a href={`/studios/${props.followeeId}`}>
-                        {props.followeeTitle}
+                    <a href={`/studios/${props.studioId}`}>
+                        {props.studioTitle}
                     </a>
                 )
             }}
@@ -35,9 +35,9 @@ const FollowStudioMessage = props => (
 FollowStudioMessage.propTypes = {
     className: PropTypes.string,
     followDateTime: PropTypes.string.isRequired,
-    followeeId: PropTypes.string.isRequired,
-    followeeTitle: PropTypes.string.isRequired,
-    followerUsername: PropTypes.string.isRequired
+    followerUsername: PropTypes.string.isRequired,
+    studioId: PropTypes.string.isRequired,
+    studioTitle: PropTypes.string.isRequired
 };
 
 module.exports = FollowStudioMessage;
