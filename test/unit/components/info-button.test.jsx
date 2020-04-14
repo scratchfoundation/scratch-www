@@ -68,8 +68,8 @@ describe('InfoButton', () => {
         expect(component.find('div.info-button').exists()).toEqual(true);
         expect(component.find('div.info-button-message').exists()).toEqual(true);
 
-        // mouseOut from info button
-        component.find('div.info-button').simulate('mouseOut');
+        // mouseLeave from info button
+        component.find('div.info-button').simulate('mouseLeave');
         setTimeout(function () { // necessary because mouseover uses debounce
             component.update();
             expect(component.find('div.info-button-message').exists()).toEqual(true);
@@ -117,7 +117,7 @@ describe('InfoButton', () => {
         expect(component.find('div.info-button-message').exists()).toEqual(false);
     });
 
-    test('after message is visible, mouseOut makes it vanish', done => {
+    test('after message is visible, mouseLeave makes it vanish', () => {
         const component = mountWithIntl(
             <InfoButton
                 message="Here is some info about something!"
@@ -126,18 +126,12 @@ describe('InfoButton', () => {
 
         // mouseOver info button
         component.find('div.info-button').simulate('mouseOver');
-        setTimeout(function () { // necessary because mouseover uses debounce
-            component.update();
-            expect(component.find('div.info-button-message').exists()).toEqual(true);
+        component.update();
+        expect(component.find('div.info-button-message').exists()).toEqual(true);
 
-            // mouseOut away from info button
-            component.find('div.info-button').simulate('mouseOut');
-            setTimeout(function () { // necessary because mouseover uses debounce
-                component.update();
-                expect(component.find('div.info-button-message').exists()).toEqual(false);
-                done();
-            }, 500);
-
-        }, 500);
+        // mouseLeave away from info button
+        component.find('div.info-button').simulate('mouseLeave');
+        component.update();
+        expect(component.find('div.info-button-message').exists()).toEqual(false);
     });
 });

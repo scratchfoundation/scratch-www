@@ -2,7 +2,6 @@ const bindAll = require('lodash.bindall');
 const PropTypes = require('prop-types');
 const React = require('react');
 const MediaQuery = require('react-responsive').default;
-const debounce = require('lodash.debounce');
 
 const frameless = require('../../lib/frameless');
 
@@ -13,7 +12,7 @@ class InfoButton extends React.Component {
         super(props);
         bindAll(this, [
             'handleClick',
-            'handleMouseOut',
+            'handleMouseLeave',
             'handleShowMessage',
             'setButtonRef'
         ]);
@@ -21,7 +20,6 @@ class InfoButton extends React.Component {
             requireClickToClose: false, // default to closing on mouseout
             visible: false
         };
-        this.setVisibleWithDebounce = debounce(this.setVisible, 100);
     }
     componentWillMount () {
         window.addEventListener('mousedown', this.handleClick, false);
@@ -41,19 +39,16 @@ class InfoButton extends React.Component {
             });
         }
     }
-    handleMouseOut () {
+    handleMouseLeave () {
         if (this.state.visible && !this.state.requireClickToClose) {
-            this.setVisibleWithDebounce(false);
+            this.setState({visible: false});
         }
     }
     handleShowMessage () {
-        this.setVisibleWithDebounce(true);
+        this.setState({visible: true});
     }
     setButtonRef (element) {
         this.buttonRef = element;
-    }
-    setVisible (newVisibleState) {
-        this.setState({visible: newVisibleState});
     }
     render () {
         const messageJsx = this.state.visible && (
@@ -66,7 +61,7 @@ class InfoButton extends React.Component {
                 <div
                     className="info-button"
                     ref={this.setButtonRef}
-                    onMouseOut={this.handleMouseOut}
+                    onMouseLeave={this.handleMouseLeave}
                     onMouseOver={this.handleShowMessage}
                 >
                     <MediaQuery minWidth={frameless.desktop}>
