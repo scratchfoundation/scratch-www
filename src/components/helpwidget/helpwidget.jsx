@@ -28,11 +28,11 @@ class HelpWidget extends React.Component {
             script.defer = true;
             script.onload = () => this.scriptLoaded();
 
-            document.body.appendChild(script);
             window.fwSettings = {
                 widget_id: 4000000089,
                 locale: this.props.intl.locale
             };
+            document.body.appendChild(script);
         }
     }
     scriptLoaded () {
