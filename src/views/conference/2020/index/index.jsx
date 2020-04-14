@@ -28,7 +28,7 @@ const ConferenceSplash = () => (
         <div className="inner">
             <section className="conf2020-panel mod-desc">
                 <p className="conf2020-panel-desc">
-                    <FormattedMessage id="conference-2020.desc1" />
+                    <FormattedMessage id="conference-2020.desc1" />{' '}
                     <strong><FormattedMessage id="conference-2020.desc1a" /></strong>
                     <br />
                     <br />
