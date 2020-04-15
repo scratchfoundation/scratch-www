@@ -68,7 +68,7 @@ class ActivityList extends React.Component {
                     followeeId={message.gallery_id}
                     key={key}
                     studioTitle={message.title}
-                    stufioUsername={message.actor_username}
+                    studioUsername={message.actor_username}
                 />
             );
         case 'loveproject':
