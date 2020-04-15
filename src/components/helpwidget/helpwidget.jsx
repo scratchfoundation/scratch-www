@@ -7,8 +7,11 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const Button = require('../forms/button.jsx');
+const Spinner = require('../spinner/spinner.jsx');
+require('./helpwidget.scss');
 /**
- * Footer link that opens Freshdesk help widger
+ * Button or link that opens the Freshdesk Help widget
+ * see https://developers.freshdesk.com/widget-api/
  */
 class HelpWidget extends React.Component {
     constructor (props) {
@@ -17,8 +20,21 @@ class HelpWidget extends React.Component {
             'handleOpenWidget',
             'openPopup'
         ]);
+        this.state = {
+            waiting: false
+        };
     }
     componentDidMount () {
+        if (this.props.subject !== '') {
+            // if passed Inappropriate content params load the script and open the popup
+            this.loadScript();
+        }
+    }
+    componentWillUnmount () {
+        window.FreshworksWidget('destroy');
+        document.getElementById('helpwidgetscript').remove();
+    }
+    loadScript () {
         // don't add the script to the page more than once
         if (document.getElementById('helpwidgetscript') === null) {
             const script = document.createElement('script');
@@ -50,30 +66,35 @@ class HelpWidget extends React.Component {
                 }
             }
         });
-        if (this.props.subject !== '') {
-            // open the popup already on the form if passed Inappropriate content params
-            this.openPopup(true);
-        }
+        // open the popup already on the form if passed Inappropriate content param
+        this.openPopup(this.props.subject !== '');
     }
     handleOpenWidget (e) {
+        this.setState({waiting: true});
         e.preventDefault();
-        this.openPopup();
+        // if the Widget is already defined, just open, otherwise load the widget script
+        if (typeof window.FreshworksWidget === 'function') {
+            this.openPopup();
+        } else {
+            this.loadScript();
+        }
     }
     openPopup (formOpen) {
-        if (typeof window.FreshworksWidget === 'function') {
-            window.FreshworksWidget('prefill', 'ticketForm', {
-                subject: this.props.subject,
-                description: this.props.body,
-                custom_fields: {
-                    cf_scratch_name: this.props.user.username
-                }
-            });
-            if (formOpen) {
-                window.FreshworksWidget('open', 'ticketForm');
-            } else {
-                window.FreshworksWidget('open');
+        window.FreshworksWidget('prefill', 'ticketForm', {
+            subject: this.props.subject,
+            description: this.props.body,
+            custom_fields: {
+                cf_scratch_name: this.props.user.username
             }
+        });
+        if (formOpen) {
+            window.FreshworksWidget('open', 'ticketForm');
+        } else {
+            window.FreshworksWidget('open');
         }
+        // there may still be a little delay before the widget is visible, but there's
+        // no callback to attach this to.
+        this.setState({waiting: false});
     }
     render () {
         return (
@@ -82,9 +103,19 @@ class HelpWidget extends React.Component {
                 onClick={this.handleOpenWidget}
             >
                 {this.props.button ? (
-                    <Button className="gethelp-button">
-                        <FormattedMessage id="general.getHelp" />
-                    </Button>
+                    this.state.waiting ? (
+                        <Button className="gethelp-button">
+                            <Spinner
+                                className="spinner"
+                            />
+                            <FormattedMessage id="general.getHelp" />
+                        </Button>
+                    ) : (
+                        <Button className="gethelp-button">
+                            <FormattedMessage id="general.getHelp" />
+                        </Button>
+                    )
+
                 ) : (<FormattedMessage id="general.getHelp" />)
                 }
             </a>
