@@ -1,26 +1,27 @@
 {
-    "conference-2020.title": "Scratch Conference 2020:",
+    "conference-2020.title": "Scratch Conference 2021:",
     "conference-2020.subtitle": "Let's Create Together!",
-    "conference-2020.dateDesc": "July 23-25, 2020 | Cambridge, MA, USA",
-    "conference-2020.dateDescMore": " (with opening reception the evening of July 22)",
+    "conference-2020.dateDesc": "July 22-24, 2021 | Cambridge, MA, USA",
+    "conference-2020.dateDescMore": " (with opening reception the evening of July 21)",
     "conference-2020.locationDetails": "MIT Media Lab, Cambridge, MA",
-    "conference-2020.seeBelow": "Learn more about conference dates and locations below.",
 
     "conference-2020.date": "When:",
     "conference-2020.location": "Where:",
 
     "conference-2020.desc1": "Join us for the Scratch Conference, an international gathering where educators, researchers, and developers share ideas for supporting creative learning with Scratch.",
+    "conference-2020.desc1a": "Due to the global health crisis, we have delayed the conference for one year, to July 22-24, 2021.",
     "conference-2020.desc2": "Scratch has become the world's largest coding community for children around the world. The conference offers hands-on workshops, panel discussions, and interactive demonstrations to explore ways for using Scratch to expand creative learning experiences for diverse learners across subject areas.",
     "conference-2020.desc3": "Together we'll exchange ideas and strategies on how to use Scratch to engage students in learning to think creatively, reason systematically, and work collaboratively—essential skills for everyone in today’s society.",
 
     "conference-2020.registrationTitle": "Registration:",
     "conference-2020.registrationFee": "Conference Fee: $250",
     "conference-2020.registrationOpen": "The conference fee includes 7 meals (3 breakfast, 3 lunches, 1 dinner) plus refreshments during the day.",
-    "conference-2020.registrationDelayed": "We have delayed the opening of registration until April 3. We’re excited to gather together as a community in July, but we are closely monitoring the situation around the Coronavirus (COVID-19) to determine how it might impact our plans. We will provide more information as it becomes available.",
+    "conference-2020.registrationDelayed": "In response to the coronavirus crisis (COVID-19), we have decided to delay the Scratch conference for one year, to July 22-24, 2021. We are sending well wishes to our entire global community and hope you can join us then!",
+    "conference-2020.connectNow": "Want to connect now? We invite you to learn more about our online conversations, resources, and events at {scratchInPracticeLink}.",
+    "conference-2020.scratchInPracticeText": "Scratch in Practice",
     "conference-2020.register": "Go to registration page",
 
-    "conference-2020.stayDesc1": "We have organized for conference rates at three hotels in the area for Scratch Conference participants, including: {hyattLink} (1.2 miles: 24 minute walk), {acLink} (2.3 miles, 25 minutes by subway), and the {allstonLink} (4.4 miles, 35 minutes by bus+subway)​. ​To reserve a room, click the link for that hotel. We recommend booking as soon as possible as the discounted rates are subject to availability. We're also planning to offer a lower-cost, college dormitory option; we'll post information as soon as it's available. You can also explore other hotel and housing options that work best for you.",
-    "conference-2020.stayDesc2": "Please see the ​{registrationLink} for more details. For additional questions, contact the Scratch Conference Team at {emailLink}",
-    "conference-2020.registrationLinkText": "Registration page",
+    "conference-2020.stayDesc1": "We will be posting revised lodging options at the beginning of 2021.",
+    "conference-2020.stayDesc2": "For additional questions, contact the Scratch Conference Team at {emailLink}",
     "conference-2020.organizedBy": "The Scratch Conference is organized by the Lifelong Kindergarten group at the MIT Media Lab in collaboration with the Scratch Foundation."
 }
