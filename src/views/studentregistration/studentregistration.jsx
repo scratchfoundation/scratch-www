@@ -6,6 +6,7 @@ const React = require('react');
 const api = require('../../lib/api');
 const injectIntl = require('../../lib/intl.jsx').injectIntl;
 const intlShape = require('../../lib/intl.jsx').intlShape;
+const route = require('../../lib/route');
 
 const Deck = require('../../components/deck/deck.jsx');
 const Progression = require('../../components/progression/progression.jsx');
@@ -32,11 +33,9 @@ class StudentRegistration extends React.Component {
     }
     componentDidMount () {
         this.setState({waiting: true}); // eslint-disable-line react/no-did-mount-set-state
+
         api({
-            uri: `/classrooms/${this.props.classroomId}`,
-            params: {
-                token: this.props.classroomToken
-            }
+            uri: `/classtoken/${this.props.classroomToken}`
         }, (err, body, res) => {
             this.setState({waiting: false});
             if (err) {
@@ -46,7 +45,7 @@ class StudentRegistration extends React.Component {
                     })
                 });
             }
-            if (res.statusCode === 404) {
+            if (res.statusCode >= 400) {
                 // TODO: Use react-router for this
                 window.location = '/404';
             }
@@ -76,7 +75,7 @@ class StudentRegistration extends React.Component {
                 ),
                 country: formData.user.country,
                 is_robot: formData.user.isRobot,
-                classroom_id: this.props.classroomId,
+                classroom_id: this.state.classroom.id,
                 classroom_token: this.props.classroomToken
             }
         }, (err, body, res) => {
@@ -101,7 +100,7 @@ class StudentRegistration extends React.Component {
         });
     }
     handleGoToClass () {
-        window.location = `/classes/${this.props.classroomId}/`;
+        window.location = `/classes/${this.state.classroom.id}/`;
     }
     render () {
         const usernameDescription = this.props.intl.formatMessage({id: 'registration.studentUsernameStepDescription'});
@@ -152,26 +151,19 @@ class StudentRegistration extends React.Component {
 }
 
 StudentRegistration.propTypes = {
-    classroomId: PropTypes.string.isRequired,
     classroomToken: PropTypes.string.isRequired,
     intl: intlShape
 };
 
 StudentRegistration.defaultProps = {
-    classroomId: null,
     classroomToken: null
 };
 
 const IntlStudentRegistration = injectIntl(StudentRegistration);
 
-const [classroomId, _, classroomToken] = document.location.pathname.split('/').filter(p => {
-    if (p) {
-        return p;
-    }
-    return null;
-})
-    .slice(-3);
-
-const props = {classroomId, classroomToken};
+// parse either format of student registration url:
+// "class register": http://scratch.mit.edu/classes/3/register/c0256654e1be
+// "signup token": http://scratch.mit.edu/signup/c025r54ebe
+const props = {classroomToken: route.getURIClassroomToken(document.location.pathname)};
 
 render(<IntlStudentRegistration {...props} />, document.getElementById('app'));
