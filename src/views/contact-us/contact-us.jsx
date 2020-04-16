@@ -99,9 +99,24 @@ class ContactUs extends React.Component {
                             <p><FormattedMessage id="contactUs.forumsIntro" /></p>
                             <p><FormattedMessage id="contactUs.forumsHelp" /></p>
                             <ul>
-                                <li><a href="/discuss/4/"><FormattedMessage id="contactUs.questionsLinkText" /></a></li>
-                                <li><a href="/discuss/7/"><FormattedMessage id="contactUs.scriptsLinkText" /></a></li>
-                                <li><a href="/discuss/3/"><FormattedMessage id="contactUs.bugsLinkText" /></a></li>
+                                <li><FormattedMessage
+                                    id="contactUs.questionsText"
+                                    values={{questionsLink: (
+                                        <a href="/discuss/4/"><FormattedMessage id="contactUs.questionsLinkText" /></a>
+                                    )}}
+                                /></li>
+                                <li><FormattedMessage
+                                    id="contactUs.scriptsText"
+                                    values={{scriptsLink: (
+                                        <a href="/discuss/7/"><FormattedMessage id="contactUs.scriptsLinkText" /></a>
+                                    )}}
+                                /></li>
+                                <li><FormattedMessage
+                                    id="contactUs.bugsText"
+                                    values={{bugsLink: (
+                                        <a href="/discuss/3/"><FormattedMessage id="contactUs.bugsLinkText" /></a>
+                                    )}}
+                                /></li>
                             </ul>
                             <h3>
                                 <FormattedMessage id="contactUs.needSupport" />
