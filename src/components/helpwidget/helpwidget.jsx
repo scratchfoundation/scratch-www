@@ -58,14 +58,10 @@ class HelpWidget extends React.Component {
         /* eslint-enable */
         // don't show the Freshdesk button
         window.FreshworksWidget('hide', 'launcher');
-        window.FreshworksWidget('setLabels', {
-            fr: {
-                banner: 'Bienvenue a Support',
-                contact_form: {
-                    title: this.props.intl.formatMessage({id: 'contactUs.contactScratch'})
-                }
-            }
-        });
+
+        window.FreshworksWidget('disable', 'ticketForm', 'custom_fields.cf_inappropriate_report_link');
+        window.FreshworksWidget('hide', 'ticketForm', 'custom_fields.cf_inappropriate_report_link');
+
         // open the popup already on the form if passed Inappropriate content param
         this.openPopup(this.props.subject !== '');
     }
@@ -82,9 +78,9 @@ class HelpWidget extends React.Component {
     openPopup (formOpen) {
         window.FreshworksWidget('prefill', 'ticketForm', {
             subject: this.props.subject,
-            description: this.props.body,
             custom_fields: {
-                cf_scratch_name: this.props.user.username
+                cf_scratch_name: this.props.user.username,
+                cf_inappropriate_report_link: this.props.body
             }
         });
         if (formOpen) {

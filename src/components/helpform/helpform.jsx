@@ -8,7 +8,7 @@ const HelpForm = props => {
     const title = `formTitle=${props.title}`;
     const username = `helpdesk_ticket[custom_field][cf_scratch_name_40167]=${props.user.username || ''}`;
     const formSubject = `helpdesk_ticket[subject]=${props.subject}`;
-    const formDescription = `helpdesk_ticket[description]=${props.body}`;
+    const reportLink = `helpdesk_ticket[custom_field][cf_inappropriate_report_link_40167]=${props.body || ''}`;
     return (
         <div>
             <script
@@ -29,7 +29,7 @@ const HelpForm = props => {
                 height="594px"
                 id="freshwidget-embedded-form"
                 scrolling="no"
-                src={`${prefix}&${title}&${username}&${formSubject}&${formDescription}`}
+                src={`${prefix}&${title}&${username}&${formSubject}&${reportLink}`}
                 title={<FormattedMessage id="contactUs.questionsForum" />}
                 width="100%"
             />

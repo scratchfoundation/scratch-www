@@ -25,11 +25,11 @@ class ContactUs extends React.Component {
         // The subject is not localized because sending in English is easier for Scratch Team
         if (query.indexOf('studio=') !== -1) {
             scratchId = query.match(/studio=([0-9]+)/)[1];
-            this.state.subject = `Inappropriate content reported in studio ${scratchId}`;
+            this.state.subject = `Issue reported with studio ${scratchId}`;
             this.state.body = `https://scratch.mit.edu/studios/${scratchId}`;
         } else if (query.indexOf('profile=') !== -1) {
             scratchId = query.match(/profile=([a-zA-Z0-9-_]+)/)[1];
-            this.state.subject = `Inappropriate content reported in profile ${scratchId}`;
+            this.state.subject = `Issue reported with profile ${scratchId}`;
             this.state.body = `https://scratch.mit.edu/users/${scratchId}`;
         } else if (query.indexOf('confirmation=') !== -1) {
             this.state.subject = 'Problem with email confirmation';
