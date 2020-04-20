@@ -218,7 +218,6 @@
     "registration.studentUsernameStepDescription": "You can make games, animations, and stories using Scratch. Setting up an account is easy and it's free. Fill in the form below to get started.",
     "registration.studentUsernameStepHelpText": "Already have a Scratch account?",
     "registration.studentUsernameStepTooltip": "You'll need to create a new Scratch account to join this class.",
-    "registration.studentUsernameFieldHelpText": "For safety, don't use your real name!",
     "registration.studentUsernameSuggestion": "Try your favorite food, hobby, or animal along with some numbers",
     "registration.acceptTermsOfUse": "By creating an account, you acknowledge the {privacyPolicyLink} and you accept and agree to the {touLink}.",
     "registration.usernameStepTitle": "Request a Teacher Account",
