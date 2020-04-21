@@ -28,6 +28,7 @@ const Spinner = require('../../components/spinner/spinner.jsx');
 const StepNavigation = require('../../components/stepnavigation/stepnavigation.jsx');
 const TextArea = require('../../components/forms/textarea.jsx');
 const Tooltip = require('../../components/tooltip/tooltip.jsx');
+const ValidationMessage = require('../../components/forms/validation-message.jsx');
 
 require('./steps.scss');
 
@@ -84,11 +85,13 @@ class UsernameStep extends React.Component {
             'handleChangeShowPassword',
             'handleUsernameBlur',
             'handleValidSubmit',
-            'validateUsername'
+            'validateUsername',
+            'handleFocus'
         ]);
         this.state = {
             showPassword: props.showPassword,
             waiting: false,
+            showUsernameTip: true,
             validUsername: ''
         };
     }
@@ -159,6 +162,9 @@ class UsernameStep extends React.Component {
             if (isValid) return this.props.onNextStep(formData);
         });
     }
+    handleFocus () {
+        this.setState({showUsernameTip: false});
+    }
     render () {
         return (
             <Slide className="registration-step username-step">
@@ -205,6 +211,13 @@ class UsernameStep extends React.Component {
                                     null
                                 )}
                             </label>
+                            { this.state.showUsernameTip &&
+                                <ValidationMessage
+                                    className={'validation-full-width-input'}
+                                    message={this.props.intl.formatMessage({id: 'registration.usernameAdviceShort'})}
+                                    mode="info"
+                                />
+                            }
                             <Input
                                 required
                                 className={this.state.validUsername}
@@ -227,6 +240,7 @@ class UsernameStep extends React.Component {
                                     maxLength: 20
                                 }}
                                 onBlur={this.handleUsernameBlur}
+                                onFocus={this.handleFocus}
                             />
                         </div>
                         <Input
@@ -253,6 +267,7 @@ class UsernameStep extends React.Component {
                                 notEqualsField: 'user.username'
                             }}
                         />
+
                         <Checkbox
                             help={null}
                             name="showPassword"
