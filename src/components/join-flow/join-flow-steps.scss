@@ -127,10 +127,11 @@
 }
 
 .join-flow-privacy-message {
-    margin: 1rem auto;
+    margin: .5rem auto 1rem;
     font-size: .75rem;
     font-weight: 500;
     color: $type-gray-60percent;
+    text-align: center;
 }
 
 .join-flow-inner-username-step {

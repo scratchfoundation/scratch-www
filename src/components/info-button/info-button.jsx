@@ -11,18 +11,44 @@ class InfoButton extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleHideMessage',
-            'handleShowMessage'
+            'handleClick',
+            'handleMouseLeave',
+            'handleShowMessage',
+            'setButtonRef'
         ]);
         this.state = {
+            requireClickToClose: false, // default to closing on mouseout
             visible: false
         };
     }
-    handleHideMessage () {
-        this.setState({visible: false});
+    componentWillMount () {
+        window.addEventListener('mousedown', this.handleClick, false);
+    }
+    componentWillUnmount () {
+        window.removeEventListener('mousedown', this.handleClick, false);
+    }
+    handleClick (e) {
+        if (this.buttonRef) { // only handle click if we can tell whether it happened in this component
+            let newVisibleState = false; // for most clicks, hide the info message
+            if (this.buttonRef.contains(e.target)) { // if the click was inside the info icon...
+                newVisibleState = !this.state.requireClickToClose; // toggle it
+            }
+            this.setState({
+                requireClickToClose: newVisibleState,
+                visible: newVisibleState
+            });
+        }
+    }
+    handleMouseLeave () {
+        if (this.state.visible && !this.state.requireClickToClose) {
+            this.setState({visible: false});
+        }
     }
     handleShowMessage () {
         this.setState({visible: true});
+    }
+    setButtonRef (element) {
+        this.buttonRef = element;
     }
     render () {
         const messageJsx = this.state.visible && (
@@ -34,8 +60,8 @@ class InfoButton extends React.Component {
             <React.Fragment>
                 <div
                     className="info-button"
-                    onClick={this.handleShowMessage}
-                    onMouseOut={this.handleHideMessage}
+                    ref={this.setButtonRef}
+                    onMouseLeave={this.handleMouseLeave}
                     onMouseOver={this.handleShowMessage}
                 >
                     <MediaQuery minWidth={frameless.desktop}>
