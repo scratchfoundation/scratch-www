@@ -10,7 +10,6 @@ const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 const detectOS = require('../../lib/detect-os.js').default;
 const OS_ENUM = require('../../lib/os-enum.js');
-const {CHROME_APP_RELEASED} = require('../../lib/feature-flags.js');
 const OSChooser = require('../../components/os-chooser/os-chooser.jsx');
 const InstallScratch = require('../../components/install-scratch/install-scratch.jsx');
 const {isDownloaded, isFromGooglePlay} = require('../../components/install-scratch/install-util.js');
@@ -52,14 +51,12 @@ class Download extends React.Component {
                                         width="40"
                                     />
                                     <FormattedMessage
-                                        id={CHROME_APP_RELEASED ? 'download.appTitle' :
-                                            'download.title'}
+                                        id="download.appTitle"
                                     />
                                 </h1>
                                 <span className="download-description">
                                     <FormattedMessage
-                                        id={CHROME_APP_RELEASED ? 'download.appIntro' :
-                                            'download.intro'}
+                                        id="download.appIntro"
                                     />
                                 </span>
                             </FlexRow>
@@ -82,24 +79,20 @@ class Download extends React.Component {
                                         />
                                                 macOS 10.13+
                                     </span>
-                                    {CHROME_APP_RELEASED && (
-                                        <React.Fragment>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    src="/svgs/extensions/chromeos.svg"
-                                                />
+                                    <span>
+                                        <img
+                                            alt=""
+                                            src="/svgs/extensions/chromeos.svg"
+                                        />
                                                 ChromeOS
-                                            </span>
-                                            <span>
-                                                <img
-                                                    alt=""
-                                                    src="/svgs/extensions/android.svg"
-                                                />
+                                    </span>
+                                    <span>
+                                        <img
+                                            alt=""
+                                            src="/svgs/extensions/android.svg"
+                                        />
                                                 Android 6.0+
-                                            </span>
-                                        </React.Fragment>
-                                    )}
+                                    </span>
                                 </FlexRow>
                             </FlexRow>
                         </FlexRow>
