@@ -26,7 +26,7 @@ const HelpForm = props => {
             <iframe
                 className="freshwidget-embedded-form"
                 frameBorder="0"
-                height="594px"
+                height="644px"
                 id="freshwidget-embedded-form"
                 scrolling="no"
                 src={`${prefix}&${title}&${username}&${formSubject}&${reportLink}`}
