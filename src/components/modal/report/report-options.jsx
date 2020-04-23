@@ -55,7 +55,73 @@ const REPORT_OPTIONS = [
     {
         value: '2',
         label: {id: 'report.reasonScary'},
-        prompt: <FormattedMessage id="report.promptScary" />
+        prompt: (
+            <FormattedMessage
+                id="report.promptScary"
+                values={{
+                    CommunityGuidelinesLink: (
+                        <a
+                            href="/community_guidelines"
+                            target="_blank"
+                        >
+                            <FormattedMessage id="general.guidelines" />
+                        </a>
+                    )
+                }}
+            />
+        ),
+        subcategories: [
+            {
+                value: '',
+                label: {id: 'report.reasonPlaceHolder'},
+                prompt: <FormattedMessage id="report.promptPlaceholder" />
+            },
+            {
+                value: '15',
+                label: {id: 'report.reasonJumpscare'},
+                prompt: (
+                    <div>
+                        <p><FormattedMessage id="report.promptJumpscare1" /></p>
+                        <p><FormattedMessage id="report.promptJumpscare2" /></p>
+                    </div>
+                )
+            },
+            {
+                value: '17',
+                label: {id: 'report.reasonWeapons'},
+                prompt: (
+                    <div>
+                        <p><FormattedMessage id="report.promptWeapons1" /></p>
+                        <p><FormattedMessage id="report.promptWeapons2" /></p>
+                    </div>
+                )
+            },
+            {
+                value: '16',
+                label: {id: 'report.reasonEvent'},
+                prompt: (
+                    <div>
+                        <p><FormattedMessage id="report.promptEvent1" /></p>
+                        <p><FormattedMessage id="report.promptEvent2" /></p>
+                    </div>
+                )
+            },
+            {
+                value: '14',
+                label: {id: 'report.reasonScaryImages'},
+                prompt: (
+                    <div>
+                        <p><FormattedMessage id="report.promptScaryImages1" /></p>
+                        <p><FormattedMessage id="report.promptScaryImages2" /></p>
+                    </div>
+                )
+            },
+            {
+                value: '18',
+                label: {id: 'report.reasonThreatening'},
+                prompt: <FormattedMessage id="report.promptThreatening" />
+            }
+        ]
     },
     {
         value: '3',
