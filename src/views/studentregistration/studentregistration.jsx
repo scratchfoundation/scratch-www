@@ -126,7 +126,7 @@ class StudentRegistration extends React.Component {
                                 id: 'registration.studentUsernameStepTooltip'
                             })}
                             usernameHelp={this.props.intl.formatMessage({
-                                id: 'registration.studentUsernameFieldHelpText'
+                                id: 'registration.studentUsernameSuggestion'
                             })}
                             waiting={this.state.waiting}
                             onNextStep={this.handleAdvanceStep}

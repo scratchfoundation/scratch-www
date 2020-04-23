@@ -4,8 +4,6 @@ const React = require('react');
 
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 
-const {CHROME_APP_RELEASED} = require('../../lib/feature-flags.js');
-
 require('./extension-landing.scss');
 
 const ExtensionRequirements = props => (
@@ -30,24 +28,22 @@ const ExtensionRequirements = props => (
                         />
                         macOS 10.13+
                     </span>
-                    {CHROME_APP_RELEASED && (
-                        <React.Fragment>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/chromeos.svg"
-                                />
-                                ChromeOS
-                            </span>
-                            <span>
-                                <img
-                                    alt=""
-                                    src="/svgs/extensions/android.svg"
-                                />
-                                Android 6.0+
-                            </span>
-                        </React.Fragment>
-                    )}
+                    <React.Fragment>
+                        <span>
+                            <img
+                                alt=""
+                                src="/svgs/extensions/chromeos.svg"
+                            />
+                            ChromeOS
+                        </span>
+                        <span>
+                            <img
+                                alt=""
+                                src="/svgs/extensions/android.svg"
+                            />
+                            Android 6.0+
+                        </span>
+                    </React.Fragment>
                     <span>
                         <img src="/svgs/extensions/bluetooth.svg" />
                         Bluetooth
