@@ -3,7 +3,6 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const React = require('react');
 
 const OS_ENUM = require('../../lib/os-enum.js');
-const {CHROME_APP_RELEASED} = require('../../lib/feature-flags.js');
 
 const {isDownloaded, isFromGooglePlay} = require('./install-util.js');
 
@@ -27,24 +26,10 @@ const InstallScratch = ({
     <div className="blue install-scratch">
         <FlexRow className="inner column">
             <h2 className="title">
-                {CHROME_APP_RELEASED ? (
-                    <FormattedMessage
-                        id="installScratch.appHeaderTitle"
-                        values={{operatingsystem: currentOS}}
-                    />
-                ) : (
-                    <React.Fragment>
-                        {isDownloaded(currentOS) && (
-                            <FormattedMessage id="installScratch.desktopHeaderTitle" />
-                        )}
-                        {isFromGooglePlay(currentOS) && (
-                            <FormattedMessage
-                                id="installScratch.appHeaderTitle"
-                                values={{operatingsystem: currentOS}}
-                            />
-                        )}
-                    </React.Fragment>
-                )}
+                <FormattedMessage
+                    id="installScratch.appHeaderTitle"
+                    values={{operatingsystem: currentOS}}
+                />
             </h2>
             <Steps>
                 <div className="step">
@@ -56,14 +41,12 @@ const InstallScratch = ({
                             <React.Fragment>
                                 {currentOS === OS_ENUM.WINDOWS && (
                                     <FormattedMessage
-                                        id={CHROME_APP_RELEASED ? 'installScratch.getScratchAppWindows' :
-                                            'installScratch.downloadScratchDesktop'}
+                                        id="installScratch.getScratchAppWindows"
                                     />
                                 )}
                                 {currentOS === OS_ENUM.MACOS && (
                                     <FormattedMessage
-                                        id={CHROME_APP_RELEASED ? 'installScratch.getScratchAppMacOs' :
-                                            'installScratch.downloadScratchDesktop'}
+                                        id="installScratch.getScratchAppMacOs"
                                     />
                                 )}
                                 {isFromGooglePlay(currentOS) && (

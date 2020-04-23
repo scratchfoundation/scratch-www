@@ -26,7 +26,8 @@ const Welcome = require('../../components/welcome/welcome.jsx');
 const BecomeCuratorMessage = require('./activity-rows/become-curator.jsx');
 const BecomeManagerMessage = require('./activity-rows/become-manager.jsx');
 const FavoriteProjectMessage = require('./activity-rows/favorite-project.jsx');
-const FollowMessage = require('./activity-rows/follow.jsx');
+const FollowUserMessage = require('./activity-rows/follow-user.jsx');
+const FollowStudioMessage = require('./activity-rows/follow-studio.jsx');
 const LoveProjectMessage = require('./activity-rows/love-project.jsx');
 const RemixProjectMessage = require('./activity-rows/remix-project.jsx');
 const ShareProjectMessage = require('./activity-rows/share-project.jsx');
@@ -53,7 +54,7 @@ class ActivityList extends React.Component {
         switch (message.type) {
         case 'followuser':
             return (
-                <FollowMessage
+                <FollowUserMessage
                     followDateTime={message.datetime_created}
                     followeeId={message.followed_username}
                     followerUsername={message.actor_username}
@@ -62,12 +63,12 @@ class ActivityList extends React.Component {
             );
         case 'followstudio':
             return (
-                <FollowMessage
+                <FollowStudioMessage
                     followDateTime={message.datetime_created}
                     followeeId={message.gallery_id}
-                    followeeTitle={message.title}
-                    followerUsername={message.actor_username}
                     key={key}
+                    studioTitle={message.title}
+                    studioUsername={message.actor_username}
                 />
             );
         case 'loveproject':
