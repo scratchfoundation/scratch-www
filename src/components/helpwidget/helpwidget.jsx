@@ -59,8 +59,8 @@ class HelpWidget extends React.Component {
         // don't show the Freshdesk button
         window.FreshworksWidget('hide', 'launcher');
 
-        window.FreshworksWidget('disable', 'ticketForm', 'custom_fields.cf_inappropriate_report_link');
-        window.FreshworksWidget('hide', 'ticketForm', 'custom_fields.cf_inappropriate_report_link');
+        window.FreshworksWidget('disable', 'ticketForm', ['custom_fields.cf_inappropriate_report_link']);
+        window.FreshworksWidget('hide', 'ticketForm', ['custom_fields.cf_inappropriate_report_link']);
 
         // open the popup already on the form if passed Inappropriate content param
         this.openPopup(this.props.subject !== '');
