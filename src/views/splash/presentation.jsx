@@ -65,10 +65,10 @@ class ActivityList extends React.Component {
             return (
                 <FollowStudioMessage
                     followDateTime={message.datetime_created}
-                    followeeId={message.gallery_id}
+                    studioId={message.gallery_id}
                     key={key}
                     studioTitle={message.title}
-                    studioUsername={message.actor_username}
+                    followerUsername={message.actor_username}
                 />
             );
         case 'loveproject':
