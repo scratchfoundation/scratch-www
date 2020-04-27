@@ -338,7 +338,21 @@ const Landing = props => (
                         <FormattedMessage id="teacherlanding.accountsTitle" />
                     </h2>
                     <p>
-                        <FormattedHTMLMessage id="teacherlanding.accountsDescription" />
+                        <FormattedMessage
+                            id="teacherlanding.accountsRequestInfo"
+                            values={{
+                                setupGuideLink: (
+                                    <a href="" >
+                                        <FormattedMessage id="teacherlanding.accountsSetupGuide" />
+                                    </a>
+                                ),
+                                teacherAccountFaqLink: (
+                                    <a href="/educators/faq">
+                                        <FormattedMessage id="teacherlanding.accountsFaqPage" />
+                                    </a>
+                                )
+                            }}
+                        />
                     </p>
                     <SubNavigation
                         align="left"
