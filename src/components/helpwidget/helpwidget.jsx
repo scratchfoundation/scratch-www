@@ -9,6 +9,30 @@ const React = require('react');
 const Button = require('../forms/button.jsx');
 const Spinner = require('../spinner/spinner.jsx');
 require('./helpwidget.scss');
+
+// map Scratch locale to supported Freshdesk locale
+const freshdeskLocale = locale => {
+    // most locales in Scratch and Freshdesk use the two letter code. Define exceptions:
+    const localeMap = {
+        'es-419': 'es-LA',
+        'ja': 'ja-JP',
+        'ja-Hira': 'ja-JP',
+        'lv': 'lv-LV',
+        'nb': 'nb-NO',
+        'nn': 'nb-NO',
+        'pt': 'pt-PT',
+        'pt-br': 'pt-BR',
+        'ru': 'ru-RU',
+        'sv': 'sv-SE',
+        'zh-cn': 'zh-CN',
+        'zh-tw': 'zh-TW'
+    };
+    if (localeMap.hasOwnProperty(locale)) {
+        return localeMap[locale];
+    }
+    // locale will either be supported by Freshdesk, or will default to English if not
+    return locale;
+};
 /**
  * Button or link that opens the Freshdesk Help widget
  * see https://developers.freshdesk.com/widget-api/
@@ -46,7 +70,7 @@ class HelpWidget extends React.Component {
 
             window.fwSettings = {
                 widget_id: 4000000089,
-                locale: this.props.intl.locale
+                locale: freshdeskLocale(this.props.intl.locale)
             };
             document.body.appendChild(script);
         }
@@ -58,6 +82,17 @@ class HelpWidget extends React.Component {
         /* eslint-enable */
         // don't show the Freshdesk button
         window.FreshworksWidget('hide', 'launcher');
+
+        const labels = {};
+        labels[freshdeskLocale(this.props.intl.locale)] = {
+            banner: this.props.intl.formatMessage({id: 'helpWidget.banner'}),
+            contact_form: {
+                title: this.props.intl.formatMessage({id: 'general.contactUs'}),
+                submit: this.props.intl.formatMessage({id: 'helpWidget.submit'}),
+                confirmation: this.props.intl.formatMessage({id: 'helpWidget.confirmation'})
+            }
+        };
+        window.FreshworksWidget('setLabels', labels);
 
         window.FreshworksWidget('disable', 'ticketForm', ['custom_fields.cf_inappropriate_report_link']);
         window.FreshworksWidget('hide', 'ticketForm', ['custom_fields.cf_inappropriate_report_link']);
