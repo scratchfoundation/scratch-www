@@ -8,7 +8,7 @@ const render = require('../../lib/render.jsx');
 
 const HelpForm = require('../../components/helpform/helpform.jsx');
 const HelpWidget = require('../../components/helpwidget/helpwidget.jsx');
-const {CONTACT_US_POPUP} = require('../../lib/feature-flags.js');
+const CONTACT_US_POPUP = true;
 
 const InformationPage = require('../../components/informationpage/informationpage.jsx');
 require('./contact-us.scss');
