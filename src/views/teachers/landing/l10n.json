@@ -37,7 +37,6 @@
     "teacherlanding.signupTips" : "Sign up to receive {signupTipsLink} from the Scratch Team",
     "teacherlanding.signupTipsLink" : "updates and tips",
     "teacherlanding.accountsTitle": "Teacher Accounts in Scratch",
-    "teacherlanding.accountsDescription": "As an educator, you can request a Scratch Teacher Account, which makes it easier to create accounts for groups of students and to manage your students’ projects and comments. To learn more, see the <a href=\"/educators/faq\">Teacher Account FAQ page</a>.",
     "teacherlanding.accountsRequestInfo": "As an educator, you can request a Scratch Teacher Account, which makes it easier to create accounts for students and to manage their projects and comments. To learn more, see the {setupGuideLink} and the {teacherAccountFaqLink}.",
     "teacherlanding.accountsSetupGuide": "Teacher Account Setup Guide",
     "teacherlanding.accountsFaqPage": "Teacher Account FAQ page",
