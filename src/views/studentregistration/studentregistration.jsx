@@ -132,6 +132,7 @@ class StudentRegistration extends React.Component {
                             onNextStep={this.handleAdvanceStep}
                         />
                         <Steps.DemographicsStep
+                            countryName={this.state.classroom && this.state.classroom.educator.profile.country}
                             description={this.props.intl.formatMessage({
                                 id: 'registration.studentPersonalStepDescription'
                             })}
