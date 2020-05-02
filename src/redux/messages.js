@@ -186,7 +186,6 @@ module.exports.clearAdminMessage = (messageType, messageId, messageCount, adminM
  * @return {null}                     returns nothing
  */
 module.exports.getMessages = (username, token, opts) => {
-    if (!!!username) location.replace("/login/?next=/messages/");
     opts = defaults(opts, {
         messages: [],
         offset: 0,
