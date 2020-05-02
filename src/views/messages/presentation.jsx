@@ -182,6 +182,7 @@ class SocialMessagesList extends React.Component {
         return null;
     }
     render () {
+        if (!props.user.username) location.href = "/login/?next=/messages";
         if (this.props.loadStatus === messageStatuses.MESSAGES_ERROR) {
             return (
                 <section className="messages-social">
