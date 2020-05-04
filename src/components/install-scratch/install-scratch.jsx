@@ -13,8 +13,8 @@ const Step = require('../../components/steps/step.jsx');
 require('./install-scratch.scss');
 
 const downloadUrls = {
-    mac: 'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop-3.6.0.dmg',
-    win: 'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop%20Setup%203.9.0.exe',
+    mac: 'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop-3.10.2.dmg',
+    win: 'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop%20Setup%203.10.2.exe',
     googlePlayStore: 'https://play.google.com/store/apps/details?id=org.scratch',
     microsoftStore: 'https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge',
     macAppStore: 'https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12'
