@@ -8,5 +8,5 @@ const flagInUrl = flag => {
 };
 
 module.exports = {
-    CONTACT_US_POPUP: isStaging() && flagInUrl('CONTACT_US_POPUP')
+    CONTACT_US_POPUP: flagInUrl('CONTACT_US_POPUP')
 };

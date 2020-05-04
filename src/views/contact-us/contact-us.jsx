@@ -8,7 +8,7 @@ const render = require('../../lib/render.jsx');
 
 const HelpForm = require('../../components/helpform/helpform.jsx');
 const HelpWidget = require('../../components/helpwidget/helpwidget.jsx');
-const {CONTACT_US_POPUP} = require('../../lib/feature-flags.js');
+const CONTACT_US_POPUP = true;
 
 const InformationPage = require('../../components/informationpage/informationpage.jsx');
 require('./contact-us.scss');
@@ -25,11 +25,11 @@ class ContactUs extends React.Component {
         // The subject is not localized because sending in English is easier for Scratch Team
         if (query.indexOf('studio=') !== -1) {
             scratchId = query.match(/studio=([0-9]+)/)[1];
-            this.state.subject = `Inappropriate content reported in studio ${scratchId}`;
+            this.state.subject = `Issue reported with studio ${scratchId}`;
             this.state.body = `https://scratch.mit.edu/studios/${scratchId}`;
         } else if (query.indexOf('profile=') !== -1) {
             scratchId = query.match(/profile=([a-zA-Z0-9-_]+)/)[1];
-            this.state.subject = `Inappropriate content reported in profile ${scratchId}`;
+            this.state.subject = `Issue reported with profile ${scratchId}`;
             this.state.body = `https://scratch.mit.edu/users/${scratchId}`;
         } else if (query.indexOf('confirmation=') !== -1) {
             this.state.subject = 'Problem with email confirmation';
@@ -99,9 +99,24 @@ class ContactUs extends React.Component {
                             <p><FormattedMessage id="contactUs.forumsIntro" /></p>
                             <p><FormattedMessage id="contactUs.forumsHelp" /></p>
                             <ul>
-                                <li><a href="/discuss/4/"><FormattedMessage id="contactUs.questionsLinkText" /></a></li>
-                                <li><a href="/discuss/7/"><FormattedMessage id="contactUs.scriptsLinkText" /></a></li>
-                                <li><a href="/discuss/3/"><FormattedMessage id="contactUs.bugsLinkText" /></a></li>
+                                <li><FormattedMessage
+                                    id="contactUs.questionsText"
+                                    values={{questionsLink: (
+                                        <a href="/discuss/4/"><FormattedMessage id="contactUs.questionsLinkText" /></a>
+                                    )}}
+                                /></li>
+                                <li><FormattedMessage
+                                    id="contactUs.scriptsText"
+                                    values={{scriptsLink: (
+                                        <a href="/discuss/7/"><FormattedMessage id="contactUs.scriptsLinkText" /></a>
+                                    )}}
+                                /></li>
+                                <li><FormattedMessage
+                                    id="contactUs.bugsText"
+                                    values={{bugsLink: (
+                                        <a href="/discuss/3/"><FormattedMessage id="contactUs.bugsLinkText" /></a>
+                                    )}}
+                                /></li>
                             </ul>
                             <h3>
                                 <FormattedMessage id="contactUs.needSupport" />
