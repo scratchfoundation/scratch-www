@@ -1,4 +1,3 @@
-const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
@@ -338,7 +337,21 @@ const Landing = props => (
                         <FormattedMessage id="teacherlanding.accountsTitle" />
                     </h2>
                     <p>
-                        <FormattedHTMLMessage id="teacherlanding.accountsDescription" />
+                        <FormattedMessage
+                            id="teacherlanding.accountsRequestInfo"
+                            values={{
+                                setupGuideLink: (
+                                    <a href="https://docs.google.com/document/d/1Qb8Lyeiivr-oB49p5Bo17iXU5qxGpBJHuFa_KR5aW-o/view" >
+                                        <FormattedMessage id="teacherlanding.accountsSetupGuide" />
+                                    </a>
+                                ),
+                                teacherAccountFaqLink: (
+                                    <a href="/educators/faq">
+                                        <FormattedMessage id="teacherlanding.accountsFaqPage" />
+                                    </a>
+                                )
+                            }}
+                        />
                     </p>
                     <SubNavigation
                         align="left"
