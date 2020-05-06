@@ -156,10 +156,10 @@ const Credits = () => (
                     Chris Graves, Joel Gritter, Megan Haddadi, Connor Hudson,
                     Christina Huang, Tony Hwang, Abdulrahman Idlbi, Randy Jou,
                     Lily Kim, Tauntaun Kim, Saskia Leggett, Tim Mickel,
-                    Amon Millner, My Nguyen, Lisa O&apos;Brien, Tina Quach,
-                    Ricarose Roque, Andrea Saxman, Jay Silver, Tammy Stern,
-                    Lis Sylvan, Hanako Tjia, Claudia Urrea, Julia Zimmerman,
-                    Oren Zuckerman.
+                    Amon Millner, My Nguyen, Lisa O&apos;Brien, Abisola Okuk,
+                    Tina Quach, Ricarose Roque, Andrea Saxman, Jay Silver,
+                    Andrew Sliwinski, Tammy Stern, Lis Sylvan, Hanako Tjia,
+                    Claudia Urrea, Julia Zimmerman, Oren Zuckerman.
                 </p>
                 <p>
                     <FormattedMessage id="credits.partnersBody" />
