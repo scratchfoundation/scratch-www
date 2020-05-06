@@ -12,6 +12,25 @@ const InformationPage = require('../../../components/informationpage/information
 const TeacherFaq = props => (
     <InformationPage title={props.intl.formatMessage({id: 'teacherfaq.title'})}>
         <div className="inner info-inner">
+            <section id="educator-questions">
+                <span className="nav-spacer" />
+                <h2><FormattedMessage id="teacherfaq.educatorTitle" /></h2>
+                <dl>
+                    <dt><FormattedMessage id="teacherfaq.educatorGetStartedTitle" /></dt>
+                    <dd>
+                        <FormattedMessage
+                            id="teacherfaq.educatorGetStartedBody"
+                            values={{
+                                educatorResourcesLink: (
+                                    <a href="/educators#resources">
+                                        <FormattedMessage id="teacherfaq.educatorResourcesLink" />
+                                    </a>
+                                )
+                            }}
+                        />
+                    </dd>
+                </dl>
+            </section>
             <section id="teacher-accounts">
                 <span className="nav-spacer" />
                 <h2><FormattedMessage id="teacherfaq.title" /></h2>
@@ -29,8 +48,6 @@ const TeacherFaq = props => (
                     />
                     <dt><FormattedMessage id="teacherfaq.teacherSignUpTitle" /></dt>
                     <dd><FormattedHTMLMessage id="teacherfaq.teacherSignUpBody" /></dd>
-                    <dt><FormattedMessage id="teacherfaq.teacherWaitTitle" /></dt>
-                    <dd><FormattedMessage id="teacherfaq.teacherWaitBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.classMultipleTeachersTitle" /></dt>
                     <dd><FormattedMessage id="teacherfaq.classMultipleTeachersBody" /></dd>
                     <dt><FormattedMessage id="teacherfaq.convertToTeacherTitle" /></dt>
@@ -74,6 +91,16 @@ const TeacherFaq = props => (
                     </dd>
                     <dt><FormattedMessage id="teacherfaq.teacherEdTitle" /></dt>
                     <dd><FormattedHTMLMessage id="teacherfaq.teacherEdBody" /></dd>
+                    <dt><FormattedMessage id="teacherfaq.teacherFeaturesTitle" /></dt>
+                    <dd><FormattedHTMLMessage id="teacherfaq.teacherFeaturesBody" /></dd>
+                    <ul>
+                        <li><FormattedMessage id="teacherfaq.teacherFeaturesConvert" /></li>
+                        <li><FormattedMessage id="teacherfaq.teacherMoveStudents" /></li>
+                        <li><FormattedMessage id="teacherfaq.teacherMultipleClasses" /></li>
+                        <li><FormattedMessage id="teacherfaq.teacherLMSs" /></li>
+                        <li><FormattedMessage id="teacherfaq.teacherLimitStudent" /></li>
+                    </ul>
+                    <dd><FormattedHTMLMessage id="teacherfaq.teacherWillNotImplement" /></dd>
                 </dl>
             </section>
             <section id="student-accounts">
