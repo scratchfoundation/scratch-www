@@ -1,0 +1,14 @@
+.gethelp-button {
+    position: relative;
+    margin-bottom: 2rem;
+
+    .spinner {
+        position: absolute;
+        width: 2rem;
+        height: 2rem;
+        left: 50%;
+        margin-left: -1rem;
+        top: 50%;
+        margin-top: -1rem;
+    }
+}
