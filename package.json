@@ -139,7 +139,7 @@
     "watch": "0.16.0",
     "webpack": "2.7.0",
     "webpack-dev-middleware": "2.0.4",
-    "xhr": "2.2.0"
+    "xhr": "2.5.0"
   },
   "jest": {
     "setupFiles": [
