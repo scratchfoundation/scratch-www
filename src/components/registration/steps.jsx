@@ -466,7 +466,7 @@ class DemographicsStep extends React.Component {
     // look up country code from country label ('United States' -> 'us')
     // if `countryName` is not found, including if it's null or undefined, then this function will return undefined.
     getCountryCode (countryName) {
-        const country = countryData.countryInfo.find(countryItem => countryItem.name === countryName);
+        const country = countryData.lookupCountryName(countryName);
         return country && country.code;
     }
     handleValidSubmit (formData) {

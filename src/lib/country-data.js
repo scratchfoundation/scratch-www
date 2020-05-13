@@ -1040,6 +1040,10 @@ module.exports.lookupCountryInfo = countryCode => (
     countryInfo.find(country => country.code === countryCode)
 );
 
+module.exports.lookupCountryName = countryName => (
+    countryInfo.find(country => country.name === countryName)
+);
+
 /**
  * Function dupeCommonCountries():
  * takes startingCountryInfo, and duplicates any number of its country labels
