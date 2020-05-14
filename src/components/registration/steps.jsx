@@ -453,7 +453,7 @@ class DemographicsStep extends React.Component {
     handleChooseGender (name, gender) {
         this.setState({otherDisabled: gender !== 'other'});
     }
-    // look up country name using user's country code selection
+    // look up country name using user's country code selection ('us' -> 'United States')
     getCountryName (values) {
         if (values.countryCode) {
             const countryInfo = countryData.lookupCountryInfo(values.countryCode);
@@ -462,6 +462,12 @@ class DemographicsStep extends React.Component {
             }
         }
         return null;
+    }
+    // look up country code from country label ('United States' -> 'us')
+    // if `countryName` is not found, including if it's null or undefined, then this function will return undefined.
+    getCountryCode (countryName) {
+        const country = countryData.countryInfo.find(countryItem => countryItem.name === countryName);
+        return country && country.code;
     }
     handleValidSubmit (formData) {
         const countryName = this.getCountryName(formData);
@@ -573,7 +579,7 @@ class DemographicsStep extends React.Component {
                             validations={{
                                 countryVal: values => this.countryValidator(values)
                             }}
-                            value={countryOptions[0].value}
+                            value={this.getCountryCode(this.props.countryName) || countryOptions[0].value}
                         />
                         <Checkbox
                             className="demographics-checkbox-is-robot"
@@ -598,6 +604,7 @@ class DemographicsStep extends React.Component {
 DemographicsStep.propTypes = {
     activeStep: PropTypes.number,
     birthOffset: PropTypes.number,
+    countryName: PropTypes.string, // like 'United States', not 'US' or 'United States of America'
     description: PropTypes.string,
     intl: intlShape,
     onNextStep: PropTypes.func,
