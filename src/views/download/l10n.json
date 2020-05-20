@@ -50,5 +50,6 @@
   "download.whyAskForLocation" : "Why is {operatingsystem} asking for my location?",
   "download.whyAskForLocationAnswer" : "Scratch uses bluetooth to connect to other devices, such as a micro:bit or LEGO BOOST.  Bluetooth can be used to provide location data to the app, so Google requires every app that uses bluetooth ask users for permission to access their location. Scratch will not use bluetooth to track your location.",
   "download.whereProjectStored" : "Where does the Scratch App store my projects?",
-  "download.whereProjectStoredAnswer" : "Projects are saved internally in the app. To export a project file, click the 3-dot menu and select \"Share\". On the next screen select \"export\". The options visible depend on the applications installed on your device. Common options are Google Drive, Files, and email."
+  "download.whereProjectStoredAnswer" : "Projects are saved internally in the app. To export a project file, click the 3-dot menu and select \"Share\". On the next screen select \"export\". The options visible depend on the applications installed on your device. Common options are Google Drive, Files, and email.",
+  "download.iconAltText" : "Download"
 }
