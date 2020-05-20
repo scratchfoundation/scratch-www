@@ -58,7 +58,7 @@ class UsernameStep extends React.Component {
     }
     // simple function to memoize remote requests for usernames
     validateUsernameRemotelyWithCache (username) {
-        if (this.usernameRemoteCache.hasOwnProperty(username)) {
+        if (Object.prototype.hasOwnProperty.call(this.usernameRemoteCache, username)) {
             return Promise.resolve(this.usernameRemoteCache[username]);
         }
         // username is not in our cache
