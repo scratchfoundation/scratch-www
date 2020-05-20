@@ -43,14 +43,14 @@ const REPORT_OPTIONS = [
         prompt: <FormattedMessage id="report.promptPlaceholder" />
     },
     {
-        value: '0',
-        label: {id: 'report.reasonCopy'},
-        prompt: <FormattedMessage id="report.promptCopy" />
-    },
-    {
-        value: '1',
-        label: {id: 'report.reasonUncredited'},
-        prompt: <FormattedMessage id="report.promptUncredited" />
+        value: '19',
+        label: {id: 'report.reasonDisrespectful'},
+        prompt: (
+            <div>
+                <p><FormattedMessage id="report.promptDisrespectful1" /></p>
+                <p><FormattedMessage id="report.promptDisrespectful2" /></p>
+            </div>
+        )
     },
     {
         value: '2',
@@ -142,6 +142,16 @@ const REPORT_OPTIONS = [
         value: '5',
         label: {id: 'report.reasonPersonal'},
         prompt: <FormattedMessage id="report.promptPersonal" />
+    },
+    {
+        value: '0',
+        label: {id: 'report.reasonCopy'},
+        prompt: <FormattedMessage id="report.promptCopy" />
+    },
+    {
+        value: '1',
+        label: {id: 'report.reasonUncredited'},
+        prompt: <FormattedMessage id="report.promptUncredited" />
     },
     {
         value: '6',
@@ -279,8 +289,6 @@ const REPORT_OPTIONS = [
                 )
             }
         ]
-
-
     }
 ];
 
