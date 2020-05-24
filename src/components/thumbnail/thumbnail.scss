@@ -14,8 +14,6 @@
 
     .thumbnail-title,
     #{$extras} {
-        overflow: hidden;
-        text-overflow: ellipsis;
         line-height: 1.2em;
         white-space: nowrap;
         word-wrap: break-word;
@@ -27,11 +25,15 @@
         font-weight: 800;
 
         a {
+            overflow: hidden;
+            text-overflow: ellipsis;
             display: block;
         }
     }
 
     #{$extras} {
+        overflow: hidden;
+        text-overflow: ellipsis;
         color: $type-gray;
         font-size: .8462em;
 
