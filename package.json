@@ -72,7 +72,7 @@
     "classnames": "2.2.5",
     "cookie": "0.4.1",
     "copy-webpack-plugin": "0.2.0",
-    "create-react-class": "15.6.2",
+    "create-react-class": "15.6.3",
     "css-loader": "0.23.1",
     "email-validator": "2.0.4",
     "enzyme": "3.10.0",
