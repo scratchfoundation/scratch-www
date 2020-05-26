@@ -70,7 +70,7 @@
     "cheerio": "1.0.0-rc.2",
     "chromedriver": "76.0.0",
     "classnames": "2.2.5",
-    "cookie": "0.2.2",
+    "cookie": "0.4.1",
     "copy-webpack-plugin": "0.2.0",
     "create-react-class": "15.6.2",
     "css-loader": "0.23.1",
