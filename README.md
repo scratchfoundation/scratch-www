@@ -53,6 +53,7 @@ See the [LICENSE](https://github.com/LLK/scratch-www/blob/master/LICENSE) file i
 
 Here are some resources to help you get acquainted with how we’re working on the Scratch codebase:
 
+* [Contributor Guidelines](https://github.com/LLK/scratch-www/blob/develop/.github/CONTRIBUTING.md)
 * [Style Guide](https://github.com/LLK/scratch-www/wiki/Style-Guide)
 * [Testing Guide](https://github.com/LLK/scratch-www/wiki/Testing-Guide-for-Bugfixes)
 * [Localization Guide](https://github.com/LLK/scratch-www/wiki/Localization-Guide)
