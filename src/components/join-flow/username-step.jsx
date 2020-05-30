@@ -34,7 +34,7 @@ class UsernameStep extends React.Component {
         };
         // simple object to memoize remote requests for usernames.
         // keeps us from submitting multiple requests for same data.
-        this.usernameRemoteCache = {};
+        this.usernameRemoteCache = Object.create(null);
     }
     componentDidMount () {
         // Send info to analytics when we aren't on the standalone page.
