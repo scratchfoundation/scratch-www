@@ -17,6 +17,8 @@ let wwwURL = rootUrl;
 
 if (remote){
     jest.setTimeout(60000);
+} else {
+    jest.setTimeout(10000);
 }
 
 let driver;
