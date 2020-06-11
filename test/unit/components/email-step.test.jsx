@@ -3,7 +3,6 @@ const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
 const {mountWithIntl} = require('../../helpers/intl-helpers.jsx');
 const JoinFlowStep = require('../../../src/components/join-flow/join-flow-step.jsx');
 const FormikInput = require('../../../src/components/formik-forms/formik-input.jsx');
-const FormikCheckbox = require('../../../src/components/formik-forms/formik-checkbox.jsx');
 
 const requestSuccessResponse = {
     requestSucceeded: true,
@@ -49,7 +48,6 @@ describe('EmailStep test', () => {
             {...defaultProps()}
         />);
         const emailStepWrapper = intlWrapper.dive();
-        expect(emailStepWrapper.props().initialValues.subscribe).toBe(false);
         expect(emailStepWrapper.props().initialValues.email).toBe('');
         expect(emailStepWrapper.props().validateOnBlur).toBe(false);
         expect(emailStepWrapper.props().validateOnChange).toBe(false);
@@ -92,23 +90,6 @@ describe('EmailStep test', () => {
         expect(emailInputWrapper.props().validationClassName).toEqual('validation-full-width-input');
         expect(emailInputWrapper.props().onSetRef).toEqual(emailStepWrapper.instance().handleSetEmailRef);
         expect(emailInputWrapper.props().validate).toEqual(emailStepWrapper.instance().validateEmail);
-    });
-
-    test('props sent to FormikCheckbox for subscribe', () => {
-        const intlWrapper = shallowWithIntl(<EmailStep
-            {...defaultProps()}
-        />);
-
-        // Dive to get past the intl wrapper
-        const emailStepWrapper = intlWrapper.dive();
-        // Dive to get past the anonymous component.
-        const joinFlowWrapper = emailStepWrapper.dive().find(JoinFlowStep);
-        expect(joinFlowWrapper).toHaveLength(1);
-        const checkboxWrapper = joinFlowWrapper.find(FormikCheckbox).first();
-        expect(checkboxWrapper).toHaveLength(1);
-        expect(checkboxWrapper.first().props().id).toEqual('subscribeCheckbox');
-        expect(checkboxWrapper.first().props().label).toEqual('registration.receiveEmails');
-        expect(checkboxWrapper.first().props().name).toEqual('subscribe');
     });
 
     test('handleValidSubmit passes formData to next step', () => {
