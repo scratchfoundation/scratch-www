@@ -194,7 +194,6 @@ class JoinFlow extends React.Component {
                     'g-recaptcha-response': formData['g-recaptcha-response'],
                     'gender': formData.gender,
                     'country': formData.country,
-                    'subscribe': true,
                     'is_robot': formData.yesno
                     // no need to include csrfmiddlewaretoken; will be provided in
                     // X-CSRFToken header, which scratchr2 looks for in

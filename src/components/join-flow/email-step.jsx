@@ -9,7 +9,6 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const validate = require('../../lib/validate');
 const JoinFlowStep = require('./join-flow-step.jsx');
 const FormikInput = require('../../components/formik-forms/formik-input.jsx');
-const FormikCheckbox = require('../../components/formik-forms/formik-checkbox.jsx');
 const InfoButton = require('../info-button/info-button.jsx');
 const Captcha = require('../../components/captcha/captcha.jsx');
 require('./join-flow-steps.scss');
@@ -100,8 +99,7 @@ class EmailStep extends React.Component {
         return (
             <Formik
                 initialValues={{
-                    email: '',
-                    subscribe: false
+                    email: ''
                 }}
                 validate={this.validateForm}
                 validateOnBlur={false}
@@ -184,13 +182,6 @@ class EmailStep extends React.Component {
                                 <FormattedMessage id="registration.private" />
                                 <InfoButton
                                     message={this.props.intl.formatMessage({id: 'registration.emailStepInfo'})}
-                                />
-                            </div>
-                            <div className="join-flow-email-checkbox-row">
-                                <FormikCheckbox
-                                    id="subscribeCheckbox"
-                                    label={this.props.intl.formatMessage({id: 'registration.receiveEmails'})}
-                                    name="subscribe"
                                 />
                             </div>
                             <Captcha
