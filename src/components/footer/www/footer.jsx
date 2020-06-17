@@ -11,7 +11,7 @@ const frameless = require('../../../lib/frameless');
 
 require('./footer.scss');
 
-const interwiki_mapping = {
+var interwiki_mapping = {
             'de': 'https://de.scratch-wiki.info',
             'ru': 'https://ru.scratch-wiki.info/',
             'nl': 'https://nl.scratch-wiki.info/',
@@ -35,7 +35,7 @@ const interwiki_mapping = {
             'sqi': 'https://test.scratch-wiki.info/wiki/Sqi:Faqja_Kryesore',
             'ben': 'https://test.scratch-wiki.info/wiki/Ben:%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A7%E0%A6%BE%E0%A6%A8_%E0%A6%AA%E0%A6%BE%E0%A6%A4%E0%A6%BE'
         };
-        const wiki_link = null;
+        var wiki_link = null;
         if (this.props.intl.locale in interwiki_mapping) {
             wikilink = interwiki_mapping[this.props.intl.locale];
         } else {
