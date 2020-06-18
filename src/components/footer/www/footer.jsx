@@ -8,6 +8,7 @@ const FooterBox = require('../container/footer.jsx');
 const LanguageChooser = require('../../languagechooser/languagechooser.jsx');
 
 const frameless = require('../../../lib/frameless');
+const getScratchWikiLink = require('../../../lib/scratch-wiki');
 
 require('./footer.scss');
 
@@ -108,7 +109,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="https://en.scratch-wiki.info/">
+                        <a href={getScratchWikiLink(props.intl.locale)}>
                             <FormattedMessage id="general.wiki" />
                         </a>
                     </dd>
