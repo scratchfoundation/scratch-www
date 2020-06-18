@@ -21,7 +21,7 @@ const interwikiMapping = {
     fr: 'https://fr.scratch-wiki.info/'
 };
 var wikiLink = null;
-if (this.props.intl.locale in interwiki_mapping) {
+if (this.props.intl.locale in interwikiMapping) {
     wikiLink = interwikiMapping[this.props.intl.locale];
 } else {
     wikiLink = 'https://en.scratch-wiki.info';
