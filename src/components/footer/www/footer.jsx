@@ -20,8 +20,8 @@ const interwikiMapping = {
     hu: 'https://hu.scratch-wiki.info/',
     fr: 'https://fr.scratch-wiki.info/'
 };
-var wikiLink = null;
-if (this.props.intl.locale in interwikiMapping) {
+const wikiLink = null;
+if (props.intl.locale in interwikiMapping) {
     wikiLink = interwikiMapping[props.intl.locale];
 } else {
     wikiLink = 'https://en.scratch-wiki.info';
