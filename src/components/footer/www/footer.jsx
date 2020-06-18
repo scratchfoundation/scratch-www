@@ -123,7 +123,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href="{wikilink}">
+                        <a href="{wikiLink}">
                             <FormattedMessage id="general.wiki" />
                         </a>
                     </dd>
