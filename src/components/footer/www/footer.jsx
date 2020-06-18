@@ -22,7 +22,7 @@ const interwikiMapping = {
 };
 var wikiLink = null;
 if (this.props.intl.locale in interwikiMapping) {
-    wikiLink = interwikiMapping[this.props.intl.locale];
+    wikiLink = interwikiMapping[props.intl.locale];
 } else {
     wikiLink = 'https://en.scratch-wiki.info';
 }
