@@ -11,21 +11,6 @@ const frameless = require('../../../lib/frameless');
 
 require('./footer.scss');
 
-const interwikiMapping = {
-    de: 'https://de.scratch-wiki.info',
-    ru: 'https://ru.scratch-wiki.info/',
-    nl: 'https://nl.scratch-wiki.info/',
-    id: 'https://id.scratch-wiki.info/',
-    ja: 'https://ja.scratch-wiki.info/',
-    hu: 'https://hu.scratch-wiki.info/',
-    fr: 'https://fr.scratch-wiki.info/'
-};
-const wikiLink = null;
-if (props.intl.locale in interwikiMapping) {
-    wikiLink = interwikiMapping[props.intl.locale];
-} else {
-    wikiLink = 'https://en.scratch-wiki.info';
-}
 const Footer = props => (
     <FooterBox>
         <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
@@ -225,6 +210,21 @@ const Footer = props => (
         </MediaQuery>
         <LanguageChooser locale={props.intl.locale} />
     </FooterBox>
+const interwikiMapping = {
+    de: 'https://de.scratch-wiki.info',
+    ru: 'https://ru.scratch-wiki.info/',
+    nl: 'https://nl.scratch-wiki.info/',
+    id: 'https://id.scratch-wiki.info/',
+    ja: 'https://ja.scratch-wiki.info/',
+    hu: 'https://hu.scratch-wiki.info/',
+    fr: 'https://fr.scratch-wiki.info/'
+};
+const wikiLink = null;
+if (props.intl.locale in interwikiMapping) {
+    wikiLink = interwikiMapping[props.intl.locale];
+} else {
+    wikiLink = 'https://en.scratch-wiki.info';
+}
 );
 
 Footer.propTypes = {
