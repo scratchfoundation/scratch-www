@@ -1,7 +1,8 @@
 const {
     countryInfo,
     countryOptions,
-    lookupCountryInfo,
+    lookupCountryByCode,
+    lookupCountryByName,
     dupeCommonCountries,
     registrationCountryCodeOptions,
     registrationCountryNameOptions,
@@ -45,9 +46,17 @@ describe('unit test lib/country-data.js', () => {
         expect(szInfo.label).toEqual('Eswatini');
     });
 
-    test('lookupCountryInfo() will find country info', () => {
-        expect(typeof lookupCountryInfo).toBe('function');
-        const eswatiniInfo = lookupCountryInfo('sz');
+    test('lookupCountryByCode() will find country info', () => {
+        expect(typeof lookupCountryByCode).toBe('function');
+        const eswatiniInfo = lookupCountryByCode('sz');
+        expect(eswatiniInfo.name).toEqual('Swaziland');
+        expect(eswatiniInfo.display).toEqual('Eswatini');
+        expect(eswatiniInfo.code).toEqual('sz');
+    });
+
+    test('lookupCountryByName() will find country info', () => {
+        expect(typeof lookupCountryByName).toBe('function');
+        const eswatiniInfo = lookupCountryByName('Swaziland');
         expect(eswatiniInfo.name).toEqual('Swaziland');
         expect(eswatiniInfo.display).toEqual('Eswatini');
         expect(eswatiniInfo.code).toEqual('sz');
