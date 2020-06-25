@@ -1036,8 +1036,12 @@ const countryOptions = module.exports.countryOptions = (startingCountryInfo, val
     ))
 );
 
-module.exports.lookupCountryInfo = countryCode => (
+module.exports.lookupCountryByCode = countryCode => (
     countryInfo.find(country => country.code === countryCode)
+);
+
+module.exports.lookupCountryByName = countryName => (
+    countryInfo.find(country => country.name === countryName)
 );
 
 /**
