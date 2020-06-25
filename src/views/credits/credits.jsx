@@ -109,7 +109,7 @@ const Credits = () => (
                         id="credits.acknowledgementsTranslators"
                         values={{
                             translatorsLink: (
-                                <a href="http://wiki.scratch.mit.edu/wiki/Translators">
+                                <a href="https://en.scratch-wiki.info/wiki/Translators">
                                     <FormattedMessage id="credits.acknowledgementsTranslatorsLinkText" />
                                 </a>
                             )
