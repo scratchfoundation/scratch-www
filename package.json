@@ -108,7 +108,7 @@
     "lodash.uniqby": "4.7.0",
     "minilog": "2.0.8",
     "node-dir": "0.1.16",
-    "node-sass": "4.12.0",
+    "node-sass": "4.6.1",
     "pako": "0.2.8",
     "po2icu": "0.0.2",
     "postcss-loader": "2.0.10",
