@@ -2,6 +2,8 @@ const FormattedMessage = require('react-intl').FormattedMessage;
 const injectIntl = require('react-intl').injectIntl;
 const intlShape = require('react-intl').intlShape;
 const MediaQuery = require('react-responsive').default;
+const connect = require('react-redux').connect;
+const PropTypes = require('prop-types');
 const React = require('react');
 
 const FooterBox = require('../container/footer.jsx');
@@ -109,7 +111,7 @@ const Footer = props => (
                         </a>
                     </dd>
                     <dd>
-                        <a href={getScratchWikiLink(props.intl.locale)}>
+                        <a href={props.scratchWikiLink}>
                             <FormattedMessage id="general.wiki" />
                         </a>
                     </dd>
@@ -214,7 +216,13 @@ const Footer = props => (
 );
 
 Footer.propTypes = {
-    intl: intlShape.isRequired
+    intl: intlShape.isRequired,
+    scratchWikiLink: PropTypes.string
 };
 
-module.exports = injectIntl(Footer);
+const mapStateToProps = (state, ownProps) => ({
+    scratchWikiLink: getScratchWikiLink(ownProps.intl.locale)
+});
+
+const ConnectedFooter = connect(mapStateToProps)(Footer);
+module.exports = injectIntl(ConnectedFooter);
