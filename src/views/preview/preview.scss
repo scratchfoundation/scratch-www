@@ -364,7 +364,7 @@ $stage-width: 480px;
     .guiPlayer {
         display: inline-block;
         position: relative;
-        max-width: $player-width;
+        width: $player-width;
         z-index: 1;
 
         $alert-bg: rgba(255, 255, 255, .85);
