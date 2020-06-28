@@ -1,7 +1,7 @@
 {
-  "onePointFour.intro": "The previous version of Scratch, version 1.4, is still available for download.",
+  "onePointFour.intro": "A previous version of Scratch, version 1.4, is still available for download.",
   "onePointFour.introNoteLabel": "Note:",
-  "onePointFour.introNote": "{noteLabel} You can still share projects from 1.4 to the Scratch website. However, projects created in Scratch 2.0 cannot be opened in 1.4.",
+  "onePointFour.introNote": "{noteLabel} You can still share projects from 1.4 to the Scratch website. However, projects created in Scratch 2.0 or later cannot be opened in 1.4.",
   "onePointFour.downloads": "Downloads",
   "onePointFour.macTitle": "Mac OS X",
   "onePointFour.macBody": "Compatible with Mac OSX 10.4 or later",
@@ -22,7 +22,7 @@
   "onePointFour.resourcesA": "For a step-by-step introduction, download the {gettingStartedGuide}. The {referenceGuide} has a thorough explanation of the Scratch interface and programming language. {scratchCards} provide brief explanations that show how to make animations and interactive projects with Scratch.",
   "onePointFour.requirementsQ": "What are the system requirements for Scratch 1.4?",
   "onePointFour.requirementsDisplay": "Display: 800 x 480 or larger, thousands or millions of colors (16-bit color or greater) ",
-  "onePointFour.requirementsOS": "Operating System: Windows 2000 or later, Mac OS X 10.4 or later, Ubuntu Linux 9.04 or later (For other versions of Linux, see the Linux Installer page) ",
+  "onePointFour.requirementsOS": "Operating System: Windows 2000 or later, Mac OS X 10.4 through 10.14, Ubuntu Linux 9.04 or later (For other versions of Linux, see the Linux Installer page) ",
   "onePointFour.requirementsDisk": "Disk: at least 120 megabytes of free space to install Scratch.",
   "onePointFour.requirementsCPUMemory": "CPU and memory: Most computers have enough memory to run Scratch 1.4, but very old computers may run Scratch slowly.",
   "onePointFour.requirementsSoundVideo": "Sound / Video: Sound playback requires speakers (or headphones), and recording requires a microphone. Many laptops have speakers and microphones built in. Scratch 1.4 can use a USB or built-in camera (optional).",
