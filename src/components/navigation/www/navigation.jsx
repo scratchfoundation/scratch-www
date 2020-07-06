@@ -27,7 +27,8 @@ class Navigation extends React.Component {
         super(props);
         bindAll(this, [
             'getProfileUrl',
-            'handleSearchSubmit'
+            'handleSearchSubmit',
+            'setupMessagePolling'
         ]);
         this.state = {
             messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
@@ -35,27 +36,18 @@ class Navigation extends React.Component {
     }
     componentDidMount () {
         if (this.props.user) {
-            const intervalId = setInterval(() => {
-                this.props.getMessageCount(this.props.user.username);
-            }, 120000); // check for new messages every 2 mins.
-            this.setState({ // eslint-disable-line react/no-did-mount-set-state
-                messageCountIntervalId: intervalId
-            });
+            // Setup polling for messages to start in 2 minutes.
+            setTimeout(this.setupMessagePolling.bind(this, 2), 2 * 60 * 1000);
         }
     }
     componentDidUpdate (prevProps) {
         if (prevProps.user !== this.props.user) {
             this.props.handleCloseAccountNav();
             if (this.props.user) {
-                const intervalId = setInterval(() => {
-                    this.props.getMessageCount(this.props.user.username);
-                }, 120000); // check for new messages every 2 mins.
-                this.setState({ // eslint-disable-line react/no-did-update-set-state
-                    messageCountIntervalId: intervalId
-                });
+                setTimeout(this.setupMessagePolling.bind(this, 2), 2 * 60 * 1000);
             } else {
                 // clear message count check, and set to default id.
-                clearInterval(this.state.messageCountIntervalId);
+                clearTimeout(this.state.messageCountIntervalId);
                 this.props.setMessageCount(0);
                 this.setState({ // eslint-disable-line react/no-did-update-set-state
                     messageCountIntervalId: -1
@@ -66,7 +58,7 @@ class Navigation extends React.Component {
     componentWillUnmount () {
         // clear message interval if it exists
         if (this.state.messageCountIntervalId !== -1) {
-            clearInterval(this.state.messageCountIntervalId);
+            clearTimeout(this.state.messageCountIntervalId);
             this.props.setMessageCount(0);
             this.setState({
                 messageCountIntervalId: -1
@@ -77,6 +69,23 @@ class Navigation extends React.Component {
         if (!this.props.user) return;
         return `/users/${this.props.user.username}/`;
     }
+
+    setupMessagePolling (minutes) {
+        this.props.getMessageCount(this.props.user.username);
+        // We only poll if it has been less than 30 minutes.
+        // Chances of someone actively using the page for that long without
+        // a navigation is low.
+        if (minutes < 32) {
+            const nextFetch = minutes * 2;
+            const timeoutId = setTimeout(() => {
+                this.setupMessagePolling(nextFetch);
+            }, nextFetch * 60000);
+            this.setState({ // eslint-disable-line react/no-did-mount-set-state
+                messageCountIntervalId: timeoutId
+            });
+        }
+    }
+
     handleSearchSubmit (formData) {
         let targetUrl = '/search/projects';
         if (formData.q) {
