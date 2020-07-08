@@ -109,7 +109,7 @@ const Credits = () => (
                         id="credits.acknowledgementsTranslators"
                         values={{
                             translatorsLink: (
-                                <a href="http://wiki.scratch.mit.edu/wiki/Translators">
+                                <a href="https://en.scratch-wiki.info/wiki/Translators">
                                     <FormattedMessage id="credits.acknowledgementsTranslatorsLinkText" />
                                 </a>
                             )
@@ -151,8 +151,8 @@ const Credits = () => (
                     {' '}
                     Ben Berg, Amos Blanton, Karen Brennan, Juanita Buitrago,
                     Leo Burd, Gaia Carini, Kasia Chmielinski, Michelle Chung,
-                    Shane Clements, Hannah Cole, Ellen Daoust, Sayamindu Dasgupta,
-                    Margarita Dekoli, Dave Feinberg, Linda Fernsel,
+                    Shane Clements, Hannah Cole, Sayamindu Dasgupta,
+                    Margarita Dekoli, Dave Feinberg, Linda Fernsel, Elizabeth Foster,
                     Chris Graves, Joel Gritter, Megan Haddadi, Connor Hudson,
                     Christina Huang, Tony Hwang, Abdulrahman Idlbi, Randy Jou,
                     Lily Kim, Tauntaun Kim, Saskia Leggett, Tim Mickel,

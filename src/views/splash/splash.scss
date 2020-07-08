@@ -104,6 +104,8 @@
 .social-message {
     border: 0;
     padding: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .activity-img {

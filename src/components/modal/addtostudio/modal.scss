@@ -34,10 +34,8 @@
     background-color: $ui-blue-10percent;
     flex: 1;
     height: calc(100% - 5rem);
-
-    @media #{$small-height} {
-        min-height: 0;
-    }
+    /* Firefox requires min-height:0: #3775 */
+    min-height: 0;
 }
 
 .studio-list-inner-scrollbox {
