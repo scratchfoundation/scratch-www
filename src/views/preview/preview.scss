@@ -444,6 +444,8 @@ $stage-width: 480px;
         font-size: .875rem;
         flex-shrink: 1;
         text-align: left;
+        overflow: auto;
+        overflow-wrap: break-word;
     }
 
     .description-block {
