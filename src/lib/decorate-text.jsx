@@ -24,7 +24,7 @@ module.exports = (text, opts) => {
     if (opts.usernames) {
         replacedText = reactStringReplace(replacedText, /@([\w-]+)/g, (match, i) => (
             <a
-                href={`/users/${match}`}
+                href={match.toLowerCase() === 'welcomingcommittee' ? '/studios/146521/' : `/users/${match}`}
                 key={match + i}
             >@{match}</a>
         ));

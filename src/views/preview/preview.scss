@@ -38,7 +38,6 @@ $stage-width: 480px;
 
     .inner {
         margin: 0 auto;
-        overflow: auto;
 
         @media #{$medium-and-smaller} {
             // subtract page padding
@@ -365,7 +364,7 @@ $stage-width: 480px;
     .guiPlayer {
         display: inline-block;
         position: relative;
-        max-width: $player-width;
+        width: $player-width;
         z-index: 1;
 
         $alert-bg: rgba(255, 255, 255, .85);
@@ -402,6 +401,7 @@ $stage-width: 480px;
         flex: 1;
         flex-flow: column;
         margin-top: .3125rem;
+        overflow: auto;
 
         @media #{$medium-and-smaller} {
             margin-top: .5rem;
@@ -479,7 +479,6 @@ $stage-width: 480px;
         line-height: 1.5rem;
         flex: 1;
         overflow-wrap: break-word;
-        word-break: break-word;
     }
 
     .project-description:last-of-type {

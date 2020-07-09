@@ -1,5 +1,10 @@
 [
     {
+        "userName": "originalwow",
+        "userId": 56182496,
+        "name": "Amielle"
+    },
+    {
         "userName": "amylaser",
         "userId": 17462181,
         "name": "Amy"
@@ -54,8 +59,13 @@
         "userId": 10866958,
         "name": "Colby"
     },
+     {
+        "userName": "noncanonical",
+        "userId": 55851826,
+        "name": "Craig"
+    },
     {
-        "userName": "harakou",
+        "userName": "Harakou",
         "userId": 373646,
         "name": "Dalton"
     },
@@ -65,9 +75,9 @@
         "name": "DD"
     },
     {
-        "userName": "rmiel",
-        "userId": 34557192,
-        "name": "Elizabeth"
+        "userName": "SunnyDay4aBlueJay",
+        "userId": 24164779,
+        "name": "Ellen"
     },
     {
         "userName": "ericr",
@@ -103,6 +113,11 @@
         "userName": "FredDog",
         "userId": 2496866,
         "name": "Jolie"
+    },
+    {
+        "userName": "Class12321",
+        "userId": 2871308,
+        "name": "Joshua"
     },
     {
         "userName": "bluecrazie",
