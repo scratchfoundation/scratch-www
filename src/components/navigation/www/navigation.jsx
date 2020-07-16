@@ -28,7 +28,7 @@ class Navigation extends React.Component {
         bindAll(this, [
             'getProfileUrl',
             'handleSearchSubmit',
-            'setupMessagePolling'
+            'pollForMessages'
         ]);
         this.state = {
             messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
@@ -37,14 +37,14 @@ class Navigation extends React.Component {
     componentDidMount () {
         if (this.props.user) {
             // Setup polling for messages to start in 2 minutes.
-            setTimeout(this.setupMessagePolling.bind(this, 2), 2 * 60 * 1000);
+            setTimeout(this.pollForMessages.bind(this, 2), 2 * 60 * 1000);
         }
     }
     componentDidUpdate (prevProps) {
         if (prevProps.user !== this.props.user) {
             this.props.handleCloseAccountNav();
             if (this.props.user) {
-                setTimeout(this.setupMessagePolling.bind(this, 2), 2 * 60 * 1000);
+                setTimeout(this.pollForMessages.bind(this, 2), 2 * 60 * 1000);
             } else {
                 // clear message count check, and set to default id.
                 clearTimeout(this.state.messageCountIntervalId);
@@ -70,7 +70,7 @@ class Navigation extends React.Component {
         return `/users/${this.props.user.username}/`;
     }
 
-    setupMessagePolling (minutes) {
+    pollForMessages (minutes) {
         this.props.getMessageCount(this.props.user.username);
         // We only poll if it has been less than 30 minutes.
         // Chances of someone actively using the page for that long without
@@ -78,7 +78,7 @@ class Navigation extends React.Component {
         if (minutes < 32) {
             const nextFetch = minutes * 2;
             const timeoutId = setTimeout(() => {
-                this.setupMessagePolling(nextFetch);
+                this.pollForMessages(nextFetch);
             }, nextFetch * 60000);
             this.setState({ // eslint-disable-line react/no-did-mount-set-state
                 messageCountIntervalId: timeoutId

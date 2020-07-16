@@ -138,7 +138,7 @@ describe('Navigation', () => {
         expect(props.getMessageCount).toHaveBeenCalled();
     });
 
-    test('SetupMessagePolling polls for messages 5 times', () => {
+    test('pollForMessages polls for messages 5 times', () => {
         store = mockStore({
             navigation: {
                 registrationOpen: false
@@ -164,11 +164,11 @@ describe('Navigation', () => {
         const navInstance = intlWrapper.children().find('Navigation')
             .instance();
         // Clear the timers and mocks because componentDidMount
-        // has already called setupMessagePolling.
+        // has already called pollForMessages.
         jest.clearAllTimers();
         jest.clearAllMocks();
 
-        navInstance.setupMessagePolling(2);
+        navInstance.pollForMessages(2);
 
         // Check that we set the timeout to backoff exponentially
         let minutes = 2 * 60 * 1000;
@@ -185,7 +185,7 @@ describe('Navigation', () => {
         // and stop after 32 minutes so it should happen 5 times total.
         expect(props.getMessageCount).toHaveBeenCalledTimes(5);
         // setTimeout happens 1 fewer since the original call to
-        // setupMessagePolling isn't counted here.
+        // pollForMessages isn't counted here.
         expect(setTimeout).toHaveBeenCalledTimes(4);
     });
 });
