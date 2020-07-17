@@ -167,16 +167,16 @@ describe('Navigation', () => {
         // has already called pollForMessages.
         jest.clearAllTimers();
         jest.clearAllMocks();
-
-        navInstance.pollForMessages(2);
+        let twoMinInMs = 2 * 60 * 1000; // 2 minutes in ms.
+        navInstance.pollForMessages(twoMinInMs);
 
         // Check that we set the timeout to backoff exponentially
-        let minutes = 2 * 60 * 1000;
+
         for (let count = 1; count < 5; ++count) {
-            jest.advanceTimersByTime(minutes + 1);
-            expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), minutes * 2);
+            jest.advanceTimersByTime(twoMinInMs + 1);
+            expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), twoMinInMs * 2);
             expect(props.getMessageCount).toHaveBeenCalledTimes(count);
-            minutes = minutes * 2;
+            twoMinInMs = twoMinInMs * 2;
         }
 
         // Exhaust all timers (there shouldn't be any left)

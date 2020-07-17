@@ -37,14 +37,16 @@ class Navigation extends React.Component {
     componentDidMount () {
         if (this.props.user) {
             // Setup polling for messages to start in 2 minutes.
-            setTimeout(this.pollForMessages.bind(this, 2), 2 * 60 * 1000);
+            const twoMinInMs = 2 * 60 * 1000;
+            setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
         }
     }
     componentDidUpdate (prevProps) {
         if (prevProps.user !== this.props.user) {
             this.props.handleCloseAccountNav();
             if (this.props.user) {
-                setTimeout(this.pollForMessages.bind(this, 2), 2 * 60 * 1000);
+                const twoMinInMs = 2 * 60 * 1000;
+                setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
             } else {
                 // clear message count check, and set to default id.
                 clearTimeout(this.state.messageCountIntervalId);
@@ -70,16 +72,16 @@ class Navigation extends React.Component {
         return `/users/${this.props.user.username}/`;
     }
 
-    pollForMessages (minutes) {
+    pollForMessages (ms) {
         this.props.getMessageCount(this.props.user.username);
         // We only poll if it has been less than 30 minutes.
         // Chances of someone actively using the page for that long without
         // a navigation is low.
-        if (minutes < 32) {
-            const nextFetch = minutes * 2;
+        if (ms < 32 * 60 * 1000) { // 32 minutes
+            const nextFetch = ms * 2; // exponentially back off next fetch time.
             const timeoutId = setTimeout(() => {
                 this.pollForMessages(nextFetch);
-            }, nextFetch * 60000);
+            }, nextFetch);
             this.setState({ // eslint-disable-line react/no-did-mount-set-state
                 messageCountIntervalId: timeoutId
             });
