@@ -10,7 +10,7 @@ describe('unit test lib/jar.js', () => {
         expect(cookie.serialize).toHaveBeenCalledWith('name', 'value',
             expect.objectContaining({
                 path: '/',
-                SameSite: 'Strict',
+                sameSite: 'Strict',
                 expires: expect.anything() // not specifically matching the date because it is hard to mock
             }));
     });
@@ -21,7 +21,7 @@ describe('unit test lib/jar.js', () => {
             expect.objectContaining({
                 option: 'one',
                 path: '/',
-                SameSite: 'Strict',
+                sameSite: 'Strict',
                 expires: expect.anything() // not specifically matching the date because it is hard to mock
             }));
     });
@@ -38,16 +38,16 @@ describe('unit test lib/jar.js', () => {
                 expires: 'someday'
             }));
     });
-    test('SameSite opts overrides default', () => {
+    test('sameSite opts overrides default', () => {
         jar.set('a', 'b', {
             option: 'one',
-            SameSite: 'override'
+            sameSite: 'override'
         });
         expect(cookie.serialize).toHaveBeenCalled();
         expect(cookie.serialize).toHaveBeenCalledWith('a', 'b',
             expect.objectContaining({
                 option: 'one',
-                SameSite: 'override'
+                sameSite: 'override'
             }));
     });
 });

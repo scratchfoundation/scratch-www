@@ -79,7 +79,7 @@ const Jar = {
         opts = opts || {};
         defaults(opts, {
             expires: new Date(new Date().setYear(new Date().getFullYear() + 1)),
-            SameSite: 'Strict'
+            sameSite: 'Strict' // cookie library requires this capitialization of sameSite
         });
         opts.path = '/';
         const obj = cookie.serialize(name, value, opts);
