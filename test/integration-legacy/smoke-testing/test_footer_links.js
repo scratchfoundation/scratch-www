@@ -17,9 +17,6 @@ const rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
 // timeout for each test; timeout for suite set at command line level
 const options = {timeout: 30000};
 
-// number of tests in the plan
-tap.plan(24);
-
 tap.tearDown(function () {
     // quit the instance of the browser
     driver.quit();
