@@ -140,8 +140,6 @@ tap.test('clickDiscussionForumsLink', options, t => {
     });
 });
 
-// SCRATCH WIKI test has been removed.
-
 // STATISTICS
 tap.test('clickStatisticsLink', options, t => {
     const linkText = 'Statistics';
@@ -194,28 +192,6 @@ tap.test('clickContactUsLink', options, t => {
     });
 });
 
-// skip this test since it points to an external site
-// SCRATCH STORE
-tap.test('clickScratchStoreLink', {skip: true}, t => {
-    const linkText = 'Scratch Store';
-    const expectedUrl = 'https://scratch-foundation.myshopify.com/';
-    clickFooterLinks(linkText).then(url => {
-        t.equal(url, expectedUrl);
-        t.end();
-    });
-});
-
-// skip this test since it points to an external site
-// DONATE
-tap.test('clickDonateLink', {skip: true}, t => {
-    const linkText = 'Donate';
-    const expectedUrl = 'https://secure.donationpay.org/scratchfoundation/';
-    clickFooterLinks(linkText).then(url => {
-        t.equal(url, expectedUrl);
-        t.end();
-    });
-});
-
 // ==== LEGAL column ====
 
 // TERMS OF USE
@@ -249,40 +225,6 @@ tap.test('clickDMCALink', options, t => {
 });
 
 // ==== SCRATCH FAMILY column ====
-
-// skip this test since it points to an external site
-// SCRATCH ED (SCRATCHED)
-tap.test('clickScratchEdLink', {skip: true}, t => {
-    const linkText = 'ScratchEd';
-    const expectedUrl = 'http://scratched.gse.harvard.edu/';
-    clickFooterLinks(linkText).then(url => {
-        t.equal(url, expectedUrl);
-        t.end();
-    });
-});
-
-// skip this test since it points to an external site
-// SCRATCH JR (SCRATCHJR)
-tap.test('clickScratchJrLink', {skip: true}, t => {
-    const linkText = 'ScratchJr';
-    const expectedUrl = 'https://www.scratchjr.org/';
-    clickFooterLinks(linkText).then(url => {
-        t.equal(url, expectedUrl);
-        t.end();
-    });
-});
-
-// skip this test since it points to an external site
-// SCRATCH DAY
-tap.test('clickScratchDayLink', {skip: true}, t => {
-    const linkText = 'Scratch Day';
-    const expectedUrl = 'https://day.scratch.mit.edu/';
-    clickFooterLinks(linkText).then(url => {
-        t.equal(url, expectedUrl);
-        t.end();
-    });
-});
-
 // SCRATCH CONFERENCE
 tap.test('clickScratchConferenceLink', options, t => {
     const linkText = 'Scratch Conference';
@@ -292,14 +234,12 @@ tap.test('clickScratchConferenceLink', options, t => {
         t.end();
     });
 });
+// The following links in are skipped because they are not on scratch.mit.edu
 
-// skip this test since it points to an external site
+// SCRATCH STORE
+// DONATE
+// SCRATCH WIKI
+// SCRATCH ED (SCRATCHED)
+// SCRATCH JR (SCRATCHJR)
+// SCRATCH DAY
 // SCRATCH FOUNDATION
-tap.test('clickScratchFoundationLink', {skip: true}, t => {
-    const linkText = 'Scratch Foundation';
-    const expectedUrl = 'https://www.scratchfoundation.org/';
-    clickFooterLinks(linkText).then(url => {
-        t.equal(url, expectedUrl);
-        t.end();
-    });
-});
