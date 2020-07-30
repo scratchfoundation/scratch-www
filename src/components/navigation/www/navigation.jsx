@@ -30,15 +30,14 @@ class Navigation extends React.Component {
             'handleSearchSubmit',
             'pollForMessages'
         ]);
-        this.state = {
-            messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
-        };
+        // Keep the timeout id so we can cancel it (e.g. when we unmount)
+        this.messageCountTimeoutId = -1;
     }
     componentDidMount () {
         if (this.props.user) {
             // Setup polling for messages to start in 2 minutes.
             const twoMinInMs = 2 * 60 * 1000;
-            setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
+            this.messageCountTimeoutId = setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
         }
     }
     componentDidUpdate (prevProps) {
@@ -46,25 +45,21 @@ class Navigation extends React.Component {
             this.props.handleCloseAccountNav();
             if (this.props.user) {
                 const twoMinInMs = 2 * 60 * 1000;
-                setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
+                this.messageCountTimeoutId = setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
             } else {
                 // clear message count check, and set to default id.
-                clearTimeout(this.state.messageCountIntervalId);
+                clearTimeout(this.messageCountTimeoutId);
                 this.props.setMessageCount(0);
-                this.setState({ // eslint-disable-line react/no-did-update-set-state
-                    messageCountIntervalId: -1
-                });
+                this.messageCountTimeoutId = -1;
             }
         }
     }
     componentWillUnmount () {
         // clear message interval if it exists
-        if (this.state.messageCountIntervalId !== -1) {
-            clearTimeout(this.state.messageCountIntervalId);
+        if (this.messageCountTimeoutId !== -1) {
+            clearTimeout(this.messageCountTimeoutId);
             this.props.setMessageCount(0);
-            this.setState({
-                messageCountIntervalId: -1
-            });
+            this.messageCountTimeoutId = -1;
         }
     }
     getProfileUrl () {
@@ -82,9 +77,7 @@ class Navigation extends React.Component {
             const timeoutId = setTimeout(() => {
                 this.pollForMessages(nextFetch);
             }, nextFetch);
-            this.setState({ // eslint-disable-line react/no-did-mount-set-state
-                messageCountIntervalId: timeoutId
-            });
+            this.messageCountTimeoutId = timeoutId;
         }
     }
 

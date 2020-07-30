@@ -128,14 +128,49 @@ describe('Navigation', () => {
                 childContextTypes: {store}
             });
 
-        intlWrapper.children().find('Navigation')
+        const navInstance = intlWrapper.children().find('Navigation')
             .instance();
         const twoMin = 2 * 60 * 1000;
         expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), twoMin);
+        expect(navInstance.messageCountTimeoutId).not.toEqual(-1);
         // Advance timers passed the intial two minutes.
         jest.advanceTimersByTime(twoMin + 1);
         expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), twoMin * 2);
         expect(props.getMessageCount).toHaveBeenCalled();
+        expect(navInstance.messageCountTimeoutId).not.toEqual(-1);
+    });
+    test('Component cancels timers when it unmounts', () => {
+        store = mockStore({
+            navigation: {
+                registrationOpen: false
+            },
+            messageCount: {
+                messageCount: 5
+            }
+        });
+        const props = {
+            user: {
+                thumbnailUrl: 'scratch.mit.edu',
+                username: 'auser'
+            },
+            getMessageCount: jest.fn()
+        };
+        const intlWrapper = mountWithIntl(
+            <Navigation
+                {...props}
+            />, {context: {store},
+                childContextTypes: {store}
+            });
+
+        const navInstance = intlWrapper.children().find('Navigation')
+            .instance();
+        const twoMin = 2 * 60 * 1000;
+        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), twoMin);
+        expect(navInstance.messageCountTimeoutId).not.toEqual(-1);
+        debugger;
+        navInstance.componentWillUnmount();
+        expect(clearTimeout).toHaveBeenCalledWith(expect.any(Number));
+        expect(navInstance.messageCountTimeoutId).toEqual(-1);
     });
 
     test('pollForMessages polls for messages 5 times', () => {
@@ -170,8 +205,8 @@ describe('Navigation', () => {
         let twoMinInMs = 2 * 60 * 1000; // 2 minutes in ms.
         navInstance.pollForMessages(twoMinInMs);
 
+        expect(navInstance.messageCountTimeoutId).not.toEqual(-1);
         // Check that we set the timeout to backoff exponentially
-
         for (let count = 1; count < 5; ++count) {
             jest.advanceTimersByTime(twoMinInMs + 1);
             expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), twoMinInMs * 2);
@@ -187,5 +222,6 @@ describe('Navigation', () => {
         // setTimeout happens 1 fewer since the original call to
         // pollForMessages isn't counted here.
         expect(setTimeout).toHaveBeenCalledTimes(4);
+        expect(navInstance.messageCountTimeoutId).not.toEqual(-1);
     });
 });
