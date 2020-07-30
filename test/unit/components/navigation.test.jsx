@@ -167,7 +167,6 @@ describe('Navigation', () => {
         const twoMin = 2 * 60 * 1000;
         expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), twoMin);
         expect(navInstance.messageCountTimeoutId).not.toEqual(-1);
-        debugger;
         navInstance.componentWillUnmount();
         expect(clearTimeout).toHaveBeenCalledWith(expect.any(Number));
         expect(navInstance.messageCountTimeoutId).toEqual(-1);
