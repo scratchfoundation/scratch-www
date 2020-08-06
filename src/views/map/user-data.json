@@ -1,0 +1,1062 @@
+{
+  "China": {
+    "count": "2969283",
+    "log count": "6.472651592"
+  },
+  "United Kingdom": {
+    "count": "2691412",
+    "log count": "6.429980184"
+  },
+  "Australia": {
+    "count": "1546300",
+    "log count": "6.189293756"
+  },
+  "Poland": {
+    "count": "1309467",
+    "log count": "6.117094558"
+  },
+  "Spain": {
+    "count": "1201108",
+    "log count": "6.07958206"
+  },
+  "Canada": {
+    "count": "1151264",
+    "log count": "6.061174924"
+  },
+  "South Korea": {
+    "count": "858855",
+    "log count": "5.933919848"
+  },
+  "France": {
+    "count": "839091",
+    "log count": "5.923809063"
+  },
+  "Turkey": {
+    "count": "620216",
+    "log count": "5.792542966"
+  },
+  "Brazil": {
+    "count": "559111",
+    "log count": "5.747498037"
+  },
+  "Taiwan": {
+    "count": "481550",
+    "log count": "5.682641387"
+  },
+  "Japan": {
+    "count": "468109",
+    "log count": "5.670346991"
+  },
+  "Colombia": {
+    "count": "454989",
+    "log count": "5.658000897"
+  },
+  "New Zealand": {
+    "count": "445256",
+    "log count": "5.64860978"
+  },
+  "Albania": {
+    "count": "414386",
+    "log count": "5.617405074"
+  },
+  "Sweden": {
+    "count": "393448",
+    "log count": "5.594887342"
+  },
+  "Netherlands": {
+    "count": "393230",
+    "log count": "5.594646643"
+  },
+  "Mexico, United States of": {
+    "count": "355613",
+    "log count": "5.550977629"
+  },
+  "Italy": {
+    "count": "325007",
+    "log count": "5.511892715"
+  },
+  "India": {
+    "count": "292890",
+    "log count": "5.466704544"
+  },
+  "Ireland": {
+    "count": "260147",
+    "log count": "5.415218822"
+  },
+  "Germany": {
+    "count": "251937",
+    "log count": "5.401291954"
+  },
+  "Afghanistan": {
+    "count": "226370",
+    "log count": "5.354818871"
+  },
+  "Thailand": {
+    "count": "205987",
+    "log count": "5.313839813"
+  },
+  "Portugal": {
+    "count": "204789",
+    "log count": "5.311306625"
+  },
+  "Hong Kong": {
+    "count": "201645",
+    "log count": "5.304587458"
+  },
+  "Russia": {
+    "count": "195854",
+    "log count": "5.291932446"
+  },
+  "Bonaire, Sint Eustatius and Saba": {
+    "count": "193529",
+    "log count": "5.286746053"
+  },
+  "Denmark": {
+    "count": "191842",
+    "log count": "5.282943693"
+  },
+  "Algeria": {
+    "count": "189672",
+    "log count": "5.278003224"
+  },
+  "Belgium": {
+    "count": "189176",
+    "log count": "5.276866038"
+  },
+  "Argentina": {
+    "count": "180881",
+    "log count": "5.25739295"
+  },
+  "United States Minor Outlying Islands": {
+    "count": "177024",
+    "log count": "5.24803215"
+  },
+  "Aland Islands": {
+    "count": "176973",
+    "log count": "5.247907013"
+  },
+  "Israel": {
+    "count": "175846",
+    "log count": "5.245132494"
+  },
+  "Malaysia": {
+    "count": "171292",
+    "log count": "5.23373708"
+  },
+  "Norway": {
+    "count": "163183",
+    "log count": "5.212674913"
+  },
+  "Romania": {
+    "count": "133137",
+    "log count": "5.124298767"
+  },
+  "Finland": {
+    "count": "123926",
+    "log count": "5.093162432"
+  },
+  "Ukraine": {
+    "count": "118728",
+    "log count": "5.074553152"
+  },
+  "United Arab Emirates": {
+    "count": "115730",
+    "log count": "5.063445953"
+  },
+  "Switzerland": {
+    "count": "112377",
+    "log count": "5.050677434"
+  },
+  "Chile": {
+    "count": "111372",
+    "log count": "5.046776019"
+  },
+  "Greece": {
+    "count": "105093",
+    "log count": "5.02157379"
+  },
+  "Singapore": {
+    "count": "103850",
+    "log count": "5.016406501"
+  },
+  "Antarctica": {
+    "count": "94859",
+    "log count": "4.977078542"
+  },
+  "Hungary": {
+    "count": "91034",
+    "log count": "4.959203626"
+  },
+  "Philippines": {
+    "count": "87343",
+    "log count": "4.941228105"
+  },
+  "Vietnam": {
+    "count": "86304",
+    "log count": "4.936030925"
+  },
+  "Austria": {
+    "count": "85807",
+    "log count": "4.933522718"
+  },
+  "Peru": {
+    "count": "83708",
+    "log count": "4.922766966"
+  },
+  "Ecuador": {
+    "count": "83246",
+    "log count": "4.920363375"
+  },
+  "South Africa": {
+    "count": "72803",
+    "log count": "4.862149276"
+  },
+  "Czechia": {
+    "count": "70717",
+    "log count": "4.849523828"
+  },
+  "Andorra": {
+    "count": "65723",
+    "log count": "4.817717379"
+  },
+  "Pakistan": {
+    "count": "63415",
+    "log count": "4.802191997"
+  },
+  "Egypt": {
+    "count": "61704",
+    "log count": "4.790313318"
+  },
+  "Indonesia": {
+    "count": "60433",
+    "log count": "4.781274154"
+  },
+  "American Samoa": {
+    "count": "59969",
+    "log count": "4.777926807"
+  },
+  "Uruguay": {
+    "count": "56491",
+    "log count": "4.751979263"
+  },
+  "Slovenia": {
+    "count": "56104",
+    "log count": "4.748993826"
+  },
+  "Serbia": {
+    "count": "46005",
+    "log count": "4.662805035"
+  },
+  "Slovakia": {
+    "count": "43917",
+    "log count": "4.642632666"
+  },
+  "Bulgaria": {
+    "count": "42228",
+    "log count": "4.625600513"
+  },
+  "Korea, Republic of": {
+    "count": "41614",
+    "log count": "4.619239463"
+  },
+  "Estonia": {
+    "count": "41018",
+    "log count": "4.612974481"
+  },
+  "North Korea": {
+    "count": "37382",
+    "log count": "4.572662533"
+  },
+  "Angola": {
+    "count": "36462",
+    "log count": "4.561840487"
+  },
+  "Zimbabwe": {
+    "count": "36395",
+    "log count": "4.561041724"
+  },
+  "Latvia": {
+    "count": "35465",
+    "log count": "4.549799964"
+  },
+  "Saudi Arabia": {
+    "count": "34396",
+    "log count": "4.53650794"
+  },
+  "Belarus": {
+    "count": "34135",
+    "log count": "4.533199907"
+  },
+  "Bahamas": {
+    "count": "33008",
+    "log count": "4.518619211"
+  },
+  "Armenia": {
+    "count": "32633",
+    "log count": "4.513657001"
+  },
+  "Lithuania": {
+    "count": "31808",
+    "log count": "4.502536363"
+  },
+  "Georgia": {
+    "count": "31395",
+    "log count": "4.496860487"
+  },
+  "Morocco": {
+    "count": "31264",
+    "log count": "4.495044542"
+  },
+  "Anguilla": {
+    "count": "30293",
+    "log count": "4.481342285"
+  },
+  "Costa Rica": {
+    "count": "27999",
+    "log count": "4.447142521"
+  },
+  "Nigeria": {
+    "count": "27794",
+    "log count": "4.443951053"
+  },
+  "Guatemala": {
+    "count": "27535",
+    "log count": "4.439885081"
+  },
+  "Kazakhstan": {
+    "count": "26518",
+    "log count": "4.423540766"
+  },
+  "Azerbaijan": {
+    "count": "26263",
+    "log count": "4.419344334"
+  },
+  "Venezuela": {
+    "count": "26181",
+    "log count": "4.417986231"
+  },
+  "Bangladesh": {
+    "count": "25750",
+    "log count": "4.410777233"
+  },
+  "El Salvador": {
+    "count": "24284",
+    "log count": "4.385320224"
+  },
+  "Croatia": {
+    "count": "23567",
+    "log count": "4.372304302"
+  },
+  "Aruba": {
+    "count": "22720",
+    "log count": "4.356408327"
+  },
+  "Dominican Republic": {
+    "count": "21559",
+    "log count": "4.333628613"
+  },
+  "Antigua and Barbuda": {
+    "count": "21136",
+    "log count": "4.3250228"
+  },
+  "Bolivia": {
+    "count": "20161",
+    "log count": "4.30451207"
+  },
+  "Tunisia": {
+    "count": "18793",
+    "log count": "4.273996114"
+  },
+  "Qatar": {
+    "count": "18068",
+    "log count": "4.256910082"
+  },
+  "Puerto Rico": {
+    "count": "17483",
+    "log count": "4.242615958"
+  },
+  "Iceland": {
+    "count": "16464",
+    "log count": "4.216535357"
+  },
+  "Jamaica": {
+    "count": "15865",
+    "log count": "4.200440076"
+  },
+  "Iran": {
+    "count": "15079",
+    "log count": "4.178372541"
+  },
+  "Sri Lanka": {
+    "count": "13468",
+    "log count": "4.129303108"
+  },
+  "Christmas Island": {
+    "count": "13012",
+    "log count": "4.114344055"
+  },
+  "Kuwait": {
+    "count": "12903",
+    "log count": "4.110690697"
+  },
+  "Jordan": {
+    "count": "12876",
+    "log count": "4.109780968"
+  },
+  "Uganda": {
+    "count": "12667",
+    "log count": "4.102673771"
+  },
+  "Bosnia and Herzegovina": {
+    "count": "12394",
+    "log count": "4.093211492"
+  },
+  "Kenya": {
+    "count": "12327",
+    "log count": "4.090857396"
+  },
+  "Palestine, State of": {
+    "count": "12106",
+    "log count": "4.08300067"
+  },
+  "Panama": {
+    "count": "11911",
+    "log count": "4.075948225"
+  },
+  "Bahrain": {
+    "count": "11429",
+    "log count": "4.058008233"
+  },
+  "Syria": {
+    "count": "11331",
+    "log count": "4.05426824"
+  },
+  "Iraq": {
+    "count": "11206",
+    "log count": "4.049450618"
+  },
+  "Oman": {
+    "count": "11077",
+    "log count": "4.044422156"
+  },
+  "Virgin Islands, U.S.": {
+    "count": "10750",
+    "log count": "4.031408464"
+  },
+  "Fiji": {
+    "count": "10279",
+    "log count": "4.011950866"
+  },
+  "Cambodia": {
+    "count": "9918",
+    "log count": "3.996424104"
+  },
+  "Honduras": {
+    "count": "9489",
+    "log count": "3.977220447"
+  },
+  "Cyprus": {
+    "count": "9175",
+    "log count": "3.962606073"
+  },
+  "Somalia": {
+    "count": "9057",
+    "log count": "3.956984368"
+  },
+  "Ghana": {
+    "count": "9044",
+    "log count": "3.956360554"
+  },
+  "Lebanon": {
+    "count": "8988",
+    "log count": "3.953663064"
+  },
+  "Cuba": {
+    "count": "8963",
+    "log count": "3.952453396"
+  },
+  "Bermuda": {
+    "count": "8934",
+    "log count": "3.951045948"
+  },
+  "Trinidad and Tobago": {
+    "count": "8805",
+    "log count": "3.94472936"
+  },
+  "Niger": {
+    "count": "8770",
+    "log count": "3.942999593"
+  },
+  "Nicaragua": {
+    "count": "8633",
+    "log count": "3.936161741"
+  },
+  "Moldova": {
+    "count": "8430",
+    "log count": "3.925827575"
+  },
+  "British Indian Ocean Territory": {
+    "count": "8417",
+    "log count": "3.925157327"
+  },
+  "Russian Federation": {
+    "count": "8335",
+    "log count": "3.920905604"
+  },
+  "Heard Island and Mcdonald Islands": {
+    "count": "8261",
+    "log count": "3.917032622"
+  },
+  "Jersey": {
+    "count": "8240",
+    "log count": "3.915927212"
+  },
+  "Nepal": {
+    "count": "8083",
+    "log count": "3.907572579"
+  },
+  "Macao": {
+    "count": "8006",
+    "log count": "3.903415586"
+  },
+  "Luxembourg": {
+    "count": "7826",
+    "log count": "3.893539844"
+  },
+  "Yemen": {
+    "count": "7518",
+    "log count": "3.876102321"
+  },
+  "Barbados": {
+    "count": "7508",
+    "log count": "3.875524264"
+  },
+  "Zambia": {
+    "count": "7319",
+    "log count": "3.864451747"
+  },
+  "Belize": {
+    "count": "7080",
+    "log count": "3.850033258"
+  },
+  "Ethiopia": {
+    "count": "7080",
+    "log count": "3.850033258"
+  },
+  "Mongolia": {
+    "count": "7044",
+    "log count": "3.847819347"
+  },
+  "Macedonia, The Former Yugoslav Republic of": {
+    "count": "6982",
+    "log count": "3.843979844"
+  },
+  "Kosovo": {
+    "count": "6782",
+    "log count": "3.831357785"
+  },
+  "Reunion": {
+    "count": "6410",
+    "log count": "3.80685803"
+  },
+  "Malta": {
+    "count": "6348",
+    "log count": "3.802636918"
+  },
+  "Guernsey": {
+    "count": "6158",
+    "log count": "3.789439685"
+  },
+  "Congo": {
+    "count": "5787",
+    "log count": "3.762453482"
+  },
+  "Uzbekistan": {
+    "count": "5663",
+    "log count": "3.753046562"
+  },
+  "Paraguay": {
+    "count": "5478",
+    "log count": "3.738622028"
+  },
+  "Brunei": {
+    "count": "5418",
+    "log count": "3.733839001"
+  },
+  "Kyrgyzstan": {
+    "count": "5305",
+    "log count": "3.724685388"
+  },
+  "Isle of Man": {
+    "count": "5269",
+    "log count": "3.721728199"
+  },
+  "Virgin Islands, British": {
+    "count": "5150",
+    "log count": "3.711807229"
+  },
+  "Cameroon": {
+    "count": "5045",
+    "log count": "3.702861171"
+  },
+  "Madagascar": {
+    "count": "4899",
+    "log count": "3.690107439"
+  },
+  "South Georgia and The South Sandwich Islands": {
+    "count": "4482",
+    "log count": "3.651471852"
+  },
+  "Djibouti": {
+    "count": "4453",
+    "log count": "3.648652695"
+  },
+  "Myanmar": {
+    "count": "4367",
+    "log count": "3.640183192"
+  },
+  "Haiti": {
+    "count": "4313",
+    "log count": "3.634779458"
+  },
+  "Botswana": {
+    "count": "4147",
+    "log count": "3.617734035"
+  },
+  "Samoa": {
+    "count": "4123",
+    "log count": "3.615213335"
+  },
+  "Mauritius": {
+    "count": "3922",
+    "log count": "3.593507589"
+  },
+  "Bhutan": {
+    "count": "3896",
+    "log count": "3.590618948"
+  },
+  "Benin": {
+    "count": "3504",
+    "log count": "3.544564097"
+  },
+  "Cote D'ivoire": {
+    "count": "3456",
+    "log count": "3.538573734"
+  },
+  "Chad": {
+    "count": "3411",
+    "log count": "3.532881719"
+  },
+  "Congo, The Democratic Republic of The": {
+    "count": "3404",
+    "log count": "3.531989551"
+  },
+  "Netherlands Antilles": {
+    "count": "3370",
+    "log count": "3.527629901"
+  },
+  "Guadeloupe": {
+    "count": "3272",
+    "log count": "3.514813295"
+  },
+  "Eritrea": {
+    "count": "3232",
+    "log count": "3.509471352"
+  },
+  "Tanzania": {
+    "count": "3167",
+    "log count": "3.500648063"
+  },
+  "Libya": {
+    "count": "3156",
+    "log count": "3.499136995"
+  },
+  "Cayman Islands": {
+    "count": "3142",
+    "log count": "3.497206181"
+  },
+  "Senegal": {
+    "count": "3137",
+    "log count": "3.496514519"
+  },
+  "Tonga": {
+    "count": "3125",
+    "log count": "3.494850022"
+  },
+  "Cook Islands": {
+    "count": "3107",
+    "log count": "3.492341253"
+  },
+  "Viet Nam": {
+    "count": "3106",
+    "log count": "3.492201451"
+  },
+  "Dominica": {
+    "count": "3015",
+    "log count": "3.479287316"
+  },
+  "Gabon": {
+    "count": "3011",
+    "log count": "3.478710756"
+  },
+  "Swaziland": {
+    "count": "2973",
+    "log count": "3.473194909"
+  },
+  "Sudan": {
+    "count": "2953",
+    "log count": "3.470263447"
+  },
+  "Guam": {
+    "count": "2951",
+    "log count": "3.469969209"
+  },
+  "Martinique": {
+    "count": "2939",
+    "log count": "3.468199586"
+  },
+  "New Caledonia": {
+    "count": "2923",
+    "log count": "3.465828815"
+  },
+  "Cocos (Keeling) Islands": {
+    "count": "2849",
+    "log count": "3.454692449"
+  },
+  "Cape Verde": {
+    "count": "2788",
+    "log count": "3.445292769"
+  },
+  "French Guiana": {
+    "count": "2754",
+    "log count": "3.439963936"
+  },
+  "Burkina Faso": {
+    "count": "2589",
+    "log count": "3.41313205"
+  },
+  "Togo": {
+    "count": "2537",
+    "log count": "3.404320467"
+  },
+  "Tuvalu": {
+    "count": "2488",
+    "log count": "3.395850376"
+  },
+  "Greenland": {
+    "count": "2431",
+    "log count": "3.385784959"
+  },
+  "Montenegro": {
+    "count": "2393",
+    "log count": "3.378942699"
+  },
+  "Gibraltar": {
+    "count": "2385",
+    "log count": "3.377488383"
+  },
+  "Bouvet Island": {
+    "count": "2347",
+    "log count": "3.37051309"
+  },
+  "Namibia": {
+    "count": "2328",
+    "log count": "3.366982976"
+  },
+  "Vatican City": {
+    "count": "2302",
+    "log count": "3.362105319"
+  },
+  "Maldives": {
+    "count": "2189",
+    "log count": "3.340245762"
+  },
+  "Gambia": {
+    "count": "2173",
+    "log count": "3.337059726"
+  },
+  "Vanuatu": {
+    "count": "2163",
+    "log count": "3.335056519"
+  },
+  "Turks and Caicos Islands": {
+    "count": "2109",
+    "log count": "3.32407658"
+  },
+  "Monaco": {
+    "count": "2099",
+    "log count": "3.322012439"
+  },
+  "Guyana": {
+    "count": "2095",
+    "log count": "3.321184027"
+  },
+  "Western Sahara": {
+    "count": "2087",
+    "log count": "3.319522449"
+  },
+  "Wallis and Futuna": {
+    "count": "2039",
+    "log count": "3.309417226"
+  },
+  "Mozambique": {
+    "count": "1910",
+    "log count": "3.281033367"
+  },
+  "Grenada": {
+    "count": "1899",
+    "log count": "3.278524965"
+  },
+  "French Polynesia": {
+    "count": "1885",
+    "log count": "3.275311355"
+  },
+  "Burundi": {
+    "count": "1838",
+    "log count": "3.264345507"
+  },
+  "Laos": {
+    "count": "1832",
+    "log count": "3.262925469"
+  },
+  "Tajikistan": {
+    "count": "1766",
+    "log count": "3.246990699"
+  },
+  "Central African Republic": {
+    "count": "1758",
+    "log count": "3.245018871"
+  },
+  "Mali": {
+    "count": "1731",
+    "log count": "3.238297068"
+  },
+  "Rwanda": {
+    "count": "1689",
+    "log count": "3.22762965"
+  },
+  "Papua New Guinea": {
+    "count": "1619",
+    "log count": "3.209246849"
+  },
+  "Liechtenstein": {
+    "count": "1597",
+    "log count": "3.203304916"
+  },
+  "Comoros": {
+    "count": "1533",
+    "log count": "3.185542155"
+  },
+  "Equatorial Guinea": {
+    "count": "1508",
+    "log count": "3.178401342"
+  },
+  "Turkmenistan": {
+    "count": "1500",
+    "log count": "3.176091259"
+  },
+  "Palau": {
+    "count": "1454",
+    "log count": "3.162564407"
+  },
+  "Guinea": {
+    "count": "1446",
+    "log count": "3.160168293"
+  },
+  "Falkland Islands (Malvinas)": {
+    "count": "1445",
+    "log count": "3.159867847"
+  },
+  "Malawi": {
+    "count": "1445",
+    "log count": "3.159867847"
+  },
+  "Faroe Islands": {
+    "count": "1418",
+    "log count": "3.151676231"
+  },
+  "French Southern Territories": {
+    "count": "1330",
+    "log count": "3.123851641"
+  },
+  "Kiribati": {
+    "count": "1288",
+    "log count": "3.109915863"
+  },
+  "Seychelles": {
+    "count": "1284",
+    "log count": "3.108565024"
+  },
+  "Marshall Islands": {
+    "count": "1234",
+    "log count": "3.09131516"
+  },
+  "Sierra Leone": {
+    "count": "1194",
+    "log count": "3.077004327"
+  },
+  "Iran, Islamic Republic of": {
+    "count": "1162",
+    "log count": "3.065206128"
+  },
+  "Timor-leste": {
+    "count": "1150",
+    "log count": "3.06069784"
+  },
+  "Norfolk Island": {
+    "count": "1143",
+    "log count": "3.05804623"
+  },
+  "Montserrat": {
+    "count": "1138",
+    "log count": "3.056142262"
+  },
+  "Micronesia, Federated States of": {
+    "count": "1135",
+    "log count": "3.054995862"
+  },
+  "Serbia and Montenegro": {
+    "count": "1132",
+    "log count": "3.053846427"
+  },
+  "Liberia": {
+    "count": "1112",
+    "log count": "3.046104787"
+  },
+  "San Marino": {
+    "count": "1099",
+    "log count": "3.040997692"
+  },
+  "Suriname": {
+    "count": "1089",
+    "log count": "3.03702788"
+  },
+  "Pitcairn": {
+    "count": "1072",
+    "log count": "3.030194785"
+  },
+  "Saint Lucia": {
+    "count": "1067",
+    "log count": "3.028164419"
+  },
+  "South Sudan": {
+    "count": "1052",
+    "log count": "3.02201574"
+  },
+  "Mayotte": {
+    "count": "1012",
+    "log count": "3.005180513"
+  },
+  "Niue": {
+    "count": "985",
+    "log count": "2.99343623"
+  },
+  "Saint Vincent and The Grenadines": {
+    "count": "936",
+    "log count": "2.971275849"
+  },
+  "Saint Kitts and Nevis": {
+    "count": "931",
+    "log count": "2.968949681"
+  },
+  "Tokelau": {
+    "count": "930",
+    "log count": "2.968482949"
+  },
+  "Saint Martin": {
+    "count": "900",
+    "log count": "2.954242509"
+  },
+  "Northern Mariana Islands": {
+    "count": "883",
+    "log count": "2.945960704"
+  },
+  "Guinea-bissau": {
+    "count": "877",
+    "log count": "2.942999593"
+  },
+  "Svalbard and Jan Mayen": {
+    "count": "825",
+    "log count": "2.916453949"
+  },
+  "Taiwan, Province of China": {
+    "count": "808",
+    "log count": "2.907411361"
+  },
+  "Solomon Islands": {
+    "count": "796",
+    "log count": "2.900913068"
+  },
+  "Mauritania": {
+    "count": "785",
+    "log count": "2.894869657"
+  },
+  "Lesotho": {
+    "count": "777",
+    "log count": "2.890421019"
+  },
+  "Macedonia": {
+    "count": "768",
+    "log count": "2.88536122"
+  },
+  "Syrian Arab Republic": {
+    "count": "744",
+    "log count": "2.871572936"
+  },
+  "Sao Tome and Principe": {
+    "count": "687",
+    "log count": "2.836956737"
+  },
+  "Nauru": {
+    "count": "686",
+    "log count": "2.836324116"
+  },
+  "Saint Helena": {
+    "count": "662",
+    "log count": "2.820857989"
+  },
+  "Saint Barthelemy": {
+    "count": "607",
+    "log count": "2.783188691"
+  },
+  "Palestine": {
+    "count": "572",
+    "log count": "2.757396029"
+  },
+  "Saint Pierre and Miquelon": {
+    "count": "465",
+    "log count": "2.667452953"
+  },
+  "Brunei Darussalam": {
+    "count": "355",
+    "log count": "2.550228353"
+  },
+  "Korea, Dem. People's Rep.": {
+    "count": "308",
+    "log count": "2.488550717"
+  },
+  "Congo, Dem. Rep. of The": {
+    "count": "260",
+    "log count": "2.414973348"
+  },
+  "Libyan Arab Jamahiriya": {
+    "count": "235",
+    "log count": "2.371067862"
+  },
+  "Korea, Democratic People's Republic of": {
+    "count": "210",
+    "log count": "2.322219295"
+  },
+  "Holy See (Vatican City State)": {
+    "count": "210",
+    "log count": "2.322219295"
+  },
+  "Tanzania, United Republic of": {
+    "count": "207",
+    "log count": "2.315970345"
+  },
+  "United States": {
+    "count": "18757164",
+    "log count": "7.273167176"
+  }
+}
