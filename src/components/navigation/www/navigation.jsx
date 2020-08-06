@@ -69,7 +69,7 @@ class Navigation extends React.Component {
 
     pollForMessages (ms) {
         this.props.getMessageCount(this.props.user.username);
-        // We only poll if it has been less than 30 minutes.
+        // We only poll if it has been less than 32 minutes.
         // Chances of someone actively using the page for that long without
         // a navigation is low.
         if (ms < 32 * 60 * 1000) { // 32 minutes
