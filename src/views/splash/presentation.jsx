@@ -384,14 +384,21 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                             this.props.onDismiss('confirmed_email');
                         }}
                     >
-                        <a
-                            href="#"
-                            onClick={this.props.onShowEmailConfirmationModal}
-                        >
-                            Confirm your email
-                        </a>{' '}to enable sharing.{' '}
+                        <FormattedMessage
+                            id="emailbanner.confirmEmail"
+                            values={{
+                                link: (
+                                    <a
+                                        href="#"
+                                        onClick={this.props.onShowEmailConfirmationModal}
+                                    >
+                                        <FormattedMessage id="emailbanner.confirmEmailLink" />
+                                    </a>
+                                )
+                            }}
+                        />
                         <a href="/info/faq/#accounts">
-                            Having trouble?
+                            <FormattedMessage id="emailbanner.havingTrouble" />
                         </a>
                     </DropdownBanner>,
                     <IframeModal
