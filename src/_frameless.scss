@@ -48,20 +48,20 @@ $mobile: 480px;
 *          ... intermediate-and-smaller |
 */
 
-$small: "only screen and (max-width : #{$mobile}-1)";
-$medium: "only screen and (min-width : #{$mobile}) and (max-width : #{$tabletPortrait}-1)";
-$intermediate: "only screen and (min-width : #{$tabletPortrait}) and (max-width : #{$desktop}-1)";
+$small: "only screen and (max-width : #{$mobile - 1})";
+$medium: "only screen and (min-width : #{$mobile}) and (max-width : #{$tabletPortrait - 1})";
+$intermediate: "only screen and (min-width : #{$tabletPortrait}) and (max-width : #{$desktop - 1})";
 $big: "only screen and (min-width : #{$desktop})";
 
-$medium-and-smaller: "only screen and (max-width : #{$tabletPortrait}-1)";
-$intermediate-and-smaller: "only screen and (max-width : #{$desktop}-1)";
+$medium-and-smaller: "only screen and (max-width : #{$tabletPortrait - 1})";
+$intermediate-and-smaller: "only screen and (max-width : #{$desktop - 1})";
 
-$medium-and-intermediate: "only screen and (min-width : #{$mobile}) and (max-width : #{$desktop}-1)";
+$medium-and-intermediate: "only screen and (min-width : #{$mobile}) and (max-width : #{$desktop - 1})";
 
 /* Height */
 
-$small-height: "only screen and (max-height : #{$mobile} - 1)";
-$medium-height: "only screen and (min-height : #{$mobile}) and (max-height : #{$tabletPortrait} - 1)";
+$small-height: "only screen and (max-height : #{$mobile - 1})";
+$medium-height: "only screen and (min-height : #{$mobile}) and (max-height : #{$tabletPortrait - 1})";
 
 
 //
