@@ -1,0 +1,1594 @@
+{
+  "China": {
+    "offline": 3123790.323,
+    "online": 63050,
+    "total": 3186840.323,
+    "population": 1367110000,
+    "per_capita": 0.002331078203,
+    "portion offline": 0.9802155133
+  },
+  "United States": {
+    "offline": 275774.1935,
+    "online": 2518319,
+    "total": 2794093.194,
+    "population": 319259000,
+    "per_capita": 0.008751807133,
+    "portion offline": 0.09869899622
+  },
+  "Poland": {
+    "offline": 504596.7742,
+    "online": 378917,
+    "total": 883513.7742,
+    "population": 38496000,
+    "per_capita": 0.02295079422,
+    "portion offline": 0.5711249659
+  },
+  "France": {
+    "offline": 654258.0645,
+    "online": 159632,
+    "total": 813890.0645,
+    "population": 66078000,
+    "per_capita": 0.01231711106,
+    "portion offline": 0.8038654028
+  },
+  "United Kingdom": {
+    "offline": 275225.8065,
+    "online": 444393,
+    "total": 719618.8065,
+    "population": 64105654,
+    "per_capita": 0.01122551228,
+    "portion offline": 0.3824605527
+  },
+  "Japan": {
+    "offline": 483112.9032,
+    "online": 117358,
+    "total": 600470.9032,
+    "population": 127080000,
+    "per_capita": 0.004725140882,
+    "portion offline": 0.8045567248
+  },
+  "Spain": {
+    "offline": 150854.8387,
+    "online": 374215,
+    "total": 525069.8387,
+    "population": 46507760,
+    "per_capita": 0.0112899404,
+    "portion offline": 0.2873043309
+  },
+  "Australia": {
+    "offline": 67629.03226,
+    "online": 341649,
+    "total": 409278.0323,
+    "population": 23696900,
+    "per_capita": 0.01727137441,
+    "portion offline": 0.1652398295
+  },
+  "Turkey": {
+    "offline": 198435.4839,
+    "online": 187785,
+    "total": 386220.4839,
+    "population": 76667864,
+    "per_capita": 0.005037579811,
+    "portion offline": 0.5137880878
+  },
+  "Canada": {
+    "offline": 41403.22581,
+    "online": 343978,
+    "total": 385381.2258,
+    "population": 35540419,
+    "per_capita": 0.01084346321,
+    "portion offline": 0.107434465
+  },
+  "Thailand": {
+    "offline": 273000,
+    "online": 90503,
+    "total": 363503,
+    "population": 64871000,
+    "per_capita": 0.005603474588,
+    "portion offline": 0.7510254386
+  },
+  "Taiwan": {
+    "offline": 187080.6452,
+    "online": 123720,
+    "total": 310800.6452,
+    "population": 23424615,
+    "per_capita": 0.01326812181,
+    "portion offline": 0.6019313282
+  },
+  "India": {
+    "offline": 229048.3871,
+    "online": 61361,
+    "total": 290409.3871,
+    "population": 1263930000,
+    "per_capita": 0.0002297669864,
+    "portion offline": 0.7887086206
+  },
+  "Italy": {
+    "offline": 171516.129,
+    "online": 90059,
+    "total": 261575.129,
+    "population": 60769102,
+    "per_capita": 0.004304409978,
+    "portion offline": 0.6557050346
+  },
+  "Russia": {
+    "offline": 201274.1935,
+    "online": 59321,
+    "total": 260595.1935,
+    "population": 146233000,
+    "per_capita": 0.001782054622,
+    "portion offline": 0.7723634147
+  },
+  "Brazil": {
+    "offline": 95758.06452,
+    "online": 134097,
+    "total": 229855.0645,
+    "population": 203586000,
+    "per_capita": 0.001129031783,
+    "portion offline": 0.4166019344
+  },
+  "Vietnam": {
+    "offline": 175274.1935,
+    "online": 37023,
+    "total": 212297.1935,
+    "population": 89708900,
+    "per_capita": 0.002366512058,
+    "portion offline": 0.8256076805
+  },
+  "Germany": {
+    "offline": 127112.9032,
+    "online": 68672,
+    "total": 195784.9032,
+    "population": 80783000,
+    "per_capita": 0.002423590399,
+    "portion offline": 0.6492477261
+  },
+  "Colombia": {
+    "offline": 90451.6129,
+    "online": 99538,
+    "total": 189989.6129,
+    "population": 47907800,
+    "per_capita": 0.00396573445,
+    "portion offline": 0.4760871477
+  },
+  "Mexico": {
+    "offline": 81016.12903,
+    "online": 97597,
+    "total": 178613.129,
+    "population": 119713203,
+    "per_capita": 0.001492008605,
+    "portion offline": 0.4535844004
+  },
+  "New Zealand": {
+    "offline": 10000,
+    "online": 137876,
+    "total": 147876,
+    "population": 4547900,
+    "per_capita": 0.03251522681,
+    "portion offline": 0.0676242257
+  },
+  "Hong Kong": {
+    "offline": 84274.19355,
+    "online": 61766,
+    "total": 146040.1935,
+    "population": 7234800,
+    "per_capita": 0.02018579554,
+    "portion offline": 0.5770616397
+  },
+  "Argentina": {
+    "offline": 96645.16129,
+    "online": 44310,
+    "total": 140955.1613,
+    "population": 42669500,
+    "per_capita": 0.003303417225,
+    "portion offline": 0.6856447143
+  },
+  "Ukraine": {
+    "offline": 99790.32258,
+    "online": 31161,
+    "total": 130951.3226,
+    "population": 42973696,
+    "per_capita": 0.003047243658,
+    "portion offline": 0.7620413495
+  },
+  "Sweden": {
+    "offline": 7854.83871,
+    "online": 114062,
+    "total": 121916.8387,
+    "population": 9737521,
+    "per_capita": 0.01252031587,
+    "portion offline": 0.06442784108
+  },
+  "Netherlands": {
+    "offline": 14838.70968,
+    "online": 100903,
+    "total": 115741.7097,
+    "population": 16881000,
+    "per_capita": 0.006856330175,
+    "portion offline": 0.1282053783
+  },
+  "Malaysia": {
+    "offline": 78467.74194,
+    "online": 28247,
+    "total": 106714.7419,
+    "population": 30430500,
+    "per_capita": 0.003506834983,
+    "portion offline": 0.7353036751
+  },
+  "Costa Rica": {
+    "offline": 101451.6129,
+    "online": 3795,
+    "total": 105246.6129,
+    "population": 4713168,
+    "per_capita": 0.02233033342,
+    "portion offline": 0.9639418325
+  },
+  "Peru": {
+    "offline": 77016.12903,
+    "online": 22107,
+    "total": 99123.12903,
+    "population": 30814175,
+    "per_capita": 0.00321680295,
+    "portion offline": 0.7769743528
+  },
+  "Singapore": {
+    "offline": 71758.06452,
+    "online": 23577,
+    "total": 95335.06452,
+    "population": 5469700,
+    "per_capita": 0.01742966973,
+    "portion offline": 0.7526933021
+  },
+  "Romania": {
+    "offline": 46209.67742,
+    "online": 46760,
+    "total": 92969.67742,
+    "population": 19942642,
+    "per_capita": 0.004661853601,
+    "portion offline": 0.4970403114
+  },
+  "Bulgaria": {
+    "offline": 68193.54839,
+    "online": 20524,
+    "total": 88717.54839,
+    "population": 7245677,
+    "per_capita": 0.01224420415,
+    "portion offline": 0.7686590717
+  },
+  "Portugal": {
+    "offline": 39709.67742,
+    "online": 44287,
+    "total": 83996.67742,
+    "population": 10477800,
+    "per_capita": 0.008016633016,
+    "portion offline": 0.4727529545
+  },
+  "Belgium": {
+    "offline": 25709.67742,
+    "online": 55796,
+    "total": 81505.67742,
+    "population": 11225469,
+    "per_capita": 0.00726078148,
+    "portion offline": 0.315434191
+  },
+  "Ireland": {
+    "offline": 31919.35484,
+    "online": 44288,
+    "total": 76207.35484,
+    "population": 6378000,
+    "per_capita": 0.01194847207,
+    "portion offline": 0.4188487438
+  },
+  "Indonesia": {
+    "offline": 54774.19355,
+    "online": 19188,
+    "total": 73962.19355,
+    "population": 252164800,
+    "per_capita": 0.0002933089533,
+    "portion offline": 0.7405701605
+  },
+  "Chile": {
+    "offline": 34290.32258,
+    "online": 36336,
+    "total": 70626.32258,
+    "population": 17819054,
+    "per_capita": 0.003963528175,
+    "portion offline": 0.4855175992
+  },
+  "Kazakhstan": {
+    "offline": 57483.87097,
+    "online": 7412,
+    "total": 64895.87097,
+    "population": 17377800,
+    "per_capita": 0.003734412352,
+    "portion offline": 0.8857862621
+  },
+  "Switzerland": {
+    "offline": 11838.70968,
+    "online": 52383,
+    "total": 64221.70968,
+    "population": 8183800,
+    "per_capita": 0.007847419252,
+    "portion offline": 0.1843412413
+  },
+  "United Arab Emirates": {
+    "offline": 29564.51613,
+    "online": 32047,
+    "total": 61611.51613,
+    "population": 9446000,
+    "per_capita": 0.006522498002,
+    "portion offline": 0.4798537349
+  },
+  "Philippines": {
+    "offline": 43854.83871,
+    "online": 16412,
+    "total": 60266.83871,
+    "population": 100697400,
+    "per_capita": 0.0005984944865,
+    "portion offline": 0.7276777685
+  },
+  "Israel": {
+    "offline": 20354.83871,
+    "online": 39139,
+    "total": 59493.83871,
+    "population": 8268400,
+    "per_capita": 0.00719532663,
+    "portion offline": 0.3421335579
+  },
+  "Palestine": {
+    "offline": 54322.58065,
+    "online": 2970,
+    "total": 57292.58065,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.948160827
+  },
+  "Denmark": {
+    "offline": 4870.967742,
+    "online": 48629,
+    "total": 53499.96774,
+    "population": 5655750,
+    "per_capita": 0.009459394022,
+    "portion offline": 0.09104618091
+  },
+  "Belarus": {
+    "offline": 34322.58065,
+    "online": 11360,
+    "total": 45682.58065,
+    "population": 9475100,
+    "per_capita": 0.004821329658,
+    "portion offline": 0.7513275336
+  },
+  "Norway": {
+    "offline": 3241.935484,
+    "online": 42161,
+    "total": 45402.93548,
+    "population": 5156450,
+    "per_capita": 0.008805076261,
+    "portion offline": 0.07140365374
+  },
+  "Tunisia": {
+    "offline": 37064.51613,
+    "online": 6587,
+    "total": 43651.51613,
+    "population": 10982754,
+    "per_capita": 0.003974551021,
+    "portion offline": 0.8491003158
+  },
+  "Greece": {
+    "offline": 27354.83871,
+    "online": 15917,
+    "total": 43271.83871,
+    "population": 10992589,
+    "per_capita": 0.003936455617,
+    "portion offline": 0.6321626149
+  },
+  "Nigeria": {
+    "offline": 38403.22581,
+    "online": 4711,
+    "total": 43114.22581,
+    "population": 178517000,
+    "per_capita": 0.0002415132778,
+    "portion offline": 0.8907321212
+  },
+  "South Africa": {
+    "offline": 23725.80645,
+    "online": 18888,
+    "total": 42613.80645,
+    "population": 54002000,
+    "per_capita": 0.0007891153374,
+    "portion offline": 0.5567633691
+  },
+  "Hungary": {
+    "offline": 21806.45161,
+    "online": 20055,
+    "total": 41861.45161,
+    "population": 9879000,
+    "per_capita": 0.004237417918,
+    "portion offline": 0.5209196235
+  },
+  "Kuwait": {
+    "offline": 38612.90323,
+    "online": 2686,
+    "total": 41298.90323,
+    "population": 3268431,
+    "per_capita": 0.01263569683,
+    "portion offline": 0.9349619532
+  },
+  "Ecuador": {
+    "offline": 24741.93548,
+    "online": 16348,
+    "total": 41089.93548,
+    "population": 15888900,
+    "per_capita": 0.002586078047,
+    "portion offline": 0.6021410156
+  },
+  "Morocco": {
+    "offline": 27854.83871,
+    "online": 7911,
+    "total": 35765.83871,
+    "population": 33465000,
+    "per_capita": 0.001068753585,
+    "portion offline": 0.7788112823
+  },
+  "Egypt": {
+    "offline": 24967.74194,
+    "online": 9876,
+    "total": 34843.74194,
+    "population": 87668100,
+    "per_capita": 0.0003974506341,
+    "portion offline": 0.7165631631
+  },
+  "Iran": {
+    "offline": 31080.64516,
+    "online": 2372,
+    "total": 33452.64516,
+    "population": 77966400,
+    "per_capita": 0.0004290648941,
+    "portion offline": 0.9290937985
+  },
+  "Finland": {
+    "offline": 4274.193548,
+    "online": 28950,
+    "total": 33224.19355,
+    "population": 5470437,
+    "per_capita": 0.006073407581,
+    "portion offline": 0.1286470217
+  },
+  "Austria": {
+    "offline": 17354.83871,
+    "online": 14290,
+    "total": 31644.83871,
+    "population": 8527230,
+    "per_capita": 0.003711033795,
+    "portion offline": 0.5484255701
+  },
+  "Czechia": {
+    "offline": 7419.354839,
+    "online": 22705,
+    "total": 30124.35484,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.2462909124
+  },
+  "Serbia": {
+    "offline": 16532.25806,
+    "online": 11836,
+    "total": 28368.25806,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.5827731131
+  },
+  "Saudi Arabia": {
+    "offline": 14080.64516,
+    "online": 12631,
+    "total": 26711.64516,
+    "population": 30770375,
+    "per_capita": 0.0008680961854,
+    "portion offline": 0.5271350782
+  },
+  "Sri Lanka": {
+    "offline": 23290.32258,
+    "online": 2538,
+    "total": 25828.32258,
+    "population": 20277597,
+    "per_capita": 0.001273736853,
+    "portion offline": 0.9017357789
+  },
+  "Pakistan": {
+    "offline": 15064.51613,
+    "online": 8163,
+    "total": 23227.51613,
+    "population": 188410000,
+    "per_capita": 0.0001232817586,
+    "portion offline": 0.6485633696
+  },
+  "Uruguay": {
+    "offline": 6290.322581,
+    "online": 14661,
+    "total": 20951.32258,
+    "population": 3404189,
+    "per_capita": 0.006154570907,
+    "portion offline": 0.3002351072
+  },
+  "Slovakia": {
+    "offline": 7887.096774,
+    "online": 12601,
+    "total": 20488.09677,
+    "population": 5415949,
+    "per_capita": 0.003782919074,
+    "portion offline": 0.3849599531
+  },
+  "Dominican Republic": {
+    "offline": 15564.51613,
+    "online": 3473,
+    "total": 19037.51613,
+    "population": 10378267,
+    "per_capita": 0.001834363688,
+    "portion offline": 0.8175707389
+  },
+  "Oman": {
+    "offline": 15145.16129,
+    "online": 2190,
+    "total": 17335.16129,
+    "population": 4089076,
+    "per_capita": 0.004239383492,
+    "portion offline": 0.8736671691
+  },
+  "Slovenia": {
+    "offline": 4758.064516,
+    "online": 11243,
+    "total": 16001.06452,
+    "population": 2064966,
+    "per_capita": 0.007748827107,
+    "portion offline": 0.2973592483
+  },
+  "Paraguay": {
+    "offline": 14451.6129,
+    "online": 1215,
+    "total": 15666.6129,
+    "population": 6893727,
+    "per_capita": 0.00227258969,
+    "portion offline": 0.9224465424
+  },
+  "Latvia": {
+    "offline": 4612.903226,
+    "online": 10691,
+    "total": 15303.90323,
+    "population": 1991800,
+    "per_capita": 0.007683453773,
+    "portion offline": 0.3014200468
+  },
+  "Qatar": {
+    "offline": 9274.193548,
+    "online": 5559,
+    "total": 14833.19355,
+    "population": 2269672,
+    "per_capita": 0.006535390818,
+    "portion offline": 0.6252324234
+  },
+  "Bolivia": {
+    "offline": 10661.29032,
+    "online": 2998,
+    "total": 13659.29032,
+    "population": 10027254,
+    "per_capita": 0.001362216448,
+    "portion offline": 0.7805156835
+  },
+  "Republic of Lithuania": {
+    "offline": 3548.387097,
+    "online": 9861,
+    "total": 13409.3871,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.2646196333
+  },
+  "Guatemala": {
+    "offline": 8935.483871,
+    "online": 4463,
+    "total": 13398.48387,
+    "population": 15806675,
+    "per_capita": 0.0008476472042,
+    "portion offline": 0.6669026106
+  },
+  "Ghana": {
+    "offline": 11854.83871,
+    "online": 1259,
+    "total": 13113.83871,
+    "population": 27043093,
+    "per_capita": 0.0004849237737,
+    "portion offline": 0.903994549
+  },
+  "Panama": {
+    "offline": 9774.193548,
+    "online": 2803,
+    "total": 12577.19355,
+    "population": 3713312,
+    "per_capita": 0.003387055423,
+    "portion offline": 0.7771362912
+  },
+  "Croatia": {
+    "offline": 5661.290323,
+    "online": 6831,
+    "total": 12492.29032,
+    "population": 4267558,
+    "per_capita": 0.00292726902,
+    "portion offline": 0.4531827372
+  },
+  "Luxembourg": {
+    "offline": 10596.77419,
+    "online": 1641,
+    "total": 12237.77419,
+    "population": 549700,
+    "per_capita": 0.02226264179,
+    "portion offline": 0.8659069881
+  },
+  "Algeria": {
+    "offline": 9435.483871,
+    "online": 1389,
+    "total": 10824.48387,
+    "population": 38700000,
+    "per_capita": 0.0002797024256,
+    "portion offline": 0.871679794
+  },
+  "Estonia": {
+    "offline": 1822.580645,
+    "online": 7683,
+    "total": 9505.580645,
+    "population": 1315819,
+    "per_capita": 0.007224079182,
+    "portion offline": 0.1917379604
+  },
+  "El Salvador": {
+    "offline": 6661.290323,
+    "online": 2759,
+    "total": 9420.290323,
+    "population": 6401240,
+    "per_capita": 0.001471635234,
+    "portion offline": 0.707121553
+  },
+  "Macao": {
+    "offline": 3935.483871,
+    "online": 4082,
+    "total": 8017.483871,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.4908627113
+  },
+  "Albania": {
+    "offline": 2306.451613,
+    "online": 5624,
+    "total": 7930.451613,
+    "population": 2895947,
+    "per_capita": 0.002738465729,
+    "portion offline": 0.2908348384
+  },
+  "Cambodia": {
+    "offline": 4016.129032,
+    "online": 3432,
+    "total": 7448.129032,
+    "population": 15184116,
+    "per_capita": 0.0004905210835,
+    "portion offline": 0.5392131386
+  },
+  "Kenya": {
+    "offline": 4338.709677,
+    "online": 2928,
+    "total": 7266.709677,
+    "population": 41800000,
+    "per_capita": 0.0001738447291,
+    "portion offline": 0.5970666051
+  },
+  "Hashemite Kingdom of Jordan": {
+    "offline": 4919.354839,
+    "online": 2300,
+    "total": 7219.354839,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.681411975
+  },
+  "Lebanon": {
+    "offline": 5919.354839,
+    "online": 1248,
+    "total": 7167.354839,
+    "population": 4104000,
+    "per_capita": 0.001746431491,
+    "portion offline": 0.8258771851
+  },
+  "Bahrain": {
+    "offline": 4274.193548,
+    "online": 2387,
+    "total": 6661.193548,
+    "population": 1316500,
+    "per_capita": 0.005059774818,
+    "portion offline": 0.641655811
+  },
+  "Republic of Moldova": {
+    "offline": 3774.193548,
+    "online": 2582,
+    "total": 6356.193548,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.5937820363
+  },
+  "Mauritius": {
+    "offline": 5467.741935,
+    "online": 691,
+    "total": 6158.741935,
+    "population": 1261208,
+    "per_capita": 0.004883208745,
+    "portion offline": 0.8878017609
+  },
+  "Georgia": {
+    "offline": 1467.741935,
+    "online": 4518,
+    "total": 5985.741935,
+    "population": 4490500,
+    "per_capita": 0.001332978941,
+    "portion offline": 0.2452063506
+  },
+  "Armenia": {
+    "offline": 3903.225806,
+    "online": 2010,
+    "total": 5913.225806,
+    "population": 3009800,
+    "per_capita": 0.001964657388,
+    "portion offline": 0.6600840107
+  },
+  "Bangladesh": {
+    "offline": 3451.612903,
+    "online": 2261,
+    "total": 5712.612903,
+    "population": 157486000,
+    "per_capita": 0.0000363,
+    "portion offline": 0.6042091354
+  },
+  "Nicaragua": {
+    "offline": 3112.903226,
+    "online": 2342,
+    "total": 5454.903226,
+    "population": 6134270,
+    "per_capita": 0.0008892505915,
+    "portion offline": 0.5706614942
+  },
+  "Venezuela": {
+    "offline": 3000,
+    "online": 2263,
+    "total": 5263,
+    "population": 30206307,
+    "per_capita": 0.0001742351357,
+    "portion offline": 0.5700171005
+  },
+  "Iraq": {
+    "offline": 4306.451613,
+    "online": 732,
+    "total": 5038.451613,
+    "population": 36004552,
+    "per_capita": 0.0001399392947,
+    "portion offline": 0.8547172711
+  },
+  "Brunei": {
+    "offline": 3193.548387,
+    "online": 1793,
+    "total": 4986.548387,
+    "population": 393372,
+    "per_capita": 0.01267641923,
+    "portion offline": 0.6404326478
+  },
+  "Honduras": {
+    "offline": 3193.548387,
+    "online": 1762,
+    "total": 4955.548387,
+    "population": 8725111,
+    "per_capita": 0.0005679639362,
+    "portion offline": 0.6444389475
+  },
+  "Réunion": {
+    "offline": 3403.225806,
+    "online": 1248,
+    "total": 4651.225806,
+    "population": 840974,
+    "per_capita": 0.005530760531,
+    "portion offline": 0.7316836353
+  },
+  "Syria": {
+    "offline": 4177.419355,
+    "online": 370,
+    "total": 4547.419355,
+    "population": 22964324,
+    "per_capita": 0.0001980210415,
+    "portion offline": 0.9186351706
+  },
+  "Azerbaijan": {
+    "offline": 3016.129032,
+    "online": 1499,
+    "total": 4515.129032,
+    "population": 9552500,
+    "per_capita": 0.0004726646461,
+    "portion offline": 0.6680050583
+  },
+  "Cyprus": {
+    "offline": 3193.548387,
+    "online": 1224,
+    "total": 4417.548387,
+    "population": 858000,
+    "per_capita": 0.005148657794,
+    "portion offline": 0.7229232387
+  },
+  "New Caledonia": {
+    "offline": 3500,
+    "online": 519,
+    "total": 4019,
+    "population": 268767,
+    "per_capita": 0.01495347271,
+    "portion offline": 0.8708633989
+  },
+  "Bosnia and Herzegovina": {
+    "offline": 1838.709677,
+    "online": 2116,
+    "total": 3954.709677,
+    "population": 3791622,
+    "per_capita": 0.001043012641,
+    "portion offline": 0.4649417599
+  },
+  "Iceland": {
+    "offline": 1258.064516,
+    "online": 2689,
+    "total": 3947.064516,
+    "population": 328170,
+    "per_capita": 0.01202749952,
+    "portion offline": 0.3187342165
+  },
+  "Malta": {
+    "offline": 2903.225806,
+    "online": 846,
+    "total": 3749.225806,
+    "population": 416055,
+    "per_capita": 0.009011370628,
+    "portion offline": 0.7743534149
+  },
+  "Ivory Coast": {
+    "offline": 3258.064516,
+    "online": 388,
+    "total": 3646.064516,
+    "population": 23821000,
+    "per_capita": 0.0001530609343,
+    "portion offline": 0.8935838907
+  },
+  "Uzbekistan": {
+    "offline": 3161.290323,
+    "online": 382,
+    "total": 3543.290323,
+    "population": 30492800,
+    "per_capita": 0.0001162008842,
+    "portion offline": 0.892190601
+  },
+  "Kyrgyzstan": {
+    "offline": 1225.806452,
+    "online": 2178,
+    "total": 3403.806452,
+    "population": 5776570,
+    "per_capita": 0.000589243522,
+    "portion offline": 0.3601281298
+  },
+  "Puerto Rico": {
+    "offline": 1483.870968,
+    "online": 1853,
+    "total": 3336.870968,
+    "population": 3615086,
+    "per_capita": 0.0009230405494,
+    "portion offline": 0.4446893458
+  },
+  "Senegal": {
+    "offline": 2709.677419,
+    "online": 376,
+    "total": 3085.677419,
+    "population": 13508715,
+    "per_capita": 0.0002284212391,
+    "portion offline": 0.8781466923
+  },
+  "Mongolia": {
+    "offline": 1935.483871,
+    "online": 1135,
+    "total": 3070.483871,
+    "population": 2987733,
+    "per_capita": 0.001027696876,
+    "portion offline": 0.6303514209
+  },
+  "Rwanda": {
+    "offline": 2741.935484,
+    "online": 248,
+    "total": 2989.935484,
+    "population": 10996891,
+    "per_capita": 0.0002718891625,
+    "portion offline": 0.9170550665
+  },
+  "Cameroon": {
+    "offline": 2725.806452,
+    "online": 215,
+    "total": 2940.806452,
+    "population": 20386799,
+    "per_capita": 0.0001442505246,
+    "portion offline": 0.9268908024
+  },
+  "Ethiopia": {
+    "offline": 2274.193548,
+    "online": 609,
+    "total": 2883.193548,
+    "population": 87952991,
+    "per_capita": 0.0000328,
+    "portion offline": 0.788775887
+  },
+  "Martinique": {
+    "offline": 1741.935484,
+    "online": 893,
+    "total": 2634.935484,
+    "population": 386486,
+    "per_capita": 0.00681767382,
+    "portion offline": 0.6610922713
+  },
+  "Trinidad and Tobago": {
+    "offline": 806.4516129,
+    "online": 1811,
+    "total": 2617.451613,
+    "population": 1328019,
+    "per_capita": 0.001970944401,
+    "portion offline": 0.3081056433
+  },
+  "Tanzania": {
+    "offline": 1903.225806,
+    "online": 494,
+    "total": 2397.225806,
+    "population": 47421786,
+    "per_capita": 0.0000506,
+    "portion offline": 0.7939284657
+  },
+  "Uganda": {
+    "offline": 1951.612903,
+    "online": 408,
+    "total": 2359.612903,
+    "population": 34856813,
+    "per_capita": 0.0000677,
+    "portion offline": 0.8270902827
+  },
+  "Guadeloupe": {
+    "offline": 2000,
+    "online": 319,
+    "total": 2319,
+    "population": 405739,
+    "per_capita": 0.005715496908,
+    "portion offline": 0.8624407072
+  },
+  "Montenegro": {
+    "offline": 1629.032258,
+    "online": 679,
+    "total": 2308.032258,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.7058100043
+  },
+  "Nepal": {
+    "offline": 983.8709677,
+    "online": 852,
+    "total": 1835.870968,
+    "population": 27646053,
+    "per_capita": 0.0000664,
+    "portion offline": 0.535915097
+  },
+  "Zimbabwe": {
+    "offline": 1500,
+    "online": 320,
+    "total": 1820,
+    "population": 13061239,
+    "per_capita": 0.0001393435952,
+    "portion offline": 0.8241758242
+  },
+  "Bhutan": {
+    "offline": 1564.516129,
+    "online": 76,
+    "total": 1640.516129,
+    "population": 755030,
+    "per_capita": 0.002172782709,
+    "portion offline": 0.9536731162
+  },
+  "Benin": {
+    "offline": 1290.322581,
+    "online": 68,
+    "total": 1358.322581,
+    "population": 9988068,
+    "per_capita": 0.0001359945267,
+    "portion offline": 0.949938254
+  },
+  "Angola": {
+    "offline": 1258.064516,
+    "online": 98,
+    "total": 1356.064516,
+    "population": 24383301,
+    "per_capita": 0.0000556,
+    "portion offline": 0.927732052
+  },
+  "Zambia": {
+    "offline": 1048.387097,
+    "online": 295,
+    "total": 1343.387097,
+    "population": 15023315,
+    "per_capita": 0.0000894,
+    "portion offline": 0.780405811
+  },
+  "Jersey": {
+    "offline": 161.2903226,
+    "online": 1167,
+    "total": 1328.290323,
+    "population": 99000,
+    "per_capita": 0.01341707397,
+    "portion offline": 0.1214270102
+  },
+  "Togo": {
+    "offline": 1209.677419,
+    "online": 93,
+    "total": 1302.677419,
+    "population": 6993000,
+    "per_capita": 0.0001862830573,
+    "portion offline": 0.9286085729
+  },
+  "Madagascar": {
+    "offline": 1032.258065,
+    "online": 237,
+    "total": 1269.258065,
+    "population": 21842167,
+    "per_capita": 0.0000581,
+    "portion offline": 0.8132767428
+  },
+  "Guernsey": {
+    "offline": 209.6774194,
+    "online": 1048,
+    "total": 1257.677419,
+    "population": 63085,
+    "per_capita": 0.01993623554,
+    "portion offline": 0.1667179645
+  },
+  "Namibia": {
+    "offline": 419.3548387,
+    "online": 673,
+    "total": 1092.354839,
+    "population": 2113077,
+    "per_capita": 0.0005169498502,
+    "portion offline": 0.3838998317
+  },
+  "French Guiana": {
+    "offline": 903.2258065,
+    "online": 163,
+    "total": 1066.225806,
+    "population": 237549,
+    "per_capita": 0.004488445779,
+    "portion offline": 0.8471243155
+  },
+  "Monaco": {
+    "offline": 887.0967742,
+    "online": 178,
+    "total": 1065.096774,
+    "population": 36950,
+    "per_capita": 0.02882535248,
+    "portion offline": 0.8328790357
+  },
+  "Tajikistan": {
+    "offline": 854.8387097,
+    "online": 188,
+    "total": 1042.83871,
+    "population": 8161000,
+    "per_capita": 0.0001277832018,
+    "portion offline": 0.8197228409
+  },
+  "French Polynesia": {
+    "offline": 741.9354839,
+    "online": 199,
+    "total": 940.9354839,
+    "population": 268270,
+    "per_capita": 0.003507419704,
+    "portion offline": 0.7885083479
+  },
+  "Barbados": {
+    "offline": 596.7741935,
+    "online": 286,
+    "total": 882.7741935,
+    "population": 285000,
+    "per_capita": 0.003097453311,
+    "portion offline": 0.6760213403
+  },
+  "Congo": {
+    "offline": 790.3225806,
+    "online": 51,
+    "total": 841.3225806,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.9393811587
+  },
+  "Guyana": {
+    "offline": 758.0645161,
+    "online": 82,
+    "total": 840.0645161,
+    "population": 784894,
+    "per_capita": 0.001070290404,
+    "portion offline": 0.9023884494
+  },
+  "Andorra": {
+    "offline": 532.2580645,
+    "online": 294,
+    "total": 826.2580645,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.6441789646
+  },
+  "Jamaica": {
+    "offline": 322.5806452,
+    "online": 483,
+    "total": 805.5806452,
+    "population": 2717991,
+    "per_capita": 0.0002963882681,
+    "portion offline": 0.4004324671
+  },
+  "Djibouti": {
+    "offline": 725.8064516,
+    "online": 43,
+    "total": 768.8064516,
+    "population": 886000,
+    "per_capita": 0.000867727372,
+    "portion offline": 0.9440691478
+  },
+  "Botswana": {
+    "offline": 629.0322581,
+    "online": 102,
+    "total": 731.0322581,
+    "population": 2024904,
+    "per_capita": 0.0003610206993,
+    "portion offline": 0.8604712735
+  },
+  "Libya": {
+    "offline": 645.1612903,
+    "online": 74,
+    "total": 719.1612903,
+    "population": 6253000,
+    "per_capita": 0.0001150106014,
+    "portion offline": 0.8971023594
+  },
+  "Bahamas": {
+    "offline": 96.77419355,
+    "online": 598,
+    "total": 694.7741935,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.139288699
+  },
+  "Bermuda": {
+    "offline": 177.4193548,
+    "online": 483,
+    "total": 660.4193548,
+    "population": 64237,
+    "per_capita": 0.01028098066,
+    "portion offline": 0.26864651
+  },
+  "Haiti": {
+    "offline": 564.516129,
+    "online": 79,
+    "total": 643.516129,
+    "population": 10745665,
+    "per_capita": 0.0000599,
+    "portion offline": 0.8772369542
+  },
+  "Gabon": {
+    "offline": 419.3548387,
+    "online": 189,
+    "total": 608.3548387,
+    "population": 1711000,
+    "per_capita": 0.0003555551366,
+    "portion offline": 0.6893260512
+  },
+  "Mozambique": {
+    "offline": 387.0967742,
+    "online": 217,
+    "total": 604.0967742,
+    "population": 25041922,
+    "per_capita": 0.0000241,
+    "portion offline": 0.6407860309
+  },
+  "Laos": {
+    "offline": 387.0967742,
+    "online": 176,
+    "total": 563.0967742,
+    "population": 6693300,
+    "per_capita": 0.0000841,
+    "portion offline": 0.6874427131
+  },
+  "Maldives": {
+    "offline": 338.7096774,
+    "online": 220,
+    "total": 558.7096774,
+    "population": 341256,
+    "per_capita": 0.00163721569,
+    "portion offline": 0.6062355658
+  },
+  "Niger": {
+    "offline": 516.1290323,
+    "online": 13,
+    "total": 529.1290323,
+    "population": 17138707,
+    "per_capita": 0.0000309,
+    "portion offline": 0.9754313235
+  },
+  "Belize": {
+    "offline": 145.1612903,
+    "online": 381,
+    "total": 526.1612903,
+    "population": 349728,
+    "per_capita": 0.001504487174,
+    "portion offline": 0.2758874379
+  },
+  "Mali": {
+    "offline": 435.483871,
+    "online": 35,
+    "total": 470.483871,
+    "population": 15768000,
+    "per_capita": 0.0000298,
+    "portion offline": 0.9256085019
+  },
+  "Malawi": {
+    "offline": 387.0967742,
+    "online": 59,
+    "total": 446.0967742,
+    "population": 15805239,
+    "per_capita": 0.0000282,
+    "portion offline": 0.8677417022
+  },
+  "Kosovo": {
+    "offline": 338.7096774,
+    "online": 100,
+    "total": 438.7096774,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.7720588235
+  },
+  "Cayman Islands": {
+    "offline": 129.0322581,
+    "online": 301,
+    "total": 430.0322581,
+    "population": 55456,
+    "per_capita": 0.007754476667,
+    "portion offline": 0.3000525092
+  },
+  "Isle of Man": {
+    "offline": 112.9032258,
+    "online": 299,
+    "total": 411.9032258,
+    "population": 84497,
+    "per_capita": 0.004874767457,
+    "portion offline": 0.2741013392
+  },
+  "Guam": {
+    "offline": 112.9032258,
+    "online": 273,
+    "total": 385.9032258,
+    "population": 159358,
+    "per_capita": 0.002421611879,
+    "portion offline": 0.2925687537
+  },
+  "Papua New Guinea": {
+    "offline": 322.5806452,
+    "online": 50,
+    "total": 372.5806452,
+    "population": 7398500,
+    "per_capita": 0.0000504,
+    "portion offline": 0.8658008658
+  },
+  "Cabo Verde": {
+    "offline": 338.7096774,
+    "online": 23,
+    "total": 361.7096774,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.9364130919
+  },
+  "Lesotho": {
+    "offline": 322.5806452,
+    "online": 21,
+    "total": 343.5806452,
+    "population": 2098000,
+    "per_capita": 0.0001637657985,
+    "portion offline": 0.9388789785
+  },
+  "Burkina Faso": {
+    "offline": 290.3225806,
+    "online": 48,
+    "total": 338.3225806,
+    "population": 17322796,
+    "per_capita": 0.0000195,
+    "portion offline": 0.8581235698
+  },
+  "Fiji": {
+    "offline": 209.6774194,
+    "online": 112,
+    "total": 321.6774194,
+    "population": 859178,
+    "per_capita": 0.0003744013689,
+    "portion offline": 0.6518251103
+  },
+  "U.S. Virgin Islands": {
+    "offline": 64.51612903,
+    "online": 235,
+    "total": 299.516129,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.2154011847
+  },
+  "Yemen": {
+    "offline": 225.8064516,
+    "online": 67,
+    "total": 292.8064516,
+    "population": 25956000,
+    "per_capita": 0.0000113,
+    "portion offline": 0.7711799053
+  },
+  "Greenland": {
+    "offline": 129.0322581,
+    "online": 145,
+    "total": 274.0322581,
+    "population": 56295,
+    "per_capita": 0.004867790356,
+    "portion offline": 0.4708652148
+  },
+  "Cuba": {
+    "offline": 209.6774194,
+    "online": 47,
+    "total": 256.6774194,
+    "population": 11210064,
+    "per_capita": 0.0000229,
+    "portion offline": 0.816890788
+  },
+  "Wallis and Futuna": {
+    "offline": 241.9354839,
+    "online": 1,
+    "total": 242.9354839,
+    "population": 13135,
+    "per_capita": 0.01849527856,
+    "portion offline": 0.9958836808
+  },
+  "Burundi": {
+    "offline": 225.8064516,
+    "online": 11,
+    "total": 236.8064516,
+    "population": 9530434,
+    "per_capita": 0.0000248,
+    "portion offline": 0.9535485629
+  },
+  "Curaçao": {
+    "offline": 48.38709677,
+    "online": 186,
+    "total": 234.3870968,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.2064409579
+  },
+  "Gambia": {
+    "offline": 193.5483871,
+    "online": 39,
+    "total": 232.5483871,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.8322929671
+  },
+  "Afghanistan": {
+    "offline": 193.5483871,
+    "online": 28,
+    "total": 221.5483871,
+    "population": 26023100,
+    "per_capita": 0.00000851,
+    "portion offline": 0.8736167734
+  },
+  "Turkmenistan": {
+    "offline": 177.4193548,
+    "online": 11,
+    "total": 188.4193548,
+    "population": 5838064,
+    "per_capita": 0.0000323,
+    "portion offline": 0.9416195857
+  },
+  "Liberia": {
+    "offline": 112.9032258,
+    "online": 72,
+    "total": 184.9032258,
+    "population": 4397000,
+    "per_capita": 0.0000421,
+    "portion offline": 0.6106071179
+  },
+  "Mauritania": {
+    "offline": 161.2903226,
+    "online": 21,
+    "total": 182.2903226,
+    "population": 3545620,
+    "per_capita": 0.0000514,
+    "portion offline": 0.8847991506
+  },
+  "Gibraltar": {
+    "offline": 32.25806452,
+    "online": 144,
+    "total": 176.2580645,
+    "population": 30001,
+    "per_capita": 0.005875072981,
+    "portion offline": 0.1830161054
+  },
+  "Åland": {
+    "offline": 16.12903226,
+    "online": 157,
+    "total": 173.1290323,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.09316191541
+  },
+  "Guinea": {
+    "offline": 129.0322581,
+    "online": 37,
+    "total": 166.0322581,
+    "population": 10628972,
+    "per_capita": 0.0000156,
+    "portion offline": 0.7771517389
+  },
+  "Sierra Leone": {
+    "offline": 112.9032258,
+    "online": 46,
+    "total": 158.9032258,
+    "population": 6205000,
+    "per_capita": 0.0000256,
+    "portion offline": 0.7105156313
+  },
+  "Sudan": {
+    "offline": 96.77419355,
+    "online": 61,
+    "total": 157.7741935,
+    "population": 37289406,
+    "per_capita": 0.00000423,
+    "portion offline": 0.6133714987
+  },
+  "Dominica": {
+    "offline": 32.25806452,
+    "online": 119,
+    "total": 151.2580645,
+    "population": 71293,
+    "per_capita": 0.002121639776,
+    "portion offline": 0.2132650885
+  },
+  "Mayotte": {
+    "offline": 80.64516129,
+    "online": 46,
+    "total": 126.6451613,
+    "population": 212645,
+    "per_capita": 0.0005955708401,
+    "portion offline": 0.6367804381
+  },
+  "Aruba": {
+    "offline": 32.25806452,
+    "online": 94,
+    "total": 126.2580645,
+    "population": 101484,
+    "per_capita": 0.001244117935,
+    "portion offline": 0.2554931017
+  },
+  "Suriname": {
+    "offline": 64.51612903,
+    "online": 49,
+    "total": 113.516129,
+    "population": 534189,
+    "per_capita": 0.0002125018093,
+    "portion offline": 0.5683432793
+  },
+  "Northern Mariana Islands": {
+    "offline": 16.12903226,
+    "online": 68,
+    "total": 84.12903226,
+    "population": 53883,
+    "per_capita": 0.001561327919,
+    "portion offline": 0.1917177914
+  },
+  "Somalia": {
+    "offline": 48.38709677,
+    "online": 33,
+    "total": 81.38709677,
+    "population": 10806000,
+    "per_capita": 0.00000753,
+    "portion offline": 0.594530321
+  },
+  "São Tomé and Príncipe": {
+    "offline": 16.12903226,
+    "online": 65,
+    "total": 81.12903226,
+    "population": 187356,
+    "per_capita": 0.000433020732,
+    "portion offline": 0.1988071571
+  },
+  "Saint Martin": {
+    "offline": 64.51612903,
+    "online": 14,
+    "total": 78.51612903,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.8216926869
+  },
+  "Seychelles": {
+    "offline": 48.38709677,
+    "online": 16,
+    "total": 64.38709677,
+    "population": 89949,
+    "per_capita": 0.0007158178165,
+    "portion offline": 0.751503006
+  },
+  "Republic of the Congo": {
+    "offline": 48.38709677,
+    "online": 14,
+    "total": 62.38709677,
+    "population": 4559000,
+    "per_capita": 0.0000137,
+    "portion offline": 0.7755946225
+  },
+  "St Kitts and Nevis": {
+    "offline": 32.25806452,
+    "online": 16,
+    "total": 48.25806452,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.6684491979
+  },
+  "American Samoa": {
+    "offline": 16.12903226,
+    "online": 29,
+    "total": 45.12903226,
+    "population": 55519,
+    "per_capita": 0.0008128574408,
+    "portion offline": 0.3573981415
+  },
+  "Sint Maarten": {
+    "offline": 16.12903226,
+    "online": 19,
+    "total": 35.12903226,
+    "population": "",
+    "per_capita": "",
+    "portion offline": 0.4591368228
+  },
+  "Chad": {
+    "offline": 32.25806452,
+    "online": 2,
+    "total": 34.25806452,
+    "population": 13211000,
+    "per_capita": 0.00000259,
+    "portion offline": 0.9416195857
+  },
+  "Samoa": {
+    "offline": 16.12903226,
+    "online": 14,
+    "total": 30.12903226,
+    "population": 187820,
+    "per_capita": 0.0001604143981,
+    "portion offline": 0.5353319058
+  },
+  "Vanuatu": {
+    "offline": 16.12903226,
+    "online": 11,
+    "total": 27.12903226,
+    "population": 264652,
+    "per_capita": 0.0001025083213,
+    "portion offline": 0.594530321
+  },
+  "Equatorial Guinea": {
+    "offline": 16.12903226,
+    "online": 2,
+    "total": 18.12903226,
+    "population": 1430000,
+    "per_capita": 0.0000127,
+    "portion offline": 0.8896797153
+  },
+  "Solomon Islands": {
+    "offline": 16.12903226,
+    "online": 1,
+    "total": 17.12903226,
+    "population": 581344,
+    "per_capita": 0.0000295,
+    "portion offline": 0.9416195857
+  }
+}
