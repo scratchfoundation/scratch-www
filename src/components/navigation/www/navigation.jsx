@@ -47,8 +47,10 @@ class Navigation extends React.Component {
                 const twoMinInMs = 2 * 60 * 1000;
                 this.messageCountTimeoutId = setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
             } else {
-                // clear message count check, and set to default id.
-                clearTimeout(this.messageCountTimeoutId);
+                // Clear message count check, and set to default id.
+                if (this.messageCountTimeoutId !== -1) {
+                    clearTimeout(this.messageCountTimeoutId);
+                }
                 this.props.setMessageCount(0);
                 this.messageCountTimeoutId = -1;
             }
