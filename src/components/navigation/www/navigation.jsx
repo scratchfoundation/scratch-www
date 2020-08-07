@@ -27,56 +27,62 @@ class Navigation extends React.Component {
         super(props);
         bindAll(this, [
             'getProfileUrl',
-            'handleSearchSubmit'
+            'handleSearchSubmit',
+            'pollForMessages'
         ]);
-        this.state = {
-            messageCountIntervalId: -1 // javascript method interval id for getting messsage count.
-        };
+        // Keep the timeout id so we can cancel it (e.g. when we unmount)
+        this.messageCountTimeoutId = -1;
     }
     componentDidMount () {
         if (this.props.user) {
-            const intervalId = setInterval(() => {
-                this.props.getMessageCount(this.props.user.username);
-            }, 120000); // check for new messages every 2 mins.
-            this.setState({ // eslint-disable-line react/no-did-mount-set-state
-                messageCountIntervalId: intervalId
-            });
+            // Setup polling for messages to start in 2 minutes.
+            const twoMinInMs = 2 * 60 * 1000;
+            this.messageCountTimeoutId = setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
         }
     }
     componentDidUpdate (prevProps) {
         if (prevProps.user !== this.props.user) {
             this.props.handleCloseAccountNav();
             if (this.props.user) {
-                const intervalId = setInterval(() => {
-                    this.props.getMessageCount(this.props.user.username);
-                }, 120000); // check for new messages every 2 mins.
-                this.setState({ // eslint-disable-line react/no-did-update-set-state
-                    messageCountIntervalId: intervalId
-                });
+                const twoMinInMs = 2 * 60 * 1000;
+                this.messageCountTimeoutId = setTimeout(this.pollForMessages.bind(this, twoMinInMs), twoMinInMs);
             } else {
-                // clear message count check, and set to default id.
-                clearInterval(this.state.messageCountIntervalId);
+                // Clear message count check, and set to default id.
+                if (this.messageCountTimeoutId !== -1) {
+                    clearTimeout(this.messageCountTimeoutId);
+                }
                 this.props.setMessageCount(0);
-                this.setState({ // eslint-disable-line react/no-did-update-set-state
-                    messageCountIntervalId: -1
-                });
+                this.messageCountTimeoutId = -1;
             }
         }
     }
     componentWillUnmount () {
         // clear message interval if it exists
-        if (this.state.messageCountIntervalId !== -1) {
-            clearInterval(this.state.messageCountIntervalId);
+        if (this.messageCountTimeoutId !== -1) {
+            clearTimeout(this.messageCountTimeoutId);
             this.props.setMessageCount(0);
-            this.setState({
-                messageCountIntervalId: -1
-            });
+            this.messageCountTimeoutId = -1;
         }
     }
     getProfileUrl () {
         if (!this.props.user) return;
         return `/users/${this.props.user.username}/`;
     }
+
+    pollForMessages (ms) {
+        this.props.getMessageCount(this.props.user.username);
+        // We only poll if it has been less than 32 minutes.
+        // Chances of someone actively using the page for that long without
+        // a navigation is low.
+        if (ms < 32 * 60 * 1000) { // 32 minutes
+            const nextFetch = ms * 2; // exponentially back off next fetch time.
+            const timeoutId = setTimeout(() => {
+                this.pollForMessages(nextFetch);
+            }, nextFetch);
+            this.messageCountTimeoutId = timeoutId;
+        }
+    }
+
     handleSearchSubmit (formData) {
         let targetUrl = '/search/projects';
         if (formData.q) {
