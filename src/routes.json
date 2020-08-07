@@ -22,13 +22,6 @@
         "title": "Down Deep"
     },
     {
-        "name": "communityblocks-interviews",
-        "pattern": "^/info/communityblocks-interviews/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
-        "view": "communityblocks-interviews/communityblocks-interviews",
-        "title": "Community Blocks Beta Tester Interviews"
-    },
-    {
         "name": "conference-index",
         "pattern": "^/conference/?(\\?.*)?$",
         "routeAlias": "/conference(?!/201[4-9])",
