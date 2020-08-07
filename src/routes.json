@@ -506,6 +506,16 @@
         "redirect": "/projects/editor/?tutorial=pong"
     },
     {
+        "name": "animateacharcater-tutorial-redirect",
+        "pattern": "^/animate-a-character/?$",
+        "redirect": "/projects/editor/?tutorial=animate-a-character"
+    },
+    {
+        "name": "videosensing-tutorial-redirect",
+        "pattern": "^/video-sensing/?$",
+        "redirect": "/projects/editor/?tutorial=video-sensing"
+    },
+    {
         "name": "clicker-tutorial-redirect",
         "pattern": "^/clicker/?$",
         "redirect": "/projects/editor/?tutorial=clicker-game"
