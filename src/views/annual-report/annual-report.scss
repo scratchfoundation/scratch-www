@@ -1,0 +1,373 @@
+@import "../../colors";
+@import "../../frameless";
+
+$base-bg: $ui-white;
+
+#view {
+    background-color: $ui-white;
+    padding: 0;
+}
+
+.banner-wrapper {
+    background: $ui-yellow bottom right url("/images/ideas/right-juice.png") no-repeat;
+}
+
+.ideas-banner {
+    margin-bottom: 0;
+    background: bottom left url("/images/ideas/left-juice.png") no-repeat;
+}
+
+.ttt-section {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.tips-divider {
+    border-top: 1px solid $ui-gray;
+    width: 100%;
+}
+
+.tips-banner-image {
+    max-width: calc(100% - 2rem);
+}
+
+.ideas-button {
+    margin-right: .75rem;
+    background-color: $ui-blue;
+    color: $ui-white;
+    font-size: 1rem;
+
+    img {
+        margin-right: 1rem;
+        height: 1.5rem;
+        vertical-align: middle;
+    }
+
+    a {
+        color: $ui-white;
+    }
+
+    span {
+      vertical-align: middle;
+    }
+}
+
+.wide-button {
+    width: 100%;
+}
+
+.ideas-all-cards {
+    padding: 5rem 0 !important;
+}
+
+.ideas-starter {
+    padding: 5rem 0 !important;
+}
+
+.tips-getting-started {
+    background-color: $ui-light-gray;
+    padding-top: 2.5rem;
+}
+
+.tips-left {
+    justify-content: flex-start;
+}
+
+.ideas-image {
+    margin-right: 2rem;
+}
+
+.tips-activity-guides {
+    background-color: $ui-light-gray;
+    padding-bottom: 2rem;
+}
+
+.purchase-button {
+    img {
+        margin-right: 0;
+        margin-left: .75rem;
+        width: 1rem;
+        vertical-align: baseline;
+    }
+}
+
+.tips-info-section {
+    padding: 2.5rem 0;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.tips-info-body {
+    text-align: left;
+}
+
+.tips-cards-buttons {
+    a {
+        white-space: normal;
+    }
+}
+
+.gray-area {
+    background-color: $ui-gray;
+}
+
+.title-banner-h1 {
+    text-align: left;
+}
+
+.title-banner {
+    margin-bottom: 0;
+}
+
+img.tips-icon {
+    height: 1.75rem;
+}
+//4 columns
+@media #{$small} {
+
+    .title-banner {
+        &.masthead {
+            padding-bottom: 1.25rem;
+
+            p {
+                max-width: $cols4;
+            }
+        }
+    }
+
+    .ttt-head {
+
+        p {
+            max-width: $cols4;
+        }
+    }
+
+    //put the image first if in 4-column
+    .tips-info-body {
+        max-width: $cols4;
+        text-align: center;
+
+        &.tips-illustration {
+            order: -1;
+            img {
+                width: $cols4;
+            }
+        }
+
+        .button {
+            width: 100%;
+        }
+    }
+}
+
+//6 columns
+@media #{$medium} {
+    .title-banner {
+        &.masthead {
+
+            p {
+                max-width: $cols6;
+            }
+        }
+    }
+
+    .ttt-head {
+        p {
+            max-width: $cols6;
+        }
+    }
+
+    .tips-info-body.tips-illustration {
+        order: -1;
+        img {
+            width: $cols4;
+        }
+    }
+
+    .tips-info-body {
+        max-width: $cols4;
+        text-align: center;
+    }
+}
+
+
+//8 columns
+@media #{$intermediate} {
+    .title-banner {
+        &.masthead {
+            padding-bottom: 2rem;
+
+            p {
+                max-width: $cols6;
+            }
+        }
+    }
+
+    .ttt-head {
+        p {
+            max-width: $cols6;
+        }
+    }
+
+    .tips-info-section {
+        &.mod-align-top {
+            align-items: flex-start;
+        }
+    }
+
+    .tips-info-body {
+        max-width: $cols4;
+    }
+}
+
+// 12 columns
+@media #{$big} {
+    .title-banner {
+        &.masthead {
+            padding-bottom: 1.25rem;
+
+            p {
+                max-width: $cols8;
+            }
+        }
+
+        .masthead-info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                p {
+                    margin: 0;
+                    max-width: $cols6;
+                    text-align: left;
+                    color: $ui-white;
+
+                    a {
+                        border-bottom: 1px solid $ui-white;
+                        color: $ui-white;
+                    }
+                }
+            }
+    }
+
+    .ttt-head {
+        p {
+            max-width: $cols8;
+        }
+    }
+
+    .tips-info-section {
+        &.mod-align-top {
+            align-items: flex-start;
+        }
+    }
+
+    .tips-info-body {
+        max-width: $cols6;
+        &.mod-narrow {
+            max-width: $cols5;
+        }
+    }
+}
+
+.subnavigation {
+    display: flex;
+    position: sticky;
+    top: 50px;
+    z-index: 9;
+    box-shadow: 0 0 3px $box-shadow-gray;
+    background-color: #4280D7;
+    padding: 0;
+    height: 5rem;
+
+    .inner {
+        justify-content: flex-start;
+    }
+
+    span {
+        margin-right: 1rem;
+        font-weight: 600;
+    }
+    /*display: block;
+    position: fixed;
+    left: 0;
+    z-index: 10;
+    border-bottom: 1px solid $active-gray;
+
+    box-shadow: 0 0 3px $box-shadow-gray;
+    background-color: #4280D7;
+
+    width: 100%;
+    height: 58px;
+
+    &.staging {
+        background-color: $ui-orange;
+    }
+
+    .link {
+        > a {
+            display: block;
+            padding: 13px 15px 4px 15px;
+            height: 33px;
+
+            text-decoration: none;
+            white-space: nowrap;
+            color: $type-white;
+            font-size: .85rem;
+            font-weight: bold;
+
+            &:hover {
+                background-color: $active-gray;
+            }
+        }
+    }
+
+    .ul,
+    .li-left-ul {
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row nowrap;
+        align-items: center;
+        list-style-type: none;
+    }
+
+    .li-left-ul{
+        padding-left: 0;
+    }
+
+    .li-left,
+    .link {
+        margin-top: 0;
+        margin-right: 10px;
+        color: $type-white;
+    }
+
+    @media #{$small} {
+        .link {
+            margin: 0;
+            padding: 0;
+        }
+
+        .link-a {
+            font-size: .75rem;
+        }
+    }
+
+    @media #{$medium-and-smaller} {
+        height: 100px;
+
+        .ul {
+            justify-content: center;
+            flex-flow: row wrap;
+        }
+
+        .li-left,
+        .link {
+            align-self: center;
+        }
+    }*/
+}
