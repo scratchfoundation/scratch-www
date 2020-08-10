@@ -7,6 +7,13 @@
         "title": "About"
     },
     {
+        "name": "annual-report",
+        "pattern": "^/annual-report/?$",
+        "routeAlias": "/annual-report/?$",
+        "view": "annual-report/annual-report",
+        "title": "annual-report"
+    },
+    {
         "name": "camp",
         "pattern": "^/camp/?$",
         "routeAlias": "/camp/?$",
