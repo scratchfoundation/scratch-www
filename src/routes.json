@@ -506,7 +506,7 @@
         "redirect": "/projects/editor/?tutorial=pong"
     },
     {
-        "name": "animateacharcater-tutorial-redirect",
+        "name": "animateacharacter-tutorial-redirect",
         "pattern": "^/animate-a-character/?$",
         "redirect": "/projects/editor/?tutorial=animate-a-character"
     },
