@@ -17,6 +17,8 @@ let wwwURL = rootUrl;
 
 if (remote){
     jest.setTimeout(60000);
+} else {
+    jest.setTimeout(10000);
 }
 
 let driver;
@@ -41,8 +43,10 @@ describe('www-integration sign-in-and-out', () => {
             await name.sendKeys(username);
             let word = await findByXpath('//input[@id="frc-password-1088"]');
             await word.sendKeys(password);
+            await driver.sleep(500);
             await clickXpath('//button[contains(@class, "button") and ' +
                 'contains(@class, "submit-button") and contains(@class, "white")]');
+            await driver.sleep(500);
             let element = await findByXpath('//span[contains(@class, "profile-name")]');
             let text = await element.getText();
             await expect(text.toLowerCase()).toEqual(username.toLowerCase());
@@ -70,8 +74,10 @@ describe('www-integration sign-in-and-out', () => {
             await name.sendKeys(username);
             let word = await findByXpath('//input[@id="frc-password-1088"]');
             await word.sendKeys(password);
+            await driver.sleep(500);
             await clickXpath('//button[contains(@class, "button") and ' +
                     'contains(@class, "submit-button") and contains(@class, "white")]');
+            await driver.sleep(500);
         });
 
         test('sign out on www', async () => {
