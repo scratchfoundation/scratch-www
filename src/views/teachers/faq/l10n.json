@@ -52,7 +52,7 @@
     "teacherfaq.forums": "forums",
     "teacherfaq.privacyPolicy": "Scratch Privacy Policy",
     "teacherfaq.studentDataTitle": "What data does Scratch collect about students?",
-    "teacherfaq.studentDataBody": "When a student first signs up on Scratch, we ask for basic demographic data including gender, age (birth month and year), country, and an email address for verification. This data is used (in aggregated form) in research studies intended to improve our understanding of how people learn with Scratch.",
+    "teacherfaq.studentDataBody": "When a student first signs up on Scratch, we ask for basic demographic data including gender, age (birth month and year), location, and an email address for verification. This data is used (in aggregated form) in research studies intended to improve our understanding of how people learn with Scratch.",
     "teacherfaq.studentDataBody2": "When an educator uses a Scratch Teacher Account to create Student Accounts, students are not required to provide an email address. We encourage you to read the {privacyPolicyLink} for more information.",
 
     "teacherfaq.studentPrivacyLawsTitle": "Is Scratch compliant with United States local and federal data privacy laws?",

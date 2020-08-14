@@ -42,7 +42,7 @@ const DEFAULT_COUNTRY = 'us';
 const getCountryOptions = reactIntl => (
     [
         {
-            label: reactIntl.formatMessage({id: 'registration.selectCountry'}),
+            label: reactIntl.formatMessage({id: 'registration.selectLocation'}),
             disabled: true,
             value: ''
         },
@@ -573,7 +573,7 @@ class DemographicsStep extends React.Component {
                         />
                         <Select
                             required
-                            label={this.props.intl.formatMessage({id: 'general.country'})}
+                            label={this.props.intl.formatMessage({id: 'general.location'})}
                             name="countryCode"
                             options={countryOptions}
                             validations={{
@@ -1007,7 +1007,7 @@ class AddressStep extends React.Component {
                         <Select
                             required
                             label={
-                                this.props.intl.formatMessage({id: 'general.country'})
+                                this.props.intl.formatMessage({id: 'general.location'})
                             }
                             name="address.country"
                             options={countryOptions}

@@ -33,7 +33,7 @@ class CountryStep extends React.Component {
             this.countryOptions = [...countryData.registrationCountryNameOptions];
             this.countryOptions.unshift({ // add placeholder as first option
                 disabled: true,
-                label: this.props.intl.formatMessage({id: 'registration.selectCountry'}),
+                label: this.props.intl.formatMessage({id: 'registration.selectLocation'}),
                 value: 'null'
             });
         }
@@ -75,7 +75,7 @@ class CountryStep extends React.Component {
                             headerImgClass="country-step-image"
                             headerImgSrc="/images/join-flow/country-header.png"
                             innerClassName="join-flow-inner-country-step"
-                            title={this.props.intl.formatMessage({id: 'registration.countryStepTitle'})}
+                            title={this.props.intl.formatMessage({id: 'registration.locationStepTitle'})}
                             titleClassName="join-flow-country-title"
                             waiting={isSubmitting}
                             onSubmit={handleSubmit}
