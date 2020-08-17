@@ -119,8 +119,23 @@ $base-bg: $ui-white;
     text-align: left;
 }
 
+.section-heading {
+    font-size: 52px;
+}
+
 .title-banner {
     margin-bottom: 0;
+}
+
+.donate-p {
+    font-size: 20px;
+    text-align: left;
+    color: $type-white;
+    max-width: 500px;
+}
+
+.donate-info {
+    justify-content: center;
 }
 
 img.tips-icon {
@@ -292,6 +307,7 @@ img.tips-icon {
         margin-right: 1rem;
         font-weight: 600;
     }
+    
     /*display: block;
     position: fixed;
     left: 0;

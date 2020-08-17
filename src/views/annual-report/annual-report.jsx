@@ -201,16 +201,16 @@ class AnnualReport extends React.Component {
                         </section>
                     </div>
                 </div>
-                 <div className="donate">
-                     <TitleBanner className="donate">
-                        <div className="title-banner-p">
-                            <FlexRow className="masthead-info">
-                                <img src="/images/ideas/getting-started-illustration.svg" width="300" height="300"/>
+                 <div>
+                     <TitleBanner>
+                        <div className="title-banner">
+                            <FlexRow className="donate-info">
+                                <img src="/images/annual-report/donate-illustration.svg" width="300" height="300"/>
                                 <div>
-                                    <h1 className="title-banner-h1">
+                                    <h1 className="title-banner-h1 section-heading">
                                         <FormattedMessage id="annualReport.donateTitle" />
                                     </h1>
-                                    <p>
+                                    <p className="donate-p">
                                         <FormattedMessage id="annualReport.donateMessage" />
                                     </p>
                                     <a href="/projects/editor/?tutorial=all">
