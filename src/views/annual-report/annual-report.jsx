@@ -20,28 +20,60 @@ const AnnualReport = () => (
     <div>
         <div className="subnavigation">
             <FlexRow className="inner">
-                <ul className="ul">
-                    <li className="li-left">
-                        <ul className="li-left-ul">
-                            <li>
-                                <a
-                                    className="link"
-                                    href="/conference"
-                                >
-                                    <span className="">Mission</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a
-                                    className="link"
-                                    href="/conference"
-                                >
-                                    <span className="">Reach</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                 <a
+                            className="link"
+                            href="/conference"
+                        >
+                            <FormattedMessage id="annualReport.subnavMessage" />
+                        </a>
+                        <a
+                            className="link"
+                            href="/conference"
+                        >
+                            <FormattedMessage id="annualReport.subnavMission" />
+                        </a>
+                        <a
+                            className="link"
+                            href="/conference"
+                        >
+                            <FormattedMessage id="annualReport.subnavReach" />
+                        </a>
+                        <a
+                            className="link"
+                            href="/conference"
+                        >
+                            <FormattedMessage id="annualReport.subnavTimeline" />
+                        </a>
+                        <a
+                            className="link"
+                            href="/conference"
+                        >
+                            <FormattedMessage id="annualReport.subnavWork" />
+                        </a>
+                        <a
+                            className="link"
+                            href="/conference"
+                        >
+                            <FormattedMessage id="annualReport.subnavFinancials" />
+                        </a>
+                        <a
+                            className="link"
+                            href="/conference"
+                        >
+                            <FormattedMessage id="annualReport.subnavSupporters" />
+                        </a>
+                        <a
+                            className="link"
+                            href="/conference"
+                        >
+                            <FormattedMessage id="annualReport.subnavLeadership" />
+                        </a>
+                        <a
+                            className="link"
+                            href="/conference"
+                        >
+                            <FormattedMessage id="annualReport.subnavDonate" />
+                        </a> 
             </FlexRow>
         </div>
         <div className="banner-wrapper">

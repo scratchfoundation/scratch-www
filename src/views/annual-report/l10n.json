@@ -52,6 +52,17 @@
     "ideas.VirtualPetTitle": "Virtual Pet",
     "ideas.VirtualPetDescription": "Create an interactive pet that can eat, drink, and play.",
 
+    "annualReport.subnavMessage": "Message",
+    "annualReport.subnavMission": "Mission",
+    "annualReport.subnavReach": "Reach",
+    "annualReport.subnavTimeline": "Timeline",
+    "annualReport.subnavWork": "Work",
+    "annualReport.subnavFinancials": "Financials",
+    "annualReport.subnavSupporters": "Supporters",
+    "annualReport.subnavLeadership": "Leadership",
+    "annualReport.subnavDonate": "Donate",
+
+
     "annualReport.donateTitle": "Donate",
     "annualReport.donateMessage": "Your support enables us to make Scratch free for everyone, keeps our servers running, and most importantly, we are able to provide kids around the world an opportunity to imagine, create and share. Thank you!",
     "annualReport.donateButton": "Donate"
