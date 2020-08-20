@@ -363,8 +363,6 @@ img.tips-icon {
     height: 58px;
 
     a {
-        display: block;
-
         text-decoration: none;
         white-space: nowrap;
         color: $type-white;
@@ -375,28 +373,20 @@ img.tips-icon {
         }
     }
     
-    @media #{$small} {
-        .link {
-            margin: 0;
-            padding: 0;
-        }
-
-        .link-a {
-            font-size: .75rem;
-        }
-    }
-
     @media #{$medium-and-smaller} {
-        height: 100px;
+        height: 150px;
+        justify-content: center;
+        a {
+            padding: 10px;
+            margin: 2px;
+            border: 1px solid $type-white;
+            border-radius: 10px;
 
-        .ul {
-            justify-content: center;
-            flex-flow: row wrap;
-        }
+            &:hover {
+                text-decoration: none;
+                background-color: $box-shadow-gray;
+            }
+        } 
+    } 
 
-        .li-left,
-        .link {
-            align-self: center;
-        }
-    }
 }
