@@ -22,55 +22,55 @@ const AnnualReport = () => (
             <FlexRow className="inner">
                  <a
                             className="link"
-                            href="/conference"
+                            href="/annual-report#message"
                         >
                             <FormattedMessage id="annualReport.subnavMessage" />
                         </a>
                         <a
                             className="link"
-                            href="/conference"
+                            href="/annual-report#mission"
                         >
                             <FormattedMessage id="annualReport.subnavMission" />
                         </a>
                         <a
                             className="link"
-                            href="/conference"
+                            href="/annual-report#reach"
                         >
                             <FormattedMessage id="annualReport.subnavReach" />
                         </a>
                         <a
                             className="link"
-                            href="/conference"
+                            href="/annual-report#timeline"
                         >
                             <FormattedMessage id="annualReport.subnavTimeline" />
                         </a>
                         <a
                             className="link"
-                            href="/conference"
+                            href="/annual-report#work"
                         >
                             <FormattedMessage id="annualReport.subnavWork" />
                         </a>
                         <a
                             className="link"
-                            href="/conference"
+                            href="/annual-report#financials"
                         >
                             <FormattedMessage id="annualReport.subnavFinancials" />
                         </a>
                         <a
                             className="link"
-                            href="/conference"
+                            href="/annual-report#supporters"
                         >
                             <FormattedMessage id="annualReport.subnavSupporters" />
                         </a>
                         <a
                             className="link"
-                            href="/conference"
+                            href="/annual-report#leadership"
                         >
                             <FormattedMessage id="annualReport.subnavLeadership" />
                         </a>
                         <a
                             className="link"
-                            href="/conference"
+                            href="/annual-report#donate"
                         >
                             <FormattedMessage id="annualReport.subnavDonate" />
                         </a> 
@@ -92,7 +92,7 @@ const AnnualReport = () => (
                 </div>
             </TitleBanner>
         </div>
-        <div className="mission">
+        <div className="mission" id="mission">
             <div className="inner">
                 <FlexRow
                     as="section"
@@ -118,7 +118,7 @@ const AnnualReport = () => (
                 </FlexRow>
             </div>
         </div>
-        <div className="our-reach">
+        <div className="our-reach" id="reach">
             <div className="inner">
                 <section className="ttt-section">
                     <div className="ttt-head">
@@ -140,7 +140,7 @@ const AnnualReport = () => (
                 </section>
             </div>
         </div>
-        <div className="history">
+        <div className="history" id="history">
             <div className="inner">
                 <section className="ttt-section">
                     <div className="ttt-head">
@@ -162,7 +162,7 @@ const AnnualReport = () => (
                 </section>
             </div>
         </div>
-        <div className="our-work">
+        <div className="our-work" id="work">
             <div className="inner">
                 <section className="ttt-section">
                     <div className="ttt-head">
@@ -184,7 +184,7 @@ const AnnualReport = () => (
                 </section>
             </div>
         </div>
-        <div className="financials">
+        <div className="financials" id="financials">
             <div className="inner">
                 <section className="ttt-section">
                     <div className="ttt-head">
@@ -206,7 +206,7 @@ const AnnualReport = () => (
                 </section>
             </div>
         </div>
-        <div className="supporters">
+        <div className="supporters" id="supporters">
             <div className="inner">
                 <section className="ttt-section">
                     <div className="ttt-head">
@@ -228,7 +228,7 @@ const AnnualReport = () => (
                 </section>
             </div>
         </div>
-        <div className="donate-section">
+        <div className="donate-section" id="donate">
             <FlexRow className="donate-info">
                 <img src="/images/annual-report/donate-illustration.svg" />
                 <div className="donate-content">

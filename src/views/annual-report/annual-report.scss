@@ -357,19 +357,8 @@ img.tips-icon {
     z-index: 9;
     box-shadow: 0 0 3px $box-shadow-gray;
     background-color: #4280D7;
-    padding: 0px;
-    height: 5rem;
-
+    padding: 0;
     justify-content: flex-start;
-    
-    position: fixed;
-    left: 0;
-    z-index: 10;
-    border-bottom: 1px solid $active-gray;
-
-    box-shadow: 0 0 3px $box-shadow-gray;
-    background-color: #4280D7;
-
     width: 100%;
     height: 58px;
 
