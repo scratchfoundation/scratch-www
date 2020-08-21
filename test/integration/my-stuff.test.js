@@ -55,6 +55,7 @@ describe('www-integration my_stuff', () => {
         await driver.sleep(6000);
         let gui = await findByXpath('//div[@class="guiPlayer"]');
         await expect(gui.isDisplayed());
+        await driver.sleep(1500);
     });
 
     test('clicking "see inside" should take you to the editor', async () =>{
@@ -62,6 +63,7 @@ describe('www-integration my_stuff', () => {
         await clickXpath('//a[@data-control="edit"]');
         let gf = await findByXpath('//img[@class="green-flag_green-flag_1kiAo"]');
         await expect(gf.isDisplayed());
+        await driver.sleep(1000);
     });
 
     test('Add To button should bring up a list of studios', async () =>{
@@ -70,16 +72,17 @@ describe('www-integration my_stuff', () => {
         await clickXpath('//div[@data-control="add-to"]');
         let dropDown = await findByXpath('//div[@class="dropdown-menu"]/ul/li');
         await expect(dropDown.isDisplayed());
+        await driver.sleep(1000);
     });
 
     test('+ New Studio button should take you to the studio page', async ()=>{
         await driver.get(myStuffURL);
         await clickXpath('//form[@id="new_studio"]/button[@type="submit"]');
-        await driver.sleep(1000);
+        await driver.sleep(500);
         // my stuff also has an element with the id tabs
         let tabs = await findByXpath('//ul[@id="tabs" and @class="tabs-index box-h-tabs h-tabs"]');
         expect(tabs.isDisplayed());
-
+        await driver.sleep(1000);
     });
 
     test('+ New Project button should open the editor', async () =>{
