@@ -374,11 +374,18 @@ img.tips-icon {
     }
     
     @media #{$medium-and-smaller} {
-        height: 150px;
-        justify-content: center;
+        height: auto;
+
+        > .flex-row {
+            flex-direction: row;
+            -webkit-flex-direction: row;
+
+            justify-content: flex-start;
+        }
+
         a {
             padding: 10px;
-            margin: 2px;
+            margin: 5px;
             border: 1px solid $type-white;
             border-radius: 10px;
 
