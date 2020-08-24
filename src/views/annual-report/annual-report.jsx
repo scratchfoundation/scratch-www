@@ -73,7 +73,7 @@ const AnnualReport = () => (
                             href="/annual-report#donate"
                         >
                             <FormattedMessage id="annualReport.subnavDonate" />
-                        </a> 
+                        </a>
             </FlexRow>
         </div>
         <div className="banner-wrapper">
@@ -185,25 +185,33 @@ const AnnualReport = () => (
             </div>
         </div>
         <div className="financials" id="financials">
-            <div className="inner">
-                <section className="ttt-section">
-                    <div className="ttt-head">
-                        <h2>
-                            <FormattedMessage id="ideas.activityGuidesTitle" />
-                        </h2>
-                        <p>
-                            <FormattedHTMLMessage id="ideas.activityGuidesText" />
-                        </p>
+            <div className="financials-content">
+                <h1 className="financials-h1">
+                    <FormattedMessage id="annualReport.financialsTitle" />
+                </h1>
+                <div className="financials-subsection">
+                    <h2>
+                        <FormattedMessage id="annualReport.financialsRevenue" />
+                    </h2>
+                    <hr />
+                    <div className="circle-and-words">
+                        <span className="financials-dot" />
+                        <div className="key-and-money">
+                            <p>
+                                <FormattedMessage id="annualReport.financialsGrants" />
+                            </p>
+                            <p>
+                                <FormattedMessage id="annualReport.financialsGrantsAmt" />
+                            </p>
+                        </div>
                     </div>
-                    <a
-                        className="wide-button"
-                        href="/projects/editor/?tutorial=all"
-                    >
-                        <Button className="ideas-button wide-button">
-                            <FormattedMessage id="ideas.seeAllTutorials" />
-                        </Button>
-                    </a>
-                </section>
+                </div>
+                <div className="financials-subsection">
+                    <h2>
+                        <FormattedMessage id="annualReport.financialsExpenses" />
+                    </h2>
+                    <hr/>
+                </div>
             </div>
         </div>
         <div className="supporters" id="supporters">

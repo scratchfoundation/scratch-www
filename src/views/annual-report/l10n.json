@@ -62,6 +62,11 @@
     "annualReport.subnavLeadership": "Leadership",
     "annualReport.subnavDonate": "Donate",
 
+    "annualReport.financialsTitle": "Financials - 2019",
+    "annualReport.financialsRevenue": "Revenue",
+    "annualReport.financialsGrants": "Grants, Individual, & Corporate Donations (Gala Included)",
+    "annualReport.financialsGrantsAmt": "$3,898,078 (82.7%)",
+    "annualReport.financialsExpenses": "Expenses",
 
     "annualReport.donateTitle": "Donate",
     "annualReport.donateMessage": "Your support enables us to make Scratch free for everyone, keeps our servers running, and most importantly, we are able to provide kids around the world an opportunity to imagine, create and share. Thank you!",
