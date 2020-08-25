@@ -127,6 +127,140 @@ $base-bg: $ui-white;
     margin-bottom: 0;
 }
 
+.financials-section {
+    .inner {
+        max-width: 780px;
+        padding: 72px 0;
+    }
+
+    background-color: #575E75;
+    width: 100%; 
+    color: #FFFFFF;
+
+    h1, h2, p {
+        color: #FFFFFF;
+    }
+
+    h1 {
+        font-size: 52px;
+        margin-bottom: 72px;
+        line-height: 64px;
+    }
+
+    hr {
+        border: 0;
+        height: 0;
+        border-top: .5px solid #FFFFFF;
+    }
+
+    .financials-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .financials-table {
+        display: flex;
+        flex-direction: column;
+
+        margin: 64px 0;
+    }
+
+    .circle-and-words {
+        display: flex;
+        align-items: flex-start;
+        padding: 8px 0px;;
+
+        img {
+            margin-right: 16px;
+        }
+
+        p {
+            text-align: left;
+            line-height: 24px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .percentage {
+            font-weight: normal;
+        }
+
+        .key {
+            width: 264px;
+        }
+
+        .total {
+            margin-left: 36px;
+            margin-top: 52px;
+
+            p {
+                font-size: 20px;
+            }
+        }
+
+        .key-and-money {
+            display: flex;
+        }
+    }
+
+    .financials-button-wrapper {
+        width: 100%;
+        text-align: center;
+    }
+
+    .financials-button {
+         // margin-right: .75rem;
+        background-color: $ui-white;
+        color: $ui-blue;
+        padding: 20px;
+        border-radius: 6px;
+
+        font-family: "Helvetica Neue";
+        font-size: 24px;
+        font-weight: bold;
+
+        .download-icon {
+            height: 1.75rem;
+            vertical-align: middle;
+        }
+    }
+
+    @media #{$medium-and-smaller} {
+        h1 {
+            position: relative;
+            margin-bottom: 40px;
+            max-width: 300px;
+            left: 50%;
+            margin-left: -150px;
+        }
+
+        .financials-content {
+            flex-direction: column-reverse;
+            text-align: center;
+        }
+
+        .financials-table {
+            margin: 0 0 60px 0;
+        }
+
+        .graph {
+            margin: 28px;
+        }
+    }
+
+    @media #{$small} {
+        .key-and-money {
+            flex-direction: column;
+        }
+
+        .key {
+            padding-bottom: 8px;
+        }
+    }
+}
+
 .donate-section {
     height: 500px;
     background-color: #0EBD8C;
@@ -134,7 +268,7 @@ $base-bg: $ui-white;
     .donate-info {
         justify-content: center;
         align-items: flex-start;
-        padding: 82px 0px;
+        padding: 84px 0px;
     }
 
     .donate-content {
@@ -176,8 +310,6 @@ $base-bg: $ui-white;
         padding: 0px;
         margin: 0px;
         border-radius: 6px;
-
-        // font-size: 1rem;
 
         font-family: "Helvetica Neue";
         font-size: 24px;

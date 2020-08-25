@@ -184,33 +184,131 @@ const AnnualReport = () => (
                 </section>
             </div>
         </div>
-        <div className="financials" id="financials">
-            <div className="financials-content">
+        <div className="financials-section" id="financials">
+            <div className="inner">
                 <h1 className="financials-h1">
                     <FormattedMessage id="annualReport.financialsTitle" />
                 </h1>
-                <div className="financials-subsection">
-                    <h2>
-                        <FormattedMessage id="annualReport.financialsRevenue" />
-                    </h2>
-                    <hr />
-                    <div className="circle-and-words">
-                        <span className="financials-dot" />
-                        <div className="key-and-money">
-                            <p>
-                                <FormattedMessage id="annualReport.financialsGrants" />
-                            </p>
-                            <p>
-                                <FormattedMessage id="annualReport.financialsGrantsAmt" />
-                            </p>
+                <h2>
+                    <FormattedMessage id="annualReport.financialsRevenue" />
+                </h2>
+                <hr />
+                <div className="financials-content">
+                    <div className="financials-table">
+                        <div className="circle-and-words">
+                            <img src="/images/annual-report/blue-circle.svg" />
+                            <div className="key-and-money">
+                                <p className="key">
+                                    <FormattedMessage id="annualReport.financialsGrants" />
+                                </p>
+                                <p>
+                                    $3,898,078
+                                    <span className="percentage"> (82.7%)</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="circle-and-words">
+                            <img src="/images/annual-report/yellow-circle.svg" />
+                            <div className="key-and-money">
+                                <p className="key">
+                                    <FormattedMessage id="annualReport.financialsEvents" />
+                                </p>
+                                <p>
+                                    $700,000
+                                    <span className="percentage"> (14.8%)</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="circle-and-words">
+                            <img src="/images/annual-report/green-circle.svg" />
+                            <div className="key-and-money">
+                                <p className="key">
+                                    <FormattedMessage id="annualReport.financialsOther" />
+                                </p>
+                                <p>
+                                    $114,982
+                                    <span className="percentage"> (2.4%)</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="circle-and-words">
+                            <div className="key-and-money total">
+                                <p className="key">
+                                    <FormattedMessage id="annualReport.financialsTotal" />
+                                </p>
+                                <p>
+                                    $4,713,060
+                                </p>
+                            </div>
                         </div>
                     </div>
+                    <img  className="graph" src="/images/annual-report/revenue-graph.svg" />
                 </div>
-                <div className="financials-subsection">
-                    <h2>
-                        <FormattedMessage id="annualReport.financialsExpenses" />
-                    </h2>
-                    <hr/>
+                <h2>
+                    <FormattedMessage id="annualReport.financialsExpenses" />
+                </h2>
+                <hr/>
+                <div className="financials-content">
+                    <div className="financials-table">
+                        <div className="circle-and-words">
+                            <img src="/images/annual-report/blue-circle.svg" />
+                            <div className="key-and-money">
+                                <p className="key">
+                                    <FormattedMessage id="annualReport.financialsProgram" />
+                                </p>
+                                <p>
+                                    $1,135,767
+                                    <span className="percentage"> (48.8%)</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="circle-and-words">
+                            <img src="/images/annual-report/yellow-circle.svg" />
+                            <div className="key-and-money">
+                                <p className="key">
+                                    <FormattedMessage id="annualReport.financialsGeneral" />
+                                </p>
+                                <p>
+                                    $224,104
+                                    <span className="percentage"> (9.6%)</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="circle-and-words">
+                            <img src="/images/annual-report/green-circle.svg" />
+                            <div className="key-and-money">
+                                <p className="key">
+                                    <FormattedMessage id="annualReport.financialsFundraising" />
+                                </p>
+                                <p>
+                                    $962,958
+                                    <span className="percentage"> (41.4%)</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="circle-and-words">
+                            <div className="key-and-money total">
+                                <p className="key">
+                                    <FormattedMessage id="annualReport.financialsTotal" />
+                                </p>
+                                <p>
+                                    $2,322,829
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <img  className="graph" src="/images/annual-report/expenses-graph.svg" />
+                </div>
+                <div className="financials-button-wrapper">
+                    <a href="https://secure.donationpay.org/scratchfoundation/">
+                        <Button className="financials-button">
+                            <FormattedMessage id="annualReport.financialsButton" />
+                            <img
+                                className="download-icon"
+                                src="/images/ideas/download-icon.svg"
+                            />
+                        </Button>
+                    </a>
                 </div>
             </div>
         </div>
