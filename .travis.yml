@@ -134,13 +134,14 @@ jobs:
         branch:
         - master
   - stage: smoke
-    script: npm run test:integration:remote
-    on:
-      branch:
-      - develop
-      - master
-      - hotfix/*
-      - release/*
+    - provider: script
+      script: npm run test:integration:remote
+      on:
+        branch:
+        - develop
+        - master
+        - hotfix/*
+        - release/*
   - stage: update translations
     script: npm run i18n:push
 stages:
