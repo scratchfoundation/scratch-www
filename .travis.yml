@@ -141,6 +141,6 @@ stages:
 - name: test
   if: type != cron
 - name: smoke
-  if: (type NOT IN (cron, pull_request)) AND (branch IN (develop, master, hotfix/*, release/*))
+  if: NOT type IN (cron, pull_request)
 - name: update translations
   if: branch == develop AND type == cron
