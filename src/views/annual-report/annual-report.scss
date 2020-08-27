@@ -263,6 +263,75 @@ $base-bg: $ui-white;
     }
 }
 
+.subsection-tag {
+    color: $ui-white;
+    font-size: 16px;
+    font-weight: bold;
+
+    background-color: $ui-blue;
+    text-align: center;
+    border-radius: 36px;
+
+    display:inline-flex;
+    width: max-content;
+    padding: 12px 36px;
+}
+
+.supporters-section {
+    background-color: #EDEDFF;
+    padding: 84px 0;
+
+    .inner {
+        width: 780px;
+    }
+
+    .supporters-heading {
+        margin-bottom: 48px;
+
+        h1 {
+            font-size: 52px;
+            padding-bottom: 52px;
+        }
+
+        p { 
+            font-size: 24px;
+            margin: 0;
+        }
+    }
+
+    .subsection-tag {
+        background-color: $ui-orange;
+        align-self: flex-start;
+
+        margin-bottom: 48px;
+    }
+
+    .donor-spotlight {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+            font-size: 24px;
+            font-color: #575E75;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+
+    .sfe-info {
+        width: 620px;
+    }
+
+    .david-siegel {
+        display: flex;
+        align-items: flex-start;
+    }
+    
+}
+
 .donate-section {
     height: 500px;
     background-color: #0EBD8C;

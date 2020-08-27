@@ -312,26 +312,39 @@ const AnnualReport = () => (
                 </div>
             </div>
         </div>
-        <div className="supporters" id="supporters">
+        <div className="supporters-section" id="supporters">
             <div className="inner">
-                <section className="ttt-section">
-                    <div className="ttt-head">
+                <div className="supporters-heading">
+                    <h1>
+                        <FormattedMessage id="annualReport.supportersTitle" />
+                    </h1>
+                    <p>
+                        <FormattedHTMLMessage id="annualReport.supportersIntro" />
+                    </p>
+                </div>
+                <div className="donor-spotlight">
+                    <div className="subsection-tag">
+                        <FormattedHTMLMessage id="annualReport.supportersSpotlightTitle" />
+                    </div>
+                    <div className="sfe-info">
                         <h2>
-                            <FormattedMessage id="ideas.activityGuidesTitle" />
+                            <FormattedMessage id="annualReport.supportersSFETitle" />
                         </h2>
                         <p>
-                            <FormattedHTMLMessage id="ideas.activityGuidesText" />
+                            <FormattedMessage id="annualReport.supportersSFEDescription" />
                         </p>
                     </div>
-                    <a
-                        className="wide-button"
-                        href="/projects/editor/?tutorial=all"
-                    >
-                        <Button className="ideas-button wide-button">
-                            <FormattedMessage id="ideas.seeAllTutorials" />
-                        </Button>
-                    </a>
-                </section>
+                    <div className="david-siegel">
+                        <div className="ds-info">
+                            <img src="/images/annual-report/david-siegel-photo.svg" />
+                            <h3>David Siegel</h3>
+                            <div>Co-Founder and Co-Chairman Two Sigma</div>
+                        </div>
+                        <div className="ds-quote">
+                            Making sure that Scratch remains free and accessible for kids everywhere is one of the most impactful ways we can help young learners engage and thrive in an increasingly digital world. Supporting Scratch is more important today than ever before.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div className="donate-section" id="donate">

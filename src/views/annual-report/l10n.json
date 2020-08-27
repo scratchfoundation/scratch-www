@@ -74,6 +74,12 @@
     "annualReport.financialsFundraising": "Fundraising (Gala & Others)",
     "annualReport.financialsButton": "2019 Audited Financials",
 
+    "annualReport.supportersTitle": "Thank You to Our Supporters",
+    "annualReport.supportersIntro": "Thank you to our generous supporters. Your contribution helps us expand creative learning opportunities for children of all ages, from all backgrounds, around the globe.",
+    "annualReport.supportersSpotlightTitle": "Donor - Spotlight Story",
+    "annualReport.supportersSFETitle": "Siegel Family Endowment",
+    "annualReport.supportersSFEDescription": "In May 2012, David Siegel attended Scratch Day at the MIT Media Lab along with his son Zach, an active and enthusiastic Scratcher. Watching Zach and other children using Scratch to code their own games, animations, and robotic creatures, David saw how Scratch could help children learn practical coding skills and develop as computational thinkers. A few days later, David made his first donation to support Scratch.",
+
     "annualReport.donateTitle": "Donate",
     "annualReport.donateMessage": "Your support enables us to make Scratch free for everyone, keeps our servers running, and most importantly, we are able to provide kids around the world an opportunity to imagine, create and share. Thank you!",
     "annualReport.donateButton": "Donate"
