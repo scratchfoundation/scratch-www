@@ -305,7 +305,7 @@ const AnnualReport = () => (
                             <FormattedMessage id="annualReport.financialsButton" />
                             <img
                                 className="download-icon"
-                                src="/images/ideas/download-icon.svg"
+                                src="/images/annual-report/download-icon.svg"
                             />
                         </Button>
                     </a>

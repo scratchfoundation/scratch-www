@@ -211,19 +211,21 @@ $base-bg: $ui-white;
     }
 
     .financials-button {
-         // margin-right: .75rem;
         background-color: $ui-white;
         color: $ui-blue;
         padding: 20px;
         border-radius: 6px;
+        margin: 0;
 
         font-family: "Helvetica Neue";
         font-size: 24px;
         font-weight: bold;
 
-        .download-icon {
+        vertical-align: center;
+
+        img {
             height: 1.75rem;
-            vertical-align: middle;
+            padding-left: 1.2rem;
         }
     }
 
