@@ -10,6 +10,7 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const MasonryGrid = require('../../components/masonrygrid/masonrygrid.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
 const NavigationBox = require('../../components/navigation/base/navigation.jsx');
+const Comment = require('../../components/comment/comment.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -338,10 +339,10 @@ const AnnualReport = () => (
                         <div className="ds-info">
                             <img src="/images/annual-report/david-siegel-photo.svg" />
                             <h3>David Siegel</h3>
-                            <div>Co-Founder and Co-Chairman Two Sigma</div>
+                            <div>Co-Founder and<br /> Co-Chairman<br /> Two Sigma</div>
                         </div>
                         <div className="ds-quote">
-                            Making sure that Scratch remains free and accessible for kids everywhere is one of the most impactful ways we can help young learners engage and thrive in an increasingly digital world. Supporting Scratch is more important today than ever before.
+                            <Comment comment="Making sure that Scratch remains free and accessible for kids everywhere is one of the most impactful ways we can help young learners engage and thrive in an increasingly digital world. Supporting Scratch is more important today than ever before." />
                         </div>
                     </div>
                 </div>

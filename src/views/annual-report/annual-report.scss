@@ -328,6 +328,30 @@ $base-bg: $ui-white;
     .david-siegel {
         display: flex;
         align-items: flex-start;
+
+        .ds-info {
+            text-align: center;
+            padding: 0 20px;
+            margin-right: 18px;
+
+            h3 {
+                font-size: 24px;
+            }
+
+            div {
+                font-size: 16px;
+                padding: 18px;
+            }
+        }
+    }
+
+    .comment-text {
+        background-color: $ui-white;
+        text-align: left;
+        margin-top: 16px;
+
+        line-height: 32px;
+        padding: 32px;
     }
     
 }
