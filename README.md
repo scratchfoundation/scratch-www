@@ -218,6 +218,8 @@ To run all integration tests from the command-line:
 SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu npm run test:integration
 ```
 
+Both the TAP and Jest tests use the same username and password.  The Jest tests will also use the the username you give with a 1 (soon to be higher numbers as well) appended to the end of it.  So if you use the username "test" it will also use the username "test1."  Make sure you have created accounts with this pattern and use the same password for all accounts involved.
+
 To run a single file from the command-line using Jest:
 
 ```bash
