@@ -8,6 +8,24 @@ $base-bg: $ui-white;
     padding: 0;
 }
 
+// body {
+//     font-family: "Helvetica Neue";
+// }
+
+h2 {
+    font-size: 3.25rem;
+    line-height: 4rem;
+}
+
+// h3 {
+//
+// }
+
+h4 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
 .banner-wrapper {
     background: $ui-yellow bottom right url("/images/ideas/right-juice.png") no-repeat;
 }
@@ -127,6 +145,55 @@ $base-bg: $ui-white;
     margin-bottom: 0;
 }
 
+.milestones-section {
+    background-color: $ui-blue-10percent;
+
+    .inner {
+        width: 940px;
+        display: flex;
+    }
+
+    h2, h4 p {
+        color: $type-gray;
+    }
+
+    p {
+        font-size: 1.25rem;
+    }
+
+    .milestones-intro {
+        margin-right: 20px;
+    }
+
+    .milestones-boxes {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .milestone-box {
+        &.first {
+            margin-top: 4px;
+        }
+
+        &.last {
+            margin-bottom: 4px;
+        }
+
+        img {
+            height: 240px;
+            border-radius: 8px;
+        }
+
+        width: 460px;
+        background-color: $ui-white;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 12px;
+    }
+
+}
+
 .financials-section {
     .inner {
         max-width: 780px;
@@ -134,14 +201,14 @@ $base-bg: $ui-white;
     }
 
     background-color: #575E75;
-    width: 100%; 
+    width: 100%;
     color: #FFFFFF;
 
-    h1, h2, p {
+    h2, h3, p {
         color: #FFFFFF;
     }
 
-    h1 {
+    h2 {
         font-size: 52px;
         margin-bottom: 72px;
         line-height: 64px;
@@ -230,7 +297,7 @@ $base-bg: $ui-white;
     }
 
     @media #{$medium-and-smaller} {
-        h1 {
+        h2 {
             position: relative;
             margin-bottom: 40px;
             max-width: 300px;
@@ -288,12 +355,12 @@ $base-bg: $ui-white;
     .supporters-heading {
         margin-bottom: 48px;
 
-        h1 {
+        h2 {
             font-size: 52px;
             padding-bottom: 52px;
         }
 
-        p { 
+        p {
             font-size: 24px;
             margin: 0;
         }
@@ -353,7 +420,7 @@ $base-bg: $ui-white;
         line-height: 32px;
         padding: 32px;
     }
-    
+
 }
 
 .donate-section {
@@ -374,7 +441,7 @@ $base-bg: $ui-white;
             height: 300px;
         }
 
-        h1 {
+        h2 {
             height: 62px;
             width: 460px;
             color: $ui-white;
@@ -599,7 +666,7 @@ img.tips-icon {
             text-decoration: underline;
         }
     }
-    
+
     @media #{$medium-and-smaller} {
         height: auto;
 
@@ -620,7 +687,7 @@ img.tips-icon {
                 text-decoration: none;
                 background-color: $box-shadow-gray;
             }
-        } 
-    } 
+        }
+    }
 
 }

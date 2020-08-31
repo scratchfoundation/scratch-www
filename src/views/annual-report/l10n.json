@@ -54,13 +54,19 @@
 
     "annualReport.subnavMessage": "Message",
     "annualReport.subnavMission": "Mission",
+    "annualReport.subnavMilestones": "Milestones",
     "annualReport.subnavReach": "Reach",
-    "annualReport.subnavTimeline": "Timeline",
     "annualReport.subnavWork": "Work",
     "annualReport.subnavFinancials": "Financials",
     "annualReport.subnavSupporters": "Supporters",
     "annualReport.subnavLeadership": "Leadership",
     "annualReport.subnavDonate": "Donate",
+
+    "annualReport.milestonesTitle": "Milestones",
+    "annualReport.milestonesDescription": "Here are some key events and accomplishments in the history of Scratch and the global Scratch community.",
+    "annualReport.milestones2003Message": "Awarded National Science Foundation grant to start development of Scratch",
+    "annualReport.milestones2004Message": "Offered first Scratch workshop at Computer Clubhouse Teen Summit",
+    "annualReport.milestones2007Message": "Public launch of Scratch programming language and online community",
 
     "annualReport.financialsTitle": "Financials - 2019",
     "annualReport.financialsRevenue": "Revenue",

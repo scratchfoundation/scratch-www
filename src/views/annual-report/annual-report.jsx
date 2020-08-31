@@ -1,15 +1,15 @@
-const bindAll = require('lodash.bindall');
+// const bindAll = require('lodash.bindall');
 const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
-const injectIntl = require('react-intl').injectIntl;
-const intlShape = require('react-intl').intlShape;
+// const injectIntl = require('react-intl').injectIntl;
+// const intlShape = require('react-intl').intlShape;
 const React = require('react');
 
 const Button = require('../../components/forms/button.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
-const MasonryGrid = require('../../components/masonrygrid/masonrygrid.jsx');
+// const MasonryGrid = require('../../components/masonrygrid/masonrygrid.jsx');
 const TitleBanner = require('../../components/title-banner/title-banner.jsx');
-const NavigationBox = require('../../components/navigation/base/navigation.jsx');
+// const NavigationBox = require('../../components/navigation/base/navigation.jsx');
 const Comment = require('../../components/comment/comment.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
@@ -21,60 +21,60 @@ const AnnualReport = () => (
     <div>
         <div className="subnavigation">
             <FlexRow className="inner">
-                 <a
-                            className="link"
-                            href="/annual-report#message"
-                        >
-                            <FormattedMessage id="annualReport.subnavMessage" />
-                        </a>
-                        <a
-                            className="link"
-                            href="/annual-report#mission"
-                        >
-                            <FormattedMessage id="annualReport.subnavMission" />
-                        </a>
-                        <a
-                            className="link"
-                            href="/annual-report#reach"
-                        >
-                            <FormattedMessage id="annualReport.subnavReach" />
-                        </a>
-                        <a
-                            className="link"
-                            href="/annual-report#timeline"
-                        >
-                            <FormattedMessage id="annualReport.subnavTimeline" />
-                        </a>
-                        <a
-                            className="link"
-                            href="/annual-report#work"
-                        >
-                            <FormattedMessage id="annualReport.subnavWork" />
-                        </a>
-                        <a
-                            className="link"
-                            href="/annual-report#financials"
-                        >
-                            <FormattedMessage id="annualReport.subnavFinancials" />
-                        </a>
-                        <a
-                            className="link"
-                            href="/annual-report#supporters"
-                        >
-                            <FormattedMessage id="annualReport.subnavSupporters" />
-                        </a>
-                        <a
-                            className="link"
-                            href="/annual-report#leadership"
-                        >
-                            <FormattedMessage id="annualReport.subnavLeadership" />
-                        </a>
-                        <a
-                            className="link"
-                            href="/annual-report#donate"
-                        >
-                            <FormattedMessage id="annualReport.subnavDonate" />
-                        </a>
+                <a
+                    className="link"
+                    href="/annual-report#message"
+                >
+                    <FormattedMessage id="annualReport.subnavMessage" />
+                </a>
+                <a
+                    className="link"
+                    href="/annual-report#mission"
+                >
+                    <FormattedMessage id="annualReport.subnavMission" />
+                </a>
+                <a
+                    className="link"
+                    href="/annual-report#reach"
+                >
+                    <FormattedMessage id="annualReport.subnavReach" />
+                </a>
+                <a
+                    className="link"
+                    href="/annual-report#milestones"
+                >
+                    <FormattedMessage id="annualReport.subnavMilestones" />
+                </a>
+                <a
+                    className="link"
+                    href="/annual-report#work"
+                >
+                    <FormattedMessage id="annualReport.subnavWork" />
+                </a>
+                <a
+                    className="link"
+                    href="/annual-report#financials"
+                >
+                    <FormattedMessage id="annualReport.subnavFinancials" />
+                </a>
+                <a
+                    className="link"
+                    href="/annual-report#supporters"
+                >
+                    <FormattedMessage id="annualReport.subnavSupporters" />
+                </a>
+                <a
+                    className="link"
+                    href="/annual-report#leadership"
+                >
+                    <FormattedMessage id="annualReport.subnavLeadership" />
+                </a>
+                <a
+                    className="link"
+                    href="/annual-report#donate"
+                >
+                    <FormattedMessage id="annualReport.subnavDonate" />
+                </a>
             </FlexRow>
         </div>
         <div className="banner-wrapper">
@@ -93,33 +93,63 @@ const AnnualReport = () => (
                 </div>
             </TitleBanner>
         </div>
-        <div className="mission" id="mission">
+        <div
+            className="mission"
+            id="mission"
+        >
             <div className="inner">
-                <FlexRow
-                    as="section"
-                    className="tips-info-section tips-left"
-                >
-                    <div className="ideas-image">
-                        <img src="/images/ideas/getting-started-illustration.svg" />
-                    </div>
-                    <div>
-                        <h2>
-                            <FormattedMessage id="ideas.gettingStartedTitle" />
-                        </h2>
-                        <p>
-                            <FormattedHTMLMessage id="ideas.gettingStartedText" />
-                        </p>
-                        <a href="/projects/editor/?tutorial=getStarted">
-                            <Button className="ideas-button">
-                                <img src="/images/ideas/try-it-icon.svg" />
-                                <FormattedMessage id="ideas.tryIt" />
-                            </Button>
-                        </a>
-                    </div>
-                </FlexRow>
             </div>
         </div>
-        <div className="our-reach" id="reach">
+        <div
+            className="milestones-section"
+            id="milestones"
+        >
+            <div className="inner">
+                <div className="milestones-intro">
+                    <h2>
+                        <FormattedMessage id="annualReport.milestonesTitle" />
+                    </h2>
+                    <p>
+                        <FormattedMessage id="annualReport.milestonesDescription" />
+                    </p>
+                </div>
+                <div className="milestones-boxes">
+                    <div className="milestone-box first">
+                        <h4>
+                            2003
+                            {/* TODO should this be localized? */}
+                        </h4>
+                        <p>
+                            <FormattedMessage id="annualReport.milestones2003Message" />
+                        </p>
+                    </div>
+                    <div className="milestone-box">
+                        <h4>
+                            2004
+                            {/* TODO should this be localized? */}
+                        </h4>
+                        <p>
+                            <FormattedMessage id="annualReport.milestones2004Message" />
+                        </p>
+                        <img src="/images/annual-report/milestones/2004_Clubhouse.jpg" />
+                    </div>
+                    <div className="milestone-box last">
+                        <h4>
+                            2007
+                            {/* TODO should this be localized? */}
+                        </h4>
+                        <p>
+                            <FormattedMessage id="annualReport.milestones2007Message" />
+                        </p>
+                        <img src="/images/annual-report/milestones/2007_EarlyScratch.png" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            className="our-reach"
+            id="reach"
+        >
             <div className="inner">
                 <section className="ttt-section">
                     <div className="ttt-head">
@@ -141,7 +171,10 @@ const AnnualReport = () => (
                 </section>
             </div>
         </div>
-        <div className="history" id="history">
+        <div
+            className="our-work"
+            id="work"
+        >
             <div className="inner">
                 <section className="ttt-section">
                     <div className="ttt-head">
@@ -163,36 +196,17 @@ const AnnualReport = () => (
                 </section>
             </div>
         </div>
-        <div className="our-work" id="work">
+        <div
+            className="financials-section"
+            id="financials"
+        >
             <div className="inner">
-                <section className="ttt-section">
-                    <div className="ttt-head">
-                        <h2>
-                            <FormattedMessage id="ideas.activityGuidesTitle" />
-                        </h2>
-                        <p>
-                            <FormattedHTMLMessage id="ideas.activityGuidesText" />
-                        </p>
-                    </div>
-                    <a
-                        className="wide-button"
-                        href="/projects/editor/?tutorial=all"
-                    >
-                        <Button className="ideas-button wide-button">
-                            <FormattedMessage id="ideas.seeAllTutorials" />
-                        </Button>
-                    </a>
-                </section>
-            </div>
-        </div>
-        <div className="financials-section" id="financials">
-            <div className="inner">
-                <h1 className="financials-h1">
+                <h2 className="financials-h2">
                     <FormattedMessage id="annualReport.financialsTitle" />
-                </h1>
-                <h2>
-                    <FormattedMessage id="annualReport.financialsRevenue" />
                 </h2>
+                <h3>
+                    <FormattedMessage id="annualReport.financialsRevenue" />
+                </h3>
                 <hr />
                 <div className="financials-content">
                     <div className="financials-table">
@@ -243,12 +257,15 @@ const AnnualReport = () => (
                             </div>
                         </div>
                     </div>
-                    <img  className="graph" src="/images/annual-report/revenue-graph.svg" />
+                    <img
+                        className="graph"
+                        src="/images/annual-report/revenue-graph.svg"
+                    />
                 </div>
-                <h2>
+                <h3>
                     <FormattedMessage id="annualReport.financialsExpenses" />
-                </h2>
-                <hr/>
+                </h3>
+                <hr />
                 <div className="financials-content">
                     <div className="financials-table">
                         <div className="circle-and-words">
@@ -298,7 +315,10 @@ const AnnualReport = () => (
                             </div>
                         </div>
                     </div>
-                    <img  className="graph" src="/images/annual-report/expenses-graph.svg" />
+                    <img
+                        className="graph"
+                        src="/images/annual-report/expenses-graph.svg"
+                    />
                 </div>
                 <div className="financials-button-wrapper">
                     <a href="https://secure.donationpay.org/scratchfoundation/">
@@ -313,12 +333,15 @@ const AnnualReport = () => (
                 </div>
             </div>
         </div>
-        <div className="supporters-section" id="supporters">
+        <div
+            className="supporters-section"
+            id="supporters"
+        >
             <div className="inner">
                 <div className="supporters-heading">
-                    <h1>
+                    <h2>
                         <FormattedMessage id="annualReport.supportersTitle" />
-                    </h1>
+                    </h2>
                     <p>
                         <FormattedHTMLMessage id="annualReport.supportersIntro" />
                     </p>
@@ -328,9 +351,9 @@ const AnnualReport = () => (
                         <FormattedHTMLMessage id="annualReport.supportersSpotlightTitle" />
                     </div>
                     <div className="sfe-info">
-                        <h2>
+                        <h3>
                             <FormattedMessage id="annualReport.supportersSFETitle" />
-                        </h2>
+                        </h3>
                         <p>
                             <FormattedMessage id="annualReport.supportersSFEDescription" />
                         </p>
@@ -342,19 +365,23 @@ const AnnualReport = () => (
                             <div>Co-Founder and<br /> Co-Chairman<br /> Two Sigma</div>
                         </div>
                         <div className="ds-quote">
+                            {/* eslint-disable-next-line */}
                             <Comment comment="Making sure that Scratch remains free and accessible for kids everywhere is one of the most impactful ways we can help young learners engage and thrive in an increasingly digital world. Supporting Scratch is more important today than ever before." />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div className="donate-section" id="donate">
+        <div
+            className="donate-section"
+            id="donate"
+        >
             <FlexRow className="donate-info">
                 <img src="/images/annual-report/donate-illustration.svg" />
                 <div className="donate-content">
-                    <h1 className="donate-h1">
+                    <h2 className="donate-h2">
                         <FormattedMessage id="annualReport.donateTitle" />
-                    </h1>
+                    </h2>
                     <p className="donate-p">
                         <FormattedMessage id="annualReport.donateMessage" />
                     </p>
