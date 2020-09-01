@@ -68,7 +68,7 @@ class SeleniumHelper {
         let driverConfig = {
             browserName: 'chrome',
             platform: 'macOS 10.14',
-            version: '76.0'
+            version: '84.0'
         };
         var driver = new webdriver.Builder()
             .withCapabilities({
