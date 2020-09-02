@@ -90,7 +90,7 @@
     "formsy-react-components": "1.0.0",
     "git-bundle-sha": "0.0.2",
     "glob": "5.0.15",
-    "google-libphonenumber": "3.2.6",
+    "google-libphonenumber": "3.2.13",
     "html-webpack-plugin": "2.22.0",
     "iso-3166-2": "0.4.0",
     "jest": "^23.6.0",
