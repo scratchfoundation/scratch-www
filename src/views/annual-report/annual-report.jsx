@@ -1,7 +1,7 @@
 // const bindAll = require('lodash.bindall');
 const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
-// const injectIntl = require('react-intl').injectIntl;
+const injectIntl = require('react-intl').injectIntl;
 // const intlShape = require('react-intl').intlShape;
 const React = require('react');
 
@@ -346,11 +346,11 @@ const AnnualReport = () => (
                         <FormattedHTMLMessage id="annualReport.supportersIntro" />
                     </p>
                 </div>
-                <div className="donor-spotlight">
-                    <div className="subsection-tag">
-                        <FormattedHTMLMessage id="annualReport.supportersSpotlightTitle" />
-                    </div>
-                    <div className="sfe-info">
+                <div className="subsection-tag">
+                    <FormattedHTMLMessage id="annualReport.supportersSpotlightTitle" />
+                </div>
+                <div className="supporters-subsection">
+                    <div className="supporters-blurb">
                         <h3>
                             <FormattedMessage id="annualReport.supportersSFETitle" />
                         </h3>
@@ -361,12 +361,158 @@ const AnnualReport = () => (
                     <div className="david-siegel">
                         <div className="ds-info">
                             <img src="/images/annual-report/david-siegel-photo.svg" />
-                            <h3>David Siegel</h3>
-                            <div>Co-Founder and<br /> Co-Chairman<br /> Two Sigma</div>
+                            <div>
+                                <h3>David Siegel</h3>
+                                <div>Co-Founder and<br /> Co-Chairman<br /> Two Sigma</div>
+                            </div>
                         </div>
                         <div className="ds-quote">
                             {/* eslint-disable-next-line */}
                             <Comment comment="Making sure that Scratch remains free and accessible for kids everywhere is one of the most impactful ways we can help young learners engage and thrive in an increasingly digital world. Supporting Scratch is more important today than ever before." />
+                        </div>
+                    </div>
+                </div>
+                <div className="supporters-subsection">
+                    <div className="supporters-blurb">
+                        <h4>
+                            <FormattedHTMLMessage id="annualReport.supportersTitle" />
+                        </h4>
+                        <p>
+                            <FormattedHTMLMessage id="annualReport.supportersAllDescription" />
+                        </p>
+                    </div>
+                    <div className="supporters-level">
+                        <h5>Founding Partners — $10,00,000+</h5>
+                        <hr />
+                        <p>We are especially grateful to our Founding Partners who supported us from the early days of Scratch, each providing at least $10,000,000 of cumulative support, in various forms.</p>
+                        <div className="supporters-list">
+                            <ul className="supporters-list-side">
+                                <li>National Science Foundation</li>
+                                <li>Massachusetts Institute of Technology</li>
+                            </ul>
+                            <ul className="supporters-list-side">
+                                <li>Siegel Family Endowment</li>
+                                <li>LEGO Foundation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="supporters-level">
+                        <h5>Innovation Circle — $5,00,000+</h5>
+                        <hr />
+                        <div className="supporters-list">
+                            <ul className="supporters-list-side">
+                                <li>Google</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="supporters-level">
+                        <h5>Creativity Circle — $1,00,000++</h5>
+                        <hr />
+                        <div className="supporters-list">
+                            <ul className="supporters-list-side">
+                                <li>Little Bluebridge Foundation</li>
+                                <li>Smilegate Foundation</li>
+                                <li>TAL Education</li>
+                            </ul>
+                            <ul className="supporters-list-side">
+                                <li>Turner Broadcasting System / Cartoon Network (?)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="supporters-level">
+                        <h5>Imagination Circle — $200,000+</h5>
+                        <hr />
+                        <div className="supporters-list">
+                            <ul className="supporters-list-side">
+                                <li>BrainPOP</li>
+                                <li>Cindy and Evan Goldberg</li>
+                                <li>Kahn-Rowe Family Fund</li>
+                                <li>LEGO Education</li>
+                            </ul>
+                            <ul className="supporters-list-side">
+                                <li>Mark Dalton</li>
+                                <li>Morgan Stanley</li>
+                                <li>Paul T. Jones</li>
+                                <li>Two Sigma</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="supporters-level">
+                        <h5>Inspiration Circle — $50,000+</h5>
+                        <hr />
+                        <div className="supporters-list">
+                            <ul className="supporters-list-side">
+                                <li>BrainPOP</li>
+                                <li>Cindy and Evan Goldberg</li>
+                                <li>Kahn-Rowe Family Fund</li>
+                                <li>LEGO Education</li>
+                            </ul>
+                            <ul className="supporters-list-side">
+                                <li>Mark Dalton</li>
+                                <li>Morgan Stanley</li>
+                                <li>Paul T. Jones</li>
+                                <li>Two Sigma</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="supporters-level">
+                        <h5>Collaboration Circle — $20,000+</h5>
+                        <hr />
+                        <div className="supporters-list">
+                            <ul className="supporters-list-side">
+                                <li>BrainPOP</li>
+                                <li>Cindy and Evan Goldberg</li>
+                                <li>Kahn-Rowe Family Fund</li>
+                                <li>LEGO Education</li>
+                            </ul>
+                            <ul className="supporters-list-side">
+                                <li>Mark Dalton</li>
+                                <li>Morgan Stanley</li>
+                                <li>Paul T. Jones</li>
+                                <li>Two Sigma</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="supporters-level">
+                        <h5>Tinkering Circle — $5,000+</h5>
+                        <hr />
+                        <div className="supporters-list">
+                            <ul className="supporters-list-side">
+                                <li>BrainPOP</li>
+                                <li>Cindy and Evan Goldberg</li>
+                                <li>Kahn-Rowe Family Fund</li>
+                                <li>LEGO Education</li>
+                            </ul>
+                            <ul className="supporters-list-side">
+                                <li>Mark Dalton</li>
+                                <li>Morgan Stanley</li>
+                                <li>Paul T. Jones</li>
+                                <li>Two Sigma</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div className="supporters-subsection">
+                    <div className="supporters-level">
+                        <h3>
+                            <FormattedHTMLMessage id="annualReport.supportersInKindTitle" />
+                        </h3>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae commodo orci, quis ultricies nisi
+                        </p>
+                        <div className="supporters-list">
+                            <ul className="supporters-list-side">
+                                <li>Amazon Web Services</li>
+                                <li>Cindy and Evan Goldberg</li>
+                                <li>Kahn-Rowe Family Fund</li>
+                                <li>LEGO Education</li>
+                            </ul>
+                            <ul className="supporters-list-side">
+                                <li>Mark Dalton</li>
+                                <li>Morgan Stanley</li>
+                                <li>Paul T. Jones</li>
+                                <li>Two Sigma</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -397,4 +543,5 @@ const AnnualReport = () => (
 );
 
 render(
-    <Page><AnnualReport /></Page>, document.getElementById('app'));
+    <Page><AnnualReport /></Page>, document.getElementById('app')
+);
