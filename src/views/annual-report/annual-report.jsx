@@ -20,24 +20,88 @@ require('./annual-report.scss');
 class AnnualReport extends React.Component {
     constructor () {
         super();
+        this.messageRef = null;
         this.missionRef = null;
+        this.reachRef = null;
+        this.milestonesRef = null;
+        this.initiativesRef = null;
+        this.financialsRef = null;
+        this.supportersRef = null;
+        this.leadershipRef = null;
+        this.donateRef = null;
+
+        this.sectionRefs = {
+            message: () => this.messageRef,
+            mission: () => this.missionRef,
+            reach: () => this.reachRef,
+            milestones: () => this.milestonesRef,
+            initiatives: () => this.initiativesRef,
+            financials: () => this.financialsRef,
+            supporters: () => this.supportersRef,
+            leadership: () => this.leadershipRef,
+            donate: () => this.donateRef
+        };
 
         bindAll(this, [
             'scrollTo',
-            'setMissionRef'
+            'setMessageRef',
+            'setMissionRef',
+            'setReachRef',
+            'setMilestonesRef',
+            'setInitiativesRef',
+            'setFinancialsRef',
+            'setSupportersRef',
+            'setLeadershipRef',
+            'setDonateRef',
+            'handleSubNavItemClick'
         ]);
     }
 
-    scrollTo (element) {
-        console.log(element);
-        element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+    // A generic handler for a subnav item that takes the name of the
+    // section to scroll to (all lowercase)
+    handleSubNavItemClick (sectionName) {
+        // Return a button click handler that scrolls to the
+        // correct section
+        return () => {
+            this.scrollTo(this.sectionRefs[sectionName]());
+        };
     }
 
+    scrollTo (element) {
+        if (element) {
+            element.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+
+    setMessageRef (ref) {
+        this.messageRef = ref;
+    }
     setMissionRef (ref) {
         this.missionRef = ref;
+    }
+    setReachRef (ref) {
+        this.reachRef = ref;
+    }
+    setMilestonesRef (ref) {
+        this.milestonesRef = ref;
+    }
+    setInitiativesRef (ref) {
+        this.initiativesRef = ref;
+    }
+    setFinancialsRef (ref) {
+        this.financialsRef = ref;
+    }
+    setSupportersRef (ref) {
+        this.supportersRef = ref;
+    }
+    setLeadershipRef (ref) {
+        this.leadershipRef = ref;
+    }
+    setDonateRef (ref) {
+        this.donateRef = ref;
     }
 
     render () {
@@ -47,55 +111,55 @@ class AnnualReport extends React.Component {
                     <FlexRow className="inner">
                         <a
                             className="link"
-                            href="/annual-report#message"
+                            onClick={this.handleSubNavItemClick('message')}
                         >
                             <FormattedMessage id="annualReport.subnavMessage" />
                         </a>
                         <a
                             className="link"
-                            onClick={() => this.scrollTo(this.missionRef.current)}
+                            onClick={this.handleSubNavItemClick('mission')}
                         >
                             <FormattedMessage id="annualReport.subnavMission" />
                         </a>
                         <a
                             className="link"
-                            href="/annual-report#reach"
+                            onClick={this.handleSubNavItemClick('reach')}
                         >
                             <FormattedMessage id="annualReport.subnavReach" />
                         </a>
                         <a
                             className="link"
-                            href="/annual-report#milestones"
+                            onClick={this.handleSubNavItemClick('milestones')}
                         >
                             <FormattedMessage id="annualReport.subnavMilestones" />
                         </a>
                         <a
                             className="link"
-                            href="/annual-report#work"
+                            onClick={this.handleSubNavItemClick('initiatives')}
                         >
-                            <FormattedMessage id="annualReport.subnavWork" />
+                            <FormattedMessage id="annualReport.subnavInitiatives" />
                         </a>
                         <a
                             className="link"
-                            href="/annual-report#financials"
+                            onClick={this.handleSubNavItemClick('financials')}
                         >
                             <FormattedMessage id="annualReport.subnavFinancials" />
                         </a>
                         <a
                             className="link"
-                            href="/annual-report#supporters"
+                            onClick={this.handleSubNavItemClick('supporters')}
                         >
                             <FormattedMessage id="annualReport.subnavSupporters" />
                         </a>
                         <a
                             className="link"
-                            href="/annual-report#leadership"
+                            onClick={this.handleSubNavItemClick('leadership')}
                         >
                             <FormattedMessage id="annualReport.subnavLeadership" />
                         </a>
                         <a
                             className="link"
-                            href="/annual-report#donate"
+                            onClick={this.handleSubNavItemClick('donate')}
                         >
                             <FormattedMessage id="annualReport.subnavDonate" />
                         </a>
@@ -118,7 +182,7 @@ class AnnualReport extends React.Component {
                     </TitleBanner>
                 </div>
                 <div
-                    className="mission"
+                    className="mission section"
                     id="mission"
                     ref={this.setMissionRef}
                 >
@@ -126,8 +190,9 @@ class AnnualReport extends React.Component {
                     </div>
                 </div>
                 <div
-                    className="milestones-section"
+                    className="milestones-section section"
                     id="milestones"
+                    ref={this.setMilestonesRef}
                 >
                     <div className="inner">
                         <div className="milestones-intro">
@@ -172,8 +237,9 @@ class AnnualReport extends React.Component {
                     </div>
                 </div>
                 <div
-                    className="our-reach"
+                    className="our-reach section"
                     id="reach"
+                    ref={this.setReachRef}
                 >
                     <div className="inner">
                         <section className="ttt-section">
@@ -197,8 +263,9 @@ class AnnualReport extends React.Component {
                     </div>
                 </div>
                 <div
-                    className="our-work"
-                    id="work"
+                    className="initiatives section"
+                    id="initiatives"
+                    ref={this.setInitiativesRef}
                 >
                     <div className="inner">
                         <section className="ttt-section">
@@ -222,8 +289,9 @@ class AnnualReport extends React.Component {
                     </div>
                 </div>
                 <div
-                    className="financials-section"
+                    className="financials-section section"
                     id="financials"
+                    ref={this.setFinancialsRef}
                 >
                     <div className="inner">
                         <h2 className="financials-h2">
@@ -359,8 +427,9 @@ class AnnualReport extends React.Component {
                     </div>
                 </div>
                 <div
-                    className="supporters-section"
+                    className="supporters-section section"
                     id="supporters"
+                    ref={this.setSupportersRef}
                 >
                     <div className="inner">
                         <div className="supporters-heading">
@@ -544,8 +613,9 @@ class AnnualReport extends React.Component {
                     </div>
                 </div>
                 <div
-                    className="donate-section"
+                    className="donate-section section"
                     id="donate"
+                    ref={this.setDonateRef}
                 >
                     <FlexRow className="donate-info">
                         <img src="/images/annual-report/donate-illustration.svg" />

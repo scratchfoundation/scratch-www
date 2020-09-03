@@ -38,6 +38,10 @@ h5 {
     }
 }
 
+.section {
+    scroll-margin-top: 108px; // This is the height of the sub nav + height of the site nav
+}
+
 .banner-wrapper {
     background: $ui-yellow bottom right url("/images/ideas/right-juice.png") no-repeat;
 }
@@ -471,7 +475,7 @@ h5 {
         }
         .ds-info {
             flex-direction: row;
-            text-align: left;            
+            text-align: left;
         }
 
         .david-siegel {
@@ -483,7 +487,7 @@ h5 {
     @media #{$big} {
         .ds-info {
             flex-direction: column;
-            text-align: center;  
+            text-align: center;
         }
     }
 
