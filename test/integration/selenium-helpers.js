@@ -8,6 +8,7 @@ const ci = process.env.CI || false;
 const buildID = process.env.TRAVIS_BUILD_NUMBER;
 const {SAUCE_USERNAME, SAUCE_ACCESS_KEY} = process.env;
 const {By, Key, until} = webdriver;
+const pkg = require('../../package.json');
 
 const DEFAULT_TIMEOUT_MILLISECONDS = 20 * 1000;
 
@@ -62,13 +63,21 @@ class SeleniumHelper {
         return driver;
     }
 
+    getChromeVersionNumber () {
+        let chromedriverVersion = pkg.devDependencies.chromedriver;
+        let versionFinder = /\d+\.\d+/;
+        let versionArray = versionFinder.exec(chromedriverVersion);
+        return versionArray[0];
+    }
+
     getSauceDriver (username, accessKey, name) {
+        let chromeVersion = this.getChromeVersionNumber();
         // Driver configs can be generated with the Sauce Platform Configurator
         // https://wiki.saucelabs.com/display/DOCS/Platform+Configurator
         let driverConfig = {
             browserName: 'chrome',
             platform: 'macOS 10.14',
-            version: '84.0'
+            version: chromeVersion
         };
         var driver = new webdriver.Builder()
             .withCapabilities({
