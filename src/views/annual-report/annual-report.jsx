@@ -1,4 +1,5 @@
 const bindAll = require('lodash.bindall');
+const classNames = require('classnames');
 const FormattedHTMLMessage = require('react-intl').FormattedHTMLMessage;
 const FormattedMessage = require('react-intl').FormattedMessage;
 // const injectIntl = require('react-intl').injectIntl;
@@ -15,55 +16,78 @@ const Comment = require('../../components/comment/comment.jsx');
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
 
+const MediaQuery = require('react-responsive').default;
+const frameless = require('../../lib/frameless');
+
 require('./annual-report.scss');
+
+const SECTIONS = {
+    message: 'message',
+    mission: 'mission',
+    reach: 'reach',
+    milestones: 'milestones',
+    initiatives: 'initiatives',
+    financials: 'financials',
+    supporters: 'supporters',
+    leadership: 'leadership',
+    donate: 'donate'
+};
+
+const SECTION_NAMES = {
+    message: <FormattedMessage id="annualReport.subnavMessage" />,
+    mission: <FormattedMessage id="annualReport.subnavMission" />,
+    reach: <FormattedMessage id="annualReport.subnavReach" />,
+    milestones: <FormattedMessage id="annualReport.subnavMilestones" />,
+    initiatives: <FormattedMessage id="annualReport.subnavInitiatives" />,
+    financials: <FormattedMessage id="annualReport.subnavFinancials" />,
+    supporters: <FormattedMessage id="annualReport.subnavSupporters" />,
+    leadership: <FormattedMessage id="annualReport.subnavLeadership" />,
+    donate: <FormattedMessage id="annualReport.subnavDonate" />
+};
 
 class AnnualReport extends React.Component {
     constructor () {
         super();
-        this.messageRef = null;
-        this.missionRef = null;
-        this.reachRef = null;
-        this.milestonesRef = null;
-        this.initiativesRef = null;
-        this.financialsRef = null;
-        this.supportersRef = null;
-        this.leadershipRef = null;
-        this.donateRef = null;
 
-        this.sectionRefs = {
-            message: () => this.messageRef,
-            mission: () => this.missionRef,
-            reach: () => this.reachRef,
-            milestones: () => this.milestonesRef,
-            initiatives: () => this.initiativesRef,
-            financials: () => this.financialsRef,
-            supporters: () => this.supportersRef,
-            leadership: () => this.leadershipRef,
-            donate: () => this.donateRef
+        // Storage for each of the section refs when we need to refer
+        // to them in the scroll handling code
+        // These will be stored with a short lowercase key representing
+        // the specific section (e.g. 'mission')
+        this.sectionRefs = {};
+
+        this.subnavRef = null;
+
+        this.state = {
+            currentlyVisible: '',
+            dropdownVisible: false
         };
 
         bindAll(this, [
             'scrollTo',
-            'setMessageRef',
-            'setMissionRef',
-            'setReachRef',
-            'setMilestonesRef',
-            'setInitiativesRef',
-            'setFinancialsRef',
-            'setSupportersRef',
-            'setLeadershipRef',
-            'setDonateRef',
-            'handleSubNavItemClick'
+            'setRef',
+            'setSubnavRef',
+            'handleSubnavItemClick',
+            'getDimensionsOfSection',
+            'handleScroll',
+            'handleDropDownClick'
         ]);
+    }
+
+    componentDidMount () {
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentWillUnMount () {
+        window.removeEventListener('scroll', this.handleScroll);
     }
 
     // A generic handler for a subnav item that takes the name of the
     // section to scroll to (all lowercase)
-    handleSubNavItemClick (sectionName) {
+    handleSubnavItemClick (sectionName) {
         // Return a button click handler that scrolls to the
         // correct section
         return () => {
-            this.scrollTo(this.sectionRefs[sectionName]());
+            this.scrollTo(this.sectionRefs[sectionName]);
         };
     }
 
@@ -76,94 +100,160 @@ class AnnualReport extends React.Component {
         }
     }
 
-    setMessageRef (ref) {
-        this.messageRef = ref;
+    setRef (sectionName) {
+        return ref => (this.sectionRefs[sectionName] = ref);
     }
-    setMissionRef (ref) {
-        this.missionRef = ref;
+
+    setSubnavRef (ref) {
+        this.subnavRef = ref;
     }
-    setReachRef (ref) {
-        this.reachRef = ref;
+
+    getDimensionsOfSection (sectionRef) {
+        const {height} = sectionRef.getBoundingClientRect();
+        const offsetTop = sectionRef.offsetTop;
+        const offsetBottom = offsetTop + height;
+
+        return {
+            height,
+            offsetTop,
+            offsetBottom
+        };
     }
-    setMilestonesRef (ref) {
-        this.milestonesRef = ref;
+
+    handleScroll () {
+        const subnavHeight = this.getDimensionsOfSection(this.subnavRef).height;
+        // The additional 50 is to account for the main site nav height
+        const currentScrollPosition = window.scrollY + subnavHeight + 50;
+
+        // Find which section is currently visible based on our scroll position
+        for (const key in this.sectionRefs) {
+            if (!this.sectionRefs.hasOwnProperty(key)) continue;
+            const currentRef = this.sectionRefs[key];
+            const {offsetBottom, offsetTop} = this.getDimensionsOfSection(currentRef);
+            if (currentScrollPosition > offsetTop && currentScrollPosition < offsetBottom) {
+                if (this.state.currentlyVisible !== key) {
+                    this.setState({currentlyVisible: key});
+                    return;
+                }
+            }
+        }
     }
-    setInitiativesRef (ref) {
-        this.initiativesRef = ref;
-    }
-    setFinancialsRef (ref) {
-        this.financialsRef = ref;
-    }
-    setSupportersRef (ref) {
-        this.supportersRef = ref;
-    }
-    setLeadershipRef (ref) {
-        this.leadershipRef = ref;
-    }
-    setDonateRef (ref) {
-        this.donateRef = ref;
+
+    handleDropDownClick () {
+        this.setState({dropdownVisible: !this.state.dropdownVisible});
     }
 
     render () {
+        const subnav = (<FlexRow className="inner">
+            <a
+                className={classNames(
+                    {selectedItem: this.state.currentlyVisible === SECTIONS.message}
+                )}
+                onClick={this.handleSubnavItemClick(SECTIONS.message)}
+            >
+                {SECTION_NAMES.message}
+            </a>
+            <a
+                className={classNames(
+                    {selectedItem: this.state.currentlyVisible === SECTIONS.mission}
+                )}
+                onClick={this.handleSubnavItemClick(SECTIONS.mission)}
+            >
+                <FormattedMessage id="annualReport.subnavMission" />
+            </a>
+            <a
+                className={classNames(
+                    {selectedItem: this.state.currentlyVisible === SECTIONS.reach}
+                )}
+                onClick={this.handleSubnavItemClick(SECTIONS.reach)}
+            >
+                <FormattedMessage id="annualReport.subnavReach" />
+            </a>
+            <a
+                className={classNames(
+                    {selectedItem: this.state.currentlyVisible === SECTIONS.milestones}
+                )}
+                onClick={this.handleSubnavItemClick(SECTIONS.milestones)}
+            >
+                <FormattedMessage id="annualReport.subnavMilestones" />
+            </a>
+            <a
+                className={classNames(
+                    {selectedItem: this.state.currentlyVisible === SECTIONS.initiatives}
+                )}
+                onClick={this.handleSubnavItemClick(SECTIONS.initiatives)}
+            >
+                <FormattedMessage id="annualReport.subnavInitiatives" />
+            </a>
+            <a
+                className={classNames(
+                    {selectedItem: this.state.currentlyVisible === SECTIONS.financials}
+                )}
+                onClick={this.handleSubnavItemClick(SECTIONS.financials)}
+            >
+                <FormattedMessage id="annualReport.subnavFinancials" />
+            </a>
+            <a
+                className={classNames(
+                    {selectedItem: this.state.currentlyVisible === SECTIONS.supporters}
+                )}
+                onClick={this.handleSubnavItemClick(SECTIONS.supporters)}
+            >
+                <FormattedMessage id="annualReport.subnavSupporters" />
+            </a>
+            <a
+                className={classNames(
+                    {selectedItem: this.state.currentlyVisible === SECTIONS.leadership}
+                )}
+                onClick={this.handleSubnavItemClick(SECTIONS.leadership)}
+            >
+                <FormattedMessage id="annualReport.subnavLeadership" />
+            </a>
+            <a
+                className={classNames(
+                    {selectedItem: this.state.currentlyVisible === SECTIONS.donate}
+                )}
+                onClick={this.handleSubnavItemClick(SECTIONS.donate)}
+            >
+                <FormattedMessage id="annualReport.subnavDonate" />
+            </a>
+        </FlexRow>);
+
+
         return (
             <div>
-                <div className="subnavigation">
-                    <FlexRow className="inner">
-                        <a
-                            className="link"
-                            onClick={this.handleSubNavItemClick('message')}
-                        >
-                            <FormattedMessage id="annualReport.subnavMessage" />
-                        </a>
-                        <a
-                            className="link"
-                            onClick={this.handleSubNavItemClick('mission')}
-                        >
-                            <FormattedMessage id="annualReport.subnavMission" />
-                        </a>
-                        <a
-                            className="link"
-                            onClick={this.handleSubNavItemClick('reach')}
-                        >
-                            <FormattedMessage id="annualReport.subnavReach" />
-                        </a>
-                        <a
-                            className="link"
-                            onClick={this.handleSubNavItemClick('milestones')}
-                        >
-                            <FormattedMessage id="annualReport.subnavMilestones" />
-                        </a>
-                        <a
-                            className="link"
-                            onClick={this.handleSubNavItemClick('initiatives')}
-                        >
-                            <FormattedMessage id="annualReport.subnavInitiatives" />
-                        </a>
-                        <a
-                            className="link"
-                            onClick={this.handleSubNavItemClick('financials')}
-                        >
-                            <FormattedMessage id="annualReport.subnavFinancials" />
-                        </a>
-                        <a
-                            className="link"
-                            onClick={this.handleSubNavItemClick('supporters')}
-                        >
-                            <FormattedMessage id="annualReport.subnavSupporters" />
-                        </a>
-                        <a
-                            className="link"
-                            onClick={this.handleSubNavItemClick('leadership')}
-                        >
-                            <FormattedMessage id="annualReport.subnavLeadership" />
-                        </a>
-                        <a
-                            className="link"
-                            onClick={this.handleSubNavItemClick('donate')}
-                        >
-                            <FormattedMessage id="annualReport.subnavDonate" />
-                        </a>
-                    </FlexRow>
+                <div
+                    className="subnavigation"
+                    ref={this.setSubnavRef}
+                >
+                    {/* Top Bar */}
+                    <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
+                        <div className="sectionIndicator inner" >
+                            <p>
+                                {SECTION_NAMES[this.state.currentlyVisible]}
+                            </p>
+                            <Button
+                                className="dropdown-button"
+                                onClick={this.handleDropDownClick}
+                            >
+                                <img
+                                    className={classNames({rotated: this.state.subNavVisible})}
+                                    src="/images/annual-report/dropdown-arrow.svg"
+                                />
+                            </Button>
+                        </div>
+                        {this.state.dropdownVisible ?
+                            <div>
+                                <hr />
+                                {subnav}
+                            </div> :
+                            null
+                        }
+                    </MediaQuery>
+                    {/* Bottom Bar */}
+                    <MediaQuery minWidth={frameless.tabletPortrait}>
+                        {subnav}
+                    </MediaQuery>
                 </div>
                 <div className="banner-wrapper">
                     <TitleBanner className="masthead masthead">
@@ -184,7 +274,7 @@ class AnnualReport extends React.Component {
                 <div
                     className="mission section"
                     id="mission"
-                    ref={this.setMissionRef}
+                    ref={this.setRef(SECTIONS.mission)}
                 >
                     <div className="inner">
                     </div>
@@ -192,7 +282,7 @@ class AnnualReport extends React.Component {
                 <div
                     className="milestones-section section"
                     id="milestones"
-                    ref={this.setMilestonesRef}
+                    ref={this.setRef(SECTIONS.milestones)}
                 >
                     <div className="inner">
                         <div className="milestones-intro">
@@ -239,7 +329,7 @@ class AnnualReport extends React.Component {
                 <div
                     className="our-reach section"
                     id="reach"
-                    ref={this.setReachRef}
+                    ref={this.setRef(SECTIONS.reach)}
                 >
                     <div className="inner">
                         <section className="ttt-section">
@@ -265,7 +355,7 @@ class AnnualReport extends React.Component {
                 <div
                     className="initiatives section"
                     id="initiatives"
-                    ref={this.setInitiativesRef}
+                    ref={this.setRef(SECTIONS.initiatives)}
                 >
                     <div className="inner">
                         <section className="ttt-section">
@@ -291,7 +381,7 @@ class AnnualReport extends React.Component {
                 <div
                     className="financials-section section"
                     id="financials"
-                    ref={this.setFinancialsRef}
+                    ref={this.setRef(SECTIONS.financials)}
                 >
                     <div className="inner">
                         <h2 className="financials-h2">
@@ -429,7 +519,7 @@ class AnnualReport extends React.Component {
                 <div
                     className="supporters-section section"
                     id="supporters"
-                    ref={this.setSupportersRef}
+                    ref={this.setRef(SECTIONS.supporters)}
                 >
                     <div className="inner">
                         <div className="supporters-heading">
@@ -615,7 +705,7 @@ class AnnualReport extends React.Component {
                 <div
                     className="donate-section section"
                     id="donate"
-                    ref={this.setDonateRef}
+                    ref={this.setRef(SECTIONS.donate)}
                 >
                     <FlexRow className="donate-info">
                         <img src="/images/annual-report/donate-illustration.svg" />

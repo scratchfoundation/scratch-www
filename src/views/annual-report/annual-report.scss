@@ -39,7 +39,8 @@ h5 {
 }
 
 .section {
-    scroll-margin-top: 108px; // This is the height of the sub nav + height of the site nav
+    // This is the height of the sub nav + height of the site nav - a few pixels...
+    scroll-margin-top: 104px;
 }
 
 .banner-wrapper {
@@ -715,16 +716,18 @@ img.tips-icon {
 }
 
 .subnavigation {
-    display: flex;
     position: sticky;
     top: 50px;
     z-index: 9;
     box-shadow: 0 0 3px $box-shadow-gray;
     background-color: #4280D7;
     padding: 0;
-    justify-content: flex-start;
     width: 100%;
     height: 58px;
+
+    .flex-row {
+      height: 100%;
+    }
 
     a {
         text-decoration: none;
@@ -732,15 +735,44 @@ img.tips-icon {
         color: $type-white;
         font-size: .85rem;
 
-        &:hover {
-            text-decoration: underline;
+        &.selectedItem, &:hover {
+            border-bottom: 1px solid $ui-white;
+        }
+    }
+
+    .sectionIndicator {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        height: 50px;
+
+        p {
+            color: $ui-white;
+            font-weight: bold;
+        }
+
+        .dropdown-button {
+            background: none;
+            border: 0px;
+            padding: 0px;
+            margin: 0px;
+
+            .rotated {
+                transform: rotate(180deg);
+            }
+        }
+
+        img {
+            margin: 0;
+            padding: 0;
         }
     }
 
     @media #{$medium-and-smaller} {
         height: auto;
 
-        > .flex-row {
+        .flex-row {
             flex-direction: row;
             -webkit-flex-direction: row;
 
