@@ -214,7 +214,7 @@ h5 {
 .financials-section {
     .inner {
         max-width: 780px;
-        padding: 72px 0;
+        padding: 80px 0;
     }
 
     background-color: #575E75;
@@ -226,8 +226,12 @@ h5 {
     }
 
     h2 {
-        margin-bottom: 72px;
+        margin-bottom: 88px;
         line-height: 64px;
+    }
+
+    h2, h3 {
+        text-align: left;
     }
 
     hr {
@@ -314,7 +318,12 @@ h5 {
         }
     }
 
-    @media #{$medium-and-smaller} {
+    @media #{$intermediate-and-smaller} {
+        .inner {
+            max-width: 620px;
+            padding: 72px 0;
+        }
+
         .financials-content {
             flex-direction: column-reverse;
             text-align: center;
@@ -329,17 +338,40 @@ h5 {
         }
     }
 
+    @media #{$medium-and-smaller} {
+        .inner {
+            max-width: 460px;
+            padding: 64px 0;
+        }
+
+        h2 {
+            margin-bottom: 64px;
+        }
+    }
+
     @media #{$small} {
+        .inner {
+            max-width: 300px;
+        }
+
         h2 {
             font-size: 2rem;
         }
 
-        .key-and-money {
-            flex-direction: column;
+        h3 {
+            font-size: 1.75rem;
         }
 
-        .key {
-            padding-bottom: 8px;
+        h2, h3 {
+            text-align: center;
+        }
+
+        .key-and-money {
+            flex-direction: column;
+
+            .key {
+                margin-bottom: 4px; 
+            }
         }
     }
 }
