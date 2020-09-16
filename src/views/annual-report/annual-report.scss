@@ -304,11 +304,13 @@ h5 {
         font-size: 24px;
         font-weight: bold;
 
-        vertical-align: center;
+        vertical-align: middle;
 
         img {
             height: 1.75rem;
             padding-left: 1.2rem;
+            margin-top: -4px;
+            margin-bottom: -4px;
         }
     }
 
@@ -495,13 +497,17 @@ h5 {
 }
 
 .donate-section {
-    height: 500px;
+    // height: 500px;
     background-color: #0EBD8C;
 
     .donate-info {
         justify-content: center;
         align-items: flex-start;
         padding: 84px 0px;
+
+        @media #{$medium-and-smaller} {
+            align-items: center;
+        }
     }
 
     .donate-content {
@@ -725,6 +731,10 @@ img.tips-icon {
     width: 100%;
     height: 58px;
 
+    color: $type-white;
+    font-size: .85rem;
+    font-weight: bold;
+
     .flex-row {
       height: 100%;
     }
@@ -734,10 +744,6 @@ img.tips-icon {
         white-space: nowrap;
         color: $type-white;
         font-size: .85rem;
-
-        &.selectedItem, &:hover {
-            border-bottom: 1px solid $ui-white;
-        }
     }
 
     .sectionIndicator {
@@ -745,7 +751,7 @@ img.tips-icon {
         justify-content: space-between;
         align-items: center;
 
-        height: 50px;
+        height: 58px;
 
         p {
             color: $ui-white;
@@ -769,26 +775,39 @@ img.tips-icon {
         }
     }
 
+    hr {
+        border: 0;
+        height: 0;
+        border-top: 1px solid $box-shadow-light-gray;
+        margin-top: 0;
+    }
+
     @media #{$medium-and-smaller} {
         height: auto;
 
         .flex-row {
             flex-direction: row;
-            -webkit-flex-direction: row;
-
             justify-content: flex-start;
+
+            padding-bottom: 20px;
         }
 
         a {
             padding: 10px;
-            margin: 5px;
-            border: 1px solid $type-white;
-            border-radius: 10px;
+            margin: 5px 10px 5px 0px;
+            border: 1px solid $box-shadow-light-gray;
+            border-radius: 4px;
 
-            &:hover {
-                text-decoration: none;
-                background-color: $box-shadow-gray;
+            &.selectedItem {
+                border-bottom: 1px solid $box-shadow-light-gray;
+                background-color: $box-shadow-light-gray;
             }
+        }
+
+        // Would be good to see if this works in RTL...
+        [dir="rtl"] a {
+            margin-left: 10px;
+            margin-right: 0px;
         }
     }
 

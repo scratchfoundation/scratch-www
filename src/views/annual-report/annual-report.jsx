@@ -58,7 +58,7 @@ class AnnualReport extends React.Component {
         this.subnavRef = null;
 
         this.state = {
-            currentlyVisible: '',
+            currentlyVisible: SECTIONS.message,
             dropdownVisible: false
         };
 
@@ -229,9 +229,7 @@ class AnnualReport extends React.Component {
                     {/* Top Bar */}
                     <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                         <div className="sectionIndicator inner" >
-                            <p>
-                                {SECTION_NAMES[this.state.currentlyVisible]}
-                            </p>
+                            {SECTION_NAMES[this.state.currentlyVisible]}
                             <Button
                                 className="dropdown-button"
                                 onClick={this.handleDropDownClick}
@@ -243,7 +241,8 @@ class AnnualReport extends React.Component {
                             </Button>
                         </div>
                         {this.state.dropdownVisible ?
-                            <div>
+                            /* Bottom Bar */
+                            <div className="inner">
                                 <hr />
                                 {subnav}
                             </div> :
@@ -708,7 +707,9 @@ class AnnualReport extends React.Component {
                     ref={this.setRef(SECTIONS.donate)}
                 >
                     <FlexRow className="donate-info">
-                        <img src="/images/annual-report/donate-illustration.svg" />
+                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                            <img src="/images/annual-report/donate-illustration.svg" />
+                        </MediaQuery>
                         <div className="donate-content">
                             <h2 className="donate-h2">
                                 <FormattedMessage id="annualReport.donateTitle" />
