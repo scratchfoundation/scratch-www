@@ -17,9 +17,9 @@ h2 {
     line-height: 4rem;
 }
 
-// h3 {
-//
-// }
+h3 {
+    font-size: 2rem;
+}
 
 h4 {
     font-size: 1.5rem;
@@ -234,6 +234,7 @@ h5 {
         border: 0;
         height: 0;
         border-top: .5px solid #FFFFFF;
+        opacity: .25;
     }
 
     .financials-content {
@@ -260,9 +261,8 @@ h5 {
 
         p {
             text-align: left;
-            line-height: 1.5rem;
-            font-size: 1rem;
             font-weight: bold;
+            line-height: 1.5rem;
             margin: 0;
         }
 
@@ -298,7 +298,7 @@ h5 {
         color: $ui-blue;
         padding: 20px;
         border-radius: 6px;
-        margin: 0;
+        margin: 48px 0 28px 0;
 
         font-family: "Helvetica Neue";
         font-size: 24px;
@@ -315,14 +315,6 @@ h5 {
     }
 
     @media #{$medium-and-smaller} {
-        h2 {
-            position: relative;
-            margin-bottom: 40px;
-            max-width: 300px;
-            left: 50%;
-            margin-left: -150px;
-        }
-
         .financials-content {
             flex-direction: column-reverse;
             text-align: center;
@@ -338,6 +330,10 @@ h5 {
     }
 
     @media #{$small} {
+        h2 {
+            font-size: 2rem;
+        }
+
         .key-and-money {
             flex-direction: column;
         }
