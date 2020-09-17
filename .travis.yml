@@ -135,6 +135,12 @@ jobs:
         - master
   - stage: smoke
     script: npm run test:integration:remote
+    on:
+      repo: LLK/scratch-www
+      branch:
+      - develop
+      - hotfix/*
+      - release/*
   - stage: update translations
     script: npm run i18n:push
 stages:
