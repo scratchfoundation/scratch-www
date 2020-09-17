@@ -137,16 +137,12 @@ jobs:
     script: npm run test:integration:remote
     on:
       repo: LLK/scratch-www
-      branch:
-      - develop
-      - hotfix/*
-      - release/*
   - stage: update translations
     script: npm run i18n:push
 stages:
 - name: test
   if: type != cron
 - name: smoke
-  if: type NOT IN (cron, pull_request)
+  if: type NOT IN (cron, pull_request) AND branch IN (develop, hotfix/*, release/*)
 - name: update translations
   if: branch == develop AND type == cron
