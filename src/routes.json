@@ -11,7 +11,8 @@
         "pattern": "^/annual-report/?$",
         "routeAlias": "/annual-report/?$",
         "view": "annual-report/annual-report",
-        "title": "annual-report"
+        "title": "annual-report",
+        "viewportWidth": "device-width"
     },
     {
         "name": "camp",

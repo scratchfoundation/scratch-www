@@ -168,6 +168,8 @@ h5 {
     .inner {
         width: 940px;
         display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     h2, h4 p {
@@ -178,14 +180,25 @@ h5 {
         font-size: 1.25rem;
     }
 
-    .milestones-intro {
-        margin-right: 20px;
+    .milestones-wrapper {
+        display: flex;
     }
 
-    .milestones-boxes {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+    .milestones-intro {
+       //margin-right: 88px;
+        display: flex;
+        flex-direction: column;
+
+        img {
+            flex-grow: 2;
+        }
+    }
+
+    .milestone-boxes {
+        margin: 0 44px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 
     .milestone-box {
@@ -213,7 +226,7 @@ h5 {
 
 .financials-section {
     .inner {
-        max-width: 780px;
+        /** max-width: 780px; **/
         padding: 80px 0;
     }
 
@@ -320,7 +333,7 @@ h5 {
 
     @media #{$intermediate-and-smaller} {
         .inner {
-            max-width: 620px;
+            // max-width: 620px;
             padding: 72px 0;
         }
 
@@ -340,7 +353,7 @@ h5 {
 
     @media #{$medium-and-smaller} {
         .inner {
-            max-width: 460px;
+            // max-width: 460px;
             padding: 64px 0;
         }
 
@@ -351,7 +364,8 @@ h5 {
 
     @media #{$small} {
         .inner {
-            max-width: 300px;
+            /** max-width: 300px; **/
+            width: 100%;
         }
 
         h2 {

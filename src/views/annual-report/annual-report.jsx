@@ -284,44 +284,100 @@ class AnnualReport extends React.Component {
                     ref={this.setRef(SECTIONS.milestones)}
                 >
                     <div className="inner">
-                        <div className="milestones-intro">
-                            <h2>
-                                <FormattedMessage id="annualReport.milestonesTitle" />
-                            </h2>
-                            <p>
-                                <FormattedMessage id="annualReport.milestonesDescription" />
-                            </p>
+                        <div className="milestones-wrapper">
+                            <div className="milestone-boxes">
+                                <h2>
+                                    <FormattedMessage id="annualReport.milestonesTitle" />
+                                </h2>
+                                <p>
+                                    <FormattedMessage id="annualReport.milestonesDescription" />
+                                </p>
+                                <MediaQuery minWidth={frameless.tabletPortrait}>
+                                    <img src="/images/annual-report/milestones/timeline1.svg" />
+                                </MediaQuery>
+                            </div>
+                            <div className="milestone-boxes">
+                                <div className="milestone-box first">
+                                    <h4>
+                                        2003
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2003Message" />
+                                    </p>
+                                </div>
+                                <div className="milestone-box">
+                                    <h4>
+                                        2004
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2004Message" />
+                                    </p>
+                                    <img src="/images/annual-report/milestones/2004_Clubhouse.jpg" />
+                                </div>
+                                <div className="milestone-box last">
+                                    <h4>
+                                        2007
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2007Message" />
+                                    </p>
+                                    <img src="/images/annual-report/milestones/2007_EarlyScratch.png" />
+                                </div>
+                            </div>
                         </div>
-                        <div className="milestones-boxes">
-                            <div className="milestone-box first">
-                                <h4>
-                                    2003
-                                    {/* TODO should this be localized? */}
-                                </h4>
-                                <p>
-                                    <FormattedMessage id="annualReport.milestones2003Message" />
-                                </p>
+                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                            <img src="/images/annual-report/milestones/timeline_line_right.svg" />
+                        </MediaQuery>
+                        <div className="milestones-wrapper">
+                            <div className="milestone-boxes">
+                                <div className="milestone-box">
+                                    <h4>
+                                        2008
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2008Message" />
+                                    </p>
+                                    <img src="/images/annual-report/milestones/2008_Conference.jpg" />
+                                </div>
+                                <div className="milestone-box">
+                                    <h4>
+                                        2009
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2009Message1.4" />
+                                    </p>
+                                    <img src="/images/annual-report/milestones/2009_Scratch1_4.png" />
+                                </div>
+                                <div className="milestone-box">
+                                    <h4>
+                                        2009
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2009MessageScratchDay" />
+                                    </p>
+                                </div>
+                                <div className="milestone-box">
+                                    <h4>
+                                        2010
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2010Message" />
+                                    </p>
+                                </div>
                             </div>
-                            <div className="milestone-box">
-                                <h4>
-                                    2004
-                                    {/* TODO should this be localized? */}
-                                </h4>
-                                <p>
-                                    <FormattedMessage id="annualReport.milestones2004Message" />
-                                </p>
-                                <img src="/images/annual-report/milestones/2004_Clubhouse.jpg" />
-                            </div>
-                            <div className="milestone-box last">
-                                <h4>
-                                    2007
-                                    {/* TODO should this be localized? */}
-                                </h4>
-                                <p>
-                                    <FormattedMessage id="annualReport.milestones2007Message" />
-                                </p>
-                                <img src="/images/annual-report/milestones/2007_EarlyScratch.png" />
-                            </div>
+                            <MediaQuery 
+                                className="milestone-boxes"
+                                minWidth={frameless.tabletPortrait}
+                            >
+                                <img src="/images/annual-report/milestones/timeline2.svg" />
+                            </MediaQuery>
                         </div>
                     </div>
                 </div>
