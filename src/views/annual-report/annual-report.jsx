@@ -254,22 +254,6 @@ class AnnualReport extends React.Component {
                         {subnav}
                     </MediaQuery>
                 </div>
-                <div className="banner-wrapper">
-                    <TitleBanner className="masthead masthead">
-                        <div className="title-banner-p">
-                            <img src="/images/ideas/masthead-illustration.svg" />
-                            <h1 className="title-banner-h1">
-                                <FormattedMessage id="ideas.headerMessage" />
-                            </h1>
-                            <a href="/projects/editor/?tutorial=all">
-                                <Button className="ideas-button">
-                                    <img src="/images/ideas/bulb-icon.svg" />
-                                    <FormattedMessage id="ideas.headerButtonMessage" />
-                                </Button>
-                            </a>
-                        </div>
-                    </TitleBanner>
-                </div>
                 <div
                     className="mission section"
                     id="mission"
@@ -285,18 +269,21 @@ class AnnualReport extends React.Component {
                 >
                     <div className="inner">
                         <div className="milestones-wrapper">
-                            <div className="milestone-boxes">
+                            <div className="milestones-column left">
                                 <h2>
                                     <FormattedMessage id="annualReport.milestonesTitle" />
                                 </h2>
-                                <p>
+                                <p className="milestones-description">
                                     <FormattedMessage id="annualReport.milestonesDescription" />
                                 </p>
-                                <MediaQuery minWidth={frameless.tabletPortrait}>
-                                    <img src="/images/annual-report/milestones/timeline1.svg" />
+                                <MediaQuery minWidth={frameless.desktop}>
+                                    <img
+                                        className="single-image"
+                                        src="/images/annual-report/milestones/timeline1.svg"
+                                    />
                                 </MediaQuery>
                             </div>
-                            <div className="milestone-boxes">
+                            <div className="milestones-column right">
                                 <div className="milestone-box first">
                                     <h4>
                                         2003
@@ -328,11 +315,11 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                        <MediaQuery minWidth={frameless.desktop}>
                             <img src="/images/annual-report/milestones/timeline_line_right.svg" />
                         </MediaQuery>
                         <div className="milestones-wrapper">
-                            <div className="milestone-boxes">
+                            <div className="milestones-column left">
                                 <div className="milestone-box">
                                     <h4>
                                         2008
@@ -372,12 +359,110 @@ class AnnualReport extends React.Component {
                                     </p>
                                 </div>
                             </div>
-                            <MediaQuery 
-                                className="milestone-boxes"
-                                minWidth={frameless.tabletPortrait}
-                            >
-                                <img src="/images/annual-report/milestones/timeline2.svg" />
-                            </MediaQuery>
+                            <div className="milestones-column right">
+                                <MediaQuery minWidth={frameless.desktop}>
+                                    <img
+                                        className="single-image"
+                                        src="/images/annual-report/milestones/timeline2.svg"
+                                    />
+                                </MediaQuery>
+                            </div>
+                        </div>
+                        <MediaQuery minWidth={frameless.desktop}>
+                            <img src="/images/annual-report/milestones/timeline_line_left.svg" />
+                        </MediaQuery>
+                        <div className="milestones-wrapper">
+                            <div className="milestones-column left">
+                                <MediaQuery minWidth={frameless.desktop}>
+                                    <img
+                                        className="single-image"
+                                        src="/images/annual-report/milestones/timeline3.svg"
+                                    />
+                                </MediaQuery>
+                            </div>
+                            <div className="milestones-column right">
+                                <div className="milestone-box">
+                                    <h4>
+                                        2013
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2013MessageFoundation" />
+                                    </p>
+                                </div>
+                                <div className="milestone-box">
+                                    <h4>
+                                        2013
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2013MessageScratch2" />
+                                    </p>
+                                    <img src="/images/annual-report/milestones/2013_Scratch2.png" />
+                                </div>
+                                <div className="milestone-box">
+                                    <h4>
+                                        2014
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2014Message" />
+                                    </p>
+                                    <img src="/images/annual-report/milestones/2014_ScratchJr.jpg" />
+                                </div>
+                                <div className="milestone-box">
+                                    <h4>
+                                        2016
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2016Message" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <MediaQuery minWidth={frameless.desktop}>
+                            <img src="/images/annual-report/milestones/timeline_line_right.svg" />
+                        </MediaQuery>
+                        <div className="milestones-wrapper">
+                            <div className="milestones-column left">
+                                <div className="milestone-box">
+                                    <h4>
+                                        2017
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2017Message" />
+                                    </p>
+                                </div>
+                                <div className="milestone-box">
+                                    <h4>
+                                        2019
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2019MessageScratch3" />
+                                    </p>
+                                    <img src="/images/annual-report/milestones/2019_Scratch3.jpg" />
+                                </div>
+                                <div className="milestone-box">
+                                    <h4>
+                                        2019
+                                        {/* TODO should this be localized? */}
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.milestones2019MessageMove" />
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="milestones-column right">
+                                <MediaQuery minWidth={frameless.desktop}>
+                                    <img
+                                        className="single-image"
+                                        src="/images/annual-report/milestones/timeline4.svg"
+                                    />
+                                </MediaQuery>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -859,10 +944,10 @@ class AnnualReport extends React.Component {
                             <img src="/images/annual-report/donate-illustration.svg" />
                         </MediaQuery>
                         <div className="donate-content">
-                            <h2 className="donate-h2">
+                            <h2>
                                 <FormattedMessage id="annualReport.donateTitle" />
                             </h2>
-                            <p className="donate-p">
+                            <p>
                                 <FormattedMessage id="annualReport.donateMessage" />
                             </p>
                             <a href="https://secure.donationpay.org/scratchfoundation/">

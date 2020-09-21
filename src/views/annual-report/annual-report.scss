@@ -19,6 +19,7 @@ h2 {
 
 h3 {
     font-size: 2rem;
+    line-height: 2.5rem;
 }
 
 h4 {
@@ -32,9 +33,22 @@ h5 {
     margin: .5rem 0;
 }
 
+p {
+    font-size: 1rem;
+    line-height: 2rem;
+}
+
 @media #{$small} {
     .inner {
         width: $cols4;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.75rem;
     }
 }
 
@@ -166,7 +180,7 @@ h5 {
     background-color: $ui-blue-10percent;
 
     .inner {
-        width: 940px;
+        max-width: 940px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -182,23 +196,54 @@ h5 {
 
     .milestones-wrapper {
         display: flex;
-    }
 
-    .milestones-intro {
-       //margin-right: 88px;
-        display: flex;
-        flex-direction: column;
-
-        img {
-            flex-grow: 2;
+        .left {
+            margin-left: auto;
         }
+
+        .right {
+            margin-right: auto
+        }
+
+       @media #{$intermediate-and-smaller} {
+           flex-direction: column;
+
+           .left, .right {
+               margin: auto; 
+           }
+       }
     }
 
-    .milestone-boxes {
-        margin: 0 44px;
+    .milestones-column {
+        margin: 0 10px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+
+        width: 460px;
+
+        .milestones-description {
+            width: 360px;
+        }
+ 
+        .single-image {
+            flex-grow: 3;
+            align-self: center;
+            justify-self: center;
+            max-width: 360px;
+        }
+
+        @media #{$intermediate-and-smaller} {
+            align-items: center;
+            
+            .milestones-description{
+                width: 100%
+            }
+        }
+
+        @media #{$small} {
+            width: 300px;
+        }
     }
 
     .milestone-box {
@@ -211,15 +256,30 @@ h5 {
         }
 
         img {
+            width: 100%;
             height: 240px;
             border-radius: 8px;
+
+            object-fit: cover;
+            // object-position: 50% 5%;
         }
 
-        width: 460px;
         background-color: $ui-white;
         border-radius: 8px;
         padding: 16px;
         margin-bottom: 12px;
+
+        @media #{$intermediate-and-smaller} {
+            h4, p {
+                text-align: left;
+            }
+        }
+
+        @media #{$small} {
+            img {
+                height: 160px;
+            }
+        }
     }
 
 }
@@ -368,13 +428,13 @@ h5 {
             width: 100%;
         }
 
-        h2 {
-            font-size: 2rem;
-        }
+        // h2 {
+        //     font-size: 2rem;
+        // }
 
-        h3 {
-            font-size: 1.75rem;
-        }
+        // h3 {
+        //     font-size: 1.75rem;
+        // }
 
         h2, h3 {
             text-align: center;
@@ -384,7 +444,7 @@ h5 {
             flex-direction: column;
 
             .key {
-                margin-bottom: 4px; 
+                margin-bottom: 4px;
             }
         }
     }
@@ -543,13 +603,24 @@ h5 {
 }
 
 .donate-section {
-    // height: 500px;
     background-color: #0EBD8C;
 
     .donate-info {
         justify-content: center;
         align-items: flex-start;
         padding: 84px 0px;
+
+        img {
+            width: 300px;
+            height: 300px;
+        }
+
+        @media #{$intermediate} {
+            img {
+                width: 220px;
+                height: 220px;
+            }
+        }
 
         @media #{$medium-and-smaller} {
             align-items: center;
@@ -559,35 +630,26 @@ h5 {
     .donate-content {
         margin-left: 20px;
 
-        img {
-            width: 300px;
-            height: 300px;
-        }
-
-        h2 {
-            height: 62px;
-            width: 460px;
+        h2, p {
             color: $ui-white;
-            font-family: "Helvetica Neue";
-            font-size: 52px;
-            font-weight: bold;
-            letter-spacing: 0;
-            line-height: 64px;
         }
 
-        p {
-            height: 160px;
-            width: 460px;
-            color: #FFFFFF;
-            font-family: "Helvetica Neue";
-            font-size: 20px;
-            letter-spacing: 0;
-            line-height: 32px;
+        width: 460px;
+
+        @media #{$intermediate} {
+            text-align: left;
         }
+
+        @media #{$medium-and-smaller} {
+            margin-left: 0px;
+            text-align: center;
+            width: 75%;
+        }
+
+        
     }
 
     .donate-button {
-        // margin-right: .75rem;
         background-color: $ui-white;
         color: $ui-blue;
         height: 66px;
@@ -602,7 +664,7 @@ h5 {
         letter-spacing: 0;
         line-height: 29px;
 
-        a { // do we need this?
+        a {
             color: $ui-blue;
         }
 
