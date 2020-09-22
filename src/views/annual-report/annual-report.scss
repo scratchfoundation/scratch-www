@@ -473,23 +473,34 @@ p {
 
 .supporters-section {
     background-color: #EDEDFF;
-    padding: 84px 0;
+    padding: 104px 0;
 
     .inner {
         max-width: 780px;
     }
 
+    h3, h4 {
+        margin-bottom: 20px;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+    }
+
     .supporters-heading {
-        margin-bottom: 48px;
+        margin-bottom: 68px;
 
         h2 {
-            font-size: 52px;
-            padding-bottom: 52px;
+            padding-bottom: 24px;
         }
 
         p {
-            font-size: 24px;
-            margin: 0;
+            font-size: 1.25rem;
+            line-height: 2.5rem;
         }
     }
 
@@ -506,17 +517,12 @@ p {
         margin: 48px 80px 0px 80px;
 
         h2 {
-            font-size: 24px;
-            font-color: #575E75;
+            font-size: 1.5rem;
         }
 
         p {
             font-size: 16px;
         }
-    }
-
-    .supporters-blurb {
-       // max-width: 620px;
     }
 
     .founding-partners-blurb {
@@ -527,26 +533,28 @@ p {
         display: flex;
         align-items: flex-start;
 
+        width: 780px;
+        margin-bottom: 52px;
+        margin-top: 32px;
+
         .ds-info {
             display: flex;
-            padding: 0 20px;
-            margin-right: 18px;
+            line-height: 24px;
+        }
 
-            h3 {
-                font-size: 24px;
-            }
+        img {
+            width: 140px;
+        }
 
-            div {
-                //font-size: 16px;
-                //padding: 18px;
-            }
+        .ds-text {
+            width: 144px;
         }
     }
 
     .comment-text {
         background-color: $ui-white;
         text-align: left;
-        margin-top: 16px;
+        margin: 20px;
 
         p {
             font-size: 1.25rem;
@@ -556,6 +564,7 @@ p {
 
     .supporters-level {
         width: 100%;
+        margin: 24px 0;
 
 
         .supporters-list {
@@ -573,6 +582,43 @@ p {
             }
         }
     }
+    @media #{$big} {
+        .ds-info {
+            flex-direction: column;
+            text-align: center;
+            width: 144px;
+            margin-right: 60px;
+        }
+    }
+
+    @media #{$intermediate-and-smaller} {
+        .inner {
+            max-width: 620px;
+        }
+
+        .supporters-subsection {
+            text-align: left;
+        }
+
+        .david-siegel {
+            width: 460px;
+        }
+
+        .ds-info {
+            width: 460px;
+            flex-direction: row;
+            text-align: left;
+
+            img {
+                margin-right: 20px;
+            }
+        }
+
+        .david-siegel {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
 
     @media #{$medium-and-smaller} {
         .supporters-subsection {
@@ -584,29 +630,6 @@ p {
             align-content: flex-start;
         }
     }
-
-    @media #{$intermediate-and-smaller} {
-        .supporters-subsection {
-            text-align: left;
-        }
-        .ds-info {
-            flex-direction: row;
-            text-align: left;
-        }
-
-        .david-siegel {
-            flex-direction: column;
-            align-items: center;
-        }
-    }
-
-    @media #{$big} {
-        .ds-info {
-            flex-direction: column;
-            text-align: center;
-        }
-    }
-
 }
 
 .donate-section {

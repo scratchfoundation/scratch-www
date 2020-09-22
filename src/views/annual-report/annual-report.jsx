@@ -675,9 +675,9 @@ class AnnualReport extends React.Component {
                         </div>
                         <div className="supporters-subsection">
                             <div className="supporters-blurb">
-                                <h3>
+                                <h4>
                                     <FormattedMessage id="annualReport.supportersSFETitle" />
-                                </h3>
+                                </h4>
                                 <p>
                                     <FormattedMessage id="annualReport.supportersSFEDescription1" />
                                 </p>
@@ -691,9 +691,10 @@ class AnnualReport extends React.Component {
                             <div className="david-siegel">
                                 <div className="ds-info">
                                     <img src="/images/annual-report/david-siegel-photo.svg" />
-                                    <div>
-                                        <h3>David Siegel</h3>
-                                        <div>Co-Founder and<br /> Co-Chairman<br /> Two Sigma</div>
+                                    <div className="ds-text">
+                                        <h4>David Siegel</h4>
+                                        <FormattedMessage id="annualReport.supportersCoFounder" />
+                                        <br />Two Sigma
                                     </div>
                                 </div>
                                 <div className="ds-quote">
@@ -705,7 +706,7 @@ class AnnualReport extends React.Component {
                         <div className="supporters-subsection">
                             <div className="supporters-blurb">
                                 <h4>
-                                    <FormattedHTMLMessage id="annualReport.supportersTitle" />
+                                    <FormattedHTMLMessage id="annualReport.supportersThankYou" />
                                 </h4>
                                 <p>
                                     <FormattedHTMLMessage id="annualReport.supportersAllDescription" />
@@ -719,7 +720,6 @@ class AnnualReport extends React.Component {
                                     <FormattedHTMLMessage id="annualReport.supportersFoundingTitle" />
                                 </h5>
                                 <hr />
-                                <p>We are especially grateful to our Founding Partners who supported us from the early days of Scratch, each providing at least $10,000,000 of cumulative support, in various forms.</p>
                                 <div className="supporters-list">
                                     <ul className="supporters-list-side">
                                         <li>Massachusetts Institute of Technology</li>
