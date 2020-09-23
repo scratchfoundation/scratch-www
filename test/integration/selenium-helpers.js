@@ -1,6 +1,7 @@
 const webdriver = require('selenium-webdriver');
 const bindAll = require('lodash.bindall');
 require('chromedriver');
+let chromedriverVersion = require('chromedriver').version;
 
 const headless = process.env.SMOKE_HEADLESS || false;
 const remote = process.env.SMOKE_REMOTE || false;
@@ -8,7 +9,6 @@ const ci = process.env.CI || false;
 const buildID = process.env.TRAVIS_BUILD_NUMBER;
 const {SAUCE_USERNAME, SAUCE_ACCESS_KEY} = process.env;
 const {By, Key, until} = webdriver;
-const pkg = require('../../package.json');
 
 const DEFAULT_TIMEOUT_MILLISECONDS = 20 * 1000;
 
@@ -64,9 +64,11 @@ class SeleniumHelper {
     }
 
     getChromeVersionNumber () {
-        let chromedriverVersion = pkg.devDependencies.chromedriver;
         let versionFinder = /\d+\.\d+/;
         let versionArray = versionFinder.exec(chromedriverVersion);
+        if (versionArray === null) {
+            throw new Error('couldn\'t find version of chromedriver');
+        }
         return versionArray[0];
     }
 
