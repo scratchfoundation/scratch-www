@@ -64,8 +64,8 @@ class SeleniumHelper {
     }
 
     getChromeVersionNumber () {
-        let versionFinder = /\d+\.\d+/;
-        let versionArray = versionFinder.exec(chromedriverVersion);
+        const versionFinder = /\d+\.\d+/;
+        const versionArray = versionFinder.exec(chromedriverVersion);
         if (versionArray === null) {
             throw new Error('couldn\'t find version of chromedriver');
         }
@@ -73,7 +73,7 @@ class SeleniumHelper {
     }
 
     getSauceDriver (username, accessKey, name) {
-        let chromeVersion = this.getChromeVersionNumber();
+        const chromeVersion = this.getChromeVersionNumber();
         // Driver configs can be generated with the Sauce Platform Configurator
         // https://wiki.saucelabs.com/display/DOCS/Platform+Configurator
         let driverConfig = {
