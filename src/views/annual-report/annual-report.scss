@@ -477,6 +477,13 @@ p {
 
     .inner {
         max-width: 780px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .subsection-tag {
+        align-self: flex-start;
     }
 
     h3, h4 {
@@ -514,7 +521,8 @@ p {
         align-items: center;
 
         text-align: left;
-        margin: 48px 80px 0px 80px;
+        margin-top: 48px;
+        width: 620px;
 
         h2 {
             font-size: 1.5rem;
@@ -533,9 +541,7 @@ p {
         display: flex;
         align-items: flex-start;
 
-        width: 780px;
-        margin-bottom: 52px;
-        margin-top: 32px;
+        margin: 32px 0px 52px 0px;
 
         .ds-info {
             display: flex;
@@ -554,7 +560,8 @@ p {
     .comment-text {
         background-color: $ui-white;
         text-align: left;
-        margin: 20px;
+        //margin: 20px;
+        padding: 20px;
 
         p {
             font-size: 1.25rem;
@@ -573,11 +580,11 @@ p {
 
         .supporters-list-side {
             margin: 0 1.25rem 0 0;
+            width: 300px;
 
             li {
                 margin: 0 0 .75rem 0;
                 padding: 0 auto;
-                width: 300px;
                 overflow: wrap;
             }
         }
@@ -596,8 +603,18 @@ p {
             max-width: 620px;
         }
 
+        .subsection-tag {
+            align-self: center;
+        }
+
         .supporters-subsection {
             text-align: left;
+
+            width: 460px;
+
+            &.supporters-lists {
+                width: 100%;
+            }
         }
 
         .david-siegel {
@@ -608,6 +625,7 @@ p {
             width: 460px;
             flex-direction: row;
             text-align: left;
+            margin-bottom: 20px;
 
             img {
                 margin-right: 20px;
@@ -623,6 +641,32 @@ p {
     @media #{$medium-and-smaller} {
         .supporters-subsection {
             margin: 0;
+        }
+
+        .supporters-heading {
+            margin-bottom: 28px;
+        }
+
+        .subsection-tag {
+            margin-bottom: 48px;
+        }
+
+        .supporters-list-side {
+            width: 220px;
+        }
+
+        .ds-info {
+            width: 100%;
+        }
+    }
+
+    @media #{$small} {
+        .supporters-subsection {
+            width: 100%
+        }
+
+        .david-siegel {
+            width: 100%;
         }
 
         .supporters-list {

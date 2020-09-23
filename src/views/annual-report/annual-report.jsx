@@ -688,22 +688,22 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.supportersSFEDescription3" />
                                 </p>
                             </div>
-                            <div className="david-siegel">
-                                <div className="ds-info">
-                                    <img src="/images/annual-report/david-siegel-photo.svg" />
-                                    <div className="ds-text">
-                                        <h4>David Siegel</h4>
-                                        <FormattedMessage id="annualReport.supportersCoFounder" />
-                                        <br />Two Sigma
-                                    </div>
-                                </div>
-                                <div className="ds-quote">
-                                    {/* eslint-disable-next-line */}
-                                    <Comment comment={this.props.intl.formatMessage({id: 'annualReport.supportersQuote'})} />
+                        </div>
+                        <div className="david-siegel">
+                            <div className="ds-info">
+                                <img src="/images/annual-report/david-siegel-photo.svg" />
+                                <div className="ds-text">
+                                    <h4>David Siegel</h4>
+                                    <FormattedMessage id="annualReport.supportersCoFounder" />
+                                    <br />Two Sigma
                                 </div>
                             </div>
+                            <div className="ds-quote">
+                                {/* eslint-disable-next-line */}
+                                <Comment comment={this.props.intl.formatMessage({id: 'annualReport.supportersQuote'})} />
+                            </div>
                         </div>
-                        <div className="supporters-subsection">
+                        <div className="supporters-subsection supporters-lists">
                             <div className="supporters-blurb">
                                 <h4>
                                     <FormattedHTMLMessage id="annualReport.supportersThankYou" />
@@ -914,7 +914,7 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="supporters-subsection">
+                        <div className="supporters-subsection supporters-lists">
                             <div className="supporters-level">
                                 <h3>
                                     <FormattedHTMLMessage id="annualReport.supportersInKindTitle" />
