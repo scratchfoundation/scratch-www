@@ -1,6 +1,7 @@
 const webdriver = require('selenium-webdriver');
 const bindAll = require('lodash.bindall');
 require('chromedriver');
+const chromedriverVersion = require('chromedriver').version;
 
 const headless = process.env.SMOKE_HEADLESS || false;
 const remote = process.env.SMOKE_REMOTE || false;
@@ -62,13 +63,23 @@ class SeleniumHelper {
         return driver;
     }
 
+    getChromeVersionNumber () {	
+        const versionFinder = /\d+\.\d+/;	
+        const versionArray = versionFinder.exec(chromedriverVersion);	
+        if (versionArray === null) {	
+            throw new Error('couldn\'t find version of chromedriver');	
+        }	
+        return versionArray[0];	
+    }
+
     getSauceDriver (username, accessKey, name) {
+        const chromeVersion = this.getChromeVersionNumber();
         // Driver configs can be generated with the Sauce Platform Configurator
         // https://wiki.saucelabs.com/display/DOCS/Platform+Configurator
         let driverConfig = {
             browserName: 'chrome',
             platform: 'macOS 10.14',
-            version: '84.0'
+            version: chromeVersion
         };
         var driver = new webdriver.Builder()
             .withCapabilities({
