@@ -62,6 +62,16 @@
     "annualReport.subnavLeadership": "Leadership",
     "annualReport.subnavDonate": "Donate",
 
+    "annualReport.mastheadYear": "2019 Annual Report",
+    "annualReport.mastheadTitle": "Cultivating a World of Creative Learning",
+    "annualReport.messageTitle": "Message from the Scratch Team",
+    "annualReport.messageP1": "2019 was a year of great progress for Scratch. We started the year with the launch of Scratch 3.0, our newest generation of Scratch, designed to spark children’s creativity and engage a broad diversity of children. We celebrated the end of the year with our team moving from MIT into its new home at the Scratch Foundation, in a playful ground-floor space near South Station in Boston. Throughout the year, the Scratch community continued to thrive and grow: More than 20 million young people created projects with Scratch in 2019, an increase of 48% over the year before.",
+    "annualReport.messageP2": "During the past few months, the impact and importance of Scratch have been clearer than ever. As the pandemic forced schools to close, the Scratch online community became busier than ever, with twice as much activity as last year. Confined to their homes, young people have come to Scratch to express themselves creatively and connect with one another. Scratchers have also been actively engaged in the growing movements for racial justice and equity, creating animated projects and studios to spread awareness and demand change.",
+    "annualReport.messageP3": "From the time we launched Scratch in 2007, we have always seen Scratch as more than a programming language. Scratch provides opportunities for young people to develop their voices, express their ideas, and collaborate with one another. It has been heartening to see how Scratchers have responded to recent societal challenges with creativity, collaboration, caring, and kindness.",
+    "annualReport.messageP4": "In this Annual Report, we’ll share more about the mission, plans, impact, and reach of Scratch, supported with examples of how Scratch is expanding learning opportunities for a broad diversity of young people around the world, both in schools and throughout their lives.",
+    "annualReport.messageP5": "We’re proud of what young people are creating and learning with Scratch today, and we’re committed to providing more opportunities for more young people in the future.",
+    "annualReport.messageSignature": "— The Scratch Team",
+
     "annualReport.milestonesTitle": "Milestones",
     "annualReport.milestonesDescription": "Here are some key events and accomplishments in the history of Scratch and the global Scratch community.",
     "annualReport.milestones2003Message": "Awarded National Science Foundation grant to start development of Scratch",

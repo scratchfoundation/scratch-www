@@ -12,6 +12,11 @@ $base-bg: $ui-white;
 //     font-family: "Helvetica Neue";
 // }
 
+h1 {
+    font-size: 5rem;
+    line-height: 6.125rem;
+}
+
 h2 {
     font-size: 3.25rem;
     line-height: 4rem;
@@ -174,6 +179,67 @@ p {
 
 .title-banner {
     margin-bottom: 0;
+}
+
+.message-section {
+    background-color: $ui-blue;
+    padding: 0 56px;
+
+    h1, h2, p {
+        color: $ui-white;
+    }
+
+    @media #{$intermediate-and-smaller} {
+        .inner {
+            width: 100%;
+        }
+        
+    }
+}
+
+.masthead {
+    p {
+        font-size: 1.25rem;
+        line-height: 2rem;
+        font-weight: bold;
+    }
+
+    .masthead-content {
+        width: 440px;
+        text-align: left;
+    }
+}
+
+.message-content{
+    align-items: flex-start;
+
+    @media #{$big} {
+        h2 {
+            width: 300px;
+        }
+    }
+
+    @media #{$intermediate-and-smaller} {
+        text-align: left;
+        h2 {
+            width: 480px;
+            vertical-align: middle;
+        }
+    }
+    
+    .wave-icon-and-title {
+        display: flex;
+        justify-content: center;
+    }
+
+    .message-from-team {
+        width: 620px;
+    }
+
+    img {
+        margin: 8px 24px 8px 0px;
+        vertical-align: middle;
+    }
 }
 
 .milestones-section {
@@ -926,6 +992,10 @@ img.tips-icon {
         white-space: nowrap;
         color: $type-white;
         font-size: .85rem;
+
+        &.selectedItem, &:hover {	
+            border-bottom: 1px solid $ui-white;	
+        }
     }
 
     .sectionIndicator {
@@ -980,7 +1050,7 @@ img.tips-icon {
             border: 1px solid $box-shadow-light-gray;
             border-radius: 4px;
 
-            &.selectedItem {
+            &.selectedItem, &:hover {
                 border-bottom: 1px solid $box-shadow-light-gray;
                 background-color: $box-shadow-light-gray;
             }

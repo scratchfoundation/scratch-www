@@ -88,6 +88,7 @@ class AnnualReport extends React.Component {
         // correct section
         return () => {
             this.scrollTo(this.sectionRefs[sectionName]);
+            this.setState({dropdownVisible: false});
         };
     }
 
@@ -235,7 +236,7 @@ class AnnualReport extends React.Component {
                                 onClick={this.handleDropDownClick}
                             >
                                 <img
-                                    className={classNames({rotated: this.state.subNavVisible})}
+                                    className={classNames({rotated: this.state.dropdownVisible})}
                                     src="/images/annual-report/dropdown-arrow.svg"
                                 />
                             </Button>
@@ -253,6 +254,64 @@ class AnnualReport extends React.Component {
                     <MediaQuery minWidth={frameless.tabletPortrait}>
                         {subnav}
                     </MediaQuery>
+                </div>
+                <div
+                    className="message-section section"
+                    ref={this.setRef(SECTIONS.message)}
+                >
+                    <FlexRow className="masthead">
+                        <div className="masthead-content">
+                            <p className="message-year">
+                                <FormattedMessage id="annualReport.mastheadYear" />
+                            </p>
+                            <h1>
+                                <FormattedMessage id="annualReport.mastheadTitle" />
+                            </h1>
+                        </div>
+                        <img src="/images/annual-report/message/hero-image.svg" />
+                    </FlexRow>
+                    <MediaQuery minWidth={frameless.desktop}>
+                        <img src="/images/annual-report/message/wave-icon.svg" />
+                    </MediaQuery>
+                    <div className="inner">
+                        <FlexRow className="message-content">
+                            <MediaQuery maxWidth={frameless.desktop - 1}>
+                                {/* Show the wave icon inside this div in smaller screens */}
+                                <div className="wave-icon-and-title">
+                                    <img src="/images/annual-report/message/wave-icon.svg" />
+                                    <h2>
+                                        <FormattedMessage id="annualReport.messageTitle" />
+                                    </h2>
+                                </div>
+                            </MediaQuery>
+                            <MediaQuery minWidth={frameless.desktop}>
+                                <h2>
+                                    <FormattedMessage id="annualReport.messageTitle" />
+                                </h2>
+                            </MediaQuery>
+                            <div className="message-from-team">
+                                <p>
+                                    <FormattedMessage id="annualReport.messageP1" />
+                                </p>
+                                <p>
+                                    <FormattedMessage id="annualReport.messageP2" />
+                                </p>
+                                <p>
+                                    <FormattedMessage id="annualReport.messageP3" />
+                                </p>
+                                <p>
+                                    <FormattedMessage id="annualReport.messageP4" />
+                                </p>
+                                <p>
+                                    <FormattedMessage id="annualReport.messageP5" />
+                                </p>
+                                <p className="message-signature">
+                                    <FormattedMessage id="annualReport.messageSignature" />
+                                </p>
+                                <img src="/images/annual-report/message/team-photo.svg" />
+                            </div>
+                        </FlexRow>
+                    </div>
                 </div>
                 <div
                     className="mission section"
