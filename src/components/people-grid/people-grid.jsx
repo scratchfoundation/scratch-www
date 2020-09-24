@@ -4,6 +4,8 @@ const PropTypes = require('prop-types');
 const React = require('react');
 const Avatar = require('../../components/avatar/avatar.jsx');
 
+require('./people-grid.scss');
+
 const PeopleGrid = props => (
     <ul className="avatar-grid">
         {props.people.map((person, index) => (
