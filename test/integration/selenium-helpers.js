@@ -63,13 +63,13 @@ class SeleniumHelper {
         return driver;
     }
 
-    getChromeVersionNumber () {	
-        const versionFinder = /\d+\.\d+/;	
-        const versionArray = versionFinder.exec(chromedriverVersion);	
-        if (versionArray === null) {	
-            throw new Error('couldn\'t find version of chromedriver');	
-        }	
-        return versionArray[0];	
+    getChromeVersionNumber () {
+        const versionFinder = /\d+\.\d+/;
+        const versionArray = versionFinder.exec(chromedriverVersion);
+        if (versionArray === null) {
+            throw new Error('couldn\'t find version of chromedriver');
+        }
+        return versionArray[0];
     }
 
     getSauceDriver (username, accessKey, name) {
