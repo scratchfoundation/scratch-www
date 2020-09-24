@@ -692,6 +692,42 @@ p {
     }
 }
 
+.leadership-section {
+    background-color: #EDEDFF;
+
+    .inner {
+        width: 620;
+    }
+
+    h2, h3, h4 {
+        text-align: center;
+    }
+
+    .leadership-board {
+        justify-content: center;
+        .board-member {
+            text-align: center;
+            width: 300px;
+            margin: 60px 0;
+        }
+    }
+
+    .executive-director {
+        text-align: center;
+        padding: 72px;
+
+        .avatar-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 12px 0 20px 0;
+        }
+
+        .avatar-item {
+            padding-bottom: 0px;
+        }
+    }
+}
+
 .donate-section {
     background-color: #0EBD8C;
 

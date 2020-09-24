@@ -9,6 +9,9 @@ const React = require('react');
 const Button = require('../../components/forms/button.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Comment = require('../../components/comment/comment.jsx');
+const People = require('./people.json');
+const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
+const Avatar = require('../../components/avatar/avatar.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -963,6 +966,93 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div
+                        className="leadership-section section"
+                        id="donate"
+                        ref={this.setRef(SECTIONS.leadership)}
+                    >
+                        <div className="inner">
+                            <h2>
+                                <FormattedMessage id="annualReport.leadershipTitle" />
+                            </h2>
+                            <h3>
+                                <FormattedMessage id="annualReport.leadershipBoard" />
+                            </h3>
+                            <FlexRow className="leadership-board">
+                                <div className="board-member">
+                                    <b>
+                                        <FormattedMessage id="annualReport.leadershipChair" />
+                                    </b>
+                                    <h4>Mitch Resnick</h4>
+                                    <FormattedMessage id="annualReport.leadershipProfessor" />
+                                    <br />MIT Media Lab
+                                </div>
+                                <div className="board-member">
+                                    <b>
+                                        <FormattedMessage id="annualReport.leadershipViceChair" />
+                                    </b>
+                                    <h4>David Siegel</h4>
+                                    <FormattedMessage id="annualReport.supportersCoFounder" />
+                                    <br />Two Sigma
+                                </div>
+                                <div className="board-member">
+                                    <b>
+                                        <FormattedMessage id="annualReport.leadershipBoardMember" />
+                                    </b>
+                                    <h4>Margaret Honey</h4>
+                                    <FormattedMessage id="annualReport.leadershipPresidentCEO" />
+                                    <br />Two Sigma
+                                </div>
+                                <div className="board-member">
+                                    <b>
+                                        <FormattedMessage id="annualReport.leadershipBoardMember" />
+                                    </b>
+                                    <h4>Christina Miller</h4>
+                                    <FormattedMessage id="annualReport.leadershipFormerPresident" />
+                                    <br />Cartoon Network
+                                </div>
+                                <div className="board-member">
+                                    <b>
+                                        <FormattedMessage id="annualReport.leadershipBoardMember" />
+                                    </b>
+                                    <h4>Avraham Kadar</h4>
+                                    <FormattedMessage id="annualReport.leadershipFounderCEO" />
+                                    <br />BrainPOP
+                                </div>
+                            </FlexRow>
+                            <h4>
+                                <FormattedMessage id="annualReport.leadershipBoardSecretaryTreasurer" />
+                            </h4>
+                            <FlexRow className="leadership-board">
+                                <div className="board-member">
+                                    <b>
+                                        <FormattedMessage id="annualReport.leadershipBoardSecretary" />
+                                    </b>
+                                    <h4>Sheri Vammen</h4>
+                                </div>
+                                <div className="board-member">
+                                    <b>
+                                        <FormattedMessage id="annualReport.leadershipBoardTreasurer" />
+                                    </b>
+                                    <h4>Rich Sauer</h4>
+                                </div>
+                            </FlexRow>
+                            <h3>
+                                <FormattedMessage id="annualReport.leadershipScratchTeam" />
+                            </h3>
+                            <div className="executive-director">
+                                <PeopleGrid
+                                    people={[{
+                                        userName: 'Champ99',
+                                        userId: 900283,
+                                        name: 'Champika'
+                                    }]}
+                                />
+                                <FormattedMessage id="annualReport.leadershipInterim" />
+                            </div>
+                            <PeopleGrid people={People} />
                         </div>
                     </div>
                     <div
