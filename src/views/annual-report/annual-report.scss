@@ -8,10 +8,6 @@ $base-bg: $ui-white;
     padding: 0;
 }
 
-// body {
-//     font-family: "Helvetica Neue";
-// }
-
 h1 {
     font-size: 5rem;
     line-height: 6.125rem;
@@ -48,6 +44,11 @@ p {
         width: $cols4;
     }
 
+    h1 {
+        font-size: 3.25rem;
+        line-height: 4rem;
+    }
+
     h2 {
         font-size: 2rem;
     }
@@ -62,128 +63,8 @@ p {
     scroll-margin-top: 104px;
 }
 
-.banner-wrapper {
-    background: $ui-yellow bottom right url("/images/ideas/right-juice.png") no-repeat;
-}
-
-.ideas-banner {
-    margin-bottom: 0;
-    background: bottom left url("/images/ideas/left-juice.png") no-repeat;
-}
-
-.ttt-section {
-    display: flex;
-    margin: 0 auto;
-    text-align: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.tips-divider {
-    border-top: 1px solid $ui-gray;
-    width: 100%;
-}
-
-.tips-banner-image {
-    max-width: calc(100% - 2rem);
-}
-
-.ideas-button {
-    margin-right: .75rem;
-    background-color: $ui-blue;
-    color: $ui-white;
-    font-size: 1rem;
-
-    img {
-        margin-right: 1rem;
-        height: 1.5rem;
-        vertical-align: middle;
-    }
-
-    a {
-        color: $ui-white;
-    }
-
-    span {
-      vertical-align: middle;
-    }
-}
-
-.wide-button {
-    width: 100%;
-}
-
-.ideas-all-cards {
-    padding: 5rem 0 !important;
-}
-
-.ideas-starter {
-    padding: 5rem 0 !important;
-}
-
-.tips-getting-started {
-    background-color: $ui-light-gray;
-    padding-top: 2.5rem;
-}
-
-.tips-left {
-    justify-content: flex-start;
-}
-
-.ideas-image {
-    margin-right: 2rem;
-}
-
-.tips-activity-guides {
-    background-color: $ui-light-gray;
-    padding-bottom: 2rem;
-}
-
-.purchase-button {
-    img {
-        margin-right: 0;
-        margin-left: .75rem;
-        width: 1rem;
-        vertical-align: baseline;
-    }
-}
-
-.tips-info-section {
-    padding: 2.5rem 0;
-    width: 100%;
-    flex-wrap: nowrap;
-}
-
-.tips-info-body {
-    text-align: left;
-}
-
-.tips-cards-buttons {
-    a {
-        white-space: normal;
-    }
-}
-
-.gray-area {
-    background-color: $ui-gray;
-}
-
-.title-banner-h1 {
-    text-align: left;
-}
-
-.section-heading {
-    font-size: 52px;
-}
-
-.title-banner {
-    margin-bottom: 0;
-}
-
 .message-section {
     background-color: $ui-blue;
-    padding: 0 56px;
 
     h1, h2, p {
         color: $ui-white;
@@ -193,6 +74,8 @@ p {
         .inner {
             width: 100%;
         }
+
+        padding: 0px;
         
     }
 }
@@ -205,9 +88,35 @@ p {
     }
 
     .masthead-content {
-        width: 440px;
+        max-width: 440px;
         text-align: left;
     }
+
+    @media #{$intermediate-and-smaller} {
+        img {
+            width: 75%;
+        }
+
+        .masthead-year {
+            text-align: center;
+        }
+    }
+
+    @media #{$medium-and-smaller} {
+        .masthead-content {
+            text-align: center;
+        }
+    }
+
+    @media #{$small} {
+        .masthead-content {
+            max-width: 300px;
+        }  
+    }
+}
+
+.wave-icon-desktop {
+    margin-left: 56px;
 }
 
 .message-content{
@@ -215,30 +124,71 @@ p {
 
     @media #{$big} {
         h2 {
-            width: 300px;
+            max-width: 300px;
         }
     }
 
     @media #{$intermediate-and-smaller} {
+        align-items: center;
+    }
+
+    @media #{$medium-and-intermediate} {
         text-align: left;
         h2 {
-            width: 480px;
+            max-width: 480px;
             vertical-align: middle;
         }
     }
-    
+
+    @media #{$small} {
+        p {
+            text-align: left;
+        }    
+            
+        h2 {
+            max-width: 300px;
+            vertical-align: middle;
+            text-align: center;
+        }
+    }
+
     .wave-icon-and-title {
         display: flex;
         justify-content: center;
+
+        img {
+            margin-right: 20px;
+        }
+
+        @media #{$small} {
+            flex-direction: column;
+        }
     }
 
     .message-from-team {
-        width: 620px;
+        max-width: 620px;
+
+        @media #{$small} {
+            max-width: 300px;
+        }
     }
 
-    img {
+    .team-photo {
         margin: 8px 24px 8px 0px;
         vertical-align: middle;
+
+        @media #{$small} {
+            max-width: 300px;
+        }
+    }
+}
+
+.message-transition-images {
+    display: flex;
+    justify-content: space-between;
+    
+    img {
+        margin-bottom: -140px;
     }
 }
 
@@ -970,7 +920,7 @@ img.tips-icon {
 }
 
 .subnavigation {
-    position: sticky;
+    position: fixed;
     top: 50px;
     z-index: 9;
     box-shadow: 0 0 3px $box-shadow-gray;
@@ -1063,4 +1013,9 @@ img.tips-icon {
         }
     }
 
+}
+
+.annual-report-content, #footer {
+    position: relative;
+    top: 58px;
 }
