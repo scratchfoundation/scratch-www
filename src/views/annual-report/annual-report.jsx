@@ -313,7 +313,7 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.messageSignature" />
                                     </p>
                                     <img
-                                        className="team-photo" 
+                                        className="team-photo"
                                         src="/images/annual-report/message/team-photo.svg"
                                     />
                                 </div>
@@ -323,6 +323,38 @@ class AnnualReport extends React.Component {
                             <img src="/images/annual-report/message/blocks.svg" />
                             <img src="/images/annual-report/message/banana.svg" />
                         </div>
+                    </div>
+                    <div className="covid-response-section inner">
+                        <h2>
+                            <FormattedMessage id="annualReport.covidResponseTitle" />
+                        </h2>
+                        <p>
+                            <FormattedMessage id="annualReport.covidResponseP1" />
+                        </p>
+                        <p>
+                            <FormattedMessage
+                                id="annualReport.covidResponseP2"
+                                values={{
+                                    scratchAtHomeLink: (
+                                        <a href="#">
+                                            <FormattedMessage id="annualReport.covidResponseScratchAtHomePage" />
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
+                        <p>
+                            <FormattedMessage
+                                id="annualReport.covidResponseP3"
+                                values={{
+                                    scratchCommunityLink: (
+                                        <a href="#">
+                                            <FormattedMessage id="annualReport.covidResponseScratchCommunity" />
+                                        </a>
+                                    )
+                                }}
+                            />
+                        </p>
                     </div>
                     <div
                         className="mission section"

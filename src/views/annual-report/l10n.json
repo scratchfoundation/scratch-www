@@ -19,6 +19,13 @@
     "annualReport.messageP5": "We’re proud of what young people are creating and learning with Scratch today, and we’re committed to providing more opportunities for more young people in the future.",
     "annualReport.messageSignature": "— The Scratch Team",
 
+    "annualReport.covidResponseTitle": "Scratch Responds to COVID",
+    "annualReport.covidResponseP1": "As we write this annual report for 2019, we are months into the COVID pandemic. Since the middle of March 2020, the Scratch office has been closed and Scratch Team members have been actively working from home to support children and educators around the world whose lives have been disrupted by the pandemic.",
+    "annualReport.covidResponseP2": "On March 17, we launched the #ScratchAtHome initiative to provide children, families, and educators with ideas for engaging in creative learning activities with Scratch at home. We continue to add video tutorials and other resources to the {scratchAtHomeLink}.",
+    "annualReport.covidResponseScratchAtHomePage": "#ScratchAtHome page",
+    "annualReport.covidResponseP3": "Activity on the Scratch website has more than doubled from year-earlier levels, as young people come to the {scratchCommunityLink} to engage and connect with one another while isolated at home. Scratchers are creating and sharing projects to support and inspire others through the pandemic—with projects and studios that offer ideas for exercising at home, tips for staying healthy, humor to cheer up one another, and thanks to essential workers.",
+    "annualReport.covidResponseScratchCommunity": "Scratch online community",
+
     "annualReport.milestonesTitle": "Milestones",
     "annualReport.milestonesDescription": "Here are some key events and accomplishments in the history of Scratch and the global Scratch community.",
     "annualReport.milestones2003Message": "Awarded National Science Foundation grant to start development of Scratch",

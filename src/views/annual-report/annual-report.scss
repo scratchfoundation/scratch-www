@@ -179,6 +179,7 @@ p {
 
         @media #{$small} {
             max-width: 300px;
+            margin-right: 0px;
         }
     }
 }
@@ -189,6 +190,46 @@ p {
     
     img {
         margin-bottom: -140px;
+    }
+
+    @media #{$small} {
+        img {
+            width: 100px;
+
+            margin-bottom: -64px;
+        }
+    }
+}
+
+.covid-response-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 124px 0px;
+
+    h2 {
+        margin-bottom: 44px;
+    }
+
+    p {
+        width: 620px;
+    }
+
+    @media #{$intermediate-and-smaller} {
+        text-align: left;
+    }
+
+    @media #{$medium} {
+        p {
+            width: 460px;
+        }
+    }
+
+    @media #{$small} {
+        p {
+            width: 300px;
+        }
     }
 }
 
