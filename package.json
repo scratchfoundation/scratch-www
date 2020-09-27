@@ -113,7 +113,7 @@
     "po2icu": "0.0.2",
     "postcss-loader": "2.0.10",
     "prop-types": "15.6.0",
-    "query-string": "^5.1.1",
+    "query-string": "^6.13.3",
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-intl": "2.8.0",
