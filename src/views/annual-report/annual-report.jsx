@@ -11,6 +11,8 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Comment = require('../../components/comment/comment.jsx');
 const People = require('./people.json');
 const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
+const WorldMap = require('../../components/world-map/world-map.jsx');
+const CountryUsage = require('./country-usage.json');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -43,6 +45,10 @@ const SECTION_NAMES = {
     leadership: <FormattedMessage id="annualReport.subnavLeadership" />,
     donate: <FormattedMessage id="annualReport.subnavDonate" />
 };
+
+const countryNames = Object.keys(CountryUsage);
+const countryData = countryNames.map(key => CountryUsage[key].count);
+const colorIndex = countryNames.map(key => CountryUsage[key]['log count']);
 
 class AnnualReport extends React.Component {
     constructor (props) {
@@ -665,6 +671,11 @@ class AnnualReport extends React.Component {
                                 <p>
                                     <FormattedMessage id="annualReport.reachMapBlurb" />
                                 </p>
+                                <WorldMap
+                                    colorIndex={colorIndex}
+                                    countryData={countryData}
+                                    countryNames={countryNames}
+                                />
                             </div>
                         </div>
                     </div>

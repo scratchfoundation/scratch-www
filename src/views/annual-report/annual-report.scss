@@ -413,11 +413,11 @@ p {
     }
 
     .reach-map {
-        max-width: 1064px;
+        //width: 1064px;
         background-color: $ui-white;
         border-radius: 6px;
         color: $type-gray;
-        padding: 48px;
+        padding: 48px 0;
         margin: 52px 0;
 
         text-align: center;
