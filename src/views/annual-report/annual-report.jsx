@@ -11,7 +11,6 @@ const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Comment = require('../../components/comment/comment.jsx');
 const People = require('./people.json');
 const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
-const Avatar = require('../../components/avatar/avatar.jsx');
 
 const Page = require('../../components/page/www/page.jsx');
 const render = require('../../lib/render.jsx');
@@ -164,19 +163,19 @@ class AnnualReport extends React.Component {
             </a>
             <a
                 className={classNames(
-                    {selectedItem: this.state.currentlyVisible === SECTIONS.reach}
-                )}
-                onClick={this.handleSubnavItemClick(SECTIONS.reach)}
-            >
-                <FormattedMessage id="annualReport.subnavReach" />
-            </a>
-            <a
-                className={classNames(
                     {selectedItem: this.state.currentlyVisible === SECTIONS.milestones}
                 )}
                 onClick={this.handleSubnavItemClick(SECTIONS.milestones)}
             >
                 <FormattedMessage id="annualReport.subnavMilestones" />
+            </a>
+            <a
+                className={classNames(
+                    {selectedItem: this.state.currentlyVisible === SECTIONS.reach}
+                )}
+                onClick={this.handleSubnavItemClick(SECTIONS.reach)}
+            >
+                <FormattedMessage id="annualReport.subnavReach" />
             </a>
             <a
                 className={classNames(
@@ -319,7 +318,7 @@ class AnnualReport extends React.Component {
                                 </div>
                             </FlexRow>
                         </div>
-                        <div className="message-transition-images">
+                        <div className="transition-images">
                             <img src="/images/annual-report/message/blocks.svg" />
                             <img src="/images/annual-report/message/banana.svg" />
                         </div>
@@ -567,13 +566,106 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        <div className="transition-images">
+                            <img src="/images/annual-report/milestones/vertical-loop.svg" />
+                            <img src="/images/annual-report/milestones/painting-hand.svg" />
+                        </div>
                     </div>
                     <div
-                        className="our-reach section"
+                        className="reach-section section"
                         id="reach"
                         ref={this.setRef(SECTIONS.reach)}
                     >
                         <div className="inner">
+                            <div className="reach-intro">
+                                <h2>
+                                    <FormattedMessage id="annualReport.reachTitle" />
+                                </h2>
+                                <p>
+                                    <FormattedMessage id="annualReport.reachSubtitle" />
+                                </p>
+                                <div className="reach-numbers">
+                                    <div className="reach-datapoint">
+                                        <FormattedMessage
+                                            id="annualReport.reach170million"
+                                            values={{
+                                                million: (
+                                                    <div className="million">
+                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                    </div>
+                                                )
+                                            }}
+                                        />
+                                        <h4>
+                                            <FormattedMessage id="annualReport.reachUniqueVisitors" />
+                                        </h4>
+                                    </div>
+                                    <div className="reach-datapoint">
+                                        <FormattedMessage
+                                            id="annualReport.reach170million"
+                                            values={{
+                                                million: (
+                                                    <div className="million">
+                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                    </div>
+                                                )
+                                            }}
+                                        />
+                                        <h4>
+                                            <FormattedMessage id="annualReport.reachUniqueVisitors" />
+                                        </h4>
+                                    </div>
+                                    <div className="reach-datapoint">
+                                        <FormattedMessage
+                                            id="annualReport.reach170million"
+                                            values={{
+                                                million: (
+                                                    <div className="million">
+                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                    </div>
+                                                )
+                                            }}
+                                        />
+                                        <h4>
+                                            <FormattedMessage id="annualReport.reachUniqueVisitors" />
+                                        </h4>
+                                    </div>
+                                    <div className="reach-datapoint">
+                                        <FormattedMessage
+                                            id="annualReport.reach170million"
+                                            values={{
+                                                million: (
+                                                    <div className="million">
+                                                        <FormattedMessage id="annualReport.reachMillion" />
+                                                    </div>
+                                                )
+                                            }}
+                                        />
+                                        <h4>
+                                            <FormattedMessage id="annualReport.reachUniqueVisitors" />
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="reach-growth">
+                                <div className="growth-blurb">
+                                    <h3>
+                                        <FormattedMessage id="annualReport.reachGrowthTitle" />
+                                    </h3>
+                                    <p>
+                                        <FormattedMessage id="annualReport.reachGrowthBlurb" />
+                                    </p>
+                                </div>
+                                <img src="/images/annual-report/milestones/community-growth-graph.svg" />
+                            </div>
+                            <div className="reach-map">
+                                <h3>
+                                    <FormattedMessage id="annualReport.reachGlobalCommunity" />
+                                </h3>
+                                <p>
+                                    <FormattedMessage id="annualReport.reachMapBlurb" />
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <div
