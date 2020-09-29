@@ -377,19 +377,6 @@ p {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            font-size: 5rem;
-        }
-
-        .reach-datapoint {
-            width: 300px;
-            text-align: center;
-            margin: 32px 0;
-        }
-
-        .million {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 16px;
         }
     }
 
@@ -425,6 +412,39 @@ p {
         h3, p {
             color: $type-gray;
         }
+    }
+}
+
+.reach-datapoint {
+    font-size: 5rem;
+    width: 300px;
+    text-align: center;
+    margin: 32px 0;
+}
+
+.million {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.reach-scratch-jr {
+    background-color: #0EA57A;
+    color: $ui-white;
+
+    h2, h3, h4, p {
+        color: $ui-white;
+    }
+
+    .inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 940px;
+    }
+
+    .scratch-jr-intro {
+        max-width: 540px;
     }
 }
 

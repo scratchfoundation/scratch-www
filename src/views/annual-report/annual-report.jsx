@@ -679,6 +679,31 @@ class AnnualReport extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <div className="reach-scratch-jr section">
+                        <div className="inner">
+                            <div className="scratch-jr-intro">
+                                <img src="/images/annual-report/ScratchJr-Logo.svg" />
+                                <p>
+                                    <FormattedMessage id="annualReport.reachScratchJrBlurb" />
+                                </p>
+                            </div>
+                            <div className="reach-datapoint">
+                                <FormattedMessage
+                                    id="annualReport.reach170million"
+                                    values={{
+                                        million: (
+                                            <div className="million">
+                                                <FormattedMessage id="annualReport.reachMillion" />
+                                            </div>
+                                        )
+                                    }}
+                                />
+                                <h4>
+                                    <FormattedMessage id="annualReport.reachUniqueVisitors" />
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
                     <div
                         className="initiatives section"
                         id="initiatives"
