@@ -341,7 +341,7 @@ p {
 
     .transition-images {
         width: 100%;
-        //overflow-x: hidden;
+        overflow-x: hidden;
         img {
             margin-bottom: -200px;
             margin-right: -68px;
@@ -824,19 +824,40 @@ p {
     background-color: #EDEDFF;
 
     .inner {
-        width: 620;
+        padding-bottom: 76px;
     }
 
     h2, h3, h4 {
         text-align: center;
     }
 
+    h2 {
+        margin-bottom: 84px;
+    }
+
     .leadership-board {
         justify-content: center;
+        margin-bottom: 96px;
+
         .board-member {
             text-align: center;
             width: 300px;
-            margin: 60px 0;
+            margin-top: 44px;
+            line-height: 1.5rem;
+        }
+
+        h4 {
+            padding: 12px 0 16px 0;
+        }
+    }
+
+    .leadership-scratch-team {
+        margin-top: 128px;
+
+        .avatar-item {
+            img {
+                background-color: #EDEDFF;
+            }
         }
     }
 

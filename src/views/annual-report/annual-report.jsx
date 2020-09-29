@@ -1117,7 +1117,7 @@ class AnnualReport extends React.Component {
                             </h3>
                             <FlexRow className="leadership-board">
                                 <div className="board-member">
-                                    <b>
+                                    <b className="board-title">
                                         <FormattedMessage id="annualReport.leadershipChair" />
                                     </b>
                                     <h4>Mitch Resnick</h4>
@@ -1125,7 +1125,7 @@ class AnnualReport extends React.Component {
                                     <br />MIT Media Lab
                                 </div>
                                 <div className="board-member">
-                                    <b>
+                                    <b className="board-title">
                                         <FormattedMessage id="annualReport.leadershipViceChair" />
                                     </b>
                                     <h4>David Siegel</h4>
@@ -1133,7 +1133,7 @@ class AnnualReport extends React.Component {
                                     <br />Two Sigma
                                 </div>
                                 <div className="board-member">
-                                    <b>
+                                    <b className="board-title">
                                         <FormattedMessage id="annualReport.leadershipBoardMember" />
                                     </b>
                                     <h4>Margaret Honey</h4>
@@ -1141,7 +1141,7 @@ class AnnualReport extends React.Component {
                                     <br />Two Sigma
                                 </div>
                                 <div className="board-member">
-                                    <b>
+                                    <b className="board-title">
                                         <FormattedMessage id="annualReport.leadershipBoardMember" />
                                     </b>
                                     <h4>Christina Miller</h4>
@@ -1149,7 +1149,7 @@ class AnnualReport extends React.Component {
                                     <br />Cartoon Network
                                 </div>
                                 <div className="board-member">
-                                    <b>
+                                    <b className="board-title">
                                         <FormattedMessage id="annualReport.leadershipBoardMember" />
                                     </b>
                                     <h4>Avraham Kadar</h4>
@@ -1162,32 +1162,34 @@ class AnnualReport extends React.Component {
                             </h4>
                             <FlexRow className="leadership-board">
                                 <div className="board-member">
-                                    <b>
+                                    <b className="board-title">
                                         <FormattedMessage id="annualReport.leadershipBoardSecretary" />
                                     </b>
                                     <h4>Sheri Vammen</h4>
                                 </div>
                                 <div className="board-member">
-                                    <b>
+                                    <b className="board-title">
                                         <FormattedMessage id="annualReport.leadershipBoardTreasurer" />
                                     </b>
                                     <h4>Rich Sauer</h4>
                                 </div>
                             </FlexRow>
-                            <h3>
-                                <FormattedMessage id="annualReport.leadershipScratchTeam" />
-                            </h3>
-                            <div className="executive-director">
-                                <PeopleGrid
-                                    people={[{
-                                        userName: 'Champ99',
-                                        userId: 900283,
-                                        name: 'Champika'
-                                    }]}
-                                />
-                                <FormattedMessage id="annualReport.leadershipInterim" />
+                            <div className="leadership-scratch-team">
+                                <h3>
+                                    <FormattedMessage id="annualReport.leadershipScratchTeam" />
+                                </h3>
+                                <div className="executive-director">
+                                    <PeopleGrid
+                                        people={[{
+                                            userName: 'Champ99',
+                                            userId: 900283,
+                                            name: 'Champika'
+                                        }]}
+                                    />
+                                    <FormattedMessage id="annualReport.leadershipInterim" />
+                                </div>
+                                <PeopleGrid people={People} />
                             </div>
-                            <PeopleGrid people={People} />
                         </div>
                     </div>
                     <div
