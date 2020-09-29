@@ -996,15 +996,11 @@ class AnnualReport extends React.Component {
                                             <li>Alfred Spector</li>
                                             <li>Ben Stein</li>
                                             <li>Donald Sussman</li>
-                                            <li>Intel Corporation</li>
-                                            <li>Jenner & Block LLP</li>
-                                            <li>La Vida Feliz Foundation</li>
-                                            <li>Silicon Valley Bank</li>
-                                        </ul>
-                                        <ul className="supporters-list-side">
                                             <li>Glen Whitney</li>
                                             <li>AIG</li>
                                             <li>Amazon</li>
+                                        </ul>
+                                        <ul className="supporters-list-side">
                                             <li>Bank of America</li>
                                             <li>Certified Moving & Storage</li>
                                             <li>Dalio Foundation, Inc.</li>
@@ -1014,6 +1010,10 @@ class AnnualReport extends React.Component {
                                             <li>Hearst Corporation</li>
                                             <li>HedgeServ</li>
                                             <li>Humble Bundle</li>
+                                            <li>Intel Corporation</li>
+                                            <li>Jenner & Block LLP</li>
+                                            <li>La Vida Feliz Foundation</li>
+                                            <li>Silicon Valley Bank</li>
                                             <li>Spin Master</li>
                                             <li>Union Square Ventures</li>
                                         </ul>
@@ -1052,9 +1052,9 @@ class AnnualReport extends React.Component {
                                             <li>Robert and Bethany Millard </li>
                                             <li>Stephen M. Ross</li>
                                             <li>Wray Thorn</li>
-                                            <li>Jessica Traynor</li>
                                         </ul>
                                         <ul className="supporters-list-side">
+                                            <li>Jessica Traynor</li>
                                             <li>Adobe</li>
                                             <li>Anchor Point Foundation</li>
                                             <li>Barclays</li>
