@@ -608,7 +608,7 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.reach170million"
+                                            id="annualReport.reach60million"
                                             values={{
                                                 million: (
                                                     <div className="million">
@@ -618,12 +618,12 @@ class AnnualReport extends React.Component {
                                             }}
                                         />
                                         <h4>
-                                            <FormattedMessage id="annualReport.reachUniqueVisitors" />
+                                            <FormattedMessage id="annualReport.reachProjectsCreated" />
                                         </h4>
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.reach170million"
+                                            id="annualReport.reach20million"
                                             values={{
                                                 million: (
                                                     <div className="million">
@@ -633,12 +633,12 @@ class AnnualReport extends React.Component {
                                             }}
                                         />
                                         <h4>
-                                            <FormattedMessage id="annualReport.reachUniqueVisitors" />
+                                            <FormattedMessage id="annualReport.reachProjectCreators" />
                                         </h4>
                                     </div>
                                     <div className="reach-datapoint">
                                         <FormattedMessage
-                                            id="annualReport.reach170million"
+                                            id="annualReport.reach48million"
                                             values={{
                                                 million: (
                                                     <div className="million">
@@ -648,7 +648,7 @@ class AnnualReport extends React.Component {
                                             }}
                                         />
                                         <h4>
-                                            <FormattedMessage id="annualReport.reachUniqueVisitors" />
+                                            <FormattedMessage id="annualReport.reachComments" />
                                         </h4>
                                     </div>
                                 </div>
@@ -677,6 +677,17 @@ class AnnualReport extends React.Component {
                                     countryNames={countryNames}
                                 />
                             </div>
+                            <div className="reach-translation">
+                                <div className="reach-translation-intro">
+                                    <h3>
+                                        <FormattedMessage id="annualReport.reachTranslationTitle" />
+                                    </h3>
+                                    <p>
+                                        <FormattedMessage id="annualReport.reachTranslationBlurb" />
+                                    </p>
+                                </div>
+                                <img src="/images/annual-report/translated-illustration.svg" />
+                            </div>
                         </div>
                     </div>
                     <div className="reach-scratch-jr section">
@@ -689,7 +700,7 @@ class AnnualReport extends React.Component {
                             </div>
                             <div className="reach-datapoint">
                                 <FormattedMessage
-                                    id="annualReport.reach170million"
+                                    id="annualReport.reach22million"
                                     values={{
                                         million: (
                                             <div className="million">
@@ -699,7 +710,7 @@ class AnnualReport extends React.Component {
                                     }}
                                 />
                                 <h4>
-                                    <FormattedMessage id="annualReport.reachUniqueVisitors" />
+                                    <FormattedMessage id="annualReport.reachDownloads" />
                                 </h4>
                             </div>
                         </div>

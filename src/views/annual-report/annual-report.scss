@@ -376,7 +376,7 @@ p {
         .reach-numbers {            
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: space-between;
         }
     }
 
@@ -413,6 +413,26 @@ p {
             color: $type-gray;
         }
     }
+
+    .reach-translation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 780px;
+        margin-bottom: 100px;
+
+        .reach-translation-intro {
+            max-width: 300px;
+
+            h3 {
+                max-width: 280px;
+            }
+        }
+
+        img {
+            max-width: 380px;
+        }
+    }
 }
 
 .reach-datapoint {
@@ -431,6 +451,7 @@ p {
 .reach-scratch-jr {
     background-color: #0EA57A;
     color: $ui-white;
+    padding: 100px 0;
 
     h2, h3, h4, p {
         color: $ui-white;
@@ -445,6 +466,9 @@ p {
 
     .scratch-jr-intro {
         max-width: 540px;
+        p {
+            font-size: 1.25rem;
+        }
     }
 }
 
