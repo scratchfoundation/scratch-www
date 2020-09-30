@@ -184,13 +184,6 @@
         "title": "Join Scratch"
     },
     {
-        "name": "map",
-        "pattern": "^/map/?$",
-        "routeAlias": "/map/?$",
-        "view": "map/map",
-        "title": "Map"
-    },
-    {
         "name": "messages",
         "pattern": "^/messages/?$",
         "routeAlias": "/messages(?!/ajax)",

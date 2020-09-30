@@ -6,6 +6,8 @@ require('./world-map.scss');
 
 const WorldMap = props => (
     <Plot
+        useResizeHandler
+        className="map"
         config={
             {
                 scrollZoom: false,
@@ -21,24 +23,24 @@ const WorldMap = props => (
                 text: props.countryData,
                 hovertemplate: '<b>  %{location}  </b>' +
                                '<br>' +
-                               '  %{text:,.0f}  ' + 
+                               '  %{text:,.0f}  ' +
                                '<extra></extra>',
-                hoverlabel: { 
-                  bgcolor: "#FFF",
-                  bordercolor: "#5B6671",
-                  font: {
-                    color: "#575E75",
-                    size: "16",
-                    family:  "'Helvetica Neue Regular', sans-serif"
-                  },
+                hoverlabel: {
+                    bgcolor: '#FFF',
+                    bordercolor: '#5B6671',
+                    font: {
+                        color: '#575E75',
+                        size: '16',
+                        family: "'Helvetica Neue Regular', sans-serif"
+                    }
                 },
                 colorscale: [[0, 'rgba(14,189,140, .05)'], [1, 'rgba(14,189,140, 1)']],
                 showscale: false,
                 marker: {
-                  line:{
-                      color: '#FFFF',
-                      width: 1
-                  }
+                    line: {
+                        color: '#FFFF',
+                        width: 1
+                    }
                 }
             }
         ]}
@@ -46,11 +48,11 @@ const WorldMap = props => (
             {
                 geo: {
                     projection: {
-                      type: 'robinson'
+                        type: 'robinson'
                     },
                     showcoastlines: false,
                     showframe: false,
-                    fitbounds: "locations",
+                    fitbounds: 'locations'
                     // showland: true,
                     // showcountries: true
                 },
@@ -64,13 +66,6 @@ const WorldMap = props => (
                 }
             }
         }
-        style={
-            {
-                width: "100%", 
-                height: "100%"
-            }
-        }
-        useResizeHandler
     />
 );
 
