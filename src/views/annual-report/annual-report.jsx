@@ -366,8 +366,8 @@ class AnnualReport extends React.Component {
                         id="mission"
                         ref={this.setRef(SECTIONS.mission)}
                     >
-                        <div className="inner">
-                        </div>
+                        {/* <div className="inner">
+                        </div> */}
                     </div>
                     <div
                         className="milestones-section section"
@@ -727,8 +727,8 @@ class AnnualReport extends React.Component {
                         id="initiatives"
                         ref={this.setRef(SECTIONS.initiatives)}
                     >
-                        <div className="inner">
-                        </div>
+                        {/* <div className="inner">
+                        </div> */}
                     </div>
                     <div
                         className="financials-section section"
