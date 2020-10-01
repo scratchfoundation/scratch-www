@@ -11,7 +11,8 @@ const WorldMap = props => (
         config={
             {
                 scrollZoom: false,
-                displayModeBar: false
+                displayModeBar: false,
+                responsive: true
             }
         }
         data={[
@@ -48,13 +49,19 @@ const WorldMap = props => (
             {
                 geo: {
                     projection: {
-                        type: 'robinson'
+                        type: 'robinson',
+                        scale: 1
                     },
                     showcoastlines: false,
                     showframe: false,
-                    fitbounds: 'locations'
-                    // showland: true,
+                    scope: 'world',
+                    fitbounds: 'locations',
+                    showland: true,
+                    landcolor: 'rgba(14,189,140, .05)'
                     // showcountries: true
+                    // center: {
+                    //     lat: 10
+                    // }
                 },
                 dragmode: false,
                 margin: {
@@ -62,8 +69,12 @@ const WorldMap = props => (
                     r: 0,
                     b: 0,
                     t: 0,
-                    pad: 0
-                }
+                    pad: 0,
+                    autoexpand: true
+                },
+                autosize: false,
+                width: props.mapWidth,
+                height: props.mapHeight
             }
         }
     />
@@ -72,7 +83,9 @@ const WorldMap = props => (
 WorldMap.propTypes = {
     colorIndex: PropTypes.arrayOf(PropTypes.string),
     countryData: PropTypes.arrayOf(PropTypes.string),
-    countryNames: PropTypes.arrayOf(PropTypes.string)
+    countryNames: PropTypes.arrayOf(PropTypes.string),
+    mapHeight: PropTypes.number,
+    mapWidth: PropTypes.number
 };
 
 module.exports = WorldMap;

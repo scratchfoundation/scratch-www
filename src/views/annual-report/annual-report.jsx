@@ -573,8 +573,12 @@ class AnnualReport extends React.Component {
                             </div>
                         </div>
                         <div className="transition-images">
-                            <img src="/images/annual-report/milestones/vertical-loop.svg" />
-                            <img src="/images/annual-report/milestones/painting-hand.svg" />
+                            <div className="left-image">
+                                <img src="/images/annual-report/milestones/vertical-loop.svg" />
+                            </div>
+                            <div className="cropped-image">
+                                <img src="/images/annual-report/milestones/painting-hand.svg" />
+                            </div>
                         </div>
                     </div>
                     <div
@@ -672,9 +676,12 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.reachMapBlurb" />
                                 </p>
                                 <WorldMap
+                                    className="map"
                                     colorIndex={colorIndex}
                                     countryData={countryData}
                                     countryNames={countryNames}
+                                    mapHeight={600}
+                                    mapWidth={1200}
                                 />
                             </div>
                             <div className="reach-translation">

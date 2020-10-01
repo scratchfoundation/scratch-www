@@ -341,10 +341,19 @@ p {
 
     .transition-images {
         width: 100%;
-        overflow-x: hidden;
-        img {
-            margin-bottom: -200px;
-            margin-right: -68px;
+        
+        height: 420px;
+        overflow: hidden;
+
+        margin-bottom: -240px;
+
+        .left-image {
+            align-self: center;
+            height: 270px;
+        }
+
+        .cropped-image {
+            width: 260px;
         }
     }
 }
@@ -432,6 +441,12 @@ p {
         img {
             max-width: 380px;
         }
+    }
+
+    .map {
+        margin-top: 20px;
+        margin-left: -40px;
+        padding: 40px;
     }
 }
 
