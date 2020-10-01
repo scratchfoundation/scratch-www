@@ -18,7 +18,7 @@
   "download.scratch2Desktop" : "Scratch 2.0 Offline Editor",
   "download.cannotAccessMacStore" : "What if I can't access the Mac App Store?",
   "download.cannotAccessWindowsStore" : "What if I can't access the Microsoft Store?",
-  "download.macMoveAppToApplications": "Open the .dmg file. Move Scratch into Applications.",
+  "download.macMoveAppToApplications": "Open the .dmg file. Move Scratch 3 into Applications.",
   "download.macMoveToApplications" :  "Open the .dmg file. Move Scratch Desktop into Applications.",
   "download.winMoveToApplications" : "Run the .exe file.",
   "download.doIHaveToDownload" : "Do I have to download an app to use Scratch?",
