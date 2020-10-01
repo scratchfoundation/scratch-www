@@ -110,6 +110,7 @@ $base-bg: $ui-white;
         padding-top: 16px;
         padding-bottom: 32px;
         width: 100%;
+        overflow-anchor: none;
 
         .button {
             display: block;
