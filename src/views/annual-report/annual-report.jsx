@@ -46,9 +46,10 @@ const SECTION_NAMES = {
     donate: <FormattedMessage id="annualReport.subnavDonate" />
 };
 
-const countryNames = Object.keys(CountryUsage);
-const countryData = countryNames.map(key => CountryUsage[key].count);
-const colorIndex = countryNames.map(key => CountryUsage[key]['log count']);
+const countryKeys = Object.keys(CountryUsage);
+const countryNames = countryKeys.map(key => CountryUsage[key].display);
+const countryData = countryKeys.map(key => CountryUsage[key].count);
+const colorIndex = countryKeys.map(key => CountryUsage[key]['log count']);
 
 class AnnualReport extends React.Component {
     constructor (props) {
