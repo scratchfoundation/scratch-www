@@ -122,7 +122,7 @@ const OnePointFour = () => (
                                                 </a>
                                             ),
                                             linuxDownload: (
-                                                <a href="https://ubuntu.media.mit.edu/ubuntu//pool/universe/s/scratch/scratch_1.4.0.6~dfsg1-5~ubuntu12.04.1_all.deb">
+                                                <a href="http://ubuntu.media.mit.edu/ubuntu//pool/universe/s/scratch/scratch_1.4.0.6~dfsg1-5~ubuntu12.04.1_all.deb">
                                                     <FormattedMessage id="onePointFour.linuxDownload" />
                                                 </a>
                                             )
