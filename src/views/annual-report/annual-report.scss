@@ -367,7 +367,7 @@ p {
         align-items: center;
     }
 
-    background-color: #0EBD8C;
+    background-color: $ui-aqua;
     color: $ui-white;
 
     h2, h3, h4, p {
@@ -493,7 +493,7 @@ p {
         padding: 80px 0;
     }
 
-    background-color: #575E75;
+    background-color: $header-gray;
     width: 100%;
     color: $ui-white;
 
@@ -513,7 +513,7 @@ p {
     hr {
         border: 0;
         height: 0;
-        border-top: .5px solid #FFFFFF;
+        border-top: .5px solid $type-white;
         opacity: .25;
     }
 
@@ -675,7 +675,7 @@ p {
 }
 
 .supporters-section {
-    background-color: #EDEDFF;
+    background-color: $ui-blue-10percent;
     padding: 104px 0;
 
     .inner {
@@ -880,7 +880,7 @@ p {
 }
 
 .leadership-section {
-    background-color: #EDEDFF;
+    background-color: $ui-blue-10percent;
 
     .inner {
         padding-bottom: 76px;
@@ -915,7 +915,7 @@ p {
 
         .avatar-item {
             img {
-                background-color: #EDEDFF;
+                background-color: $ui-blue-10percent;
             }
         }
     }
@@ -937,7 +937,7 @@ p {
 }
 
 .donate-section {
-    background-color: #0EBD8C;
+    background-color: $ui-aqua;
 
     .donate-info {
         justify-content: center;
@@ -1013,7 +1013,7 @@ p {
     top: 50px;
     z-index: 9;
     box-shadow: 0 0 3px $box-shadow-gray;
-    background-color: #4280D7;
+    background-color: $ui-blue-dark;
     padding: 0;
     width: 100%;
     height: 58px;
