@@ -68,7 +68,7 @@ const OnePointFour = () => (
                             <p><FormattedMessage id="onePointFour.macBody" /></p>
                             <ul className="installation-downloads">
                                 <li className="installation-downloads-item">
-                                    <a href="http://download.scratch.mit.edu/MacScratch1.4.dmg">
+                                    <a href="https://download.scratch.mit.edu/MacScratch1.4.dmg">
                                         MacScratch1.4.dmg
                                     </a>
                                 </li>
@@ -86,7 +86,7 @@ const OnePointFour = () => (
                                 key="installation-downloads"
                             >
                                 <li className="installation-downloads-item">
-                                    <a href="http://download.scratch.mit.edu/ScratchInstaller1.4.exe">
+                                    <a href="https://download.scratch.mit.edu/ScratchInstaller1.4.exe">
                                         ScratchInstaller1.4.exe
                                     </a>
                                 </li>
@@ -95,7 +95,7 @@ const OnePointFour = () => (
                                         id="onePointFour.windowsNetwork"
                                         values={{
                                             windowsNetworkInstaller: (
-                                                <a href="http://download.scratch.mit.edu/Scratch1.4.msi.installer.zip">
+                                                <a href="https://download.scratch.mit.edu/Scratch1.4.msi.installer.zip">
                                                     <FormattedMessage id="onePointFour.windowsNetworkInstaller" />
                                                 </a>
                                             )
@@ -122,7 +122,7 @@ const OnePointFour = () => (
                                                 </a>
                                             ),
                                             linuxDownload: (
-                                                <a href="http://ubuntu.media.mit.edu/ubuntu//pool/universe/s/scratch/scratch_1.4.0.6~dfsg1-5~ubuntu12.04.1_all.deb">
+                                                <a href="https://ubuntu.media.mit.edu/ubuntu//pool/universe/s/scratch/scratch_1.4.0.6~dfsg1-5~ubuntu12.04.1_all.deb">
                                                     <FormattedMessage id="onePointFour.linuxDownload" />
                                                 </a>
                                             )
@@ -144,17 +144,17 @@ const OnePointFour = () => (
                             id="onePointFour.resourcesA"
                             values={{
                                 gettingStartedGuide: (
-                                    <a href="http://download.scratch.mit.edu/ScratchGettingStartedv14.pdf">
+                                    <a href="https://download.scratch.mit.edu/ScratchGettingStartedv14.pdf">
                                         <FormattedMessage id="onePointFour.gettingStartedGuide" />
                                     </a>
                                 ),
                                 referenceGuide: (
-                                    <a href="http://download.scratch.mit.edu/ScratchReferenceGuide14.pdf">
+                                    <a href="https://download.scratch.mit.edu/ScratchReferenceGuide14.pdf">
                                         <FormattedMessage id="onePointFour.referenceGuide" />
                                     </a>
                                 ),
                                 scratchCards: (
-                                    <a href="http://download.scratch.mit.edu/ScratchCardsAll-v1.4-PDF.zip">
+                                    <a href="https://download.scratch.mit.edu/ScratchCardsAll-v1.4-PDF.zip">
                                         <FormattedMessage id="onePointFour.scratchCards" />
                                     </a>
                                 )
