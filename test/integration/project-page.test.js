@@ -34,6 +34,8 @@ describe('www-integration project-page signed out', () => {
 
     afterAll(async () => await driver.quit());
 
+    // LOGGED OUT TESTS
+    
     test('Find fullscreen button', async () => {
         await clickXpath('//div[starts-with(@class, "stage_green-flag-overlay")]');
         await clickXpath('//img[contains(@alt, "Enter full screen mode")]');
