@@ -215,7 +215,7 @@ so for the time being our tests run using both.
 To run all integration tests from the command-line:
 
 ```bash
-SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu PROJECT_ID=id# npm run test:integration
+SMOKE_USERNAME=username SMOKE_PASSWORD=password ROOT_URL=https://scratch.mit.edu TEST_PROJECT_ID=1 npm run test:integration
 ```
 
 Both the TAP and Jest tests use the same username and password.  The Jest tests will also use the the username you give with a 1 (soon to be higher numbers as well) appended to the end of it.  So if you use the username "test" it will also use the username "test1."  Make sure you have created accounts with this pattern and use the same password for all accounts involved.
