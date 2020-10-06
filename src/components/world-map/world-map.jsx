@@ -58,10 +58,6 @@ const WorldMap = props => (
                     fitbounds: 'locations',
                     showland: true,
                     landcolor: 'rgba(14,189,140, .05)'
-                    // showcountries: true
-                    // center: {
-                    //     lat: 10
-                    // }
                 },
                 dragmode: false,
                 margin: {
