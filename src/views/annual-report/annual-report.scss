@@ -487,6 +487,90 @@ p {
     }
 }
 
+.initiatives-section {
+    .initiatives-subsection-header {
+        // background-image: url("/images/annual-report/initiatives/guideline-splash.svg");
+        padding: 92px 0;
+
+        //>.initiatives-community {
+        //    background-color: $ui-blue-dark;
+        //}
+
+        &.community {
+            background-color: $ui-blue-dark;
+        }
+
+        .inner {
+            max-width: 780px;
+            text-align: center;
+
+            h2, p {
+                color: $ui-white;
+            }
+
+            p {
+                font-size: 1.25rem;
+                line-height: 2.5rem;
+            }
+        }
+    }
+
+    .initiatives-subsection-content {
+        .inner {
+            max-width: 1032px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 72px;
+        }
+    }
+
+    .initiatives-community {
+        img {
+            width: 100%;
+        }
+
+        .moderation-and-guidelines {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .community-moderation {
+            width: 380px;
+            margin-right: 80px;
+        }
+
+        .community-guidelines {
+            width: 460px;
+
+            p {
+                font-size: 1.25rem;
+            }
+        }
+
+        .guidelines-list {
+            display: flex;
+
+            ul {
+                list-style-image: url('/images/annual-report/initiatives/guideline-splash.svg');
+            }
+            li {
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .community-team-intro {
+        max-width: 780px;
+        text-align: center;
+        margin: 32px 0;
+
+        p {
+            max-width: 620px;
+        }
+    }
+}
+
 .financials-section {
     .inner {
         max-width: 780px;

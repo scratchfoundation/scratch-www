@@ -266,7 +266,7 @@ class AnnualReport extends React.Component {
                             null
                         }
                     </MediaQuery>
-                    {/* Bottom Bar */}
+                    {/* For large screens, show whole subnav, with no dropdown */}
                     <MediaQuery minWidth={frameless.tabletPortrait}>
                         {subnav}
                     </MediaQuery>
@@ -731,11 +731,99 @@ class AnnualReport extends React.Component {
                         </div>
                     </div>
                     <div
-                        className="initiatives section"
+                        className="initiatives-section section"
                         ref={this.setRef(SECTIONS.initiatives)}
                     >
-                        {/* <div className="inner">
-                        </div> */}
+                        <div className="initiatives-community">
+                            <div className="initiatives-subsection-header community">
+                                <div className="inner">
+                                    <h2>
+                                        <FormattedMessage id="annualReport.communityTitle" />
+                                    </h2>
+                                    <p>
+                                        <FormattedMessage id="annualReport.communityIntro" />
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="initiatives-subsection-content">
+                                <div className="inner">
+                                    <div className="subsection-tag">
+                                        <FormattedMessage id="annualReport.communitySpotlight" />
+                                    </div>
+                                    <div className="community-team-intro">
+                                        <h2>
+                                            <FormattedMessage id="annualReport.communityTeam" />
+                                        </h2>
+                                        <p>
+                                            <FormattedMessage id="annualReport.communityTeamIntro1" />
+                                        </p>
+                                        <p>
+                                            <FormattedMessage id="annualReport.communityTeamIntro2" />
+                                        </p>
+                                    </div>
+                                    <img src="/images/annual-report/initiatives/community-hero.png" />
+                                    <div className="moderation-and-guidelines">
+                                        <div className="community-moderation">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.communityModerationTitle" />
+                                            </h4>
+                                            <p>
+                                                <FormattedMessage id="annualReport.communityModerationInfo" />
+                                            </p>
+                                        </div>
+                                        <div className="community-guidelines">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.communityGuidelinesTitle" />
+                                            </h4>
+                                            <p>
+                                                
+                                            </p>
+                                            <div className="guidelines-list">
+                                                <ul>
+                                                    <li>
+                                                        <FormattedMessage id="guidelines.respectheader" />
+                                                    </li>
+                                                    <li>
+                                                        <FormattedMessage id="guidelines.shareheader" />
+                                                    </li>
+                                                    <li>
+                                                        <FormattedMessage id="guidelines.honestheader" />
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>
+                                                        <FormattedMessage id="guidelines.constructiveheader" />
+                                                    </li>
+                                                    <li>
+                                                        <FormattedMessage id="guidelines.privacyheader" />
+                                                    </li>
+                                                    <li>
+                                                        <FormattedMessage id="guidelines.friendlyheader" />
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div className="communityEngagement">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.communityEngagementTitle" />
+                                            </h4>
+                                            <p>
+                                                <FormattedMessage
+                                                    id="annualReport.communityEngagementInfo"
+                                                    values={{
+                                                        storySwapLink: (
+                                                            <a href="#">
+                                                                <FormattedMessage id="annualReport.storySwap" />
+                                                            </a>
+                                                        )
+                                                    }} 
+                                                />
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div
                         className="financials-section section"
