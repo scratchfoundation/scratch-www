@@ -40,21 +40,21 @@ describe('www-integration footer links', () => {
         await clickText('For Parents');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/parents\/?$/);
+        expect(pathname).toMatch(/^\/parents\/?$/);
     });
 
     test('click For Educators link', async () => {
         await clickText('For Educators');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/educators\/?$/);
+        expect(pathname).toMatch(/^\/educators\/?$/);
     });
 
     test('click For Developers link', async () => {
         await clickText('For Developers');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/developers\/?$/);
+        expect(pathname).toMatch(/^\/developers\/?$/);
     });
 
     // ==== COMMUNITY column ====
@@ -63,21 +63,21 @@ describe('www-integration footer links', () => {
         await clickText('Community Guidelines');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/community_guidelines\/?$/);
+        expect(pathname).toMatch(/^\/community_guidelines\/?$/);
     });
 
     test('click Discussion Forums link', async () => {
         await clickText('Discussion Forums');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(url).toMatch(/discuss\/?$/);
+        expect(pathname).toMatch(/^\/discuss\/?$/);
     });
 
     test('click Statistics link', async () => {
         await clickText('Statistics');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/statistics\/?$/);
+        expect(pathname).toMatch(/^\/statistics\/?$/);
     });
 
     // ==== SUPPORT column ====
@@ -86,28 +86,28 @@ describe('www-integration footer links', () => {
         await clickText('Ideas');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/ideas\/?$/);
+        expect(pathname).toMatch(/^\/ideas\/?$/);
     });
 
     test('click FAQ link', async () => {
         await clickText('FAQ');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/info\/faq\/?$/);
+        expect(pathname).toMatch(/^\/info\/faq\/?$/);
     });
 
     test('click Download link', async () => {
         await clickText('Download');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/download\/?$/);
+        expect(pathname).toMatch(/^\/download\/?$/);
     });
 
     test('click Contact Us link', async () => {
         await clickText('Contact Us');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/contact-us\/?$/);
+        expect(pathname).toMatch(/^\/contact-us\/?$/);
     });
 
     // ==== LEGAL column ====
@@ -116,21 +116,21 @@ describe('www-integration footer links', () => {
         await clickText('Terms of Use');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/terms_of_use\/?$/);
+        expect(pathname).toMatch(/^\/terms_of_use\/?$/);
     });
 
     test('click Privacy Policy link', async () => {
         await clickText('Privacy Policy');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/privacy_policy\/?$/);
+        expect(pathname).toMatch(/^\/privacy_policy\/?$/);
     });
 
     test('click DMCA link', async () => {
         await clickText('DMCA');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/DMCA\/?$/);
+        expect(pathname).toMatch(/^\/DMCA\/?$/);
     });
 
     // ==== SCRATCH FAMILY column ====
@@ -139,7 +139,7 @@ describe('www-integration footer links', () => {
         await clickText('Scratch Conference');
         let url = await driver.getCurrentUrl();
         let pathname = (new URL(url)).pathname;
-        expect(pathname).toMatch(/conference\/2020\/?$/);
+        expect(pathname).toMatch(/^\/conference\/2020\/?$/);
     });
 
 });
