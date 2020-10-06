@@ -2,8 +2,6 @@ import Plot from 'react-plotly.js';
 const React = require('react');
 const PropTypes = require('prop-types');
 
-require('./world-map.scss');
-
 const WorldMap = props => (
     <Plot
         useResizeHandler
