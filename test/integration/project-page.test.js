@@ -8,7 +8,7 @@ const {
 
 let remote = process.env.SMOKE_REMOTE || false;
 let rootUrl = process.env.ROOT_URL || 'https://scratch.ly';
-let projectId = process.env.TEST_PROJECT_ID;
+let projectId = process.env.TEST_PROJECT_ID || 1300006196;
 let projectUrl = rootUrl + '/projects/' + projectId;
 
 if (remote){
