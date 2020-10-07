@@ -406,26 +406,44 @@ p {
         img {
             width: 600px;
         }
+
+        @media #{$intermediate-and-smaller} {
+            img {
+                max-width: 100%;
+            }
+        }
     }
 
+    .map-inner {
+        display: flex;
+        flex-direction: column;
+         align-items: center;
+    }
     .reach-map {
-        //width: 1064px;
+        width: 1064px;
         background-color: $ui-white;
         border-radius: 6px;
         color: $type-gray;
-        padding: 48px 0;
+        padding-top: 48px;
         margin: 52px 0;
 
         text-align: center;
 
         h3, p {
             color: $type-gray;
+            padding: 0 48px;
+        }
+
+        @media #{$intermediate-and-smaller} {
+            width: 100%;
+            border-radius: 0px;
         }
     }
 
     .reach-translation {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         align-items: center;
         max-width: 780px;
         margin-bottom: 100px;
@@ -445,8 +463,7 @@ p {
 
     .map {
         margin-top: 20px;
-        margin-left: -40px;
-        padding: 40px;
+        margin-left: 0px;
     }
 }
 
@@ -546,6 +563,7 @@ p {
         .moderation-and-guidelines {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
         }
 
         .community-moderation {

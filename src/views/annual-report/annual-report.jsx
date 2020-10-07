@@ -679,6 +679,8 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <img src="/images/annual-report/milestones/community-growth-graph.svg" />
                             </div>
+                        </div>
+                        <div className="map-inner">
                             <div className="reach-map">
                                 <h3>
                                     <FormattedMessage id="annualReport.reachGlobalCommunity" />
@@ -686,15 +688,55 @@ class AnnualReport extends React.Component {
                                 <p>
                                     <FormattedMessage id="annualReport.reachMapBlurb" />
                                 </p>
-                                <WorldMap
-                                    className="map"
-                                    colorIndex={colorIndex}
-                                    countryData={countryData}
-                                    countryNames={countryNames}
-                                    mapHeight={600}
-                                    mapWidth={1200}
-                                />
+                                <MediaQuery minWidth={frameless.desktop}>
+                                    <WorldMap
+                                        className="map"
+                                        colorIndex={colorIndex}
+                                        countryData={countryData}
+                                        countryNames={countryNames}
+                                        mapHeight={530}
+                                        mapWidth={1060}
+                                    />
+                                </MediaQuery>
+                                <MediaQuery
+                                    maxWidth={frameless.desktop - 1}
+                                    minWidth={frameless.tabletPortrait}
+                                >
+                                    <WorldMap
+                                        className="map"
+                                        colorIndex={colorIndex}
+                                        countryData={countryData}
+                                        countryNames={countryNames}
+                                        mapHeight={450}
+                                        mapWidth={900}
+                                    />
+                                </MediaQuery>
+                                <MediaQuery
+                                    maxWidth={frameless.tabletPortrait - 1}
+                                    minWidth={frameless.mobileIntermediate}
+                                >
+                                    <WorldMap
+                                        className="map"
+                                        colorIndex={colorIndex}
+                                        countryData={countryData}
+                                        countryNames={countryNames}
+                                        mapHeight={400}
+                                        mapWidth={800}
+                                    />
+                                </MediaQuery>
+                                <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
+                                    <WorldMap
+                                        className="map"
+                                        colorIndex={colorIndex}
+                                        countryData={countryData}
+                                        countryNames={countryNames}
+                                        mapHeight={172}
+                                        mapWidth={396}
+                                    />
+                                </MediaQuery>
                             </div>
+                        </div>
+                        <div className="inner">
                             <div className="reach-translation">
                                 <div className="reach-translation-intro">
                                     <h3>
