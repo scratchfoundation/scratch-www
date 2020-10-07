@@ -24,7 +24,6 @@ class VideoPreview extends React.Component {
     }
 
     render () {
-        //console.log(this.props.videoHeight);
         return (
             <div className="video-preview">
                 {this.state.videoOpen ?

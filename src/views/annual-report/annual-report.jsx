@@ -781,17 +781,55 @@ class AnnualReport extends React.Component {
                         className="initiatives-section section"
                         ref={this.setRef(SECTIONS.initiatives)}
                     >
-                        <div className="initiatives-community">
+                        <div className="initiatives-intro">
+                            <div className="inner">
+                                <h2>
+                                    <FormattedMessage id="annualReport.initiativesTitle" />
+                                </h2>
+                                <div className="initiatives-pillars">
+                                    <div className="initiatives-pillar">
+                                        <img src="/images/annual-report/ScratchJr-Logo.svg" />
+                                        <h3>
+                                            <FormattedMessage id="annualReport.toolsTitle" />
+                                        </h3>
+                                        <p>
+                                            <FormattedMessage id="annualReport.toolsIntro" />
+                                        </p>
+                                    </div>
+                                    <div className="initiatives-pillar">
+                                        <img src="/images/annual-report/ScratchJr-Logo.svg" />
+                                        <h3>
+                                            <FormattedMessage id="annualReport.communityTitle" />
+                                        </h3>
+                                        <p>
+                                            <FormattedMessage id="annualReport.communityIntro" />
+                                        </p>
+                                    </div>
+                                    <div className="initiatives-pillar">
+                                        <img src="/images/annual-report/ScratchJr-Logo.svg" />
+                                        <h3>
+                                            <FormattedMessage id="annualReport.schoolsTitle" />
+                                        </h3>
+                                        <p>
+                                            <FormattedMessage id="annualReport.schoolsIntro" />
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="initiatives-tools">
                             <div className="initiatives-subsection-header tools">
                                 <div className="inner">
                                     <h2>
-                                        <FormattedMessage id="annualReport.communityTitle" />
+                                        <FormattedMessage id="annualReport.toolsTitle" />
                                     </h2>
                                     <p>
-                                        <FormattedMessage id="annualReport.communityIntro" />
+                                        <FormattedMessage id="annualReport.toolsIntro" />
                                     </p>
                                 </div>
                             </div>
+                        </div>
+                        <div className="initiatives-community">
                             <div className="initiatives-subsection-header community">
                                 <div className="inner">
                                     <h2>
@@ -818,7 +856,10 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.communityTeamIntro2" />
                                         </p>
                                     </div>
-                                    <img className="hero" src="/images/annual-report/initiatives/community-hero.png" />
+                                    <img 
+                                        className="hero" 
+                                        src="/images/annual-report/initiatives/community-hero.png" 
+                                    />
                                     <div className="moderation-and-guidelines">
                                         <div className="community-moderation">
                                             <h4>
@@ -1030,7 +1071,9 @@ class AnnualReport extends React.Component {
                                     </div>
                                     <div className="video-container blm">
                                         <VideoPreview
-                                            buttonMessage={this.props.intl.formatMessage({id: 'annualReport.watchVideo'})}
+                                            buttonMessage={
+                                                this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                            }
                                             thumbnail="/images/annual-report/initiatives/BLM Video Thumbnail.png"
                                             thumbnailWidth="580"
                                             videoHeight="320"
@@ -1040,13 +1083,15 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div className="initiatives-schools">
                             <div className="initiatives-subsection-header schools">
                                 <div className="inner">
                                     <h2>
-                                        <FormattedMessage id="annualReport.communityTitle" />
+                                        <FormattedMessage id="annualReport.schoolsTitle" />
                                     </h2>
                                     <p>
-                                        <FormattedMessage id="annualReport.communityIntro" />
+                                        <FormattedMessage id="annualReport.schoolsIntro" />
                                     </p>
                                 </div>
                             </div>

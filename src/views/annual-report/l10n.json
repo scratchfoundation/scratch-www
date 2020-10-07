@@ -64,6 +64,11 @@
     "annualReport.reach22million": "22 {million}",
     "annualReport.reachDownloads": "Downloads Since Launching in 2014",
 
+    "annualReport.initiativesTitle": "Initiatives",
+
+    "annualReport.toolsTitle": "Creative Tools",
+    "annualReport.toolsIntro": "We are constantly experimenting and innovating with new technologies and new designs — always striving to provide children with new ways to create, collaborate, and learn.",
+
     "annualReport.communityTitle": "Community",
     "annualReport.communityIntro": "The Scratch programming language has always been intertwined with the Scratch online community, providing opportunities for children to collaborate, share, and provide feedback to one another.",
     "annualReport.communitySpotlight": "Community - Spotlight Story",
@@ -97,7 +102,10 @@
     "annualReport.communityArtwork": "Artwork by the Scratcher OnionDipAnimations",
     "annualReport.communityChangeTitle": "We see young people as agents of change.",
     "annualReport.communityChangeInfo": "We are committed to working with them, and with the educators and families who support them, to ensure that they develop the skills, the motivation, and the confidence they’ll need to lead fulfilling lives and bring about meaningful change in society.",
-    "annualReport.watchVideo": "Watch Video", 
+    "annualReport.watchVideo": "Watch Video",
+
+     "annualReport.schoolsTitle": "Schools",
+    "annualReport.schoolsIntro": "We provide programs and resources to support teachers and students in schools around the world, designed to achieve equity in creative computing experiences, based on projects, passion, peers, and play.",
 
     "annualReport.financialsTitle": "Financials - 2019",
     "annualReport.financialsRevenue": "Revenues",

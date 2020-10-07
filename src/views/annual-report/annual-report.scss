@@ -505,6 +505,40 @@ p {
 }
 
 .initiatives-section {
+    
+    .initiatives-intro {
+        .inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            padding: 88px 0;
+        }
+
+        .initiatives-pillars {
+            display: flex;
+
+            .initiatives-pillar {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                width: 272px;
+                margin: 0 40px;
+
+                img {
+                    width: 140px;
+                    height: 140px;
+                    align-self: center;
+                }
+            }
+
+            @media #{$intermediate-and-smaller} {
+                margin: 40px 0;
+                flex-direction: column;
+            }
+        }
+    }
+
     .initiatives-subsection-header {
         background-image: url("/images/annual-report/initiatives/Juice Pattern.svg");
 
