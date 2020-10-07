@@ -21,7 +21,7 @@ const CountryUsage = require('./country-usage.json');
 const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
 const BLMProjects = require('./blm-projects.json');
-const Video = require('../../components/Video/video.jsx');
+const VideoPreview = require('../../components/video-preview/video-preview.jsx');
 
 require('./annual-report.scss');
 
@@ -1028,29 +1028,16 @@ class AnnualReport extends React.Component {
                                             </p>
                                         </div>
                                     </div>
-                                    <FlexRow className="blm-video-container">
-                                        {this.state.videoOpen ?
-                                            (
-                                                <Video
-                                                    className="intro-video"
-                                                    videoId="joal01i8b1"
-                                                />
-                                            ) : (
-                                                <div
-                                                    className="video-image"
-                                                >
-                                                    <img src="/images/annual-report/initiatives/BLM Video Thumbnail.png" />
-                                                    <a
-                                                        href="#"
-                                                    >
-                                                        <div className="watch-button button">
-                                                            {'Watch Video'}
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            )
-                                        }
-                                    </FlexRow>
+                                    <div className="video-container blm">
+                                        <VideoPreview
+                                            buttonMessage={this.props.intl.formatMessage({id: 'annualReport.watchVideo'})}
+                                            thumbnail="/images/annual-report/initiatives/BLM Video Thumbnail.png"
+                                            thumbnailWidth="580"
+                                            videoHeight="320"
+                                            videoId="joal01i8b1"
+                                            videoWidth="568"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             <div className="initiatives-subsection-header schools">

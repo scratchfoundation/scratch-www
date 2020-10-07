@@ -1,0 +1,22 @@
+.video-preview {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .video-player {
+    	height: auto;
+    	border: none;
+    	border-radius: .75rem;
+    }
+}
+
+.video-thumbnail {
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .button {
+    	margin-top: 20px;
+    }
+}

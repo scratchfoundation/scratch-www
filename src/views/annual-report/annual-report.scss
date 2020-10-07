@@ -682,19 +682,22 @@ p {
                 width: 380px;
             }
         }
+    }
 
-        .blm-video-container {
+    .video-container {
+        width: 1020px;
+        height: 500px;
+
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &.blm {
             background-image: url("/images/annual-report/initiatives/BLM Video Splash.svg");
-            width: 1020px;
-            height: 500px;
-
-            background-size: 100% auto;
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
-
-            img {
-                width: 576px;
-            }
         }
     }
 
