@@ -21,6 +21,7 @@ const CountryUsage = require('./country-usage.json');
 const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
 const BLMProjects = require('./blm-projects.json');
+const Video = require('../../components/Video/video.jsx');
 
 require('./annual-report.scss');
 
@@ -69,7 +70,8 @@ class AnnualReport extends React.Component {
 
         this.state = {
             currentlyVisible: SECTIONS.message, // The currently visible section
-            dropdownVisible: false
+            dropdownVisible: false,
+            videoOpen: false
         };
 
         bindAll(this, [
@@ -780,6 +782,16 @@ class AnnualReport extends React.Component {
                         ref={this.setRef(SECTIONS.initiatives)}
                     >
                         <div className="initiatives-community">
+                            <div className="initiatives-subsection-header tools">
+                                <div className="inner">
+                                    <h2>
+                                        <FormattedMessage id="annualReport.communityTitle" />
+                                    </h2>
+                                    <p>
+                                        <FormattedMessage id="annualReport.communityIntro" />
+                                    </p>
+                                </div>
+                            </div>
                             <div className="initiatives-subsection-header community">
                                 <div className="inner">
                                     <h2>
@@ -977,7 +989,7 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.communitySpotlight" />
                                     </div>
                                     <div className="community-blm">
-                                        <div>
+                                        <div className="blm-intro">
                                             <h2>Black Lives Matter</h2>
                                             <p>
                                                 <FormattedMessage
@@ -992,7 +1004,7 @@ class AnnualReport extends React.Component {
                                                 />
                                             </p>
                                         </div>
-                                        <div>
+                                        <div className="blm-image">
                                             <img src="/images/annual-report/initiatives/BLM Hero.svg" />
                                             <b>
                                                 <FormattedMessage id="annualReport.communityArtwork" />
@@ -1007,7 +1019,7 @@ class AnnualReport extends React.Component {
                                                 showViews={false}
                                             />
                                         </div>
-                                        <div>
+                                        <div className="blm-change">
                                             <h3>
                                                 <FormattedMessage id="annualReport.communityChangeTitle" />
                                             </h3>
@@ -1016,6 +1028,39 @@ class AnnualReport extends React.Component {
                                             </p>
                                         </div>
                                     </div>
+                                    <FlexRow className="blm-video-container">
+                                        {this.state.videoOpen ?
+                                            (
+                                                <Video
+                                                    className="intro-video"
+                                                    videoId="joal01i8b1"
+                                                />
+                                            ) : (
+                                                <div
+                                                    className="video-image"
+                                                >
+                                                    <img src="/images/annual-report/initiatives/BLM Video Thumbnail.png" />
+                                                    <a
+                                                        href="#"
+                                                    >
+                                                        <div className="watch-button button">
+                                                            {'Watch Video'}
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            )
+                                        }
+                                    </FlexRow>
+                                </div>
+                            </div>
+                            <div className="initiatives-subsection-header schools">
+                                <div className="inner">
+                                    <h2>
+                                        <FormattedMessage id="annualReport.communityTitle" />
+                                    </h2>
+                                    <p>
+                                        <FormattedMessage id="annualReport.communityIntro" />
+                                    </p>
                                 </div>
                             </div>
                         </div>

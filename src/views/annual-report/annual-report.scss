@@ -506,15 +506,27 @@ p {
 
 .initiatives-section {
     .initiatives-subsection-header {
-        // background-image: url("/images/annual-report/initiatives/guideline-splash.svg");
+        background-image: url("/images/annual-report/initiatives/Juice Pattern.svg");
+
         padding: 92px 0;
 
         //>.initiatives-community {
         //    background-color: $ui-blue-dark;
         //}
 
+        &.tools {
+            background-color: $ui-aqua;
+            background-position: 50% 0%;
+        }
+
         &.community {
-            background-color: $ui-blue-dark;
+            background-color: $ui-blue;
+            background-position: 50% 50%;
+        }
+
+        &.schools {
+            background-color: $ui-purple;
+            background-position: 50% 100%;
         }
 
         .inner {
@@ -581,12 +593,13 @@ p {
 
         .guidelines-list {
             display: flex;
+            flex-wrap: wrap;
 
             ul {
                 list-style-image: url('/images/annual-report/initiatives/guideline-splash.svg');
             }
             li {
-                vertical-align: middle;
+                // vertical-align: middle;
             }
         }
 
@@ -638,6 +651,49 @@ p {
                         line-height: 40px;
                     }
                 }
+                .comment-text, .comment-text::before, .comment-text::after {
+                    border-color: $ui-blue;
+                }
+            }
+        }
+
+        .community-blm {
+            display: flex;
+            flex-wrap: wrap;
+
+            .blm-intro {
+                max-width: 460px;
+            }
+
+            .blm-image {
+                max-width: 380px;
+                font-size: .875rem;
+                text-align: center;
+            }
+
+            .blm-projects {
+                .flex-row {
+                    max-width: 500px;
+                    flex-wrap: true;
+                }
+            }
+
+            .blm-change {
+                width: 380px;
+            }
+        }
+
+        .blm-video-container {
+            background-image: url("/images/annual-report/initiatives/BLM Video Splash.svg");
+            width: 1020px;
+            height: 500px;
+
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+
+            img {
+                width: 576px;
             }
         }
     }
