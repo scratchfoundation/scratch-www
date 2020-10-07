@@ -525,8 +525,21 @@ p {
         }
     }
 
-    .initiatives-community {
+    .quote-person {
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+
         img {
+            width: 60px;
+            height: 60px;
+            border-radius: 4px;
+            margin-right: 20px;
+        }
+    }
+
+    .initiatives-community {
+        .hero {
             width: 100%;
         }
 
@@ -556,6 +569,57 @@ p {
             }
             li {
                 vertical-align: middle;
+            }
+        }
+
+        .community-engagement {
+            max-width: 620px;
+        }
+
+        .community-sds {
+            text-align: center;
+
+            .sds-list {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+
+                .sds-tile {
+                    width: 200px;
+                    text-align: center;
+                    margin: 8px;
+
+                    img {
+                        width: 100%;
+                        border-radius: 8px;
+                    }
+                }
+            }
+        }
+
+        .quotes-tag, .blm-tag {
+            align-self: flex-start;
+        }
+
+        .community-quotes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .community-quote {
+                width: 380px;
+                margin: 24px;
+
+                .comment-text {
+                    background-color: $ui-blue;
+                    white-space: pre-line;
+                    margin-top: 8px;
+
+                    p {
+                        color: $ui-white;
+                        line-height: 40px;
+                    }
+                }
             }
         }
     }

@@ -10,7 +10,9 @@ const intlShape = require('react-intl').intlShape;
 const render = require('../../lib/render.jsx');
 const frameless = require('../../lib/frameless');
 
+const Avatar = require('../../components/avatar/avatar.jsx');
 const Page = require('../../components/page/www/page.jsx');
+const Grid = require('../../components/grid/grid.jsx');
 const Button = require('../../components/forms/button.jsx');
 const FlexRow = require('../../components/flex-row/flex-row.jsx');
 const Comment = require('../../components/comment/comment.jsx');
@@ -18,6 +20,7 @@ const WorldMap = require('../../components/world-map/world-map.jsx');
 const CountryUsage = require('./country-usage.json');
 const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
+const BLMProjects = require('./blm-projects.json');
 
 require('./annual-report.scss');
 
@@ -761,7 +764,7 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.communityTeamIntro2" />
                                         </p>
                                     </div>
-                                    <img src="/images/annual-report/initiatives/community-hero.png" />
+                                    <img className="hero" src="/images/annual-report/initiatives/community-hero.png" />
                                     <div className="moderation-and-guidelines">
                                         <div className="community-moderation">
                                             <h4>
@@ -776,7 +779,7 @@ class AnnualReport extends React.Component {
                                                 <FormattedMessage id="annualReport.communityGuidelinesTitle" />
                                             </h4>
                                             <p>
-                                                
+                                                <FormattedMessage id="annualReport.communityGuidelinesInfo" />
                                             </p>
                                             <div className="guidelines-list">
                                                 <ul>
@@ -803,21 +806,171 @@ class AnnualReport extends React.Component {
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div className="communityEngagement">
-                                            <h4>
-                                                <FormattedMessage id="annualReport.communityEngagementTitle" />
-                                            </h4>
+                                    </div>
+                                    <div className="community-engagement">
+                                        <h4>
+                                            <FormattedMessage id="annualReport.communityEngagementTitle" />
+                                        </h4>
+                                        <p>
+                                            <FormattedMessage
+                                                id="annualReport.communityEngagementInfo"
+                                                values={{
+                                                    storySwapLink: (
+                                                        <a href="#">
+                                                            <FormattedMessage id="annualReport.storySwap" />
+                                                        </a>
+                                                    )
+                                                }}
+                                            />
+                                        </p>
+                                    </div>
+                                    <div className="community-sds">
+                                        <h3>
+                                            <FormattedMessage id="annualReport.communitySDSTitle" />
+                                        </h3>
+                                        <p>
+                                            <FormattedMessage id="annualReport.communitySDSInfo" />
+                                        </p>
+                                        <div className="sds-list">
+                                            <div className="sds-tile">
+                                                <a href="studios/6234813/">
+                                                    <img
+                                                        src="/images/annual-report/initiatives/Day in the Life Thumbnail.png"
+                                                    />
+                                                    <FormattedMessage id="annualReport.communityDayintheLife" />
+                                                </a>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.communityDayintheLifeInfo" />
+                                                </p>
+                                            </div>
+                                            <div className="sds-tile">
+                                                <a href="studios/5801323/">
+                                                    <img
+                                                        src="/images/annual-report/initiatives/Year 3000 Thumbnail.png"
+                                                    />
+                                                    <FormattedMessage id="annualReport.communityYear3000" />
+                                                </a>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.communityYear3000Info" />
+                                                </p>
+                                            </div>
+                                            <div className="sds-tile">
+                                                <a href="studios/5702799/">
+                                                    <img
+                                                        src="/images/annual-report/initiatives/Bounce Thumbnail.png"
+                                                    />
+                                                    <FormattedMessage id="annualReport.communityBounce" />
+                                                </a>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.communityBounceInfo" />
+                                                </p>
+                                            </div>
+                                            <div className="sds-tile">
+                                                <a href="studios/5944573/">
+                                                    <img
+                                                        src="/images/annual-report/initiatives/Monochromatic Thumbnail.png"
+                                                    />
+                                                    <FormattedMessage id="annualReport.communityMonochromatic" />
+                                                </a>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.communityMonochromaticInfo" />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="subsection-tag quotes-tag">
+                                        <FormattedMessage id="annualReport.communityQuotes" />
+                                    </div>
+                                    <div className="community-quotes">
+                                        <div className="community-quote">
+                                            <div className="quote-person">
+                                                <Avatar
+                                                    alt=""
+                                                    src="https://cdn.scratch.mit.edu/get_image/user/36591_80x80.png"
+                                                />
+                                                <div>angelical</div>
+                                            </div>
+                                            <Comment
+                                                comment={this.props.intl.formatMessage({id: 'annualReport.communityQuote1'})}
+                                            />
+                                        </div>
+                                        <div className="community-quote">
+                                            <div className="quote-person">
+                                                <Avatar
+                                                    alt=""
+                                                    src="https://cdn.scratch.mit.edu/get_image/user/61442584_80x80.png"
+                                                />
+                                                <div>dlore2009</div>
+                                            </div>
+                                            <Comment
+                                                comment={this.props.intl.formatMessage({id: 'annualReport.communityQuote2'})}
+                                            />
+                                        </div>
+                                        <div className="community-quote">
+                                            <div className="quote-person">
+                                                <Avatar
+                                                    alt=""
+                                                    src="https://cdn.scratch.mit.edu/get_image/user/56150500_80x80.png"
+                                                />
+                                                <div>qood</div>
+                                            </div>
+                                            <Comment
+                                                comment={this.props.intl.formatMessage({id: 'annualReport.communityQuote3'})}
+                                            />
+                                        </div>
+                                        <div className="community-quote">
+                                            <div className="quote-person">
+                                                <Avatar
+                                                    alt=""
+                                                    src="https://cdn.scratch.mit.edu/get_image/user/176301_80x80.png"
+                                                />
+                                                <div>Mechanical_pencil</div>
+                                            </div>
+                                            <Comment
+                                                comment={this.props.intl.formatMessage({id: 'annualReport.communityQuote4'})}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="subsection-tag blm-tag">
+                                        <FormattedMessage id="annualReport.communitySpotlight" />
+                                    </div>
+                                    <div className="community-blm">
+                                        <div>
+                                            <h2>Black Lives Matter</h2>
                                             <p>
                                                 <FormattedMessage
-                                                    id="annualReport.communityEngagementInfo"
+                                                    id="annualReport.communityBLMIntro"
                                                     values={{
-                                                        storySwapLink: (
-                                                            <a href="#">
-                                                                <FormattedMessage id="annualReport.storySwap" />
+                                                        BLMStudioLink: (
+                                                            <a href="studio/26964367">
+                                                                Black Lives Matter <FormattedMessage id="annualReport.studio" />
                                                             </a>
                                                         )
-                                                    }} 
+                                                    }}
                                                 />
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <img src="/images/annual-report/initiatives/BLM Hero.svg" />
+                                            <b>
+                                                <FormattedMessage id="annualReport.communityArtwork" />
+                                            </b>
+                                        </div>
+                                        <div className="blm-projects">
+                                            <Grid
+                                                showAvatar
+                                                items={BLMProjects}
+                                                showFavorites={false}
+                                                showLoves={false}
+                                                showViews={false}
+                                            />
+                                        </div>
+                                        <div>
+                                            <h3>
+                                                <FormattedMessage id="annualReport.communityChangeTitle" />
+                                            </h3>
+                                            <p>
+                                                <FormattedMessage id="annualReport.communityChangeInfo" />
                                             </p>
                                         </div>
                                     </div>
