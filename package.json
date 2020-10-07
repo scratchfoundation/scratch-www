@@ -93,7 +93,7 @@
     "google-libphonenumber": "3.2.6",
     "html-webpack-plugin": "2.22.0",
     "iso-3166-2": "0.4.0",
-    "jest": "^23.6.0",
+    "jest": "^26.5.2",
     "json-loader": "0.5.2",
     "json2po-stream": "1.0.3",
     "keymirror": "0.1.1",
