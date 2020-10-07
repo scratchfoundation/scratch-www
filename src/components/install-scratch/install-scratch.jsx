@@ -114,7 +114,7 @@ const InstallScratch = ({
                         <span className="step-description">
                             {currentOS === OS_ENUM.WINDOWS ?
                                 <FormattedMessage id="download.winMoveToApplications" /> :
-                                <FormattedMessage id="download.macMoveToApplications" />
+                                <FormattedMessage id="download.macMoveAppToApplications" />
                             }
                         </span>
 
