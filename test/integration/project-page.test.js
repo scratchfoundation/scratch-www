@@ -44,7 +44,7 @@ describe('www-integration project-page signed out', () => {
         await expect(guiVisible).toBe(true);
     });
 
-    test('Open Copy Link modal', async () => {
+    test.skip('Open Copy Link modal', async () => {
         await clickXpath('//button[@class="button action-button copy-link-button"]');
         let projectLink = await findByXpath('//input[@name="link"]');
         let linkValue = await projectLink.getAttribute('value');
