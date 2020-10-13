@@ -2,7 +2,6 @@ const bindAll = require('lodash.bindall');
 const PropTypes = require('prop-types');
 const React = require('react');
 
-const FlexRow = require('../flex-row/flex-row.jsx');
 const Video = require('../video/video.jsx');
 
 require('./video-preview.scss');
