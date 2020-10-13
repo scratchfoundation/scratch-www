@@ -879,24 +879,24 @@ class AnnualReport extends React.Component {
                                             <div className="guidelines-list">
                                                 <ul>
                                                     <li>
-                                                        <FormattedMessage id="guidelines.respectheader" />
+                                                        <FormattedMessage id="annualReport.communityGuidelinesRespect" />
                                                     </li>
                                                     <li>
-                                                        <FormattedMessage id="guidelines.shareheader" />
+                                                        <FormattedMessage id="annualReport.communityGuidelinesShare" />
                                                     </li>
                                                     <li>
-                                                        <FormattedMessage id="guidelines.honestheader" />
+                                                        <FormattedMessage id="annualReport.communityGuidelinesHonest" />
                                                     </li>
                                                 </ul>
                                                 <ul>
                                                     <li>
-                                                        <FormattedMessage id="guidelines.constructiveheader" />
+                                                        <FormattedMessage id="annualReport.communityGuidelinesConstructive" />
                                                     </li>
                                                     <li>
-                                                        <FormattedMessage id="guidelines.privacyheader" />
+                                                        <FormattedMessage id="annualReport.communityGuidelinesPrivacy" />
                                                     </li>
                                                     <li>
-                                                        <FormattedMessage id="guidelines.friendlyheader" />
+                                                        <FormattedMessage id="annualReport.communityGuidelinesFriendly" />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -1010,7 +1010,9 @@ class AnnualReport extends React.Component {
                                                 <div>qood</div>
                                             </div>
                                             <Comment
-                                                comment={this.props.intl.formatMessage({id: 'annualReport.communityQuote3'})}
+                                                comment={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.communityQuote3'}
+                                                )}
                                             />
                                         </div>
                                         <div className="community-quote">
@@ -1022,7 +1024,9 @@ class AnnualReport extends React.Component {
                                                 <div>Mechanical_pencil</div>
                                             </div>
                                             <Comment
-                                                comment={this.props.intl.formatMessage({id: 'annualReport.communityQuote4'})}
+                                                comment={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.communityQuote4'}
+                                                )}
                                             />
                                         </div>
                                     </div>
@@ -1038,7 +1042,9 @@ class AnnualReport extends React.Component {
                                                     values={{
                                                         BLMStudioLink: (
                                                             <a href="studio/26964367">
-                                                                Black Lives Matter <FormattedMessage id="annualReport.studio" />
+                                                                Black Lives Matter <FormattedMessage
+                                                                    id="annualReport.studio"
+                                                                />
                                                             </a>
                                                         )
                                                     }}
@@ -1069,7 +1075,9 @@ class AnnualReport extends React.Component {
                                             </p>
                                         </div>
                                     </div>
-                                    <div className="video-container blm">
+                                </div>
+                                <div className="video-container">
+                                    <div className="video-background blm">
                                         <VideoPreview
                                             buttonMessage={
                                                 this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
