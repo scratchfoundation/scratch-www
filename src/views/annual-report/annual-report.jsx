@@ -841,6 +841,7 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                             <div className="initiatives-subsection-content">
+                                {/* eslint-disable max-len */}
                                 <div className="inner">
                                     <div className="subsection-tag">
                                         <FormattedMessage id="annualReport.communitySpotlight" />
@@ -856,9 +857,9 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.communityTeamIntro2" />
                                         </p>
                                     </div>
-                                    <img 
-                                        className="hero" 
-                                        src="/images/annual-report/initiatives/community-hero.png" 
+                                    <img
+                                        className="hero"
+                                        src="/images/annual-report/initiatives/community-hero.png"
                                     />
                                     <div className="moderation-and-guidelines">
                                         <div className="community-moderation">
@@ -1091,6 +1092,7 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
                             </div>
+                            {/* eslint-enable max-len */}
                         </div>
                         <div className="initiatives-schools">
                             <div className="initiatives-subsection-header schools">

@@ -66,7 +66,7 @@ const WorldMap = props => (
                     pad: 0,
                     autoexpand: true
                 },
-                //autosize: true,
+                // autosize: true,
                 width: props.mapWidth,
                 height: props.mapHeight
             }
