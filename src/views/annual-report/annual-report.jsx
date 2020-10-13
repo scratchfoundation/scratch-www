@@ -70,8 +70,7 @@ class AnnualReport extends React.Component {
 
         this.state = {
             currentlyVisible: SECTIONS.message, // The currently visible section
-            dropdownVisible: false,
-            videoOpen: false
+            dropdownVisible: false
         };
 
         bindAll(this, [
@@ -880,7 +879,9 @@ class AnnualReport extends React.Component {
                                             <div className="guidelines-list">
                                                 <ul>
                                                     <li>
-                                                        <FormattedMessage id="annualReport.communityGuidelinesRespect" />
+                                                        <FormattedMessage
+                                                            id="annualReport.communityGuidelinesRespect"
+                                                        />
                                                     </li>
                                                     <li>
                                                         <FormattedMessage id="annualReport.communityGuidelinesShare" />
@@ -891,13 +892,19 @@ class AnnualReport extends React.Component {
                                                 </ul>
                                                 <ul>
                                                     <li>
-                                                        <FormattedMessage id="annualReport.communityGuidelinesConstructive" />
+                                                        <FormattedMessage
+                                                            id="annualReport.communityGuidelinesConstructive"
+                                                        />
                                                     </li>
                                                     <li>
-                                                        <FormattedMessage id="annualReport.communityGuidelinesPrivacy" />
+                                                        <FormattedMessage
+                                                            id="annualReport.communityGuidelinesPrivacy"
+                                                        />
                                                     </li>
                                                     <li>
-                                                        <FormattedMessage id="annualReport.communityGuidelinesFriendly" />
+                                                        <FormattedMessage
+                                                            id="annualReport.communityGuidelinesFriendly"
+                                                        />
                                                     </li>
                                                 </ul>
                                             </div>
@@ -987,7 +994,9 @@ class AnnualReport extends React.Component {
                                                 <div>angelical</div>
                                             </div>
                                             <Comment
-                                                comment={this.props.intl.formatMessage({id: 'annualReport.communityQuote1'})}
+                                                comment={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.communityQuote1'}
+                                                )}
                                             />
                                         </div>
                                         <div className="community-quote">
@@ -999,7 +1008,9 @@ class AnnualReport extends React.Component {
                                                 <div>dlore2009</div>
                                             </div>
                                             <Comment
-                                                comment={this.props.intl.formatMessage({id: 'annualReport.communityQuote2'})}
+                                                comment={this.props.intl.formatMessage(
+                                                    {id: 'annualReport.communityQuote2'}
+                                                )}
                                             />
                                         </div>
                                         <div className="community-quote">
