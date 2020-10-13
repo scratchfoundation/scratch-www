@@ -233,6 +233,61 @@ p {
     }
 }
 
+.mission-section {
+  background-color: $ui-blue-10percent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  .inner {
+    padding-top: 124px;
+    width: 620px;
+  }
+  
+  .four-ps-wrapper {
+    padding: 124px 0;
+    width: 940px;
+  }
+  
+  .four-ps {
+    height: 940px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  
+  .one-p {
+    width: 300px;
+    height: 370px;
+    padding: 20px 80px;
+    background: center no-repeat;
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+  
+  .four-ps-projects {
+    background-image: url("/images/annual-report/mission/Projects Splash.svg");
+  }
+  
+  .four-ps-peers {
+    background-image: url("/images/annual-report/mission/Peers Splash.svg");
+  }
+  
+  .four-ps-passion {
+    background-image: url("/images/annual-report/mission/Passion Splash.svg");
+    margin-top: 72px;
+    margin-right: 0;
+  }
+  
+  .four-ps-play {
+    background-image: url("/images/annual-report/mission/Play Splash.svg");
+    margin-right: 0;
+    margin-top: 44px;
+  }
+}
+
 .milestones-section {
     background-color: $ui-blue-10percent;
 

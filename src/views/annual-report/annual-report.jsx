@@ -377,11 +377,40 @@ class AnnualReport extends React.Component {
                         </p>
                     </div>
                     <div
-                        className="mission section"
+                        className="mission-section section"
                         ref={this.setRef(SECTIONS.mission)}
                     >
-                        {/* <div className="inner">
-                        </div> */}
+                        <div className="inner">
+                            <h2>Our Mission</h2>
+                            <h3>Our mission is to provide all children, from all backgrounds, with opportunities to imagine, create, and collaborate with new technologies — so they can shape the world of tomorrow.</h3>
+                            <p>We are committed to prioritizing equity across all aspects of our work, with a particular focus on initiatives and approaches that support children, families, and educators furthest from educational justice.</p>
+                            <p>We’ve developed Scratch as a free, safe, playful learning environment that engages all children in thinking creatively, reasoning systematically, and working collaboratively — essential skills for everyone in today's society. We work with educators and families to support children in exploring, sharing, and learning.</p>
+                            <p>In developing new technologies, activities, and learning materials, we are guided by what we call the Four P’s of Creative Learning:</p>
+                        </div>
+                        <div className="four-ps-wrapper">
+                            <div className="four-ps">
+                                <div className="one-p four-ps-projects">
+                                    <h3>Projects</h3>
+                                    <p>Engage children in designing, creating, and expressing themselves creatively</p>
+                                    <img src="/images/annual-report/mission/Projects Illustration.svg" />
+                                </div>
+                                <div className="one-p four-ps-peers">
+                                    <h3>Peers</h3>
+                                    <p>Support children in collaborating, sharing, remixing, and mentoring</p>
+                                    <img src="/images/annual-report/mission/Peers Illustration.svg" />
+                                </div>
+                                <div className="one-p four-ps-passion">
+                                    <h3>Passion</h3>
+                                    <p>Enable children to build on their interests and work on personally meaningful projects</p>
+                                    <img src="/images/annual-report/mission/Passion Illustration.svg" />
+                                </div>
+                                <div className="one-p four-ps-play">
+                                    <h3>Play</h3>
+                                    <p>Encourage children to tinker, experiment, and iterate</p>
+                                    <img src="/images/annual-report/mission/Play Illustration.svg" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div
                         className="milestones-section section"
