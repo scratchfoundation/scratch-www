@@ -874,6 +874,10 @@ class AnnualReport extends React.Component {
                                         </p>
                                     </div>
                                 </div>
+                                <div className="hero">
+                                    <img className="left" src="/images/annual-report/initiatives/3.0 Left.svg" />
+                                    <img className="right" src="/images/annual-report/initiatives/3.0 Right.svg" />
+                                </div>
                                 <div className="video-container">
                                     <div className="video-background abhi">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>

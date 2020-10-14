@@ -672,6 +672,45 @@ p {
         }
     }
 
+    .initiatives-tools {
+        .hero {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        img {
+            &.left {
+                @media #{$big} {
+                    width: 432px;
+                }
+                @media #{$intermediate} {
+                    width: 260px;
+                }
+                @media #{$medium} {
+                    width: 192px;
+                }
+                @media #{$small} {
+                    width: 132px;
+                }
+            }
+
+            &.right {
+                @media #{$big} {
+                    width: 780px;
+                }
+                @media #{$intermediate} {
+                    width: 468px;
+                }
+                @media #{$medium} {
+                    width: 342px;
+                }
+                @media #{$small} {
+                    width: 220px;
+                }
+            }
+        }
+    }
+
     .initiatives-community {
         .hero {
             width: 100%;
