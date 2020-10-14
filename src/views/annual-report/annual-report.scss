@@ -238,6 +238,11 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  .mission-subtitle {
+      font-weight: normal;
+      font-size: 1.25rem;
+  }
 
 
   .inner {

@@ -382,7 +382,7 @@ class AnnualReport extends React.Component {
                     >
                         <div className="inner">
                             <h2><FormattedMessage id="annualReport.missionTitle" /></h2>
-                            <h3><FormattedMessage id="annualReport.missionSubtitle" /></h3>
+                            <p className="mission-subtitle"><FormattedMessage id="annualReport.missionSubtitle" /></p>
                             <p><FormattedMessage id="annualReport.missionP1" /></p>
                             <p><FormattedMessage id="annualReport.missionP2" /></p>
                             <p><FormattedMessage id="annualReport.missionP3" /></p>
