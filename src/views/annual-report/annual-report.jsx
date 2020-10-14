@@ -846,7 +846,7 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
                                 <div className="video-container">
-                                    <div className="video-background ahbi">
+                                    <div className="video-background abhi">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
                                                 buttonMessage={
