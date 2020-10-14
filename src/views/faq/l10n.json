@@ -173,7 +173,7 @@
     "faq.chatRoomBody":"While it is technically possible to create chat rooms with cloud variables, they are not allowed on the Scratch website.",
     "faq.changeCloudVarTitle":"Who can change the information in a cloud variable?",
     "faq.changeCloudVarBody":"Only you and viewers of your project can store data in your project’s cloud variables. If people \"see inside\" or remix your code, it creates a copy of the variable and does not affect or change the original variable.",
-    "faq.newScratcherCloudTitle":"I am logged in, but I cannot use projects with cloud variables What is going on?",
+    "faq.newScratcherCloudTitle":"I am logged in, but I cannot use projects with cloud variables. What is going on?",
     "faq.newScratcherCloudBody":"If you are still a \"New Scratcher\" on the website, you will not be able to use projects with cloud variables. You need to become a \"Scratcher\" to have access to cloud variables. See the Accounts section (above) for more information about the transition from “New Scratcher” to \"Scratcher\".",
     "faq.multiplayerTitle":"Is it possible to make multiplayer games with cloud variables?",
     "faq.multiplayerBody":"Multiplayer games may be difficult to create, due to network speed and synchronization issues. However, some Scratchers are coming up with creative ways to use the cloud variables for turn-by-turn and other types of games.",
