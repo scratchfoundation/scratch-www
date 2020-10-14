@@ -68,7 +68,10 @@
 
     "annualReport.toolsTitle": "Creative Tools",
     "annualReport.toolsIntro": "We are constantly experimenting and innovating with new technologies and new designs — always striving to provide children with new ways to create, collaborate, and learn.",
-
+    "annualReport.toolsSpotlight": "Creative Tools — Spotlight Story",
+    "annualReport.toolsLaunch": "Launch of Scratch 3.0",
+    "annualReport.toolsLaunchIntro1": "We designed Scratch 3.0 to expand how, what, and where kids can create with Scratch. Released at the start of 2019, Scratch 3.0 led to a surge of activity in the Scratch community, with more projects — and a greater variety of projects — than ever before.",
+    "annualReport.toolsLaunchIntro2": "Scratch 3.0 includes a library of extensions — extra collections of coding blocks that add new capabilities to Scratch. Some extensions provide access to web services and other software features, while others connect Scratch with physical-world devices like motors and sensors.",
     "annualReport.communityTitle": "Community",
     "annualReport.communityIntro": "The Scratch programming language has always been intertwined with the Scratch online community, providing opportunities for children to collaborate, share, and provide feedback to one another.",
     "annualReport.communitySpotlight": "Community - Spotlight Story",

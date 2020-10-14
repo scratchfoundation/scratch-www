@@ -827,6 +827,53 @@ class AnnualReport extends React.Component {
                                     </p>
                                 </div>
                             </div>
+                            <div className="initiatives-subsection-content">
+                                {/* eslint-disable max-len */}
+                                <div className="inner">
+                                    <div className="subsection-tag">
+                                        <FormattedMessage id="annualReport.toolsSpotlight" />
+                                    </div>
+                                    <div className="initiatives-subsection-intro">
+                                        <h2>
+                                            <FormattedMessage id="annualReport.toolsLaunch" />
+                                        </h2>
+                                        <p>
+                                            <FormattedMessage id="annualReport.toolsLaunchIntro1" />
+                                        </p>
+                                        <p>
+                                            <FormattedMessage id="annualReport.toolsLaunchIntro2" />
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="video-container">
+                                    <div className="video-background ahbi">
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/initiatives/CN Video Thumbnail.png"
+                                                thumbnailWidth="580"
+                                                videoHeight="320"
+                                                videoId="joal01i8b1"
+                                                videoWidth="568"
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/initiatives/CN Video Thumbnail.png"
+                                                thumbnailWidth="400"
+                                                videoHeight="216"
+                                                videoId="joal01i8b1"
+                                                videoWidth="380"
+                                            />
+                                        </MediaQuery>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="initiatives-community">
                             <div className="initiatives-subsection-header community">
@@ -845,7 +892,7 @@ class AnnualReport extends React.Component {
                                     <div className="subsection-tag">
                                         <FormattedMessage id="annualReport.communitySpotlight" />
                                     </div>
-                                    <div className="community-team-intro">
+                                    <div className="initiatives-subsection-intro">
                                         <h2>
                                             <FormattedMessage id="annualReport.communityTeam" />
                                         </h2>

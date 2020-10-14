@@ -588,6 +588,16 @@ p {
         }
     }
 
+    .initiatives-subsection-intro {
+        max-width: 780px;
+        text-align: center;
+        margin: 32px 0;
+
+        p {
+            max-width: 620px;
+        }
+    }
+
     .quote-person {
         display: flex;
         align-items: center;
@@ -598,6 +608,12 @@ p {
             height: 60px;
             border-radius: 4px;
             margin-right: 20px;
+        }
+    }
+
+    .initiatives-tools {
+        .subsection-tag {
+            background-color: $ui-aqua;
         }
     }
 
@@ -859,15 +875,9 @@ p {
         &.blm {
             background-image: url("/images/annual-report/initiatives/BLM Video Splash.svg");
         }
-    }
 
-    .community-team-intro {
-        max-width: 780px;
-        text-align: center;
-        margin-top: 32px;
-
-        p {
-            max-width: 620px;
+        &.ahbi {
+            background-image: url("/images/annual-report/initiatives/Ahbi Video Splash.svg");
         }
     }
 }
