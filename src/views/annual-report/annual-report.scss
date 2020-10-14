@@ -669,7 +669,96 @@ p {
     .initiatives-tools {
         .subsection-tag {
             background-color: $ui-aqua;
+
+            &.collaborator {
+                color: $type-gray;
+                background-color: $ui-blue-10percent;
+                font-weight: normal;
+                font-size: .75rem;
+            }
         }
+
+        .tools-extensions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; 
+            width: 100%;
+        }
+
+        .tools-extension {
+            width: 380px;
+
+            text-align: center;
+        }
+
+        .tools-stats {
+            display: flex;
+            flex-wrap: wrap;
+
+            margin-bottom: 40px;
+            justify-content: space-between; 
+            .tools-stat {
+                width: 180px;
+
+                a {
+                    font-weight: normal;
+                }
+            }
+        }
+
+        .tools-LEGO, .tools-app {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 780px;
+
+            img {
+                width: 380px;
+            }
+
+            .tools-LEGO-info, .tools-app-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                width: 380px;
+                margin-top: 88px;
+
+                h4, p {
+                    margin-bottom: 28px;
+                }
+            }
+        }
+
+        .tools-tutorials {
+            width: 780px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 64px 0;
+
+            p {
+                max-width: 620px;
+            }
+
+            .tutorial-list {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin: 32px 0;
+
+                img {
+                    width: 180px;
+                    border-radius: 8px;
+                }
+            }
+
+            .tools-stats {
+                max-width: 460px;
+            }
+        }
+
     }
 
     .initiatives-tools {

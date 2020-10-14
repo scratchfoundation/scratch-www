@@ -875,8 +875,197 @@ class AnnualReport extends React.Component {
                                     </div>
                                 </div>
                                 <div className="hero">
-                                    <img className="left" src="/images/annual-report/initiatives/3.0 Left.svg" />
-                                    <img className="right" src="/images/annual-report/initiatives/3.0 Right.svg" />
+                                    <img
+                                        className="left"
+                                        src="/images/annual-report/initiatives/3.0 Left.svg"
+                                    />
+                                    <img
+                                        className="right"
+                                        src="/images/annual-report/initiatives/3.0 Right.svg"
+                                    />
+                                </div>
+                                <div className="inner">
+                                    <div className="tools-extensions">
+                                        <div className="tools-extension">
+                                            <img src="/images/annual-report/initiatives/Text-to-Speech Block.svg" />
+                                            <h4>
+                                                <FormattedMessage id="annualReport.toolsTexttoSpeech" />
+                                            </h4>
+                                            <p>
+                                                <FormattedMessage id="annualReport.toolsTexttoSpeechIntro" />
+                                            </p>
+                                            <div className="tools-stats">
+                                                <div className="tools-stat">
+                                                    <FormattedMessage
+                                                        id="annualReport.toolsTexttoSpeechProjects"
+                                                        values={{
+                                                            numProjects: (
+                                                                <h5>
+                                                                    <FormattedMessage id="annualReport.toolsNumProjects" />
+                                                                </h5>
+                                                            )
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div className="tools-stat">
+                                                    <FormattedMessage
+                                                        id="annualReport.toolsTexttoSpeechPopular"
+                                                        values={{
+                                                            mostPopular: (
+                                                                <h5>
+                                                                    <FormattedMessage id="annualReport.toolsMostPopular" />
+                                                                </h5>
+                                                            )
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="subsection-tag collaborator">
+                                                <FormattedMessage id="annualReport.toolsCollabAWS" />
+                                            </div>
+                                        </div>
+                                        <div className="tools-extension">
+                                            <img src="/images/annual-report/initiatives/Translation Block.svg" />
+                                            <h4>
+                                                <FormattedMessage id="annualReport.toolsTranslate" />
+                                            </h4>
+                                            <p>
+                                                <FormattedMessage id="annualReport.toolsTranslateIntro" />
+                                            </p>
+                                            <div className="tools-stats">
+                                                <div className="tools-stat">
+                                                    <FormattedMessage
+                                                        id="annualReport.toolsTranslateLanguages"
+                                                        values={{
+                                                            numLanguages: (
+                                                                <h5>
+                                                                    <FormattedMessage id="annualReport.toolsNumLanguages" />
+                                                                </h5>
+                                                            )
+                                                        }}
+                                                    />
+                                                </div>
+                                                <div className="tools-stat">
+                                                    <FormattedMessage
+                                                        id="annualReport.toolsTranslateLiteracy"
+                                                        values={{
+                                                            supportsLiteracy: (
+                                                                <h5>
+                                                                    <FormattedMessage id="annualReport.toolsSupportsLiteracy" />
+                                                                </h5>
+                                                            ),
+                                                            CSandLanguageArtsLink: (
+                                                                <a href="https://www.pila-cs.org/">
+                                                                    <FormattedMessage id="annualReport.toolsCSandLanguageArts" />
+                                                                </a>
+                                                            )
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="subsection-tag collaborator">
+                                                <FormattedMessage id="annualReport.toolsCollabGoogle" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="tools-LEGO">
+                                        <img src="/images/annual-report/initiatives/LEGO Robotics Illustration.svg" />
+                                        <div className="tools-LEGO-info">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.toolsLEGORobotics" />
+                                            </h4>
+                                            <p>
+                                                <FormattedMessage
+                                                    id="annualReport.toolsLEGORoboticsIntro"
+                                                    values={{
+                                                        mindstormsLink: (
+                                                            <a href="">
+                                                                <FormattedMessage id="annualReport.toolsMindstormsLink" />
+                                                            </a>
+                                                        ),
+                                                        weDoLink: (
+                                                            <a href="">
+                                                                <FormattedMessage id="annualReport.toolsWeDoLink" />
+                                                            </a>
+                                                        )
+                                                    }}
+                                                />
+                                            </p>
+                                            <div className="subsection-tag collaborator">
+                                                <FormattedMessage id="annualReport.toolsCollabLEGO" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="tools-tutorials">
+                                        <h4>
+                                            <FormattedMessage id="annualReport.toolsVideoTutorials" />
+                                        </h4>
+                                        <p>
+                                            <FormattedMessage id="annualReport.toolsTutorialsIntro" />
+                                        </p>
+                                        <div className="tutorial-list">
+                                            <img src="/images/annual-report/initiatives/animate a name.png" />
+                                            <img src="/images/annual-report/initiatives/make music.png" />
+                                            <img src="/images/annual-report/initiatives/imagine a world.png" />
+                                            <img src="/images/annual-report/initiatives/create a story.png" />
+                                        </div>
+                                        <div className="tools-stats">
+                                            <div className="tools-stat">
+                                                <FormattedMessage
+                                                    id="annualReport.toolsNewTutorials"
+                                                    values={{
+                                                        numTutorials: (
+                                                            <h5>
+                                                                <FormattedMessage id="annualReport.toolsNumTutorials" />
+                                                            </h5>
+                                                        )
+                                                    }}
+                                                />
+                                            </div>
+                                            <div className="tools-stat">
+                                                <FormattedMessage
+                                                    id="annualReport.toolsTutorialsViews"
+                                                    values={{
+                                                        numViews: (
+                                                            <h5>
+                                                                <FormattedMessage id="annualReport.toolsNumViews" />
+                                                            </h5>
+                                                        )
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="tools-app">
+                                        <div className="tools-app-info">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.toolsApp" />
+                                            </h4>
+                                            <p>
+                                                <FormattedMessage
+                                                    id="annualReport.toolsAppIntro"
+                                                    values={{
+                                                        downloadableLink: (
+                                                            <a href="">
+                                                                <FormattedMessage id="annualReport.toolsDownloadLink" />
+                                                            </a>
+                                                        ),
+                                                        raspberryLink: (
+                                                            <a href="">
+                                                                <FormattedMessage id="annualReport.toolsRaspberryLink" />
+                                                            </a>
+                                                        )
+                                                    }}
+                                                />
+                                            </p>
+                                        </div>
+                                        <img src="/images/annual-report/initiatives/Offline Learning Illustration.svg" />
+                                    </div>
+                                    <div className="tools-abhi">
+                                        <div className="subsection-tag">
+                                            <FormattedMessage id="annualReport.toolsSpotlight" />
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="video-container">
                                     <div className="video-background abhi">
