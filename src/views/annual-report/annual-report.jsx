@@ -1090,16 +1090,30 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <div className="video-container">
                                     <div className="video-background blm">
-                                        <VideoPreview
-                                            buttonMessage={
-                                                this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
-                                            }
-                                            thumbnail="/images/annual-report/initiatives/BLM Video Thumbnail.png"
-                                            thumbnailWidth="580"
-                                            videoHeight="320"
-                                            videoId="joal01i8b1"
-                                            videoWidth="568"
-                                        />
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/initiatives/BLM Video Thumbnail.png"
+                                                thumbnailWidth="580"
+                                                videoHeight="320"
+                                                videoId="joal01i8b1"
+                                                videoWidth="568"
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/initiatives/BLM Video Thumbnail.png"
+                                                thumbnailWidth="400"
+                                                videoHeight="216"
+                                                videoId="joal01i8b1"
+                                                videoWidth="380"
+                                            />
+                                        </MediaQuery>
                                     </div>
                                 </div>
                             </div>
@@ -1342,7 +1356,7 @@ class AnnualReport extends React.Component {
                                         <ul className="supporters-list-side">
                                             <li>Smilegate Foundation</li>
                                             <li>TAL Education</li>
-                                            <li>Warner Media</li>
+                                            <li>WarnerMedia</li>
                                         </ul>
                                     </div>
                                 </div>
