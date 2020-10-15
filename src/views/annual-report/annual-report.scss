@@ -245,6 +245,10 @@ p {
       font-size: 1.25rem;
   }
 
+  @media #{$intermediate-and-smaller} {
+      text-align: left;
+  }
+
 
   .inner {
     padding-top: 124px;
@@ -254,6 +258,22 @@ p {
   .four-ps-wrapper {
     padding: 124px 0;
     width: 940px;
+    @media #{$intermediate-and-smaller} {
+      padding-top: 20px;
+    }
+  }
+  
+  .inner, .four-ps-wrapper {  
+    @media #{$intermediate} {
+      width: 620px;
+    }
+
+    @media #{$medium} {
+      width: 460px;
+    }
+    @media #{$small} {
+      width: 300px;
+    }
   }
   
   .four-ps {
@@ -262,15 +282,25 @@ p {
     flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
+    @media #{$intermediate-and-smaller} {
+      height: auto;
+      align-items: center;
+    }
   }
   
   .one-p {
     width: 300px;
     height: 370px;
     padding: 20px 80px;
-    background: center no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
     margin-top: 20px;
     margin-right: 20px;
+    @media #{$intermediate-and-smaller} {
+      margin-right: 0;
+      padding: 0;
+    }
   }
   
   .four-ps-projects {
@@ -285,12 +315,18 @@ p {
     background-image: url("/images/annual-report/mission/Passion Splash.svg");
     margin-top: 72px;
     margin-right: 0;
+    @media #{$intermediate-and-smaller} {
+      margin-top: 20px;
+    }    
   }
   
   .four-ps-play {
     background-image: url("/images/annual-report/mission/Play Splash.svg");
     margin-right: 0;
     margin-top: 44px;
+    @media #{$intermediate-and-smaller} {
+      margin-top: 20px;
+    }  
   }
 }
 
