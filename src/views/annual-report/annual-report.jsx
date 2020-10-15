@@ -1113,7 +1113,7 @@ class AnnualReport extends React.Component {
                                                 alt=""
                                                 src="/images/annual-report/initiatives/Abhi Avatar.png"
                                             />
-                                            <div>Ahbi</div>
+                                            <div>Abhi</div>
                                         </div>
                                         <Comment
                                             comment={this.props.intl.formatMessage(

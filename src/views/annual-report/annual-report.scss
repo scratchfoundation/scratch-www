@@ -32,6 +32,7 @@ h5 {
     text-transform: none;
     font-size: 1rem;
     margin: .5rem 0;
+    letter-spacing: 0;
 }
 
 p {
@@ -667,7 +668,7 @@ p {
         display: flex;
         align-items: center;
         font-weight: bold;
-        margin-left: 16px;
+        margin-left: -16px;
 
         img {
             width: 60px;
@@ -678,6 +679,43 @@ p {
     }
 
     .initiatives-tools {
+        .hero {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        img {
+            &.left {
+                @media #{$big} {
+                    width: 432px;
+                }
+                @media #{$intermediate} {
+                    width: 340px;
+                }
+                @media #{$medium} {
+                    width: 192px;
+                }
+                @media #{$small} {
+                    width: 132px;
+                }
+            }
+
+            &.right {
+                @media #{$big} {
+                    width: 780px;
+                }
+                @media #{$intermediate} {
+                    width: 468px;
+                }
+                @media #{$medium} {
+                    width: 342px;
+                }
+                @media #{$small} {
+                    width: 220px;
+                }
+            }
+        }
+
         .subsection-tag {
             background-color: $ui-aqua;
 
@@ -816,42 +854,42 @@ p {
                 padding: 1.75rem;
             }
         }
-    }
 
-    .initiatives-tools {
-        .hero {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        img {
-            &.left {
-                @media #{$big} {
-                    width: 432px;
-                }
-                @media #{$intermediate} {
-                    width: 260px;
-                }
-                @media #{$medium} {
-                    width: 192px;
-                }
-                @media #{$small} {
-                    width: 132px;
+        @media #{$intermediate-and-smaller} {
+            .tools-LEGO-info, .tools-app-info {
+                h4, p {
+                    text-align: left;
                 }
             }
 
-            &.right {
-                @media #{$big} {
-                    width: 780px;
+            .tools-extension {
+                width: 300px;
+
+                .tools-stat {
+                    width: 140px;
                 }
-                @media #{$intermediate} {
-                    width: 468px;
+            }
+
+            .tools-abhi {
+                width: 100%;
+                align-items: center;
+
+                .tools-abhi-intro {
+                    width: 100%;
+                    justify-content: center;
+
+                    img {
+                        order: -1;
+                        width: 460px;
+                    }
+
+                    div {
+                        max-width: 100%;
+                    }
                 }
-                @media #{$medium} {
-                    width: 342px;
-                }
-                @media #{$small} {
-                    width: 220px;
+
+                .emoji-text {
+                    text-align: left;
                 }
             }
         }
