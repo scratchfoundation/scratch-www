@@ -1553,7 +1553,10 @@ class AnnualReport extends React.Component {
                                 />
                             </div>
                             <div className="financials-button-wrapper">
-                                <a href="https://secure.donationpay.org/scratchfoundation/">
+                                <a
+                                    href="/pdfs/annual-report/2019/2019_audited_financials.pdf"
+                                    target="_blank"
+                                >
                                     <Button className="financials-button">
                                         <FormattedMessage id="annualReport.financialsButton" />
                                         <img
