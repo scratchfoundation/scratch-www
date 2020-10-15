@@ -614,14 +614,16 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="transition-images">
-                            <div className="left-image">
-                                <img src="/images/annual-report/milestones/vertical-loop.svg" />
+                        <MediaQuery minWidth={frameless.desktop}>
+                            <div className="transition-images">
+                                <div className="left-image">
+                                    <img src="/images/annual-report/milestones/vertical-loop.svg" />
+                                </div>
+                                <div className="cropped-image">
+                                    <img src="/images/annual-report/milestones/painting-hand.svg" />
+                                </div>
                             </div>
-                            <div className="cropped-image">
-                                <img src="/images/annual-report/milestones/painting-hand.svg" />
-                            </div>
-                        </div>
+                        </MediaQuery>
                     </div>
                     <div
                         className="reach-section section"
