@@ -637,6 +637,7 @@ class AnnualReport extends React.Component {
                                 <p>
                                     <FormattedMessage id="annualReport.reachSubtitle" />
                                 </p>
+                                <img src="/images/annual-report/Calendar.svg" />
                                 <div className="reach-numbers">
                                     <div className="reach-datapoint">
                                         <FormattedMessage
