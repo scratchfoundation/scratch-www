@@ -816,35 +816,12 @@ class AnnualReport extends React.Component {
                                 <h2>
                                     <FormattedMessage id="annualReport.initiativesTitle" />
                                 </h2>
-                                <div className="initiatives-pillars">
-                                    <div className="initiatives-pillar">
-                                        <img src="/images/annual-report/ScratchJr-Logo.svg" />
-                                        <h3>
-                                            <FormattedMessage id="annualReport.toolsTitle" />
-                                        </h3>
-                                        <p>
-                                            <FormattedMessage id="annualReport.toolsIntro" />
-                                        </p>
-                                    </div>
-                                    <div className="initiatives-pillar">
-                                        <img src="/images/annual-report/ScratchJr-Logo.svg" />
-                                        <h3>
-                                            <FormattedMessage id="annualReport.communityTitle" />
-                                        </h3>
-                                        <p>
-                                            <FormattedMessage id="annualReport.communityIntro" />
-                                        </p>
-                                    </div>
-                                    <div className="initiatives-pillar">
-                                        <img src="/images/annual-report/ScratchJr-Logo.svg" />
-                                        <h3>
-                                            <FormattedMessage id="annualReport.schoolsTitle" />
-                                        </h3>
-                                        <p>
-                                            <FormattedMessage id="annualReport.schoolsIntro" />
-                                        </p>
-                                    </div>
-                                </div>
+                                <MediaQuery minWidth={frameless.tabletPortrait}>
+                                    <img src="/images/annual-report/initiatives/Pillars-Desktop.svg" />
+                                </MediaQuery>
+                                <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
+                                    <img src="/images/annual-report/initiatives/Pillars-Mobile.svg" />
+                                </MediaQuery>
                             </div>
                         </div>
                         <div className="initiatives-tools">

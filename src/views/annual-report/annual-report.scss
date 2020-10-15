@@ -611,28 +611,8 @@ p {
             padding: 88px 0;
         }
 
-        .initiatives-pillars {
-            display: flex;
-
-            .initiatives-pillar {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-
-                width: 272px;
-                margin: 0 40px;
-
-                img {
-                    width: 140px;
-                    height: 140px;
-                    align-self: center;
-                }
-            }
-
-            @media #{$intermediate-and-smaller} {
-                margin: 40px 0;
-                flex-direction: column;
-            }
+        h2 {
+            margin-bottom: 72px;
         }
     }
 
