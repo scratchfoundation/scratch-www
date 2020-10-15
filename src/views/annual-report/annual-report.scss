@@ -693,7 +693,7 @@ p {
                     width: 340px;
                 }
                 @media #{$medium} {
-                    width: 192px;
+                    width: 248px;
                 }
                 @media #{$small} {
                     width: 132px;
@@ -891,6 +891,88 @@ p {
                 .emoji-text {
                     text-align: left;
                 }
+            }
+        }
+
+        @media #{$medium-and-smaller} {
+            .inner {
+                max-width: 460px;
+            }
+
+            .tools-extensions {
+                width: 100%;
+                justify-content: center;
+
+                .tools-extension {
+                    width: 100%;
+                    margin-bottom: 60px;
+
+                    .tools-stats {
+                         justify-content: space-around;
+                    }
+                }
+            }
+
+            .tools-LEGO, .tools-app {
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+                margin-top: 0px;
+
+                .tools-LEGO-info, .tools-app-info {
+                    width: 100%;
+                }
+
+                h4, p {
+                    text-align: center;
+                }
+
+                h4 {
+                    margin: 36px 0;
+                }
+
+                img {
+                    width: 300px;
+                    order: -1;
+                }
+
+                .subsection-tag {
+                    align-self: center;
+                }
+            }
+
+            .tools-tutorials {
+                width: 100%;
+
+                .tutorial-list {
+                    justify-content: center;
+
+                    img {
+                        margin: 8px;
+                        width: 200px;
+                    }
+                }
+
+                .tools-stats {
+                    max-width: 100%;
+                    width: 100%;
+
+                    justify-content: space-around;
+                }
+            }
+
+            .tools-abhi {
+                h2 {
+                    margin-top: 28px;
+                }
+            }
+
+            .abhi-quote {
+                width: 460px;
+            }
+
+            .emoji-text {
+                text-align: left;
             }
         }
     }
