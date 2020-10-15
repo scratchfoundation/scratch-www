@@ -1065,6 +1065,17 @@ class AnnualReport extends React.Component {
                                         <div className="subsection-tag">
                                             <FormattedMessage id="annualReport.toolsSpotlight" />
                                         </div>
+                                        <div className="tools-abhi-intro">
+                                            <div>
+                                                <h2>
+                                                    <FormattedMessage id="annualReport.toolsAbhiTitle" />
+                                                </h2>
+                                                <p>
+                                                    <FormattedMessage id="annualReport.toolsAbhiIntro" />
+                                                </p>
+                                            </div>
+                                            <img src="/images/annual-report/initiatives/Abhi Hero.svg" />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="video-container">
@@ -1093,6 +1104,22 @@ class AnnualReport extends React.Component {
                                                 videoWidth="380"
                                             />
                                         </MediaQuery>
+                                    </div>
+                                </div>
+                                <div className="inner abhi">
+                                    <div className="abhi-quote">
+                                        <div className="quote-person">
+                                            <Avatar
+                                                alt=""
+                                                src="/images/annual-report/initiatives/Abhi Avatar.png"
+                                            />
+                                            <div>Ahbi</div>
+                                        </div>
+                                        <Comment
+                                            comment={this.props.intl.formatMessage(
+                                                {id: 'annualReport.toolsAbhiQuote'}
+                                            )}
+                                        />
                                     </div>
                                 </div>
                             </div>

@@ -645,6 +645,11 @@ p {
             flex-direction: column;
             align-items: center;
             padding: 72px;
+
+            &.abhi {
+                padding-top: 0;
+                padding-bottom: 132px;
+            }
         }
     }
 
@@ -662,6 +667,7 @@ p {
         display: flex;
         align-items: center;
         font-weight: bold;
+        margin-left: 16px;
 
         img {
             width: 60px;
@@ -715,7 +721,9 @@ p {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
+            align-content: center;
             width: 780px;
+            margin-top: 80px;
 
             img {
                 width: 380px;
@@ -726,12 +734,17 @@ p {
                 flex-direction: column;
                 justify-content: center;
                 width: 380px;
-                margin-top: 88px;
+                //margin-top: 88px;
 
                 h4, p {
                     margin-bottom: 28px;
                 }
             }
+        }
+
+        .tools-app {
+            margin-top: 0px;
+            margin-bottom: 124px;
         }
 
         .tools-tutorials {
@@ -740,7 +753,7 @@ p {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 64px 0;
+            margin: 80px 0;
 
             p {
                 max-width: 620px;
@@ -764,6 +777,45 @@ p {
             }
         }
 
+        .tools-abhi {
+            .tools-abhi-intro {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-start;
+                margin-top: 32px;
+
+                div {
+                    max-width: 436px;
+                }
+
+                p {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .abhi-quote {
+            width: 620px;
+
+            .comment-text {
+                background-color: $ui-aqua;
+                white-space: pre-line;
+                margin-top: 8px;
+
+                p {
+                    color: $ui-white;
+                    line-height: 40px;
+                    font-size: 1.25rem;
+                }
+            }
+
+            .comment-text, .comment-text::before, .comment-text::after {
+                border-color: $ui-aqua;
+            }
+            .comment-text {
+                padding: 1.75rem;
+            }
+        }
     }
 
     .initiatives-tools {

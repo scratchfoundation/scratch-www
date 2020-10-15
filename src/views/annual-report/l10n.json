@@ -116,6 +116,9 @@
     "annualReport.toolsDownloadLink": "downloadable app",
     "annualReport.toolsRaspberryLink": "use on Raspberry Pi 4",
     "annualReport.toolsAppIntro": "During 2019, the Scratch Team released Scratch 3.0 as a {downloadableLink} for use on multiple platforms, including Windows, MacOS, ChromeOS, and Android tablets. In addition, the Raspberry Pi Foundation released Scratch 3.0 for {raspberryLink}. These downloadable versions are especially important for millions of learners in areas where internet connectivity is unavailable or unreliable.",
+    "annualReport.toolsAbhiTitle": "Abhi at Cartoon Network",
+    "annualReport.toolsAbhiIntro": "To highlight what kids can do with Scratch 3.0, we collaborated with Cartoon Network to create a video featuring Abhi, a 12-year-old Scratcher who loves to make animations and games. In the video, Abhi meets with Ian Jones-Quartey, creator of OK K.O. and other Cartoon Network shows. Abhi introduces Ian to key features of the new version of Scratch, and together they draw and program an animation of a Cartoon Network character jumping up and down.",
+    "annualReport.toolsAbhiQuote": "My favorite thing about Scratch is the community, because they are nice and helpful to me. That’s why I’m always happy to share every project that’s in my dreams.",
 
     "annualReport.communityTitle": "Community",
     "annualReport.communityIntro": "The Scratch programming language has always been intertwined with the Scratch online community, providing opportunities for children to collaborate, share, and provide feedback to one another.",
