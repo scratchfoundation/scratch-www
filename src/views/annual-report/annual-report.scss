@@ -486,7 +486,7 @@ p {
         .reach-numbers {            
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            justify-content: space-around;
         }
     }
 
@@ -518,15 +518,16 @@ p {
     .map-inner {
         display: flex;
         flex-direction: column;
-         align-items: center;
+        align-items: center;
     }
+
     .reach-map {
         width: 1064px;
         background-color: $ui-white;
         border-radius: 6px;
         color: $type-gray;
         padding-top: 48px;
-        margin: 52px 0;
+        margin-top: 52px;
 
         text-align: center;
 
@@ -566,19 +567,53 @@ p {
         margin-top: 20px;
         margin-left: 0px;
     }
+
+    @media #{$intermediate-and-smaller} {
+        .inner {
+            max-width: 620px;
+        }
+
+        .reach-translation {
+            text-align: left;
+            img {
+                width: 300px;
+            }
+        }
+    }
+
+    @media #{$medium-and-smaller} {
+        .reach-translation {
+            text-align: center;
+            justify-content: center;
+        }
+    }
 }
 
 .reach-datapoint {
     font-size: 5rem;
-    width: 300px;
+    width: 220px;
     text-align: center;
     margin: 32px 0;
-}
 
-.million {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 16px;
+    .million {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 16px;
+    }
+
+    @media #{$small} {
+        font-size: 2.75rem;
+        width: 140px;
+
+        .million {
+            font-size: 1.5rem;
+        }
+
+        h4 {
+            font-size: 1rem;
+            line-height: 1.125rem;
+        }
+    }
 }
 
 .reach-scratch-jr {
@@ -594,6 +629,7 @@ p {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
         max-width: 940px;
     }
 
@@ -601,6 +637,28 @@ p {
         max-width: 540px;
         p {
             font-size: 1.25rem;
+        }
+    }
+
+    @media #{$intermediate-and-smaller} {
+        .inner {
+            max-width: 620px;
+        }
+
+        .scratch-jr-intro {
+            text-align: left;
+            width: 300px;
+        }
+    }
+
+    @media #{$medium-and-smaller} {
+        .inner {
+            justify-content: center;
+        }
+
+        .scratch-jr-intro {
+            text-align: center;
+            width: 100%;
         }
     }
 }
@@ -716,7 +774,7 @@ p {
                     width: 248px;
                 }
                 @media #{$small} {
-                    width: 132px;
+                    width: 160px;
                 }
             }
 
@@ -756,8 +814,10 @@ p {
 
         .tools-extension {
             width: 380px;
-
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .tools-stats {
@@ -900,7 +960,7 @@ p {
 
                     img {
                         order: -1;
-                        width: 460px;
+                        width: 100%;
                     }
 
                     div {
@@ -993,6 +1053,26 @@ p {
 
             .emoji-text {
                 text-align: left;
+            }
+        }
+
+        @media #{$small} {
+            .tools-abhi-intro {
+                width: 100%;
+                text-align: left;
+
+                img {
+                    width: 100%;
+                }
+
+                h2 {
+                    line-height: 2.5rem;
+                }
+            }
+
+            .abhi-quote {
+                width: 100%;
+                padding: 0;
             }
         }
     }
@@ -1258,6 +1338,10 @@ p {
 
         &.abhi {
             background-image: url("/images/annual-report/initiatives/Abhi Video Splash.svg");
+  
+            .button {
+                background-color: $ui-aqua;
+            }
         }
     }
 }
