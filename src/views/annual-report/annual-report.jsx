@@ -817,12 +817,43 @@ class AnnualReport extends React.Component {
                                 <h2>
                                     <FormattedMessage id="annualReport.initiativesTitle" />
                                 </h2>
-                                <MediaQuery minWidth={frameless.tabletPortrait}>
+                                {/**<MediaQuery minWidth={frameless.tabletPortrait}>
                                     <img src="/images/annual-report/initiatives/Pillars-Desktop.svg" />
                                 </MediaQuery>
                                 <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                     <img src="/images/annual-report/initiatives/Pillars-Mobile.svg" />
-                                </MediaQuery>
+                                </MediaQuery>**/}
+                                <div className="initiatives-pillars">
+                                    <div className="three-pillars">
+                                        <div className="pillar-splash tools">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.toolsTitle" />
+                                            </h4>
+                                        </div>
+                                        <div className="pillar-splash community">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.communityTitle" />
+                                            </h4>
+                                        </div>
+                                        <div className="pillar-splash schools">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.schoolsTitle" />
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div className="equity-and-global">
+                                        <div className="pillar-splash equity">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.equity" />
+                                            </h4>
+                                        </div>
+                                        <div className="pillar-splash global">
+                                            <h4>
+                                                <FormattedMessage id="annualReport.globalStrategy" />
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div className="initiatives-tools">

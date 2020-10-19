@@ -670,11 +670,139 @@ p {
             display: flex;
             flex-direction: column;
             align-items: center; 
+            max-width: 760px;
             padding: 88px 0;
         }
 
         h2 {
             margin-bottom: 72px;
+        }
+
+        .initiatives-pillars {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            h4 {
+                color: $ui-white;
+                word-break: break-word;
+            }
+
+            .pillar-splash {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                background-position: center;
+
+                text-align: center;
+
+                &.tools {
+                    background-image: url("/images/annual-report/initiatives/Creative Tools-Splash.svg");
+                }
+
+                &.community {
+                    background-image: url("/images/annual-report/initiatives/Community-Splash.svg");
+                }
+
+                &.schools {
+                    background-image: url("/images/annual-report/initiatives/Schools-Splash.svg");
+                }
+
+                &.equity {
+                    background-image: url("/images/annual-report/initiatives/Equity-Splash.svg");
+                }
+
+                &.global {
+                    background-image: url("/images/annual-report/initiatives/Global-Splash.svg");
+                }
+            }
+
+            .three-pillars {
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .equity-and-global {
+                width: 100%;
+
+                .pillar-splash {
+                    height: 44px;
+                    margin: 24px 0;
+                }
+            }
+        }
+
+        @media #{$big} {
+            .three-pillars {
+                .pillar-splash {
+                    width: 244px;
+                    height: 160px;
+                }
+            }
+        }
+
+        @media #{$intermediate} {
+            .inner {
+                max-width: 620px;
+            }
+
+            .three-pillars {
+                .pillar-splash {
+                    width: 192px;
+                    height: 128px;
+                }
+            }
+        }
+
+        @media #{$medium} {
+            .inner {
+                max-width: 460px;
+            }
+
+
+            h4 {
+                font-size: 1rem;
+                line-height: 1rem;
+            }
+
+            .three-pillars {
+                .pillar-splash {
+                    width: 136px;
+                    height: 148px;
+
+                    &.community {
+                        width: 164px;
+                    }
+                }
+            }
+        }
+
+        @media #{$small} {
+            .inner {
+                max-width: 300px;
+            }
+
+            h4 {
+                font-size: 1rem;
+                line-height: 1rem;
+            }
+
+            .three-pillars {
+                .pillar-splash {
+                    width: 90px;
+                    height: 96px;
+
+                    &.community {
+                        width: 108px;
+                    }
+                }
+            }
         }
     }
 
@@ -682,10 +810,6 @@ p {
         background-image: url("/images/annual-report/initiatives/Juice Pattern.svg");
 
         padding: 92px 0;
-
-        //>.initiatives-community {
-        //    background-color: $ui-blue-dark;
-        //}
 
         &.tools {
             background-color: $ui-aqua;
