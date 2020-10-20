@@ -13,7 +13,10 @@ const Video = props => (
             frameBorder="0" // deprecated attribute
             height={props.height}
             scrolling="no" // deprecated attribute
-            src={`https://fast.wistia.net/embed/iframe/${props.videoId}?seo=false&videoFoam=true`}
+            src={props.isYouTube ?
+                `https://www.youtube.com/embed/${props.videoId}?autoplay=1` :
+                `https://fast.wistia.net/embed/iframe/${props.videoId}?seo=false&videoFoam=true`
+            }
             title={props.title}
             width={props.width}
         />
@@ -25,6 +28,7 @@ const Video = props => (
 );
 Video.defaultProps = {
     height: '225',
+    isYouTube: false,
     title: '',
     width: '400'
 };
@@ -32,6 +36,7 @@ Video.defaultProps = {
 Video.propTypes = {
     className: PropTypes.string,
     height: PropTypes.string.isRequired,
+    isYouTube: PropTypes.bool,
     title: PropTypes.string.isRequired,
     videoId: PropTypes.string.isRequired,
     width: PropTypes.string.isRequired
