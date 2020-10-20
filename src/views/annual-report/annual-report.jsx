@@ -825,12 +825,6 @@ class AnnualReport extends React.Component {
                                 <h2>
                                     <FormattedMessage id="annualReport.initiativesTitle" />
                                 </h2>
-                                {/**<MediaQuery minWidth={frameless.tabletPortrait}>
-                                    <img src="/images/annual-report/initiatives/Pillars-Desktop.svg" />
-                                </MediaQuery>
-                                <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
-                                    <img src="/images/annual-report/initiatives/Pillars-Mobile.svg" />
-                                </MediaQuery>**/}
                                 <div className="initiatives-pillars">
                                     <div className="three-pillars">
                                         <div className="pillar-splash tools">
@@ -1502,6 +1496,7 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <div className="video-container">
                                     <div className="video-background cps">
+                                        {/* eslint-disable max-len */}
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
                                                 isYouTube
@@ -1528,6 +1523,7 @@ class AnnualReport extends React.Component {
                                                 videoWidth="380"
                                             />
                                         </MediaQuery>
+                                        {/* eslint-enable max-len */}
                                     </div>
                                 </div>
                                 <div className="inner family-nights">
@@ -1543,10 +1539,12 @@ class AnnualReport extends React.Component {
                                         <img src="/images/annual-report/initiatives/schools/CPS Story/Pencils.svg" />
                                     </div>
                                     <div className="four-pictures">
+                                        {/* eslint-disable max-len */}
                                         <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 1.png" />
                                         <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 2.png" />
                                         <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 3.png" />
                                         <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 4.png" />
+                                        {/* eslint-enable max-len */}
                                     </div>
                                     <div className="pizza-img">
                                         <img src="/images/annual-report/initiatives/schools/CPS Story/Pizza.svg" />
@@ -1566,10 +1564,12 @@ class AnnualReport extends React.Component {
                                     </p>
                                     <div className="teacher-quote">
                                         <div className="quote-person">
+                                            {/* eslint-disable max-len */}
                                             <Avatar
                                                 alt=""
                                                 src="/images/annual-report/initiatives/schools/CPS Story/School Quote Avatar.png"
                                             />
+                                            {/* eslint-enable max-len */}
                                             <div>
                                                 <FormattedMessage
                                                     id="annualReport.teacherPDQuoteAttribution"
@@ -1597,6 +1597,7 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.inTheNewsHeader" />
                                     </h4>
                                     <div className="news-links">
+                                        {/* eslint-disable max-len */}
                                         <div className="icon-and-link">
                                             <img src="/images/annual-report/initiatives/schools/CPS Story/News Icon.svg" />
                                             <a
@@ -1617,6 +1618,7 @@ class AnnualReport extends React.Component {
                                                 <FormattedMessage id="annualReport.rollingStonesArticle" />
                                             </a>
                                         </div>
+                                        {/* eslint-enable max-len */}
                                     </div>
                                 </div>
                                 <div className="inner schools-conferences">
@@ -1633,6 +1635,7 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.conferencesIntro" />
                                         </p>
                                         <div className="conferences-hero-and-caption">
+                                            {/* eslint-disable-next-line max-len */}
                                             <img src="/images/annual-report/initiatives/schools/Conferences Story/Scratch Conferences Hero.png" />
                                             <FormattedMessage
                                                 id="annualReport.conferencesHeroImageCaption"
@@ -1645,19 +1648,21 @@ class AnnualReport extends React.Component {
                                     <div className="schools-conferences-content">
                                         <div className="schools-conferences-region">
                                             <div className="conference-image-and-caption left">
+                                                {/* eslint-disable-next-line max-len */}
                                                 <img src="/images/annual-report/initiatives/schools/Conferences Story/Latin America Conference.png" />
                                                 <FormattedMessage
                                                     id="annualReport.conferencesLatinAmericaImageCaption"
                                                     values={{
                                                         photoCredit: 'Scratch al Sur'
                                                     }}
-                                                /> 
+                                                />
                                             </div>
                                             <div className="conference-title-and-description">
                                                 <h4>
                                                     <FormattedMessage id="annualReport.conferencesLatinAmericaTitle" />
                                                 </h4>
                                                 <p>
+                                                    {/* eslint-disable max-len */}
                                                     <FormattedMessage
                                                         id="annualReport.conferencesLatinAmericaDescription"
                                                         values={{
@@ -1690,6 +1695,7 @@ class AnnualReport extends React.Component {
                                                             )
                                                         }}
                                                     />
+                                                    {/* eslint-enable max-len */}
                                                 </p>
                                             </div>
                                         </div>
@@ -1709,7 +1715,6 @@ class AnnualReport extends React.Component {
                                                                     target="_blank"
                                                                 >
                                                                     Scratch Conference Europe
-                                                                    {/* <FormattedMessage id="annualReport.conferencesScratchConferenceEuropeLinkText" /> */}
                                                                 </a>
                                                             )
                                                         }}
@@ -1717,6 +1722,7 @@ class AnnualReport extends React.Component {
                                                 </p>
                                             </div>
                                             <div className="conference-image-and-caption">
+                                                {/* eslint-disable-next-line max-len */}
                                                 <img src="/images/annual-report/initiatives/schools/Conferences Story/Europe Conference.png" />
                                                 <FormattedMessage
                                                     id="annualReport.conferencesEuropeImageCaption"
@@ -1728,6 +1734,7 @@ class AnnualReport extends React.Component {
                                         </div>
                                         <div className="schools-conferences-region">
                                             <div className="conference-image-and-caption left">
+                                                {/* eslint-disable-next-line max-len */}
                                                 <img src="/images/annual-report/initiatives/schools/Conferences Story/Africa Conference.png" />
                                                 <FormattedMessage
                                                     id="annualReport.conferencesAfricaImageCaption"
@@ -1751,7 +1758,6 @@ class AnnualReport extends React.Component {
                                                                     target="_blank"
                                                                 >
                                                                     Scratch Africa Conference
-                                                                    {/* <FormattedMessage id="annualReport.conferencesScratchAfricaConferenceLinkText" /> */}
                                                                 </a>
                                                             )
                                                         }}
