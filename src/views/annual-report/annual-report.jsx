@@ -2231,6 +2231,14 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.leadershipFounderCEO" />
                                     <br />BrainPOP
                                 </div>
+                                <div className="board-member">
+                                    <b className="board-title">
+                                        <FormattedMessage id="annualReport.leadershipBoardMember" />
+                                    </b>
+                                    <h4>Ursula Burns</h4>
+                                    <FormattedMessage id="annualReport.leadershipFormerChairCEO" />
+                                    <br />Xerox
+                                </div>
                             </FlexRow>
                             <h4>
                                 <FormattedMessage id="annualReport.leadershipBoardSecretaryTreasurer" />
