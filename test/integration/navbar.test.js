@@ -84,7 +84,6 @@ describe('www-integration navbar links', () => {
 
     test('Search Bar', async () => {
         let searchBar = await findByXpath('//input[@id="frc-q-1088"]');
-        // await searchBar.click();
         await searchBar.sendKeys('cat');
         await driver.sleep(500); // without it sends an empty string on submit
         await searchBar.submit();
