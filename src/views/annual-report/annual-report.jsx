@@ -356,7 +356,11 @@ class AnnualReport extends React.Component {
                                 id="annualReport.covidResponseP2"
                                 values={{
                                     scratchAtHomeLink: (
-                                        <a href="#">
+                                        <a
+                                            href="https://sip.scratch.mit.edu/scratchathome/"
+                                            rel="noreferrer noopener"
+                                            target="_blank"
+                                        >
                                             <FormattedMessage id="annualReport.covidResponseScratchAtHomePage" />
                                         </a>
                                     )
@@ -368,7 +372,11 @@ class AnnualReport extends React.Component {
                                 id="annualReport.covidResponseP3"
                                 values={{
                                     scratchCommunityLink: (
-                                        <a href="#">
+                                        <a
+                                            href="/"
+                                            rel="noreferrer noopener"
+                                            target="_blank"
+                                        >
                                             <FormattedMessage id="annualReport.covidResponseScratchCommunity" />
                                         </a>
                                     )
@@ -966,7 +974,11 @@ class AnnualReport extends React.Component {
                                                                 </h5>
                                                             ),
                                                             CSandLanguageArtsLink: (
-                                                                <a href="https://www.pila-cs.org/">
+                                                                <a
+                                                                    href="https://www.pila-cs.org/"
+                                                                    rel="noreferrer noopener"
+                                                                    target="_blank"
+                                                                >
                                                                     <FormattedMessage id="annualReport.toolsCSandLanguageArts" />
                                                                 </a>
                                                             )
@@ -990,12 +1002,20 @@ class AnnualReport extends React.Component {
                                                     id="annualReport.toolsLEGORoboticsIntro"
                                                     values={{
                                                         mindstormsLink: (
-                                                            <a href="">
+                                                            <a
+                                                                href="https://scratch.wistia.com/medias/0huu6wfiki"
+                                                                rel="noreferrer noopener"
+                                                                target="_blank"
+                                                            >
                                                                 <FormattedMessage id="annualReport.toolsMindstormsLink" />
                                                             </a>
                                                         ),
                                                         weDoLink: (
-                                                            <a href="">
+                                                            <a
+                                                                href="https://scratch.wistia.com/medias/4im7iizv47"
+                                                                rel="noreferrer noopener"
+                                                                target="_blank"
+                                                            >
                                                                 <FormattedMessage id="annualReport.toolsWeDoLink" />
                                                             </a>
                                                         )
@@ -1057,12 +1077,20 @@ class AnnualReport extends React.Component {
                                                     id="annualReport.toolsAppIntro"
                                                     values={{
                                                         downloadableLink: (
-                                                            <a href="">
+                                                            <a
+                                                                href="https://scratch.mit.edu/download"
+                                                                rel="noreferrer noopener"
+                                                                target="_blank"
+                                                            >
                                                                 <FormattedMessage id="annualReport.toolsDownloadLink" />
                                                             </a>
                                                         ),
                                                         raspberryLink: (
-                                                            <a href="">
+                                                            <a
+                                                                href="https://www.raspberrypi.org/blog/scratch-3-desktop-for-raspbian-on-raspberry-pi/"
+                                                                rel="noreferrer noopener"
+                                                                target="_blank"
+                                                            >
                                                                 <FormattedMessage id="annualReport.toolsRaspberryLink" />
                                                             </a>
                                                         )
@@ -1226,7 +1254,10 @@ class AnnualReport extends React.Component {
                                                 id="annualReport.communityEngagementInfo"
                                                 values={{
                                                     storySwapLink: (
-                                                        <a href="#">
+                                                        <a
+                                                            href="/studios/25034966/"
+                                                            target="_blank"
+                                                        >
                                                             <FormattedMessage id="annualReport.storySwap" />
                                                         </a>
                                                     )
@@ -1243,7 +1274,10 @@ class AnnualReport extends React.Component {
                                         </p>
                                         <div className="sds-list">
                                             <div className="sds-tile">
-                                                <a href="studios/6234813/">
+                                                <a
+                                                    href="studios/6234813/"
+                                                    target="_blank"
+                                                >
                                                     <img
                                                         src="/images/annual-report/initiatives/Day in the Life Thumbnail.png"
                                                     />
@@ -1254,7 +1288,10 @@ class AnnualReport extends React.Component {
                                                 </p>
                                             </div>
                                             <div className="sds-tile">
-                                                <a href="studios/5801323/">
+                                                <a
+                                                    href="studios/5801323/"
+                                                    target="_blank"
+                                                >
                                                     <img
                                                         src="/images/annual-report/initiatives/Year 3000 Thumbnail.png"
                                                     />
@@ -1265,7 +1302,10 @@ class AnnualReport extends React.Component {
                                                 </p>
                                             </div>
                                             <div className="sds-tile">
-                                                <a href="studios/5702799/">
+                                                <a
+                                                    href="studios/5702799/"
+                                                    target="_blank"
+                                                >
                                                     <img
                                                         src="/images/annual-report/initiatives/Bounce Thumbnail.png"
                                                     />
@@ -1276,7 +1316,10 @@ class AnnualReport extends React.Component {
                                                 </p>
                                             </div>
                                             <div className="sds-tile">
-                                                <a href="studios/5944573/">
+                                                <a
+                                                    href="studios/5944573/"
+                                                    target="_blank"
+                                                >
                                                     <img
                                                         src="/images/annual-report/initiatives/Monochromatic Thumbnail.png"
                                                     />
@@ -1360,7 +1403,10 @@ class AnnualReport extends React.Component {
                                                     id="annualReport.communityBLMIntro"
                                                     values={{
                                                         BLMStudioLink: (
-                                                            <a href="studio/26964367">
+                                                            <a
+                                                                href="/studio/26964367"
+                                                                target="_blank"
+                                                            >
                                                                 Black Lives Matter <FormattedMessage
                                                                     id="annualReport.studio"
                                                                 />
@@ -1551,13 +1597,21 @@ class AnnualReport extends React.Component {
                                     <div className="news-links">
                                         <div className="icon-and-link">
                                             <img src="/images/annual-report/initiatives/schools/CPS Story/News Icon.svg" />
-                                            <a href="#">
+                                            <a
+                                                href="https://chicago.suntimes.com/2019/12/9/21003124/chance-rapper-superme-i-love-you-so-much-cps-public-schools-video-game-google"
+                                                rel="noreferrer noopener"
+                                                target="_blank"
+                                            >
                                                 <FormattedMessage id="annualReport.chicagoSunTimesArticle" />
                                             </a>
                                         </div>
                                         <div className="icon-and-link">
                                             <img src="/images/annual-report/initiatives/schools/CPS Story/News Icon.svg" />
-                                            <a href="#">
+                                            <a
+                                                href="https://www.rollingstone.com/music/music-news/chance-the-rapper-i-love-you-so-much-video-game-made-by-chicago-students-925198/"
+                                                rel="noreferrer noopener"
+                                                target="_blank"
+                                            >
                                                 <FormattedMessage id="annualReport.rollingStonesArticle" />
                                             </a>
                                         </div>
@@ -1606,21 +1660,33 @@ class AnnualReport extends React.Component {
                                                         id="annualReport.conferencesLatinAmericaDescription"
                                                         values={{
                                                             scratchAlSurLink: (
-                                                                <a href="#">
+                                                                <a
+                                                                    href="https://www.scratchalsur.org/"
+                                                                    rel="noreferrer noopener"
+                                                                    target="_blank"
+                                                                >
                                                                     Scratch al Sur
                                                                 </a>
                                                             ),
                                                             spanishVersionLink: (
-                                                                <a href="#">
+                                                                <a
+                                                                    href="https://scratchalsur.org/assets/computaci%c3%b3n-creativa.pdf"
+                                                                    rel="noreferrer noopener"
+                                                                    target="_blank"
+                                                                >
                                                                     <FormattedMessage id="annualReport.conferencesSpanishVersionLinkText" />
                                                                 </a>
                                                             ),
                                                             creativeComputingCurriculumLink: (
-                                                                <a href="#">
+                                                                <a
+                                                                    href="http://creativecomputing.gse.harvard.edu/guide/curriculum.html"
+                                                                    rel="noreferrer noopener"
+                                                                    target="_blank"
+                                                                >
                                                                     Creative Computing Curriculum
                                                                 </a>
                                                             )
-                                                        }}   
+                                                        }}
                                                     />
                                                 </p>
                                             </div>
@@ -1635,7 +1701,11 @@ class AnnualReport extends React.Component {
                                                         id="annualReport.conferencesEuropeDescription"
                                                         values={{
                                                             scratchConferenceEuropeLink: (
-                                                                <a href="#">
+                                                                <a
+                                                                    href="https://www.raspberrypi.org/blog/keynote-speeches-scratch-conference-europe-2019/"
+                                                                    rel="noreferrer noopener"
+                                                                    target="_blank"
+                                                                >
                                                                     Scratch Conference Europe
                                                                     {/* <FormattedMessage id="annualReport.conferencesScratchConferenceEuropeLinkText" /> */}
                                                                 </a>
@@ -1662,7 +1732,7 @@ class AnnualReport extends React.Component {
                                                     values={{
                                                         photoCredit: 'Carmelo Presicce'
                                                     }}
-                                                /> 
+                                                />
                                             </div>
                                             <div className="conference-title-and-description">
                                                 <h4>
@@ -1673,7 +1743,11 @@ class AnnualReport extends React.Component {
                                                         id="annualReport.conferencesAfricaDescription"
                                                         values={{
                                                             scratchAfricaConferenceLink: (
-                                                                <a href="#">
+                                                                <a
+                                                                    href="https://www.scratchafrica.com/"
+                                                                    rel="noreferrer noopener"
+                                                                    target="_blank"
+                                                                >
                                                                     Scratch Africa Conference
                                                                     {/* <FormattedMessage id="annualReport.conferencesScratchAfricaConferenceLinkText" /> */}
                                                                 </a>
