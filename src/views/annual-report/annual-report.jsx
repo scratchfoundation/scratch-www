@@ -1099,7 +1099,7 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/initiatives/CN Video Thumbnail.png"
                                                 thumbnailWidth="580"
                                                 videoHeight="320"
-                                                videoId="joal01i8b1"
+                                                videoId="r2ctnvb0sy"
                                                 videoWidth="568"
                                             />
                                         </MediaQuery>
@@ -1111,7 +1111,7 @@ class AnnualReport extends React.Component {
                                                 thumbnail="/images/annual-report/initiatives/CN Video Thumbnail.png"
                                                 thumbnailWidth="400"
                                                 videoHeight="216"
-                                                videoId="joal01i8b1"
+                                                videoId="r2ctnvb0sy"
                                                 videoWidth="380"
                                             />
                                         </MediaQuery>
