@@ -1504,25 +1504,27 @@ class AnnualReport extends React.Component {
                                     <div className="video-background cps">
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
+                                                isYouTube
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/initiatives/schools/CPS Story/CPS Video Thumbnail.png"
                                                 thumbnailWidth="580"
                                                 videoHeight="320"
-                                                videoId="joal01i8b1"
+                                                videoId="9QD9IxOinLg"
                                                 videoWidth="568"
                                             />
                                         </MediaQuery>
                                         <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
                                             <VideoPreview
+                                                isYouTube
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/initiatives/schools/CPS Story/CPS Video Thumbnail.png"
                                                 thumbnailWidth="400"
                                                 videoHeight="216"
-                                                videoId="joal01i8b1"
+                                                videoId="9QD9IxOinLg"
                                                 videoWidth="380"
                                             />
                                         </MediaQuery>
