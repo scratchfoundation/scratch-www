@@ -1437,6 +1437,255 @@ class AnnualReport extends React.Component {
                                     </p>
                                 </div>
                             </div>
+                            <div className="initiatives-subsection-content">
+                                <div className="inner schools">
+                                    <div className="subsection-tag">
+                                        <FormattedMessage id="annualReport.schoolsSpotlight" />
+                                    </div>
+                                    <div className="initiatives-subsection-intro schools">
+                                        <h2>
+                                            <FormattedMessage id="annualReport.cpsProjectTitle" />
+                                        </h2>
+                                        <p>
+                                            <FormattedMessage id="annualReport.cpsProjectIntroP1" />
+                                        </p>
+                                        <p>
+                                            <FormattedMessage id="annualReport.cpsProjectIntroP2" />
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="video-container">
+                                    <div className="video-background cps">
+                                        <MediaQuery minWidth={frameless.tabletPortrait}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/initiatives/schools/CPS Story/CPS Video Thumbnail.png"
+                                                thumbnailWidth="580"
+                                                videoHeight="320"
+                                                videoId="joal01i8b1"
+                                                videoWidth="568"
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/initiatives/schools/CPS Story/CPS Video Thumbnail.png"
+                                                thumbnailWidth="400"
+                                                videoHeight="216"
+                                                videoId="joal01i8b1"
+                                                videoWidth="380"
+                                            />
+                                        </MediaQuery>
+                                    </div>
+                                </div>
+                                <div className="inner family-nights">
+                                    <h4>
+                                        <FormattedMessage id="annualReport.familyCreativeNightsHeader" />
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.familyCreativeNightsDescription" />
+                                    </p>
+                                </div>
+                                <div className="inner four-pictures-container">
+                                    <div className="pencils-img">
+                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Pencils.svg" />
+                                    </div>
+                                    <div className="four-pictures">
+                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 1.png" />
+                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 2.png" />
+                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 3.png" />
+                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Family Night 4.png" />
+                                    </div>
+                                    <div className="pizza-img">
+                                        <img src="/images/annual-report/initiatives/schools/CPS Story/Pizza.svg" />
+                                    </div>
+                                    <div className="photo-credit">
+                                        <p>
+                                            <FormattedMessage id="annualReport.familyNightsPhotoCredit" />
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="inner schools">
+                                    <h4>
+                                        <FormattedMessage id="annualReport.teacherPDHeader" />
+                                    </h4>
+                                    <p>
+                                        <FormattedMessage id="annualReport.teacherPDDescription" />
+                                    </p>
+                                    <div className="teacher-quote">
+                                        <div className="quote-person">
+                                            <Avatar
+                                                alt=""
+                                                src="/images/annual-report/initiatives/schools/CPS Story/School Quote Avatar.png"
+                                            />
+                                            <div>
+                                                <FormattedMessage
+                                                    id="annualReport.teacherPDQuoteAttribution"
+                                                    values={{
+                                                        teacherName: 'Mahmoud Aliamer'
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <Comment
+                                            comment={this.props.intl.formatMessage(
+                                                {id: 'annualReport.teacherPDQuote'}
+                                            )}
+                                        />
+                                    </div>
+                                    <div className="extending-reach">
+                                        <h4>
+                                            <FormattedMessage id="annualReport.extendingReachHeader" />
+                                        </h4>
+                                        <p>
+                                            <FormattedMessage id="annualReport.extendingReachDescription" />
+                                        </p>
+                                    </div>
+                                    <h4>
+                                        <FormattedMessage id="annualReport.inTheNewsHeader" />
+                                    </h4>
+                                    <div className="news-links">
+                                        <div className="icon-and-link">
+                                            <img src="/images/annual-report/initiatives/schools/CPS Story/News Icon.svg" />
+                                            <a href="#">
+                                                <FormattedMessage id="annualReport.chicagoSunTimesArticle" />
+                                            </a>
+                                        </div>
+                                        <div className="icon-and-link">
+                                            <img src="/images/annual-report/initiatives/schools/CPS Story/News Icon.svg" />
+                                            <a href="#">
+                                                <FormattedMessage id="annualReport.rollingStonesArticle" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="inner schools-conferences">
+                                    <div className="schools-conferences-header">
+                                        <div className="subsection-tag">
+                                            <FormattedMessage id="annualReport.schoolsSpotlight" />
+                                        </div>
+                                        <h2>
+                                            <FormattedMessage id="annualReport.conferencesTitle" />
+                                        </h2>
+                                    </div>
+                                    <div className="schools-conferences-intro">
+                                        <p>
+                                            <FormattedMessage id="annualReport.conferencesIntro" />
+                                        </p>
+                                        <div className="conferences-hero-and-caption">
+                                            <img src="/images/annual-report/initiatives/schools/Conferences Story/Scratch Conferences Hero.png" />
+                                            <FormattedMessage
+                                                id="annualReport.conferencesHeroImageCaption"
+                                                values={{
+                                                    photoCredit: 'Carmelo Presicce'
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="schools-conferences-content">
+                                        <div className="schools-conferences-region">
+                                            <div className="conference-image-and-caption left">
+                                                <img src="/images/annual-report/initiatives/schools/Conferences Story/Latin America Conference.png" />
+                                                <FormattedMessage
+                                                    id="annualReport.conferencesLatinAmericaImageCaption"
+                                                    values={{
+                                                        photoCredit: 'Scratch al Sur'
+                                                    }}
+                                                /> 
+                                            </div>
+                                            <div className="conference-title-and-description">
+                                                <h4>
+                                                    <FormattedMessage id="annualReport.conferencesLatinAmericaTitle" />
+                                                </h4>
+                                                <p>
+                                                    <FormattedMessage
+                                                        id="annualReport.conferencesLatinAmericaDescription"
+                                                        values={{
+                                                            scratchAlSurLink: (
+                                                                <a href="#">
+                                                                    Scratch al Sur
+                                                                </a>
+                                                            ),
+                                                            spanishVersionLink: (
+                                                                <a href="#">
+                                                                    <FormattedMessage id="annualReport.conferencesSpanishVersionLinkText" />
+                                                                </a>
+                                                            ),
+                                                            creativeComputingCurriculumLink: (
+                                                                <a href="#">
+                                                                    Creative Computing Curriculum
+                                                                </a>
+                                                            )
+                                                        }}   
+                                                    />
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="schools-conferences-region">
+                                            <div className="conference-title-and-description left">
+                                                <h4>
+                                                    <FormattedMessage id="annualReport.conferencesEuropeTitle" />
+                                                </h4>
+                                                <p>
+                                                    <FormattedMessage
+                                                        id="annualReport.conferencesEuropeDescription"
+                                                        values={{
+                                                            scratchConferenceEuropeLink: (
+                                                                <a href="#">
+                                                                    Scratch Conference Europe
+                                                                    {/* <FormattedMessage id="annualReport.conferencesScratchConferenceEuropeLinkText" /> */}
+                                                                </a>
+                                                            )
+                                                        }}
+                                                    />
+                                                </p>
+                                            </div>
+                                            <div className="conference-image-and-caption">
+                                                <img src="/images/annual-report/initiatives/schools/Conferences Story/Europe Conference.png" />
+                                                <FormattedMessage
+                                                    id="annualReport.conferencesEuropeImageCaption"
+                                                    values={{
+                                                        photoCredit: 'Raspberry Pi'
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="schools-conferences-region">
+                                            <div className="conference-image-and-caption left">
+                                                <img src="/images/annual-report/initiatives/schools/Conferences Story/Africa Conference.png" />
+                                                <FormattedMessage
+                                                    id="annualReport.conferencesAfricaImageCaption"
+                                                    values={{
+                                                        photoCredit: 'Carmelo Presicce'
+                                                    }}
+                                                /> 
+                                            </div>
+                                            <div className="conference-title-and-description">
+                                                <h4>
+                                                    <FormattedMessage id="annualReport.conferencesAfricaTitle" />
+                                                </h4>
+                                                <p>
+                                                    <FormattedMessage
+                                                        id="annualReport.conferencesAfricaDescription"
+                                                        values={{
+                                                            scratchAfricaConferenceLink: (
+                                                                <a href="#">
+                                                                    Scratch Africa Conference
+                                                                    {/* <FormattedMessage id="annualReport.conferencesScratchAfricaConferenceLinkText" /> */}
+                                                                </a>
+                                                            )
+                                                        }}
+                                                    />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div

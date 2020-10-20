@@ -853,6 +853,252 @@ p {
                 padding-top: 0;
                 padding-bottom: 132px;
             }
+
+            &.schools {
+                max-width: 620px;
+                align-items: flex-start;
+                text-align: left;
+
+                padding-bottom: 0px;
+
+                .subsection-tag {
+                    background-color: $ui-purple;
+                }
+            }
+
+            &.family-nights {
+                max-width: 620px;
+                align-items: flex-start;
+
+                padding-top: 0px;
+                padding-bottom: 0px;
+
+                text-align: left;
+            }
+
+            &.four-pictures-container {
+                max-width: 1080px;
+                margin-top: 10px;
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+                position: relative;
+
+                .four-pictures {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    
+                    img {
+                        width: 380px;
+                        margin: 10px;
+
+                        @media #{$intermediate} {
+                            width: 300px;
+                        }
+
+                        @media #{$medium} {
+                            width: 220px;
+                        }
+
+                        @media #{$small} {
+                            width: 300px;
+                            display: flex;
+                            flex-direction: column;
+                            flex-wrap: nowrap;
+                        }
+                    }
+                }
+                
+                .pencils-img {
+                    position: absolute;
+                    width: 145px;
+                    padding: 0px;
+                    left: 60px;
+                    top: 60px;
+
+                    @media #{$medium-and-smaller} {
+                        width: 80px;
+                    }
+                }
+
+                .pizza-img {
+                    position: absolute;
+                    right: 80px;
+                    bottom: 40px;
+
+                    @media #{$medium-and-smaller} {
+                        width: 80px;
+                    }
+                }
+
+                .photo-credit {
+                    padding-bottom: 0px;
+                    padding-top: 0px;
+
+                    p {
+                        font-size: 0.875rem;
+                        line-height: 1.125rem;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            &.schools-conferences {
+                align-items: flex-start;
+                text-align: left;
+
+                .subsection-tag {
+                    background-color: $ui-purple;
+                    margin-bottom: 24px;
+                }
+
+                .schools-conferences-header {
+                    max-width: 620px;
+                    margin-bottom: 20px;
+                }
+
+                .schools-conferences-intro {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    
+                    p {
+                        width: 380px;
+                        margin-top: 0px;
+                        margin-right: 20px;
+                    }
+
+                    @media #{$medium-and-smaller} {
+                        flex-direction: column;
+                    }
+
+                    .conferences-hero-and-caption {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        width: 540px;
+                        margin-bottom: 24px;
+
+                        @media #{$medium-and-smaller} {
+                            width: 460px;
+                        }
+
+                        @media #{$small} {
+                            width: 80%;
+                            overflow: hidden;
+
+                            margin: 0px;
+                            padding: 0px;
+                        }
+
+
+                        img {
+                            margin-bottom: 22px;
+
+                            @media #{$small} {
+                                align-items: flex-start;
+                            }
+                        }
+
+                        span {
+                            font-size: 0.875rem;
+                            line-height: 1.25rem;
+                        }
+                    }
+                }
+
+                .schools-conferences-content {
+                    align-self: center;
+                    max-width: 780px;
+
+                    .schools-conferences-region {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: flex-start;
+                        margin-bottom: 20px;
+
+                        @media #{$medium-and-smaller} {
+                            flex-direction: column;
+                        }
+
+                        .conference-image-and-caption {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+
+                            img {
+                                width: 300px;
+                            }
+                        }
+
+                        .conference-title-and-description {
+                            display: flex;
+                            flex-direction: column;
+                            width: 460px;
+                        }
+
+                        .left {
+                            margin-right: 20px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .teacher-quote {
+            width: 620px;
+            text-align: left;
+
+            @media #{$small} {
+                width: 100%;
+                padding: 0px;
+            }
+
+            .comment-text {
+                background-color: $ui-purple;
+                opacity: 75%;
+                white-space: pre-line;
+                margin-top: 8px;
+
+                p {
+                    color: $ui-white;
+                    line-height: 40px;
+                    font-size: 1.25rem;
+                }
+            }
+
+            .comment-text, .comment-text::before, .comment-text::after {
+                border-color: $ui-purple;
+            }
+            .comment-text {
+                padding: 1.75rem;
+            }
+        }
+
+        .extending-reach {
+            margin: 40px 0px;
+        }
+
+        .news-links {
+            display: flex;
+            justify-content: flex-start;
+            
+            margin: 20px 0px;
+
+            .icon-and-link {
+                display: flex;
+                align-items: center;
+                margin-right: $cols1;
+
+                img {
+                    margin-right: 5px;
+                }
+            } 
         }
     }
 
@@ -862,6 +1108,11 @@ p {
         margin: 32px 0;
 
         p {
+            max-width: 620px;
+        }
+
+        &.schools {
+            text-align: left;
             max-width: 620px;
         }
     }
@@ -1466,6 +1717,10 @@ p {
             .button {
                 background-color: $ui-aqua;
             }
+        }
+
+        &.cps {
+            background-image: url("/images/annual-report/initiatives/schools/CPS Story/CPS Video Splash.svg");
         }
     }
 }
