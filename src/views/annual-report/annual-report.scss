@@ -1111,6 +1111,10 @@ p {
             span {
                 font-size: 0.875rem;
                 line-height: 1.25rem;
+
+                @media #{$small} {
+                    width: 300px;
+                }
             }
 
             .conferences-hero {
@@ -1226,7 +1230,7 @@ p {
                     width: 248px;
                 }
                 @media #{$small} {
-                    width: 160px;
+                    height: 130px;
                 }
             }
 
@@ -1241,13 +1245,18 @@ p {
                     width: 342px;
                 }
                 @media #{$small} {
-                    width: 220px;
+                    // width: 220px;
+                    height: 130px;
                 }
             }
         }
 
         .subsection-tag {
             background-color: $ui-aqua;
+
+            @media #{$small} {
+                max-width: 250px;
+            }
 
             &.collaborator {
                 color: $type-gray;
@@ -1270,6 +1279,12 @@ p {
             display: flex;
             flex-direction: column;
             align-items: center;
+
+            @media #{$small} {
+                img {
+                    max-width: 300px;
+                }
+            }
         }
 
         .tools-stats {
@@ -1360,6 +1375,12 @@ p {
 
                 p {
                     margin-bottom: 0;
+                }
+            }
+
+            @media #{$small} {
+                .subsection-tag {
+                    margin-left: -10px;
                 }
             }
         }
