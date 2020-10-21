@@ -630,6 +630,36 @@ p {
     }
 }
 
+.reach-section {
+    .scratch-jr-transition-img {
+        margin-bottom: -44px;
+        margin-left: 88px;
+        width: 100%;
+
+        display: flex;
+        overflow: hidden;
+        justify-content: flex-start;
+
+        @media #{$medium-and-smaller} {
+            margin-left: -8px;
+        }
+    }
+}
+
+.reach-scratch-jr {
+    .scratch-jr-transition-img {
+        margin-bottom: -156px;
+        margin-right: 48px;
+        display: flex;
+        flex-direction: row-reverse;
+        overflow: hidden;
+
+        @media #{$medium-and-smaller} {
+            margin-right: -28px;
+        }
+    }
+}
+
 .reach-scratch-jr {
     background-color: #0EA57A;
     color: $ui-white;

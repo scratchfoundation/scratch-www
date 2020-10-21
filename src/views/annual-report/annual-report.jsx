@@ -790,6 +790,9 @@ class AnnualReport extends React.Component {
                                 <img src="/images/annual-report/translated-illustration.svg" />
                             </div>
                         </div>
+                        <div className="scratch-jr-transition-img">
+                            <img src="/images/annual-report/horizontal-command.svg" />
+                        </div>
                     </div>
                     <div className="reach-scratch-jr">
                         <div className="inner">
@@ -814,6 +817,9 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.reachDownloads" />
                                 </h4>
                             </div>
+                        </div>
+                        <div className="scratch-jr-transition-img">
+                            <img src="/images/annual-report/horizontal-loop.svg" />
                         </div>
                     </div>
                     <div
