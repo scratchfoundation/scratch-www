@@ -88,31 +88,46 @@ p {
         font-weight: bold;
     }
 
-    .masthead-content {
-        max-width: 440px;
-        text-align: left;
+    @media #{$big} {
+        .masthead-content {
+            max-width: 440px;
+            text-align: left;
+        }
+
+        img {
+            max-width: 760px;
+        }
     }
 
     @media #{$intermediate-and-smaller} {
-        img {
-            width: 75%;
+        flex-direction: column;
+        align-items: center;
+        
+        .masthead-year {
+            text-align: center;
         }
 
-        .masthead-year {
+        .masthead-content {
             text-align: center;
         }
     }
 
-    @media #{$medium-and-smaller} {
-        .masthead-content {
-            text-align: center;
+    @media #{$intermediate} {
+        .masthead-content, img {
+            max-width: 620px;
+        }
+    }
+
+    @media #{$medium} {
+        .masthead-content, img {
+            max-width: 460px;
         }
     }
 
     @media #{$small} {
-        .masthead-content {
+        .masthead-content, img {
             max-width: 300px;
-        }  
+        }
     }
 }
 
@@ -1045,7 +1060,7 @@ p {
                     align-items: flex-start;
                     text-align: left;
     
-                    @media #{$medium-and-smaller} {
+                    @media #{$intermediate-and-smaller} {
                         flex-direction: column;
                         align-items: center;
                     }
@@ -1057,6 +1072,10 @@ p {
     
                         @media #{$medium-and-smaller} {
                             margin: 0px 0px 20px 0px;
+                        }
+
+                        @media #{$intermediate} {
+                            width: 620px;
                         }
     
                         @media #{$medium} {
@@ -1072,6 +1091,10 @@ p {
                 .schools-conferences-content {
                     align-self: center;
                     max-width: 780px;
+
+                    @media #{$intermediate} {
+                        width: 620px;
+                    }
 
                     @media #{$medium} {
                         width: 460px;
@@ -1310,6 +1333,12 @@ p {
             flex-direction: column;
             align-items: center;
 
+            @media #{$intermediate} {
+                img {
+                    max-width: 300px;
+                }
+            }
+            
             @media #{$small} {
                 img {
                     max-width: 300px;

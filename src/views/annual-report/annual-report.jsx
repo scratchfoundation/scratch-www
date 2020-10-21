@@ -289,7 +289,7 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.mastheadTitle" />
                                 </h1>
                             </div>
-                            <img src="/images/annual-report/message/hero-image.svg" />
+                            <img src="/images/annual-report/message/hero-image.png" />
                         </FlexRow>
                         <MediaQuery minWidth={frameless.desktop}>
                             <img
