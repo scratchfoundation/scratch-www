@@ -136,7 +136,7 @@ p {
     @media #{$medium-and-intermediate} {
         text-align: left;
         h2 {
-            max-width: 480px;
+            max-width: 460px;
             vertical-align: middle;
         }
     }
@@ -161,13 +161,22 @@ p {
             margin-right: 20px;
         }
 
-        @media #{$small} {
+        @media #{$medium-and-smaller} {
             flex-direction: column;
         }
+
+        @media #{$medium} {
+            max-width: 460px;
+        }
+        
     }
 
     .message-from-team {
         max-width: 620px;
+
+        @media #{$medium} {
+            max-width: 460px;
+        }
 
         @media #{$small} {
             max-width: 300px;
@@ -177,6 +186,11 @@ p {
     .team-photo {
         margin: 8px 24px 8px 0px;
         vertical-align: middle;
+
+        @media #{$medium} {
+            max-width: 460px;
+            margin-right: 0px;
+        }
 
         @media #{$small} {
             max-width: 300px;
@@ -838,16 +852,36 @@ p {
                 font-size: 1.25rem;
                 line-height: 2.5rem;
             }
+
+            @media #{$medium} {
+                max-width: 460px;
+            }
+    
+            @media #{$small} {
+                max-width: 300px;
+            }
         }
     }
 
     .initiatives-subsection-content {
-        .inner {
-            max-width: 1032px;
+        .inner {     
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 72px;
+            
+            @media #{$big} {
+                max-width: 1032px;
+                padding: 72px;
+            }
+
+            @media #{$medium} {
+                max-width: 460px;
+            }
+
+            @media #{$small} {
+                max-width: 300px;
+                padding-top: 32px;
+            }
 
             &.abhi {
                 padding-top: 0;
@@ -855,29 +889,29 @@ p {
             }
 
             &.schools {
-                max-width: 620px;
                 align-items: flex-start;
                 text-align: left;
 
+                padding-top: 10px;
                 padding-bottom: 0px;
 
                 .subsection-tag {
                     background-color: $ui-purple;
                 }
-            }
 
-            &.family-nights {
-                max-width: 620px;
-                align-items: flex-start;
+                @media #{$big} {
+                    max-width: 620px;
+                }
 
-                padding-top: 0px;
-                padding-bottom: 0px;
-
-                text-align: left;
+                @media #{$small} {
+                    align-items: center;
+                    h2 {
+                        line-height: 2.5rem;
+                    }
+                }
             }
 
             &.four-pictures-container {
-                max-width: 1080px;
                 margin-top: 10px;
                 margin-bottom: 0px;
                 padding-bottom: 0px;
@@ -951,6 +985,20 @@ p {
                 align-items: flex-start;
                 text-align: left;
 
+                @media #{$medium} {
+                    width: 460px;
+                }
+
+                @media #{$small} {
+                    max-width: 300px;
+
+                    align-items: center;
+
+                    h2 {
+                        line-height: 2.5rem;
+                    }
+                }
+
                 .subsection-tag {
                     background-color: $ui-purple;
                     margin-bottom: 24px;
@@ -965,48 +1013,28 @@ p {
                     display: flex;
                     flex-direction: row;
                     align-items: flex-start;
+                    text-align: left;
+    
+                    @media #{$medium-and-smaller} {
+                        flex-direction: column;
+                        align-items: center;
+                    }
                     
                     p {
                         width: 380px;
                         margin-top: 0px;
                         margin-right: 20px;
-                    }
-
-                    @media #{$medium-and-smaller} {
-                        flex-direction: column;
-                    }
-
-                    .conferences-hero-and-caption {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        width: 540px;
-                        margin-bottom: 24px;
-
+    
                         @media #{$medium-and-smaller} {
+                            margin: 0px 0px 20px 0px;
+                        }
+    
+                        @media #{$medium} {
                             width: 460px;
                         }
-
+    
                         @media #{$small} {
-                            width: 80%;
-                            overflow: hidden;
-
-                            margin: 0px;
-                            padding: 0px;
-                        }
-
-
-                        img {
-                            margin-bottom: 22px;
-
-                            @media #{$small} {
-                                align-items: flex-start;
-                            }
-                        }
-
-                        span {
-                            font-size: 0.875rem;
-                            line-height: 1.25rem;
+                            width: 300px;
                         }
                     }
                 }
@@ -1014,6 +1042,14 @@ p {
                 .schools-conferences-content {
                     align-self: center;
                     max-width: 780px;
+
+                    @media #{$medium} {
+                        width: 460px;
+                    }
+
+                    @media #{$small} {
+                        width: 300px;
+                    }
 
                     .schools-conferences-region {
                         display: flex;
@@ -1024,6 +1060,7 @@ p {
 
                         @media #{$medium-and-smaller} {
                             flex-direction: column;
+                            align-items: center;
                         }
 
                         .conference-image-and-caption {
@@ -1039,7 +1076,13 @@ p {
                         .conference-title-and-description {
                             display: flex;
                             flex-direction: column;
+                            align-items: flex-start;
                             width: 460px;
+                        
+                            @media #{$small} {
+                                width: 300px;
+                            }
+                            
                         }
 
                         .left {
@@ -1050,9 +1093,43 @@ p {
             }
         }
 
+        .conferences-hero-and-caption {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 540px;
+            margin-bottom: 24px;
+
+            img {
+                margin-bottom: 22px;
+
+                @media #{$medium-and-smaller} {
+                    width: 460px;
+                }
+            }
+
+            span {
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+            }
+
+            .conferences-hero {
+                background-image: url('/images/annual-report/initiatives/schools/Conferences Story/Scratch Conferences Hero.png');
+                overflow: hidden;
+                background-position: center center;
+                height: 320px;
+                width: 100%;
+            }
+        }
+
         .teacher-quote {
             width: 620px;
             text-align: left;
+
+            @media #{$medium} {
+                width: 460px;
+                padding: 0px;
+            }
 
             @media #{$small} {
                 width: 100%;
@@ -1453,9 +1530,18 @@ p {
     }
 
     .initiatives-community {
-        .hero {
+        .community-hero-img {
             width: 100%;
             margin: 52px 0;
+
+            background-image: url("/images/annual-report/initiatives/community-hero.png");
+            background-size: cover;
+            background-position: center center;
+            overflow: hidden;
+            
+            @media #{$small} {
+                height: 244px;
+            }
         }
 
         .moderation-and-guidelines {
@@ -1575,6 +1661,12 @@ p {
                 max-width: 380px;
                 font-size: .875rem;
                 text-align: center;
+
+                @media #{$small} {
+                    img {
+                        width: 300px;
+                    }
+                }
             }
 
             .blm-projects {
@@ -2219,7 +2311,10 @@ p {
         @media #{$medium-and-smaller} {
             margin-left: 0px;
             text-align: center;
-            width: 75%;
+        }
+
+        @media #{$small} {
+            width: 300px;
         }
 
         

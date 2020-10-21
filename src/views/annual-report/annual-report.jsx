@@ -1125,13 +1125,28 @@ class AnnualReport extends React.Component {
                                                 videoWidth="568"
                                             />
                                         </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
+                                        <MediaQuery
+                                            maxWidth={frameless.tabletPortrait - 1}
+                                            minWidth={frameless.mobile}
+                                        >
                                             <VideoPreview
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/initiatives/CN Video Thumbnail.png"
                                                 thumbnailWidth="400"
+                                                videoHeight="320"
+                                                videoId="r2ctnvb0sy"
+                                                videoWidth="568"
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.mobile - 1}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/initiatives/CN Video Thumbnail.png"
+                                                thumbnailWidth="300"
                                                 videoHeight="216"
                                                 videoId="r2ctnvb0sy"
                                                 videoWidth="380"
@@ -1185,10 +1200,9 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.communityTeamIntro2" />
                                         </p>
                                     </div>
-                                    <img
-                                        className="hero"
-                                        src="/images/annual-report/initiatives/community-hero.png"
-                                    />
+                                </div>
+                                <div className="community-hero-img" />
+                                <div className="inner">
                                     <div className="moderation-and-guidelines">
                                         <div className="community-moderation">
                                             <h4>
@@ -1449,13 +1463,28 @@ class AnnualReport extends React.Component {
                                                 videoWidth="568"
                                             />
                                         </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
+                                        <MediaQuery
+                                            maxWidth={frameless.tabletPortrait - 1}
+                                            minWidth={frameless.mobile}
+                                        >
                                             <VideoPreview
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/initiatives/BLM Video Thumbnail.png"
                                                 thumbnailWidth="400"
+                                                videoHeight="320"
+                                                videoId="r1pmlyylye"
+                                                videoWidth="568"
+                                            />
+                                        </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.mobile - 1}>
+                                            <VideoPreview
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/initiatives/BLM Video Thumbnail.png"
+                                                thumbnailWidth="300"
                                                 videoHeight="216"
                                                 videoId="r1pmlyylye"
                                                 videoWidth="380"
@@ -1510,7 +1539,10 @@ class AnnualReport extends React.Component {
                                                 videoWidth="568"
                                             />
                                         </MediaQuery>
-                                        <MediaQuery maxWidth={frameless.tabletPortrait - 1}>
+                                        <MediaQuery
+                                            maxWidth={frameless.tabletPortrait - 1}
+                                            minWidth={frameless.mobile}
+                                        >
                                             <VideoPreview
                                                 isYouTube
                                                 buttonMessage={
@@ -1523,10 +1555,23 @@ class AnnualReport extends React.Component {
                                                 videoWidth="380"
                                             />
                                         </MediaQuery>
+                                        <MediaQuery maxWidth={frameless.mobile - 1}>
+                                            <VideoPreview
+                                                isYouTube
+                                                buttonMessage={
+                                                    this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
+                                                }
+                                                thumbnail="/images/annual-report/initiatives/schools/CPS Story/CPS Video Thumbnail.png"
+                                                thumbnailWidth="300"
+                                                videoHeight="216"
+                                                videoId="9QD9IxOinLg"
+                                                videoWidth="380"
+                                            />
+                                        </MediaQuery>
                                         {/* eslint-enable max-len */}
                                     </div>
                                 </div>
-                                <div className="inner family-nights">
+                                <div className="inner schools">
                                     <h4>
                                         <FormattedMessage id="annualReport.familyCreativeNightsHeader" />
                                     </h4>
@@ -1634,17 +1679,32 @@ class AnnualReport extends React.Component {
                                         <p>
                                             <FormattedMessage id="annualReport.conferencesIntro" />
                                         </p>
-                                        <div className="conferences-hero-and-caption">
-                                            {/* eslint-disable-next-line max-len */}
-                                            <img src="/images/annual-report/initiatives/schools/Conferences Story/Scratch Conferences Hero.png" />
-                                            <FormattedMessage
-                                                id="annualReport.conferencesHeroImageCaption"
-                                                values={{
-                                                    photoCredit: 'Carmelo Presicce'
-                                                }}
-                                            />
-                                        </div>
+                                        <MediaQuery minWidth={frameless.mobile}>
+                                            <div className="conferences-hero-and-caption">
+                                                {/* eslint-disable-next-line max-len */}
+                                                <img src="/images/annual-report/initiatives/schools/Conferences Story/Scratch Conferences Hero.png" />
+                                                <FormattedMessage
+                                                    id="annualReport.conferencesHeroImageCaption"
+                                                    values={{
+                                                        photoCredit: 'Carmelo Presicce'
+                                                    }}
+                                                />
+                                            </div>
+                                        </MediaQuery>
                                     </div>
+                                </div>
+                                <MediaQuery maxWidth={frameless.mobile - 1}>
+                                    <div className="conferences-hero-and-caption">
+                                        <div className="conferences-hero" />
+                                        <FormattedMessage
+                                            id="annualReport.conferencesHeroImageCaption"
+                                            values={{
+                                                photoCredit: 'Carmelo Presicce'
+                                            }}
+                                        />
+                                    </div>
+                                </MediaQuery>
+                                <div className="inner schools-conferences">
                                     <div className="schools-conferences-content">
                                         <div className="schools-conferences-region">
                                             <div className="conference-image-and-caption left">
