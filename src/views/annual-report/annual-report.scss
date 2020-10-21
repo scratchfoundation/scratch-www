@@ -551,7 +551,6 @@ p {
     }
 
     .reach-map {
-        width: 1064px;
         background-color: $ui-white;
         border-radius: 6px;
         color: $type-gray;
@@ -564,11 +563,20 @@ p {
             color: $type-gray;
             padding: 0 48px;
         }
-
+        
         @media #{$intermediate-and-smaller} {
             width: 100%;
             border-radius: 0px;
         }
+        
+        .map-wrapper {
+          width: 100%;
+        }
+        
+        .map {
+          width: 100%;
+        }
+        
     }
 
     .reach-translation {

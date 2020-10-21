@@ -729,14 +729,14 @@ class AnnualReport extends React.Component {
                                 <p>
                                     <FormattedMessage id="annualReport.reachMapBlurb" />
                                 </p>
+                                <div className="map-wrapper">
                                 <MediaQuery minWidth={frameless.desktop}>
                                     <WorldMap
                                         className="map"
                                         colorIndex={colorIndex}
                                         countryData={countryData}
                                         countryNames={countryNames}
-                                        mapHeight={530}
-                                        mapWidth={1060}
+                                        mapHeight={471}
                                     />
                                 </MediaQuery>
                                 <MediaQuery
@@ -748,8 +748,7 @@ class AnnualReport extends React.Component {
                                         colorIndex={colorIndex}
                                         countryData={countryData}
                                         countryNames={countryNames}
-                                        mapHeight={450}
-                                        mapWidth={900}
+                                        mapHeight={384}
                                     />
                                 </MediaQuery>
                                 <MediaQuery
@@ -761,8 +760,7 @@ class AnnualReport extends React.Component {
                                         colorIndex={colorIndex}
                                         countryData={countryData}
                                         countryNames={countryNames}
-                                        mapHeight={400}
-                                        mapWidth={800}
+                                        mapHeight={320}
                                     />
                                 </MediaQuery>
                                 <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
@@ -771,10 +769,10 @@ class AnnualReport extends React.Component {
                                         colorIndex={colorIndex}
                                         countryData={countryData}
                                         countryNames={countryNames}
-                                        mapHeight={172}
-                                        mapWidth={396}
+                                        mapHeight={240}
                                     />
                                 </MediaQuery>
+                                </div>
                             </div>
                         </div>
                         <div className="inner">
