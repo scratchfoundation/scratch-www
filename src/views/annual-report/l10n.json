@@ -96,7 +96,7 @@
     "annualReport.toolsTexttoSpeechPopular": "{mostPopular} new Scratch Extension in the community",
     "annualReport.toolsCollabAWS": "Collaboration with Amazon Web Services",
     "annualReport.toolsTranslate": "Translate",
-    "annualReport.toolsTranslateIntro": "With the Translate extension, kids can incorporate automatic translation into their projects, supporting language learning and global communication.",
+    "annualReport.toolsTranslateIntro": "With the Translate extension built on the Google Translate API, kids can incorporate automatic translation into their projects, supporting language learning and global communication.",
     "annualReport.toolsNumLanguages": "50+",
     "annualReport.toolsTranslateLanguages": "{numLanguages} langages translated in the extension",
     "annualReport.toolsSupportsLiteracy": "Supports Literacy",
