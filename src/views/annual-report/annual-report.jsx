@@ -1534,14 +1534,13 @@ class AnnualReport extends React.Component {
                                         {/* eslint-disable max-len */}
                                         <MediaQuery minWidth={frameless.tabletPortrait}>
                                             <VideoPreview
-                                                isYouTube
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/initiatives/schools/CPS Story/CPS Video Thumbnail.png"
                                                 thumbnailWidth="580"
                                                 videoHeight="320"
-                                                videoId="9QD9IxOinLg"
+                                                videoId="joal01i8b1"
                                                 videoWidth="568"
                                             />
                                         </MediaQuery>
@@ -1550,14 +1549,13 @@ class AnnualReport extends React.Component {
                                             minWidth={frameless.mobile}
                                         >
                                             <VideoPreview
-                                                isYouTube
                                                 buttonMessage={
                                                     this.props.intl.formatMessage({id: 'annualReport.watchVideo'})
                                                 }
                                                 thumbnail="/images/annual-report/initiatives/schools/CPS Story/CPS Video Thumbnail.png"
                                                 thumbnailWidth="400"
                                                 videoHeight="216"
-                                                videoId="9QD9IxOinLg"
+                                                videoId="joal01i8b1"
                                                 videoWidth="380"
                                             />
                                         </MediaQuery>

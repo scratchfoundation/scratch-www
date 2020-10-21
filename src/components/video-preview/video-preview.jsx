@@ -30,7 +30,6 @@ class VideoPreview extends React.Component {
                         <Video
                             className="video"
                             height={this.props.videoHeight}
-                            isYouTube={this.props.isYouTube}
                             videoId={this.props.videoId}
                             width={this.props.videoWidth}
                         />
@@ -61,13 +60,8 @@ class VideoPreview extends React.Component {
     }
 }
 
-VideoPreview.defaultProps = {
-    isYouTube: false
-};
-
 VideoPreview.propTypes = {
     buttonMessage: PropTypes.string.isRequired,
-    isYouTube: PropTypes.bool,
     thumbnail: PropTypes.string.isRequired,
     thumbnailHeight: PropTypes.string,
     thumbnailWidth: PropTypes.string,
