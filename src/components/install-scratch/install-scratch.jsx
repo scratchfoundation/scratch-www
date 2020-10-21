@@ -13,8 +13,8 @@ const Step = require('../../components/steps/step.jsx');
 require('./install-scratch.scss');
 
 const downloadUrls = {
-    mac: 'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop-3.11.1.dmg',
-    win: 'https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop%20Setup%203.11.1.exe',
+    mac: 'https://downloads.scratch.mit.edu/desktop/Scratch.dmg',
+    win: 'https://downloads.scratch.mit.edu/desktop/Scratch%20Setup.exe',
     googlePlayStore: 'https://play.google.com/store/apps/details?id=org.scratch',
     microsoftStore: 'https://www.microsoft.com/store/apps/9pfgj25jl6x3?cid=storebadge&ocid=badge',
     macAppStore: 'https://apps.apple.com/us/app/scratch-desktop/id1446785996?mt=12'
@@ -114,7 +114,7 @@ const InstallScratch = ({
                         <span className="step-description">
                             {currentOS === OS_ENUM.WINDOWS ?
                                 <FormattedMessage id="download.winMoveToApplications" /> :
-                                <FormattedMessage id="download.macMoveToApplications" />
+                                <FormattedMessage id="download.macMoveAppToApplications" />
                             }
                         </span>
 

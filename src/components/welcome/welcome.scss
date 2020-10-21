@@ -35,6 +35,12 @@
             content: "";
         }
 
+        img {
+            display: block;
+            max-width: 133px;
+            max-height: 100px;
+        }
+
         &.blue {
             #{$color-bars} {
                 background-color: $ui-blue;
@@ -42,6 +48,10 @@
 
             a {
                 color: $ui-blue;
+            }
+
+            img {
+                margin-left: 4px;
             }
         }
 

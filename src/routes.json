@@ -435,6 +435,12 @@
         "redirect": "/ideas"
     },
     {
+        "name": "register-redirect",
+        "pattern": "^/accounts/standalone-registration/?$",
+        "routeAlias": "/accounts/standalone-registration/",
+        "redirect": "/join"
+    },
+    {
         "name": "research-redirect",
         "pattern": "^/info/research/?$",
         "routeAlias": "/info/research",
@@ -498,6 +504,16 @@
         "name": "pong-tutorial-redirect",
         "pattern": "^/pong/?$",
         "redirect": "/projects/editor/?tutorial=pong"
+    },
+    {
+        "name": "animateacharacter-tutorial-redirect",
+        "pattern": "^/animate-a-character/?$",
+        "redirect": "/projects/editor/?tutorial=animate-a-character"
+    },
+    {
+        "name": "videosensing-tutorial-redirect",
+        "pattern": "^/video-sensing/?$",
+        "redirect": "/projects/editor/?tutorial=video-sensing"
     },
     {
         "name": "clicker-tutorial-redirect",

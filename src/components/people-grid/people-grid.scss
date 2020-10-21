@@ -1,0 +1,36 @@
+@import "../../colors";
+@import "../../frameless";
+
+.avatar-grid {
+    display: flex;
+    margin: 0 auto;
+    max-width: 864px;
+    list-style: none;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.avatar-item {
+    display: inline-block;
+    margin: 0;
+    padding-bottom: 32px;
+    text-align: center;
+    line-height: 1.25rem;
+
+    img {
+        $img-border: rgba(0, 0, 0, .05);
+        border: 2px solid $img-border;
+        border-radius: 8px;
+        background-color: $ui-white;
+        width: 80px;
+        height: 80px;
+    }
+
+    .avatar-text {
+        display: inline-block;
+        width: 144px;
+        font-size: .875rem;
+        word-wrap: break-word;
+    }
+}
