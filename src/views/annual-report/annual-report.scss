@@ -328,6 +328,10 @@ p {
     background-size: contain;
     margin-top: 20px;
     margin-right: 20px;
+    p {
+      font-size: 1.25rem;
+      margin-top: 1.5rem;
+    }
     @media #{$intermediate-and-smaller} {
       margin-right: 0;
       padding: 0;
