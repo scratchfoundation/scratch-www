@@ -806,7 +806,6 @@ p {
                 width: 100%;
 
                 .pillar-splash {
-                    height: 44px;
                     margin: 24px 0;
                 }
             }
@@ -817,6 +816,12 @@ p {
                 .pillar-splash {
                     width: 244px;
                     height: 160px;
+                }
+            }
+
+            .equity-and-global {
+                .pillar-splash {
+                    height: 64px;
                 }
             }
         }
@@ -830,6 +835,12 @@ p {
                 .pillar-splash {
                     width: 192px;
                     height: 128px;
+                }
+            }
+
+            .equity-and-global {
+                .pillar-splash {
+                    height: 44px;
                 }
             }
         }
@@ -855,6 +866,12 @@ p {
                     }
                 }
             }
+
+            .equity-and-global {
+                .pillar-splash {
+                    height: 44px;
+                }
+            }
         }
 
         @media #{$small} {
@@ -875,6 +892,12 @@ p {
                     &.community {
                         width: 108px;
                     }
+                }
+            }
+
+            .equity-and-global {
+                .pillar-splash {
+                    height: 44px;
                 }
             }
         }
@@ -1733,9 +1756,7 @@ p {
             ul {
                 list-style-image: url('/images/annual-report/initiatives/guideline-splash.svg');
                 margin-right: 64px;
-            }
-            li {
-                // vertical-align: middle;
+                padding: 0 20px;
             }
         }
 
