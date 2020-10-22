@@ -647,7 +647,7 @@ class AnnualReport extends React.Component {
                                 <p>
                                     <FormattedMessage id="annualReport.reachSubtitle" />
                                 </p>
-                                <img src="/images/annual-report/Calendar.svg" />
+                                <img src="/images/annual-report/reach/Calendar.svg" />
                                 <div className="reach-numbers">
                                     <div className="reach-datapoint">
                                         <FormattedMessage
@@ -720,7 +720,7 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.reachGrowthBlurb" />
                                     </p>
                                 </div>
-                                <img src="/images/annual-report/milestones/community-growth-graph.svg" />
+                                <img src="/images/annual-report/reach/community-growth-graph.svg" />
                             </div>
                         </div>
                         <div className="map-inner">
@@ -783,17 +783,17 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.reachTranslationBlurb" />
                                     </p>
                                 </div>
-                                <img src="/images/annual-report/translated-illustration.svg" />
+                                <img src="/images/annual-report/reach/translated-illustration.svg" />
                             </div>
                         </div>
                         <div className="scratch-jr-transition-img">
-                            <img src="/images/annual-report/horizontal-command.svg" />
+                            <img src="/images/annual-report/reach/horizontal-command.svg" />
                         </div>
                     </div>
                     <div className="reach-scratch-jr">
                         <div className="inner">
                             <div className="scratch-jr-intro">
-                                <img src="/images/annual-report/ScratchJr-Logo.svg" />
+                                <img src="/images/annual-report/reach/ScratchJr-Logo.svg" />
                                 <p>
                                     <FormattedMessage id="annualReport.reachScratchJrBlurb" />
                                 </p>
@@ -815,7 +815,7 @@ class AnnualReport extends React.Component {
                             </div>
                         </div>
                         <div className="scratch-jr-transition-img">
-                            <img src="/images/annual-report/horizontal-loop.svg" />
+                            <img src="/images/annual-report/reach/horizontal-loop.svg" />
                         </div>
                     </div>
                     <div
@@ -1844,7 +1844,7 @@ class AnnualReport extends React.Component {
                             <div className="financials-content">
                                 <div className="financials-table">
                                     <div className="circle-and-words">
-                                        <img src="/images/annual-report/blue-circle.svg" />
+                                        <img src="/images/annual-report/financials/blue-circle.svg" />
                                         <div className="key-and-money">
                                             <p className="key">
                                                 <FormattedMessage id="annualReport.financialsGrants" />
@@ -1856,7 +1856,7 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                     <div className="circle-and-words">
-                                        <img src="/images/annual-report/yellow-circle.svg" />
+                                        <img src="/images/annual-report/financials/yellow-circle.svg" />
                                         <div className="key-and-money">
                                             <p className="key">
                                                 <FormattedMessage id="annualReport.financialsEvents" />
@@ -1868,7 +1868,7 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                     <div className="circle-and-words">
-                                        <img src="/images/annual-report/green-circle.svg" />
+                                        <img src="/images/annual-report/financials/green-circle.svg" />
                                         <div className="key-and-money">
                                             <p className="key">
                                                 <FormattedMessage id="annualReport.financialsOther" />
@@ -1892,7 +1892,7 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <img
                                     className="graph"
-                                    src="/images/annual-report/revenue-graph.svg"
+                                    src="/images/annual-report/financials/revenue-graph.svg"
                                 />
                             </div>
                             <h3>
@@ -1902,7 +1902,7 @@ class AnnualReport extends React.Component {
                             <div className="financials-content">
                                 <div className="financials-table">
                                     <div className="circle-and-words">
-                                        <img src="/images/annual-report/blue-circle.svg" />
+                                        <img src="/images/annual-report/financials/blue-circle.svg" />
                                         <div className="key-and-money">
                                             <p className="key">
                                                 <FormattedMessage id="annualReport.financialsProgram" />
@@ -1914,7 +1914,7 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                     <div className="circle-and-words">
-                                        <img src="/images/annual-report/yellow-circle.svg" />
+                                        <img src="/images/annual-report/financials/yellow-circle.svg" />
                                         <div className="key-and-money">
                                             <p className="key">
                                                 <FormattedMessage id="annualReport.financialsGeneral" />
@@ -1926,7 +1926,7 @@ class AnnualReport extends React.Component {
                                         </div>
                                     </div>
                                     <div className="circle-and-words">
-                                        <img src="/images/annual-report/green-circle.svg" />
+                                        <img src="/images/annual-report/financials/green-circle.svg" />
                                         <div className="key-and-money">
                                             <p className="key">
                                                 <FormattedMessage id="annualReport.financialsFundraising" />
@@ -1950,7 +1950,7 @@ class AnnualReport extends React.Component {
                                 </div>
                                 <img
                                     className="graph"
-                                    src="/images/annual-report/expenses-graph.svg"
+                                    src="/images/annual-report/financials/expenses-graph.svg"
                                 />
                             </div>
                             <div className="financials-button-wrapper">
@@ -1962,7 +1962,7 @@ class AnnualReport extends React.Component {
                                         <FormattedMessage id="annualReport.financialsButton" />
                                         <img
                                             className="download-icon"
-                                            src="/images/annual-report/download-icon.svg"
+                                            src="/images/annual-report/financials/download-icon.svg"
                                         />
                                     </Button>
                                 </a>
