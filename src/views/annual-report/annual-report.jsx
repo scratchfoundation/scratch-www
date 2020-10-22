@@ -348,41 +348,43 @@ class AnnualReport extends React.Component {
                         <h2>
                             <FormattedMessage id="annualReport.covidResponseTitle" />
                         </h2>
-                        <p>
-                            <FormattedMessage id="annualReport.covidResponseP1" />
-                        </p>
-                        <p>
-                            <FormattedMessage
-                                id="annualReport.covidResponseP2"
-                                values={{
-                                    scratchAtHomeLink: (
-                                        <a
-                                            href="https://sip.scratch.mit.edu/scratchathome/"
-                                            rel="noreferrer noopener"
-                                            target="_blank"
-                                        >
-                                            <FormattedMessage id="annualReport.covidResponseScratchAtHomePage" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
-                        <p>
-                            <FormattedMessage
-                                id="annualReport.covidResponseP3"
-                                values={{
-                                    scratchCommunityLink: (
-                                        <a
-                                            href="/"
-                                            rel="noreferrer noopener"
-                                            target="_blank"
-                                        >
-                                            <FormattedMessage id="annualReport.covidResponseScratchCommunity" />
-                                        </a>
-                                    )
-                                }}
-                            />
-                        </p>
+                        <div>
+                            <p>
+                                <FormattedMessage id="annualReport.covidResponseP1" />
+                            </p>
+                            <p>
+                                <FormattedMessage
+                                    id="annualReport.covidResponseP2"
+                                    values={{
+                                        scratchAtHomeLink: (
+                                            <a
+                                                href="https://sip.scratch.mit.edu/scratchathome/"
+                                                rel="noreferrer noopener"
+                                                target="_blank"
+                                            >
+                                                <FormattedMessage id="annualReport.covidResponseScratchAtHomePage" />
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </p>
+                            <p>
+                                <FormattedMessage
+                                    id="annualReport.covidResponseP3"
+                                    values={{
+                                        scratchCommunityLink: (
+                                            <a
+                                                href="/"
+                                                rel="noreferrer noopener"
+                                                target="_blank"
+                                            >
+                                                <FormattedMessage id="annualReport.covidResponseScratchCommunity" />
+                                            </a>
+                                        )
+                                    }}
+                                />
+                            </p>
+                        </div>
                     </div>
                     <div
                         className="mission-section section"
