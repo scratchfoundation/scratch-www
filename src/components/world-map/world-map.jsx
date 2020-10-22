@@ -69,6 +69,7 @@ const WorldMap = props => (
                 autosize: true
             }
         }
+        style={{position: 'absolute', display: 'block'}}
     />
 );
 
@@ -76,8 +77,6 @@ WorldMap.propTypes = {
     colorIndex: PropTypes.arrayOf(PropTypes.string),
     countryData: PropTypes.arrayOf(PropTypes.string),
     countryNames: PropTypes.arrayOf(PropTypes.string)
-    // mapHeight: PropTypes.number,
-    // mapWidth: PropTypes.number
 };
 
 module.exports = WorldMap;

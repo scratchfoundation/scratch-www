@@ -738,7 +738,6 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
-                                            mapHeight={471}
                                         />
                                     </MediaQuery>
                                     <MediaQuery
@@ -750,7 +749,6 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
-                                            mapHeight={384}
                                         />
                                     </MediaQuery>
                                     <MediaQuery
@@ -762,7 +760,6 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
-                                            mapHeight={320}
                                         />
                                     </MediaQuery>
                                     <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
@@ -771,7 +768,6 @@ class AnnualReport extends React.Component {
                                             colorIndex={colorIndex}
                                             countryData={countryData}
                                             countryNames={countryNames}
-                                            mapHeight={240}
                                         />
                                     </MediaQuery>
                                 </div>
