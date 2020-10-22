@@ -1418,11 +1418,13 @@ p {
         .tools-stats {
             display: flex;
             flex-wrap: wrap;
-
+            width: 100%;
             margin-bottom: 40px;
             justify-content: space-between; 
             .tools-stat {
-                width: 180px;
+                width: 160px;
+                font-size: .875rem;
+                line-height: 1.25rem;
 
                 a {
                     font-weight: normal;
