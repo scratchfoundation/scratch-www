@@ -549,20 +549,20 @@ p {
             }
         }
     }
-
+    
     .map-inner {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        max-width: 940px;
+        margin: 0 auto;
     }
 
     .reach-map {
+        width: 100%;
         background-color: $ui-white;
         border-radius: 6px;
         color: $type-gray;
         padding-top: 48px;
         margin-top: 52px;
-
+        padding-bottom: 20px;
         text-align: center;
 
         h3, p {
@@ -611,11 +611,6 @@ p {
         img {
             max-width: 380px;
         }
-    }
-
-    .map {
-        margin-top: 20px;
-        margin-left: 0px;
     }
 
     @media #{$intermediate-and-smaller} {
