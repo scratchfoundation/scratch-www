@@ -730,48 +730,48 @@ class AnnualReport extends React.Component {
                                     <FormattedMessage id="annualReport.reachMapBlurb" />
                                 </p>
                                 <div className="map-wrapper">
-                                <MediaQuery minWidth={frameless.desktop}>
-                                    <WorldMap
-                                        className="map"
-                                        colorIndex={colorIndex}
-                                        countryData={countryData}
-                                        countryNames={countryNames}
-                                        mapHeight={471}
-                                    />
-                                </MediaQuery>
-                                <MediaQuery
-                                    maxWidth={frameless.desktop - 1}
-                                    minWidth={frameless.tabletPortrait}
-                                >
-                                    <WorldMap
-                                        className="map"
-                                        colorIndex={colorIndex}
-                                        countryData={countryData}
-                                        countryNames={countryNames}
-                                        mapHeight={384}
-                                    />
-                                </MediaQuery>
-                                <MediaQuery
-                                    maxWidth={frameless.tabletPortrait - 1}
-                                    minWidth={frameless.mobileIntermediate}
-                                >
-                                    <WorldMap
-                                        className="map"
-                                        colorIndex={colorIndex}
-                                        countryData={countryData}
-                                        countryNames={countryNames}
-                                        mapHeight={320}
-                                    />
-                                </MediaQuery>
-                                <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
-                                    <WorldMap
-                                        className="map"
-                                        colorIndex={colorIndex}
-                                        countryData={countryData}
-                                        countryNames={countryNames}
-                                        mapHeight={240}
-                                    />
-                                </MediaQuery>
+                                    <MediaQuery minWidth={frameless.desktop}>
+                                        <WorldMap
+                                            className="map"
+                                            colorIndex={colorIndex}
+                                            countryData={countryData}
+                                            countryNames={countryNames}
+                                            mapHeight={471}
+                                        />
+                                    </MediaQuery>
+                                    <MediaQuery
+                                        maxWidth={frameless.desktop - 1}
+                                        minWidth={frameless.tabletPortrait}
+                                    >
+                                        <WorldMap
+                                            className="map"
+                                            colorIndex={colorIndex}
+                                            countryData={countryData}
+                                            countryNames={countryNames}
+                                            mapHeight={384}
+                                        />
+                                    </MediaQuery>
+                                    <MediaQuery
+                                        maxWidth={frameless.tabletPortrait - 1}
+                                        minWidth={frameless.mobileIntermediate}
+                                    >
+                                        <WorldMap
+                                            className="map"
+                                            colorIndex={colorIndex}
+                                            countryData={countryData}
+                                            countryNames={countryNames}
+                                            mapHeight={320}
+                                        />
+                                    </MediaQuery>
+                                    <MediaQuery maxWidth={frameless.mobileIntermediate - 1}>
+                                        <WorldMap
+                                            className="map"
+                                            colorIndex={colorIndex}
+                                            countryData={countryData}
+                                            countryNames={countryNames}
+                                            mapHeight={240}
+                                        />
+                                    </MediaQuery>
                                 </div>
                             </div>
                         </div>
@@ -1705,7 +1705,7 @@ class AnnualReport extends React.Component {
                                         />
                                     </div>
                                 </MediaQuery>
-                                <div className="inner schools-conferences">
+                                <div className="inner schools-conferences bottom">
                                     <div className="schools-conferences-content">
                                         <div className="schools-conferences-region">
                                             <div className="conference-image-and-caption left">
@@ -1760,7 +1760,7 @@ class AnnualReport extends React.Component {
                                                 </p>
                                             </div>
                                         </div>
-                                        <div className="schools-conferences-region">
+                                        <div className="schools-conferences-region europe">
                                             <div className="conference-title-and-description left">
                                                 <h4>
                                                     <FormattedMessage id="annualReport.conferencesEuropeTitle" />

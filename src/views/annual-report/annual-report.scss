@@ -657,7 +657,6 @@ p {
     .scratch-jr-transition-img {
         margin-bottom: -44px;
         margin-left: 88px;
-        width: 100%;
 
         display: flex;
         overflow: hidden;
@@ -923,8 +922,12 @@ p {
             align-items: center;
             
             @media #{$big} {
-                max-width: 1032px;
+                max-width: 940px;
                 padding: 72px;
+            }
+
+            @media #{$medium-and-intermediate} {
+                padding-top: 72px;
             }
 
             @media #{$medium} {
@@ -945,7 +948,6 @@ p {
                 align-items: flex-start;
                 text-align: left;
 
-                padding-top: 10px;
                 padding-bottom: 0px;
 
                 .subsection-tag {
@@ -957,7 +959,8 @@ p {
                 }
 
                 @media #{$small} {
-                    align-items: center;
+                    padding-top: 32px;
+                    align-items: flex-start;
                     h2 {
                         line-height: 2.5rem;
                     }
@@ -969,6 +972,13 @@ p {
                 margin-bottom: 0px;
                 padding-bottom: 0px;
                 position: relative;
+
+                @media #{$medium} {
+                    max-width: 760px;
+
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                }
 
                 .four-pictures {
                     display: flex;
@@ -1007,8 +1017,21 @@ p {
                     left: 60px;
                     top: 60px;
 
-                    @media #{$medium-and-smaller} {
+                    @media #{$intermediate} {
+                        left: -20px;
+                        top: -5px;
+                    }
+
+                    @media #{$medium} {
                         width: 80px;
+                        left: -90px;
+                        top: -20px;
+                    }
+
+                    @media #{$small} {
+                        width: 80px;
+                        left: -80px;
+                        top: -10px;
                     }
                 }
 
@@ -1017,8 +1040,18 @@ p {
                     right: 80px;
                     bottom: 40px;
 
-                    @media #{$medium-and-smaller} {
+                    @media #{$intermediate} {
+                        right: 0px;
+                    }
+
+                    @media #{$medium} {
                         width: 80px;
+                        right: 0px;
+                    }
+
+                    @media #{$small} {
+                        width: 80px;
+                        right: 0px;
                     }
                 }
 
@@ -1037,6 +1070,14 @@ p {
             &.schools-conferences {
                 align-items: flex-start;
                 text-align: left;
+
+                &.bottom {
+                    padding-top: 0px;
+
+                    @media #{$intermediate-and-smaller} {
+                        padding-top: 32px;
+                    }
+                }
 
                 @media #{$medium} {
                     width: 460px;
@@ -1122,6 +1163,10 @@ p {
                         @media #{$medium-and-smaller} {
                             flex-direction: column;
                             align-items: center;
+
+                            &.europe {
+                                flex-direction: column-reverse;
+                            }
                         }
 
                         .conference-image-and-caption {
@@ -1131,6 +1176,10 @@ p {
 
                             img {
                                 width: 300px;
+                            }
+
+                            @media #{$medium-and-smaller} {
+                                margin-bottom: 32px;
                             }
                         }
 
@@ -1232,6 +1281,10 @@ p {
             
             margin: 20px 0px;
 
+            @media #{$medium-and-smaller} {
+                flex-direction: column;
+            }
+
             .icon-and-link {
                 display: flex;
                 align-items: center;
@@ -1282,7 +1335,7 @@ p {
         img {
             &.left {
                 @media #{$big} {
-                    width: 432px;
+                    height: 420px;
                 }
                 @media #{$intermediate} {
                     width: 340px;
@@ -1297,7 +1350,7 @@ p {
 
             &.right {
                 @media #{$big} {
-                    width: 780px;
+                    height: 420px;
                 }
                 @media #{$intermediate} {
                     width: 468px;
@@ -1620,14 +1673,20 @@ p {
     .initiatives-community {
         .community-hero-img {
             width: 100%;
+            height: 545px;
             margin: 52px 0;
 
             background-image: url("/images/annual-report/initiatives/community-hero.png");
-            background-size: cover;
+            background-size: contain;
+            background-repeat: no-repeat;
             background-position: center center;
             overflow: hidden;
             
-            @media #{$small} {
+            @media #{$intermediate} {
+                height: 330px;
+            }
+
+            @media #{$medium-and-smaller} {
                 height: 244px;
             }
         }
@@ -1869,7 +1928,7 @@ p {
     }
 
     .video-background {
-        width: 1020px;
+        width: 100%;
         height: 500px;
         overflow: hidden;
 
@@ -1880,13 +1939,6 @@ p {
         display: flex;
         align-items: center;
         justify-content: center;
-
-        width: 100%;
-        height: 100%;
-
-        @media #{$big} {
-              
-        }
 
         &.blm {
             background-image: url("/images/annual-report/initiatives/BLM Video Splash.svg");
