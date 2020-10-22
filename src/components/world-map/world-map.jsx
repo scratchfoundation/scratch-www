@@ -75,9 +75,9 @@ const WorldMap = props => (
 WorldMap.propTypes = {
     colorIndex: PropTypes.arrayOf(PropTypes.string),
     countryData: PropTypes.arrayOf(PropTypes.string),
-    countryNames: PropTypes.arrayOf(PropTypes.string),
-    mapHeight: PropTypes.number,
-    mapWidth: PropTypes.number
+    countryNames: PropTypes.arrayOf(PropTypes.string)
+    // mapHeight: PropTypes.number,
+    // mapWidth: PropTypes.number
 };
 
 module.exports = WorldMap;
