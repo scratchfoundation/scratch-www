@@ -958,6 +958,10 @@ p {
                     max-width: 620px;
                 }
 
+                @media #{$intermediate} {
+                    max-width: 620px;
+                }
+
                 @media #{$small} {
                     padding-top: 32px;
                     align-items: flex-start;
@@ -1024,14 +1028,22 @@ p {
 
                     @media #{$medium} {
                         width: 80px;
-                        left: -90px;
-                        top: -20px;
+                        left: -32px;
+                        top: -8px;
+
+                        img {
+                            width: 80px;
+                        }
                     }
 
                     @media #{$small} {
                         width: 80px;
-                        left: -80px;
-                        top: -10px;
+                        left: 0px;
+                        top: 0px;
+
+                        img {
+                            width: 80px;
+                        }
                     }
                 }
 
@@ -1047,11 +1059,19 @@ p {
                     @media #{$medium} {
                         width: 80px;
                         right: 0px;
+
+                        img {
+                            width: 80px;
+                        }
                     }
 
                     @media #{$small} {
                         width: 80px;
                         right: 0px;
+
+                        img {
+                            width: 80px;
+                        }
                     }
                 }
 
@@ -1079,8 +1099,12 @@ p {
                     }
                 }
 
+                @media #{$intermediate} {
+                    max-width: 620px;
+                }
+
                 @media #{$medium} {
-                    width: 460px;
+                    max-width: 460px;
                 }
 
                 @media #{$small} {
