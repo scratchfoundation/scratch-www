@@ -56,9 +56,9 @@ describe('www-integration navbar links', () => {
 
     test('create when signed out', async () => {
         await clickXpath('//li[@class="link create"]');
-        let infoArea = await findByXpath('//div[@class="sprite-info_sprite-info_3EyZh box_box_2jjDp"]');
-        let areaVisible = await infoArea.isDisplayed();
-        await expect(areaVisible).toBe(true);
+        let gui = await findByXpath('//div[contains(@class, "gui")]');
+        let guiVisible = await gui.isDisplayed();
+        await expect(guiVisible).toBe(true);
     });
 
     test('Explore link when signed out', async () => {
