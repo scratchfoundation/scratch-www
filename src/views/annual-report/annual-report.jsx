@@ -334,7 +334,7 @@ class AnnualReport extends React.Component {
                                     </p>
                                     <img
                                         className="team-photo"
-                                        src="/images/annual-report/message/team-photo.svg"
+                                        src="/images/annual-report/message/team-photo.png"
                                     />
                                 </div>
                             </FlexRow>

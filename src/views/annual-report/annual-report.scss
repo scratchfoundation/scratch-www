@@ -202,6 +202,8 @@ p {
         margin: 8px 24px 8px 0px;
         vertical-align: middle;
 
+        max-width: 620px;
+
         @media #{$medium} {
             max-width: 460px;
             margin-right: 0px;
@@ -1362,7 +1364,7 @@ p {
                     height: 420px;
                 }
                 @media #{$intermediate} {
-                    width: 340px;
+                    height: 320px;
                 }
                 @media #{$medium} {
                     width: 248px;
