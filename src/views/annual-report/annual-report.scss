@@ -1358,36 +1358,18 @@ p {
             justify-content: space-between;
         }
 
-        img {
-            &.left {
-                @media #{$big} {
-                    height: 420px;
-                }
-                @media #{$intermediate} {
-                    height: 320px;
-                }
-                @media #{$medium} {
-                    width: 248px;
-                }
-                @media #{$small} {
-                    height: 130px;
-                }
+        .hero img {
+            @media #{$big} {
+                height: 560px;
             }
-
-            &.right {
-                @media #{$big} {
-                    height: 420px;
-                }
-                @media #{$intermediate} {
-                    width: 468px;
-                }
-                @media #{$medium} {
-                    width: 342px;
-                }
-                @media #{$small} {
-                    // width: 220px;
-                    height: 130px;
-                }
+            @media #{$intermediate} {
+                height: 336px;
+            }
+            @media #{$medium} {
+                height: 244px;
+            }
+            @media #{$small} {
+                height: 156px;
             }
         }
 
