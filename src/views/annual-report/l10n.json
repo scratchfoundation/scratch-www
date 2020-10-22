@@ -183,7 +183,7 @@
     "annualReport.rollingStonesArticle": "Rolling Stones Article",
     "annualReport.conferencesTitle": "Scratch Conferences around the World",
     "annualReport.conferencesIntro": "In 2008, the Scratch Team hosted the first Scratch conference at MIT, bringing together educators, researchers, and developers to share ideas and experiences for using Scratch to support creative learning. Since then, the Scratch Team has organized and hosted a Scratch conference at MIT every two years. In addition, members of the global Scratch community have organized and hosted more than a dozen conferences—stretching across oceans, continents, cultures, and languages.",
-    "annualReport.conferencesHeroImageCaption": "Scratch Africa Conference, photo by {photoCredit}, LLK",
+    "annualReport.conferencesHeroImageCaption": "Scratch Africa Conference, photo by {photoCredit}",
     "annualReport.conferencesLatinAmericaTitle": "Latin America",
     "annualReport.conferencesLatinAmericaDescription": "In May 2019, educators from across Chile and other areas of Latin America came together for the second {scratchAlSurLink} conference in Santiago, Chile. Following the conference, Scratch al Sur released a {spanishVersionLink} of the {creativeComputingCurriculumLink} guide, developed by the Creative Computing group at the Harvard Graduate School of Education.",
     "annualReport.conferencesSpanishVersionLinkText": "Spanish version",
@@ -193,7 +193,7 @@
     "annualReport.conferencesEuropeImageCaption": "Photo provided by {photoCredit}",
     "annualReport.conferencesAfricaTitle": "Africa",
     "annualReport.conferencesAfricaDescription": "In October 2019, the first {scratchAfricaConferenceLink} was held in Nairobi, Kenya, drawing more than 250 educators and students from across Africa to share lessons, empower young people, and celebrate accomplishments in creative coding. At the conference, the Scratch Team launched a Swahili version of Scratch, available for use both online and offline.",
-    "annualReport.conferencesAfricaImageCaption": "Photo by {photoCredit}, LLK",
+    "annualReport.conferencesAfricaImageCaption": "Photo by {photoCredit}",
 
 
     "annualReport.financialsTitle": "Financials - 2019",
