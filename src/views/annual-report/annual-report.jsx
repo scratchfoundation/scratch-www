@@ -2375,7 +2375,11 @@ class AnnualReport extends React.Component {
                                 <p>
                                     <FormattedMessage id="annualReport.donateMessage" />
                                 </p>
-                                <a href="https://secure.donationpay.org/scratchfoundation/">
+                                <a
+                                    href="https://secure.donationpay.org/scratchfoundation/"
+                                    rel="noreferrer noopener"
+                                    target="_blank"
+                                >
                                     <Button className="donate-button">
                                         <FormattedMessage id="annualReport.donateButton" />
                                     </Button>
