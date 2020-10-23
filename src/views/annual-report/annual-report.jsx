@@ -105,10 +105,11 @@ class AnnualReport extends React.Component {
 
     scrollTo (element) {
         if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            const sectionTop = this.getDimensionsOfSection(element).offsetTop;
+            window.scrollTo({top: sectionTop, behavior: 'smooth'});
+            // The smooth scrolling doesn't work on Safari
+            // but this code allows scrolling to the correct part of the section
+            // in Safari since the css property 'scrollMarginTop' is also not supported there
         }
     }
 
@@ -277,7 +278,7 @@ class AnnualReport extends React.Component {
                 </div>
                 <div className="annual-report-content">
                     <div
-                        className="message-section section"
+                        className="message-section"
                         ref={this.setRef(SECTIONS.message)}
                     >
                         <FlexRow className="masthead">
@@ -387,7 +388,7 @@ class AnnualReport extends React.Component {
                         </div>
                     </div>
                     <div
-                        className="mission-section section"
+                        className="mission-section"
                         ref={this.setRef(SECTIONS.mission)}
                     >
                         <div className="inner">
@@ -434,7 +435,7 @@ class AnnualReport extends React.Component {
                         </div>
                     </div>
                     <div
-                        className="milestones-section section"
+                        className="milestones-section"
                         ref={this.setRef(SECTIONS.milestones)}
                     >
                         <div className="inner">
@@ -647,7 +648,7 @@ class AnnualReport extends React.Component {
                         </MediaQuery>
                     </div>
                     <div
-                        className="reach-section section"
+                        className="reach-section"
                         ref={this.setRef(SECTIONS.reach)}
                     >
                         <div className="inner">
@@ -830,7 +831,7 @@ class AnnualReport extends React.Component {
                         </div>
                     </div>
                     <div
-                        className="initiatives-section section"
+                        className="initiatives-section"
                         ref={this.setRef(SECTIONS.initiatives)}
                     >
                         <div className="initiatives-intro">
@@ -1841,7 +1842,7 @@ class AnnualReport extends React.Component {
                         </div>
                     </div>
                     <div
-                        className="financials-section section"
+                        className="financials-section"
                         ref={this.setRef(SECTIONS.financials)}
                     >
                         <div className="inner">
@@ -1981,7 +1982,7 @@ class AnnualReport extends React.Component {
                         </div>
                     </div>
                     <div
-                        className="supporters-section section"
+                        className="supporters-section"
                         ref={this.setRef(SECTIONS.supporters)}
                     >
                         <div className="inner">
@@ -2265,7 +2266,7 @@ class AnnualReport extends React.Component {
                         </div>
                     </div>
                     <div
-                        className="leadership-section section"
+                        className="leadership-section"
                         ref={this.setRef(SECTIONS.leadership)}
                     >
                         <div className="inner">
@@ -2361,7 +2362,7 @@ class AnnualReport extends React.Component {
                         </div>
                     </div>
                     <div
-                        className="donate-section section"
+                        className="donate-section"
                         ref={this.setRef(SECTIONS.donate)}
                     >
                         <FlexRow className="donate-info">
