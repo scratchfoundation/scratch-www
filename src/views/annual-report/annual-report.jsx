@@ -1978,9 +1978,6 @@ class AnnualReport extends React.Component {
                                     </Button>
                                 </a>
                             </div>
-                            <div className="financials-future">
-                                <FormattedMessage id="annualReport.financialsFutureYears" />
-                            </div>
                         </div>
                     </div>
                     <div

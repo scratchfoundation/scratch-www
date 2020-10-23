@@ -1513,7 +1513,7 @@ p {
         }
 
         .tools-tutorials {
-            max-width: 780px;
+            width: 760px;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -1532,13 +1532,24 @@ p {
                 margin: 32px 0;
 
                 img {
-                    width: 180px;
                     border-radius: 8px;
+                    @media #{$big} {
+                        width: 180px;
+                        height: 100px;
+                    }
+                    @media #{$intermediate} {
+                        width: 140px;
+                        height: 76px;
+                    }
+                    @media #{$medium} {
+                        width: 220px;
+                        height: 120px;
+                    }
+                    @media #{$small} {
+                        width: 140px;
+                        height: 76px;
+                    }
                 }
-            }
-
-            .tools-stats {
-                max-width: 460px;
             }
         }
 
@@ -1601,6 +1612,10 @@ p {
                 .tools-stat {
                     width: 140px;
                 }
+            }
+
+            .tools-tutorials {
+                width: 620px;
             }
 
             .tools-abhi {
@@ -1682,7 +1697,6 @@ p {
 
                     img {
                         margin: 8px;
-                        width: 200px;
                     }
                 }
 
