@@ -1978,6 +1978,9 @@ class AnnualReport extends React.Component {
                                     </Button>
                                 </a>
                             </div>
+                            <div className="financials-future">
+                                <FormattedMessage id="annualReport.financialsFutureYears" />
+                            </div>
                         </div>
                     </div>
                     <div
@@ -2244,13 +2247,20 @@ class AnnualReport extends React.Component {
                                     </h3>
                                     <div className="supporters-list">
                                         <ul className="supporters-list-side">
-                                            <li>Amazon Web Services</li>
                                             <li>Fastly</li>
+                                            <li>Amazon Web Services</li>
+                                            <li>Wilson Sonsini Goodrich & Rosati</li>
                                             <li>New Relic</li>
+                                            <li>Adobe</li>
+                                            <li>DK</li>
                                         </ul>
                                         <ul className="supporters-list-side">
-                                            <li>DK</li>
                                             <li>No Starch Press</li>
+                                            <li>Github</li>
+                                            <li>Travis CI</li>
+                                            <li>Sauce Labs</li>
+                                            <li>Pingdom</li>
+                                            <li>PagerDuty</li>
                                         </ul>
                                     </div>
                                 </div>
