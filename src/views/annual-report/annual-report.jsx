@@ -415,15 +415,15 @@ class AnnualReport extends React.Component {
                                     <p><FormattedMessage id="annualReport.missionProjectsDescription" /></p>
                                     <img src="/images/annual-report/mission/Projects Illustration.svg" />
                                 </div>
-                                <div className="one-p four-ps-peers">
-                                    <h3><FormattedMessage id="annualReport.missionPeersTitle" /></h3>
-                                    <p><FormattedMessage id="annualReport.missionPeersDescription" /></p>
-                                    <img src="/images/annual-report/mission/Peers Illustration.svg" />
-                                </div>
                                 <div className="one-p four-ps-passion">
                                     <h3><FormattedMessage id="annualReport.missionPassionTitle" /></h3>
                                     <p><FormattedMessage id="annualReport.missionPassionDescription" /></p>
                                     <img src="/images/annual-report/mission/Passion Illustration.svg" />
+                                </div>
+                                <div className="one-p four-ps-peers">
+                                    <h3><FormattedMessage id="annualReport.missionPeersTitle" /></h3>
+                                    <p><FormattedMessage id="annualReport.missionPeersDescription" /></p>
+                                    <img src="/images/annual-report/mission/Peers Illustration.svg" />
                                 </div>
                                 <div className="one-p four-ps-play">
                                     <h3><FormattedMessage id="annualReport.missionPlayTitle" /></h3>

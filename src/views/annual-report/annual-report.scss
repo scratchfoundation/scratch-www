@@ -6,6 +6,7 @@ $base-bg: $ui-white;
 #view {
     background-color: $ui-white;
     padding: 0;
+    width: 100%;
 }
 
 h1 {
@@ -314,12 +315,13 @@ p {
   .four-ps {
     height: 940px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
     @media #{$intermediate-and-smaller} {
       height: auto;
       align-items: center;
+      justify-content: center;
     }
   }
   
@@ -336,9 +338,13 @@ p {
       font-size: 1.25rem;
       margin-top: 1.5rem;
     }
+
     @media #{$intermediate-and-smaller} {
-      margin-right: 0;
       padding: 0;
+    }
+
+    @media #{$medium} {
+        margin-right: 0;
     }
   }
   
@@ -354,7 +360,12 @@ p {
     background-image: url("/images/annual-report/mission/Passion Splash.svg");
     margin-top: 72px;
     margin-right: 0;
-    @media #{$intermediate-and-smaller} {
+
+    @media #{$intermediate} {
+        margin-top: 72px;
+    }
+
+    @media #{$medium-and-smaller} {
       margin-top: 20px;
     }    
   }
@@ -362,10 +373,15 @@ p {
   .four-ps-play {
     background-image: url("/images/annual-report/mission/Play Splash.svg");
     margin-right: 0;
-    margin-top: 44px;
-    @media #{$intermediate-and-smaller} {
+    margin-top: 72px;
+
+    @media #{$intermediate} {
+        margin-top: 72px;
+    }
+
+    @media #{$medium-and-smaller} {
       margin-top: 20px;
-    }  
+    } 
   }
 }
 
@@ -682,15 +698,18 @@ p {
 
 .reach-scratch-jr {
     .scratch-jr-transition-img {
+        width: 100%;
         margin-bottom: -156px;
         margin-right: 48px;
         display: flex;
-        flex-direction: row-reverse;
+        // flex-direction: row-reverse;
         overflow: hidden;
 
-        @media #{$medium-and-smaller} {
-            margin-right: -28px;
-        }
+        justify-content: flex-end;
+
+        // @media #{$medium-and-smaller} {
+        //     margin-right: -28px;
+        // }
     }
 }
 
@@ -958,7 +977,7 @@ p {
             
             @media #{$big} {
                 max-width: 940px;
-                padding: 72px;
+                padding: 72px 0;
             }
 
             @media #{$medium-and-intermediate} {
@@ -1392,20 +1411,15 @@ p {
         .hero {
             display: flex;
             justify-content: space-between;
+
+            .right {
+                width: 58%;
+                max-width: 740px;
         }
 
-        .hero img {
-            @media #{$big} {
-                height: 560px;
-            }
-            @media #{$intermediate} {
-                height: 336px;
-            }
-            @media #{$medium} {
-                height: 244px;
-            }
-            @media #{$small} {
-                height: 156px;
+            .left {
+                width: 42%;
+                max-width: 520px;
             }
         }
 
@@ -1473,7 +1487,7 @@ p {
             flex-wrap: wrap;
             justify-content: space-between;
             align-content: center;
-            width: 780px;
+            max-width: 780px;
             margin-top: 80px;
 
             img {
@@ -1499,7 +1513,7 @@ p {
         }
 
         .tools-tutorials {
-            width: 780px;
+            max-width: 780px;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -1882,6 +1896,12 @@ p {
             }
         }
 
+        @media #{$intermediate} {
+            .community-moderation, .community-guidelines, .community-engagement {
+                width: 620px;
+            }
+        }
+
         @media #{$intermediate-and-smaller} {
             .inner {
                 max-width: 620px;
@@ -1893,7 +1913,6 @@ p {
 
             .community-moderation, .community-guidelines, .community-engagement {
                 margin: 32px 0;
-                width: 620px;
                 text-align: left;
             }
 
