@@ -395,7 +395,18 @@ class AnnualReport extends React.Component {
                             <p className="mission-subtitle"><FormattedMessage id="annualReport.missionSubtitle" /></p>
                             <p><FormattedMessage id="annualReport.missionP1" /></p>
                             <p><FormattedMessage id="annualReport.missionP2" /></p>
-                            <p><FormattedMessage id="annualReport.missionP3" /></p>
+                            <p>
+                                <FormattedMessage
+                                    id="annualReport.missionP3"
+                                    values={{
+                                        fourPsItalics: (
+                                            <i>
+                                                <FormattedMessage id="annualReport.fourPs" />
+                                            </i>
+                                        )
+                                    }}
+                                />
+                            </p>
                         </div>
                         <div className="four-ps-wrapper">
                             <div className="four-ps">

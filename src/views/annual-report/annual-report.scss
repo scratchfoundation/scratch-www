@@ -187,6 +187,10 @@ p {
     }
 
     .message-from-team {
+        .message-signature {
+            font-weight: bold;
+        }
+
         max-width: 620px;
 
         @media #{$medium} {
