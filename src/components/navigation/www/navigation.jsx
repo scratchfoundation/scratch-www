@@ -135,6 +135,7 @@ class Navigation extends React.Component {
                             />
                             <Input
                                 aria-label={this.props.intl.formatMessage({id: 'general.search'})}
+                                className="search-input"
                                 name="q"
                                 placeholder={this.props.intl.formatMessage({id: 'general.search'})}
                                 type="text"
