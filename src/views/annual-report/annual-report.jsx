@@ -1870,7 +1870,7 @@ class AnnualReport extends React.Component {
                                         <img src="/images/annual-report/financials/yellow-circle.svg" />
                                         <div className="key-and-money">
                                             <p className="key">
-                                                <FormattedMessage id="annualReport.financialsEvents" />
+                                                <FormattedMessage id="annualReport.financialsRestrictedGrants" />
                                             </p>
                                             <p>
                                                 $700,000
