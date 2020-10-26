@@ -409,29 +409,91 @@ class AnnualReport extends React.Component {
                                 />
                             </p>
                         </div>
-                        <div className="four-ps-wrapper">
-                            <div className="four-ps">
+                        <div className="four-ps">
+                            <MediaQuery minWidth={frameless.tabletPortrait}>
                                 <div className="one-p four-ps-projects">
-                                    <h3><FormattedMessage id="annualReport.missionProjectsTitle" /></h3>
-                                    <p><FormattedMessage id="annualReport.missionProjectsDescription" /></p>
+                                    <div className="title-and-description">
+                                        <h3><FormattedMessage id="annualReport.missionProjectsTitle" /></h3>
+                                        <p><FormattedMessage id="annualReport.missionProjectsDescription" /></p>
+                                    </div>
                                     <img src="/images/annual-report/mission/Projects Illustration.svg" />
                                 </div>
+                            </MediaQuery>
+                            <MediaQuery
+                                className="one-p top"
+                                maxWidth={frameless.tabletPortrait - 1}
+                            >
+                                <div className="title-and-description">
+                                    <h3><FormattedMessage id="annualReport.missionProjectsTitle" /></h3>
+                                    <p><FormattedMessage id="annualReport.missionProjectsDescription" /></p>
+                                </div>
+                                <div className="small-p four-ps-projects">
+                                    <img src="/images/annual-report/mission/Projects Illustration.svg" />
+                                </div>
+                            </MediaQuery>
+                            <MediaQuery minWidth={frameless.tabletPortrait}>
                                 <div className="one-p four-ps-passion">
-                                    <h3><FormattedMessage id="annualReport.missionPassionTitle" /></h3>
-                                    <p><FormattedMessage id="annualReport.missionPassionDescription" /></p>
+                                    <div className="title-and-description">
+                                        <h3><FormattedMessage id="annualReport.missionPassionTitle" /></h3>
+                                        <p><FormattedMessage id="annualReport.missionPassionDescription" /></p>
+                                    </div>
                                     <img src="/images/annual-report/mission/Passion Illustration.svg" />
                                 </div>
+                            </MediaQuery>
+                            <MediaQuery
+                                className="one-p"
+                                maxWidth={frameless.tabletPortrait - 1}
+                            >
+                                <div className="title-and-description">
+                                    <h3><FormattedMessage id="annualReport.missionPassionTitle" /></h3>
+                                    <p className="no-margin-bottom"><FormattedMessage id="annualReport.missionPassionDescription" /></p>
+                                </div>
+                                <div className="small-p four-ps-passion">
+                                    <img src="/images/annual-report/mission/Passion Illustration.svg" />
+                                </div>
+                            </MediaQuery>
+                            <MediaQuery minWidth={frameless.tabletPortrait}>
                                 <div className="one-p four-ps-peers">
-                                    <h3><FormattedMessage id="annualReport.missionPeersTitle" /></h3>
-                                    <p><FormattedMessage id="annualReport.missionPeersDescription" /></p>
+                                    <div className="title-and-description">
+                                        <h3><FormattedMessage id="annualReport.missionPeersTitle" /></h3>
+                                        <p><FormattedMessage id="annualReport.missionPeersDescription" /></p>
+                                    </div>
                                     <img src="/images/annual-report/mission/Peers Illustration.svg" />
                                 </div>
+                            </MediaQuery>
+                            <MediaQuery
+                                className="one-p"
+                                maxWidth={frameless.tabletPortrait - 1}
+                            >
+                                <div className="title-and-description">
+                                    <h3><FormattedMessage id="annualReport.missionPeersTitle" /></h3>
+                                    <p><FormattedMessage id="annualReport.missionPeersDescription" /></p>
+                                </div>
+                                <div className="small-p four-ps-peers">
+                                    <img src="/images/annual-report/mission/Peers Illustration.svg" />
+                                </div>
+                            </MediaQuery>
+                            <MediaQuery minWidth={frameless.tabletPortrait}>
                                 <div className="one-p four-ps-play">
-                                    <h3><FormattedMessage id="annualReport.missionPlayTitle" /></h3>
-                                    <p><FormattedMessage id="annualReport.missionPlayDescription" /></p>
+                                    <div className="title-and-description">
+                                        <h3><FormattedMessage id="annualReport.missionPlayTitle" /></h3>
+                                        <p><FormattedMessage id="annualReport.missionPlayDescription" /></p>
+                                    </div>
                                     <img src="/images/annual-report/mission/Play Illustration.svg" />
                                 </div>
-                            </div>
+                            </MediaQuery>
+                            <MediaQuery
+                                className="one-p"
+                                maxWidth={frameless.tabletPortrait - 1}
+                            >
+                                <div className="title-and-description">
+                                    <h3><FormattedMessage id="annualReport.missionPlayTitle" /></h3>
+                                    <p><FormattedMessage id="annualReport.missionPlayDescription" /></p>
+                                </div>
+                                <div className="small-p four-ps-play">
+                                    <img src="/images/annual-report/mission/Play Illustration.svg" />
+                                </div>
+                            </MediaQuery>
                         </div>
                     </div>
                     <div

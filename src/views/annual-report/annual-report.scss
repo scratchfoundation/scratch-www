@@ -280,25 +280,37 @@ p {
       text-align: left;
   }
 
-
   .inner {
     padding-top: 124px;
     width: 620px;
   }
-  
-  .four-ps-wrapper {
-    padding: 124px 0;
+
+  .four-ps {
+    margin: 56px 0 124px 0;
     width: 940px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    
+    @media #{$intermediate} {
+        margin-top: 96px 0 108px 0;
+    }
+
     @media #{$intermediate-and-smaller} {
-      padding-top: 20px;
+      justify-content: center;
+    }
+
+    @media #{$medium-and-smaller} {
+        margin-top: 76px;
+        align-items: center;
     }
   }
-  
-  .inner, .four-ps-wrapper {  
+
+  .inner, .four-ps {
     @media #{$intermediate} {
       width: 620px;
     }
-
     @media #{$medium} {
       width: 460px;
     }
@@ -307,39 +319,99 @@ p {
     }
   }
   
-  .four-ps {
-    height: 940px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    @media #{$intermediate-and-smaller} {
-      height: auto;
-      align-items: center;
-      justify-content: center;
-    }
-  }
-  
   .one-p {
-    width: 300px;
-    height: 370px;
-    padding: 20px 80px;
-    background-position: center;
+    width: 460px;
+    height: 493px;
     background-repeat: no-repeat;
     background-size: contain;
-    margin-top: 20px;
     margin-right: 20px;
-    p {
-      font-size: 1.25rem;
-      margin-top: 1.5rem;
+
+    img {
+        width: 460px;
+    }
+
+    &.top {
+        margin-top: 0px;
     }
 
     @media #{$intermediate-and-smaller} {
       padding: 0;
+      width: 300px;
+      background-position: center;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      img {
+          width: 300px;
+      }
+    }
+
+    @media #{$intermediate} {
+        height: 370px;
+    }
+
+    @media #{$medium-and-smaller} {
+        margin-top: 62px;
+        height: 398px;
     }
 
     @media #{$medium} {
         margin-right: 0;
+    }
+
+    .title-and-description {
+        width: 300px;
+        margin: 16px auto 0 auto;
+        
+        p {
+            font-size: 1.25rem;
+            line-height: 2rem;
+            margin-top: 16px;
+        }
+
+        .no-margin-bottom {
+            margin-bottom: 0;
+        }
+    
+        @media #{$intermediate-and-smaller} {
+            text-align: center;
+        }
+
+        @media #{$medium-and-smaller} {
+            margin: 0 auto;
+            
+            p {
+                font-size: 1rem;
+                line-height: 2rem;
+                margin-bottom: 16px;
+            }
+        }
+
+        @media #{$medium} {
+            p {
+                margin-top: 12px;
+            }
+        }
+
+        @media #{$small} {
+            p {
+                margin-top: 5px;
+            }
+        }
+    }
+  }
+
+  .small-p {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 268px;
+
+    img {
+        margin: 34px 0;
     }
   }
   
@@ -347,37 +419,47 @@ p {
     background-image: url("/images/annual-report/mission/Projects Splash.svg");
   }
   
-  .four-ps-peers {
-    background-image: url("/images/annual-report/mission/Peers Splash.svg");
-  }
-  
   .four-ps-passion {
     background-image: url("/images/annual-report/mission/Passion Splash.svg");
-    margin-top: 72px;
+    margin-top: 112px;
     margin-right: 0;
 
     @media #{$intermediate} {
-        margin-top: 72px;
+        margin-top: 96px;
     }
 
     @media #{$medium-and-smaller} {
-      margin-top: 20px;
+      margin-top: 0;
     }    
+  }
+
+  .four-ps-peers {
+    background-image: url("/images/annual-report/mission/Peers Splash.svg");
+    margin-top: -80px;
+
+    @media #{$intermediate} {
+        margin-top: -72px;
+    }
+    
+    @media #{$medium-and-smaller} {
+        margin-top: 0;
+    } 
   }
   
   .four-ps-play {
     background-image: url("/images/annual-report/mission/Play Splash.svg");
     margin-right: 0;
-    margin-top: 72px;
+    margin-top: 32px;
 
     @media #{$intermediate} {
-        margin-top: 72px;
+        margin-top: 24px;
     }
 
     @media #{$medium-and-smaller} {
-      margin-top: 20px;
+        margin-top: 0;
     } 
   }
+
 }
 
 .milestones-section {
