@@ -102,7 +102,7 @@
     "annualReport.toolsTranslate": "Translate",
     "annualReport.toolsTranslateIntro": "With the Translate extension, built on the Google Translate API, kids can incorporate automatic translation into their projects, supporting language learning and global communication.",
     "annualReport.toolsNumLanguages": "50+",
-    "annualReport.toolsTranslateLanguages": "{numLanguages} langages translated in the extension",
+    "annualReport.toolsTranslateLanguages": "{numLanguages} languages translated in the extension",
     "annualReport.toolsSupportsLiteracy": "Supports Literacy",
     "annualReport.toolsCSandLanguageArts": "computer science and language arts",
     "annualReport.toolsTranslateLiteracy": "{supportsLiteracy} across {CSandLanguageArtsLink}",
