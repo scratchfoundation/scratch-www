@@ -665,6 +665,10 @@ p {
         padding-bottom: 20px;
         text-align: center;
 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         h3, p {
             color: $type-gray;
             padding: 0 48px;
@@ -674,7 +678,23 @@ p {
             width: 100%;
             border-radius: 0px;
         }
-        
+
+        .map-key {
+            font-size: .75rem;
+            margin-bottom: 36px;
+
+            .map-scale {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+
+                img {
+                    padding: 4px 8px;
+                }
+            }
+        }
+
         .map-wrapper {
           width: 100%;
           height: 0;

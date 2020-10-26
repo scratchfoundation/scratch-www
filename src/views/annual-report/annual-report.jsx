@@ -807,6 +807,18 @@ class AnnualReport extends React.Component {
                                 <p>
                                     <FormattedMessage id="annualReport.reachMapBlurb" />
                                 </p>
+                                <div className="map-key">
+                                    <div className="map-scale">
+                                        <div>0</div>
+                                        <img src="/images/annual-report/reach/Map Key.svg" />
+                                        <div>
+                                            <FormattedMessage id="annualReport.reachMap20M" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <FormattedMessage id="annualReport.reachMapLog" />
+                                    </div>
+                                </div>
                                 <div className="map-wrapper">
                                     <MediaQuery minWidth={frameless.desktop}>
                                         <WorldMap
