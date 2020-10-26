@@ -446,7 +446,9 @@ class AnnualReport extends React.Component {
                             >
                                 <div className="title-and-description">
                                     <h3><FormattedMessage id="annualReport.missionPassionTitle" /></h3>
-                                    <p className="no-margin-bottom"><FormattedMessage id="annualReport.missionPassionDescription" /></p>
+                                    <p className="no-margin-bottom">
+                                        <FormattedMessage id="annualReport.missionPassionDescription" />
+                                    </p>
                                 </div>
                                 <div className="small-p four-ps-passion">
                                     <img src="/images/annual-report/mission/Passion Illustration.svg" />
@@ -698,21 +700,21 @@ class AnnualReport extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <MediaQuery minWidth={frameless.desktop}>
-                            <div className="transition-images">
-                                <div className="left-image">
-                                    <img src="/images/annual-report/milestones/vertical-loop.svg" />
-                                </div>
-                                <div className="cropped-image">
-                                    <img src="/images/annual-report/milestones/painting-hand.svg" />
-                                </div>
-                            </div>
-                        </MediaQuery>
                     </div>
                     <div
                         className="reach-section"
                         ref={this.setRef(SECTIONS.reach)}
                     >
+                        <MediaQuery minWidth={frameless.desktop}>
+                            <div className="transition-images">
+                                <div className="left-image">
+                                    <img src="/images/annual-report/reach/vertical-loop.svg" />
+                                </div>
+                                <div className="cropped-image">
+                                    <img src="/images/annual-report/reach/painting-hand.svg" />
+                                </div>
+                            </div>
+                        </MediaQuery>
                         <div className="inner">
                             <div className="reach-intro">
                                 <h2>

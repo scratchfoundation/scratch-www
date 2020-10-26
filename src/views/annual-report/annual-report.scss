@@ -463,6 +463,7 @@ p {
 
 .milestones-section {
     background-color: $ui-blue-10percent;
+    padding-bottom: 120px;
 
     .inner {
         max-width: 940px;
@@ -566,14 +567,19 @@ p {
             }
         }
     }
+}
 
+.reach-section {
+    position: relative;
     .transition-images {
         width: 100%;
         
         height: 420px;
         overflow: hidden;
 
-        margin-bottom: -240px;
+        margin-top: -180px;
+
+        position: absolute;
 
         .left-image {
             align-self: center;
@@ -584,9 +590,7 @@ p {
             width: 260px;
         }
     }
-}
 
-.reach-section {
     .inner {
         max-width: 940px;
         padding-top: 120px;
@@ -760,14 +764,14 @@ p {
 
 .reach-section {
     .scratch-jr-transition-img {
-        margin-bottom: -44px;
+        position: absolute;
+        margin-top: -44px;
         margin-left: 88px;
 
-        display: flex;
-        overflow: hidden;
-        justify-content: flex-start;
-
-        @media #{$medium-and-smaller} {
+        @media #{$medium} {
+            margin-left: 32px;
+        }
+        @media #{$small} {
             margin-left: -8px;
         }
     }
@@ -775,18 +779,18 @@ p {
 
 .reach-scratch-jr {
     .scratch-jr-transition-img {
-        width: 100%;
         margin-bottom: -156px;
         margin-right: 48px;
         display: flex;
-        // flex-direction: row-reverse;
-        overflow: hidden;
-
         justify-content: flex-end;
 
-        // @media #{$medium-and-smaller} {
-        //     margin-right: -28px;
-        // }
+        @media #{$medium} {
+            margin-right: 12px;
+        }
+        @media #{$small} {
+            margin-right: -36px;
+            overflow: hidden;
+        }
     }
 }
 
