@@ -1079,7 +1079,7 @@ class AnnualReport extends React.Component {
                                         <img src="/images/annual-report/initiatives/LEGO Robotics Illustration.svg" />
                                         <div className="tools-LEGO-info">
                                             <h4>
-                                                <FormattedMessage id="annualReport.toolsLEGORobotics" />
+                                                <FormattedMessage id="annualReport.toolsPhysicalWorld" />
                                             </h4>
                                             <p>
                                                 <FormattedMessage
