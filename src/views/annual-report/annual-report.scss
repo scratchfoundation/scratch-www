@@ -1720,16 +1720,18 @@ p {
             }
 
             .tools-abhi {
-                width: 100%;
+                max-width: 620px;
                 align-items: center;
 
                 .tools-abhi-intro {
                     width: 100%;
                     justify-content: center;
+                    margin-bottom: 48px;
 
                     img {
                         order: -1;
                         width: 100%;
+                        margin-bottom: 28px;
                     }
 
                     div {
