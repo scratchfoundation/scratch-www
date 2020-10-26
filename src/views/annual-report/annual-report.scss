@@ -1342,6 +1342,7 @@ p {
                         @media #{$medium-and-smaller} {
                             flex-direction: column;
                             align-items: center;
+                            margin-bottom: 48px;
 
                             &.europe {
                                 flex-direction: column-reverse;
