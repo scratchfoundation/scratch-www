@@ -75,7 +75,7 @@ const WorldMap = props => (
 
 WorldMap.propTypes = {
     colorIndex: PropTypes.arrayOf(PropTypes.number),
-    countryData: PropTypes.arrayOf(PropTypes.string),
+    countryData: PropTypes.arrayOf(PropTypes.number),
     countryNames: PropTypes.arrayOf(PropTypes.string)
 };
 
