@@ -1181,18 +1181,12 @@ p {
                     position: absolute;
                     width: 145px;
                     padding: 0px;
-                    left: 60px;
+                    left: 0px;
                     top: 60px;
-
-                    @media #{$intermediate} {
-                        left: -20px;
-                        top: -5px;
-                    }
 
                     @media #{$medium} {
                         width: 80px;
-                        left: -32px;
-                        top: -8px;
+                        top: 0px;
 
                         img {
                             width: 80px;
@@ -1201,7 +1195,6 @@ p {
 
                     @media #{$small} {
                         width: 80px;
-                        left: 0px;
                         top: 0px;
 
                         img {
@@ -1212,16 +1205,11 @@ p {
 
                 .pizza-img {
                     position: absolute;
-                    right: 80px;
+                    right: 0px;
                     bottom: 40px;
-
-                    @media #{$intermediate} {
-                        right: 0px;
-                    }
 
                     @media #{$medium} {
                         width: 80px;
-                        right: 0px;
 
                         img {
                             width: 80px;
@@ -1230,7 +1218,6 @@ p {
 
                     @media #{$small} {
                         width: 80px;
-                        right: 0px;
 
                         img {
                             width: 80px;
