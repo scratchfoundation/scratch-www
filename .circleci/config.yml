@@ -4,5 +4,8 @@ orbs:
 workflows:
   node-tests:
     jobs:
-      - node/test
-
+      - node/test:
+          filters:
+            branches:
+              only:
+                - circleci-project-setup # remove this before releasing
