@@ -1991,6 +1991,10 @@ p {
                     max-width: 500px;
                     flex-wrap: true;
                 }
+
+                .grid .thumbnail {
+                    box-shadow: none;
+                }
             }
 
             .grid .thumbail {
