@@ -43,7 +43,7 @@
 
     "annualReport.milestonesTitle": "Milestones",
     "annualReport.milestonesDescription": "Here are some key events and accomplishments in the history of Scratch and the global Scratch community.",
-    "annualReport.milestones2003Message": "Received National Science Foundation grant to start development of Scratch",
+    "annualReport.milestones2003Message": "Awarded a National Science Foundation grant to start development of Scratch",
     "annualReport.milestones2004Message": "Offered first Scratch workshop at Computer Clubhouse Teen Summit",
     "annualReport.milestones2007Message": "Public launch of Scratch programming language and online community",
     "annualReport.milestones2008Message": "Organized first Scratch Conference for educators and developers",
@@ -203,7 +203,7 @@
 
     "annualReport.financialsTitle": "Financials - 2019",
     "annualReport.financialsRevenue": "Revenues",
-    "annualReport.financialsGrants": "Grants, individual, corporate and events",
+    "annualReport.financialsGrants": "Individual and corporate donations, grants, and events",
     "annualReport.financialsRestrictedGrants": "Restricted grants and donations",
     "annualReport.financialsOther": "Other income",
     "annualReport.financialsTotal": "Total",
