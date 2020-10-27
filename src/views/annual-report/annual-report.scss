@@ -2420,6 +2420,12 @@ p {
         width: 100%;
         margin: 24px 0;
 
+        hr {
+            border: 0;
+            height: 0;
+            border-top: 1px solid $box-shadow-light-gray;
+            margin-bottom: 2rem;
+        }
 
         .supporters-list {
             display: flex;
