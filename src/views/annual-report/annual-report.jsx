@@ -522,7 +522,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box first">
                                         <h4>
                                             2003
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2003Message" />
@@ -531,7 +530,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2004
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2004Message" />
@@ -541,7 +539,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box last">
                                         <h4>
                                             2007
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2007Message" />
@@ -558,7 +555,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2008
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2008Message" />
@@ -568,7 +564,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2009
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2009Message1.4" />
@@ -578,7 +573,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2009
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2009MessageScratchDay" />
@@ -587,7 +581,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2010
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2010Message" />
@@ -619,7 +612,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2013
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2013MessageFoundation" />
@@ -628,7 +620,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2013
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2013MessageScratch2" />
@@ -638,7 +629,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2014
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2014Message" />
@@ -648,7 +638,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2016
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2016Message" />
@@ -664,7 +653,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2017
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2017Message" />
@@ -673,7 +661,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2019
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2019MessageScratch3" />
@@ -683,7 +670,6 @@ class AnnualReport extends React.Component {
                                     <div className="milestone-box">
                                         <h4>
                                             2019
-                                            {/* TODO should this be localized? */}
                                         </h4>
                                         <p>
                                             <FormattedMessage id="annualReport.milestones2019MessageMove" />
@@ -1376,7 +1362,7 @@ class AnnualReport extends React.Component {
                                         <div className="sds-list">
                                             <div className="sds-tile">
                                                 <a
-                                                    href="studios/6234813/"
+                                                    href="/studios/6234813/"
                                                     target="_blank"
                                                 >
                                                     <img
@@ -1390,7 +1376,7 @@ class AnnualReport extends React.Component {
                                             </div>
                                             <div className="sds-tile">
                                                 <a
-                                                    href="studios/5801323/"
+                                                    href="/studios/5801323/"
                                                     target="_blank"
                                                 >
                                                     <img
@@ -1404,7 +1390,7 @@ class AnnualReport extends React.Component {
                                             </div>
                                             <div className="sds-tile">
                                                 <a
-                                                    href="studios/5702799/"
+                                                    href="/studios/5702799/"
                                                     target="_blank"
                                                 >
                                                     <img
@@ -1418,7 +1404,7 @@ class AnnualReport extends React.Component {
                                             </div>
                                             <div className="sds-tile">
                                                 <a
-                                                    href="studios/5944573/"
+                                                    href="/studios/5944573/"
                                                     target="_blank"
                                                 >
                                                     <img
