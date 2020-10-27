@@ -915,6 +915,9 @@ class AnnualReport extends React.Component {
                                 <h2>
                                     <FormattedMessage id="annualReport.initiativesTitle" />
                                 </h2>
+                                <p>
+                                    <FormattedMessage id="annualReport.initiativesDescription" />
+                                </p>
                                 <div className="initiatives-pillars">
                                     <div className="three-pillars">
                                         <div className="pillar-splash tools">
