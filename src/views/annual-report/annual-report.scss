@@ -665,12 +665,12 @@ p {
     .reach-map {
         width: 100%;
         background-color: $ui-white;
-        border-radius: 6px;
+        border-radius: 1rem;
         color: $type-gray;
         padding-top: 48px;
         margin-top: 52px;
-        padding-bottom: 20px;
         text-align: center;
+        overflow: hidden;
 
         display: flex;
         flex-direction: column;
