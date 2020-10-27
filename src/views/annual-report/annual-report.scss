@@ -741,6 +741,10 @@ p {
         img {
             max-width: 380px;
         }
+
+        @media #{$small} {
+            margin-bottom: 64px;
+        }
     }
 
     @media #{$intermediate-and-smaller} {
@@ -801,9 +805,6 @@ p {
         @media #{$medium} {
             margin-left: 32px;
         }
-        @media #{$small} {
-            margin-left: -8px;
-        }
     }
 }
 
@@ -816,10 +817,6 @@ p {
 
         @media #{$medium} {
             margin-right: 12px;
-        }
-        @media #{$small} {
-            margin-right: -36px;
-            overflow: hidden;
         }
     }
 }
@@ -868,6 +865,10 @@ p {
             text-align: center;
             width: 100%;
         }
+    }
+
+    @media #{$small} {
+        padding: 84px 0 52px 0;
     }
 }
 

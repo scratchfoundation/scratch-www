@@ -860,9 +860,11 @@ class AnnualReport extends React.Component {
                                 <img src="/images/annual-report/reach/translated-illustration.svg" />
                             </div>
                         </div>
-                        <div className="scratch-jr-transition-img">
-                            <img src="/images/annual-report/reach/horizontal-command.svg" />
-                        </div>
+                        <MediaQuery minWidth={frameless.mobile}>
+                            <div className="scratch-jr-transition-img">
+                                <img src="/images/annual-report/reach/horizontal-command.svg" />
+                            </div>
+                        </MediaQuery>
                     </div>
                     <div className="reach-scratch-jr">
                         <div className="inner">
@@ -888,9 +890,11 @@ class AnnualReport extends React.Component {
                                 </h4>
                             </div>
                         </div>
-                        <div className="scratch-jr-transition-img">
-                            <img src="/images/annual-report/reach/horizontal-loop.svg" />
-                        </div>
+                        <MediaQuery minWidth={frameless.mobile}>
+                            <div className="scratch-jr-transition-img">
+                                <img src="/images/annual-report/reach/horizontal-loop.svg" />
+                            </div>
+                        </MediaQuery>
                     </div>
                     <div
                         className="initiatives-section"
@@ -1891,7 +1895,7 @@ class AnnualReport extends React.Component {
                                             <div className="conference-image-and-caption left">
                                                 {/* eslint-disable-next-line max-len */}
                                                 <img src="/images/annual-report/initiatives/schools/Conferences Story/Africa Conference.png" />
-                                                    <span className="photo-credit">
+                                                <span className="photo-credit">
                                                     <FormattedMessage
                                                         id="annualReport.conferencesAfricaImageCaption"
                                                         values={{
