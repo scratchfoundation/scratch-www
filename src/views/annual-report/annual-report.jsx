@@ -1725,7 +1725,20 @@ class AnnualReport extends React.Component {
                                             <FormattedMessage id="annualReport.extendingReachHeader" />
                                         </h4>
                                         <p>
-                                            <FormattedMessage id="annualReport.extendingReachDescription" />
+                                            <FormattedMessage
+                                                id="annualReport.extendingReachDescription"
+                                                values={{
+                                                    codeYourHeroLink: (
+                                                        <a
+                                                            href="https://csfirst.withgoogle.com/c/cs-first/en/code-your-hero/overview.html"
+                                                            rel="noreferrer noopener"
+                                                            target="_blank"
+                                                        >
+                                                            <FormattedMessage id="annualReport.codeYourHero" />
+                                                        </a>
+                                                    )
+                                                }}
+                                            />
                                         </p>
                                     </div>
                                     <h4>
@@ -1928,6 +1941,9 @@ class AnnualReport extends React.Component {
                             <h2 className="financials-h2">
                                 <FormattedMessage id="annualReport.financialsTitle" />
                             </h2>
+                            <div className="financials-future">
+                                <FormattedMessage id="annualReport.financialsFutureYears" />
+                            </div>
                             <h3>
                                 <FormattedMessage id="annualReport.financialsRevenue" />
                             </h3>
@@ -1942,7 +1958,7 @@ class AnnualReport extends React.Component {
                                             </p>
                                             <p>
                                                 $3,898,078
-                                                <span className="percentage"> (82.7%)</span>
+                                                <span className="percentage"> (83%)</span>
                                             </p>
                                         </div>
                                     </div>
@@ -1954,7 +1970,7 @@ class AnnualReport extends React.Component {
                                             </p>
                                             <p>
                                                 $700,000
-                                                <span className="percentage"> (14.8%)</span>
+                                                <span className="percentage"> (15%)</span>
                                             </p>
                                         </div>
                                     </div>
@@ -1966,7 +1982,7 @@ class AnnualReport extends React.Component {
                                             </p>
                                             <p>
                                                 $114,982
-                                                <span className="percentage"> (2.4%)</span>
+                                                <span className="percentage"> (2%)</span>
                                             </p>
                                         </div>
                                     </div>
@@ -2000,7 +2016,7 @@ class AnnualReport extends React.Component {
                                             </p>
                                             <p>
                                                 $1,135,767
-                                                <span className="percentage"> (48.8%)</span>
+                                                <span className="percentage"> (49%)</span>
                                             </p>
                                         </div>
                                     </div>
@@ -2012,7 +2028,7 @@ class AnnualReport extends React.Component {
                                             </p>
                                             <p>
                                                 $224,104
-                                                <span className="percentage"> (9.6%)</span>
+                                                <span className="percentage"> (10%)</span>
                                             </p>
                                         </div>
                                     </div>
@@ -2024,7 +2040,7 @@ class AnnualReport extends React.Component {
                                             </p>
                                             <p>
                                                 $962,958
-                                                <span className="percentage"> (41.4%)</span>
+                                                <span className="percentage"> (41%)</span>
                                             </p>
                                         </div>
                                     </div>

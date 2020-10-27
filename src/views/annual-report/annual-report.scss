@@ -2159,11 +2159,10 @@ p {
     }
 
     h2 {
-        margin-bottom: 88px;
-        line-height: 64px;
+        margin-bottom: 20px;
     }
 
-    h2, h3 {
+    h2, h3, .financials-future {
         text-align: left;
     }
 
@@ -2172,6 +2171,12 @@ p {
         height: 0;
         border-top: .5px solid $type-white;
         opacity: .25;
+    }
+
+    .financials-future {
+        font-size: 1.25rem;
+        line-height: 2.5rem;
+        margin-bottom: 54px;
     }
 
     .financials-content {
@@ -2284,7 +2289,7 @@ p {
             padding: 64px 0;
         }
 
-        h2 {
+        .financials-future {
             margin-bottom: 64px;
         }
     }
@@ -2295,15 +2300,7 @@ p {
             width: 100%;
         }
 
-        // h2 {
-        //     font-size: 2rem;
-        // }
-
-        // h3 {
-        //     font-size: 1.75rem;
-        // }
-
-        h2, h3 {
+        h2, h3, .financials-future {
             text-align: center;
         }
 
@@ -2420,7 +2417,6 @@ p {
     .comment-text {
         background-color: $ui-white;
         text-align: left;
-        //margin: 20px;
         padding: 20px;
 
         p {
