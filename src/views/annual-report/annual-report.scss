@@ -41,6 +41,13 @@ p {
     line-height: 2em;
 }
 
+.photo-credit {
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
 @media #{$small} {
     .inner {
         width: $cols4;
@@ -73,7 +80,7 @@ p {
         }
 
         padding: 0px;
-        
+
     }
 }
 
@@ -98,7 +105,7 @@ p {
     @media #{$intermediate-and-smaller} {
         flex-direction: column;
         align-items: center;
-        
+
         .masthead-year {
             text-align: center;
         }
@@ -155,8 +162,8 @@ p {
     @media #{$small} {
         p {
             text-align: left;
-        }    
-            
+        }
+
         h2 {
             max-width: 300px;
             vertical-align: middle;
@@ -179,7 +186,7 @@ p {
         @media #{$medium} {
             max-width: 460px;
         }
-        
+
     }
 
     .message-from-team {
@@ -219,7 +226,7 @@ p {
 .transition-images {
     display: flex;
     justify-content: space-between;
-    
+
     img {
         margin-bottom: -140px;
     }
@@ -270,7 +277,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     .mission-subtitle {
         font-weight: normal;
         font-size: 1.25rem;
@@ -292,7 +299,7 @@ p {
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
-    
+
         @media #{$intermediate} {
             margin-top: 96px 0 108px 0;
         }
@@ -318,7 +325,7 @@ p {
             width: 300px;
         }
     }
-  
+
     .one-p {
         width: 460px;
         height: 493px;
@@ -365,7 +372,7 @@ p {
         .title-and-description {
             width: 300px;
             margin: 16px auto 0 auto;
-            
+
             p {
                 font-size: 1.25rem;
                 line-height: 2rem;
@@ -375,14 +382,14 @@ p {
             .no-margin-bottom {
                 margin-bottom: 0;
             }
-        
+
             @media #{$intermediate-and-smaller} {
                 text-align: center;
             }
 
             @media #{$medium-and-smaller} {
                 margin: 0 auto;
-                
+
                 p {
                     font-size: 1rem;
                     line-height: 2rem;
@@ -414,11 +421,11 @@ p {
             margin: 34px 0;
         }
     }
-  
+
     .four-ps-projects {
         background-image: url("/images/annual-report/mission/Projects Splash.svg");
     }
-  
+
     .four-ps-passion {
         background-image: url("/images/annual-report/mission/Passion Splash.svg");
         margin-top: 112px;
@@ -430,7 +437,7 @@ p {
 
         @media #{$medium-and-smaller} {
         margin-top: 0;
-        }    
+        }
     }
 
     .four-ps-peers {
@@ -440,12 +447,12 @@ p {
         @media #{$intermediate} {
             margin-top: -72px;
         }
-        
+
         @media #{$medium-and-smaller} {
             margin-top: 0;
-        } 
+        }
     }
-  
+
     .four-ps-play {
         background-image: url("/images/annual-report/mission/Play Splash.svg");
         margin-right: 0;
@@ -457,7 +464,7 @@ p {
 
         @media #{$medium-and-smaller} {
             margin-top: 0;
-        } 
+        }
     }
 }
 
@@ -495,7 +502,7 @@ p {
            flex-direction: column;
 
            .left, .right {
-               margin: auto; 
+               margin: auto;
            }
        }
     }
@@ -511,7 +518,7 @@ p {
         .milestones-description {
             width: 360px;
         }
- 
+
         .single-image {
             flex-grow: 3;
             align-self: center;
@@ -521,7 +528,7 @@ p {
 
         @media #{$intermediate-and-smaller} {
             align-items: center;
-            
+
             .milestones-description{
                 width: 100%
             }
@@ -573,7 +580,7 @@ p {
     position: relative;
     .transition-images {
         width: 100%;
-        
+
         height: 420px;
         overflow: hidden;
 
@@ -618,7 +625,7 @@ p {
             margin-top: 20px;
         }
 
-        .reach-numbers {            
+        .reach-numbers {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
@@ -649,7 +656,7 @@ p {
             }
         }
     }
-    
+
     .map-inner {
         max-width: 940px;
         margin: 0 auto;
@@ -673,7 +680,7 @@ p {
             color: $type-gray;
             padding: 0 48px;
         }
-        
+
         @media #{$intermediate-and-smaller} {
             width: 100%;
             border-radius: 0px;
@@ -701,7 +708,7 @@ p {
           position: relative;
           padding-top: 50%;
         }
-        
+
         .map {
           width: 100%;
           height: 100%;
@@ -709,7 +716,7 @@ p {
           top: 0;
           left: 0;
         }
-        
+
     }
 
     .reach-translation {
@@ -862,12 +869,12 @@ p {
 }
 
 .initiatives-section {
-    
+
     .initiatives-intro {
         .inner {
             display: flex;
             flex-direction: column;
-            align-items: center; 
+            align-items: center;
             max-width: 760px;
             padding: 88px 0;
         }
@@ -1064,7 +1071,7 @@ p {
             @media #{$medium} {
                 max-width: 460px;
             }
-    
+
             @media #{$small} {
                 max-width: 300px;
             }
@@ -1072,11 +1079,11 @@ p {
     }
 
     .initiatives-subsection-content {
-        .inner {     
+        .inner {
             display: flex;
             flex-direction: column;
             align-items: center;
-            
+
             @media #{$big} {
                 max-width: 940px;
                 padding: 72px 0;
@@ -1148,7 +1155,7 @@ p {
                     flex-wrap: wrap;
                     padding-top: 10px;
                     padding-bottom: 10px;
-                    
+
                     img {
                         width: 380px;
                         margin: 10px;
@@ -1169,7 +1176,7 @@ p {
                         }
                     }
                 }
-                
+
                 .pencils-img {
                     position: absolute;
                     width: 145px;
@@ -1230,17 +1237,6 @@ p {
                         }
                     }
                 }
-
-                .photo-credit {
-                    padding-bottom: 0px;
-                    padding-top: 0px;
-
-                    p {
-                        font-size: 0.875rem;
-                        line-height: 1.125rem;
-                        font-weight: bold;
-                    }
-                }
             }
 
             &.schools-conferences {
@@ -1288,17 +1284,17 @@ p {
                     flex-direction: row;
                     align-items: flex-start;
                     text-align: left;
-    
+
                     @media #{$intermediate-and-smaller} {
                         flex-direction: column;
                         align-items: center;
                     }
-                    
+
                     p {
                         width: 380px;
                         margin-top: 0px;
                         margin-right: 20px;
-    
+
                         @media #{$medium-and-smaller} {
                             margin: 0px 0px 20px 0px;
                         }
@@ -1306,11 +1302,11 @@ p {
                         @media #{$intermediate} {
                             width: 620px;
                         }
-    
+
                         @media #{$medium} {
                             width: 460px;
                         }
-    
+
                         @media #{$small} {
                             width: 300px;
                         }
@@ -1372,11 +1368,11 @@ p {
                             flex-direction: column;
                             align-items: flex-start;
                             width: 460px;
-                        
+
                             @media #{$small} {
                                 width: 300px;
                             }
-                            
+
                         }
 
                         .left {
@@ -1395,8 +1391,6 @@ p {
             margin-bottom: 24px;
 
             img {
-                margin-bottom: 22px;
-
                 @media #{$medium-and-smaller} {
                     width: 460px;
                 }
@@ -1462,7 +1456,7 @@ p {
         .news-links {
             display: flex;
             justify-content: flex-start;
-            
+
             margin: 20px 0px;
 
             @media #{$medium-and-smaller} {
@@ -1477,7 +1471,7 @@ p {
                 img {
                     margin-right: 5px;
                 }
-            } 
+            }
         }
     }
 
@@ -1544,7 +1538,7 @@ p {
         .tools-extensions {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between; 
+            justify-content: space-between;
             width: 100%;
         }
 
@@ -1560,7 +1554,7 @@ p {
                     max-width: 300px;
                 }
             }
-            
+
             @media #{$small} {
                 img {
                     max-width: 300px;
@@ -1573,7 +1567,7 @@ p {
             flex-wrap: wrap;
             width: 100%;
             margin-bottom: 40px;
-            justify-content: space-between; 
+            justify-content: space-between;
             .tools-stat {
                 width: 160px;
                 font-size: .875rem;
@@ -1860,7 +1854,7 @@ p {
             background-repeat: no-repeat;
             background-position: center center;
             overflow: hidden;
-            
+
             @media #{$intermediate} {
                 height: 330px;
             }
@@ -1983,8 +1977,11 @@ p {
 
             .blm-image {
                 max-width: 380px;
-                font-size: .875rem;
                 text-align: center;
+
+                span {
+                    margin-top: 1rem;
+                }
 
                 @media #{$small} {
                     img {
@@ -2128,7 +2125,7 @@ p {
 
         &.abhi {
             background-image: url("/images/annual-report/initiatives/Abhi Video Splash.svg");
-  
+
             .button {
                 background-color: $ui-aqua;
             }
@@ -2640,7 +2637,7 @@ p {
             width: 300px;
         }
 
-        
+
     }
 
     .donate-button {
@@ -2692,8 +2689,8 @@ p {
         color: $type-white;
         font-size: .85rem;
 
-        &.selectedItem, &:hover {	
-            border-bottom: 1px solid $ui-white;	
+        &.selectedItem, &:hover {
+            border-bottom: 1px solid $ui-white;
         }
     }
 

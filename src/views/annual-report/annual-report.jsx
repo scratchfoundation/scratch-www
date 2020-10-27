@@ -1519,9 +1519,9 @@ class AnnualReport extends React.Component {
                                         </div>
                                         <div className="blm-image">
                                             <img src="/images/annual-report/initiatives/BLM Hero.svg" />
-                                            <b>
+                                            <span className="photo-credit">
                                                 <FormattedMessage id="annualReport.communityArtwork" />
-                                            </b>
+                                            </span>
                                         </div>
                                         <div className="blm-projects">
                                             <Grid
@@ -1684,11 +1684,9 @@ class AnnualReport extends React.Component {
                                     <div className="pizza-img">
                                         <img src="/images/annual-report/initiatives/schools/CPS Story/Pizza.svg" />
                                     </div>
-                                    <div className="photo-credit">
-                                        <p>
-                                            <FormattedMessage id="annualReport.familyNightsPhotoCredit" />
-                                        </p>
-                                    </div>
+                                    <span className="photo-credit">
+                                        <FormattedMessage id="annualReport.familyNightsPhotoCredit" />
+                                    </span>
                                 </div>
                                 <div className="inner schools">
                                     <h4>
@@ -1786,12 +1784,14 @@ class AnnualReport extends React.Component {
                                             <div className="conferences-hero-and-caption">
                                                 {/* eslint-disable-next-line max-len */}
                                                 <img src="/images/annual-report/initiatives/schools/Conferences Story/Scratch Conferences Hero.png" />
-                                                <FormattedMessage
-                                                    id="annualReport.conferencesHeroImageCaption"
-                                                    values={{
-                                                        photoCredit: 'Carmelo Presicce'
-                                                    }}
-                                                />
+                                                <span className="photo-credit">
+                                                    <FormattedMessage
+                                                        id="annualReport.conferencesHeroImageCaption"
+                                                        values={{
+                                                            photoCredit: 'Carmelo Presicce'
+                                                        }}
+                                                    />
+                                                </span>
                                             </div>
                                         </MediaQuery>
                                     </div>
@@ -1799,12 +1799,14 @@ class AnnualReport extends React.Component {
                                 <MediaQuery maxWidth={frameless.mobile - 1}>
                                     <div className="conferences-hero-and-caption">
                                         <div className="conferences-hero" />
-                                        <FormattedMessage
-                                            id="annualReport.conferencesHeroImageCaption"
-                                            values={{
-                                                photoCredit: 'Carmelo Presicce'
-                                            }}
-                                        />
+                                        <span className="photo-credit">
+                                            <FormattedMessage
+                                                id="annualReport.conferencesHeroImageCaption"
+                                                values={{
+                                                    photoCredit: 'Carmelo Presicce'
+                                                }}
+                                            />
+                                        </span>
                                     </div>
                                 </MediaQuery>
                                 <div className="inner schools-conferences bottom">
@@ -1813,12 +1815,14 @@ class AnnualReport extends React.Component {
                                             <div className="conference-image-and-caption left">
                                                 {/* eslint-disable-next-line max-len */}
                                                 <img src="/images/annual-report/initiatives/schools/Conferences Story/Latin America Conference.png" />
-                                                <FormattedMessage
-                                                    id="annualReport.conferencesLatinAmericaImageCaption"
-                                                    values={{
-                                                        photoCredit: 'Scratch al Sur'
-                                                    }}
-                                                />
+                                                <span className="photo-credit">
+                                                    <FormattedMessage
+                                                        id="annualReport.conferencesLatinAmericaImageCaption"
+                                                        values={{
+                                                            photoCredit: 'Scratch al Sur'
+                                                        }}
+                                                    />
+                                                </span>
                                             </div>
                                             <div className="conference-title-and-description">
                                                 <h4>
@@ -1887,24 +1891,28 @@ class AnnualReport extends React.Component {
                                             <div className="conference-image-and-caption">
                                                 {/* eslint-disable-next-line max-len */}
                                                 <img src="/images/annual-report/initiatives/schools/Conferences Story/Europe Conference.png" />
-                                                <FormattedMessage
-                                                    id="annualReport.conferencesEuropeImageCaption"
-                                                    values={{
-                                                        photoCredit: 'Raspberry Pi'
-                                                    }}
-                                                />
+                                                <span className="photo-credit">
+                                                    <FormattedMessage
+                                                        id="annualReport.conferencesEuropeImageCaption"
+                                                        values={{
+                                                            photoCredit: 'Raspberry Pi'
+                                                        }}
+                                                    />
+                                                </span>
                                             </div>
                                         </div>
                                         <div className="schools-conferences-region">
                                             <div className="conference-image-and-caption left">
                                                 {/* eslint-disable-next-line max-len */}
                                                 <img src="/images/annual-report/initiatives/schools/Conferences Story/Africa Conference.png" />
-                                                <FormattedMessage
-                                                    id="annualReport.conferencesAfricaImageCaption"
-                                                    values={{
-                                                        photoCredit: 'Carmelo Presicce'
-                                                    }}
-                                                />
+                                                    <span className="photo-credit">
+                                                    <FormattedMessage
+                                                        id="annualReport.conferencesAfricaImageCaption"
+                                                        values={{
+                                                            photoCredit: 'Carmelo Presicce'
+                                                        }}
+                                                    />
+                                                </span>
                                             </div>
                                             <div className="conference-title-and-description">
                                                 <h4>
