@@ -34,7 +34,7 @@ const SECTIONS = {
     initiatives: 'initiatives',
     financials: 'financials',
     supporters: 'supporters',
-    leadership: 'leadership',
+    team: 'team',
     donate: 'donate'
 };
 
@@ -46,7 +46,7 @@ const SECTION_NAMES = {
     initiatives: <FormattedMessage id="annualReport.subnavInitiatives" />,
     financials: <FormattedMessage id="annualReport.subnavFinancials" />,
     supporters: <FormattedMessage id="annualReport.subnavSupporters" />,
-    leadership: <FormattedMessage id="annualReport.subnavLeadership" />,
+    team: <FormattedMessage id="annualReport.subnavTeam" />,
     donate: <FormattedMessage id="annualReport.subnavDonate" />
 };
 
@@ -226,11 +226,11 @@ class AnnualReport extends React.Component {
                 </a>
                 <a
                     className={classNames(
-                        {selectedItem: this.state.currentlyVisible === SECTIONS.leadership}
+                        {selectedItem: this.state.currentlyVisible === SECTIONS.team}
                     )}
-                    onClick={this.handleSubnavItemClick(SECTIONS.leadership)}
+                    onClick={this.handleSubnavItemClick(SECTIONS.team)}
                 >
-                    <FormattedMessage id="annualReport.subnavLeadership" />
+                    <FormattedMessage id="annualReport.subnavTeam" />
                 </a>
                 <a
                     className={classNames(
@@ -2362,7 +2362,7 @@ class AnnualReport extends React.Component {
                     </div>
                     <div
                         className="leadership-section"
-                        ref={this.setRef(SECTIONS.leadership)}
+                        ref={this.setRef(SECTIONS.team)}
                     >
                         <div className="inner">
                             <h2>
@@ -2394,7 +2394,7 @@ class AnnualReport extends React.Component {
                                     </b>
                                     <h4>Margaret Honey</h4>
                                     <FormattedMessage id="annualReport.leadershipPresidentCEO" />
-                                    <br />Two Sigma
+                                    <br />New York Hall of Science
                                 </div>
                                 <div className="board-member">
                                     <b className="board-title">
