@@ -1751,7 +1751,7 @@ class AnnualReport extends React.Component {
                                                 rel="noreferrer noopener"
                                                 target="_blank"
                                             >
-                                                <FormattedMessage id="annualReport.rollingStonesArticle" />
+                                                <FormattedMessage id="annualReport.rollingStoneArticle" />
                                             </a>
                                         </div>
                                         {/* eslint-enable max-len */}
