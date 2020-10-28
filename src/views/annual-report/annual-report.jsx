@@ -2274,17 +2274,17 @@ class AnnualReport extends React.Component {
                                     <b className="board-title">
                                         <FormattedMessage id="annualReport.leadershipBoardMember" />
                                     </b>
-                                    <h4>Margaret Honey</h4>
-                                    <FormattedMessage id="annualReport.leadershipPresidentCEO" />
-                                    <br />New York Hall of Science
+                                    <h4>Ursula Burns</h4>
+                                    <FormattedMessage id="annualReport.leadershipFormerChairCEO" />
+                                    <br />Xerox
                                 </div>
                                 <div className="board-member">
                                     <b className="board-title">
                                         <FormattedMessage id="annualReport.leadershipBoardMember" />
                                     </b>
-                                    <h4>Christina Miller</h4>
-                                    <FormattedMessage id="annualReport.leadershipFormerPresident" />
-                                    <br />Cartoon Network
+                                    <h4>Margaret Honey</h4>
+                                    <FormattedMessage id="annualReport.leadershipPresidentCEO" />
+                                    <br />New York Hall of Science
                                 </div>
                                 <div className="board-member">
                                     <b className="board-title">
@@ -2298,9 +2298,9 @@ class AnnualReport extends React.Component {
                                     <b className="board-title">
                                         <FormattedMessage id="annualReport.leadershipBoardMember" />
                                     </b>
-                                    <h4>Ursula Burns</h4>
-                                    <FormattedMessage id="annualReport.leadershipFormerChairCEO" />
-                                    <br />Xerox
+                                    <h4>Christina Miller</h4>
+                                    <FormattedMessage id="annualReport.leadershipFormerPresident" />
+                                    <br />Cartoon Network
                                 </div>
                             </FlexRow>
                             <h4>
