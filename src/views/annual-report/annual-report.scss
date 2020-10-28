@@ -2154,87 +2154,23 @@ p {
     width: 100%;
     color: $ui-white;
 
-    h2, h3, p {
+    h2, p {
         color: $ui-white;
     }
 
     h2 {
         margin-bottom: 20px;
+        text-align: center;
     }
 
     h2, h3, .financials-future {
-        text-align: left;
-    }
-
-    hr {
-        border: 0;
-        height: 0;
-        border-top: .5px solid $type-white;
-        opacity: .25;
+        text-align: center;
     }
 
     .financials-future {
         font-size: 1.25rem;
         line-height: 2.5rem;
         margin-bottom: 54px;
-    }
-
-    .financials-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .financials-table {
-        display: flex;
-        flex-direction: column;
-
-        margin: 64px 0;
-    }
-
-    .circle-and-words {
-        display: flex;
-        align-items: flex-start;
-        padding: 8px 0px;;
-
-        img {
-            margin-right: 16px;
-        }
-
-        p {
-            text-align: left;
-            font-weight: bold;
-            line-height: 1.5rem;
-            margin: 0;
-        }
-
-        .percentage {
-            font-weight: normal;
-        }
-
-        .key {
-            width: 264px;
-            margin-right: 1rem;
-        }
-
-        .total {
-            margin-left: 36px;
-            margin-top: 52px;
-
-            p {
-                font-size: 1.25rem;
-            }
-        }
-
-        .key-and-money {
-            display: flex;
-        }
-
-        @media #{$intermediate} {
-            .key {
-                margin-right: 100px;
-            }
-        }
     }
 
     .financials-button-wrapper {
@@ -2267,20 +2203,6 @@ p {
             max-width: 620px;
             padding: 72px 0;
         }
-
-        .financials-content {
-            flex-direction: column-reverse;
-            text-align: center;
-        }
-
-        .financials-table {
-            margin: 0 0 60px 0;
-            align-self: flex-start;
-        }
-
-        .graph {
-            margin: 28px;
-        }
     }
 
     @media #{$medium-and-smaller} {
@@ -2304,16 +2226,8 @@ p {
             text-align: center;
         }
 
-        .key-and-money {
-            flex-direction: column;
-
-            .key {
-                margin-bottom: 4px;
-            }
-        }
-
         .financials-button {
-            font-size: 18px;
+            font-size: 1.125rem;
         }
     }
 }
