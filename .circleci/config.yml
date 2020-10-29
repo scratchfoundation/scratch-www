@@ -14,10 +14,10 @@ jobs:
     <<: *defaults
     steps:
       - run: |
-        echo "Setup step is happening here"
-        pip install -r requirements.txt
-        npm --production=false ci
-        npm --production=false update
+          echo "Setup step is happening here"
+          pip install -r requirements.txt
+          npm --production=false ci
+          npm --production=false update
 
 workflows:
   build-test-deploy:
