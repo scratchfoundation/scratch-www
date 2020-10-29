@@ -13,7 +13,7 @@ jobs:
   setup:
     <<: *defaults
     steps:
-      run: echo "Setup step is happening here"
+      - run: echo "Setup step is happening here"
 
 
 workflows:
