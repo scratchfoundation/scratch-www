@@ -1,10 +1,25 @@
 version: 2.1
-orbs:
-  node: circleci/node@3.0.0
+
+aliases:
+  - &defaults
+    docker:
+      - image: circleci/node:12-browsers
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    # working_directory: ~/repo
+
+jobs:
+  setup:
+    <<: *defaults
+    steps:
+      run: echo "Setup step is happening here"
+
+
 workflows:
-  node-tests:
+  build-test-deploy:
     jobs:
-      - node/test:
+      - setup:
           filters:
             branches:
               only:
