@@ -17,7 +17,6 @@ jobs:
       - run: |
           echo "Setup step is happening here"
           npm --production=false ci
-          npm --production=false update
 
 workflows:
   build-test-deploy:
