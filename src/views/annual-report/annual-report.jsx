@@ -1495,7 +1495,7 @@ class AnnualReport extends React.Component {
                                                     values={{
                                                         BLMStudioLink: (
                                                             <a
-                                                                href="/studio/26964367"
+                                                                href="/studios/26964367"
                                                                 target="_blank"
                                                             >
                                                                 Black Lives Matter <FormattedMessage
