@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Caret Icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="R1.6_Columns-4" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="R1.6---4-Column" transform="translate(-306.000000, -62.000000)" fill="#FFFFFF">
+            <g id="V3---SubNav" transform="translate(0.000000, 52.000000)">
+                <g id="Closed">
+                    <g id="Caret-Icon" transform="translate(306.000000, 10.000000)">
+                        <path d="M12,0 C18.627417,0 24,5.372583 24,12 C24,18.627417 18.627417,24 12,24 C5.372583,24 0,18.627417 0,12 C0,5.372583 5.372583,0 12,0 Z M15.6853864,10.3100473 C15.2671176,9.89665089 8.73288244,9.89665089 8.31461357,10.3100473 C7.89512881,10.724642 7.89512881,11.3932658 8.31461357,11.8066623 L8.31461357,11.8066623 L11.2412797,14.6896531 C11.4516301,14.8969505 11.7252071,15 12,15 C12.2760088,15 12.5495858,14.8969505 12.7599362,14.6896531 L12.7599362,14.6896531 L15.6853864,11.8066623 C16.1048712,11.3932658 16.1048712,10.7234438 15.6853864,10.3100473 Z" id="Combined-Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
