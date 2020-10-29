@@ -15,7 +15,6 @@ jobs:
     steps:
       - run: |
           echo "Setup step is happening here"
-          brew install pyenv
           pip install -r requirements.txt
           npm --production=false ci
           npm --production=false update
