@@ -7,7 +7,7 @@ aliases:
         auth:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
-    # working_directory: ~/repo
+    working_directory: ~/repo
 
 jobs:
   setup:
