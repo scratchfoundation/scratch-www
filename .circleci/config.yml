@@ -14,7 +14,7 @@ aliases:
         - node_modules
       keys:
         v1-npm-{{ checksum "package-lock.json" }}
-  - restore_npm_cache
+  - &restore_npm_cache
     restore_cache:
       keys:
         - v1-npm-{{ checksum "package-lock.json" }}
