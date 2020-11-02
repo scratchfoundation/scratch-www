@@ -30,8 +30,8 @@ jobs:
             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             python get-pip.py
             pip install -r requirements.txt
-      - run: "install npm packages"
-          name:
+      - run:
+          name:"install npm packages"
           command: |
             npm --production=false ci
       - run:
