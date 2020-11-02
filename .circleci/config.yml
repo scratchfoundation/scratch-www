@@ -24,12 +24,20 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: |
-          echo "Setup step is happening here"
-          npm --production=false ci
-          curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-          python get-pip.py
-          pip install -r requirements.txt
+      - run:
+          name: "Set up Pip and install requirements"
+          command: |
+            curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+            python get-pip.py
+            pip install -r requirements.txt
+      - run: "install npm packages"
+          name:
+          command: |
+            npm --production=false ci
+      - run:
+          name: deploy
+          command: |
+            echo $CIRCLE_BRANCH
   integration:
     <<: *defaults
     steps:
