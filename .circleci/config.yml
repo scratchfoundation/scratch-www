@@ -113,7 +113,7 @@ jobs:
             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             python get-pip.py
             pip install -r requirements.txt
-            npm run deploy
+            FASTLY_API_KEY="${FASTLY_API_KEY_STAGING}" FASTLY_SERVICE_ID="${FASTLY_SERVICE_ID_STAGING}" npm run deploy
   deploy-production:
     <<: *defaults
     environment:
