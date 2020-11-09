@@ -100,23 +100,23 @@ jobs:
       - *save_npm_cache
       - *save_git_cache
       - *save_build_cache
-    build-production:
-      <<: *defaults
-      environment:
-        <<: *environment
-        # <<: *env_production
-      steps:
-        - *restore_git_cache
-        - checkout
-        - *restore_npm_cache
-        - run:
-            name: "Run npm test to build"
-            command: |
-              npm --production=false ci
-              npm run test
-        - *save_npm_cache
-        - *save_git_cache
-        - *save_build_cache
+  build-production:
+    <<: *defaults
+    environment:
+      <<: *environment
+      # <<: *env_production
+    steps:
+      - *restore_git_cache
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: "Run npm test to build"
+          command: |
+            npm --production=false ci
+            npm run test
+      - *save_npm_cache
+      - *save_git_cache
+      - *save_build_cache
   deploy-staging:
     <<: *defaults
     environment:
