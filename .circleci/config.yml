@@ -15,7 +15,7 @@ aliases:
     S3_LOCAL_DIR: build
     SENTRY_ORG: scratch-foundation
     SKIP_CLEANUP: true
-    WWW_VERSION: ${CIRCLE_SHA1:0:5}
+    # WWW_VERSION: ${CIRCLE_SHA1:0:5}
   - &env_production
     API_HOST: https://api.scratch.mit.edu
     ASSET_HOST: https://assets.scratch.mit.edu
@@ -96,7 +96,7 @@ jobs:
           name: "Run npm test to build"
           command: |
             npm --production=false ci
-            npm run test
+            WWW_VERSION=${CIRCLE_SHA1:0:5} npm run test
       - *save_npm_cache
       - *save_git_cache
       - *save_build_cache
@@ -113,7 +113,7 @@ jobs:
           name: "Run npm test to build"
           command: |
             npm --production=false ci
-            npm run test
+            WWW_VERSION=${CIRCLE_SHA1:0:5} npm run test npm run test
       - *save_npm_cache
       - *save_git_cache
       - *save_build_cache
