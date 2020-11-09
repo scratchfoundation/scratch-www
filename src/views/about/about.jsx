@@ -149,6 +149,9 @@ const About = () => (
                         <li>
                             <a href="/credits"><FormattedMessage id="about.learnMoreCredits" /></a>
                         </li>
+                        <li>
+                            <a href="/annual-report"><FormattedMessage id="about.learnMoreAnnualReport" /></a>
+                        </li>
                     </ul>
                 </li>
 
