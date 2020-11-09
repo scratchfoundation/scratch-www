@@ -73,7 +73,7 @@ aliases:
         - v1-npm-{{ checksum "package-lock.json" }}
         - v1-npm-
   - &save_build_cache
-    save cache:
+    save_cache:
       paths:
         - ./build
         - ./intl
