@@ -8,6 +8,59 @@ aliases:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
     working_directory: ~/repo
+  - &environment
+    CXX: g++-4.8
+    FASTLY_ACTIVATE_CHANGES: true
+    NODE_ENV: production
+    PATH: $PATH:$PWD/test/integration/node_modules/chromedriver/bin
+    S3_LOCAL_DIR: build
+    SENTRY_ORG: scratch-foundation
+    SKIP_CLEANUP: true
+    WWW_VERSION: ${CIRCLE_SHA1:0:5}
+  - &env_production
+    API_HOST: https://api.scratch.mit.edu
+    ASSET_HOST: https://assets.scratch.mit.edu
+    BACKPACK_HOST: https://backpack.scratch.mit.edu
+    CLOUDDATA_HOST: clouddata.scratch.mit.edu
+    FASTLY_API_KEY: ${FASTLY_API_KEY_PRODUCTION}
+    FASTLY_SERVICE_ID: ${FASTLY_SERVICE_ID_PRODUCTION}
+    GA_TRACKER: UA-30688952-1
+    PROJECT_HOST: https://projects.scratch.mit.edu
+    RECAPTCHA_SITE_KEY: 6LeRbUwUAAAAAFYhKgk3G9OKWqE_OJ7Z-7VTUCbl
+    ROOT_URL: https://scratch.mit.edu
+    S3_BUCKET_NAME: scratch-www-production
+    SCRATCH_ENV: production
+    SENTRY_DSN: https://ebc2f8a6bc7b44ca8fd902fd4f16b3d7@sentry.io/1357122
+    SENTRY_PROJECT: scratch-30-production
+    STATIC_HOST: https://cdn2.scratch.mit.edu
+    TEST_PROJECT_ID: 414835599
+  - &env_staging
+    API_HOST: https://api.scratch.ly
+    ASSET_HOST: https://assets.scratch.ly
+    BACKPACK_HOST: https://backpack.scratch.ly
+    CLOUDDATA_HOST: varserver2.scratch.ly
+    FASTLY_API_KEY: ${FASTLY_API_KEY_STAGING}
+    FASTLY_SERVICE_ID: ${FASTLY_SERVICE_ID_STAGING}
+    GA_TRACKER: UA-30688952-7
+    PROJECT_HOST: https://projects.scratch.ly
+    RECAPTCHA_SITE_KEY: 6LfukK4UAAAAAFR44yoZMhv8fj6xh-PMiIxwryG3
+    ROOT_URL: https://scratch.ly
+    S3_BUCKET_NAME: scratch-www-staging
+    SCRATCH_ENV: staging
+    SENTRY_DSN: https://c01014988b0a4f44bbefdf235623c456@sentry.io/1357982
+    SENTRY_PROJECT: scratch-30-staging
+    STATIC_HOST: https://cdn.scratch.ly
+    TEST_PROJECT_ID: 1300006196
+  - &save_git_cache
+    save_cache:
+      paths:
+        - .git
+      key: v1-git-{{ .Revision }}
+  - &restore_git_cache
+    restore_cache:
+      keys:
+        - v1-git-{{ .Revision }}
+        - v1-git-
   - &save_npm_cache
     save_cache:
       paths:
@@ -19,35 +72,121 @@ aliases:
       keys:
         - v1-npm-{{ checksum "package-lock.json" }}
         - v1-npm-
+  - &save_build_cache
+    save cache:
+      paths:
+        - ./build
+        - ./intl
+      keys:
+        v1-build-{{ .Revision }}
+  - &restore_build_cache
+    restore_cache:
+      keys:
+        - v1-build-{{ .Revision }}
+        - v1-build-
+
 jobs:
-  setup:
+  build:
     <<: *defaults
     steps:
+      - *restore_git_cache
       - checkout
+      - *restore_npm_cache
       - run:
-          name: "Set up Pip and install requirements"
+          name: "Run npm test to build"
+          command: |
+            npm --production=false ci
+            npm run test
+      - *save_npm_cache
+      - *save_git_cache
+      - *save_build_cache
+  deploy-staging:
+    <<: *defaults
+    environment:
+      <<: *environment
+      <<: *env-staging
+    steps:
+      - *restore_git_cache
+      - checkout
+      - *restore_npm_cache
+      - *restore_build_cache
+      - run:
+          name: "deploy to staging"
           command: |
             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             python get-pip.py
             pip install -r requirements.txt
-      - run:
-          name: "install npm packages"
-          command: |
-            npm --production=false ci
-      - run:
-          name: deploy
-          command: |
-            echo $CIRCLE_BRANCH
-  integration:
+            npm run deploy
+  deploy-production:
     <<: *defaults
+    environment:
+      <<: *environment
+      # <<: *env_production
     steps:
+      - *restore_git_cache
       - checkout
+      - *restore_npm_cache
+      - *restore_build_cache
+      - run:
+          name: "deploy to production"
+          command: |
+            echo "don't deploy to production until we know it works"
+            curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+            python get-pip.py
+            pip install -r requirements.txt
+            npm run deploy
+  integration-staging:
+    <<: *defaults
+    environment:
+      <<: *environment
+      <<: *env-staging
+    steps:
+      - *restore_git_cache
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: "integration tests"
+          command: |
+            npm run test:integration:remote
+  integration-production:
+    <<: *defaults
+    environment:
+      <<: *environment
+      # <<: *env_production
+    steps:
+      - *restore_git_cache
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: "integration tests"
+          command: |
+            npm run test:integration:remote
 
 workflows:
   build-test-deploy:
     jobs:
-      - setup:
+      - build:
           filters:
             branches:
               only:
                 - circleci-project-setup # remove this before releasing
+      - deploy-staging:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - circleci-project-setup # remove this before releasing
+                - develop
+                - hotfix/* # make sure this syntax works.  may need a regex
+                - release/*
+      - integration-staging:
+          requires:
+            - deploy-staging
+          filters:
+            branches:
+              only:
+                - circleci-project-setup # remove this before releasing
+                - develop
+                - hotfix/*
+                - release/*
