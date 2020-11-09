@@ -12,7 +12,6 @@ aliases:
     CXX: g++-4.8
     FASTLY_ACTIVATE_CHANGES: true
     NODE_ENV: production
-    PATH: $PATH:$PWD/test/integration/node_modules/chromedriver/bin
     S3_LOCAL_DIR: build
     SENTRY_ORG: scratch-foundation
     SKIP_CLEANUP: true
