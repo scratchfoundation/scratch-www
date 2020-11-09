@@ -22,6 +22,7 @@ const PeopleGrid = require('../../components/people-grid/people-grid.jsx');
 const People = require('./people.json');
 const BLMProjects = require('./blm-projects.json');
 const VideoPreview = require('../../components/video-preview/video-preview.jsx');
+const Supporters = require('./supporters.json');
 
 require('./annual-report.scss');
 
@@ -55,6 +56,30 @@ const countryKeys = Object.keys(CountryUsage);
 const countryNames = countryKeys.map(key => CountryUsage[key].display);
 const countryData = countryKeys.map(key => CountryUsage[key].count);
 const colorIndex = countryKeys.map(key => CountryUsage[key]['log count']);
+
+// Create the div given a list of supporter names,
+// this will contain two columns of names either of equal size
+// or with the left column containing 1 more item than the right
+const createSupportersLists = supportersList => {
+    const splitIndex = Math.ceil(supportersList.length / 2);
+    const firstHalf = supportersList.slice(0, splitIndex);
+    const secondHalf = supportersList.slice(splitIndex);
+    
+    return (
+        <div className="supporters-list">
+            <ul className="supporters-list-side">
+                {
+                    firstHalf.map((supporter, index) => (<li key={index}>{supporter}</li>))
+                }
+            </ul>
+            <ul className="supporters-list-side">
+                {
+                    secondHalf.map((supporter, index) => (<li key={index}>{supporter}</li>))
+                }
+            </ul>
+        </div>
+    );
+};
 
 class AnnualReport extends React.Component {
     constructor (props) {
@@ -2021,198 +2046,42 @@ class AnnualReport extends React.Component {
                                         <FormattedHTMLMessage id="annualReport.supportersFoundingTitle" />
                                     </h5>
                                     <hr />
-                                    <div className="supporters-list">
-                                        <ul className="supporters-list-side">
-                                            <li>Massachusetts Institute of Technology</li>
-                                            <li>National Science Foundation</li>
-                                        </ul>
-                                        <ul className="supporters-list-side">
-                                            <li>Siegel Family Endowment</li>
-                                        </ul>
-                                    </div>
+                                    {createSupportersLists(Supporters.founding)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
                                         <FormattedHTMLMessage id="annualReport.supportersCreativityTitle" />
                                     </h5>
                                     <hr />
-                                    <div className="supporters-list">
-                                        <ul className="supporters-list-side">
-                                            <li>Google</li>
-                                            <li>LEGO Foundation</li>
-                                            <li>Little Bluebridge Foundation</li>
-                                        </ul>
-                                        <ul className="supporters-list-side">
-                                            <li>Smilegate Foundation</li>
-                                            <li>TAL Education</li>
-                                            <li>WarnerMedia</li>
-                                        </ul>
-                                    </div>
+                                    {createSupportersLists(Supporters.creativity)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
                                         <FormattedHTMLMessage id="annualReport.supportersCollaborationTitle" />
                                     </h5>
                                     <hr />
-                                    <div className="supporters-list">
-                                        <ul className="supporters-list-side">
-                                            <li>Mark Dalton</li>
-                                            <li>Cindy and Evan Goldberg</li>
-                                            <li>Paul T. Jones</li>
-                                            <li>BrainPOP</li>
-                                        </ul>
-                                        <ul className="supporters-list-side">
-                                            <li>Kahn-Rowe Family Fund</li>
-                                            <li>LEGO Education</li>
-                                            <li>Morgan Stanley</li>
-                                            <li>Two Sigma</li>
-                                        </ul>
-                                    </div>
+                                    {createSupportersLists(Supporters.collaboration)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
                                         <FormattedHTMLMessage id="annualReport.supportersImaginationTitle" />
                                     </h5>
                                     <hr />
-                                    <div className="supporters-list">
-                                        <ul className="supporters-list-side">
-                                            <li>Alex Ginsburg</li>
-                                            <li>James Tomilson Hill</li>
-                                            <li>John Overdeck</li>
-                                            <li>Mitchel Resnick</li>
-                                            <li>David Shaw</li>
-                                            <li>David Siegel</li>
-                                            <li>Tao Ye</li>
-                                            <li>Christos Zoulas</li>
-                                            <li>AT&T Aspire</li>
-                                            <li>Big Hen Group</li>
-                                            <li>Bloomberg Philanthropies</li>
-                                            <li>Citibank</li>
-                                            <li>Credit Suisse</li>
-                                            <li>EPAM</li>
-                                        </ul>
-                                        <ul className="supporters-list-side">
-                                            <li>Facebook</li>
-                                            <li>Goldman Sachs</li>
-                                            <li>Huron Foundation</li>
-                                            <li>Intel One-to-One Institute</li>
-                                            <li>Piantino Family Foundation</li>
-                                            <li>Playmates Toys</li>
-                                            <li>Skadden Arps</li>
-                                            <li>Societe Generale</li>
-                                            <li>Solomon Wilson Family Foundation</li>
-                                            <li>Tudor Investments</li>
-                                            <li>UBS</li>
-                                            <li>Vista Equity Partners</li>
-                                            <li>Weill Family Foundation</li>
-                                            <li>WestRiver Group</li>
-                                        </ul>
-                                    </div>
+                                    {createSupportersLists(Supporters.imagination)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
                                         <FormattedHTMLMessage id="annualReport.supportersInspirationTitle" />
                                     </h5>
                                     <hr />
-                                    <div className="supporters-list">
-                                        <ul className="supporters-list-side">
-                                            <li>Erik Anderson</li>
-                                            <li>Jon Claerbout</li>
-                                            <li>Jonathan Dinu</li>
-                                            <li>John Doerr</li>
-                                            <li>Dan Huttenlocher</li>
-                                            <li>Justin Nadler</li>
-                                            <li>Ali-Milan Nekmouche</li>
-                                            <li>Edward Schmidt</li>
-                                            <li>Hope Smith</li>
-                                            <li>Alfred Spector</li>
-                                            <li>Ben Stein</li>
-                                            <li>Donald Sussman</li>
-                                            <li>Glen Whitney</li>
-                                            <li>AIG</li>
-                                            <li>Amazon</li>
-                                        </ul>
-                                        <ul className="supporters-list-side">
-                                            <li>Bank of America</li>
-                                            <li>Certified Moving & Storage</li>
-                                            <li>Dalio Foundation, Inc.</li>
-                                            <li>Dalton Family Foundation</li>
-                                            <li>Deutsche Bank</li>
-                                            <li>Ernst & Young</li>
-                                            <li>Hearst Corporation</li>
-                                            <li>HedgeServ</li>
-                                            <li>Humble Bundle</li>
-                                            <li>Intel Corporation</li>
-                                            <li>Jenner & Block LLP</li>
-                                            <li>La Vida Feliz Foundation</li>
-                                            <li>Silicon Valley Bank</li>
-                                            <li>Spin Master</li>
-                                            <li>Union Square Ventures</li>
-                                        </ul>
-                                    </div>
+                                    {createSupportersLists(Supporters.inspiration)}
                                 </div>
                                 <div className="supporters-level">
                                     <h5>
                                         <FormattedHTMLMessage id="annualReport.supportersExplorationTitle" />
                                     </h5>
                                     <hr />
-                                    <div className="supporters-list">
-                                        <ul className="supporters-list-side">
-                                            <li>Michael Ball</li>
-                                            <li>Ken Baron</li>
-                                            <li>Craig Barrett</li>
-                                            <li>Adam Beder</li>
-                                            <li>Mark Bezos</li>
-                                            <li>Eric Chen</li>
-                                            <li>Michael Cirillo</li>
-                                            <li>Eric Dahm</li>
-                                            <li>Peter Desmond</li>
-                                            <li>Jeremy Deutsch</li>
-                                            <li>John Doyle</li>
-                                            <li>Kenneth Ehlert</li>
-                                            <li>Tim Ettenheim </li>
-                                            <li>Alan Eustace</li>
-                                            <li>Steve Evans</li>
-                                            <li>Catherine Greenspon</li>
-                                            <li>Jonathan W. Hitchon</li>
-                                            <li>Margaret Honey</li>
-                                            <li>Andrew Janian</li>
-                                            <li>David Joerg</li>
-                                            <li>Mark Loughridge</li>
-                                            <li>Carter Lyons</li>
-                                            <li>Adam Messinger</li>
-                                            <li>Robert and Bethany Millard </li>
-                                            <li>Stephen M. Ross</li>
-                                            <li>Wray Thorn</li>
-                                        </ul>
-                                        <ul className="supporters-list-side">
-                                            <li>Jessica Traynor</li>
-                                            <li>Adobe</li>
-                                            <li>Anchor Point Foundation</li>
-                                            <li>Barclays</li>
-                                            <li>Blackstone Charitable Foundation</li>
-                                            <li>Blackstone Group</li>
-                                            <li>Cisco/Meraki</li>
-                                            <li>Citco</li>
-                                            <li>Deloitte</li>
-                                            <li>Eclipse Contracting</li>
-                                            <li>Funny or Die</li>
-                                            <li>Hasbro</li>
-                                            <li>J.P. Morgan</li>
-                                            <li>Mattel</li>
-                                            <li>McGraw Hill Education</li>
-                                            <li>NHK</li>
-                                            <li>Pearson</li>
-                                            <li>Pershing Square Foundation</li>
-                                            <li>SAP</li>
-                                            <li>Scholastic</li>
-                                            <li>The Ramsey Family Fund</li>
-                                            <li>Thelonious Monk Institute of Jazz</li>
-                                            <li>Via Technologies</li>
-                                            <li>WilmerHale</li>
-                                            <li>Zoshinkai Holdings</li>
-                                        </ul>
-                                    </div>
+                                    {createSupportersLists(Supporters.exploration)}
                                 </div>
                             </div>
                             <div className="supporters-subsection supporters-lists">
@@ -2220,24 +2089,7 @@ class AnnualReport extends React.Component {
                                     <h3>
                                         <FormattedHTMLMessage id="annualReport.supportersInKindTitle" />
                                     </h3>
-                                    <div className="supporters-list">
-                                        <ul className="supporters-list-side">
-                                            <li>Fastly</li>
-                                            <li>Amazon Web Services</li>
-                                            <li>Wilson Sonsini Goodrich & Rosati</li>
-                                            <li>New Relic</li>
-                                            <li>Adobe</li>
-                                            <li>DK</li>
-                                        </ul>
-                                        <ul className="supporters-list-side">
-                                            <li>No Starch Press</li>
-                                            <li>Github</li>
-                                            <li>Travis CI</li>
-                                            <li>Sauce Labs</li>
-                                            <li>Pingdom</li>
-                                            <li>PagerDuty</li>
-                                        </ul>
-                                    </div>
+                                    {createSupportersLists(Supporters.inKind)}
                                 </div>
                             </div>
                         </div>
