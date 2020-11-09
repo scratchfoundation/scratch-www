@@ -65,8 +65,7 @@ aliases:
     save_cache:
       paths:
         - node_modules
-      keys:
-        v1-npm-{{ checksum "package-lock.json" }}
+      key: v1-npm-{{ checksum "package-lock.json" }}
   - &restore_npm_cache
     restore_cache:
       keys:
@@ -77,8 +76,7 @@ aliases:
       paths:
         - ./build
         - ./intl
-      keys:
-        v1-build-{{ .Revision }}
+      key: v1-build-{{ .Revision }}
   - &restore_build_cache
     restore_cache:
       keys:
