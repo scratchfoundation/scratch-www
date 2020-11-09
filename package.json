@@ -101,7 +101,7 @@
     "lodash.clone": "3.0.3",
     "lodash.defaultsdeep": "3.10.0",
     "lodash.isarray": "3.0.4",
-    "lodash.merge": "3.3.2",
+    "lodash.merge": "4.6.2",
     "lodash.mergewith": "4.6.1",
     "lodash.omit": "3.1.0",
     "lodash.range": "3.2.0",
