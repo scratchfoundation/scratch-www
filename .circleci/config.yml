@@ -83,8 +83,11 @@ aliases:
         - v1-build-
 
 jobs:
-  build:
+  build-staging:
     <<: *defaults
+    environment:
+      <<: *environment
+      <<: *env_staging
     steps:
       - *restore_git_cache
       - checkout
@@ -97,6 +100,23 @@ jobs:
       - *save_npm_cache
       - *save_git_cache
       - *save_build_cache
+    build-production:
+      <<: *defaults
+      environment:
+        <<: *environment
+        # <<: *env_production
+      steps:
+        - *restore_git_cache
+        - checkout
+        - *restore_npm_cache
+        - run:
+            name: "Run npm test to build"
+            command: |
+              npm --production=false ci
+              npm run test
+        - *save_npm_cache
+        - *save_git_cache
+        - *save_build_cache
   deploy-staging:
     <<: *defaults
     environment:
@@ -162,21 +182,24 @@ jobs:
 workflows:
   build-test-deploy:
     jobs:
-      - build:
-          filters:
-            branches:
-              only:
-                - circleci-project-setup # remove this before releasing
-      - deploy-staging:
-          requires:
-            - build
+      - build-staging:
           filters:
             branches:
               only:
                 - circleci-project-setup # remove this before releasing
                 - develop
-                - hotfix/* # make sure this syntax works.  may need a regex
-                - release/*
+                - /^hotfix\/.*/
+                - /^release\/.*/
+      - deploy-staging:
+          requires:
+            - build-staging
+          filters:
+            branches:
+              only:
+                - circleci-project-setup # remove this before releasing
+                - develop
+                - /^hotfix\/.*/ # make sure this syntax works.  may need a regex
+                - /^release\/.*/
       - integration-staging:
           requires:
             - deploy-staging
@@ -185,5 +208,5 @@ workflows:
               only:
                 - circleci-project-setup # remove this before releasing
                 - develop
-                - hotfix/*
-                - release/*
+                - /^hotfix\/.*/
+                - /^release\/.*/
