@@ -33,7 +33,21 @@ aliases:
     SENTRY_PROJECT: scratch-30-production
     STATIC_HOST: https://cdn2.scratch.mit.edu
     TEST_PROJECT_ID: "414835599"
-  # - env_staging: &env_staging
+  - env_staging: &env_staging
+    - echo export API_HOST=https://api.scratch.ly
+    - echo export ASSET_HOST=https://assets.scratch.ly
+    - echo export BACKPACK_HOST=https://backpack.scratch.ly
+    - echo export CLOUDDATA_HOST=varserver2.scratch.ly
+    - echo export GA_TRACKER=UA-30688952-7
+    - echo export PROJECT_HOST=https://projects.scratch.ly
+    - echo export RECAPTCHA_SITE_KEY=6LfukK4UAAAAAFR44yoZMhv8fj6xh-PMiIxwryG3
+    - echo export ROOT_URL=https://scratch.ly
+    - echo export S3_BUCKET_NAME=scratch-www-staging
+    - echo export SCRATCH_ENV=staging
+    - echo export SENTRY_DSN=https://c01014988b0a4f44bbefdf235623c456@sentry.io/1357982
+    - echo export SENTRY_PROJECT=scratch-30-staging
+    - echo export STATIC_HOST=https://cdn.scratch.ly
+    - echo export TEST_PROJECT_ID="1300006196"
   - &save_git_cache
     save_cache:
       paths:
@@ -79,20 +93,7 @@ jobs:
       - run:
           name: "Run npm test to build"
           command: |
-            echo export API_HOST=https://api.scratch.ly
-            echo export ASSET_HOST=https://assets.scratch.ly
-            echo export BACKPACK_HOST=https://backpack.scratch.ly
-            echo export CLOUDDATA_HOST=varserver2.scratch.ly
-            echo export GA_TRACKER=UA-30688952-7
-            echo export PROJECT_HOST=https://projects.scratch.ly
-            echo export RECAPTCHA_SITE_KEY=6LfukK4UAAAAAFR44yoZMhv8fj6xh-PMiIxwryG3
-            echo export ROOT_URL=https://scratch.ly
-            echo export S3_BUCKET_NAME=scratch-www-staging
-            echo export SCRATCH_ENV=staging
-            echo export SENTRY_DSN=https://c01014988b0a4f44bbefdf235623c456@sentry.io/1357982
-            echo export SENTRY_PROJECT=scratch-30-staging
-            echo export STATIC_HOST=https://cdn.scratch.ly
-            echo export TEST_PROJECT_ID="1300006196"
+            *env_staging
             npm --production=false ci
             WWW_VERSION=${CIRCLE_SHA1:0:5} npm run test
       - *save_npm_cache
@@ -128,20 +129,7 @@ jobs:
       - run:
           name: "deploy to staging"
           command: |
-            echo export API_HOST=https://api.scratch.ly
-            echo export ASSET_HOST=https://assets.scratch.ly
-            echo export BACKPACK_HOST=https://backpack.scratch.ly
-            echo export CLOUDDATA_HOST=varserver2.scratch.ly
-            echo export GA_TRACKER=UA-30688952-7
-            echo export PROJECT_HOST=https://projects.scratch.ly
-            echo export RECAPTCHA_SITE_KEY=6LfukK4UAAAAAFR44yoZMhv8fj6xh-PMiIxwryG3
-            echo export ROOT_URL=https://scratch.ly
-            echo export S3_BUCKET_NAME=scratch-www-staging
-            echo export SCRATCH_ENV=staging
-            echo export SENTRY_DSN=https://c01014988b0a4f44bbefdf235623c456@sentry.io/1357982
-            echo export SENTRY_PROJECT=scratch-30-staging
-            echo export STATIC_HOST=https://cdn.scratch.ly
-            echo export TEST_PROJECT_ID="1300006196"
+            *env_staging
             curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             python get-pip.py
             pip install -r requirements.txt
@@ -176,8 +164,7 @@ jobs:
       - run:
           name: "integration tests"
           command: |
-            echo export ROOT_URL=https://scratch.ly
-            echo export TEST_PROJECT_ID="1300006196"
+            *env_staging
             npm run test:integration:remote
   integration-production:
     <<: *defaults
