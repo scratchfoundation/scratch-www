@@ -20,6 +20,7 @@
         padding: 0 32px;
     }
     .left-column {
+        align-items: flex-start;
         padding-right: 32px;
     }
     .mute-header {
@@ -31,7 +32,7 @@
         padding-top: 32px;
     }
     .bottom-img {
-        width: 100%;
+        width: 380px;
     }
     .mute-side-image {
         margin-left: -49px;
