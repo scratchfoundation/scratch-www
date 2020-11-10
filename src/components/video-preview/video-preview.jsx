@@ -3,6 +3,7 @@ const PropTypes = require('prop-types');
 const React = require('react');
 
 const Video = require('../video/video.jsx');
+const Spinner = require('../spinner/spinner.jsx');
 
 require('./video-preview.scss');
 
@@ -10,16 +11,25 @@ class VideoPreview extends React.Component {
     constructor (props) {
         super(props);
         bindAll(this, [
-            'handleShowVideo'
+            'handleShowVideo',
+            'handleVideoLoaded'
         ]);
 
         this.state = {
-            videoOpen: false
+            videoOpen: false,
+            spinnerVisible: false
         };
     }
 
     handleShowVideo () {
-        this.setState({videoOpen: true});
+        this.setState({
+            videoOpen: true,
+            spinnerVisible: true
+        });
+    }
+
+    handleVideoLoaded () {
+        this.setState({spinnerVisible: false});
     }
 
     render () {
@@ -27,12 +37,16 @@ class VideoPreview extends React.Component {
             <div className="video-preview">
                 {this.state.videoOpen ?
                     (
-                        <Video
-                            className="video"
-                            height={this.props.videoHeight}
-                            videoId={this.props.videoId}
-                            width={this.props.videoWidth}
-                        />
+                        <div className="spinner-video-container">
+                            {this.state.spinnerVisible ? <Spinner className="loading-spinner" /> : null}
+                            <Video
+                                className="video"
+                                height={this.props.videoHeight}
+                                videoId={this.props.videoId}
+                                width={this.props.videoWidth}
+                                onLoad={this.handleVideoLoaded}
+                            />
+                        </div>
                     ) : (
                         <div
                             className="video-thumbnail"

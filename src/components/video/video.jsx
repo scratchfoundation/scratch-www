@@ -16,6 +16,7 @@ const Video = props => (
             src={`https://fast.wistia.net/embed/iframe/${props.videoId}?seo=false&videoFoam=true`}
             title={props.title}
             width={props.width}
+            onLoad={props.onLoad}
         />
         <script
             async
@@ -32,9 +33,11 @@ Video.defaultProps = {
 Video.propTypes = {
     className: PropTypes.string,
     height: PropTypes.string.isRequired,
+    onLoad: PropTypes.func,
     title: PropTypes.string.isRequired,
     videoId: PropTypes.string.isRequired,
     width: PropTypes.string.isRequired
+    
 };
 
 module.exports = Video;
