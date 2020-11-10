@@ -32,14 +32,14 @@ aliases:
     SENTRY_DSN: https://ebc2f8a6bc7b44ca8fd902fd4f16b3d7@sentry.io/1357122
     SENTRY_PROJECT: scratch-30-production
     STATIC_HOST: https://cdn2.scratch.mit.edu
-    TEST_PROJECT_ID: 414835599
+    TEST_PROJECT_ID: "414835599"
   - &env_staging
     API_HOST: https://api.scratch.ly
     ASSET_HOST: https://assets.scratch.ly
     BACKPACK_HOST: https://backpack.scratch.ly
     CLOUDDATA_HOST: varserver2.scratch.ly
-    FASTLY_API_KEY: ${FASTLY_API_KEY_STAGING}
-    FASTLY_SERVICE_ID: ${FASTLY_SERVICE_ID_STAGING}
+    # FASTLY_API_KEY: ${FASTLY_API_KEY_STAGING}
+    # FASTLY_SERVICE_ID: ${FASTLY_SERVICE_ID_STAGING}
     GA_TRACKER: UA-30688952-7
     PROJECT_HOST: https://projects.scratch.ly
     RECAPTCHA_SITE_KEY: 6LfukK4UAAAAAFR44yoZMhv8fj6xh-PMiIxwryG3
@@ -49,7 +49,7 @@ aliases:
     SENTRY_DSN: https://c01014988b0a4f44bbefdf235623c456@sentry.io/1357982
     SENTRY_PROJECT: scratch-30-staging
     STATIC_HOST: https://cdn.scratch.ly
-    TEST_PROJECT_ID: 1300006196
+    TEST_PROJECT_ID: "1300006196"
   - &save_git_cache
     save_cache:
       paths:
