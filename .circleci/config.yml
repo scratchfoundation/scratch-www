@@ -38,8 +38,6 @@ aliases:
     ASSET_HOST: https://assets.scratch.ly
     BACKPACK_HOST: https://backpack.scratch.ly
     CLOUDDATA_HOST: varserver2.scratch.ly
-    # FASTLY_API_KEY: ${FASTLY_API_KEY_STAGING}
-    # FASTLY_SERVICE_ID: ${FASTLY_SERVICE_ID_STAGING}
     GA_TRACKER: UA-30688952-7
     PROJECT_HOST: https://projects.scratch.ly
     RECAPTCHA_SITE_KEY: 6LfukK4UAAAAAFR44yoZMhv8fj6xh-PMiIxwryG3
