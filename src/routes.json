@@ -104,7 +104,7 @@
     {
         "name": "credits",
         "pattern": "^/credits/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "routeAlias": "/info/(cards|credits|faq|donate)/?$",
         "view": "credits/credits",
         "title": "Credits"
     },
@@ -146,7 +146,7 @@
     {
         "name": "faq",
         "pattern": "^/info/faq/?(\\?.*)?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
+        "routeAlias": "/info/(cards|credits|faq)/?$",
         "view": "faq/faq",
         "title": "FAQ"
     },
@@ -367,13 +367,13 @@
     {
         "name" : "credits-redirect",
         "pattern": "^/info/credits/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "routeAlias": "/info/(cards|credits|faq|donate)/?$",
         "redirect" : "/credits"
     },
     {
         "name": "donate-redirect",
         "pattern": "^/info/donate/?",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "routeAlias": "/info/(cards|credits|faq|donate)/?$",
         "redirect": "https://secure.donationpay.org/scratchfoundation/"
     },
     {
