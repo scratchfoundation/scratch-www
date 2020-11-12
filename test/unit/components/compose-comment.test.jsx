@@ -3,9 +3,9 @@ const {shallowWithIntl} = require('../../helpers/intl-helpers.jsx');
 const ComposeComment = require('../../../src/views/preview/comment/compose-comment.jsx');
 import configureStore from 'redux-mock-store';
 
-
 describe('Compose Comment test', () => {
     const mockStore = configureStore();
+    let _mockFormat;
     const defaultProps = () =>({
         user: {
             thumbnailUrl: 'scratch.mit.edu',
@@ -15,6 +15,14 @@ describe('Compose Comment test', () => {
 
     let store;
     beforeEach(() => {
+        const mockFormatToParts = {
+            formatToParts: jest.fn()
+        };
+        _mockFormat = Intl.RelativeTimeFormat = jest
+            .fn()
+            .mockImplementation(() => mockFormatToParts);
+        mockFormatToParts.formatToParts.mockReturnValue([]);
+        
         store = mockStore({
             session: {
                 session: {

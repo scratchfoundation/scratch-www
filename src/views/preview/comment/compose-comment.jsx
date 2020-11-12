@@ -12,6 +12,7 @@ const InplaceInput = require('../../../components/forms/inplace-input.jsx');
 const Button = require('../../../components/forms/button.jsx');
 const CommentingStatus = require('../../../components/commenting-status/commenting-status.jsx');
 const MuteModal = require('../../../components/modal/mute/modal.jsx');
+const formatTime = require('../../../lib/format-time');
 
 const connect = require('react-redux').connect;
 
@@ -79,7 +80,7 @@ class ComposeComment extends React.Component {
                 let muteExpiresAt = 0;
                 let rejectedStatus = ComposeStatus.REJECTED;
                 if (body.status && body.status.mute_status) {
-                    muteExpiresAt = body.status.mute_status.muteExpiresAt;
+                    muteExpiresAt = body.status.mute_status.muteExpiresAt * 1000; // convert to ms
                     rejectedStatus = ComposeStatus.REJECTED_MUTE;
                     if (this.shouldShowMuteModal(body.status.mute_status.offenses)) {
                         muteOpen = true;
@@ -165,9 +166,9 @@ class ComposeComment extends React.Component {
                         <CommentingStatus>
                             <p>Scratch thinks your comment was disrespectful.</p>
                             <p>
-                                For the next {this.state.muteExpiresAt} you
+                                For the next {formatTime.formatTimeUntil(this.state.muteExpiresAt, window._locale)} you
                                 won&apos;t be able to post comments.
-                                Once {this.state.muteExpiresAt} have passed,
+                                Once {formatTime.formatTimeUntil(this.state.muteExpiresAt, window._locale)} have passed,
                                 you will be able to comment again.
                             </p>
                             <p className="bottom-text">For more information,
@@ -248,7 +249,7 @@ class ComposeComment extends React.Component {
                             useStandardSizes
                             className="mod-mute"
                             shouldCloseOnOverlayClick={false}
-                            timeMuted={this.state.muteExpiresAt}
+                            timeMuted={formatTime.formatTimeUntil(this.state.muteExpiresAt, window._locale)}
                             onRequestClose={this.handleMuteClose}
                         />
                     ) : null}
