@@ -33,7 +33,7 @@ describe('unit test lib/format-time.js', () => {
 
         response = format.formatTimeUntil(twoMin, 'en');
 
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'minutes');
+        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'minute');
 
         expect(response).toEqual('2 minutes');
     });
@@ -51,7 +51,7 @@ describe('unit test lib/format-time.js', () => {
         ];
         mockFormatExpression.formatToParts.mockReturnValue(formatToPartsResponse);
         response = format.formatTimeUntil(twoHours, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'hours');
+        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'hour');
         expect(response).toEqual('2 hours');
     });
 
@@ -68,7 +68,7 @@ describe('unit test lib/format-time.js', () => {
         mockFormatExpression.formatToParts.mockReturnValue(formatToPartsResponse);
 
         response = format.formatTimeUntil(twoDays, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'days');
+        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'day');
         expect(response).toEqual('2 days');
     });
 
@@ -95,8 +95,8 @@ describe('unit test lib/format-time.js', () => {
             .mockReturnValueOnce(formatToPartsResponseTwelveHours);
 
         response = format.formatTimeUntil(twoDays, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2.5, 'days');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(12, 'hours');
+        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2.5, 'day');
+        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(12, 'hour');
         expect(response).toEqual('2 days 12 hours');
     });
 
@@ -122,8 +122,8 @@ describe('unit test lib/format-time.js', () => {
             .mockReturnValueOnce(formatToPartsResponseTwo);
 
         response = format.formatTimeUntil(twoDays, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(3.5, 'hours');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(30, 'minutes');
+        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(3.5, 'hour');
+        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(30, 'minute');
         expect(response).toEqual('3 hours 30 minutes');
     });
 
@@ -142,7 +142,7 @@ describe('unit test lib/format-time.js', () => {
             .mockReturnValueOnce(formatToPartsResponse);
 
         response = format.formatTimeUntil(aDayand10Min, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(1.007, 'days');
+        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(1.007, 'day');
         expect(response).toEqual('1 days');
     });
 
@@ -161,7 +161,7 @@ describe('unit test lib/format-time.js', () => {
             .mockReturnValueOnce(formatToPartsResponse);
 
         response = format.formatTimeUntil(anHourAnd30Sec, 'en');
-        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(1.008, 'hours');
+        expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(1.008, 'hour');
         expect(response).toEqual('1 hours');
     });
 });

@@ -10,13 +10,13 @@ const getTopLevelTimeUnit = timeStamp => {
     const oneDayInMs = 1000 * 60 * 60 * 24;
     const oneHourInMs = 1000 * 60 * 60;
     const oneMinuteInMs = 1000 * 60;
-    let unit = 'minutes';
+    let unit = 'minute';
     let duration = diff / oneMinuteInMs;
     if (diff > oneDayInMs) {
-        unit = 'days';
+        unit = 'day';
         duration = diff / oneDayInMs;
     } else if (diff > oneHourInMs) {
-        unit = 'hours';
+        unit = 'hour';
         duration = diff / oneHourInMs;
     }
     return {
@@ -81,9 +81,9 @@ module.exports.formatTimeUntil = (futureTime, lang) => {
     // or, our remainder is smaller than the next level down.
     // e.g. if it is 1 hour 30 sec, we just show 1 hour or
     // if it is 1 day 45 min, we only show 1 day.
-    if (timeInfo.unit === 'minutes' ||
-       (timeInfo.unit === 'hours' && remainder < 1.0 / 60) ||
-       (timeInfo.unit === 'days' && remainder < 1.0 / 24)) {
+    if (timeInfo.unit === 'minute' ||
+       (timeInfo.unit === 'hour' && remainder < 1.0 / 60) ||
+       (timeInfo.unit === 'day' && remainder < 1.0 / 24)) {
         return str;
     }
 
@@ -93,12 +93,12 @@ module.exports.formatTimeUntil = (futureTime, lang) => {
     let remainingTime = 0;
     let unitsOfRemainingTime = '';
 
-    if (timeInfo.unit === 'hours') {
+    if (timeInfo.unit === 'hour') {
         remainingTime = remainder * 60;
-        unitsOfRemainingTime = 'minutes';
-    } else if (timeInfo.unit === 'days') {
+        unitsOfRemainingTime = 'minute';
+    } else if (timeInfo.unit === 'day') {
         remainingTime = remainder * 24;
-        unitsOfRemainingTime = 'hours';
+        unitsOfRemainingTime = 'hour';
     }
 
     const remainingParts = formatter.formatToParts(remainingTime, unitsOfRemainingTime);
