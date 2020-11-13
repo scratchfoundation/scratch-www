@@ -7,7 +7,7 @@
     "about.whoUsesScratch": "Who Uses Scratch?",
     "about.whoUsesScratchDescription": "Scratch is designed especially for ages 8 to 16, but is used by people of all ages. Millions of people are creating Scratch projects in a wide variety of settings, including homes, schools, museums, libraries, and community centers.",
     "about.aroundTheWorld": "Around the World",
-    "about.aroundTheWorldDescription": "Scratch is used in more than 150 different countries and available in more than 40 languages. To change languages, click the menu at the bottom of the page. Or, in the Project Editor, click the globe at the top of the page. To add or improve a translation, see the {translationLink} page.",
+    "about.aroundTheWorldDescription": "Scratch is used in more than 150 different countries and available in more than {languageCount} languages. To change languages, click the menu at the bottom of the page. Or, in the Project Editor, click the globe at the top of the page. To add or improve a translation, see the {translationLink} page.",
     "about.translationLinkText": "translation",
     "about.quotes": "Quotes",
     "about.quotesDescription": "The Scratch Team has received many emails from youth, parents, and educators expressing thanks for Scratch. Want to see what people are saying? You can read a collection of the {quotesLink} we've received.",
