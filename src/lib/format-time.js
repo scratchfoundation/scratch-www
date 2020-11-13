@@ -72,7 +72,7 @@ module.exports.formatTimeUntil = (futureTime, lang) => {
     const units = parts[parts.length - 1].value;
 
     // Add value and unit to the string. e.g. 3 hours or 2 minutes
-    str = `${topLevelValue}${units}`;
+    str = `${topLevelValue} ${units}`;
 
     // Convert the part after the decimal to a number so we can use it to calculate the next unit
     const remainder = parseFloat(`.${getValueFromKey('fraction', parts)}`);
@@ -108,7 +108,7 @@ module.exports.formatTimeUntil = (futureTime, lang) => {
         return str;
     }
     // Concatenate 2nd level value and unit. e.g. add "3 hours" to "1 day" to get "1 day 3 hours".
-    str = `${str}${getValueFromKey('integer', remainingParts)}${remainingParts[remainingParts.length - 1].value}`;
+    str = `${str} ${getValueFromKey('integer', remainingParts)} ${remainingParts[remainingParts.length - 1].value}`;
 
     return str;
 };

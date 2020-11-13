@@ -35,7 +35,7 @@ describe('unit test lib/format-time.js', () => {
 
         expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'minutes');
 
-        expect(response).toEqual('2minutes');
+        expect(response).toEqual('2 minutes');
     });
 
     test('test timestamp that is 2 hours in the future', () => {
@@ -52,7 +52,7 @@ describe('unit test lib/format-time.js', () => {
         mockFormatExpression.formatToParts.mockReturnValue(formatToPartsResponse);
         response = format.formatTimeUntil(twoHours, 'en');
         expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'hours');
-        expect(response).toEqual('2hours');
+        expect(response).toEqual('2 hours');
     });
 
     test('test timestamp that is exactly 2 days in the future', () => {
@@ -69,7 +69,7 @@ describe('unit test lib/format-time.js', () => {
 
         response = format.formatTimeUntil(twoDays, 'en');
         expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2, 'days');
-        expect(response).toEqual('2days');
+        expect(response).toEqual('2 days');
     });
 
 
@@ -97,7 +97,7 @@ describe('unit test lib/format-time.js', () => {
         response = format.formatTimeUntil(twoDays, 'en');
         expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(2.5, 'days');
         expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(12, 'hours');
-        expect(response).toEqual('2days12hours');
+        expect(response).toEqual('2 days 12 hours');
     });
 
     test('test timestamp that is 3.5 hours in the future', () => {
@@ -124,7 +124,7 @@ describe('unit test lib/format-time.js', () => {
         response = format.formatTimeUntil(twoDays, 'en');
         expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(3.5, 'hours');
         expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(30, 'minutes');
-        expect(response).toEqual('3hours30minutes');
+        expect(response).toEqual('3 hours 30 minutes');
     });
 
     test('test timestamp that is 1 day and less than an hour in the future', () => {
@@ -143,7 +143,7 @@ describe('unit test lib/format-time.js', () => {
 
         response = format.formatTimeUntil(aDayand10Min, 'en');
         expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(1.007, 'days');
-        expect(response).toEqual('1days');
+        expect(response).toEqual('1 days');
     });
 
     test('test timestamp that is hour and less than a minute in the future', () => {
@@ -162,6 +162,6 @@ describe('unit test lib/format-time.js', () => {
 
         response = format.formatTimeUntil(anHourAnd30Sec, 'en');
         expect(mockFormatExpression.formatToParts).toHaveBeenCalledWith(1.008, 'hours');
-        expect(response).toEqual('1hours');
+        expect(response).toEqual('1 hours');
     });
 });
