@@ -111,6 +111,10 @@ class ComposeComment extends React.Component {
         });
     }
 
+    convertToMinutesFromNow (timeStampInSec) {
+        return Math.ceil(((timeStampInSec * 1000) - Date.now()) / (60 * 1000));
+    }
+
     handleMuteClose () {
         this.setState({
             muteOpen: false
@@ -122,7 +126,6 @@ class ComposeComment extends React.Component {
             muteOpen: true
         });
     }
-
     shouldShowMuteModal (offensesList) {
         // We should show the mute modal whne the user is newly muted or hasn't seen it for a while.
         // We don't want to show it more than about once a week.
@@ -144,7 +147,7 @@ class ComposeComment extends React.Component {
         }
 
         const mostRecent = offensesList[numOffenses - 1];
-        const creationTimeMinutesAgo = (Date.now() - (mostRecent.createdAt * 1000)) / (60 * 1000);
+        const creationTimeMinutesAgo = this.convertToMinutesFromNow(mostRecent.createdAt);
         return creationTimeMinutesAgo < 2 && numOffenses === 1;
     }
 
@@ -165,9 +168,9 @@ class ComposeComment extends React.Component {
                         <CommentingStatus>
                             <p>Scratch thinks your comment was disrespectful.</p>
                             <p>
-                                For the next {this.state.muteExpiresAt} you
+                                For the next {this.convertToMinutesFromNow(this.state.muteExpiresAt)} minutes you
                                 won&apos;t be able to post comments.
-                                Once {this.state.muteExpiresAt} have passed,
+                                Once {this.convertToMinutesFromNow(this.state.muteExpiresAt)} minutes have passed,
                                 you will be able to comment again.
                             </p>
                             <p className="bottom-text">For more information,
@@ -248,7 +251,7 @@ class ComposeComment extends React.Component {
                             useStandardSizes
                             className="mod-mute"
                             shouldCloseOnOverlayClick={false}
-                            timeMuted={this.state.muteExpiresAt}
+                            timeMuted={`${this.convertToMinutesFromNow(this.state.muteExpiresAt)} minutes`}
                             onRequestClose={this.handleMuteClose}
                         />
                     ) : null}
