@@ -7,12 +7,18 @@ const classNames = require('classnames');
 require('./video.scss');
 
 class Video extends React.Component {
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            loaded: false
+        };
+    }
     componentDidMount () {
         /**
             uses code snippets from
             https://github.com/mrdavidjcole/wistia-player-react/blob/master/src/components/wistia_embed.js
         **/
-
         if (!document.getElementById('wistia_script')) {
             const wistiaScript = document.createElement('script');
             wistiaScript.id = 'wistia_script';
@@ -25,18 +31,27 @@ class Video extends React.Component {
         window._wq = window._wq || [];
         window._wq.push({
             id: this.props.videoId,
-            onReady: this.props.onLoad
+            onReady: video => {
+                video.bind('secondchange', s => {
+                    if (s >= 0) {
+                        this.setState({loaded: true});
+                        this.props.onLoad();
+                    }
+                });
+            }
         });
     }
 
     render () {
+        const loadedClass = this.state.loaded ? 'iframe-loaded' : 'iframe-not-loaded';
+
         return (
             <div className={classNames('video-player', this.props.className)}>
                 <iframe
                     allowFullScreen
                     // allowFullScreen is legacy, can we start using allow='fullscreen'?
                     // allow="fullscreen"
-                    className={classNames('wistia_embed', `wistia_async_${this.props.videoId}`)}
+                    className={classNames('wistia_embed', `wistia_async_${this.props.videoId}`, loadedClass)}
                     frameBorder="0" // deprecated attribute
                     height={this.props.height}
                     scrolling="no" // deprecated attribute

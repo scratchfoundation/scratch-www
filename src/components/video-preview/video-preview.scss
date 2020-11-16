@@ -41,3 +41,11 @@
     height: 100%;
     position: relative;
 }
+
+.iframe-not-loaded {
+    visibility: hidden;
+}
+
+.iframe-loaded {
+    visibility: visible;
+}
