@@ -38,7 +38,18 @@ const EducationCollaborative = () => (
             <section id="projects">
                 <h2><FormattedMessage id="sec.projectsTitle" /></h2>
                 <p><FormattedMessage id="sec.projectsIntro" /></p>
-                <p><FormattedMessage id="sec.projectsIntro2" /></p>
+                <p>
+                    <FormattedMessage id="sec.projectsIntro2"
+                        values={{
+                            culturallySustainingLink: <a
+                                href="https://docs.google.com/document/d/1JcRBFhAXvMGKXgHADg1sAZC8b_zb2OSVDjaEOL8tzcw/edit#bookmark=id.4c6pah669jb5"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                <FormattedMessage id="sec.culturallySustaining" />
+                            </a>
+                        }} />
+                </p>
             </section>
             <section id="expectations-for-sec">
                 <h3><FormattedMessage id="sec.expectationsFromSec" /></h3>
