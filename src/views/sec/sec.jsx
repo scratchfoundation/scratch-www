@@ -39,7 +39,8 @@ const EducationCollaborative = () => (
                 <h2><FormattedMessage id="sec.projectsTitle" /></h2>
                 <p><FormattedMessage id="sec.projectsIntro" /></p>
                 <p>
-                    <FormattedMessage id="sec.projectsIntro2"
+                    <FormattedMessage
+                        id="sec.projectsIntro2"
                         values={{
                             culturallySustainingLink: <a
                                 href="https://docs.google.com/document/d/1JcRBFhAXvMGKXgHADg1sAZC8b_zb2OSVDjaEOL8tzcw/edit#bookmark=id.4c6pah669jb5"
@@ -48,7 +49,8 @@ const EducationCollaborative = () => (
                             >
                                 <FormattedMessage id="sec.culturallySustaining" />
                             </a>
-                        }} />
+                        }}
+                    />
                 </p>
             </section>
             <section id="expectations-for-sec">
