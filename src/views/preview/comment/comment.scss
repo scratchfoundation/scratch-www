@@ -32,6 +32,9 @@
             &:not(:focus) {
                 border: 2px solid $active-dark-gray;
             }
+            &:disabled {
+                background-color: $box-shadow-light-gray;
+            }
         }
     }
 
