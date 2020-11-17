@@ -1,0 +1,70 @@
+@import "../../colors";
+@import "../../frameless";
+
+$sec-spot: $ui-blue;
+
+#view {
+    padding: 0;
+}
+
+.education-collaborative {
+    .title-banner {
+        &.masthead {
+            background-color: $sec-spot;
+            padding: 50px 0;
+
+            .masthead-info {
+                align-items: center;
+                justify-content: space-between;
+
+                @media #{$intermediate} {
+                    justify-content: end;
+                }
+
+                h1 {
+                    margin: 0 0 1rem 0;
+                    text-align: left;
+                    color: $ui-white;
+                }
+                p {
+                    margin: 0;
+                    text-align: left;
+                    color: $ui-white;
+                    max-width: $cols6;
+                    font-size: 1.65em;
+                }
+                img {
+                    width: $cols4;
+                }
+
+                .sec-apply-buttons {
+                    margin-top: 2rem;
+                    li {
+                        border: 2px solid $ui-white;
+                        padding: 16px;
+                        font-size: 16px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+
+    section {
+        margin-bottom: 3rem;
+
+        p, ul {
+            max-width: $cols8;
+        }
+    }
+}
+
+@media #{$intermediate, $medium, $small} {
+    #view {
+        text-align: left;
+    }
+}
+
+
+
+
