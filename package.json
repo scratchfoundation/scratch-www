@@ -109,7 +109,7 @@
     "minilog": "2.0.8",
     "node-dir": "0.1.16",
     "node-sass": "4.14.1",
-    "pako": "0.2.8",
+    "pako": "2.0.0",
     "plotly.js": "1.47.4",
     "po2icu": "0.0.2",
     "postcss-loader": "2.0.10",
