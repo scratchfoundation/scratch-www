@@ -248,6 +248,14 @@
         "title": "Search"
     },
     {
+        "name": "sec",
+        "pattern": "^/sec/?(\\?.*)?$",
+        "routeAlias": "/sec/?",
+        "view": "sec/sec",
+        "title": "Scratch Education Collaborative",
+        "viewportWidth": "device-width"
+    },
+    {
         "name": "splash",
         "pattern": "^/?$",
         "routeAlias": "/?$",
