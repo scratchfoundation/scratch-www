@@ -41,6 +41,7 @@ aliases:
         - v1-build-
   - &build
     <<: *defaults
+    resource_class: medium+
     steps:
       - *restore_git_cache
       - checkout
@@ -133,4 +134,3 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
-  
