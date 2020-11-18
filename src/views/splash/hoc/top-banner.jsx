@@ -47,11 +47,11 @@ const TopBanner = () => (
                         </div>
                     </FlexRow>
                 </a>
-                <a href="/projects/editor?tutorial=talking">
+                <a href="/projects/editor?tutorial=make-it-fly">
                     <FlexRow className="hoc-banner-image column">
-                        <img src="/images/hoc/talking.png" />
+                        <img src="/images/hoc/make-it-fly.jpg" />
                         <div className="hoc-image-text">
-                            <FormattedMessage id="hocbanner.talking" />
+                            <FormattedMessage id="hocbanner.makeItFly" />
                         </div>
                     </FlexRow>
                 </a>
