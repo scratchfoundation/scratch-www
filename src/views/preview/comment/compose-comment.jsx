@@ -170,7 +170,7 @@ class ComposeComment extends React.Component {
                 {this.isMuted() ? (
                     <FlexRow className="comment">
                         <CommentingStatus>
-                            <p>Scratch thinks your comment was disrespectful.</p>
+                            <p>Scratch thinks your most recent comment was disrespectful.</p>
                             <p>
                                 For the next {this.convertToMinutesFromNow(this.state.muteExpiresAt)} minutes you
                                 won&apos;t be able to post comments.
@@ -189,7 +189,7 @@ class ComposeComment extends React.Component {
                     className={classNames('flex-row',
                         'comment',
                         this.state.status === ComposeStatus.REJECTED_MUTE ?
-                        'compose-disabled' : '')}
+                            'compose-disabled' : '')}
                 >
                     <a href={`/users/${this.props.user.username}`}>
                         <Avatar src={this.props.user.thumbnailUrl} />
