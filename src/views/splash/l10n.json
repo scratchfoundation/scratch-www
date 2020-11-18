@@ -39,12 +39,13 @@
     "hocbanner.imagine": "Imagine a World",
     "hocbanner.codeACartoon": "Code a Cartoon",
     "hocbanner.talking": "Talking Tales",
+    "hocbanner.makeItFly": "Make It Fly",
 
     "welcome.welcomeToScratch": "Welcome to Scratch!",
     "welcome.learn": "Learn how to make a project in Scratch",
     "welcome.tryOut": "Try out starter projects",
     "welcome.connect": "Connect with other Scratchers",
-    
+
     "activity.seeUpdates": "This is where you will see updates from Scratchers you follow",
     "activity.checkOutScratchers": "Check out some Scratchers you might like to follow"
 }

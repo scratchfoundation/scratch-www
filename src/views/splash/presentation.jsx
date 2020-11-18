@@ -36,8 +36,8 @@ const ShareProjectMessage = require('./activity-rows/share-project.jsx');
 const TopBanner = require('./hoc/top-banner.jsx');
 const MiddleBanner = require('./hoc/middle-banner.jsx');
 
-const HOC_START_TIME = 1575262800000; // 2019-12-02 00:00:00
-const HOC_END_TIME = 1577077200000; // 2019-12-23 00:00:00
+const HOC_START_TIME = 1605484800000; // 2020-11-16 00:00:00
+const HOC_END_TIME = 1608681600000; // 2020-12-23 00:00:00
 
 require('./splash.scss');
 
@@ -468,6 +468,7 @@ class SplashPresentation extends React.Component { // eslint-disable-line react/
                     Object.keys(this.props.user).length !== 0 && // Only show if user is logged in
                     Date.now() >= HOC_START_TIME && // Show middle banner on and after Dec 3
                     Date.now() < HOC_END_TIME && // Hide middle banner after Dec 14
+                    false && // we did not use this middle banner in last HoC
                     <MediaQuery
                         key="frameless-desktop"
                         minWidth={frameless.tabletPortrait}
