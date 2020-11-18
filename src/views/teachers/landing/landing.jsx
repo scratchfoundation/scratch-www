@@ -341,7 +341,7 @@ const Landing = props => (
                             id="teacherlanding.accountsRequestInfo"
                             values={{
                                 setupGuideLink: (
-                                    <a href="https://drive.google.com/file/d/1CGFzkZAHm53FHpjKbVqgVauXGdWJiUdQ/view" >
+                                    <a href="https://resources.scratch.mit.edu/www/guides/en/scratch-teacher-accounts-guide.pdf" >
                                         <FormattedMessage id="teacherlanding.accountsSetupGuide" />
                                     </a>
                                 ),
