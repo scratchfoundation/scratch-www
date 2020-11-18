@@ -186,7 +186,10 @@ class ComposeComment extends React.Component {
                     </FlexRow>
                 ) : null }
                 <div
-                    className="flex-row comment"
+                    className={classNames('flex-row',
+                        'comment',
+                        this.state.status === ComposeStatus.REJECTED_MUTE ?
+                        'compose-disabled' : '')}
                 >
                     <a href={`/users/${this.props.user.username}`}>
                         <Avatar src={this.props.user.thumbnailUrl} />

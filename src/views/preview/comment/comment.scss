@@ -32,9 +32,6 @@
             &:not(:focus) {
                 border: 2px solid $active-dark-gray;
             }
-            &:disabled {
-                background-color: $box-shadow-light-gray;
-            }
         }
     }
 
@@ -276,6 +273,10 @@
         content: "";
         pointer-events: none;
     }
+}
+
+.compose-disabled {
+    opacity: .5;
 }
 
 .comments-root-reply {
