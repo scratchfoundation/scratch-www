@@ -4,6 +4,7 @@ const React = require('react');
 
 const Video = require('../video/video.jsx');
 const Spinner = require('../spinner/spinner.jsx');
+const classNames = require('classnames');
 
 require('./video-preview.scss');
 
@@ -52,6 +53,10 @@ class VideoPreview extends React.Component {
                             className="video-thumbnail"
                             onClick={this.handleShowVideo}
                         >
+                            <img
+                                className={classNames('loading-spinner', 'hidden-spinner')}
+                                src="/svgs/modal/spinner-white.svg"
+                            />
                             <img
                                 src={this.props.thumbnail}
                                 style={{
