@@ -45,7 +45,7 @@ aliases:
     steps:
       - *restore_git_cache
       - checkout
-      - *restore_npm_cache
+      # - *restore_npm_cache
       - run:
           name: "Run npm test to build"
           command: |
@@ -134,3 +134,19 @@ workflows:
                 - develop
                 - /^hotfix\/.*/
                 - /^release\/.*/
+  test-build-cron:
+    triggers:
+      - schedule: # every 15 minutes
+          cron: "0,15,30,45 * * * *"
+          filters:
+            branches:
+              only: circleci-project-setup
+    jobs:
+      - build-staging:
+          context:
+            - scratch-www-all
+            - scratch-www-staging
+          filters:
+            branches:
+              only:
+                - circleci-project-setup # remove this before releasing
