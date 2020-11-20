@@ -46,25 +46,27 @@ class MuteModal extends React.Component {
                 <ModalInnerContent className="mute-inner-content">
                     <Progression step={this.state.step}>
                         <MuteStep
-                            bottomImg="/images/bottom_placeholder.png"
+                            bottomImg="/svgs/commenting/comment_feedback.svg"
                             bottomImgClass="bottom-img"
-                            header="The Scratch comment filter thinks your comment was unconstructive."
+                            header="Make sure to be respectful to others when commenting on Scratch."
                         >
                             <p>
-                            If you think something could be better, you can say something you like about the project,
-                            and make a suggestion about how to improve it. For example, you could say:
+                            The Scratch comment filter thinks that your comment was disrespectful. Remember
+                            that there is a person behind this Scratch account, and sometimes, a mean comment
+                            can really hurt someone&apos;s feelings.
                             </p>
                         </MuteStep>
                         <MuteStep
-                            header="For the next X minutes you won't be able to post comments"
-                            sideImg="/images/side_placeholder.png"
+                            header={`For the next ${this.props.timeMuted} you won't be able to post comments.`}
+                            sideImg="/svgs/commenting/mute_time.svg"
                             sideImgClass="side-img"
                         >
                             <p>
-                            Once X minutes have passed, you will be able to comment again.
+                            Once {this.props.timeMuted} have passed, you will be able to comment again.
                             </p>
                             <p>
-                            If you would like more information, you can read the Scratch community guidelines.
+                            If you would like more information, you can read
+                            the <a href="/community_guidelines"> Scratch community guidelines</a>.
                             </p>
                         </MuteStep>
                     </Progression>
@@ -109,7 +111,8 @@ class MuteModal extends React.Component {
 }
 
 MuteModal.propTypes = {
-    onRequestClose: PropTypes.func
+    onRequestClose: PropTypes.func,
+    timeMuted: PropTypes.string
 };
 
 module.exports = MuteModal;

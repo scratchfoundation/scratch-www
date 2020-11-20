@@ -63,8 +63,9 @@ const About = () => (
                     <p><FormattedMessage
                         id="about.aroundTheWorldDescription"
                         values={{
+                            languageCount: 60,
                             translationLink: (
-                                <a href="https://en.scratch-wiki.info/wiki/How_to_Translate_Scratch">
+                                <a href="https://github.com/LLK/scratch-l10n/wiki/Guide-for-Scratch-Translators">
                                     <FormattedMessage id="about.translationLinkText" />
                                 </a>
                             )
@@ -148,6 +149,9 @@ const About = () => (
                         </li>
                         <li>
                             <a href="/credits"><FormattedMessage id="about.learnMoreCredits" /></a>
+                        </li>
+                        <li>
+                            <a href="/annual-report"><FormattedMessage id="about.learnMoreAnnualReport" /></a>
                         </li>
                     </ul>
                 </li>
