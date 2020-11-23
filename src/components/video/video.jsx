@@ -1,5 +1,3 @@
-const bindAll = require('lodash.bindall');
-
 const PropTypes = require('prop-types');
 const React = require('react');
 const classNames = require('classnames');
@@ -11,7 +9,7 @@ class Video extends React.Component {
         super(props);
 
         this.state = {
-            loaded: false
+            videoStarted: false
         };
     }
     componentDidMount () {
@@ -29,36 +27,37 @@ class Video extends React.Component {
         }
 
         window._wq = window._wq || [];
+
+        //  Use onReady in combination with the Wistia 'play' event handler so that onVideoStart()
+        //  isn't called until the video actually starts. onReady fires before the video player is visible.
         window._wq.push({
             id: this.props.videoId,
             onReady: video => {
-                video.bind('secondchange', s => {
-                    if (s >= 0) {
-                        this.setState({loaded: true});
-                        this.props.onLoad();
-                    }
+                video.bind('play', () => {
+                    this.setState({videoStarted: true});
+                    this.props.onVideoStart();
+                    return video.unbind;
                 });
             }
         });
     }
 
     render () {
-        const loadedClass = this.state.loaded ? 'iframe-loaded' : 'iframe-not-loaded';
-
+        // Provide CSS classes for anything using the video component to configure what happens before and after
+        // the video has played for the first time. See VideoPreview for an example.
+        const videoStartedClass = this.state.videoStarted ? 'iframe-video-started' : 'iframe-video-not-started';
+        
         return (
             <div className={classNames('video-player', this.props.className)}>
                 <iframe
                     allowFullScreen
-                    // allowFullScreen is legacy, can we start using allow='fullscreen'?
-                    // allow="fullscreen"
-                    className={classNames('wistia_embed', `wistia_async_${this.props.videoId}`, loadedClass)}
+                    className={classNames('wistia_embed', `wistia_async_${this.props.videoId}`, videoStartedClass)}
                     frameBorder="0" // deprecated attribute
                     height={this.props.height}
                     scrolling="no" // deprecated attribute
                     src={`https://fast.wistia.net/embed/iframe/${this.props.videoId}?seo=false&videoFoam=true`}
                     title={this.props.title}
                     width={this.props.width}
-                    // onLoad={this.props.onLoad}
                 />
             </div>
         );
@@ -73,7 +72,7 @@ Video.defaultProps = {
 Video.propTypes = {
     className: PropTypes.string,
     height: PropTypes.string.isRequired,
-    onLoad: PropTypes.func,
+    onVideoStart: PropTypes.func,
     title: PropTypes.string.isRequired,
     videoId: PropTypes.string.isRequired,
     width: PropTypes.string.isRequired

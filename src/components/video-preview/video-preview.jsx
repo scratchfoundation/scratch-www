@@ -45,7 +45,7 @@ class VideoPreview extends React.Component {
                                 height={this.props.videoHeight}
                                 videoId={this.props.videoId}
                                 width={this.props.videoWidth}
-                                onLoad={this.handleVideoLoaded}
+                                onVideoStart={this.handleVideoLoaded}
                             />
                         </div>
                     ) : (
@@ -53,6 +53,7 @@ class VideoPreview extends React.Component {
                             className="video-thumbnail"
                             onClick={this.handleShowVideo}
                         >
+                            {/* Load an invisible spinner so that the image has a chance to load before it's needed */}
                             <img
                                 className={classNames('loading-spinner', 'hidden-spinner')}
                                 src="/svgs/modal/spinner-white.svg"
