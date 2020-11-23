@@ -7,18 +7,19 @@
         "title": "About"
     },
     {
+        "name": "annual-report",
+        "pattern": "^/annual-report/?$",
+        "routeAlias": "/annual-report/?$",
+        "view": "annual-report/annual-report",
+        "title": "Annual Report",
+        "viewportWidth": "device-width"
+    },
+    {
         "name": "camp",
         "pattern": "^/camp/?$",
         "routeAlias": "/camp/?$",
         "view": "camp/camp",
         "title": "Down Deep"
-    },
-    {
-        "name": "communityblocks-interviews",
-        "pattern": "^/info/communityblocks-interviews/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
-        "view": "communityblocks-interviews/communityblocks-interviews",
-        "title": "Community Blocks Beta Tester Interviews"
     },
     {
         "name": "conference-index",
@@ -103,7 +104,7 @@
     {
         "name": "credits",
         "pattern": "^/credits/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "routeAlias": "/info/(cards|credits|faq|donate)/?$",
         "view": "credits/credits",
         "title": "Credits"
     },
@@ -145,7 +146,7 @@
     {
         "name": "faq",
         "pattern": "^/info/faq/?(\\?.*)?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq)/?$",
+        "routeAlias": "/info/(cards|credits|faq)/?$",
         "view": "faq/faq",
         "title": "FAQ"
     },
@@ -245,6 +246,14 @@
         "routeAlias": "/search",
         "view": "search/search",
         "title": "Search"
+    },
+    {
+        "name": "sec",
+        "pattern": "^/sec/?(\\?.*)?$",
+        "routeAlias": "/sec/?",
+        "view": "sec/sec",
+        "title": "Scratch Education Collaborative",
+        "viewportWidth": "device-width"
     },
     {
         "name": "splash",
@@ -366,13 +375,13 @@
     {
         "name" : "credits-redirect",
         "pattern": "^/info/credits/?$",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "routeAlias": "/info/(cards|credits|faq|donate)/?$",
         "redirect" : "/credits"
     },
     {
         "name": "donate-redirect",
         "pattern": "^/info/donate/?",
-        "routeAlias": "/info/(cards|communityblocks-interviews|credits|faq|donate)/?$",
+        "routeAlias": "/info/(cards|credits|faq|donate)/?$",
         "redirect": "https://secure.donationpay.org/scratchfoundation/"
     },
     {
@@ -504,6 +513,16 @@
         "name": "pong-tutorial-redirect",
         "pattern": "^/pong/?$",
         "redirect": "/projects/editor/?tutorial=pong"
+    },
+    {
+        "name": "animateacharacter-tutorial-redirect",
+        "pattern": "^/animate-a-character/?$",
+        "redirect": "/projects/editor/?tutorial=animate-a-character"
+    },
+    {
+        "name": "videosensing-tutorial-redirect",
+        "pattern": "^/video-sensing/?$",
+        "redirect": "/projects/editor/?tutorial=video-sensing"
     },
     {
         "name": "clicker-tutorial-redirect",

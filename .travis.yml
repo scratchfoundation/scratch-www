@@ -48,6 +48,11 @@ env:
   - PROJECT_HOST_VAR=PROJECT_HOST_$TRAVIS_BRANCH
   - PROJECT_HOST=${!PROJECT_HOST_VAR}
   - PROJECT_HOST=${PROJECT_HOST:-$PROJECT_HOST_STAGING}
+  - TEST_PROJECT_ID_master=414835599
+  - TEST_PROJECT_ID_STAGING=1300006196
+  - TEST_PROJECT_ID_VAR=TEST_PROJECT_ID_$TRAVIS_BRANCH
+  - TEST_PROJECT_ID=${!TEST_PROJECT_ID_VAR}
+  - TEST_PROJECT_ID=${TEST_PROJECT_ID:-$TEST_PROJECT_ID_STAGING}
   - STATIC_HOST_master=https://cdn2.scratch.mit.edu
   - STATIC_HOST_STAGING=https://cdn.scratch.ly
   - STATIC_HOST_VAR=STATIC_HOST_$TRAVIS_BRANCH
@@ -141,6 +146,6 @@ stages:
 - name: test
   if: type != cron
 - name: smoke
-  if: type NOT IN (cron, pull_request)
+  if: type NOT IN (cron, pull_request) AND (branch =~ /^(develop|master|release\/|hotfix\/)/)
 - name: update translations
   if: branch == develop AND type == cron

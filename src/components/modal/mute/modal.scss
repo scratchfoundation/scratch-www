@@ -1,0 +1,61 @@
+@import "../../../colors";
+@import "../../../frameless";
+
+.modal-mute {
+    width: 30rem;
+
+    .mute-modal-header {
+        box-shadow: inset 0 -1px 0 0 $ui-mint-green;
+        background-color: $ui-mint-green;
+        border-radius: 1rem 1rem 0 0;
+    }
+    .mute-step {
+        display: flex;
+        padding: 48px 16px;
+    }
+    .mute-content {
+        padding-top: 16px;
+    }
+    .mute-inner-content {
+        padding: 0 32px;
+    }
+    .left-column {
+        align-items: flex-start;
+        padding-right: 32px;
+    }
+    .mute-header {
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 2rem;
+    }
+    .mute-bottom-row {
+        padding-top: 32px;
+    }
+    .bottom-img {
+        width: 380px;
+    }
+    .mute-side-image {
+        margin-left: -49px;
+    }
+    .side-img {
+        height: 212px;
+        width: 129px;
+    }
+    .nav-divider {
+        border-top: 1px solid $ui-blue-25percent;
+    }
+    .mute-nav {
+        display:flex;
+        justify-content: space-between;
+        padding: 24px 0;
+    }
+    .back-button {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .next-button, .close-button {
+        margin-left: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}

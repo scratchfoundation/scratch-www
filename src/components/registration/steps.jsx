@@ -180,7 +180,7 @@ class UsernameStep extends React.Component {
                         this.props.description
                     ) : (
                         <span>
-                            <intl.FormattedMessage id="registration.usernameStepDescription" />
+                            <intl.FormattedMessage id="registration.usernameStepDescription" />&nbsp;
                             <b>
                                 <intl.FormattedMessage id="registration.usernameStepRealName" />
                             </b>

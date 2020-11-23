@@ -53,7 +53,8 @@ $tile-height: 244px;
 
         img {
             width: $cols4;
-            height: auto;
+            height: $cols4 * 0.553333333; /* images are 600 x 332 for retina */
+            object-fit: cover;
         }
 
         .hoc-image-text {
